@@ -10,12 +10,12 @@
   0.1005
  ],
  "bounds_min_m": [
-  -0.0011,
-  -0.0433,
+  -0.1194,
+  -0.0434,
   0.0
  ],
  "bounds_max_m": [
-  0.2376,
+  0.1194,
   0.0434,
   0.1005
  ],
@@ -71,16 +71,16 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 29.9,
-   "p99": 88.0
+   "mean": 28.4,
+   "p99": 88.1
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.159,
+   "mean": 0.147,
    "p95": 0.509
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.529
+  "ao_mean": 0.528
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [

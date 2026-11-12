@@ -1,0 +1,140 @@
+{
+ "name": "SK_Fish_PR",
+ "class": "creature",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fish/Fish/SK_Fish_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fish/Fish/SK_Fish_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fish/Fish/SK_Fish_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fish/Fish/SK_Fish_PR_LOD2.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fish/Fish/SK_Fish_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_fish.py final",
+ "dimensions_m": [
+  0.5211,
+  0.141,
+  0.1973
+ ],
+ "bounds_min_m": [
+  -0.2261,
+  -0.0705,
+  -0.01
+ ],
+ "bounds_max_m": [
+  0.295,
+  0.0705,
+  0.1873
+ ],
+ "lod0_triangles": 1800,
+ "lod1_triangles": 900,
+ "lod2_triangles": 450,
+ "triangle_budget": {
+  "soft": 25000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fish/Fish/T_Fish_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fish/Fish/T_Fish_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fish/Fish/T_Fish_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Fish_PR"
+ ],
+ "rig": {
+  "root_bone": "root",
+  "bones": [
+   "root",
+   "spine_01",
+   "head",
+   "spine_02",
+   "spine_03",
+   "spine_04",
+   "tail_01"
+  ],
+  "bone_count": 7,
+  "weights": {
+   "method": "bone heat",
+   "max_influences": 3,
+   "unweighted_vertices": 0
+  },
+  "rest_pose": "standing pose as modelled (not a T pose)",
+  "animation": "none: skeleton and skin weights only; no clips, no Physics Asset, no control rig",
+  "skeleton": "bespoke (CONVENTIONS.md section 11: any skeleton with a single root bone named root)"
+ },
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "uv_range": [
+   0.004,
+   0.996
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 123.4,
+   "p99": 219.7
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.226,
+   "p95": 0.3
+  },
+  "metallic_mean": 0.229,
+  "ao_mean": 0.763
+ },
+ "pivot": "feet: armature origin on the ground between the feet, front on -Y",
+ "families": [
+  "fish",
+  "fish_flopping",
+  "434 animals/fish/fish1",
+  "439, 441 animals/fish/flop"
+ ],
+ "origin_ids": {
+  "fish": [
+   "S634_P01",
+   "S634_P02",
+   "S634_P03",
+   "S665_P03",
+   "S697_P02",
+   "S697_P03",
+   "S697_P04",
+   "S727_P17"
+  ],
+  "fish_flopping": [
+   "S734_P09",
+   "S760_P01",
+   "S760_P02",
+   "S760_P03"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "trout-built fish, 52 cm with the tail: dark blue-grey back, silver flanks with a rosy band and black spots, pale belly, rayed fins",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "Body is one swept solid with gill and mouth lines pressed in: no opening mouth, gill covers, nostrils or lateral-line scales, and the scale pattern is a Voronoi grid in the normal map. Fins are 1.2 mm opaque shells with rays painted on; real fins are translucent. A generic trout: the original frame is a pale blue fish seen from above through water. Seven-bone spine chain with automatic weights, checked in one bend (render_pose.png); no swim or flop clips, which is what both families actually show. The flopping fish is this mesh on its side."
+}

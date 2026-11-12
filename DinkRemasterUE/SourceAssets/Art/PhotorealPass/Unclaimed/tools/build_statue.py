@@ -57,6 +57,9 @@ def main(mode):
     if mode == 'review':
         shots(hi, 'Dragon_Statue_hi', L.REVIEW); return
     lo = L.make_lo(hi, 9000, asset, L.coll(asset), angle=72, margin=0.004); ids = L.origin_ids(['dragon_statue'])
+    P0 = L.co(lo); cen = (P0.min(0) + P0.max(0)) / 2; cen[2] = P0[:, 2].min()          # pivot at the base centre
+    for o in [lo] + hi:
+        L.set_co(o, L.co(o) - cen)
     L.finish_static(asset, 'prop', lo, hi, outdir, 2048, families=['dragon_statue', '159 struct/stone/mdink/monum- frames 5, 6'], origin=ids,
                     dresses='stone statue of a dragon rearing on an orb, 3 m to the wing tips on a 1 m plinth: wings half raised, tail wound down round the orb, grey weathered stone with moss and lichen',
                     extrude=0.012, maxdist=0.03, third_party=['rock_face_03'], script=SCRIPT + ' final', weaknesses=WEAK, extra={'contact_crop': 0.95,

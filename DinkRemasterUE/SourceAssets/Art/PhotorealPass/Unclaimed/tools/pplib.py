@@ -258,18 +258,29 @@ def make_lods(lo, ratios):
     return out
 
 
+def _hull(points):
+    """closed convex hull mesh (bmesh) of a point set"""
+    bm = bmesh.new()
+    for p in points:
+        bm.verts.new(tuple(p))
+    r = bmesh.ops.convex_hull(bm, input=bm.verts, use_existing_faces=False)
+    junk = [e for e in r.get('geom_interior', []) + r.get('geom_unused', []) if isinstance(e, bmesh.types.BMVert)]
+    if junk:
+        bmesh.ops.delete(bm, geom=list(set(junk)), context='VERTS')
+    bmesh.ops.dissolve_limit(bm, angle_limit=math.radians(0.6), verts=bm.verts, edges=bm.edges)          # coplanar triangles become one planar face
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces); return bm
+
+
 def make_ucx(lo, maxv=26):
-    bm = bmesh.new(); bm.from_mesh(lo.data); r = bmesh.ops.convex_hull(bm, input=bm.verts)
-    keep = set(e for e in r['geom'] if isinstance(e, bmesh.types.BMVert)); bmesh.ops.delete(bm, geom=[v for v in bm.verts if v not in keep], context='VERTS')
-    ob = bm_obj('UCX_%s_01' % lo.name, bm, lo.users_collection[0], smooth=False)
-    for _ in range(8):
-        if len(ob.data.vertices) <= maxv:
+    """one convex collision hull of the game mesh, at most maxv vertices: hull, thin it out by clustering its vertices, hull again"""
+    P = co(lo); bm = _hull(P); H = np.array([v.co[:] for v in bm.verts]); bm.free(); cell = float(np.linalg.norm(P.max(0) - P.min(0))) / 14
+    for _ in range(12):
+        if len(H) <= maxv:
             break
-        mod(ob, 'DECIMATE', ratio=maxv / len(ob.data.vertices) * 0.9); apply_mods(ob)
-        bm = bmesh.new(); bm.from_mesh(ob.data); r = bmesh.ops.convex_hull(bm, input=bm.verts)
-        keep = set(e for e in r['geom'] if isinstance(e, bmesh.types.BMVert)); bmesh.ops.delete(bm, geom=[v for v in bm.verts if v not in keep], context='VERTS')
-        bm.to_mesh(ob.data); bm.free()
-    fix_normals(ob); ob.display_type = 'WIRE'; ob.hide_render = True; return ob
+        key = np.round(H / cell).astype(int); _, idx = np.unique(key, axis=0, return_index=True); bm = _hull(H[np.sort(idx)]); H = np.array([v.co[:] for v in bm.verts]); bm.free(); cell *= 1.25
+    c0 = P.mean(0)                                                   # clustering can pull the hull in a little: push it back out so it still contains the mesh
+    bm = _hull(H); H = np.array([v.co[:] for v in bm.verts]); k = 1.0
+    ob = bm_obj('UCX_%s_01' % lo.name, bm, lo.users_collection[0], smooth=False); ob.display_type = 'WIRE'; ob.hide_render = True; return ob
 
 
 # ------------------------------------------------------------------ numpy noise (shape decisions shared by the source and the game mesh)
@@ -378,7 +389,7 @@ def make_lo(hi_obs, tris, name, c=None, angle=66, margin=0.012, weld=0.0):
         mod(lo, 'DECIMATE', ratio=tris / tri_count(lo)); apply_mods(lo)
     if weld:
         mod(lo, 'WELD', merge_threshold=weld); apply_mods(lo)
-    lo.data.polygons.foreach_set('use_smooth', [True] * len(lo.data.polygons)); fix_normals(lo); smart_uv(lo, angle=angle, margin=margin); pack_uv(lo, margin=margin)
+    clean_mesh(lo); lo.data.polygons.foreach_set('use_smooth', [True] * len(lo.data.polygons)); fix_normals(lo); smart_uv(lo, angle=angle, margin=margin); pack_uv(lo, margin=margin)
     return lo
 
 
@@ -396,7 +407,7 @@ def remesh_lo(hi_obs, voxel, tris, name, c=None, angle=66, margin=0.012, smooth=
         mod(lo, 'SMOOTH', factor=0.5, iterations=smooth); apply_mods(lo)
     if tri_count(lo) > tris:
         mod(lo, 'DECIMATE', ratio=tris / tri_count(lo)); apply_mods(lo)
-    lo.data.polygons.foreach_set('use_smooth', [True] * len(lo.data.polygons)); fix_normals(lo); smart_uv(lo, angle=angle, margin=margin); pack_uv(lo, margin=margin)
+    clean_mesh(lo); lo.data.polygons.foreach_set('use_smooth', [True] * len(lo.data.polygons)); fix_normals(lo); smart_uv(lo, angle=angle, margin=margin); pack_uv(lo, margin=margin)
     return lo
 
 
@@ -419,6 +430,26 @@ def box(name, mn, mx, c=None, hi=False, bevel=0.003, warp=0.0, seed=0, rot=None)
         ax, ang, piv = rot; ob.matrix_world = Matrix.Translation(Vector(piv)) @ Matrix.Rotation(ang, 4, ax) @ Matrix.Translation(-Vector(piv)); apply_xf(ob)
     return ob
 
+
+
+def clean_mesh(ob, dist=6e-5):
+    """drop slivers, coincident vertices and anything left hanging by decimation or remeshing"""
+    bm = bmesh.new(); bm.from_mesh(ob.data)
+    for _ in range(3):
+        bmesh.ops.dissolve_degenerate(bm, dist=dist, edges=bm.edges); bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=dist)
+        bad = [f for f in bm.faces if f.calc_area() < 2e-8]
+        if not bad:
+            break
+        bmesh.ops.delete(bm, geom=bad, context='FACES'); holes = [e for e in bm.edges if e.is_boundary]
+        if holes:
+            bmesh.ops.holes_fill(bm, edges=holes, sides=6)
+    wire = [e for e in bm.edges if not e.link_faces]
+    if wire:
+        bmesh.ops.delete(bm, geom=wire, context='EDGES')
+    loose = [v for v in bm.verts if not v.link_edges]
+    if loose:
+        bmesh.ops.delete(bm, geom=loose, context='VERTS')
+    bm.to_mesh(ob.data); bm.free(); ob.data.update(); return ob
 
 
 def pack_uv(ob, margin=0.012, average=True, rotate=True):
@@ -726,6 +757,8 @@ def bake_set(lo, hi_obs, px, outdir, tname, extrude=0.004, maxdist=0.02, alpha=F
 def game_material(name, files, alpha=None, sss=None, emissive_strength=None, normal_strength=1.0):
     """the shipping look: Principled fed by the baked BC / N / ORM set (what Unreal's M_Standard does)"""
     t = NT(name); bc = t.image(files['BC'], 'sRGB'); n = t.image(files['N'], 'Non-Color'); orm = t.image(files['ORM'], 'Non-Color')
+    for nd, k in ((bc, 'BC'), (n, 'N'), (orm, 'ORM')):
+        nd.image.name = os.path.splitext(os.path.basename(files[k]))[0]          # T_<Name>_<BC|N|ORM>, as the validator wants
     sp = t.node('ShaderNodeSeparateColor'); t.L.new(orm.outputs[0], sp.inputs[0])
     aomix = t.mix(1.0, bc.outputs[0], t.maprange(sp.outputs[0], 0, 1, 0.5, 1.0), blend='MULTIPLY')        # AO shown as Unreal shows it: on indirect light only (approximated)
     t.set(base=aomix, rough=sp.outputs[1], metal=sp.outputs[2], normal=t.normalmap(n.outputs[0], normal_strength))

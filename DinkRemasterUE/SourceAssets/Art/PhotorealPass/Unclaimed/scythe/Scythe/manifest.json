@@ -1,0 +1,103 @@
+{
+ "name": "SM_Scythe_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scythe/Scythe/SM_Scythe_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scythe/Scythe/SM_Scythe_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props2.py Scythe final",
+ "dimensions_m": [
+  1.5599,
+  0.8664,
+  0.0654
+ ],
+ "bounds_min_m": [
+  -0.7799,
+  -0.4332,
+  -0.0035
+ ],
+ "bounds_max_m": [
+  0.7799,
+  0.4332,
+  0.0618
+ ],
+ "lod0_triangles": 1698,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scythe/Scythe/T_Scythe_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scythe/Scythe/T_Scythe_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scythe/Scythe/T_Scythe_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Scythe_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0017,
+   0.9983
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 22.4,
+   "p99": 108.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.14,
+   "p95": 0.619
+  },
+  "metallic_mean": 0.043,
+  "ao_mean": 0.242
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "scythe",
+  "447 items/tools/tool- frame 12"
+ ],
+ "origin_ids": {
+  "scythe": [
+   "S228_P30",
+   "S440_P22"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "scythe, 1.6 m snath with two grips, iron ring and a 75 cm curved blade",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The blade is a flat tapered sweep: no rib along its back, no tang, and the edge is not ground to a bevel. The original frame is closer to a long-handled hook; a scythe was built. Parts are separate swept solids pushed together (no modelled sockets, rivets, wedges or pegs). Wood grain is procedural streaking along the object axis. Authored lying flat; the original frames show it leaning against a wall, which is a placement rotation."
+}

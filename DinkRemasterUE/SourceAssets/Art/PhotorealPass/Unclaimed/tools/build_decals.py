@@ -245,8 +245,8 @@ def fissure(spec, seed):
         a = math.radians(hd); x, y = x0, y0; n = int(ln / step); pts = []
         for i in range(n):
             t = i / max(1, n - 1); w = (w0 * (1 - t) + w1 * t) * (math.sin(math.pi * min(1, t * 1.15 + 0.05)) ** 0.6 if taper else 1.0) * rng.uniform(0.75, 1.25)
-            gauss(field, c + m(x), c + m(y), max(1.2, m(w) / 1.177 * 1.6), max(1.0, m(w) / 1.177), a, amp=amp); pts.append((x, y, a))
-            a += rng.normal(0, wander * 0.22); a = a * 0.9 + math.radians(hd) * 0.1
+            gauss(field, c + m(x), c + m(y), max(1.2, m(w) / 1.177 * 1.3), max(1.0, m(w) / 1.177), a, amp=amp); pts.append((x, y, a))
+            a += rng.normal(0, wander * 0.34); a = a * 0.88 + math.radians(hd) * 0.12
             if rng.random() < 0.08:
                 a += rng.choice([-1, 1]) * rng.uniform(0.3, 0.8)                      # a jog
             x += math.cos(a) * step; y += math.sin(a) * step
@@ -269,23 +269,26 @@ def fissure(spec, seed):
     fine = spectral(rng, beta=1.0, lo=60, hi=600) - 0.5; n_mid = spectral(rng, beta=2.0, lo=8, hi=120); clod = spectral(rng, beta=1.6, lo=30, hi=300)
     F = F + 0.3 * fine * smoothstep(0.2, 0.5, F) * (1 - smoothstep(0.8, 1.3, F))
     gap = smoothstep(0.46, 0.54, F); hair = smoothstep(0.42, 0.56, Hh + 0.25 * fine) * (1 - gap)
-    near = blur(gap, m(0.03)); lip = smoothstep(0.03, 0.3, near) * (1 - gap); loose = smoothstep(0.004, 0.12, blur(np.maximum(gap, hair * 0.6), m(0.07))) * (0.5 + 0.8 * n_mid)
-    depth = np.clip((F - 0.5) * 1.6, 0, 1)
-    # colour (linear): the gap falls to black, its walls show damp dark earth, the lip is paler dry crumb, the surround a faint darker stain
-    wall = lerp((0.060, 0.042, 0.026), (0.007, 0.006, 0.005), smoothstep(0.0, 0.45, depth)); crumb = lerp((0.16, 0.12, 0.075), (0.30, 0.235, 0.15), clod); soil = lerp((0.075, 0.055, 0.035), (0.13, 0.10, 0.065), n_mid)
-    col = lerp(soil, crumb, np.clip(lip * (0.4 + 0.9 * clod), 0, 1)); col = lerp(col, (0.022, 0.016, 0.011), hair); col = lerp(col, wall, gap)
-    alpha = np.clip(np.maximum(np.maximum(gap, hair * 0.95), np.maximum(lip * (0.35 + 0.6 * clod), loose * 0.45)), 0, 1)
-    rough = lerp(0.9, 0.97, clod); Hm = -gap * (0.004 + depth * spec.get('depth', 0.05)) - hair * 0.003 + lip * (clod - 0.35) * 0.012 + loose * (clod - 0.5) * 0.004
-    N = normal_map(blur(Hm, 0.8), S / W, strength=1.0); ao = 1 - 0.85 * gap * smoothstep(0.0, 0.3, depth) - 0.5 * hair
+    inside = blur(gap, m(0.012)) * gap                                   # 0 at the edge of the gap, towards 1 in the middle of a wide one
+    depth = smoothstep(0.35, 0.98, inside)                               # only the middle of a wide gap is deep; narrow parts stay shallow
+    near = blur(gap, m(0.025)); lip = smoothstep(0.02, 0.22, near) * (1 - gap); loose = smoothstep(0.004, 0.10, blur(np.maximum(gap, hair * 0.6), m(0.07))) * (0.5 + 0.8 * n_mid)
+    clods = smoothstep(0.80, 0.86, spectral(rng, beta=0.6, lo=40, hi=260)) * smoothstep(0.005, 0.08, blur(gap, m(0.09))) * (1 - gap)          # crumbs thrown out round the crack
+    # colour (linear): walls of damp earth with roots and stones showing, falling to black only in the deep middle; the lip is paler dry crumb
+    strat = spectral(rng, beta=1.4, lo=20, hi=200); wall = lerp(lerp((0.085, 0.060, 0.038), (0.16, 0.12, 0.075), strat), (0.006, 0.005, 0.004), depth)
+    crumb = lerp((0.16, 0.12, 0.075), (0.33, 0.26, 0.17), clod); soil = lerp((0.075, 0.055, 0.035), (0.13, 0.10, 0.065), n_mid)
+    col = lerp(soil, crumb, np.clip(lip * (0.5 + 0.9 * clod) + clods, 0, 1)); col = lerp(col, (0.022, 0.016, 0.011), hair); col = lerp(col, wall, gap)
+    alpha = np.clip(np.maximum(np.maximum(gap, hair * 0.95), np.maximum(np.maximum(lip * (0.45 + 0.6 * clod), clods * 0.95), loose * 0.4)), 0, 1)
+    rough = lerp(0.9, 0.97, clod); Hm = -gap * (0.006 + inside ** 0.7 * spec.get('depth', 0.05)) - hair * 0.004 + lip * (clod - 0.3) * 0.016 + clods * 0.008 + loose * (clod - 0.5) * 0.004
+    N = normal_map(blur(Hm, 1.0), S / W, strength=1.0); ao = 1 - 0.8 * depth - 0.35 * gap - 0.5 * hair
     bc = np.dstack([L.lin2srgb(col), alpha]); orm = np.dstack([np.clip(ao, 0, 1), np.clip(rough, 0.04, 1), np.zeros_like(ao)])
     return down(bc), down(N), down(orm), {'opaque_fraction': float((down(alpha) > 0.5).mean())}
 
 
 CRACK = {
-    'Crack_Short_01': dict(frame='89/1', size=1.6, seed=41, cracks=[(-0.5, -0.05, 6, 1.0, 0.05), (-0.3, 0.12, -8, 0.6, 0.03)], branches=12, dresses='short heavy ground crack, 1.1 m, with side cracks and a crumbled lip'),
-    'Crack_Wide_01': dict(frame='89/2', size=2.4, seed=42, cracks=[(-0.85, 0.02, -3, 1.7, 0.075), (-0.5, -0.2, 14, 0.9, 0.035)], branches=14, dresses='wide ground crack, 1.8 m long and up to 15 cm across, ragged with side cracks'),
-    'Crack_Long_01': dict(frame='89/3', size=2.6, seed=43, cracks=[(-1.1, 0.05, -4, 2.2, 0.035)], branches=10, hairs=20, dresses='long narrow ground crack, 2.3 m, with hairline cracks off it'),
-    'Crack_Diagonal_01': dict(frame='89/4', size=3.2, seed=44, cracks=[(-1.25, -0.9, 36, 3.1, 0.05)], branches=16, hairs=24, dresses='long diagonal ground crack, 3 m, widening in the middle, with side cracks'),
+    'Crack_Short_01': dict(frame='89/1', size=1.6, seed=41, cracks=[(-0.5, -0.05, 6, 1.0, 0.026), (-0.3, 0.12, -8, 0.6, 0.014)], branches=12, dresses='short heavy ground crack, 1.1 m, with side cracks and a crumbled lip'),
+    'Crack_Wide_01': dict(frame='89/2', size=2.4, seed=42, cracks=[(-0.85, 0.02, -3, 1.7, 0.042), (-0.5, -0.2, 14, 0.9, 0.018)], branches=14, dresses='wide ground crack, 1.8 m long and up to 8 cm across, ragged with side cracks'),
+    'Crack_Long_01': dict(frame='89/3', size=2.6, seed=43, cracks=[(-1.1, 0.05, -4, 2.2, 0.018)], branches=10, hairs=20, dresses='long narrow ground crack, 2.3 m, with hairline cracks off it'),
+    'Crack_Diagonal_01': dict(frame='89/4', size=3.2, seed=44, cracks=[(-1.25, -0.9, 36, 3.1, 0.028)], branches=16, hairs=24, dresses='long diagonal ground crack, 3 m, widening in the middle, with side cracks'),
 }
 HOLE = {
     'Hole_Dark_01': dict(frame='89/9', size=2.2, seed=47, holes=[(0.0, 0.0, 0.36, 0.5)], rays=34, depth=0.2, dresses='dark hole in the ground, about 0.8 x 1.1 m, ringed with spiky radial cracks (the hole the player can drop into)'),
@@ -354,5 +357,5 @@ if __name__ == '__main__':
            [(n, s, 'crack', 'ground_crack', '89 lands/details/crack-', fissure) for n, s in CRACK.items()] + \
            [(n, s, 'hole', 'ground_hole_dark', '89 lands/details/crack-', fissure) for n, s in HOLE.items()]
     for n, s, kind, fam, seq, gen in todo:
-        if sel in ('all', kind) or n in sel.split(','):
+        if sel == 'all' or kind in sel.split(',') or n in sel.split(','):
             outdir, files, man = write_set(n, s, kind, fam, seq, gen); render(n, s, kind, outdir, files, man)

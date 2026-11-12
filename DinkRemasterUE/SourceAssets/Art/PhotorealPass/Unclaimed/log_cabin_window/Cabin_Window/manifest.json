@@ -1,0 +1,108 @@
+{
+ "name": "SM_Cabin_Window_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_window/Cabin_Window/SM_Cabin_Window_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_window/Cabin_Window/SM_Cabin_Window_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_wood.py Cabin_Window final",
+ "dimensions_m": [
+  0.84,
+  0.165,
+  0.84
+ ],
+ "bounds_min_m": [
+  -0.42,
+  -0.0825,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.42,
+  0.0825,
+  0.84
+ ],
+ "lod0_triangles": 72,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_window/Cabin_Window/T_Cabin_Window_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_window/Cabin_Window/T_Cabin_Window_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin_window/Cabin_Window/T_Cabin_Window_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Cabin_Window_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0081,
+   0.9919
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 68.7,
+   "p99": 104.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.446,
+   "p95": 0.629
+  },
+  "metallic_mean": 0.044,
+  "ao_mean": 0.647
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "log_cabin_window",
+  "59 struct/cabin/cabin- frame 3"
+ ],
+ "origin_ids": {
+  "log_cabin_window": [
+   "S251_P08",
+   "S274_P16",
+   "S409_P11",
+   "S440_P08",
+   "S440_P09",
+   "S500_P05",
+   "S501_P07",
+   "S501_P08",
+   "S530_P05"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "small cabin window, 72 x 84 cm: squared timber frame, sill and mullion, leaded diamond quarries of dark blue-grey glass",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The glass is an opaque dark panel with the lead lattice painted and bumped on it: no transmission, so nothing shows through and it cannot glow at night without an emissive map. Quarry tilt is a normal-map effect. Boards are bevelled blocks butted together: no joints, pegs, nails or tool marks are modelled, and the grain is procedural streaking, not a scan. Every board is 12 triangles in the game mesh, so edge rounding is in the normal map only. It is a loose window for a log wall; the wall belongs to the log cabin family."
+}

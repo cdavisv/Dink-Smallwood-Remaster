@@ -1,0 +1,100 @@
+{
+ "name": "SM_Grapes_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_grapes/Grapes/SM_Grapes_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_grapes/Grapes/SM_Grapes_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props2.py Grapes final",
+ "dimensions_m": [
+  0.2888,
+  0.1068,
+  0.0695
+ ],
+ "bounds_min_m": [
+  -0.1444,
+  -0.0534,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.1444,
+  0.0534,
+  0.0695
+ ],
+ "lod0_triangles": 2560,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_grapes/Grapes/T_Grapes_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_grapes/Grapes/T_Grapes_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_grapes/Grapes/T_Grapes_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Grapes_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0061,
+   0.9939
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 49.5,
+   "p99": 104.9
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.271,
+   "p95": 0.641
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.619
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "food_grapes",
+  "421 items/food/food- frame 14"
+ ],
+ "origin_ids": {
+  "food_grapes": [
+   "S070_P30"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "bunch of about seventy dark purple grapes with bloom, on a stalk with one vine leaf, 22 cm",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The game mesh is one skin over the whole bunch (2,600 triangles), so gaps between grapes are shallow and carried by the normal map; grapes do not have individual stalks. No subsurface or transmission in the game material: backlit grapes will look opaque."
+}

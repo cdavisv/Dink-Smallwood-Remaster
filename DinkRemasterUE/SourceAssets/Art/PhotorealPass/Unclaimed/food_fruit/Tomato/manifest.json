@@ -10,14 +10,14 @@
   0.073
  ],
  "bounds_min_m": [
-  -0.0369,
-  -0.038,
-  0.001
+  -0.0374,
+  -0.0372,
+  0.0
  ],
  "bounds_max_m": [
-  0.038,
-  0.0363,
-  0.074
+  0.0374,
+  0.0372,
+  0.073
  ],
  "lod0_triangles": 1568,
  "triangle_budget": {
@@ -71,16 +71,16 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 75.2,
-   "p99": 106.2
+   "mean": 74.8,
+   "p99": 104.8
   },
   "roughness": {
    "p5": 0.0,
    "mean": 0.264,
-   "p95": 0.475
+   "p95": 0.474
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.653
+  "ao_mean": 0.652
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [

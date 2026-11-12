@@ -1,0 +1,105 @@
+{
+ "name": "SM_Heart_Gold_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/golden_heart/Heart_Gold/SM_Heart_Gold_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/golden_heart/Heart_Gold/SM_Heart_Gold_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Heart_Gold final",
+ "dimensions_m": [
+  0.1139,
+  0.0849,
+  0.111
+ ],
+ "bounds_min_m": [
+  -0.057,
+  -0.0425,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.057,
+  0.0425,
+  0.111
+ ],
+ "lod0_triangles": 700,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/golden_heart/Heart_Gold/T_Heart_Gold_PR_BC.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/golden_heart/Heart_Gold/T_Heart_Gold_PR_N.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/golden_heart/Heart_Gold/T_Heart_Gold_PR_ORM.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Heart_Gold_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0023,
+   0.9978
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 175.7,
+   "p99": 199.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.34,
+   "p95": 0.409
+  },
+  "metallic_mean": 0.9,
+  "ao_mean": 0.896
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "golden_heart",
+  "53 bonuses/heart/gldhrt"
+ ],
+ "origin_ids": {
+  "golden_heart": [
+   "S106_P19",
+   "S157_P09",
+   "S165_P01",
+   "S166_P02",
+   "S352_P20",
+   "S524_P04"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "golden heart (max life up) as a cast-gold heart, 12 cm, burnished on the lobes",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Same form as the red heart in cast gold: no chasing, hallmark or suspension loop. In game it should float; not authored here."
+}

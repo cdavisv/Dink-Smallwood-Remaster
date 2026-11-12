@@ -10,6 +10,9 @@ REPO = os.path.abspath(os.path.join(UNC, '..', '..', '..', '..', '..'))
 BACKLOG = os.path.join(REPO, 'doc', 'remaster', 'ALPHA_GATE2_BACKLOG.md')
 
 
+FULL = {'SM_Bookcase_PR', 'SM_Cabin_Window_PR', 'SM_Stairs_Wood_PR', 'SM_Sign_Healer_PR', 'SM_Spear_Island_PR', 'SM_Pitchfork_PR', 'SM_Rake_PR', 'SM_Scythe_PR'}      # framed tight already: show the whole render
+
+
 def unclaimed():
     out = []
     for line in open(BACKLOG):
@@ -20,7 +23,7 @@ def unclaimed():
 
 
 def main():
-    fams = unclaimed(); notes = json.load(open(os.path.join(HERE, 'status_notes.json')))
+    fams = unclaimed(); notes = json.load(open(os.path.join(HERE, 'status_notes.json'))); vnotes = notes.pop('_validator', {})
     mans = sorted(glob.glob(os.path.join(UNC, '*', '*', 'manifest.json'))); by = {}
     for p in mans:
         m = json.load(open(p)); m['_dir'] = os.path.dirname(p)
@@ -33,9 +36,10 @@ def main():
         d = os.path.dirname(p); r = os.path.join(d, 'render_beauty.png')
         if not os.path.exists(r):
             continue
-        m = json.load(open(p)); im = Image.open(r).convert('RGB'); w, h = im.size; k = m.get('contact_crop', 0.62)
-        im = im.crop((int(w * (1 - k) / 2), int(h * (1 - k) / 2), int(w * (1 + k) / 2), int(h * (1 + k) / 2))).resize((384, 288), Image.LANCZOS)
-        t = Image.new('RGB', (384, 326), (24, 24, 24)); t.paste(im, (0, 0)); dr = ImageDraw.Draw(t)
+        m = json.load(open(p)); im = Image.open(r).convert('RGB'); w, h = im.size; k = m.get('contact_crop', 1.0 if m['name'] in FULL else 0.62)
+        im = im.crop((int(w * (1 - k) / 2), int(h * (1 - k) / 2), int(w * (1 + k) / 2), int(h * (1 + k) / 2)))
+        f = min(384 / im.width, 288 / im.height); im = im.resize((max(1, int(im.width * f)), max(1, int(im.height * f))), Image.LANCZOS)          # whole render, aspect kept
+        t = Image.new('RGB', (384, 326), (24, 24, 24)); t.paste(im, ((384 - im.width) // 2, (288 - im.height) // 2)); dr = ImageDraw.Draw(t)
         dr.text((6, 290), m['name'], fill=(240, 240, 240), font=font); dr.text((6, 307), os.path.basename(os.path.dirname(d)), fill=(150, 170, 150), font=font); tiles.append(t)
     cols = 6; rows = (len(tiles) + cols - 1) // cols; sheet = Image.new('RGB', (cols * 384, max(1, rows) * 326), (24, 24, 24))
     for i, t in enumerate(tiles):
@@ -58,6 +62,15 @@ def main():
          '**partial**: something the task asks for is missing or the last review round still faulted the look; the line says what.', '',
          'Contact sheet of every final render: `contact_sheet.png` (%d assets).' % len(tiles), '',
          '| # | family | original shows | placements | status | assets | note |', '|---:|---|---|---:|---|---|---|'] + rows_ + ['']
+    vp = os.path.join(UNC, 'validation_summary.json')
+    if os.path.exists(vp):
+        v = json.load(open(vp)); ok = sum(1 for x in v.values() if x.get('passed'))
+        L += ['## Validator (`tools/blender/dinkasset/validate.py`)', '',
+              'Run by `tools/validate_all.py` on every mesh asset .blend (decal sets have no mesh). %d of %d pass with no error; warnings are not failures. Full output: `validation_summary.json`.' % (ok, len(v)), '',
+              '| asset | class | result | errors | warnings | note |', '|---|---|---|---|---|---|']
+        for k in sorted(v):
+            x = v[k]; L.append('| `%s` | %s | %s | %s | %s | %s |' % (x.get('asset', k), x.get('class', '?'), 'pass' if x.get('passed') else 'FAIL', ', '.join(x.get('errors', [])) or '-', ', '.join(x.get('warnings', [])) or '-', (vnotes.get(x.get('asset'), '') if not x.get('passed') else '')))
+        L.append('')
     open(os.path.join(UNC, 'STATUS.md'), 'w').write('\n'.join(L)); print({k: tuple(v) for k, v in tot.items()}, len(tiles), 'tiles')
 
 

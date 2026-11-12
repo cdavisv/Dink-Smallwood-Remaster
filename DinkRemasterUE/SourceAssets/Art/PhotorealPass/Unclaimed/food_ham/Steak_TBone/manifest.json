@@ -1,0 +1,100 @@
+{
+ "name": "SM_Steak_TBone_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_ham/Steak_TBone/SM_Steak_TBone_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_ham/Steak_TBone/SM_Steak_TBone_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props2.py Steak_TBone final",
+ "dimensions_m": [
+  0.2774,
+  0.1887,
+  0.0261
+ ],
+ "bounds_min_m": [
+  -0.1387,
+  -0.0944,
+  -0.0005
+ ],
+ "bounds_max_m": [
+  0.1387,
+  0.0944,
+  0.0256
+ ],
+ "lod0_triangles": 900,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_ham/Steak_TBone/T_Steak_TBone_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_ham/Steak_TBone/T_Steak_TBone_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_ham/Steak_TBone/T_Steak_TBone_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Steak_TBone_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0016,
+   0.9985
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 109.3,
+   "p99": 224.2
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.199,
+   "p95": 0.299
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.749
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "food_ham",
+  "421 items/food/food- frame 3"
+ ],
+ "origin_ids": {
+  "food_ham": [
+   "S070_P32"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "raw T-bone steak, 27 cm, marbled lean with a fat rim and the bone through it (the frame the audit calls ham / steak)",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A slab with a painted cut: bone, fat rim and marbling are colour and normal only and identical on both faces. The outline is smooth."
+}

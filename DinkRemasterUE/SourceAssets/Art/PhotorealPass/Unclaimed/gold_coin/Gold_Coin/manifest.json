@@ -5,18 +5,18 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coin/Gold_Coin/SM_Gold_Coin_PR.blend",
  "build": "Unclaimed/tools/bl.sh build_props.py Gold_Coin final",
  "dimensions_m": [
-  0.026,
-  0.0247,
+  0.031,
+  0.0295,
   0.0019
  ],
  "bounds_min_m": [
-  -0.013,
-  -0.0124,
+  -0.0155,
+  -0.0147,
   0.0
  ],
  "bounds_max_m": [
-  0.013,
-  0.0124,
+  0.0155,
+  0.0147,
   0.0019
  ],
  "lod0_triangles": 40,
@@ -63,7 +63,7 @@
   "zero_area_faces": 0,
   "signed_volume_positive": true,
   "uv_range": [
-   0.0036,
+   0.0034,
    0.9966
   ],
   "transforms_applied": true
@@ -71,16 +71,16 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 164.2,
-   "p99": 202.4
+   "mean": 166.2,
+   "p99": 202.2
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.264,
-   "p95": 0.346
+   "mean": 0.268,
+   "p95": 0.345
   },
-  "metallic_mean": 0.824,
-  "ao_mean": 0.822
+  "metallic_mean": 0.834,
+  "ao_mean": 0.832
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [
@@ -100,8 +100,8 @@
   ]
  },
  "supersedes": "none (placeholder greybox cards)",
- "dresses": "one hammered gold coin, 26 mm, lying flat",
+ "dresses": "one hammered gold coin, 31 mm, lying flat",
  "third_party": [],
  "status": "source delivered; not imported into Unreal, not bound in families.json",
- "known_weaknesses": "A 2.6 cm coin: at the gameplay camera it is a few pixels, so it will need a scale-up or a glint effect to read as a pickup. The device on its faces is a noise relief, not a designed coin. 36 triangles of flat disc; the relief is in the normal map only."
+ "known_weaknesses": "A 3.1 cm coin: at the gameplay camera it is a few pixels, so it will need a scale-up or a glint effect to read as a pickup. The device on its faces is a noise relief, not a designed coin. 36 triangles of flat disc; the relief is in the normal map only."
 }

@@ -92,7 +92,7 @@ def sign(hi, c):
     """wall bracket with a brace, two iron straps and a hanging board painted with the healer's red cross"""
     m = woods(hi, light=(0.17, 0.095, 0.04)); parts = []; ir = T.iron_mat('iron', rust=0.6, seed=9.0) if hi else None
     board(parts, 'post', (-0.05, 0.0, 0.0), (0.05, 0.09, 1.0), c, hi, m, seed=1, bevel=0.006); board(parts, 'beam', (-0.045, -1.05, 0.86), (0.045, 0.0, 0.95), c, hi, m, seed=2, bevel=0.006)
-    board(parts, 'brace', (-0.03, -0.52, 0.42), (0.03, -0.46, 1.0), c, hi, m, seed=3, bevel=0.005, rot=('X', math.radians(-42), (0, 0.0, 0.42)))
+    board(parts, 'brace', (-0.03, -0.03, 0.48), (0.03, 0.03, 1.04), c, hi, m, seed=3, bevel=0.005, rot=('X', math.radians(47.0), (0, 0.045, 0.48)))
     # the board, with its own painted material
     bx = L.box('board', (-0.016, -0.98, 0.2), (0.016, -0.26, 0.68), c, hi, bevel=0.005, warp=0.004, seed=4); parts.append(bx)
     for k, y in enumerate((-0.88, -0.36)):
@@ -102,11 +102,13 @@ def sign(hi, c):
         if hi:
             for o in (st, ey, nl):
                 o.data.materials.append(ir)
+    for o in parts:                                # centre the sign on the origin (the pivot), so object-space paint coordinates survive
+        Pq = L.co(o); Pq[:, 1] += 0.48; L.set_co(o, Pq)
     if hi:
         t = NT('sign'); sp = t.sep(t.obj); sc = (6.0, 60.0, 60.0); gr = t.noise(1.0, 6, 0.65, vec=t.mapping(scale=(60, 1.8, 60)), distortion=0.8); n = t.noise(22, 5, 0.65); n2 = t.noise(300, 3, 0.6)
         wood = t.ramp(gr, [(0.3, (0.075, 0.04, 0.017)), (0.5, (0.17, 0.095, 0.04)), (0.72, (0.25, 0.15, 0.07))]); plank = t.ramp(t.math('ABSOLUTE', t.math('SUBTRACT', t.math('FRACT', t.math('MULTIPLY', t.math('SUBTRACT', sp[2], 0.2), 6.25)), 0.5)), [(0.47, 0.0), (0.5, 1.0)])
         wood = t.mix(t.math('MULTIPLY', plank, 0.85), wood, (0.012, 0.008, 0.005))
-        cy = t.math('ABSOLUTE', t.math('SUBTRACT', sp[1], -0.62)); cz = t.math('ABSOLUTE', t.math('SUBTRACT', sp[2], 0.44)); wob = t.math('MULTIPLY', t.math('SUBTRACT', n, 0.5), 0.02)
+        cy = t.math('ABSOLUTE', t.math('SUBTRACT', sp[1], -0.14)); cz = t.math('ABSOLUTE', t.math('SUBTRACT', sp[2], 0.44)); wob = t.math('MULTIPLY', t.math('SUBTRACT', n, 0.5), 0.02)
         cross = t.math('MAXIMUM', t.math('MULTIPLY', t.maprange(t.math('ADD', cy, wob), 0.05, 0.056, 1.0, 0.0), t.maprange(cz, 0.155, 0.162, 1.0, 0.0)), t.math('MULTIPLY', t.maprange(t.math('ADD', cz, wob), 0.05, 0.056, 1.0, 0.0), t.maprange(cy, 0.155, 0.162, 1.0, 0.0)))
         flake = t.ramp(t.math('ADD', t.math('MULTIPLY', gr, 0.5), t.math('MULTIPLY', t.noise(60, 4, 0.7), 0.5)), [(0.38, 0.0), (0.5, 1.0)]); paint = t.math('MULTIPLY', cross, flake)
         base = t.mix(paint, wood, t.mix(n2, (0.30, 0.012, 0.01), (0.52, 0.035, 0.025))); t.set(base=base, rough=t.mixf(paint, t.mixf(gr, 0.55, 0.75), 0.45), normal=t.bump(t.math('ADD', t.math('MULTIPLY', gr, 0.6), t.math('ADD', t.math('MULTIPLY', plank, -2.0), t.math('MULTIPLY', paint, 0.5))), 0.35, 0.001))
@@ -152,15 +154,15 @@ SPECS = {
     'Bookcase': dict(fn=bookcase, fam='bookcase', seq='64 inside/details/inacc- frame 4', cls='prop', px=2048, tris=0, lo='param', ground='weathered_brown_planks', third=[], extrude=0.004, maxdist=0.012, shot=dict(az=28, el=12, fill=1.0, close=(0.3, 0.2, 0.62, 0.22)),
                      weak='About a hundred books as bevelled blocks sharing one material (colour picked per book): no titles, raised bands, headbands or individual wear, and all stand square.' + W_J + ' Game mesh spends 12 triangles on every book, including hidden faces; UVs are several hundred small islands.',
                      dresses='oak bookcase, 1.9 m wide, 1.8 m tall, four shelves packed with about a hundred leather-bound books, a few leaning or stacked flat'),
-    'Sign_Healer': dict(fn=sign, fam='shop_sign', seq='458 inside/details/sign- frames 1-5', cls='prop', px=1024, tris=0, lo='param', ground='weathered_brown_planks', third=['rusty_metal_02'], extrude=0.003, maxdist=0.01, collision=False,
+    'Sign_Healer': dict(fn=sign, fam='shop_sign', seq='458 inside/details/sign- frames 1-5', cls='prop', px=1024, tris=0, lo='param', ground='weathered_brown_planks', third=['rusty_metal_02'], extrude=0.003, maxdist=0.01,
                         shot=dict(az=62, el=10, fill=1.1, close=(0.5, 0.42, 0.45, 0.3)),
                         weak='The bracket stands on its own post so the sign can be placed free or against a wall; the original hangs from a wall bracket only. Straps are flat bars, not chain. The cross is one painted shape with procedural flaking; the back of the board carries the same cross.' + W_J,
                         dresses="healer's hanging sign: timber post and bracket with a brace, a 72 x 48 cm board on two iron straps, painted with a worn red cross"),
-    'Cabin_Window': dict(fn=window, fam='log_cabin_window', seq='59 struct/cabin/cabin- frame 3', cls='prop', px=1024, tris=0, lo='param', ground='weathered_brown_planks', third=[], extrude=0.003, maxdist=0.01, collision=False,
+    'Cabin_Window': dict(fn=window, fam='log_cabin_window', seq='59 struct/cabin/cabin- frame 3', cls='prop', px=1024, tris=0, lo='param', ground='weathered_brown_planks', third=[], extrude=0.003, maxdist=0.01,
                          shot=dict(az=18, el=8, fill=1.1, close=(0.5, 0.0, 0.5, 0.3)),
                          weak='The glass is an opaque dark panel with the lead lattice painted and bumped on it: no transmission, so nothing shows through and it cannot glow at night without an emissive map. Quarry tilt is a normal-map effect.' + W_J + ' It is a loose window for a log wall; the wall belongs to the log cabin family.',
                          dresses='small cabin window, 72 x 84 cm: squared timber frame, sill and mullion, leaded diamond quarries of dark blue-grey glass'),
-    'Stairs_Wood': dict(fn=stairs, fam='stairs_wood', seq='428 inside/stairs/stair- frames 1, 2', cls='prop_large', px=2048, tris=0, lo='param', ground='weathered_brown_planks', third=[], extrude=0.004, maxdist=0.012, collision=False,
+    'Stairs_Wood': dict(fn=stairs, fam='stairs_wood', seq='428 inside/stairs/stair- frames 1, 2', cls='prop_large', px=2048, tris=0, lo='param', ground='weathered_brown_planks', third=[], extrude=0.004, maxdist=0.012,
                         shot=dict(az=40, el=14, fill=1.1, close=(0.5, 0.25, 0.3, 0.2)),
                         weak='An open flight without handrail, newels or risers, sized to the 3.5 m storey of the kit; the original frames show a short cellar-style flight and a floor opening with its trimmer frame, which is not built. No UCX collision is exported: a stair needs stepped hulls or a ramp, which is a level decision.' + W_J,
                         dresses='straight open oak stair for the 3.5 m storey: eighteen risers, 1.0 m wide, two strings and seventeen treads'),

@@ -74,7 +74,7 @@
   "why": "1 mesh; the last review still faults the blue mineral: a glossy colour mask and seven plain prisms that read as plastic, not as crystal"
  },
  "gold_coin": {
-  "why": "1 mesh, a 26 mm coin (40 triangles); too small to read at the gameplay camera without a scale-up, and its flat face mirrors the sky"
+  "why": "1 mesh, a 31 mm coin (40 triangles); too small to read at the gameplay camera without a scale-up, and its flat face mirrors the sky"
  },
  "gold_coins_small": {
   "why": "1 mesh: eleven spilled coins"
@@ -84,5 +84,89 @@
  },
  "arrow_prop": {
   "why": "1 mesh: war arrow lying flat; the stuck-in-the-ground frames are a placement rotation"
+ },
+ "gold_pile": {
+  "why": "1 mesh: a heap of about 430 coins baked onto a smooth mound, eighteen stray coins as real discs"
+ },
+ "heart_pickup": {
+  "why": "1 mesh: ruby-red glass heart, 12 cm (opaque in the game material)"
+ },
+ "small_heart": {
+  "why": "same mesh as heart_pickup (SM_Heart_Red_PR) at half scale, set at placement"
+ },
+ "golden_heart": {
+  "why": "1 mesh: cast-gold heart, 12 cm"
+ },
+ "dragon_statue": {
+  "why": "1 mesh with UCX hull: stone dragon on an orb, 3 m, made from the dragon source re-posed and fused; flat slab wings"
+ },
+ "stone_giant": {
+  "status": "partial",
+  "why": "rigged creature (18-bone bespoke skeleton, 3 LODs, automatic weights, pose-tested) of bedded sandstone. Partial: skinned stone smears at the joints, eyes and mouth are pits, no animation clips"
+ },
+ "fish": {
+  "status": "partial",
+  "why": "rigged fish (7-bone spine chain, 3 LODs, pose-tested). Partial: no swim clip, opaque fins, generic trout rather than the pale blue fish of the frame"
+ },
+ "fish_flopping": {
+  "status": "partial",
+  "why": "same mesh as fish (SK_Fish_PR) laid on its side; the flop itself is a clip and none is delivered"
+ },
+ "food_drumstick": {
+  "why": "1 mesh: cured ham leg with a cut face and shank bone (the frame the audit calls a drumstick)"
+ },
+ "food_bread": {
+  "why": "1 mesh: braided loaf"
+ },
+ "food_cheese": {
+  "why": "1 mesh: small cheese wheel with a wedge cut out"
+ },
+ "food_grapes": {
+  "why": "1 mesh: bunch of dark grapes with a leaf, one skin over the bunch"
+ },
+ "food_ham": {
+  "why": "1 mesh: raw T-bone steak (the frame the audit calls ham / steak)"
+ },
+ "pitchfork": {
+  "why": "1 mesh: three-tine hay fork, lying flat"
+ },
+ "rake": {
+  "why": "1 mesh: wooden hay rake, lying on its teeth"
+ },
+ "scythe": {
+  "why": "1 mesh: scythe, lying flat; the frame is closer to a long-handled hook"
+ },
+ "island_spear_pole": {
+  "why": "1 mesh: spear planted upright with a red cloth strip"
+ },
+ "bookcase": {
+  "why": "1 mesh with UCX hull: oak bookcase with about a hundred books"
+ },
+ "shop_sign": {
+  "why": "1 mesh: healer's hanging sign with a red cross, on its own post and bracket"
+ },
+ "log_cabin_window": {
+  "why": "1 mesh: leaded cabin window; the glass is an opaque dark panel"
+ },
+ "stairs_wood": {
+  "status": "partial",
+  "why": "1 mesh: open oak flight for the 3.5 m storey. Partial: no handrail, no trimmer frame for the floor opening of frame 2, and one convex hull instead of stepped collision"
+ },
+ "ground_crack": {
+  "status": "partial",
+  "why": "4 decal sets, one per original frame. Partial: the last review still faults them, they read as flat dark shapes from the gameplay camera; a crack needs parallax or a trench mesh"
+ },
+ "ground_hole_dark": {
+  "status": "partial",
+  "why": "1 decal set for the rim and radial cracks. Partial: a decal cannot be the pit the player drops into; a pit mesh or stencil is still needed"
+ },
+ "_validator": {
+  "SK_Dragon_PR": "intended: the origin is between the feet as the rule says; the checker measures the bounding-box centre, which the tail and wings move",
+  "SK_Slayer_PR": "intended: origin between the feet; the 2.3 m tail moves the bounding-box centre",
+  "SK_Stone_Giant_PR": "intended: origin between the feet; the knuckle-walking arms move the bounding-box centre forward",
+  "SK_Fish_PR": "origin under the body; the tail fin moves the bounding-box centre 3 cm and the pelvic fins dip 1 cm below it",
+  "SM_Acorn_Hanging_PR": "intended: the pivot is the top of the stalk, so it hangs from a twig",
+  "SM_Spear_Island_PR": "intended: the pivot is ground level, the pole runs 12 cm below it for planting",
+  "SM_Bread_Braided_PR": "0.7 % of the UV area overlaps where the smart projection folds between strands"
  }
 }
