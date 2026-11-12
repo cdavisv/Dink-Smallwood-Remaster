@@ -1,0 +1,104 @@
+{
+ "name": "SM_Bomb_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bomb_item/Bomb/SM_Bomb_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bomb_item/Bomb/SM_Bomb_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Bomb final",
+ "dimensions_m": [
+  0.2124,
+  0.2108,
+  0.3123
+ ],
+ "bounds_min_m": [
+  -0.1062,
+  -0.1054,
+  -0.0012
+ ],
+ "bounds_max_m": [
+  0.1062,
+  0.1054,
+  0.3111
+ ],
+ "lod0_triangles": 900,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bomb_item/Bomb/T_Bomb_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bomb_item/Bomb/T_Bomb_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bomb_item/Bomb/T_Bomb_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Bomb_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0027,
+   0.9974
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 42.2,
+   "p99": 129.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.457,
+   "p95": 0.9
+  },
+  "metallic_mean": 0.594,
+  "ao_mean": 0.764
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "bomb_item",
+  "420 items/bomb/bomb- frame 1"
+ ],
+ "origin_ids": {
+  "bomb_item": [
+   "S228_P40",
+   "S228_P41",
+   "S228_P42"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "cast-iron bomb, 21 cm, blue-black with rust bloom and soot round the fuse hole, short hemp fuse",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A plain cast sphere with a mould seam and a rope fuse: no filling plug detail, lettering or carrying lugs. The fuse is a smooth rope with a twist in the normal map and a charred tip, without frayed fibres."
+}

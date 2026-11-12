@@ -1,0 +1,107 @@
+{
+ "name": "SM_Gold_Coin_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coin/Gold_Coin/SM_Gold_Coin_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coin/Gold_Coin/SM_Gold_Coin_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Gold_Coin final",
+ "dimensions_m": [
+  0.026,
+  0.0247,
+  0.0019
+ ],
+ "bounds_min_m": [
+  -0.013,
+  -0.0124,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.013,
+  0.0124,
+  0.0019
+ ],
+ "lod0_triangles": 40,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coin/Gold_Coin/T_Gold_Coin_PR_BC.png",
+   "size_px": [
+    256,
+    256
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coin/Gold_Coin/T_Gold_Coin_PR_N.png",
+   "size_px": [
+    256,
+    256
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coin/Gold_Coin/T_Gold_Coin_PR_ORM.png",
+   "size_px": [
+    256,
+    256
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Gold_Coin_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0036,
+   0.9966
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 164.2,
+   "p99": 202.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.264,
+   "p95": 0.346
+  },
+  "metallic_mean": 0.824,
+  "ao_mean": 0.822
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "gold_coin",
+  "178 bonuses/coins/coin- frame 1"
+ ],
+ "origin_ids": {
+  "gold_coin": [
+   "S505_P15",
+   "S537_P10",
+   "S537_P11",
+   "S537_P12",
+   "S537_P13",
+   "S663_P03",
+   "S663_P17",
+   "S663_P18"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "one hammered gold coin, 26 mm, lying flat",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A 2.6 cm coin: at the gameplay camera it is a few pixels, so it will need a scale-up or a glint effect to read as a pickup. The device on its faces is a noise relief, not a designed coin. 36 triangles of flat disc; the relief is in the normal map only."
+}

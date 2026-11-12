@@ -232,9 +232,75 @@ BURN = {
 }
 
 
+# ---------------------------------------------------------------------------------------------- ground cracks and the dark hole
+def fissure(spec, seed):
+    """cracked earth: a gaping fissure (or an oval hole) with a crumbled raised lip, loosened soil round it and hairline cracks running off"""
+    rng = np.random.default_rng(seed); S = spec['size']; ppm = W / S; c = W / 2; F = np.zeros((W, W), np.float32); Hh = np.zeros((W, W), np.float32)
+
+    def m(v):
+        return v * ppm
+
+    def run(x0, y0, hd, ln, w0, w1, field, wander=0.5, step=0.012, amp=1.0, taper=True):
+        """stamp a wandering crack; returns the points for branching"""
+        a = math.radians(hd); x, y = x0, y0; n = int(ln / step); pts = []
+        for i in range(n):
+            t = i / max(1, n - 1); w = (w0 * (1 - t) + w1 * t) * (math.sin(math.pi * min(1, t * 1.15 + 0.05)) ** 0.6 if taper else 1.0) * rng.uniform(0.75, 1.25)
+            gauss(field, c + m(x), c + m(y), max(1.2, m(w) / 1.177 * 1.6), max(1.0, m(w) / 1.177), a, amp=amp); pts.append((x, y, a))
+            a += rng.normal(0, wander * 0.22); a = a * 0.9 + math.radians(hd) * 0.1
+            if rng.random() < 0.08:
+                a += rng.choice([-1, 1]) * rng.uniform(0.3, 0.8)                      # a jog
+            x += math.cos(a) * step; y += math.sin(a) * step
+        return pts
+    for (x0, y0, hd, ln, w) in spec.get('cracks', []):
+        pts = run(x0, y0, hd, ln, w, w * 0.8, F)
+        for k in range(spec.get('branches', 10)):                                     # side cracks, then hairlines off those
+            px_, py_, a = pts[int(rng.integers(len(pts) // 8, len(pts) - len(pts) // 8))]; side = rng.choice([-1, 1]); bh = math.degrees(a) + side * rng.uniform(35, 80)
+            bp = run(px_, py_, bh, rng.uniform(0.12, 0.35) * S * 0.5, w * 0.3, 0.004, F)
+            if bp and rng.random() < 0.7:
+                q = bp[len(bp) // 2]; run(q[0], q[1], math.degrees(q[2]) + rng.choice([-1, 1]) * rng.uniform(30, 70), rng.uniform(0.08, 0.2) * S * 0.5, 0.0035, 0.0025, Hh, amp=1.0)
+        for k in range(spec.get('hairs', 14)):
+            px_, py_, a = pts[int(rng.integers(0, len(pts)))]; run(px_, py_, math.degrees(a) + rng.choice([-1, 1]) * rng.uniform(40, 90), rng.uniform(0.1, 0.3) * S * 0.5, 0.0035, 0.002, Hh)
+    for (x0, y0, rx, ry) in spec.get('holes', []):                                    # an oval pit with spiky radial cracks
+        for k in range(160):
+            a = rng.uniform(0, 6.283); q = rng.uniform(0, 1) ** 0.5; gauss(F, c + m(x0 + rx * q * math.cos(a)), c + m(y0 + ry * q * math.sin(a)), m(min(rx, ry)) * 0.28, m(min(rx, ry)) * 0.25, a, amp=0.6)
+        for k in range(spec.get('rays', 26)):
+            a = rng.uniform(0, 6.283); run(x0 + rx * 0.85 * math.cos(a), y0 + ry * 0.85 * math.sin(a), math.degrees(a) + rng.normal(0, 12), rng.uniform(0.15, 0.55) * max(rx, ry), 0.02, 0.004, F if rng.random() < 0.6 else Hh)
+    w1 = spectral(rng, beta=2.4, lo=4, hi=60) - 0.5; w2 = spectral(rng, beta=2.4, lo=4, hi=60) - 0.5; F = warp(F, w1 * m(0.02), w2 * m(0.02)); Hh = warp(Hh, w1 * m(0.012), w2 * m(0.012))
+    fine = spectral(rng, beta=1.0, lo=60, hi=600) - 0.5; n_mid = spectral(rng, beta=2.0, lo=8, hi=120); clod = spectral(rng, beta=1.6, lo=30, hi=300)
+    F = F + 0.3 * fine * smoothstep(0.2, 0.5, F) * (1 - smoothstep(0.8, 1.3, F))
+    gap = smoothstep(0.46, 0.54, F); hair = smoothstep(0.42, 0.56, Hh + 0.25 * fine) * (1 - gap)
+    near = blur(gap, m(0.03)); lip = smoothstep(0.03, 0.3, near) * (1 - gap); loose = smoothstep(0.004, 0.12, blur(np.maximum(gap, hair * 0.6), m(0.07))) * (0.5 + 0.8 * n_mid)
+    depth = np.clip((F - 0.5) * 1.6, 0, 1)
+    # colour (linear): the gap falls to black, its walls show damp dark earth, the lip is paler dry crumb, the surround a faint darker stain
+    wall = lerp((0.060, 0.042, 0.026), (0.007, 0.006, 0.005), smoothstep(0.0, 0.45, depth)); crumb = lerp((0.16, 0.12, 0.075), (0.30, 0.235, 0.15), clod); soil = lerp((0.075, 0.055, 0.035), (0.13, 0.10, 0.065), n_mid)
+    col = lerp(soil, crumb, np.clip(lip * (0.4 + 0.9 * clod), 0, 1)); col = lerp(col, (0.022, 0.016, 0.011), hair); col = lerp(col, wall, gap)
+    alpha = np.clip(np.maximum(np.maximum(gap, hair * 0.95), np.maximum(lip * (0.35 + 0.6 * clod), loose * 0.45)), 0, 1)
+    rough = lerp(0.9, 0.97, clod); Hm = -gap * (0.004 + depth * spec.get('depth', 0.05)) - hair * 0.003 + lip * (clod - 0.35) * 0.012 + loose * (clod - 0.5) * 0.004
+    N = normal_map(blur(Hm, 0.8), S / W, strength=1.0); ao = 1 - 0.85 * gap * smoothstep(0.0, 0.3, depth) - 0.5 * hair
+    bc = np.dstack([L.lin2srgb(col), alpha]); orm = np.dstack([np.clip(ao, 0, 1), np.clip(rough, 0.04, 1), np.zeros_like(ao)])
+    return down(bc), down(N), down(orm), {'opaque_fraction': float((down(alpha) > 0.5).mean())}
+
+
+CRACK = {
+    'Crack_Short_01': dict(frame='89/1', size=1.6, seed=41, cracks=[(-0.5, -0.05, 6, 1.0, 0.05), (-0.3, 0.12, -8, 0.6, 0.03)], branches=12, dresses='short heavy ground crack, 1.1 m, with side cracks and a crumbled lip'),
+    'Crack_Wide_01': dict(frame='89/2', size=2.4, seed=42, cracks=[(-0.85, 0.02, -3, 1.7, 0.075), (-0.5, -0.2, 14, 0.9, 0.035)], branches=14, dresses='wide ground crack, 1.8 m long and up to 15 cm across, ragged with side cracks'),
+    'Crack_Long_01': dict(frame='89/3', size=2.6, seed=43, cracks=[(-1.1, 0.05, -4, 2.2, 0.035)], branches=10, hairs=20, dresses='long narrow ground crack, 2.3 m, with hairline cracks off it'),
+    'Crack_Diagonal_01': dict(frame='89/4', size=3.2, seed=44, cracks=[(-1.25, -0.9, 36, 3.1, 0.05)], branches=16, hairs=24, dresses='long diagonal ground crack, 3 m, widening in the middle, with side cracks'),
+}
+HOLE = {
+    'Hole_Dark_01': dict(frame='89/9', size=2.2, seed=47, holes=[(0.0, 0.0, 0.36, 0.5)], rays=34, depth=0.2, dresses='dark hole in the ground, about 0.8 x 1.1 m, ringed with spiky radial cracks (the hole the player can drop into)'),
+}
+WEAK_CRACK = ('A flat decal: the fissure is a black gap with a normal-map lip, with no parallax, so from a low camera it reads as painted. It suits flat ground only; it does not follow terrain relief or change the ground material. '
+              'Colours assume brown earth; on grass or stone the crumbled lip will look like scattered soil. Unreal decal material is not built here.')
+WEAK_HOLE = ('A flat decal cannot be a hole: the pit is opaque black with a shaded rim. The game needs a real pit mesh or a parallax/stencil trick here, because the player drops into it; this set only dresses the rim and the cracks round it. '
+             'Unreal decal material is not built here.')
+
+
+
 # ---------------------------------------------------------------------------------------------- output
 WEAK = {
     'blood': 'A flat decal: pooled blood has no real meniscus or parallax, only a normal map, so at a grazing 1 m view the thick pools read thinner than they are. Opacity is authored for a mid-toned ground; on very dark ground the soaked halo disappears, on pale stone it reads strong. The sets are static: no drying over time, no interaction with the ground relief (blood does not run into cracks or round pebbles). Unreal decal material (DBuffer, opacity from BC alpha) is not built here.',
+    'crack': WEAK_CRACK, 'hole': WEAK_HOLE,
     'burn': 'A flat decal: the burnt-through middle is a black patch with a normal-map lip, not a hole, so it cannot show the joists or the depth below that the original frame hints at. The char blocks follow one grain direction (decal X); rotate the decal to the planks it sits on. Soot halo opacity assumes a mid-toned floor. Unreal decal material is not built here.',
 }
 
@@ -264,10 +330,10 @@ def write_set(name, spec, kind, fam, seq, gen):
 
 
 def render(name, spec, kind, outdir, files, man):
-    L.reset(); S = spec['size']; ground = 'park_dirt' if kind == 'blood' else 'weathered_brown_planks'
+    L.reset(); S = spec['size']; ground = 'weathered_brown_planks' if kind == 'burn' else 'park_dirt'
     R = L.review_setup(ground=None, exposure=-5.0)
     g = L.new_obj('ground', [(-15, -15, 0), (15, -15, 0), (15, 15, 0), (-15, 15, 0)], [(0, 1, 2, 3)], smooth=False)
-    t = NT('ground_with_decal'); sset = t.scan(ground, scale=0.6 if kind == 'blood' else 1.1, proj='FLAT')
+    t = NT('ground_with_decal'); sset = t.scan(ground, scale=1.1 if kind == 'burn' else 0.6, proj='FLAT')
     gb = t.bsdf; t.set(base=sset['diff'], rough=sset['rough'], normal=t.normalmap(sset['nor_gl'], 1.0))
     uv = t.mapping(t.obj, scale=(1 / S, 1 / S, 1), loc=(0.5, 0.5, 0))
     bc = t.image(files['BC'], 'sRGB', uv, ext='CLIP'); nm = t.image(files['N'], 'Non-Color', uv, ext='CLIP'); orm = t.image(files['ORM'], 'Non-Color', uv, ext='CLIP')
@@ -284,7 +350,9 @@ def render(name, spec, kind, outdir, files, man):
 if __name__ == '__main__':
     a = L.args(); sel = a[0]
     todo = [(n, s, 'blood', 'blood_splat', '%s effects/spurt' % {'187': '187', '188': '188', '189': '189'}[s['frame'][:3]], blood) for n, s in BLOOD.items()] + \
-           [(n, s, 'burn', 'burn_hole_decal', '158 struct/details/damage/hole-', burn) for n, s in BURN.items()]
+           [(n, s, 'burn', 'burn_hole_decal', '158 struct/details/damage/hole-', burn) for n, s in BURN.items()] + \
+           [(n, s, 'crack', 'ground_crack', '89 lands/details/crack-', fissure) for n, s in CRACK.items()] + \
+           [(n, s, 'hole', 'ground_hole_dark', '89 lands/details/crack-', fissure) for n, s in HOLE.items()]
     for n, s, kind, fam, seq, gen in todo:
         if sel in ('all', kind) or n in sel.split(','):
             outdir, files, man = write_set(n, s, kind, fam, seq, gen); render(n, s, kind, outdir, files, man)

@@ -53,5 +53,36 @@
  "dragon": {
   "status": "partial",
   "why": "rigged creature (38-bone bespoke skeleton with wing and jaw bones, 3 LODs, bone-heat weights, pose-tested). Partial because the last review still faults it: maquette look at 1 m, flat opaque wing panels, no mouth opening, no animation clips (flight, fire, death)"
+ },
+ "boulder_flat": {
+  "why": "1 mesh with UCX hull: bedded flat boulder; scanned rock surface on an authored form, soft edges"
+ },
+ "boulder_large": {
+  "why": "1 mesh with UCX hull: large dark rounded boulder; scanned rock surface on an authored form, soft edges"
+ },
+ "boulder_red": {
+  "why": "1 mesh with UCX hull: cracked reddish boulder (the bombable rock); scanned rock surface on an authored form, soft edges"
+ },
+ "boulder_white_pair": {
+  "why": "1 mesh with UCX hull: pair of pale boulders; scanned rock surface on an authored form, soft edges"
+ },
+ "boulder_grey_tall": {
+  "why": "1 mesh with UCX hull: tall grey boulder; scanned rock surface on an authored form, soft edges"
+ },
+ "ore_rock_blue": {
+  "status": "partial",
+  "why": "1 mesh; the last review still faults the blue mineral: a glossy colour mask and seven plain prisms that read as plastic, not as crystal"
+ },
+ "gold_coin": {
+  "why": "1 mesh, a 26 mm coin (40 triangles); too small to read at the gameplay camera without a scale-up, and its flat face mirrors the sky"
+ },
+ "gold_coins_small": {
+  "why": "1 mesh: eleven spilled coins"
+ },
+ "bomb_item": {
+  "why": "1 mesh: cast-iron bomb with a rope fuse"
+ },
+ "arrow_prop": {
+  "why": "1 mesh: war arrow lying flat; the stuck-in-the-ground frames are a placement rotation"
  }
 }

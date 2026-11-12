@@ -1,0 +1,102 @@
+{
+ "name": "SM_Boulder_Grey_Tall_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall/SM_Boulder_Grey_Tall_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall/SM_Boulder_Grey_Tall_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Boulder_Grey_Tall final",
+ "dimensions_m": [
+  0.7938,
+  0.8128,
+  1.2161
+ ],
+ "bounds_min_m": [
+  -0.3969,
+  -0.4064,
+  -0.0205
+ ],
+ "bounds_max_m": [
+  0.3969,
+  0.4064,
+  1.1957
+ ],
+ "lod0_triangles": 1800,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall/T_Boulder_Grey_Tall_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall/T_Boulder_Grey_Tall_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall/T_Boulder_Grey_Tall_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Boulder_Grey_Tall_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.004,
+   0.996
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 87.7,
+   "p99": 129.5
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.695,
+   "p95": 0.885
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.793
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "boulder_grey_tall",
+  "95 lands/rocks/rock- frames 1, 2"
+ ],
+ "origin_ids": {
+  "boulder_grey_tall": [
+   "S601_P08"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "tall grey standing boulder, 0.9 x 0.8 x 1.25 m",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A sphere cut by random break planes and gently displaced: edges are soft, with no undercuts, overhangs or split-off slabs, and the base is a flat clip rather than a buried foot with soil piled against it. One rock scan, box projected and tinted, carries all surface detail; its features do not follow the displaced form. Moss and lichen are procedural masks."
+}
