@@ -60,7 +60,7 @@ class HouseLighting(unittest.TestCase):
             centre, yaw = expected[row['name'].removeprefix('Daylight_')]
             self.assertLess(math.dist(row['world_cm'], centre), 1e-8)
             self.assertEqual(row['rotation_deg'], [0, yaw, 0])
-            self.assertEqual((row['kind'], row['source_width_cm'], row['source_height_cm']), ('rect', 80, 130))
+            self.assertEqual((row['kind'], row['source_width_cm'], row['source_height_cm']), ('rect', 80, 80))
             self.assertEqual((row['lumens'], row['kelvin'], row['radius_cm']), (170, 5000, 1000))
 
     def test_only_lights_change_and_input_is_not_mutated(self):
