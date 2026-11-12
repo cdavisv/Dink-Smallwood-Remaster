@@ -1,9 +1,11 @@
 {
  "blood_splat": {
-  "why": "8 decal sets, one per original frame (pools, drips, left and right spurts): BC + opacity, normal, ORM at 1024 px"
+  "status": "built elsewhere",
+  "why": "the photoreal pass built this family (one set, `PhotorealPass/Props/Decals/T_Decal_BloodSplat_*`, not yet on master). The 8 per-frame sets in this folder were finished before that notice and are kept as alternates for the reviewer to keep or delete"
  },
  "burn_hole_decal": {
-  "why": "3 decal sets, one per original frame; the burnt-through middle is a flat black patch with a normal-map lip, not a real hole"
+  "status": "built elsewhere",
+  "why": "the photoreal pass built this family (one set, `PhotorealPass/Props/Decals/T_Decal_BurnHole_*`, not yet on master). The 3 per-frame sets in this folder were finished before that notice and are kept as alternates for the reviewer to keep or delete"
  },
  "food_fruit": {
   "why": "6 meshes, one per original frame: three bell peppers, pumpkin, tomato, aubergine"
