@@ -1,0 +1,57 @@
+{
+ "name": "SM_Jar_Storage_PR",
+ "class": "prop",
+ "px": 1024,
+ "slots": [
+  {
+   "material": "MI_Jar_Storage",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Jar_Storage_PR_BC.png",
+  "N": "T_Jar_Storage_PR_N.png",
+  "ORM": "T_Jar_Storage_PR_ORM.png"
+ },
+ "lod_triangles": [
+  1344,
+  672,
+  294
+ ],
+ "hi_triangles": 23808,
+ "bounds_min_m": [
+  -0.247,
+  -0.245,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.251,
+  0.245,
+  0.742
+ ],
+ "dimensions_m": [
+  0.499,
+  0.491,
+  0.742
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 79.9,
+   "p99": 114.1
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.211,
+   "p95": 0.863
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

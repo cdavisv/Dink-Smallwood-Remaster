@@ -1,0 +1,110 @@
+{
+ "name": "SM_Prop_Torch_Wall_01",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Torch_Wall_01/SM_Prop_Torch_Wall_01.fbx",
+ "materials": [
+  "MI_Prop_Torch_Wall_01"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Prop_Torch_Wall_01.blend",
+ "lod0_triangles": 2548,
+ "lod1_triangles": 1274,
+ "lod2_triangles": 568,
+ "dimensions_m": [
+  0.157,
+  0.359,
+  0.952
+ ],
+ "bounds_min_m": [
+  -0.077,
+  -0.359,
+  -0.0
+ ],
+ "bounds_max_m": [
+  0.08,
+  0.0,
+  0.951
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "wall torch / sconce (integrator light sources with no visible source)",
+  "island_torch (the wall-mounted uses)"
+ ],
+ "supersedes": "none (new; asked for by the Unreal integrator)",
+ "dresses": "wall torch, 0.16 x 0.36 x 0.95 m: forged back plate on two square-headed spikes, a sheet-iron smoke plate curled at the top and sooted above the flame, a twisted square bracket arm and stay with two riveted bands gripping a cleft ash stave at 19 degrees, the head a wad of pitch-soaked hessian wound in strips with torn tails, frayed charred fibres, wire binding and runs of pitch down the stave (baked)",
+ "fit": {
+  "pivot": "on the wall plane (y = 0) at the foot of the back plate, centred in x; the torch stands out to -Y; mount with the origin about 1.45 m above the floor",
+  "socket": "flame socket (mesh space, metres, Z up, before the Unreal front flip): [0.0, -0.329, 0.768], on top of the head; the flame leans 19 degrees out from the wall"
+ },
+ "emissive": {
+  "type": "flame, done in engine (no flame mesh in the FBX)",
+  "flame_socket_m": [
+   0.0,
+   -0.329,
+   0.768
+  ],
+  "position_m": [
+   0.0,
+   -0.329,
+   0.768
+  ],
+  "colour_temperature_K": 1900,
+  "attenuation_radius_m": 6.0,
+  "intensity_cd": 18.0,
+  "note": "point light 10 cm above the socket; T_Prop_Torch_Wall_01_E is the ember mask of the charred rag end (emissive = E * 40 nits * flicker when lit, 0 when unlit); the flame itself is an engine effect"
+ },
+ "baked": {
+  "texture_folder": "Prop_Torch_Wall_01",
+  "textures": {
+   "BC": "T_Prop_Torch_Wall_01_BC.png",
+   "N": "T_Prop_Torch_Wall_01_N.png",
+   "ORM": "T_Prop_Torch_Wall_01_ORM.png",
+   "E": "T_Prop_Torch_Wall_01_E.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Prop_Torch_Wall_01",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": 40.0,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 20.8,
+    "p99": 78.2
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.465,
+    "p95": 0.958
+   },
+   "metallic_mean": 0.012
+  },
+  "hi_triangles": 20378,
+  "third_party": [
+   "rough_wood",
+   "hessian_230"
+  ],
+  "source_blend": "_build/bake/SM_Prop_Torch_Wall_01.blend"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Torch_Wall_01",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2, four review rounds (r5-r6). Last look still faults: the rag head reads as stiff overlapping bands rather than soft wound cloth (the game mesh has two wound strips, the other strips, tails and frayed threads are baked), dark and matte now but without loose hanging ends in silhouette; pitch drips on the stave are normal-map only; the smoke plate is a plain rectangle of sheet whose soot fades in a soft procedural edge; the stave grain is a scan recoloured, a little uniform along its length. No flame mesh (engine effect).",
+ "third_party": [
+  "hessian_230",
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Torch_Wall_01/T_Prop_Torch_Wall_01_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Torch_Wall_01/T_Prop_Torch_Wall_01_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Torch_Wall_01/T_Prop_Torch_Wall_01_ORM.png",
+  "E": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Torch_Wall_01/T_Prop_Torch_Wall_01_E.png"
+ }
+}

@@ -1,0 +1,1178 @@
+{
+ "generated_from": "Saved/Import/art_coverage.csv + coverage.csv + tools/data/sprite_classes.csv",
+ "scope": "placements whose art_kind is prop or other",
+ "placeholder_prop_classes": [
+  {
+   "class_id": "thorn_bush",
+   "name": "Thorn bramble",
+   "category": "hazard",
+   "placeholder": 138,
+   "final": 4,
+   "cut": 0,
+   "sprite_px": "102x80",
+   "sprite_families": {
+    "90 lands/details/grave-": 142
+   }
+  },
+  {
+   "class_id": "seashell_clam",
+   "name": "Clam shell",
+   "category": "prop",
+   "placeholder": 66,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "19x14",
+   "sprite_families": {
+    "92 lands/details/beach-": 66
+   }
+  },
+  {
+   "class_id": "jar_vase",
+   "name": "Jar / vase / bottle",
+   "category": "prop",
+   "placeholder": 52,
+   "final": 0,
+   "cut": 1,
+   "sprite_px": "22x31",
+   "sprite_families": {
+    "448 items/cup/cup-": 53
+   }
+  },
+  {
+   "class_id": "starfish",
+   "name": "Starfish",
+   "category": "prop",
+   "placeholder": 47,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "25x17",
+   "sprite_families": {
+    "92 lands/details/beach-": 47
+   }
+  },
+  {
+   "class_id": "blood_splat",
+   "name": "Blood splatter",
+   "category": "effect",
+   "placeholder": 46,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "39x56",
+   "sprite_families": {
+    "188 effects/spurt/sprtl-": 24,
+    "189 effects/spurt/sprtr-": 18,
+    "187 effects/spurt/spurt-": 4
+   }
+  },
+  {
+   "class_id": "bones",
+   "name": "Scattered bones",
+   "category": "prop",
+   "placeholder": 46,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "50x36",
+   "sprite_families": {
+    "90 lands/details/grave-": 46
+   }
+  },
+  {
+   "class_id": "tree_fruit",
+   "name": "Fruit hanging in a tree",
+   "category": "prop",
+   "placeholder": 34,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "7x12",
+   "sprite_families": {
+    "421 items/food/food-": 34
+   }
+  },
+  {
+   "class_id": "hand_tool_small",
+   "name": "Small hand tool (hammer, axe, tongs)",
+   "category": "prop",
+   "placeholder": 30,
+   "final": 0,
+   "cut": 1,
+   "sprite_px": "23x22",
+   "sprite_families": {
+    "447 items/tools/tool-": 31
+   }
+  },
+  {
+   "class_id": "sign_post",
+   "name": "Signpost",
+   "category": "prop",
+   "placeholder": 30,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "50x92",
+   "sprite_families": {
+    "186 struct/landmark/landm-": 30
+   }
+  },
+  {
+   "class_id": "seashell_conch",
+   "name": "Conch shell",
+   "category": "prop",
+   "placeholder": 29,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "15x15",
+   "sprite_families": {
+    "92 lands/details/beach-": 29
+   }
+  },
+  {
+   "class_id": "burn_hole_decal",
+   "name": "Burnt hole / scorch mark",
+   "category": "prop",
+   "placeholder": 26,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "23x20",
+   "sprite_families": {
+    "158 struct/details/damage/hole-": 26
+   }
+  },
+  {
+   "class_id": "counter_wood",
+   "name": "Wooden shop/bar counter",
+   "category": "furniture",
+   "placeholder": 22,
+   "final": 1,
+   "cut": 40,
+   "sprite_px": "156x77",
+   "sprite_families": {
+    "64 inside/details/inacc-": 63
+   }
+  },
+  {
+   "class_id": "crate",
+   "name": "Wooden crate",
+   "category": "container",
+   "placeholder": 21,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "64x48",
+   "sprite_families": {
+    "443 items/boxes/boxb1-": 21
+   }
+  },
+  {
+   "class_id": "cabinet_wood",
+   "name": "Wooden cabinet / dresser",
+   "category": "furniture",
+   "placeholder": 20,
+   "final": 0,
+   "cut": 14,
+   "sprite_px": "57x79",
+   "sprite_families": {
+    "87 inside/details/table-": 34
+   }
+  },
+  {
+   "class_id": "grain_sack",
+   "name": "Grain sack",
+   "category": "prop",
+   "placeholder": 19,
+   "final": 1,
+   "cut": 0,
+   "sprite_px": "50x42",
+   "sprite_families": {
+    "463 items/grain/bag-": 20
+   }
+  },
+  {
+   "class_id": "bowl",
+   "name": "Bowl",
+   "category": "prop",
+   "placeholder": 17,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "17x15",
+   "sprite_families": {
+    "448 items/cup/cup-": 17
+   }
+  },
+  {
+   "class_id": "potion_red",
+   "name": "Red potion (magic)",
+   "category": "pickup",
+   "placeholder": 15,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "19x52",
+   "sprite_families": {
+    "56 bonuses/bottles/botl-r": 15
+   }
+  },
+  {
+   "class_id": "food_fruit",
+   "name": "Fruit (apple / pear / etc.)",
+   "category": "pickup",
+   "placeholder": 15,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "17x23",
+   "sprite_families": {
+    "421 items/food/food-": 15
+   }
+  },
+  {
+   "class_id": "gold_pile",
+   "name": "Gold pile (lgold)",
+   "category": "pickup",
+   "placeholder": 15,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "37x19",
+   "sprite_families": {
+    "178 bonuses/coins/coin-": 15
+   }
+  },
+  {
+   "class_id": "chest_small",
+   "name": "Treasure chest (small)",
+   "category": "container",
+   "placeholder": 14,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "44x60",
+   "sprite_families": {
+    "175 bonuses/chest/chst1-": 14
+   }
+  },
+  {
+   "class_id": "gravestone",
+   "name": "Engraved gravestone",
+   "category": "prop",
+   "placeholder": 14,
+   "final": 0,
+   "cut": 2,
+   "sprite_px": "34x43",
+   "sprite_families": {
+    "446 items/tomb/tomb-": 16
+   }
+  },
+  {
+   "class_id": "arrow_prop",
+   "name": "Arrow (shop display / stuck in ground)",
+   "category": "prop",
+   "placeholder": 14,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "47x30",
+   "sprite_families": {
+    "25 effects/arrow/arrow-": 14
+   }
+  },
+  {
+   "class_id": "crate_small",
+   "name": "Small wooden crate",
+   "category": "container",
+   "placeholder": 13,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "47x44",
+   "sprite_families": {
+    "444 items/boxes/boxb3-": 13
+   }
+  },
+  {
+   "class_id": "skull",
+   "name": "Skull",
+   "category": "prop",
+   "placeholder": 13,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "16x20",
+   "sprite_families": {
+    "90 lands/details/grave-": 13
+   }
+  },
+  {
+   "class_id": "shelf_bottles",
+   "name": "Shelf of bottles (shop wall)",
+   "category": "furniture",
+   "placeholder": 12,
+   "final": 0,
+   "cut": 2,
+   "sprite_px": "154x116",
+   "sprite_families": {
+    "64 inside/details/inacc-": 14
+   }
+  },
+  {
+   "class_id": "shelf_empty",
+   "name": "Wooden shelving",
+   "category": "furniture",
+   "placeholder": 12,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "118x103",
+   "sprite_families": {
+    "459 inner/shelf-": 12
+   }
+  },
+  {
+   "class_id": "crate_stack",
+   "name": "Stack of crates",
+   "category": "prop",
+   "placeholder": 11,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "63x70",
+   "sprite_families": {
+    "445 items/boxes/box-": 11
+   }
+  },
+  {
+   "class_id": "potion_purple",
+   "name": "Purple potion",
+   "category": "pickup",
+   "placeholder": 11,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "19x52",
+   "sprite_families": {
+    "57 bonuses/bottles/botl-p": 11
+   }
+  },
+  {
+   "class_id": "stool",
+   "name": "Stool",
+   "category": "furniture",
+   "placeholder": 10,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "30x29",
+   "sprite_families": {
+    "461 inner/chair-": 10
+   }
+  },
+  {
+   "class_id": "island_totem_pole",
+   "name": "Pole with skull/feather totem",
+   "category": "prop",
+   "placeholder": 10,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "27x105",
+   "sprite_families": {
+    "424 struct/island/isle-": 10
+   }
+  },
+  {
+   "class_id": "fire_fx",
+   "name": "Fire (looping flames)",
+   "category": "effect",
+   "placeholder": 9,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "78x78",
+   "sprite_families": {
+    "427 effects/fire/fire1-": 9
+   }
+  },
+  {
+   "class_id": "table_round",
+   "name": "Round table",
+   "category": "furniture",
+   "placeholder": 9,
+   "final": 1,
+   "cut": 0,
+   "sprite_px": "65x62",
+   "sprite_families": {
+    "87 inside/details/table-": 10
+   }
+  },
+  {
+   "class_id": "bookcase",
+   "name": "Bookcase",
+   "category": "furniture",
+   "placeholder": 9,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "135x120",
+   "sprite_families": {
+    "64 inside/details/inacc-": 9
+   }
+  },
+  {
+   "class_id": "potion_blue",
+   "name": "Blue potion (strength/defense)",
+   "category": "pickup",
+   "placeholder": 9,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "19x52",
+   "sprite_families": {
+    "55 bonuses/bottles/botl-b": 8,
+    "75 bonuses/bottles/botl-b": 1
+   }
+  },
+  {
+   "class_id": "ground_crack",
+   "name": "Crack in the ground",
+   "category": "prop",
+   "placeholder": 8,
+   "final": 0,
+   "cut": 1,
+   "sprite_px": "88x33",
+   "sprite_families": {
+    "89 lands/details/crack-": 9
+   }
+  },
+  {
+   "class_id": "bench_short",
+   "name": "Bench",
+   "category": "furniture",
+   "placeholder": 8,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "76x56",
+   "sprite_families": {
+    "87 inside/details/table-": 8
+   }
+  },
+  {
+   "class_id": "small_heart",
+   "name": "Small heart",
+   "category": "pickup",
+   "placeholder": 8,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "17x17",
+   "sprite_families": {
+    "54 bonuses/heart/smhrt": 8
+   }
+  },
+  {
+   "class_id": "shop_sign",
+   "name": "Hanging sign (red cross: healer)",
+   "category": "prop",
+   "placeholder": 8,
+   "final": 0,
+   "cut": 2,
+   "sprite_px": "63x76",
+   "sprite_families": {
+    "458 inside/details/sign-": 10
+   }
+  },
+  {
+   "class_id": "gold_coin",
+   "name": "Single coin",
+   "category": "pickup",
+   "placeholder": 8,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "4x3",
+   "sprite_families": {
+    "178 bonuses/coins/coin-": 8
+   }
+  },
+  {
+   "class_id": "island_torch",
+   "name": "Bamboo torch / pole",
+   "category": "prop",
+   "placeholder": 8,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "85x105",
+   "sprite_families": {
+    "425 struct/island/torch-": 8
+   }
+  },
+  {
+   "class_id": "wall_stripe_red",
+   "name": "Red wall stripe / banner (built from the health-bar UI art)",
+   "category": "prop",
+   "placeholder": 7,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "24x17",
+   "sprite_families": {
+    "450 inter/health/hm-br-": 7
+   }
+  },
+  {
+   "class_id": "small_fire_fx",
+   "name": "Small fire on floor",
+   "category": "effect",
+   "placeholder": 6,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "23x20",
+   "sprite_families": {
+    "155 struct/details/damage/fire2-": 2,
+    "156 struct/details/damage/fire3-": 2,
+    "157 struct/details/damage/fire4-": 2
+   }
+  },
+  {
+   "class_id": "bench_long",
+   "name": "Long bench",
+   "category": "furniture",
+   "placeholder": 6,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "94x24",
+   "sprite_families": {
+    "87 inside/details/table-": 6
+   }
+  },
+  {
+   "class_id": "pitchfork",
+   "name": "Pitchfork (leaning)",
+   "category": "prop",
+   "placeholder": 6,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "28x108",
+   "sprite_families": {
+    "447 items/tools/tool-": 6
+   }
+  },
+  {
+   "class_id": "golden_heart",
+   "name": "Golden heart (max life up)",
+   "category": "pickup",
+   "placeholder": 6,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "33x33",
+   "sprite_families": {
+    "53 bonuses/heart/gldhrt": 6
+   }
+  },
+  {
+   "class_id": "idol_statue_small",
+   "name": "Small demon idol",
+   "category": "prop",
+   "placeholder": 5,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "44x50",
+   "sprite_families": {
+    "80 inside/stnwalls/stonw-": 5
+   }
+  },
+  {
+   "class_id": "ground_hole_dark",
+   "name": "Dark hole in the ground",
+   "category": "hazard",
+   "placeholder": 5,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "55x73",
+   "sprite_families": {
+    "89 lands/details/crack-": 5
+   }
+  },
+  {
+   "class_id": "island_spear_pole",
+   "name": "Spear pole",
+   "category": "prop",
+   "placeholder": 5,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "26x98",
+   "sprite_families": {
+    "424 struct/island/isle-": 5
+   }
+  },
+  {
+   "class_id": "poster_hark",
+   "name": "\"Hark!\" notice",
+   "category": "prop",
+   "placeholder": 4,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "43x61",
+   "sprite_families": {
+    "462 inner/poster": 4
+   }
+  },
+  {
+   "class_id": "rake",
+   "name": "Rake (leaning)",
+   "category": "prop",
+   "placeholder": 3,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "48x95",
+   "sprite_families": {
+    "447 items/tools/tool-": 3
+   }
+  },
+  {
+   "class_id": "bomb_item",
+   "name": "Bomb",
+   "category": "pickup",
+   "placeholder": 3,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "26x33",
+   "sprite_families": {
+    "420 items/bomb/bomb-": 3
+   }
+  },
+  {
+   "class_id": "hearth_fire",
+   "name": "Fireplace fire",
+   "category": "effect",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "46x55",
+   "sprite_families": {
+    "86 inside/details/fire-": 2
+   }
+  },
+  {
+   "class_id": "explosion_fx",
+   "name": "Explosion",
+   "category": "effect",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "60x61",
+   "sprite_families": {
+    "70 effects/splode/explo-": 2
+   }
+  },
+  {
+   "class_id": "fire_burst_fx",
+   "name": "Fire burst (atomic explosion frames)",
+   "category": "effect",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "93x141",
+   "sprite_families": {
+    "161 effects/atomic/atomc-": 2
+   }
+  },
+  {
+   "class_id": "sparkle_fx",
+   "name": "Sparkle",
+   "category": "effect",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "20x20",
+   "sprite_families": {
+    "165 effects/shiny/shiny-": 1,
+    "166 effects/sparks/spark-": 1
+   }
+  },
+  {
+   "class_id": "food_pie",
+   "name": "Pie",
+   "category": "pickup",
+   "placeholder": 2,
+   "final": 1,
+   "cut": 0,
+   "sprite_px": "24x19",
+   "sprite_families": {
+    "421 items/food/food-": 3
+   }
+  },
+  {
+   "class_id": "spinning_wheel",
+   "name": "Spinning wheel",
+   "category": "furniture",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "61x87",
+   "sprite_families": {
+    "447 items/tools/tool-": 2
+   }
+  },
+  {
+   "class_id": "chest_medium",
+   "name": "Treasure chest",
+   "category": "container",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "44x55",
+   "sprite_families": {
+    "176 bonuses/chest/chst2-": 2
+   }
+  },
+  {
+   "class_id": "food_drumstick",
+   "name": "Meat drumstick",
+   "category": "pickup",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "28x31",
+   "sprite_families": {
+    "421 items/food/food-": 2
+   }
+  },
+  {
+   "class_id": "chest_large",
+   "name": "Treasure chest (large)",
+   "category": "container",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "60x60",
+   "sprite_families": {
+    "177 bonuses/chest/chst3-": 2
+   }
+  },
+  {
+   "class_id": "scythe",
+   "name": "Scythe / hook",
+   "category": "prop",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "42x78",
+   "sprite_families": {
+    "447 items/tools/tool-": 2
+   }
+  },
+  {
+   "class_id": "fountain_spray_fx",
+   "name": "Fountain water spray",
+   "category": "effect",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "80x84",
+   "sprite_families": {
+    "94 lands/garden/spray-": 2
+   }
+  },
+  {
+   "class_id": "fireball_fx",
+   "name": "Fireball (vertical)",
+   "category": "effect",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "32x76",
+   "sprite_families": {
+    "512 effects/comets/sm-comt2/fbal2-": 2
+   }
+  },
+  {
+   "class_id": "burnt_floor_hole",
+   "name": "Burnt hole in floor/roof (large)",
+   "category": "prop",
+   "placeholder": 2,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "90x69",
+   "sprite_families": {
+    "158 struct/details/damage/hole-": 2
+   }
+  },
+  {
+   "class_id": "scroll_note",
+   "name": "Note / paper on floor",
+   "category": "prop",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "34x25",
+   "sprite_families": {
+    "422 items/paper/paper-": 1
+   }
+  },
+  {
+   "class_id": "poster_wanted",
+   "name": "\"Wanted\" poster",
+   "category": "prop",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "43x61",
+   "sprite_families": {
+    "462 inner/poster": 1
+   }
+  },
+  {
+   "class_id": "food_cheese",
+   "name": "Cheese",
+   "category": "pickup",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "21x19",
+   "sprite_families": {
+    "421 items/food/food-": 1
+   }
+  },
+  {
+   "class_id": "food_grapes",
+   "name": "Grapes",
+   "category": "pickup",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "29x30",
+   "sprite_families": {
+    "421 items/food/food-": 1
+   }
+  },
+  {
+   "class_id": "food_ham",
+   "name": "Ham / steak",
+   "category": "pickup",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "28x28",
+   "sprite_families": {
+    "421 items/food/food-": 1
+   }
+  },
+  {
+   "class_id": "food_bread",
+   "name": "Bread loaf",
+   "category": "pickup",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 1,
+   "sprite_px": "30x25",
+   "sprite_families": {
+    "421 items/food/food-": 2
+   }
+  },
+  {
+   "class_id": "thorn_branch",
+   "name": "Thorn branch",
+   "category": "hazard",
+   "placeholder": 1,
+   "final": 4,
+   "cut": 0,
+   "sprite_px": "28x25",
+   "sprite_families": {
+    "90 lands/details/grave-": 5
+   }
+  },
+  {
+   "class_id": "axe_item",
+   "name": "Throwing axe (on ground)",
+   "category": "pickup",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "49x31",
+   "sprite_families": {
+    "85 effects/axe/wpn02-": 1
+   }
+  },
+  {
+   "class_id": "heart_pickup",
+   "name": "Heart (health)",
+   "category": "pickup",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "33x33",
+   "sprite_families": {
+    "52 bonuses/heart/heart": 1
+   }
+  },
+  {
+   "class_id": "barrel_broken",
+   "name": "Smashed barrel",
+   "category": "prop",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "84x64",
+   "sprite_families": {
+    "173 bonuses/barrels/barel-": 1
+   }
+  },
+  {
+   "class_id": "cabinet_narrow",
+   "name": "Narrow cabinet (side view)",
+   "category": "furniture",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "14x67",
+   "sprite_families": {
+    "87 inside/details/table-": 1
+   }
+  },
+  {
+   "class_id": "burn_damage_decal",
+   "name": "Burn damage / scorch with fire",
+   "category": "effect",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "90x69",
+   "sprite_families": {
+    "154 struct/details/damage/damag-": 1
+   }
+  },
+  {
+   "class_id": "snake_carving",
+   "name": "Small stone snake carving",
+   "category": "prop",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "15x13",
+   "sprite_families": {
+    "81 inside/stnwalls/snake/snakb-": 1
+   }
+  },
+  {
+   "class_id": "gold_coins_small",
+   "name": "Few coins",
+   "category": "pickup",
+   "placeholder": 1,
+   "final": 0,
+   "cut": 0,
+   "sprite_px": "28x10",
+   "sprite_families": {
+    "178 bonuses/coins/coin-": 1
+   }
+  },
+  {
+   "class_id": "bed",
+   "name": "Bed",
+   "category": "furniture",
+   "placeholder": 0,
+   "final": 16,
+   "cut": 0,
+   "sprite_px": "121x93",
+   "sprite_families": {
+    "64 inside/details/inacc-": 16
+   }
+  },
+  {
+   "class_id": "basket_wicker",
+   "name": "Wicker basket",
+   "category": "prop",
+   "placeholder": 0,
+   "final": 1,
+   "cut": 0,
+   "sprite_px": "34x43",
+   "sprite_families": {
+    "422 items/paper/paper-": 1
+   }
+  },
+  {
+   "class_id": "chair",
+   "name": "Chair / stool",
+   "category": "furniture",
+   "placeholder": 0,
+   "final": 19,
+   "cut": 0,
+   "sprite_px": "35x49",
+   "sprite_families": {
+    "461 inner/chair-": 19
+   }
+  },
+  {
+   "class_id": "table_long",
+   "name": "Long table",
+   "category": "furniture",
+   "placeholder": 0,
+   "final": 7,
+   "cut": 0,
+   "sprite_px": "106x85",
+   "sprite_families": {
+    "87 inside/details/table-": 7
+   }
+  },
+  {
+   "class_id": "barrel",
+   "name": "Barrel",
+   "category": "container",
+   "placeholder": 0,
+   "final": 97,
+   "cut": 0,
+   "sprite_px": "56x55",
+   "sprite_families": {
+    "173 bonuses/barrels/barel-": 97
+   }
+  },
+  {
+   "class_id": "empty_placement",
+   "name": "Empty placement (seq 0)",
+   "category": "other",
+   "placeholder": 0,
+   "final": 0,
+   "cut": 4,
+   "sprite_px": "",
+   "sprite_families": {
+    "seq 0": 4
+   }
+  },
+  {
+   "class_id": "fallen_log",
+   "name": "Fallen log",
+   "category": "prop",
+   "placeholder": 0,
+   "final": 10,
+   "cut": 0,
+   "sprite_px": "88x47",
+   "sprite_families": {
+    "91 lands/details/fores-": 10
+   }
+  },
+  {
+   "class_id": "fallen_branch_forked",
+   "name": "Fallen forked branch",
+   "category": "prop",
+   "placeholder": 0,
+   "final": 3,
+   "cut": 0,
+   "sprite_px": "84x81",
+   "sprite_families": {
+    "91 lands/details/fores-": 3
+   }
+  },
+  {
+   "class_id": "twig",
+   "name": "Fallen twig",
+   "category": "prop",
+   "placeholder": 0,
+   "final": 9,
+   "cut": 0,
+   "sprite_px": "35x27",
+   "sprite_families": {
+    "91 lands/details/fores-": 9
+   }
+  },
+  {
+   "class_id": "seed_scatter",
+   "name": "Scattered seed / grain on ground",
+   "category": "prop",
+   "placeholder": 0,
+   "final": 6,
+   "cut": 0,
+   "sprite_px": "51x56",
+   "sprite_families": {
+    "431 effects/seed/seed6-": 6
+   }
+  }
+ ],
+ "opening_cottage_props": [
+  {
+   "name": "SM_Barrel_Oak_01",
+   "class": "prop",
+   "size_m": [
+    0.839,
+    0.845,
+    1.008
+   ],
+   "pivot": "base_center",
+   "lod0_triangles": 10472,
+   "source": "SourceAssets/Art/Stonebrook (stylised kit of screen 1); read-only reference"
+  },
+  {
+   "name": "SM_Basket_Wicker_01",
+   "class": "prop",
+   "size_m": [
+    1.144,
+    0.942,
+    0.672
+   ],
+   "pivot": "base_center",
+   "lod0_triangles": 9692,
+   "source": "SourceAssets/Art/Stonebrook (stylised kit of screen 1); read-only reference"
+  },
+  {
+   "name": "SM_Bed_Oak_01",
+   "class": "prop",
+   "size_m": [
+    2.51,
+    1.37,
+    1.12
+   ],
+   "pivot": "base_center",
+   "lod0_triangles": 7744,
+   "source": "SourceAssets/Art/Stonebrook (stylised kit of screen 1); read-only reference"
+  },
+  {
+   "name": "SM_Candle_Iron_01",
+   "class": "prop_small",
+   "size_m": [
+    0.2,
+    0.2,
+    0.45
+   ],
+   "pivot": "base_center",
+   "lod0_triangles": 1020,
+   "source": "SourceAssets/Art/Stonebrook (stylised kit of screen 1); read-only reference"
+  },
+  {
+   "name": "SM_Chair_Oak_01",
+   "class": "prop",
+   "size_m": [
+    0.65,
+    0.537,
+    1.005
+   ],
+   "pivot": "base_center",
+   "lod0_triangles": 1728,
+   "source": "SourceAssets/Art/Stonebrook (stylised kit of screen 1); read-only reference"
+  },
+  {
+   "name": "SM_FeedSack_Jute_01",
+   "class": "prop",
+   "size_m": [
+    0.723,
+    0.555,
+    0.75
+   ],
+   "pivot": "base_center",
+   "lod0_triangles": 2588,
+   "source": "SourceAssets/Art/Stonebrook (stylised kit of screen 1); read-only reference"
+  },
+  {
+   "name": "SM_Fireplace_Fieldstone_01",
+   "class": "prop_large",
+   "size_m": [
+    4.02,
+    1.54,
+    4.145
+   ],
+   "pivot": "base_center",
+   "lod0_triangles": 13216,
+   "source": "SourceAssets/Art/Stonebrook (stylised kit of screen 1); read-only reference"
+  },
+  {
+   "name": "SM_Pie_Rustic_01",
+   "class": "prop_small",
+   "size_m": [
+    0.49,
+    0.49,
+    0.119
+   ],
+   "pivot": "base_center",
+   "lod0_triangles": 4196,
+   "source": "SourceAssets/Art/Stonebrook (stylised kit of screen 1); read-only reference"
+  },
+  {
+   "name": "SM_Table_Oak_01",
+   "class": "prop",
+   "size_m": [
+    2.65,
+    1.498,
+    0.906
+   ],
+   "pivot": "base_center",
+   "lod0_triangles": 2264,
+   "source": "SourceAssets/Art/Stonebrook (stylised kit of screen 1); read-only reference"
+  }
+ ]
+}

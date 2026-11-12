@@ -1,0 +1,70 @@
+{
+ "name": "SM_Prop_Candle_Holder_01",
+ "class": "prop_small",
+ "px": 1024,
+ "slots": [
+  {
+   "material": "MI_Prop_Candle_Holder_01",
+   "kind": "opaque"
+  },
+  {
+   "material": "MI_Prop_Candle_Holder_01_Wax",
+   "kind": "subsurface"
+  }
+ ],
+ "textures": {
+  "BC": "T_Prop_Candle_Holder_01_BC.png",
+  "N": "T_Prop_Candle_Holder_01_N.png",
+  "ORM": "T_Prop_Candle_Holder_01_ORM.png"
+ },
+ "lod_triangles": [
+  1512,
+  756,
+  332
+ ],
+ "hi_triangles": 12396,
+ "bounds_min_m": [
+  -0.101,
+  -0.1,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.1,
+  0.098,
+  0.45
+ ],
+ "dimensions_m": [
+  0.201,
+  0.198,
+  0.45
+ ],
+ "emissive_nits": null,
+ "params": {
+  "sss_radius": [
+   0.012,
+   0.007,
+   0.004
+  ]
+ },
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 94.2,
+   "p99": 207.5
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.503,
+   "p95": 0.709
+  },
+  "metallic_mean": 0.632
+ },
+ "info": {
+  "socket": [
+   0.003,
+   0.0,
+   0.452
+  ]
+ },
+ "third_party": []
+}

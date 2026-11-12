@@ -1,0 +1,24 @@
+{
+ "summary": {
+  "assets": 36,
+  "assets_passed": 3,
+  "errors": 41,
+  "warnings": 397
+ },
+ "errors": {
+  "ZERO_AREA": [
+   "Jar_Jug_PR"
+  ],
+  "SLOTS_OVER": [
+   "Bed_Oak_PR",
+   "Gravestone_Broken_PR"
+  ],
+  "PIVOT": [
+   "Gravestone_Broken_PR",
+   "Gravestone_Pointed_PR",
+   "Gravestone_Round_PR",
+   "Prop_Lantern_Hanging_01",
+   "Prop_Torch_Wall_01"
+  ]
+ }
+}

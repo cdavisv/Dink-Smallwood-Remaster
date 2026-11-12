@@ -1,0 +1,61 @@
+{
+ "name": "SM_Prop_Brazier_Standing_01",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Prop_Brazier_Standing_01",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Prop_Brazier_Standing_01_BC.png",
+  "N": "T_Prop_Brazier_Standing_01_N.png",
+  "ORM": "T_Prop_Brazier_Standing_01_ORM.png",
+  "E": "T_Prop_Brazier_Standing_01_E.png"
+ },
+ "lod_triangles": [
+  2948,
+  1474,
+  648
+ ],
+ "hi_triangles": 38408,
+ "bounds_min_m": [
+  -0.321,
+  -0.405,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.401,
+  0.297,
+  0.985
+ ],
+ "dimensions_m": [
+  0.722,
+  0.702,
+  0.985
+ ],
+ "emissive_nits": 120.0,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 56.9,
+   "p99": 171.6
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.567,
+   "p95": 0.96
+  },
+  "metallic_mean": 0.132
+ },
+ "info": {
+  "socket": [
+   0.0,
+   0.0,
+   0.97
+  ]
+ },
+ "third_party": []
+}

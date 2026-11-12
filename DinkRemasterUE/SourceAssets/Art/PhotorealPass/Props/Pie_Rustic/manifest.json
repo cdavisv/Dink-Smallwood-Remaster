@@ -1,0 +1,55 @@
+{
+ "name": "SM_Pie_Rustic_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Pie_Rustic/SM_Pie_Rustic_PR.fbx",
+ "materials": [
+  "MI_Prop_Glaze_Brown",
+  "MI_Prop_PieCrust"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 4912,
+ "lod1_triangles": 2456,
+ "lod2_triangles": 1080,
+ "dimensions_m": [
+  0.502,
+  0.502,
+  0.124
+ ],
+ "bounds_min_m": [
+  -0.251,
+  -0.251,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.251,
+  0.251,
+  0.124
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "opening cottage pie",
+  "421 items/food/food- (food_pie)"
+ ],
+ "supersedes": "Stonebrook/SM_Pie_Rustic_01 (0.49 x 0.49 x 0.12 m, base_center)",
+ "dresses": "raised pie in a brown earthenware dish, 0.49 m across: blistered domed crust with a thumb-crimped edge, whole",
+ "fit": {
+  "pivot": "base centre",
+  "size": "as SM_Pie_Rustic_01"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Pie_Rustic",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "NOT photoreal: crust is a tinted plaster scan on a lathe with crimps; no flake, no glaze, no filling showing. Reads as a pie at gameplay distance only.",
+ "third_party": [
+  "painted_plaster_wall",
+  "plastered_wall_04",
+  "rusty_metal_02"
+ ],
+ "texture_sets": [
+  "Earthenware",
+  "PlasterWall"
+ ],
+ "textures_px": 2048
+}

@@ -1,0 +1,91 @@
+{
+ "name": "SM_Table_Oak_Round_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Round/SM_Table_Oak_Round_PR.fbx",
+ "materials": [
+  "MI_Table_Oak_Round"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Table_Oak_Round_PR.blend",
+ "lod0_triangles": 684,
+ "lod1_triangles": 342,
+ "lod2_triangles": 174,
+ "dimensions_m": [
+  1.566,
+  1.583,
+  0.808
+ ],
+ "bounds_min_m": [
+  -0.783,
+  -0.791,
+  -0.002
+ ],
+ "bounds_max_m": [
+  0.783,
+  0.792,
+  0.806
+ ],
+ "open_edges": 0,
+ "collision_hulls": 2,
+ "families": [
+  "87 inside/details/table- frame 9",
+  "table_round"
+ ],
+ "supersedes": "none (table_round placeholder, 9 placements)",
+ "dresses": "round oak table, 1.6 m across, 0.8 m: seven boards sawn to the round on two battens, four tapered legs, crossed stretchers",
+ "fit": {
+  "pivot": "base centre",
+  "sprite_scale": "frame 9 is 65 px (1.6 m) wide"
+ },
+ "baked": {
+  "texture_folder": "Table_Oak_Round",
+  "textures": {
+   "BC": "T_Table_Oak_Round_PR_BC.png",
+   "N": "T_Table_Oak_Round_PR_N.png",
+   "ORM": "T_Table_Oak_Round_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Table_Oak_Round",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 52.0,
+    "p99": 110.4
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.525,
+    "p95": 0.714
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 2092,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Table_Oak_Round_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Round",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "As SM_Table_Oak_Long_PR; the round outline is sawn per board in ten segments, a little polygonal at 1 m.",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Round/T_Table_Oak_Round_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Round/T_Table_Oak_Round_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Round/T_Table_Oak_Round_PR_ORM.png"
+ }
+}
