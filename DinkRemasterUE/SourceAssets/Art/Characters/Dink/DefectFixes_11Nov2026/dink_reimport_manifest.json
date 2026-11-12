@@ -1,0 +1,46 @@
+{
+  "schema": "dink-character-art/1",
+  "assets": {
+    "SK_Dink": {
+      "class": "character_hero",
+      "fbx": "Dink/DefectFixes_11Nov2026/Export/SK_Dink_LOD0.fbx",
+      "lod_fbx": [
+        "Dink/DefectFixes_11Nov2026/Export/SK_Dink_LOD0.fbx",
+        "Dink/DefectFixes_11Nov2026/Export/SK_Dink_LOD1.fbx",
+        "Dink/DefectFixes_11Nov2026/Export/SK_Dink_LOD2.fbx",
+        "Dink/DefectFixes_11Nov2026/Export/SK_Dink_LOD3.fbx"
+      ],
+      "dimensions_m": [
+        1.1226370334625244,
+        0.4864029884338379,
+        1.8013807535171509
+      ],
+      "lod_union_dimensions_m": [
+        1.1234434843063354,
+        0.48710334300994873,
+        1.8013807535171509
+      ],
+      "materials": [
+        "MI_Dink_Skin",
+        "MI_Dink_Eyes",
+        "MI_Dink_Hair",
+        "MI_Dink_BrowLash",
+        "MI_Dink_Wardrobe"
+      ],
+      "content_folder": "/Game/Dink/Hero",
+      "reference_skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin",
+      "source_credits": "CC0 MakeHuman anatomical body/eyes/hair; original project-authored clothing. Epic skeletal reference transforms are separate UE project content, not CC0 geometry.",
+      "source_blend": "Dink/DefectFixes_11Nov2026/SK_Dink.blend"
+    }
+  },
+  "materials": {},
+  "existing_materials": {
+    "MI_Dink_Skin": "/Game/Dink/Materials/Characters/MI_Dink_Skin.MI_Dink_Skin",
+    "MI_Dink_Eyes": "/Game/Dink/Materials/Characters/MI_Dink_Eyes.MI_Dink_Eyes",
+    "MI_Dink_Hair": "/Game/Dink/Materials/Characters/MI_Dink_Hair.MI_Dink_Hair",
+    "MI_Dink_BrowLash": "/Game/Dink/Materials/Characters/MI_Dink_BrowLash.MI_Dink_BrowLash",
+    "MI_Dink_Wardrobe": "/Game/Dink/Materials/Characters/MI_Dink_Wardrobe.MI_Dink_Wardrobe"
+  },
+  "status": "candidate",
+  "source_scope": "Hero defect fixes 11 Nov 2026 (chest crease; padded atlas): re-imports only /Game/Dink/Hero/SK_Dink from Dink/DefectFixes_11Nov2026/Export. Existing MI_Dink materials are referenced, never rebuilt; the runtime player mapping (SK_Dink_Hands) and every other character are kept by DINK_CHARACTER_MERGE_RUNTIME=1. The accepted 9 Nov sources stay byte-identical in place."
+}
