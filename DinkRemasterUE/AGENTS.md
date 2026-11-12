@@ -1,5 +1,7 @@
 ## Codex development pass closed — 12 November 2026
 
+Current validation: 809 Python tests pass; native 238/252 pass, with Chapter7 Sanctuary and thirteen dependent story probes unresolved. Preserve that limitation. An upgrade from old generated maps requires current gameplay data and fresh generated worlds/card baselines; derived `RuntimeHardnessV1` foundations remain ignored. Some historical source images require relinking; no final source-rerender acceptance.
+
 The owner requested reconciliation and publication, then a pause in Codex remaster work. Do not restart art development without a new request. See the current `HANDOFF.md` and `Docs/Archives/CodexCloseout`. Preserve inactive source alternatives and independently owned Claude work. Public files must exclude user-home paths and local login strings. Keep shared-material registry entries from both old and new source families, preserve explicit historical/current hero ledger rows, and retain current master art defaults over superseded branch defaults. Privacy changes require refreshing current checksum manifests and validating source formats.
 
 ## Owned cooked copy identities — source fix, native validation pending
@@ -146,7 +148,7 @@ First full source audit correctly exposed11 historical hero rows now referring t
 
 ## Current shared-roof full native validation passed
 
-Branch `art/roof-native-current`, tested bee8f2b with own C5 Editor/Game builds. Actual full Dink run375ed1554f6140c18684b6c59dfe8e80 passed194/194:161clean+33HTTP/EOSwarning successes,0failed/notrun, native0/709.754s,12845protectedinputsunchanged,7ownmodules. Focused camera test passed1/1/0warnings34.322s; originalfailedfull and prelaunchCPUrefusal retained. See Docs/Verification/InteriorRoofSharedActivationGameplay/full-native-current.json. Root UE slot released to Runtime stage18. These results exclude newly accepted masteraf6f6c4 hero fixes; integrate them only after this closed epoch with exact append-only ledger conflict resolution, own rebuild and appropriate current verification. Cook/package, fireplace/exterior import, finalart and globalbarrelrollout remain pending; no whole-goal completion claim.
+Branch `art/roof-native-current`, tested bee8f2b with own C5 Editor/Game builds. Actual full Dink run375ed1554f6140c18684b6c59dfe8e80 passed194/194:161clean+33HTTP/EOSwarning successes,0failed/notrun, native0/709.754s,12845protectedinputsunchanged,7ownmodules. Focused camera test passed 1/1/0warnings34.322s; originalfailedfull and prelaunchCPUrefusal retained. See Docs/Verification/InteriorRoofSharedActivationGameplay/full-native-current.json. Root UE slot released to Runtime stage18. These results exclude newly accepted masteraf6f6c4 hero fixes; integrate them only after this closed epoch with exact append-only ledger conflict resolution, own rebuild and appropriate current verification. Cook/package, fireplace/exterior import, finalart and globalbarrelrollout remain pending; no whole-goal completion claim.
 
 ## Full native suite: stale camera inventory fixture correction
 
