@@ -38,7 +38,9 @@ namespace
 const TSet<FString>& ExactOpaqueRoofAssets()
 {
     static const TSet<FString> Paths = {
-        TEXT("/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_Chimney_Stonebrook_V8.SM_Chimney_Stonebrook_V8"),
+        // The house chimney moved with the fired-clay fireplace delivery (PR #60, stonebrook.json);
+        // it stays an opaque camera blocker (no fade variants for its fired-clay/iron/soot materials).
+        TEXT("/Game/Dink/Refinements/FireplaceFiredClayV4/Meshes/SM_Chimney_Stonebrook_V8.SM_Chimney_Stonebrook_V8"),
     };
     return Paths;
 }
@@ -153,11 +155,13 @@ public:
                 {
                     const UStaticMesh* Asset=M->GetStaticMesh();
                     if (!Test->TestTrue(TEXT("tagged camera fixture has a registered mesh/materials"),M->IsRegistered() && Asset && M->GetNumMaterials()>0)) return true;
-                    bool Complete=true;
+                    bool Complete=true; FString Unmapped;
                     for (int32 Slot=0; Slot<M->GetNumMaterials(); ++Slot)
                     {
                         UMaterialInterface* Material=M->GetMaterial(Slot);
-                        Complete &= Material && Variants.Contains(Material->GetPathName().ToLower());
+                        const bool Mapped=Material && Variants.Contains(Material->GetPathName().ToLower());
+                        if (!Mapped) Unmapped+=FString::Printf(TEXT(" slot%d=%s"),Slot,Material ? *Material->GetPathName() : TEXT("<null>"));
+                        Complete &= Mapped;
                     }
                     if (ExactOpaqueRoofAssets().Contains(Asset->GetPathName()))
                     {
@@ -166,7 +170,14 @@ public:
                     }
                     if (ExactSharedRoofAssets().Contains(Asset->GetPathName()))
                         Test->TestTrue(TEXT("shared roof has its reviewed complete fade mapping"),Complete);
-                    if (!Test->TestTrue(TEXT("every other tagged real occluder has a complete reviewed fade mapping"),Complete)) return true;
+                    if (!Complete)
+                    {
+                        // Name the occluder: a new or moved house asset (e.g. a refinement under a new
+                        // path) otherwise fails here with no hint of which mesh lacks a fade mapping.
+                        Test->AddError(FString::Printf(TEXT("every other tagged real occluder has a complete reviewed fade mapping: %s mesh %s unmapped:%s"),
+                            *It->GetName(),*Asset->GetPathName(),*Unmapped));
+                        return true;
+                    }
                     if (!OverrideFixture && M->GetNumMaterials()>0)
                     {
                         OverrideFixture=M; FixtureOverrides=M->OverrideMaterials; M->SetMaterial(0,M->GetMaterial(0));
