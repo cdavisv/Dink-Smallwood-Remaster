@@ -43,7 +43,7 @@ me.uv_layers['UVMetric'].data.foreach_set('uv', (uv * wt[np.array(isl)[fol]][:, 
 if me.uv_layers.get('UVMap'): me.uv_layers.remove(me.uv_layers['UVMap'])
 pack_charts([sk], SIZE, margin_px=16)
 me.uv_layers.remove(me.uv_layers['UVMetric'])
-bpy.ops.wm.save_mainfile()
+save_blend()
 # ---------------- helper bakes
 sc.render.engine = 'CYCLES'; use_hip_gpu(sc); sc.cycles.samples = 1; sc.cycles.use_denoising = False; sc.render.threads_mode = 'FIXED'; sc.render.threads = 4
 mat = bpy.data.materials.new('SkinBake'); mat.use_nodes = True; nt = mat.node_tree; nt.nodes.clear()

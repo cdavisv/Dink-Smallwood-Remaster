@@ -48,6 +48,22 @@ SKELETAL_CLASSES = {"character_hero", "character_humanoid", "creature_quadruped"
 REPORT_FILE_RE = re.compile(r"(manifest|report|validation)[^/]*\.json$", re.I)
 
 
+_IMPORT_CAPS = None
+
+
+def import_caps():
+    """{file name part: max edge} from Content/Dink/Data/Art/texture_import_caps.json (empty when the file is absent)."""
+    global _IMPORT_CAPS
+    if _IMPORT_CAPS is None:
+        path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "Content", "Dink", "Data", "Art", "texture_import_caps.json")
+        try:
+            with open(path, encoding="utf-8") as f:
+                _IMPORT_CAPS = {str(k): int(v) for k, v in (json.load(f).get("caps") or {}).items()}
+        except (OSError, ValueError):
+            _IMPORT_CAPS = {}
+    return _IMPORT_CAPS
+
+
 def rel(path):
     return os.path.relpath(path, PROJECT)
 
@@ -147,6 +163,7 @@ class Asset:
         self.content_paths = set()
         self.role = None
         self.architecture_declarations = []
+        self.material_exception = ""   # PhotorealPass manifests: stated reason for a private material
 
     @property
     def key(self):
@@ -187,19 +204,28 @@ def harvest(record, name, lod, asset, json_dir):
         asset.tris = max(asset.tris or 0, tri)
     tex = record.get("textures")
     edges = []
+    def capped(edge, name):
+        # the importer's max_texture_size for this set (Content/Dink/Data/Art/texture_import_caps.json): what ships
+        for key, cap in import_caps().items():
+            if key in os.path.basename(str(name)):
+                return min(edge, cap)
+        return edge
     if isinstance(tex, list):
         for t in tex:
             if isinstance(t, dict) and isinstance(t.get("size"), list) and t["size"]:
-                edges.append((max(t["size"]), "export manifest"))
+                edges.append((capped(max(t["size"]), t.get("file", "")), "export manifest"))
     elif isinstance(tex, dict):
         for p in tex.values():
             if isinstance(p, str) and p.lower().endswith(".png"):
                 size = png_size(os.path.join(json_dir, p))
                 if size:
-                    edges.append((max(size), p))
+                    edges.append((capped(max(size), p), p))
     for edge, src in edges:
         if asset.tex is None or edge > asset.tex:
             asset.tex, asset.tex_from = edge, src
+    exception = record.get("material_exception")
+    if isinstance(exception, str) and exception.strip():
+        asset.material_exception = exception.strip()
     fam = record.get("families") or record.get("dink_families")
     if isinstance(fam, list):
         asset.families.update(str(f) for f in fam)
@@ -295,10 +321,12 @@ def load_deliveries():
         if data.get("schema") == "dink-art-families/1":
             for row in data.get("families") or []:
                 if isinstance(row, dict) and isinstance(row.get("mesh"), str):
-                    pkg = row["mesh"].split(".")[0]
-                    family_meshes[pkg].append(str(row.get("family")))
                     family_rows.append(row)
-                    delivered[pkg].add("families.json")
+                    # the main mesh and its optional per-origin variants are all delivered family meshes
+                    for path in [row["mesh"]] + [v for v in (row.get("variants") or []) if isinstance(v, str)]:
+                        pkg = path.split(".")[0]
+                        family_meshes[pkg].append(str(row.get("family")))
+                        delivered[pkg].add("families.json")
             continue
         if "context" in data:
             context_files.add(fn)
@@ -446,7 +474,9 @@ def check(args):
         rig_owned = a.name.startswith("SK_") or cls in SKELETAL_CLASSES or a.package.split("/")[0] in ("Characters", "Creatures")
         if not rig_owned:
             bad = sorted(m for m in a.material_set() if m not in library)
-            if bad:
+            if bad and a.material_exception and a.package.split("/")[0] == "PhotorealPass":
+                notes.append("%s uses %s under a stated material_exception" % (a.key, ", ".join(bad)))
+            elif bad:
                 violations[a.key].append(("material", "not in the library: " + ", ".join(bad)))
         if cls in budgets:
             if a.tris is None:

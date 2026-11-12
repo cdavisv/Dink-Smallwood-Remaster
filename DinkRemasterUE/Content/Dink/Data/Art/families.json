@@ -1,6 +1,6 @@
 {
   "schema": "dink-art-families/1",
-  "about": "Sprite-family art bindings, read by UDinkArtFamilySubsystem at screen activation and by Scripts/art_coverage.py. Visual only: placements keep their collision, hardness, origin IDs and scripts. Precedence: origin and screen bindings in the other Data/Art manifests win; a class id row wins over a sequence row. fit none (the default): real-size meshes standing at the card's ground point, like the player and the dressed screens. Rules: SourceAssets/Art/ART_STANDARD.md.",
+  "about": "Sprite-family art bindings, read by UDinkArtFamilySubsystem at screen activation and by Scripts/art_coverage.py. Visual only: placements keep their collision, hardness, origin IDs and scripts. Precedence: origin and screen bindings in the other Data/Art manifests win; a sequence row with a `frame` (one picture) wins over a class id row, which wins over a plain sequence row. fit none (the default): real-size meshes standing at the card's ground point, like the player and the dressed screens. Rules: SourceAssets/Art/ART_STANDARD.md. Optional `variants` (further mesh paths): a placement picks the main mesh or a variant by a stable hash of its origin ID. Optional `yaw_offset` (degrees) is added to the chosen yaw. Optional `anchor_front` (0..1) stands the mesh's front edge, not its centre, on the sprite's bottom edge. Optional `span` (\"width\" or \"height\" for edge-on strips): the module is repeated along its X axis and scaled along X only until it fills that dimension of the layout-scaled card (interior wall runs: the kit is 0.025 m per pixel, interiors are laid out at 0.0438); `span` \"stretch\" scales one module along X to the card width (the arch); `span_fill` is the mesh of the further modules and `span_end` (left/right) the end the main mesh keeps.",
   "families": [
     {
       "family": "barrel",
@@ -8,58 +8,30 @@
       "fit": "none",
       "yaw_from_sprite": false,
       "scripted": true,
-      "note": "173 bonuses/barrels/barel- frame 1. Kit barrel (library Oak + WroughtIron), not the photoreal V1 (16,648 tris, private material). Scripted barrels included: their scripts hold pickups, the barrel stays a barrel. barrel_broken stays unbound."
+      "note": "173 bonuses/barrels/barel- frame 1. Kit barrel (library Oak + WroughtIron), not the photoreal V1 (16,648 tris, private material). Scripted barrels included: their scripts hold pickups, the barrel stays a barrel. barrel_broken stays unbound. Photoreal pass: was SM_Barrel_Oak_01."
     },
     {
       "family": "bed",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Bed_Oak_01.SM_Bed_Oak_01",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Bed_Oak_PR.SM_Bed_Oak_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
-      "note": "64 inside/details/inacc- frame 3. Scripted beds are the sleep/save beds; the bed stays a bed."
+      "note": "64 inside/details/inacc- frame 3. Scripted beds are the sleep/save beds; the bed stays a bed. Photoreal pass: was SM_Bed_Oak_01."
     },
     {
       "family": "table_long",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Table_Oak_01.SM_Table_Oak_01",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Table_Oak_Long_PR.SM_Table_Oak_Long_PR",
       "fit": "none",
       "yaw_from_sprite": true,
-      "note": "87 inside/details/table- frames 3 and 5. table_round, benches, cabinets and posts stay unbound: the oak table's rectangle would change their silhouette."
+      "note": "87 inside/details/table- frames 3 and 5. table_round, benches, cabinets and posts stay unbound: the oak table's rectangle would change their silhouette. Photoreal pass: was SM_Table_Oak_01."
     },
     {
       "family": "chair",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chair_Oak_PR.SM_Chair_Oak_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
-      "note": "461 inner/chair- frames 1-4, 7, 8 (one facing per frame; the mesh takes a stable per-origin yaw for all). Stools stay unbound: a chair back would add to the silhouette."
-    },
-    {
-      "family": "tree_pine_large",
-      "mesh": "/Game/Dink/Foliage/StonebrookFields/Refinements/SM_Pine_Stonebrook_V3.SM_Pine_Stonebrook_V3",
-      "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "32 lands/trees/tree- frame 1. The pine screen 471 and the vista use. Scripted pines (burnable secrets, the talking tree) keep their cards so they can get a visibly dry tree (plan section 3)."
-    },
-    {
-      "family": "tree_oak_large",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
-      "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "32 lands/trees/tree-. Exterior kit oak."
-    },
-    {
-      "family": "tree_willow_large",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
-      "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "32 lands/trees/tree-. Stand-in broadleaf until the willow (SourceAssets/Art/Stonebrook/Refinements/SharedStonebrookVistaV1/PhotorealWillowV1, source only) is imported; rebind then."
-    },
-    {
-      "family": "tree_willow",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
-      "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "32 lands/trees/tree-. Stand-in, as tree_willow_large. Dead trees, stumps and the forest-edge strips stay unbound: a leafy single oak would read wrong."
+      "note": "461 inner/chair- frames 1-4, 7, 8 (one facing per frame; the mesh takes a stable per-origin yaw for all). Stools stay unbound: a chair back would add to the silhouette. Photoreal pass: was SM_Chair_Oak_01."
     },
     {
       "family": "boulder_grey_tall",
@@ -104,32 +76,620 @@
       "note": "97 lands/rocks/rocks-. Pebbles (214) stay unbound: a boulder where the sprite is walk-over scatter would read as an obstacle that does not block."
     },
     {
-      "family": "grass_tall",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
-      "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "65 lands/grass/grass- frame 1."
-    },
-    {
-      "family": "weed_small",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
-      "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "65 lands/grass/grass- frames 4-6."
-    },
-    {
-      "family": "weed_sprig",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
-      "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "65 lands/grass/grass- frame 2. Ferns, flowers and the bushes (179) stay unbound: a grass clump is not their shape."
-    },
-    {
       "family": "fence_rail_ew",
       "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
       "fit": "none",
       "yaw_from_sprite": true,
       "note": "93 lands/fence/fence- frame 1 (east-west run; with yaw_from_sprite off a run takes a stable per-origin yaw, set it true to align runs east-west). North-south and diagonal runs stay unbound: their sprite is a projected depth that a uniform scale cannot fit."
+    },
+    {
+      "family": "pine_forest_edge_strip",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_PineForestEdge_H_01.SM_Veg_PineForestEdge_H_01",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass forest edge, horizontal strip; faces the sprite view so the strip keeps its direction."
+    },
+    {
+      "family": "pine_forest_edge_strip_vert",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_PineForestEdge_V_01.SM_Veg_PineForestEdge_V_01",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass forest edge, vertical strip; faces the sprite view."
+    },
+    {
+      "family": "tree_willow",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Willow_01.SM_Veg_Willow_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "32 lands/trees/tree-. Photoreal pass willow (was a stand-in oak)."
+    },
+    {
+      "family": "tree_willow_large",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Willow_Large_01.SM_Veg_Willow_Large_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "32 lands/trees/tree-. Photoreal pass large willow (was a stand-in oak)."
+    },
+    {
+      "family": "grass_tall",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Grass_Meadow_01.SM_Veg_Grass_Meadow_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "65 lands/grass/grass- frame 1. Photoreal pass meadow clumps, three variants.",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Grass_Meadow_02.SM_Veg_Grass_Meadow_02",
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Grass_Meadow_03.SM_Veg_Grass_Meadow_03"
+      ]
+    },
+    {
+      "family": "weed_small",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Weed_Small_01.SM_Veg_Weed_Small_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "65 lands/grass/grass- frames 4-6. Photoreal pass weeds.",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Weed_Small_02.SM_Veg_Weed_Small_02"
+      ]
+    },
+    {
+      "family": "weed_sprig",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Weed_Sprig_01.SM_Veg_Weed_Sprig_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "65 lands/grass/grass- frame 2. Photoreal pass sprig."
+    },
+    {
+      "family": "flower_small",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Flowers_01.SM_Veg_Flowers_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass flowers. flower_bed_row stays unbound (not requested; a single clump is not a row).",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Flowers_02.SM_Veg_Flowers_02"
+      ]
+    },
+    {
+      "family": "mushroom",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Mushroom_01.SM_Veg_Mushroom_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass mushrooms.",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Mushroom_02.SM_Veg_Mushroom_02"
+      ]
+    },
+    {
+      "family": "tree_stump",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Stump_01.SM_Veg_Stump_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass stumps.",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Stump_02.SM_Veg_Stump_02"
+      ]
+    },
+    {
+      "family": "fallen_log",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_FallenLog_01.SM_Veg_FallenLog_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass fallen log."
+    },
+    {
+      "family": "fallen_branch_forked",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_FallenBranch_Forked_01.SM_Veg_FallenBranch_Forked_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass forked branch."
+    },
+    {
+      "family": "twig",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_TwigCluster_01.SM_Veg_TwigCluster_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass twig cluster."
+    },
+    {
+      "family": "pebbles",
+      "mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_A.SM_Pebbles_A",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "97 lands/rocks pebble scatter. Photoreal pass pebble clusters A-C (D is being reworked).",
+      "variants": [
+        "/Game/Dink/Photoreal/Scatter/SM_Pebbles_B.SM_Pebbles_B",
+        "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+      ]
+    },
+    {
+      "family": "beach_pebbles",
+      "mesh": "/Game/Dink/Photoreal/Scatter/SM_BeachPebbles_A.SM_BeachPebbles_A",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "92 lands/details beach scatter. Photoreal pass beach pebble clusters A-D; clams and starfish stay unbound until reworked.",
+      "variants": [
+        "/Game/Dink/Photoreal/Scatter/SM_BeachPebbles_B.SM_BeachPebbles_B",
+        "/Game/Dink/Photoreal/Scatter/SM_BeachPebbles_C.SM_BeachPebbles_C",
+        "/Game/Dink/Photoreal/Scatter/SM_BeachPebbles_D.SM_BeachPebbles_D"
+      ]
+    },
+    {
+      "family": "tree_pine_large",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Large_01.SM_Veg_Pine_Large_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "32 lands/trees/tree- frame 1. Photoreal pass pines by origin hash: large and medium, the storm-bent one about 1 in 8 (variants repeat a path to weight it). Scripted pines keep their cards: s2-sec1/s2-sec3/s3-sec1 burn the tree from DinkC (die(): sp_seq 20 fire, then sp_pseq 89 frame 10 as the burnt stump), and a family mesh does not follow a script changing the sprite. SM_Veg_Pine_Dry_01 and SM_Veg_Pine_Burnt_01 are imported for that and need a presentation hook on the sprite change.",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Medium_01.SM_Veg_Pine_Medium_01",
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Large_01.SM_Veg_Pine_Large_01",
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Medium_01.SM_Veg_Pine_Medium_01",
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Large_01.SM_Veg_Pine_Large_01",
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Medium_01.SM_Veg_Pine_Medium_01",
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Medium_01.SM_Veg_Pine_Medium_01",
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Storm_01.SM_Veg_Pine_Storm_01"
+      ]
+    },
+    {
+      "family": "tree_oak_large",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Oak_Large_01.SM_Veg_Oak_Large_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "32 lands/trees/tree-. Photoreal pass oaks; the 15 m wide Oak_02 one in three.",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Oak_Large_01.SM_Veg_Oak_Large_01",
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Oak_Large_02.SM_Veg_Oak_Large_02"
+      ]
+    },
+    {
+      "family": "tree_dead_dark",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_DeadTree_Dark_01.SM_Veg_DeadTree_Dark_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass dead tree (Darklands)."
+    },
+    {
+      "family": "tree_dead_dark_tall",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_DeadTree_DarkTall_01.SM_Veg_DeadTree_DarkTall_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass tall dead tree (Darklands)."
+    },
+    {
+      "family": "tree_dead_frosted",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_DeadTree_Frosted_01.SM_Veg_DeadTree_Frosted_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass frosted dead tree (snow regions)."
+    },
+    {
+      "family": "bush_small",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Small_01.SM_Veg_Bush_Small_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass bush."
+    },
+    {
+      "family": "bush_round_medium",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Round_Medium_01.SM_Veg_Bush_Round_Medium_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass bush."
+    },
+    {
+      "family": "bush_round_large",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Round_Large_01.SM_Veg_Bush_Round_Large_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass bush."
+    },
+    {
+      "family": "bush_wide",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Wide_01.SM_Veg_Bush_Wide_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass bush."
+    },
+    {
+      "family": "thorn_bush",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBush_01.SM_Veg_ThornBush_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass thorn bushes.",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBush_02.SM_Veg_ThornBush_02"
+      ]
+    },
+    {
+      "family": "thorn_branch",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBranch_01.SM_Veg_ThornBranch_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass thorn branch."
+    },
+    {
+      "family": "fern",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Fern_01.SM_Veg_Fern_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass ferns. hanging_vines stays unbound: the meshes hang from 2.3 m and the greybox has nothing above them (SM_Veg_HangingVines_01/02 are imported).",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_Fern_02.SM_Veg_Fern_02"
+      ]
+    },
+    {
+      "family": "cabbage",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Cabbage_01.SM_Veg_Cabbage_01",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass cabbage."
+    },
+    {
+      "family": "flower_bed_row",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_FlowerBed_Row_01.SM_Veg_FlowerBed_Row_01",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass flower bed row; faces the sprite view so the row keeps its direction."
+    },
+    {
+      "family": "dungeon_wall_stone",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Straight_A.SM_Wall_Dungeon_Straight_A",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width",
+      "note": "80 inside/stnwalls/stonw- frames 1-4, 12, 14, 15. Photoreal pass 2.5 m dungeon wall run, 3 m tall, A and B by origin hash; the family layer centres the module on the card ground point (the manifest's -1.25 m pivot offset). Visual only: the placement keeps its hardbox; UCX hulls are dropped on import.",
+      "variants": [
+        "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Straight_B.SM_Wall_Dungeon_Straight_B"
+      ]
+    },
+    {
+      "family": "dungeon_wall_stone_side",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Straight_A.SM_Wall_Dungeon_Straight_A",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "height",
+      "note": "80 inside/stnwalls/stonw- frame 5 (edge-on strip, 30x100): the straight module yawed 90 degrees. Frame 6, the half-length strip, has its own sequence-and-frame row.",
+      "yaw_offset": 90
+    },
+    {
+      "family": "dungeon_wall_stone_arch",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Arch.SM_Wall_Dungeon_Arch",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "stretch",
+      "note": "80 inside/stnwalls/stonw- frame 16."
+    },
+    {
+      "family": "int_wall_plaster",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_Straight_A.SM_Wall_Plaster_Straight_A",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width",
+      "note": "Photoreal pass timber-framed plaster wall, 2.5 m run, 3 m tall, A and B by origin hash. Visual only.",
+      "variants": [
+        "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_Straight_B.SM_Wall_Plaster_Straight_B"
+      ]
+    },
+    {
+      "family": "int_wall_plaster_side",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_Straight_A.SM_Wall_Plaster_Straight_A",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "height",
+      "note": "Edge-on plaster strip: the straight module yawed 90 degrees along the depth axis.",
+      "yaw_offset": 90
+    },
+    {
+      "family": "int_wall_plaster_corner_l",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_CornerPost_L.SM_Wall_Plaster_CornerPost_L",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width", "span_fill": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_Straight_A.SM_Wall_Plaster_Straight_A", "span_end": "left",
+      "note": "Plaster run with the corner post at its left end."
+    },
+    {
+      "family": "int_wall_plaster_corner_r",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_CornerPost_R.SM_Wall_Plaster_CornerPost_R",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width", "span_fill": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_Straight_A.SM_Wall_Plaster_Straight_A", "span_end": "right",
+      "note": "Plaster run with the corner post at its right end."
+    },
+    {
+      "family": "int_wall_plaster_end_l",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_End_L.SM_Wall_Plaster_End_L",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width", "span_fill": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_Straight_A.SM_Wall_Plaster_Straight_A", "span_end": "left",
+      "note": "Plaster run with a free left end."
+    },
+    {
+      "family": "int_wall_plaster_end_r",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_End_R.SM_Wall_Plaster_End_R",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width", "span_fill": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_Straight_A.SM_Wall_Plaster_Straight_A", "span_end": "right",
+      "note": "Plaster run with a free right end."
+    },
+    {
+      "family": "int_wall_plaster_doorjamb",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_DoorJamb_L.SM_Wall_Plaster_DoorJamb_L",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width",
+      "note": "Door jamb stub. The class covers both the left (frame 35) and right (frame 36) jamb, so every jamb shows the left module; SM_Wall_Plaster_DoorJamb_R and SM_Wall_Plaster_DoorHeader are imported but unbound."
+    },
+    {
+      "family": "80 inside/stnwalls/stonw- half strip",
+      "frame": 6,
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Half.SM_Wall_Dungeon_Half",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": 90,
+      "span": "height",
+      "note": "Frame 6 (30x50 px): the 1.25 m half run seen edge-on, yawed 90 degrees. A sequence-and-frame row: wins over the class row dungeon_wall_stone_side."
+    },
+    {
+      "family": "80 inside/stnwalls/stonw- curve SE",
+      "frame": 9,
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Curve.SM_Wall_Dungeon_Curve",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": 0,
+      "anchor_front": 1.0,
+      "note": "Quarter-circle wall. The module runs east from its pivot and ends heading north: the south-east corner, frame 9 (read from the sprites and from screens 73 and 138; the manifest's reading 7 = 0 degrees is one corner off). Front edge on the sprite's bottom edge."
+    },
+    {
+      "family": "80 inside/stnwalls/stonw- curve NE",
+      "frame": 7,
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Curve.SM_Wall_Dungeon_Curve",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": -90,
+      "anchor_front": 1.0,
+      "note": "Frame 7: north-east corner (the curve turned 90 degrees anticlockwise seen from above; Unreal yaw is clockwise)."
+    },
+    {
+      "family": "80 inside/stnwalls/stonw- curve NW",
+      "frame": 8,
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Curve.SM_Wall_Dungeon_Curve",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": 180,
+      "anchor_front": 1.0,
+      "note": "Frame 8: north-west corner."
+    },
+    {
+      "family": "80 inside/stnwalls/stonw- curve SW",
+      "frame": 10,
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Curve.SM_Wall_Dungeon_Curve",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": 90,
+      "anchor_front": 1.0,
+      "note": "Frame 10: south-west corner."
+    },
+    {
+      "family": "31 inside/innwalls/walls/inn- door jamb left",
+      "frame": 35,
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_DoorJamb_L.SM_Wall_Plaster_DoorJamb_L",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width",
+      "note": "Frame 35: the 45 cm stub left of a door (door post on its right)."
+    },
+    {
+      "family": "31 inside/innwalls/walls/inn- door jamb right",
+      "frame": 36,
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Plaster_DoorJamb_R.SM_Wall_Plaster_DoorJamb_R",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width",
+      "note": "Frame 36: the 45 cm stub right of a door."
+    },
+    {
+      "family": "dungeon_wall_stone_cracked",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Straight_A.SM_Wall_Dungeon_Straight_A",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width",
+      "note": "STAND-IN: frame 20, the cracked wall, shows the plain straight module until SM_Wall_Dungeon_Breach (interim in the wall kit manifest) is accepted. Scripted placements of this class keep their card."
+    },
+    {
+      "family": "dungeon_wall_stone_ivy",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Straight_B.SM_Wall_Dungeon_Straight_B",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "span": "width",
+      "note": "STAND-IN: frames 18 and 19, the ivy wall, show the plain straight module until SM_Wall_Dungeon_Ivy (interim) is accepted."
+    },
+    {
+      "family": "hanging_vines",
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_HangingVines_01.SM_Veg_HangingVines_01",
+      "variants": [
+        "/Game/Dink/Photoreal/Vegetation/SM_Veg_HangingVines_02.SM_Veg_HangingVines_02"
+      ],
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "80 inside/stnwalls/stonw- frames 21, 22: vines hanging from 2.8 m over the card's ground point (pivot on the floor under them); 01 and 02 by origin hash. Photoreal pass vegetation. Visual only."
+    },
+    {
+      "family": "dungeon_arch_freestanding",
+      "mesh": "/Game/Dink/Photoreal/WallKits/SM_Wall_Dungeon_Arch.SM_Wall_Dungeon_Arch",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "STAND-IN: 80 inside/stnwalls/stonw- frame 25 (one placement, screen 579), the ivy-grown freestanding arch, shows the plain wall arch until it has its own module."
+    },
+    {
+      "family": "crate",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Crate_Large_PR.SM_Crate_Large_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card. Round 6: scripted crates included, like the barrel (a box script flattens the picture on a hit; placement cards are not redrawn from script state either)."
+    },
+    {
+      "family": "crate_stack",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Crate_Large_PR.SM_Crate_Large_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "crate_small",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Crate_Small_PR.SM_Crate_Small_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card. Round 6: scripted crates included, like the barrel (a box script flattens the picture on a hit; placement cards are not redrawn from script state either)."
+    },
+    {
+      "family": "jar_vase",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Jar_Vase_PR.SM_Jar_Vase_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card.",
+      "variants": [
+        "/Game/Dink/Photoreal/Props/SM_Jar_Storage_PR.SM_Jar_Storage_PR",
+        "/Game/Dink/Photoreal/Props/SM_Jar_Jug_PR.SM_Jar_Jug_PR"
+      ]
+    },
+    {
+      "family": "bowl",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Jar_Bowl_PR.SM_Jar_Bowl_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "grain_sack",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Sack_Grain_PR.SM_Sack_Grain_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "table_round",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Table_Oak_Round_PR.SM_Table_Oak_Round_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "bench_long",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Bench_Oak_PR.SM_Bench_Oak_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "bench_short",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Bench_Oak_PR.SM_Bench_Oak_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "stool",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Stool_Oak_PR.SM_Stool_Oak_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "gravestone",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Gravestone_Round_PR.SM_Gravestone_Round_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card.",
+      "variants": [
+        "/Game/Dink/Photoreal/Props/SM_Gravestone_Pointed_PR.SM_Gravestone_Pointed_PR",
+        "/Game/Dink/Photoreal/Props/SM_Gravestone_Broken_PR.SM_Gravestone_Broken_PR"
+      ]
+    },
+    {
+      "family": "skull",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "bones",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "candle",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Candle_Iron_PR.SM_Candle_Iron_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "basket_wicker",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Basket_Wicker_PR.SM_Basket_Wicker_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "counter_wood",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Counter_Oak_PR.SM_Counter_Oak_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "support_post_timber",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Post_Support_Oak_PR.SM_Post_Support_Oak_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "cabinet_wood",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Cabinet_Oak_PR.SM_Cabinet_Oak_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "cabinet_narrow",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Cabinet_Oak_PR.SM_Cabinet_Oak_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "dungeon_pillar",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Dungeon_Pillar_Twin_PR.SM_Dungeon_Pillar_Twin_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "rubble_pile",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Rubble_Pile_PR.SM_Rubble_Pile_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "shelf_bottles",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Shelf_Bottles_PR.SM_Shelf_Bottles_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "shelf_empty",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Shelf_Bottles_PR.SM_Shelf_Bottles_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
     }
   ],
   "collision_fit": {

@@ -13,7 +13,7 @@ DST = OUT / 'Slime'; (DST / 'Review').mkdir(parents=True, exist_ok=True); (DST /
 random.seed(651); V = Vector
 VARIANTS = {'Blue': ((.012, .016, .05), (.035, .05, .135), (.40, .29, .17)), 'Green': ((.09, .08, .012), (.24, .22, .03), (.05, .16, .42)), 'Red': ((.07, .025, .02), (.19, .08, .055), (.30, .48, .50))}
 SEGX = [-.30, -.15, 0.0, .14, .27]
-TINT = {'Blue': (.10, .16, .42), 'Green': (.42, .40, .07), 'Red': (.42, .16, .11)}      # colour of light through the clear gel
+TINT = {'Blue': (.17, .28, .72), 'Green': (.55, .54, .10), 'Red': (.62, .22, .15)}      # colour of light through the clear gel
 
 
 def deform(dirs, detail=True):
@@ -55,7 +55,7 @@ def slimemat(mat, var='Blue'):
     big, _ = t.noise(P, 5, 3, .55, dist=.5); mid, _ = t.noise(P, 26, 4, .65); fine, _ = t.noise(P, 190, 3, .6)
     A1 = t.node('ShaderNodeRGB'); A1.name = 'VAR_C1'; A1.outputs[0].default_value = (*c1, 1); A2 = t.node('ShaderNodeRGB'); A2.name = 'VAR_C2'; A2.outputs[0].default_value = (*c2, 1); A3 = t.node('ShaderNodeRGB'); A3.name = 'VAR_CS'; A3.outputs[0].default_value = (*cs, 1)
     c = t.mix(t.smooth(big, .3, .72), A1.outputs[0], A2.outputs[0])
-    c = t.mix(1.0, c, t.ramp(t.noise(P, 11, 3, .6)[0], [(.3, .7), (.5, 1.0), (.72, 1.3)]), 'MULTIPLY')
+    c = t.mix(1.0, c, t.ramp(t.noise(P, 6, 2, .5)[0], [(.3, .8), (.5, 1.0), (.72, 1.2)]), 'MULTIPLY')
     # pigment spots: irregular raised tubercles, crowded on the back, sparse toward the foot
     wv = t.vmath('ADD', P, t.vmath('SCALE', t.noise(P, 14, 2, .5)[1], s=.03))
     clus, _ = t.noise(P, 4.5, 2, .5)
@@ -72,7 +72,7 @@ def slimemat(mat, var='Blue'):
     thin = t.math('MULTIPLY', t.math('SUBTRACT', 1.0, t.smooth(up, -.1, .55)), t.smooth(pz, .02, .1))
     c = t.mix(t.math('MULTIPLY', thin, .45), c, t.mix(.5, A2.outputs[0], (.5, .5, .45)))
     wr, _ = t.noise(t.mapping(P, (22, 22, 70), (.3, .2, 0)), 1.0, 4, .7, dist=1.2); wline = t.math('SUBTRACT', 1.0, t.smooth(t.math('ABSOLUTE', t.math('SUBTRACT', wr, .5)), 0, .06))
-    c = t.mix(t.math('MULTIPLY', wline, .12), c, t.mix(.6, A1.outputs[0], (0, 0, 0)))
+    c = t.mix(t.math('MULTIPLY', wline, .03), c, t.mix(.6, A1.outputs[0], (0, 0, 0)))
     # soil, grit and leaf crumbs stuck to the mucus near the ground
     gn, _ = t.noise(P, 75, 3, .7); gd, gc = t.voronoi(P, 160, 'F1')
     grit = t.math('MULTIPLY', t.math('MULTIPLY', t.math('SUBTRACT', 1.0, t.smooth(gd, .12, .3)), t.math('GREATER_THAN', t.sep(gc)[0], t.math('ADD', .45, t.math('MULTIPLY', t.smooth(pz, .0, .12), .6)))), 1.0)
@@ -83,17 +83,18 @@ def slimemat(mat, var='Blue'):
     dry, _ = t.noise(P, 9, 3, .6)
     r = t.math('ADD', .10, t.math('MULTIPLY', t.noise(P, 8, 2, .5)[0], .14)); r = t.math('ADD', r, t.math('MULTIPLY', t.math('MULTIPLY', t.smooth(dry, .55, .8), t.smooth(up, .3, .9)), .22)); r = t.mixf(dirt, r, .85)
     # height
-    h = t.math('MULTIPLY', t.math('SUBTRACT', 1.0, t.smooth(sd, .0, .3)), t.math('MULTIPLY', t.math('GREATER_THAN', rnd, .34), .0042))
-    h = t.math('ADD', h, t.math('MULTIPLY', spot2, .0012)); h = t.math('ADD', h, t.math('MULTIPLY', t.noise(P, 12, 2, .5)[0], .004))
-    h = t.math('SUBTRACT', h, t.math('MULTIPLY', wline, .0005)); h = t.math('ADD', h, t.math('MULTIPLY', grit, .0022))
+    h = t.math('MULTIPLY', t.math('SUBTRACT', 1.0, t.smooth(sd, .0, .3)), t.math('MULTIPLY', t.math('GREATER_THAN', rnd, .34), .0030))
+    h = t.math('ADD', h, t.math('MULTIPLY', spot2, .0012)); h = t.math('ADD', h, t.math('MULTIPLY', t.noise(P, 7, 2, .4)[0], .0022))
+    h = t.math('SUBTRACT', h, t.math('MULTIPLY', wline, .00012)); h = t.math('ADD', h, t.math('MULTIPLY', grit, .0022))
     
     n = t.bump(h, 1.0, 1.0)
     sss = t.math('MULTIPLY', t.math('SUBTRACT', 1.0, dirt), t.math('ADD', .55, t.math('MULTIPLY', foot, .35)))
     b = t.finish(c, r, n, sss=sss, sss_radius=(.03, .03, .03), coat=None)
     # opacity (BC alpha): clear gel between pigment, opaque spots, grit and the pigmented crest
     cl, _ = t.noise(P, 6.5, 3, .6, dist=.8)
-    op = t.math('ADD', .22, t.math('MULTIPLY', t.smooth(cl, .42, .7), .30)); op = t.math('ADD', op, t.math('MULTIPLY', t.math('MULTIPLY', t.smooth(up, .55, 1.0), t.smooth(big, .4, .7)), .25))
-    op = t.math('MAXIMUM', op, t.math('MULTIPLY', spots, .96)); op = t.math('MAXIMUM', op, dirt); op = t.math('MAXIMUM', op, t.math('MULTIPLY', wline, .5))
+    cl2, _ = t.noise(P, 3.0, 2, .4)
+    op = t.math('ADD', .04, t.math('MULTIPLY', t.smooth(cl2, .45, .8), .36)); op = t.math('ADD', op, t.math('MULTIPLY', t.math('MULTIPLY', t.smooth(up, .55, 1.0), t.smooth(big, .45, .75)), .22))
+    op = t.math('MAXIMUM', op, t.math('MULTIPLY', spots, .96)); op = t.math('MAXIMUM', op, dirt); op = t.math('MAXIMUM', op, t.math('MULTIPLY', wline, .0))
     t.bake['alpha'] = t.math('MINIMUM', op, 1.0)
     BAKE[mat.name] = t.bake; return mat
 
@@ -105,7 +106,7 @@ def interior():
         o = mesh_obj('in', vs, fs); set_color_attr(o.data, 'msk', np.tile(np.array((kind, rnd.random(), 0, 0), float), (len(vs), 1))); objs.append(o); return o
     def core_fn(d, p):
         q = V((p.x + .03, p.y + .012, p.z)); k = 1 + .22 * noise.noise(V(d) * 2.1) + .10 * noise.noise(V(d) * 5.3 + V((3, 1, 2))); return V((q.x * k, q.y * k, max(q.z * k, -.03)))
-    vs, fs, d = ellipsoid((0, .01, .075), (.215, .125, .062), 28, 16, fn=core_fn); add(vs, fs, 0.0)
+    vs, fs, d = ellipsoid((0, .01, .07), (.18, .10, .05), 28, 16, fn=core_fn); add(vs, fs, 0.0)
     def inside(p, k):                                              # inside the shell with margin k
         hx = .205 * (1 + .30 * math.exp(-((p.x - .09) / .16) ** 2)); return (p.x / (.36 * k)) ** 2 + (p.y / (.22 * k)) ** 2 + (max(p.z, 0) / (hx * k)) ** 2 < 1 and p.z > .03
     def in_core(p): return ((p.x + .03) / .25) ** 2 + ((p.y - .02) / .15) ** 2 + ((p.z - .075) / .08) ** 2 < 1
@@ -142,12 +143,12 @@ def coremat(mat, var='Blue'):
     A1 = t.node('ShaderNodeRGB'); A1.name = 'VAR_C1'; A1.outputs[0].default_value = (*c1, 1); A2 = t.node('ShaderNodeRGB'); A2.name = 'VAR_C2'; A2.outputs[0].default_value = (*c2, 1)
     isBub = t.math('COMPARE', mR, .33, .1); isBone = t.math('COMPARE', mR, .66, .1); isGrit = t.math('GREATER_THAN', mR, .9)
     cl, _ = t.noise(P, 9, 4, .7, dist=1.5); fn, _ = t.noise(P, 45, 3, .65)
-    c = t.mix(t.smooth(cl, .3, .7), t.mix(.55, A1.outputs[0], (.01, .008, .006)), t.mix(.35, A2.outputs[0], (.05, .04, .03)))        # murk
+    c = t.mix(t.smooth(cl, .3, .7), t.mix(.35, A1.outputs[0], (.02, .018, .015)), t.mix(.3, A2.outputs[0], (.22, .19, .14)))        # murk
     vv = t.node('ShaderNodeTexVoronoi', feature='DISTANCE_TO_EDGE'); t.link(t.vmath('ADD', P, t.vmath('SCALE', t.noise(P, 20, 2, .5)[1], s=.04)), vv.inputs['Vector']); vv.inputs['Scale'].default_value = 26
     thr = t.math('SUBTRACT', 1.0, t.smooth(vv.outputs['Distance'], .0, .05)); c = t.mix(t.math('MULTIPLY', thr, .5), c, t.mix(.4, A2.outputs[0], (.45, .42, .36)))   # pale threads
     c = t.mix(t.math('MULTIPLY', t.smooth(fn, .55, .75), .5), c, (.012, .01, .008))
     c = t.mix(isBub, c, t.mix(.25, (.62, .68, .68), A2.outputs[0]))
-    bst, _ = t.noise(P, 60, 3, .7); c = t.mix(isBone, c, t.mix(t.smooth(bst, .4, .7), (.50, .43, .30), (.30, .23, .13)))
+    bst, _ = t.noise(P, 60, 3, .7); c = t.mix(isBone, c, t.mix(t.smooth(bst, .4, .7), (.66, .58, .42), (.36, .28, .16)))
     c = t.mix(isGrit, c, t.mix(mG, (.035, .026, .018), (.14, .11, .08)))
     r = t.math('ADD', .45, t.math('MULTIPLY', fn, .3)); r = t.mixf(isBub, r, .04); r = t.mixf(isBone, r, t.math('ADD', .35, t.math('MULTIPLY', bst, .3))); r = t.mixf(isGrit, r, .85)
     h = t.math('ADD', t.math('MULTIPLY', cl, .004), t.math('ADD', t.math('MULTIPLY', thr, .0012), t.math('MULTIPLY', fn, .0008))); h = t.mixf(isBub, h, 0.0)
@@ -155,27 +156,22 @@ def coremat(mat, var='Blue'):
 
 
 def skirt(low):
-    """Wet meniscus: a thin film creeping out from the foot onto the ground, concave where it meets the body."""
-    co = co_np(low.data); m = co[:, 2] < .03; th = np.arctan2(co[m, 1], co[m, 0]); rr = np.hypot(co[m, 0], co[m, 1]); K = 96; rad = np.zeros(K)
-    for k in range(K):
-        a = -math.pi + math.tau * (k + .5) / K; d = np.abs((th - a + math.pi) % math.tau - math.pi); sel = d < math.tau / K * 1.2; rad[k] = rr[sel].max() if sel.any() else 0
-    rad = np.where(rad > 0, rad, rad[rad > 0].mean()); rad = (np.roll(rad, 1) + rad * 2 + np.roll(rad, -1)) / 4
-    vs = []; fs = []; uv = []
-    for k in range(K):
-        a = -math.pi + math.tau * (k + .5) / K; dr = V((math.cos(a), math.sin(a), 0))
-        w = .020 + .022 * (.5 + .5 * math.sin(a * 5 + 1.3)) * (.5 + .5 * math.sin(a * 11 + .4)) + .035 * max(0, math.sin(a * 2 + 2.6)) ** 4 + .012 * noise.noise(V((a * 3, 0, 0)))
-        for j, (ro, z) in enumerate(((-.03, .020), (-.008, .0065), (.004, .0025), (w * .55, .0014), (w, .0006))):
-            vs.append(dr * (rad[k] + ro) + V((0, 0, z))); uv.append(((k / K) * 6, j / 4))
-    for k in range(K):
-        for j in range(4):
-            q = k * 5 + j; q2 = ((k + 1) % K) * 5 + j; fs.append((q, q2, q2 + 1, q + 1))
-    o = mesh_obj('SlimeSkirt', vs, fs); o.data.uv_layers.new(name='UVMap'); uvl = o.data.uv_layers.active.data
+    """Wet meniscus: the lowest band of the shell itself, copied, pushed out along its own horizontal normal and laid on the ground,
+    so it follows every bay between pseudopods instead of bridging them. v = 0 where it climbs the body, 1 at the outer edge."""
+    me = low.data; co = co_np(me); n = nrm_np(me); H = .03
+    faces = [p for p in me.polygons if all(co[v, 2] < H for v in p.vertices) and p.normal.z > -.3]
+    idx = sorted({v for p in faces for v in p.vertices}); remap = {v: k for k, v in enumerate(idx)}; vs = []; uv = []
+    for v in idx:
+        d = V((n[v, 0], n[v, 1], 0))
+        if d.length < 1e-4: d = V((co[v, 0], co[v, 1], 0))
+        d.normalize(); t_ = min(1.0, max(0.0, co[v, 2] / H)); w = .020 + .012 * noise.noise(V((co[v, 0] * 9, co[v, 1] * 9, 0)))
+        p = V((co[v, 0], co[v, 1], 0)) + d * (w * (1 - t_) ** 1.5 + .0025)
+        vs.append((p.x, p.y, .0006 + .017 * t_ ** 2)); uv.append(((math.atan2(co[v, 1], co[v, 0]) / math.tau + .5) * 6, 1 - t_))
+    o = mesh_obj('SlimeSkirt', vs, [tuple(remap[v] for v in p.vertices) for p in faces]); o.data.uv_layers.new(name='UVMap'); uvl = o.data.uv_layers.active.data
     for pl in o.data.polygons:
-        k0 = min(v // 5 for v in pl.vertices); wrapk = max(v // 5 for v in pl.vertices) - k0 > 1
+        us = [uv[v][0] for v in pl.vertices]; wrap_ = max(us) - min(us) > 3
         for li in pl.loop_indices:
-            vi = o.data.loops[li].vertex_index; u, v_ = uv[vi]
-            if wrapk and vi // 5 == 0: u = 6.0
-            uvl[li].uv = (u, v_)
+            u, v_ = uv[o.data.loops[li].vertex_index]; uvl[li].uv = (u + 6 if wrap_ and u < 3 else u, v_)
     return o
 
 
@@ -207,15 +203,18 @@ def fx_textures():
     body = np.clip((1 - d) / .16, 0, 1); gaps = np.clip((n2 - .30 - .25 * (1 - u)) / .12, 0, 1); body = body * (.35 + .65 * gaps)
     streak = .5 + .5 * np.sin((v - centre) * 70 + n1 * 9 + np.sin(u * 30) * .6); rim = np.exp(-((d - .93) / .07) ** 2) * (d < 1.15)
     age = np.clip(u * 1.25, 0, 1)                                                   # old end has dried to a silvery crust
-    a = np.clip(body * (.50 + .28 * age) * (.8 + .2 * streak) + rim * .5 * (.5 + .5 * n3), 0, .92)
-    col = np.ones((H, W, 3)) * np.array((.034, .030, .024)); dry = np.clip(rim + (1 - age) * .6 * body, 0, 1)[..., None]; col = col * (1 - dry) + np.array((.42, .42, .38)) * dry * (.7 + .5 * n3[..., None])
+    a = np.clip(body * (.66 + .22 * age) * (.8 + .2 * streak) + rim * .32 * (.5 + .5 * n3), 0, .92)
+    col = np.ones((H, W, 3)) * np.array((.034, .030, .024)); dry = np.clip(rim + (1 - age) * .6 * body, 0, 1)[..., None]; col = col * (1 - dry * .7) + np.array((.30, .30, .27)) * dry * .7 * (.7 + .5 * n3[..., None])
     bub = np.zeros((H, W))
     for i in range(140):
         bu = rng.uniform(.1, .98); bv = rng.uniform(-.6, .6); br = rng.uniform(.004, .013); dd = np.hypot((u - bu) * 2, (v - bv - (.16 * math.sin(bu * 5.2 + .7)))) / br
         bub = np.maximum(bub, np.clip(1 - np.abs(dd - .8) / .25, 0, 1) * (dd < 1.2))
     col = col * (1 - .6 * bub[..., None]) + np.array((.5, .5, .48)) * .6 * bub[..., None]; a = np.maximum(a, bub * .7 * (body > .1))
     h = body * (.4 + .12 * streak) + rim * .25 + bub * .3
-    trail = save('T_Slime_Trail', col, a, h, .06 + .12 * n3 + .5 * dry[..., 0] + .2 * (1 - age), hs=10.0)
+    trail = {}
+    for var in VARIANTS:                                                            # the trail carries a little of the body's pigment
+        tc_ = np.array(TINT[var]) * .22; k_ = (.38 * (1 - dry) * body[..., None])
+        trail[var] = save('T_Slime_Trail_' + var, col * (1 - k_) + tc_ * k_, a, h, .06 + .12 * n3 + .5 * dry[..., 0] + .2 * (1 - age), hs=10.0)
     return wet, trail
 
 
@@ -318,7 +317,7 @@ def make_actions(arm):
     def death(t):
         q = math.sin(t * math.tau * 5) * max(0, 1 - t / .35) * .012
         e = 0 if t < .3 else (1 - math.cos(min(1, (t - .3) / .6) * math.pi)) / 2
-        for k, s in enumerate(segs): P[s].location = ((k - 2) * .045 * e + q, 0, -.03 * e)
+        for k, s in enumerate(segs): P[s].location = ((k - 2) * .045 * e + q, 0, 0)          # no sinking: the foot stays on the ground, only the crest collapses
         for k, h in enumerate(humps): P[h].location = (q, (.02 if k % 2 else -.02) * e, -(.10 + .03 * k) * e)
     clip('Idle', 61, idle, True); clip('Walk', 28, walk, True, {'nominal_speed_cm_s': 30}); clip('Attack', 16, attack, False); clip('Death', 31, death, False, {'hold_last_frame': True})
     arm.animation_data.action = None
@@ -373,7 +372,7 @@ if STAGE in ('look', 'final'):
             ctex[var] = bake_set(inner, DST / 'Textures', 'T_Slime_Core_' + var, res=1024, bc_only=(var != 'Blue'), shared_prefix='T_Slime_Core_Blue')
         for o_ in (low, inner): o_.hide_render = False
         wet, trail = fx_textures(); sk = skirt(low)
-        low.material_slots[0].material = shell_material('MI_Slime', tex['Blue'], TINT['Blue']); mat.name = 'MI_Slime_Procedural'; mat.use_fake_user = True
+        mat.name = 'MI_Slime_Procedural'; mat.use_fake_user = True; low.material_slots[0].material = shell_material('MI_Slime', tex['Blue'], TINT['Blue'])
         cmat.name = 'MI_Slime_Core_Procedural'; cmat.use_fake_user = True; inner.material_slots[0].material = game_material('MI_Slime_Core', ctex['Blue'])
         sk.data.materials.append(film_material('MI_Slime_Wet', wet))
         for var in ('Green', 'Red'):
@@ -388,7 +387,8 @@ if STAGE in ('look', 'final'):
         fs = [(2 * i, 2 * i + 2, 2 * i + 3, 2 * i + 1) for i in range(N_)]
         tr = mesh_obj('SM_Slime_Trail_LOD0', vs, fs, tc); tr.data.uv_layers.new(name='UVMap'); uvl = tr.data.uv_layers.active.data
         for lp in tr.data.loops: uvl[lp.index].uv = ((lp.vertex_index // 2) / N_, float(lp.vertex_index % 2))
-        tr.data.materials.append(film_material('MI_Slime_Trail', trail))
+        tr.data.materials.append(film_material('MI_Slime_Trail', trail['Blue']))
+        for var in ('Green', 'Red'): film_material('MI_Slime_Trail_' + var, trail[var]).use_fake_user = True
         high.hide_render = True; high.hide_viewport = True
         hc = bpy.data.collections.new('SlimeHigh_Source'); sc.collection.children.link(hc)
         for c in list(high.users_collection): c.objects.unlink(high)
@@ -410,6 +410,7 @@ if STAGE == 'review':
     if var != 'Blue':
         for sl in ob_.material_slots:
             if sl.material.name in ('MI_Slime', 'MI_Slime_Core'): sl.material = bpy.data.materials[sl.material.name + '_' + var]
+        bpy.data.objects['SM_Slime_Trail_LOD0'].material_slots[0].material = bpy.data.materials['MI_Slime_Trail_' + var]
     bpy.context.scene.cycles.max_bounces = 12; bpy.context.scene.cycles.transmission_bounces = 10; bpy.context.scene.cycles.transparent_max_bounces = 24
     bpy.data.objects['SM_Slime_Trail_LOD0'].location = (-.22, .02, 0)
     shots(arm, A[1], A[2].split(','), sm)

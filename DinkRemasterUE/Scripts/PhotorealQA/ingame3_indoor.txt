@@ -1,0 +1,98 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 2 300 220
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -8
+dink.IndoorEnv 0
+wait 7
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_interior_2_before.png
+wait 1
+dink.IndoorEnv 1
+wait 7
+fps indoor_interior_2
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_interior_2_after.png
+wait 1
+dink.Goto 34 300 220
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 180 -8
+dink.IndoorEnv 0
+wait 7
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_interior_34_before.png
+wait 1
+dink.IndoorEnv 1
+wait 7
+fps indoor_interior_34
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_interior_34_after.png
+wait 1
+dink.Goto 579 300 240
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -6
+dink.IndoorEnv 0
+wait 7
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_dungeon_579_before.png
+wait 1
+dink.IndoorEnv 1
+wait 7
+fps indoor_dungeon_579
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_dungeon_579_after.png
+wait 1
+dink.Goto 85 300 200
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -10
+dink.IndoorEnv 0
+wait 7
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_lava_85_before.png
+wait 1
+dink.IndoorEnv 1
+wait 7
+fps indoor_lava_85
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_lava_85_after.png
+wait 1
+dink.Goto 73 300 250
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -25
+dink.IndoorEnv 0
+wait 7
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_dungeon_73_before.png
+wait 1
+dink.IndoorEnv 1
+wait 7
+fps indoor_dungeon_73
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/indoor_dungeon_73_after.png
+wait 1
+dink.Goto 439 300 385
+dink.View 0 -4
+wait 3
+dink.CalAnchor 0 0
+dink.CalCam -95 30 168 0 0 160 40 1
+wait 2
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/heroclose_front_a.png
+wait 1
+dink.CalCam -200 60 180 0 0 120 60 1
+wait 2
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/ingame3/indoor/heroclose_gameplay_a.png
+wait 1
+dink.CalCam off
+quit

@@ -13,10 +13,15 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "HAL/IConsoleManager.h"
+#include "Misc/App.h"
+#include "Misc/PackageName.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
+// Photoreal pass (round 6): visual only, same skeleton or refused; headless runs keep validating the manifest's mesh.
+static TAutoConsoleVariable<int32> CVarDinkPhotorealPillbug(TEXT("dink.PhotorealPillbug"), 1,
+	TEXT("1 = SK_Pillbug_Photoreal replaces the pillbug mesh of creatures.json while the process renders (same skeleton, clips, body boxes); read at begin play."));
 namespace
 {
 FVector CreatureVector(const TSharedPtr<FJsonObject>& Row, const TCHAR* Key, FVector Default = FVector::ZeroVector)
@@ -65,6 +70,13 @@ void UDinkCreatureSubsystem::OnWorldBeginPlay(UWorld& World)
 		if (!Actor || Actor->FindComponentByClass<UDinkCreatureComponent>())
 			continue;
 		USkeletalMesh* Mesh = LoadObject<USkeletalMesh>(nullptr, *Row->GetStringField(TEXT("mesh")));
+		if (Mesh && Mesh->GetName() == TEXT("SK_Pillbug") && CVarDinkPhotorealPillbug.GetValueOnGameThread() != 0 && FApp::CanEverRender())
+		{
+			static const TCHAR* PhotorealPillbug = TEXT("/Game/Dink/Photoreal/Creatures/Pillbug/SK_Pillbug_Photoreal");
+			USkeletalMesh* Photoreal = FPackageName::DoesPackageExist(PhotorealPillbug)
+				? LoadObject<USkeletalMesh>(nullptr, *(FString(PhotorealPillbug) + TEXT(".SK_Pillbug_Photoreal")), nullptr, LOAD_NoWarn | LOAD_Quiet) : nullptr;
+			if (Photoreal && Photoreal->GetSkeleton() == Mesh->GetSkeleton()) Mesh = Photoreal;
+		}
 		UBlendSpace* Locomotion = LoadObject<UBlendSpace>(nullptr, *Row->GetStringField(TEXT("locomotion")));
 		FString FeedPath;
 		Row->TryGetStringField(TEXT("feed_animation"), FeedPath);

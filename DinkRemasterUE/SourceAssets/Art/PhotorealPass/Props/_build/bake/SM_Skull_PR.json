@@ -1,0 +1,57 @@
+{
+ "name": "SM_Skull_PR",
+ "class": "prop_small",
+ "px": 1024,
+ "slots": [
+  {
+   "material": "MI_Skull",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Skull_PR_BC.png",
+  "N": "T_Skull_PR_N.png",
+  "ORM": "T_Skull_PR_ORM.png"
+ },
+ "lod_triangles": [
+  1520,
+  760,
+  334
+ ],
+ "hi_triangles": 92468,
+ "bounds_min_m": [
+  -0.077,
+  -0.101,
+  -0.0
+ ],
+ "bounds_max_m": [
+  0.076,
+  0.124,
+  0.2
+ ],
+ "dimensions_m": [
+  0.153,
+  0.225,
+  0.2
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 100.4,
+   "p99": 178.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.574,
+   "p95": 0.93
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

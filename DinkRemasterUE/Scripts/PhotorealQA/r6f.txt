@@ -1,0 +1,42 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 1 314 161
+dink.CameraDistance 400
+dink.Goto 1 250 160
+dink.CameraDistance 220
+FOV 0
+wait 1
+dink.View 90 -4
+wait 8
+shot <PROJECT>/Saved/PhotorealPass/ingame6/61_mother_front_2m.png
+wait 1
+dink.View -90 -4
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/ingame6/62_mother_other_side.png
+wait 1
+dink.Goto 1 230 230
+dink.CameraDistance 400
+dink.View 30 -6
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/ingame6/60_mother_game_camera.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 70
+dink.View 0 4
+wait 8
+shot <PROJECT>/Saved/PhotorealPass/ingame6/63_hero_head_front.png
+dink.View 180 4
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/ingame6/64_hero_head_back.png
+wait 1
+quit

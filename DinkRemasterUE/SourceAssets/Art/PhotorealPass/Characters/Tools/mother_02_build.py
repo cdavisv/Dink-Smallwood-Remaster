@@ -55,7 +55,7 @@ bd = dup(bv, 'Bodice_Base')
 implicit_cut(bd, lambda P: folds.arm_h(P) - .006)
 implicit_cut(bd, lambda P: (ZW - .030) - P[:, 2])
 def neck_q(P):   # open round neckline: an ellipsoid scoop (deeper in front) joined with the neck column
-    return np.sqrt((P[:, 0] / .104) ** 2 + ((P[:, 1] + .030) / .112) ** 2 + ((P[:, 2] - 1.525) / .118) ** 2)
+    return np.sqrt((P[:, 0] / .086) ** 2 + ((P[:, 1] + .030) / .093) ** 2 + ((P[:, 2] - 1.525) / .096) ** 2)      # 12 Nov: smaller scoop, it stays inside the chest skin patch
 def neck_f(P):
     r = np.sqrt(P[:, 0] ** 2 + (P[:, 1] - .008) ** 2)
     return np.maximum(1 - neck_q(P), np.minimum(.080 - r, P[:, 2] - 1.44))
@@ -78,7 +78,19 @@ def bod_seams(p):
     nk = np.abs((neck_q(p) - 1) * .105 - .006) + (z < 1.36) * BIG                 # top-stitched neckline binding
     st = np.minimum.reduce([np.abs(seam - .0045), nk, np.abs(h + .010), np.abs(cfront - .011)])
     return seam, st
-bod, bod_hi = G.finish(bd, bodice_fold, 3000, bod_class, bod_charts, 'linen_red', 'Bodice', lip=(.0028, .011), lipsel=lambda c: c.z > 1.38 and (c.x ** 2 + c.y ** 2) ** .5 < .16, seams=bod_seams, hi_levels=1)
+bod, bod_hi = G.finish(bd, bodice_fold, 3000, bod_class, bod_charts, 'linen_red', 'Bodice', lip=None, seams=bod_seams, hi_levels=1)
+_skin_bvh = bvh_of(D['Skin'])
+def hug_neck(o, off=.0060):
+    """The neckline lies on the skin: cloth within about 2 cm of the opening is drawn down to the chest (no dark slit under the hem)."""
+    c = co_np(o.data); q = neck_q(c); r = np.sqrt(c[:, 0] ** 2 + (c[:, 1] - .008) ** 2); w = np.maximum(sstep(1.28, 1.03, q), sstep(.105, .084, r) * (c[:, 2] > 1.43)) * (c[:, 2] > 1.36); n_ = 0
+    for i in np.nonzero(w > 0)[0]:
+        loc, nrm, _, dist = _skin_bvh.find_nearest(Vector(c[i]), .035)
+        if loc is None: continue
+        c[i] = c[i] * (1 - w[i]) + (np.array(loc) + np.array(nrm) * off) * w[i]; n_ += 1
+    set_co(o.data, c); log('neckline hugged to skin', o.name, n_)
+hug_neck(bod); hug_neck(bod_hi)
+smooth_boundary(bod, it=8)       # an even hem line before it gets its thickness
+add_lips(bod, .0028, .011, select=lambda c: c.z > 1.38 and (c.x ** 2 + c.y ** 2) ** .5 < .16)
 made += [bod, bod_hi]
 
 # ------------------------------------------------------------------ PUFFED SLEEVES (lofted; they pass through the armhole seam)
@@ -197,7 +209,7 @@ for o in made:
     smooth_shade(o)
     if 'UVMetric' not in o.data.uv_layers: log('NO UV', o.name)
 log('game tris', {o.name: tri_count(o) for o in made if not o.name.endswith('_HI')}, 'total', sum(tri_count(o) for o in made if not o.name.endswith('_HI')))
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / N / 'Work/mother_garments_b.blend'))
+save_blend(filepath=str(OUT / N / 'Work/mother_garments_b.blend'))
 if 'norender' in args(): sys.exit(0)
 cols = {'linen_red': (.28, .03, .025), 'leather_black': (.03, .025, .02), 'brass': (.7, .5, .2), 'leather_shoe': (.08, .05, .03), 'leather_sole': (.04, .03, .02)}
 hi_view = 'hi' in args()

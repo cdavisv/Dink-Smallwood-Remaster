@@ -76,7 +76,7 @@ tip = np.array((.74, .735, .70)); base = np.array((.58, .59, .61))              
 t = np.clip((sheet_s - .72) / .3, 0, 1)[..., None]; lin = (base * (1 - t) + tip * t) * np.clip(sheet_s, 0, 1.1)[..., None]
 if BLOODY:
     yy, xx = np.mgrid[0:CH * 2, 0:CW * 4].astype(np.float64); n = vnoise(xx * .035 + np.sin(yy * .02) * 2, 5, 3) * vnoise(yy * .03 + 3, 6, 3)
-    m = np.clip((n - .03) * 7, 0, 1)[..., None]; lin = lin * (1 - m) + (lin * np.array((.5, .02, .02)) * .4 + np.array((.09, .003, .003))) * m
+    m = np.clip((n + .12) * 8, 0, 1)[..., None]; lin = lin * (1 - m) + (lin * np.array((.5, .02, .02)) * .4 + np.array((.045, .002, .002))) * m
     sheet_a = np.clip(sheet_a * (1 + .5 * m[..., 0]), 0, 1)
 srgb = np.where(lin <= .0031308, lin * 12.92, 1.055 * np.clip(lin, 0, 1) ** (1 / 2.4) - .055)
 Image.fromarray((np.concatenate([srgb, sheet_a[..., None]], -1) * 255 + .5).astype(np.uint8), 'RGBA').save(out + '_BC.png')

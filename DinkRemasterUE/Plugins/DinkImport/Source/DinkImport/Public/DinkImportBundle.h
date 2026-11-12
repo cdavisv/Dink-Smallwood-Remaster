@@ -7,6 +7,16 @@
  * In-memory form of the import bundle written by Scripts/export_import_bundle.py (ImportData/).
  * Field meanings are documented in that script; this is a straight read of its JSON.
  */
+/** One layer of the master terrain material chosen for a screen (photoreal pass). */
+struct FDinkBundleGroundLayer
+{
+	FString Name;            // catalogue name, textures are T_Env_<Name>_{BC,N,ORM,H,Macro}
+	double TileCm = 400.0;
+	double NormalStrength = 1.0;
+	double Backlight = 0.0;   // foliage transmission when viewed against the sun
+	double Emissive = 0.0;    // strength of the layer's emissive mask (T_Env_<Name>_E), 0 = none
+};
+
 struct FDinkBundleScreen
 {
 	FString Id;              // SCR_412
@@ -25,6 +35,9 @@ struct FDinkBundleScreen
 	TMap<int32, TArray<FString>> VisionRules;
 	FDinkScreenCorners Corners;   // metres
 	FString GroundImage, GroundHash, CollisionHash, Hash;
+	/** Terrain layers A, B, C and their RGB weight mask; empty when the screen keeps its painted ground. */
+	TArray<FDinkBundleGroundLayer> GroundLayers;
+	FString GroundMask, GroundMaskHash;
 	/** Non-empty when the exporter left the screen out (reason), e.g. a layout overlap. */
 	FString Excluded;
 };

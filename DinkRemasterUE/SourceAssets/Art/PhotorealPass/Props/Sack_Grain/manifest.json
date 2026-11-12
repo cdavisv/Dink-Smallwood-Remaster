@@ -3,27 +3,26 @@
  "class": "prop",
  "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/SM_Sack_Grain_PR.fbx",
  "materials": [
-  "MI_Prop_Hessian",
-  "MI_Struct_Rope"
+  "MI_Sack_Grain"
  ],
- "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
- "lod0_triangles": 2134,
- "lod1_triangles": 1066,
- "lod2_triangles": 468,
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Sack_Grain_PR.blend",
+ "lod0_triangles": 1004,
+ "lod1_triangles": 502,
+ "lod2_triangles": 220,
  "dimensions_m": [
-  0.971,
-  0.693,
-  0.257
+  0.97,
+  0.692,
+  0.265
  ],
  "bounds_min_m": [
   -0.47,
-  -0.348,
+  -0.347,
   0.0
  ],
  "bounds_max_m": [
-  0.501,
+  0.5,
   0.345,
-  0.257
+  0.265
  ],
  "open_edges": 0,
  "collision_hulls": 1,
@@ -32,23 +31,61 @@
   "grain_sack"
  ],
  "supersedes": "none (grain_sack placeholder, 19 placements)",
- "dresses": "full grain sack lying on its side, 0.95 x 0.64 x 0.3 m: slumped flat underneath, sewn mouth with nine twine stitches and a loose tail, gusset corners",
+ "dresses": "full grain sack lying on its side, 0.97 x 0.69 x 0.26 m: jute sackcloth (hessian scan), simulated bulge with pinched corner ears, rolled and whip-stitched mouth at +X with a loose tail of twine, sewn side seams (baked)",
  "fit": {
   "pivot": "base centre; mouth to +X",
   "colours": "frames are tan, olive and madder red: MI_Prop_Hessian, MI_Prop_Hessian_Olive, MI_Prop_Hessian_Red"
  },
+ "baked": {
+  "texture_folder": "Sack_Grain",
+  "textures": {
+   "BC": "T_Sack_Grain_PR_BC.png",
+   "N": "T_Sack_Grain_PR_N.png",
+   "ORM": "T_Sack_Grain_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Sack_Grain",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 54.4,
+    "p99": 102.6
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.554,
+    "p95": 0.869
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 10726,
+  "third_party": [
+   "hessian_230"
+  ],
+  "source_blend": "_build/bake/SM_Sack_Grain_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
  "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain",
- "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
- "status": "interim: reviewed, not claimed photoreal",
- "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
- "known_weaknesses": "Jute weave from a 0.3 m scan reads true close up, but the form is a smooth pillow with a flattened base: creases are shallow sine folds, the sewn mouth is nine loose stitches without a rolled seam, one flat facet line shows low on one side. Colour variants are material swaps.",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake from a cloth simulation (sewn pouch inflated by pressure and dropped on the floor), four review rounds (r6). Last look still faults: the cloth is clean (few stains, no patch or stencil), folds are the soft dimples of an inflated cushion rather than the sag of loose grain, the rolled hem, twine stitches and side seams are baked into the normal map only, so the mouth has no silhouette detail. Colour variants of round 1 (olive, madder) are now a BC tint for the integrator.",
  "third_party": [
-  "hessian_230",
-  "thatch_roof_angled"
+  "hessian_230"
  ],
- "texture_sets": [
-  "Hessian",
-  "Thatch"
- ],
- "textures_px": 2048
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_ORM.png"
+ }
 }

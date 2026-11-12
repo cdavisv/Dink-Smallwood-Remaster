@@ -1,0 +1,31 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 15
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 471 215 125
+wait 1
+dink.View 10 -14
+wait 7
+dink.Player
+wait 2
+fps 06_pond_471
+shot <PROJECT>/Saved/PhotorealPass/lighting/r8/06_pond_471.png
+wait 1
+dink.Goto 438 300 290
+wait 1
+dink.View 5 -16
+wait 7
+dink.Player
+wait 2
+fps 07_pond_438
+shot <PROJECT>/Saved/PhotorealPass/lighting/r8/07_pond_438.png
+wait 1
+quit

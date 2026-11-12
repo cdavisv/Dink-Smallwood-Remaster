@@ -1,0 +1,222 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 30
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 1 314 161
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 180 -4
+wait 7
+dink.Player
+wait 2
+fps 01_interior_1
+shot <PROJECT>/Saved/PhotorealPass/ingame1/01_interior_1.png
+wait 1
+dink.Goto 1 330 250
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -60 -6
+wait 7
+dink.Player
+wait 2
+fps 02_interior_1_fire
+shot <PROJECT>/Saved/PhotorealPass/ingame1/02_interior_1_fire.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -2
+wait 7
+dink.Player
+wait 2
+fps 03_yard_439_cottage
+shot <PROJECT>/Saved/PhotorealPass/ingame1/03_yard_439_cottage.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 25 -8
+wait 7
+dink.Player
+wait 2
+fps 04_yard_439_fields
+shot <PROJECT>/Saved/PhotorealPass/ingame1/04_yard_439_fields.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 100 -10
+wait 7
+dink.Player
+wait 2
+fps 05_yard_439_south
+shot <PROJECT>/Saved/PhotorealPass/ingame1/05_yard_439_south.png
+wait 1
+dink.Goto 471 215 125
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 10 -14
+wait 7
+dink.Player
+wait 2
+fps 06_pond_471
+shot <PROJECT>/Saved/PhotorealPass/ingame1/06_pond_471.png
+wait 1
+dink.Goto 438 300 290
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 5 -16
+wait 7
+dink.Player
+wait 2
+fps 07_pond_438
+shot <PROJECT>/Saved/PhotorealPass/ingame1/07_pond_438.png
+wait 1
+dink.Goto 407 300 330
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -8
+wait 7
+dink.Player
+wait 2
+fps 08_pigpen_407
+shot <PROJECT>/Saved/PhotorealPass/ingame1/08_pigpen_407.png
+wait 1
+dink.Goto 238 300 300
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -80 -6
+wait 7
+dink.Player
+wait 2
+fps 09_forest_238
+shot <PROJECT>/Saved/PhotorealPass/ingame1/09_forest_238.png
+wait 1
+dink.Goto 383 150 215
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -70 -10
+wait 7
+dink.Player
+wait 2
+fps 10_beach_383
+shot <PROJECT>/Saved/PhotorealPass/ingame1/10_beach_383.png
+wait 1
+dink.Goto 28 300 200
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -45 -8
+wait 7
+dink.Player
+wait 2
+fps 11_darklands_28
+shot <PROJECT>/Saved/PhotorealPass/ingame1/11_darklands_28.png
+wait 1
+dink.Goto 47 300 200
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -45 -8
+wait 7
+dink.Player
+wait 2
+fps 12_snow_47
+shot <PROJECT>/Saved/PhotorealPass/ingame1/12_snow_47.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 200
+FOV 30
+wait 1
+dink.View 0 -4
+wait 7
+dink.Player
+wait 2
+fps 13_hero_front_2m
+shot <PROJECT>/Saved/PhotorealPass/ingame1/13_hero_front_2m.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 180 -10
+wait 7
+dink.Player
+wait 2
+fps 14_hero_back_gameplay
+shot <PROJECT>/Saved/PhotorealPass/ingame1/14_hero_back_gameplay.png
+wait 1
+dink.Goto 183 300 330
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -3
+wait 7
+dink.Player
+wait 2
+fps 15_pines_183
+shot <PROJECT>/Saved/PhotorealPass/ingame1/15_pines_183.png
+wait 1
+dink.Goto 574 330 240
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -150 -3
+wait 7
+dink.Player
+wait 2
+fps 16_willow_574
+shot <PROJECT>/Saved/PhotorealPass/ingame1/16_willow_574.png
+wait 1
+dink.Goto 761 190 395
+dink.CameraDistance 250
+FOV 40
+wait 1
+dink.View -90 -24
+wait 7
+dink.Player
+wait 2
+fps 17_beach_pebbles_761
+shot <PROJECT>/Saved/PhotorealPass/ingame1/17_beach_pebbles_761.png
+wait 1
+dink.Goto 604 300 340
+dink.CameraDistance 180
+FOV 30
+wait 1
+dink.View -110 -2
+wait 7
+dink.Player
+wait 2
+fps 18_meadow_low_604
+shot <PROJECT>/Saved/PhotorealPass/ingame1/18_meadow_low_604.png
+wait 1
+dink.Goto 184 455 270
+dink.CameraDistance 300
+FOV 40
+wait 1
+dink.View -90 -14
+wait 7
+dink.Player
+wait 2
+fps 19_stumps_184
+shot <PROJECT>/Saved/PhotorealPass/ingame1/19_stumps_184.png
+wait 1
+quit

@@ -36,6 +36,150 @@
 #include "Misc/Paths.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
+#include "Materials/MaterialInterface.h"
+#include "Misc/PackageName.h"
+#include "Misc/App.h"
+
+// Photoreal pass: the dressed screens' ground and pond meshes keep their authored material slots;
+// at runtime the flat-tiled meadow, earth and stream water are swapped for the world-aligned
+// environment materials (Scripts/import_environment_materials.sh). Missing targets leave the
+// authored material in place. `dink.EnvMaterials 0` before map load restores the authored look.
+static TAutoConsoleVariable<int32> CVarDinkEnvMaterials(TEXT("dink.EnvMaterials"), 1,
+	TEXT("1 = use the environment terrain/water materials on authored ground and pond meshes (read when art is applied)."));
+
+// Photoreal pass: authored screens name the old stylised vegetation meshes in their manifests (origin and
+// screen bindings win over family rows). Content/Dink/Data/Environment/environment.json "mesh_swaps" maps
+// such a mesh package to photoreal meshes; the authored component stays as the collision proxy (hidden)
+// and a visual-only component with the new mesh is attached to it. Rendering processes only, so the
+// headless tests keep checking the manifests as written. dink.EnvMeshSwaps 0 (command line) turns it off.
+static TAutoConsoleVariable<int32> CVarDinkEnvMeshSwaps(TEXT("dink.EnvMeshSwaps"), 1,
+	TEXT("1 = swap the old stylised vegetation of authored screens for the photoreal meshes (visual only; read when art is applied)."));
+
+static int32 DinkApplyEnvironmentMeshSwap(UStaticMeshComponent* Component)
+{
+	if (!Component || !Component->GetStaticMesh() || !FApp::CanEverRender() || CVarDinkEnvMeshSwaps.GetValueOnGameThread() == 0) return 0;
+	static bool bLoaded = false;
+	static TMap<FString, TArray<FString>> Table;
+	static TMap<FString, FName> OnlyTag; // mesh_swap_only_tag: a swap limited to owners with this actor tag (one screen's art)
+	if (!bLoaded)
+	{
+		bLoaded = true;
+		FString Text;
+		TSharedPtr<FJsonObject> Root;
+		const TSharedPtr<FJsonObject>* Swaps = nullptr;
+		if (FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Environment/environment.json")))
+			&& FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) && Root.IsValid()
+			&& Root->TryGetObjectField(TEXT("mesh_swaps"), Swaps) && Swaps)
+		{
+			for (const auto& Pair : (*Swaps)->Values)
+			{
+				TArray<FString>& Out = Table.Add(FString(Pair.Key.ToView()));
+				for (const TSharedPtr<FJsonValue>& V : Pair.Value->AsArray()) Out.Add(V->AsString());
+			}
+			const TSharedPtr<FJsonObject>* Tags = nullptr;
+			if (Root->TryGetObjectField(TEXT("mesh_swap_only_tag"), Tags) && Tags)
+			{
+				for (const auto& Pair : (*Tags)->Values) OnlyTag.Add(FString(Pair.Key.ToView()), FName(*Pair.Value->AsString()));
+			}
+		}
+	}
+	const TArray<FString>* Choices = Table.Find(Component->GetStaticMesh()->GetOutermost()->GetName());
+	if (!Choices || Choices->IsEmpty()) return 0;
+	if (const FName* Tag = OnlyTag.Find(Component->GetStaticMesh()->GetOutermost()->GetName()))
+	{
+		if (!Component->GetOwner() || !Component->GetOwner()->ActorHasTag(*Tag)) return 0;
+	}
+	const FVector At = Component->GetComponentLocation();
+	const uint32 Pick = HashCombine(GetTypeHash(FMath::RoundToInt32(At.X)), GetTypeHash(FMath::RoundToInt32(At.Y))) % uint32(Choices->Num());
+	const FString& Path = (*Choices)[Pick];
+	if (!FPackageName::DoesPackageExist(Path.Left(Path.Find(TEXT("."))))) return 0;
+	UStaticMesh* Mesh = LoadObject<UStaticMesh>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet);
+	if (!Mesh) return 0;
+	UStaticMeshComponent* Visual = NewObject<UStaticMeshComponent>(Component->GetOwner(), TEXT("EnvSwapVisual"));
+	Visual->SetMobility(Component->Mobility);
+	Visual->SetupAttachment(Component);
+	Visual->SetStaticMesh(Mesh);
+	Visual->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	Visual->SetGenerateOverlapEvents(false);
+	Visual->SetCanEverAffectNavigation(false);
+	// the new mesh stands on its own base centre; the old one may have been scaled to a sprite: keep world scale 1
+	Visual->SetUsingAbsoluteScale(true);
+	Visual->SetRelativeLocation(FVector::ZeroVector);
+	Component->GetOwner()->AddInstanceComponent(Visual);
+	Visual->RegisterComponent();
+	// the authored component keeps its collision and is no longer drawn or lit
+	Component->SetHiddenInGame(true);
+	Component->SetCastShadow(false);
+	Component->bAffectDistanceFieldLighting = false;
+	Component->bAffectDynamicIndirectLighting = false;
+	Component->MarkRenderStateDirty();
+	return 1;
+}
+
+static TAutoConsoleVariable<int32> CVarDinkPhotorealNPCs(TEXT("dink.PhotorealNPCs"), 1,
+	TEXT("1 = Mother and Milder use SK_<Name>_Photoreal when it is imported on the same skeleton and the process renders (read when their art is applied); 0 = the meshes of characters.json."));
+
+/** Photoreal pass (round 6), visual only: same skeleton or the manifest's mesh stays; headless runs keep the manifest's mesh. */
+static USkeletalMesh* DinkPhotorealNpcMesh(USkeletalMesh* Mesh)
+{
+	if (!Mesh || CVarDinkPhotorealNPCs.GetValueOnGameThread() == 0 || !FApp::CanEverRender()) return Mesh;
+	const FString Name = Mesh->GetName();
+	if (Name != TEXT("SK_Mother") && Name != TEXT("SK_Milder")) return Mesh;
+	const FString Short = Name.RightChop(3);
+	const FString Package = FString::Printf(TEXT("/Game/Dink/Photoreal/Characters/%s/SK_%s_Photoreal"), *Short, *Short);
+	if (!FPackageName::DoesPackageExist(Package)) return Mesh;
+	USkeletalMesh* Photoreal = LoadObject<USkeletalMesh>(nullptr, *FString::Printf(TEXT("%s.SK_%s_Photoreal"), *Package, *Short), nullptr, LOAD_NoWarn | LOAD_Quiet);
+	return Photoreal && Photoreal->GetSkeleton() == Mesh->GetSkeleton() ? Photoreal : Mesh;
+}
+
+static TAutoConsoleVariable<int32> CVarDinkPhotorealHero(TEXT("dink.PhotorealHero"), 1,
+	TEXT("1 = the player uses SK_Dink_Photoreal when it is imported (read when the player's art is applied); 0 = the manifest's hero."));
+
+static void DinkApplyEnvironmentMaterials(UStaticMeshComponent* Component)
+{
+	if (!Component || CVarDinkEnvMaterials.GetValueOnGameThread() == 0) return;
+	// Camera occluders are faded through a reviewed per-material mapping (camera_materials.json): leave them alone.
+	if (const AActor* Owner = Component->GetOwner(); Owner && Owner->ActorHasTag(TEXT("DinkCameraOccluder"))) return;
+	static const TPair<const TCHAR*, const TCHAR*> Table[] = {
+		{TEXT("/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Meadow"), TEXT("/Game/Dink/Materials/Environment/MI_Env_Terrain_MeadowTurf")},
+		{TEXT("/Game/Dink/Materials/StonebrookFields/MI_Stonebrook_Meadow"), TEXT("/Game/Dink/Materials/Environment/MI_Env_Terrain_MeadowTurf")},
+		{TEXT("/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Earth"), TEXT("/Game/Dink/Materials/Environment/MI_Env_Terrain_EarthWorn")},
+		{TEXT("/Game/Dink/Materials/StonebrookFields/MI_Stonebrook_Earth"), TEXT("/Game/Dink/Materials/Environment/MI_Env_Terrain_EarthWorn")},
+		{TEXT("/Game/Dink/Materials/StonebrookFields/MI_Fields_StreamWater"), TEXT("/Game/Dink/Materials/Environment/M_Env_Water")},
+	};
+	static TMap<FString, TWeakObjectPtr<UMaterialInterface>> Cache;
+	for (int32 Slot = 0; Slot < Component->GetNumMaterials(); ++Slot)
+	{
+		const UMaterialInterface* Current = Component->GetMaterial(Slot);
+		if (!Current) continue;
+		const FString Package = Current->GetOutermost()->GetName();
+		for (const TPair<const TCHAR*, const TCHAR*>& Row : Table)
+		{
+			if (Package != Row.Key) continue;
+			TWeakObjectPtr<UMaterialInterface>& Cached = Cache.FindOrAdd(Row.Value);
+			if (!Cached.IsValid() && FPackageName::DoesPackageExist(Row.Value))
+			{
+				Cached = LoadObject<UMaterialInterface>(nullptr, *(FString(Row.Value) + TEXT(".") + FPackageName::GetShortName(FString(Row.Value))));
+			}
+			// The pig pen is trodden mud: plain earth there, without the grass patches of the worn-earth instance.
+			const AActor* EarthOwner = Component->GetOwner();
+			const bool bPlainEarth = FCString::Strstr(Row.Value, TEXT("EarthWorn")) && EarthOwner && EarthOwner->ActorHasTag(TEXT("DinkArtScreen_407"));
+			if (bPlainEarth)
+			{
+				static TWeakObjectPtr<UMaterialInterface> Plain;
+				if (!Plain.IsValid()) Plain = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Dink/Materials/Environment/MI_Env_Terrain_EarthPath.MI_Env_Terrain_EarthPath"));
+				if (Plain.IsValid()) Component->SetMaterial(Slot, Plain.Get());
+			}
+			else if (Cached.IsValid())
+			{
+				Component->SetMaterial(Slot, Cached.Get());
+				// Single-layer water is not a Nanite shading model; draw the pond surface as a regular mesh.
+				if (FCString::Strstr(Row.Value, TEXT("M_Env_Water"))) { Component->bDisallowNanite = true; Component->MarkRenderStateDirty(); }
+			}
+			break;
+		}
+	}
+}
 
 namespace
 {
@@ -222,7 +366,7 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 
 	TMap<FString, ADinkPlaceholderActor*> Placements;
 	for (TActorIterator<ADinkPlaceholderActor> It(&World); It; ++It) Placements.Add(It->Origin->OriginId.ToString(), *It);
-	int32 Replaced = 0, Added = 0;
+	int32 Replaced = 0, Added = 0, MeshSwaps = 0;
 	const TArray<TSharedPtr<FJsonValue>>* Rows = nullptr;
 	if (Manifest->TryGetArrayField(TEXT("replacements"), Rows))
 	{
@@ -321,6 +465,7 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 				A->FinishSpawning(Transform);
 			}
 			Component->SetStaticMesh(Meshes.FindChecked(Row->GetStringField(TEXT("mesh"))));
+			DinkApplyEnvironmentMaterials(Component);
 			// Per-triangle authored collision preserves openings and the visible prop footprint.
 			Component->SetCollisionProfileName(TEXT("BlockAll"));
 			bool bCollision = true;
@@ -329,6 +474,7 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 			Component->SetGenerateOverlapEvents(false);
 			if (Navigation.IsValid() && !bDisableNavigation) Component->SetCanEverAffectNavigation(true);
 			RegisterExteriorCameraRule(ManifestFile,Row,TargetScreen,Component);
+			MeshSwaps += DinkApplyEnvironmentMeshSwap(Component);
 			Added++;
 		}
 	}
@@ -354,7 +500,19 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
             // Installed setter clamps even a zero request to0.1cm.
             Rect->SetBarnDoorLength(0.1f);
         }
-        else CastChecked<UPointLightComponent>(C)->SetSourceRadius(18.f);
+        else
+        {
+            CastChecked<UPointLightComponent>(C)->SetSourceRadius(18.f);
+            // Photoreal pass: firelight flickers (a light-function material; authored lumens and colour unchanged).
+            if (Row.Kelvin <= 2200.f && CVarDinkEnvMaterials.GetValueOnGameThread() != 0)
+            {
+                static const TCHAR* Flicker = TEXT("/Game/Dink/Materials/Environment/M_Env_FireFlicker");
+                if (FPackageName::DoesPackageExist(Flicker))
+                {
+                    C->SetLightFunctionMaterial(LoadObject<UMaterialInterface>(nullptr, *(FString(Flicker) + TEXT(".M_Env_FireFlicker"))));
+                }
+            }
+        }
 	}
 	if (Manifest->TryGetArrayField(TEXT("postprocess"), Rows))
 	{
@@ -397,6 +555,7 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 				PP->Settings.AutoExposureBias, PP->EncompassesPoint(VectorField(Row, TEXT("world_cm")), 0.f, &Distance) ? TEXT("yes") : TEXT("no"));
 		}
 	}
+	if (MeshSwaps > 0) UE_LOG(LogDink, Display, TEXT("DINK ART: %d authored vegetation elements show photoreal meshes (dink.EnvMeshSwaps)"), MeshSwaps);
 	UE_LOG(LogDink, Display, TEXT("DINK ART OK: %d placements replaced, %d authored elements; original scripts retained, authored collision active"), Replaced, Added);
 }
 
@@ -419,7 +578,7 @@ void UDinkArtSubsystem::ApplyCharacters(UWorld& World)
 		if (!Row) continue;
 		ADinkPlaceholderActor* A = Placements.FindRef(Row->GetStringField(TEXT("origin")));
 		if (!A) continue;
-		USkeletalMesh* Mesh = LoadObject<USkeletalMesh>(nullptr, *Row->GetStringField(TEXT("mesh")));
+		USkeletalMesh* Mesh = DinkPhotorealNpcMesh(LoadObject<USkeletalMesh>(nullptr, *Row->GetStringField(TEXT("mesh"))));
 		UBlendSpace* Locomotion = LoadObject<UBlendSpace>(nullptr, *Row->GetStringField(TEXT("locomotion")));
 		if (!Mesh || !Locomotion || Mesh->GetSkeleton() != Locomotion->GetSkeleton())
 		{
@@ -476,6 +635,23 @@ bool UDinkArtSubsystem::ApplyPlayer(USkeletalMeshComponent& Component)
 		UE_LOG(LogDink, Warning, TEXT("Player art: missing or incompatible mesh %s; retaining current character"), *Path);
 		return false;
 	}
+	// Photoreal pass: the photoreal hero replaces the manifest's mesh behind dink.PhotorealHero when the
+	// process renders (headless tests keep validating the manifest's mesh). Same skeleton or it is refused;
+	// capsule, sockets, animation blueprint and clips are untouched.
+	if (CVarDinkPhotorealHero.GetValueOnGameThread() != 0 && FApp::CanEverRender())
+	{
+		static const TCHAR* PhotorealHero = TEXT("/Game/Dink/Photoreal/Characters/Dink/SK_Dink_Photoreal");
+		if (FPackageName::DoesPackageExist(PhotorealHero))
+		{
+			USkeletalMesh* Photoreal = LoadObject<USkeletalMesh>(nullptr, *(FString(PhotorealHero) + TEXT(".SK_Dink_Photoreal")));
+			if (Photoreal && Photoreal->GetSkeleton() == Reference->GetSkeleton())
+			{
+				Mesh = Photoreal;
+				UE_LOG(LogDink, Display, TEXT("DINK PLAYER ART: photoreal hero active (dink.PhotorealHero 0 restores %s)"), *Path);
+			}
+			else UE_LOG(LogDink, Warning, TEXT("Player art: photoreal hero missing or on another skeleton; keeping %s"), *Path);
+		}
+	}
 	Component.SetSkeletalMesh(Mesh);
     ConfigurePlayerActions(Component);
     FString PosturePath;
@@ -515,7 +691,7 @@ bool UDinkArtSubsystem::ApplyScriptCharacter(AActor* Actor, FName Script, float 
 	const TSharedPtr<FJsonObject>* Row = nullptr;
 	if (!Manifest->TryGetObjectField(TEXT("script_profiles"), Profiles) || !Profiles || !Profiles->IsValid() ||
 		!(*Profiles)->TryGetObjectField(Script.ToString().ToLower(), Row) || !Row || !Row->IsValid()) return false;
-	USkeletalMesh* Mesh = LoadObject<USkeletalMesh>(nullptr, *(*Row)->GetStringField(TEXT("mesh")));
+	USkeletalMesh* Mesh = DinkPhotorealNpcMesh(LoadObject<USkeletalMesh>(nullptr, *(*Row)->GetStringField(TEXT("mesh"))));
 	UBlendSpace* Locomotion = LoadObject<UBlendSpace>(nullptr, *(*Row)->GetStringField(TEXT("locomotion")));
 	if (!Mesh || !Locomotion || Mesh->GetSkeleton() != Locomotion->GetSkeleton()) return false;
 	if (!Actor->GetRootComponent()) return false;

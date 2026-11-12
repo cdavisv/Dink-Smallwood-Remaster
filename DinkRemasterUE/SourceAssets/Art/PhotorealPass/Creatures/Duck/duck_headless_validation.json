@@ -2,14 +2,14 @@
   "tool": "validate",
   "schema_version": 1,
   "blender": "5.2.2 LTS",
-  "file": "<HOME>/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Duck/SK_Duck.blend",
+  "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Duck/SK_Duck.blend",
   "strict": false,
   "passed": false,
   "summary": {
     "assets": 1,
     "assets_passed": 0,
-    "errors": 4,
-    "warnings": 22
+    "errors": 2,
+    "warnings": 23
   },
   "scene_findings": [
     {
@@ -25,39 +25,39 @@
       "class": "creature",
       "collection": "SK_Duck_Headless",
       "tris_per_lod": {
-        "LOD0": 8013,
-        "LOD1": 4006,
-        "LOD2": 2002
+        "LOD0": 15413,
+        "LOD1": 7705,
+        "LOD2": 3853
       },
       "bounds": {
         "blender_min_cm": [
-          -26.463,
-          -10.689,
-          0.061
+          -26.523,
+          -11.869,
+          0.011
         ],
         "blender_max_cm": [
-          13.074,
-          10.689,
-          33.769
+          13.703,
+          11.68,
+          35.159
         ],
         "size_cm": [
-          39.537,
-          21.379,
-          33.708
+          40.226,
+          23.55,
+          35.148
         ],
         "unreal_min_cm": [
-          -26.463,
-          -10.689,
-          0.061
+          -26.523,
+          -11.68,
+          0.011
         ],
         "unreal_max_cm": [
-          13.074,
-          10.689,
-          33.769
+          13.703,
+          11.869,
+          35.159
         ]
       },
-      "errors": 4,
-      "warnings": 21,
+      "errors": 2,
+      "warnings": 22,
       "findings": [
         {
           "code": "NAME_MESHDATA",
@@ -84,94 +84,64 @@
           "code": "ZERO_AREA",
           "severity": "error",
           "asset": "SK_Duck_Headless",
-          "message": "15 zero-area faces (area < 1e-8 m2)",
+          "message": "5 zero-area faces (area < 1e-8 m2)",
           "object": "SK_Duck_Headless_LOD0",
           "data": {
-            "faces": 15
+            "faces": 5
           }
         },
         {
           "code": "DUPLICATE_VERTS",
           "severity": "warning",
           "asset": "SK_Duck_Headless",
-          "message": "81 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "message": "22 vertices coincide with another vertex (within 0.01 mm); merge by distance",
           "object": "SK_Duck_Headless_LOD0",
           "data": {
-            "vertices": 81
+            "vertices": 22
           }
         },
         {
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Duck_Headless",
-          "message": "357 non-manifold edges (357 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "message": "12483 non-manifold edges (12483 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
           "object": "SK_Duck_Headless_LOD0",
           "data": {
-            "boundary": 357,
+            "boundary": 12483,
             "multi_face": 0,
             "wire": 0
           }
         },
         {
-          "code": "ZERO_AREA",
-          "severity": "error",
-          "asset": "SK_Duck_Headless",
-          "message": "2 zero-area faces (area < 1e-8 m2)",
-          "object": "SK_Duck_Headless_LOD1",
-          "data": {
-            "faces": 2
-          }
-        },
-        {
           "code": "DUPLICATE_VERTS",
           "severity": "warning",
           "asset": "SK_Duck_Headless",
-          "message": "5 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "message": "22 vertices coincide with another vertex (within 0.01 mm); merge by distance",
           "object": "SK_Duck_Headless_LOD1",
           "data": {
-            "vertices": 5
+            "vertices": 22
           }
         },
         {
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Duck_Headless",
-          "message": "168 non-manifold edges (168 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "message": "12221 non-manifold edges (12221 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
           "object": "SK_Duck_Headless_LOD1",
           "data": {
-            "boundary": 168,
+            "boundary": 12221,
             "multi_face": 0,
             "wire": 0
           }
         },
         {
-          "code": "ZERO_AREA",
-          "severity": "error",
-          "asset": "SK_Duck_Headless",
-          "message": "1 zero-area faces (area < 1e-8 m2)",
-          "object": "SK_Duck_Headless_LOD2",
-          "data": {
-            "faces": 1
-          }
-        },
-        {
-          "code": "DUPLICATE_VERTS",
-          "severity": "warning",
-          "asset": "SK_Duck_Headless",
-          "message": "5 vertices coincide with another vertex (within 0.01 mm); merge by distance",
-          "object": "SK_Duck_Headless_LOD2",
-          "data": {
-            "vertices": 5
-          }
-        },
-        {
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Duck_Headless",
-          "message": "144 non-manifold edges (144 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "message": "7471 non-manifold edges (7471 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
           "object": "SK_Duck_Headless_LOD2",
           "data": {
-            "boundary": 144,
+            "boundary": 7471,
             "multi_face": 0,
             "wire": 0
           }
@@ -180,36 +150,36 @@
           "code": "UV_OVERLAP",
           "severity": "error",
           "asset": "SK_Duck_Headless",
-          "message": "UV0 islands overlap (318.4 % of UV area, 6257 triangles); class creature needs unique UVs",
+          "message": "UV0 islands overlap (2358.5 % of UV area, 1453 triangles); class creature needs unique UVs",
           "object": "SK_Duck_Headless_LOD0",
           "data": {
-            "overlap_ratio": 3.18405
+            "overlap_ratio": 23.58524
           }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SK_Duck_Headless",
+          "message": "176 triangles are collapsed in UV space",
+          "object": "SK_Duck_Headless_LOD0"
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Duck_Headless",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Duck_Headless_LOD0"
         },
         {
           "code": "TEXEL_DENSITY",
           "severity": "warning",
           "asset": "SK_Duck_Headless",
-          "message": "texel density 6355 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "message": "texel density 18598 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
           "object": "SK_Duck_Headless_LOD0",
           "data": {
-            "density_px_per_m": 6355.5,
+            "density_px_per_m": 18597.7,
             "target": 512
           }
-        },
-        {
-          "code": "SLOT_UNUSED",
-          "severity": "warning",
-          "asset": "SK_Duck_Headless",
-          "message": "material slot 1 (MI_Duck_Bill) has no faces",
-          "object": "SK_Duck_Headless_LOD0"
-        },
-        {
-          "code": "SLOT_UNUSED",
-          "severity": "warning",
-          "asset": "SK_Duck_Headless",
-          "message": "material slot 3 (MI_Duck_Eye) has no faces",
-          "object": "SK_Duck_Headless_LOD0"
         },
         {
           "code": "NAME_TEXTURE",
@@ -282,6 +252,24 @@
           "severity": "warning",
           "asset": "SK_Duck_Headless",
           "message": "image 'T_Duck_Gore_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck_Headless",
+          "message": "image 'T_Duck_FeatherCards_Bloody_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck_Headless",
+          "message": "image 'T_Duck_FeatherCards_Bloody_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck_Headless",
+          "message": "image 'T_Duck_FeatherCards_Bloody_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
         }
       ],
       "passed": false

@@ -1,0 +1,79 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -2
+wait 7
+dink.Player
+wait 2
+fps 03_yard_439_cottage
+shot <PROJECT>/Saved/PhotorealPass/ingame3/03_yard_439_cottage.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 25 -8
+wait 7
+dink.Player
+wait 2
+fps 04_yard_439_fields
+shot <PROJECT>/Saved/PhotorealPass/ingame3/04_yard_439_fields.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 100 -10
+wait 7
+dink.Player
+wait 2
+fps 05_yard_439_south
+shot <PROJECT>/Saved/PhotorealPass/ingame3/05_yard_439_south.png
+wait 1
+dink.Goto 407 300 330
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -8
+wait 7
+dink.Player
+wait 2
+fps 08_pigpen_407
+shot <PROJECT>/Saved/PhotorealPass/ingame3/08_pigpen_407.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 200
+FOV 30
+wait 1
+dink.View 0 -4
+wait 7
+dink.Player
+wait 2
+fps 13_hero_front_2m
+shot <PROJECT>/Saved/PhotorealPass/ingame3/13_hero_front_2m.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 180 -10
+wait 7
+dink.Player
+wait 2
+fps 14_hero_back_gameplay
+shot <PROJECT>/Saved/PhotorealPass/ingame3/14_hero_back_gameplay.png
+wait 1
+quit

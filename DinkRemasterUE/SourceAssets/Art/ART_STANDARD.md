@@ -39,6 +39,29 @@ Static meshes (props, kit modules, foliage, buildings, doors, weapons) use mater
 | `MI_Shared_LimePlaster2m` | reusable lime plaster infill | `SharedMaterials/manifest.json` |
 | `MI_Shared_ThornBark2m` | reusable thorny shrub bark, 2m tiling; source candidate, native pending | `SharedMaterials/manifest.json` |
 | `MI_Shared_BroadleafTrimV1` | reusable broadleaf trim, nominal 0.12m blade; source candidate, native pending | `SharedMaterials/manifest.json` |
+| `MI_Veg_PineBark` | photoreal pass vegetation: pine bark (three V bands: base, trunk, limb) | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_PineBarkDry` | photoreal pass vegetation: dry/dead pine bark | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_OakBark` | photoreal pass vegetation: oak bark | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_WillowBark` | photoreal pass vegetation: willow bark | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_DarkBark` | photoreal pass vegetation: dark dead-tree bark | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_CharredBark` | photoreal pass vegetation: burnt bark | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_FrostBark` | photoreal pass vegetation: frosted bark | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_PineNeedles` | photoreal pass vegetation: pine needle sprays (masked, two-sided foliage, _SSS) | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_PineNeedlesDry` | photoreal pass vegetation: dry pine needle sprays (masked, two-sided foliage, _SSS) | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_OakLeaves` | photoreal pass vegetation: oak leaf clusters (masked, two-sided foliage, _SSS) | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_WillowLeaves` | photoreal pass vegetation: willow leaf curtains (masked, two-sided foliage, _SSS) | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_Understory` | photoreal pass vegetation: understory leaves (masked, two-sided foliage, _SSS) | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_GroundCover` | photoreal pass vegetation: grass, weeds, flowers, mushrooms atlas (masked, two-sided foliage, _SSS) | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_Deadwood` | photoreal pass vegetation: stumps, logs, branches: weathered bark and wood | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Veg_DeadwoodEnd` | photoreal pass vegetation: sawn and broken wood ends | `PhotorealPass/Vegetation/manifest.json` |
+| `MI_Scatter_BeachPebbles` | photoreal pass beach pebble clusters | `PhotorealPass/Terrain/manifest.json` |
+| `MI_Scatter_Pebbles` | photoreal pass pebble clusters | `PhotorealPass/Terrain/manifest.json` |
+| `MI_Wall_DungeonMasonry` | photoreal pass dungeon wall modules (masonry, damp blend by vertex colour) | `PhotorealPass/WallKits/manifest.json` |
+| `MI_Wall_Plaster` | photoreal pass interior wall modules: lime plaster, fallen-plaster blend by vertex colour B, damp (R) and soot (G) | `PhotorealPass/WallKits/manifest.json` |
+| `MI_Wall_Timber` | photoreal pass interior wall modules: timber frame, limewash (B), handling (R) and soot (G) by vertex colour | `PhotorealPass/WallKits/manifest.json` |
+| `MI_Wall_Ivy` | photoreal pass dungeon wall ivy cards (masked, two-sided; the ivy module is interim and not imported yet) | `PhotorealPass/WallKits/manifest.json` |
+| `MI_Env_Terrain_<Layer>` | photoreal pass ground: one instance of the master terrain material per layer of `PhotorealPass/Environment/terrain_layers.json` (MeadowTurf, EarthPath, PondMud, ...), plus `MI_Env_Terrain_EarthWorn` and `MI_Env_Terrain_Backdrop` | `PhotorealPass/Terrain/manifest.json` |
+| `M_Env_Water`, `M_Env_WaterShore`, `M_Env_WaterFlat` | photoreal pass water (single-layer water for ponds, shore-aware greybox water, opaque fallback) | `Scripts/import_environment_materials.py` |
 
 | Material | Use | Defined in |
 |---|---|---|
@@ -61,6 +84,8 @@ The architectural roles use `ArchitecturalSurfaces2mV1`; the three direct minera
 The derived shared camera variants `MI_Shared_OakLonggrain2m_CameraMasked`, `MI_Shared_OakEndgrain2m_CameraMasked` and `MI_Shared_LimePlaster2m_CameraMasked` use those same three texture sets and the existing opacity/shadow convention. Native import and final camera alias activation remain separate review gates.
 
 The tiling terrain and building sets of `SharedMaterials/manifest.json` (when that library is published) join as `MI_Shared_<Name>` (`MI_Shared_CobbleStreet`, `MI_Shared_TimberPlanks`, ...); the checker accepts exactly the names that manifest lists.
+
+A photoreal pass source manifest may carry a `material_exception` (a non-empty reason) on an asset whose bake needs a private material; `Scripts/art_standard_check.py` then reports that asset's non-library materials as a note, not a violation. Use it sparingly and say why.
 
 Every library material is a BC/N/ORM set (ORM: R occlusion, G roughness, B metallic; OpenGL normal, flipped green on import), 1024 px per 2 m of surface for tiling sets.
 
@@ -107,6 +132,8 @@ Largest texture edge per class, in pixels, from CONVENTIONS.md. Hero props (plac
 | `character_humanoid` | 4096 | 4096 | 1024 |
 | `creature_quadruped` | 2048 | 2048 | 512 |
 | `creature` | 4096 | 4096 | 512 |
+
+A source texture larger than its class cap may ship when the importer caps it: list the set in `Content/Dink/Data/Art/texture_import_caps.json` (file-name part -> max edge). `Scripts/import_photoreal_art.py` applies it as the texture's maximum size and `Scripts/art_standard_check.py` counts the capped size; the source file stays as delivered.
 
 ## 5. Family binding
 

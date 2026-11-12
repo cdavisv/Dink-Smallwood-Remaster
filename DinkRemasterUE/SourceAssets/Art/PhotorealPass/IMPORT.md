@@ -28,7 +28,7 @@ Order after a terrain change: environment materials, then the world. Vegetation,
 
 ## Calibration against the Cycles review renders
 
-`Saved/PhotorealPass/lighting/tools/cal.sh <tag> [--only oak,pine,willow,bush,grassgrid,carpet,carpetgame,plaster,dungeon] [--var name='cmd;cmd' ...]` rebuilds the Blender review cameras and sun on the empty meadow screen 299 (`dink.CalAnchor`, `dink.CalSpawn`, `dink.CalCam`; `dink.MatParam <material part> <parameter> <value> [g b]` overrides a material parameter live, so one session captures several candidates). `cal_compare.py <tag>` prints mean and percentile RGB of the foliage against the reference render. The values it led to are `FOLIAGE_LOOK` in `Scripts/import_photoreal_art.py`.
+`Scripts/PhotorealQA/cal.sh <tag> [--only oak,pine,willow,bush,grassgrid,carpet,carpetgame,plaster,dungeon] [--var name='cmd;cmd' ...]` rebuilds the Blender review cameras and sun on the empty meadow screen 299 (`dink.CalAnchor`, `dink.CalSpawn`, `dink.CalCam`; `dink.MatParam <material part> <parameter> <value> [g b]` overrides a material parameter live, so one session captures several candidates). `cal_compare.py <tag>` prints mean and percentile RGB of the foliage against the reference render. The values it led to are `FOLIAGE_LOOK` in `Scripts/import_photoreal_art.py`.
 
 ## Conventions the importer applies
 
@@ -41,7 +41,9 @@ Order after a terrain change: environment materials, then the world. Vegetation,
 
 ## Captures
 
-`Saved/PhotorealPass/lighting/tools/round.sh <name> [--extra]` renders the fixed review cameras offscreen (no display, no input) into `Saved/PhotorealPass/lighting/<name>/`; `--extra` adds the in-game art cameras. Set `DINK_CAPTURE_DIR` to redirect the output folder.
+The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README); they write only below `Saved/PhotorealPass/`.
+
+`Scripts/PhotorealQA/round.sh <name> [--extra]` renders the fixed review cameras offscreen (no display, no input) into `Saved/PhotorealPass/lighting/<name>/`; `--extra` adds the in-game art cameras. Set `DINK_CAPTURE_DIR` to redirect the output folder.
 
 ## Round 5 additions (12 Nov 2026)
 
@@ -58,5 +60,44 @@ Order after a terrain change: environment materials, then the world. Vegetation,
 - **Indoor set**: `indoor.lit_card_material` relights static sprite cards and follows animated ones frame by frame (`dink.IndoorLitCards 0` turns it off); `indoor.props` puts `SM_Prop_Lantern_Hanging_01` at interior lamps and `SM_Prop_Torch_Wall_01` at dungeon wall lamps, each with a flame card (`indoor.flame_material`).
 - **State swaps** (`environment.json` `state_swaps`): the swapped-in cottage of screen 439 shows `SM_Cottage_Stonebrook_PR_Burnt` while a placement gated by `&vision` 2 is shown (after the fire); `dink.StateSwaps 0` turns it off. Read-only.
 - **Town houses**: `dink.TownHouses 0` (command line) keeps the sprite cards.
-- **Calibration of structures**: `Saved/PhotorealPass/lighting/tools/cal2_script.py` + `cal2_compare.py` (patches in `cal2_patches.json`).
+- **Calibration of structures**: `Scripts/PhotorealQA/cal2_script.py` + `cal2_compare.py` (patches in `cal2_patches.json`).
 - **Scripted walking in captures**: `dink.WalkTo <mapx> <mapy> [seconds]`.
+
+## Round 6 additions (12 Nov 2026)
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| Photoreal pillbug and its carcass | `DINK_PHOTOREAL_ONLY=pillbug Scripts/import_photoreal_art.sh` | `Creatures/Pillbug/Export`, `Creatures/Pillbug/Textures` | `/Game/Dink/Photoreal/Creatures/Pillbug` (`SK_Pillbug_Photoreal` on the existing pillbug skeleton, `SM_Pillbug_Corpse_PR`); a rig that differs is reported in `import_photoreal.json` (`pillbug.error`), never forced |
+| Photoreal hero, Mother and Milder | `DINK_PHOTOREAL_ONLY=hero,mother,milder Scripts/import_photoreal_art.sh` (any subset) | `Characters/<Name>/manifest.json`, `Characters/<Name>/Export`, `Characters/<Name>/Textures` | `/Game/Dink/Photoreal/Characters/<Name>` (`SK_<Name>_Photoreal` on the shared 89-bone skeleton after the native bind-pose gate, four LODs) |
+| Vegetation after a finished re-export | `DINK_PHOTOREAL_ONLY=vegetation Scripts/import_photoreal_art.sh` (materials only: add `DINK_PHOTOREAL_FROZEN=1`) | `Vegetation/manifest.json` | re-imports every mesh whose FBX size or time changed; `MI_Veg_Shrub` (the four bushes) is built on the foliage master like the other sets |
+
+- **families.json `span`**: `"width"`, `"height"` (edge-on strips) or `"stretch"`: a wall module is repeated along its own X axis and scaled along X only until it fills that dimension of the layout-scaled card (`span_fill`: mesh of the further modules, `span_end`: the end the main mesh keeps). The wall kits are authored at 0.025 m per pixel; interiors are laid out at 0.0438 to 0.1 m per pixel, so without it every 2.5 m module stood alone in its slot.
+- **families.json `scripted: true`** now also on `crate`, `crate_small`, `counter_wood`, `shelf_bottles` (their scripts never move or replace them in a way a placement card would show).
+- **Town houses** (`Scripts/assemble_town_houses.py`, schema dink-town-houses/2): runs are cut into houses of 2 to 4 bays with their own eaves height, set-back, depth, bay pattern and chimney; party walls, convex corners (both gables) and concave corners (valley); `footprints` keep the grass carpet out of the houses.
+- **Grass** (`environment.json` `grass`): `field_scale` (height) and `field_footprint` of the field patch, `short_reach_cm` (short turf along walls, fence lines, paths and doors), `rank_edge_share`; the apron of a door carries no grass.
+- **Indoor set** (`environment.json` `indoor.<look>`): `fill_intensity` / `fill_colour` (even unshadowed fill), `ceiling_cm` / `ceiling_material` / `ceiling_wall_class` (a visible one-sided ceiling, chosen by the walls that stand there), `indoor.ceiling_tile_cm`.
+- **Sky light colour**: `environment.json` `sky.tint`; live: `dink.SkyTint r g b`.
+- **Mother and Milder**: `dink.PhotorealNPCs` (default 1) shows `SK_Mother_Photoreal` / `SK_Milder_Photoreal` in place of the `SK_Mother` / `SK_Milder` of `characters.json` while the process renders; `-dpcvars=dink.PhotorealNPCs=0` keeps the previous meshes. Hair: the `FLOW` map drives the anisotropy tangent; `masked` in the manifest is read case-insensitively.
+- **Pillbug**: `dink.PhotorealPillbug 0` (command line) keeps `SK_Pillbug`. A killed photoreal pillbug leaves `SM_Pillbug_Corpse_PR` until the player leaves the screen (visual only, read from actor visibility); `dink.PillbugCarcass` lays one beside every pillbug of the screen for review.
+- **Props round 2** (`DINK_KIT=Props DINK_KIT_FOLDER=Props Scripts/import_town_exteriors.sh`): baked props take `M_Struct_Baked` (ORM.B is metallic); a material with an `E` map takes `M_Struct_Baked_Glow` (`EmissiveNits` from the manifest x `EmissiveScale`, default 0.1: the project's light scale is far below physical); kind `subsurface` -> `M_Struct_Baked_Wax`, `translucent` -> `M_Struct_Baked_Pane_Glow`. `SM_Chest_Small_Open_PR` is imported and unbound (no opened-chest state is read yet). The tiling props' iron is still dielectric (the `metal` flag of the contract is not wired into `M_Town_Surface`). No flicker on the emissive.
+- **Ground decals**: the same import builds `M_Decal_Sheet` and `MI_Decal_BloodSplat_0..3`, `MI_Decal_BurnHole_0..3` from `Props/Decals`; `environment.json` `decals` binds sprite classes to them (`blood_splat`, `burn_hole_decal`): the card is hidden and a deferred decal lies at its ground point. Unscripted placements only; screens and origins an art manifest handles and classes a state swap hides are left alone.
+
+## Fresh checkout: reproducing the look
+
+`Content/Dink/_Generated` and `ImportData` are git-ignored, so a fresh checkout of master needs, from `DinkRemasterUE/`, in this order:
+
+1. `Scripts/build.sh` (0 warnings expected).
+2. `Scripts/import_environment_materials.sh` (terrain layers, water, backdrop, fire materials; only needed when `Content/Dink/Materials/Environment` or `Content/Dink/Textures/Environment` are not in the checkout or a Terrain set changed). Both folders are committed. Running it anyway re-saves all 144 packages with this checkout's source paths inside: `git checkout -- Content/Dink/Materials/Environment Content/Dink/Textures/Environment` afterwards, or run `python3 -I Scripts/scrub_private_paths.py --fix` before committing a real change.
+3. `python3 -I Scripts/export_ground_colour.py` is NOT needed on a fresh checkout when `Content/Dink/Data/Environment/ground_colour.json` is committed; re-run it after step 4 only if terrain textures or the world export changed.
+4. The world export reads the extracted original data, which is git-ignored. On a clone that has never had it, from the repository root: `(cd tools/dinkex && python3 -m dinkex extract --data ../../bin/dink --out out)`, `(cd tools/analyse && python3 -m analyse build --ir ../dinkex/out --out out)`, `(cd tools/dinkc && python3 -m dinkc build --scripts ../../bin/dink/story --map ../../bin/dink/map.dat --dat ../../bin/dink/dink.dat --out out)`. Then `Scripts/import_greybox.sh --region all --export` (writes `ImportData/`, `Content/Dink/_Generated`, `Content/Dink/Data/Environment/layer_cover.json`; runs `Dink.Import`).
+5. Only when `Content/Dink/Photoreal` is not in the checkout or an art source changed (all re-runnable, any order):
+   `Scripts/import_photoreal_art.sh` (vegetation, scatter, hero, walls), `DINK_PHOTOREAL_ONLY=pillbug Scripts/import_photoreal_art.sh`,
+   `Scripts/import_town_exteriors.sh`, `DINK_KIT=Structures/Stonebrook DINK_KIT_FOLDER=Structures Scripts/import_town_exteriors.sh`,
+   `DINK_KIT=Props DINK_KIT_FOLDER=Props Scripts/import_town_exteriors.sh`, `Scripts/import_indoor_materials.sh`.
+6. `python3 -I Scripts/assemble_town_houses.py` (needs `ImportData/placements.json` from step 4; its output `Content/Dink/Data/Art/town_houses.json` is committed, so this is only needed after a change to the script or the placements).
+7. Check: `Scripts/test.sh Dink.Import`, `Scripts/test.sh Dink.Art`, `Scripts/test.sh Dink.Gameplay.Probe`, `python3 -m unittest discover -s Scripts/tests`, `python3 -I Scripts/art_coverage.py`, `python3 -I Scripts/art_standard_check.py`.
+
+## Turning the pass off
+
+Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):
+`dink.PhotorealHero=0`, `dink.PhotorealPillbug=0`, `dink.PhotorealNPCs=0` (Mother and Milder), `dink.TownHouses=0`, `dink.FamilyArt=0` (all family meshes, the old ones included), `dink.EnvMaterials=0`, `dink.IndoorEnv=0`, `dink.IndoorLitCards=0`, `dink.StateSwaps=0`, `dink.GrassDensity=0`, `dink.Wind=0`, `dink.Backdrop=0`, `dink.InteriorExposure=0`. `dink.EnvMeshSwaps=0` is meant to restore the old Stonebrook vegetation and structures but crashed at start in round 6 (segmentation fault): do not rely on it until that is fixed. The sky light tint has no cvar: set `environment.json` `sky.tint` to 1, 1, 1.

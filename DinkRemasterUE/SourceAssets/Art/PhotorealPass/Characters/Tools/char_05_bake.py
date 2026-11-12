@@ -32,7 +32,7 @@ for gname, (size, objs) in groups.items():
         dump[o.name] = dict(group=gname, fabric=o['fabric'], ppm=float(o['px_per_m']), tris=uv[tl].reshape(-1, 6).astype(np.float32))
 np.savez_compressed(BK / 'uvdump.npz', **{k: v['tris'] for k, v in dump.items()})
 json.dump({k: {a: b for a, b in v.items() if a != 'tris'} for k, v in dump.items()}, open(BK / 'uvdump.json', 'w'))
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / N / ('Work/%s_packed.blend' % n_)))
+save_blend(filepath=str(OUT / N / ('Work/%s_packed.blend' % n_)))
 if only == 'pack': sys.exit(0)
 
 sc.render.engine = 'CYCLES'; use_hip_gpu(sc); sc.cycles.samples = 2; sc.cycles.use_denoising = False

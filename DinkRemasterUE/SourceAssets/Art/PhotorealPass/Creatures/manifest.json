@@ -643,68 +643,68 @@
    "class": "creature",
    "supersedes": "SourceAssets/Art/Creatures/Duck (untracked stylised candidate: SK_Duck, SK_Duck_Headless, SM_Duck_Head)",
    "source_blend": "Duck/SK_Duck.blend (three collections plus the hidden high-poly DuckHigh)",
-   "build_script": "Tools/duck.py, Tools/gen_feather_atlas.py",
+   "build_script": "Tools/duck.py, Tools/gen_feather_atlas2.py",
    "dimensions_m": [
-    0.5146675109863281,
-    0.23534412682056427,
-    0.44064226746559143
+    0.5114108324050903,
+    0.23549595475196838,
+    0.4368896782398224
    ],
    "lods": {
     "SK_Duck": [
      {
       "name": "SK_Duck_LOD0",
-      "triangles": 15693
+      "triangles": 17694
      },
      {
       "name": "SK_Duck_LOD1",
-      "triangles": 7846
+      "triangles": 8847
      },
      {
       "name": "SK_Duck_LOD2",
-      "triangles": 3923
+      "triangles": 4424
      }
     ],
     "SK_Duck_Headless": [
      {
       "name": "SK_Duck_Headless_LOD0",
-      "triangles": 13729
+      "triangles": 15413
      },
      {
       "name": "SK_Duck_Headless_LOD1",
-      "triangles": 6864
+      "triangles": 7705
      },
      {
       "name": "SK_Duck_Headless_LOD2",
-      "triangles": 3432
+      "triangles": 3853
      }
     ],
     "SM_Duck_Head": [
      {
       "name": "SM_Duck_Head_LOD0",
-      "triangles": 3493
+      "triangles": 6260
      },
      {
       "name": "SM_Duck_Head_LOD1",
-      "triangles": 1745
+      "triangles": 3130
      },
      {
       "name": "SM_Duck_Head_LOD2",
-      "triangles": 872
+      "triangles": 1565
      }
     ]
    },
    "uv": {
-    "uv_area": 0.6553021201319486,
-    "area_3d": 0.3585853986577312,
-    "overlap_area": 8.988287819228225e-06,
-    "overlap_ratio": 1.3716250173917315e-05,
-    "overlapping_tris": 29,
+    "uv_area": 0.6564693836535902,
+    "area_3d": 0.373851706895774,
+    "overlap_area": 4.735344981535161e-06,
+    "overlap_ratio": 7.213352365620659e-06,
+    "overlapping_tris": 16,
     "degenerate_tris": 0,
     "tris_out_of_range": 0,
     "truncated": false,
-    "tris": 11399
+    "tris": 11400
    },
-   "high_triangles": 221416,
+   "high_triangles": 224000,
    "families": [
     "duck",
     "21/23/24/26/27/29 animals/duck/dkNw-",
@@ -712,6 +712,7 @@
     "duck_corpse",
     "121/127 animals/duck/death/dkhNx-"
    ],
+   "species_note": "All-white domestic (Pekin type) duck with orange bill and feet, as every frame of the sprite shows. The black patches on the earlier contact sheet were a shading defect (inverted normals baked from back-facing feather vanes, plus vertices left behind by dropped skin weights), not a colour choice; both causes are fixed in duck.py.",
    "slots": [
     "MI_Duck_Feather",
     "MI_Duck_Bill",
@@ -719,7 +720,7 @@
     "MI_Duck_Eye",
     "MI_Duck_FeatherCards"
    ],
-   "slot_note": "First four keep the candidate names and share T_Duck_Atlas_*. MI_Duck_FeatherCards (masked, two-sided) uses T_Duck_FeatherCards_* for wing primaries, tail fan and a few flank feathers. Gore variants: SK_Duck_Headless and SM_Duck_Head swap MI_Duck_Feather for MI_Duck_Feather_Bloody (T_Duck_Atlas_Bloody_BC/ORM, same N) and add MI_Duck_Gore (T_Duck_Gore_*, the neck cross-section).",
+   "slot_note": "First four keep the candidate names and share T_Duck_Atlas_*. MI_Duck_FeatherCards (masked or dithered, two-sided, NO dynamic shadow; multiply base colour by the mesh vertex colour, which carries a per-feather tint: cream staining, belly soil, slight value jitter) uses T_Duck_FeatherCards_BC (alpha) / _N / _ORM, an 8-cell feather atlas, for about 2,150 cards: contour and down feathers over body and neck, wing coverts, scapulars, secondaries, primaries, tail coverts and rectrices. Cards carry custom vertex normals blended toward the skin normal: import normals, do not recompute. Gore variants: SK_Duck_Headless and SM_Duck_Head swap MI_Duck_Feather for MI_Duck_Feather_Bloody (T_Duck_Atlas_Bloody_BC/ORM, same N), use MI_Duck_FeatherCards_Bloody (T_Duck_FeatherCards_Bloody_*) on the cards round the wound, and add MI_Duck_Gore (T_Duck_Gore_*, two-sided: wound section, torn skin collar, vertebra stub, trachea, oesophagus, vessels).",
    "textures": [
     {
      "file": "Textures/T_Duck_Atlas_BC.png",
@@ -727,7 +728,7 @@
       2048,
       2048
      ],
-     "sha256": "a844c2d5fd0876ce"
+     "sha256": "b67ddd40f7ee9c53"
     },
     {
      "file": "Textures/T_Duck_Atlas_N.png",
@@ -735,7 +736,7 @@
       2048,
       2048
      ],
-     "sha256": "40d1259d28d2bd4d"
+     "sha256": "d42e4820c6d5c392"
     },
     {
      "file": "Textures/T_Duck_Atlas_ORM.png",
@@ -743,7 +744,7 @@
       2048,
       2048
      ],
-     "sha256": "511b17ef479273ec"
+     "sha256": "3e3606d28babdd71"
     },
     {
      "file": "Textures/T_Duck_Atlas_SSS.png",
@@ -751,7 +752,7 @@
       2048,
       2048
      ],
-     "sha256": "e08c0fbe0752e6bd"
+     "sha256": "1a94180752218ad3"
     },
     {
      "file": "Textures/T_Duck_Atlas_Bloody_BC.png",
@@ -759,7 +760,7 @@
       2048,
       2048
      ],
-     "sha256": "a9f89e14a113c4e6"
+     "sha256": "ba69d1266fb34135"
     },
     {
      "file": "Textures/T_Duck_Atlas_Bloody_ORM.png",
@@ -767,7 +768,7 @@
       2048,
       2048
      ],
-     "sha256": "5cc5c2b4b46f2688"
+     "sha256": "026d63de183c3470"
     },
     {
      "file": "Textures/T_Duck_FeatherCards_BC.png",
@@ -794,12 +795,36 @@
      "sha256": "13a27ccdb2a6f8f1"
     },
     {
+     "file": "Textures/T_Duck_FeatherCards_Bloody_BC.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "3dab4ee390f22a7c"
+    },
+    {
+     "file": "Textures/T_Duck_FeatherCards_Bloody_N.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "e7b9910972bd59cf"
+    },
+    {
+     "file": "Textures/T_Duck_FeatherCards_Bloody_ORM.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "949c8650e04fe7a5"
+    },
+    {
      "file": "Textures/T_Duck_Gore_BC.png",
      "px": [
       512,
       512
      ],
-     "sha256": "b85bcd191b72f5a7"
+     "sha256": "a4cb21adfd134944"
     },
     {
      "file": "Textures/T_Duck_Gore_N.png",
@@ -807,7 +832,7 @@
       512,
       512
      ],
-     "sha256": "075c37d8c20ede93"
+     "sha256": "3d034660d97bdee3"
     },
     {
      "file": "Textures/T_Duck_Gore_ORM.png",
@@ -815,7 +840,7 @@
       512,
       512
      ],
-     "sha256": "9112e6761d83718e"
+     "sha256": "d0aedc2ce4da4efb"
     }
    ],
    "exports": [
@@ -838,8 +863,8 @@
     "Export/SM_Duck_Head_LOD1.fbx",
     "Export/SM_Duck_Head_LOD2.fbx"
    ],
-   "rig_compatibility": "Existing 23-bone armature and all nine actions (Idle, Walk, Run, Peck, Quack, Hit, Death, HeadlessRun, HeadlessDeath, 30 fps) carried over untouched. Body skinned with bone heat with wing, shin, foot and jaw influences stripped from the plumage; bill, legs, feet, eyes rigid; wing shells blend wing -> wingtip. SK_Duck_Headless shares the armature (import against the SK_Duck skeleton). Verified by rendering Walk f4, Peck f18, Quack f8 and HeadlessRun f4.",
-   "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. SM_Duck_Head is a static prop (three LOD FBXs, no UCX hull authored; a simple sphere collision is enough). The earlier candidate was never imported, so this is a first import.",
+   "rig_compatibility": "Existing 23-bone armature and all nine actions (Idle, Walk, Run, Peck, Quack, Hit, Death, HeadlessRun, HeadlessDeath, 30 fps) carried over untouched; no bone added or renamed. Mesh rebuilt on 12 Nov 2026 (v2). Body skinned with bone heat; the wing, shin, foot and jaw influences on the plumage are handed to spine_01, pelvis and head; bill, legs, feet, eyes rigid; wing shells and wing cards blend wing -> wingtip; tail cards on tail_01/02; stump parts on neck_02. SK_Duck_Headless shares the armature (import against the SK_Duck skeleton). Verified by rendering Walk f4, Peck f18, Quack f8 and HeadlessRun f4.",
+   "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. SM_Duck_Head is a static prop (three LOD FBXs, no UCX hull authored; a simple sphere collision is enough). The earlier candidate was never imported, so this is a first import. Validator reports UV_OVERLAP because the feather cards (own atlas, own slot) share UV0 space with the body atlas; the body islands do not overlap.",
    "third_party": [],
    "review_only_third_party": [
     "polyhaven/leafy_grass (review ground)"
@@ -849,32 +874,37 @@
      "SK_Duck_Headless",
      "SM_Duck_Head"
     ],
-    "note": "Decapitation kept: neck bisected, wound capped with a modelled-in-texture cross-section (vertebra, cord, trachea, oesophagus, vessels, fat, skin) and blood soaking the plumage around the cut and running down the breast (texture-space composite from a baked position map)."
+    "note": "Decapitation kept. The neck is bisected and capped with the cross-section texture; on top of the cap sits modelled stump anatomy: a ragged collar of torn skin flaps, the cervical vertebra stub with transverse processes, a ringed open trachea pulled forward, the collapsed oesophagus and hanging clotted vessels (body side). Plumage round the cut is blood-soaked in the baked atlas (texture-space composite from the position map, runs down the breast) and the feather cards near the wound switch to a blood-matted card atlas. The severed head carries the matching short stump."
    },
-   "status": "NOT photoreal and NOT ready to import: an unresolved shading defect leaves black patches on the plumage (see first weakness). Reads as a white duck otherwise at gameplay distance; fails at 1 m.",
-   "review_rounds": 5,
+   "status": "NOT photoreal at 1 m; a believable white farm duck at the game camera and at 2 m. Round 3 (12 Nov): head, eye, bill, mouth, wing shoulder, denser tinted plumage and gore reworked.",
+   "review_rounds": 10,
    "final_renders": [
     "Review/final_game.png",
     "Review/final_mid.png",
     "Review/final_close.png",
     "Review/final_back.png",
+    "Review/final_under.png",
     "Review/final_walk04.png",
     "Review/final_peck18.png",
     "Review/final_quack08.png",
     "Review/final_headless.png",
-    "Review/final_head.png"
+    "Review/final_head.png",
+    "Review/final_lods.png"
    ],
+   "fixed_defect": "Black patches: (1) the high-poly feather vanes were loose islands whose faces Blender oriented at random, so about half baked inverted tangent normals (black shading wherever the normal map was applied); every vane is now oriented along its skin normal and the baker flips any remaining inverted texel. (2) Dropping the wing/leg/jaw skin weights from the plumage left some vertices on spine_01, which stretched black faces under the head and between the wings in posed frames; the weight is now handed to head/spine_01/pelvis. (3) In the Cycles review, more than 16 overlapping alpha cards hit the transparent-bounce limit and rendered black specks; the review now allows 96 (renderer setting only).",
    "known_weaknesses": [
-    "BLOCKING DEFECT, unresolved: black patches on the back between the wings, in a ring under the head and on one side of the breast, in every baked review render (final_mid.png, final_back.png, final_close.png). Ruled out: bake ray misses (a position-map fill changed nothing), collapsed UV faces (none found), cage size (0.007 and 0.012 m give the same patches). Only about 10,400 texels of the 2048 atlas are black, far too few for the area affected, so the cause is probably on the mesh side (zero-length normals or inverted faces on the decimated low body or on the wing/tail cards), not in the textures. Next step: render LOD0 with a plain grey material to separate mesh from texture.",
-    "Plumage is a baked relief of about 2,000 modelled contour feathers plus wing tracts; at 1 m the feathers read as stiff overlapping scales, not soft vanes with barbs.",
-    "Contour-feather cards were built and then removed after review (they looked like stuck-on paper tabs). Only wing primaries and the tail fan are alpha cards, so the body silhouette is a smooth shell. The brief asked for contour feather cards over the base: only partly met.",
-    "Folded wings are lens-shaped shells with baked feather rows: they read as pillows from above, with a blunt trailing end.",
-    "Head plumage is an anisotropic noise bump (reads like yarn at 0.5 m); the head is close to a sphere. The bill is a clean orange spatula: nostrils and nail are modelled, lamellae are not.",
-    "White plumage clips to pure white in full sun under the review tone curve (review exposure was lowered by 0.7 stop); base colour is about 0.66-0.76 linear, check it in engine.",
-    "Feet: webs are flat two-sided sheets, toes are simple tubes with a scale bump.",
-    "Gore: blood on the plumage is a texture-space composite (soft-edged, no clotting or matting); the wound is a flat capped section with a painted cross-section, no protruding bone or trachea geometry.",
-    "Cards reuse atlas cells, so the validator reports UV overlap on LOD0, and the mesh has 5 material slots."
-   ]
+    "Head feathers are still a fine horizontal woolly relief at 0.5 m (very visible on the severed head, which is seen closest); the request for tiny cards or a fur-like normal is not met. Crown is flatter but the head still reads round from three-quarter front.",
+    "Eye: iris and pupil read now, but on the severed head the iris is a flat bright orange disc with a hard edge and no eye ring relief.",
+    "Blood pool under the severed head: glossy and dark, but its three-lobed outline has straight-looking edges and reads as a cut-out shape at 0.4 m; satellite drops are domed beads. It is flat-ground geometry: on slopes it will float.",
+    "Stump: collar now mostly blood-covered with clots, but blood on the neck feathers is still a clean saturated red with scalloped card edges; matting is a texture swap, not clumped feathers.",
+    "Breast: denser and lower-lying, fewer petals, but still individually readable grey-shaded cards at 1 m rather than soft down. Cream and soil tint is subtle; the bird is still clean.",
+    "Folded wing: shoulder is rounder and the primaries are tucked, yet from the front three-quarter view the leading edge is still a straight vertical line with a dark gap behind it; covert rows are not clearly scalloped.",
+    "Bill: colour variation is mild at game distance; no serration relief on the mouth lining; tongue is a simple pad.",
+    "Feet: unchanged (knuckled toes, webs with sag); not dirtier than before.",
+    "LODs judged by eye at the game camera (final_lods.png): LOD1 holds. LOD2 FAILS on the bill and feet: decimation collapses the bill into a dark crooked spike and darkens the feet; plumage and silhouette hold. LOD2 needs the bill and feet excluded from decimation (not done).",
+    "Validator: UV_OVERLAP on all three (cards share UV0 with the atlas, intended); 5 zero-area faces at the headless neck cut. LOD0 17,694 triangles (SK_Duck), 15,413 (headless), 6,260 (head prop with pool)."
+   ],
+   "round3_changes": "Head: flatter crown (higher superellipse exponent, lower top), fuller cheeks, eye moved up and back, larger eye with dark lid skin, brown iris and pupil; head feathers lie flat. Bill: pinkish base, darker nail, stains; palate, mouth floor and tongue added (visible in Quack and on the severed head). Wing: rounded shoulder bulge, primaries shortened and tucked. Plumage: 2,800 contour cards (was 1,800) with per-feather vertex-colour tint (cream staining, belly soil, value jitter). Gore: darker flesh, clots, blood rim on the collar, darker blood-matted card atlas, and a 1-5 mm thick pooled-blood mesh with satellite drops under the severed head (UV corner patch of T_Duck_Gore)."
   },
   "SK_Pig": {
    "asset": "SK_Pig",
@@ -884,36 +914,36 @@
    "source_blend": "Pig/SK_Pig.blend (contains the high-poly bake source PigHigh, hidden)",
    "build_script": "Tools/pig.py, Tools/gen_bristle_atlas.py",
    "dimensions_m": [
-    1.7938382625579834,
-    0.766901969909668,
-    0.9998620748519897
+    1.7946662902832031,
+    0.7925595045089722,
+    0.9921361207962036
    ],
    "lods": [
     {
      "name": "SK_Pig_LOD0",
-     "triangles": 16228
+     "triangles": 17626
     },
     {
      "name": "SK_Pig_LOD1",
-     "triangles": 8114
+     "triangles": 8812
     },
     {
      "name": "SK_Pig_LOD2",
-     "triangles": 4056
+     "triangles": 4406
     }
    ],
    "uv": {
-    "uv_area": 0.5620884874719975,
-    "area_3d": 4.41619538839013,
-    "overlap_area": 0.0001866036257734858,
-    "overlap_ratio": 0.00033198265029895697,
-    "overlapping_tris": 113,
+    "uv_area": 0.5595176158791453,
+    "area_3d": 4.487866433870473,
+    "overlap_area": 0.000436243922028519,
+    "overlap_ratio": 0.0007796786189529854,
+    "overlapping_tris": 192,
     "degenerate_tris": 0,
     "tris_out_of_range": 0,
     "truncated": false,
-    "tris": 13200
+    "tris": 13198
    },
-   "high_triangles": 233212,
+   "high_triangles": 231188,
    "families": [
     "pig",
     "41 animals/pig/pg-w1-",
@@ -935,7 +965,7 @@
       2048,
       2048
      ],
-     "sha256": "8cd2fbafc7f547e6"
+     "sha256": "76ff82d5b81244e5"
     },
     {
      "file": "Textures/T_Pig_Atlas_N.png",
@@ -943,7 +973,7 @@
       2048,
       2048
      ],
-     "sha256": "31923748ac911518"
+     "sha256": "1a11b72e1038ba9a"
     },
     {
      "file": "Textures/T_Pig_Atlas_ORM.png",
@@ -951,7 +981,7 @@
       2048,
       2048
      ],
-     "sha256": "a74dff475a5af8b2"
+     "sha256": "908724d7a78a5feb"
     },
     {
      "file": "Textures/T_Pig_Atlas_SSS.png",
@@ -959,7 +989,7 @@
       2048,
       2048
      ],
-     "sha256": "5c93e677f9150f24"
+     "sha256": "cd49b4a2efab3b89"
     },
     {
      "file": "Textures/T_Pig_BristleCards_BC.png",
@@ -967,7 +997,7 @@
       512,
       512
      ],
-     "sha256": "9c6183fe96b92652"
+     "sha256": "f4c3c8d4eebcab14"
     },
     {
      "file": "Textures/T_Pig_BristleCards_N.png",
@@ -1004,8 +1034,8 @@
    "review_only_third_party": [
     "polyhaven/dirt (review ground)"
    ],
-   "status": "NOT photoreal yet, but a pig: proportions rebuilt and surfaced; my last look still faults it at 1 m and in the run pose. Acceptable at the game camera in idle, walk and feed.",
-   "review_rounds": 8,
+   "status": "NOT photoreal at 1 m; a believable muddy farm pig at the game camera in idle, walk and feed. Round 3 (12 Nov): weights, form, 3D mud, ears, eyes and foreleg stance reworked.",
+   "review_rounds": 11,
    "final_renders": [
     "Review/final_game.png",
     "Review/final_close.png",
@@ -1013,20 +1043,26 @@
     "Review/final_back.png",
     "Review/final_walk06.png",
     "Review/final_run04.png",
-    "Review/final_feed07.png"
+    "Review/final_feed07.png",
+    "Review/final_strip_idle.png",
+    "Review/final_strip_walk.png",
+    "Review/final_strip_run.png",
+    "Review/final_strip_feed.png",
+    "Review/final_lods.png"
    ],
    "known_weaknesses": [
-    "Run f4 (gathered phase of the existing clip): the hind legs fold forward under the belly and the hindquarters balloon into a bag; the deep belly and ham skin follow the thigh bones. Not anatomical. Needs either hand-painted ham/flank weights or a retimed run clip; neither done.",
-    "Ears: large and cupped now, with veins and subsurface, but in the 1 m shot they glow saturated orange when backlit and the root still sits on a mound rather than growing out of the skull. From the side they read narrow.",
-    "Eyes: small brown glossy balls in a modelled socket with lid rims; no visible sclera, tear duct or lid thickness. The lash cards exist but are too fine to read.",
-    "Bristles: about 1,500 alpha cards with skin normals and no shadow. They give a bristly topline and a coarse coat at 1 m; at the game camera they add only a faint sheen, and some cards on the neck and face cross at odd angles. If the engine material casts shadows from them, the 'dark tick' defect of the earlier attempt returns.",
-    "Skin: blotches, dirt patches, dung on the hams, mud socks and a muddy snout are there, but the back and flanks seen from the game camera are still mostly even pale pink; the dirt patches have soft, same-sized edges; the mud on the belly reads as flat tan paint, not as thick caked relief.",
-    "Dung on the rump is one large grey-olive field in the back view rather than smears and runs.",
-    "Front legs still slant forward from the elbow (rest pose of the existing rig); leg wrinkles are even rings.",
-    "Snout: disc, rim, nostrils and bridge wrinkles are modelled; the wet mud on the lower disc is speckled green-brown and reads noisy at 1 m. Muzzle is slightly tubular in the three-quarter view.",
-    "LOD0 is 16,228 triangles (soft target 15,000, hard 30,000). LOD1/LOD2 keep decimated bristle cards, not checked by eye.",
-    "Validator errors: UV_OVERLAP (bristle cards over the atlas UV space, intended). Warnings: 6,056 open edges (cards), texture naming (T_Pig_Atlas_*)."
-   ]
+    "Run: the barrel now keeps its shape, but in the gathered frames the hind legs still fold far forward under the belly and pass through its sagging underside; that is the clip, not the weights.",
+    "Skin at 1 m is still too even: pores and wrinkle normal are there but faint under the bristle sheen; the neck rolls read as regular ribs; sunburn on the back is weak, the pink sits mostly on snout and legs.",
+    "Bristles: read as a pale sheen and a spiky topline at 3 m as asked, but at 1 m individual cards on the neck are visible as straight white needles, and from the game camera they give the back a slightly frosted, brushed look.",
+    "Dirt patches on the back are same-sized soft grey-brown blotches (camouflage-like). Mud crust is convincing on the legs and belly; flank splashes are sparse.",
+    "Back view: the hams read as two flat panels with a crease between them; the rump is heavily dirt-covered and dark compared with the flanks.",
+    "Ears: still a saturated terracotta when the sun is behind them, thick-rimmed, no hair fringe (not done).",
+    "Eyes: iris, sclera and pupil are now visible but the eye is slightly bulging and round, lids are thin rims; lashes are barely visible.",
+    "Snout: wet mud on the lower disc is still a noisy green-brown patch; nostrils shallow.",
+    "LODs judged by eye at the game camera (final_lods.png): LOD1 holds; LOD2 loses the eye and thins the legs but keeps the silhouette and colour.",
+    "LOD0 is 17,626 triangles (soft 15k, hard 30k). Validator: UV_OVERLAP (bristle cards over the atlas UV space, intended); open edges (cards)."
+   ],
+   "round3_changes": "Barrel weights: thigh/arm influence is confined to the leg columns and handed to pelvis/spine elsewhere (carry_barrel in pig.py), so the run no longer balloons the hindquarters; every second frame of all four clips was rendered as strips. Forelegs rebuilt straighter in the mesh only (rig and clips untouched; front hooves stay rigid on hand_*). Shoulder and ham masses, flank hollows, stronger spine ridge and hip points in the sculpt. Mud is displaced geometry (4-10 mm crust) with baked cracks and wet gloss low down; dung is 34 displaced clumps with smears. Ears lower on the skull without the mound, thinner subsurface. Eyes: larger ball with sclera, red corner, brown iris, pupil; pale lash cards. 2,200 pale bristle cards."
   },
   "SK_Pillbug": {
    "asset": "SK_Pillbug",
@@ -1211,25 +1247,25 @@
    "folder": "Slime",
    "class": "creature",
    "supersedes": null,
-   "source_blend": "Slime/SK_Slime.blend (with the hidden high-poly SlimeHigh)",
+   "source_blend": "Slime/SK_Slime.blend (with the hidden high-poly SlimeHigh; collection SM_Slime_Trail holds the trail decal mesh)",
    "build_script": "Tools/slime.py",
    "dimensions_m": [
-    1.0512681007385254,
-    0.6670642495155334,
+    0.9935588836669922,
+    0.6418240070343018,
     0.3129276633262634
    ],
    "lods": [
     {
      "name": "SK_Slime_LOD0",
-     "triangles": 13678
+     "triangles": 13550
     },
     {
      "name": "SK_Slime_LOD1",
-     "triangles": 6839
+     "triangles": 6775
     },
     {
      "name": "SK_Slime_LOD2",
-     "triangles": 3420
+     "triangles": 3387
     }
    ],
    "uv": {
@@ -1252,9 +1288,33 @@
     "691/693 foes/puddle/red/walk"
    ],
    "slots": [
-    "MI_Slime"
+    "MI_Slime",
+    "MI_Slime_Core",
+    "MI_Slime_Wet"
    ],
-   "slot_note": "One mesh, three colour variants by material instance: MI_Slime (T_Slime_Blue_BC), MI_Slime_Green (T_Slime_Green_BC), MI_Slime_Red (T_Slime_Red_BC); all share T_Slime_Blue_N / _ORM / _SSS.",
+   "slot_note": "Three slots on SK_Slime: MI_Slime (gel shell), MI_Slime_Core (interior), MI_Slime_Wet (meniscus film). Colour variants Blue / Green / Red are material instances that swap T_Slime_<Var>_BC, T_Slime_Core_<Var>_BC and T_Slime_Trail_<Var>_BC; N / ORM / SSS are shared (T_Slime_Blue_*, T_Slime_Core_Blue_*). See engine_material for the integrator.",
+   "engine_material": {
+    "status": "NOT built or tested in Unreal by this stream (the brief forbids starting the editor). What follows is the intended setup; the Cycles review renders use a refracting stand-in, so the engine look will differ.",
+    "MI_Slime (shell)": [
+     "Blend mode Translucent, lighting mode Surface Translucency Volume (or Surface ForwardShading if the per-pixel cost is acceptable: it gives the sharp wet highlight). Thin Translucent shading model is the alternative when the project uses it: base colour as transmittance tint.",
+     "Refraction OFF (no refraction input, no pixel-offset refraction): the interior is real geometry and refraction would smear it and cost a scene-colour copy.",
+     "Opacity = alpha of T_Slime_<Var>_BC (clear gel 0.04-0.4, pigment spots, grit and foot soil near 1). Multiply by a scalar (default 1) so the integrator can tune it; add a fresnel term (about +0.35 at grazing angles) so the rim reads thicker than the centre.",
+     "Base colour = BC rgb. Subsurface / transmittance tint per variant (linear): Blue (0.17, 0.28, 0.72), Green (0.55, 0.54, 0.10), Red (0.62, 0.22, 0.15) - slime.py TINT. T_Slime_Blue_SSS is the subsurface weight mask.",
+     "Roughness from ORM G (0.10-0.35 on gel, about 0.85 on grit). Specular 0.5-0.8. Wet coat: with Substrate use a thin clear coat slab of roughness 0.05; otherwise clamp roughness low, the highlight is the coat.",
+     "Normal T_Slime_Blue_N (OpenGL: flip green on import). Two-sided off. Cast shadow ON with a masked shadow proxy or as an opaque caster: a translucent mesh casts none by default (bCastVolumetricTranslucentShadow, or simply let MI_Slime_Core cast the shadow)."
+    ],
+    "MI_Slime_Core (interior)": [
+     "Opaque default-lit, T_Slime_Core_<Var>_BC + T_Slime_Core_Blue_N / _ORM (1024). It is a separate element inside the same skeletal mesh (murky core, bubbles, grit, ribs, bird skull), skinned to the same bones. Casts the body shadow."
+    ],
+    "MI_Slime_Wet (meniscus)": [
+     "Translucent, unlit-cheap or Surface Translucency Volume, opacity = alpha of T_Slime_Wet_BC, roughness about 0.05, dark base colour. No shadow. Alternative: masked + DBuffer-style darkening is not possible on a skeletal mesh, so keep it translucent."
+    ],
+    "MI_Slime_Trail (SM_Slime_Trail)": [
+     "Either a translucent mesh decal (blend Translucent, decal response off, depth bias) or copy T_Slime_Trail_<Var>_BC / _N / _ORM into a deferred decal material (DBuffer colour + normal + roughness) projected down 10 cm. Spawn behind the moving slime every about 1.2 m, fade opacity to 0 over 20-30 s."
+    ],
+    "sort_order": "Opaque core renders first (opaque pass). Translucent sort priority: meniscus -1, trail -2 (both below the shell), shell 0. All three shell-family elements are in one skeletal mesh, so set the priority on the component only if the shell is split out; otherwise rely on the element order in the FBX (shell element 0, core 1, meniscus 2) and on the core being opaque. If the shell sorts wrongly against the meniscus, enable Render After DOF off / translucency sort by distance on the component.",
+    "fallback": "If translucency is not acceptable: make MI_Slime opaque subsurface with the same maps (ignore BC alpha). The slime then looks as in the earlier delivery (wet, spotted, solid) and the core is hidden."
+   },
    "textures": [
     {
      "file": "Textures/T_Slime_Blue_BC.png",
@@ -1262,7 +1322,7 @@
       2048,
       2048
      ],
-     "sha256": "4fcf4627266dbf51"
+     "sha256": "dd28dac25166a616"
     },
     {
      "file": "Textures/T_Slime_Green_BC.png",
@@ -1270,7 +1330,7 @@
       2048,
       2048
      ],
-     "sha256": "d17208939e4a967f"
+     "sha256": "d931c8adf87e4f7e"
     },
     {
      "file": "Textures/T_Slime_Red_BC.png",
@@ -1278,7 +1338,7 @@
       2048,
       2048
      ],
-     "sha256": "b87b33860a2f64f5"
+     "sha256": "d1ae49fce2b392ff"
     },
     {
      "file": "Textures/T_Slime_Blue_N.png",
@@ -1286,7 +1346,7 @@
       2048,
       2048
      ],
-     "sha256": "a7583d3dfbf1a600"
+     "sha256": "e5da8b7a07cd843b"
     },
     {
      "file": "Textures/T_Slime_Blue_ORM.png",
@@ -1294,7 +1354,7 @@
       2048,
       2048
      ],
-     "sha256": "54f4d5dda2022cd0"
+     "sha256": "d117ea2cf6389189"
     },
     {
      "file": "Textures/T_Slime_Blue_SSS.png",
@@ -1303,6 +1363,142 @@
       2048
      ],
      "sha256": "90730d2fd30b7560"
+    },
+    {
+     "file": "Textures/T_Slime_Core_Blue_BC.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "f9686768c1c82de3"
+    },
+    {
+     "file": "Textures/T_Slime_Core_Green_BC.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "f27dfc4b0bfeda9c"
+    },
+    {
+     "file": "Textures/T_Slime_Core_Red_BC.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "0c304fbdca1f422a"
+    },
+    {
+     "file": "Textures/T_Slime_Core_Blue_N.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "5689e529229bd9e9"
+    },
+    {
+     "file": "Textures/T_Slime_Core_Blue_ORM.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "9e8a2680b1453104"
+    },
+    {
+     "file": "Textures/T_Slime_Wet_BC.png",
+     "px": [
+      512,
+      128
+     ],
+     "sha256": "77a474971d0a04a6"
+    },
+    {
+     "file": "Textures/T_Slime_Wet_N.png",
+     "px": [
+      512,
+      128
+     ],
+     "sha256": "72c0d66a7d365c85"
+    },
+    {
+     "file": "Textures/T_Slime_Wet_ORM.png",
+     "px": [
+      512,
+      128
+     ],
+     "sha256": "b888c064e15de3f8"
+    },
+    {
+     "file": "Textures/T_Slime_Trail_Blue_BC.png",
+     "px": [
+      1024,
+      512
+     ],
+     "sha256": "d00a5bcdacfb3a98"
+    },
+    {
+     "file": "Textures/T_Slime_Trail_Blue_N.png",
+     "px": [
+      1024,
+      512
+     ],
+     "sha256": "a7b5e686429a3af7"
+    },
+    {
+     "file": "Textures/T_Slime_Trail_Blue_ORM.png",
+     "px": [
+      1024,
+      512
+     ],
+     "sha256": "5059289727b912f2"
+    },
+    {
+     "file": "Textures/T_Slime_Trail_Green_BC.png",
+     "px": [
+      1024,
+      512
+     ],
+     "sha256": "20664eb6e33a40e0"
+    },
+    {
+     "file": "Textures/T_Slime_Trail_Green_N.png",
+     "px": [
+      1024,
+      512
+     ],
+     "sha256": "a7b5e686429a3af7"
+    },
+    {
+     "file": "Textures/T_Slime_Trail_Green_ORM.png",
+     "px": [
+      1024,
+      512
+     ],
+     "sha256": "5059289727b912f2"
+    },
+    {
+     "file": "Textures/T_Slime_Trail_Red_BC.png",
+     "px": [
+      1024,
+      512
+     ],
+     "sha256": "10ec148b38b4f2f8"
+    },
+    {
+     "file": "Textures/T_Slime_Trail_Red_N.png",
+     "px": [
+      1024,
+      512
+     ],
+     "sha256": "a7b5e686429a3af7"
+    },
+    {
+     "file": "Textures/T_Slime_Trail_Red_ORM.png",
+     "px": [
+      1024,
+      512
+     ],
+     "sha256": "5059289727b912f2"
     }
    ],
    "exports": [
@@ -1312,16 +1508,17 @@
     "Export/A_Slime_Walk.fbx",
     "Export/SK_Slime_LOD0.fbx",
     "Export/SK_Slime_LOD1.fbx",
-    "Export/SK_Slime_LOD2.fbx"
+    "Export/SK_Slime_LOD2.fbx",
+    "Export/SM_Slime_Trail_LOD0.fbx"
    ],
-   "rig_compatibility": "NEW rig, no earlier asset existed: 10 bones (root, pelvis, body_01..04, head, hump_02..04), identity root, all bones world-aligned. Clips are translation/rotation only (no bone scale): {\"Idle\": {\"frames\": [1, 61], \"loop\": true}, \"Walk\": {\"frames\": [1, 28], \"loop\": true}, \"Attack\": {\"frames\": [1, 16], \"loop\": false}, \"Death\": {\"frames\": [1, 31], \"loop\": false}} at 30 fps, in place, nominal walk speed 30 cm/s (a guess: fit playback to the en-slim* brain speed).",
-   "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. New skeleton and new creatures.json asset row needed; no locomotion blendspace exists yet. Death sprites 661/663/681/683/701/703 (splatter) are not covered by a separate prop: the Death clip flattens the body into a puddle and holds.",
+   "rig_compatibility": "NEW rig (made in this pass, no earlier asset existed): 10 bones (root, pelvis, body_01..04, head, hump_02..04), identity root, all bones world-aligned; unchanged from the first delivery of this pass, so its four clips still apply. Interior and meniscus are skinned to the same bones by position. Clips are translation/rotation only (no bone scale): {\"Idle\": {\"frames\": [1, 61], \"loop\": true}, \"Walk\": {\"frames\": [1, 28], \"loop\": true}, \"Attack\": {\"frames\": [1, 16], \"loop\": false}, \"Death\": {\"frames\": [1, 31], \"loop\": false}} at 30 fps, in place, nominal walk speed 30 cm/s (a guess: fit playback to the en-slim* brain speed).",
+   "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. New skeleton and new creatures.json asset row needed; no locomotion blendspace exists yet. Death sprites 661/663/681/683/701/703 (splatter) are not covered by a separate prop: the Death clip flattens the body into a puddle and holds. The meniscus film is part of the skeletal mesh: it is the lowest 3 cm band of the shell pushed outward 2-3 cm and laid 0.6 mm above z=0, so it follows every bay of the foot; on uneven ground it will still float or clip.",
    "third_party": [],
    "review_only_third_party": [
     "polyhaven/forrest_ground_03 (review ground)"
    ],
-   "status": "NOT photoreal: reads as a wet, spotted organic mass but also as a wet painted boulder. New rig and clips.",
-   "review_rounds": 3,
+   "status": "NOT photoreal, and unproven in engine: reads as a lopsided wet gel with a thin meniscus and a coloured trail in the Cycles stand-in. The Unreal material is specified in engine_material but not built.",
+   "review_rounds": 10,
    "final_renders": [
     "Review/final_game.png",
     "Review/final_close.png",
@@ -1333,12 +1530,14 @@
     "Review/final_death31.png"
    ],
    "known_weaknesses": [
-    "Opaque: the game material is base colour + SSS mask, with no translucency or refraction, so there is no gelatinous depth; from behind, in shade, it reads as rock.",
-    "Macro form is a ridged mound: too hard-edged and mountain-like for something that should sag and pool.",
-    "Pigment spots are ringed dots of similar size: too regular.",
-    "No slime trail, drips or strands; the soil and grit band at the foot is a painted gradient.",
-    "The sprite is about 24x18 px beside a 47 px pillbug; the mesh is 0.92 x 0.58 x 0.27 m. Scale is my estimate.",
-    "Clips are first-pass procedural motion (peristaltic walk, lunge, collapse); never seen in engine. No hit clip. Death splatter sprites are not covered by a prop."
+    "The see-through look depends on an Unreal translucent material nobody has built; engine_material in the manifest is a specification, not a tested asset. Sorting of shell, core and meniscus inside one skeletal mesh is the main risk.",
+    "Interior (core, bubbles, grit, ribs, bird skull) shows as soft lighter and darker shapes; it is clearest in green and red, weakest in blue. Bubbles are opaque pale balls, not hollow.",
+    "Wrinkle relief was softened: it now reads as gel, but large areas are smooth and a little plastic; highlights are broad.",
+    "Pigment spots are still similar in size.",
+    "Meniscus is now the foot band of the shell pushed out 2-3 cm (follows every bay, no bridging); it is a uniform dark rim, without puddling variation, and assumes flat ground.",
+    "Trail: per-colour tint is subtle (about a third of the wet film takes the body colour); still a net-like braid at the old end.",
+    "Crest keeps a sharp dimple at the top. Scale is an estimate. Clips are procedural, unseen in engine; no hit clip; no splatter prop for the death sprites.",
+    "Validator: UV_OVERLAP 24 % (interior and meniscus use their own texture sets in the same UV0, intended)."
    ]
   }
  }

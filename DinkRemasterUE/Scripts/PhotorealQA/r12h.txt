@@ -1,0 +1,74 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 73 300 200
+dink.IndoorEnv 0
+wait 2
+dink.CalAnchor 0 0
+dink.CalCam 0 0 3200 1 0 0 85
+wait 7
+shot <PROJECT>/Saved/PhotorealPass/lighting/r12/topdown_73.png
+wait 1
+dink.CalCam off
+dink.IndoorEnv 1
+dink.Goto 138 300 200
+dink.IndoorEnv 0
+wait 2
+dink.CalAnchor 0 0
+dink.CalCam 0 0 3200 1 0 0 85
+wait 7
+shot <PROJECT>/Saved/PhotorealPass/lighting/r12/topdown_138.png
+wait 1
+dink.CalCam off
+dink.IndoorEnv 1
+dink.Goto 439 300 385
+dink.View 0 -4
+wait 3
+dink.CalAnchor 0 0
+dink.CalCam -95 30 168 0 0 160 40 1
+wait 2
+dink.MatParam M_Dink_PR_Skin ScatterAmount 0.9
+dink.MatParam M_Dink_PR_Skin Tint 1 1 1
+dink.MatParam M_Dink_PR_Hair Tint 1 1 1
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/lighting/r12/heroclose_front_a.png
+wait 1
+dink.MatParam M_Dink_PR_Skin ScatterAmount 0.0
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/lighting/r12/heroclose_front_c.png
+wait 1
+dink.MatParam M_Dink_PR_Skin ScatterAmount 0.5
+dink.MatParam M_Dink_PR_Skin Tint 0.92 0.86 0.82
+dink.MatParam M_Dink_PR_Hair Tint 1.5 1.25 1.05
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/lighting/r12/heroclose_front_e.png
+wait 1
+dink.CalCam -200 60 180 0 0 120 60 1
+wait 2
+dink.MatParam M_Dink_PR_Skin ScatterAmount 0.9
+dink.MatParam M_Dink_PR_Skin Tint 1 1 1
+dink.MatParam M_Dink_PR_Hair Tint 1 1 1
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/lighting/r12/heroclose_gameplay_a.png
+wait 1
+dink.MatParam M_Dink_PR_Skin ScatterAmount 0.0
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/lighting/r12/heroclose_gameplay_c.png
+wait 1
+dink.MatParam M_Dink_PR_Skin ScatterAmount 0.5
+dink.MatParam M_Dink_PR_Skin Tint 0.92 0.86 0.82
+dink.MatParam M_Dink_PR_Hair Tint 1.5 1.25 1.05
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/lighting/r12/heroclose_gameplay_e.png
+wait 1
+dink.CalCam off
+quit

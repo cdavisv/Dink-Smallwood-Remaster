@@ -6,7 +6,7 @@ from prlib import *
 SRC = CHARS / 'Dink/HandBindingV2/SK_Dink_Hands.blend'
 WORK = OUT / 'Dink/Work'
 bpy.ops.wm.open_mainfile(filepath=str(SRC))
-bpy.ops.wm.save_as_mainfile(filepath=str(WORK / 'dink_base.blend'), copy=False)
+save_blend(filepath=str(WORK / 'dink_base.blend'), copy=False)
 sc = bpy.context.scene
 for o in list(bpy.data.objects):
     if o.type in ('CAMERA', 'LIGHT') or (o.type == 'MESH' and not o.name.endswith('LOD0')):
@@ -54,4 +54,4 @@ sk = bpy.data.objects['Skin']; c = co_np(sk.data)
 head = c[c[:, 2] > 1.4]; log('head part zmin', head[:, 2].min(), 'neck ring ', head[head[:, 2] < head[:, 2].min() + .01].round(3)[:6])
 hands = c[c[:, 0] > .3]; log('left arm skin: max z', hands[:, 2].max(), hands[hands[:, 2] > hands[:, 2].max() - .01].round(3)[:4])
 log('vgroups body sample', [g.name for g in sk.vertex_groups][:10])
-bpy.ops.wm.save_mainfile()
+save_blend()

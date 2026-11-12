@@ -1,0 +1,27 @@
+wait 22
+dink.Skip
+wait 1
+dink.Goto 439 300 385
+wait 1
+dink.View 25 -8
+t.MaxFPS 0
+r.VSync 0
+wait 14
+wait 5
+fps grass_on_yard
+dink.GrassDensity 0
+wait 5
+wait 5
+fps grass_off_yard
+dink.GrassDensity 1
+dink.Goto 604 300 340
+wait 1
+dink.View -110 -2
+wait 12
+wait 5
+fps grass_on_meadow
+dink.GrassDensity 0
+wait 5
+wait 5
+fps grass_off_meadow
+quit

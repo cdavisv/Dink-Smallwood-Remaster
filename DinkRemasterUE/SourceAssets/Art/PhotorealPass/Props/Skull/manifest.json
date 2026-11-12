@@ -3,27 +3,26 @@
  "class": "prop_small",
  "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/SM_Skull_PR.fbx",
  "materials": [
-  "MI_Prop_Bone",
-  "MI_Prop_OakWarm"
+  "MI_Skull"
  ],
- "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
- "lod0_triangles": 1712,
- "lod1_triangles": 856,
- "lod2_triangles": 376,
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Skull_PR.blend",
+ "lod0_triangles": 1520,
+ "lod1_triangles": 760,
+ "lod2_triangles": 334,
  "dimensions_m": [
-  0.172,
-  0.23,
-  0.202
+  0.153,
+  0.225,
+  0.2
  ],
  "bounds_min_m": [
-  -0.086,
+  -0.077,
   -0.101,
-  0.0
+  -0.0
  ],
  "bounds_max_m": [
-  0.086,
-  0.129,
-  0.202
+  0.076,
+  0.124,
+  0.2
  ],
  "open_edges": 0,
  "collision_hulls": 0,
@@ -32,23 +31,56 @@
   "skull"
  ],
  "supersedes": "none (skull placeholder, 13 placements)",
- "dresses": "human skull without the jaw, 0.17 x 0.22 x 0.2 m: cranium, brow ridge, cheek bones, eye sockets and nose as dark hollows, eight upper teeth; earth-stained, lichened",
+ "dresses": "human skull without the jaw, 0.16 x 0.2 x 0.2 m, facing -Y, resting on its teeth and skull base: domed cranium with zig-zag sutures, brow ridges, orbits, pear-shaped nasal aperture, cheek bones and zygomatic arches, temporal fossae, palate, eleven upper teeth (three lost); stained and pitted old bone",
  "fit": {
   "pivot": "base centre (resting on the palate), faces -Y; tip it on its side for variety"
  },
+ "baked": {
+  "texture_folder": "Skull",
+  "textures": {
+   "BC": "T_Skull_PR_BC.png",
+   "N": "T_Skull_PR_N.png",
+   "ORM": "T_Skull_PR_ORM.png"
+  },
+  "px": 1024,
+  "slots": [
+   {
+    "material": "MI_Skull",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 100.4,
+    "p99": 178.8
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.574,
+    "p95": 0.93
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 92468,
+  "third_party": [],
+  "source_blend": "_build/bake/SM_Skull_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
  "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull",
- "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
- "status": "interim: reviewed, not claimed photoreal",
- "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
- "known_weaknesses": "NOT photoreal: a lathed cranium pushed into shape with three dark hollows and eight block teeth. Reads as a skull at gameplay distance only; no sutures, no zygomatic arches, no nasal bone.",
- "third_party": [
-  "old_planks_02",
-  "painted_plaster_wall",
-  "plastered_wall_04"
- ],
- "texture_sets": [
-  "OakWeathered",
-  "PlasterWall"
- ],
- "textures_px": 2048
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake from a sculpt (ellipsoid union minus cavities, voxel remesh; cached), four review rounds (r6). NOT photoreal. Last look still faults: the brain case is too large for the face (the face is about a third of the height, so it reads slightly juvenile or stylised), surfaces are smooth and clay-like between features, the zygomatic arch is a straight rod, the mastoids are knobs, orbits and nasal aperture are shallow and not dark enough inside, the teeth are separate pegs without sockets, soil staining is patchy but mild; the squamous and other minor sutures are missing. Sutures (sagittal, coronal, lambdoid), pitting, hairline cracks, lichen specks and three lost teeth are there.",
+ "third_party": [],
+ "texture_sets": [],
+ "textures_px": 1024,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_ORM.png"
+ }
 }

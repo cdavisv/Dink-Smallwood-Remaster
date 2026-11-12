@@ -12,7 +12,7 @@ A = args(); STAGE = A[0] if A else 'look'
 DST = OUT / 'Pig'; (DST / 'Review').mkdir(parents=True, exist_ok=True); (DST / 'Work').mkdir(exist_ok=True)
 SRC = ART / 'Creatures/Pig/SK_Pig.blend'
 random.seed(407); V = Vector
-NCARD = 1500
+NCARD = 2200
 MUD = THIRD / 'polyhaven/brown_mud_02/brown_mud_02_diff_2k.jpg'
 DRY = THIRD / 'polyhaven/mud_cracked_dry_riverbed_002/mud_cracked_dry_riverbed_002_diff_2k.jpg'
 MATN = ['MI_Pig_Skin', 'MI_Pig_Muzzle', 'MI_Pig_HornBristle', 'MI_Pig_Eye']
@@ -57,7 +57,7 @@ def build_high(arm):
     add(*loft([((x, 0, zc), (0, hw, 0), (0, 0, hu), (0, 0, hd), e) for x, zc, hu, hd, hw, e in T], 44))
     # shoulder, ham, jowl, cheek, brow/ear root, withers, belly sag, brisket
     for c, r in (((.20, .21, .60), (.20, .135, .25)), ((-.46, .20, .58), (.25, .165, .28)), ((.60, .095, .50), (.13, .09, .10)), ((.69, .105, .60), (.095, .065, .10)),
-                 ((.585, .10, .855), (.075, .06, .04)), ((.26, 0, .87), (.18, .15, .07)), ((-.12, .02, .40), (.40, .29, .15)), ((.40, 0, .47), (.15, .16, .11))):
+                 ((.26, 0, .87), (.18, .15, .07)), ((-.12, .02, .40), (.40, .29, .15)), ((.40, 0, .47), (.15, .16, .11))):
         for s in ((1, -1) if c[1] > .05 else (1,)):
             vs, fs, d = ellipsoid((c[0], c[1] * s, c[2]), r, 24, 14); add(vs, fs)
     def limb(pts, y):
@@ -70,7 +70,7 @@ def build_high(arm):
     feet = {}
     for s, sd in ((1, 'l'), (-1, 'r')):
         y = B['upperarm_' + sd][0].y * .93; hf = B['hand_' + sd][1]; feet['hand_' + sd] = hf
-        add(*limb([((.17, .52), .135, .105), ((.175, .41), .105, .088), ((.205, .31), .082, .074), ((.25, .185), .068, .064), ((.265, .15), .071, .066), ((.29, .105), .058, .058), ((.315, .068), .062, .064), ((.325, .05), .060, .062)], y))
+        add(*limb([((.17, .52), .135, .105), ((.175, .41), .105, .088), ((.195, .31), .082, .074), ((.218, .185), .068, .064), ((.228, .15), .071, .066), ((.243, .105), .058, .058), ((.258, .068), .062, .064), ((.265, .05), .060, .062)], y))
         ft = B['foot_' + sd][1]; feet['foot_' + sd] = ft
         add(*limb([((-.34, .52), .185, .13), ((-.28, .42), .15, .112), ((-.335, .32), .105, .088), ((-.42, .225), .072, .064), ((-.435, .19), .074, .064), ((-.42, .12), .057, .056), ((-.395, .068), .062, .064), ((-.385, .05), .060, .062)], B['thigh_' + sd][0].y * .93))
     body = join(parts, 'PigBody')
@@ -87,10 +87,11 @@ def build_high(arm):
     co[:, 2] -= .018 * gauss(x - .82, .07) * ss(.66, .72, z) * (1 - ss(.05, .12, ay))                                       # dish between brow and snout
     # asymmetry: belly hangs a little to one side, one ham fuller, general organic lumpiness
     co[:, 1] += .012 * gauss(z - .36, .12) * gauss(x + .1, .35)
-    co += n * (N1 * .008 + N2 * .004 + N3 * .0012)[:, None]
+    co += n * (N1 * .010 + N2 * .005 + N3 * .0015)[:, None]
     # spine ridge, hip bones, shoulder blades
-    co += n * (.006 * gauss(y, .03) * ss(.8, .9, z) * ss(-.66, -.5, x) * (1 - ss(.3, .5, x)))[:, None]
+    co += n * (.010 * gauss(y, .028) * ss(.8, .9, z) * ss(-.66, -.5, x) * (1 - ss(.3, .5, x)))[:, None]
     for s in (1, -1):
+        push((.22, s * .31, .60), .13, .015); push((-.50, s * .31, .56), .17, .012); push((.06, s * .335, .62), .055, -.011); push((-.30, s * .335, .62), .06, -.013); push((-.46, s * .17, .93), .05, .010); push((.36, s * .25, .62), .05, -.008)
         push((-.47, s * .16, .925), .07, .013); push((.2, s * .17, .91), .09, .008); push((-.27, s * .33, .55), .10, -.012); push((.03, s * .33, .58), .09, -.007)
         push((.66, s * .17, .53), .06, .010)                                                              # jowl
     # neck rolls and jowl folds: deep, irregular
@@ -107,7 +108,7 @@ def build_high(arm):
     # leg joint wrinkles (carpus, hock, pastern)
     legd = np.full(len(co), 1e9)
     for s in (1, -1):
-        for pl in ([(.175, s * .218, .43), (.205, s * .218, .31), (.25, s * .218, .185), (.325, s * .218, .05)], [(-.28, s * .218, .43), (-.335, s * .218, .32), (-.42, s * .218, .225), (-.385, s * .218, .05)]): legd = np.minimum(legd, poly_dist(co, pl))
+        for pl in ([(.175, s * .218, .43), (.195, s * .218, .31), (.218, s * .218, .185), (.265, s * .218, .05)], [(-.28, s * .218, .43), (-.335, s * .218, .32), (-.42, s * .218, .225), (-.385, s * .218, .05)]): legd = np.minimum(legd, poly_dist(co, pl))
     leg = (z < .44) * (1 - ss(.10, .135, legd))
     for jz, a_ in ((.07, .0012), (.16, .0018), (.21, .0018), (.33, .002), (.40, .002)):
         co += n * (a_ * np.sin(z * math.tau / .016 + N3 * 2.5) * gauss(z - jz, .03) * leg)[:, None]
@@ -118,7 +119,7 @@ def build_high(arm):
         hit, loc, nor, _ = body.ray_cast(V((.742, s * .5, .752)), V((0, -s, 0)))
         loc = np.array(loc); nn = np.array(nor); eyes.append((loc, nn))
         q = co - loc; d = np.sqrt((q[:, 0] / 1.5) ** 2 + q[:, 1] ** 2 + (q[:, 2] + q[:, 0] * .3) ** 2)       # almond, slanted
-        co -= nn[None, :] * (gauss(d, .013) * .011)[:, None]
+        co -= nn[None, :] * (gauss(d, .0148) * .011)[:, None]
         up = np.clip((z - loc[2]) / .02, -1, 1)
         co += nn[None, :] * (gauss(d - .0155, .005) * (.0045 + .0035 * up))[:, None]                     # lid rims, heavier upper lid
         co += nn[None, :] * (gauss(d - .036, .011) * .006 * (up > 0))[:, None]                           # fat brow fold
@@ -151,10 +152,10 @@ def build_high(arm):
     N1 = vn(co, 2.3, 21.0); N2 = vn(co, 6.0, 33.0); N3 = vn(co, 15, 5.0)
     legd = np.full(len(co), 1e9)
     for s in (1, -1):
-        for pl in ([(.175, s * .218, .43), (.205, s * .218, .31), (.25, s * .218, .185), (.325, s * .218, .05)], [(-.28, s * .218, .43), (-.335, s * .218, .32), (-.42, s * .218, .225), (-.385, s * .218, .05)]): legd = np.minimum(legd, poly_dist(co, pl))
+        for pl in ([(.175, s * .218, .43), (.195, s * .218, .31), (.218, s * .218, .185), (.265, s * .218, .05)], [(-.28, s * .218, .43), (-.335, s * .218, .32), (-.42, s * .218, .225), (-.385, s * .218, .05)]): legd = np.minimum(legd, poly_dist(co, pl))
     leg = (z < .44) * (1 - ss(.10, .135, legd))
     eyd = np.minimum(np.linalg.norm(co - eyes[0][0], axis=1), np.linalg.norm(co - eyes[1][0], axis=1))
-    red = np.clip(.55 * ss(.80, .96, x) + .5 * gauss(eyd, .05) + .5 * ss(.75, .92, z) * ss(.55, .9, n[:, 2]) * (.6 + .6 * N1) + .35 * (1 - ss(.34, .46, z)) * (n[:, 2] < .2) + .25 * (1 - ss(.1, .3, z)), 0, 1)
+    red = np.clip(.55 * ss(.80, .96, x) + .5 * gauss(eyd, .05) + .85 * ss(.75, .92, z) * ss(.55, .9, n[:, 2]) * (.6 + .6 * N1) + .35 * (1 - ss(.34, .46, z)) * (n[:, 2] < .2) + .25 * (1 - ss(.1, .3, z)), 0, 1)
     mud = (1.0 * (1 - ss(.05, .26, z)) + .55 * (1 - ss(.18, .44, z)) + .75 * (n[:, 2] < -.2) * (1 - ss(.36, .50, z)) + .85 * ss(.925, .985, x) * (1 - ss(SZ - .03, SZ + .035, z))
            + .5 * (1 - ss(.3, .62, z)) * ss(.2, .3, ay) * (.5 + N1) + .55 * ss(.12, .3, y) * (1 - ss(.45, .78, z)) * ss(-.1, .5, N1 + .6 * N2) + .25 * ss(.3, .7, N2) * (1 - ss(.4, .7, z)))
     mud = np.clip(mud + .22 * N2 + .1 * N3, 0, 1)
@@ -163,8 +164,15 @@ def build_high(arm):
     wr = np.clip(.45 * ss(.31, .38, x) * (1 - ss(.60, .68, x)) * (1 - ss(.80, .9, z)), 0, .45)
     wr = np.maximum(wr, np.where((leg > .5) & (z < .36), .55 + .45 * np.maximum.reduce([gauss(z - j, .05) for j in (.07, .16, .21, .33, .40)]), 0))
     set_color_attr(me, 'msk', np.stack([red, mud, pid, wr], 1))
-    dung = np.clip(1.5 * ss(-.36, -.70, x) * (1 - ss(.50, .86, z)) * (.75 + .9 * N2) + .8 * gauss(np.hypot(x + .72, z - .62), .12) * (ay < .12) + .5 * ss(.35, .7, N1 * N2 * 4) * (x < -.1) * (z < .6), 0, 1)
+    dung = np.clip(.45 * ss(-.36, -.70, x) * (1 - ss(.50, .86, z)) * (.75 + .9 * N2) + .35 * gauss(np.hypot(x + .72, z - .62), .07) * (ay < .08) * (.4 + N3) + .5 * ss(.35, .7, N1 * N2 * 4) * (x < -.1) * (z < .6), 0, 1)
     hair = np.clip(ss(.36, .5, z) * (1 - ss(.86, .95, x)) * (1 - .6 * (n[:, 2] < -.5)), 0, 1)
+    thickm = ss(.62, 1.0, mud + .3 * N3) * (.0045 + .005 * np.abs(vn(co, 28, 3.0)))                       # caked mud has thickness
+    co2 = co + n * thickm[:, None]
+    rg = np.random.default_rng(12); cand = np.nonzero((x < -.40) & (z > .28) & (z < .84) & (n[:, 0] < .2))[0]
+    for i in rg.choice(cand, 34, replace=False):                                                          # dung clumps and their smears running down
+        d = np.linalg.norm(co - co[i], axis=1); r_ = rg.uniform(.010, .022); co2 += n * (rg.uniform(.005, .011) * gauss(d, r_))[:, None]
+        dung = np.maximum(dung, gauss(d, r_ * 1.3)); dung = np.maximum(dung, .8 * gauss(np.hypot(x - co[i, 0], y - co[i, 1]), r_ * .6) * (z < co[i, 2]) * ss(co[i, 2] - .12 * rg.random(), co[i, 2], z))
+    set_co(me, co2)
     set_color_attr(me, 'loc', np.stack([dung, np.zeros(len(co)), np.zeros(len(co)), hair], 1))
     # ---------------- separate shells (same in high and low)
     hard = []
@@ -182,18 +190,18 @@ def build_high(arm):
         hard.append(o); return o
     pidx = {'hand_l': 1, 'hand_r': 2, 'foot_l': 3, 'foot_r': 4}
     for key, hf in feet.items():
-        fy = hf.y * .93
+        fy = hf.y * .93; hx = hf.x - (.065 if key.startswith('hand') else 0)        # front hooves sit under a straighter cannon; still rigid on hand_*
         for t in (1, -1):                                                      # cloven main toes: wedge hooves, split, slightly splayed
-            cy = fy + t * .029; fx = hf.x - .04; spl = t * .004
+            cy = fy + t * .029; fx = hx - .04; spl = t * .004
             st = [((fx - .012, cy, .082), (0, .024, 0), (.033, 0, 0), None, 2.3), ((fx - .006, cy, .062), (0, .027, 0), (.038, 0, 0), None, 2.4),
                   ((fx + .008, cy + spl, .028), (0, .0285, 0), (.049, 0, 0), None, 2.7), ((fx + .016, cy + spl * 1.5, .0), (0, .029, 0), (.056, 0, 0), None, 3.0)]
             vs, fs = loft(st, 14)
             vs = [V((p.x + .016 * max(0, (p.x - fx)) / .04 * (1 - p.z / .082), p.y - t * .008 * max(0, (p.x - fx)) / .04, p.z)) for p in vs]
             hp(vs, fs, (0, .9, .66, 0), pidx[key], sub=1)
-            vs, fs, ts, an = tube([(hf.x - .098, fy + t * .040, .128), (hf.x - .112, fy + t * .046, .10), (hf.x - .12, fy + t * .049, .072)], [.018, .016, .005], 8)   # dewclaws
+            vs, fs, ts, an = tube([(hx - .098, fy + t * .040, .128), (hx - .112, fy + t * .046, .10), (hx - .12, fy + t * .049, .072)], [.018, .016, .005], 8)   # dewclaws
             hp(vs, fs, (0, .9, .66, 0), pidx[key])
     for s, sd in ((1, 'l'), (-1, 'r')):                                        # ears: large pinnae, thick rolled root buried in the head, cupped, tips tipping forward
-        Bp = V((.575, s * .105, .835)); Ax = V((.30, s * .48, .82)).normalized(); Nf = V((.78, s * .55, -.28)).normalized(); Wd = Ax.cross(Nf).normalized() * s
+        Bp = V((.575, s * .100, .812)); Ax = V((.30, s * .48, .82)).normalized(); Nf = V((.78, s * .55, -.28)).normalized(); Wd = Ax.cross(Nf).normalized() * s
         Nf = Wd.cross(Ax).normalized() * s
         NA, NR = 16, 18; EL = .27 if s > 0 else .26; lean = .8 if s > 0 else 1.25; st = []
         for i in range(NA + 1):
@@ -213,7 +221,7 @@ def build_high(arm):
         fs += [(c0, (j + 1) % NR, j) for j in range(NR)] + [(c1, o_ + j, o_ + (j + 1) % NR) for j in range(NR)]
         bpn = np.array(Bp); axn = np.array(Ax)
         par = lambda c, bpn=bpn, axn=axn, EL=EL: np.clip(((c - bpn) @ axn) / EL, 0, 1)
-        hp(vs, fs, lambda c: np.stack([np.full(len(c), .4), .25 * ss(.5, 1, vn(c, 14, 2.0) + .5), np.zeros(len(c)), np.zeros(len(c))], 1), 5 if s > 0 else 6, param=par, sub=1,
+        hp(vs, fs, lambda c: np.stack([np.full(len(c), .3), .25 * ss(.5, 1, vn(c, 14, 2.0) + .5), np.zeros(len(c)), np.zeros(len(c))], 1), 5 if s > 0 else 6, param=par, sub=1,
            loc=lambda c, par=par: np.stack([np.zeros(len(c)), np.ones(len(c)), par(c), .5 * np.ones(len(c))], 1))
     t0 = B['tail_01'][0]; pts = []; rad = []                                    # curly tail with a flattened tip
     for i in range(17):
@@ -223,8 +231,8 @@ def build_high(arm):
     tx0 = t0.x
     hp(vs, fs, (.5, .15, 0, 0), 7, param=lambda c: np.clip((tx0 - .02 - c[:, 0]) / .12, 0, 1), loc=(.5, 0, 0, .3))
     for s, (loc, nn) in zip((1, -1), eyes):                                    # eyeballs
-        c = loc - nn * .0062; vs, fs, d = ellipsoid(c, (.0135, .0135, .0135), 16, 10)
-        hp(vs, fs, (0, 0, 1, 0), 8)
+        c = loc - nn * .0072; vs, fs, d = ellipsoid(c, (.015, .015, .015), 20, 12); cn = np.array(c)
+        hp(vs, fs, (0, 0, 1, 0), 8, loc=lambda q, cn=cn, nn=nn: np.stack([np.clip(((q - cn) / .015) @ (nn + np.array((.25, 0, -.1))) / np.linalg.norm(nn + np.array((.25, 0, -.1))), 0, 1), np.zeros(len(q)), np.zeros(len(q)), np.zeros(len(q))], 1))
     a = body.data.attributes.new('part', 'FLOAT', 'POINT'); a = body.data.attributes.new('par', 'FLOAT', 'POINT')
     return body, hard, eyes
 
@@ -272,7 +280,7 @@ def pigskin(mat):
     # --- ear veins and thin pink ear skin
     ev = t.node('ShaderNodeTexVoronoi', feature='DISTANCE_TO_EDGE'); t.link(t.vmath('ADD', t.mapping(P, (55, 55, 22)), t.vmath('SCALE', t.noise(P, 30, 2, .5)[1], s=.5)), ev.inputs['Vector']); ev.inputs['Scale'].default_value = 1.0
     vein = t.math('MULTIPLY', t.math('SUBTRACT', 1.0, t.smooth(ev.outputs['Distance'], .0, .07)), isEar)
-    c = t.mix(t.math('MULTIPLY', isEar, .5), c, (.46, .19, .16))
+    c = t.mix(t.math('MULTIPLY', isEar, .5), c, (.58, .27, .22))
     c = t.mix(t.math('MULTIPLY', vein, .32), c, (.33, .06, .07))
     # --- dust film and grime in folds
     ao = t.node('ShaderNodeAmbientOcclusion'); ao.samples = 8; ao.inputs['Distance'].default_value = .05; cav = t.math('SUBTRACT', 1.0, ao.outputs['AO'])
@@ -296,7 +304,8 @@ def pigskin(mat):
     c = t.mix(isMuz, c, mz)
     hs, _ = t.noise(t.mapping(P, (60, 60, 5)), 1.0, 3, .6); hb, _ = t.noise(P, 16, 2, .5)
     hc = t.mix(hs, (.07, .055, .04), (.30, .24, .17)); hc = t.mix(t.smooth(hb, .5, .7), hc, (.45, .37, .27)); c = t.mix(isHorn, c, hc)
-    c = t.mix(isEye, c, (.045, .02, .008))
+    ey = t.mix(t.smooth(lR, .60, .66), t.mix(t.smooth(lR, .3, .8), (.42, .22, .19), (.50, .46, .40)), t.mix(fine, (.10, .045, .018), (.05, .02, .008))); ey = t.mix(t.smooth(lR, .945, .96), ey, (.004, .003, .003))
+    c = t.mix(isEye, c, ey)                                                                               # sclera with a red corner, dark brown iris, pupil
     # --- mud: wet dark slop low down, drying to pale cracked cake above; spatter
     mi = t.node('ShaderNodeTexImage'); mi.projection = 'BOX'; mi.projection_blend = .35; mi.image = bpy.data.images.load(str(MUD), check_existing=True)
     t.link(t.mapping(P, (2.9, 2.9, 2.9), (.3, .2, .5)), mi.inputs['Vector']); mlum = t.sep(mi.outputs['Color'])[0]
@@ -331,14 +340,38 @@ def pigskin(mat):
     h = t.math('ADD', h, t.math('MULTIPLY', vein, .0007))
     mzb, _ = t.voronoi(P, 130, 'F1'); h = t.math('ADD', h, t.math('MULTIPLY', t.math('MULTIPLY', t.smooth(mzb, 0, .4), isMuz), .0008))
     h = t.math('ADD', h, t.math('MULTIPLY', t.math('MULTIPLY', hs, isHorn), .001))
-    mh = t.math('ADD', t.math('MULTIPLY', thick, .005), t.math('ADD', t.math('MULTIPLY', dlum, .006), t.math('MULTIPLY', mlum, .003)))
+    ck = t.node('ShaderNodeTexVoronoi', feature='DISTANCE_TO_EDGE'); t.link(t.vmath('ADD', P, t.vmath('SCALE', t.noise(P, 25, 2, .5)[1], s=.02)), ck.inputs['Vector']); ck.inputs['Scale'].default_value = 55
+    crack = t.math('MULTIPLY', t.math('SUBTRACT', 1.0, t.smooth(ck.outputs['Distance'], .0, .07)), t.math('MULTIPLY', thick, t.math('SUBTRACT', 1.0, wet)))
+    c = t.mix(t.math('MULTIPLY', crack, .75), c, (.035, .026, .018))
+    pv_, _ = t.voronoi(P, 340, 'F1'); h = t.math('SUBTRACT', h, t.math('MULTIPLY', t.math('SUBTRACT', 1.0, t.smooth(pv_, .0, .35)), .00035))
+    dcl = t.math('MULTIPLY', dungf, t.noise(P, 120, 3, .7)[0]); h = t.math('ADD', h, t.math('MULTIPLY', dcl, .0025))
+    mh = t.math('SUBTRACT', t.math('ADD', t.math('MULTIPLY', thick, .005), t.math('ADD', t.math('MULTIPLY', dlum, .006), t.math('MULTIPLY', mlum, .003))), t.math('MULTIPLY', crack, .004))
     h = t.math('ADD', t.math('MULTIPLY', h, t.math('SUBTRACT', 1.0, mudf)), t.math('MULTIPLY', mh, mudf))
     n = t.bump(h, 1.0, 1.0)
     skin = t.math('SUBTRACT', 1.0, t.math('MAXIMUM', t.math('MAXIMUM', isHorn, isEye), t.math('MAXIMUM', mudf, dungf)), clamp=True)
-    sss = t.math('MULTIPLY', skin, t.math('ADD', t.math('SUBTRACT', .14, t.math('MULTIPLY', isEar, .1)), t.math('MULTIPLY', mR, .2)), clamp=True)
+    sss = t.math('MULTIPLY', skin, t.math('ADD', t.math('SUBTRACT', .14, t.math('MULTIPLY', isEar, .17)), t.math('MULTIPLY', mR, .2)), clamp=True)
     t.finish(c, r, n, sss=sss, sss_radius=(.012, .005, .003))
     t.bake['pos'] = P
     BAKE[mat.name] = t.bake; return mat
+
+
+def carry_barrel(ob):
+    """The barrel (belly, flank, ham top, shoulder) is carried by pelvis and spine; thigh/arm chains keep only the leg columns.
+    Bone heat alone let the thighs drag the belly and ham skin, which ballooned the hindquarters in the run."""
+    me = ob.data; co = co_np(me); legd = np.full(len(co), 1e9)
+    for s in (1, -1):
+        for pl in ([(.175, s * .218, .43), (.195, s * .218, .31), (.218, s * .218, .185), (.265, s * .218, .05)], [(-.28, s * .218, .43), (-.335, s * .218, .32), (-.42, s * .218, .225), (-.385, s * .218, .05)]): legd = np.minimum(legd, poly_dist(co, pl))
+    legness = (1 - ss(.085, .15, legd)) * ss(.52, .40, co[:, 2])
+    limb = ('thigh', 'calf', 'foot', 'upperarm', 'lowerarm', 'hand'); cen = [(-.42, 'pelvis'), (-.13, 'spine_01'), (.15, 'spine_02'), (.33, 'spine_03')]
+    G = {g.name: g for g in ob.vertex_groups}; names = {g.index: g.name for g in ob.vertex_groups}
+    for v in me.vertices:
+        L = float(legness[v.index]); moved = 0.0
+        for ge in v.groups:
+            if names[ge.group].startswith(limb): moved += ge.weight * (1 - L); ge.weight *= L
+        if moved > 1e-6:
+            x_ = co[v.index, 0]; k = max(0, min(len(cen) - 2, sum(1 for c_ in cen if c_[0] < x_) - 1)); f = float(np.clip((x_ - cen[k][0]) / (cen[k + 1][0] - cen[k][0]), 0, 1))
+            for nm, w in ((cen[k][1], 1 - f), (cen[k + 1][1], f)):
+                if w > 0: (G.get(nm) or ob.vertex_groups.new(name=nm)).add([v.index], moved * w, 'ADD')
 
 
 def assemble(coll, arm, body, hard, tris_body):
@@ -346,7 +379,7 @@ def assemble(coll, arm, body, hard, tris_body):
     low = body.copy(); low.data = body.data.copy(); bpy.context.scene.collection.objects.link(low)
     decimate_to(low, tris_body); clean_mesh(low)
     arm.data.pose_position = 'REST'
-    auto_weights(low, arm)
+    auto_weights(low, arm); carry_barrel(low)
     low_body = low.copy(); low_body.data = low.data.copy()
     hl = []
     for o in hard:
@@ -417,7 +450,7 @@ def build_bristles(low_body, eyes):
         for k in range(7):
             a = -.9 + k * .3; nrv = V(nn); p = V(loc) + V((.016 * a, 0, .011 - .004 * a * a)) + nrv * .004
             _, j, _ = kd.find(p); w = {gn[g.group]: g.weight for g in me.vertices[j].groups if g.weight > .01}
-            quad(p, (nrv + V((.2 * a, 0, -.25))).normalized(), V((1, 0, 0)), V((0, 0, 1)), .016, .012, 0.0, 2, w)
+            quad(p, (nrv + V((.2 * a, 0, -.25))).normalized(), V((1, 0, 0)), V((0, 0, 1)), .024, .016, 0.0, 2, w)
     o = mesh_obj('bristles', vs, fs)
     bm = bmesh.new(); bm.from_mesh(o.data); bm.faces.ensure_lookup_table()                 # every card faces out of the skin
     bmesh.ops.reverse_faces(bm, faces=[f_ for f_ in bm.faces if f_.normal.dot(V(nrs[f_.verts[0].index])) < 0]); bm.to_mesh(o.data); bm.free()
@@ -468,6 +501,23 @@ def shots(arm, tag, which, samples=48, scale=1.0):
     if 'pose' in which:
         for act, fr, az in (('Pig_Walk', 6, -60), ('Pig_Run', 4, -110), ('Pig_Feed', 7, -40)):
             set_action(arm, act, fr); f = D / ('%s_%s%02d.png' % (tag, act[4:].lower(), fr)); shoot(f, game_cam((.05, 0, .5), 3.6, az, 22), (.05, 0, .5), 55, R(1000, 750), samples); fl.append(f)
+    if 'strip' in which:                                                                                  # every second frame of every clip
+        for act in ('Pig_Idle', 'Pig_Walk', 'Pig_Run', 'Pig_Feed'):
+            a_ = bpy.data.actions[act]; fr = list(range(int(a_.frame_range[0]), int(a_.frame_range[1]) + 1, 6 if act == 'Pig_Idle' else 2))[:10]; tmp = []
+            for k in fr:
+                set_action(arm, act, k); f = D / ('_strip_%s_%02d.png' % (act, k)); shoot(f, game_cam((0, 0, .45), 4.4, -100, 24), (0, 0, .45), 50, (300, 220), 24); tmp.append(f)
+            montage(tmp, D / ('%s_strip_%s.png' % (tag, act[4:].lower())), cols=10)
+            for f in tmp: f.unlink()
+    if 'lods' in which:
+        tmp = []
+        for nm in ('SK_Pig_LOD0', 'SK_Pig_LOD1', 'SK_Pig_LOD2'):
+            for o in bpy.data.objects:
+                if o.name.startswith('SK_Pig_LOD'): o.hide_render = o.name != nm
+            set_action(arm, 'Pig_Walk', 6); f = D / ('_lod_%s.png' % nm); shoot(f, game_cam((.1, 0, .5), 6.0, -55, 45), (.1, 0, .5), 105, (600, 450), 64); tmp.append(f)
+        montage(tmp, D / (tag + '_lods.png'), cols=3)
+        for f in tmp: f.unlink()
+        for o in bpy.data.objects:
+            if o.name.startswith('SK_Pig_LOD'): o.hide_render = o.name != 'SK_Pig_LOD0'
     set_action(arm, None, 1); return fl
 
 

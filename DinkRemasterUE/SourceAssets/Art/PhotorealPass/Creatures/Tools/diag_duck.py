@@ -11,6 +11,6 @@ for p in me.polygons:
     m = o.material_slots[p.material_index].material.name
     if 'Cards' in m: continue
     u = sum((uv[i].uv for i in p.loop_indices), Vector((0, 0))) / len(p.loop_indices); x = min(S - 1, max(0, int(u.x * S))); y = min(S - 1, max(0, int(u.y * S)))
-    if bc[y, x, :3].sum() < .12: bad.append((p.index, tuple(round(c, 3) for c in p.center), m, tuple(round(float(v), 2) for v in bc[y, x, :3]), tuple(round(float(v), 2) for v in nm[y, x, :3]), tuple(round(float(v), 2) for v in orm[y, x, :3]), round(p.area * 1e6, 1)))
+    if bc[y, x, :3].sum() < .6 or nm[y, x, 2] < .62: bad.append((p.index, tuple(round(c, 3) for c in p.center), m, tuple(round(float(v), 2) for v in bc[y, x, :3]), tuple(round(float(v), 2) for v in nm[y, x, :3]), tuple(round(float(v), 2) for v in orm[y, x, :3]), round(p.area * 1e6, 1)))
 log('black faces', len(bad))
 for b in bad[:40]: log(b)

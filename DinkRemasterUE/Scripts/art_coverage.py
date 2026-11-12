@@ -292,6 +292,8 @@ def load_families(assets, notes):
             name = r["family"].strip()
             m = re.match(r"^(\d+)", name)
             key = ("seq", int(m.group(1))) if m else ("class", name.lower())
+            if m and isinstance(r.get("frame"), (int, float)) and int(r["frame"]) >= 1:
+                key = ("seqframe", int(m.group(1)), int(r["frame"]))  # one picture of the sequence; wins over class rows
             if key in seen:
                 notes.append("families.json: %s bound twice, second row skipped" % name)
                 continue
@@ -324,8 +326,11 @@ def load_families(assets, notes):
     return rows, origins, screens
 
 
-def family_binding(rows, seq, cls):
-    """Class row first, then sequence row (DinkArtFamily::Resolve)."""
+def family_binding(rows, seq, cls, frame=None):
+    """Sequence-and-frame row first, then class row, then plain sequence row (DinkArtFamily::Resolve)."""
+    for r in rows:
+        if seq is not None and frame and r["key"] == ("seqframe", seq, frame):
+            return r
     for r in rows:
         if r["key"] == ("class", (cls or "").lower()):
             return r
@@ -367,7 +372,7 @@ def classify(args):
             return None
         if screen_no in fam_screens or oid in fam_origins:
             return None
-        row = family_binding(fam_rows, seq_of.get(oid), cls)
+        row = family_binding(fam_rows, seq_of.get(oid), cls, frame_of.get(oid))
         if row is None or (scripted_of.get(oid) and not row["scripted"]):
             return None
         return row

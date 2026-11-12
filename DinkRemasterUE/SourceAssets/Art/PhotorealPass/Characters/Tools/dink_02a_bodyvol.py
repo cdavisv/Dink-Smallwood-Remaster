@@ -56,7 +56,7 @@ m = bv.modifiers.new('rm', 'REMESH'); m.mode = 'VOXEL'; m.voxel_size = .005; m.a
 apply_mods(bv); laplacian_smooth(bv, it=8, lam=.6); smooth_shade(bv)
 for l in list(bv.data.uv_layers): bv.data.uv_layers.remove(l)
 log('BodyVol', len(bv.data.vertices), co_np(bv.data).min(0), co_np(bv.data).max(0))
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / 'Dink/Work/dink_bodyvol.blend'))
+save_blend(filepath=str(OUT / 'Dink/Work/dink_bodyvol.blend'))
 for nm in ('OldHair', 'OldEyes', 'BrowLash', 'OldWardrobe', 'OldShirtTopo', 'OldTrousersTopo', 'Skin'): bpy.data.objects[nm].hide_render = True
 mt = bpy.data.materials.new('pv'); mt.use_nodes = True; bv.data.materials.append(mt)
 setup_render(samples=16, res=(1100, 800)); bpy.context.scene.world.node_tree.nodes['Background'].inputs[1].default_value = .08

@@ -23,6 +23,8 @@ CONTRACT['round2_material_upgrades'] = {
                    'subsurface': 'wax / tallow: Subsurface (or Subsurface Profile) shading model, subsurface colour = BC * 0.9, mean free path about 8 mm (params.sss_radius = RGB radii in metres), opaque',
                    'translucent': 'glass / horn panes: thin translucent, two-sided, no refraction needed. Horn: Translucent or Two Sided Foliage style with opacity 0.75 and transmission colour = BC; glass: Translucent, opacity 0.35 + fresnel, tint = BC. '
                                   'Emissive from E as for the other slots (the horn panes of a lit lantern glow through E). The mesh carries dink_translucent (Nanite off).'},
+    'glass_and_embers_not_baked': "Props still on tiling sets (asset entry has no \"baked\"): SM_Potion_Flask_PR: the alpha 0 region of MI_Prop_PotionGlass_* is the glass; give that material a translucent variant (opacity 0.35 + fresnel, tint = glass_tint, roughness 0.06, two-sided) and the flask reads as glass with the dark liquid box behind it. SM_Shelf_Bottles_PR bottles are glazed earthenware, opaque by design. SM_Fireplace_Fieldstone_PR has NO ember mask yet (not reached in round 2): light the hearth with an engine fire effect.",
+    'decals': "Props/Decals (decals.json): T_Decal_BloodSplat_* and T_Decal_BurnHole_*, 2 x 2 atlases, BC alpha = opacity; see the 'decals' block of this manifest.",
     'texture_caps': 'Baked props ship 2048 px (prop) or 1024 px (prop_small and the lantern). Props that dress a family as scatter are capped at 1024 by ART_STANDARD section 4: list T_<Asset>_ in Content/Dink/Data/Art/texture_import_caps.json to cap on import if wanted; the source stays 2048.'}
 notes = json.load(open(os.path.join(HERE, 'notes.json')))
 mods = json.load(open(os.path.join(PROPS, '_build', 'modules.json')))
@@ -92,6 +94,7 @@ man = {'schema': 'dink-props/1', 'root': REL + '/Props', 'date': notes.get('date
        'summary': notes.get('summary'), 'review': notes.get('review'), 'validator': notes.get('validator'), 'not_done': notes.get('not_done'),
        'inventory': dict(inv, built_this_pass=notes.get('built_classes'), remaining_note=notes.get('remaining_note')),
        'texture_sets': [dict(json.load(open(os.path.join(PROPS, 'Sets', s, 'set.json'))), folder=REL + '/Props/Sets/' + s) for s in sorted(os.listdir(os.path.join(PROPS, 'Sets')))],
+       'decals': json.load(open(os.path.join(PROPS, 'Decals', 'decals.json'))) if os.path.exists(os.path.join(PROPS, 'Decals', 'decals.json')) else None,
        'assets': assets, 'integration': {'contract': CONTRACT, 'materials': imat, 'assets': iassets}}
 # contact sheet: the final review renders named in notes['sheet'], two per row
 RD = os.path.join(PROPS, 'review', notes['render_dir'])
@@ -126,6 +129,7 @@ for i, (fs, cap) in enumerate(strips):
 for i, (n, cap) in enumerate(shots):
     x, y = (i % cols) * tw, y0 + (i // cols) * (th + 34)
     s.paste(Image.open(n).convert('RGB').resize((tw, th), Image.LANCZOS), (x, y + 30)); d.text((x + 8, y + 4), cap, fill=(235, 235, 235), font=font)
-s.convert('RGB').save(os.path.join(PROPS, 'contact_sheet.png'), optimize=True)
+s = s.convert('RGB').resize((1400, int(s.height * 1400 / s.width)), Image.LANCZOS)          # keep the sheet small enough to open
+s.save(os.path.join(PROPS, 'contact_sheet.png'), optimize=True)
 json.dump(man, open(os.path.join(PROPS, 'manifest.json'), 'w'), indent=1)
 print('published', len(assets), 'props; sheet', s.size)

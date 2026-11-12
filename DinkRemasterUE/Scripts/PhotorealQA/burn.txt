@@ -1,0 +1,25 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Goto 307 438 330
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 5
+wait 8
+shot <PROJECT>/Saved/PhotorealPass/ingame3/29_burnable_pine_307_before.png
+wait 1
+dink.Run s2-sec1 die S307_P13
+wait 0.4
+shot <PROJECT>/Saved/PhotorealPass/ingame3/29_burnable_pine_307_burning.png
+wait 4
+shot <PROJECT>/Saved/PhotorealPass/ingame3/29_burnable_pine_307_after.png
+wait 1
+quit

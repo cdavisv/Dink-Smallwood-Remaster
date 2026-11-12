@@ -1,5 +1,6 @@
 #include "DinkArtFamilySubsystem.h"
 #include "DinkCoreModule.h"
+#include "DinkEnvironmentSubsystem.h"
 #include "DinkInstanceOriginsComponent.h"
 #include "DinkOriginComponent.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
@@ -196,6 +197,24 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 			continue;
 		}
 		B.Mesh = NormaliseObjectPath(B.Mesh);
+		{
+			const TArray<TSharedPtr<FJsonValue>>* VariantRows = nullptr;
+			bool bBadVariant = false;
+			if ((*Row)->TryGetArrayField(TEXT("variants"), VariantRows) && VariantRows)
+			{
+				for (const TSharedPtr<FJsonValue>& V : *VariantRows)
+				{
+					FString Path;
+					if (!V.IsValid() || !V->TryGetString(Path) || !Path.StartsWith(TEXT("/Game/"))) { bBadVariant = true; break; }
+					B.Variants.Add(NormaliseObjectPath(Path));
+				}
+			}
+			if (bBadVariant)
+			{
+				Errors.Add(FString::Printf(TEXT("%s: variants must be /Game/ object paths"), *B.Family));
+				continue;
+			}
+		}
 		(*Row)->TryGetStringField(TEXT("fit"), Fit);
 		if (Fit == TEXT("footprint")) B.Fit = EDinkFamilyFit::Footprint;
 		else if (Fit == TEXT("height")) B.Fit = EDinkFamilyFit::Height;
@@ -207,7 +226,18 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 		}
 		(*Row)->TryGetBoolField(TEXT("yaw_from_sprite"), B.bYawFromSprite);
 		(*Row)->TryGetBoolField(TEXT("scripted"), B.bScripted);
+		(*Row)->TryGetNumberField(TEXT("yaw_offset"), B.YawOffset);
+		(*Row)->TryGetNumberField(TEXT("anchor_front"), B.AnchorFront);
+		{
+			FString Span, End;
+			if ((*Row)->TryGetStringField(TEXT("span"), Span)) B.Span = Span == TEXT("width") ? 1 : Span == TEXT("height") ? 2 : Span == TEXT("stretch") ? 3 : 0;
+			if ((*Row)->TryGetStringField(TEXT("span_fill"), B.SpanFill) && B.SpanFill.StartsWith(TEXT("/Game/"))) B.SpanFill = NormaliseObjectPath(B.SpanFill); else B.SpanFill.Reset();
+			if ((*Row)->TryGetStringField(TEXT("span_end"), End)) B.SpanEnd = End == TEXT("left") ? -1 : End == TEXT("right") ? 1 : 0;
+		}
+		B.AnchorFront = FMath::Clamp(B.AnchorFront, 0.0, 1.0);
 		(*Row)->TryGetStringField(TEXT("note"), B.Note);
+		double FrameNumber = 0.0;
+		const bool bHasFrame = (*Row)->TryGetNumberField(TEXT("frame"), FrameNumber);
 		if (FChar::IsDigit(B.Family[0]))
 		{
 			int32 End = 0;
@@ -218,7 +248,16 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 		{
 			B.ClassId = FName(*B.Family);
 		}
-		const FString Key = B.Sequence != INDEX_NONE ? FString::Printf(TEXT("seq %d"), B.Sequence) : B.ClassId.ToString().ToLower();
+		if (bHasFrame)
+		{
+			if (B.Sequence == INDEX_NONE || FrameNumber < 1.0)
+			{
+				Errors.Add(FString::Printf(TEXT("%s: frame needs a sequence family (leading number) and a frame of 1 or more"), *B.Family));
+				continue;
+			}
+			B.Frame = int32(FrameNumber);
+		}
+		const FString Key = B.Sequence != INDEX_NONE ? FString::Printf(TEXT("seq %d frame %d"), B.Sequence, B.Frame) : B.ClassId.ToString().ToLower();
 		if (Seen.Contains(Key))
 		{
 			Errors.Add(FString::Printf(TEXT("%s: bound twice"), *B.Family));
@@ -230,8 +269,15 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 	return Errors.IsEmpty();
 }
 
-const FDinkFamilyBinding* DinkArtFamily::Resolve(const TArray<FDinkFamilyBinding>& Bindings, int32 Sequence, FName ClassId)
+const FDinkFamilyBinding* DinkArtFamily::Resolve(const TArray<FDinkFamilyBinding>& Bindings, int32 Sequence, FName ClassId, int32 Frame)
 {
+	if (Frame > 0)
+	{
+		for (const FDinkFamilyBinding& B : Bindings)
+		{
+			if (B.Frame == Frame && B.Sequence != INDEX_NONE && B.Sequence == Sequence) return &B;
+		}
+	}
 	if (!ClassId.IsNone())
 	{
 		for (const FDinkFamilyBinding& B : Bindings)
@@ -241,7 +287,7 @@ const FDinkFamilyBinding* DinkArtFamily::Resolve(const TArray<FDinkFamilyBinding
 	}
 	for (const FDinkFamilyBinding& B : Bindings)
 	{
-		if (B.Sequence != INDEX_NONE && B.Sequence == Sequence) return &B;
+		if (B.Frame == 0 && B.Sequence != INDEX_NONE && B.Sequence == Sequence) return &B;
 	}
 	return nullptr;
 }
@@ -253,7 +299,7 @@ EDinkFamilyDecision DinkArtFamily::Decide(const FDinkFamilyPlacement& P, const F
 	if (P.bHardnessOnly) return EDinkFamilyDecision::HardnessOnly;
 	if (Precedence.Screens.Contains(P.Screen)) return EDinkFamilyDecision::ScreenDressed;
 	if (Precedence.Origins.Contains(P.Origin)) return EDinkFamilyDecision::OriginHandled;
-	const FDinkFamilyBinding* B = Resolve(Bindings, P.Sequence, P.ClassId);
+	const FDinkFamilyBinding* B = Resolve(Bindings, P.Sequence, P.ClassId, P.Frame);
 	if (!B) return EDinkFamilyDecision::NoBinding;
 	if (P.bScripted && !B->bScripted) return EDinkFamilyDecision::Scripted;
 	OutBinding = B;
@@ -293,9 +339,50 @@ FTransform DinkArtFamily::MeshTransform(const FBox& MeshBounds, const FVector& G
 	return FTransform(Rotation, Ground - Rotation.RotateVector(Anchor * double(Scale)), FVector(Scale));
 }
 
+void DinkArtFamily::SpanPieces(const FDinkFamilyBinding& Binding, double SpanCm, double ModuleCm, TArray<FSpanPiece>& Out)
+{
+	Out.Reset();
+	if (Binding.Span == 0 || SpanCm <= 1.0 || ModuleCm <= 1.0)
+	{
+		Out.AddDefaulted();
+		return;
+	}
+	const int32 Count = Binding.Span == 3 ? 1 : FMath::Clamp(FMath::RoundToInt32(SpanCm / ModuleCm), 1, 16);
+	const double Length = SpanCm / Count;
+	for (int32 Index = 0; Index < Count; ++Index)
+	{
+		FSpanPiece& Piece = Out.AddDefaulted_GetRef();
+		Piece.OffsetCm = (Index + 0.5 - Count * 0.5) * Length;
+		Piece.LengthCm = Length;
+		// the main mesh (a corner post, a free end) stands at its end of the run; plain modules fill the rest
+		const bool bMainHere = Binding.SpanEnd == 0 || (Binding.SpanEnd < 0 && Index == 0) || (Binding.SpanEnd > 0 && Index == Count - 1);
+		Piece.bFill = !Binding.SpanFill.IsEmpty() && !bMainHere;
+	}
+}
+
+FTransform DinkArtFamily::SpanTransform(const FBox& MeshBounds, const FVector& Ground, double YawDegrees, float Scale, const FSpanPiece& Piece)
+{
+	if (Piece.LengthCm <= 0.0) return MeshTransform(MeshBounds, Ground, YawDegrees, Scale);
+	const FQuat Rotation = FRotator(0.0, YawDegrees, 0.0).Quaternion();
+	const double Along = Piece.LengthCm / FMath::Max(MeshBounds.GetSize().X * double(Scale), 1.0);
+	const FVector Anchor(MeshBounds.GetCenter().X * Scale * Along, MeshBounds.GetCenter().Y * Scale, MeshBounds.Min.Z * Scale);
+	return FTransform(Rotation, Ground + Rotation.RotateVector(FVector(Piece.OffsetCm, 0.0, 0.0) - Anchor), FVector(Scale * Along, Scale, Scale));
+}
+
 double DinkArtFamily::StableYaw(const FString& Origin)
 {
 	return double(FCrc::StrCrc32(*Origin) % 360u);
+}
+
+int32 DinkArtFamily::StableVariant(const FString& Origin, int32 Count)
+{
+	return Count > 1 ? int32((FCrc::StrCrc32(*Origin, 0x5EED1E57u) >> 8) % uint32(Count)) : 0;
+}
+
+double DinkArtFamily::DepthAfterYaw(const FVector& MeshSizeCm, double YawDegrees, float Scale)
+{
+	const double Radians = FMath::DegreesToRadians(YawDegrees);
+	return (FMath::Abs(FMath::Sin(Radians)) * MeshSizeCm.X + FMath::Abs(FMath::Cos(Radians)) * MeshSizeCm.Y) * double(Scale);
 }
 
 const TCHAR* DinkArtFamily::DecisionName(EDinkFamilyDecision Decision)
@@ -367,7 +454,12 @@ void UDinkArtFamilySubsystem::OnWorldBeginPlay(UWorld& World)
 	if (!bHasGreybox) return;
 	Precedence = FDinkFamilyPrecedence::LoadDirectory(ArtDirectory(), FamiliesFile);
 	// Load every bound mesh once, now, so a screen change never waits on a package load.
-	for (const FDinkFamilyBinding& B : Bindings) MeshFor(B);
+	for (const FDinkFamilyBinding& B : Bindings)
+	{
+		MeshFor(B);
+		for (const FString& Variant : B.Variants) LoadFamilyMesh(Variant, B.Family);
+		if (!B.SpanFill.IsEmpty()) LoadFamilyMesh(B.SpanFill, B.Family);
+	}
 	bReady = true;
 	if (UDinkGreyboxSubsystem* Grey = World.GetSubsystem<UDinkGreyboxSubsystem>())
 	{
@@ -398,19 +490,33 @@ void UDinkArtFamilySubsystem::BuildIndex(UWorld& World)
 	for (TActorIterator<ADinkGreyboxScreen> It(&World); It; ++It) GreyboxByScreen.FindOrAdd(It->ScreenNumber).Add(*It);
 }
 
-UStaticMesh* UDinkArtFamilySubsystem::MeshFor(const FDinkFamilyBinding& Binding)
+UStaticMesh* UDinkArtFamilySubsystem::LoadFamilyMesh(const FString& Path, const FString& Family)
 {
-	if (const TObjectPtr<UStaticMesh>* Found = Meshes.Find(Binding.Mesh)) return *Found;
-	if (MissingMeshes.Contains(Binding.Mesh)) return nullptr;
-	UStaticMesh* Mesh = LoadObject<UStaticMesh>(nullptr, *Binding.Mesh, nullptr, LOAD_NoWarn | LOAD_Quiet);
+	if (const TObjectPtr<UStaticMesh>* Found = Meshes.Find(Path)) return *Found;
+	if (MissingMeshes.Contains(Path)) return nullptr;
+	UStaticMesh* Mesh = LoadObject<UStaticMesh>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet);
 	if (!Mesh)
 	{
-		MissingMeshes.Add(Binding.Mesh);
-		UE_LOG(LogDink, Warning, TEXT("Family art: missing mesh %s for %s; its placements keep their cards"), *Binding.Mesh, *Binding.Family);
+		MissingMeshes.Add(Path);
+		UE_LOG(LogDink, Warning, TEXT("Family art: missing mesh %s for %s; its placements keep their cards"), *Path, *Family);
 		return nullptr;
 	}
-	Meshes.Add(Binding.Mesh, Mesh);
+	Meshes.Add(Path, Mesh);
 	return Mesh;
+}
+
+UStaticMesh* UDinkArtFamilySubsystem::MeshFor(const FDinkFamilyBinding& Binding)
+{
+	return LoadFamilyMesh(Binding.Mesh, Binding.Family);
+}
+
+UStaticMesh* UDinkArtFamilySubsystem::MeshFor(const FDinkFamilyBinding& Binding, const FString& Origin)
+{
+	UStaticMesh* Main = MeshFor(Binding);
+	if (!Main || Binding.Variants.IsEmpty()) return Main;
+	const int32 Pick = DinkArtFamily::StableVariant(Origin, Binding.Variants.Num() + 1);
+	UStaticMesh* Variant = Pick == 0 ? Main : LoadFamilyMesh(Binding.Variants[Pick - 1], Binding.Family);
+	return Variant ? Variant : Main;
 }
 
 int32 UDinkArtFamilySubsystem::ApplyScreen(int32 ScreenNumber)
@@ -453,33 +559,52 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	P.Origin = Actor.Origin->OriginId.ToString();
 	P.Screen = Actor.ScreenNumber;
 	P.Sequence = Actor.Origin->Sequence;
+	P.Frame = Actor.Origin->Frame;
 	P.ClassId = Actor.Origin->ClassId;
 	P.bScripted = !Actor.Origin->ScriptName.IsNone();
 	P.bHardnessOnly = Actor.PlacementKind == TEXT("hardness_only");
 	const FDinkFamilyBinding* B = nullptr;
 	const EDinkFamilyDecision Decision = DinkArtFamily::Decide(P, Precedence, Bindings, B);
 	DecisionCounts.FindOrAdd(Decision)++;
-	UStaticMesh* Mesh = B ? MeshFor(*B) : nullptr;
+	UStaticMesh* Mesh = B ? MeshFor(*B, P.Origin) : nullptr;
 	if (!Mesh) return false;
 
 	// The card is the sprite at its imported size: relative scale (width, 1, height) in metres of a 1 m unit card.
 	const FVector CardLocation = Card->GetRelativeLocation();
 	const FVector CardScale = Card->GetRelativeScale3D();
 	const float Scale = DinkArtFamily::FitScale(B->Fit, CardScale.X * 100.0, CardScale.Z * 100.0, Mesh->GetBoundingBox().GetSize(), B->bYawFromSprite);
-	const double Yaw = B->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(P.Origin);
+	const double Yaw = (B->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(P.Origin)) + B->YawOffset;
 
-	UStaticMeshComponent* Component = NewObject<UStaticMeshComponent>(&Actor, TEXT("FamilyArt"));
-	Component->SetMobility(EComponentMobility::Movable);
-	Component->SetupAttachment(Actor.GetRootComponent());
-	Component->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
-	Component->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	Component->SetCanEverAffectNavigation(false);
-	Component->SetGenerateOverlapEvents(false);
-	Component->ComponentTags.Add(FamilyTag);
-	Component->SetStaticMesh(Mesh);
-	Component->SetRelativeTransform(DinkArtFamily::MeshTransform(Mesh->GetBoundingBox(), FVector(CardLocation.X, CardLocation.Y, 0.0), Yaw, Scale));
-	Actor.AddInstanceComponent(Component);
-	Component->RegisterComponent();
+	// +Y is south, towards the original camera: a front-anchored mesh moves back by half its depth
+	const double Back = B->AnchorFront * 0.5 * DinkArtFamily::DepthAfterYaw(Mesh->GetBoundingBox().GetSize(), Yaw, Scale);
+	// a spanning module (interior wall runs) is repeated along its run until it fills the layout-scaled card
+	TArray<DinkArtFamily::FSpanPiece> Pieces;
+	DinkArtFamily::SpanPieces(*B, (B->Span == 2 ? CardScale.Z : CardScale.X) * 100.0, Mesh->GetBoundingBox().GetSize().X * Scale, Pieces);
+	UStaticMeshComponent* Component = nullptr;
+	for (int32 Index = 0; Index < Pieces.Num(); ++Index)
+	{
+		UStaticMesh* PieceMesh = Pieces[Index].bFill ? LoadFamilyMesh(B->SpanFill, B->Family) : Index == 0 ? Mesh : MeshFor(*B, P.Origin + FString::Printf(TEXT("#%d"), Index));
+		if (!PieceMesh) PieceMesh = Mesh;
+		UStaticMeshComponent* Part = NewObject<UStaticMeshComponent>(&Actor, Index == 0 ? FName(TEXT("FamilyArt")) : FName(*FString::Printf(TEXT("FamilyArt_%d"), Index)));
+		Part->SetMobility(EComponentMobility::Movable);
+		Part->SetupAttachment(Actor.GetRootComponent());
+		Part->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
+		Part->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Part->SetCanEverAffectNavigation(false);
+		Part->SetGenerateOverlapEvents(false);
+		Part->ComponentTags.Add(FamilyTag);
+		Part->SetStaticMesh(PieceMesh);
+		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), FVector(CardLocation.X, CardLocation.Y - Back, 0.0), Yaw, Scale, Pieces[Index]));
+		Actor.AddInstanceComponent(Part);
+		Part->RegisterComponent();
+		if (!Component) Component = Part;
+	}
+	// Trunk feet blend toward the soil under them (bark materials read custom primitive data 0-2; rendering only).
+	if (UDinkEnvironmentSubsystem* Env = Actor.GetWorld() ? Actor.GetWorld()->GetSubsystem<UDinkEnvironmentSubsystem>() : nullptr)
+	{
+		FLinearColor Soil;
+		if (Env->GroundColourAt(FVector2D(Component->GetComponentLocation()), Soil)) Component->SetCustomPrimitiveDataVector3(0, FVector(Soil.R, Soil.G, Soil.B));
+	}
 	Card->SetHiddenInGame(true);
 	Actor.Tags.AddUnique(FamilyTag);
 	return true;
@@ -507,6 +632,7 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 			P.Origin = O->OriginId.ToString();
 			P.Screen = Screen.ScreenNumber;
 			P.Sequence = O->Sequence;
+			P.Frame = O->Frame;
 			P.ClassId = O->ClassId;
 			P.bScripted = !O->ScriptName.IsNone();
 			const FDinkFamilyBinding* B = nullptr;
@@ -515,31 +641,66 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 			if (!B || (Shared && B != Shared)) bAll = false;
 			Shared = B;
 		}
-		UStaticMesh* Mesh = bAll && Shared ? MeshFor(*Shared) : nullptr;
-		if (!Mesh) continue;
-		UInstancedStaticMeshComponent* Family = NewObject<UInstancedStaticMeshComponent>(&Screen, FName(*(TEXT("FamilyArt_") + Pair.Key.ToString())));
-		Family->SetMobility(EComponentMobility::Movable);
-		Family->SetupAttachment(Screen.GetRootComponent());
-		Family->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
-		Family->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		Family->SetCanEverAffectNavigation(false);
-		Family->SetGenerateOverlapEvents(false);
-		Family->ComponentTags.Add(FamilyTag);
-		Family->SetStaticMesh(Mesh);
-		Screen.AddInstanceComponent(Family);
-		Family->RegisterComponent();
-		const FBox Bounds = Mesh->GetBoundingBox();
+		if (!bAll || !Shared || !MeshFor(*Shared)) continue;
+		// One instanced component per variant mesh; each instance goes to the variant its origin ID selects.
+		TMap<UStaticMesh*, UInstancedStaticMeshComponent*> ByMesh;
 		for (const FDinkInstanceOrigin* O : Pair.Value)
 		{
 			FTransform Card;
 			if (!Decor->GetInstanceTransform(O->InstanceIndex, Card, /*bWorldSpace*/ false)) continue;
+			UStaticMesh* MainMesh = MeshFor(*Shared, O->OriginId.ToString());
+			if (!MainMesh) continue;
+			TArray<DinkArtFamily::FSpanPiece> Pieces;
+			{
+				const float MainScale = DinkArtFamily::FitScale(Shared->Fit, Card.GetScale3D().X * 100.0, Card.GetScale3D().Z * 100.0, MainMesh->GetBoundingBox().GetSize(), Shared->bYawFromSprite);
+				DinkArtFamily::SpanPieces(*Shared, (Shared->Span == 2 ? Card.GetScale3D().Z : Card.GetScale3D().X) * 100.0, MainMesh->GetBoundingBox().GetSize().X * MainScale, Pieces);
+			}
+			for (int32 PieceIndex = 0; PieceIndex < Pieces.Num(); ++PieceIndex)
+			{
+			UStaticMesh* Mesh = Pieces[PieceIndex].bFill ? LoadFamilyMesh(Shared->SpanFill, Shared->Family) : PieceIndex == 0 ? MainMesh : MeshFor(*Shared, O->OriginId.ToString() + FString::Printf(TEXT("#%d"), PieceIndex));
+			if (!Mesh) Mesh = MainMesh;
+			UInstancedStaticMeshComponent*& Family = ByMesh.FindOrAdd(Mesh);
+			if (!Family)
+			{
+				Family = NewObject<UInstancedStaticMeshComponent>(&Screen, FName(*FString::Printf(TEXT("FamilyArt_%s_%d"), *Pair.Key.ToString(), ByMesh.Num() - 1)));
+				Family->SetMobility(EComponentMobility::Movable);
+				Family->SetupAttachment(Screen.GetRootComponent());
+				Family->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
+				Family->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+				Family->SetCanEverAffectNavigation(false);
+				Family->SetGenerateOverlapEvents(false);
+				Family->ComponentTags.Add(FamilyTag);
+				Family->SetStaticMesh(Mesh);
+				Screen.AddInstanceComponent(Family);
+				Family->RegisterComponent();
+			}
+			const FBox Bounds = Mesh->GetBoundingBox();
 			// Instance = card relative to the screen root: placement yaw, card centre, scale (width, 1, height) in metres.
 			const FVector At = Card.GetLocation();
 			const float Scale = DinkArtFamily::FitScale(Shared->Fit, Card.GetScale3D().X * 100.0, Card.GetScale3D().Z * 100.0, Bounds.GetSize(), Shared->bYawFromSprite);
-			const double Yaw = Card.Rotator().Yaw + (Shared->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(O->OriginId.ToString()));
+			const double Yaw = Card.Rotator().Yaw + (Shared->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(O->OriginId.ToString())) + Shared->YawOffset;
 			// The greybox ground is world Z 0; the screen root sits on it.
-			Family->AddInstance(DinkArtFamily::MeshTransform(Bounds, FVector(At.X, At.Y, -Screen.GetActorLocation().Z), Yaw, Scale), /*bWorldSpace*/ false);
+			const double Back = Shared->AnchorFront * 0.5 * DinkArtFamily::DepthAfterYaw(Bounds.GetSize(), Yaw - Card.Rotator().Yaw, Scale);
+			const FVector Ground = FVector(At.X, At.Y, -Screen.GetActorLocation().Z) - FRotator(0.0, Card.Rotator().Yaw, 0.0).RotateVector(FVector(0.0, Back, 0.0));
+			Family->AddInstance(DinkArtFamily::SpanTransform(Bounds, Ground, Yaw, Scale, Pieces[PieceIndex]), /*bWorldSpace*/ false);
+			}
 			++Count;
+		}
+		// One soil colour per instanced component (the mean under its instances): trunk feet blend toward it.
+		if (UDinkEnvironmentSubsystem* Env = Screen.GetWorld() ? Screen.GetWorld()->GetSubsystem<UDinkEnvironmentSubsystem>() : nullptr)
+		{
+			for (const auto& Made : ByMesh)
+			{
+				FLinearColor Sum(0, 0, 0, 0);
+				int32 Hits = 0;
+				for (int32 Index = 0; Index < Made.Value->GetInstanceCount(); ++Index)
+				{
+					FTransform At;
+					FLinearColor Soil;
+					if (Made.Value->GetInstanceTransform(Index, At, /*bWorldSpace*/ true) && Env->GroundColourAt(FVector2D(At.GetLocation()), Soil)) { Sum += Soil; ++Hits; }
+				}
+				if (Hits > 0) Made.Value->SetCustomPrimitiveDataVector3(0, FVector(Sum.R, Sum.G, Sum.B) / double(Hits));
+			}
 		}
 		Decor->SetHiddenInGame(true);
 		Screen.Tags.AddUnique(FamilyTag);

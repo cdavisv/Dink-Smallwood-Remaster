@@ -2,7 +2,7 @@
 import bpy, sys, os, json
 sys.path.insert(0, os.path.dirname(__file__))
 from prlib import *
-p = '<HOME>/Work/DinkQA/CharacterReference/Manny_Walk_Reference.fbx'
+p = sys.argv[sys.argv.index('--') + 1]      # path of the walk reference FBX (read-only input), passed on the command line
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.fbx(filepath=p, automatic_bone_orientation=False, use_anim=True)
 ref = next(o for o in bpy.context.scene.objects if o.type == 'ARMATURE'); act = ref.animation_data.action

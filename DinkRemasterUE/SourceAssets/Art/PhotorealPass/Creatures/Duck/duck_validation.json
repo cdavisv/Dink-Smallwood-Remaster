@@ -2,14 +2,14 @@
   "tool": "validate",
   "schema_version": 1,
   "blender": "5.2.2 LTS",
-  "file": "<HOME>/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Duck/SK_Duck.blend",
+  "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Duck/SK_Duck.blend",
   "strict": false,
   "passed": false,
   "summary": {
     "assets": 1,
     "assets_passed": 0,
     "errors": 1,
-    "warnings": 15
+    "warnings": 12
   },
   "scene_findings": [
     {
@@ -25,39 +25,39 @@
       "class": "creature",
       "collection": "SK_Duck",
       "tris_per_lod": {
-        "LOD0": 11418,
-        "LOD1": 5703,
-        "LOD2": 2853
+        "LOD0": 17694,
+        "LOD1": 8847,
+        "LOD2": 4424
       },
       "bounds": {
         "blender_min_cm": [
-          -26.463,
-          -10.689,
-          0.061
+          -26.523,
+          -11.869,
+          0.011
         ],
         "blender_max_cm": [
-          24.45,
-          10.689,
-          45.079
+          24.618,
+          11.68,
+          43.7
         ],
         "size_cm": [
-          50.913,
-          21.379,
-          45.017
+          51.141,
+          23.55,
+          43.689
         ],
         "unreal_min_cm": [
-          -26.463,
-          -10.689,
-          0.061
+          -26.523,
+          -11.68,
+          0.011
         ],
         "unreal_max_cm": [
-          24.45,
-          10.689,
-          45.079
+          24.618,
+          11.869,
+          43.7
         ]
       },
       "errors": 1,
-      "warnings": 14,
+      "warnings": 11,
       "findings": [
         {
           "code": "NAME_MESHDATA",
@@ -81,67 +81,37 @@
           "object": "SK_Duck_LOD2"
         },
         {
-          "code": "DUPLICATE_VERTS",
-          "severity": "warning",
-          "asset": "SK_Duck",
-          "message": "80 vertices coincide with another vertex (within 0.01 mm); merge by distance",
-          "object": "SK_Duck_LOD0",
-          "data": {
-            "vertices": 80
-          }
-        },
-        {
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Duck",
-          "message": "336 non-manifold edges (336 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "message": "12604 non-manifold edges (12604 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
           "object": "SK_Duck_LOD0",
           "data": {
-            "boundary": 336,
+            "boundary": 12604,
             "multi_face": 0,
             "wire": 0
           }
         },
         {
-          "code": "DUPLICATE_VERTS",
-          "severity": "warning",
-          "asset": "SK_Duck",
-          "message": "9 vertices coincide with another vertex (within 0.01 mm); merge by distance",
-          "object": "SK_Duck_LOD1",
-          "data": {
-            "vertices": 9
-          }
-        },
-        {
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Duck",
-          "message": "159 non-manifold edges (159 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "message": "12403 non-manifold edges (12403 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
           "object": "SK_Duck_LOD1",
           "data": {
-            "boundary": 159,
+            "boundary": 12403,
             "multi_face": 0,
             "wire": 0
           }
         },
         {
-          "code": "DUPLICATE_VERTS",
-          "severity": "warning",
-          "asset": "SK_Duck",
-          "message": "4 vertices coincide with another vertex (within 0.01 mm); merge by distance",
-          "object": "SK_Duck_LOD2",
-          "data": {
-            "vertices": 4
-          }
-        },
-        {
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Duck",
-          "message": "127 non-manifold edges (127 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "message": "8540 non-manifold edges (8540 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
           "object": "SK_Duck_LOD2",
           "data": {
-            "boundary": 127,
+            "boundary": 8540,
             "multi_face": 0,
             "wire": 0
           }
@@ -150,20 +120,27 @@
           "code": "UV_OVERLAP",
           "severity": "error",
           "asset": "SK_Duck",
-          "message": "UV0 islands overlap (327.8 % of UV area, 4310 triangles); class creature needs unique UVs",
+          "message": "UV0 islands overlap (2330.0 % of UV area, 1498 triangles); class creature needs unique UVs",
           "object": "SK_Duck_LOD0",
           "data": {
-            "overlap_ratio": 3.27829
+            "overlap_ratio": 23.29997
           }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Duck",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Duck_LOD0"
         },
         {
           "code": "TEXEL_DENSITY",
           "severity": "warning",
           "asset": "SK_Duck",
-          "message": "texel density 5756 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "message": "texel density 18743 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
           "object": "SK_Duck_LOD0",
           "data": {
-            "density_px_per_m": 5756.3,
+            "density_px_per_m": 18742.7,
             "target": 512
           }
         },

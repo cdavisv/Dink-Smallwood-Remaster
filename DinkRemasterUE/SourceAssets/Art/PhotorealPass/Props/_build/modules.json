@@ -537,11 +537,11 @@
    "MI_Sack_Grain"
   ],
   "source_blend": "Props.blend",
-  "lod0_triangles": 950,
-  "lod1_triangles": 950,
-  "lod2_triangles": 410,
+  "lod0_triangles": 1004,
+  "lod1_triangles": 502,
+  "lod2_triangles": 220,
   "dimensions_m": [
-   0.984,
+   0.97,
    0.692,
    0.265
   ],
@@ -551,7 +551,7 @@
    0.0
   ],
   "bounds_max_m": [
-   0.514,
+   0.5,
    0.345,
    0.265
   ],
@@ -586,12 +586,12 @@
    "stats": {
     "albedo_luma_srgb": {
      "p1": 0.0,
-     "mean": 53.1,
-     "p99": 103.1
+     "mean": 54.4,
+     "p99": 102.6
     },
     "roughness": {
      "p5": 0.0,
-     "mean": 0.542,
+     "mean": 0.554,
      "p95": 0.869
     },
     "metallic_mean": 0.0
@@ -1339,27 +1339,26 @@
   "class": "prop_small",
   "fbx": "SM_Skull_PR.fbx",
   "materials": [
-   "MI_Prop_Bone",
-   "MI_Prop_OakWarm"
+   "MI_Skull"
   ],
   "source_blend": "Props.blend",
-  "lod0_triangles": 1712,
-  "lod1_triangles": 856,
-  "lod2_triangles": 376,
+  "lod0_triangles": 1520,
+  "lod1_triangles": 760,
+  "lod2_triangles": 334,
   "dimensions_m": [
-   0.172,
-   0.23,
-   0.202
+   0.153,
+   0.225,
+   0.2
   ],
   "bounds_min_m": [
-   -0.086,
+   -0.077,
    -0.101,
-   0.0
+   -0.0
   ],
   "bounds_max_m": [
-   0.086,
-   0.129,
-   0.202
+   0.076,
+   0.124,
+   0.2
   ],
   "open_edges": 0,
   "collision_hulls": 0,
@@ -1371,6 +1370,41 @@
   "dresses": "human skull without the jaw, 0.17 x 0.22 x 0.2 m: cranium, brow ridge, cheek bones, eye sockets and nose as dark hollows, eight upper teeth; earth-stained, lichened",
   "fit": {
    "pivot": "base centre (resting on the palate), faces -Y; tip it on its side for variety"
+  },
+  "baked": {
+   "texture_folder": "Skull",
+   "textures": {
+    "BC": "T_Skull_PR_BC.png",
+    "N": "T_Skull_PR_N.png",
+    "ORM": "T_Skull_PR_ORM.png"
+   },
+   "px": 1024,
+   "slots": [
+    {
+     "material": "MI_Skull",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 100.4,
+     "p99": 178.8
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.574,
+     "p95": 0.93
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 92468,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Skull_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
   }
  },
  {
@@ -1378,27 +1412,26 @@
   "class": "prop",
   "fbx": "SM_Bones_Scatter_PR.fbx",
   "materials": [
-   "MI_Prop_Bone",
-   "MI_Prop_OakWarm"
+   "MI_Bones_Scatter"
   ],
   "source_blend": "Props.blend",
-  "lod0_triangles": 3312,
-  "lod1_triangles": 1656,
-  "lod2_triangles": 728,
+  "lod0_triangles": 2556,
+  "lod1_triangles": 1278,
+  "lod2_triangles": 562,
   "dimensions_m": [
-   0.785,
-   0.685,
-   0.186
+   0.745,
+   0.653,
+   0.171
   ],
   "bounds_min_m": [
-   -0.422,
-   -0.372,
-   0.0
+   -0.394,
+   -0.361,
+   -0.009
   ],
   "bounds_max_m": [
-   0.363,
-   0.313,
-   0.186
+   0.351,
+   0.293,
+   0.163
   ],
   "open_edges": 0,
   "collision_hulls": 1,
@@ -1411,7 +1444,43 @@
   "fit": {
    "pivot": "ground centre; yaw at random",
    "gore": "kept as the sprite has it: these lie about the graveyards and dungeons"
-  }
+  },
+  "baked": {
+   "texture_folder": "Bones_Scatter",
+   "textures": {
+    "BC": "T_Bones_Scatter_PR_BC.png",
+    "N": "T_Bones_Scatter_PR_N.png",
+    "ORM": "T_Bones_Scatter_PR_ORM.png"
+   },
+   "px": 2048,
+   "slots": [
+    {
+     "material": "MI_Bones_Scatter",
+     "kind": "opaque"
+    }
+   ],
+   "emissive_nits": null,
+   "params": null,
+   "stats": {
+    "albedo_luma_srgb": {
+     "p1": 0.0,
+     "mean": 93.4,
+     "p99": 176.7
+    },
+    "roughness": {
+     "p5": 0.0,
+     "mean": 0.586,
+     "p95": 0.93
+    },
+    "metallic_mean": 0.0
+   },
+   "hi_triangles": 105184,
+   "third_party": [],
+   "source_blend": "_build/bake/SM_Bones_Scatter_PR.blend",
+   "extra": null,
+   "shares_textures_of": null
+  },
+  "rehull": true
  },
  {
   "name": "SM_Candle_Iron_PR",

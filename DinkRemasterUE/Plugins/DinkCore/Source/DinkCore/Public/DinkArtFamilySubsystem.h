@@ -32,15 +32,33 @@ struct DINKCORE_API FDinkFamilyBinding
 	FString Family;
 	/** Leading number of a sequence family, INDEX_NONE for a class family. */
 	int32 Sequence = INDEX_NONE;
+	/** Optional frame of a sequence family (JSON "frame", 1-based): the row then binds that one picture and wins over class rows. 0 = every frame. */
+	int32 Frame = 0;
 	/** Class id from sprite_classes.csv, None for a sequence family. */
 	FName ClassId;
 	/** Object path of the static mesh, normalised to "/Game/...Pkg.Name". */
 	FString Mesh;
+	/** Optional further meshes of the same family (JSON "variants"); a placement picks one by a stable hash of its origin ID. */
+	TArray<FString> Variants;
 	EDinkFamilyFit Fit = EDinkFamilyFit::None;
 	/** true: the mesh front faces the sprite's view (south, the original camera); false: a stable per-origin yaw. */
 	bool bYawFromSprite = false;
+	/** Added to the chosen yaw (degrees; JSON "yaw_offset"): for modules whose sprite shows them edge-on. */
+	double YawOffset = 0.0;
+	/** 0..1 (JSON "anchor_front"): moves the mesh back (north) by this share of half its depth, so at 1 its front edge, not its centre, stands on the sprite's bottom edge. For deep modules such as the curved wall. */
+	double AnchorFront = 0.0;
 	/** true: also dress placements that carry a DinkC script (default: scripted placements keep their card). */
 	bool bScripted = false;
+	/**
+	 * JSON "span": "width" (1) or "height" (2, edge-on strips): the module is repeated along its own X axis until it fills
+	 * that dimension of the layout-scaled card, each copy scaled along X only to close the run exactly (a 4.38 m interior
+	 * wall sprite takes two 2.5 m modules at 0.876). "stretch" (3): one module scaled along X to the card's width.
+	 * 0 (default): one module at its authored size.
+	 */
+	uint8 Span = 0;
+	/** Optional JSON "span_fill": mesh of the further modules of a span; the main mesh then stands at JSON "span_end" ("left" -1, "right" +1). */
+	FString SpanFill;
+	int8 SpanEnd = 0;
 	FString Note;
 };
 
@@ -73,6 +91,7 @@ struct DINKCORE_API FDinkFamilyPlacement
 	FString Origin;
 	int32 Screen = 0;
 	int32 Sequence = 0;
+	int32 Frame = 0;
 	FName ClassId;
 	bool bScripted = false;
 	bool bHardnessOnly = false;
@@ -86,8 +105,8 @@ namespace DinkArtFamily
 	/** Parses families.json text (schema dink-art-families/1). Rows with errors are left out and reported. */
 	DINKCORE_API bool ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding>& Out, TArray<FString>& Errors);
 
-	/** The binding for a placement: a class row wins over a sequence row. */
-	DINKCORE_API const FDinkFamilyBinding* Resolve(const TArray<FDinkFamilyBinding>& Bindings, int32 Sequence, FName ClassId);
+	/** The binding for a placement: a sequence-and-frame row wins over a class row, which wins over a plain sequence row. */
+	DINKCORE_API const FDinkFamilyBinding* Resolve(const TArray<FDinkFamilyBinding>& Bindings, int32 Sequence, FName ClassId, int32 Frame = 0);
 
 	/** Precedence, in order: hardness-only proxy, dressed screen, origin-bound, no binding, scripted (unless the row allows). */
 	DINKCORE_API EDinkFamilyDecision Decide(const FDinkFamilyPlacement& Placement, const FDinkFamilyPrecedence& Precedence,
@@ -102,11 +121,29 @@ namespace DinkArtFamily
 	constexpr float MinScale = 0.05f;
 	constexpr float MaxScale = 20.f;
 
+	/** One module of a span: which mesh, where along the run (cm from its middle, along the module's X) and how long (0 = authored length). */
+	struct FSpanPiece
+	{
+		bool bFill = false;
+		double OffsetCm = 0.0;
+		double LengthCm = 0.0;
+	};
+	/** The modules that fill SpanCm with modules of ModuleCm (one unscaled piece when the binding has no span). */
+	DINKCORE_API void SpanPieces(const FDinkFamilyBinding& Binding, double SpanCm, double ModuleCm, TArray<FSpanPiece>& Out);
+	/** MeshTransform for one span piece: moved along the yawed X axis and scaled along X only. */
+	DINKCORE_API FTransform SpanTransform(const FBox& MeshBounds, const FVector& Ground, double YawDegrees, float Scale, const FSpanPiece& Piece);
+
 	/** Places a mesh whose local bounds are MeshBounds so that its horizontal centre and its bottom land on Ground. */
 	DINKCORE_API FTransform MeshTransform(const FBox& MeshBounds, const FVector& Ground, double YawDegrees, float Scale);
 
 	/** Deterministic yaw in [0, 360) from the origin ID (no random stream is touched). */
 	DINKCORE_API double StableYaw(const FString& Origin);
+
+	/** Deterministic variant index in [0, Count) from the origin ID; independent of StableYaw. */
+	DINKCORE_API int32 StableVariant(const FString& Origin, int32 Count);
+
+	/** Depth (the sprite's view axis) in cm of a mesh of MeshSizeCm turned by YawDegrees about Z and scaled. */
+	DINKCORE_API double DepthAfterYaw(const FVector& MeshSizeCm, double YawDegrees, float Scale);
 
 	DINKCORE_API const TCHAR* DecisionName(EDinkFamilyDecision Decision);
 }
@@ -169,6 +206,9 @@ private:
 	void ScreenChanged(ADinkScreenVolume* Screen);
 	void BuildIndex(UWorld& World);
 	UStaticMesh* MeshFor(const FDinkFamilyBinding& Binding);
+	/** The binding's mesh or one of its variants for this origin; falls back to the main mesh when a variant is missing. */
+	UStaticMesh* MeshFor(const FDinkFamilyBinding& Binding, const FString& Origin);
+	UStaticMesh* LoadFamilyMesh(const FString& Path, const FString& Family);
 	bool DressActor(ADinkPlaceholderActor& Actor);
 	int32 DressInstances(ADinkGreyboxScreen& Screen);
 

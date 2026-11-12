@@ -1,0 +1,126 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 439 340 335
+dink.View -90 -20
+wait 3
+shot <PROJECT>/Saved/PhotorealPass/ingame5/44_door_walk_before.png
+wait 1
+dink.WalkTo 340 282 6
+wait 5
+dink.Player
+wait 2
+shot <PROJECT>/Saved/PhotorealPass/ingame5/45_door_walk_after_screen1.png
+wait 1
+dink.Goto 307 508 232
+dink.CameraDistance 400
+FOV 0
+dink.View -90 5
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/ingame5/47_burnable_pine_before.png
+wait 1
+dink.Run s1-mh-f talk
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 2
+dink.ArmMagic item-fb
+dink.Goto 307 508 232
+wait 1
+dink.WalkTo 498 232 1.5
+wait 2
+dink.Player
+wait 16
+dink.Magic
+wait 1.0
+shot <PROJECT>/Saved/PhotorealPass/ingame5/48_burnable_pine_fireball.png
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/ingame5/49_burnable_pine_after.png
+wait 1
+dink.Goto 183 248 208
+wait 4
+dink.CalAnchor 0 0
+dink.CalCam -429 71 110 -229 -229 40 45
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/ingame5/46_foot_pine.png
+wait 1
+dink.CalCam off
+wait 1
+dink.Goto 664 340 149
+wait 4
+dink.CalAnchor 0 0
+dink.CalCam 35 35 110 -225 -225 40 45
+wait 5
+shot <PROJECT>/Saved/PhotorealPass/ingame5/46_foot_oak.png
+wait 1
+dink.CalCam off
+wait 1
+dink.Goto 579 300 240
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 0 4
+wait 7
+dink.Player
+wait 2
+fps 40_dungeon_579_torches
+shot <PROJECT>/Saved/PhotorealPass/ingame5/40_dungeon_579_torches.png
+wait 1
+dink.Goto 579 300 240
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 90 4
+wait 7
+dink.Player
+wait 2
+fps 41_dungeon_579_b
+shot <PROJECT>/Saved/PhotorealPass/ingame5/41_dungeon_579_b.png
+wait 1
+dink.Goto 579 300 240
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -6
+wait 7
+dink.Player
+wait 2
+fps 20_dungeon_579
+shot <PROJECT>/Saved/PhotorealPass/ingame5/20_dungeon_579.png
+wait 1
+quit
+

@@ -1,0 +1,7 @@
+{
+  "schema": "dink-art-texture-import-caps/1",
+  "note": "Maximum texture edge (px) the importer applies to a texture set whose source PNGs are larger (max_texture_size on import; the source files stay as delivered). Keys are matched as a substring of the texture file name. Read by Scripts/import_photoreal_art.py and Scripts/art_standard_check.py.",
+  "caps": {
+    "T_Veg_Deadwood": 1024
+  }
+}

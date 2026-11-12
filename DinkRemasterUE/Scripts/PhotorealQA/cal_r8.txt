@@ -1,0 +1,26 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 299 300 200
+wait 3
+dink.Player
+dink.EnvPost sunyaw -45
+dink.EnvPost sunpitch -40
+dink.Wind 0
+dink.GrassDensity 1
+dink.CalAnchor 0 0
+dink.CalCam -600 0 290 30 0 20 74.61
+wait 2
+wait 6
+shot <PROJECT>/Saved/PhotorealPass/lighting/cal/r8_carpetgame.png
+wait 1
+quit

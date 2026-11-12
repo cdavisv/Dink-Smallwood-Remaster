@@ -271,11 +271,11 @@ if 'strands' in steps or 'cards' in steps:
         if all(f.exists() for f in fs): rows.append(np.concatenate([np.asarray(Image.open(f).convert('RGB')) for f in fs], 1))
     if rows: Image.fromarray(np.concatenate(rows, 0)).save(REV / ('%s_hair_compare.png' % tag)); log('compare', REV / ('%s_hair_compare.png' % tag))
 if 'save' in steps:
-    bpy.ops.wm.save_as_mainfile(filepath=str(OUT / N / 'Work' / (n_ + '_groom.blend')), copy=True)
+    save_blend(filepath=str(OUT / N / 'Work' / (n_ + '_groom.blend')), copy=True)
     for o in [strands, scalp, brows] + extra: bpy.data.objects.remove(o, do_unlink=True)
     for nm in ('PR_GroundPlane', 'PR_Cam'):
         if nm in D: bpy.data.objects.remove(D[nm], do_unlink=True)
     final = join([hair] + ([browlash] if browlash is not None else []), 'Hair'); hl.apply_hn(final)
     log('Hair object tris', tri_count(final))
-    bpy.ops.wm.save_as_mainfile(filepath=str(head_blend))
+    save_blend(filepath=str(head_blend))
 log('HAIR_DONE', N)

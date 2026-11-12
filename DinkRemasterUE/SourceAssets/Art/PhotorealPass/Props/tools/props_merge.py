@@ -33,6 +33,8 @@ def ensure(tgt, cls, bmin, bmax, meta, hull=True):
     ucx = [o for o in coll.objects if o.name.startswith('UCX')]
     if hull and (not ucx or (meta or {}).get('rehull')):
         for o in ucx:
+            me = o.data; bpy.data.objects.remove(o); bpy.data.meshes.remove(me)
+        for o in [o for o in bpy.data.objects if o.name.startswith('UCX_%s_LOD0_' % tgt) and not o.users_collection]:
             bpy.data.objects.remove(o)
         (x0, y0, z0), (x1, y1, z1) = bmin, bmax
         V = [(x0, y0, z0), (x1, y0, z0), (x1, y1, z0), (x0, y1, z0), (x0, y0, z1), (x1, y0, z1), (x1, y1, z1), (x0, y1, z1)]

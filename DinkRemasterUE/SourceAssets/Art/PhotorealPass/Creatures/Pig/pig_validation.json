@@ -2,7 +2,7 @@
   "tool": "validate",
   "schema_version": 1,
   "blender": "5.2.2 LTS",
-  "file": "<HOME>/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Pig/SK_Pig.blend",
+  "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Pig/SK_Pig.blend",
   "strict": false,
   "passed": false,
   "summary": {
@@ -18,35 +18,35 @@
       "class": "creature_quadruped",
       "collection": "SK_Pig",
       "tris_per_lod": {
-        "LOD0": 16228,
-        "LOD1": 8114,
-        "LOD2": 4056
+        "LOD0": 17626,
+        "LOD1": 8812,
+        "LOD2": 4406
       },
       "bounds": {
         "blender_min_cm": [
-          -78.506,
-          -38.263,
+          -78.395,
+          -39.65,
           -0.0
         ],
         "blender_max_cm": [
-          100.877,
-          38.427,
-          99.986
+          101.071,
+          39.606,
+          99.214
         ],
         "size_cm": [
-          179.384,
-          76.69,
-          99.986
+          179.467,
+          79.256,
+          99.214
         ],
         "unreal_min_cm": [
-          -78.506,
-          -38.427,
+          -78.395,
+          -39.606,
           -0.0
         ],
         "unreal_max_cm": [
-          100.877,
-          38.263,
-          99.986
+          101.071,
+          39.65,
+          99.214
         ]
       },
       "errors": 1,
@@ -77,10 +77,10 @@
           "code": "TRIS_OVER_TARGET",
           "severity": "warning",
           "asset": "SK_Pig",
-          "message": "LOD0 has 16228 triangles, target for creature_quadruped is 15000 (hard max 30000)",
+          "message": "LOD0 has 17626 triangles, target for creature_quadruped is 15000 (hard max 30000)",
           "object": "SK_Pig_LOD0",
           "data": {
-            "tris": 16228,
+            "tris": 17626,
             "target": 15000
           }
         },
@@ -88,10 +88,10 @@
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Pig",
-          "message": "6056 non-manifold edges (6056 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "message": "8856 non-manifold edges (8856 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
           "object": "SK_Pig_LOD0",
           "data": {
-            "boundary": 6056,
+            "boundary": 8856,
             "multi_face": 0,
             "wire": 0
           }
@@ -100,10 +100,10 @@
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Pig",
-          "message": "6056 non-manifold edges (6056 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "message": "8856 non-manifold edges (8856 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
           "object": "SK_Pig_LOD1",
           "data": {
-            "boundary": 6056,
+            "boundary": 8856,
             "multi_face": 0,
             "wire": 0
           }
@@ -112,10 +112,10 @@
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Pig",
-          "message": "6024 non-manifold edges (6024 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "message": "8188 non-manifold edges (8188 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
           "object": "SK_Pig_LOD2",
           "data": {
-            "boundary": 6024,
+            "boundary": 8188,
             "multi_face": 0,
             "wire": 0
           }
@@ -124,10 +124,10 @@
           "code": "UV_OVERLAP",
           "severity": "error",
           "asset": "SK_Pig",
-          "message": "UV0 islands overlap (4748.6 % of UV area, 776 triangles); class creature_quadruped needs unique UVs",
+          "message": "UV0 islands overlap (3277.8 % of UV area, 1047 triangles); class creature_quadruped needs unique UVs",
           "object": "SK_Pig_LOD0",
           "data": {
-            "overlap_ratio": 47.48647
+            "overlap_ratio": 32.77801
           }
         },
         {
@@ -141,10 +141,10 @@
           "code": "TEXEL_DENSITY",
           "severity": "warning",
           "asset": "SK_Pig",
-          "message": "texel density 11845 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "message": "texel density 12699 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
           "object": "SK_Pig_LOD0",
           "data": {
-            "density_px_per_m": 11845.1,
+            "density_px_per_m": 12699.4,
             "target": 512
           }
         },

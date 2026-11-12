@@ -1,0 +1,194 @@
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 40
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -2
+wait 7
+dink.Player
+wait 2
+fps a_03_yard_439_cottage
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_03_yard_439_cottage.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 25 -8
+wait 7
+dink.Player
+wait 2
+fps a_04_yard_439_fields
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_04_yard_439_fields.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 100 -10
+wait 7
+dink.Player
+wait 2
+fps a_05_yard_439_south
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_05_yard_439_south.png
+wait 1
+dink.Goto 2 300 220
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -8
+wait 7
+dink.Player
+wait 2
+fps a_23_interior_2
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_23_interior_2.png
+wait 1
+dink.Goto 34 300 220
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 180 -8
+wait 7
+dink.Player
+wait 2
+fps a_24_interior_34
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_24_interior_34.png
+wait 1
+dink.Goto 439 120 330
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -60 -4
+wait 7
+dink.Player
+wait 2
+fps a_30_yard_439_cottage_west
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_30_yard_439_cottage_west.png
+wait 1
+dink.Goto 439 430 300
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -6
+wait 7
+dink.Player
+wait 2
+fps a_31_yard_439_cottage_door
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_31_yard_439_cottage_door.png
+wait 1
+dink.Goto 439 520 360
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -125 -4
+wait 7
+dink.Player
+wait 2
+fps a_32_yard_439_cottage_east
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_32_yard_439_cottage_east.png
+wait 1
+dink.Goto 506 300 360
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -150 -12
+wait 7
+dink.Player
+wait 2
+fps a_33_town_506_game
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_33_town_506_game.png
+wait 1
+dink.Goto 506 230 400
+dink.CameraDistance 250
+FOV 0
+wait 1
+dink.View -120 2
+wait 7
+dink.Player
+wait 2
+fps a_34_town_506_street
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_34_town_506_street.png
+wait 1
+dink.Goto 498 450 395
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -12
+wait 7
+dink.Player
+wait 2
+fps a_35_town_498_game
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_35_town_498_game.png
+wait 1
+dink.Goto 498 330 380
+dink.CameraDistance 250
+FOV 0
+wait 1
+dink.View -60 2
+wait 7
+dink.Player
+wait 2
+fps a_36_town_498_street
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_36_town_498_street.png
+wait 1
+dink.Goto 418 350 330
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -12
+wait 7
+dink.Player
+wait 2
+fps a_37_town_418_game
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_37_town_418_game.png
+wait 1
+dink.Goto 418 250 300
+dink.CameraDistance 250
+FOV 0
+wait 1
+dink.View -150 2
+wait 7
+dink.Player
+wait 2
+fps a_38_town_418_street
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_38_town_418_street.png
+wait 1
+dink.Goto 34 300 260
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View 180 12
+wait 7
+dink.Player
+wait 2
+fps a_39_interior_34_lantern
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_39_interior_34_lantern.png
+wait 1
+dink.Goto 439 300 385
+dink.CameraDistance 400
+dink.View -90 -2
+wait 4
+dink.Vision 439 2
+wait 3
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_42_yard_439_burnt.png
+wait 1
+dink.Goto 439 120 330
+dink.View -60 -4
+wait 1
+dink.Vision 439 2
+wait 3
+shot <PROJECT>/Saved/PhotorealPass/ingame6/work/a_43_yard_439_burnt_west.png
+wait 1
+quit

@@ -1,0 +1,58 @@
+r.SetRes 2560x1440w
+wait 22
+dink.Goto 471 215 125
+dink.View 10 5
+wait 15
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Goto 439 300 385
+dink.CameraDistance 200
+FOV 30
+wait 1
+dink.View 0 -4
+wait 7
+dink.Player
+wait 2
+fps 13_hero_front_2m
+shot <PROJECT>/Saved/PhotorealPass/ingame2/closeups/13_hero_front_2m.png
+wait 1
+dink.Goto 183 300 330
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -90 -3
+wait 7
+dink.Player
+wait 2
+fps 15_pines_183
+shot <PROJECT>/Saved/PhotorealPass/ingame2/closeups/15_pines_183.png
+wait 1
+dink.Goto 604 300 340
+dink.CameraDistance 180
+FOV 30
+wait 1
+dink.View -110 -2
+wait 7
+dink.Player
+wait 2
+fps 18_meadow_low_604
+shot <PROJECT>/Saved/PhotorealPass/ingame2/closeups/18_meadow_low_604.png
+wait 1
+dink.Goto 664 300 280
+dink.CameraDistance 400
+FOV 0
+wait 1
+dink.View -80 -3
+wait 7
+dink.Player
+wait 2
+fps 25_oaks_664
+shot <PROJECT>/Saved/PhotorealPass/ingame2/closeups/25_oaks_664.png
+wait 1
+quit

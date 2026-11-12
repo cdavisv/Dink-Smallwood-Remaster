@@ -27,8 +27,12 @@
 #include "Engine/Level.h"
 #include "Engine/LevelStreaming.h"
 #include "Engine/LevelStreamingAlwaysLoaded.h"
+#include "Engine/PostProcessVolume.h"
+#include "Components/VolumetricCloudComponent.h"
+#include "Materials/MaterialInterface.h"
 #include "Engine/SkyLight.h"
 #include "Engine/StaticMesh.h"
+#include "Engine/StaticMeshActor.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "UObject/StrongObjectPtr.h"
@@ -44,6 +48,44 @@
 #include "Misc/Paths.h"
 
 DEFINE_LOG_CATEGORY(LogDinkImport);
+
+// Outdoor lighting constants of the photoreal pass; bump the env actor hash suffix (sun/N ...) when changing.
+namespace DinkEnv
+{
+	const double SunPitch = -42.0;          // 42 degrees above the horizon
+	const double SunYaw = -55.0;            // light travels north-east: an afternoon sun in the south-west
+	const float SunIntensity = 10.f;        // scene-referred; see the note at the env actors
+	const float SunKelvin = 5700.f;
+	const float SunSourceAngle = 0.75f;     // degrees; real sun 0.53, slightly wide for softer distant penumbra
+	const float ContactShadowLength = 0.035f;
+	const float CloudShadowStrength = 0.55f;
+	const float SunVolumetricScattering = 1.f;
+	const float SkyLightIntensity = 1.0f;        // physical ratio to the sun; 1.5 over-filled shade (foliage calibration against Cycles, 12 Nov 2026)
+	const FLinearColor SkyLowerHemisphere(0.11f, 0.105f, 0.075f);
+	const double PlanetTopZ = -10000.0;     // cm
+	const float MieScatteringScale = 0.0045f;
+	const float AerialPerspectiveScale = 2.5f;
+	const float CloudBottomKm = 2.2f;
+	const float CloudHeightKm = 3.5f;
+	const float FogDensity = 0.004f;
+	const FLinearColor FogInscatter(0.42f, 0.52f, 0.68f);     // horizon-sky luminance in scene units
+	const FLinearColor FogSunInscatter(0.70f, 0.60f, 0.45f);  // forward glow towards the sun
+	const float FogHeightFalloff = 0.12f;
+	const float VolumetricFogDistance = 9000.f;
+	const float ExposureMinEV = -6.f;            // -2.5 clamped the house interior to black
+	const float ExposureMaxEV = 2.4f;
+	const float ExposureBias = 0.f;             // was 0.4: with the darker, calibrated foliage the metering lifted meadow scenes until the sky washed out
+	const float BloomIntensity = 0.28f;
+	const float VignetteIntensity = 0.22f;
+	const float FilmToe = 0.55f;
+	const float Saturation = 0.96f;
+	const float Contrast = 1.f;
+	const float LocalExposureShadow = 0.8f;      // local exposure: lift shade (backlit figures, banks)
+	const float LocalExposureHighlight = 0.9f;
+	const float LumenFinalGatherQuality = 2.f;
+	const float LumenSceneDetail = 2.f;
+	const float LumenReflectionQuality = 1.5f;
+}
 
 namespace
 {
@@ -910,11 +952,16 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 		};
 		Desired.Add(MoveTemp(Start));
 
+		// --- Photographic outdoor lighting (photoreal pass, 11 Nov 2026). Values were tuned from
+		// rendered captures (Saved/PhotorealPass/lighting). Unit convention: the sun stays in the
+		// project's scene-referred scale (10 = a clear-sky sun of about 100 klux) because the authored
+		// interior lights are 40-170 lm against that scale; sky, clouds and fog all derive from the
+		// sun through the atmosphere, so every outdoor ratio is physical.
 		FDesiredActor Sun;
 		Sun.Key = TEXT("Env:Sun");
-		Sun.Hash = HashStrings({ActorGeneratorVersion, TEXT("sun/1")});
+		Sun.Hash = HashStrings({ActorGeneratorVersion, TEXT("sun/10")});
 		Sun.Folder = TEXT("Env");
-		Sun.Transform = FTransform(FRotator(-50.0, 35.0, 0.0), FVector(0, 0, 1000));
+		Sun.Transform = FTransform(FRotator(DinkEnv::SunPitch, DinkEnv::SunYaw, 0.0), FVector(0, 0, 1000));
 		Sun.Spawn = [](UWorld& World, ULevel& Level, const FTransform& T) -> AActor*
 		{
 			FActorSpawnParameters SP;
@@ -924,14 +971,31 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 			UDirectionalLightComponent* L = CastChecked<UDirectionalLightComponent>(A->GetLightComponent());
 			L->SetMobility(EComponentMobility::Movable);
 			L->SetAtmosphereSunLight(true);
-			L->SetIntensity(8.f);
+			L->SetIntensity(DinkEnv::SunIntensity);
+			L->SetUseTemperature(true);
+			L->SetTemperature(DinkEnv::SunKelvin);
+			L->SetLightSourceAngle(DinkEnv::SunSourceAngle);
+			L->SetLightSourceSoftAngle(0.f);
+			L->ContactShadowLength = DinkEnv::ContactShadowLength;
+			L->ContactShadowLengthInWS = false;
+			L->ContactShadowCastingIntensity = 1.f;
+			L->ContactShadowNonCastingIntensity = 0.f;
+			L->bCastCloudShadows = true;
+			L->CloudShadowStrength = DinkEnv::CloudShadowStrength;
+			L->CloudShadowExtent = 60.f;
+			L->bCastShadowsOnClouds = true;
+			L->bCastShadowsOnAtmosphere = true;
+			L->bPerPixelAtmosphereTransmittance = true;
+			L->VolumetricScatteringIntensity = DinkEnv::SunVolumetricScattering;
+			L->SetIndirectLightingIntensity(1.f);
+			L->MarkRenderStateDirty();
 			return A;
 		};
 		Desired.Add(MoveTemp(Sun));
 
 		FDesiredActor Sky;
 		Sky.Key = TEXT("Env:SkyLight");
-		Sky.Hash = HashStrings({ActorGeneratorVersion, TEXT("sky/1")});
+		Sky.Hash = HashStrings({ActorGeneratorVersion, TEXT("sky/11")});
 		Sky.Folder = TEXT("Env");
 		Sky.Transform = FTransform(FVector(0, 0, 1000));
 		Sky.Spawn = [](UWorld& World, ULevel& Level, const FTransform& T) -> AActor*
@@ -940,17 +1004,27 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 			SP.OverrideLevel = &Level;
 			SP.bNoFail = true;
 			ASkyLight* A = World.SpawnActor<ASkyLight>(ASkyLight::StaticClass(), T, SP);
-			A->GetLightComponent()->SetMobility(EComponentMobility::Movable);
-			A->GetLightComponent()->bRealTimeCapture = true;
+			USkyLightComponent* C = A->GetLightComponent();
+			C->SetMobility(EComponentMobility::Movable);
+			C->bRealTimeCapture = true;
+			C->SetIntensity(DinkEnv::SkyLightIntensity);
+			C->bLowerHemisphereIsBlack = false;
+			C->SetLowerHemisphereColor(DinkEnv::SkyLowerHemisphere);
+			C->bCloudAmbientOcclusion = true;
+			C->CloudAmbientOcclusionStrength = 0.6f;
+			C->VolumetricScatteringIntensity = 1.f;
 			return A;
 		};
 		Desired.Add(MoveTemp(Sky));
 
 		FDesiredActor Atmo;
 		Atmo.Key = TEXT("Env:SkyAtmosphere");
-		Atmo.Hash = HashStrings({ActorGeneratorVersion, TEXT("atmo/1")});
+		Atmo.Hash = HashStrings({ActorGeneratorVersion, TEXT("atmo/11")});
 		Atmo.Folder = TEXT("Env");
-		Atmo.Transform = FTransform::Identity;
+		// The planet surface sits 100 m under the grid. With it at z = 0 every surface below ground level
+		// (the authored pond banks) was "inside the planet": the sun's per-pixel atmosphere transmittance
+		// is zero there, so the banks got no direct light and a grey aerial-perspective veil.
+		Atmo.Transform = FTransform(FVector(0, 0, DinkEnv::PlanetTopZ));
 		Atmo.Spawn = [](UWorld& World, ULevel& Level, const FTransform& T) -> AActor*
 		{
 			FActorSpawnParameters SP;
@@ -960,14 +1034,53 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 			USkyAtmosphereComponent* C = NewObject<USkyAtmosphereComponent>(A, TEXT("SkyAtmosphere"), RF_Transactional);
 			A->SetRootComponent(C);
 			A->AddInstanceComponent(C);
+			C->TransformMode = ESkyAtmosphereTransformMode::PlanetTopAtComponentTransform;
+			C->MieScatteringScale = DinkEnv::MieScatteringScale;
+			C->MieAnisotropy = 0.8f;
+			C->MieExponentialDistribution = 1.2f;
+			C->AerialPespectiveViewDistanceScale = DinkEnv::AerialPerspectiveScale;
+			C->HeightFogContribution = 1.f;
+			C->MultiScatteringFactor = 1.f;
 			C->RegisterComponent();
 			return A;
 		};
 		Desired.Add(MoveTemp(Atmo));
 
+		FDesiredActor Clouds;
+		Clouds.Key = TEXT("Env:VolumetricCloud");
+		Clouds.Hash = HashStrings({ActorGeneratorVersion, TEXT("cloud/10")});
+		Clouds.Folder = TEXT("Env");
+		Clouds.Transform = FTransform::Identity;
+		Clouds.Spawn = [](UWorld& World, ULevel& Level, const FTransform& T) -> AActor*
+		{
+			FActorSpawnParameters SP;
+			SP.OverrideLevel = &Level;
+			SP.bNoFail = true;
+			AVolumetricCloud* A = World.SpawnActor<AVolumetricCloud>(AVolumetricCloud::StaticClass(), T, SP);
+			UVolumetricCloudComponent* C = A->FindComponentByClass<UVolumetricCloudComponent>();
+			UMaterialInterface* Material = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Dink/Materials/Environment/MI_Env_Clouds.MI_Env_Clouds"));
+			if (!Material) Material = LoadObject<UMaterialInterface>(nullptr, TEXT("/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud_Inst.m_SimpleVolumetricCloud_Inst"));
+			if (C)
+			{
+				if (Material) C->SetMaterial(Material);
+				C->SetLayerBottomAltitude(DinkEnv::CloudBottomKm);
+				C->SetLayerHeight(DinkEnv::CloudHeightKm);
+				C->SetTracingStartMaxDistance(350.f);
+				C->SetTracingMaxDistance(50.f);
+				C->SetViewSampleCountScale(1.f);
+				C->SetReflectionViewSampleCountScale(0.5f);
+				C->SetShadowViewSampleCountScale(1.f);
+				C->SetShadowTracingDistance(15.f);
+				C->SetbUsePerSampleAtmosphericLightTransmittance(true);
+				C->SetSkyLightCloudBottomOcclusion(0.5f);
+			}
+			return A;
+		};
+		Desired.Add(MoveTemp(Clouds));
+
 		FDesiredActor Fog;
 		Fog.Key = TEXT("Env:HeightFog");
-		Fog.Hash = HashStrings({ActorGeneratorVersion, TEXT("fog/1")});
+		Fog.Hash = HashStrings({ActorGeneratorVersion, TEXT("fog/12")});
 		Fog.Folder = TEXT("Env");
 		Fog.Transform = FTransform(FVector(0, 0, 0));
 		Fog.Spawn = [](UWorld& World, ULevel& Level, const FTransform& T) -> AActor*
@@ -976,13 +1089,151 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 			SP.OverrideLevel = &Level;
 			SP.bNoFail = true;
 			AExponentialHeightFog* A = World.SpawnActor<AExponentialHeightFog>(AExponentialHeightFog::StaticClass(), T, SP);
-			// REMASTER_PLAN / bible review: greybox sight lines of about 500 m under height fog
-			A->GetComponent()->SetFogDensity(0.02f);
-			A->GetComponent()->SetFogHeightFalloff(0.2f);
-			A->GetComponent()->SetStartDistance(15000.f);
+			UExponentialHeightFogComponent* C = A->GetComponent();
+			// Gentle aerial perspective: colour comes from the sky atmosphere (inscattering left black),
+			// (explicit horizon colours: the atmosphere-driven fog colour came out black here) a thin ground layer plus a thinner high layer; sight lines stay several hundred metres.
+			C->SetFogDensity(DinkEnv::FogDensity);
+			C->SetFogHeightFalloff(DinkEnv::FogHeightFalloff);
+			// Single layer; a second, higher layer added nothing visible in the captures.
+			C->SetSecondFogDensity(0.f);
+			C->SetSecondFogHeightFalloff(0.03f);
+			C->SetSecondFogHeightOffset(0.f);
+			C->SetStartDistance(0.f);
+			C->SetFogMaxOpacity(0.92f);
+			C->SetFogInscatteringColor(DinkEnv::FogInscatter);
+			C->SetDirectionalInscatteringColor(DinkEnv::FogSunInscatter);
+			C->SetDirectionalInscatteringExponent(6.f);
+			C->SetDirectionalInscatteringStartDistance(2000.f);
+			C->SetVolumetricFog(true);
+			C->SetVolumetricFogScatteringDistribution(0.65f);
+			C->SetVolumetricFogExtinctionScale(1.f);
+			C->SetVolumetricFogDistance(DinkEnv::VolumetricFogDistance);
+			C->SetVolumetricFogAlbedo(FColor(235, 240, 250));
 			return A;
 		};
 		Desired.Add(MoveTemp(Fog));
+
+		FDesiredActor Post;
+		Post.Key = TEXT("Env:PostProcess");
+		Post.Hash = HashStrings({ActorGeneratorVersion, TEXT("post/11")});
+		Post.Folder = TEXT("Env");
+		Post.Transform = FTransform::Identity;
+		Post.Spawn = [](UWorld& World, ULevel& Level, const FTransform& T) -> AActor*
+		{
+			FActorSpawnParameters SP;
+			SP.OverrideLevel = &Level;
+			SP.bNoFail = true;
+			APostProcessVolume* A = World.SpawnActor<APostProcessVolume>(APostProcessVolume::StaticClass(), T, SP);
+			A->bUnbound = true;
+			A->Priority = 0.f;
+			A->BlendWeight = 1.f;
+			FPostProcessSettings& S = A->Settings;
+			// Camera: histogram metering clamped to a photographic range. The upper bound is the
+			// "sunny day" exposure, so a bright sky cannot drag the ground dark; the lower bound still
+			// lets the authored interiors (their own volume adds a -2 bias) open up.
+			S.bOverride_AutoExposureMethod = true;
+			S.AutoExposureMethod = AEM_Histogram;
+			S.bOverride_AutoExposureMinBrightness = true;
+			S.AutoExposureMinBrightness = DinkEnv::ExposureMinEV;
+			S.bOverride_AutoExposureMaxBrightness = true;
+			S.AutoExposureMaxBrightness = DinkEnv::ExposureMaxEV;
+			S.bOverride_AutoExposureBias = true;
+			S.AutoExposureBias = DinkEnv::ExposureBias;
+			S.bOverride_LocalExposureShadowContrastScale = true;
+			S.LocalExposureShadowContrastScale = DinkEnv::LocalExposureShadow;
+			S.bOverride_LocalExposureHighlightContrastScale = true;
+			S.LocalExposureHighlightContrastScale = DinkEnv::LocalExposureHighlight;
+			S.bOverride_AutoExposureSpeedUp = true;
+			S.AutoExposureSpeedUp = 2.5f;
+			S.bOverride_AutoExposureSpeedDown = true;
+			S.AutoExposureSpeedDown = 1.2f;
+			S.bOverride_AutoExposureLowPercent = true;
+			S.AutoExposureLowPercent = 10.f;
+			S.bOverride_AutoExposureHighPercent = true;
+			S.AutoExposureHighPercent = 90.f;
+			// Lens: slight bloom, subtle vignette, no grain, no chromatic aberration.
+			S.bOverride_BloomIntensity = true;
+			S.BloomIntensity = DinkEnv::BloomIntensity;
+			S.bOverride_BloomThreshold = true;
+			S.BloomThreshold = -1.f;
+			S.bOverride_VignetteIntensity = true;
+			S.VignetteIntensity = DinkEnv::VignetteIntensity;
+			S.bOverride_FilmGrainIntensity = true;
+			S.FilmGrainIntensity = 0.f;
+			S.bOverride_SceneFringeIntensity = true;
+			S.SceneFringeIntensity = 0.f;
+			S.bOverride_LensFlareIntensity = true;
+			S.LensFlareIntensity = 0.f;
+			// Film: the engine's ACES-fitted filmic curve with a slightly firmer toe; neutral grade.
+			S.bOverride_FilmSlope = true;
+			S.FilmSlope = 0.88f;
+			S.bOverride_FilmToe = true;
+			S.FilmToe = DinkEnv::FilmToe;
+			S.bOverride_FilmShoulder = true;
+			S.FilmShoulder = 0.26f;
+			S.bOverride_FilmBlackClip = true;
+			S.FilmBlackClip = 0.f;
+			S.bOverride_FilmWhiteClip = true;
+			S.FilmWhiteClip = 0.04f;
+			S.bOverride_ColorSaturation = true;
+			S.ColorSaturation = FVector4(DinkEnv::Saturation, DinkEnv::Saturation, DinkEnv::Saturation, 1.0);
+			S.bOverride_ColorContrast = true;
+			S.ColorContrast = FVector4(DinkEnv::Contrast, DinkEnv::Contrast, DinkEnv::Contrast, 1.0);
+			S.bOverride_WhiteTemp = true;
+			S.WhiteTemp = 6500.f;
+			// Global illumination and reflections: Lumen (software tracing), raised gather quality.
+			S.bOverride_DynamicGlobalIlluminationMethod = true;
+			S.DynamicGlobalIlluminationMethod = EDynamicGlobalIlluminationMethod::Lumen;
+			S.bOverride_ReflectionMethod = true;
+			S.ReflectionMethod = EReflectionMethod::Lumen;
+			S.bOverride_LumenFinalGatherQuality = true;
+			S.LumenFinalGatherQuality = DinkEnv::LumenFinalGatherQuality;
+			S.bOverride_LumenSceneDetail = true;
+			S.LumenSceneDetail = DinkEnv::LumenSceneDetail;
+			S.bOverride_LumenSceneLightingQuality = true;
+			S.LumenSceneLightingQuality = 1.5f;
+			S.bOverride_LumenSceneViewDistance = true;
+			S.LumenSceneViewDistance = 20000.f;
+			S.bOverride_LumenReflectionQuality = true;
+			S.LumenReflectionQuality = DinkEnv::LumenReflectionQuality;
+			S.bOverride_LumenSkylightLeaking = true;
+			S.LumenSkylightLeaking = 0.f;
+			S.bOverride_AmbientOcclusionIntensity = true;
+			S.AmbientOcclusionIntensity = 0.f; // SSAO off: Lumen's short-range AO does this job
+			return A;
+		};
+		Desired.Add(MoveTemp(Post));
+
+		if (FPackageName::DoesPackageExist(TEXT("/Game/Dink/_Generated/Shared/SM_DinkBackdrop")))
+		{
+			FDesiredActor Backdrop;
+			Backdrop.Key = TEXT("Env:Backdrop");
+			Backdrop.Hash = HashStrings({ActorGeneratorVersion, TEXT("backdrop/3")});
+			Backdrop.Folder = TEXT("Env");
+			// 1.5 m below the grid: under every authored pond bed, so it also closes the void beneath them.
+			Backdrop.Transform = FTransform(FVector(0, 0, -150));
+			Backdrop.Spawn = [](UWorld& World, ULevel& Level, const FTransform& T) -> AActor*
+			{
+				FActorSpawnParameters SP;
+				SP.OverrideLevel = &Level;
+				SP.bNoFail = true;
+				AStaticMeshActor* A = World.SpawnActor<AStaticMeshActor>(AStaticMeshActor::StaticClass(), T, SP);
+				A->Tags.Add(TEXT("DinkEnvBackdrop"));
+				UStaticMeshComponent* C = A->GetStaticMeshComponent();
+				C->SetMobility(EComponentMobility::Movable);
+				C->SetStaticMesh(LoadObject<UStaticMesh>(nullptr, TEXT("/Game/Dink/_Generated/Shared/SM_DinkBackdrop.SM_DinkBackdrop")));
+				C->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+				C->SetCollisionResponseToAllChannels(ECR_Ignore);
+				C->SetGenerateOverlapEvents(false);
+				C->SetCanEverAffectNavigation(false);
+				C->SetCastShadow(false);
+				C->bAffectDistanceFieldLighting = false;
+				C->bAffectDynamicIndirectLighting = false;
+				C->bReceivesDecals = false;
+				return A;
+			};
+			Desired.Add(MoveTemp(Backdrop));
+		}
 
 		Coverage.Add({FString::Printf(TEXT("START")), TEXT("start"), FString::Printf(TEXT("SCR_%03d"), Bundle.StartScreen), StartScreen ? StartScreen->Region : FString(),
 			bStartIn ? TEXT("player start") : TEXT("player start (fallback: start screen not imported)"), TEXT("Env:PlayerStart"), Bundle.StartNote});

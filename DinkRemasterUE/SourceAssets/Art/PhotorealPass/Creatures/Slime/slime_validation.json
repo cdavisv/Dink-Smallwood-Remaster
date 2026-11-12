@@ -2,14 +2,14 @@
   "tool": "validate",
   "schema_version": 1,
   "blender": "5.2.2 LTS",
-  "file": "<HOME>/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Slime/SK_Slime.blend",
+  "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Slime/SK_Slime.blend",
   "strict": false,
-  "passed": true,
+  "passed": false,
   "summary": {
     "assets": 1,
-    "assets_passed": 1,
-    "errors": 0,
-    "warnings": 5
+    "assets_passed": 0,
+    "errors": 1,
+    "warnings": 15
   },
   "scene_findings": [],
   "assets": [
@@ -18,55 +18,101 @@
       "class": "creature",
       "collection": "SK_Slime",
       "tris_per_lod": {
-        "LOD0": 10000,
-        "LOD1": 5000,
-        "LOD2": 2500
+        "LOD0": 13550,
+        "LOD1": 6775,
+        "LOD2": 3387
       },
       "bounds": {
         "blender_min_cm": [
-          -42.772,
-          -30.936,
+          -48.761,
+          -38.189,
           -0.0
         ],
         "blender_max_cm": [
-          49.068,
-          27.109,
-          27.429
+          50.595,
+          25.993,
+          31.293
         ],
         "size_cm": [
-          91.84,
-          58.045,
-          27.429
+          99.356,
+          64.182,
+          31.293
         ],
         "unreal_min_cm": [
-          -42.772,
-          -27.109,
+          -48.761,
+          -25.993,
           -0.0
         ],
         "unreal_max_cm": [
-          49.068,
-          30.936,
-          27.429
+          50.595,
+          38.189,
+          31.293
         ]
       },
-      "errors": 0,
-      "warnings": 5,
+      "errors": 1,
+      "warnings": 15,
       "findings": [
         {
-          "code": "NAME_MESHDATA",
-          "severity": "info",
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
           "asset": "SK_Slime",
-          "message": "mesh data 'Icosphere.001' differs from object name 'SK_Slime_LOD0'",
+          "message": "292 non-manifold edges (292 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Slime_LOD0",
+          "data": {
+            "boundary": 292,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "283 non-manifold edges (283 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Slime_LOD1",
+          "data": {
+            "boundary": 283,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "253 non-manifold edges (253 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Slime_LOD2",
+          "data": {
+            "boundary": 253,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SK_Slime",
+          "message": "UV0 islands overlap (24.5 % of UV area, 11226 triangles); class creature needs unique UVs",
+          "object": "SK_Slime_LOD0",
+          "data": {
+            "overlap_ratio": 0.24455
+          }
+        },
+        {
+          "code": "UV_RANGE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "457 triangles have UVs outside 0-1",
           "object": "SK_Slime_LOD0"
         },
         {
           "code": "TEXEL_DENSITY",
           "severity": "warning",
           "asset": "SK_Slime",
-          "message": "texel density 1405 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "message": "texel density 4119 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
           "object": "SK_Slime_LOD0",
           "data": {
-            "density_px_per_m": 1405.5,
+            "density_px_per_m": 4118.7,
             "target": 512
           }
         },
@@ -93,9 +139,45 @@
           "severity": "warning",
           "asset": "SK_Slime",
           "message": "image 'T_Slime_Blue_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Core_Blue_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Core_Blue_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Core_Blue_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Wet_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Wet_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Wet_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
         }
       ],
-      "passed": true
+      "passed": false
     }
   ]
 }
