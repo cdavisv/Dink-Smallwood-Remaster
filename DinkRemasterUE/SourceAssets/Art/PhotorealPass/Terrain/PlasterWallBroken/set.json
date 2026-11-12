@@ -1,0 +1,68 @@
+{
+ "name": "PlasterWallBroken",
+ "files": {
+  "BC": "PlasterWallBroken/T_Terrain_PlasterWallBroken_BC.png",
+  "N": "PlasterWallBroken/T_Terrain_PlasterWallBroken_N.png",
+  "ORM": "PlasterWallBroken/T_Terrain_PlasterWallBroken_ORM.png",
+  "H": "PlasterWallBroken/T_Terrain_PlasterWallBroken_H.png",
+  "Macro": "PlasterWallBroken/T_Terrain_PlasterWallBroken_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.5,
+ "texel_mm_per_px": 1.221,
+ "height_range_m": 0.0256,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.381",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "interim",
+ "method": "PlasterWall with the same trowel and crack layout, plus flaking and patched plaster from Poly Haven rough_plaster_broken and areas where the plaster has fallen off the rubble stone behind (stone_brick_wall_001), with a broken 12 mm edge and stained margin. A dressing variant to blend into PlasterWall by vertex colour or mask on a few modules, not for whole rooms",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "painted_plaster_wall",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1.25
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "plastered_wall_04",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 0.78
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "rough_plaster_broken",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1.67
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "stone_brick_wall_001",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 158.3,
+  "max": 240.0
+ },
+ "mean_srgb": [
+  166,
+  158,
+  140
+ ],
+ "roughness_mean": 0.896,
+ "known_weaknesses": "third pass: the fallen areas now read as lime-stained backing and flaking rather than dark pits, but they repeat as landmarks at 4x4 and the backing is stone, not lath: a dressing variant for single modules",
+ "wall_grime_mask": "non-tiling in V (0 floor, 1 ceiling), tiles in U; R damp at the base (darken x0.7, tint green-brown, roughness -0.15, or blend to the Damp/Broken variant), G soot under the ceiling (multiply toward 0.25 grey), B drip streaks"
+}

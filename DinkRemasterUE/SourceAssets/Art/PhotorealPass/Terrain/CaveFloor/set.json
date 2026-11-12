@@ -1,0 +1,55 @@
+{
+ "name": "CaveFloor",
+ "files": {
+  "BC": "CaveFloor/T_Terrain_CaveFloor_BC.png",
+  "N": "CaveFloor/T_Terrain_CaveFloor_N.png",
+  "ORM": "CaveFloor/T_Terrain_CaveFloor_ORM.png",
+  "H": "CaveFloor/T_Terrain_CaveFloor_H.png",
+  "Macro": "CaveFloor/T_Terrain_CaveFloor_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 3.0,
+ "texel_mm_per_px": 1.465,
+ "height_range_m": 0.0453,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.449",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "cave_floor"
+ ],
+ "status": "finished",
+ "method": "Poly Haven rock_ground (2x2: grit, rubble and trodden dirt) with patches of bare rock from rock_face_04 showing through",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_ground",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_face_04",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1.5
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 66.4,
+  "max": 209.4
+ },
+ "mean_srgb": [
+  70,
+  66,
+  57
+ ],
+ "roughness_mean": 0.864,
+ "known_weaknesses": "the grit layer repeats at 1.5 m; bedrock patches are few"
+}

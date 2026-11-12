@@ -1,0 +1,165 @@
+{
+  "schema": "dink-environment-terrain-layers/2",
+  "note": "Layer catalogue of the master terrain material M_Env_Terrain. Every layer is a set of ../Terrain/manifest.json, wired by name: a re-run of Scripts/import_environment_materials.sh picks up revised files (texture imports are keyed on file size and time). Read by that script and by Scripts/export_import_bundle.py. 'classes' maps tools/data/tile_classes.csv terrain classes; 'classes_indoor' overrides it on indoor screens.",
+  "layers": {
+    "MeadowTurf": {
+      "source": "terrain",
+      "set": "MeadowTurf",
+      "normal_strength": 1.0,
+      "backlight": 0.35
+    },
+    "WildGrass": {
+      "source": "terrain",
+      "set": "WildGrass",
+      "normal_strength": 1.0,
+      "backlight": 0.3
+    },
+    "RockyGrass": {
+      "source": "terrain",
+      "set": "RockyGrass",
+      "normal_strength": 1.0,
+      "backlight": 0.2
+    },
+    "EarthPath": {
+      "source": "terrain",
+      "set": "EarthPath",
+      "normal_strength": 1.0
+    },
+    "TransitionDirt": {
+      "source": "terrain",
+      "set": "TransitionDirt",
+      "normal_strength": 1.0
+    },
+    "ForestFloor": {
+      "source": "terrain",
+      "set": "ForestFloor",
+      "normal_strength": 1.0,
+      "backlight": 0.12
+    },
+    "DrySand": {
+      "source": "terrain",
+      "set": "DrySand",
+      "normal_strength": 1.0
+    },
+    "WetSand": {
+      "source": "terrain",
+      "set": "WetSand",
+      "normal_strength": 1.0
+    },
+    "ShingleBeach": {
+      "source": "terrain",
+      "set": "ShingleBeach",
+      "normal_strength": 1.0
+    },
+    "CliffRock": {
+      "source": "terrain",
+      "set": "CliffRock",
+      "normal_strength": 1.0
+    },
+    "CaveRock": {
+      "source": "terrain",
+      "set": "CaveRock",
+      "normal_strength": 1.0
+    },
+    "CaveFloor": {
+      "source": "terrain",
+      "set": "CaveFloor",
+      "normal_strength": 1.0
+    },
+    "CobbleStreet": {
+      "source": "terrain",
+      "set": "CobbleStreet",
+      "normal_strength": 1.0
+    },
+    "DungeonFlagstone": {
+      "source": "terrain",
+      "set": "DungeonFlagstone",
+      "normal_strength": 1.0
+    },
+    "DungeonMasonry": {
+      "source": "terrain",
+      "set": "DungeonMasonry",
+      "normal_strength": 1.0
+    },
+    "PlasterWall": {
+      "source": "terrain",
+      "set": "PlasterWall",
+      "normal_strength": 1.0
+    },
+    "PlankFloor": {
+      "source": "terrain",
+      "set": "PlankFloor",
+      "normal_strength": 1.0
+    },
+    "Snow": {
+      "source": "terrain",
+      "set": "Snow",
+      "normal_strength": 1.0
+    },
+    "SnowTrampled": {
+      "source": "terrain",
+      "set": "SnowTrampled",
+      "normal_strength": 1.0
+    },
+    "ScorchedSoil": {
+      "source": "terrain",
+      "set": "ScorchedSoil",
+      "normal_strength": 1.0
+    },
+    "LavaCrust": {
+      "source": "terrain",
+      "set": "LavaCrust",
+      "normal_strength": 1.0,
+      "emissive": 8.0
+    },
+    "PondMud": {
+      "source": "terrain",
+      "set": "PondMud",
+      "normal_strength": 1.0
+    }
+  },
+  "classes": {
+    "grass": "MeadowTurf",
+    "terrain": "MeadowTurf",
+    "grass_rocky": "RockyGrass",
+    "path": "EarthPath",
+    "dirt": "TransitionDirt",
+    "gravel": "ShingleBeach",
+    "forest_canopy": "ForestFloor",
+    "sand": "DrySand",
+    "water": "WetSand",
+    "cliff_face": "CliffRock",
+    "rock_mass": "CliffRock",
+    "cave_wall": "CaveRock",
+    "snow": "Snow",
+    "ice": "SnowTrampled",
+    "wasteland": "ScorchedSoil",
+    "lava": "LavaCrust",
+    "chasm": "CaveRock",
+    "cave_floor": "CaveFloor",
+    "stone_floor": "CobbleStreet",
+    "wood_floor": "PlankFloor",
+    "structure_facade": "DungeonMasonry",
+    "void": "DungeonMasonry"
+  },
+  "classes_indoor": {
+    "stone_floor": "DungeonFlagstone",
+    "structure_facade": "PlasterWall",
+    "void": "DungeonMasonry",
+    "grass": "MeadowTurf"
+  },
+  "class_secondary": {},
+  "unmapped_keep_original": [],
+  "grass_layer": "MeadowTurf",
+  "lava_colour": [
+    1.0,
+    0.33,
+    0.07
+  ],
+  "dressed_overrides": {
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Meadow": "MeadowTurf",
+    "/Game/Dink/Materials/StonebrookFields/MI_Stonebrook_Meadow": "MeadowTurf",
+    "/Game/Dink/Materials/Stonebrook/MI_Stonebrook_Earth": "EarthWorn (EarthPath + MeadowTurf + PondMud)",
+    "/Game/Dink/Materials/StonebrookFields/MI_Stonebrook_Earth": "EarthWorn (EarthPath + MeadowTurf + PondMud)"
+  }
+}
