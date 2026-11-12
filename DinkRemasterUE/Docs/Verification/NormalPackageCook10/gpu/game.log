@@ -16,7 +16,7 @@ LogCsvProfiler: Display: Metadata set : asan="0"
 LogCsvProfiler: Display: Metadata set : mergedmodules="0"
 LogCsvProfiler: Display: Metadata set : compacttset="0"
 LogCsvProfiler: Display: Metadata set : commandline="" /Game/Dink/_Generated/Maps/L_Greybox_World -sdlvideodriver=x11 -windowed -ResX=1280 -ResY=720 -nosplash -unattended -nosound -norhithread -forcerhibypass -ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0 -ExecCmds="t.MaxFPS 45" -DinkQARunId=4442a72b-9176-4309-a287-00c5f31d730a -nowrite -notraceserver -UserDir=<HOME>/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/User -abslog=<HOME>/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/game.log""
-LogCsvProfiler: Display: Metadata set : loginid="b8b91a92d10e4078b778d30ea0314c5c-000003e8"
+LogCsvProfiler: Display: Metadata set : loginid="00000000000000000000000000000000-000003e8"
 LogCsvProfiler: Display: Metadata set : llm="0"
 LogPakFile: Initializing PakPlatformFile
 LogIoDispatcher: Display: Mounted container '../../../DinkRemaster/Content/Paks/global.utoc', Id='ffffffffffffffff', Order=0, Slot=0, Options=(None), Flags=(), HasSoftRefs=False

@@ -21,7 +21,7 @@ LogCsvProfiler: Display: Metadata set : asan="0"
 LogCsvProfiler: Display: Metadata set : mergedmodules="0"
 LogCsvProfiler: Display: Metadata set : compacttset="0"
 LogCsvProfiler: Display: Metadata set : commandline="" <HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/DinkRemaster.uproject -ExecutePythonScript=<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BasketReviewed/read_native_baseline.py -nullrhi -unattended -nosplash -nopause -nosound -notraceserver -ddc=InstalledNoZenLocalFallback -LocalDataCachePath=<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/NativeProps/DDC -UserDir=<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BasketReviewed/BaselineUser -stdout -FullStdOutLogOutput""
-LogCsvProfiler: Display: Metadata set : loginid="b8b91a92d10e4078b778d30ea0314c5c-000003e8"
+LogCsvProfiler: Display: Metadata set : loginid="00000000000000000000000000000000-000003e8"
 LogCsvProfiler: Display: Metadata set : llm="0"
 Failed to find game directory: <HOME>/UnrealEngine/UE_5.8.4/DinkRemaster/Binaries
 LogModuleManager: InternalLoadLibrary: 'StorageServerClient' ('<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/libUnrealEditor-StorageServerClient.so')
@@ -1162,7 +1162,7 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2026.11.08-21.27.36:287][  0]LogModuleManager: InternalLoadLibrary: 'UdpMessaging' ('<HOME>/UnrealEngine/UE_5.8.4/Engine/Plugins/Messaging/UdpMessaging/Binaries/Linux/libUnrealEditor-UdpMessaging.so')
 [2026.11.08-21.27.36:288][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
 [2026.11.08-21.27.36:288][  0]LogUdpMessaging: Display: Unicast socket bound to '0.0.0.0:58113'.
-[2026.11.08-21.27.36:288][  0]LogUdpMessaging: Display: Added local interface '192.168.88.5' to multicast group '230.0.0.1:6666'
+[2026.11.08-21.27.36:288][  0]LogUdpMessaging: Display: Added local interface '192.168.00.0' to multicast group '230.0.0.1:6666'
 [2026.11.08-21.27.36:288][  0]LogUdpMessaging: Display: Added local interface '172.17.0.1' to multicast group '230.0.0.1:6666'
 [2026.11.08-21.27.36:288][  0]LogUdpMessaging: Display: Added local interface '127.0.0.1' to multicast group '230.0.0.1:6666'
 [2026.11.08-21.27.36:288][  0]LogUdpMessaging: Display: Using asynchronous task graph for message deserialization.

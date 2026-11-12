@@ -17,7 +17,7 @@ LogCsvProfiler: Display: Metadata set : asan="0"
 LogCsvProfiler: Display: Metadata set : mergedmodules="0"
 LogCsvProfiler: Display: Metadata set : compacttset="0"
 LogCsvProfiler: Display: Metadata set : commandline="" /Game/Dink/_Generated/Maps/L_Greybox_World -nullrhi -nosound -unattended -stdout -FullStdOutLogOutput -UserDir=<HOME>/Work/DinkQA/SurfaceNative/PackagedSmokeUser -abslog=<HOME>/Work/DinkQA/SurfaceNative/packaged-smoke.log -ExecCmds="obj list class=DinkArtContextActor,obj list name=SM_Underfloor_Stonebrook_V1,obj list name=SM_Floor_Oak_2m_01,Quit"""
-LogCsvProfiler: Display: Metadata set : loginid="b8b91a92d10e4078b778d30ea0314c5c-000003e8"
+LogCsvProfiler: Display: Metadata set : loginid="00000000000000000000000000000000-000003e8"
 LogCsvProfiler: Display: Metadata set : llm="0"
 LogPakFile: Initializing PakPlatformFile
 LogIoDispatcher: Display: Mounted container '../../../DinkRemaster/Content/Paks/global.utoc', Id='ffffffffffffffff', Order=0, Slot=0, Options=(None), Flags=(), HasSoftRefs=False

@@ -11,7 +11,7 @@
     "compiler_warnings": 0
   },
   "python_tests": {
-    "passed": 809,
+    "passed": 822,
     "failed": 0
   },
   "native_tests": {
@@ -67,7 +67,7 @@
     "verification_mode": "metadata",
     "binary_files_verified": 7763,
     "binary_files_metadata_only": 0,
-    "python_syntax_files": 890,
+    "python_syntax_files": 892,
     "shell_syntax_files": 34,
     "ledger_rows": 5605,
     "historical_rows_binary_verified": 11,
@@ -87,7 +87,9 @@
   "privacy": {
     "current_home_paths_and_local_login_strings_scrubbed": true,
     "captured_login_machine_ids_redacted": true,
-    "existing_git_history_rewritten": false
+    "existing_git_history_rewritten": false,
+    "parallel_privacy_changes_reconciled": true,
+    "captured_lan_and_userid_values_redacted": true
   },
   "authoring_qualification": "Historical blends can retain unresolved unpacked image references, including unused authoring data. No standalone rerender claim. Available source textures and original local files are retained."
 }
