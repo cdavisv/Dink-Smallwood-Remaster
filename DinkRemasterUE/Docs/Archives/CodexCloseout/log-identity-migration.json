@@ -1,0 +1,37 @@
+[
+  {
+    "file": "DinkRemasterUE/Docs/Verification/NormalPackageCook10/gpu/game.log",
+    "old_sha256": "b0489e7c9f6b804742a12461af53917e8b0cc8c316a9076ce72e72058e8a13b8",
+    "new_sha256": "4da6d8edf64b4f82ae594d9a7075d1b9c6ae59dec1b00810f8ea425cb5d05c93"
+  },
+  {
+    "file": "DinkRemasterUE/Docs/Verification/PhotorealBasketNative/Native/import.log",
+    "old_sha256": "5acaa981d3ffb101921ea794c8d5615e4783511c9ce7f140676328c5798eb0e5",
+    "new_sha256": "aa4fab498712bfea2125bb54ac56b61512343a98ff22b37de4a3ac315dbd51c0"
+  },
+  {
+    "file": "DinkRemasterUE/Docs/Verification/PhotorealBasketNative/Native/preflight.log",
+    "old_sha256": "5efece9dada2364c82a0be451e1c7143182966f7cff1f57fa92f538ae525cd12",
+    "new_sha256": "dc5d23fa8790a655b6c1e884383ddb085615ef0743ed3649a6185288262b9df3"
+  },
+  {
+    "file": "DinkRemasterUE/Docs/Verification/PhotorealBasketNative/Native/verify.log",
+    "old_sha256": "c32f4f1d3f075b3aad9229022278f55f28789a8347c245f7e9570a312b663ce5",
+    "new_sha256": "2dd76a038cbfdf8c9ad86ed78694b4216ac6946580df2b76fe4618b5dadd2292"
+  },
+  {
+    "file": "DinkRemasterUE/Docs/Verification/PhotorealBasketNative/PublishedVerify/verify.log",
+    "old_sha256": "43ffb2384648f2337e8f9ba8729e043883548217c119ce1d5506fa91bd45df73",
+    "new_sha256": "911fe0639a91c74fbcc8d659f0ea07576fd98064d585ab33150021dd1fdb86e2"
+  },
+  {
+    "file": "DinkRemasterUE/Docs/Verification/PhotorealBasketNative/native_baseline.log",
+    "old_sha256": "a6f4617865f29d46342545b371f4cbfa4ee9768f6eee6cae1c4cc1d5598aebd9",
+    "new_sha256": "02c3d94e3ff2373d39d62375df7098750c8e23bd0847e01a5ccd9bf4aa95d235"
+  },
+  {
+    "file": "DinkRemasterUE/Docs/Verification/SurfaceFinish/packaged-smoke.txt",
+    "old_sha256": "acf7f981e941e69ce84d21f6784087f0cbd054b256bd6de7706de26e7b20d7cf",
+    "new_sha256": "6a5d62e99a62cc78272d738c9968c1100697b41ff8de36513a22121295c14ab9"
+  }
+]

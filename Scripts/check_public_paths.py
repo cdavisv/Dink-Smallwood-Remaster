@@ -13,6 +13,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Split the prefixes so this checker does not flag its own source.
 PATTERN = re.compile(r'/(?:@?ho' + r'me|Us' + r'ers)/[A-Za-z0-9_.-]+|[A-Za-z]:[\\/]+Us' + r'ers[\\/]+[A-Za-z0-9_.-]+')
 
+IDENTITY_PATTERN = re.compile(r'((?:LoginId|MachineId|EpicAccountId)\s*[=:]\s*)([A-Fa-f0-9-]{16,})', re.IGNORECASE)
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--fix', action='store_true')
@@ -30,12 +32,14 @@ def main():
             text = data.decode('utf-8')
         except UnicodeDecodeError:
             continue
-        if PATTERN.search(text):
+        if PATTERN.search(text) or IDENTITY_PATTERN.search(text):
             found.append(name)
             if args.fix:
                 # Historical receipts retain their useful suffix without disclosing a user.
-                path.write_bytes(PATTERN.sub('<HOME>', text).encode('utf-8'))
-    print(f'Public home-path check: {len(found)} text files ' + ('normalized' if args.fix else 'flagged'))
+                clean = PATTERN.sub('<HOME>', text)
+                clean = IDENTITY_PATTERN.sub(lambda match: match.group(1) + '<REDACTED>', clean)
+                path.write_bytes(clean.encode('utf-8'))
+    print(f'Public path and identity check: {len(found)} text files ' + ('normalized' if args.fix else 'flagged'))
     if not args.fix:
         for name in found:
             print(name)

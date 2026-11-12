@@ -232,7 +232,7 @@ def editor_hard_flags_files(dinkex):
     return out
 
 
-def hardness_layers(dinkex: pathlib.Path):
+def hardness_layers(dinkex: pathlib.Path, required_visions=None, retained=None):
     """Copy additive source sidecars byte-exact; never synthesize layers from PNGs.
 
     Legacy extractions without sidecars stay legacy. Unsupported envelopes refuse
@@ -257,7 +257,50 @@ def hardness_layers(dinkex: pathlib.Path):
             raise ValueError(f"unsupported runtime hardness envelope: {path.name}")
         validate_editor_hard_flags(packet)
         out[f"Hardness/{path.name}"] = raw
+    # Fitted foundations explicitly support vision 1/2 even on screens with no
+    # placements in those visions. In that case the original overlay is exactly
+    # vision 0. Never infer a missing declared variant or recover tiles from PNGs.
+    for screen, visions in sorted((required_visions or {}).items()):
+        base_name = f"SCR_{screen:03d}_layers.json"
+        base = out.get("Hardness/" + base_name)
+        if base is None:
+            raise ValueError(f"missing explicit source layers: {base_name}")
+        for vision in sorted(visions):
+            name = f"SCR_{screen:03d}_v{vision}_layers.json"
+            if "Hardness/" + name in out:
+                continue
+            source = json.loads((dinkex / "screens" / f"SCR_{screen:03d}.json").read_text())
+            declared = source.get("hardness", {}).get("vision_variants")
+            if not isinstance(declared, dict) or str(vision) in declared:
+                raise ValueError(f"missing declared source vision layers: {name}")
+            expected = json.loads(base)
+            expected["vision"] = vision
+            previous = retained / name if retained is not None else None
+            if previous is not None and previous.is_file():
+                raw = previous.read_bytes()
+                if json.loads(raw) != expected:
+                    raise ValueError(f"retained vision differs from original source: {name}")
+            else:
+                raw = (json.dumps(expected, indent=2) + "\n").encode()
+            out["Hardness/" + name] = raw
     return out
+
+
+def fitted_hardness_visions(path):
+    if not path.is_file():
+        return {}
+    policy = json.loads(path.read_text()).get("collision_fit")
+    if policy is None:
+        return {}
+    if not isinstance(policy, dict) or policy.get("schema") != "dink-family-collision-fit/3":
+        raise ValueError("unsupported fitted source vision policy")
+    required = {}
+    for row in policy["origins"]:
+        match = re.fullmatch(r"S(\d{3})_P\d{2}", row["origin"])
+        if match is None or not 1 <= int(match[1]) <= 768:
+            raise ValueError("invalid fitted source origin")
+        required.setdefault(int(match[1]), set()).update((1, 2))
+    return required
 
 
 def placements(dinkex: pathlib.Path):
@@ -286,7 +329,9 @@ def main() -> int:
     files = {"frames.csv": to_csv(FRAME_COLS, f_rows), "placements.csv": to_csv(PLACEMENT_COLS, p_rows),
              "screens.csv": to_csv(["screen", "base_script"], s_rows)}
     files.update(hardness(dinkex, tile_layers(args.data, dinkex)))
-    files.update(hardness_layers(dinkex))
+    files.update(hardness_layers(
+        dinkex, fitted_hardness_visions(HERE / "Content/Dink/Data/Art/families.json"),
+        DEST / "Hardness"))
     files.update(editor_hard_flags_files(dinkex))
     manifest = {"source": "tools/dinkex/out (sequences.json, screens/, hardness/); bin/dink/hard.dat (tile layers)",
                 "data_repo_commit": git_commit(args.data),

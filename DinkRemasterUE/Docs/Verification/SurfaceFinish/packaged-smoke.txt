@@ -261,7 +261,7 @@ LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for type [NULL]
 LogInit: ExecutableName: DinkRemaster
 LogInit: Build: ++UE5+Release-5.8-CL-58902052
 LogInit: Platform=Linux
-LogInit: MachineId=00000000000000000000000000000000-000003e8
+LogInit: MachineId=<REDACTED>
 LogInit: DeviceId=
 LogInit: Engine Version: 5.8.4-58902052+++UE5+Release-5.8
 LogInit: Compatible Engine Version: 5.8.0-55116800+++UE5+Release-5.8
