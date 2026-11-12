@@ -8,7 +8,7 @@ TEXTURES='/Game/Dink/Textures/Stonebrook/Refinements'
 module=ast.parse(SCRIPT.read_text());function=next(n for n in module.body if isinstance(n,ast.FunctionDef) and n.name=='verify_material_recipe')
 exec(compile(ast.Module(body=[function],type_ignores=[]),str(SCRIPT),'exec'),globals())
 material=unreal.load_asset('/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1')
-verified=json.loads(Path('/home/artist/Work/DinkQA/FloorNativePreparation/native-verify.json').read_text())
+verified=json.loads(Path(Path.home()/'Work/DinkQA/FloorNativePreparation/native-verify.json').read_text())
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 before={p:sha(ROOT/p) for p in verified['saved_package_sha256']}
 assert before==verified['saved_package_sha256']
@@ -44,6 +44,6 @@ def remove_gain():
  for node in reversed(extra):EDIT.delete_material_expression(material,node)
 rejection('double_apply_point25_BC_gain',add_gain,remove_gain)
 after={p:sha(ROOT/p) for p in before};assert after==before
-report={'passed':len(rows)==8 and all(r['rejected'] for r in rows),'method':'Fresh saved material loaded, eight in-memory mutations through real Unreal APIs; production verifier extracted without changing its function. Every mutation restored; no save or shader compile. Native unit test separately covers hidden UV/displacement pins.','cases':rows,'importer_sha256':sha(SCRIPT),'native_verification_sha256':sha(Path('/home/artist/Work/DinkQA/FloorNativePreparation/native-verify.json')),'saved_packages_unchanged':before==after,'saved_package_sha256':after}
-Path('/home/artist/Work/DinkQA/FloorNativePreparation/shader-mutations.json').write_text(json.dumps(report,indent=2)+'\n')
+report={'passed':len(rows)==8 and all(r['rejected'] for r in rows),'method':'Fresh saved material loaded, eight in-memory mutations through real Unreal APIs; production verifier extracted without changing its function. Every mutation restored; no save or shader compile. Native unit test separately covers hidden UV/displacement pins.','cases':rows,'importer_sha256':sha(SCRIPT),'native_verification_sha256':sha(Path(Path.home()/'Work/DinkQA/FloorNativePreparation/native-verify.json')),'saved_packages_unchanged':before==after,'saved_package_sha256':after}
+Path(Path.home()/'Work/DinkQA/FloorNativePreparation/shader-mutations.json').write_text(json.dumps(report,indent=2)+'\n')
 assert report['passed'];print('EIGHT REAL SHADER MUTATIONS REJECTED; SAVED PACKAGES UNCHANGED',flush=True)

@@ -1,7 +1,7 @@
 {
   "status": "ACTUAL_BLENDER_FBX_IMPORT_GEOMETRY_SKIN_ALLUV89_PASS_NORMALS_MEASURED",
   "scope": "Separate importer observation, not native UE/built tangents/normal render or shared161Skeleton acceptance. Blender cm importer retains.01Armature scale, compare physical joints and normalized axes rather than claiming source basis magnitudes exact. Last-bone tail display length is an importer convention, original source tail lengths remain pinned separately.",
-  "source_sha256": "d6359289ed36c45de7b22f8640cb4e7cf654abdbd8b0ee7013f7f75dee32ff9a",
+  "source_sha256": "fefe21d37df2c2fe04dea6fb94301177dd59429651bd2ffccdf23fa9ce7886ea",
   "FBX": [
     {
       "file": "SK_Dink_V33_Trousers_Hi.fbx",

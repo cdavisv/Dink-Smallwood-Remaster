@@ -1,26 +1,26 @@
 {
   "passed": true,
   "approved_source_sha256": "54abf083265417dd5c83406e3103522140a36ba9d46ef2f80e8c803f18bf33d8",
-  "registered_source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "registered_source_sha256": "d7a42dd31f79a63953df9f2e2593c40f3db70a60e3682cd23fde43ff32a8c6d9",
   "allowed_delta": "SharedCandidate -> Shared material/image names and valid project-relative image paths only. All vertices/polygons/UVs/normals/TRS/material-role assignments/shader values/topology and packed pixels compare exact after alias normalization.",
   "all_source_mesh_objects": 328,
   "UCX": 312,
   "library_reopen": [
     {
       "file": "SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_ProceduralSources.blend",
-      "sha256": "b72854e46183ba4f462b601ebefae7d6069ce233e8e0198cab5114b6b694cc02",
+      "sha256": "bd8bc6eed0fdad9d2b651a952cbbe5217d7ead02dabf9c629a88757cc330486e",
       "packed_relative_images_exact": 1,
       "geometry_shader_pixels_equal_to_approved": true
     },
     {
       "file": "SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_LibraryCandidate.blend",
-      "sha256": "bcff2725b32ecfeea8d85f03a7324b120d1fdfea00aec7ba34a600911eb27dda",
+      "sha256": "561e921cd922cf143a834eda87038e2600c737bbdca58d81c7caeaafa6e54a2e",
       "packed_relative_images_exact": 10,
       "geometry_shader_pixels_equal_to_approved": true
     },
     {
       "file": "SourceAssets/Art/SharedMaterials/OakLime2mV1/GenericReuse_2m4m.blend",
-      "sha256": "18de1f6de925e79ad4b8eb3f1061a557777ea9a050261d427446dcc939afe383",
+      "sha256": "9cef4c0f1edd7349771e5910609818de65fc6ce6a3cde0db98aa830e8040a4db",
       "packed_relative_images_exact": 9,
       "geometry_shader_pixels_equal_to_approved": true
     }

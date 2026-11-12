@@ -1,8 +1,8 @@
 {
   "schema": "dink-house-independent-publication-review/1",
   "conclusion": "APPROVE corrected bounded SOURCE/EXPORT publication candidate; NOT native/game/final-in-game-art acceptance",
-  "reviewed_handoff_sha256": "50bf30b343047baed5339fc27c5950cb9017e7173c71d9e9cb1ab51cbb67b950",
-  "reviewed_source_sha256": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
+  "reviewed_handoff_sha256": "767e62469cb4a95b6d27d3194402491692ff42d6cd9f89a806680d2d20d336bb",
+  "reviewed_source_sha256": "bc76f80eaa1776dc8d5755cafbf4b2c31a6b3e685f44ba407729a30aec95ea27",
   "reviewed_file_count": 70,
   "blocking_findings": [],
   "resolved_blocking_findings": [

@@ -26,7 +26,7 @@
       ],
       "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
       "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/metric_stitch_detail.png",
-      "image_sha256": "77ea3f6674d8343f946e181d8714aa7a5b969ae77b7249d80fcb83051dd87e04"
+      "image_sha256": "33e6225be4efcdeca5b3e535e3c869027fa66b72d0df4e469c9c61bb857f32f5"
     },
     {
       "label": "metric_stitch_game",
@@ -52,7 +52,7 @@
       ],
       "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
       "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/metric_stitch_game.png",
-      "image_sha256": "2d536c5474bd4f7a35ee22f7529c770580f8e12d5bd8b07e930c69e04fb9b138"
+      "image_sha256": "1f994f5fd6ae9285b12cc9d2f53aaf15b45bfd16362deb7dc51b2e6a5c2baf5d"
     },
     {
       "label": "metric_stitch_walk0_game",
@@ -78,7 +78,7 @@
       ],
       "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
       "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/metric_stitch_walk0_game.png",
-      "image_sha256": "86c22c83262063c0bfa4cbe98d9a856573c170615ce703fcaedd2490549d1534"
+      "image_sha256": "e4e30ba64662bffcdf0ffb20a00fe293ab535ed1d5235d128803cad49e363380"
     },
     {
       "label": "atlas_stitch_2cm",
@@ -104,7 +104,7 @@
       ],
       "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
       "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/atlas_stitch_2cm.png",
-      "image_sha256": "176db1fc059a7f7e81fe853b4a67f7db7241ccfdff444babf949d0494b7a1cd1"
+      "image_sha256": "9b9ce4088837393efe0b03b75a5c183d29b29c012dfec02b59af1cced6eda43b"
     },
     {
       "label": "metric_stitch_2cm",
@@ -130,7 +130,7 @@
       ],
       "material": "ART_Dink_Olive_COARSE_PLUS_METRIC_WEAVE",
       "image": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothMetricStitchV32/Previews_Comparison/metric_stitch_2cm.png",
-      "image_sha256": "958327b6ad6066f4428a2787ccd9be544eee6e877e4728555ddb96b1200b7818"
+      "image_sha256": "13a3371f69df90ba38f3fe17c49da9bcd7b942d6c4024e04a2c6f867152355ef"
     }
   ],
   "original_Dink_reference_guide": {
@@ -158,7 +158,7 @@
       },
       {
         "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
-        "sha256": "9a8cbb9179284b28c2cba9290ddf291db1259a8f817c93c3443824051f205bd6"
+        "sha256": "2d59e99b09619e042666f0e500cb5eca61cc5ba29ef7b3968babb7b3a02ae024"
       }
     ],
     "visually_reviewed_original_images": [

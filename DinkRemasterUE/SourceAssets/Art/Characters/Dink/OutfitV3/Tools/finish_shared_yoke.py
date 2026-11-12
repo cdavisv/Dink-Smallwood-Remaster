@@ -2,7 +2,7 @@ import bpy,json,math,numpy as np
 from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path(Path(__file__).resolve().parents[1])
 bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));report=json.loads((ART/'integrated_skin_yoke_report.json').read_text());tiles=[tuple(v) for v in report['new_unique_atlas_tiles']];tileindex={v:i for i,v in enumerate(tiles)};snapshots=[]
 pixels=np.empty(4096*4096*4,np.float32);bpy.data.images['T_Dink_WardrobeV3_BC'].pixels.foreach_get(pixels);colors=pixels.reshape(4096,4096,4)[4::8,4::8,:3].copy();del pixels
 for lod in range(4):

@@ -1,7 +1,7 @@
 {
   "passed": true,
   "scope": "Independent actual binary FBX decoding vs saved Blender corner fields. T/B serialized with use_tspace=True, not inferred from normals or borrowed CPU signs. Header cm/model100/Rz180 explicit. Native engine interpretation not run.",
-  "source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "source_sha256": "d7a42dd31f79a63953df9f2e2593c40f3db70a60e3682cd23fde43ff32a8c6d9",
   "parser_sha256": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
   "rows": [
     {

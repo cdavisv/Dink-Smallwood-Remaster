@@ -3,8 +3,8 @@
     "front": {
       "full_frame_mean_abs_RGB_255": 0.030442386865615845,
       "p95_abs_RGB_255": 0.0,
-      "source_image_sha256": "571f835b7bc4be17f23123da2d53a64c763171839a83464e1e46f73d1c43d5c3",
-      "roundtrip_image_sha256": "68d155c73183b68f37fd58c173bf76e3439ff250f0d6f398c2dc376ff46edb37",
+      "source_image_sha256": "a4edf3c8b90b4688fc5014ca873b0de66d415a790a35bd0d6fe60dc0e6c04295",
+      "roundtrip_image_sha256": "e41562a12c93c808f64bf85971bb2e2ac79ce1207b4d4b538265f2cb1614bbd4",
       "ROI_xyxy": [
         200,
         90,
@@ -17,8 +17,8 @@
     "wax": {
       "full_frame_mean_abs_RGB_255": 0.0735892504453659,
       "p95_abs_RGB_255": 1.0,
-      "source_image_sha256": "d59d0bd4938370d9787bc405563987013fb6cb16d10f177e0d7110184bb19206",
-      "roundtrip_image_sha256": "d49c10228cd26ec692d0c6cfdddf7ebce57dcecdd1bacc61205ae060f3b2747b",
+      "source_image_sha256": "eeac75a0c507b2adcda43e3d8fef8e51281d8c5d8600ddd1308526869ee87a64",
+      "roundtrip_image_sha256": "f0232ff2a2913cc93327710267b3af1dbb371e0c96d5185d9b7bab80c12d44d0",
       "ROI_xyxy": [
         130,
         40,
@@ -31,8 +31,8 @@
     "holder": {
       "full_frame_mean_abs_RGB_255": 0.09692451357841492,
       "p95_abs_RGB_255": 1.0,
-      "source_image_sha256": "113d0e52a2c9dcd457b98f84f8da2932508665d014708b3b3e9ff27966b26927",
-      "roundtrip_image_sha256": "521f0f1a106cf547e88266951d492a939af92b8fd986e6791b558a8a53a5df5d",
+      "source_image_sha256": "d07d8d8b5d0e1c6def9da50b7d4cfa1ecd769b2339ff4492e29e5baa39f936a5",
+      "roundtrip_image_sha256": "ae319486a93d08979fd17ea51da22dddffe9cde97c39e79ef6cf57b2a9f35012",
       "ROI_xyxy": [
         200,
         60,
@@ -45,8 +45,8 @@
     "game-distance": {
       "full_frame_mean_abs_RGB_255": 0.003951260354369879,
       "p95_abs_RGB_255": 0.0,
-      "source_image_sha256": "a6db208ddb49c0c119515a87fe6e69678aabd66fbe2986c6f85ba0fdf6a89178",
-      "roundtrip_image_sha256": "c0bff09bf1abfdc0743e02b51e720a5ba1f9eec7462d075cbaf9fb571b02185e",
+      "source_image_sha256": "932c58f8ad2d88885ad8ec835c99477970dbead79df7896c0ce5d9a0f6c42cd3",
+      "roundtrip_image_sha256": "fd2e62a0da56df40e42d68138be6c3485f5004428a5a86c41df695aee817645e",
       "ROI_xyxy": [
         280,
         190,

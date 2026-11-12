@@ -5,11 +5,11 @@
   "files": [
     {
       "file": "V3_Finish/HANDOFF.md",
-      "sha256": "d162c2a83b5f359d992d63cbe424971a24493ee353af4aa14f06564b09ffcb32"
+      "sha256": "cb09179fe5ccaa1c8daea764a880cee113723bf523db07f13ddbcbab6d49270b"
     },
     {
       "file": "V3_Finish/Inputs/KIT_Stonebrook_Input.blend",
-      "sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9"
+      "sha256": "ee11c44ee88be504742b75967dd727047dd39721e83598eae2d3257eb772c0ed"
     },
     {
       "file": "V3_Finish/Inputs/Textures/T_Stonebrook_Limewash_BC.png",
@@ -37,11 +37,11 @@
     },
     {
       "file": "V3_Finish/PhotorealCandleV1_LODs.blend",
-      "sha256": "79a6a53f1f89201e02e3efa43c7de2b09044cbd65e531b95fde9914213531b54"
+      "sha256": "d0474a93c612694c5b8d1b42c0aac2d44d54efd89f570f23fe7685cd0991a201"
     },
     {
       "file": "V3_Finish/PhotorealCandleV1_Source.blend",
-      "sha256": "a6eb652a52d7352b39d9a56b9ed1580e6cb56da59c5753fd9baccdd9a33d4b42"
+      "sha256": "b715816ecb50cba25d6df6adbee9e5f6b40b257fb25e26deb0106a60703ce1dc"
     },
     {
       "file": "V3_Finish/Pipeline/dinkasset/__init__.py",
@@ -81,19 +81,19 @@
     },
     {
       "file": "V3_Finish/Previews/CandleSource-front.png",
-      "sha256": "571f835b7bc4be17f23123da2d53a64c763171839a83464e1e46f73d1c43d5c3"
+      "sha256": "a4edf3c8b90b4688fc5014ca873b0de66d415a790a35bd0d6fe60dc0e6c04295"
     },
     {
       "file": "V3_Finish/Previews/CandleSource-game-distance.png",
-      "sha256": "a6db208ddb49c0c119515a87fe6e69678aabd66fbe2986c6f85ba0fdf6a89178"
+      "sha256": "932c58f8ad2d88885ad8ec835c99477970dbead79df7896c0ce5d9a0f6c42cd3"
     },
     {
       "file": "V3_Finish/Previews/CandleSource-holder.png",
-      "sha256": "113d0e52a2c9dcd457b98f84f8da2932508665d014708b3b3e9ff27966b26927"
+      "sha256": "d07d8d8b5d0e1c6def9da50b7d4cfa1ecd769b2339ff4492e29e5baa39f936a5"
     },
     {
       "file": "V3_Finish/Previews/CandleSource-wax.png",
-      "sha256": "d59d0bd4938370d9787bc405563987013fb6cb16d10f177e0d7110184bb19206"
+      "sha256": "eeac75a0c507b2adcda43e3d8fef8e51281d8c5d8600ddd1308526869ee87a64"
     },
     {
       "file": "V3_Finish/audit_source.py",
@@ -113,7 +113,7 @@
     },
     {
       "file": "V3_Finish/finish_verification.json",
-      "sha256": "31bd0340198ed733445bdfb6a18f40f061cc788dac56f08859294f9d0f701cac"
+      "sha256": "b1986c467332cebfbc3e8a4354660cc0ad18d8157653f217b470f83ea95562a7"
     },
     {
       "file": "V3_Finish/generate_lods.py",
@@ -121,11 +121,11 @@
     },
     {
       "file": "V3_Finish/guide_validation.json",
-      "sha256": "456bf4799989969da4b14bc365a3e2094e8f8f8622a486bdd668232dedc506f4"
+      "sha256": "6860eb947bb42eed244039da5bcbcc5fd2e87645e32f4af9df2d300e2eeb1c7f"
     },
     {
       "file": "V3_Finish/independent_audit.json",
-      "sha256": "f72b209bf06c1165526de08327df25d1a21d7a0ac4f4ebbd24632a757e1d4cb0"
+      "sha256": "e935024411c8402efe6cac332801414bab9b667f216cd1651d6bf1e080ec68a4"
     },
     {
       "file": "V3_Finish/inspect_lods.py",
@@ -133,7 +133,7 @@
     },
     {
       "file": "V3_Finish/lod_generation.json",
-      "sha256": "e5e0901af40dd2e6b7584349889d6002e1a487be27895b26a6d358bd2eb8f8b3"
+      "sha256": "aff670f3a7ad8c81735ba979458177125a195b8b5a1e92bcdb12b74e8d8bc20e"
     },
     {
       "file": "V3_Finish/lod_inspection.json",
@@ -141,7 +141,7 @@
     },
     {
       "file": "V3_Finish/portable_receipt.json",
-      "sha256": "884fc0a0457cf052722792902d564c0d76fbb721b3fa830212472976ff78489c"
+      "sha256": "351d8d0b4fa4045f4c1897072c929c1643b55fccea4d33fc4a91326417a15b04"
     },
     {
       "file": "V3_Finish/review_candle.py",
@@ -149,7 +149,7 @@
     },
     {
       "file": "V3_Finish/source_report.json",
-      "sha256": "b9738c1f2d18c78f006053c0638648264e09672bde4a3e6383e6a8cd20420682"
+      "sha256": "cfbf806f2967272b84113bc9edbe1d6d57d6c42f7fa3ac4f1b3c251dc2c2415d"
     },
     {
       "file": "V3_Finish/verify_finish.py",
@@ -157,7 +157,7 @@
     },
     {
       "file": "V3_ExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealCandleV1/SM_Candle_Iron_01.fbx",
-      "sha256": "46ce52638ba19057b3f6bbef1f94694c8855b6f43c80f68e0874e9eea33deb7c"
+      "sha256": "7c5713fffd235f68e3b275135952095aa79dd0e1057ffb4a0a7c95823b2998f0"
     },
     {
       "file": "V3_ExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealCandleV1/SM_Candle_Iron_01.glb",
@@ -177,19 +177,19 @@
     },
     {
       "file": "V3_ExportIteration/Export/manifest.json",
-      "sha256": "3d618349bb33f5ebe063fb1c83ef4ca4334f1ab67662e097b625042ebd33b868"
+      "sha256": "7ecbd53a99221b1593929f5e1d472161daf843c1aff3834a49d72749597d55ac"
     },
     {
       "file": "V3_ExportIteration/HANDOFF.md",
-      "sha256": "c8a16c9aae5ead9ce91ccd1cef6af954bda3227e0596075273b398325146c725"
+      "sha256": "4d5661c161b1b1fc192af6303390536da65ade8fb3aeeecace3e4466c88fc9aa"
     },
     {
       "file": "V3_ExportIteration/PhotorealCandleV1_Export.blend",
-      "sha256": "51e5dcc22b81ad12aa6e430f26ef07b852da9cd3f63702e0f2e5cd090d97b33c"
+      "sha256": "4448f73519e2e170efdecc39625c1d6bfc7493989ea99e7d352bee61d142d411"
     },
     {
       "file": "V3_ExportIteration/PhotorealCandleV1_Source.blend",
-      "sha256": "a6eb652a52d7352b39d9a56b9ed1580e6cb56da59c5753fd9baccdd9a33d4b42"
+      "sha256": "b715816ecb50cba25d6df6adbee9e5f6b40b257fb25e26deb0106a60703ce1dc"
     },
     {
       "file": "V3_ExportIteration/Pipeline/dinkasset/__init__.py",
@@ -229,19 +229,19 @@
     },
     {
       "file": "V3_ExportIteration/Roundtrip/CandleSource-front.png",
-      "sha256": "68d155c73183b68f37fd58c173bf76e3439ff250f0d6f398c2dc376ff46edb37"
+      "sha256": "e41562a12c93c808f64bf85971bb2e2ac79ce1207b4d4b538265f2cb1614bbd4"
     },
     {
       "file": "V3_ExportIteration/Roundtrip/CandleSource-game-distance.png",
-      "sha256": "c0bff09bf1abfdc0743e02b51e720a5ba1f9eec7462d075cbaf9fb571b02185e"
+      "sha256": "fd2e62a0da56df40e42d68138be6c3485f5004428a5a86c41df695aee817645e"
     },
     {
       "file": "V3_ExportIteration/Roundtrip/CandleSource-holder.png",
-      "sha256": "521f0f1a106cf547e88266951d492a939af92b8fd986e6791b558a8a53a5df5d"
+      "sha256": "ae319486a93d08979fd17ea51da22dddffe9cde97c39e79ef6cf57b2a9f35012"
     },
     {
       "file": "V3_ExportIteration/Roundtrip/CandleSource-wax.png",
-      "sha256": "d49c10228cd26ec692d0c6cfdddf7ebce57dcecdd1bacc61205ae060f3b2747b"
+      "sha256": "f0232ff2a2913cc93327710267b3af1dbb371e0c96d5185d9b7bab80c12d44d0"
     },
     {
       "file": "V3_ExportIteration/Textures/T_Candle_Iron_01_Photo_BC.png",
@@ -265,11 +265,11 @@
     },
     {
       "file": "V3_ExportIteration/bake_candle.py",
-      "sha256": "aa5c40ae619946ae43c77746e75898c9f829a9caf013a54b86708f9be265ea03"
+      "sha256": "7e682232960e017711e9508a784b9af05d29e00225befabec6a315e988651cd6"
     },
     {
       "file": "V3_ExportIteration/bake_receipt.json",
-      "sha256": "830a459c8f0cfa9110ac2fbeaf26a57809163f6cc83ed92e908fdb868ef90f39"
+      "sha256": "65afb1a13a57462ed5d2057f963d25c3a0915ffa9484e1b6c5af8ac35048d3a3"
     },
     {
       "file": "V3_ExportIteration/check_portable.py",
@@ -281,23 +281,23 @@
     },
     {
       "file": "V3_ExportIteration/export_report.json",
-      "sha256": "9479f20a4d40f9f529641ea7c2f6bba597ef9f79ff4e8acb0518ebd062e64945"
+      "sha256": "578e02f64956de404e625334b8c19c8aabdaa718f4f42eac3a0c40f6a994ccd5"
     },
     {
       "file": "V3_ExportIteration/export_uv_verification.json",
-      "sha256": "3ad2fca679b73e0732d6fc2bd805232d6c6685aeb77d90647c60bfa384a0db4e"
+      "sha256": "497d2828f7bc69d6d95263a979088b3bf15762f644bd160ec5b13b7596cc83dd"
     },
     {
       "file": "V3_ExportIteration/guide_validation.json",
-      "sha256": "bdcbba7f2cb0f2b78fc198760ac93fe02ed28919713f8836c995d5be8391c1f8"
+      "sha256": "6ee1dae7d12ab6fecb2bca7dd5e815132b76ac98b209fbe984d850c72504ce21"
     },
     {
       "file": "V3_ExportIteration/pixel_comparison.json",
-      "sha256": "2fa574c337628b5e74cfa8d48b8095e67886a9fbf0676a15313bcb561340fac0"
+      "sha256": "cd10cdfa0094493b622eb4217929e3a039e54f621b36c4360d8d4069146a1686"
     },
     {
       "file": "V3_ExportIteration/portable_export_receipt.json",
-      "sha256": "17ed51695f9ea25e1148ff2e03ff73720f73eb4997169c9b177be0527e01d310"
+      "sha256": "10aea29263c794d594b99bde0e473568794f153205d70a2fe683cb04863c732c"
     },
     {
       "file": "V3_ExportIteration/render_roundtrip.py",
@@ -309,7 +309,7 @@
     },
     {
       "file": "V3_ExportIteration/roundtrip_receipt.json",
-      "sha256": "c8842e292561e7efd779afef402961bfd7314ebc0637b33365ed944cd25042ae"
+      "sha256": "e36f577b7d187d4796683d8bfaf43d1940cb2f592ad8ff47b35205471d5545ff"
     },
     {
       "file": "V3_ExportIteration/texture_payload_validation.json",
@@ -325,27 +325,27 @@
     },
     {
       "file": "NativeLODExports/SM_Candle_Iron_01_LOD0.fbx",
-      "sha256": "7309e735b730758b3384bad44046efdff581baf1346fe236891f6f963b89bf93"
+      "sha256": "0683bb4104616fb6b1ba3649892762348213dcca91ff260341e954f69e0268bd"
     },
     {
       "file": "NativeLODExports/SM_Candle_Iron_01_LOD1.fbx",
-      "sha256": "614c2a402e17bbd4829cf74d3bea3afb9f2ac901134029e114fb1f803a297d8a"
+      "sha256": "c00b2de9b9f9ad9e735dac994b61b5a994f70a209336f36bbe1720cc3a254a8f"
     },
     {
       "file": "NativeLODExports/SM_Candle_Iron_01_LOD2.fbx",
-      "sha256": "065a9c3467a004f4750da0b8fb696d3e0c42c40fc8cb0f9ac1a37b9c36e9908b"
+      "sha256": "1a10958a29de30acfcd796268faf41c6355dc77e2924995a8cc75bad12a3a1ff"
     },
     {
       "file": "NativeLODExports/export_native_lods.py",
-      "sha256": "445b27b88f1390119c2943e407c9a5013d13a2a515d12d113db51cb3dfbdd958"
+      "sha256": "242c7511375dd742f15547b59be396a77d1495857ef6c5d7ebab7786cca81a30"
     },
     {
       "file": "NativeLODExports/lod_manifest.json",
-      "sha256": "b0c099237d9e7c288bc2352776f818bc198258799403d6503a97b2ab4bde0995"
+      "sha256": "4dabf9f4a10c73fce1ded378c6e2361d008d1a3872807dd5f56b609dc3bbc53d"
     },
     {
       "file": "NativeLODExports/lod_roundtrip_receipt.json",
-      "sha256": "e3264431dbbee77cf1e37d76a6a8917a7ad7d226855502df347419aabd0c9725"
+      "sha256": "ccc396efd9543137cd6feeaeb87f8eaae1d5cf620d4059944e08773ba1a6ff95"
     },
     {
       "file": "NativeLODExports/verify_lod_exports.py",

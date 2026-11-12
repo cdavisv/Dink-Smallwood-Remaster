@@ -48,8 +48,8 @@
   "proof_sha256": {
     "launch.json": "0656ea1e4b572537f81360f8120779396146de3aaf610a4a0aa625d9166c39bb",
     "result.json": "e001766b0e4b84f56271e80c4c42b4b7e859190a5cc5734e49eb52a6ff56f643",
-    "DISPLAY_CLOSED.json": "4398e018344920793f7f10029f106278972bb84bcd92e8cc8e16ecf5cf6488ac",
-    "DRIVER_REVIEW_FINAL.json": "0f5da5f06523dab8f14657ca1f593baad55aed860262c983b6f51ffd8e18df70"
+    "DISPLAY_CLOSED.json": "f3092d2bb83ddb06d1684b3fe26c9bb2893f13bf6e3490405b3e6e060dc02164",
+    "DRIVER_REVIEW_FINAL.json": "0c1109658fa141f18b564a71f213744f41eb8310e7e45b403d2efc52294b66a2"
   },
   "qualification": "Priorreview scopegame/display/observeddriver results only; outertool143 is separate retainednonzeroqualification. No restart/sourcechange."
 }

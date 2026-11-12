@@ -2,13 +2,13 @@
   "status": "SOURCE_EXPORTED_ONLY_INDEPENDENT_BINARY_AND_NATIVE_PROOF_PENDING",
   "source": {
     "file": "Source/RoofChimney_ArtistRepair_v12d.blend",
-    "sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec"
+    "sha256": "11be0e85906780bb9c2c5287f180c9ec2ff3686551a4226852aea42a1827ae5f"
   },
   "FBX": [
     {
       "source_object": "SM_Chimney_Stonebrook_V8",
       "file": "FBX/SM_Chimney_Stonebrook_V8.fbx",
-      "sha256": "c7933e1d610c24bdc1b1df4e8510c6b302a810aae4d04799a571c02bf16ef184",
+      "sha256": "937ead7e945c00c79c39838fce7c983130e6a746b692beb0e5ac3ecc31ad2c21",
       "bytes": 267820,
       "matched_UCX": 92,
       "render_triangles": 1486,
@@ -17,7 +17,7 @@
     {
       "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
       "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
-      "sha256": "fc576e7241357c2b38c3325e979d6699b9bc5c09ecd377cf472007a84086a043",
+      "sha256": "0523e743ec1970b42d38a5637181226f6fbbd4430396308c75702f423be1eabe",
       "bytes": 732796,
       "matched_UCX": 16,
       "render_triangles": 15912,
@@ -26,7 +26,7 @@
     {
       "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
       "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
-      "sha256": "ebd4193ee89dbe7fc5b79e9c49412ae7b0e717b766285275695e9a67ade0c43a",
+      "sha256": "e6c7fe9ab1b09bdc0c1eb92fe4045c41e921122f20fedbbe7a7d0447017addda",
       "bytes": 440252,
       "matched_UCX": 0,
       "render_triangles": 8672,
@@ -35,7 +35,7 @@
     {
       "source_object": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
       "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
-      "sha256": "707f4b3ad985426ec1fa0536db015cbf362a598e3c55438708b60b7f26ed137a",
+      "sha256": "b3892de1095385899c93640c17d839b5d3409519b851ed98fd7506814e86fd7f",
       "bytes": 252028,
       "matched_UCX": 0,
       "render_triangles": 4698,
@@ -44,7 +44,7 @@
     {
       "source_object": "SM_IndoorRoof_EN_01",
       "file": "FBX/SM_IndoorRoof_EN_01.fbx",
-      "sha256": "7b40cac294335a955a8fc795e5c580242b7a6e41ed2ae5a4483d3a6849f5ad2d",
+      "sha256": "e5f839cdf2c4deb3ef029a3400a35bd0d634370dbc297508f65dc5b980056407",
       "bytes": 258492,
       "matched_UCX": 48,
       "render_triangles": 4986,
@@ -53,7 +53,7 @@
     {
       "source_object": "SM_IndoorRoof_ES_01",
       "file": "FBX/SM_IndoorRoof_ES_01.fbx",
-      "sha256": "d5b0c8a8e9225b878fb66c8f38821ab3e5c094b95430f1b66b5a7949c06615bd",
+      "sha256": "4d00bd2844ad3cfaaa7e16f79819eb6e2ef514097949716cdeceff57f1c9b491",
       "bytes": 198812,
       "matched_UCX": 45,
       "render_triangles": 3474,
@@ -62,7 +62,7 @@
     {
       "source_object": "SM_IndoorRoof_Gable_EN_01",
       "file": "FBX/SM_IndoorRoof_Gable_EN_01.fbx",
-      "sha256": "23f6ee649697e34a99fd47bdb06018856311ea16f37a7343033dedede986f013",
+      "sha256": "55fd7e07cbd4d520ce4307ddc99ed04c773e9e64282237473fec12750ec5aa1d",
       "bytes": 30812,
       "matched_UCX": 3,
       "render_triangles": 266,
@@ -71,7 +71,7 @@
     {
       "source_object": "SM_IndoorRoof_Gable_ES_01",
       "file": "FBX/SM_IndoorRoof_Gable_ES_01.fbx",
-      "sha256": "277fc30e27714564e70fa4c64a618c6e75498bc3c7cbec698e86e8ef9f5b0f69",
+      "sha256": "de3d05a795356428d38d2fab62289e8155db0c0296596db2b209648d08600283",
       "bytes": 30812,
       "matched_UCX": 3,
       "render_triangles": 266,
@@ -80,7 +80,7 @@
     {
       "source_object": "SM_IndoorRoof_Gable_WN_01",
       "file": "FBX/SM_IndoorRoof_Gable_WN_01.fbx",
-      "sha256": "ade212d8fda49912e9f2eb7dd1dcb64151e09f18c43b03dcd0e45e0eae057a81",
+      "sha256": "4d995ed33aa4e63ee29a39b976e7ae88b77103db775693da5f68e563a1da6f61",
       "bytes": 30812,
       "matched_UCX": 3,
       "render_triangles": 266,
@@ -89,7 +89,7 @@
     {
       "source_object": "SM_IndoorRoof_Gable_WS_01",
       "file": "FBX/SM_IndoorRoof_Gable_WS_01.fbx",
-      "sha256": "84aa4bee77c83062b9293d9a5bb97030973048e4da571fc85024d0b0337971f9",
+      "sha256": "a7957964c0ec2177a5b77cc077fce9e96f03016ee54c65a7a68d13db76fd7eb1",
       "bytes": 30844,
       "matched_UCX": 3,
       "render_triangles": 266,
@@ -98,7 +98,7 @@
     {
       "source_object": "SM_IndoorRoof_WN_01",
       "file": "FBX/SM_IndoorRoof_WN_01.fbx",
-      "sha256": "6a3b6c69adc4afd6427d5fc58310371a5a5e6f2347d5518f41ecb424ef475a9a",
+      "sha256": "415a6b3f02be2124d1cdd6481bc3b908693a3a9eb6be163a60fc89c40a7216c4",
       "bytes": 286268,
       "matched_UCX": 57,
       "render_triangles": 4924,
@@ -107,7 +107,7 @@
     {
       "source_object": "SM_IndoorRoof_WS_01",
       "file": "FBX/SM_IndoorRoof_WS_01.fbx",
-      "sha256": "c0c69468e822c3749afb8095190d6146f33c7f1bfcd828f7fe5159c8c969c942",
+      "sha256": "899a4446561faf24d30df78281b16b83ac827f83233feaea1ebd171c93380093",
       "bytes": 175308,
       "matched_UCX": 42,
       "render_triangles": 2874,

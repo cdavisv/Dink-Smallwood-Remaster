@@ -1,7 +1,7 @@
 import bpy,json,math
 from mathutils import Vector
 from pathlib import Path
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path(Path(__file__).resolve().parents[1])
 bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));rows=[]
 for lod in range(4):
  mesh=bpy.data.objects[f'SK_Dink_OutfitV3_LOD{lod}'].data;mesh.update();normals=[tuple(n.vector) for n in mesh.corner_normals];sums={};keys={}

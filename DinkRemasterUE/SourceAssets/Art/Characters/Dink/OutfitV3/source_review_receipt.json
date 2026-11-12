@@ -1,8 +1,8 @@
 {
   "stage": "SOURCE REVIEW CANDIDATE; parent visual gate pending. NO export, import, runtime, manifest or ledger promotion.",
-  "source_sha256": "59445d2de287a82ea980d5dca4d10cbfc7a8c02808eb180a0b38855bc5d98743",
+  "source_sha256": "b3b0171677214ce5f3ad972c892cc9e57b1d05ec47166322e62249d5fb8f44c4",
   "source_modified_utc": "2026-11-07T22:57:45.486112+00:00",
-  "frozen_source_sha256": "bd9cc7f98a087c2cfe1dbc82f196243381700d5bb1b87044a571c07577f7ea97",
+  "frozen_source_sha256": "b18ca6c4c1d281744cca8df03b033dcddf1cd96246b4bf7c971a5c7564f51dec",
   "triangles": [
     36769,
     24041,
@@ -196,67 +196,67 @@
   },
   "images": {
     "outfit_idle_front.png": {
-      "sha256": "b6b815deef4e6fe9c4268b54f16f28557a33dde35dabdf3e9956c3a477095872",
+      "sha256": "23feb04feea2c76654c037e8351720c861e3d4b02f56e5dc146330bf33031911",
       "modified_utc": "2026-11-07T22:58:46.909971+00:00"
     },
     "outfit_idle_threequarter.png": {
-      "sha256": "9bc6d057e945589957ef4fa72f8c8073456af84ee894fe4d15f60d262ad7d624",
+      "sha256": "a997f1fdccc82d37bce9d72667ee5610fecca208864e9a58b8e10b0422ea0546",
       "modified_utc": "2026-11-07T22:58:56.953275+00:00"
     },
     "outfit_idle_back.png": {
-      "sha256": "78cfbf67b409da6577fefe2703de98ba9b132b4e9fc28175a91922eb53782249",
+      "sha256": "536576856572337761cbf138483dc6ee9a8cdc43a50372fbd2a120011ccb6006",
       "modified_utc": "2026-11-07T22:59:06.271558+00:00"
     },
     "outfit_torso_detail.png": {
-      "sha256": "02fdd3a48764c15700c07e4026a2a90a5a14cef739da61d65bfb3e88147ab780",
+      "sha256": "1878e58cfff8667075fe0d7a1164474d037455bbd1aff2fb2411926d60d05e7e",
       "modified_utc": "2026-11-07T22:59:16.794876+00:00"
     },
     "outfit_backpack_detail.png": {
-      "sha256": "50893249d8d38a5062f3d8db0a1d18744a0586a38cfc8a3b1fc253dbc1abd359",
+      "sha256": "30b022ba3147908356e24b9f9fc2bbc99da2b112e659b57fef57cabfb1a8a7be",
       "modified_utc": "2026-11-07T22:59:28.080218+00:00"
     },
     "outfit_fist_impact.png": {
-      "sha256": "38545d47b25aef8263ca96b3260181209e1662cd167ce05e7c7823df91479de3",
+      "sha256": "45a8cc907a5e83bf9aa508e21e95ca137aa6750ddc9de436129396eeed4b6dc7",
       "modified_utc": "2026-11-07T22:59:37.515504+00:00"
     },
     "outfit_fist_side.png": {
-      "sha256": "b172629addc66bc84676247f38105799bb0fbaa36e6ced7ea5a550ed1253fe65",
+      "sha256": "ed17fa059a7527d5978a4645930a0828bbc4f248307f1cc2d935859989f34e4e",
       "modified_utc": "2026-11-07T22:59:47.889819+00:00"
     },
     "outfit_fist_back.png": {
-      "sha256": "a645078ecb1ed043cfa9c6aeb65c1bca016146803ea1919a825d3868093227e8",
+      "sha256": "d362bf67f2dd91d796cb978f7153712c5c07823623f6d51da1874ff138ab9a81",
       "modified_utc": "2026-11-07T22:59:57.680115+00:00"
     },
     "outfit_walk_reference_0_front.png": {
-      "sha256": "54ec804d734598bbcc0d1b705691e9e22e5df0ae453bdf96b88b9495578fd58b",
+      "sha256": "b711bbc94fb84437939350e4b30e36c09e0c2fe08536296e158348a479626070",
       "modified_utc": "2026-11-07T23:00:07.225405+00:00"
     },
     "outfit_walk_reference_0_back.png": {
-      "sha256": "f2e0e68620094b2975a15113a79d40d855f3b137509a1ab59dd6da8965eb9d8e",
+      "sha256": "1345e9418fa78f7080a55a9e534020a787b96711bab1c5e3d39527bdc1a788c8",
       "modified_utc": "2026-11-07T23:00:17.031702+00:00"
     },
     "outfit_walk_reference_1_front.png": {
-      "sha256": "29787b0c75c0775509ffa38fc588e33a8c472a6fafe628a7225f2e9d69edd846",
+      "sha256": "3f78a52517560d94c3c7a503837f352225bd1d8bab495174ebd83702e88fe354",
       "modified_utc": "2026-11-07T23:00:26.570991+00:00"
     },
     "outfit_walk_reference_1_back.png": {
-      "sha256": "7dc12bba845932bda75634e61ac6a08fc5665732ed0ea54d11d18e64ce50a860",
+      "sha256": "3f9f3763bd0a178072c0c5e97ba0f3b6499290803fb69e2448936ad0367dbf41",
       "modified_utc": "2026-11-07T23:00:36.326287+00:00"
     },
     "outfit_fist_LOD2_normal_front.png": {
-      "sha256": "531741597ae4ef39a4037590d8fa73dbaeac8648b1cd658f2e9c212bb6201b19",
+      "sha256": "d2151e8a34982e618e9a65b9d7cce47f8bd3fcb28e12c18dd0ff990201578895",
       "modified_utc": "2026-11-07T22:57:56.012431+00:00"
     },
     "outfit_fist_LOD2_normal_back.png": {
-      "sha256": "1031ecbb4bdc198e32c35b3d61c9f893b91c536c4cea9958a59c70135e0206a3",
+      "sha256": "a4b00f68e866ab71c66d1577a2894202599ce43e04b250b2190d04a512c8fa99",
       "modified_utc": "2026-11-07T22:58:06.103736+00:00"
     },
     "outfit_fist_LOD3_normal_front.png": {
-      "sha256": "53581f65a195419f04a88bffea519d3a7ebdcb7ff42360ba86e782a0f9db50b4",
+      "sha256": "d1a34792d996f8b7faf959781cf055bc1e20763164627bba3df1aa89c330c9d7",
       "modified_utc": "2026-11-07T22:58:17.231073+00:00"
     },
     "outfit_fist_LOD3_normal_back.png": {
-      "sha256": "28c21727514cf132e75ae7375f349cd62015a562599059e693bf064c615e144f",
+      "sha256": "8dc945771e578816ea0f41be1b804c5c5d79832fa6a752685de830e246c34db8",
       "modified_utc": "2026-11-07T22:58:28.146403+00:00"
     }
   }

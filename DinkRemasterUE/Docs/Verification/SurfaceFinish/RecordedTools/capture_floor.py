@@ -1,18 +1,18 @@
 import json,os,sys,time
 from pathlib import Path
-ROOT=Path('/home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE')
+ROOT=Path(Path.home()/'Work/DinkSurfaceDelivery/DinkRemasterUE')
 PHASE=os.environ.get('DINK_FLOOR_PHASE','Before')
 RESUME=os.environ.get('DINK_FLOOR_RESUME_PHOTOS')=='1'
 PHOTOS_ONLY=os.environ.get('DINK_FLOOR_PHOTOS_ONLY')=='1'
 EXPECT_UNDERLAY=os.environ.get('DINK_FLOOR_EXPECT_UNDERLAY')=='1'
 assert not (RESUME and PHOTOS_ONLY)
-OUT=Path('/home/artist/Work/DinkQA/SurfaceNative')/PHASE
+OUT=Path(Path.home()/'Work/DinkQA/SurfaceNative')/PHASE
 LOG=OUT/'game.log'
 sys.path.insert(0,str(ROOT/'Scripts'))
 import playtest_desktop as d
 import playtest_interactions as q
 d.use_private_display()
-launch=json.loads(Path('/home/artist/Work/DinkQA/Tools/game.json').read_text())
+launch=json.loads(Path(Path.home()/'Work/DinkQA/Tools/game.json').read_text())
 window=d.window();assert window['pid']==launch['game_pid']
 assert str(ROOT/'DinkRemaster.uproject') in launch['command']
 assert not (OUT/'receipt.json').exists()

@@ -1,5 +1,5 @@
 {
-  "source_sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+  "source_sha256": "80d892afe34c2bf09748f90c19beb784e4b897b0163b8a5f0d93f7801a6022e9",
   "status": "Boundedsourceapproved; ordinaryUVbake andcorrectedclosed3LODexport complete, awaitingindependentexportappearance review",
   "bake_executed": true,
   "approval_guard": "review_authorization.json required with exactsourceSHA andsource_appearance_approved:true",
@@ -7,7 +7,7 @@
   "authoring_donor_guide": "1nonPOTerror/2warnings preserved separately; never relabelled clean",
   "raw_reference_resampled": false,
   "native_imported": false,
-  "final_export_sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+  "final_export_sha256": "023e6474169d9cfb2a61436a3849c26ca7411c958fa0d50827afd3e400f37279",
   "final_LOD_triangles": [
     4844,
     2542,

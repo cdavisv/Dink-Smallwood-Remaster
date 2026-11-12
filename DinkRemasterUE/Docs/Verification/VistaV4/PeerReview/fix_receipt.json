@@ -20,9 +20,9 @@
   },
   "patch_sha256": "fa2089c80148705d2bf8c2b2198452a19f8bc05f9ff01ef8f8d9f93fab281aed",
   "receipt_path": "/home/artist/Work/DinkQA/VistaV4PeerReview/fixed_current_source_receipt.json",
-  "receipt_sha256": "691292f12e132c69a3a51118ef9ccfb0d72a5ceb8a39710dc480a541897bdd14",
-  "receipt_scene_sha256": "bb58d4281f513f04dd33b5642e2b96077af1097442dbfd0781a09ff31985114e",
-  "receipt_additions_sha256": "90b4fb33a648fdd8dc7deba8ea2a2e970c58f9853ff983bcffaaa689eaa0f5cb",
+  "receipt_sha256": "135dc411f44b12594f03e6c803348f325b48aaccfd5ea9eee3c245b3e0c77e0e",
+  "receipt_scene_sha256": "e6aa71cc5fedff32ba9fbfd25f5e38ccb00204c4b4d040c3430ed1f1ca01cd6a",
+  "receipt_additions_sha256": "b17fa156cd1bf478caf333731033f9445c8a1a027e9bb374b0fc76185844771b",
   "tests": {
     "ci_green": 11,
     "ci_red_failures_old_helper": 10,
@@ -35,7 +35,7 @@
     "passed": true,
     "fixed_current_manifest_byte_identical_to_original_generator": true,
     "fixed_current_manifest_byte_identical_to_parent_provided_file": true,
-    "current_valid_manifest_sha256": "c6c83b57adb235668b5378e3965b8301512b4ae48f18aacab0155985f69c5c94",
+    "current_valid_manifest_sha256": "1e644f847aaae9ab1e1b01c23beff0a8d652cff67129ba013dcdfbacdfbc1f7c",
     "unmodified_source_builder_completed": true,
     "rebuilt_additions_byte_identical": true,
     "rebuilt_359_runtime_elements_identical": true,
@@ -49,6 +49,6 @@
     "rebuild_source_receipt_passed": true
   },
   "root_helper_sha256_still_original": "da1e5ee19d846d2d2f9b5ca6b0920a4719e196047f58d12135643bc888d9768f",
-  "root_scene_sha256": "bb58d4281f513f04dd33b5642e2b96077af1097442dbfd0781a09ff31985114e",
+  "root_scene_sha256": "e6aa71cc5fedff32ba9fbfd25f5e38ccb00204c4b4d040c3430ed1f1ca01cd6a",
   "scope": "Work-only checker/generator/test fix. No Delivery source files, runtime Data, C++, DLL, imported assets or original scene modifications."
 }

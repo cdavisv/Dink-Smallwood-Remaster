@@ -1,6 +1,6 @@
 import bpy,bmesh,json,hashlib,math,os,sys,ast
 from pathlib import Path
-Q=Path(__file__).resolve().parent;SRC=Path('/home/artist/Work/DinkQA/PhotorealBrokenBarrelExportV1/SourceNodesAlternativeV2/PhotorealBrokenBarrelV2_MultiNodeLODs.blend');OUT=Q/'PhotorealBrokenBarrelV3_Refinement.blend'
+Q=Path(__file__).resolve().parent;SRC=Path(Path.home()/'Work/DinkQA/PhotorealBrokenBarrelExportV1/SourceNodesAlternativeV2/PhotorealBrokenBarrelV2_MultiNodeLODs.blend');OUT=Q/'PhotorealBrokenBarrelV3_Refinement.blend'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 # Reuse only the pure graph signature function, never execute the authoring module.
 tree=ast.parse((Q/'refine.py').read_text());fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef)and n.name=='material_signature');exec(compile(ast.Module(body=[fn],type_ignores=[]),'<signature>','exec'))
