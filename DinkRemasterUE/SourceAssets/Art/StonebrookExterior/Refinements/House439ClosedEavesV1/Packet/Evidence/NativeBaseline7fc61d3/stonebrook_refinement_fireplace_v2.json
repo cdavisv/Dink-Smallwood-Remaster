@@ -1,0 +1,28 @@
+{
+  "schema": "dink-art/1",
+  "screen": 1,
+  "source": "SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/source_manifest.json",
+  "replacements": [
+    {
+      "origin": "S001_P19",
+      "offset_cm": [
+        6.5625,
+        -28.437499999941792,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "mesh": "/Game/Dink/Refinements/FireplaceFiredClayV4Assembly/Meshes/SM_Fireplace_Stonebrook_FiredClayV4.SM_Fireplace_Stonebrook_FiredClayV4"
+    }
+  ],
+  "elements": [],
+  "source_blend_sha256": "73894c6552341456e208e95f4d85c542d73c8a45700fffd7fd594fd965b82a12"
+}

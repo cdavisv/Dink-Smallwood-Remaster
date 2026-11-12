@@ -1,0 +1,6929 @@
+{
+  "scope": "candidate library extraction and independent reuse, not registry/native approval",
+  "frozen_cottage_source_sha256": "233f6041c201fc2d8a6e92fd9dad63e292f8e88ba67a4bfd83e6e965b96f28c2",
+  "current_library_sha256_unchanged": "970d2f2829ee423181347810e2edb954396317396ff837ca1545ef95aa78e88b",
+  "roles": {
+    "FieldstoneSeed2m": {
+      "fingerprint": "98d7fbaefccbc6adec5c6bd1e2d8d851041fc4355e35e4de24a4b5199d97afbf",
+      "graph": {
+        "nodes": [
+          {
+            "name": "Color Attribute",
+            "type": "ShaderNodeVertexColor",
+            "properties": {
+              "layer_name": "SharedSurfaceData"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Image Texture",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+              "colorspace": "sRGB",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Material Output",
+            "type": "ShaderNodeOutputMaterial",
+            "properties": {},
+            "inputs": [
+              [
+                "Surface",
+                null
+              ],
+              [
+                "Volume",
+                null
+              ],
+              [
+                "Displacement",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Thickness",
+                0.0
+              ]
+            ],
+            "outputs": []
+          },
+          {
+            "name": "Math",
+            "type": "ShaderNodeMath",
+            "properties": {
+              "operation": "MULTIPLY_ADD"
+            },
+            "inputs": [
+              [
+                "Value",
+                0.5
+              ],
+              [
+                "Value_001",
+                0.10000000149011612
+              ],
+              [
+                "Value_002",
+                0.9399999976158142
+              ]
+            ],
+            "outputs": [
+              [
+                "Value",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy)",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MULTIPLY"
+            },
+            "inputs": [
+              [
+                "Fac",
+                1.0
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Normal Map",
+            "type": "ShaderNodeNormalMap",
+            "properties": {
+              "uv_map": "UV0",
+              "space": "TANGENT"
+            },
+            "inputs": [
+              [
+                "Strength",
+                1.0
+              ],
+              [
+                "Color",
+                [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Principled BSDF",
+            "type": "ShaderNodeBsdfPrincipled",
+            "properties": {
+              "distribution": "MULTI_GGX"
+            },
+            "inputs": [
+              [
+                "Base Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Metallic",
+                0.0
+              ],
+              [
+                "Roughness",
+                0.5
+              ],
+              [
+                "IOR",
+                1.5
+              ],
+              [
+                "Alpha",
+                1.0
+              ],
+              [
+                "Thin Wall",
+                false
+              ],
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Weight",
+                0.0
+              ],
+              [
+                "Diffuse Roughness",
+                0.0
+              ],
+              [
+                "Subsurface Weight",
+                0.0
+              ],
+              [
+                "Subsurface Radius",
+                [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ]
+              ],
+              [
+                "Subsurface Scale",
+                0.004999999888241291
+              ],
+              [
+                "Subsurface IOR",
+                1.399999976158142
+              ],
+              [
+                "Subsurface Anisotropy",
+                0.0
+              ],
+              [
+                "Specular IOR Level",
+                0.5
+              ],
+              [
+                "Specular Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Anisotropic",
+                0.0
+              ],
+              [
+                "Anisotropic Rotation",
+                0.0
+              ],
+              [
+                "Tangent",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Transmission Weight",
+                0.0
+              ],
+              [
+                "Coat Weight",
+                0.0
+              ],
+              [
+                "Coat Roughness",
+                0.029999999329447746
+              ],
+              [
+                "Coat IOR",
+                1.5
+              ],
+              [
+                "Coat Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Coat Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Sheen Weight",
+                0.0
+              ],
+              [
+                "Sheen Roughness",
+                0.5
+              ],
+              [
+                "Sheen Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Color",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Strength",
+                0.0
+              ],
+              [
+                "Thin Film Thickness",
+                0.0
+              ],
+              [
+                "Thin Film IOR",
+                1.3300000429153442
+              ]
+            ],
+            "outputs": [
+              [
+                "BSDF",
+                null
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ.001",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV0"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          }
+        ],
+        "links": [
+          [
+            "Color Attribute",
+            "Color",
+            "Separate XYZ",
+            "Vector"
+          ],
+          [
+            "Image Texture",
+            "Color",
+            "Mix (Legacy)",
+            "Color1"
+          ],
+          [
+            "Image Texture.001",
+            "Color",
+            "Normal Map",
+            "Color"
+          ],
+          [
+            "Image Texture.002",
+            "Color",
+            "Separate XYZ.001",
+            "Vector"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy)",
+            "Color2"
+          ],
+          [
+            "Mix (Legacy)",
+            "Color",
+            "Principled BSDF",
+            "Base Color"
+          ],
+          [
+            "Normal Map",
+            "Normal",
+            "Principled BSDF",
+            "Normal"
+          ],
+          [
+            "Principled BSDF",
+            "BSDF",
+            "Material Output",
+            "Surface"
+          ],
+          [
+            "Separate XYZ",
+            "X",
+            "Math",
+            "Value"
+          ],
+          [
+            "Separate XYZ.001",
+            "Y",
+            "Principled BSDF",
+            "Roughness"
+          ],
+          [
+            "Separate XYZ.001",
+            "Z",
+            "Principled BSDF",
+            "Metallic"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.001",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.002",
+            "Vector"
+          ]
+        ],
+        "material_properties": {
+          "surface_render_method": "DITHERED",
+          "use_backface_culling": false,
+          "use_transparent_shadow": true,
+          "use_transparency_overlap": true
+        }
+      }
+    },
+    "LimeMortarSoot2m": {
+      "fingerprint": "585e7f17974b7534ef1f4d3ea3bd06ef194c70718263687a4ce87535d644a79d",
+      "graph": {
+        "nodes": [
+          {
+            "name": "Color Attribute",
+            "type": "ShaderNodeVertexColor",
+            "properties": {
+              "layer_name": "SharedSurfaceData"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Image Texture",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2",
+              "colorspace": "sRGB",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "d1975c8e299283b21828e7470a69033668889728ed84c68f57c6465d3e672857",
+              "colorspace": "sRGB",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.003",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.004",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.005",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "36eb1478ec2fb059ee0604fcc92ce654d6582855fa285dec66d8a6f9a6c48133",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Material Output",
+            "type": "ShaderNodeOutputMaterial",
+            "properties": {},
+            "inputs": [
+              [
+                "Surface",
+                null
+              ],
+              [
+                "Volume",
+                null
+              ],
+              [
+                "Displacement",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Thickness",
+                0.0
+              ]
+            ],
+            "outputs": []
+          },
+          {
+            "name": "Math",
+            "type": "ShaderNodeMath",
+            "properties": {
+              "operation": "GREATER_THAN"
+            },
+            "inputs": [
+              [
+                "Value",
+                0.5
+              ],
+              [
+                "Value_001",
+                0.5
+              ],
+              [
+                "Value_002",
+                0.5
+              ]
+            ],
+            "outputs": [
+              [
+                "Value",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Math.001",
+            "type": "ShaderNodeMath",
+            "properties": {
+              "operation": "ADD"
+            },
+            "inputs": [
+              [
+                "Value",
+                0.5
+              ],
+              [
+                "Value_001",
+                0.5
+              ],
+              [
+                "Value_002",
+                0.5
+              ]
+            ],
+            "outputs": [
+              [
+                "Value",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy)",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).001",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).002",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).003",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MULTIPLY"
+            },
+            "inputs": [
+              [
+                "Fac",
+                1.0
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Normal Map",
+            "type": "ShaderNodeNormalMap",
+            "properties": {
+              "uv_map": "UV0",
+              "space": "TANGENT"
+            },
+            "inputs": [
+              [
+                "Strength",
+                1.0
+              ],
+              [
+                "Color",
+                [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Principled BSDF",
+            "type": "ShaderNodeBsdfPrincipled",
+            "properties": {
+              "distribution": "MULTI_GGX"
+            },
+            "inputs": [
+              [
+                "Base Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Metallic",
+                0.0
+              ],
+              [
+                "Roughness",
+                0.5
+              ],
+              [
+                "IOR",
+                1.5
+              ],
+              [
+                "Alpha",
+                1.0
+              ],
+              [
+                "Thin Wall",
+                false
+              ],
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Weight",
+                0.0
+              ],
+              [
+                "Diffuse Roughness",
+                0.0
+              ],
+              [
+                "Subsurface Weight",
+                0.0
+              ],
+              [
+                "Subsurface Radius",
+                [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ]
+              ],
+              [
+                "Subsurface Scale",
+                0.004999999888241291
+              ],
+              [
+                "Subsurface IOR",
+                1.399999976158142
+              ],
+              [
+                "Subsurface Anisotropy",
+                0.0
+              ],
+              [
+                "Specular IOR Level",
+                0.5
+              ],
+              [
+                "Specular Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Anisotropic",
+                0.0
+              ],
+              [
+                "Anisotropic Rotation",
+                0.0
+              ],
+              [
+                "Tangent",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Transmission Weight",
+                0.0
+              ],
+              [
+                "Coat Weight",
+                0.0
+              ],
+              [
+                "Coat Roughness",
+                0.029999999329447746
+              ],
+              [
+                "Coat IOR",
+                1.5
+              ],
+              [
+                "Coat Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Coat Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Sheen Weight",
+                0.0
+              ],
+              [
+                "Sheen Roughness",
+                0.5
+              ],
+              [
+                "Sheen Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Color",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Strength",
+                0.0
+              ],
+              [
+                "Thin Film Thickness",
+                0.0
+              ],
+              [
+                "Thin Film IOR",
+                1.3300000429153442
+              ]
+            ],
+            "outputs": [
+              [
+                "BSDF",
+                null
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ.001",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV0"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "UV Map.001",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV1_SharedData"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          }
+        ],
+        "links": [
+          [
+            "Color Attribute",
+            "Color",
+            "Mix (Legacy).003",
+            "Color2"
+          ],
+          [
+            "Image Texture",
+            "Color",
+            "Mix (Legacy)",
+            "Color1"
+          ],
+          [
+            "Image Texture.001",
+            "Color",
+            "Mix (Legacy)",
+            "Color2"
+          ],
+          [
+            "Image Texture.002",
+            "Color",
+            "Mix (Legacy).001",
+            "Color1"
+          ],
+          [
+            "Image Texture.003",
+            "Color",
+            "Mix (Legacy).001",
+            "Color2"
+          ],
+          [
+            "Image Texture.004",
+            "Color",
+            "Mix (Legacy).002",
+            "Color1"
+          ],
+          [
+            "Image Texture.005",
+            "Color",
+            "Mix (Legacy).002",
+            "Color2"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy)",
+            "Fac"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy).001",
+            "Fac"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy).002",
+            "Fac"
+          ],
+          [
+            "Math.001",
+            "Value",
+            "Principled BSDF",
+            "Roughness"
+          ],
+          [
+            "Mix (Legacy)",
+            "Color",
+            "Mix (Legacy).003",
+            "Color1"
+          ],
+          [
+            "Mix (Legacy).001",
+            "Color",
+            "Normal Map",
+            "Color"
+          ],
+          [
+            "Mix (Legacy).002",
+            "Color",
+            "Separate XYZ.001",
+            "Vector"
+          ],
+          [
+            "Mix (Legacy).003",
+            "Color",
+            "Principled BSDF",
+            "Base Color"
+          ],
+          [
+            "Normal Map",
+            "Normal",
+            "Principled BSDF",
+            "Normal"
+          ],
+          [
+            "Principled BSDF",
+            "BSDF",
+            "Material Output",
+            "Surface"
+          ],
+          [
+            "Separate XYZ",
+            "X",
+            "Math",
+            "Value"
+          ],
+          [
+            "Separate XYZ",
+            "Y",
+            "Math.001",
+            "Value_001"
+          ],
+          [
+            "Separate XYZ.001",
+            "Y",
+            "Math.001",
+            "Value"
+          ],
+          [
+            "Separate XYZ.001",
+            "Z",
+            "Principled BSDF",
+            "Metallic"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.001",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.002",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.003",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.004",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.005",
+            "Vector"
+          ],
+          [
+            "UV Map.001",
+            "UV",
+            "Separate XYZ",
+            "Vector"
+          ]
+        ],
+        "material_properties": {
+          "surface_render_method": "DITHERED",
+          "use_backface_culling": false,
+          "use_transparent_shadow": true,
+          "use_transparency_overlap": true
+        }
+      }
+    },
+    "WeatheredTimber2m": {
+      "fingerprint": "bdc1a9489a8c29197ae6cfe82a54ebca63271c515c9cb7bbd65eb4c36f9141cd",
+      "graph": {
+        "nodes": [
+          {
+            "name": "Image Texture",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200",
+              "colorspace": "sRGB",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "bb8ec47e552bc366e9f150762846c31be838508c01a5724fc1e69a78668ed792",
+              "colorspace": "sRGB",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.003",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.004",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.005",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "fd074489d73817bab5c165c8d844cc978cb1c95244a36de53643524a858baa99",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Material Output",
+            "type": "ShaderNodeOutputMaterial",
+            "properties": {},
+            "inputs": [
+              [
+                "Surface",
+                null
+              ],
+              [
+                "Volume",
+                null
+              ],
+              [
+                "Displacement",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Thickness",
+                0.0
+              ]
+            ],
+            "outputs": []
+          },
+          {
+            "name": "Math",
+            "type": "ShaderNodeMath",
+            "properties": {
+              "operation": "GREATER_THAN"
+            },
+            "inputs": [
+              [
+                "Value",
+                0.5
+              ],
+              [
+                "Value_001",
+                0.5
+              ],
+              [
+                "Value_002",
+                0.5
+              ]
+            ],
+            "outputs": [
+              [
+                "Value",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy)",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).001",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).002",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Normal Map",
+            "type": "ShaderNodeNormalMap",
+            "properties": {
+              "uv_map": "UV0",
+              "space": "TANGENT"
+            },
+            "inputs": [
+              [
+                "Strength",
+                1.0
+              ],
+              [
+                "Color",
+                [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Principled BSDF",
+            "type": "ShaderNodeBsdfPrincipled",
+            "properties": {
+              "distribution": "MULTI_GGX"
+            },
+            "inputs": [
+              [
+                "Base Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Metallic",
+                0.0
+              ],
+              [
+                "Roughness",
+                0.5
+              ],
+              [
+                "IOR",
+                1.5
+              ],
+              [
+                "Alpha",
+                1.0
+              ],
+              [
+                "Thin Wall",
+                false
+              ],
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Weight",
+                0.0
+              ],
+              [
+                "Diffuse Roughness",
+                0.0
+              ],
+              [
+                "Subsurface Weight",
+                0.0
+              ],
+              [
+                "Subsurface Radius",
+                [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ]
+              ],
+              [
+                "Subsurface Scale",
+                0.004999999888241291
+              ],
+              [
+                "Subsurface IOR",
+                1.399999976158142
+              ],
+              [
+                "Subsurface Anisotropy",
+                0.0
+              ],
+              [
+                "Specular IOR Level",
+                0.5
+              ],
+              [
+                "Specular Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Anisotropic",
+                0.0
+              ],
+              [
+                "Anisotropic Rotation",
+                0.0
+              ],
+              [
+                "Tangent",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Transmission Weight",
+                0.0
+              ],
+              [
+                "Coat Weight",
+                0.0
+              ],
+              [
+                "Coat Roughness",
+                0.029999999329447746
+              ],
+              [
+                "Coat IOR",
+                1.5
+              ],
+              [
+                "Coat Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Coat Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Sheen Weight",
+                0.0
+              ],
+              [
+                "Sheen Roughness",
+                0.5
+              ],
+              [
+                "Sheen Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Color",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Strength",
+                0.0
+              ],
+              [
+                "Thin Film Thickness",
+                0.0
+              ],
+              [
+                "Thin Film IOR",
+                1.3300000429153442
+              ]
+            ],
+            "outputs": [
+              [
+                "BSDF",
+                null
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ.001",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV0"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "UV Map.001",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV1_SharedData"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          }
+        ],
+        "links": [
+          [
+            "Image Texture",
+            "Color",
+            "Mix (Legacy)",
+            "Color1"
+          ],
+          [
+            "Image Texture.001",
+            "Color",
+            "Mix (Legacy)",
+            "Color2"
+          ],
+          [
+            "Image Texture.002",
+            "Color",
+            "Mix (Legacy).001",
+            "Color1"
+          ],
+          [
+            "Image Texture.003",
+            "Color",
+            "Mix (Legacy).001",
+            "Color2"
+          ],
+          [
+            "Image Texture.004",
+            "Color",
+            "Mix (Legacy).002",
+            "Color1"
+          ],
+          [
+            "Image Texture.005",
+            "Color",
+            "Mix (Legacy).002",
+            "Color2"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy)",
+            "Fac"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy).001",
+            "Fac"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy).002",
+            "Fac"
+          ],
+          [
+            "Mix (Legacy)",
+            "Color",
+            "Principled BSDF",
+            "Base Color"
+          ],
+          [
+            "Mix (Legacy).001",
+            "Color",
+            "Normal Map",
+            "Color"
+          ],
+          [
+            "Mix (Legacy).002",
+            "Color",
+            "Separate XYZ.001",
+            "Vector"
+          ],
+          [
+            "Normal Map",
+            "Normal",
+            "Principled BSDF",
+            "Normal"
+          ],
+          [
+            "Principled BSDF",
+            "BSDF",
+            "Material Output",
+            "Surface"
+          ],
+          [
+            "Separate XYZ",
+            "X",
+            "Math",
+            "Value"
+          ],
+          [
+            "Separate XYZ.001",
+            "Y",
+            "Principled BSDF",
+            "Roughness"
+          ],
+          [
+            "Separate XYZ.001",
+            "Z",
+            "Principled BSDF",
+            "Metallic"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.001",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.002",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.003",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.004",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.005",
+            "Vector"
+          ],
+          [
+            "UV Map.001",
+            "UV",
+            "Separate XYZ",
+            "Vector"
+          ]
+        ],
+        "material_properties": {
+          "surface_render_method": "DITHERED",
+          "use_backface_culling": false,
+          "use_transparent_shadow": true,
+          "use_transparency_overlap": true
+        }
+      }
+    },
+    "IronLead2m": {
+      "fingerprint": "82d9b03ef4fd8fbaf8280eae215eb76ab74bed74427542e8aeee993fd549ec3a",
+      "graph": {
+        "nodes": [
+          {
+            "name": "Image Texture",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+              "colorspace": "sRGB",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+              "colorspace": "sRGB",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.003",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.004",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.005",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Material Output",
+            "type": "ShaderNodeOutputMaterial",
+            "properties": {},
+            "inputs": [
+              [
+                "Surface",
+                null
+              ],
+              [
+                "Volume",
+                null
+              ],
+              [
+                "Displacement",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Thickness",
+                0.0
+              ]
+            ],
+            "outputs": []
+          },
+          {
+            "name": "Math",
+            "type": "ShaderNodeMath",
+            "properties": {
+              "operation": "GREATER_THAN"
+            },
+            "inputs": [
+              [
+                "Value",
+                0.5
+              ],
+              [
+                "Value_001",
+                0.5
+              ],
+              [
+                "Value_002",
+                0.5
+              ]
+            ],
+            "outputs": [
+              [
+                "Value",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy)",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).001",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).002",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Normal Map",
+            "type": "ShaderNodeNormalMap",
+            "properties": {
+              "uv_map": "UV0",
+              "space": "TANGENT"
+            },
+            "inputs": [
+              [
+                "Strength",
+                1.0
+              ],
+              [
+                "Color",
+                [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Principled BSDF",
+            "type": "ShaderNodeBsdfPrincipled",
+            "properties": {
+              "distribution": "MULTI_GGX"
+            },
+            "inputs": [
+              [
+                "Base Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Metallic",
+                0.0
+              ],
+              [
+                "Roughness",
+                0.5
+              ],
+              [
+                "IOR",
+                1.5
+              ],
+              [
+                "Alpha",
+                1.0
+              ],
+              [
+                "Thin Wall",
+                false
+              ],
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Weight",
+                0.0
+              ],
+              [
+                "Diffuse Roughness",
+                0.0
+              ],
+              [
+                "Subsurface Weight",
+                0.0
+              ],
+              [
+                "Subsurface Radius",
+                [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ]
+              ],
+              [
+                "Subsurface Scale",
+                0.004999999888241291
+              ],
+              [
+                "Subsurface IOR",
+                1.399999976158142
+              ],
+              [
+                "Subsurface Anisotropy",
+                0.0
+              ],
+              [
+                "Specular IOR Level",
+                0.5
+              ],
+              [
+                "Specular Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Anisotropic",
+                0.0
+              ],
+              [
+                "Anisotropic Rotation",
+                0.0
+              ],
+              [
+                "Tangent",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Transmission Weight",
+                0.0
+              ],
+              [
+                "Coat Weight",
+                0.0
+              ],
+              [
+                "Coat Roughness",
+                0.029999999329447746
+              ],
+              [
+                "Coat IOR",
+                1.5
+              ],
+              [
+                "Coat Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Coat Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Sheen Weight",
+                0.0
+              ],
+              [
+                "Sheen Roughness",
+                0.5
+              ],
+              [
+                "Sheen Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Color",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Strength",
+                0.0
+              ],
+              [
+                "Thin Film Thickness",
+                0.0
+              ],
+              [
+                "Thin Film IOR",
+                1.3300000429153442
+              ]
+            ],
+            "outputs": [
+              [
+                "BSDF",
+                null
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ.001",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV0"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "UV Map.001",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV1_SharedData"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          }
+        ],
+        "links": [
+          [
+            "Image Texture",
+            "Color",
+            "Mix (Legacy)",
+            "Color1"
+          ],
+          [
+            "Image Texture.001",
+            "Color",
+            "Mix (Legacy)",
+            "Color2"
+          ],
+          [
+            "Image Texture.002",
+            "Color",
+            "Mix (Legacy).001",
+            "Color1"
+          ],
+          [
+            "Image Texture.003",
+            "Color",
+            "Mix (Legacy).001",
+            "Color2"
+          ],
+          [
+            "Image Texture.004",
+            "Color",
+            "Mix (Legacy).002",
+            "Color1"
+          ],
+          [
+            "Image Texture.005",
+            "Color",
+            "Mix (Legacy).002",
+            "Color2"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy)",
+            "Fac"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy).001",
+            "Fac"
+          ],
+          [
+            "Math",
+            "Value",
+            "Mix (Legacy).002",
+            "Fac"
+          ],
+          [
+            "Mix (Legacy)",
+            "Color",
+            "Principled BSDF",
+            "Base Color"
+          ],
+          [
+            "Mix (Legacy).001",
+            "Color",
+            "Normal Map",
+            "Color"
+          ],
+          [
+            "Mix (Legacy).002",
+            "Color",
+            "Separate XYZ.001",
+            "Vector"
+          ],
+          [
+            "Normal Map",
+            "Normal",
+            "Principled BSDF",
+            "Normal"
+          ],
+          [
+            "Principled BSDF",
+            "BSDF",
+            "Material Output",
+            "Surface"
+          ],
+          [
+            "Separate XYZ",
+            "X",
+            "Math",
+            "Value"
+          ],
+          [
+            "Separate XYZ.001",
+            "Y",
+            "Principled BSDF",
+            "Roughness"
+          ],
+          [
+            "Separate XYZ.001",
+            "Z",
+            "Principled BSDF",
+            "Metallic"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.001",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.002",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.003",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.004",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.005",
+            "Vector"
+          ],
+          [
+            "UV Map.001",
+            "UV",
+            "Separate XYZ",
+            "Vector"
+          ]
+        ],
+        "material_properties": {
+          "surface_render_method": "DITHERED",
+          "use_backface_culling": false,
+          "use_transparent_shadow": true,
+          "use_transparency_overlap": true
+        }
+      }
+    },
+    "ThinWavyGlass2m": {
+      "fingerprint": "ca31e386e8c6d35b67bc8efa0d746aaaa4831e7d2e7a7db4cab69db38f36b375",
+      "graph": {
+        "nodes": [
+          {
+            "name": "Image Texture",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+              "colorspace": "sRGB",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Material Output",
+            "type": "ShaderNodeOutputMaterial",
+            "properties": {},
+            "inputs": [
+              [
+                "Surface",
+                null
+              ],
+              [
+                "Volume",
+                null
+              ],
+              [
+                "Displacement",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Thickness",
+                0.0
+              ]
+            ],
+            "outputs": []
+          },
+          {
+            "name": "Normal Map",
+            "type": "ShaderNodeNormalMap",
+            "properties": {
+              "uv_map": "UV0",
+              "space": "TANGENT"
+            },
+            "inputs": [
+              [
+                "Strength",
+                1.0
+              ],
+              [
+                "Color",
+                [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Principled BSDF",
+            "type": "ShaderNodeBsdfPrincipled",
+            "properties": {
+              "distribution": "MULTI_GGX"
+            },
+            "inputs": [
+              [
+                "Base Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Metallic",
+                0.0
+              ],
+              [
+                "Roughness",
+                0.5
+              ],
+              [
+                "IOR",
+                1.4800000190734863
+              ],
+              [
+                "Alpha",
+                1.0
+              ],
+              [
+                "Thin Wall",
+                true
+              ],
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Weight",
+                0.0
+              ],
+              [
+                "Diffuse Roughness",
+                0.0
+              ],
+              [
+                "Subsurface Weight",
+                0.0
+              ],
+              [
+                "Subsurface Radius",
+                [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ]
+              ],
+              [
+                "Subsurface Scale",
+                0.004999999888241291
+              ],
+              [
+                "Subsurface IOR",
+                1.399999976158142
+              ],
+              [
+                "Subsurface Anisotropy",
+                0.0
+              ],
+              [
+                "Specular IOR Level",
+                0.5
+              ],
+              [
+                "Specular Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Anisotropic",
+                0.0
+              ],
+              [
+                "Anisotropic Rotation",
+                0.0
+              ],
+              [
+                "Tangent",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Transmission Weight",
+                1.0
+              ],
+              [
+                "Coat Weight",
+                0.0
+              ],
+              [
+                "Coat Roughness",
+                0.029999999329447746
+              ],
+              [
+                "Coat IOR",
+                1.5
+              ],
+              [
+                "Coat Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Coat Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Sheen Weight",
+                0.0
+              ],
+              [
+                "Sheen Roughness",
+                0.5
+              ],
+              [
+                "Sheen Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Color",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Strength",
+                0.0
+              ],
+              [
+                "Thin Film Thickness",
+                0.0
+              ],
+              [
+                "Thin Film IOR",
+                1.3300000429153442
+              ]
+            ],
+            "outputs": [
+              [
+                "BSDF",
+                null
+              ]
+            ]
+          },
+          {
+            "name": "Separate Color",
+            "type": "ShaderNodeSeparateColor",
+            "properties": {},
+            "inputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Red",
+                0.0
+              ],
+              [
+                "Green",
+                0.0
+              ],
+              [
+                "Blue",
+                0.0
+              ]
+            ]
+          }
+        ],
+        "links": [
+          [
+            "Image Texture",
+            "Color",
+            "Principled BSDF",
+            "Base Color"
+          ],
+          [
+            "Image Texture.001",
+            "Color",
+            "Normal Map",
+            "Color"
+          ],
+          [
+            "Image Texture.002",
+            "Color",
+            "Separate Color",
+            "Color"
+          ],
+          [
+            "Normal Map",
+            "Normal",
+            "Principled BSDF",
+            "Normal"
+          ],
+          [
+            "Principled BSDF",
+            "BSDF",
+            "Material Output",
+            "Surface"
+          ],
+          [
+            "Separate Color",
+            "Blue",
+            "Principled BSDF",
+            "Metallic"
+          ],
+          [
+            "Separate Color",
+            "Green",
+            "Principled BSDF",
+            "Roughness"
+          ]
+        ],
+        "material_properties": {
+          "surface_render_method": "DITHERED",
+          "use_backface_culling": false,
+          "use_transparent_shadow": true,
+          "use_transparency_overlap": true
+        }
+      }
+    },
+    "FieldstoneWall2m": {
+      "fingerprint": "c751f4421e986cd72f4a00e4e9dcf1f9cad7bd13c1e7e7bf6266ce0d213e4e4d",
+      "graph": {
+        "nodes": [
+          {
+            "name": "Image Texture",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+              "colorspace": "sRGB",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+              "colorspace": "Non-Color",
+              "size": [
+                1024,
+                1024
+              ]
+            }
+          },
+          {
+            "name": "Material Output",
+            "type": "ShaderNodeOutputMaterial",
+            "properties": {},
+            "inputs": [
+              [
+                "Surface",
+                null
+              ],
+              [
+                "Volume",
+                null
+              ],
+              [
+                "Displacement",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Thickness",
+                0.0
+              ]
+            ],
+            "outputs": []
+          },
+          {
+            "name": "Normal Map",
+            "type": "ShaderNodeNormalMap",
+            "properties": {
+              "uv_map": "UV0",
+              "space": "TANGENT"
+            },
+            "inputs": [
+              [
+                "Strength",
+                1.0
+              ],
+              [
+                "Color",
+                [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Principled BSDF",
+            "type": "ShaderNodeBsdfPrincipled",
+            "properties": {
+              "distribution": "MULTI_GGX"
+            },
+            "inputs": [
+              [
+                "Base Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Metallic",
+                0.0
+              ],
+              [
+                "Roughness",
+                0.800000011920929
+              ],
+              [
+                "IOR",
+                1.5
+              ],
+              [
+                "Alpha",
+                1.0
+              ],
+              [
+                "Thin Wall",
+                false
+              ],
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Weight",
+                0.0
+              ],
+              [
+                "Diffuse Roughness",
+                0.0
+              ],
+              [
+                "Subsurface Weight",
+                0.0
+              ],
+              [
+                "Subsurface Radius",
+                [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ]
+              ],
+              [
+                "Subsurface Scale",
+                0.004999999888241291
+              ],
+              [
+                "Subsurface IOR",
+                1.399999976158142
+              ],
+              [
+                "Subsurface Anisotropy",
+                0.0
+              ],
+              [
+                "Specular IOR Level",
+                0.5
+              ],
+              [
+                "Specular Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Anisotropic",
+                0.0
+              ],
+              [
+                "Anisotropic Rotation",
+                0.0
+              ],
+              [
+                "Tangent",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Transmission Weight",
+                0.0
+              ],
+              [
+                "Coat Weight",
+                0.0
+              ],
+              [
+                "Coat Roughness",
+                0.029999999329447746
+              ],
+              [
+                "Coat IOR",
+                1.5
+              ],
+              [
+                "Coat Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Coat Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Sheen Weight",
+                0.0
+              ],
+              [
+                "Sheen Roughness",
+                0.5
+              ],
+              [
+                "Sheen Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Color",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Strength",
+                0.0
+              ],
+              [
+                "Thin Film Thickness",
+                0.0
+              ],
+              [
+                "Thin Film IOR",
+                1.3300000429153442
+              ]
+            ],
+            "outputs": [
+              [
+                "BSDF",
+                null
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV0"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          }
+        ],
+        "links": [
+          [
+            "Image Texture",
+            "Color",
+            "Principled BSDF",
+            "Base Color"
+          ],
+          [
+            "Image Texture.001",
+            "Color",
+            "Separate XYZ",
+            "Vector"
+          ],
+          [
+            "Image Texture.002",
+            "Color",
+            "Normal Map",
+            "Color"
+          ],
+          [
+            "Normal Map",
+            "Normal",
+            "Principled BSDF",
+            "Normal"
+          ],
+          [
+            "Principled BSDF",
+            "BSDF",
+            "Material Output",
+            "Surface"
+          ],
+          [
+            "Separate XYZ",
+            "Y",
+            "Principled BSDF",
+            "Roughness"
+          ],
+          [
+            "Separate XYZ",
+            "Z",
+            "Principled BSDF",
+            "Metallic"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.001",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.002",
+            "Vector"
+          ]
+        ],
+        "material_properties": {
+          "surface_render_method": "DITHERED",
+          "use_backface_culling": false,
+          "use_transparent_shadow": true,
+          "use_transparency_overlap": true
+        }
+      }
+    },
+    "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": {
+      "fingerprint": "9a5cab6242d6c72986dd7366536a9df62b9c285f0b3e051fa69eff674dc75a25",
+      "graph": {
+        "nodes": [
+          {
+            "name": "Bump",
+            "type": "ShaderNodeBump",
+            "properties": {},
+            "inputs": [
+              [
+                "Strength",
+                0.4000000059604645
+              ],
+              [
+                "Distance",
+                0.027000000700354576
+              ],
+              [
+                "Filter Width",
+                0.10000000149011612
+              ],
+              [
+                "Height",
+                1.0
+              ],
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Bump.001",
+            "type": "ShaderNodeBump",
+            "properties": {},
+            "inputs": [
+              [
+                "Strength",
+                0.36000001430511475
+              ],
+              [
+                "Distance",
+                0.01899999938905239
+              ],
+              [
+                "Filter Width",
+                0.10000000149011612
+              ],
+              [
+                "Height",
+                1.0
+              ],
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Color Attribute",
+            "type": "ShaderNodeVertexColor",
+            "properties": {
+              "layer_name": "SharedSurfaceData"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Color Ramp",
+            "type": "ShaderNodeValToRGB",
+            "properties": {},
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "ramp": {
+              "interpolation": "LINEAR",
+              "color_mode": "RGB",
+              "elements": [
+                [
+                  0.23000000417232513,
+                  [
+                    0.75,
+                    0.550000011920929,
+                    0.33000001311302185,
+                    1.0
+                  ]
+                ],
+                [
+                  0.7200000286102295,
+                  [
+                    1.6699999570846558,
+                    1.3700000047683716,
+                    0.8199999928474426,
+                    1.0
+                  ]
+                ]
+              ]
+            }
+          },
+          {
+            "name": "Color Ramp.001",
+            "type": "ShaderNodeValToRGB",
+            "properties": {},
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "ramp": {
+              "interpolation": "EASE",
+              "color_mode": "RGB",
+              "elements": [
+                [
+                  0.02500000037252903,
+                  [
+                    0.5799999833106995,
+                    0.5099999904632568,
+                    0.38999998569488525,
+                    1.0
+                  ]
+                ],
+                [
+                  0.23000000417232513,
+                  [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ]
+                ]
+              ]
+            }
+          },
+          {
+            "name": "GenericDryWeatheringTint",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.41999998688697815,
+                  0.46000000834465027,
+                  0.3100000023841858,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "GenericSurfaceSoiling_A",
+            "type": "ShaderNodeVertexColor",
+            "properties": {
+              "layer_name": "SharedSurfaceData"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "GenericWeatheredAlbedo",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MULTIPLY"
+            },
+            "inputs": [
+              [
+                "Fac",
+                1.0
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Image Texture",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "2ed02bd030999f813575b5c135668fed168428c7ea3496562d5ac8f64b4c2823",
+              "colorspace": "sRGB",
+              "size": [
+                2048,
+                2048
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "cce06a1f47031a0281823afa8f583556b851ca639784d828aa8a04c64195beb4",
+              "colorspace": "Non-Color",
+              "size": [
+                2048,
+                2048
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "ca992ab35fe3e370d61de418f48a5f50534580fa15d28cf52e64ec5f31950984",
+              "colorspace": "Non-Color",
+              "size": [
+                2048,
+                2048
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.003",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "67608541851a258f40525dc3cbfe7f1cfd3d0ac90fb3fdd063466b9995acffc7",
+              "colorspace": "sRGB",
+              "size": [
+                2048,
+                2048
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.004",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "652913d86762481e995396a9fac81877c2d5ec6fe5d20f94e39a4e059451f877",
+              "colorspace": "Non-Color",
+              "size": [
+                2048,
+                2048
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.005",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "d19a5172774dcc93ccec032efd50c8e3233d792e62ced782b5d7dea51c2e4259",
+              "colorspace": "Non-Color",
+              "size": [
+                2048,
+                2048
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.006",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "d11d4b9176c5c85fa0f4ba8cd94f5889bea0774b64cfeb09f061af5307bfff06",
+              "colorspace": "Non-Color",
+              "size": [
+                512,
+                512
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.007",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "5aeef112f9f3a4850bcff3860d89ac8a0a240581101ece624dadbec9d662429c",
+              "colorspace": "Non-Color",
+              "size": [
+                512,
+                512
+              ]
+            }
+          },
+          {
+            "name": "Image Texture.008",
+            "type": "ShaderNodeTexImage",
+            "properties": {
+              "interpolation": "Linear",
+              "projection": "FLAT",
+              "extension": "REPEAT"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Alpha",
+                0.0
+              ]
+            ],
+            "image": {
+              "sha256": "cf57306c3d5fafbe7ca6500557e6cb8f7f080bba863d7e19fd38ac6dcb21797e",
+              "colorspace": "Non-Color",
+              "size": [
+                512,
+                512
+              ]
+            }
+          },
+          {
+            "name": "Material Output",
+            "type": "ShaderNodeOutputMaterial",
+            "properties": {},
+            "inputs": [
+              [
+                "Surface",
+                null
+              ],
+              [
+                "Volume",
+                null
+              ],
+              [
+                "Displacement",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Thickness",
+                0.0
+              ]
+            ],
+            "outputs": []
+          },
+          {
+            "name": "Mix (Legacy)",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).001",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).002",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MIX"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.5
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).003",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MULTIPLY"
+            },
+            "inputs": [
+              [
+                "Fac",
+                1.0
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Mix (Legacy).004",
+            "type": "ShaderNodeMixRGB",
+            "properties": {
+              "blend_type": "MULTIPLY"
+            },
+            "inputs": [
+              [
+                "Fac",
+                0.6200000047683716
+              ],
+              [
+                "Color1",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ],
+              [
+                "Color2",
+                [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Noise Texture",
+            "type": "ShaderNodeTexNoise",
+            "properties": {
+              "noise_dimensions": "3D",
+              "normalize": true
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "W",
+                0.0
+              ],
+              [
+                "Scale",
+                1.0
+              ],
+              [
+                "Detail",
+                2.200000047683716
+              ],
+              [
+                "Roughness",
+                0.5699999928474426
+              ],
+              [
+                "Lacunarity",
+                2.0
+              ],
+              [
+                "Offset",
+                0.0
+              ],
+              [
+                "Gain",
+                1.0
+              ],
+              [
+                "Distortion",
+                0.3400000035762787
+              ]
+            ],
+            "outputs": [
+              [
+                "Fac",
+                0.0
+              ],
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Normal Map",
+            "type": "ShaderNodeNormalMap",
+            "properties": {
+              "uv_map": "UV0",
+              "space": "TANGENT"
+            },
+            "inputs": [
+              [
+                "Strength",
+                1.0
+              ],
+              [
+                "Color",
+                [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Principled BSDF",
+            "type": "ShaderNodeBsdfPrincipled",
+            "properties": {
+              "distribution": "MULTI_GGX"
+            },
+            "inputs": [
+              [
+                "Base Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Metallic",
+                0.0
+              ],
+              [
+                "Roughness",
+                0.5
+              ],
+              [
+                "IOR",
+                1.5
+              ],
+              [
+                "Alpha",
+                1.0
+              ],
+              [
+                "Thin Wall",
+                false
+              ],
+              [
+                "Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Weight",
+                0.0
+              ],
+              [
+                "Diffuse Roughness",
+                0.0
+              ],
+              [
+                "Subsurface Weight",
+                0.0
+              ],
+              [
+                "Subsurface Radius",
+                [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ]
+              ],
+              [
+                "Subsurface Scale",
+                0.004999999888241291
+              ],
+              [
+                "Subsurface IOR",
+                1.399999976158142
+              ],
+              [
+                "Subsurface Anisotropy",
+                0.0
+              ],
+              [
+                "Specular IOR Level",
+                0.5
+              ],
+              [
+                "Specular Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Anisotropic",
+                0.0
+              ],
+              [
+                "Anisotropic Rotation",
+                0.0
+              ],
+              [
+                "Tangent",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Transmission Weight",
+                0.0
+              ],
+              [
+                "Coat Weight",
+                0.0
+              ],
+              [
+                "Coat Roughness",
+                0.029999999329447746
+              ],
+              [
+                "Coat IOR",
+                1.5
+              ],
+              [
+                "Coat Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Coat Normal",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Sheen Weight",
+                0.0
+              ],
+              [
+                "Sheen Roughness",
+                0.5
+              ],
+              [
+                "Sheen Tint",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Color",
+                [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ],
+              [
+                "Emission Strength",
+                0.0
+              ],
+              [
+                "Thin Film Thickness",
+                0.0
+              ],
+              [
+                "Thin Film IOR",
+                1.3300000429153442
+              ]
+            ],
+            "outputs": [
+              [
+                "BSDF",
+                null
+              ]
+            ]
+          },
+          {
+            "name": "Separate Color",
+            "type": "ShaderNodeSeparateColor",
+            "properties": {},
+            "inputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Red",
+                0.0
+              ],
+              [
+                "Green",
+                0.0
+              ],
+              [
+                "Blue",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Separate Color.001",
+            "type": "ShaderNodeSeparateColor",
+            "properties": {},
+            "inputs": [
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "Red",
+                0.0
+              ],
+              [
+                "Green",
+                0.0
+              ],
+              [
+                "Blue",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "ShaderNodeSeparateXYZ",
+            "properties": {},
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ],
+            "outputs": [
+              [
+                "X",
+                0.0
+              ],
+              [
+                "Y",
+                0.0
+              ],
+              [
+                "Z",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV0"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "UV Map.001",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV1_SharedData"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "UV Map.002",
+            "type": "ShaderNodeUVMap",
+            "properties": {
+              "uv_map": "UV0"
+            },
+            "inputs": [],
+            "outputs": [
+              [
+                "UV",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ]
+            ]
+          },
+          {
+            "name": "Vector Math",
+            "type": "ShaderNodeVectorMath",
+            "properties": {
+              "operation": "MULTIPLY"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Vector_001",
+                [
+                  8.199999809265137,
+                  2.5,
+                  1.0
+                ]
+              ],
+              [
+                "Vector_002",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Scale",
+                1.0
+              ]
+            ],
+            "outputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Value",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Vector Math.001",
+            "type": "ShaderNodeVectorMath",
+            "properties": {
+              "operation": "MULTIPLY"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Vector_001",
+                [
+                  9.0,
+                  3.200000047683716,
+                  1.0
+                ]
+              ],
+              [
+                "Vector_002",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Scale",
+                1.0
+              ]
+            ],
+            "outputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Value",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Vector Math.002",
+            "type": "ShaderNodeVectorMath",
+            "properties": {
+              "operation": "SCALE"
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Vector_001",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Vector_002",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Scale",
+                2.0
+              ]
+            ],
+            "outputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "Value",
+                0.0
+              ]
+            ]
+          },
+          {
+            "name": "Voronoi Texture",
+            "type": "ShaderNodeTexVoronoi",
+            "properties": {
+              "voronoi_dimensions": "2D",
+              "distance": "EUCLIDEAN",
+              "feature": "DISTANCE_TO_EDGE",
+              "normalize": false
+            },
+            "inputs": [
+              [
+                "Vector",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "W",
+                0.0
+              ],
+              [
+                "Scale",
+                1.0
+              ],
+              [
+                "Detail",
+                0.0
+              ],
+              [
+                "Roughness",
+                0.5
+              ],
+              [
+                "Lacunarity",
+                2.0
+              ],
+              [
+                "Smoothness",
+                1.0
+              ],
+              [
+                "Exponent",
+                0.5
+              ],
+              [
+                "Randomness",
+                1.0
+              ]
+            ],
+            "outputs": [
+              [
+                "Distance",
+                0.0
+              ],
+              [
+                "Color",
+                [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ]
+              ],
+              [
+                "Position",
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              ],
+              [
+                "W",
+                0.0
+              ],
+              [
+                "Radius",
+                0.0
+              ]
+            ]
+          }
+        ],
+        "links": [
+          [
+            "Bump",
+            "Normal",
+            "Bump.001",
+            "Normal"
+          ],
+          [
+            "Color Attribute",
+            "Color",
+            "Separate Color.001",
+            "Color"
+          ],
+          [
+            "GenericDryWeatheringTint",
+            "Color",
+            "GenericWeatheredAlbedo",
+            "Color2"
+          ],
+          [
+            "GenericSurfaceSoiling_A",
+            "Alpha",
+            "GenericDryWeatheringTint",
+            "Fac"
+          ],
+          [
+            "GenericWeatheredAlbedo",
+            "Color",
+            "Mix (Legacy).003",
+            "Color1"
+          ],
+          [
+            "GenericWeatheredAlbedo",
+            "Color",
+            "Principled BSDF",
+            "Base Color"
+          ],
+          [
+            "Image Texture",
+            "Color",
+            "Mix (Legacy)",
+            "Color1"
+          ],
+          [
+            "Image Texture.001",
+            "Color",
+            "Mix (Legacy).001",
+            "Color1"
+          ],
+          [
+            "Image Texture.002",
+            "Color",
+            "Mix (Legacy).002",
+            "Color1"
+          ],
+          [
+            "Image Texture.003",
+            "Color",
+            "Mix (Legacy)",
+            "Color2"
+          ],
+          [
+            "Image Texture.004",
+            "Color",
+            "Mix (Legacy).001",
+            "Color2"
+          ],
+          [
+            "Image Texture.005",
+            "Color",
+            "Mix (Legacy).002",
+            "Color2"
+          ],
+          [
+            "Image Texture.006",
+            "Color",
+            "Bump.001",
+            "Height"
+          ],
+          [
+            "Image Texture.006",
+            "Color",
+            "Mix (Legacy).004",
+            "Color2"
+          ],
+          [
+            "Image Texture.007",
+            "Color",
+            "Vector Math.002",
+            "Vector"
+          ],
+          [
+            "Image Texture.008",
+            "Color",
+            "Bump",
+            "Height"
+          ],
+          [
+            "Mix (Legacy)",
+            "Color",
+            "GenericWeatheredAlbedo",
+            "Color1"
+          ],
+          [
+            "Mix (Legacy).001",
+            "Color",
+            "Normal Map",
+            "Color"
+          ],
+          [
+            "Mix (Legacy).002",
+            "Color",
+            "Separate Color",
+            "Color"
+          ],
+          [
+            "Mix (Legacy).003",
+            "Color",
+            "Mix (Legacy).004",
+            "Color1"
+          ],
+          [
+            "Noise Texture",
+            "Fac",
+            "Color Ramp",
+            "Fac"
+          ],
+          [
+            "Normal Map",
+            "Normal",
+            "Bump",
+            "Normal"
+          ],
+          [
+            "Normal Map",
+            "Normal",
+            "Principled BSDF",
+            "Normal"
+          ],
+          [
+            "Principled BSDF",
+            "BSDF",
+            "Material Output",
+            "Surface"
+          ],
+          [
+            "Separate Color",
+            "Green",
+            "Principled BSDF",
+            "Roughness"
+          ],
+          [
+            "Separate Color.001",
+            "Red",
+            "Normal Map",
+            "Strength"
+          ],
+          [
+            "Separate XYZ",
+            "X",
+            "Mix (Legacy)",
+            "Fac"
+          ],
+          [
+            "Separate XYZ",
+            "X",
+            "Mix (Legacy).001",
+            "Fac"
+          ],
+          [
+            "Separate XYZ",
+            "X",
+            "Mix (Legacy).002",
+            "Fac"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.001",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.002",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.003",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.004",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.005",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.006",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.007",
+            "Vector"
+          ],
+          [
+            "UV Map",
+            "UV",
+            "Image Texture.008",
+            "Vector"
+          ],
+          [
+            "UV Map.001",
+            "UV",
+            "Separate XYZ",
+            "Vector"
+          ],
+          [
+            "UV Map.002",
+            "UV",
+            "Vector Math",
+            "Vector"
+          ],
+          [
+            "UV Map.002",
+            "UV",
+            "Vector Math.001",
+            "Vector"
+          ],
+          [
+            "Vector Math",
+            "Vector",
+            "Noise Texture",
+            "Vector"
+          ],
+          [
+            "Vector Math.001",
+            "Vector",
+            "Voronoi Texture",
+            "Vector"
+          ],
+          [
+            "Vector Math.002",
+            "Vector",
+            "Mix (Legacy).003",
+            "Color2"
+          ],
+          [
+            "Voronoi Texture",
+            "Distance",
+            "Color Ramp.001",
+            "Fac"
+          ]
+        ],
+        "material_properties": {
+          "surface_render_method": "DITHERED",
+          "use_backface_culling": false,
+          "use_transparent_shadow": true,
+          "use_transparency_overlap": true
+        }
+      }
+    }
+  },
+  "current_opaque_library_comparison": {
+    "FieldstoneSeed2m": {
+      "current_library_fingerprint": "98d7fbaefccbc6adec5c6bd1e2d8d851041fc4355e35e4de24a4b5199d97afbf",
+      "frozen_source_fingerprint": "98d7fbaefccbc6adec5c6bd1e2d8d851041fc4355e35e4de24a4b5199d97afbf",
+      "exact": true
+    },
+    "LimeMortarSoot2m": {
+      "current_library_fingerprint": "585e7f17974b7534ef1f4d3ea3bd06ef194c70718263687a4ce87535d644a79d",
+      "frozen_source_fingerprint": "585e7f17974b7534ef1f4d3ea3bd06ef194c70718263687a4ce87535d644a79d",
+      "exact": true
+    },
+    "WeatheredTimber2m": {
+      "current_library_fingerprint": "bdc1a9489a8c29197ae6cfe82a54ebca63271c515c9cb7bbd65eb4c36f9141cd",
+      "frozen_source_fingerprint": "bdc1a9489a8c29197ae6cfe82a54ebca63271c515c9cb7bbd65eb4c36f9141cd",
+      "exact": true
+    },
+    "IronLead2m": {
+      "current_library_fingerprint": "82d9b03ef4fd8fbaf8280eae215eb76ab74bed74427542e8aeee993fd549ec3a",
+      "frozen_source_fingerprint": "82d9b03ef4fd8fbaf8280eae215eb76ab74bed74427542e8aeee993fd549ec3a",
+      "exact": true
+    },
+    "FieldstoneWall2m": {
+      "current_library_fingerprint": "c751f4421e986cd72f4a00e4e9dcf1f9cad7bd13c1e7e7bf6266ce0d213e4e4d",
+      "frozen_source_fingerprint": "c751f4421e986cd72f4a00e4e9dcf1f9cad7bd13c1e7e7bf6266ce0d213e4e4d",
+      "exact": true
+    }
+  },
+  "images": [
+    {
+      "image": "T_BundleMultiplier_Repeat.png",
+      "file": "Textures/T_BundleMultiplier_Repeat_d11d4b9176.png",
+      "sha256": "d11d4b9176c5c85fa0f4ba8cd94f5889bea0774b64cfeb09f061af5307bfff06",
+      "size": [
+        512,
+        512
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_FieldstoneSeed2m_Stone_BC.png",
+      "file": "Textures/T_Shared_FieldstoneSeed2m_Stone_BC_349d284568.png",
+      "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+      "file": "Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL_a2bd3b4839.png",
+      "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+      "file": "Textures/T_Shared_FieldstoneSeed2m_Stone_ORM_41feddac62.png",
+      "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_FieldstoneWall2m_Wall_BC.png",
+      "file": "Textures/T_Shared_FieldstoneWall2m_Wall_BC_147371608a.png",
+      "sha256": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_FieldstoneWall2m_Wall_N_GL.png",
+      "file": "Textures/T_Shared_FieldstoneWall2m_Wall_N_GL_547f592573.png",
+      "sha256": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_FieldstoneWall2m_Wall_ORM.png",
+      "file": "Textures/T_Shared_FieldstoneWall2m_Wall_ORM_7c8744d2a3.png",
+      "sha256": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_IronLead2m_BlackenedIron_BC.png",
+      "file": "Textures/T_Shared_IronLead2m_BlackenedIron_BC_333f4fdc9e.png",
+      "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_IronLead2m_BlackenedIron_N_GL.png",
+      "file": "Textures/T_Shared_IronLead2m_BlackenedIron_N_GL_4a8923746b.png",
+      "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_IronLead2m_BlackenedIron_ORM.png",
+      "file": "Textures/T_Shared_IronLead2m_BlackenedIron_ORM_a045cd8f0b.png",
+      "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_IronLead2m_DullLead_BC.png",
+      "file": "Textures/T_Shared_IronLead2m_DullLead_BC_d99a7e616a.png",
+      "sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_IronLead2m_DullLead_N_GL.png",
+      "file": "Textures/T_Shared_IronLead2m_DullLead_N_GL_64aea4856a.png",
+      "sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_IronLead2m_DullLead_ORM.png",
+      "file": "Textures/T_Shared_IronLead2m_DullLead_ORM_7114aeb90b.png",
+      "sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_LaidWeatheredPhotoCoat2m_ORM.png",
+      "file": "Textures/T_Shared_LaidWeatheredPhotoCoat2m_ORM_ca992ab35f.png",
+      "sha256": "ca992ab35fe3e370d61de418f48a5f50534580fa15d28cf52e64ec5f31950984",
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_LimeMortarSoot2m_Lime_BC.png",
+      "file": "Textures/T_Shared_LimeMortarSoot2m_Lime_BC_2d043f56ec.png",
+      "sha256": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_LimeMortarSoot2m_Lime_N_GL.png",
+      "file": "Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL_961ecced7c.png",
+      "sha256": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_LimeMortarSoot2m_Lime_ORM.png",
+      "file": "Textures/T_Shared_LimeMortarSoot2m_Lime_ORM_bcbd8bf960.png",
+      "sha256": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_LimeMortarSoot2m_Soot_BC.png",
+      "file": "Textures/T_Shared_LimeMortarSoot2m_Soot_BC_d1975c8e29.png",
+      "sha256": "d1975c8e299283b21828e7470a69033668889728ed84c68f57c6465d3e672857",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_LimeMortarSoot2m_Soot_N_GL.png",
+      "file": "Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL_9c88a7a66b.png",
+      "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_LimeMortarSoot2m_Soot_ORM.png",
+      "file": "Textures/T_Shared_LimeMortarSoot2m_Soot_ORM_36eb1478ec.png",
+      "sha256": "36eb1478ec2fb059ee0604fcc92ce654d6582855fa285dec66d8a6f9a6c48133",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_PhotoFrayedReed2m_BC.png",
+      "file": "Textures/T_Shared_PhotoFrayedReed2m_BC_6760854185.png",
+      "sha256": "67608541851a258f40525dc3cbfe7f1cfd3d0ac90fb3fdd063466b9995acffc7",
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_PhotoFrayedReed2m_N_GL.png",
+      "file": "Textures/T_Shared_PhotoFrayedReed2m_N_GL_652913d867.png",
+      "sha256": "652913d86762481e995396a9fac81877c2d5ec6fe5d20f94e39a4e059451f877",
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_PhotoFrayedReed2m_ORM.png",
+      "file": "Textures/T_Shared_PhotoFrayedReed2m_ORM_d19a517277.png",
+      "sha256": "d19a5172774dcc93ccec032efd50c8e3233d792e62ced782b5d7dea51c2e4259",
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_ThinWavyGlass2m_BC.png",
+      "file": "Textures/T_Shared_ThinWavyGlass2m_BC_5b6431ab46.png",
+      "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_ThinWavyGlass2m_N_GL.png",
+      "file": "Textures/T_Shared_ThinWavyGlass2m_N_GL_5a9306e23b.png",
+      "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_ThinWavyGlass2m_ORM.png",
+      "file": "Textures/T_Shared_ThinWavyGlass2m_ORM_a3bc1f3e47.png",
+      "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_WeatheredTimber2m_Endgrain_BC.png",
+      "file": "Textures/T_Shared_WeatheredTimber2m_Endgrain_BC_bb8ec47e55.png",
+      "sha256": "bb8ec47e552bc366e9f150762846c31be838508c01a5724fc1e69a78668ed792",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_WeatheredTimber2m_Endgrain_N_GL.png",
+      "file": "Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL_9c88a7a66b.png",
+      "sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_WeatheredTimber2m_Endgrain_ORM.png",
+      "file": "Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM_fd074489d7.png",
+      "sha256": "fd074489d73817bab5c165c8d844cc978cb1c95244a36de53643524a858baa99",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_WeatheredTimber2m_Longgrain_BC.png",
+      "file": "Textures/T_Shared_WeatheredTimber2m_Longgrain_BC_dbd2947d8d.png",
+      "sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_Shared_WeatheredTimber2m_Longgrain_N_GL.png",
+      "file": "Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL_9614afd66c.png",
+      "sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_Shared_WeatheredTimber2m_Longgrain_ORM.png",
+      "file": "Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM_742741518f.png",
+      "sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f",
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_WarmBundleCoat_BC.png",
+      "file": "Textures/T_WarmBundleCoat_BC_2ed02bd030.png",
+      "sha256": "2ed02bd030999f813575b5c135668fed168428c7ea3496562d5ac8f64b4c2823",
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "sRGB"
+    },
+    {
+      "image": "T_WarmBundleCoat_N_GL.png",
+      "file": "Textures/T_WarmBundleCoat_N_GL_cce06a1f47.png",
+      "sha256": "cce06a1f47031a0281823afa8f583556b851ca639784d828aa8a04c64195beb4",
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_WarmColor_Repeat.png",
+      "file": "Textures/T_WarmColor_Repeat_5aeef112f9.png",
+      "sha256": "5aeef112f9f3a4850bcff3860d89ac8a0a240581101ece624dadbec9d662429c",
+      "size": [
+        512,
+        512
+      ],
+      "colorspace": "Non-Color"
+    },
+    {
+      "image": "T_WarmHeight_Repeat.png",
+      "file": "Textures/T_WarmHeight_Repeat_cf57306c3d.png",
+      "sha256": "cf57306c3d5fafbe7ca6500557e6cb8f7f080bba863d7e19fd38ac6dcb21797e",
+      "size": [
+        512,
+        512
+      ],
+      "colorspace": "Non-Color"
+    }
+  ],
+  "fixtures": [
+    {
+      "object": "FieldstoneSeed2m_0_2m",
+      "role": "FieldstoneSeed2m",
+      "selector": 0,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "FieldstoneSeed2m_0_4m",
+      "role": "FieldstoneSeed2m",
+      "selector": 0,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "LimeMortarSoot2m_0_2m",
+      "role": "LimeMortarSoot2m",
+      "selector": 0,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "LimeMortarSoot2m_0_4m",
+      "role": "LimeMortarSoot2m",
+      "selector": 0,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "LimeMortarSoot2m_1_2m",
+      "role": "LimeMortarSoot2m",
+      "selector": 1,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "LimeMortarSoot2m_1_4m",
+      "role": "LimeMortarSoot2m",
+      "selector": 1,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "WeatheredTimber2m_0_2m",
+      "role": "WeatheredTimber2m",
+      "selector": 0,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "WeatheredTimber2m_0_4m",
+      "role": "WeatheredTimber2m",
+      "selector": 0,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "WeatheredTimber2m_1_2m",
+      "role": "WeatheredTimber2m",
+      "selector": 1,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "WeatheredTimber2m_1_4m",
+      "role": "WeatheredTimber2m",
+      "selector": 1,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "IronLead2m_0_2m",
+      "role": "IronLead2m",
+      "selector": 0,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "IronLead2m_0_4m",
+      "role": "IronLead2m",
+      "selector": 0,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "IronLead2m_1_2m",
+      "role": "IronLead2m",
+      "selector": 1,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "IronLead2m_1_4m",
+      "role": "IronLead2m",
+      "selector": 1,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "ThinWavyGlass2m_0_2m",
+      "role": "ThinWavyGlass2m",
+      "selector": 0,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "ThinWavyGlass2m_0_4m",
+      "role": "ThinWavyGlass2m",
+      "selector": 0,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "FieldstoneWall2m_0_2m",
+      "role": "FieldstoneWall2m",
+      "selector": 0,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "FieldstoneWall2m_0_4m",
+      "role": "FieldstoneWall2m",
+      "selector": 0,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial_0_2m",
+      "role": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial",
+      "selector": 0,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial_0_4m",
+      "role": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial",
+      "selector": 0,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    },
+    {
+      "object": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial_1_2m",
+      "role": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial",
+      "selector": 1,
+      "width_m": 2.0,
+      "height_m": 2,
+      "UV0_extent": [
+        1.0,
+        1
+      ]
+    },
+    {
+      "object": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial_1_4m",
+      "role": "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial",
+      "selector": 1,
+      "width_m": 4.0,
+      "height_m": 2,
+      "UV0_extent": [
+        2.0,
+        1
+      ]
+    }
+  ],
+  "no_cottage_geometry_in_library": false
+}

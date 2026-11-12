@@ -1,0 +1,24 @@
+{
+  "source_sha256": "2f606055c7797dee6a2bccd081fa5cd570ea052d360df6369864e04081edab01",
+  "packed_source_sha256": "233f6041c201fc2d8a6e92fd9dad63e292f8e88ba67a4bfd83e6e965b96f28c2",
+  "recipe": "render_all_eaves_final.py",
+  "settings": {
+    "engine": "Cycles",
+    "device": "CPU",
+    "samples": 16,
+    "resolution": [
+      900,
+      600
+    ]
+  },
+  "views": {
+    "front_left": "f28f844f63b56c2b0e6b58fc25f52ec878d3b4950e335c62f7868b37d4774a5a",
+    "front_right": "6a2ebf9afd3de76d659b6284f01b426da0e19713d845254bfd1357aa1e5a0bf1",
+    "rear_left": "0ff7b522a6ff73e41c305cee84cc9b6acb681a078ff4b86f1a6331577c049d92",
+    "rear_right": "723e79dfbb3c4479e3b7eaacfdd98fd3f0e0c1b783cef4f7dfcb396cef33c6ff",
+    "front_eave": "23f6395324c9c84e4b3cae31e422396eff5511e7a82922296e7fb0970fd7c9e9",
+    "rear_eave": "a7cbbba17cea1c0b3e34f69d77cf727984f5e1c4f51a8936747dac26de077388",
+    "left_eave": "d5b5034264266a0adf21cf13c2e5add01943d87bfc65a4cd48d22ecdeae4e716",
+    "right_eave": "f8bd3bcf79174cf37e01eba2bbf5b85a2e36e9af0b9ec5b1e21a91c0d58a1e6a"
+  }
+}

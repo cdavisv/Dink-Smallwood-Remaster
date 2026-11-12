@@ -1,0 +1,45 @@
+{
+  "schema": "house439-closed-eaves-source/1",
+  "status": "candidate_source_export_verified_native_pending",
+  "source": "Packet/Source/House439_ClosedEaves.blend",
+  "source_sha256": "233f6041c201fc2d8a6e92fd9dad63e292f8e88ba67a4bfd83e6e965b96f28c2",
+  "assets": {
+    "SM_Cottage_Stonebrook_01": {
+      "class": "building",
+      "families": [
+        "63 struct/home/home-"
+      ],
+      "fbx": "Packet/FBX/SM_Cottage_Stonebrook_01.fbx",
+      "triangles": 182626,
+      "dimensions_m": [
+        18.815841674804688,
+        10.5363450050354,
+        7.930000305175781
+      ],
+      "material_slots": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortarSoot2m",
+        "MI_Shared_WeatheredTimber2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_ThinWavyGlass2m",
+        "MI_Shared_FieldstoneWall2m",
+        "MI_Shared_LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial"
+      ],
+      "collision_hulls": 6,
+      "pivot": "unchanged ground-center identity frame",
+      "source_material_registration_pending": true
+    }
+  },
+  "candidate_asset_row": {
+    "mesh": "/Game/Dink/Refinements/House439ClosedEavesV1/Meshes/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+    "expected_size_cm": [
+      1881.5841674804688,
+      1053.63450050354,
+      793.0000305175781
+    ],
+    "expected_lods": 1,
+    "bounds_tolerance_cm": 1.0
+  },
+  "native_bounds_qualification": "Source-vertex expectation for new candidate only. Actual imported bounds must be measured before Data activation. Existing global tolerance remains1cm.",
+  "production_Data_changed": false
+}

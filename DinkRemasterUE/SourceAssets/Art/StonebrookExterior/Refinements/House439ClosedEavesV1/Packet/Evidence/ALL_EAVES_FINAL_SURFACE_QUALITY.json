@@ -1,0 +1,29 @@
+{
+  "source_sha256": "2f606055c7797dee6a2bccd081fa5cd570ea052d360df6369864e04081edab01",
+  "meshes": {
+    "RoofFamily_CoreShell": {
+      "triangles": 31934,
+      "nonmanifold_edges": 0,
+      "inconsistent_edges": 0,
+      "self_overlap_pairs": 0,
+      "tiny_geometry_triangles": 0,
+      "tiny_uv_triangles": 0,
+      "zero_tangents": 0,
+      "nonfinite_tbn_corners": 0
+    },
+    "RoofFamily_RolledEaveCorners": {
+      "triangles": 5568,
+      "nonmanifold_edges": 0,
+      "inconsistent_edges": 0,
+      "self_overlap_pairs": 0,
+      "tiny_geometry_triangles": 0,
+      "tiny_uv_triangles": 0,
+      "zero_tangents": 0,
+      "local_triangles": 5568,
+      "local_self_overlap_pairs": 0,
+      "local_tiny_uv_triangles": 0,
+      "nonfinite_tbn_corners": 0
+    }
+  },
+  "six_hulls_match_baseline": true
+}

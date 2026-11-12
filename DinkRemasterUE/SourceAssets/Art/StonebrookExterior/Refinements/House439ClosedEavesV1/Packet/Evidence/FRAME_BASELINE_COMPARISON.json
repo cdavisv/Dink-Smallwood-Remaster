@@ -1,0 +1,31 @@
+{
+  "source_render_bounds_m": [
+    [
+      -9.407503128051758,
+      -5.268467903137207,
+      0.0
+    ],
+    [
+      9.40833854675293,
+      5.267877101898193,
+      7.930000305175781
+    ]
+  ],
+  "source_render_size_cm": [
+    1881.5841674804688,
+    1053.63450050354,
+    793.0000305175781
+  ],
+  "baseline_expected_size_cm": [
+    1882.9998016357422,
+    1054.6720504760742,
+    793.0000305175781
+  ],
+  "size_difference_cm": [
+    1.4156341552734375,
+    1.0375499725341797,
+    0.0
+  ],
+  "within_existing_manifest_1cm_tolerance": false,
+  "does_not_prove_native_query_collision_or_bounds": true
+}
