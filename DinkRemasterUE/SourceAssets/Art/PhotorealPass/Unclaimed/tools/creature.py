@@ -142,6 +142,26 @@ def lod_keep_weights(lo, ratio, name):
     return o
 
 
+def rigid_lo(parts, total_tris, name, c=None, angle=66, margin=0.004, min_tris=48):
+    """game mesh for rigid (armour) parts: parts = [(source_object, bone)]. Each part is decimated in proportion to its surface area,
+    gets a vertex group for its bone at weight 1, then all are joined and unwrapped together."""
+    areas = []
+    for o, b in parts:
+        bm = bmesh.new(); bm.from_mesh(o.data); areas.append(sum(f.calc_area() for f in bm.faces)); bm.free()
+    tot = sum(areas); cps = []
+    for (o, b), a in zip(parts, areas):
+        d = L.dup(o, o.name + '_lo', c); d.data.materials.clear(); want = max(min_tris, int(total_tris * a / tot))
+        if L.tri_count(d) > want:
+            L.mod(d, 'DECIMATE', ratio=want / L.tri_count(d)); L.apply_mods(d)
+        g = d.vertex_groups.new(name=b); g.add(list(range(len(d.data.vertices))), 1.0, 'REPLACE'); cps.append(d)
+    lo = L.join(cps, name)
+    for l in list(lo.data.uv_layers):
+        lo.data.uv_layers.remove(l)
+    lo.data.polygons.foreach_set('use_smooth', [True] * len(lo.data.polygons)); L.fix_normals(lo); L.smart_uv(lo, angle=angle, margin=margin); L.pack_uv(lo, margin=margin)
+    return lo
+
+
+
 def pose(arm, rots):
     """rots {bone: (rx, ry, rz) degrees, local}; {} resets"""
     for pb in arm.pose.bones:
@@ -160,7 +180,7 @@ def export_skeletal(path, arm, mesh):
 
 
 def finish_creature(asset, cls, lo, hi_obs, arm, outdir, px, families, origin, dresses, weaknesses, third_party=(), script=None, extrude=0.006, maxdist=0.02, ss=1,
-                    lod_ratios=(0.5, 0.25), variants=None, extra=None, sss=None, post=None):
+                    lod_ratios=(0.5, 0.25), variants=None, extra=None, sss=None, post=None, rigid=False):
     """bake the dense source to the game mesh, bind it to the armature, LODs, one FBX per LOD (mesh + skeleton), .blend, manifest.
     variants = {suffix: fn(bc_srgb_float_array) -> array}: recoloured base-colour maps that share N / ORM (colour families of one creature)."""
     from PIL import Image
@@ -173,7 +193,12 @@ def finish_creature(asset, cls, lo, hi_obs, arm, outdir, px, families, origin, d
         bc = np.asarray(Image.open(files['BC']).convert('RGB'), np.float32) / 255.0
         for suf, fn in variants.items():
             p = os.path.join(outdir, 'T_%s_%s_BC.png' % (name, suf)); Image.fromarray((np.clip(fn(bc), 0, 1) * 255 + 0.5).astype(np.uint8)).save(p, optimize=True); vfiles[suf] = p
-    rigrep = bind(lo, arm); lods = [lo]
+    if rigid:                                   # weights were assigned per part (one bone each): just attach
+        lo.parent = arm; m = lo.modifiers.new('Armature', 'ARMATURE'); m.object = arm
+        rigrep = {'method': 'rigid: every armour part is weighted 1.0 to one bone', 'max_influences': 1, 'unweighted_vertices': sum(1 for v in lo.data.vertices if not v.groups)}
+    else:
+        rigrep = bind(lo, arm)
+    lods = [lo]
     for i, r in enumerate(lod_ratios):
         lods.append(lod_keep_weights(lo, r, asset + '_LOD%d' % (i + 1)))
     fbx = []
