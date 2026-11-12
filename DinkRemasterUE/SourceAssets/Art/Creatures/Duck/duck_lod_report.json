@@ -1,0 +1,351 @@
+{
+  "validation": {
+    "assets": 3,
+    "assets_passed": 3,
+    "errors": 0,
+    "warnings": 9
+  },
+  "SK_Duck": {
+    "make_lods_log": [
+      {
+        "action": "lod",
+        "name": "SK_Duck_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 9632,
+        "tris_lod0": 19266,
+        "ratio_achieved": 0.4999
+      },
+      {
+        "action": "lod",
+        "name": "SK_Duck_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 4816,
+        "tris_lod0": 19266,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "normals": [
+      {
+        "mesh": "SK_Duck_LOD0",
+        "removed_zero_area_faces": 0,
+        "flat_faces_for_cancelled_normals": 0
+      },
+      {
+        "mesh": "SK_Duck_LOD1",
+        "removed_zero_area_faces": 0,
+        "flat_faces_for_cancelled_normals": 0
+      },
+      {
+        "mesh": "SK_Duck_LOD2",
+        "removed_zero_area_faces": 0,
+        "flat_faces_for_cancelled_normals": 0
+      }
+    ],
+    "lods": [
+      {
+        "name": "SK_Duck_LOD0",
+        "triangles": 20898,
+        "vertices": 12237,
+        "max_influences": 4,
+        "dimensions_m": [
+          0.5081475973129272,
+          0.21071961522102356,
+          0.46602004766464233
+        ]
+      },
+      {
+        "name": "SK_Duck_LOD1",
+        "triangles": 10444,
+        "vertices": 6190,
+        "max_influences": 4,
+        "dimensions_m": [
+          0.5044228434562683,
+          0.21018853783607483,
+          0.466238409280777
+        ]
+      },
+      {
+        "name": "SK_Duck_LOD2",
+        "triangles": 5176,
+        "vertices": 3104,
+        "max_influences": 4,
+        "dimensions_m": [
+          0.5046172142028809,
+          0.20690099895000458,
+          0.466347873210907
+        ]
+      }
+    ],
+    "feather_card_fraction_per_lod": [
+      1.0,
+      0.5,
+      0.22
+    ]
+  },
+  "SK_Duck_Headless": {
+    "make_lods_log": [
+      {
+        "action": "lod",
+        "name": "SK_Duck_Headless_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 9584,
+        "tris_lod0": 19168,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SK_Duck_Headless_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 4792,
+        "tris_lod0": 19168,
+        "ratio_achieved": 0.25
+      }
+    ],
+    "normals": [
+      {
+        "mesh": "SK_Duck_Headless_LOD0",
+        "removed_zero_area_faces": 0,
+        "flat_faces_for_cancelled_normals": 0
+      },
+      {
+        "mesh": "SK_Duck_Headless_LOD1",
+        "removed_zero_area_faces": 0,
+        "flat_faces_for_cancelled_normals": 0
+      },
+      {
+        "mesh": "SK_Duck_Headless_LOD2",
+        "removed_zero_area_faces": 0,
+        "flat_faces_for_cancelled_normals": 0
+      }
+    ],
+    "lods": [
+      {
+        "name": "SK_Duck_Headless_LOD0",
+        "triangles": 20800,
+        "vertices": 12180,
+        "max_influences": 4,
+        "dimensions_m": [
+          0.40900301933288574,
+          0.21071961522102356,
+          0.3366988003253937
+        ]
+      },
+      {
+        "name": "SK_Duck_Headless_LOD1",
+        "triangles": 10396,
+        "vertices": 6158,
+        "max_influences": 4,
+        "dimensions_m": [
+          0.4053417444229126,
+          0.21018853783607483,
+          0.33663448691368103
+        ]
+      },
+      {
+        "name": "SK_Duck_Headless_LOD2",
+        "triangles": 5152,
+        "vertices": 3084,
+        "max_influences": 4,
+        "dimensions_m": [
+          0.4053155183792114,
+          0.20707181096076965,
+          0.33670276403427124
+        ]
+      }
+    ]
+  },
+  "SM_Duck_Head": {
+    "make_lods_log": [
+      {
+        "action": "lod",
+        "name": "SM_Duck_Head_LOD1",
+        "ratio_requested": 0.5,
+        "tris": 2302,
+        "tris_lod0": 4604,
+        "ratio_achieved": 0.5
+      },
+      {
+        "action": "lod",
+        "name": "SM_Duck_Head_LOD2",
+        "ratio_requested": 0.25,
+        "tris": 1150,
+        "tris_lod0": 4604,
+        "ratio_achieved": 0.2498
+      }
+    ],
+    "collision_log": [
+      {
+        "action": "collision",
+        "name": "UCX_SM_Duck_Head_LOD0_01",
+        "mode": "hull",
+        "vertices": 27
+      }
+    ],
+    "normals": [
+      {
+        "mesh": "SM_Duck_Head_LOD0",
+        "removed_zero_area_faces": 0,
+        "flat_faces_for_cancelled_normals": 0
+      },
+      {
+        "mesh": "SM_Duck_Head_LOD1",
+        "removed_zero_area_faces": 0,
+        "flat_faces_for_cancelled_normals": 0
+      },
+      {
+        "mesh": "SM_Duck_Head_LOD2",
+        "removed_zero_area_faces": 0,
+        "flat_faces_for_cancelled_normals": 0
+      }
+    ],
+    "lods": [
+      {
+        "name": "SM_Duck_Head_LOD0",
+        "triangles": 4604,
+        "vertices": 2312,
+        "max_influences": 0,
+        "dimensions_m": [
+          0.17981190979480743,
+          0.07036088407039642,
+          0.14017629623413086
+        ]
+      },
+      {
+        "name": "SM_Duck_Head_LOD1",
+        "triangles": 2302,
+        "vertices": 1161,
+        "max_influences": 0,
+        "dimensions_m": [
+          0.17981059849262238,
+          0.07031566649675369,
+          0.1401877999305725
+        ]
+      },
+      {
+        "name": "SM_Duck_Head_LOD2",
+        "triangles": 1150,
+        "vertices": 585,
+        "max_influences": 0,
+        "dimensions_m": [
+          0.17986097931861877,
+          0.07062375545501709,
+          0.14041057229042053
+        ]
+      }
+    ]
+  },
+  "texture": {
+    "resolution": 2048,
+    "texels_covered_ratio": 0.545217752456665,
+    "texel_size_m_median": 0.000550320676276356,
+    "texel_density_px_per_m_median": 1817.1223490389582,
+    "normal_slope_deg_p50_p99_max": [
+      0.7485602371075523,
+      6.975025065906729,
+      59.271258354726605
+    ],
+    "albedo_linear_median_by_part": {
+      "0": [
+        0.6681,
+        0.6492,
+        0.5858
+      ],
+      "1": [
+        0.6771,
+        0.6636,
+        0.6151
+      ],
+      "2": [
+        0.6824,
+        0.6704,
+        0.6234
+      ],
+      "3": [
+        0.7287,
+        0.3026,
+        0.0322
+      ],
+      "4": [
+        0.7345,
+        0.3047,
+        0.0325
+      ],
+      "5": [
+        0.04,
+        0.035,
+        0.03
+      ],
+      "6": [
+        0.6545,
+        0.2307,
+        0.0379
+      ],
+      "7": [
+        0.5621,
+        0.2109,
+        0.0407
+      ],
+      "8": [
+        0.6188,
+        0.2702,
+        0.0795
+      ],
+      "9": [
+        0.0748,
+        0.0598,
+        0.0499
+      ],
+      "10": [
+        0.2001,
+        0.1701,
+        0.1501
+      ],
+      "12": [
+        0.6742,
+        0.6602,
+        0.597
+      ],
+      "13": [
+        0.1104,
+        0.0088,
+        0.0088
+      ],
+      "14": [
+        0.1063,
+        0.0085,
+        0.0085
+      ],
+      "15": [
+        0.0549,
+        0.002,
+        0.0024
+      ],
+      "16": [
+        0.1376,
+        0.0049,
+        0.0059
+      ]
+    },
+    "albedo_linear_max": 0.86,
+    "roughness_median_by_part": {
+      "0": 0.718,
+      "1": 0.646,
+      "2": 0.62,
+      "3": 0.582,
+      "4": 0.583,
+      "5": 0.035,
+      "6": 0.481,
+      "7": 0.54,
+      "8": 0.552,
+      "9": 0.36,
+      "10": 0.4,
+      "12": 0.706,
+      "13": 0.376,
+      "14": 0.307,
+      "15": 0.546,
+      "16": 0.153
+    },
+    "vertex_ao_mean": 0.6676843330447311,
+    "seed": 1997
+  }
+}

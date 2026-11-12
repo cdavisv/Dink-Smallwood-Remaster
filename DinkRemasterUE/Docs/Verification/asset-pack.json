@@ -39,7 +39,7 @@
   "independent_real_pack_verify_only": {
     "passed": true,
     "script_sha256": "1e91dad1db494c3b4e920bb170e2e4906efc81114b0346541eafcdbdde6d0921",
-    "manifest_sha256": "73c3c11e7b3556f87e58a09b2d14a7caa1a89ce702cc7b8a4780f1784e3c94dd",
+    "manifest_sha256": "d4fde2fb903a0b1fd1f785d36b534b339267006a6a5e70af4d4f5aa5a89952d3",
     "archive_sha256": "894c5f5055b219dfb5fe99cdd20ac92624d3e024876b64ade47b3ed9e7b0c3a0",
     "archive_size": 1671920189,
     "result": {
@@ -49,7 +49,7 @@
       "require_hydration": 1651,
       "verify_only": true
     },
-    "fixture_root": "/home/artist/Work/DinkQA/AssetPackBootstrap/RealPackVerifyOnly",
+    "fixture_root": "<HOME>/Work/DinkQA/AssetPackBootstrap/RealPackVerifyOnly",
     "no_asset_directories_created": true
   }
 }

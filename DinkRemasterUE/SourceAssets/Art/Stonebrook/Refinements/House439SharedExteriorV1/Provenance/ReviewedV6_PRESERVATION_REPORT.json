@@ -1,0 +1,27 @@
+{
+  "protected_existing_mesh_objects_exact_except_roofUV": 317,
+  "checked": "P/topology/N/worldTRS/colors/nonroofUV; originalendP/N/TRS/colors exact",
+  "cottage_UCX": [
+    "UCX_SM_Cottage_Stonebrook_01_01",
+    "UCX_SM_Cottage_Stonebrook_01_02",
+    "UCX_SM_Cottage_Stonebrook_01_03",
+    "UCX_SM_Cottage_Stonebrook_01_04",
+    "UCX_SM_Cottage_Stonebrook_01_05",
+    "UCX_SM_Cottage_Stonebrook_01_06"
+  ],
+  "triangles": 194192,
+  "actual_roles_including_glass": [
+    "MI_Candidate_IndividualStone_2m",
+    "MI_Candidate_Metalwork_2Role",
+    "MI_Candidate_Mineral_2Role",
+    "MI_Candidate_StoneWallFull_2m",
+    "MI_Candidate_WeatheredTimber_2Role",
+    "MI_House439_OpticalGlass_SourceV21",
+    "MI_Shared_WeatheredDressedReed_2m"
+  ],
+  "roof_vertex_max_move_m": 0.02500009536743164,
+  "flue_guard_vertices_exact": 1026,
+  "ridge_vertices_exact": 102,
+  "new_geometry": "RoundedHipRidgeDressing_Study separate source surface; notcollider",
+  "scope": "Source preservation only, appearance/fullfit/native notproven"
+}

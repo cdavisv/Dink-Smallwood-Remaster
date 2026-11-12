@@ -1,6 +1,6 @@
 {
   "scope": "Conservative metadata-coordinate audit against every generated screen footprint; actual saved Blender instance bounds, not proposed terrain dimensions alone",
-  "source_screens": "/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/ImportData/screens.json",
+  "source_screens": "<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/ImportData/screens.json",
   "source_screens_sha256": "3ff7d14ab3d6a5d664c5b31b98f5154c4d583c8379972d0c71ae5270d2278fba",
   "screens_checked": 643,
   "scene_local_min_m": [

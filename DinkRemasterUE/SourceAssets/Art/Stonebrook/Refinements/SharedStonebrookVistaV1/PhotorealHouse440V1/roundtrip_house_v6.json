@@ -1,6 +1,6 @@
 {
   "status": "ActualFBX+GLB Blender roundtrips and actual packed-missing-path reopen; source-only",
-  "source_sha256": "bc76f80eaa1776dc8d5755cafbf4b2c31a6b3e685f44ba407729a30aec95ea27",
+  "source_sha256": "8fc2f297e8c71f7999484f602a76b274f2b2fd72dac004a7e1b179f4990c1411",
   "source_stats": {
     "triangles": 114354,
     "size_m": [
@@ -23,7 +23,7 @@
         11.438143,
         9.849329
       ],
-      "file_sha256": "0bf63edb6db8973a5d80adca7ad4ba9b286e5a974af7a7ed7ea9384561168cdb"
+      "file_sha256": "88cb7891efb385c578f0dc12fbef3e1c969f88aa33fd563d957624568f821b47"
     },
     {
       "format": "glb",

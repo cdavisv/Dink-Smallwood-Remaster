@@ -1,6 +1,6 @@
 # Candle V3 bounded source finish
 
-Owned QA-only V3_Finish, outside Git; V2_Finish36pin bundle preserved unchanged. Root review requested one bounded pass after V2 chrome-like iron and unburned/faceted wax. Source now b715816ecb50cba25d6df6adbee9e5f6b40b257fb25e26deb0106a60703ce1dc.4870trianglesLOD0 below5khard,3actualLODs. No root/native/ledger/pointlight/GPU changes.
+Owned QA-only V3_Finish, outside Git; V2_Finish36pin bundle preserved unchanged. Root review requested one bounded pass after V2 chrome-like iron and unburned/faceted wax. Source now e083cc9270810f2b2799d4b11e4467785c3d39ea926d366cc442035c2cb8c798.4870trianglesLOD0 below5khard,3actualLODs. No root/native/ledger/pointlight/GPU changes.
 
 Iron uses darkgrey albedo .006–.019 and noise-varying roughness.45–.62, fine25micrometre physicalgrain retained, no coarse stone bump. Wax has support ring, deeperpool nearwick, subtle22/mcolorvariation, three actualembeddedgravityrivulets with roundedterminalbeads. Initial temporary longpoint drip result was corrected within this same unapprovedpass. Two bodyrings removed to keepbudget; no target weakened. ExactoriginalLOD0bounds/pivot/noauthoredUCX retained by independentaudit. Intentional wax/drip contact is not universally intersection-free.
 

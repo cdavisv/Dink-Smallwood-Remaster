@@ -1,0 +1,77 @@
+{
+  "status": "THREE_FIXED_SOURCE_VIEWS_RENDERED_AND_INSPECTED",
+  "blend_sha256_unchanged": "fed8cbd70095548c3bf5b38fc45b9145c15747e732a8021ffefc0d5f47a4134d",
+  "views": [
+    {
+      "file": "color_broad_front.png",
+      "camera": [
+        21,
+        -26,
+        16
+      ],
+      "target": [
+        0,
+        0,
+        3.4
+      ],
+      "ortho_scale": 26,
+      "sha256": "885a85b8edddd1657831a77b9b5f585c50c7e6b764e84ece483b8519c273a80a"
+    },
+    {
+      "file": "color_wood_window_closeup.png",
+      "camera": [
+        -4.1,
+        -8.2,
+        3.2
+      ],
+      "target": [
+        -3.0,
+        -4.5,
+        2.3
+      ],
+      "ortho_scale": 2.2,
+      "sha256": "2ffed7a38228368377cd2f3fc59b2d502e3f19d074537faf9509004be09e8349"
+    },
+    {
+      "file": "color_hip_eave_closeup.png",
+      "camera": [
+        -12,
+        -9,
+        6
+      ],
+      "target": [
+        -8,
+        -3.8,
+        3.7
+      ],
+      "ortho_scale": 4.4,
+      "sha256": "3175523113079609126db2d7202abb8d03d2f97baee89cafec4aec7aa8cb8d2b"
+    }
+  ],
+  "CPU_threads": 2,
+  "material_override": "None; seven registered shared roles, thin-glass derivative; sourcefile not saved",
+  "guide_camera": "Approximate matchingdirection; notsourcecameracalibration/identicalpixel-silhouetteclaim",
+  "scope": "Registered source derivative; fixed views match prior V6 review cameras/settings, not native or final appearance approval",
+  "visual_review": {
+    "whole": "Roof/stone/window layout preserved; coarse completehouse at900x600 not sufficient for final photoreal approval.",
+    "window": "Dark softly reflective panes, subtle bluegray patches; dark interior prevents positive transmission demonstration. Separate outside/inside/backdrop/grazing reflection proof still required.",
+    "hip_eave": "Rounded eave and bounded hip dressing remain; physical reed breakup visible close, still source trial qualification."
+  },
+  "matched_prior_image_difference": {
+    "color_broad_front.png": {
+      "mean_absolute_8bit": 0.04627592592592593,
+      "max_absolute_8bit": 27.0,
+      "qualification": "Samefixedcamera/renderrecipe; not an optical equivalence proof because glass intentionally changed."
+    },
+    "color_wood_window_closeup.png": {
+      "mean_absolute_8bit": 2.6370324074074074,
+      "max_absolute_8bit": 23.0,
+      "qualification": "Samefixedcamera/renderrecipe; not an optical equivalence proof because glass intentionally changed."
+    },
+    "color_hip_eave_closeup.png": {
+      "mean_absolute_8bit": 0.16921574074074075,
+      "max_absolute_8bit": 20.0,
+      "qualification": "Samefixedcamera/renderrecipe; not an optical equivalence proof because glass intentionally changed."
+    }
+  }
+}

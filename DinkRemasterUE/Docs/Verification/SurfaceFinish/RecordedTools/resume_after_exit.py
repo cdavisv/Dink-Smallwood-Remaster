@@ -1,7 +1,7 @@
 import hashlib,json,math,sys,time
 from pathlib import Path
-ROOT=Path(Path.home()/'Work/DinkSurfaceDelivery/DinkRemasterUE')
-OUT=Path(Path.home()/'Work/DinkQA/SurfaceNative/AfterFinal');LOG=OUT/'game.log'
+ROOT=Path('<HOME>/Work/DinkSurfaceDelivery/DinkRemasterUE')
+OUT=Path('<HOME>/Work/DinkQA/SurfaceNative/AfterFinal');LOG=OUT/'game.log'
 sys.path.insert(0,str(ROOT/'Scripts'))
 import playtest_desktop as d
 import playtest_interactions as q
@@ -13,8 +13,8 @@ d.focus(window);records=[]
 def command(value):
  response=q.command_output(value,LOG);records.append({'command':value,'response':response});return response
 outside=d.player(LOG);assert outside['screen']==439 and not outside['move_ignored'],outside
-assert 'QA_FLOOR_READER_READY' in command("py QA_FLOOR_PHASE='AfterFinal'; exec(open('/home/artist/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())")
-assert 'QA_NATIVE_CAMERA_READER_READY' in command("py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())")
+assert 'QA_FLOOR_READER_READY' in command("py QA_FLOOR_PHASE='AfterFinal'; exec(open('<HOME>/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())")
+assert 'QA_NATIVE_CAMERA_READER_READY' in command("py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('<HOME>/Work/DinkQA/read_native_camera.py').read())")
 assert 'QA_UNDERFLOOR_PASS actual-outside' in command("py qa_fu_read('actual-outside',False)")
 assert 'QA_NATIVE_CAMERA_READ outdoor-after-exit' in command("py qa_nc_read('outdoor-after-exit')")
 camera=ROOT/'Saved/Playtest/SurfaceFloor/outdoor-after-exit.json';native=json.loads(camera.read_text())

@@ -1,6 +1,6 @@
 {
   "scope": "Source only V19 geometry/weights exact. UV0/V1 unchanged; new UV2 carries semantic meters for stitch shading, NOT a tangent basis. No native/export writes.",
-  "source": "/home/artist/Work/DinkQA/HeroVisualRefinement/ClothDetailV24/Dink_Trousers_COARSE_ATLAS_SOURCE.blend",
+  "source": "<HOME>/Work/DinkQA/HeroVisualRefinement/ClothDetailV24/Dink_Trousers_COARSE_ATLAS_SOURCE.blend",
   "source_sha256": "df079ea098f49256e62c7a736bbb4837ceac6147cc825f6dc1c720a261cdc30d",
   "UV2_name": "ClothSeamMeters",
   "UV2_components": [
@@ -28,28 +28,28 @@
     "scope": "Actual original 2D Dink frames and the existing project design brief; inspiration rather than an earlier remaster render. References remain unchanged.",
     "files": [
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/REFERENCE_DESIGN_BRIEF.md",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/REFERENCE_DESIGN_BRIEF.md",
         "sha256": "edd5e667ee032ac906d9840fe7e05ca0ddcd61ea131d04b417de58d530eb23aa"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_identity_crop.png",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/original_identity_crop.png",
         "sha256": "054a287bac08ef104a063354e5d50b7d1e9f0ddeb52329b6e329904c72bc9f7c"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequences_contact.png",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/original_sequences_contact.png",
         "sha256": "a06e014964982c584d99de9b55242b5204646fd758c5c9c9044193c69e10f639"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_walk_ds-w2-01.png",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/original_walk_ds-w2-01.png",
         "sha256": "e85a1391231d45671734d97e8a6add1b2872ae2a437445279756175cc657cdbe"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/sheet_dink.png",
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/sheet_dink.png",
         "sha256": "8438b65b9496d20415d982fe6116b5e4f6fcbd0bdf171ef4eeeff0439e23fd07"
       },
       {
-        "path": "/home/artist/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
-        "sha256": "2d59e99b09619e042666f0e500cb5eca61cc5ba29ef7b3968babb7b3a02ae024"
+        "path": "<HOME>/Work/DinkQA/PhotorealSessions/Hero/References/original_sequence_provenance.json",
+        "sha256": "36462c58f7a86b9adda71c52f40aa76aa3e02e9e84a7cb736d679d9f850dedef"
       }
     ],
     "visually_reviewed_original_images": [

@@ -8,14 +8,15 @@ Reads the data repo's tools/dinkex/out (sequences.json, screens/SCR_nnn.json; ru
 `cd tools/dinkex && python3 -m dinkex extract --data ../../bin/dink --out out` there if missing) and
 writes into Content/Dink/Data/Gameplay/ (staged like the story by DirectoriesToAlwaysStageAsUFS=Dink/Data):
 
-    frames.csv        seq,frame,delay_ms,special,left,top,right,bottom,loop,empty,width,height
+    frames.csv        seq,frame,delay_ms,special,left,top,right,bottom,loop,empty,width,height,origin_x,origin_y,picture_descriptor_sha1
                       every frame of dink.ini: animation delay, the "special" (hit) flag that makes
                       a sprite's attack land (dink.cpp D:16971), and the picture's hardbox relative to
                       the sprite position, which the hit, touch, push and missile tests use (getpic());
                       loop = SET_FRAME_FRAME <seq> <frame> -1 (the animation wraps to frame 1 there),
                       empty = a slot with no picture (the animation ends there, like the slot after the last);
                       width/height = the picture's size (getpic()'s box, which the pig and bounce brains
-                      keep inside the screen).
+                      keep inside the screen). Additive origin_x/origin_y preserve canonical per-frame pivots;
+                      picture_descriptor_sha1 checks metadata self-consistency, NOT native pixel integrity.
     Hardness/SCR_nnn.txt  the screen's 600x400 hardness map as the engine builds it on load (tools/dinkex
                       hardness/SCR_nnn[_vV].png + _owner.png), one block per &vision value: tile codes 1
                       (solid), 2 (low: missiles and flyers cross), 3 (other), and 100+index where placement
@@ -35,6 +36,7 @@ writes into Content/Dink/Data/Gameplay/ (staged like the story by DirectoriesToA
                       0, D:569-575, and special_block warps Dink on prop == 1, D:15337-15341; 1 on the 93
                       sprite warps; the director's sp_prop changes it until the screen loads again) and
                       warp_map (the warp's destination screen, 0 for none).
+    Hardness/*_layers.json additive exact source packets; *_editor_hard.json independent raw99 flags.
     screens.csv       screen,base_script: the script whose `main` runs when the screen loads (headless
                       screen entry uses it when there is no ADinkScreenVolume)
     gameplay_manifest.json   data repo commit and sha256 of each file
@@ -52,13 +54,14 @@ import hashlib
 import io
 import json
 import pathlib
+import re
 import subprocess
 import sys
 
 HERE = pathlib.Path(__file__).resolve().parent.parent
 DEST = HERE / "Content" / "Dink" / "Data" / "Gameplay"
 
-FRAME_COLS = ["seq", "frame", "delay_ms", "special", "left", "top", "right", "bottom", "loop", "empty", "width", "height"]
+FRAME_COLS = ["seq", "frame", "delay_ms", "special", "left", "top", "right", "bottom", "loop", "empty", "width", "height", "origin_x", "origin_y", "picture_descriptor_sha1"]
 PLACEMENT_COLS = ["origin", "screen", "index", "type", "x", "y", "seq", "frame", "size", "vision", "brain",
                   "script", "hitpoints", "strength", "defense", "exp", "nohit", "touch_damage", "speed", "timing",
                   "base_walk", "base_idle", "base_attack", "base_hit", "base_die", "hard", "sound", "que",
@@ -85,6 +88,42 @@ def to_csv(cols, rows) -> bytes:
     return buf.getvalue().encode()
 
 
+def picture_descriptor(seq: int, frame: dict) -> dict:
+    """Canonical reader metadata; a descriptor identity, not a native texture pixel hash."""
+    origin = frame.get("origin")
+    if frame.get("empty") or not frame.get("width") or not frame.get("height"):
+        return {"origin_x": "", "origin_y": "", "picture_descriptor_sha1": ""}
+    if not isinstance(origin, dict) or type(origin.get("x")) is not int or type(origin.get("y")) is not int:
+        raise ValueError(f"{seq}/{frame['frame']}: missing canonical picture origin")
+    values = [seq, frame["frame"], frame["width"], frame["height"], origin["x"], origin["y"]]
+    payload = "DinkPictureDescriptor/1:" + ",".join(map(str, values))
+    return {"origin_x": origin["x"], "origin_y": origin["y"],
+            "picture_descriptor_sha1": hashlib.sha1(payload.encode("ascii")).hexdigest()}
+
+
+def release_picture_keys(family_policy: dict, placements: list, canonical_sequences: list) -> dict:
+    """Canonical animation pictures required by fitted-source release; no IO/native writes."""
+    fitted_ids = {row["origin"] for row in family_policy.get("collision_fit", {}).get("origins", [])}
+    release_sequences = {p["seq"] for p in placements if p["id"] in fitted_ids}
+    pictures = {}
+    if release_sequences:
+        found = set()
+        for sequence in canonical_sequences:
+            if sequence["seq"] not in release_sequences:
+                continue
+            found.add(sequence["seq"])
+            for frame in sequence["frames"]:
+                if frame.get("empty") or not frame.get("width") or not frame.get("height"):
+                    continue
+                if not frame.get("image"):
+                    raise ValueError(f"missing release picture source {sequence['seq']}/{frame['frame']}")
+                pictures.setdefault(f"{sequence['seq']}_{frame['frame']:02d}", frame["image"])
+        if found != release_sequences:
+            raise ValueError("missing canonical release sequence metadata")
+
+    return pictures
+
+
 def frames(dinkex: pathlib.Path):
     seqs = json.loads((dinkex / "sequences.json").read_text())["sequences"]
     rows = []
@@ -95,7 +134,8 @@ def frames(dinkex: pathlib.Path):
                          "special": 1 if f.get("is_hit_frame") or f.get("special") else 0,
                          "left": hb["left"], "top": hb["top"], "right": hb["right"], "bottom": hb["bottom"],
                          "loop": 1 if f.get("loop_to_start") else 0, "empty": 1 if f.get("empty") else 0,
-                         "width": f.get("width") or 0, "height": f.get("height") or 0})
+                         "width": f.get("width") or 0, "height": f.get("height") or 0,
+                         **picture_descriptor(q["seq"], f)})
     return rows
 
 
@@ -168,6 +208,101 @@ def hardness(dinkex: pathlib.Path, tiles=None):
     return out
 
 
+def validate_editor_hard_flags(packet):
+    flags=packet.get('editor_hard_flags')
+    if type(flags) is not list or len(flags)!=99 or any(type(v) is not int or not -(2**31)<=v<2**31 for v in flags):
+        raise ValueError('all99 explicit signed int32 raw editor hard flags required')
+    return flags
+
+
+def editor_hard_flags_files(dinkex):
+    """Independent raw99 metadata, usable without layered-map activation."""
+    out={}
+    for path in sorted((dinkex/'screens').glob('SCR_*.json')):
+        packet=json.loads(path.read_text())
+        if 'editor_hard_flags' not in packet:
+            continue # historical extraction: no bridge data, never invent flags
+        screen=packet.get('screen');record=packet.get('map_record')
+        if (type(screen)is not int or not 1<=screen<=768 or path.stem!=f'SCR_{screen:03d}'
+                or type(record)is not int or not 1<=record<2**31):
+            raise ValueError('invalid raw editor source screen/record')
+        flags=validate_editor_hard_flags(packet)
+        data=dict(schema='dinkex.editor-hard/1',screen=screen,map_record=record,editor_hard_flags=flags)
+        out[f'Hardness/SCR_{screen:03d}_editor_hard.json']=(json.dumps(data,sort_keys=True)+'\n').encode()
+    return out
+
+
+def hardness_layers(dinkex: pathlib.Path, required_visions=None, retained=None):
+    """Copy additive source sidecars byte-exact; never synthesize layers from PNGs.
+
+    Legacy extractions without sidecars stay legacy. Unsupported envelopes refuse
+    before the writer starts; runtime consumers additionally validate every run.
+    """
+    out = {}
+    for path in sorted((dinkex / "hardness").glob("SCR_*_layers.json")):
+        match = re.fullmatch(r"SCR_(\d{3})(?:_v(-?\d+))?_layers\.json", path.name)
+        if not match or not 1 <= int(match[1]) <= 768:
+            raise ValueError(f"invalid runtime hardness filename: {path.name}")
+        expected_vision = int(match[2]) if match[2] is not None else 0
+        raw = path.read_bytes()
+        packet = json.loads(raw)
+        if not isinstance(packet, dict):
+            raise ValueError(f"invalid runtime hardness object: {path.name}")
+        if (packet.get("schema") != "dinkex.runtime-hardness/2"
+                or type(packet.get("width")) is not int or packet["width"] != 600
+                or type(packet.get("height")) is not int or packet["height"] != 400
+                or type(packet.get("vision")) is not int or packet["vision"] != expected_vision
+                or not -(2**31) <= expected_vision < 2**31
+                or packet.get("skipped_tile_indices") != []):
+            raise ValueError(f"unsupported runtime hardness envelope: {path.name}")
+        validate_editor_hard_flags(packet)
+        out[f"Hardness/{path.name}"] = raw
+    # Fitted foundations explicitly support vision 1/2 even on screens with no
+    # placements in those visions. In that case the original overlay is exactly
+    # vision 0. Never infer a missing declared variant or recover tiles from PNGs.
+    for screen, visions in sorted((required_visions or {}).items()):
+        base_name = f"SCR_{screen:03d}_layers.json"
+        base = out.get("Hardness/" + base_name)
+        if base is None:
+            raise ValueError(f"missing explicit source layers: {base_name}")
+        for vision in sorted(visions):
+            name = f"SCR_{screen:03d}_v{vision}_layers.json"
+            if "Hardness/" + name in out:
+                continue
+            source = json.loads((dinkex / "screens" / f"SCR_{screen:03d}.json").read_text())
+            declared = source.get("hardness", {}).get("vision_variants")
+            if not isinstance(declared, dict) or str(vision) in declared:
+                raise ValueError(f"missing declared source vision layers: {name}")
+            expected = json.loads(base)
+            expected["vision"] = vision
+            previous = retained / name if retained is not None else None
+            if previous is not None and previous.is_file():
+                raw = previous.read_bytes()
+                if json.loads(raw) != expected:
+                    raise ValueError(f"retained vision differs from original source: {name}")
+            else:
+                raw = (json.dumps(expected, indent=2) + "\n").encode()
+            out["Hardness/" + name] = raw
+    return out
+
+
+def fitted_hardness_visions(path):
+    if not path.is_file():
+        return {}
+    policy = json.loads(path.read_text()).get("collision_fit")
+    if policy is None:
+        return {}
+    if not isinstance(policy, dict) or policy.get("schema") != "dink-family-collision-fit/3":
+        raise ValueError("unsupported fitted source vision policy")
+    required = {}
+    for row in policy["origins"]:
+        match = re.fullmatch(r"S(\d{3})_P\d{2}", row["origin"])
+        if match is None or not 1 <= int(match[1]) <= 768:
+            raise ValueError("invalid fitted source origin")
+        required.setdefault(int(match[1]), set()).update((1, 2))
+    return required
+
+
 def placements(dinkex: pathlib.Path):
     rows = []
     for path in sorted((dinkex / "screens").glob("SCR_*.json")):
@@ -194,6 +329,10 @@ def main() -> int:
     files = {"frames.csv": to_csv(FRAME_COLS, f_rows), "placements.csv": to_csv(PLACEMENT_COLS, p_rows),
              "screens.csv": to_csv(["screen", "base_script"], s_rows)}
     files.update(hardness(dinkex, tile_layers(args.data, dinkex)))
+    files.update(hardness_layers(
+        dinkex, fitted_hardness_visions(HERE / "Content/Dink/Data/Art/families.json"),
+        DEST / "Hardness"))
+    files.update(editor_hard_flags_files(dinkex))
     manifest = {"source": "tools/dinkex/out (sequences.json, screens/, hardness/); bin/dink/hard.dat (tile layers)",
                 "data_repo_commit": git_commit(args.data),
                 "files": {n: hashlib.sha256(b).hexdigest() for n, b in sorted(files.items())},

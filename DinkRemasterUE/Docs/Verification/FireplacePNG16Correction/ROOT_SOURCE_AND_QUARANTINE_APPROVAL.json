@@ -1,0 +1,10 @@
+{
+  "approved_source_patch": true,
+  "approved_quarantine_after_no_UE_and_exact_recheck": true,
+  "scope": "Only proposed two-helper exact-depth8/16 lossless reader + tests/docs/recipe, no image/ledger/C++/config/binary changes; exact15 same-filesystem renames preserving hashes/inodes to declarednewarchive, no unrelatedfiles; noUE/retry/activation.",
+  "premoves_review_sha256": "18e8885b780db5a68c0811f3caf85fb51382669a1873594f355a1fd12a4f3e3a",
+  "native_report_sha256": "f9ed548440035f9704923fa02042126f12c78e205cc55d2196a7d2787a0768d6",
+  "partial_count": 15,
+  "protected_before_count": 6153,
+  "partial_current_all_hashes_inodes_verified": true
+}

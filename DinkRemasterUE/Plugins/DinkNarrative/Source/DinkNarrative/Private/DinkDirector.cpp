@@ -1,4 +1,5 @@
 #include "DinkDirector.h"
+#include "Hardness/DinkHardnessActivation.h"
 #include "DinkAudioSubsystem.h"
 #include "DinkCreatureSubsystem.h"
 #include "DinkArtSubsystem.h"
@@ -15,9 +16,12 @@
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "Greybox/DinkPlaceholderActor.h"
 #include "Greybox/DinkScreenVolume.h"
+#include "Greybox/DinkWarpComponent.h"
 #include "Dom/JsonObject.h"
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
+#include "Components/MeshComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "EngineUtils.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -385,9 +389,9 @@ void UDinkDirector::RegisterCommands()
 		const FDinkSprite* Sprite = FindSprite(Handle);
 		UDinkGameplay* Game = Story->GetGameplay();
 		// g_smallMap.sprite[sp_index].hard = the sprite's new flag, for a placement's sprite and a value that is not -1 (D:9993-9998).
-		if (Game && Sprite && Sprite->Origin.IsValid() && Value != -1)
+		if (Game && Sprite && Sprite->Origin.IsValid() && Value != -1 && !Game->RequiresOriginalHardnessScreen(Sprite->Screen))
 		{
-			Game->SetPlacementHard(Sprite->Origin, Now);
+			Game->SetPlacementHard(Sprite->bRetainedOriginalEditor?Game->OriginalHardnessOwnerOrigin(*Sprite):Sprite->Origin, Now);
 		}
 		return FDinkCommandResult();
 	});
@@ -403,7 +407,7 @@ void UDinkDirector::RegisterCommands()
 		// The flag lives on the loaded map's placement (g_smallMap.sprite[sp_index].prop), as sp_hard's map flag does (D:9993-9998).
 		if (Game && Sprite && Sprite->Origin.IsValid())
 		{
-			Game->SetPlacementProp(Sprite->Origin, Value);
+			Game->SetPlacementProp(Sprite->bRetainedOriginalEditor ? Game->OriginalHardnessOwnerOrigin(*Sprite) : Sprite->Origin, Value);
 		}
 		return FDinkCommandResult();
 	});
@@ -419,6 +423,7 @@ void UDinkDirector::RegisterCommands()
 			if (FDinkSprite* Sprite = FindSprite(Handle))
 			{
 				Sprite->bActive = true;
+                if (auto* G=Story->GetGameplay()) G->RecordOriginalHardnessReactivation(Handle);
 				if (AActor* Actor = Sprite->Actor.Get())
 				{
 					Actor->SetActorHiddenInGame(false);
@@ -566,6 +571,9 @@ void UDinkDirector::RegisterCommands()
 	auto EditorVariant = [this, OriginFor](FDinkCommandContext& Ctx, const TCHAR* Part)
 	{
 		const FDinkOriginId Origin = OriginFor(Ctx, Ctx.Int(0));
+        UDinkGameplay* Game = Story ? Story->GetGameplay() : nullptr;
+        if (Game) Game->EditorHardnessPicture(Origin, FString(Part) == TEXT("seq"), Ctx.Int(1, -1));
+        if (Ctx.Int(1, -1) == -1) return FDinkCommandResult();
 		UDinkWorldStateSubsystem* World = Story->GetWorldState();
 		FDinkWorldOverride Existing;
 		if (World && Origin.IsValid() && World->TryGetOverride(Origin, Existing))
@@ -576,8 +584,9 @@ void UDinkDirector::RegisterCommands()
 	};
 	Register(TEXT("editor_seq"), S::Implemented, TEXT("stored as the override's Variant (\"seq<N>\") when the placement has an override"), [EditorVariant](FDinkCommandContext& Ctx) { return EditorVariant(Ctx, TEXT("seq")); });
 	Register(TEXT("editor_frame"), S::Implemented, TEXT("stored as the override's Variant (\"frame<N>\") when the placement has an override"), [EditorVariant](FDinkCommandContext& Ctx) { return EditorVariant(Ctx, TEXT("frame")); });
-	Register(TEXT("force_vision"), S::Implemented, TEXT("sets &vision; the greybox shows that vision's placements"), [this](FDinkCommandContext& Ctx)
+	Register(TEXT("force_vision"), S::Implemented, TEXT("rebuilds admitted original hardness screens; legacy greybox retains its vision path"), [this](FDinkCommandContext& Ctx)
 	{
+        if(Story->ForceOriginalHardnessVision(Ctx.Instance,Ctx.Int(0)))return FDinkCommandResult();
 		if (UDinkFactSubsystem* Facts = Story->GetFacts())
 		{
 			Facts->SetFact(TEXT("vision"), Ctx.Int(0));
@@ -976,7 +985,23 @@ void UDinkDirector::BindExternals(FDinkInkStory& InkStory)
 		const FDinkSprite* Sprite = FindSprite(Arg(Args, 0));
 		return IntResult(Sprite && Sprite->Origin.IsValid() ? Sprite->Origin.Placement : 0);
 	});
-	for (const TCHAR* Prop : { TEXT("brain"), TEXT("dir"), TEXT("hitpoints"), TEXT("pframe"), TEXT("pseq"), TEXT("target"), TEXT("x"), TEXT("y") })
+    for (const bool bSequence : {true, false})
+    {
+        Bind(bSequence ? TEXT("editor_seq") : TEXT("editor_frame"), [this, Arg, bSequence](const TArray<Ink::FValueType>& Args)
+        {
+            const auto* Instance = Story->GetCurrentInstance();
+            const FDinkOriginId Origin(Instance ? InstanceScreen(*Instance) : GetCurrentScreen(), Arg(Args, 0));
+            const int32 Value = Args.Num() > 1 ? Arg(Args, 1) : -1;
+            UDinkGameplay* Game = Story->GetGameplay();
+            const int32 Result = Game ? Game->EditorHardnessPicture(Origin, bSequence, Value) : 0;
+            FDinkWorldOverride Existing;
+            if (Value != -1 && Story->GetWorldState() && Story->GetWorldState()->TryGetOverride(Origin, Existing))
+                Story->GetWorldState()->SetOverride(Origin, Existing.Type,
+                    FName(*FString::Printf(TEXT("%s%d"), bSequence ? TEXT("seq") : TEXT("frame"), Result)));
+            return IntResult(Result);
+        });
+    }
+	for (const TCHAR* Prop : { TEXT("brain"), TEXT("dir"), TEXT("hitpoints"), TEXT("pframe"), TEXT("pseq"), TEXT("target"), TEXT("x"), TEXT("y"), TEXT("hard") })
 	{
 		const FName PropName(Prop);
 		Bind(*FString::Printf(TEXT("sp_%s"), Prop), [this, Arg, PropName](const TArray<Ink::FValueType>& Args)
@@ -1117,7 +1142,7 @@ int32 UDinkDirector::HandleForActor(AActor* Actor)
 	FDinkSprite& Sprite = Sprites[Handle];
 	Sprite.Actor = Actor;
 	HandleByActor.Add(Actor, Handle);
-	if (Sprite.Origin.IsValid())
+	if (Sprite.Origin.IsValid()&&!Sprite.bRetainedOriginalEditor)
 	{
 		HandleByOrigin.Add(Sprite.Origin, Handle);
 	}
@@ -1128,6 +1153,7 @@ int32 UDinkDirector::HandleForActor(AActor* Actor)
 		Comp->Script = Sprite.Script;
 		Comp->Props = Sprite.Props; // map.dat's brain, hitpoints, touch damage... for the AI/animation layers
 	}
+    if(auto* G=Story->GetGameplay())G->RecordOriginalHardnessBirth(Handle);
 	return Handle;
 }
 
@@ -1161,6 +1187,7 @@ int32 UDinkDirector::HandleForPlacement(int32 Screen, int32 Placement)
 		Game->InitPlacementSprite(Sprite);
 	}
 	HandleByOrigin.Add(Origin, Handle);
+    if(auto* G=Story->GetGameplay())G->RecordOriginalHardnessBirth(Handle);
 	return Handle;
 }
 
@@ -1187,6 +1214,7 @@ int32 UDinkDirector::CreateVirtualSprite(int32 Screen, double X, double Y)
 	Sprite.X = X;
 	Sprite.Y = Y;
 	Sprite.bSpawned = true;
+    if (auto* G=Story->GetGameplay()) G->RecordOriginalHardnessBirth(Handle);
 	return Handle;
 }
 
@@ -1202,6 +1230,7 @@ void UDinkDirector::DeactivateSprite(int32 Handle, int32 ExceptInstanceId, bool 
 		return;
 	}
 	Sprite->bActive = false;
+    if (auto* G=Story->GetGameplay()) G->RecordOriginalHardnessRelease(Handle);
 	Sprite->bMoving = false;
 	if (AActor* Actor = Sprite->Actor.Get())
 	{
@@ -1239,6 +1268,127 @@ void UDinkDirector::DeactivateSprite(int32 Handle, int32 ExceptInstanceId, bool 
 	}
 }
 
+bool UDinkDirector::CarryOriginalLiveSprites(int32 Screen,FString& Error)
+{
+    struct FCarry {FDinkSprite* Sprite;FVector World;AActor* Clone=nullptr;};
+    TArray<FCarry> Carries;
+    auto Rollback=[&](const TCHAR* Why){for(auto& C:Carries)if(C.Clone)C.Clone->Destroy();Error=Why;return false;};
+    for(auto& Pair:Sprites)
+    {
+        auto& S=Pair.Value;
+        if(S.Handle==1||!S.bActive||!S.GetProp(TEXT("live")))continue;
+        // Full rebuilds recreate eligible editor records even on the same
+        // screen. Detach the live editor survivor before that new birth.
+        if(S.Screen==Screen&&(!S.Origin.IsValid()||S.bRetainedOriginalEditor))continue;
+        FVector Target=FVector::ZeroVector;
+        if(const AActor* Actor=S.Actor.Get())
+        {
+            FVector Before;
+            if(!PixelToWorld(S.Screen,S.X,S.Y,Before)||!PixelToWorld(Screen,S.X,S.Y,Target))
+                return Rollback(TEXT("retained live actor screen transform unavailable"));
+            Target.Z+=Actor->GetActorLocation().Z-Before.Z;
+        }
+        Carries.Add({&S,Target,nullptr});
+    }
+    // A carried editor keeps its source Origin, but no longer owns the source
+    // placement actor. Template preserves its actual meshes/materials/profiles;
+    // only the new transient copy may move to another screen.
+    for(auto& C:Carries)if(C.Sprite->Origin.IsValid()&&!C.Sprite->bRetainedOriginalEditor)
+    {
+        AActor* Source=C.Sprite->Actor.Get();if(!Source)continue; // headless virtual editor
+        UWorld* World=GetWorld();if(!World||Source->GetWorld()!=World)return Rollback(TEXT("retained editor world expired"));
+        if(!Source->GetClass()->HasAnyClassFlags(CLASS_Native))
+            return Rollback(TEXT("retained editor requires reviewed native template class"));
+        FTransform Transform=Source->GetActorTransform();Transform.SetLocation(C.World);
+        FActorSpawnParameters Params;Params.Template=Source;Params.ObjectFlags|=RF_Transient;
+        Params.bDeferConstruction=true;Params.TransformScaleMethod=ESpawnActorScaleMethod::OverrideRootScale;
+        Params.SpawnCollisionHandlingOverride=ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+        C.Clone=World->SpawnActor<AActor>(Source->GetClass(),Transform,Params);
+        if(!C.Clone)return Rollback(TEXT("retained editor template clone refused"));
+        C.Clone->Tags.AddUnique(TEXT("DinkRetainedLiveSprite"));
+        TInlineComponentArray<UDinkOriginComponent*> Origins(C.Clone);
+        for(auto* Origin:Origins){Origin->OriginId=FDinkOriginId();Origin->ScriptName=NAME_None;}
+        if(auto* Card=Cast<ADinkPlaceholderActor>(C.Clone)){Card->ScreenNumber=Screen;Card->Vision=0;}
+        TInlineComponentArray<UDinkWarpComponent*> Warps(C.Clone);
+        for(auto* Warp:Warps){Warp->bTriggerEnabled=false;Warp->SetGenerateOverlapEvents(false);Warp->SetCollisionEnabled(ECollisionEnabled::NoCollision);}
+        C.Clone->FinishSpawning(Transform,false,nullptr,ESpawnActorScaleMethod::OverrideRootScale);
+        if(!IsValid(C.Clone))return Rollback(TEXT("retained editor clone construction failed"));
+        // Construction may have restored template bindings; strip again before
+        // exposing the actor to the director's handle and origin tables.
+        TInlineComponentArray<UDinkOriginComponent*> OriginsAfter(C.Clone);
+        for(auto* Origin:OriginsAfter){Origin->OriginId=FDinkOriginId();Origin->ScriptName=NAME_None;}
+        TInlineComponentArray<UDinkWarpComponent*> WarpsAfter(C.Clone);
+        for(auto* Warp:WarpsAfter){Warp->bTriggerEnabled=false;Warp->SetGenerateOverlapEvents(false);Warp->SetCollisionEnabled(ECollisionEnabled::NoCollision);}
+        if(auto* Card=Cast<ADinkPlaceholderActor>(C.Clone)){Card->ScreenNumber=Screen;Card->Vision=0;}
+        // Runtime family/humanoid children are instanced components, not native
+        // defaults. Refuse a template that lost one instead of admitting an
+        // invisible sprite after its persistent Origin was deliberately removed.
+        TInlineComponentArray<UActorComponent*> CopiedComponents(C.Clone);
+        for(const UActorComponent* Original:Source->GetInstanceComponents())
+        {
+            if(!IsValid(Original))return Rollback(TEXT("retained source instance component expired"));
+            bool Found=false;
+            for(const auto* Copied:CopiedComponents)
+                if(Copied!=Original&&Copied->GetOuter()==C.Clone&&Copied->GetFName()==Original->GetFName()&&Copied->GetClass()==Original->GetClass())Found=true;
+            if(!Found)return Rollback(TEXT("retained template lost an instance component"));
+        }
+        // Shared immutable material assets are fine; per-actor MIDs must have
+        // independent override arrays and a detached MID parent chain.
+        TMap<UMaterialInstanceDynamic*,UMaterialInstanceDynamic*> MaterialCopies;
+        TSet<UMaterialInstanceDynamic*> MaterialStack;
+        TFunction<UMaterialInterface*(UMaterialInterface*)> CopyMaterial;
+        CopyMaterial=[&](UMaterialInterface* Material)->UMaterialInterface* {
+            auto* Dynamic=Cast<UMaterialInstanceDynamic>(Material);if(!Dynamic)return Material;
+            if(auto* Existing=MaterialCopies.Find(Dynamic))return *Existing;
+            if(MaterialStack.Contains(Dynamic)||MaterialStack.Num()>=32||!Dynamic->Parent)return nullptr;
+            MaterialStack.Add(Dynamic);
+            auto* Parent=CopyMaterial(Dynamic->Parent);
+            MaterialStack.Remove(Dynamic);if(!Parent)return nullptr;
+            auto* Copy=UMaterialInstanceDynamic::Create(Parent,C.Clone);if(!Copy)return nullptr;
+            Copy->CopyParameterOverrides(Dynamic);MaterialCopies.Add(Dynamic,Copy);return Copy;
+        };
+        TInlineComponentArray<UMeshComponent*> Meshes(C.Clone);
+        for(auto* Mesh:Meshes)for(int32 I=0;I<Mesh->GetNumMaterials();++I)
+        {
+            auto* Material=Mesh->GetMaterial(I);auto* Copy=CopyMaterial(Material);
+            if(Material&&!Copy)return Rollback(TEXT("retained material override clone refused"));
+            if(Copy!=Material)Mesh->SetMaterial(I,Copy);
+        }
+    }
+    // All fallible preparation precedes sprite identity/source-actor exchange.
+    for(auto& C:Carries)
+    {
+        auto& S=*C.Sprite;
+        if(S.Origin.IsValid())
+        {
+            if(S.HardnessEditorIndex==0)S.HardnessEditorIndex=S.Origin.Placement;
+            if(!S.bRetainedOriginalEditor)
+            {
+                if(const int32* Bound=HandleByOrigin.Find(S.Origin);Bound&&*Bound==S.Handle)HandleByOrigin.Remove(S.Origin);
+                if(AActor* Source=S.Actor.Get())
+                {
+                    S.HardnessSourceActor=Source;
+                    HandleByActor.Remove(Source);
+                    if(auto* Comp=Source->FindComponentByClass<UDinkScriptSpriteComponent>())
+                    {Comp->Handle=0;} // detach stale binding; retain source presentation props
+                }
+                S.bRetainedOriginalEditor=true;S.bSpawned=true;
+            }
+        }
+        DinkHardness::CarryLiveScreenIdentity(S,Screen);
+        if(C.Clone){S.Actor=C.Clone;HandleByActor.Add(C.Clone,S.Handle);}
+        if(AActor* Actor=S.Actor.Get())
+        {
+            MakeMovable(Actor);Actor->SetActorLocation(C.World,false,nullptr,ETeleportType::TeleportPhysics);
+            if(auto* Card=Cast<ADinkPlaceholderActor>(Actor);Card&&S.bRetainedOriginalEditor){Card->ScreenNumber=Screen;Card->Vision=0;}
+            if(auto* Comp=UDinkScriptSpriteComponent::FindOrAdd(Actor))
+            {Comp->Handle=S.Handle;Comp->Props=S.Props;Comp->Script=S.Script;Comp->Dir=S.Dir;}
+            ApplyDir(S);
+        }
+    }
+    Error.Reset();return true;
+}
+
 void UDinkDirector::ReleaseScreenSprites(int32 KeepScreen, const TSet<int32>& KeepHandles)
 {
 	TArray<int32> Remove;
@@ -1260,7 +1410,8 @@ void UDinkDirector::ReleaseScreenSprites(int32 KeepScreen, const TSet<int32>& Ke
 				Actor->Destroy();
 			}
 		}
-		HandleByOrigin.Remove(Sprite.Origin);
+        if(auto* G=Story->GetGameplay())G->RecordOriginalHardnessRelease(H);
+        if(!Sprite.bRetainedOriginalEditor)HandleByOrigin.Remove(Sprite.Origin);
 		HandleByActor.Remove(Sprite.Actor);
 		Sprites.Remove(H);
 	}
@@ -1271,6 +1422,7 @@ void UDinkDirector::ResetSprites()
 {
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
 	{
+        if(auto* G=Story->GetGameplay())G->RecordOriginalHardnessRelease(Pair.Key);
 		if (Pair.Value.bSpawned)
 		{
 			if (AActor* Actor = Pair.Value.Actor.Get())
@@ -1293,11 +1445,21 @@ int32 UDinkDirector::SpriteProperty(FDinkScriptInstance* Instance, FName Prop, i
 		Strength(TEXT("strength")), Defense(TEXT("defense")), TouchDamage(TEXT("touch_damage")), NoDraw(TEXT("nodraw")),
 		Size(TEXT("size")), Kill(TEXT("kill")), NoTouch(TEXT("notouch")), Seq(TEXT("seq")), Speed(TEXT("speed")), AttackWait(TEXT("attack_wait"));
 	FDinkSprite* Sprite = FindSprite(Handle);
+    const bool HardnessProperty=Prop==FName(TEXT("hard"))&&Story&&Story->GetGameplay()&&
+        ((Sprite&&Sprite->bRetainedOriginalEditor)||Story->GetGameplay()->RequiresOriginalHardnessScreen(Sprite?Sprite->Screen:Instance?Instance->Screen:GetCurrentScreen()));
 	if (!Sprite)
 	{
 		UE_LOG(LogDinkDirector, Verbose, TEXT("sp_%s(%d, %d): no such sprite"), *Prop.ToString(), Handle, Value);
-		return 0;
+		return HardnessProperty ? -1 : 0;
 	}
+    if(HardnessProperty&&!Sprite->bActive)
+    {
+        // Original sp_hard calls change_sprite (inactive=>-1) then copies that
+        // result into an editor placement on a setter, even for the inactive case.
+        if(Value!=-1&&Sprite->Origin.IsValid())
+            if(auto* G=Story->GetGameplay())G->RecordEditorHardness(G->OriginalHardnessOwnerOrigin(*Sprite),-1);
+        return -1;
+    }
 	AActor* Actor = Sprite->Actor.Get();
 	UDinkStatsComponent* Stats = Actor ? Actor->FindComponentByClass<UDinkStatsComponent>() : nullptr;
 	// -1 means "read only" except for the setters the engine implements with change_sprite_noreturn
@@ -1337,6 +1499,9 @@ int32 UDinkDirector::SpriteProperty(FDinkScriptInstance* Instance, FName Prop, i
 		else
 		{
 			Sprite->Props.Add(Prop, Value);
+            if (HardnessProperty)
+                if (UDinkGameplay* Game = Story ? Story->GetGameplay() : nullptr)
+                    Game->RecordEditorHardness(Game->OriginalHardnessOwnerOrigin(*Sprite), Value);
 			if (Stats && (Prop == Hitpoints || Prop == Strength || Prop == Defense || Prop == TouchDamage))
 			{
 				FDinkStats NewStats = Stats->Stats;
@@ -1768,6 +1933,7 @@ void UDinkDirector::BuildOriginIndex()
 	}
 	for (TActorIterator<AActor> It(World); It; ++It)
 	{
+        if(It->ActorHasTag(TEXT("DinkRetainedLiveSprite")))continue;
 		if (const UDinkOriginComponent* Origin = UDinkOriginComponent::FindOnActor(*It))
 		{
 			OriginIndex.Add(Origin->OriginId, *It);

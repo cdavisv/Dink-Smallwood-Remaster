@@ -1,0 +1,16 @@
+{
+  "status": "INSTALLED_IMPORTER_AND_BUILDER_COLOR_REPRESENTATIONS_VERIFIED_SOURCE_ONLY",
+  "fbx_sha256": "926a3586c00d958994706c0fc1e4b3ddf3655251da087f9596fa92eed911d028",
+  "corners": 582576,
+  "source_to_predicted_raw_RGB_max_difference": 0.28709664481258806,
+  "original_to_predicted_render_byte_normalized_max_error": 0.003921340844210475,
+  "engine_sources": {
+    "Source/Editor/UnrealEd/Private/Fbx/FbxStaticMeshImport.cpp": "7da42a17d57a268dab4128914484bed5c3d5f6b357abecb48b634c56df4279b9",
+    "Source/Runtime/Core/Public/Math/Color.h": "d6bedea2c62bd73de23b06ef4c8464c588576856bd6c2461830b920fff14a454",
+    "Source/Developer/MeshBuilder/Private/StaticMeshBuilder.cpp": "161a6cf0c98adf39c356e2a9d3ad25a00fd799de22cc279392f2d98b4b33d73f"
+  },
+  "raw_reference": "FColor(truncate255*FBX); FLinearColor decodesRGB via sRGB table; Alpha=byte/255",
+  "built_reference": "MeshbuilderToFColor(true) re-encodesRGB tobytes; shaderVertexColor data remains originalnormalizedsemanticvalues withquantization",
+  "changed_policy": "Expected RAWcolorrepresentation corrected, noShader/source/nativeattribute mutation or tolerance increase",
+  "qualification": "Predictions from actualinstalledsource andactualFBX; nativeAPI/buffers/shader/GPUstillunexecuted"
+}

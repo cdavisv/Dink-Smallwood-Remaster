@@ -1,0 +1,9 @@
+{
+  "status": "PASS_APPEND_ONLY",
+  "prior_rows": 4370,
+  "new_rows": 20,
+  "prior_raw_bytes": 3866326,
+  "prior_raw_sha256": "f2becbb105171e50c86e5e7731fef12ea6009daf8ffd57ba481570342b5ed4f8",
+  "prefix_exact": true,
+  "scope": "Newsource-referencecandidate paths only; no priorindex/source/ledgerrow mutation"
+}

@@ -24,20 +24,8 @@
 #include "Tests/AutomationEditorCommon.h"
 #include "UnrealClient.h"
 
-struct FDinkExteriorPortalTestAccess
-{
-    static TArray<FDinkExteriorCameraRule>& Rules(UDinkArtSubsystem& Art){return Art.ExteriorCameraRules;}
-    static void Register(UDinkArtSubsystem& Art,const FString& File,const TSharedPtr<FJsonObject>& Row,int32 Screen,UStaticMeshComponent* Mesh)
-    {Art.RegisterExteriorCameraRule(File,Row,Screen,Mesh);}
-    static const FDinkExteriorCameraRule* Actual(UDinkArtSubsystem& Art)
-    {
-        const FDinkExteriorCameraRule* Result=nullptr;
-        for(const auto& R:Art.ExteriorCameraRules)
-            if(R.Manifest==TEXT("stonebrook_exterior.json")&&R.Element==TEXT("DinksCottage")&&R.Screen==439&&R.Component.IsValid())
-            {if(Result)return nullptr;Result=&R;}
-        return Result;
-    }
-};
+#include "DinkExteriorPortalTestAccess.h"
+
 namespace
 {
 class FOutdoorPortalCheck : public IAutomationLatentCommand

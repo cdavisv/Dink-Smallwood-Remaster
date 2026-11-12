@@ -1,0 +1,104 @@
+{
+  "scope": "Same triangle indices, comparison to reproduced .65 predeformation roof. Normal dot<0 detects >90deg orientation change, not general self-intersection.",
+  "affected_triangles": 12030,
+  "degenerate_area2_below1e-12_before_after": [
+    0,
+    0
+  ],
+  "affected_orientation_dot_min": 0.753826253056296,
+  "affected_dot_negative_count": 0,
+  "affected_area_ratio_p0_p5_p50_p95_p100": [
+    0.8220065327860272,
+    0.9354859217596518,
+    0.9856274872362603,
+    1.035416068769011,
+    11.555245501520517
+  ],
+  "affected_triangle_quality_before_after_p0_p5_p50": [
+    [
+      0.00900524325152427,
+      0.01619196310063168,
+      0.8086716491907231
+    ],
+    [
+      0.008427154611732539,
+      0.034277020218300924,
+      0.7968795333597445
+    ]
+  ],
+  "worst_orientation_triangle_centres": [
+    {
+      "triangle": 2308,
+      "dot": 0.753826253056296,
+      "centre": [
+        9.299331029256185,
+        -5.081742127736409,
+        3.5441083908081055
+      ]
+    },
+    {
+      "triangle": 26421,
+      "dot": 0.7598418532560565,
+      "centre": [
+        9.299391746520996,
+        -5.061691602071126,
+        3.548652092615763
+      ]
+    },
+    {
+      "triangle": 1951,
+      "dot": 0.7800085219876409,
+      "centre": [
+        9.30002498626709,
+        -5.124941825866699,
+        3.53108541170756
+      ]
+    },
+    {
+      "triangle": 26182,
+      "dot": 0.7829860610337448,
+      "centre": [
+        9.299718856811523,
+        -5.094938437143962,
+        3.539877732594808
+      ]
+    },
+    {
+      "triangle": 21208,
+      "dot": 0.8230876478781559,
+      "centre": [
+        9.29940923055013,
+        5.0818203290303545,
+        3.543097972869873
+      ]
+    },
+    {
+      "triangle": 45736,
+      "dot": 0.8246081015136069,
+      "centre": [
+        -9.222956975301107,
+        5.157747745513916,
+        3.5447023709615073
+      ]
+    },
+    {
+      "triangle": 45039,
+      "dot": 0.8275167500046055,
+      "centre": [
+        9.299388885498047,
+        5.0616888999938965,
+        3.5483644803365073
+      ]
+    },
+    {
+      "triangle": 21519,
+      "dot": 0.8289882508529814,
+      "centre": [
+        -9.202837308247885,
+        5.157835324605306,
+        3.5483991305033364
+      ]
+    }
+  ],
+  "historical_construction": "Original build_v14d injects .007/.004m sin47/83x edge offsets at~.08m margin; source lower-edge scalloping exists before deformation. V19b retains edge/underside while replacing top high-frequency relief. No conclusion that all observed clay ripples are new folds."
+}

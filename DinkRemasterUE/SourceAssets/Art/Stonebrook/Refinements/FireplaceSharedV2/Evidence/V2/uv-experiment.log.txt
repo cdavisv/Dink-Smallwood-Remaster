@@ -1,0 +1,4 @@
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-10-13 09:33:20)
+[ALSOFT] (EE) Failed to connect PipeWire event context (errno: 1)
+00:00.218  blend            | Read blend: "<HOME>/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/Fireplace_Shared2mCandidate.blend"
+[{'mode': 'local_orthogonal', 'zero_loops': [3003, 3007, 3148, 3238, 3252], 'zero_count': 5}, {'mode': 'seam_offset', 'zero_loops': [3003, 3007, 3148, 3238, 3252], 'zero_count': 5}, {'mode': 'chart_min_height', 'zero_loops': [3003, 3007, 3148, 3238, 3252], 'zero_count': 5}, {'mode': 'large_scale', 'zero_loops': [3003, 3007, 3148, 3238, 3252], 'zero_count': 5}]

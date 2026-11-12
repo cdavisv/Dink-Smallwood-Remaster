@@ -1,7 +1,7 @@
 {
   "utc": "2026-11-09T02:04:39.920082+00:00",
   "exit_code": 0,
-  "summary": "TESTS PASSED: 154/154 passed, 0 failed (33 with warnings) [filter 'Dink'] in 718s; report: ~/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/Automation/bridge_full_warm_verified/index.html\n",
+  "summary": "TESTS PASSED: 154/154 passed, 0 failed (33 with warnings) [filter 'Dink'] in 718s; report: <HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/Automation/bridge_full_warm_verified/index.html\n",
   "frozen_inputs": 8562,
   "changes": {
     "added": [],
@@ -9,6 +9,6 @@
     "changed": []
   },
   "Root_all_scopes_unchanged": true,
-  "report": "~/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/Automation/bridge_full_warm_verified/index.html",
+  "report": "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/Automation/bridge_full_warm_verified/index.html",
   "wrapper_sha256": "7c2caadca685b03fb3e77fa431d0df90967942a3e6b635e44c880a26fc5d0d04"
 }

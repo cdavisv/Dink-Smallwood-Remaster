@@ -1,6 +1,6 @@
 # Roof V12d source delivery verification
 
-Branch art/roof-chimney-source in ~/Work/DinkRoofSourceDelivery, base master34 c17793772ed2a80e6d0516c4062a29f18fcbb3c2. Source-only candidate; native integration and runtime acceptance remain separate.
+Branch art/roof-chimney-source in <HOME>/Work/DinkRoofSourceDelivery, base master34 c17793772ed2a80e6d0516c4062a29f18fcbb3c2. Source-only candidate; native integration and runtime acceptance remain separate.
 
 Copied exactly100 reviewed payloads with distinct source inodes, plus portable README, relative hash manifest and provenance; appended103 candidate ledger records preserving4044 prior raw rows and all audio. Existing4264 LFS files were hydrated from common local object storage; this is not a remote/cold-clone availability test. The initial unstaged audit counted4264 binaries. The initial staged full audit passed4307 known-suffix binaries and4147 ledger rows with zero missing/hash/secret errors. Separate source closure verifies100 copied payloads and38 packet source/FBX/PNG records. Four scoped LFS rules additionally cover24 raw buffers,3gzip snapshots and2large frozen reports: LFS_COVERAGE.json checks all72 new staged pointers against actual materialized SHA256/size (273599347bytes), including29 diagnostic files formerly outside the auditor binary-suffix inventory. The companion audit fix now includes indexed filter=lfs paths and the current full audit passes4336files. No remote upload or cold-fetch availability is claimed by these local checks.
 

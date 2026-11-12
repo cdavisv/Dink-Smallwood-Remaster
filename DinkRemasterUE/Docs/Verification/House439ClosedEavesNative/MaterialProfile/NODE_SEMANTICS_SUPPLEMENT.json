@@ -1,0 +1,350 @@
+{
+  "scope": "Actual source-library readback of previously omitted active-node settings; no source save/native proof",
+  "source_sha256": "106df33e311e6c6e28a4a8450ea094675742490e54818b52315c6d2634808efe",
+  "roles": {
+    "FieldstoneSeed2m": {
+      "UV Map": {
+        "mute": false
+      },
+      "Image Texture": {
+        "mute": false
+      },
+      "Color Attribute": {
+        "mute": false
+      },
+      "Separate XYZ": {
+        "mute": false
+      },
+      "Math": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Mix (Legacy)": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Image Texture.001": {
+        "mute": false
+      },
+      "Normal Map": {
+        "mute": false
+      },
+      "Image Texture.002": {
+        "mute": false
+      },
+      "Separate XYZ.001": {
+        "mute": false
+      },
+      "Principled BSDF": {
+        "mute": false
+      },
+      "Material Output": {
+        "mute": false
+      }
+    },
+    "LimeMortarSoot2m": {
+      "UV Map.001": {
+        "mute": false
+      },
+      "Separate XYZ": {
+        "mute": false
+      },
+      "UV Map": {
+        "mute": false
+      },
+      "Image Texture.004": {
+        "mute": false
+      },
+      "Image Texture.005": {
+        "mute": false
+      },
+      "Math": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Mix (Legacy).002": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Separate XYZ.001": {
+        "mute": false
+      },
+      "Math.001": {
+        "mute": false,
+        "use_clamp": true
+      },
+      "Color Attribute": {
+        "mute": false
+      },
+      "Image Texture": {
+        "mute": false
+      },
+      "Image Texture.001": {
+        "mute": false
+      },
+      "Mix (Legacy)": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Mix (Legacy).003": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Image Texture.002": {
+        "mute": false
+      },
+      "Image Texture.003": {
+        "mute": false
+      },
+      "Mix (Legacy).001": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Normal Map": {
+        "mute": false
+      },
+      "Principled BSDF": {
+        "mute": false
+      },
+      "Material Output": {
+        "mute": false
+      }
+    },
+    "WeatheredTimber2m": {
+      "UV Map": {
+        "mute": false
+      },
+      "Image Texture": {
+        "mute": false
+      },
+      "Image Texture.001": {
+        "mute": false
+      },
+      "UV Map.001": {
+        "mute": false
+      },
+      "Separate XYZ": {
+        "mute": false
+      },
+      "Math": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Mix (Legacy)": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Image Texture.002": {
+        "mute": false
+      },
+      "Image Texture.003": {
+        "mute": false
+      },
+      "Mix (Legacy).001": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Normal Map": {
+        "mute": false
+      },
+      "Image Texture.004": {
+        "mute": false
+      },
+      "Image Texture.005": {
+        "mute": false
+      },
+      "Mix (Legacy).002": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Separate XYZ.001": {
+        "mute": false
+      },
+      "Principled BSDF": {
+        "mute": false
+      },
+      "Material Output": {
+        "mute": false
+      }
+    },
+    "IronLead2m": {
+      "UV Map": {
+        "mute": false
+      },
+      "Image Texture": {
+        "mute": false
+      },
+      "Image Texture.001": {
+        "mute": false
+      },
+      "UV Map.001": {
+        "mute": false
+      },
+      "Separate XYZ": {
+        "mute": false
+      },
+      "Math": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Mix (Legacy)": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Image Texture.002": {
+        "mute": false
+      },
+      "Image Texture.003": {
+        "mute": false
+      },
+      "Mix (Legacy).001": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Normal Map": {
+        "mute": false
+      },
+      "Image Texture.004": {
+        "mute": false
+      },
+      "Image Texture.005": {
+        "mute": false
+      },
+      "Mix (Legacy).002": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Separate XYZ.001": {
+        "mute": false
+      },
+      "Principled BSDF": {
+        "mute": false
+      },
+      "Material Output": {
+        "mute": false
+      }
+    },
+    "ThinWavyGlass2m": {
+      "Image Texture": {
+        "mute": false
+      },
+      "Image Texture.001": {
+        "mute": false
+      },
+      "Normal Map": {
+        "mute": false
+      },
+      "Image Texture.002": {
+        "mute": false
+      },
+      "Separate Color": {
+        "mute": false,
+        "mode": "RGB"
+      },
+      "Principled BSDF": {
+        "mute": false
+      },
+      "Material Output": {
+        "mute": false
+      }
+    },
+    "FieldstoneWall2m": {
+      "UV Map": {
+        "mute": false
+      },
+      "Image Texture": {
+        "mute": false
+      },
+      "Image Texture.002": {
+        "mute": false
+      },
+      "Normal Map": {
+        "mute": false
+      },
+      "Image Texture.001": {
+        "mute": false
+      },
+      "Separate XYZ": {
+        "mute": false
+      },
+      "Principled BSDF": {
+        "mute": false
+      },
+      "Material Output": {
+        "mute": false
+      }
+    },
+    "LaidWeatheredPhotoCoatFrayedCut2m_SourceTrial": {
+      "GenericSurfaceSoiling_A": {
+        "mute": false
+      },
+      "GenericDryWeatheringTint": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "UV Map": {
+        "mute": false
+      },
+      "Image Texture": {
+        "mute": false
+      },
+      "Image Texture.003": {
+        "mute": false
+      },
+      "UV Map.001": {
+        "mute": false
+      },
+      "Separate XYZ": {
+        "mute": false
+      },
+      "Mix (Legacy)": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "GenericWeatheredAlbedo": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Image Texture.001": {
+        "mute": false
+      },
+      "Image Texture.004": {
+        "mute": false
+      },
+      "Mix (Legacy).001": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Color Attribute": {
+        "mute": false
+      },
+      "Separate Color.001": {
+        "mute": false,
+        "mode": "RGB"
+      },
+      "Normal Map": {
+        "mute": false
+      },
+      "Image Texture.002": {
+        "mute": false
+      },
+      "Image Texture.005": {
+        "mute": false
+      },
+      "Mix (Legacy).002": {
+        "mute": false,
+        "use_clamp": false
+      },
+      "Separate Color": {
+        "mute": false,
+        "mode": "RGB"
+      },
+      "Principled BSDF": {
+        "mute": false
+      },
+      "Material Output": {
+        "mute": false
+      }
+    }
+  }
+}

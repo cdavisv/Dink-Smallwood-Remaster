@@ -1,0 +1,54 @@
+{
+  "status": "PREPARED_UNCOMPILED_UNEXECUTED_IN_UNREAL",
+  "source_commit": "61d03de",
+  "contract_digest": "33c49c4a804ef7c9fb8a00dde8c170f049f3cfb93394f5a40df88db7da4193f3",
+  "fresh_packages": {
+    "mesh": 1,
+    "materials": 7,
+    "textures": 30,
+    "total": 38
+  },
+  "source_and_importer_code_pins": 147,
+  "entrypoints": {
+    "import": "Scripts/RoofNative/house439_native.py:import_trial",
+    "saved_readback": "Scripts/RoofNative/house439_native.py:verify_trial_readback"
+  },
+  "new_metadata_scope": "SeparateexactHouse43931sourcefilenameentry+capability; originalroof/sharedroofentryscopeunchanged",
+  "vertex_colors": "Existingmeshhelper defaultunchanged; boundedhouse439branch explicitlyREPLACE imports rawColor0SharedSurfaceData. Actualnative correspondenceunproven.",
+  "offline_tests": {
+    "actual_copy_contract": 8,
+    "glass_recipe_guards": 9,
+    "opaque_source_graph_guards": 6,
+    "existing_shared_roof_regressions": 14,
+    "constructed_source_graph_semantics": 4,
+    "current_house439_total": 52,
+    "graph_readback_corruption": 11,
+    "metadata_ordering": 3,
+    "raw_built_attribute_corruption": 11
+  },
+  "native_gates": [
+    "RootreviewofnewC++source/driver/recipes",
+    "Editorcompileandcapabilityloaded",
+    "Rootguardedcallerandmatchingexplicitapprovalreceipt",
+    "ActualsourcePNG/compressednormalreadback callbacks",
+    "Actualsavednativegraph topology andsourceDAGcorrespondence callbacks",
+    "Actualwholemesh/UV0Mikk/linearColor0/6UCX verifier",
+    "Separatefreshprocesssaved38readback",
+    "Actualoutside/inside/backdropcard/grazingreflectionoptics",
+    "Productionactivationandfinalgameappearance separatelyreviewed"
+  ],
+  "actual_source_audits": {
+    "full": "importer-prep-full-source-audit.json",
+    "metadata": "importer-prep-metadata-source-audit.json",
+    "passed": true
+  },
+  "superseded_contract_digest": "273dd93ff8e5c049bc8afeb3dde6b5b5983eff4d33e52b1f20d8965affe05d0c",
+  "uv1_semantic_correction": "InstalledlegacyFBX importer Vflip requires UV1_SharedData decode(U,1-nativeV) before sourceDAG. UV0texture/nativeTBN untouched; allsource/library/FBXbytes unchanged.",
+  "actual_native_validation": "UNEXECUTED: noUEmoduleimport/nativeAPI/graphcompile/saved38/GPUproof. Graphinspectorpreparation andsyntheticcorruptiontestsonly.",
+  "saved_graph_inspector": "Scripts/RoofNative/house439_material_readback.py:inspect_graph",
+  "saved_graph_gate": "Mandatorybuiltininspection atnativeimport andfreshsavedreadback, plusRootadditionalgraph/shadercallback",
+  "mesh_readback": "mesh-readback-preparation.json",
+  "native_bridge_status": "NewRAW/builtUV1/Color0/signedTBN bridgeandnativefunctionaltestUNCOMPILED. Rootreviews/builds/runs.",
+  "reader_safety": "IsCompiling refusal before description/render access; retainedCPUflag/count+Position/Tangent/UV/optionalColor pointer guards before data dereference",
+  "color_representation": "RAWlinearRGB predictsFColortruncate then sRGBdecode; Alpha direct/255. BUILTRGBA8 normalizedcomparesoriginalsourcevalueswithinexistingbytebound. NoShader/FBX/nativeattributes/tolerancechange."
+}

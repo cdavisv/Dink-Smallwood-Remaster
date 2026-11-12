@@ -1744,7 +1744,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/en-pill.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/en-pill.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -1756,7 +1756,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/emake.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/emake.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -1784,7 +1784,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h2-1.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h2-1.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -1796,7 +1796,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h3-1.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h3-1.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -1824,7 +1824,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/item-nut.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/item-nut.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -1852,7 +1852,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/item-sw1.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/item-sw1.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -1880,7 +1880,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/item-fb.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/item-fb.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -3962,7 +3962,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-roc.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-roc.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4020,7 +4020,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h2-dk.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h2-dk.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4032,7 +4032,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/findduck.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/findduck.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4060,7 +4060,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-sack.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-sack.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4072,7 +4072,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/item-pig.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/item-pig.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4130,7 +4130,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/mgold.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/mgold.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4142,7 +4142,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/heart.c): verbatim check skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/heart.c): verbatim check skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4643,7 +4643,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "smoke run: 930 entry points, 903 completed, 27 hit the step cap (27 idle loops), 0 stalled, 0 with errors; 139911 lines, 17205 spoken, 123002 commands, 88 menus in 4.0 s; report /home/artist/Work/DinkQA/VistaDeliveryFull/User/Saved/Narrative/smoke_report.txt",
+						"message": "smoke run: 930 entry points, 903 completed, 27 hit the step cap (27 idle loops), 0 stalled, 0 with errors; 139911 lines, 17205 spoken, 123002 commands, 88 menus in 4.0 s; report <HOME>/Work/DinkQA/VistaDeliveryFull/User/Saved/Narrative/smoke_report.txt",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4701,7 +4701,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h1-m.c): verbatim check against the original skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h1-m.c): verbatim check against the original skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4729,7 +4729,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h3-of.c): verbatim check against the original skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h3-of.c): verbatim check against the original skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4741,7 +4741,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h3-of.c): verbatim check against the original skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-h3-of.c): verbatim check against the original skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -4769,7 +4769,7 @@
 					"event":
 					{
 						"type": "Info",
-						"message": "data repo not found (/home/artist/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-brg2.c): verbatim check against the original skipped",
+						"message": "data repo not found (<HOME>/Work/DinkVistaDelivery/Dink-Smallwood-Remaster/bin/dink/story/s1-brg2.c): verbatim check against the original skipped",
 						"context": "",
 						"artifact": "00000000000000000000000000000000"
 					},

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "donor_graphs_exact_after_reopen": {
+    "MI_Shared_FieldstoneSeed2m": true,
+    "MI_Shared_IronLead2m": true,
+    "MI_Shared_OakLonggrain2m": true
+  },
+  "UV0_original_coordinates_exact": [
+    "SM_Chimney_Stonebrook_V8",
+    "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+    "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+    "SM_Fireplace_Stonebrook_V3Contact_LOD2"
+  ],
+  "UVMap_alias_exact": true,
+  "original_frozen_payloads_unchanged": 68
+}

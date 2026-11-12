@@ -1,0 +1,26 @@
+{
+  "schema": "dink-family-fit-native-fixture-plan/1",
+  "status": "NOT_EXECUTED_REQUIRES_SINGLE_PHYSICAL_CONSUMER",
+  "origins": [
+    {"origin":"S031_P03","script":"bar-gh","engine_xy":[320,316],"source_frame":[173,1],"drop":"gheart"},
+    {"origin":"S209_P13","script":"bar-f1","engine_xy":[416,306],"source_frame":[173,1],"drop":"food1"}
+  ],
+  "required_setup": [
+    "Fresh current-master own modules, isolated admitted marked fixture world, original scripts ON, correct owner decisions preserved",
+    "Explicit native-reviewed cooked geometry digest and two-origin policy admitted only after authority supports fitted mesh/variable height",
+    "Actual source actor/Origin/Director handle/pseq/pframe/hard/prop consistency; proposed visual/physical center at unchanged script ground",
+    "Actual physical mesh and logical descriptor committed under held loading gate before visual apply; exactly one collision authority"
+  ],
+  "capsule": {"radius_cm":28,"half_height_cm":96,"step_height_cm":35,"directions_world_xy":[[1,0],[-1,0],[0,1],[0,-1]],"method":"actual native mesh support/sweeps then real normal player approach; initial fixture placement is distinct from movement evidence","assertions":["No contact at old layout-scaled box edge","First contact agrees with actual transformed cooked mesh plus capsule support, with measured tolerance","Player root does not penetrate barrel or lose underlying floor","Same tests at both stable per-origin yaw and actual warped screen mapping","Actual body height near100.75cm rather than300cm"]},
+  "lifecycle": [
+    {"phase":"hard_initial","expect":"one fitted mesh body plus fitted owner mask and matching anchored render; original777pixel stamp withdrawn with underlying layers retained"},
+    {"phase":"sp_hard_1_only","expect":"flag changes but admitted body/map retain original delayed redraw semantics"},
+    {"phase":"draw_hard_sprite","expect":"old admitted fitted mask/body withdrawn transactionally; no stale original250-319cm box; pickup reachable"},
+    {"phase":"hit_script","expect":"original barrel script, Origin and source XY unchanged; original drop type/count/position and editor_type3/seq173/frame6 persist"},
+    {"phase":"broken_visual","expect":"actual broken frame presented, no full hard-barrel ghost; owned visibility/material/profile restoration verified"},
+    {"phase":"fresh_reentry","expect":"persisted broken state applied before admission; no fresh hard barrel or stale fitted body"},
+    {"phase":"save_load_same_screen","expect":"current owner coordinator re-admits correct state under gate; no permanent movement lock or stale script snapshot"}
+  ],
+  "negative_controls": ["Missing optional policy preserves current PR40/41 defaults","Invalid/duplicate/foreign rule refuses whole policy","Shared or duplicate Origin actor/family component fails before mutation","Wrong runtime handle/Actor/Origin/pseq/pframe/hard/prop refuses","Mesh/BodySetup/GUID/cooked positions/material indices/backface policy or native digest drift refuses","Changed TRS/material/profile/all-channel/nav/overlap/visibility/corners refuses","No matching committed physical authority means zero visual transform change","Underlying tile, other-owner overlap, low water, floor, fill and warp controls remain unchanged","Starting-house authored barrels and other family placements remain untouched"],
+  "evidence": ["Actual64 collision responses/query modes plus object types and overlap/navigation","Native source/cooked geometry and transformed footprint/height with immutable input hashes","Original script/food/heart event traces and persisted editor state","Real input/player movement and actual screenshots before/after from four sides","Normal closure and full current native suite"]
+}

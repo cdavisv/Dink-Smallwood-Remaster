@@ -1,0 +1,27 @@
+{
+  "status": "PASS_SOURCE_ONLY_VALIDATION_NATIVE_PENDING",
+  "tests": {
+    "glass_recipe_guards": 9,
+    "opaque_actual_graph_guards": 6,
+    "library_index_history": 11,
+    "existing_LFS_metadata_CLI": 8
+  },
+  "test_total": 34,
+  "full_source_audit": "full-source-audit.json",
+  "metadata_source_audit": "metadata-source-audit.json",
+  "art_standard": {
+    "new_source_errors": 0,
+    "new_source_soft_budget_warnings": 1,
+    "existing_material_errors": 186,
+    "existing_family_errors": 23
+  },
+  "ledger": "ledger-append-proof.json",
+  "whitespace": "whitespace-qualification.json",
+  "invocation_correction": "Initial python-I verify_sources invocation failed localmodule import because thatscript requiresScriptspath. Normal python-B invocation completed full+metadata audits; no sourcevalidation assertion was changed.",
+  "pending": [
+    "CoordinatingRoot historicalindexpolicy review before sourcecommit",
+    "Complete native importer/readback integration",
+    "Actual game outside/inside/transmission/reflection and finalappearance review",
+    "Acceptedbranch/sessionwork integration atdelivery"
+  ]
+}

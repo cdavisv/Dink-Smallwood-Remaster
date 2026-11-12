@@ -1,0 +1,3398 @@
+{
+  "schema_version": 1,
+  "generator": "tools/blender/dinkasset/export_ue.py",
+  "blender": "5.2.2 LTS",
+  "generated_utc": "2026-11-09T06:09:04Z",
+  "units": {
+    "blender_unit": "metre",
+    "unreal_unit": "centimetre",
+    "multiplier": 100.0
+  },
+  "axes": {
+    "blender": "Z up, asset front faces -Y",
+    "fbx_file": "Z up, front axis -Y (same as Blender), right-handed, no rotation baked",
+    "unreal_asset_space": "Z up, asset front faces +Y; Unreal negates Y on import (documentation-derived, verify in editor)"
+  },
+  "content_root": "/Game/Dink",
+  "assets": [
+    {
+      "name": "SM_Cottage_Stonebrook_Burning_01",
+      "class": "building",
+      "kind": "static",
+      "content_path": "/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Cottage_Stonebrook_Burning_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 169932,
+        "LOD1": 84966,
+        "LOD2": 42482
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -941.5,
+          -527.341,
+          0.0
+        ],
+        "blender_max_cm": [
+          941.5,
+          527.331,
+          793.0
+        ],
+        "size_cm": [
+          1883.0,
+          1054.672,
+          793.0
+        ],
+        "unreal_min_cm": [
+          -941.5,
+          -527.331,
+          0.0
+        ],
+        "unreal_max_cm": [
+          941.5,
+          527.341,
+          793.0
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Cottage_Stonebrook_Burning_01_LOD0_01",
+        "UCX_SM_Cottage_Stonebrook_Burning_01_LOD0_02",
+        "UCX_SM_Cottage_Stonebrook_Burning_01_LOD0_03",
+        "UCX_SM_Cottage_Stonebrook_Burning_01_LOD0_04",
+        "UCX_SM_Cottage_Stonebrook_Burning_01_LOD0_05",
+        "UCX_SM_Cottage_Stonebrook_Burning_01_LOD0_06"
+      ],
+      "material_slots": [
+        "MI_Ruin_FacadeFrontBack_Burning",
+        "MI_Ruin_FacadeSides_Burning",
+        "MI_Ruin_Timber",
+        "MI_Ruin_Thatch",
+        "MI_Ruin_AshEmber"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_FacadeFrontBack_Burning_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeFrontBack_Burning_BC.png",
+          "role": "BC",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_FacadeFrontBack_Burning_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeFrontBack_Burning_N.png",
+          "role": "N",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_FacadeFrontBack_Burning_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeFrontBack_Burning_ORM.png",
+          "role": "ORM",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_FacadeSides_Burning_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeSides_Burning_BC.png",
+          "role": "BC",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_FacadeSides_Burning_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeSides_Burning_N.png",
+          "role": "N",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_FacadeSides_Burning_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeSides_Burning_ORM.png",
+          "role": "ORM",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Thatch_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Thatch_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Thatch_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Thatch_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Thatch_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Thatch_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_AshEmber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_AshEmber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_AshEmber_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_AshEmber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_E",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_AshEmber_E.png",
+          "role": "E",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [
+        {
+          "name": "SOCKET_Fire_01",
+          "location_cm_blender": [
+            600.033,
+            -58.356,
+            703.733
+          ]
+        },
+        {
+          "name": "SOCKET_Fire_02",
+          "location_cm_blender": [
+            880.933,
+            -359.778,
+            477.667
+          ]
+        },
+        {
+          "name": "SOCKET_Fire_03",
+          "location_cm_blender": [
+            -901.5,
+            -107.877,
+            666.592
+          ]
+        },
+        {
+          "name": "SOCKET_Fire_04",
+          "location_cm_blender": [
+            -500.359,
+            -271.838,
+            543.621
+          ]
+        },
+        {
+          "name": "SOCKET_Fire_05",
+          "location_cm_blender": [
+            76.423,
+            -325.127,
+            503.655
+          ]
+        },
+        {
+          "name": "SOCKET_Fire_06",
+          "location_cm_blender": [
+            358.594,
+            -68.469,
+            696.148
+          ]
+        },
+        {
+          "name": "SOCKET_Fire_07",
+          "location_cm_blender": [
+            -744.71,
+            -219.188,
+            583.109
+          ]
+        },
+        {
+          "name": "SOCKET_Fire_08",
+          "location_cm_blender": [
+            617.239,
+            -367.593,
+            471.806
+          ]
+        },
+        {
+          "name": "SOCKET_Smoke_01",
+          "location_cm_blender": [
+            -357.562,
+            -233.109,
+            572.669
+          ]
+        },
+        {
+          "name": "SOCKET_Smoke_Chimney",
+          "location_cm_blender": [
+            -541.5,
+            190.0,
+            800.0
+          ]
+        },
+        {
+          "name": "SOCKET_Fire_Door_01",
+          "location_cm_blender": [
+            483.5,
+            -390.0,
+            120.0
+          ]
+        },
+        {
+          "name": "SOCKET_Fire_Door_02",
+          "location_cm_blender": [
+            568.5,
+            -390.0,
+            190.0
+          ]
+        }
+      ],
+      "validation": {
+        "errors": 0,
+        "warnings": 4,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Cottage_Stonebrook_Burnt_01",
+      "class": "building",
+      "kind": "static",
+      "content_path": "/Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Cottage_Stonebrook_Burnt_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 162286,
+        "LOD1": 81142,
+        "LOD2": 40571
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -941.5,
+          -529.002,
+          0.0
+        ],
+        "blender_max_cm": [
+          946.5,
+          530.749,
+          793.0
+        ],
+        "size_cm": [
+          1888.0,
+          1059.751,
+          793.0
+        ],
+        "unreal_min_cm": [
+          -941.5,
+          -530.749,
+          0.0
+        ],
+        "unreal_max_cm": [
+          946.5,
+          529.002,
+          793.0
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Cottage_Stonebrook_Burnt_01_LOD0_01",
+        "UCX_SM_Cottage_Stonebrook_Burnt_01_LOD0_02",
+        "UCX_SM_Cottage_Stonebrook_Burnt_01_LOD0_03",
+        "UCX_SM_Cottage_Stonebrook_Burnt_01_LOD0_04",
+        "UCX_SM_Cottage_Stonebrook_Burnt_01_LOD0_05",
+        "UCX_SM_Cottage_Stonebrook_Burnt_01_LOD0_06"
+      ],
+      "material_slots": [
+        "MI_Ruin_FacadeFrontBack",
+        "MI_Ruin_FacadeSides",
+        "MI_Ruin_Timber",
+        "MI_Ruin_Thatch",
+        "MI_Ruin_AshEmber"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_FacadeFrontBack_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeFrontBack_BC.png",
+          "role": "BC",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_FacadeFrontBack_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeFrontBack_N.png",
+          "role": "N",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_FacadeFrontBack_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeFrontBack_ORM.png",
+          "role": "ORM",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_FacadeSides_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeSides_BC.png",
+          "role": "BC",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_FacadeSides_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeSides_N.png",
+          "role": "N",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_FacadeSides_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_FacadeSides_ORM.png",
+          "role": "ORM",
+          "size": [
+            4096,
+            4096
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Thatch_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Thatch_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Thatch_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Thatch_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Thatch_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_Thatch_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_BC",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_AshEmber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_N",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_AshEmber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_AshEmber_ORM",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_AshEmber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_E",
+          "file": "Game/Dink/Buildings/StonebrookRuins/Textures/T_Ruin_AshEmber_E.png",
+          "role": "E",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [
+        {
+          "name": "SOCKET_Smoulder_01",
+          "location_cm_blender": [
+            76.423,
+            -314.327,
+            71.75
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_02",
+          "location_cm_blender": [
+            -357.562,
+            -222.309,
+            63.5
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_03",
+          "location_cm_blender": [
+            732.522,
+            -41.048,
+            59.1
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_04",
+          "location_cm_blender": [
+            -614.927,
+            -63.197,
+            59.1
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_05",
+          "location_cm_blender": [
+            277.136,
+            -330.0,
+            70.1
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_06",
+          "location_cm_blender": [
+            287.15,
+            -220.734,
+            70.1
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_07",
+          "location_cm_blender": [
+            -739.141,
+            -123.538,
+            59.1
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_08",
+          "location_cm_blender": [
+            686.491,
+            -286.729,
+            89.9
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_09",
+          "location_cm_blender": [
+            -72.365,
+            -300.593,
+            89.9
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_10",
+          "location_cm_blender": [
+            -261.5,
+            240.0,
+            76.7
+          ]
+        },
+        {
+          "name": "SOCKET_Smoulder_11",
+          "location_cm_blender": [
+            418.5,
+            160.0,
+            66.8
+          ]
+        }
+      ],
+      "validation": {
+        "errors": 0,
+        "warnings": 4,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Mother_Remains_Fire_01",
+      "class": "foliage",
+      "kind": "static",
+      "content_path": "/Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Mother_Remains_Fire_01",
+        "note": "Posed static copy of Characters/SK_Mother.blend (CC0 MakeHuman anatomy + original project wardrobe; see Characters/README.md) via StonebrookRuins/tools/pose_mother_remains.py; smoke/blood pass on a copy of its atlas"
+      },
+      "tris": {
+        "LOD0": 16082,
+        "LOD1": 8040,
+        "LOD2": 3859
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -55.396,
+          -90.269,
+          0.0
+        ],
+        "blender_max_cm": [
+          55.396,
+          90.269,
+          37.474
+        ],
+        "size_cm": [
+          110.792,
+          180.537,
+          37.474
+        ],
+        "unreal_min_cm": [
+          -55.396,
+          -90.269,
+          0.0
+        ],
+        "unreal_max_cm": [
+          55.396,
+          90.269,
+          37.474
+        ]
+      },
+      "pivot_rule": "base_center",
+      "nanite": false,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Mother_Remains_Fire_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_RuinMother_Body",
+        "MI_RuinMother_Hair"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinMother_Atlas_BC",
+          "file": "Game/Dink/Foliage/StonebrookRuins/Textures/T_RuinMother_Atlas_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinMother_Atlas_N",
+          "file": "Game/Dink/Foliage/StonebrookRuins/Textures/T_RuinMother_Atlas_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinMother_Atlas_ORM",
+          "file": "Game/Dink/Foliage/StonebrookRuins/Textures/T_RuinMother_Atlas_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 7,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": false,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Ceiling_Oak_BurntHole_2m_01",
+      "class": "kit_ceiling",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Ceiling_Oak_BurntHole_2m_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 2252,
+        "LOD1": 1126,
+        "LOD2": 562
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          22.206
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          22.206
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          22.206
+        ]
+      },
+      "pivot_rule": "grid_ceiling",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Ceiling_Oak_BurntHole_2m_01_LOD0_01",
+        "UCX_SM_Ceiling_Oak_BurntHole_2m_01_LOD0_02"
+      ],
+      "material_slots": [
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Ceiling_Oak_Burnt_2m_01",
+      "class": "kit_ceiling",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Ceiling_Oak_Burnt_2m_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 2340,
+        "LOD1": 1170,
+        "LOD2": 584
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          20.0
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          20.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          20.0
+        ]
+      },
+      "pivot_rule": "grid_ceiling",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Ceiling_Oak_Burnt_2m_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Debris_AshPile_Large_01",
+      "class": "kit_piece",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Debris_AshPile_Large_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 3546,
+        "LOD1": 1772,
+        "LOD2": 886
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -131.18,
+          -105.589,
+          0.0
+        ],
+        "blender_max_cm": [
+          131.18,
+          105.589,
+          60.109
+        ],
+        "size_cm": [
+          262.36,
+          211.178,
+          60.109
+        ],
+        "unreal_min_cm": [
+          -131.18,
+          -105.589,
+          0.0
+        ],
+        "unreal_max_cm": [
+          131.18,
+          105.589,
+          60.109
+        ]
+      },
+      "pivot_rule": "grid_piece",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Debris_AshPile_Large_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_Ruin_AshEmber",
+        "MI_Ruin_Timber",
+        "MI_Ruin_Thatch"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_AshEmber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_AshEmber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_AshEmber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_AshEmber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_AshEmber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_E",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_AshEmber_E.png",
+          "role": "E",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Thatch_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Thatch_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Thatch_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Thatch_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Thatch_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Thatch_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Debris_AshPile_Small_01",
+      "class": "kit_piece",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Debris_AshPile_Small_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1594,
+        "LOD1": 796,
+        "LOD2": 398
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -59.549,
+          -45.05,
+          0.0
+        ],
+        "blender_max_cm": [
+          59.549,
+          45.05,
+          28.157
+        ],
+        "size_cm": [
+          119.098,
+          90.099,
+          28.157
+        ],
+        "unreal_min_cm": [
+          -59.549,
+          -45.05,
+          0.0
+        ],
+        "unreal_max_cm": [
+          59.549,
+          45.05,
+          28.157
+        ]
+      },
+      "pivot_rule": "grid_piece",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Debris_AshPile_Small_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_Ruin_AshEmber",
+        "MI_Ruin_Timber",
+        "MI_Ruin_Thatch"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_AshEmber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_AshEmber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_AshEmber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_AshEmber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_AshEmber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_AshEmber_E",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_AshEmber_E.png",
+          "role": "E",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Thatch_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Thatch_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Thatch_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Thatch_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Thatch_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Thatch_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Decal_Blood_Floor_01",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Decal_Blood_Floor_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 672,
+        "LOD1": 336,
+        "LOD2": 168
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -0.4
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          0.0
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          0.4
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          -0.4
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Decal_Blood_Floor_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_RuinInt_Blood"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_Blood_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_Blood_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_Blood_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_Blood_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_Blood_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_Blood_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Floor_01",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Decal_Scorch_Floor_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 672,
+        "LOD1": 336,
+        "LOD2": 168
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -0.4
+        ],
+        "blender_max_cm": [
+          150.0,
+          150.0,
+          0.0
+        ],
+        "size_cm": [
+          150.0,
+          150.0,
+          0.4
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -150.0,
+          -0.4
+        ],
+        "unreal_max_cm": [
+          150.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Decal_Scorch_Floor_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_RuinInt_ScorchFloor"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_ScorchFloor_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_ScorchFloor_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_ScorchFloor_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_ScorchFloor_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_ScorchFloor_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_ScorchFloor_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_1m5_01",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Decal_Scorch_Ground_1m5_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.531
+        ],
+        "blender_max_cm": [
+          150.0,
+          150.0,
+          0.0
+        ],
+        "size_cm": [
+          150.0,
+          150.0,
+          2.531
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -150.0,
+          -2.531
+        ],
+        "unreal_max_cm": [
+          150.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Decal_Scorch_Ground_1m5_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_Ruin_ScorchGround"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_ScorchGround_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_ScorchGround_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_ScorchGround_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_2m_01",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Decal_Scorch_Ground_2m_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.271
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          0.0
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          2.271
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          -2.271
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Decal_Scorch_Ground_2m_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_Ruin_ScorchGround"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_ScorchGround_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_ScorchGround_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_ScorchGround_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_2m_02",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Decal_Scorch_Ground_2m_02",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.32
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          0.0
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          2.32
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          -2.32
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Decal_Scorch_Ground_2m_02_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_Ruin_ScorchGround"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_ScorchGround_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_ScorchGround_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_ScorchGround_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_3m_01",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Decal_Scorch_Ground_3m_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.292
+        ],
+        "blender_max_cm": [
+          300.0,
+          300.0,
+          0.0
+        ],
+        "size_cm": [
+          300.0,
+          300.0,
+          2.292
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -300.0,
+          -2.292
+        ],
+        "unreal_max_cm": [
+          300.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Decal_Scorch_Ground_3m_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_Ruin_ScorchGround"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_ScorchGround_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_ScorchGround_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_ScorchGround_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_ScorchGround_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Wall_01",
+      "class": "kit_wall",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Decal_Scorch_Wall_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 672,
+        "LOD1": 336,
+        "LOD2": 168
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          -0.2,
+          0.0
+        ],
+        "blender_max_cm": [
+          150.0,
+          0.2,
+          200.0
+        ],
+        "size_cm": [
+          150.0,
+          0.4,
+          200.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -0.2,
+          0.0
+        ],
+        "unreal_max_cm": [
+          150.0,
+          0.2,
+          200.0
+        ]
+      },
+      "pivot_rule": "grid_wall",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Decal_Scorch_Wall_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_RuinInt_ScorchWall"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_ScorchWall_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_ScorchWall_BC.png",
+          "role": "BC",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_ScorchWall_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_ScorchWall_N.png",
+          "role": "N",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_ScorchWall_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_ScorchWall_ORM.png",
+          "role": "ORM",
+          "size": [
+            1024,
+            1024
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Door_Cottage_Fallen_01",
+      "class": "kit_piece",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Door_Cottage_Fallen_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 3316,
+        "LOD1": 1658,
+        "LOD2": 828
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          -66.614,
+          -111.038,
+          0.0
+        ],
+        "blender_max_cm": [
+          66.614,
+          111.038,
+          9.88
+        ],
+        "size_cm": [
+          133.227,
+          222.075,
+          9.88
+        ],
+        "unreal_min_cm": [
+          -66.614,
+          -111.038,
+          0.0
+        ],
+        "unreal_max_cm": [
+          66.614,
+          111.038,
+          9.88
+        ]
+      },
+      "pivot_rule": "grid_piece",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Door_Cottage_Fallen_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Doorway_Limewash_Burnt_4m_01",
+      "class": "kit_piece",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Doorway_Limewash_Burnt_4m_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 2172,
+        "LOD1": 1086,
+        "LOD2": 542
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          -15.738,
+          0.0
+        ],
+        "blender_max_cm": [
+          400.0,
+          15.743,
+          350.0
+        ],
+        "size_cm": [
+          400.0,
+          31.481,
+          350.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -15.743,
+          0.0
+        ],
+        "unreal_max_cm": [
+          400.0,
+          15.738,
+          350.0
+        ]
+      },
+      "pivot_rule": "grid_piece",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Doorway_Limewash_Burnt_4m_01_LOD0_01",
+        "UCX_SM_Doorway_Limewash_Burnt_4m_01_LOD0_02",
+        "UCX_SM_Doorway_Limewash_Burnt_4m_01_LOD0_03"
+      ],
+      "material_slots": [
+        "MI_RuinInt_PlasterSoot",
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_PlasterSoot_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_PlasterSoot_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_PlasterSoot_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_PlasterSoot_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_PlasterSoot_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_PlasterSoot_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_01",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Floor_Oak_Burnt_2m_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "blender_max_cm": [
+          199.4,
+          199.2,
+          0.0
+        ],
+        "size_cm": [
+          199.4,
+          199.2,
+          11.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -199.2,
+          -11.0
+        ],
+        "unreal_max_cm": [
+          199.4,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Floor_Oak_Burnt_2m_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_RuinInt_FloorAsh",
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_FloorAsh_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_FloorAsh_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_FloorAsh_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_02",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Floor_Oak_Burnt_2m_02",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "blender_max_cm": [
+          199.4,
+          199.2,
+          0.0
+        ],
+        "size_cm": [
+          199.4,
+          199.2,
+          11.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -199.2,
+          -11.0
+        ],
+        "unreal_max_cm": [
+          199.4,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Floor_Oak_Burnt_2m_02_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_RuinInt_FloorAsh",
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_FloorAsh_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_FloorAsh_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_FloorAsh_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_03",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Floor_Oak_Burnt_2m_03",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "blender_max_cm": [
+          199.4,
+          199.2,
+          0.0
+        ],
+        "size_cm": [
+          199.4,
+          199.2,
+          11.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -199.2,
+          -11.0
+        ],
+        "unreal_max_cm": [
+          199.4,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Floor_Oak_Burnt_2m_03_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_RuinInt_FloorAsh",
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_FloorAsh_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_FloorAsh_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_FloorAsh_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_04",
+      "class": "kit_floor",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Floor_Oak_Burnt_2m_04",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "blender_max_cm": [
+          199.4,
+          199.2,
+          0.0
+        ],
+        "size_cm": [
+          199.4,
+          199.2,
+          11.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -199.2,
+          -11.0
+        ],
+        "unreal_max_cm": [
+          199.4,
+          -0.0,
+          0.0
+        ]
+      },
+      "pivot_rule": "grid_floor",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Floor_Oak_Burnt_2m_04_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_RuinInt_FloorAsh",
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_FloorAsh_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_FloorAsh_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_FloorAsh_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_FloorAsh_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 2,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Wall_Limewash_Burnt_2m_01",
+      "class": "kit_wall",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Wall_Limewash_Burnt_2m_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1672,
+        "LOD1": 836,
+        "LOD2": 418
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          -17.793,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          17.793,
+          350.0
+        ],
+        "size_cm": [
+          200.0,
+          35.586,
+          350.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -17.793,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          17.793,
+          350.0
+        ]
+      },
+      "pivot_rule": "grid_wall",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Wall_Limewash_Burnt_2m_01_LOD0_01"
+      ],
+      "material_slots": [
+        "MI_RuinInt_PlasterSoot",
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_PlasterSoot_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_PlasterSoot_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_PlasterSoot_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_PlasterSoot_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_PlasterSoot_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_PlasterSoot_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    },
+    {
+      "name": "SM_Window_Limewash_Burnt_2m_01",
+      "class": "kit_wall",
+      "kind": "static",
+      "content_path": "/Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.fbx"
+      },
+      "source": {
+        "blend": "StonebrookRuins/KIT_StonebrookRuins.blend",
+        "sha256": "e6499d61e00df7ea01b378e91721555fcaedbbb05495dc44479c06726ab0fd08",
+        "collection": "SM_Window_Limewash_Burnt_2m_01",
+        "note": "Original deterministic Blender geometry and procedural numpy textures; StonebrookRuins/tools/build_ruins.py + make_textures.py seed 31439; no third-party images or meshes"
+      },
+      "tris": {
+        "LOD0": 1824,
+        "LOD1": 912,
+        "LOD2": 456
+      },
+      "lod_count": 3,
+      "bounds_cm": {
+        "blender_min_cm": [
+          0.0,
+          -20.418,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          20.418,
+          350.0
+        ],
+        "size_cm": [
+          200.0,
+          40.836,
+          350.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -20.418,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          20.418,
+          350.0
+        ]
+      },
+      "pivot_rule": "grid_wall",
+      "nanite": true,
+      "translucent": false,
+      "collision": [
+        "UCX_SM_Window_Limewash_Burnt_2m_01_LOD0_01",
+        "UCX_SM_Window_Limewash_Burnt_2m_01_LOD0_02",
+        "UCX_SM_Window_Limewash_Burnt_2m_01_LOD0_03",
+        "UCX_SM_Window_Limewash_Burnt_2m_01_LOD0_04"
+      ],
+      "material_slots": [
+        "MI_RuinInt_PlasterSoot",
+        "MI_Ruin_Timber"
+      ],
+      "textures": [
+        {
+          "name": "T_RuinInt_PlasterSoot_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_PlasterSoot_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_RuinInt_PlasterSoot_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_PlasterSoot_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_RuinInt_PlasterSoot_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_RuinInt_PlasterSoot_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_BC",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_BC.png",
+          "role": "BC",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": true,
+          "normal_green_flip": false
+        },
+        {
+          "name": "T_Ruin_Timber_N",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_N.png",
+          "role": "N",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": true
+        },
+        {
+          "name": "T_Ruin_Timber_ORM",
+          "file": "Game/Dink/Kits/StonebrookRuins/Textures/T_Ruin_Timber_ORM.png",
+          "role": "ORM",
+          "size": [
+            2048,
+            2048
+          ],
+          "srgb": false,
+          "normal_green_flip": false
+        }
+      ],
+      "skeleton": null,
+      "sockets": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 1,
+        "forced": false
+      },
+      "import_hints": {
+        "fbx_scale_mode": "all",
+        "import_uniform_scale": 1.0,
+        "convert_scene": true,
+        "force_front_x_axis": false,
+        "unreal_front_axis": "+Y",
+        "generate_lightmap_uvs": false,
+        "build_nanite": true,
+        "normal_import": "import_normals",
+        "use_custom_collision": true,
+        "combine_meshes": true,
+        "texture_normal_flip_green": true,
+        "texture_orm_compression": "Masks (no sRGB)"
+      }
+    }
+  ]
+}

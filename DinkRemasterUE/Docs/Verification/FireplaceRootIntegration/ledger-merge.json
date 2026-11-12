@@ -1,0 +1,16 @@
+{
+  "base": "f3c84a14ab6b83e9e512560b9b4d4cbf3b913d6d",
+  "root": "91dd31ea1df85e5c9cf9af341067283e8b70ce20",
+  "fireplace": "759595a01c3b2e989feeb100b0dea379a09e8bb2",
+  "common_rows": 4255,
+  "root_rows": 4325,
+  "fireplace_rows": 4576,
+  "appended_distinct_raw_rows": 321,
+  "current_rows": 4646,
+  "root_raw_prefix_exact": true,
+  "all_fireplace_suffix_raw_rows_present": true,
+  "root_sha256": "f35572950cd1f4b56251c966ba0357bcea749d6bd75b9509f9dcfc7e35b9ebca",
+  "common_sha256": "7e2814c565c25b9cbdef3cee6c4c5501e825bae1ff8d20cc1ec7b2596a0f1f36",
+  "result_sha256": "f06de650572d714acfc8609d4a97e8d25267e1cbd376c999d0a1b2a055da0764",
+  "no_latest_override": true
+}

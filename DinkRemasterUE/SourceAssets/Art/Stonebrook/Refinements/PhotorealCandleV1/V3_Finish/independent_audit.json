@@ -1,8 +1,8 @@
 {
   "schema": "dink-candle-independent-source-audit/1",
   "passed": true,
-  "source_sha256": "b715816ecb50cba25d6df6adbee9e5f6b40b257fb25e26deb0106a60703ce1dc",
-  "input_sha256": "ee11c44ee88be504742b75967dd727047dd39721e83598eae2d3257eb772c0ed",
+  "source_sha256": "e083cc9270810f2b2799d4b11e4467785c3d39ea926d366cc442035c2cb8c798",
+  "input_sha256": "7a8851706c725ce89dfb35f5b288a7d60bd779aa846f0f844a28ffe3bafab604",
   "max_bounds_delta_m": 0.0,
   "ground_center_pivot_preserved": true,
   "collider_local_vertices_and_relative_transform_exact": true,

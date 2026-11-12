@@ -6,9 +6,9 @@
   "original_frame": 6,
   "class": "prop",
   "source": "portable.source.blend",
-  "source_sha256": "5d40e9f8d4a7b22d5f3981190695db96aa247ce6eaed374bf2fd641616079f7f",
+  "source_sha256": "a6d0dbad44c8a4df3f64223044c79894ef82c0533de20ae1e24900c2aa053b03",
   "immediate_preferred_parent_sha256": "9d97fee5c8aa9cb923c85b001b59c74f54e77320f344d83a8a8d088f91651151",
-  "earlier_published_v2_sha256": "d0c399eee4e9fb956b1fc1ff84a74af44a74983f8b6b6793d858a296051c400e",
+  "earlier_published_v2_sha256": "214e937fce5f0dee340114ccf67ea68b7940bb22ff04096a998dba5118e3055e",
   "objects": 36,
   "LOD0_triangles": 9928,
   "other_V3_LODs": false,
@@ -24,10 +24,10 @@
   ],
   "references_sha256": {
     "SourceAssets/Art/ART_STANDARD.md": "bbf50383f1357016ce945efec282dc7cb052ed522ab6759b4ced5a9b5f389215",
-    "SourceAssets/Art/SharedMaterials/manifest.json": "c19adfb9bde4e4151c50e9c0ee6e4d42fb1d8bd414583654f94695a946c3fd1f",
+    "SourceAssets/Art/SharedMaterials/manifest.json": "c5fed26baef42d0969da338b007b1f8178f62892172f5aff77b5c7cf4c91c83b",
     "SourceAssets/Art/Stonebrook/art_manifest.json": "b5cfa84d909f540592d8f424c15125eea02a780a743b8a418848d32d6b53667d",
     "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/barel-06.bmp.png": "b6de2786813e799b54c654e2e493ffafd04c7758c53d5f36d9b08f53a4fc84ba",
-    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/PROVENANCE.json": "92a51ef20b644aafdb6a99cab1b2ad407c1ba0d1f3f88864dc0a6fc380a825f5",
+    "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/References/PROVENANCE.json": "b0717e8fdce290cb02e4bfd9b792fab8d84e3146935fb46f47c2a2373ed1a884",
     "SourceAssets/Art/Stonebrook/Refinements/PhotorealBrokenBarrelV2/POLICY_INTERPRETATION.md": "3b1745ae085ad5eb0a6778724c2f7e77ed2a55f0b403bfabede9371a6a01d2ad"
   },
   "runtime_activated": false,
@@ -40,6 +40,6 @@
     "Inherited raw generic UV overlap/missingUCX findings remain",
     "Hidden private intact context is comparison only"
   ],
-  "QA_origin": "/home/artist/Work/DinkQA/PhotorealBrokenBarrelRefinementV3",
-  "QA_READY_sha256": "67d36a2b7a69bce37c722b696b5916d0fba5104bb683e78b11521ebef690953a"
+  "QA_origin": "<HOME>/Work/DinkQA/PhotorealBrokenBarrelRefinementV3",
+  "QA_READY_sha256": "60d2228eed5a12e09108cd2e51f1ce80428ae9b306257923ffbd7c7ea307f4ce"
 }

@@ -1,0 +1,52 @@
+{
+  "reviewed_commit": "9bc51369b6e60ffda470c34974d09b1f7badd639",
+  "branch": "art/fireplace-v4-root-integration",
+  "worktree": "<HOME>/Work/DinkFireplaceV4RootIntegration",
+  "verdict": "REQUEST_CHANGES",
+  "scope": "Independent source-only review; no UE/build/import/save/Content modification/push",
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "file": "DinkRemasterUE/Scripts/RoofNative/fireplace_native.py",
+      "line": 41,
+      "title": "Native StaticMaterial constructor does not expose imported_material_slot_name",
+      "issue": "FStaticMaterial.ImportedMaterialSlotName is VisibleAnywhere-only. The installed native-struct wrapper adds constructor InitParams only from script-exposed TypeGetSets, which require BlueprintVisible/BlueprintAssignable. Editor-only properties are included in PythonProperties for get_editor_property but are not TypeGetSets constructor parameters. The current StaticMaterial keyword call is unsupported, so the approved append path cannot execute with this installed API. Its TypeError is fail-closed, but blocks every fresh trial at the chimney. No native invocation was performed in this review.",
+      "why_tests_miss": "The recording Slot constructor explicitly accepts imported_material_slot_name; all680 Python checks can pass without matching the installed native constructor exposure. The existing unsupported-constructor negative proves safe refusal, not successful native construction.",
+      "primary_evidence": "primary_source_pins.json; PyWrapperTypeRegistry.cpp2239\u20132265,2344\u20132361; PyGenUtil.cpp1609\u20131613; StaticMesh.h514\u2013515. Python-defined-struct InitParams code around PyWrapperStruct.cpp1537 is a different path.",
+      "reproduction": "constructor_signature_reproduction.json shows an installed-exposure-constrained recording constructor rejects the keyword with zero mesh setters. It is not presented as native execution.",
+      "requested_change": "Use a concretely supported metadata initialization operation after reviewing its installed API, or revise the delivery policy to retain legitimate used-only native slots with exact source-used-role correspondence while keeping full declared/used/unused source inventory. Do not run a full35 retry with this known unsupported constructor."
+    }
+  ],
+  "validated": {
+    "focused_tests": {
+      "count": 11,
+      "passed": true,
+      "log": "focused-tests.txt"
+    },
+    "full_python_tests": {
+      "count": 680,
+      "passed": true,
+      "seconds": 15.246,
+      "log": "all-tests.txt"
+    },
+    "identity_checks": "identity_checks.json",
+    "held31_and_all_Content": 6184,
+    "protected_diagnostic_pins": 11532,
+    "own_Editor_modules": 7,
+    "own_Editor_files": 14,
+    "own_Game_files": 2,
+    "production_delta_exactly_two_helpers": true,
+    "shared_roof_unchanged": true,
+    "C3_tracked_Plugins_Source_Config_Content_SourceAssets_unchanged": true,
+    "source_geometry_images_ledger_not_changed": true
+  },
+  "otherwise_reviewed": [
+    "Append ordering preserves actual used0\u20132 and adds declared-unused3\u20135; all5-roleLODs and already-complete inventories are no-op",
+    "Exact old-slot struct/interface/UV and raw/built/groups/triangles/collision checks bracket the sole mesh setter",
+    "Fresh readback rejects unused group/section references and demands exact source-used roles",
+    "Existing strict binder and seven tolerances unchanged; no alias/geometry patch/numeric masking"
+  ],
+  "optional_policy_alternative": "Root may choose source-declared inventory in immutable metadata and exact set(native slots)==set(source-used roles), retaining all7 registered material parents, exact pertriangle/source correspondence, and unchanged shared binder invoked with used roles. Native used-only pruning is legitimate; this alternative must not admit missing or extra used roles.",
+  "remaining": "Resolve R1 before native trial. No native constructor/save/readback, full asset admission, runtime appearance or whole-goal acceptance follows from this review."
+}

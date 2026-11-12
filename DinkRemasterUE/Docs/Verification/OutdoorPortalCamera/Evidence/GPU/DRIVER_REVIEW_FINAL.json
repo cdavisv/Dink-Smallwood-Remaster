@@ -75,11 +75,11 @@
     "state-portal-recorded-corrected.json": "78ee71e4073e05fbd9f3910d25b147fc060e1cbdefee48d92603fd9b7e20fb9d",
     "state-portal-free-corrected.json": "ea91dde9614ecd79b43d7d77aa3ed47e53c276d68c1cc92800032ff468f67a1f",
     "state-portal-indoor-restored-corrected.json": "529ce7b0b1e640857c1ac28c7934fa31b9f4bd8ee611e571ae6d656b6dc4ff8d",
-    "ENGINE_OUTER_IDENTITY_V2.json": "d7e7a6bdbf85cdae2749c395782e745a8b9191f90ad33c06b3f49e1a41668500",
-    "CORRECTED_CONTROLS_CALLER.json": "a5ba1fc73e9b4a59f1efe6e02f85c85b2178add4dc2c3fab6296eaed25fcf759",
+    "ENGINE_OUTER_IDENTITY_V2.json": "94d1798ab034eca839558a0feb07b4128a8cbdcf75f3d55a45f430a387bc4384",
+    "CORRECTED_CONTROLS_CALLER.json": "7ef1bbb485c850076bd9ed84c9cb4247eb006b018ab45c360670d9fe2a3f5a43",
     "FRESH_STARTUP_PLAYER.json": "5d676e416f844d6d31363c2d69cca523ffa39d72c49e932e40465a7c53fe546e",
     "result.json": "e001766b0e4b84f56271e80c4c42b4b7e859190a5cc5734e49eb52a6ff56f643",
-    "DISPLAY_CLOSED.json": "f3092d2bb83ddb06d1684b3fe26c9bb2893f13bf6e3490405b3e6e060dc02164"
+    "DISPLAY_CLOSED.json": "3387b3b80a984a2dc48a25f4fca91e68ddb0d3f78ef8cb00416c046c6fc71b63"
   },
   "driver_tools": {
     "init64849": 0,
@@ -97,7 +97,7 @@
     "C1Editorfixturecompilefailure",
     "ColdNativefocus2readinesstimeouts"
   ],
-  "correction_index_sha256": "3ff2c1b2bbb6d550ded5ebb5909f016c4d582e9dddefe171b84f11ec0d2cd032",
+  "correction_index_sha256": "c4d8c0e2b1de8aa821ab638b6d54eb3f95cf94c920c0c490a12b507a96361a97",
   "corrected_probe_sha256": "76117ce8739ab665c045e6c893868c3078142799c96e2fe1bb202f0f12a72efb",
   "log": {
     "errors": 0,
@@ -105,13 +105,13 @@
     "warning_lines": [
       "[2026.11.10-15.35.27:885][  0]LogRHI: Warning: Dynamic Uniform Buffers are enabled, but they will not be used with Vulkan bindless.",
       "[2026.11.10-15.35.27:885][  0]LogRHI: Warning: Memory defrag is enabled, but it will not be used with Vulkan bindless.",
-      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
-      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
-      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
-      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
-      "[2026.11.10-15.35.30:690][  0]LogVTDiskCache: Warning: Fail to write to /home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/VT, derived data cache to this directory will be read only.",
-      "[2026.11.10-15.37.35:640][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
-      "[2026.11.10-15.37.35:640][  0]LogUnixPlatformFile: Warning: create dir('/home/artist/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('<HOME>/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('<HOME>/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('<HOME>/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.35.30:689][  0]LogUnixPlatformFile: Warning: create dir('<HOME>/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.35.30:690][  0]LogVTDiskCache: Warning: Fail to write to <HOME>/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DerivedDataCache/VT, derived data cache to this directory will be read only.",
+      "[2026.11.10-15.37.35:640][  0]LogUnixPlatformFile: Warning: create dir('<HOME>/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
+      "[2026.11.10-15.37.35:640][  0]LogUnixPlatformFile: Warning: create dir('<HOME>/Work/DinkOutdoorPortalCamera/DinkRemasterUE/Content/Developers/') failed: errno=30 (Read-only file system)",
       "[2026.11.10-15.37.37:691][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'ActorLayersWidgetConstructor' as purpose '0' isn't registered.",
       "[2026.11.10-15.37.37:691][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'UObjectLabelWidgetConstructor' as purpose '0' isn't registered.",
       "[2026.11.10-15.37.37:691][  0]LogEditorDataStorageUI: Warning: Unable to register widget factory 'FolderCompatibilityWidgetConstructor' as purpose '0' isn't registered.",

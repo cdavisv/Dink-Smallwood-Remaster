@@ -8,7 +8,7 @@
       "RGB_MAE_0_255": 7.809425636574074,
       "changed_pixels": 657062,
       "baseline_sha256": "41ba741c47b9d853edb083a41e22e51ab2a74bcd8491c4c1bb82603e2a09338f",
-      "candidate_sha256": "ce7c3615866e452310bd7519400d90e46b85af87eecf2a865ba535e9906a5143",
+      "candidate_sha256": "373a943e71f806e5f09c883f9bdfdb762e3bebf1b259d19ec9c47da5d18c3f80",
       "actually_viewed_baseline_and_final_candidate": true
     },
     {
@@ -17,7 +17,7 @@
       "RGB_MAE_0_255": 11.873232542438272,
       "changed_pixels": 687874,
       "baseline_sha256": "920606f322e709f5308b804071874863bf02094a11e5076fe304c24b1fd8134a",
-      "candidate_sha256": "7deafecc91105a56ce8bd4dc0152711f1810e243128abc93e468fbf2c7a4529b",
+      "candidate_sha256": "39b588eda2291077b76b2328f1a61089f5d78f0abf5ff33681f400d8f8239f16",
       "actually_viewed_baseline_and_final_candidate": true
     },
     {
@@ -26,7 +26,7 @@
       "RGB_MAE_0_255": 14.003153935185185,
       "changed_pixels": 684854,
       "baseline_sha256": "c6bf81107015e3c1638ac21eab40977ccb6f6101400d1443d776f6397af596b6",
-      "candidate_sha256": "09950627adeb32c53a08816f49c0d9abff18469a44d521e3b88497b6c6fe7f2f",
+      "candidate_sha256": "1a1b14759918eeac908eef019ba67945c86392ab5e371e6603fa454038d0d132",
       "actually_viewed_baseline_and_final_candidate": true
     }
   ],
@@ -40,5 +40,5 @@
     "limitations": "Material-only derivative, not a comprehensive photoreal ceiling rebuild. Original bevel UV compression and duplicate-face importer behavior remain explicit. Root visual approval and all native optical/collision/gameplay validation remain pending."
   },
   "source_sha256": "54abf083265417dd5c83406e3103522140a36ba9d46ef2f80e8c803f18bf33d8",
-  "old_source_sha256": "11be0e85906780bb9c2c5287f180c9ec2ff3686551a4226852aea42a1827ae5f"
+  "old_source_sha256": "761b51a83454f323c4b23e58d67e36d124c86c8f51a9dc6f47893997928867d1"
 }

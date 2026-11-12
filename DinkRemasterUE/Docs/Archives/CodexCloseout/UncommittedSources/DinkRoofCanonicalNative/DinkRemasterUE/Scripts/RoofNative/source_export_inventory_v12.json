@@ -1,0 +1,491 @@
+{
+  "scope": "Actual independently decoded explicit FBX triangles/material roles; unchanged original UCX associations.",
+  "objects": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "triangles": 1486,
+      "UCX_names": [
+        "UCX_SM_Chimney_Stonebrook_V8_00",
+        "UCX_SM_Chimney_Stonebrook_V8_01",
+        "UCX_SM_Chimney_Stonebrook_V8_02",
+        "UCX_SM_Chimney_Stonebrook_V8_03",
+        "UCX_SM_Chimney_Stonebrook_V8_04",
+        "UCX_SM_Chimney_Stonebrook_V8_05",
+        "UCX_SM_Chimney_Stonebrook_V8_06",
+        "UCX_SM_Chimney_Stonebrook_V8_07",
+        "UCX_SM_Chimney_Stonebrook_V8_08",
+        "UCX_SM_Chimney_Stonebrook_V8_09",
+        "UCX_SM_Chimney_Stonebrook_V8_10",
+        "UCX_SM_Chimney_Stonebrook_V8_11",
+        "UCX_SM_Chimney_Stonebrook_V8_12",
+        "UCX_SM_Chimney_Stonebrook_V8_13",
+        "UCX_SM_Chimney_Stonebrook_V8_14",
+        "UCX_SM_Chimney_Stonebrook_V8_15",
+        "UCX_SM_Chimney_Stonebrook_V8_16",
+        "UCX_SM_Chimney_Stonebrook_V8_17",
+        "UCX_SM_Chimney_Stonebrook_V8_18",
+        "UCX_SM_Chimney_Stonebrook_V8_19",
+        "UCX_SM_Chimney_Stonebrook_V8_20",
+        "UCX_SM_Chimney_Stonebrook_V8_21",
+        "UCX_SM_Chimney_Stonebrook_V8_22",
+        "UCX_SM_Chimney_Stonebrook_V8_23",
+        "UCX_SM_Chimney_Stonebrook_V8_24",
+        "UCX_SM_Chimney_Stonebrook_V8_25",
+        "UCX_SM_Chimney_Stonebrook_V8_26",
+        "UCX_SM_Chimney_Stonebrook_V8_27",
+        "UCX_SM_Chimney_Stonebrook_V8_28",
+        "UCX_SM_Chimney_Stonebrook_V8_29",
+        "UCX_SM_Chimney_Stonebrook_V8_30",
+        "UCX_SM_Chimney_Stonebrook_V8_31",
+        "UCX_SM_Chimney_Stonebrook_V8_32",
+        "UCX_SM_Chimney_Stonebrook_V8_33",
+        "UCX_SM_Chimney_Stonebrook_V8_34",
+        "UCX_SM_Chimney_Stonebrook_V8_35",
+        "UCX_SM_Chimney_Stonebrook_V8_36",
+        "UCX_SM_Chimney_Stonebrook_V8_37",
+        "UCX_SM_Chimney_Stonebrook_V8_38",
+        "UCX_SM_Chimney_Stonebrook_V8_39",
+        "UCX_SM_Chimney_Stonebrook_V8_40",
+        "UCX_SM_Chimney_Stonebrook_V8_41",
+        "UCX_SM_Chimney_Stonebrook_V8_42",
+        "UCX_SM_Chimney_Stonebrook_V8_43",
+        "UCX_SM_Chimney_Stonebrook_V8_44",
+        "UCX_SM_Chimney_Stonebrook_V8_45",
+        "UCX_SM_Chimney_Stonebrook_V8_46",
+        "UCX_SM_Chimney_Stonebrook_V8_47",
+        "UCX_SM_Chimney_Stonebrook_V8_48",
+        "UCX_SM_Chimney_Stonebrook_V8_49",
+        "UCX_SM_Chimney_Stonebrook_V8_50",
+        "UCX_SM_Chimney_Stonebrook_V8_51",
+        "UCX_SM_Chimney_Stonebrook_V8_52",
+        "UCX_SM_Chimney_Stonebrook_V8_53",
+        "UCX_SM_Chimney_Stonebrook_V8_54",
+        "UCX_SM_Chimney_Stonebrook_V8_55",
+        "UCX_SM_Chimney_Stonebrook_V8_56",
+        "UCX_SM_Chimney_Stonebrook_V8_57",
+        "UCX_SM_Chimney_Stonebrook_V8_58",
+        "UCX_SM_Chimney_Stonebrook_V8_59",
+        "UCX_SM_Chimney_Stonebrook_V8_60",
+        "UCX_SM_Chimney_Stonebrook_V8_61",
+        "UCX_SM_Chimney_Stonebrook_V8_62",
+        "UCX_SM_Chimney_Stonebrook_V8_63",
+        "UCX_SM_Chimney_Stonebrook_V8_64",
+        "UCX_SM_Chimney_Stonebrook_V8_65",
+        "UCX_SM_Chimney_Stonebrook_V8_66",
+        "UCX_SM_Chimney_Stonebrook_V8_67",
+        "UCX_SM_Chimney_Stonebrook_V8_68",
+        "UCX_SM_Chimney_Stonebrook_V8_69",
+        "UCX_SM_Chimney_Stonebrook_V8_70",
+        "UCX_SM_Chimney_Stonebrook_V8_71",
+        "UCX_SM_Chimney_Stonebrook_V8_72",
+        "UCX_SM_Chimney_Stonebrook_V8_73",
+        "UCX_SM_Chimney_Stonebrook_V8_74",
+        "UCX_SM_Chimney_Stonebrook_V8_75",
+        "UCX_SM_Chimney_Stonebrook_V8_76",
+        "UCX_SM_Chimney_Stonebrook_V8_77",
+        "UCX_SM_Chimney_Stonebrook_V8_78",
+        "UCX_SM_Chimney_Stonebrook_V8_79",
+        "UCX_SM_Chimney_Stonebrook_V8_80",
+        "UCX_SM_Chimney_Stonebrook_V8_81",
+        "UCX_SM_Chimney_Stonebrook_V8_82",
+        "UCX_SM_Chimney_Stonebrook_V8_83",
+        "UCX_SM_Chimney_Stonebrook_V8_84",
+        "UCX_SM_Chimney_Stonebrook_V8_85",
+        "UCX_SM_Chimney_Stonebrook_V8_86",
+        "UCX_SM_Chimney_Stonebrook_V8_87",
+        "UCX_SM_Chimney_Stonebrook_V8_88",
+        "UCX_SM_Chimney_Stonebrook_V8_89",
+        "UCX_SM_Chimney_Stonebrook_V8_90",
+        "UCX_SM_Chimney_Stonebrook_V8_91"
+      ],
+      "triangle_material_counts": {
+        "MI_V8_CoursedLimestone_StudyV1": 628,
+        "MI_V8_SootLining_StudyV1": 176,
+        "MI_V8_DullZinc_StudyV1": 682
+      },
+      "material_slots": [
+        "MI_V8_CoursedLimestone_StudyV1",
+        "MI_V8_SootLining_StudyV1",
+        "MI_V8_DullZinc_StudyV1"
+      ]
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "triangles": 15912,
+      "UCX_names": [
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_01",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_02",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_03",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_04",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_05",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_06",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_07",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_08",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_09",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_10",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_11",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_12",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_13",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_14",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_15",
+        "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_16"
+      ],
+      "triangle_material_counts": {
+        "MI_FireplaceV2_Atlas": 15330,
+        "MI_V8_SootLining_StudyV1": 526,
+        "MI_V8_CoursedLimestone_StudyV1": 56
+      },
+      "material_slots": [
+        "MI_FireplaceV2_Atlas",
+        "MI_V8_CoursedLimestone_StudyV1",
+        "MI_V8_SootLining_StudyV1"
+      ]
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "triangles": 8672,
+      "UCX_names": [],
+      "triangle_material_counts": {
+        "MI_FireplaceV2_Atlas": 8189,
+        "MI_V8_SootLining_StudyV1": 410,
+        "MI_V8_CoursedLimestone_StudyV1": 73
+      },
+      "material_slots": [
+        "MI_FireplaceV2_Atlas",
+        "MI_V8_CoursedLimestone_StudyV1",
+        "MI_V8_SootLining_StudyV1"
+      ]
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "triangles": 4698,
+      "UCX_names": [],
+      "triangle_material_counts": {
+        "MI_FireplaceV2_Atlas": 4393,
+        "MI_V8_SootLining_StudyV1": 282,
+        "MI_V8_CoursedLimestone_StudyV1": 23
+      },
+      "material_slots": [
+        "MI_FireplaceV2_Atlas",
+        "MI_V8_CoursedLimestone_StudyV1",
+        "MI_V8_SootLining_StudyV1"
+      ]
+    },
+    {
+      "name": "SM_IndoorRoof_EN_01",
+      "triangles": 4986,
+      "UCX_names": [
+        "UCX_SM_IndoorRoof_EN_01_00",
+        "UCX_SM_IndoorRoof_EN_01_01",
+        "UCX_SM_IndoorRoof_EN_01_02",
+        "UCX_SM_IndoorRoof_EN_01_03",
+        "UCX_SM_IndoorRoof_EN_01_04",
+        "UCX_SM_IndoorRoof_EN_01_05",
+        "UCX_SM_IndoorRoof_EN_01_06",
+        "UCX_SM_IndoorRoof_EN_01_07",
+        "UCX_SM_IndoorRoof_EN_01_08",
+        "UCX_SM_IndoorRoof_EN_01_09",
+        "UCX_SM_IndoorRoof_EN_01_10",
+        "UCX_SM_IndoorRoof_EN_01_11",
+        "UCX_SM_IndoorRoof_EN_01_12",
+        "UCX_SM_IndoorRoof_EN_01_13",
+        "UCX_SM_IndoorRoof_EN_01_14",
+        "UCX_SM_IndoorRoof_EN_01_15",
+        "UCX_SM_IndoorRoof_EN_01_16",
+        "UCX_SM_IndoorRoof_EN_01_17",
+        "UCX_SM_IndoorRoof_EN_01_18",
+        "UCX_SM_IndoorRoof_EN_01_19",
+        "UCX_SM_IndoorRoof_EN_01_20",
+        "UCX_SM_IndoorRoof_EN_01_21",
+        "UCX_SM_IndoorRoof_EN_01_22",
+        "UCX_SM_IndoorRoof_EN_01_23",
+        "UCX_SM_IndoorRoof_EN_01_24",
+        "UCX_SM_IndoorRoof_EN_01_25",
+        "UCX_SM_IndoorRoof_EN_01_26",
+        "UCX_SM_IndoorRoof_EN_01_27",
+        "UCX_SM_IndoorRoof_EN_01_28",
+        "UCX_SM_IndoorRoof_EN_01_29",
+        "UCX_SM_IndoorRoof_EN_01_30",
+        "UCX_SM_IndoorRoof_EN_01_31",
+        "UCX_SM_IndoorRoof_EN_01_32",
+        "UCX_SM_IndoorRoof_EN_01_33",
+        "UCX_SM_IndoorRoof_EN_01_34",
+        "UCX_SM_IndoorRoof_EN_01_35",
+        "UCX_SM_IndoorRoof_EN_01_36",
+        "UCX_SM_IndoorRoof_EN_01_37",
+        "UCX_SM_IndoorRoof_EN_01_38",
+        "UCX_SM_IndoorRoof_EN_01_39",
+        "UCX_SM_IndoorRoof_EN_01_40",
+        "UCX_SM_IndoorRoof_EN_01_41",
+        "UCX_SM_IndoorRoof_EN_01_42",
+        "UCX_SM_IndoorRoof_EN_01_43",
+        "UCX_SM_IndoorRoof_EN_01_44",
+        "UCX_SM_IndoorRoof_EN_01_45",
+        "UCX_SM_IndoorRoof_EN_01_46",
+        "UCX_SM_IndoorRoof_EN_01_47"
+      ],
+      "triangle_material_counts": {
+        "MI_InteriorRoof_RoofBoards_Baked": 560,
+        "MI_InteriorRoof_OakEndgrain_Baked": 932,
+        "MI_InteriorRoof_OakLonggrain_Baked": 3494
+      },
+      "material_slots": [
+        "MI_InteriorRoof_OakLonggrain_Baked",
+        "MI_InteriorRoof_RoofBoards_Baked",
+        "MI_InteriorRoof_OakEndgrain_Baked"
+      ]
+    },
+    {
+      "name": "SM_IndoorRoof_ES_01",
+      "triangles": 3474,
+      "UCX_names": [
+        "UCX_SM_IndoorRoof_ES_01_00",
+        "UCX_SM_IndoorRoof_ES_01_01",
+        "UCX_SM_IndoorRoof_ES_01_02",
+        "UCX_SM_IndoorRoof_ES_01_03",
+        "UCX_SM_IndoorRoof_ES_01_04",
+        "UCX_SM_IndoorRoof_ES_01_05",
+        "UCX_SM_IndoorRoof_ES_01_06",
+        "UCX_SM_IndoorRoof_ES_01_07",
+        "UCX_SM_IndoorRoof_ES_01_08",
+        "UCX_SM_IndoorRoof_ES_01_09",
+        "UCX_SM_IndoorRoof_ES_01_10",
+        "UCX_SM_IndoorRoof_ES_01_11",
+        "UCX_SM_IndoorRoof_ES_01_12",
+        "UCX_SM_IndoorRoof_ES_01_13",
+        "UCX_SM_IndoorRoof_ES_01_14",
+        "UCX_SM_IndoorRoof_ES_01_15",
+        "UCX_SM_IndoorRoof_ES_01_16",
+        "UCX_SM_IndoorRoof_ES_01_17",
+        "UCX_SM_IndoorRoof_ES_01_18",
+        "UCX_SM_IndoorRoof_ES_01_19",
+        "UCX_SM_IndoorRoof_ES_01_20",
+        "UCX_SM_IndoorRoof_ES_01_21",
+        "UCX_SM_IndoorRoof_ES_01_22",
+        "UCX_SM_IndoorRoof_ES_01_23",
+        "UCX_SM_IndoorRoof_ES_01_24",
+        "UCX_SM_IndoorRoof_ES_01_25",
+        "UCX_SM_IndoorRoof_ES_01_26",
+        "UCX_SM_IndoorRoof_ES_01_27",
+        "UCX_SM_IndoorRoof_ES_01_28",
+        "UCX_SM_IndoorRoof_ES_01_29",
+        "UCX_SM_IndoorRoof_ES_01_30",
+        "UCX_SM_IndoorRoof_ES_01_31",
+        "UCX_SM_IndoorRoof_ES_01_32",
+        "UCX_SM_IndoorRoof_ES_01_33",
+        "UCX_SM_IndoorRoof_ES_01_34",
+        "UCX_SM_IndoorRoof_ES_01_35",
+        "UCX_SM_IndoorRoof_ES_01_36",
+        "UCX_SM_IndoorRoof_ES_01_37",
+        "UCX_SM_IndoorRoof_ES_01_38",
+        "UCX_SM_IndoorRoof_ES_01_39",
+        "UCX_SM_IndoorRoof_ES_01_40",
+        "UCX_SM_IndoorRoof_ES_01_41",
+        "UCX_SM_IndoorRoof_ES_01_42",
+        "UCX_SM_IndoorRoof_ES_01_43",
+        "UCX_SM_IndoorRoof_ES_01_44"
+      ],
+      "triangle_material_counts": {
+        "MI_InteriorRoof_RoofBoards_Baked": 560,
+        "MI_InteriorRoof_OakEndgrain_Baked": 662,
+        "MI_InteriorRoof_OakLonggrain_Baked": 2252
+      },
+      "material_slots": [
+        "MI_InteriorRoof_OakLonggrain_Baked",
+        "MI_InteriorRoof_RoofBoards_Baked",
+        "MI_InteriorRoof_OakEndgrain_Baked"
+      ]
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_EN_01",
+      "triangles": 266,
+      "UCX_names": [
+        "UCX_SM_IndoorRoof_Gable_EN_01_00",
+        "UCX_SM_IndoorRoof_Gable_EN_01_01",
+        "UCX_SM_IndoorRoof_Gable_EN_01_02"
+      ],
+      "triangle_material_counts": {
+        "MI_InteriorRoof_GablePlaster_Baked": 266
+      },
+      "material_slots": [
+        "MI_InteriorRoof_GablePlaster_Baked"
+      ]
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_ES_01",
+      "triangles": 266,
+      "UCX_names": [
+        "UCX_SM_IndoorRoof_Gable_ES_01_00",
+        "UCX_SM_IndoorRoof_Gable_ES_01_01",
+        "UCX_SM_IndoorRoof_Gable_ES_01_02"
+      ],
+      "triangle_material_counts": {
+        "MI_InteriorRoof_GablePlaster_Baked": 266
+      },
+      "material_slots": [
+        "MI_InteriorRoof_GablePlaster_Baked"
+      ]
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WN_01",
+      "triangles": 266,
+      "UCX_names": [
+        "UCX_SM_IndoorRoof_Gable_WN_01_00",
+        "UCX_SM_IndoorRoof_Gable_WN_01_01",
+        "UCX_SM_IndoorRoof_Gable_WN_01_02"
+      ],
+      "triangle_material_counts": {
+        "MI_InteriorRoof_GablePlaster_Baked": 266
+      },
+      "material_slots": [
+        "MI_InteriorRoof_GablePlaster_Baked"
+      ]
+    },
+    {
+      "name": "SM_IndoorRoof_Gable_WS_01",
+      "triangles": 266,
+      "UCX_names": [
+        "UCX_SM_IndoorRoof_Gable_WS_01_00",
+        "UCX_SM_IndoorRoof_Gable_WS_01_01",
+        "UCX_SM_IndoorRoof_Gable_WS_01_02"
+      ],
+      "triangle_material_counts": {
+        "MI_InteriorRoof_GablePlaster_Baked": 266
+      },
+      "material_slots": [
+        "MI_InteriorRoof_GablePlaster_Baked"
+      ]
+    },
+    {
+      "name": "SM_IndoorRoof_WN_01",
+      "triangles": 4924,
+      "UCX_names": [
+        "UCX_SM_IndoorRoof_WN_01_00",
+        "UCX_SM_IndoorRoof_WN_01_01",
+        "UCX_SM_IndoorRoof_WN_01_02",
+        "UCX_SM_IndoorRoof_WN_01_03",
+        "UCX_SM_IndoorRoof_WN_01_04",
+        "UCX_SM_IndoorRoof_WN_01_05",
+        "UCX_SM_IndoorRoof_WN_01_06",
+        "UCX_SM_IndoorRoof_WN_01_07",
+        "UCX_SM_IndoorRoof_WN_01_08",
+        "UCX_SM_IndoorRoof_WN_01_09",
+        "UCX_SM_IndoorRoof_WN_01_10",
+        "UCX_SM_IndoorRoof_WN_01_11",
+        "UCX_SM_IndoorRoof_WN_01_12",
+        "UCX_SM_IndoorRoof_WN_01_13",
+        "UCX_SM_IndoorRoof_WN_01_14",
+        "UCX_SM_IndoorRoof_WN_01_15",
+        "UCX_SM_IndoorRoof_WN_01_16",
+        "UCX_SM_IndoorRoof_WN_01_17",
+        "UCX_SM_IndoorRoof_WN_01_18",
+        "UCX_SM_IndoorRoof_WN_01_19",
+        "UCX_SM_IndoorRoof_WN_01_20",
+        "UCX_SM_IndoorRoof_WN_01_21",
+        "UCX_SM_IndoorRoof_WN_01_22",
+        "UCX_SM_IndoorRoof_WN_01_27",
+        "UCX_SM_IndoorRoof_WN_01_28",
+        "UCX_SM_IndoorRoof_WN_01_29",
+        "UCX_SM_IndoorRoof_WN_01_30",
+        "UCX_SM_IndoorRoof_WN_01_31",
+        "UCX_SM_IndoorRoof_WN_01_32",
+        "UCX_SM_IndoorRoof_WN_01_33",
+        "UCX_SM_IndoorRoof_WN_01_34",
+        "UCX_SM_IndoorRoof_WN_01_35",
+        "UCX_SM_IndoorRoof_WN_01_36",
+        "UCX_SM_IndoorRoof_WN_01_37",
+        "UCX_SM_IndoorRoof_WN_01_39",
+        "UCX_SM_IndoorRoof_WN_01_40",
+        "UCX_SM_IndoorRoof_WN_01_41",
+        "UCX_SM_IndoorRoof_WN_01_42",
+        "UCX_SM_IndoorRoof_WN_01_43",
+        "UCX_SM_IndoorRoof_WN_01_44",
+        "UCX_SM_IndoorRoof_WN_01_45",
+        "UCX_SM_IndoorRoof_WN_01_46",
+        "UCX_SM_IndoorRoof_WN_01_47",
+        "UCX_SM_IndoorRoof_WN_01_48",
+        "UCX_SM_IndoorRoof_WN_01_49",
+        "UCX_SM_IndoorRoof_WN_01_50",
+        "UCX_SM_IndoorRoof_WN_01_51",
+        "UCX_SM_IndoorRoof_WN_01_52",
+        "UCX_SM_IndoorRoof_WN_01_53",
+        "UCX_SM_IndoorRoof_WN_01_54",
+        "UCX_SM_IndoorRoof_WN_01_55",
+        "UCX_SM_IndoorRoof_WN_01_56",
+        "UCX_SM_IndoorRoof_WN_01_57",
+        "UCX_SM_IndoorRoof_WN_01_58",
+        "UCX_SM_IndoorRoof_WN_01_59",
+        "UCX_SM_IndoorRoof_WN_01_60",
+        "UCX_SM_IndoorRoof_WN_01_61"
+      ],
+      "triangle_material_counts": {
+        "MI_InteriorRoof_RoofBoards_Baked": 674,
+        "MI_InteriorRoof_OakEndgrain_Baked": 986,
+        "MI_InteriorRoof_OakLonggrain_Baked": 3264
+      },
+      "material_slots": [
+        "MI_InteriorRoof_OakLonggrain_Baked",
+        "MI_InteriorRoof_RoofBoards_Baked",
+        "MI_InteriorRoof_OakEndgrain_Baked"
+      ]
+    },
+    {
+      "name": "SM_IndoorRoof_WS_01",
+      "triangles": 2874,
+      "UCX_names": [
+        "UCX_SM_IndoorRoof_WS_01_00",
+        "UCX_SM_IndoorRoof_WS_01_01",
+        "UCX_SM_IndoorRoof_WS_01_02",
+        "UCX_SM_IndoorRoof_WS_01_03",
+        "UCX_SM_IndoorRoof_WS_01_04",
+        "UCX_SM_IndoorRoof_WS_01_05",
+        "UCX_SM_IndoorRoof_WS_01_06",
+        "UCX_SM_IndoorRoof_WS_01_07",
+        "UCX_SM_IndoorRoof_WS_01_08",
+        "UCX_SM_IndoorRoof_WS_01_09",
+        "UCX_SM_IndoorRoof_WS_01_10",
+        "UCX_SM_IndoorRoof_WS_01_11",
+        "UCX_SM_IndoorRoof_WS_01_12",
+        "UCX_SM_IndoorRoof_WS_01_13",
+        "UCX_SM_IndoorRoof_WS_01_14",
+        "UCX_SM_IndoorRoof_WS_01_15",
+        "UCX_SM_IndoorRoof_WS_01_16",
+        "UCX_SM_IndoorRoof_WS_01_17",
+        "UCX_SM_IndoorRoof_WS_01_18",
+        "UCX_SM_IndoorRoof_WS_01_19",
+        "UCX_SM_IndoorRoof_WS_01_20",
+        "UCX_SM_IndoorRoof_WS_01_21",
+        "UCX_SM_IndoorRoof_WS_01_22",
+        "UCX_SM_IndoorRoof_WS_01_23",
+        "UCX_SM_IndoorRoof_WS_01_24",
+        "UCX_SM_IndoorRoof_WS_01_25",
+        "UCX_SM_IndoorRoof_WS_01_26",
+        "UCX_SM_IndoorRoof_WS_01_27",
+        "UCX_SM_IndoorRoof_WS_01_28",
+        "UCX_SM_IndoorRoof_WS_01_29",
+        "UCX_SM_IndoorRoof_WS_01_30",
+        "UCX_SM_IndoorRoof_WS_01_31",
+        "UCX_SM_IndoorRoof_WS_01_32",
+        "UCX_SM_IndoorRoof_WS_01_33",
+        "UCX_SM_IndoorRoof_WS_01_34",
+        "UCX_SM_IndoorRoof_WS_01_35",
+        "UCX_SM_IndoorRoof_WS_01_36",
+        "UCX_SM_IndoorRoof_WS_01_37",
+        "UCX_SM_IndoorRoof_WS_01_38",
+        "UCX_SM_IndoorRoof_WS_01_39",
+        "UCX_SM_IndoorRoof_WS_01_40",
+        "UCX_SM_IndoorRoof_WS_01_41"
+      ],
+      "triangle_material_counts": {
+        "MI_InteriorRoof_RoofBoards_Baked": 560,
+        "MI_InteriorRoof_OakEndgrain_Baked": 550,
+        "MI_InteriorRoof_OakLonggrain_Baked": 1764
+      },
+      "material_slots": [
+        "MI_InteriorRoof_OakLonggrain_Baked",
+        "MI_InteriorRoof_RoofBoards_Baked",
+        "MI_InteriorRoof_OakEndgrain_Baked"
+      ]
+    }
+  ]
+}

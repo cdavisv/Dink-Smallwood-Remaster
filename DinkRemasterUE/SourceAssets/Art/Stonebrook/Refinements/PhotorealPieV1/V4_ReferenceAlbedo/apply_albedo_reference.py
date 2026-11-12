@@ -3,7 +3,7 @@ import bpy,json,hashlib,sys,os,traceback
 from pathlib import Path
 O=Path(__file__).resolve().parent;sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 try:
- source=O/'Inputs/V3_Source.blend';pin=sha(source);assert pin=='eb43ac65cce5d84b8880adf5dbef0e69b46f51005748f8e7e4dbe9adae38e8bb';imagepath=O/'Textures/GeneratedShortcrust_Albedo_V1.png';assert sha(imagepath)=='4b211bc541e2bdced47dc483c3378d03f4f64411823a2052d41537c0c3fe233b'
+ source=O/'Inputs/V3_Source.blend';pin=sha(source);assert pin=='df2c32b2fa9e35c1e9d0b4e0f8173df836fd70cc3e0620261aab026693fe0e0e';imagepath=O/'Textures/GeneratedShortcrust_Albedo_V1.png';assert sha(imagepath)=='4b211bc541e2bdced47dc483c3378d03f4f64411823a2052d41537c0c3fe233b'
  bpy.ops.wm.open_mainfile(filepath=str(source));mat=bpy.data.materials['MI_Pie_PastryFruit_PhotoSource'];N=mat.node_tree.nodes;L=mat.node_tree.links;bs=next(n for n in N if n.type=='BSDF_PRINCIPLED');color=bs.inputs['Base Color'].links[0].from_node;assert color.type=='MIX_RGB'
  coord=N.new('ShaderNodeTexCoord');coord.name='GeneratedReference_ObjectCoordinates';scale=N.new('ShaderNodeVectorMath');scale.operation='SCALE';scale.inputs['Scale'].default_value=12.5;L.new(coord.outputs['Object'],scale.inputs[0]);tex=N.new('ShaderNodeTexImage');tex.name='GeneratedShortcrust_DIFFUSE_ONLY';tex.label='Original AI-generated reference, COLOR ONLY; no derived normal/height';im=bpy.data.images.load(str(imagepath),check_existing=False);im.colorspace_settings.name='sRGB';im.pack();im.filepath='//Textures/'+imagepath.name;tex.image=im;tex.projection='BOX';tex.projection_blend=.18;tex.interpolation='Linear'
  extensions=[i.identifier for i in tex.bl_rna.properties['extension'].enum_items]

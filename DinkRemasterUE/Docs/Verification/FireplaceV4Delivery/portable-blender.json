@@ -229,7 +229,7 @@
         3238,
         3252
       ],
-      "sha256": "f19eb9e5612e415a9b91f8cc8ab178d20b5350c29f6e02f58c34c9ff2e2235d1"
+      "sha256": "4cd7b54813d5eba685aaeeea8a8d2818f47388103528f24fabeaa539f98c8413"
     },
     {
       "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
@@ -246,7 +246,7 @@
         "B": 3.6222548091772e-06
       },
       "retained_zero_TB_corners": [],
-      "sha256": "d680f806e7654151e25763229326fb65363e79260dcbdc325b717fe85d1bdb95"
+      "sha256": "1280616f71af17e0c20b728c1818f1dfe6049234714dd42086fb8a131fb18cb4"
     },
     {
       "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
@@ -263,7 +263,7 @@
         "B": 3.1945284701301985e-06
       },
       "retained_zero_TB_corners": [],
-      "sha256": "5a00f252a8eaa003deb0c566dffc17234911c98b8562d13090ad86f691c2e426"
+      "sha256": "9573ace7963f96a828e3853cdc79ab9e80a17fa225e1e2dfa347349f0827b291"
     },
     {
       "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
@@ -280,10 +280,10 @@
         "B": 4.517745487845102e-06
       },
       "retained_zero_TB_corners": [],
-      "sha256": "ffa099f09d2e33b7b6812ad7e9207aecca9ea2772fde03e732b9d680890c17d8"
+      "sha256": "9cdec5823993dbc984f0d46c2e7890e32e5d8ec8af0e833d91ec4bbb094f5b36"
     }
   ],
-  "source_sha256": "83dbb4e69d21dcf05db4189527477193c244744409be87bf6792e753636d5169",
+  "source_sha256": "f0fc970809106613126d8b148116c80c8b9f5e7db26b61e496386dab17bf7e45",
   "generic_reuse_graphs_exact": true,
   "replayed_generic_library_exact": false,
   "original_sha256": null

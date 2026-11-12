@@ -12,6 +12,10 @@
 #
 # Steps: bundle (Scripts/export_import_bundle.py) -> engine template content for the character
 # (Scripts/copy_template_content.sh) -> commandlet DinkImportGreybox in a headless editor.
+# Source-pinned fitted barrels: the importer validates all source rules/descriptors first,
+# builds missing immutable RuntimeHardnessV1 foundations on a fresh clone, verifies actual
+# generated instances and saves new foundations before maps. No separate QA setup is needed.
+# Existing foundations are verified and reused; partial/invalid targets refuse overwrite.
 # Logs: Saved/Logs/import_<region>.log; report: Saved/Import/import_<region>.json and
 # Saved/Import/coverage.csv. Prints one summary line; exit 0 only on success.
 set -uo pipefail

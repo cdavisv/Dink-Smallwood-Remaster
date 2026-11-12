@@ -1,0 +1,196 @@
+{
+  "base_geometry_npz_sha256": "20e969bcd0f4fae11f47d6d224e8063eb802e615263a8304ecd0c16c020d0c3d",
+  "prototype_npz_sha256": "886f0bbc726191204d97d2459f8a1bab64533665b36c60a41c43256a94558994",
+  "all_original_arrays_exact": true,
+  "only_extra_array": "uv2_weld_seam_guard",
+  "original_arrays": [
+    {
+      "name": "position_m",
+      "dtype": "float64",
+      "shape": [
+        547878,
+        3
+      ],
+      "sha256": "3208e80eb249ee71ecd894fd00eb32d56c4dd645ad888b7dc74b1acc73c14636"
+    },
+    {
+      "name": "normal",
+      "dtype": "float64",
+      "shape": [
+        547878,
+        3
+      ],
+      "sha256": "744aa9629e53f225bb47aaa878a85f52b83944adc439ec092f882f4778bcf5d4"
+    },
+    {
+      "name": "tangent",
+      "dtype": "float64",
+      "shape": [
+        547878,
+        3
+      ],
+      "sha256": "a4cb64f32015cced2b261b4e4b377e1ac9c6c96cd9c7396106f57b1d2d3462b8"
+    },
+    {
+      "name": "bitangent_sign",
+      "dtype": "float64",
+      "shape": [
+        547878
+      ],
+      "sha256": "2cb6f3bca55cfc6f053afde30a9110f070a0bf127c0c8921d74ff0030710650f"
+    },
+    {
+      "name": "uv0",
+      "dtype": "float64",
+      "shape": [
+        547878,
+        2
+      ],
+      "sha256": "77e4d7440ef5c11720def097439eb775be74869954928f3c09973e5d164c42b2"
+    },
+    {
+      "name": "uv1",
+      "dtype": "float64",
+      "shape": [
+        547878,
+        2
+      ],
+      "sha256": "78b1d83dc45076a7f578079bf6b0936ea76d4e73211d4026ff81e21d0b1a901e"
+    },
+    {
+      "name": "color_linear_rgba",
+      "dtype": "float64",
+      "shape": [
+        547878,
+        4
+      ],
+      "sha256": "8cd2fb1fb09c0cf6c42e2400a25178a9cc153c6c57cee11b914ce725180e5f40"
+    },
+    {
+      "name": "triangles",
+      "dtype": "int32",
+      "shape": [
+        182626,
+        3
+      ],
+      "sha256": "42f8e841701df132f55ff85d430b59312d5710b6c495c00bf0b090e52880a5eb"
+    },
+    {
+      "name": "triangle_material",
+      "dtype": "int32",
+      "shape": [
+        182626
+      ],
+      "sha256": "1577b7b52a366b7d4e6c6aef196217aa5501c84ae6279c3c86a5c799c0092415"
+    },
+    {
+      "name": "hull_0_position_m",
+      "dtype": "float64",
+      "shape": [
+        8,
+        3
+      ],
+      "sha256": "1bb6ffed74e625afc061006763a29e3676cdafa47c63efe3bacac2b7db9d4888"
+    },
+    {
+      "name": "hull_0_triangles",
+      "dtype": "int32",
+      "shape": [
+        12,
+        3
+      ],
+      "sha256": "3e894820056fd7f6bb12197ed3dfcb4064d3716c8c5b5f447f65e222b8397a53"
+    },
+    {
+      "name": "hull_1_position_m",
+      "dtype": "float64",
+      "shape": [
+        8,
+        3
+      ],
+      "sha256": "3c71a9a2d75806e2e34a1717b1395b9073bf253578d8efd8787385ededd92041"
+    },
+    {
+      "name": "hull_1_triangles",
+      "dtype": "int32",
+      "shape": [
+        12,
+        3
+      ],
+      "sha256": "3e894820056fd7f6bb12197ed3dfcb4064d3716c8c5b5f447f65e222b8397a53"
+    },
+    {
+      "name": "hull_2_position_m",
+      "dtype": "float64",
+      "shape": [
+        8,
+        3
+      ],
+      "sha256": "fdaccc25b982ff74afa99360350d9648b25772b8bfab59883ff4a318c9543242"
+    },
+    {
+      "name": "hull_2_triangles",
+      "dtype": "int32",
+      "shape": [
+        12,
+        3
+      ],
+      "sha256": "3e894820056fd7f6bb12197ed3dfcb4064d3716c8c5b5f447f65e222b8397a53"
+    },
+    {
+      "name": "hull_3_position_m",
+      "dtype": "float64",
+      "shape": [
+        8,
+        3
+      ],
+      "sha256": "4acb20296f2f6542d31e2452d63d0ce7e9a0ddf332c9277fedae2933cf528932"
+    },
+    {
+      "name": "hull_3_triangles",
+      "dtype": "int32",
+      "shape": [
+        12,
+        3
+      ],
+      "sha256": "3e894820056fd7f6bb12197ed3dfcb4064d3716c8c5b5f447f65e222b8397a53"
+    },
+    {
+      "name": "hull_4_position_m",
+      "dtype": "float64",
+      "shape": [
+        8,
+        3
+      ],
+      "sha256": "22622871572dcb482d835193dc422362136c25a60bc403ce2110a7f232411a3a"
+    },
+    {
+      "name": "hull_4_triangles",
+      "dtype": "int32",
+      "shape": [
+        12,
+        3
+      ],
+      "sha256": "3e894820056fd7f6bb12197ed3dfcb4064d3716c8c5b5f447f65e222b8397a53"
+    },
+    {
+      "name": "hull_5_position_m",
+      "dtype": "float64",
+      "shape": [
+        8,
+        3
+      ],
+      "sha256": "2ca365200defc6f9def9ae4fdf5dc046ba9d5859115d8dcb98ecf1e83b026ca9"
+    },
+    {
+      "name": "hull_5_triangles",
+      "dtype": "int32",
+      "shape": [
+        12,
+        3
+      ],
+      "sha256": "3e894820056fd7f6bb12197ed3dfcb4064d3716c8c5b5f447f65e222b8397a53"
+    }
+  ],
+  "no_native_admission": true
+}

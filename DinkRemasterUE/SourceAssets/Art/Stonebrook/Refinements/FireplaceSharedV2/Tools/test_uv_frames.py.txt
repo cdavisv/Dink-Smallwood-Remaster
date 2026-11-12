@@ -1,0 +1,17 @@
+import bpy,json,os,math
+from pathlib import Path
+from mathutils import Vector
+D=Path(__file__).resolve().parent;bpy.ops.wm.open_mainfile(filepath=str(D.parent/'Fireplace_Shared2mCandidate.blend'));m=bpy.data.objects['SM_Chimney_Stonebrook_V8'].data;uv=m.uv_layers.active;original=[tuple(l.uv)for l in uv.data];faces=[r['face']for r in json.load(open(D/'ZERO_FRAME_DIAGNOSIS.json'))];out=[]
+for mode in ['local_orthogonal','seam_offset','chart_min_height','large_scale']:
+ for i,q in enumerate(original):uv.data[i].uv=q
+ for index in faces:
+  p=m.polygons[index];a,b,c=[m.vertices[i].co for i in p.vertices];U=(b-a).normalized();N=(b-a).cross(c-a).normalized();V=N.cross(U).normalized();values=[]
+  for v in [a,b,c]:values.append(Vector(((v-a).dot(U)/2,(v-a).dot(V)/2)))
+  if mode=='chart_min_height':
+   for q in values:q.y*=max(1.,.005/max(abs(values[2].y),1e-12))
+  if mode=='seam_offset':values=[Vector(original[i])+Vector((index*.001,0))for i in p.loop_indices]
+  if mode=='large_scale':values=[v*1024 for v in values]
+  for i,q in zip(p.loop_indices,values):uv.data[i].uv=q
+ m.free_tangents();m.calc_tangents(uvmap=uv.name);zero=[l.index for l in m.loops if l.tangent.length<1e-8];out.append(dict(mode=mode,zero_loops=zero,zero_count=len(zero)))
+ if not zero and mode=='local_orthogonal':bpy.ops.wm.save_as_mainfile(filepath=str(D/'UVRepair_Test.blend'))
+json.dump(out,open(D/'UV_REPAIR_EXPERIMENT.json','w'),indent=2);print(out,flush=True);os._exit(0)

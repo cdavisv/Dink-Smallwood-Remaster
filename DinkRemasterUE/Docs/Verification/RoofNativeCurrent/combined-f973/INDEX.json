@@ -3,66 +3,66 @@
   "scope": "Editor195/currentGPU17/cook inventory/packagedCH1 PASS; packaged rendered startup fails SIGSEGV, not accepted",
   "files": {
     "current-builds.json": {
-      "source_receipt": "~/Work/DinkQA/RoofNativeDeliveryBuildPreparation/Candidate6/Runs/079e501c773c4d4aa5b3574993afc385/SEQUENCE_RESULT.json",
-      "sha256": "bdadd909136bea4d078992d4fbac1beed8848cf288d3685d8a9109f2541860d3"
+      "source_receipt": "<HOME>/Work/DinkQA/RoofNativeDeliveryBuildPreparation/Candidate6/Runs/079e501c773c4d4aa5b3574993afc385/SEQUENCE_RESULT.json",
+      "sha256": "64c8066ee6cae6bb61a22df819558dded2a1a8ae533faebee7c2855d0699b87c"
     },
     "current-full-native.json": {
-      "source_receipt": "~/Work/DinkQA/SharedRoofCurrentFullNativePreparation/Candidate3/Runs/aaf9758850d74d4f90177dc82e80e3b6/HOST_TERMINAL.json",
-      "sha256": "05d154130fb92c13324faa72c68ada590193f36931961d5d00ca55c9acb5689a"
+      "source_receipt": "<HOME>/Work/DinkQA/SharedRoofCurrentFullNativePreparation/Candidate3/Runs/aaf9758850d74d4f90177dc82e80e3b6/HOST_TERMINAL.json",
+      "sha256": "996edfa9fb7a66bcc7993c035f018c7ba9a97e549277f22ecb186dede46315f4"
     },
     "current-gpu-review.json": {
-      "source_receipt": "~/Work/DinkQA/InteriorRoofSharedCurrentC6GPUReview/ACTUAL_ROOT_REVIEW.json",
-      "sha256": "ce2f63fff1f2e763261f4f9e50b983d5df8ab53b6bddfb42b26e0460c9a91303"
+      "source_receipt": "<HOME>/Work/DinkQA/InteriorRoofSharedCurrentC6GPUReview/ACTUAL_ROOT_REVIEW.json",
+      "sha256": "7ee06e244a3d9da38819231a590b577a19c6fe3209618d54f5c92e8617f8cc9b"
     },
     "cook7-terminal.json": {
-      "source_receipt": "~/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate7/Runs/63a96d9622664e74bf64258405b4cadb/HOST_TERMINAL.json",
-      "sha256": "d07097e2752ef1187956ab9f9fb691aa022f3a7e51ca44c899c3d2bc332744ac"
+      "source_receipt": "<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate7/Runs/63a96d9622664e74bf64258405b4cadb/HOST_TERMINAL.json",
+      "sha256": "6cded4aad223c047682408d1afe5816bdab27214e92572ec39a4de6092c5b9c0"
     },
     "cooked-roof-inventory.json": {
-      "source_receipt": "~/Work/DinkQA/RoofCook7Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
+      "source_receipt": "<HOME>/Work/DinkQA/RoofCook7Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
       "sha256": "90a07d7247f996f3a1f627fc140b9e5d08053a4a9a01802094a5f1610655e96c"
     },
     "packaged-ch1.json": {
-      "source_receipt": "~/Work/DinkQA/SharedRoofPackagedCH1Preparation/Runs/e6dfa5fccc4044bd9d41d41df0b5989e/RESULT.json",
-      "sha256": "5fdf8d6052823b82d075976ac219b58405ab9b6e3c1ceb9ba6ca0cb0025f4240"
+      "source_receipt": "<HOME>/Work/DinkQA/SharedRoofPackagedCH1Preparation/Runs/e6dfa5fccc4044bd9d41d41df0b5989e/RESULT.json",
+      "sha256": "4700bdf9f06379bb8c1802246d0e1d67791ffe4b2940e9e8d548dd71d970e682"
     },
     "packaged-gpu-first-failure.json": {
-      "source_receipt": "~/Work/DinkQA/SharedRoofPackagedGPUPreparation/Runs/c29f365e-fa25-4e0c-a5f1-cbc7c9fcb9b7/result.json",
+      "source_receipt": "<HOME>/Work/DinkQA/SharedRoofPackagedGPUPreparation/Runs/c29f365e-fa25-4e0c-a5f1-cbc7c9fcb9b7/result.json",
       "sha256": "6dec8abc52de3916e6b57a63962ddfe4f04d9bb81f23150901ea3455475c3c5e"
     },
     "packaged-gpu-single-worker-failure.json": {
-      "source_receipt": "~/Work/DinkQA/SharedRoofPackagedGPUPreparationV2/Runs/a0b4a53b-9e45-461d-956a-bd1639046bc9/result.json",
+      "source_receipt": "<HOME>/Work/DinkQA/SharedRoofPackagedGPUPreparationV2/Runs/a0b4a53b-9e45-461d-956a-bd1639046bc9/result.json",
       "sha256": "f8f7195e56ff8c3265f63c94eaa86a40b2f17003d7563bcaccfb75f8faf098b4"
     },
     "house-wide.png": {
-      "source_capture": "~/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/house-wide.png",
+      "source_capture": "<HOME>/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/house-wide.png",
       "sha256": "21fd0c303ca3f86fee7f7ec120c4fa143b038387e46e8d2b67f6bd941409bebf"
     },
     "door-exit.png": {
-      "source_capture": "~/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/door-exit.png",
+      "source_capture": "<HOME>/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/door-exit.png",
       "sha256": "bbed19aa6e4717dfc5148cc87c4a9f67674beb948c50ed800145f2d5f4a7b073"
     },
     "door-return.png": {
-      "source_capture": "~/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/door-return.png",
+      "source_capture": "<HOME>/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/door-return.png",
       "sha256": "09da041c84a9f48282908653654fffa7c541275c4228a75510abdbb1fcbc49d1"
     },
     "roof-clear-0.png": {
-      "source_capture": "~/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/roof-clear-0.png",
+      "source_capture": "<HOME>/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/roof-clear-0.png",
       "sha256": "8775f4d2ac44e6cf152716d8d2e1847c728c19ad387699ec05ed061b9436b430"
     },
     "roof-clear-270.png": {
-      "source_capture": "~/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/roof-clear-270.png",
+      "source_capture": "<HOME>/Work/DinkQA/InteriorRoofSharedCurrentC6GPUPreparation/Runs/20d6ff54-adfd-4861-84ba-f219dc78084c/roof-clear-270.png",
       "sha256": "943b555036c6f98ee8524fd76d818b56a9842faec3ac657c215395e2bdfca740"
     },
     "README.md": {
       "sha256": "5f45ecd1b9dd9829deffe0ed3fa2fb606363940fcd2a4589715cbb90d7885940"
     },
     "packaged-crash-diagnosis.md": {
-      "source_receipt": "~/Work/DinkQA/PackagedVulkanCrashDiagnosis/REPORT.md",
+      "source_receipt": "<HOME>/Work/DinkQA/PackagedVulkanCrashDiagnosis/REPORT.md",
       "sha256": "171918afe1b0d4873c293bf69b91bf076a7fd7ef77cd9e46f319d15da9b69211"
     },
     "packaged-crash-evidence.json": {
-      "source_receipt": "~/Work/DinkQA/PackagedVulkanCrashDiagnosis/EVIDENCE.json",
+      "source_receipt": "<HOME>/Work/DinkQA/PackagedVulkanCrashDiagnosis/EVIDENCE.json",
       "sha256": "e7cfa978135a2df1cd4462ca43cd0ad2a7be05f15542cf14b69eba537e6e06b2"
     }
   }

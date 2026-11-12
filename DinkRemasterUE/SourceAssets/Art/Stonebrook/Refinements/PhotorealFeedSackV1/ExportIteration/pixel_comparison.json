@@ -9,8 +9,8 @@
       ],
       "mean_abs_RGB_255": 0.12369148433208466,
       "p95_abs_RGB_255": 1.0,
-      "source_image_sha256": "8bf20ab034e688702f16ae3cedb73b89b9d3bca2fe2114bb3844a4fe88a99514",
-      "roundtrip_image_sha256": "128a77faf50b48ad46ea74b41236ecd0be96dbea81a96a96ee2a056aa5ac2d58"
+      "source_image_sha256": "b5b86a935699b0b3ff13fdb354f6e3447e1fc6c352234ae966c5cacc6131ff44",
+      "roundtrip_image_sha256": "2fcf7a2b11e392e5c6a2b234853a25a7a90020f06bafd9aa3a69e9f10bb6d71f"
     },
     "tie": {
       "ROI_xyxy": [
@@ -21,8 +21,8 @@
       ],
       "mean_abs_RGB_255": 0.8804082274436951,
       "p95_abs_RGB_255": 3.0,
-      "source_image_sha256": "ee04bfac4f319b4578ad4ed5ef383b6745509de21f5c011fca4e1dd9b0ece309",
-      "roundtrip_image_sha256": "ac6fce636a5d820b4ddb3647253483f87f900d6acfcc67589780fed4287eaa6a"
+      "source_image_sha256": "8e2ab15f5d92695774cd2224aca6f1706a0388a49bf41ccd8d609470188ab9bb",
+      "roundtrip_image_sha256": "e6fc1f01f9ab7000f7c41faa422b9ed398936dbc060bd609236bc3cd5bfb34a3"
     },
     "weave": {
       "ROI_xyxy": [
@@ -33,8 +33,8 @@
       ],
       "mean_abs_RGB_255": 0.5763747692108154,
       "p95_abs_RGB_255": 2.0,
-      "source_image_sha256": "3bbfcfc430be6ed56f5c86d0c6e929e40231c72cc329b546a7d6336b54921e8e",
-      "roundtrip_image_sha256": "98b0cf330b5e2d270a6baa5292d8f478281c4fa71a6e29e083ec58742943c2c8"
+      "source_image_sha256": "1f3bffa22a7256f95edbab256a966d237c635d2d75080acade858da38e8b4150",
+      "roundtrip_image_sha256": "960f8bc14159f08911492c98c7f37b3a936a491eb45de35fccf51b3e4342070c"
     },
     "game-distance": {
       "ROI_xyxy": [
@@ -45,8 +45,8 @@
       ],
       "mean_abs_RGB_255": 0.08403333276510239,
       "p95_abs_RGB_255": 1.0,
-      "source_image_sha256": "3d606395f07bbae7eed647f962e4555393685c8ff2e44cb896e6abc224b6d631",
-      "roundtrip_image_sha256": "11f87179adfc971310386878e81092b7312a29a828d264a848ef2ff508771cb7"
+      "source_image_sha256": "e1c095fe9464f95a8f2a2bd418e965ff508deb48e289ea6d46b7665dbe2a14fd",
+      "roundtrip_image_sha256": "394b716d20e979dd2a024ad02b9a0f605092d067965eeb5374e31b4a0fb4888e"
     }
   },
   "scope": "Approved V3 procedural source versus actual FBX with two baked materials; identical CPU studio/cameras",

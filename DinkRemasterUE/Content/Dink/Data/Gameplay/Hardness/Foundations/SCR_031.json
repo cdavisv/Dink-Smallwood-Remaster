@@ -1,0 +1,40 @@
+{
+  "collision_source_hash": "bc3ad38f6a3a11116ab3bbe7d0713cc5acdee557",
+  "corners": {
+    "ne": [
+      2235.4986,
+      -1594.581
+    ],
+    "nw": [
+      2194.2486,
+      -1594.581
+    ],
+    "se": [
+      2235.4986,
+      -1567.081
+    ],
+    "sw": [
+      2194.2486,
+      -1567.081
+    ]
+  },
+  "fill_solid": [
+    [
+      0,
+      0,
+      600,
+      54
+    ]
+  ],
+  "fill_water": [],
+  "gameplay_files_sha1": {
+    "Hardness/SCR_031_layers.json": "b7365f9973ebb3113bd2555263891f5ec2528c50",
+    "frames.csv": "79ddf26f88bb3c5304ad8f4f33dea3e37f840158",
+    "placements.csv": "62f34c08d02f014ff92305c5cf4f2e14b0fd6c8f"
+  },
+  "height_cm": 300,
+  "low_mesh": null,
+  "schema": "dink-runtime-hardness-foundation/1",
+  "screen": 31,
+  "solid_mesh": "/Game/Dink/RuntimeHardnessV1/SCR_031/SM_SCR_031_FixedSolidV1.SM_SCR_031_FixedSolidV1"
+}

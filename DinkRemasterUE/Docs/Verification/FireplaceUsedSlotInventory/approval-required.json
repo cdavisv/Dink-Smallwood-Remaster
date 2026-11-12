@@ -1,0 +1,20 @@
+{
+  "approved": false,
+  "native_contract": "6aa8fdfc4f46132d6e6c616a21f1118fcebc9b73632a729dbf3fd601c3520a30",
+  "phase": "SOURCE_ONLY_REVIEW",
+  "supersedes_unsupported_append_source_HEAD": "9bc51369b6e60ffda470c34974d09b1f7badd639",
+  "root_source_policy": "used-only native slots with complete source inventory and all seven parents retained",
+  "tolerances": {
+    "position_cm": 0.002,
+    "normal_component": 0.005,
+    "UV": 4.8828125e-06,
+    "raw_color": 1e-06,
+    "built_color": 0.0039225686274509805,
+    "frame_unit": 0.02,
+    "frame_dot": 0.02
+  },
+  "held31_unchanged": true,
+  "no_slot_metadata_mutation": true,
+  "no_quarantine_or_native_retry_authorized": true,
+  "remaining": "Root exact-source review and separately approved native trial and fresh saved readback"
+}

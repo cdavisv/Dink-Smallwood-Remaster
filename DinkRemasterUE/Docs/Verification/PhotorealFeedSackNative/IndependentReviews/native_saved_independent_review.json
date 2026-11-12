@@ -5,9 +5,9 @@
     "Content/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Cord_PhotoBaked.uasset": "0495c3df04c68fed58cba85d618e072e2e61c35da7ae39de6c81092da7581d63",
     "Content/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Jute_PhotoBaked.uasset": "d06c41e9e3081a047804e31e7b9adfc5b3cb01280456554d8f561601b222afff",
     "Content/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.uasset": "8422c48e170994a5f30fc421342d9ef5b8c99e2124735f1c7e3e20e9649f6145",
-    "Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_BC.uasset": "855e25f0b70ec1f648c32a6932cc9a7f64d95aa92c453a8cc49c04baf3d9033f",
-    "Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_N.uasset": "f4a0208571fb2f8ccb52ea8fe5a4a2818f4411025943e0798528c747d58f73d9",
-    "Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_ORM.uasset": "f158a49113107485daf310db9279b621dc4c92700251d80f0ff76d414a6bbef0"
+    "Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_BC.uasset": "070567838602066412e9d95b0b0b2b683a85163defcae7693195db3b715b8b59",
+    "Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_N.uasset": "7c7eb95caa28dbdf82850f16289d37c2b8b43902acf5933401ce7377bfbafbaf",
+    "Content/Dink/Textures/Stonebrook/PhotorealFeedSackV1/T_FeedSack_Jute_01_Photo_ORM.uasset": "b5794a08c9e2c6a6391b830bab78ab951d1c5d1bfa38f4795540d224b16061b0"
   },
   "triangles": 19644,
   "actual_material_counts": {
@@ -57,7 +57,7 @@
     "proposed_sha256": "d616f46557a505648fad663e097dfa86b81cb2d23b6df52680aa5d6028d53b0d",
     "verified_baseline_sha256": "44997bdc6d14b4b16940acae93d777f47b81c97fe214cd65b6af88bb5e5bf7ba",
     "verified_baseline_semantic_sha256": "6e9b59c47eeae8abcb264387ce9b800ac7715e5b660d8aedc53dd53c90219e02",
-    "verification_sha256": "0336858a97a6ceae96bd8390947b00c05855dc79c7669d1450a938196883e60f",
+    "verification_sha256": "37ef7b6dcffa26a86903eac68f0b862bbeb616cb84d685de886f2a8d4dd63022",
     "tool_sha256": {
       "feedsack_contract.py": "ac5c7b28d6f5bc37beb08cc83907dadfaffa077b0f0be5e01e40fe374f314e17",
       "import_photoreal_feedsack.py": "f6dd1b6991a8f65319e0fd4fd3c282489a20e60e49dc6cc66ad018340aae686e",

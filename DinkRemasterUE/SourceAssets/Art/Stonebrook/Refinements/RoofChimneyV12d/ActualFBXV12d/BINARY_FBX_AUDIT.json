@@ -9,7 +9,7 @@
   "rows": [
     {
       "name": "SM_Chimney_Stonebrook_V8",
-      "FBX_sha256": "937ead7e945c00c79c39838fce7c983130e6a746b692beb0e5ac3ecc31ad2c21",
+      "FBX_sha256": "92142708b614de567a701e8b0895b92bbaa6877b2f97436450b4a06c28adc7df",
       "explicit_triangles": 1486,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -17,7 +17,7 @@
     },
     {
       "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
-      "FBX_sha256": "0523e743ec1970b42d38a5637181226f6fbbd4430396308c75702f423be1eabe",
+      "FBX_sha256": "0162d8e765bf8a6d7508c18e769223113a0e5ef49130a162b96c0a4b2512a953",
       "explicit_triangles": 15912,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -25,7 +25,7 @@
     },
     {
       "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
-      "FBX_sha256": "e6c7fe9ab1b09bdc0c1eb92fe4045c41e921122f20fedbbe7a7d0447017addda",
+      "FBX_sha256": "a05d50f99aec3c6ae5ab440bed786ef8eeeeb94651d0776e0db5f0cdc1061411",
       "explicit_triangles": 8672,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -33,7 +33,7 @@
     },
     {
       "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
-      "FBX_sha256": "b3892de1095385899c93640c17d839b5d3409519b851ed98fd7506814e86fd7f",
+      "FBX_sha256": "fd41af621a6b61c4554fc9c3dbdbe20b9e8c9d8c8bbed2bd01f3f2cdad1d7a56",
       "explicit_triangles": 4698,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -41,7 +41,7 @@
     },
     {
       "name": "SM_IndoorRoof_EN_01",
-      "FBX_sha256": "e5f839cdf2c4deb3ef029a3400a35bd0d634370dbc297508f65dc5b980056407",
+      "FBX_sha256": "13217cd300bee3110ca9a6a1fcffb050dec0f5c847b43802f100ec197876fabc",
       "explicit_triangles": 4986,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -49,7 +49,7 @@
     },
     {
       "name": "SM_IndoorRoof_ES_01",
-      "FBX_sha256": "4d00bd2844ad3cfaaa7e16f79819eb6e2ef514097949716cdeceff57f1c9b491",
+      "FBX_sha256": "8212a424ce7a1dce0684e0c8973079d4aece8bfeedca5ddf4a82e37159f4b885",
       "explicit_triangles": 3474,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -57,7 +57,7 @@
     },
     {
       "name": "SM_IndoorRoof_Gable_EN_01",
-      "FBX_sha256": "55fd7e07cbd4d520ce4307ddc99ed04c773e9e64282237473fec12750ec5aa1d",
+      "FBX_sha256": "c10e6e05c87384abbba0d60c666dcb1c49b99141cb26f4752dd8b1c5fe900623",
       "explicit_triangles": 266,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -65,7 +65,7 @@
     },
     {
       "name": "SM_IndoorRoof_Gable_ES_01",
-      "FBX_sha256": "de3d05a795356428d38d2fab62289e8155db0c0296596db2b209648d08600283",
+      "FBX_sha256": "36df788ea8f7ecbb9688afc1f5666250343222227b4ca2b121d827e48684e22e",
       "explicit_triangles": 266,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -73,7 +73,7 @@
     },
     {
       "name": "SM_IndoorRoof_Gable_WN_01",
-      "FBX_sha256": "4d995ed33aa4e63ee29a39b976e7ae88b77103db775693da5f68e563a1da6f61",
+      "FBX_sha256": "e90b04e39d6d89f6d921c706e8fda0499e314cc3a8683787a2dcee0c92899482",
       "explicit_triangles": 266,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -81,7 +81,7 @@
     },
     {
       "name": "SM_IndoorRoof_Gable_WS_01",
-      "FBX_sha256": "a7957964c0ec2177a5b77cc077fce9e96f03016ee54c65a7a68d13db76fd7eb1",
+      "FBX_sha256": "538ed4a6ffe783491739ae2a07e335dc8e528d9605660838522150af3335f1f9",
       "explicit_triangles": 266,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -89,7 +89,7 @@
     },
     {
       "name": "SM_IndoorRoof_WN_01",
-      "FBX_sha256": "415a6b3f02be2124d1cdd6481bc3b908693a3a9eb6be163a60fc89c40a7216c4",
+      "FBX_sha256": "0543af8ed877d19ba559c113c28601b1159d536e331398ed78e7381b12ba43ca",
       "explicit_triangles": 4924,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,
@@ -97,7 +97,7 @@
     },
     {
       "name": "SM_IndoorRoof_WS_01",
-      "FBX_sha256": "899a4446561faf24d30df78281b16b83ac827f83233feaea1ebd171c93380093",
+      "FBX_sha256": "36ee96ae282bdbb7fc11a671afc79cef899a0ab7449dc2557ca346f351bed4a9",
       "explicit_triangles": 2874,
       "max_source_to_FBX_UV_delta": 0.0,
       "max_source_to_FBX_normal_component_delta": 0.0,

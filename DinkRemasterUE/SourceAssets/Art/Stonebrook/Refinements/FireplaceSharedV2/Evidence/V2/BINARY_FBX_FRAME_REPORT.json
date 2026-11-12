@@ -1,0 +1,98 @@
+{
+  "status": "PASS_WITH_EXISTING_ZERO_FRAME_QUALIFICATION",
+  "scope": "Actual serialized binary FBX corners vs saved Blender corners. Not native Unreal interpretation.",
+  "rows": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "serialized_fields": [
+        "UV",
+        "N",
+        "T",
+        "B"
+      ],
+      "UV_max_error": 0.0,
+      "N_max_angle_deg": 1.2074182697257333e-06,
+      "T_max_angle_deg": 1.2074182697257333e-06,
+      "B_max_angle_deg": 4.182619578303747e-06,
+      "handedness_changes": 0,
+      "zero_T_corners": 5,
+      "zero_B_corners": 5,
+      "finite": true,
+      "corners": 4458,
+      "binary_RGBA_max_error": 0.0,
+      "auxiliary_UV_errors": {
+        "UV1_SharedData": 0.0,
+        "UVMap": 0.0
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "serialized_fields": [
+        "UV",
+        "N",
+        "T",
+        "B"
+      ],
+      "UV_max_error": 0.0,
+      "N_max_angle_deg": 1.2074182697257333e-06,
+      "T_max_angle_deg": 1.2074182697257333e-06,
+      "B_max_angle_deg": 3.6222548091772e-06,
+      "handedness_changes": 0,
+      "zero_T_corners": 0,
+      "zero_B_corners": 0,
+      "finite": true,
+      "corners": 47736,
+      "binary_RGBA_max_error": 0.0,
+      "auxiliary_UV_errors": {
+        "UV1_SharedData": 0.0,
+        "UVMap": 0.0
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "serialized_fields": [
+        "UV",
+        "N",
+        "T",
+        "B"
+      ],
+      "UV_max_error": 0.0,
+      "N_max_angle_deg": 1.2074182697257333e-06,
+      "T_max_angle_deg": 1.2074182697257333e-06,
+      "B_max_angle_deg": 4.00455336570039e-06,
+      "handedness_changes": 0,
+      "zero_T_corners": 0,
+      "zero_B_corners": 0,
+      "finite": true,
+      "corners": 26016,
+      "binary_RGBA_max_error": 0.0,
+      "auxiliary_UV_errors": {
+        "UV1_SharedData": 0.0,
+        "UVMap": 0.0
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "serialized_fields": [
+        "UV",
+        "N",
+        "T",
+        "B"
+      ],
+      "UV_max_error": 0.0,
+      "N_max_angle_deg": 1.2074182697257333e-06,
+      "T_max_angle_deg": 1.2074182697257333e-06,
+      "B_max_angle_deg": 4.517745487845102e-06,
+      "handedness_changes": 0,
+      "zero_T_corners": 0,
+      "zero_B_corners": 0,
+      "finite": true,
+      "corners": 14094,
+      "binary_RGBA_max_error": 0.0,
+      "auxiliary_UV_errors": {
+        "UV1_SharedData": 0.0,
+        "UVMap": 0.0
+      }
+    }
+  ]
+}

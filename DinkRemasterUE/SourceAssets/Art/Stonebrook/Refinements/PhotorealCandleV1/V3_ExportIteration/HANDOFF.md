@@ -1,6 +1,6 @@
 # Candle V3 fresh bake/export iteration
 
-Owned QA-only /home/artist/Work/DinkQA/PhotorealSessions/Candle/V3_ExportIteration, outside Git. Coordinating root independently approved V3 sourcefront/wax/holder for fresh source/exportiteration. Sourcea6eb652a52d7352b39d9a56b9ed1580e6cb56da59c5753fd9baccdd9a33d4b42 preserved unchanged; frozen V3_Finish38filebundle unchanged. No root/native/ledger/pointlight/flame/GPU changes.
+Owned QA-only <HOME>/Work/DinkQA/PhotorealSessions/Candle/V3_ExportIteration, outside Git. Coordinating root independently approved V3 sourcefront/wax/holder for fresh source/exportiteration. Sourcea6eb652a52d7352b39d9a56b9ed1580e6cb56da59c5753fd9baccdd9a33d4b42 preserved unchanged; frozen V3_Finish38filebundle unchanged. No root/native/ledger/pointlight/flame/GPU changes.
 
 Fresh2048BC/N/ORM baked fromLOD0; ALLTHREErealLOD meshes retained, triangulated and exported. ActualFBX threeLOD4870/2434/1218orientedface/UV/cornernormal/materialID checks pass,2slots each; authoredUCX0 retained. Three sharedmapbytes matchbakes, manifestLODcount3/Nanitefalse, BCsRGB/NlinearwithUEgreenflip/ORMR255. Ironmetallic variablewithchar0, waxdielectric. Packedexport reopens with imagepathsnonexistent. ExportallLOD UV checkedcomplete/untruncated: LOD0zerooverlap,lowestLOD4tinyoverlaps0.0057% retainedwithinclass.2% threshold, nodegenerate/outofrange. Do notclaimallLODzerooverlap or universalvisualapproval.
 

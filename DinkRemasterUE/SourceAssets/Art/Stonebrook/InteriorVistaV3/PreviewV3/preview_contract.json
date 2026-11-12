@@ -1,15 +1,15 @@
 {
-  "candidate_scene_sha256": "8fc08e1a1d28b7300853dae06f373cca7e10d089bc16d0596ed68835c6427158",
-  "new_assets_blend_sha256": "c3160ab7c4ba919b8234ec793bd13a2b1a58d4af0eac660e03777706691affa4",
+  "candidate_scene_sha256": "536767a1cb571e7a45e0431083ed35eda39169bbe9ff20ee4d8a668149582889",
+  "new_assets_blend_sha256": "8569e69ea8a7b7b9dad8df1495afd9f4da4e0146de77c844acecc0d6332eeb69",
   "renderer": "Blender5.2.2 CyclesCPU32samples AgX MediumHigh Contrast exposure+.8; source previews only, not game screenshots",
   "resolution": [
     1280,
     720
   ],
   "images": {
-    "inside-door.png": "4c35f372db33c5550fdfe17e4cd11e833209ac4be8bd66ea5bc4e21669b378c0",
-    "inside-west-window.png": "cafd1c9b74058dfc04553d0d224dc806efe9960b115c1fc268bbabed65bee7bf",
-    "inside-east-window.png": "46a324e9d614fc7269410246376990f8c6cd1bfcc2eed1d9641d9923201bb357"
+    "inside-door.png": "be65f2d00d691e3bed13949bf28ab9805cc60d92ac29c92f336f911b45ea4c4e",
+    "inside-west-window.png": "d5ab25a0f83c45a190d52947f72e7d3f23a90d2e0f6ddb0129f25b1bc3afbbfc",
+    "inside-east-window.png": "83fcaea85f76a4db4c070331913b2b28f234b43794054f689903403aeb36357c"
   },
   "poses": [
     {

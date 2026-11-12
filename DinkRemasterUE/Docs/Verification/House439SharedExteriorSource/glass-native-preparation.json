@@ -1,0 +1,35 @@
+{
+  "status": "SOURCE_ADAPTER_PREPARED_NOT_EXECUTED_IN_UNREAL",
+  "source_module": "Scripts/RoofNative/house439_glass_material.py",
+  "engine_evidence": {
+    "Shaders/Private/ThinTranslucentCommon.ush": "35935a024151596fd15fac623c82135239ba4f6ba13f97653cc5051bff619cda",
+    "Source/Runtime/Engine/Public/Materials/MaterialExpressionThinTranslucentMaterialOutput.h": "525f1a375b3b7040a8a9edaef0c45f3f50914249e21e91dee6e83340115733cb",
+    "Source/Runtime/Engine/Classes/Engine/EngineTypes.h": "697434025b0eba46d7f2005fed696d6cecfb9ec617a716c457e9644bdcda1ee6"
+  },
+  "engine_shader_observation": "TopMaterialCoverage multiplies lit top material and removes background transmission by1-coverage; root opacity0 required for clear glass, customSurfaceCoverage1. Thin shader already accounts Fresnel at both interactions.",
+  "profile": {
+    "shading_model": "MSM_ThinTranslucent",
+    "blend_mode": "BLEND_Translucent",
+    "translucency_lighting": "TLM_SurfacePerPixelLighting",
+    "two_sided": false,
+    "top_material_coverage": 0,
+    "surface_coverage": 1,
+    "dielectric_F0": 0.037460978147762745,
+    "unreal_specular": 0.4682622268470343,
+    "closed_pane_policy_proposed": "front faces only, no geometry mutation",
+    "mapping": "Explicit physicalUVchannel required; reviewpending"
+  },
+  "offline_tests": {
+    "command": "python -m unittest discover -s Scripts/tests -p test_house439_glass_material.py -v",
+    "passed": 9,
+    "failed": 0,
+    "coverage": "Malformed/unreviewed recipes reject before touching Unreal; source Fresnel constant verified. No graph/API/runtime proof."
+  },
+  "remaining": [
+    "Root glass coordinate/front-back policy review",
+    "Shared opaque variant/tint graph extension",
+    "Full importer contract and actual saved graph readback",
+    "Native API/compile/source pixels/mesh/shader/GPU checks byRoot",
+    "Source ledger and complete source admission checks before commit"
+  ]
+}
