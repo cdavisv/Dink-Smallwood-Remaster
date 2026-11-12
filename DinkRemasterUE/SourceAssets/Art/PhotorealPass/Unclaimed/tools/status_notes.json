@@ -33,5 +33,21 @@
  "slayer": {
   "status": "partial",
   "why": "rigged creature (27-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested). Partial because the last review still faults it: maquette look at 1 m, invented anatomy, no mouth or jaw, no animation clips"
+ },
+ "npc_knight_blue": {
+  "status": "partial",
+  "why": "rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips"
+ },
+ "npc_knight_red": {
+  "status": "partial",
+  "why": "rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips"
+ },
+ "npc_knight_silver": {
+  "status": "partial",
+  "why": "rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips"
+ },
+ "npc_knight_red_attacking": {
+  "status": "partial",
+  "why": "same mesh as the red knight (SK_Knight_PR with the red base-colour set); the attack itself is an animation clip and no clip is delivered"
  }
 }

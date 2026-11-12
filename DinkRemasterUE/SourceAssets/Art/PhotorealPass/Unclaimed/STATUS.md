@@ -7,14 +7,14 @@ Sources only: nothing here is imported into Unreal or bound in `families.json`, 
 | | families | placements |
 |---|---:|---:|
 | delivered | 5 | 146 |
-| partial | 5 | 97 |
-| not started | 101 | 358 |
+| partial | 9 | 125 |
+| not started | 97 | 330 |
 | total unclaimed | 111 | 601 |
 
 **delivered**: game mesh or decal set, textures, FBX, source .blend, manifest and final renders are in the folder, and the last review round found nothing left that could still be fixed in this pass (each manifest lists `known_weaknesses`). 
 **partial**: something the task asks for is missing or the last review round still faulted the look; the line says what.
 
-Contact sheet of every final render: `contact_sheet.png` (24 assets).
+Contact sheet of every final render: `contact_sheet.png` (25 assets).
 
 | # | family | original shows | placements | status | assets | note |
 |---:|---|---|---:|---|---|---|
@@ -25,7 +25,7 @@ Contact sheet of every final render: `contact_sheet.png` (24 assets).
 | 38 | `burn_hole_decal` | Burnt hole / scorch mark | 26 | delivered | `Decal_Burn_Scorch_01`, `Decal_Burn_Scorch_02`, `Decal_Burn_Scorch_03` | 3 decal sets, one per original frame; the burnt-through middle is a flat black patch with a normal-map lip, not a real hole |
 | 41 | `bonca_gray` | Bonca | 21 | partial | `SK_Bonca_PR` | rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips |
 | 43 | `slayer` | Slayer | 21 | partial | `SK_Slayer_PR` | rigged creature (27-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested). Partial because the last review still faults it: maquette look at 1 m, invented anatomy, no mouth or jaw, no animation clips |
-| 53 | `npc_knight_blue` | Knight | 18 | not started | - | not reached yet |
+| 53 | `npc_knight_blue` | Knight | 18 | partial | `SK_Knight_PR` | rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips |
 | 62 | `dragon` | Dragon | 16 | not started | - | not reached yet |
 | 66 | `food_fruit` | Fruit | 15 | delivered | `SM_Aubergine_PR`, `SM_Pepper_Green_PR`, `SM_Pepper_Red_PR`, `SM_Pepper_Yellow_PR`, `SM_Pumpkin_PR`, `SM_Tomato_PR` | 6 meshes, one per original frame: three bell peppers, pumpkin, tomato, aubergine |
 | 67 | `gold_pile` | Gold pile | 15 | not started | - | not reached yet |
@@ -52,12 +52,12 @@ Contact sheet of every final render: `contact_sheet.png` (24 assets).
 | 127 | `ground_hole_dark` | Dark hole in the ground | 5 | not started | - | not reached yet |
 | 129 | `idol_statue_small` | Small demon idol | 5 | not started | - | not reached yet |
 | 130 | `island_spear_pole` | Spear pole | 5 | not started | - | not reached yet |
-| 135 | `npc_knight_silver` | Knight | 4 | not started | - | not reached yet |
+| 135 | `npc_knight_silver` | Knight | 4 | partial | `SK_Knight_PR` | rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips |
 | 136 | `boulder_flat` | Flat boulder | 4 | not started | - | not reached yet |
 | 140 | `fish_flopping` | Fish flopping on land | 4 | not started | - | not reached yet |
 | 141 | `goblin_hammer` | Goblin | 4 | not started | - | not reached yet |
 | 143 | `npc_girl` | Girl | 4 | not started | - | not reached yet |
-| 144 | `npc_knight_red` | Knight | 4 | not started | - | not reached yet |
+| 144 | `npc_knight_red` | Knight | 4 | partial | `SK_Knight_PR` | rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips |
 | 145 | `poster_hark` | "Hark!" notice | 4 | not started | - | not reached yet |
 | 146 | `teleport_shrine` | Shrine with stained glass | 3 | not started | - | not reached yet |
 | 147 | `bomb_item` | Bomb | 3 | not started | - | not reached yet |
@@ -82,7 +82,7 @@ Contact sheet of every final render: `contact_sheet.png` (24 assets).
 | 175 | `hearth_fire` | Fireplace fire | 2 | not started | - | not reached yet |
 | 176 | `log_cabin` | Log cabin | 2 | not started | - | not reached yet |
 | 177 | `log_cabin_door` | Log cabin door | 2 | not started | - | not reached yet |
-| 178 | `npc_knight_red_attacking` | Knight | 2 | not started | - | not reached yet |
+| 178 | `npc_knight_red_attacking` | Knight | 2 | partial | `SK_Knight_PR` | same mesh as the red knight (SK_Knight_PR with the red base-colour set); the attack itself is an animation clip and no clip is delivered |
 | 179 | `npc_merchant_blue` | Merchant | 2 | not started | - | not reached yet |
 | 180 | `npc_merchant_green` | Merchant | 2 | not started | - | not reached yet |
 | 181 | `npc_peasant` | Peasant | 2 | not started | - | not reached yet |
