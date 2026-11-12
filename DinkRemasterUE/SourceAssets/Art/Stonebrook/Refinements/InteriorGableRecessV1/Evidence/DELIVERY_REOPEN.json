@@ -1,0 +1,692 @@
+{
+  "mesh_signatures": {
+    "CONTEXT_BackWall": "7697e417429e4aafe72675cd587e88feffb075e4328aa6fce3321725d73d99d0",
+    "CONTEXT_Floor": "02385184752f5ff581d3a4a9a6718aa16df5282ec94fd427485e49d6f5ff9dd2",
+    "CONTEXT_Wall": "e457db812f2d29ff4f72923f7d3d6b42d68efbadaacd008a92c08b87f158b776",
+    "CONTEXT_Wall.001": "cb5ef7c5dda67e38d1958327ee33ff183ae1202780e0c59712181fa7e8d9c954",
+    "SM_Chimney_Stonebrook_V8": "17fa4e63d122d5720e3cc523d82ba50728eb8be91b40e86bb5dc42f7e7e0e249",
+    "SM_Fireplace_Stonebrook_V3Contact_LOD0": "9f426214df9484109622d4f018ce750512341c452314f3126115020b712cec68",
+    "SM_Fireplace_Stonebrook_V3Contact_LOD1": "976bfb52923eba3979e6dcab9d308d39eb54775ef401c13ad05de59ba24baae7",
+    "SM_Fireplace_Stonebrook_V3Contact_LOD2": "ea2e017752b70032ab0dfc2262018e2e43345a0262058d011870815a7ffd57ff",
+    "SM_IndoorRoof_EN_01": "520600c7e5e068ff420507f74a309cbf06c51070412bbfb7f2ebd07937e926e9",
+    "SM_IndoorRoof_ES_01": "12ec5cb9dd305395d815b9146bf307cafcde562f973007bd1b4cd3c76c87997e",
+    "SM_IndoorRoof_Gable_EN_01": "93926d18b7344c40c5b21ddce75a5987d01d8319c609b33699b9f110d8b2fba6",
+    "SM_IndoorRoof_Gable_ES_01": "dadea2b5cc97e6008165a461f3b0f781328c56c87c173f74c5fe583a075a48fd",
+    "SM_IndoorRoof_Gable_WN_01": "37232913e35ca9abf0b33254a33fbd701812ec8f87cb24df7af5f9000a3755c2",
+    "SM_IndoorRoof_Gable_WS_01": "3afd7d5dd80b1ad01347bf58513645106973636a85ff803a112c94b9bef239b5",
+    "SM_IndoorRoof_WN_01": "d7ef0a9c5505a546711b54037e136621851814d2a9e469dc85920662c638b211",
+    "SM_IndoorRoof_WS_01": "43c5e46056fab0551424fd61962cd1633d839a2ad482ee68f02d5b28d5d30c3d",
+    "UCX_SM_Chimney_Stonebrook_V8_00": "a7252929b7fbd482a64963a87a4a8a03253ed98bddf06c7e440358a3198fbdc3",
+    "UCX_SM_Chimney_Stonebrook_V8_01": "898eedfc9fcba5297dfd32a0b3ae403df5545d24b76fd7d2feda545aecef3f37",
+    "UCX_SM_Chimney_Stonebrook_V8_02": "c5bd7aa7fbbeaa039648a3e1b542e12dfc6c77a4fe4311396130bda9bc003695",
+    "UCX_SM_Chimney_Stonebrook_V8_03": "547f72bd2cd3d9b7d7ead6a2b6b0e57047cd3617b4d8d34b0e9fc2bded796c2d",
+    "UCX_SM_Chimney_Stonebrook_V8_04": "c3a31f87d9e36efd37b723b18f9914229856434d2c97299962a19b3f3d105aa1",
+    "UCX_SM_Chimney_Stonebrook_V8_05": "f2798e119f6140cb1d459fa8c2b7f11eb4f14b4161a12c99f740937cffd43789",
+    "UCX_SM_Chimney_Stonebrook_V8_06": "963921a79e1528d3ba5121f12cc2795b9eb22b243fd2b1a3352f2b0a06edff19",
+    "UCX_SM_Chimney_Stonebrook_V8_07": "71860b6902434c7a27871f580fda2b85574b47f458bbca16db138d2b3d3f80e6",
+    "UCX_SM_Chimney_Stonebrook_V8_08": "1042045ea45bb122e56f68bd34f65b86bb223836849ae9b22b99c498b8cc495f",
+    "UCX_SM_Chimney_Stonebrook_V8_09": "04a593484e353dbfb9960b21821dbc4fd05cab25c6aa1370f702104e108303a3",
+    "UCX_SM_Chimney_Stonebrook_V8_10": "a2bcd24a36fa3ed5265ca0a3043fc098debcad46bc133bedaa9241b4778728ca",
+    "UCX_SM_Chimney_Stonebrook_V8_11": "93976845c1d6e07d8d504457cc204f615b0bec81e6a638b5e6b86d9422e695b4",
+    "UCX_SM_Chimney_Stonebrook_V8_12": "de494667d56f8ed05f19c5a06c8998afce21a88b0cd60aa045671210f5b73417",
+    "UCX_SM_Chimney_Stonebrook_V8_13": "13c6c7b3ad467975183878dc670136327dffffc1fec1b5bd52f71689b723be07",
+    "UCX_SM_Chimney_Stonebrook_V8_14": "9585a55f6f19ebc21697cca3578026ee03853c64cfc66465b3d461fff385e82a",
+    "UCX_SM_Chimney_Stonebrook_V8_15": "abee86f1badc3ae74a4213ad3cf4716744e0c0d862ef3710814d01349f48afe2",
+    "UCX_SM_Chimney_Stonebrook_V8_16": "bd6ecd2b17649f540df4c4a9a72811729924cdc148f7356d3d68707a0d905414",
+    "UCX_SM_Chimney_Stonebrook_V8_17": "0870f547f4422ea43c50122f088ecaa7058faa96756d2656857219da9741e1b1",
+    "UCX_SM_Chimney_Stonebrook_V8_18": "031d9ec8ed6db95546be396aa10fc9b758063da2c764c3df6d250026119cbe02",
+    "UCX_SM_Chimney_Stonebrook_V8_19": "458e9d23b2768072dcb00421069d711196d9c4136edbd090037bf0a1da2b8f43",
+    "UCX_SM_Chimney_Stonebrook_V8_20": "e0db9c4c8656a02753f4fbbd211b8410f6c35b02a0c5da2eeba12d96b3c48dba",
+    "UCX_SM_Chimney_Stonebrook_V8_21": "d01c5e8cfc9c11e9fad6f92bf1b321b7b2938cfbb9bdaae8a50a7ca26cd9bc0a",
+    "UCX_SM_Chimney_Stonebrook_V8_22": "a0bfae52c8966dbae9c772a3f1ca41027ea7e13cf5352dcc1a0922ae498c0890",
+    "UCX_SM_Chimney_Stonebrook_V8_23": "90eb399da672a5dc1565c7ea4fcb7a4036c67c4a19ce81ef2046aed77881ee60",
+    "UCX_SM_Chimney_Stonebrook_V8_24": "8bcb3436b2b2dd72acda02bdd00be7f67baded7da87f807f65b6705778f21c5f",
+    "UCX_SM_Chimney_Stonebrook_V8_25": "9389e84c4cc3e3000fc6dedb8c39715f5f3c28a45b8d99f3ff27a07a81853735",
+    "UCX_SM_Chimney_Stonebrook_V8_26": "8aeeb5e24e783734d891a67272a02736c269221fa26b57d1f7feeda6aa9b3faa",
+    "UCX_SM_Chimney_Stonebrook_V8_27": "19c7e7962855c96b5320ad05a104bb1c05272d1c5bf2a28d75667fb2e96d7f16",
+    "UCX_SM_Chimney_Stonebrook_V8_28": "dbe49730105024e6f3e973163f65f2220336515263817c7ccb296b24135b3bda",
+    "UCX_SM_Chimney_Stonebrook_V8_29": "a2af5d67c1d134aec765b5b49fc7ba79231ad92c3e611b94d8837c3bf293faf7",
+    "UCX_SM_Chimney_Stonebrook_V8_30": "d0189b2cef109f97e624b9ba43f672425736b443dea839483e99900fb366f448",
+    "UCX_SM_Chimney_Stonebrook_V8_31": "5dc83a6ce69faa289214abbf2aab5ca8905c031dc59f722c16bbf7a21f6e8e09",
+    "UCX_SM_Chimney_Stonebrook_V8_32": "7016164ee2aac3095ceb62196dc1e1574a3f345d6662edda0dff9cae69ec21ce",
+    "UCX_SM_Chimney_Stonebrook_V8_33": "13fb1d1247a7670b7d19411d07542f9c8eae16d016097528984ef4ca81e6b6d9",
+    "UCX_SM_Chimney_Stonebrook_V8_34": "7524e88668209096497c58912a505b17e08dcf76a3d80f167735132b590dbbf8",
+    "UCX_SM_Chimney_Stonebrook_V8_35": "1f0e3c99123fe4a6ddaf8d798e29dbc96bcd4cf61c36e4cdc22209817b47cd00",
+    "UCX_SM_Chimney_Stonebrook_V8_36": "f64cdcf80db31f33b188d61acdcb6295e5cc0305b26985fc854719604d13ac6b",
+    "UCX_SM_Chimney_Stonebrook_V8_37": "ac91926d7d89e08d31260e485241e6400e6dca2e21f16a052b92f8fde5b98010",
+    "UCX_SM_Chimney_Stonebrook_V8_38": "f6bafcaf2ac416a092657472751bb364fdab9d9ce8c2d76bb4f6132dbb43b523",
+    "UCX_SM_Chimney_Stonebrook_V8_39": "a252d4cafad1e1a106ef2036b28be960dc3ca7cb60e059de7a5dbc716644b4cc",
+    "UCX_SM_Chimney_Stonebrook_V8_40": "47ea58c281312b5930bfb6f6b4092beba7b5d4dfa8f21c338ee3936806a4233b",
+    "UCX_SM_Chimney_Stonebrook_V8_41": "4a8904903c0d5fa16af9cfe4231a314ef7c8914e94f94d93f0fc825d554a5a13",
+    "UCX_SM_Chimney_Stonebrook_V8_42": "8af0a8ac24e8ef8336b3ab52c34bd5e7ccbaaa83674d0e23e484ead42f0567fa",
+    "UCX_SM_Chimney_Stonebrook_V8_43": "d09261b91b95ec9c873e3efb3e63b1cd3a09a3351363056cdeaefaa9bcce0240",
+    "UCX_SM_Chimney_Stonebrook_V8_44": "156884070361f336b0917185411e8cec0dbe75dd7210cdbcaa374ceebc641530",
+    "UCX_SM_Chimney_Stonebrook_V8_45": "43c436e5b2ac2ab7e199abdbca3f6cec1a1f28e05668756d4a05ea0d9ff2ae99",
+    "UCX_SM_Chimney_Stonebrook_V8_46": "97d45f771d73d45f937d891cbf888dba982b80d9dc1a194419bec30737354cfd",
+    "UCX_SM_Chimney_Stonebrook_V8_47": "e4149d06568f0b316bf2c7a63bb60bacefbb42c42647316b58cb5ed5dac25f3b",
+    "UCX_SM_Chimney_Stonebrook_V8_48": "ddea947503153004d72dc82a4e7e108b98b96cc3dda66066d680e47757be1540",
+    "UCX_SM_Chimney_Stonebrook_V8_49": "72cf8350d102240ede9d1acd9c61829b7afeb562a063e3c617154514b08e7490",
+    "UCX_SM_Chimney_Stonebrook_V8_50": "c81c2470b7c5eba265d5d74f9dd7a3df5f0d8ad77f87cd5df20c990a95490acf",
+    "UCX_SM_Chimney_Stonebrook_V8_51": "4a2ea3dabbdef079cc387301ae48a1789a908d7ab5e310614ecadd7a2e0c73f0",
+    "UCX_SM_Chimney_Stonebrook_V8_52": "b9cd17b76ff2972af49feb81a75ef16b1510c7988405e70c5654a35e7eaecaf0",
+    "UCX_SM_Chimney_Stonebrook_V8_53": "0c14183988915e9b4775731b7fd2dee4b03b89a912a4f15e823a053c98f55cd7",
+    "UCX_SM_Chimney_Stonebrook_V8_54": "f02c8dc4874f9171dfb1c8b6b84ee9cbde59648fd1689f31eaf1d81453d75796",
+    "UCX_SM_Chimney_Stonebrook_V8_55": "d9c262f1e524c36197556e0d07f83862c5ec4586a43d144a3e3d16b8c434e411",
+    "UCX_SM_Chimney_Stonebrook_V8_56": "0cab9c66dbe637e9b29f394942eff4cce0292237939e17c263aee7fc92905266",
+    "UCX_SM_Chimney_Stonebrook_V8_57": "cf0091dadd483bf050d02e87b2922eb312b4e3fd708f791ac4218e523c68ef43",
+    "UCX_SM_Chimney_Stonebrook_V8_58": "2cee2dd8f297739f4e0f8874fe9c93ed0d7b73d112f196897fcfdaf1911bf8a2",
+    "UCX_SM_Chimney_Stonebrook_V8_59": "6af70b912e05d2c0806b5e63fdfc456198358ca3d9f829bc758e0da6bdd6c566",
+    "UCX_SM_Chimney_Stonebrook_V8_60": "2d796da8c5b5d1cde3c8501156f813a0246dfeb5bc8b32d2cd5a20e408cf0461",
+    "UCX_SM_Chimney_Stonebrook_V8_61": "070558b2f86e4aa1b00d2f65a99679082e713c3e153bcd6d6ef8b96054a335d4",
+    "UCX_SM_Chimney_Stonebrook_V8_62": "d47acd937c5dc998e087ba60751510b3f6b53ad537b448f5c5b809580ce92f5c",
+    "UCX_SM_Chimney_Stonebrook_V8_63": "83c36433dd8e23351f3f624f502ece778b3bce97d61fb7e673a97c1ba8e60835",
+    "UCX_SM_Chimney_Stonebrook_V8_64": "ec11c31daa087eee015096d2fd95ffbbffd3d247d625ec857210b667e80b4246",
+    "UCX_SM_Chimney_Stonebrook_V8_65": "dfc4e39d38090fe5dfacfe1c6fdd6e54c88d90ca53b026f769a621abb496842a",
+    "UCX_SM_Chimney_Stonebrook_V8_66": "b6d2cadcfbe935ed178ed7cfeedcf81956c8ea540cdc2e0b0070e54f8bf11508",
+    "UCX_SM_Chimney_Stonebrook_V8_67": "f42dffe919e3d3c6234d2e27fed21d0ebec18487fbf54bccae74f225d9875feb",
+    "UCX_SM_Chimney_Stonebrook_V8_68": "dc1aee54da0f3945537239939135e5aab9be8fdca349751972e64accb89e839f",
+    "UCX_SM_Chimney_Stonebrook_V8_69": "d2ef75181f76800a377a51a18554e9f92bad0ac2dac6a113606e6459453bd775",
+    "UCX_SM_Chimney_Stonebrook_V8_70": "5e97b1957c9f7218e64c2e1ea1ee87a9eb7b1af85180b164af14287e70f8aace",
+    "UCX_SM_Chimney_Stonebrook_V8_71": "a0b97a013dfb11ce096386c90ab7273ab8af7e1d454342c0153a6a641d1554cf",
+    "UCX_SM_Chimney_Stonebrook_V8_72": "f0b7e4ce37bc25719b434673772b8688ccfb68b33c9f82a8582ba181862e41fa",
+    "UCX_SM_Chimney_Stonebrook_V8_73": "9f66998761fac73d14725d4e35e1ac7b9aa9f16ce58f393a833ee5424cf8c22c",
+    "UCX_SM_Chimney_Stonebrook_V8_74": "05c62cde9c5e525817a1d9231b6237c7d17e44ebf12e557dd0a6932a3df956bb",
+    "UCX_SM_Chimney_Stonebrook_V8_75": "b8fddd51b3a4b9d9bcc422a7ffe6c2b5b16c21c4a9b2343e3c17c5fe5ff87e19",
+    "UCX_SM_Chimney_Stonebrook_V8_76": "4ab90681a8c36067cb585acc536be00828eba340490da92bc96e8567bd2e7e2d",
+    "UCX_SM_Chimney_Stonebrook_V8_77": "1227b2ad5eb30f5927884bdf1f3bcfe8c183b15928712c4070391b3b550ee192",
+    "UCX_SM_Chimney_Stonebrook_V8_78": "f82b84a9f153c03713748a25b067ec417874d57b2d2676665deedccace1bf7ba",
+    "UCX_SM_Chimney_Stonebrook_V8_79": "2ffb2fc58f7ad2424a2c4a7e7a0a20f070ca8554ce3b247d6ddfb9ae4fb07811",
+    "UCX_SM_Chimney_Stonebrook_V8_80": "83d577c916e9099a2e686be2cd74c75cddd9b96db1f837d4372973402428d1fc",
+    "UCX_SM_Chimney_Stonebrook_V8_81": "0ea62f68bb8109c5c710fb7660001afdb1e217b1f29f1abadd8f31dedfb419c4",
+    "UCX_SM_Chimney_Stonebrook_V8_82": "97bd90ef71dfa78fecba4dfdd9d3aabe93171bf9f6707ea678eb7e38f7384d8b",
+    "UCX_SM_Chimney_Stonebrook_V8_83": "88c2c55e1d67c08af586065df1a4f3728508eb99eb6223fa066c2ba711578405",
+    "UCX_SM_Chimney_Stonebrook_V8_84": "5a401e0852f3c3eadc49331d058d9abb237aac92b15741d6b8692daf366991d0",
+    "UCX_SM_Chimney_Stonebrook_V8_85": "ef4ebe123df88a0e1ebf940ca20a20d90c5999f52350fb00c45475a8f4efd748",
+    "UCX_SM_Chimney_Stonebrook_V8_86": "13a4f0c1e5905c649f90c3eec8ef87d070f7c6d156ec1a8bc88cbf8d4a60e06a",
+    "UCX_SM_Chimney_Stonebrook_V8_87": "f5a9cad73af75cacc0638f65bf727f61723a73ecafdc6c3981c281f6bf967f14",
+    "UCX_SM_Chimney_Stonebrook_V8_88": "38ddebf6aac9a562e4b2cafa362d3ad1b3ca696a9b0ceb390431b2ebd343c647",
+    "UCX_SM_Chimney_Stonebrook_V8_89": "bb85db9a66c4896ca0c68ea447d059902625648dedeb32599b2149138aefad19",
+    "UCX_SM_Chimney_Stonebrook_V8_90": "89c958234670e4852a23995a4739a0ef700d19a6b750c811dafd3d102aa412e3",
+    "UCX_SM_Chimney_Stonebrook_V8_91": "e9bdc491e3c59eb122ca243c0dbe5e0715064e6bbbe8d75c7cbe910b41ec3f1a",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_01": "28baf8539c61b7d43aa17d860264e7fbba30331f85d06c987299da47fbf61d12",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_02": "9c9ea542a8171511fe0a8c26926ec3e8e79f8cea1317548645123970defd17fc",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_03": "0f3b486758118b0d4990307aaa86057523dc269bfb0f1b5618359a9d4527a46f",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_04": "66c75e16cd0eededb2483dbce4d4d378b360f9d6d6db0088c2a2fb690174f837",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_05": "44aa44e87fe3c7171e07fddf6c87027468bd99866c87cba64876d0092870f4df",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_06": "33a61ea57eee57f6f32cebc3474b45862c02402731fe9cb7d879e8b6fc1a0c38",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_07": "ea1dbf5a4eec0e0a600f60063de578cfcee3f97929df6e650412556323a2929f",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_08": "9fc0ae0f148e97cb86716a90b24d6df890ee777d7c983cc33895a720c239e0e8",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_09": "606f32c857876786416ab2041e40ea29f39b12bc6e42be4ab3f408332c745bd7",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_10": "d3b0edaf10d5530bcc8eb35678b4893901cf4b043431ff1fb00f0ea714612bc2",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_11": "fb19e611a6b502e10f5345ffb5297e72f16396fccd67509f58174306666dccab",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_12": "262ef3ee08b785796b102169bb1e9edce725ea4dce17e23310a1e017bc2371a1",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_13": "c21686cc5e82833b5f59d0ce0aaf049876e3ff9022415870b84948fa30e4247b",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_14": "b7619069fcb99717b145ba730014d07e9578428a8859ff87f31f3667d2479566",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_15": "7d303fd1f5c787d96639b5297833e76b1bbd52130559bc8cfa96d1b993173bd3",
+    "UCX_SM_Fireplace_Stonebrook_V3Contact_LOD0_16": "3781e6e8c74b6b90d8648d36dcc12ba2d3186aa48b698d95457c469a0be12f17",
+    "UCX_SM_IndoorRoof_EN_01_00": "22e60335ea2e504c2113a9858e76060c5040226469e278cb4cf5ad3112cdd3d3",
+    "UCX_SM_IndoorRoof_EN_01_01": "0dd949034bbb19ac34380b485086c8ba27bb7dcac1c9f4ec70692639275b7e44",
+    "UCX_SM_IndoorRoof_EN_01_02": "c815463db67cc4630ee4e4a74220503029a702a476e30728455656c98858691b",
+    "UCX_SM_IndoorRoof_EN_01_03": "a528541b3c291867a5bfdc20ce96ea0612b79dff2ce61866cd54b6ee786ded2f",
+    "UCX_SM_IndoorRoof_EN_01_04": "50a02ffb44088ca6cd88f248945bd179d8c926e751bf8dbaa00518a890af996e",
+    "UCX_SM_IndoorRoof_EN_01_05": "e0a57f5101c768fdc6cceec872035a7d229662356171685653d4af8418849c32",
+    "UCX_SM_IndoorRoof_EN_01_06": "c95b5fc99522754978e22860e5e96efc14b233c133518c4c63cdbe4ba354aa81",
+    "UCX_SM_IndoorRoof_EN_01_07": "a22353bcff2a348b55f4c1f6d6dbb16a5b7d42d8a1f8a23433564fc4195d4901",
+    "UCX_SM_IndoorRoof_EN_01_08": "4994e7da1d1dd975ba0167c511ecd22b894d7a57933ebccd39d1cde07c08a10e",
+    "UCX_SM_IndoorRoof_EN_01_09": "d0e572172926ab40832e4dc43bf642ca08f173745af5f549f1231abc513e8d56",
+    "UCX_SM_IndoorRoof_EN_01_10": "75890b07c6bdbfed7ece64826393561f7f83c7c7f2562dd52514fbda39b9ece8",
+    "UCX_SM_IndoorRoof_EN_01_11": "aefd6b9111ede10f61131d2a6b92b0efb19455b320a4ff2b95715fcd20509414",
+    "UCX_SM_IndoorRoof_EN_01_12": "9d80206c374c0668463717a5db90b5782ee272cc86b74543a83668ebe7a4ffbf",
+    "UCX_SM_IndoorRoof_EN_01_13": "a416027d24acab92e13c7952515c4fa37c55ffe9eed7db506d8d8a5ff8883184",
+    "UCX_SM_IndoorRoof_EN_01_14": "94ab46ad7733185d5d4861832a8174c53e30141874e30832a6b3ef2ebe4c7d17",
+    "UCX_SM_IndoorRoof_EN_01_15": "e09ea5d6483b6f727f00456d323e01e2e3abafdbb00146a5fb38aeee91798610",
+    "UCX_SM_IndoorRoof_EN_01_16": "fc4c4f802e5d21226185a15be5c5b36b60fec42ed5826faf4d61971532bf5286",
+    "UCX_SM_IndoorRoof_EN_01_17": "74a063a3f03a06ce9b3e901be6f5a05d6c81bbf269df98d5c81c05da07546923",
+    "UCX_SM_IndoorRoof_EN_01_18": "998066477df3f1f28a752bcd031e8ce423b966e588641d7a15e0c4f948ebf39a",
+    "UCX_SM_IndoorRoof_EN_01_19": "e699409251373768f9cb2ee7b245417b096726104247d372f105ae4d1b5842c6",
+    "UCX_SM_IndoorRoof_EN_01_20": "4af94bd0696195d7dfb731bf00b8ff72d0d0cfae785c2ae713153548bb93979c",
+    "UCX_SM_IndoorRoof_EN_01_21": "c8da98cf5970854cfa442790b2fc70ba3c4822da3e4bcb8f02e554fa3d70bf20",
+    "UCX_SM_IndoorRoof_EN_01_22": "c0f2b2cdf845bf3bdd61c2f7797a50ac0e38d8641c18e81f4cb3f95c15ffb4ea",
+    "UCX_SM_IndoorRoof_EN_01_23": "774d226ff67bfe6f3561fbf9ccf9f211a54c6190571fe50f56379a869a2f2686",
+    "UCX_SM_IndoorRoof_EN_01_24": "cb0ba6b01ee3d72299aa94c39af6bbfd90dce1ad76650876872b82b729221333",
+    "UCX_SM_IndoorRoof_EN_01_25": "52f3ee54bdf8b3896151c631aaef8fbad50a2a3a0b2893085c4f82737a0e800a",
+    "UCX_SM_IndoorRoof_EN_01_26": "18892d16b050aa0ebd35ed81e663ac77cdac04c1a9de87b5fee7895a3e110460",
+    "UCX_SM_IndoorRoof_EN_01_27": "629578577ba8b2b161b9366a1c9201052bdccbab766cc7ef7c24cdd3ac0a7720",
+    "UCX_SM_IndoorRoof_EN_01_28": "f22f02b1fba97c153aaa7f2e92d2b48037c55ab75067dd0dc41a90ceabfb2898",
+    "UCX_SM_IndoorRoof_EN_01_29": "3dd549399670eebc19f18fa1f0bff4f55c78905c56de372e14f29caae53a2cfc",
+    "UCX_SM_IndoorRoof_EN_01_30": "416fb527e25e9bdf29688bd4984e9958a1d4ff1f7d2e659337874057f36fc666",
+    "UCX_SM_IndoorRoof_EN_01_31": "ed3501763b1b32d50b10da1056718104dd2e18708d24425b813705adab6310cf",
+    "UCX_SM_IndoorRoof_EN_01_32": "6fdff73e611d9fbe900d1011b5d6daac64f4192569556cbcf167bf6ec76cafac",
+    "UCX_SM_IndoorRoof_EN_01_33": "3170ab4cec973e10e87735fb6978b2dc803ea2a2f169e9697167f3cd5e1348d5",
+    "UCX_SM_IndoorRoof_EN_01_34": "1be92b8c4fe64796c5a4f232031eaf4772ba61012cc415d2d7bd3607a67c6468",
+    "UCX_SM_IndoorRoof_EN_01_35": "dd5507e2e28b48d9afbddd92e0765c0b2f9cb2a8419609113699116b8a18b125",
+    "UCX_SM_IndoorRoof_EN_01_36": "f33b82d2e2985d7e3f6978e7c809cf58585f73a153ea28b9e1c55ae758047d5d",
+    "UCX_SM_IndoorRoof_EN_01_37": "f4dccb9802bb3fe1c07ee81222992b2747394e5ffcfe56f9fd7809213627f3a0",
+    "UCX_SM_IndoorRoof_EN_01_38": "9eb717631d11d1a7c232fa1cbe258ffcce259957c42f766088b38fb5b2a3a93c",
+    "UCX_SM_IndoorRoof_EN_01_39": "751cf4283e4f621a7f1108314c4700310bc9c5098aa52dc086a2dc25e0350052",
+    "UCX_SM_IndoorRoof_EN_01_40": "c571fd4f84d17c1fcc1cd6d18a4270e642e581689adf772add2e4a826fd5ffcc",
+    "UCX_SM_IndoorRoof_EN_01_41": "4681c25b740743d1f4f32a7ca671a4c0dd5de680995bdd6425e7d5ec6b405fbd",
+    "UCX_SM_IndoorRoof_EN_01_42": "8eb74c885684f17ff0809efb65d54498ae189cb51a6bf85dcd3324459973e884",
+    "UCX_SM_IndoorRoof_EN_01_43": "82e3d6ca55061e0ffdbda53ac068f2cece74a2ae89acece7e139e5b96cebbc90",
+    "UCX_SM_IndoorRoof_EN_01_44": "230084e95e27ab45341e75c9cad0458c44eafe698e586ea5b0155edc04144226",
+    "UCX_SM_IndoorRoof_EN_01_45": "79ac18ab33a5e8733042d91432b011c1ab2de47acb60a25158c69533b1dd9527",
+    "UCX_SM_IndoorRoof_EN_01_46": "2b3f5e90b19aeb0e1d4a7f5a303db70cb6ec73547084085c5ce37b8219261274",
+    "UCX_SM_IndoorRoof_EN_01_47": "708cb40d92a79050d3c990442d38b295ccc715ecc63893ee3c86992692ce2760",
+    "UCX_SM_IndoorRoof_ES_01_00": "8e025af025a3bd60c8efa6044927c608bf3149f0c014aa5f0ff34719f6b01bbb",
+    "UCX_SM_IndoorRoof_ES_01_01": "24358a59df6522106745b588db5c4e9eff77d93409d507936bf6f5a2dbe6f1d0",
+    "UCX_SM_IndoorRoof_ES_01_02": "7a92191b6d3cb27741bff8a671ce54a619df926a360b641ebbb7c4226b724231",
+    "UCX_SM_IndoorRoof_ES_01_03": "83b104acaa45dea75ef3af4fee990acbac109afde9480ea7510ec1124c36332a",
+    "UCX_SM_IndoorRoof_ES_01_04": "e8625c520b4060689447bc7407dd9a3d8ca275a50c0239c24e36deaec82b7542",
+    "UCX_SM_IndoorRoof_ES_01_05": "1d72442c4a915b51aab5d22ce5b19f15fe067737124f3350e89833268c88723c",
+    "UCX_SM_IndoorRoof_ES_01_06": "42cec52952d22d56d883fd5aa0f891ba181f11f5815c689f701532bb33e70974",
+    "UCX_SM_IndoorRoof_ES_01_07": "cfc130419febedce28e2128ff227ca7d14a6950211ba7dc811ff717812760e31",
+    "UCX_SM_IndoorRoof_ES_01_08": "217914abd7655dd850a4d93a219b5ba093caa0ebaf81734c48fb0a042c7286e2",
+    "UCX_SM_IndoorRoof_ES_01_09": "782f434534ea031a22959746c3f559c6cc8403a58c3ae37e8f450996127a284e",
+    "UCX_SM_IndoorRoof_ES_01_10": "138bfa0f1a0936a2288490b035d42ce2b9a586e0e15588c9b7f13c3cec3c7938",
+    "UCX_SM_IndoorRoof_ES_01_11": "b0f9760396fc1eb2b3aeff669e0e87877451ca7423a2c18e644f02569c1bf1a5",
+    "UCX_SM_IndoorRoof_ES_01_12": "f5485bc28023c79b4f4e25fb1b623ade36d3f18f63aa60b52c3c01cda15566ba",
+    "UCX_SM_IndoorRoof_ES_01_13": "aaa667faa7a9bd25d7d6fc80477734ed8da939a1f45380f658885f02ed081006",
+    "UCX_SM_IndoorRoof_ES_01_14": "7ba22b7753d6db3c589c6712236a249083477634880d2e156b28a5fbfcede8d6",
+    "UCX_SM_IndoorRoof_ES_01_15": "89a357df9e5a2ee10da6cb9ff693f9a7f33af202b5e708f3d494ef156e91b773",
+    "UCX_SM_IndoorRoof_ES_01_16": "660a3093f0b72bfb23c304a186d7658e54d2e6ca2f6a3723d5859011cc0db2b8",
+    "UCX_SM_IndoorRoof_ES_01_17": "2117f11cfd7d21bea8a608a2407eef8a054b6c5ea86bcbaccda847dae74c121e",
+    "UCX_SM_IndoorRoof_ES_01_18": "8acb8d313665791b6b69e2c64625c32b382d307ded5e64f6c2e74be0ad23cd6d",
+    "UCX_SM_IndoorRoof_ES_01_19": "730366a8364903a71805f89fb87e9b330e78f42a7ec4f389404c9cdc2ae1393e",
+    "UCX_SM_IndoorRoof_ES_01_20": "9c0a0074071bee4ce9187d4c6f79bb430fe501d7779faef18b1da1630d9b342b",
+    "UCX_SM_IndoorRoof_ES_01_21": "ec2014750eb1e869e9b087f521cea8864c6f88eecc00c02151dabf3ba5a030b7",
+    "UCX_SM_IndoorRoof_ES_01_22": "1d1acf27138582601a3b87c2e518de43101c2615db44cd02a4deb60caeade212",
+    "UCX_SM_IndoorRoof_ES_01_23": "6294e48ba98d45eb94c69a4390ab19601f78a4ef716c8d96811bce725eafb37f",
+    "UCX_SM_IndoorRoof_ES_01_24": "40dd8dd2446cd32c271080161aad18d0f98bc0eeda34d686383cf479c624c285",
+    "UCX_SM_IndoorRoof_ES_01_25": "2122a39e45115acf783090a0a89fae8dac9ffedc0a1aa3db7b66515e0562553a",
+    "UCX_SM_IndoorRoof_ES_01_26": "0a48c09350d6382aab3ec0abfb0ecaa79bdd1ac3b0fac9fd7d6f1c2cae4805ed",
+    "UCX_SM_IndoorRoof_ES_01_27": "6d5a3028936ea676cf4c10da9a1a162fc72ac261077c67eeb9f3b0b38d6bd60a",
+    "UCX_SM_IndoorRoof_ES_01_28": "b55de9582b4c3792c9949beffaa6d5319ae58c9a1f01ea2e0b6d8f1c3c0db6b6",
+    "UCX_SM_IndoorRoof_ES_01_29": "80319ddb28f3ab10f850b1054913c164de8f14f0e74b2e7cb525d26c5eeee4cd",
+    "UCX_SM_IndoorRoof_ES_01_30": "c6b7e813554eb1b78ae40b9dcd0c24d76970393f4fdd406068f01e886de997cb",
+    "UCX_SM_IndoorRoof_ES_01_31": "9f9e7c80925dd6b953dcc67d75725cd09a3afc3fd74d6048edfe4d15baceedb1",
+    "UCX_SM_IndoorRoof_ES_01_32": "5b002cb1e1ead11848aa32c12b2ed58afdee7e076e3a31dc0b89468f0d38065a",
+    "UCX_SM_IndoorRoof_ES_01_33": "59eb019069d370f6a4e4c591c127d7756dfc2f401e15d13f9370844bde031c07",
+    "UCX_SM_IndoorRoof_ES_01_34": "7f71f0ec953a21efd72e62a8c79faf2ccc4e41c5ac1feab6e3db451bd0acca1b",
+    "UCX_SM_IndoorRoof_ES_01_35": "d8cd4df534992a229195f086aba11b00394eb18226103ebc10ebe34a4f9e2c30",
+    "UCX_SM_IndoorRoof_ES_01_36": "0bd62403aaa33b0bc9c78f7af9dc9cae1507d7654d69a5fffe5cc03b97a788f4",
+    "UCX_SM_IndoorRoof_ES_01_37": "811dbee8a77608bcfcab90d89b3f9e7c025f7a3453f9348fb121eae28faf6263",
+    "UCX_SM_IndoorRoof_ES_01_38": "e97823042764bd74f27738b1703347846c511d7f0e2a19c832149b57a88d0562",
+    "UCX_SM_IndoorRoof_ES_01_39": "bc828931991efc3e2ba36de04a7b44be742576605280140a2f83af2d4ae10b1b",
+    "UCX_SM_IndoorRoof_ES_01_40": "ef76d774fec9de18dcad2f336ef08763711bcd758b940d6a939e833eaff20131",
+    "UCX_SM_IndoorRoof_ES_01_41": "0eae870bf98372933fc6a77b4cc63bf9226ddfb7fe7dfbdf5b5d8a148fa5c94f",
+    "UCX_SM_IndoorRoof_ES_01_42": "2fa75be220451170dc9e3f1a6c9654ceb4dcdf19912d0934a9044157a86e7013",
+    "UCX_SM_IndoorRoof_ES_01_43": "08fe7091c23eb4320aa8ca86aa1d5bebf0cabae5ad522d31289ed3242a66c41b",
+    "UCX_SM_IndoorRoof_ES_01_44": "448658b6aabdd7c57ab179a4d58b3db6ae3255d09217416663fe88549cf95fc7",
+    "UCX_SM_IndoorRoof_Gable_EN_01_00": "5f8da32f974a69569b4ebfc12f972fa06566aae43db429355a57395602cdea8d",
+    "UCX_SM_IndoorRoof_Gable_EN_01_01": "79036da5137fddf3a0a10f9363c1c5afd8855dd54e978958d379d0006860ba8e",
+    "UCX_SM_IndoorRoof_Gable_EN_01_02": "f8ff96c366c29872ebde362cd10a0274913137d14a1a8bdd86e48568e6ca710a",
+    "UCX_SM_IndoorRoof_Gable_ES_01_00": "d1b0fb6e5a2c923d668c525f6a324e6c304ea88c515cd3d8832189a69fda270e",
+    "UCX_SM_IndoorRoof_Gable_ES_01_01": "3db6760b57f08e452446887416a18050e14c08f4c2ae5ac33a00e97b78bb139a",
+    "UCX_SM_IndoorRoof_Gable_ES_01_02": "f1b391e7c5f6186a46d9cfe2a9de3e87e09880ece2f0579e25155379faa15ea3",
+    "UCX_SM_IndoorRoof_Gable_WN_01_00": "dc4bd255c9fa649dd3471d2d049d0e737ccc68b7345c007eb02bc08f6dcab0c6",
+    "UCX_SM_IndoorRoof_Gable_WN_01_01": "fe4c58c37e1dacb3962f0db435bd98f9f643f335c3b2de6e5b0459b521a6402f",
+    "UCX_SM_IndoorRoof_Gable_WN_01_02": "9e406b10a11504e9a3d1a581fc5287c069b2763f32bc78f1adc5bf72f90557e5",
+    "UCX_SM_IndoorRoof_Gable_WS_01_00": "506ecff8018bc0d04561d4c6cd4164098ab51d987dda312c2bba7d9331c6b91a",
+    "UCX_SM_IndoorRoof_Gable_WS_01_01": "283c66f5e8c6b70c21d16e10f881adf1ae4617bb35e8fee4224f813c904a5b6b",
+    "UCX_SM_IndoorRoof_Gable_WS_01_02": "281352c0356579fbc45de4f6f48347f0595ecf926e4dd2b3d7002023a08e3c13",
+    "UCX_SM_IndoorRoof_WN_01_00": "f12479f2caebe3a8cb8efb196313a8bbafdb3a6cdc30dc34edc031d3247fcd94",
+    "UCX_SM_IndoorRoof_WN_01_01": "268be366fecf926b6c60b41525e092a37433d3911daa3b708251f54021131ea1",
+    "UCX_SM_IndoorRoof_WN_01_02": "0858c402fd28de9330a1709c7127620ea8e856ea62f2855d0c8bdc88bf89b030",
+    "UCX_SM_IndoorRoof_WN_01_03": "b35e39fe71d71bde263b5617ab445dd14f6feacc40a6bebcc480bd943966a2f8",
+    "UCX_SM_IndoorRoof_WN_01_04": "0aeed4fbe93573dc456e6dd6f8402e4cbb97b611e5e816331f58697f6d537b01",
+    "UCX_SM_IndoorRoof_WN_01_05": "bfa441e21663e407535cf0ea9eb5b51e7a0d49034ede81334b52855dd5721c8d",
+    "UCX_SM_IndoorRoof_WN_01_06": "e43103fddde10dee02483a7ded9903e603de965100ff447d24273e43e5d6a14d",
+    "UCX_SM_IndoorRoof_WN_01_07": "79e56f789c6438aa4a97e98ca01f929b613b21bd72f2f41995126aa8262d8650",
+    "UCX_SM_IndoorRoof_WN_01_08": "72e208e35a198d0b7a63056740d5e6053c10c6000ef3086daeb678ad61435b98",
+    "UCX_SM_IndoorRoof_WN_01_09": "be2db471ba10600eca7bbceee0a28af33e45f8afd937ec599e86ddb03ec5808f",
+    "UCX_SM_IndoorRoof_WN_01_10": "a3e4f3ae173c83b2502c34d462f8f3787a8f4d215f046cdb1edae58e1e6c5c18",
+    "UCX_SM_IndoorRoof_WN_01_11": "7f46deb9e85cd202024d86ea5785c684ed8462bd460e1fac5390c757f9186a09",
+    "UCX_SM_IndoorRoof_WN_01_12": "a83452b9c2232e4c32a137eaf6eff907a64c9d4e0581dcd1203cb4b007a6f9e7",
+    "UCX_SM_IndoorRoof_WN_01_13": "c37041a0af779114a1746f623a7829b14988cdb804d11b5b9e02ce9b5403e85f",
+    "UCX_SM_IndoorRoof_WN_01_14": "d56dacb3b830f9da8ef4486f339428f646f7753a372ebf438d3e0affbaa3e6e3",
+    "UCX_SM_IndoorRoof_WN_01_15": "1ae75776d422f971d83fb00296e04c29c316f5a8d4de60e0906ec59b0abcc7ba",
+    "UCX_SM_IndoorRoof_WN_01_16": "e5db2ada9f030fb5c5f8475f53a306c69750a8d35fa8757b6bbc761c7670de37",
+    "UCX_SM_IndoorRoof_WN_01_17": "068dc6f0ac87e56c8efcd1d078cfaf5cecfe7c37e858e1784a55c8d32fdc2937",
+    "UCX_SM_IndoorRoof_WN_01_18": "8a99bb86e64bcecf0c8e5cad17a1c222d6dc8b2c3f69929be8e44b938f022977",
+    "UCX_SM_IndoorRoof_WN_01_19": "6b7876083f2626720853d9bfe35c0cff07ed0fceca35ac15ceb050ed45e63979",
+    "UCX_SM_IndoorRoof_WN_01_20": "1c1c16d480008b0bbef0e94dd5fcfc32ee4964099eced6e49856991704a39f91",
+    "UCX_SM_IndoorRoof_WN_01_21": "95a5b3e9f1717e2de9824173ea6ed3dc70d3c6dde2c24554dbba6182b35fdd96",
+    "UCX_SM_IndoorRoof_WN_01_22": "ef12f5ba5ec777b2e1c0cb4fc1a2b4e647cb25c19f4dad4ef3e31f73926ae400",
+    "UCX_SM_IndoorRoof_WN_01_27": "e68c4057da73d8493bca14cd75ceda2f9841ce276a23623e2756f0e15c0c9f5e",
+    "UCX_SM_IndoorRoof_WN_01_28": "d5271efa197d89dee3a41688d57f42875dbf95e7bfae8ec79eecdc2912174796",
+    "UCX_SM_IndoorRoof_WN_01_29": "481e1bb97d0c9bd3695eef077e1557860acea8b477a7ba6fa92ba7705c8f8f10",
+    "UCX_SM_IndoorRoof_WN_01_30": "74e8f82d2bf41f39182aa446f5c416ce9aa4040eda3b81fa47d1597d26df9a8c",
+    "UCX_SM_IndoorRoof_WN_01_31": "53286cb5b89a6b5eb30e83ef059b2ba79b08bfc10e5c0a35308033895088a5a3",
+    "UCX_SM_IndoorRoof_WN_01_32": "c883610d523d096bac689b27382482df2905bd7863f257d96ba5092082fdaf20",
+    "UCX_SM_IndoorRoof_WN_01_33": "5030312d2de6189182953876c65eb16f6c2a294df8d8a29ba874b5bedf1f8bb5",
+    "UCX_SM_IndoorRoof_WN_01_34": "ae1f2254aef8df5582ae5406a431586c9b76ee767c469e580762fab97b4a8c23",
+    "UCX_SM_IndoorRoof_WN_01_35": "674f752d0bca8985b73d724dcfb4a68e6f4295c18986f23dc5f8aaa8802175b5",
+    "UCX_SM_IndoorRoof_WN_01_36": "1408fa82483949ba6921528bcb5bc9158c3ffb94631de801103a330e6f62af26",
+    "UCX_SM_IndoorRoof_WN_01_37": "dd201ec55655958a5d623f1906a9638d16934ccbb1bc33dffdb96da8bf19f35e",
+    "UCX_SM_IndoorRoof_WN_01_39": "411684c7a93973ed9f9369ea4ee6652b7a64dba371ec0bffa29899ce2b9dad47",
+    "UCX_SM_IndoorRoof_WN_01_40": "691d7707c2ad7743f90c8ff26d69dd9ee6a520c17d7bb26387c952f55a19c801",
+    "UCX_SM_IndoorRoof_WN_01_41": "2d07afd8798ee95b33eb0636bcb8fc99b36bb242fbaed5ff3800ccf7b69ea8d0",
+    "UCX_SM_IndoorRoof_WN_01_42": "6c1f1148599927b635ce4d49a233be0d522c3c7a390c1a727739e8ef4902407e",
+    "UCX_SM_IndoorRoof_WN_01_43": "3c7b6a3e37171c0c8d9c809eb2089a46305d24b20c99ca16060a9d4952480fba",
+    "UCX_SM_IndoorRoof_WN_01_44": "06ebb5f5f3de6022d5e6fe8951cf1c29771974c802ab13f149f75ea2286e4d2d",
+    "UCX_SM_IndoorRoof_WN_01_45": "87e0c1f8ac9ad2dc384ad72a6ac4db99b87dd96f62b5c2b7c41dd0f2fdf23a2f",
+    "UCX_SM_IndoorRoof_WN_01_46": "21d88c37817751308615e106abb8e82d70a0be63bb0f2396e9b96989ca107f8e",
+    "UCX_SM_IndoorRoof_WN_01_47": "7b5042c51d60f80682a9d6204eb9afea289ed004812ff16b9dafa58960716fbc",
+    "UCX_SM_IndoorRoof_WN_01_48": "c2131e080154571a16d3b97a03ce4ba5b05edebfb6c1f16f71e11e83b0e248e3",
+    "UCX_SM_IndoorRoof_WN_01_49": "22ceb945e0bdc9d94b0f1f8f0fab59ea5b903a03d6399de3216eb22b9ffdaa15",
+    "UCX_SM_IndoorRoof_WN_01_50": "5841fecd6dacaa5635641490128532703d1fea9e6a959d9c1ece3c3538e0a98b",
+    "UCX_SM_IndoorRoof_WN_01_51": "baa3243c0f388679003f99e2e0301d4eacdf3d3d1d1f5ba79be5aa84b1de3ba3",
+    "UCX_SM_IndoorRoof_WN_01_52": "8654f4db568fc77b126cfe25c7d919a07d976866d2d365ff7fa81205ac6cc323",
+    "UCX_SM_IndoorRoof_WN_01_53": "bb8ebd66fa480c579307e907710d7e3ac4404440e5b1bc8a1c5a64c363f3be4b",
+    "UCX_SM_IndoorRoof_WN_01_54": "b4087a63526fea58a214682b10ff69a7b9c3851007eec9137ba66e552346bd16",
+    "UCX_SM_IndoorRoof_WN_01_55": "c2de5d59c227a802d9644b4c89f3175ec89e93144ecadd4ee2c3e5521c8caafb",
+    "UCX_SM_IndoorRoof_WN_01_56": "16f3b054628097ee837d5b9a36fd2474da7bfd253c509887c6c6cf5e0f0ff651",
+    "UCX_SM_IndoorRoof_WN_01_57": "363a96f25df6984c37e381dfbc991463d64b4fca14a7e6534d37bcc05fbfc8be",
+    "UCX_SM_IndoorRoof_WN_01_58": "b7fd8a700ea9d4de0fa0d11705c05c12b826e7274e075f78ad3d61e2c3d593d1",
+    "UCX_SM_IndoorRoof_WN_01_59": "a2f4086b6339f661233db5836dd56eaee3e60b6e8572912aca26de7ce51cbca6",
+    "UCX_SM_IndoorRoof_WN_01_60": "9df46050c50d312dce96806ac35d0b1809e9e3164995dfdc88941c325459af65",
+    "UCX_SM_IndoorRoof_WN_01_61": "12d2ef2294f0fe805cb4639e9bf044f15cfbdbb6e34c9a1fb533c183ba0135e7",
+    "UCX_SM_IndoorRoof_WS_01_00": "822b1a4775ab1ed535858d487b991626db144f0464c39c042a205305a9b164ca",
+    "UCX_SM_IndoorRoof_WS_01_01": "5d8273aabf26f736a088e64534582113d79c6b05070c12b722341697f6edf7ad",
+    "UCX_SM_IndoorRoof_WS_01_02": "5fe7889ce6fb9d98976fffb9056f0d509b782f41f1c62eac4958438e169587c8",
+    "UCX_SM_IndoorRoof_WS_01_03": "187a39bb83457ee7ae2ca36bacb3f4d86b0b9605d79b8061d2918d6624b13564",
+    "UCX_SM_IndoorRoof_WS_01_04": "9b2c7f240560c301059fa4d24e1f050a544c0710083e39f41c3aafa08463e62e",
+    "UCX_SM_IndoorRoof_WS_01_05": "00d9e9bf543511b36d11f8bb583f69de60d38edd08b8566550f5a43edde86bae",
+    "UCX_SM_IndoorRoof_WS_01_06": "abfc3bd33180c9c6c122459a0e6c98a7ad47e9da6b9729bdaafaa19328dc56f8",
+    "UCX_SM_IndoorRoof_WS_01_07": "3ad29f2bc1a7a0ad8bdbd8544acfabf2e75b1e29dbb89ea2c991a91d5f93088d",
+    "UCX_SM_IndoorRoof_WS_01_08": "bd1636418d187c810e0977f8b4ea65f184a665f5f61ee413e6e4647fb0fa99db",
+    "UCX_SM_IndoorRoof_WS_01_09": "f6a7709caf69d8a7c34bd156b028c53b1180e67a8369a6e63521223e747421cb",
+    "UCX_SM_IndoorRoof_WS_01_10": "ddeb56c450fb28dabaf2d1c2cd303ab702ec886610ca0248ba122997e8e8ea87",
+    "UCX_SM_IndoorRoof_WS_01_11": "b0e0fb3b3eb9db7fca2a98fb18ca34dc44c795242cf23c24b698fb4bbfc1a136",
+    "UCX_SM_IndoorRoof_WS_01_12": "07a34535e46719508fabcaf32e9909dc607a3dbf6f47acdb68b453c4745395ce",
+    "UCX_SM_IndoorRoof_WS_01_13": "75b1b42488308e99ae39dfe3512c93d8e8db4eacf5da650384eecd326af46f11",
+    "UCX_SM_IndoorRoof_WS_01_14": "ff5c133aab5fd6aa3c873f1ee40f2291a7bd25adce26875f8b880ab2217f13ed",
+    "UCX_SM_IndoorRoof_WS_01_15": "bc0e207b41e6b22da79a5726d73389a33fbab595ab86452da41350b2e2291607",
+    "UCX_SM_IndoorRoof_WS_01_16": "317acf8f2318a0a1f05dc2549b9d630a893db16323e0fcdf23611b5ba2b43d24",
+    "UCX_SM_IndoorRoof_WS_01_17": "13a65f15c520e541c5ff70932de0e5be541ed493a8a3b8b62baa8e65391b76d9",
+    "UCX_SM_IndoorRoof_WS_01_18": "918c0c3676fb1341836a0074a289c74bc0e2aa71b1dcb504542d959a79b83c22",
+    "UCX_SM_IndoorRoof_WS_01_19": "a7d11c3d28ae6f72e49b588f984616699801b36ca9c8c8d1351a09ebb637c7bd",
+    "UCX_SM_IndoorRoof_WS_01_20": "39a1178143982095f810537687b8ddb18682fc29d9615b4e9633427444840447",
+    "UCX_SM_IndoorRoof_WS_01_21": "cb91a6689cf0e8a98fff089a3bf7630bf72d18417a8cc0297c3e3212d95d5386",
+    "UCX_SM_IndoorRoof_WS_01_22": "8a907f44a1496a7b8afe0ca3b61566a23f096eb3fe2aaee6f5bb41829fb6cf06",
+    "UCX_SM_IndoorRoof_WS_01_23": "f61bb7c9e63490b8ea38ec6286c9b49242128fc504208e39a64b30bd6308a233",
+    "UCX_SM_IndoorRoof_WS_01_24": "820d29d25a51bba926bd3959c63425ade6ff194f691514fd1c68183f39c3ed1b",
+    "UCX_SM_IndoorRoof_WS_01_25": "8ceee514375901b6028a47b6c493b394433fa3f3edc295f06e7f1c9f6d948b00",
+    "UCX_SM_IndoorRoof_WS_01_26": "9eceecb891811dee0b1003dec2bf44900a5608c1c572dee380e3cbf95e2e854a",
+    "UCX_SM_IndoorRoof_WS_01_27": "f54518f23844866ea53626b5f468bdb42b8cf160d6029931ca34899f5d1a3877",
+    "UCX_SM_IndoorRoof_WS_01_28": "f9bc6627175f56edd0e47c70a315718dc742b2f582a6afd171c8f0a72e3f538a",
+    "UCX_SM_IndoorRoof_WS_01_29": "0d35f5faf4986ff00419e76037215d8e4cc33d1d7a1d307694873b1766ae6639",
+    "UCX_SM_IndoorRoof_WS_01_30": "fb4bf7a3959622f45ad64686ea2d6c1b38493c495e10f906a97df2cbc803bcb2",
+    "UCX_SM_IndoorRoof_WS_01_31": "dc913ecaa725040ca81c65749e6ab9168493a059e4ac05d47db58e9e77ec5824",
+    "UCX_SM_IndoorRoof_WS_01_32": "56c8b6005812d086f047bd432054ac60bd8295edf02a558512a12226e607bdb2",
+    "UCX_SM_IndoorRoof_WS_01_33": "7d60b2c1c2a35f46cc4fcfee04db419de74f6976baaeec3960d58bd7fb58b9f9",
+    "UCX_SM_IndoorRoof_WS_01_34": "cd24384005080a847f6bf0771c5c20d237698d93422045668b569341119fc517",
+    "UCX_SM_IndoorRoof_WS_01_35": "434d773d8becf4b92006cb27957b9bd18f4adf68183fe688c7c5e53a7aea34ce",
+    "UCX_SM_IndoorRoof_WS_01_36": "9b67b8b281fb69b8b024414c412ad51a8743ae416d74c96e92da976ed4bfe703",
+    "UCX_SM_IndoorRoof_WS_01_37": "3133af65016c04249c936dc0d7ef62759843f9f208fd45a5dbc1731807295d0c",
+    "UCX_SM_IndoorRoof_WS_01_38": "7b01a05f0e10befd2d3cbbdbd7d1b064e0fdcf15611e374352dc2edb490928a6",
+    "UCX_SM_IndoorRoof_WS_01_39": "be368c267b95005e7912f2ed143a75a0966464ae73f84309292b02a478c27334",
+    "UCX_SM_IndoorRoof_WS_01_40": "00a28db09b76968d148cf2a74c65558b10bd54dcd8a5d71171c1ce3bc28f1f9a",
+    "UCX_SM_IndoorRoof_WS_01_41": "e6f93f230ba7d06ed242f8148b8d9e38d5879ba5a7c1c9e0f2ee6ddd99f2295f"
+  },
+  "mesh_count": 328,
+  "UCX_count": 312,
+  "image_dependencies": [
+    {
+      "name": "T_FireplaceV2_Atlas_BC",
+      "source": "FILE",
+      "filepath": "//Textures/T_FireplaceV2_Atlas_BC.png",
+      "packed": true,
+      "packed_sha256": [
+        "82bb4f9265b48ad0c4fa2be89a535e5d8a712c167f738477df5926ede66368a4"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "sRGB",
+      "external_file_required": false,
+      "external_exists": false
+    },
+    {
+      "name": "T_FireplaceV2_Atlas_E",
+      "source": "FILE",
+      "filepath": "//Textures/T_FireplaceV2_Atlas_E.png",
+      "packed": true,
+      "packed_sha256": [
+        "235ac449c24ce2a3313664399f41a6bef1a49349af0997a5c1c621a45eaa12dc"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "sRGB",
+      "external_file_required": false,
+      "external_exists": false
+    },
+    {
+      "name": "T_FireplaceV2_Atlas_N",
+      "source": "FILE",
+      "filepath": "//Textures/T_FireplaceV2_Atlas_N.png",
+      "packed": true,
+      "packed_sha256": [
+        "8e713117312c74953120a13b96a323e0b224c812150f805e748a6ac903d94020"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": false
+    },
+    {
+      "name": "T_FireplaceV2_Atlas_ORM",
+      "source": "FILE",
+      "filepath": "//Textures/T_FireplaceV2_Atlas_ORM.png",
+      "packed": true,
+      "packed_sha256": [
+        "4a1125a42582b6001a5f172c2848f205ec0f37f22623fc768b3a1f4311b81b7b"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": false
+    },
+    {
+      "name": "T_Shared_LimePlaster2m_BC",
+      "source": "FILE",
+      "filepath": "//../../../SharedMaterials/OakLime2mV1/Textures/T_Shared_LimePlaster2m_BC.png",
+      "packed": true,
+      "packed_sha256": [
+        "631382152572c1f129a162a81f30126676a5d0270e5aa3e07af4749552855b17"
+      ],
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_Shared_LimePlaster2m_N_GL",
+      "source": "FILE",
+      "filepath": "//../../../SharedMaterials/OakLime2mV1/Textures/T_Shared_LimePlaster2m_N_GL.png",
+      "packed": true,
+      "packed_sha256": [
+        "bf0a609a48956d2b36b5c2509b4d9040d1ea752dbcdddf0e6e6060eaaedce4c3"
+      ],
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_Shared_LimePlaster2m_ORM",
+      "source": "FILE",
+      "filepath": "//../../../SharedMaterials/OakLime2mV1/Textures/T_Shared_LimePlaster2m_ORM.png",
+      "packed": true,
+      "packed_sha256": [
+        "21a8d7a9a18a20cd05373089ae2e9ca7825c08a8b38b9e04413c1a44fb84d70b"
+      ],
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_Shared_OakEndgrain2m_BC",
+      "source": "FILE",
+      "filepath": "//../../../SharedMaterials/OakLime2mV1/Textures/T_Shared_OakEndgrain2m_BC.png",
+      "packed": true,
+      "packed_sha256": [
+        "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714"
+      ],
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_Shared_OakEndgrain2m_N_GL",
+      "source": "FILE",
+      "filepath": "//../../../SharedMaterials/OakLime2mV1/Textures/T_Shared_OakEndgrain2m_N_GL.png",
+      "packed": true,
+      "packed_sha256": [
+        "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be"
+      ],
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_Shared_OakEndgrain2m_ORM",
+      "source": "FILE",
+      "filepath": "//../../../SharedMaterials/OakLime2mV1/Textures/T_Shared_OakEndgrain2m_ORM.png",
+      "packed": true,
+      "packed_sha256": [
+        "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539"
+      ],
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_Shared_OakLonggrain2m_BC",
+      "source": "FILE",
+      "filepath": "//../../../SharedMaterials/OakLime2mV1/Textures/T_Shared_OakLonggrain2m_BC.png",
+      "packed": true,
+      "packed_sha256": [
+        "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07"
+      ],
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "sRGB",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_Shared_OakLonggrain2m_N_GL",
+      "source": "FILE",
+      "filepath": "//../../../SharedMaterials/OakLime2mV1/Textures/T_Shared_OakLonggrain2m_N_GL.png",
+      "packed": true,
+      "packed_sha256": [
+        "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf"
+      ],
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_Shared_OakLonggrain2m_ORM",
+      "source": "FILE",
+      "filepath": "//../../../SharedMaterials/OakLime2mV1/Textures/T_Shared_OakLonggrain2m_ORM.png",
+      "packed": true,
+      "packed_sha256": [
+        "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16"
+      ],
+      "size": [
+        1024,
+        1024
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_V8_CoursedLimestone_BC.png",
+      "source": "FILE",
+      "filepath": "/home/davisc/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/MaterialStudyV1/T_V8_CoursedLimestone_BC.png",
+      "packed": true,
+      "packed_sha256": [
+        "1446d731434535e15731cbb9d60175e340638a07ea9bc3fc7452dc4d1ba59408"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "sRGB",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_V8_CoursedLimestone_N.png",
+      "source": "FILE",
+      "filepath": "/home/davisc/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/MaterialStudyV1/T_V8_CoursedLimestone_N.png",
+      "packed": true,
+      "packed_sha256": [
+        "3c1029c7c1aa33bf71bc41f4701e52d2d49d4e24bca0917be558dec007f9e8d4"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_V8_CoursedLimestone_ORM.png",
+      "source": "FILE",
+      "filepath": "/home/davisc/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/MaterialStudyV1/T_V8_CoursedLimestone_ORM.png",
+      "packed": true,
+      "packed_sha256": [
+        "8d87b04871a9ce9a973551154ae51dbc2532710546b03034189390a2b6b15794"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_V8_DullZinc_BC.png",
+      "source": "FILE",
+      "filepath": "/home/davisc/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/MaterialStudyV1/T_V8_DullZinc_BC.png",
+      "packed": true,
+      "packed_sha256": [
+        "570f53d12f51b44894b48e15ed8ed941bd3ae5a34ac29df31005500e607348ac"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "sRGB",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_V8_DullZinc_N.png",
+      "source": "FILE",
+      "filepath": "/home/davisc/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/MaterialStudyV1/T_V8_DullZinc_N.png",
+      "packed": true,
+      "packed_sha256": [
+        "d57bb309f21c8933d6ae2f8ca1a65306705e1e042f91f08018e7e3a7210cfcdc"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_V8_DullZinc_ORM.png",
+      "source": "FILE",
+      "filepath": "/home/davisc/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/MaterialStudyV1/T_V8_DullZinc_ORM.png",
+      "packed": true,
+      "packed_sha256": [
+        "d1c92dc0195c85f36b26d1f880a26cc1102243d3a47203050e9170ad78c24012"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_V8_SootLining_BC.png",
+      "source": "FILE",
+      "filepath": "/home/davisc/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/MaterialStudyV1/T_V8_SootLining_BC.png",
+      "packed": true,
+      "packed_sha256": [
+        "953b4920becc32ab3a91d49df59b55910ff685046591d677a2568903864ce6e0"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "sRGB",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_V8_SootLining_N.png",
+      "source": "FILE",
+      "filepath": "/home/davisc/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/MaterialStudyV1/T_V8_SootLining_N.png",
+      "packed": true,
+      "packed_sha256": [
+        "7641460961a61d47784b20359d6ac7954920afb4c026efce15785870354a51ea"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    },
+    {
+      "name": "T_V8_SootLining_ORM.png",
+      "source": "FILE",
+      "filepath": "/home/davisc/Work/DinkQA/PhotorealSessions/IndoorRoofQA/V8_ChimneyContact/MaterialStudyV1/T_V8_SootLining_ORM.png",
+      "packed": true,
+      "packed_sha256": [
+        "1b52b4d9e2d8d5cb5000216b310ec800cf23098b6267536c4f3e4e069e92d9f0"
+      ],
+      "size": [
+        2048,
+        2048
+      ],
+      "colorspace": "Non-Color",
+      "external_file_required": false,
+      "external_exists": true
+    }
+  ],
+  "linked_libraries": [],
+  "scope": "Source inspection; not native/import/collision acceptance",
+  "source_sha256": "785af1ffefcba86aa8ffd3232973b7f99a67758f9c045a6c8964b9d4c97dd3df",
+  "source_bytes_unchanged": true
+}

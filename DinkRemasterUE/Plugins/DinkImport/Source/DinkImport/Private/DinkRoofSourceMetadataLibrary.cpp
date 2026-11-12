@@ -65,6 +65,27 @@ bool UDinkRoofSourceMetadataLibrary::SupportsSharedRoofSourceFilenames()
  return true; // Read-only capability check, so old DLLs refuse before any import.
 }
 
+bool UDinkRoofSourceMetadataLibrary::SupportsInteriorGableRecessSourceFilenames()
+{
+ return true; // A missing/old module must refuse before any candidate import.
+}
+
+bool UDinkRoofSourceMetadataLibrary::SetInteriorGableRecessSourceFilenamesRelative(UObject* Asset,const TArray<FString>& ExpectedAbsoluteFiles)
+{
+ UStaticMesh* Mesh=Cast<UStaticMesh>(Asset);if (!Mesh||Mesh->IsTemplate()) return false;
+ UAssetImportData* Data=Mesh->GetAssetImportData();
+ if (!Data||Data->GetOuter()!=Mesh||Data->IsTemplate()||Data->GetSourceFileCount()!=1||Mesh->GetNumSourceModels()!=1||ExpectedAbsoluteFiles.Num()!=1) return false;
+ static const TSet<FString> Gables={TEXT("SM_IndoorRoof_Gable_EN_01"),TEXT("SM_IndoorRoof_Gable_ES_01"),TEXT("SM_IndoorRoof_Gable_WN_01"),TEXT("SM_IndoorRoof_Gable_WS_01")};
+ const FString Name=Mesh->GetName();const FString Package=Mesh->GetOutermost()->GetName();
+ if (!Gables.Contains(Name)||Package!=TEXT("/Game/Dink/Refinements/InteriorGableRecessV1/Meshes/")+Name||FPackageName::DoesPackageExist(Package)) return false;
+ const FString Canonical=Full(FPaths::ProjectDir()/TEXT("SourceAssets/Art/Stonebrook/Refinements/InteriorGableRecessV1/FBX")/(Name+TEXT(".fbx")));
+ const FString& File=ExpectedAbsoluteFiles[0];
+ if (FPaths::IsRelative(File)||Full(File)!=File||File!=Canonical||!FPaths::FileExists(File)) return false;
+ const FString Stored=UAssetImportData::SanitizeImportFilename(File,Mesh->GetOutermost());
+ if (Stored.IsEmpty()||!FPaths::IsRelative(Stored)||Full(UAssetImportData::ResolveImportFilename(Stored,Mesh->GetOutermost()))!=File) return false;
+ return ApplyFilenameTransaction(Mesh,ExpectedAbsoluteFiles);
+}
+
 bool UDinkRoofSourceMetadataLibrary::SetRoofSourceFilenamesRelative(UObject* Asset,const TArray<FString>& ExpectedAbsoluteFiles)
 {
  UAssetImportData* Data=ImportData(Asset);if (!Data||Data->GetSourceFileCount()!=1) return false;

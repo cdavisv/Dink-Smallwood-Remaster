@@ -1,0 +1,788 @@
+{
+  "scope": "Actual read-only source projected intersection analysis, no source/native edits or visual acceptance",
+  "source_sha256": "5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745",
+  "planar_x_triangles": 2250,
+  "gable_triangles": 152,
+  "timber_triangles": 2098,
+  "plane_separation_limit_m": 2e-06,
+  "by_pair": {
+    "SM_IndoorRoof_Gable_EN_01 / SM_IndoorRoof_EN_01": {
+      "triangle_pairs": 191,
+      "sum_pair_intersection_area_m2": 3.3076483511277406,
+      "largest_pair_intersection_area_m2": 0.8160301011527478
+    },
+    "SM_IndoorRoof_Gable_EN_01 / SM_IndoorRoof_ES_01": {
+      "triangle_pairs": 3,
+      "sum_pair_intersection_area_m2": 0.004706579171533526,
+      "largest_pair_intersection_area_m2": 0.00235328836260551
+    },
+    "SM_IndoorRoof_Gable_ES_01 / SM_IndoorRoof_ES_01": {
+      "triangle_pairs": 191,
+      "sum_pair_intersection_area_m2": 3.3076483551504214,
+      "largest_pair_intersection_area_m2": 0.8160300997820553
+    },
+    "SM_IndoorRoof_Gable_ES_01 / SM_IndoorRoof_EN_01": {
+      "triangle_pairs": 3,
+      "sum_pair_intersection_area_m2": 0.004706579171533498,
+      "largest_pair_intersection_area_m2": 0.002353290808927988
+    },
+    "SM_IndoorRoof_Gable_WN_01 / SM_IndoorRoof_WN_01": {
+      "triangle_pairs": 192,
+      "sum_pair_intersection_area_m2": 3.3076483603059437,
+      "largest_pair_intersection_area_m2": 0.8160301011527478
+    },
+    "SM_IndoorRoof_Gable_WN_01 / SM_IndoorRoof_WS_01": {
+      "triangle_pairs": 3,
+      "sum_pair_intersection_area_m2": 0.004706579171533526,
+      "largest_pair_intersection_area_m2": 0.00235328836260551
+    },
+    "SM_IndoorRoof_Gable_WS_01 / SM_IndoorRoof_WS_01": {
+      "triangle_pairs": 191,
+      "sum_pair_intersection_area_m2": 3.307648360305244,
+      "largest_pair_intersection_area_m2": 0.8160300997820553
+    },
+    "SM_IndoorRoof_Gable_WS_01 / SM_IndoorRoof_WN_01": {
+      "triangle_pairs": 3,
+      "sum_pair_intersection_area_m2": 0.004706579171533498,
+      "largest_pair_intersection_area_m2": 0.002353290808927988
+    }
+  },
+  "largest_overlaps": [
+    {
+      "gable": "SM_IndoorRoof_Gable_EN_01",
+      "gable_polygon": 127,
+      "timber": "SM_IndoorRoof_EN_01",
+      "timber_polygon": 2169,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.8160301011527478,
+      "x_plane_m": 7.517499923706055,
+      "normal_x": 1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          0.0,
+          6.843947336108117
+        ],
+        [
+          0.0,
+          6.734432370034046
+        ],
+        [
+          6.0557270448070115,
+          3.799999952316284
+        ],
+        [
+          6.089278238011112,
+          3.799999952316284
+        ],
+        [
+          0.19859906724973353,
+          6.883764583323075
+        ],
+        [
+          0.053390717877807276,
+          6.954128402095865
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WN_01",
+      "gable_polygon": 127,
+      "timber": "SM_IndoorRoof_WN_01",
+      "timber_polygon": 1360,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.8160301011527478,
+      "x_plane_m": -7.357500076293945,
+      "normal_x": 1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          0.0,
+          6.843947336108117
+        ],
+        [
+          0.0,
+          6.734432370034046
+        ],
+        [
+          6.0557270448070115,
+          3.799999952316284
+        ],
+        [
+          6.089278238011112,
+          3.799999952316284
+        ],
+        [
+          0.19859906724973353,
+          6.883764583323075
+        ],
+        [
+          0.053390717877807276,
+          6.954128402095865
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_ES_01",
+      "gable_polygon": 126,
+      "timber": "SM_IndoorRoof_ES_01",
+      "timber_polygon": 2043,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.8160300997820553,
+      "x_plane_m": 7.357500076293945,
+      "normal_x": -1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          -6.055727046346738,
+          3.799999952316284
+        ],
+        [
+          -6.089278239458116,
+          3.799999952316284
+        ],
+        [
+          -0.19859936117277144,
+          6.883764440896366
+        ],
+        [
+          -0.053390735979168547,
+          6.954128393324462
+        ],
+        [
+          0.0,
+          6.843947289981397
+        ],
+        [
+          0.0,
+          6.7344323807939945
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WS_01",
+      "gable_polygon": 126,
+      "timber": "SM_IndoorRoof_WS_01",
+      "timber_polygon": 1071,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.8160300997820553,
+      "x_plane_m": -7.517499923706055,
+      "normal_x": -1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          -6.055727046346738,
+          3.799999952316284
+        ],
+        [
+          -6.089278239458116,
+          3.799999952316284
+        ],
+        [
+          -0.19859936117277144,
+          6.883764440896366
+        ],
+        [
+          -0.053390735979168547,
+          6.954128393324462
+        ],
+        [
+          0.0,
+          6.843947289981397
+        ],
+        [
+          0.0,
+          6.7344323807939945
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_ES_01",
+      "gable_polygon": 127,
+      "timber": "SM_IndoorRoof_ES_01",
+      "timber_polygon": 2038,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7840735486061685,
+      "x_plane_m": 7.517499923706055,
+      "normal_x": 1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          -0.053390717877807276,
+          6.954128402095865
+        ],
+        [
+          -6.458077654589092,
+          3.850600038469066
+        ],
+        [
+          0.0,
+          6.736055747746001
+        ],
+        [
+          0.0,
+          6.843947336108117
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WS_01",
+      "gable_polygon": 127,
+      "timber": "SM_IndoorRoof_WS_01",
+      "timber_polygon": 1066,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7840735486061685,
+      "x_plane_m": -7.357500076293945,
+      "normal_x": 1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          -0.053390717877807276,
+          6.954128402095865
+        ],
+        [
+          -6.458077654589092,
+          3.850600038469066
+        ],
+        [
+          0.0,
+          6.736055747746001
+        ],
+        [
+          0.0,
+          6.843947336108117
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_EN_01",
+      "gable_polygon": 126,
+      "timber": "SM_IndoorRoof_EN_01",
+      "timber_polygon": 2164,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7840735133894516,
+      "x_plane_m": 7.357500076293945,
+      "normal_x": -1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          0.0,
+          6.736055757668158
+        ],
+        [
+          0.0,
+          6.843947289981397
+        ],
+        [
+          0.05339073597916834,
+          6.954128393324462
+        ],
+        [
+          6.458077648727591,
+          3.8506000413093817
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WN_01",
+      "gable_polygon": 126,
+      "timber": "SM_IndoorRoof_WN_01",
+      "timber_polygon": 1355,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7840735133894516,
+      "x_plane_m": -7.517499923706055,
+      "normal_x": -1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          0.0,
+          6.736055757668158
+        ],
+        [
+          0.0,
+          6.843947289981397
+        ],
+        [
+          0.05339073597916834,
+          6.954128393324462
+        ],
+        [
+          6.458077648727591,
+          3.8506000413093817
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_ES_01",
+      "gable_polygon": 127,
+      "timber": "SM_IndoorRoof_ES_01",
+      "timber_polygon": 2039,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7616088186686021,
+      "x_plane_m": 7.517499923706055,
+      "normal_x": 1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          -6.458077654589099,
+          3.8506000384690626
+        ],
+        [
+          -6.5625,
+          3.799999952316284
+        ],
+        [
+          -6.055727044807012,
+          3.799999952316284
+        ],
+        [
+          0.0,
+          6.734432370034046
+        ],
+        [
+          0.0,
+          6.736055747746001
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WS_01",
+      "gable_polygon": 127,
+      "timber": "SM_IndoorRoof_WS_01",
+      "timber_polygon": 1067,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7616088186686021,
+      "x_plane_m": -7.357500076293945,
+      "normal_x": 1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          -6.458077654589099,
+          3.8506000384690626
+        ],
+        [
+          -6.5625,
+          3.799999952316284
+        ],
+        [
+          -6.055727044807012,
+          3.799999952316284
+        ],
+        [
+          0.0,
+          6.734432370034046
+        ],
+        [
+          0.0,
+          6.736055747746001
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_EN_01",
+      "gable_polygon": 126,
+      "timber": "SM_IndoorRoof_EN_01",
+      "timber_polygon": 2165,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7616088165838022,
+      "x_plane_m": 7.357500076293945,
+      "normal_x": -1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          0.0,
+          6.734432380793995
+        ],
+        [
+          0.0,
+          6.736055757668157
+        ],
+        [
+          6.458077648727599,
+          3.850600041309378
+        ],
+        [
+          6.5625,
+          3.799999952316284
+        ],
+        [
+          6.055727046346738,
+          3.799999952316284
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WN_01",
+      "gable_polygon": 126,
+      "timber": "SM_IndoorRoof_WN_01",
+      "timber_polygon": 1356,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7616088165838022,
+      "x_plane_m": -7.517499923706055,
+      "normal_x": -1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          0.0,
+          6.734432380793995
+        ],
+        [
+          0.0,
+          6.736055757668157
+        ],
+        [
+          6.458077648727599,
+          3.850600041309378
+        ],
+        [
+          6.5625,
+          3.799999952316284
+        ],
+        [
+          6.055727046346738,
+          3.799999952316284
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_EN_01",
+      "gable_polygon": 127,
+      "timber": "SM_IndoorRoof_EN_01",
+      "timber_polygon": 2168,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7296522661220237,
+      "x_plane_m": 7.517499923706055,
+      "normal_x": 1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          6.089278238011112,
+          3.799999952316284
+        ],
+        [
+          6.5625,
+          3.799999952316284
+        ],
+        [
+          0.19859906724973708,
+          6.8837645833230745
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WN_01",
+      "gable_polygon": 127,
+      "timber": "SM_IndoorRoof_WN_01",
+      "timber_polygon": 1359,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7296522661220237,
+      "x_plane_m": -7.357500076293945,
+      "normal_x": 1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          6.089278238011112,
+          3.799999952316284
+        ],
+        [
+          6.5625,
+          3.799999952316284
+        ],
+        [
+          0.19859906724973708,
+          6.8837645833230745
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_ES_01",
+      "gable_polygon": 126,
+      "timber": "SM_IndoorRoof_ES_01",
+      "timber_polygon": 2042,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7296522301912045,
+      "x_plane_m": 7.357500076293945,
+      "normal_x": -1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          -6.089278239458116,
+          3.799999952316284
+        ],
+        [
+          -6.5625,
+          3.799999952316284
+        ],
+        [
+          -0.19859936117276789,
+          6.883764440896368
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WS_01",
+      "gable_polygon": 126,
+      "timber": "SM_IndoorRoof_WS_01",
+      "timber_polygon": 1070,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.7296522301912045,
+      "x_plane_m": -7.517499923706055,
+      "normal_x": -1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          -6.089278239458116,
+          3.799999952316284
+        ],
+        [
+          -6.5625,
+          3.799999952316284
+        ],
+        [
+          -0.19859936117276789,
+          6.883764440896368
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_ES_01",
+      "gable_polygon": 99,
+      "timber": "SM_IndoorRoof_ES_01",
+      "timber_polygon": 2039,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.050248343639294646,
+      "x_plane_m": 7.517499923706055,
+      "normal_x": 1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          -6.11348535056967,
+          3.772011926507271
+        ],
+        [
+          -6.559500217437744,
+          3.7970001697540283
+        ],
+        [
+          -6.559500217437744,
+          3.689862119686514
+        ],
+        [
+          -6.506924629211426,
+          3.58136248588562
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WS_01",
+      "gable_polygon": 99,
+      "timber": "SM_IndoorRoof_WS_01",
+      "timber_polygon": 1067,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.050248343639294646,
+      "x_plane_m": -7.357500076293945,
+      "normal_x": 1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          -6.11348535056967,
+          3.772011926507271
+        ],
+        [
+          -6.559500217437744,
+          3.7970001697540283
+        ],
+        [
+          -6.559500217437744,
+          3.689862119686514
+        ],
+        [
+          -6.506924629211426,
+          3.58136248588562
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_EN_01",
+      "gable_polygon": 87,
+      "timber": "SM_IndoorRoof_EN_01",
+      "timber_polygon": 2165,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.05024834351130991,
+      "x_plane_m": 7.357500076293945,
+      "normal_x": -1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          6.113485351773148,
+          3.7720119265746965
+        ],
+        [
+          6.559500217437744,
+          3.7970001697540283
+        ],
+        [
+          6.559500217437744,
+          3.689862119686514
+        ],
+        [
+          6.506924629211426,
+          3.58136248588562
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WN_01",
+      "gable_polygon": 87,
+      "timber": "SM_IndoorRoof_WN_01",
+      "timber_polygon": 1356,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.05024834351130991,
+      "x_plane_m": -7.517499923706055,
+      "normal_x": -1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          6.113485351773148,
+          3.7720119265746965
+        ],
+        [
+          6.559500217437744,
+          3.7970001697540283
+        ],
+        [
+          6.559500217437744,
+          3.689862119686514
+        ],
+        [
+          6.506924629211426,
+          3.58136248588562
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_EN_01",
+      "gable_polygon": 97,
+      "timber": "SM_IndoorRoof_EN_01",
+      "timber_polygon": 2168,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.04948988040374225,
+      "x_plane_m": 7.517499923706055,
+      "normal_x": 1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          6.506924629211426,
+          3.58136248588562
+        ],
+        [
+          6.559500217437744,
+          3.689862119686514
+        ],
+        [
+          6.559500217437744,
+          3.7970001697540283
+        ],
+        [
+          6.123035216775558,
+          3.782328207828799
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WN_01",
+      "gable_polygon": 97,
+      "timber": "SM_IndoorRoof_WN_01",
+      "timber_polygon": 1359,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.04948988040374225,
+      "x_plane_m": -7.357500076293945,
+      "normal_x": 1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          6.506924629211426,
+          3.58136248588562
+        ],
+        [
+          6.559500217437744,
+          3.689862119686514
+        ],
+        [
+          6.559500217437744,
+          3.7970001697540283
+        ],
+        [
+          6.123035216775558,
+          3.782328207828799
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_ES_01",
+      "gable_polygon": 85,
+      "timber": "SM_IndoorRoof_ES_01",
+      "timber_polygon": 2042,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.04948988027009449,
+      "x_plane_m": 7.357500076293945,
+      "normal_x": -1.0,
+      "interior_facing": true,
+      "intersection_yz_m": [
+        [
+          -6.506924629211426,
+          3.58136248588562
+        ],
+        [
+          -6.559500217437744,
+          3.689862119686514
+        ],
+        [
+          -6.559500217437744,
+          3.7970001697540283
+        ],
+        [
+          -6.123035218025352,
+          3.7823282078708114
+        ]
+      ]
+    },
+    {
+      "gable": "SM_IndoorRoof_Gable_WS_01",
+      "gable_polygon": 85,
+      "timber": "SM_IndoorRoof_WS_01",
+      "timber_polygon": 1070,
+      "x_plane_separation_m": 1.5894571969710114e-07,
+      "overlap_area_m2": 0.04948988027009449,
+      "x_plane_m": -7.517499923706055,
+      "normal_x": -1.0,
+      "interior_facing": false,
+      "intersection_yz_m": [
+        [
+          -6.506924629211426,
+          3.58136248588562
+        ],
+        [
+          -6.559500217437744,
+          3.689862119686514
+        ],
+        [
+          -6.559500217437744,
+          3.7970001697540283
+        ],
+        [
+          -6.123035218025352,
+          3.7823282078708114
+        ]
+      ]
+    }
+  ],
+  "limitations": [
+    "Areas sum triangle-pair intersections, not certified union area; original duplicate faces can overcount.",
+    "Near-coplanar threshold applies only to this diagnostic, no source/native acceptance tolerance changed.",
+    "No controlled rendered cause/fix demonstrated."
+  ],
+  "source_bytes_unchanged": true,
+  "interior_pairs": 28,
+  "interior_pair_area": 6.418003356350226
+}

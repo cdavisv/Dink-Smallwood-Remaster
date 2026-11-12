@@ -20,6 +20,13 @@ public:
   * refuses already-saved canonical packages; marks the new owned package dirty but never saves/builds/reimports. Caller enforces exact50 legacy or exact23 shared trial/SHA. */
  UFUNCTION(BlueprintCallable, Category="Dink|Art|Roof")
  static bool SetRoofSourceFilenamesRelative(UObject* Asset, const TArray<FString>& ExpectedAbsoluteFiles);
+ /** Capability for exactly four unsaved InteriorGableRecessV1 meshes; no namespace override. */
+ UFUNCTION(BlueprintPure, Category="Dink|Art|Roof")
+ static bool SupportsInteriorGableRecessSourceFilenames();
+ /** One canonical existing FBX and one source LOD only. Metadata-only transaction;
+  * refuses saved/foreign assets, preserves source MD5/timestamp and never imports/builds/saves. */
+ UFUNCTION(BlueprintCallable, Category="Dink|Art|Roof")
+ static bool SetInteriorGableRecessSourceFilenamesRelative(UObject* Asset, const TArray<FString>& ExpectedAbsoluteFiles);
 private:
  // Internal transaction seam: no reflection/public namespace override. Only the
  // uniquely named scratch-fixture automation class may exercise this core.

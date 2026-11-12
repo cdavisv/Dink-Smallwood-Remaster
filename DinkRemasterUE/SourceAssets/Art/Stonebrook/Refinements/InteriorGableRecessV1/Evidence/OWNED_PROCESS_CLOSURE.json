@@ -1,0 +1,8 @@
+{
+  "owned_blender_processes": [],
+  "all_owned_closed": true,
+  "inspector_sessions": "93976/71842 scripts completed outputs then verified-owned SIGTERM (143), preserved",
+  "render_session": "9471 normal0; final synchronousoutputs followed explicitexit0",
+  "geometry_checks": "19013/99303 andray/triangle commands normal0",
+  "scope": "Only exact ownedscripts; RootGPU andforeignprocesses untouched. No globalidleclaim."
+}
