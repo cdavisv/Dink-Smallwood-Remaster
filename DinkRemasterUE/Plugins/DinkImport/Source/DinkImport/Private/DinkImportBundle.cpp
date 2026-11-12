@@ -217,6 +217,25 @@ bool FDinkBundle::Load(const FString& InDir, FString& OutError)
 			S.GroundImage = Str(O, TEXT("ground_image"));
 			S.GroundHash = Str(O, TEXT("ground_hash"));
 			S.CollisionHash = Str(O, TEXT("collision_hash"));
+			S.GroundMask = Str(O, TEXT("ground_mask"));
+			S.GroundMaskHash = Str(O, TEXT("ground_mask_hash"));
+			{
+				const TArray<TSharedPtr<FJsonValue>>* GroundLayerRows = nullptr;
+				if (O->TryGetArrayField(TEXT("ground_layers"), GroundLayerRows) && GroundLayerRows)
+				{
+					for (const TSharedPtr<FJsonValue>& LayerValue : *GroundLayerRows)
+					{
+						const TSharedPtr<FJsonObject> LayerObject = LayerValue->AsObject();
+						FDinkBundleGroundLayer Layer;
+						Layer.Name = Str(LayerObject, TEXT("name"));
+						Layer.TileCm = Num(LayerObject, TEXT("tile_cm"), 400.0);
+						Layer.NormalStrength = Num(LayerObject, TEXT("normal_strength"), 1.0);
+						Layer.Backlight = Num(LayerObject, TEXT("backlight"), 0.0);
+						Layer.Emissive = Num(LayerObject, TEXT("emissive"), 0.0);
+						S.GroundLayers.Add(Layer);
+					}
+				}
+			}
 			S.Hash = Str(O, TEXT("hash"));
 			S.Excluded = Str(O, TEXT("excluded"));
 			ScreenIndex.Add(S.Screen, Screens.Num());

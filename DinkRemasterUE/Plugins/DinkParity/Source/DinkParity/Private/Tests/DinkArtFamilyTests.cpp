@@ -71,6 +71,27 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 	TestEqual(TEXT("only the first of a duplicate, a bad mesh path, a bad fit and a missing family survive as one row"), Bad.Num(), 1);
 	TestTrue(TEXT("fit defaults to none (real size)"), Bad.Num() == 1 && Bad[0].Fit == EDinkFamilyFit::None && !Bad[0].bYawFromSprite);
 	TestEqual(TEXT("four rows reported"), BadErrors.Num(), 4);
+	// Sequence-and-frame rows: one picture of a sequence, with its own yaw; they win over the class row.
+	TArray<FDinkFamilyBinding> Framed;
+	TArray<FString> FramedErrors;
+	TestTrue(TEXT("frame rows parse"), DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
+		{"family":"wall_curve","mesh":"/Game/A/SM_Class"},
+		{"family":"80 walls curve NE","frame":7,"mesh":"/Game/A/SM_Curve","yaw_offset":-90,"anchor_front":1},
+		{"family":"80 walls curve SE","frame":9,"mesh":"/Game/A/SM_Curve"},
+		{"family":"80 walls","mesh":"/Game/A/SM_Seq"}]})"), Framed, FramedErrors) && Framed.Num() == 4);
+	if (Framed.Num() == 4)
+	{
+		const FDinkFamilyBinding* Seven = DinkArtFamily::Resolve(Framed, 80, TEXT("wall_curve"), 7);
+		TestTrue(TEXT("frame 7 takes its frame row over the class row, with its yaw and front anchor"), Seven == &Framed[1] && Seven->YawOffset == -90.0 && Seven->AnchorFront == 1.0);
+		TestTrue(TEXT("frame 9 takes the other frame row"), DinkArtFamily::Resolve(Framed, 80, TEXT("wall_curve"), 9) == &Framed[2]);
+		TestTrue(TEXT("a frame without a row falls back to the class row"), DinkArtFamily::Resolve(Framed, 80, TEXT("wall_curve"), 8) == &Framed[0]);
+		TestTrue(TEXT("without a class the plain sequence row binds, never a frame row"), DinkArtFamily::Resolve(Framed, 80, NAME_None, 3) == &Framed[3]);
+		TestTrue(TEXT("the frame-less call keeps the old precedence"), DinkArtFamily::Resolve(Framed, 80, TEXT("wall_curve")) == &Framed[0]);
+	}
+	TArray<FDinkFamilyBinding> BadFrame;
+	TArray<FString> BadFrameErrors;
+	DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[{"family":"barrel","frame":2,"mesh":"/Game/A/SM_A"}]})"), BadFrame, BadFrameErrors);
+	TestTrue(TEXT("a frame on a class row is refused"), BadFrame.IsEmpty() && BadFrameErrors.Num() == 1);
 	TArray<FString> SchemaErrors;
 	TestFalse(TEXT("a wrong schema is refused"), DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art/1","families":[]})"), Bad, SchemaErrors));
 
@@ -255,6 +276,7 @@ namespace
 					P.Origin = It->Origin->OriginId.ToString();
 					P.Screen = It->ScreenNumber;
 					P.Sequence = It->Origin->Sequence;
+					P.Frame = It->Origin->Frame;
 					P.ClassId = It->Origin->ClassId;
 					P.bScripted = !It->Origin->ScriptName.IsNone();
 					P.bHardnessOnly = It->PlacementKind == TEXT("hardness_only");

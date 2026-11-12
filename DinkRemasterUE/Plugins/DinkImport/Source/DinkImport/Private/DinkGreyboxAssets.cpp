@@ -177,6 +177,42 @@ namespace DinkGreybox
 				Triangles += 2;
 			}
 
+			/** Shared-vertex grid (smooth normals): Points is row-major Rows x Cols; bWrap joins the last column to the first. */
+			void SmoothGrid(FName Slot, const TArray<FVector3f>& Points, int32 Rows, int32 Cols, bool bWrap)
+			{
+				const FPolygonGroupID G = Group(Slot);
+				TArray<FVertexID> V;
+				V.Reserve(Points.Num());
+				for (const FVector3f& P : Points)
+				{
+					const FVertexID Id = Desc.CreateVertex();
+					Positions[Id] = P;
+					V.Add(Id);
+				}
+				auto Corner = [&](int32 R, int32 C)
+				{
+					const FVertexInstanceID VI = Desc.CreateVertexInstance(V[R * Cols + (C % Cols)]);
+					UVs.Set(VI, 0, FVector2f(0.5f, 0.5f));
+					return VI;
+				};
+				for (int32 R = 0; R + 1 < Rows; ++R)
+					for (int32 C = 0; C < (bWrap ? Cols : Cols - 1); ++C)
+					{
+						FVertexInstanceID Q[4] = {Corner(R, C), Corner(R, C + 1), Corner(R + 1, C + 1), Corner(R + 1, C)};
+						const FVector3f P0 = Points[R * Cols + C], P1 = Points[R * Cols + (C + 1) % Cols], P3 = Points[(R + 1) * Cols + C];
+						if (FVector3f::CrossProduct(P1 - P0, P3 - P0).Z < 0.f) Swap(Q[1], Q[3]);
+						if (Points[R * Cols + C].Equals(Points[R * Cols + (C + 1) % Cols], 0.01f))
+						{
+							Desc.CreateTriangle(G, {Q[0], Q[3], Q[2]}); // centre fan
+							Triangles += 1;
+							continue;
+						}
+						Desc.CreateTriangle(G, {Q[0], Q[2], Q[1]});
+						Desc.CreateTriangle(G, {Q[0], Q[3], Q[2]});
+						Triangles += 2;
+					}
+			}
+
 			/** Prism standing on Base (4 points at z = Base z, ordered around), top at +Height, no bottom face. */
 			void Prism(FName Slot, const FVector3f Base[4], float Height, bool bSides = true)
 			{
@@ -248,7 +284,17 @@ namespace DinkGreybox
 				{
 					FVector3f Base[4] = {At(R.Min.X, R.Min.Y, 0), At(R.Max.X, R.Min.Y, 0),
 						At(R.Max.X, R.Max.Y, 0), At(R.Min.X, R.Max.Y, 0)};
-					(bWater ? Visual : Debug).Prism(Slot, Base, Height, !bWater);
+					if (bWater)
+					{
+						// Water surface only, with the screen's own 0..1 UVs so the shore mask lines up with the ground.
+						const FVector3f Up(0.f, 0.f, Height);
+						FVector3f P[4] = {Base[0] + Up, Base[1] + Up, Base[2] + Up, Base[3] + Up};
+						FVector2f T[4] = {{R.Min.X / 600.f, R.Min.Y / 400.f}, {R.Max.X / 600.f, R.Min.Y / 400.f},
+							{R.Max.X / 600.f, R.Max.Y / 400.f}, {R.Min.X / 600.f, R.Max.Y / 400.f}};
+						Visual.Quad(Slot, P, T, FVector3f(0, 0, 1));
+						continue;
+					}
+					Debug.Prism(Slot, Base, Height, true);
 				}
 			}
 		}
@@ -561,16 +607,25 @@ namespace DinkGreybox
 			{TEXT("MI_DinkBlocker_Warp"), TEXT("M_DinkFlat"), FLinearColor(0.80f, 0.15f, 0.80f), 1.f},
 			{TEXT("MI_DinkWater"), TEXT("M_DinkWater"), FLinearColor(0.05f, 0.22f, 0.50f), 0.55f},
 		};
+		// Photoreal pass: the greybox water fill uses the real water material when it has been imported.
+		const TCHAR* EnvWaterFlat = TEXT("/Game/Dink/Materials/Environment/M_Env_WaterFlat.M_Env_WaterFlat");
+		const bool bEnvWater = FPackageName::DoesPackageExist(TEXT("/Game/Dink/Materials/Environment/M_Env_WaterFlat"));
 		for (const FFlat& F : Flats)
 		{
 			const FString Pkg = SharedPackage(F.Name);
-			const FString Hash = HashStrings({TEXT("mi"), F.Name, F.Parent, F.Color.ToString(), FString::SanitizeFloat(F.Opacity)});
+			const bool bThisEnvWater = bEnvWater && FCString::Strcmp(F.Name, TEXT("MI_DinkWater")) == 0;
+			const FString Hash = bThisEnvWater ? HashStrings({TEXT("mi-env-water/1"), F.Name})
+				: HashStrings({TEXT("mi"), F.Name, F.Parent, F.Color.ToString(), FString::SanitizeFloat(F.Opacity)});
 			if (IsUpToDate(Pkg, Hash))
 			{
 				MarkUnchanged(Pkg, Hash);
 				continue;
 			}
 			UMaterialInterface* Parent = Cast<UMaterialInterface>(LoadGenerated(SharedPackage(F.Parent)));
+			if (bEnvWater && FCString::Strcmp(F.Name, TEXT("MI_DinkWater")) == 0)
+			{
+				Parent = LoadObject<UMaterialInterface>(nullptr, EnvWaterFlat);
+			}
 			if (!Parent)
 			{
 				OutError = FString::Printf(TEXT("parent material %s missing"), F.Parent);
@@ -578,14 +633,62 @@ namespace DinkGreybox
 			}
 			bool bExisted = false;
 			UMaterialInstanceConstant* MI = BuildMaterialInstance(Pkg, Parent, bExisted);
-			MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Color")), F.Color);
-			if (F.Opacity < 1.f)
+			if (!bThisEnvWater) MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Color")), F.Color);
+			if (F.Opacity < 1.f && !bThisEnvWater)
 			{
 				MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Opacity")), F.Opacity);
 			}
 			MI->PostEditChange();
 			MI->MarkPackageDirty();
 			MarkBuilt(MI, Pkg, Hash, bExisted);
+		}
+
+		// Far backdrop (photoreal pass): a ground skirt out to 4.1 km with two rings of low hills. Visual
+		// only; UDinkEnvironmentSubsystem keeps it centred on the camera so the grid never shows an edge.
+		{
+			const FString Pkg = SharedPackage(TEXT("SM_DinkBackdrop"));
+			const TCHAR* BackdropMaterial = TEXT("/Game/Dink/Materials/Environment/MI_Env_Terrain_Backdrop");
+			const bool bMaterial = FPackageName::DoesPackageExist(BackdropMaterial);
+			const FString Hash = HashStrings({TEXT("backdrop/3"), bMaterial ? TEXT("env") : TEXT("none")});
+			if (IsUpToDate(Pkg, Hash))
+			{
+				MarkUnchanged(Pkg, Hash);
+			}
+			else
+			{
+				const float RingsM[] = {0, 150, 350, 550, 700, 820, 940, 1060, 1200, 1380, 1600, 1900, 2300, 2800, 3400, 4100};
+				const int32 Rows = UE_ARRAY_COUNT(RingsM), Cols = 256;
+				auto Fbm = [](float Theta, float Phase)
+				{
+					const int32 K[] = {3, 5, 8, 13, 21, 34};
+					float Sum = 0.f, Norm = 0.f;
+					for (int32 I = 0; I < 6; ++I)
+					{
+						const float A = FMath::Pow(float(K[I]), -0.8f);
+						Sum += A * FMath::Sin(K[I] * Theta + Phase * (I + 1) * 1.7f);
+						Norm += A;
+					}
+					return 0.5f + 0.5f * Sum / Norm;
+				};
+				TArray<FVector3f> Points;
+				Points.Reserve(Rows * Cols);
+				for (int32 R = 0; R < Rows; ++R)
+					for (int32 C = 0; C < Cols; ++C)
+					{
+						const float Theta = 2.f * UE_PI * C / Cols;
+						const float Rm = RingsM[R];
+						const float Near = FMath::Exp(-FMath::Square((Rm - 1060.f) / 330.f)) * 48.f * (0.25f + 0.75f * Fbm(Theta, 0.6f));
+						const float Far = FMath::SmoothStep(1700.f, 3000.f, Rm) * 210.f * (0.35f + 0.65f * Fbm(Theta + 0.4f, 2.1f))
+							+ FMath::SmoothStep(2300.f, 2900.f, Rm) * 7.f * FMath::Sin(Theta * 173.f) * FMath::Sin(Theta * 97.f + 1.f);
+						Points.Add(FVector3f(FMath::Cos(Theta) * Rm * 100.f, FMath::Sin(Theta) * Rm * 100.f, FMath::Max(Near + Far, 0.f) * 100.f));
+					}
+				FMeshWriter Writer;
+				Writer.SmoothGrid(TEXT("Backdrop"), Points, Rows, Cols, true);
+				TMap<FName, UMaterialInterface*> Mats;
+				Mats.Add(TEXT("Backdrop"), bMaterial ? LoadObject<UMaterialInterface>(nullptr, *(FString(BackdropMaterial) + TEXT(".MI_Env_Terrain_Backdrop"))) : nullptr);
+				bool bExisted = false;
+				MarkBuilt(CommitMesh(Pkg, Writer, Mats, false, bExisted), Pkg, Hash, bExisted);
+			}
 		}
 
 		// unit card: 1 m wide (x -50..50), 1 m tall (z 0..100), facing south (+Y), UV v = 0 at the top
@@ -679,10 +782,90 @@ namespace DinkGreybox
 			}
 			MarkBuilt(T, TexPkg, TexHash, bExisted);
 		}
-		const FString MiHash = HashStrings({TEXT("ground-mi"), TexPkg});
+		// Photoreal pass: screens with terrain layers instance the master terrain material
+		// (Scripts/import_environment_materials.sh) with a per-screen layer mask; the others, and
+		// every screen when those assets are absent, keep the original painted ground.
+		const TCHAR* EnvMaterials = TEXT("/Game/Dink/Materials/Environment/");
+		const TCHAR* EnvTextures = TEXT("/Game/Dink/Textures/Environment/");
+		auto LoadEnv = [](const FString& Path) -> UObject*
+		{
+			return FPackageName::DoesPackageExist(Path) ? LoadObject<UObject>(nullptr, *(Path + TEXT(".") + FPackageName::GetShortName(Path))) : nullptr;
+		};
+		UMaterialInterface* Terrain = Screen.GroundLayers.IsEmpty() || Screen.GroundMask.IsEmpty() ? nullptr
+			: Cast<UMaterialInterface>(LoadEnv(FString(EnvMaterials) + TEXT("M_Env_Terrain")));
+		struct FLayerTextures { UTexture* BC = nullptr; UTexture* N = nullptr; UTexture* ORM = nullptr; UTexture* H = nullptr; UTexture* Macro = nullptr; UTexture* E = nullptr; };
+		TArray<FLayerTextures> LayerTextures;
+		if (Terrain)
+		{
+			for (const FDinkBundleGroundLayer& L : Screen.GroundLayers)
+			{
+				const FString Base = FString(EnvTextures) + TEXT("T_Env_") + L.Name;
+				FLayerTextures T;
+				T.BC = Cast<UTexture>(LoadEnv(Base + TEXT("_BC")));
+				T.N = Cast<UTexture>(LoadEnv(Base + TEXT("_N")));
+				T.ORM = Cast<UTexture>(LoadEnv(Base + TEXT("_ORM")));
+				T.H = Cast<UTexture>(LoadEnv(Base + TEXT("_H")));
+				T.Macro = Cast<UTexture>(LoadEnv(Base + TEXT("_Macro")));
+				if (!T.Macro) T.Macro = Cast<UTexture>(LoadEnv(FString(EnvTextures) + TEXT("T_Env_MacroDefault")));
+				if (L.Emissive > 0.0) T.E = Cast<UTexture>(LoadEnv(Base + TEXT("_E")));
+				if (!T.BC || !T.N || !T.ORM || !T.H || !T.Macro) { Terrain = nullptr; break; }
+				LayerTextures.Add(T);
+			}
+		}
+		const FString MaskPkg = Folder / (TEXT("T_GroundMask_") + Sid);
+		if (Terrain)
+		{
+			const FString MaskHash = HashStrings({TEXT("ground-mask/2"), Screen.GroundMaskHash});
+			if (IsUpToDate(MaskPkg, MaskHash)) MarkUnchanged(MaskPkg, MaskHash);
+			else
+			{
+				bool bExisted = false;
+				UTexture2D* T = BuildTexture(MaskPkg, Bundle.Dir / Screen.GroundMask, false, bExisted, OutError);
+				if (!T) return false;
+				T->PreEditChange(nullptr);
+				T->SRGB = false;
+				T->CompressionSettings = TC_Masks;
+				T->MipGenSettings = TMGS_NoMipmaps;
+				T->Filter = TF_Bilinear;
+				T->PostEditChange();
+				MarkBuilt(T, MaskPkg, MaskHash, bExisted);
+			}
+		}
+		FString LayerKey;
+		for (const FDinkBundleGroundLayer& L : Screen.GroundLayers)
+			LayerKey += FString::Printf(TEXT("%s:%.3f:%.3f:%.3f:%.3f;"), *L.Name, L.TileCm, L.NormalStrength, L.Backlight, L.Emissive);
+		const FString MiHash = Terrain ? HashStrings({TEXT("ground-mi-terrain/3"), MaskPkg, Screen.GroundMaskHash, LayerKey})
+			: HashStrings({TEXT("ground-mi"), TexPkg});
 		if (IsUpToDate(MiPkg, MiHash))
 		{
 			MarkUnchanged(MiPkg, MiHash);
+		}
+		else if (Terrain)
+		{
+			bool bExisted = false;
+			UMaterialInstanceConstant* MI = BuildMaterialInstance(MiPkg, Terrain, bExisted);
+			MI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("LayerMask")), Cast<UTexture>(LoadGenerated(MaskPkg)));
+			const TCHAR* Suffix[] = {TEXT("A"), TEXT("B"), TEXT("C")};
+			for (int32 I = 0; I < LayerTextures.Num() && I < 3; ++I)
+			{
+				auto P = [&](const TCHAR* Name) { return FMaterialParameterInfo(FName(*(FString(Name) + Suffix[I]))); };
+				MI->SetTextureParameterValueEditorOnly(P(TEXT("BC")), LayerTextures[I].BC);
+				MI->SetTextureParameterValueEditorOnly(P(TEXT("N")), LayerTextures[I].N);
+				MI->SetTextureParameterValueEditorOnly(P(TEXT("ORM")), LayerTextures[I].ORM);
+				MI->SetTextureParameterValueEditorOnly(P(TEXT("H")), LayerTextures[I].H);
+				MI->SetTextureParameterValueEditorOnly(P(TEXT("Macro")), LayerTextures[I].Macro);
+				MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(FName(*(FString(TEXT("Tile")) + Suffix[I] + TEXT("Cm")))), float(Screen.GroundLayers[I].TileCm));
+				MI->SetScalarParameterValueEditorOnly(P(TEXT("NormalStrength")), float(Screen.GroundLayers[I].NormalStrength));
+				MI->SetScalarParameterValueEditorOnly(P(TEXT("Backlight")), float(Screen.GroundLayers[I].Backlight));
+				if (LayerTextures[I].E)
+				{
+					MI->SetTextureParameterValueEditorOnly(P(TEXT("E")), LayerTextures[I].E);
+					MI->SetScalarParameterValueEditorOnly(P(TEXT("EmissiveStrength")), float(Screen.GroundLayers[I].Emissive));
+				}
+			}
+			MI->PostEditChange();
+			MI->MarkPackageDirty();
+			MarkBuilt(MI, MiPkg, MiHash, bExisted);
 		}
 		else
 		{
@@ -725,7 +908,38 @@ namespace DinkGreybox
 		};
 
 		// Visual-only split: keep the collision GeoHash and collision builders byte-for-byte.
-		const FString VisualHash = HashStrings({TEXT("visual-ground-water/1"), GeoHash, MiPkg});
+		// Photoreal pass: screens with a terrain mask get their own shore-aware water instance (the mask's
+		// alpha is a signed distance to the waterline, which fakes depth over the 3 cm slab).
+		const FString WaterMiPkg = Folder / (TEXT("MI_Water_") + Sid);
+		const TCHAR* EnvWaterShore = TEXT("/Game/Dink/Materials/Environment/M_Env_WaterShore");
+		const bool bShoreWater = Terrain && !Rects(TEXT("fill_water")).IsEmpty() && FPackageName::DoesPackageExist(EnvWaterShore);
+		if (bShoreWater)
+		{
+			// Sea screens (the sea sheets and any shore with a dry sand or shingle layer) keep a blue-green body;
+			// everything else is silty pond water (the material's defaults).
+			bool bSea = Screen.Kind == TEXT("sea");
+			for (const FDinkBundleGroundLayer& L : Screen.GroundLayers)
+				bSea |= L.Name == TEXT("DrySand") || L.Name == TEXT("ShingleBeach"); // WetSand is every water bed, pond or sea
+			const FString WaterHash = HashStrings({TEXT("water-mi/4"), MaskPkg, Screen.GroundMaskHash, bSea ? TEXT("sea") : TEXT("pond")});
+			if (IsUpToDate(WaterMiPkg, WaterHash)) MarkUnchanged(WaterMiPkg, WaterHash);
+			else
+			{
+				bool bExisted = false;
+				UMaterialInstanceConstant* MI = BuildMaterialInstance(WaterMiPkg,
+					LoadObject<UMaterialInterface>(nullptr, *(FString(EnvWaterShore) + TEXT(".M_Env_WaterShore"))), bExisted);
+				MI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("ShoreMask")), Cast<UTexture>(LoadGenerated(MaskPkg)));
+				if (bSea)
+				{
+					MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Absorption")), FLinearColor(0.42f, 0.17f, 0.15f));
+					MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Scattering")), FLinearColor(0.016f, 0.034f, 0.034f));
+					MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(TEXT("ScumAmount")), 0.f);
+				}
+				MI->PostEditChange();
+				MI->MarkPackageDirty();
+				MarkBuilt(MI, WaterMiPkg, WaterHash, bExisted);
+			}
+		}
+		const FString VisualHash = HashStrings({TEXT("visual-ground-water/2"), GeoHash, MiPkg, bShoreWater ? WaterMiPkg : FString()});
 		const FString DebugHash = HashStrings({TEXT("debug-blockers/1"), GeoHash});
 		FMeshWriter Visual, Debug;
 		WriteScreenPresentation(Screen, *Coll, Pivot, Visual, Debug);
@@ -734,7 +948,7 @@ namespace DinkGreybox
 		{
 			TMap<FName, UMaterialInterface*> Mats;
 			Mats.Add(TEXT("Ground"), Cast<UMaterialInterface>(LoadGenerated(MiPkg)));
-			Mats.Add(TEXT("Water"), Cast<UMaterialInterface>(LoadGenerated(SharedPackage(TEXT("MI_DinkWater")))));
+			Mats.Add(TEXT("Water"), Cast<UMaterialInterface>(LoadGenerated(bShoreWater ? WaterMiPkg : SharedPackage(TEXT("MI_DinkWater")))));
 			bool bExisted = false;
 			MarkBuilt(CommitMesh(VisualPkg, Visual, Mats, false, bExisted), VisualPkg, VisualHash, bExisted);
 		}
