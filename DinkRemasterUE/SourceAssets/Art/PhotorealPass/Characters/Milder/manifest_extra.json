@@ -1,0 +1,68 @@
+{
+ "class": "character_humanoid",
+ "families": [
+  "npc soldier (401/403/407/409 graphics/people/soldier/c10w*, walk; Milder Flatstomp in s1-bul and town scripts)",
+  "405 graphics/people/soldier/death- (reuse posed, not delivered here)"
+ ],
+ "supersedes": [
+  "Characters/Milder/SK_Milder (SK_Milder_LOD0-3)"
+ ],
+ "sprite_reading": "Verified on tools/dinkex/out/sprites/401-409: auburn-brown short hair, large steel pauldrons, steel forearms and lower legs, brown tabard with a diagonal strap and a belt, a silver skirt to mid-thigh, tan thighs, dark blue cowl at the neck, skin-coloured upper arms. The sprite's grey hands (gauntlets) are not reproduced.",
+ "third_party": [
+  {
+   "source": "ambientcg",
+   "asset_id": "Metal054A",
+   "use": "plate armour scratch normal and roughness, recoloured"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "brown_leather",
+   "use": "tabard, belt, baldric, straps, soles"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "fabric_leather_02",
+   "use": "boots"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "caban",
+   "use": "wool hose (tan) and padded collar (blue)"
+  },
+  {
+   "source": "MakeHuman CC0 (in repo, Characters/ThirdParty/MakeHuman)",
+   "asset_id": "base mesh head/hands/shoulder yoke (shipped fit) + CC0_BaseMesh.obj arm faces, young_caucasian_male skin albedo, eyebrow001, eyelashes01",
+   "use": "head and hand topology with shipped weights; bare arms re-fitted from the base mesh and welded to hands and shoulders; albedo base; brow and lash cards"
+  }
+ ],
+ "authored_here": "all armour, straps, buckles, tabard, cowl, hose, boots; riveted-mail tile (Tools/mail_tex.py, numpy) and the mail skirt with authored skinning; hair cards and strand atlas; eyes; skin authoring; all bakes",
+ "importer_changes": [
+  "New asset name SK_Milder_Photoreal (4 LOD FBX in Milder/Export). Same 89-bone SK_Mannequin skeleton, bone names, hierarchy and rest pose as the shipped SK_Milder; existing clips apply unchanged. No actions are embedded (the shipped candidate has none either).",
+  "Material slots change from [MI_Milder_Skin, MI_Milder_Eyes, MI_Milder_Hair, MI_Milder_BrowLash, MI_Milder_Wardrobe] to [MI_Milder_PR_Skin, MI_Milder_PR_Eyes, MI_Milder_PR_Hair, MI_Milder_PR_Outfit, MI_Milder_PR_Gear]: still five slots, same convention as SK_Dink_Photoreal (brows/lashes are cards inside the Hair slot; wardrobe split into Outfit 4K and Gear 2K).",
+  "Each slot has its own BC/N/ORM set; Hair is masked/two-sided with alpha in BC; Gear uses ORM.B metallic; Skin has an extra SSS map (rgb scatter colour x thickness). Normal maps are OpenGL (+Y): keep normal_flip_green true.",
+  "Textures: Skin 4096, Outfit 4096, Gear 2048, Hair 2048, Eyes 1024.",
+  "Skin weights: head and hands keep the shipped weights; the new bare-arm skin and all garments take weights by surface transfer from the Manny reference (used transiently, not delivered), as the shipped candidates did; skirts carry authored pelvis/thigh/calf weights; plates and buckles are rigid on one or two bones.",
+  "A Physics Asset still has to be generated in Unreal. UV uniqueness is per slot (see uv_per_slot); the validator's whole-mesh UV_OVERLAP error is expected with five texture sets."
+ ],
+ "review_renders": [
+  "Review/r4_body.png",
+  "Review/r4_face.png",
+  "Review/r4_overcast.png (face, sky only)",
+  "Review/r4_game.png (3 m)",
+  "Review/r4_skirt.png (walk pose pair from two sides, turn front/back)",
+  "Review/r1..r3_* (earlier rounds)"
+ ],
+ "budget_note": "LOD0 34.6k triangles: over the 20k soft target, just under the 35k hard cap. Head 8.6k (MakeHuman topology), hands thinned to about a third, bare arms and shoulders 2k, hair about 4k, armour and clothing about 17k.",
+ "known_weaknesses": [
+  "Not photoreal at 1 m; reads as an armoured young man at gameplay distance. Last review round (r4) still faulted everything below.",
+  "Back view: the sleeveless tabard's armhole edges are ragged behind the pauldrons and show jagged slivers of shoulder skin; a rectangular bake artefact (striped patch about 8 cm wide) sits on the back of the mail skirt left of centre; a few brown tabard specks come through the lower edge of the blue cowl.",
+  "Hands are bare: the sprite's grey gauntlets are not built (fingers need the shipped hand skin). Elbow cops are not built either.",
+  "Plate: pauldron dome with two lames, vambraces, greaves and knee cops are parametric shells with rolled edges, dents and a tooled border in the bake, but no rivets, no articulation and single-sided (thickness lips only); the knee cop is rigid on calf/thigh and will separate from the leg in a deep knee bend. The knee strap was dropped for budget, so the cop has no visible attachment; pauldron lames show one arm strap with buckle only.",
+  "Straps and buckles: ring straps lie on the plates and each carries a small iron buckle, but the buckles are 3-sided tubes and the strap does not thread through them.",
+  "Mail skirt is a textured shell (authored ring tile baked to normal/roughness/metal), no ring silhouette or alpha at the hem; weights are authored pelvis/thigh and were only checked by eye in the walk pair and turn (r4_skirt), not numerically.",
+  "Face: built on the shipped MakeHuman male head with a heavier brow and jaw and stubble shadow; no expression shapes, so no smug look; he reads as a relative of Dink. Hair is the same short card groom at lower density, with a few stray blades at the crown.",
+  "Bare arms are re-fitted MakeHuman base-mesh faces scaled up for bulk: plausible but not strongly muscular; no veins or elbow detail.",
+  "Boots are plain soft leather under the greaves (the sprite reads as steel to the toe).",
+  "Validator: NORMALS_INCONSISTENT on 2 edges (a flipped face pair in the gear slot, not located), whole-mesh UV_OVERLAP as for Dink; LOD0 over the soft triangle target. Not imported or seen in Unreal; Physics Asset not made; no actions embedded."
+ ]
+}

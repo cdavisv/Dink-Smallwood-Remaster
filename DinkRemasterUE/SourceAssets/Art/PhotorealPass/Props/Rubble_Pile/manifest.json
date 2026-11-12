@@ -1,0 +1,55 @@
+{
+ "name": "SM_Rubble_Pile_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Rubble_Pile/SM_Rubble_Pile_PR.fbx",
+ "materials": [
+  "MI_Struct_FieldBoulder",
+  "MI_Struct_Earth"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 3264,
+ "lod1_triangles": 1632,
+ "lod2_triangles": 718,
+ "dimensions_m": [
+  2.231,
+  1.246,
+  0.443
+ ],
+ "bounds_min_m": [
+  -1.169,
+  -0.668,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.061,
+  0.578,
+  0.443
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "80 inside/stnwalls/stonw- frame 23",
+  "rubble_pile"
+ ],
+ "supersedes": "none (rubble_pile placeholder, 12 placements)",
+ "dresses": "heap of fallen masonry 2.1 x 1.2 x 0.45 m: about a dozen squared blocks and twenty-odd broken stones tumbled over a low mound of dust",
+ "fit": {
+  "pivot": "ground centre; yaw at random"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Rubble_Pile",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "One review round. Blocks and stones are scattered by rule, some float a centimetre or intersect; the dust mound has a clean rim; no small debris.",
+ "third_party": [
+  "dirt_floor",
+  "rock_face",
+  "rock_face_04",
+  "rocky_trail"
+ ],
+ "texture_sets": [
+  "EarthPath",
+  "FieldBoulder"
+ ],
+ "textures_px": 2048
+}

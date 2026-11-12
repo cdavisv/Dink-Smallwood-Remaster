@@ -47,7 +47,7 @@ bool UDinkGameplay::UsesAuthoredGeometry(const FDinkSprite& Attacker, const FDin
 	// real physics geometry and uses the same checks as a rendered game.
 	const AActor* From = Attacker.Actor.Get();
 	const AActor* To = Target.Actor.Get();
-	return From && To && From->GetWorld() && From->GetWorld() == To->GetWorld() && To->ActorHasTag(TEXT("DinkAuthoredArt"));
+	return From && To && From->GetWorld() && From->GetWorld() == To->GetWorld() && (To->ActorHasTag(TEXT("DinkAuthoredArt")) || HasHardnessFitInstance(Target));
 }
 
 bool UDinkGameplay::AuthoredGeometryMatches(const FDinkSprite& Attacker, const FDinkSprite& Target,
@@ -84,10 +84,14 @@ bool UDinkGameplay::AuthoredGeometryMatches(const FDinkSprite& Attacker, const F
 		HalfHeight += float(Reach);
 		End.Z += 0.1; // retain initial-overlap hits with a nonzero sweep direction
 	}
+	UPrimitiveComponent* Fitted=FindHardnessFitPrimitive(Target);
+    if(HasHardnessFitInstance(Target)&&!Fitted)return false;
 	TArray<UPrimitiveComponent*, TInlineAllocator<4>> Geometry;
+	if(Fitted)Geometry.Add(Fitted);
 	TInlineComponentArray<UPrimitiveComponent*> Components(TargetActor);
 	for (UPrimitiveComponent* Component : Components)
 	{
+        if(Fitted)break;
 		if (Component->IsRegistered() && Component->ComponentHasTag(TEXT("DinkAuthoredInteraction")) &&
 			(!Component->bHiddenInGame || Component->IsA<UShapeComponent>()))
 		{
@@ -135,7 +139,7 @@ bool UDinkGameplay::AuthoredGeometryMatches(const FDinkSprite& Attacker, const F
 		FCollisionQueryParams Params(TEXT("DinkAuthoredInteraction"), true, FromActor);
 		FHitResult Blocker;
 		if (UWorld* World = FromActor->GetWorld(); World && World->LineTraceSingleByChannel(Blocker, SightOrigin, Surface, ECC_Visibility, Params) &&
-			Blocker.GetActor() != TargetActor && Blocker.Distance + 1.f < FVector::Distance(SightOrigin, Surface)) { continue; }
+			Blocker.GetActor() != TargetActor && Blocker.GetComponent()!=Fitted && Blocker.Distance + 1.f < FVector::Distance(SightOrigin, Surface)) { continue; }
 		BestDistance = FMath::Min(BestDistance, FVector::Dist2D(From, Surface));
 	}
 	if (OutDistanceCm) { *OutDistanceCm = BestDistance; }
@@ -219,4 +223,20 @@ bool UDinkGameplay::AuthoredActorMoveBlocked(const FDinkSprite& Sprite, const FI
     }
     if (OutFacing) *OutFacing = WantedEndClear ? Wanted : Current;
     return false;
+}
+
+// The fitted target uses the same admitted cooked mesh as movement. This is a
+// bounded actual component query, not a legacy card AABB or a second collider.
+bool UDinkGameplay::FittedMissileMatches(const FDinkSprite& Missile,const FDinkSprite& Target,int32 Range) const
+{
+    UPrimitiveComponent* Fitted=FindHardnessFitPrimitive(Target);
+    const AActor* Actor=Missile.Actor.Get();
+    if(!Fitted||!Actor||Actor->GetWorld()!=Fitted->GetWorld())return false;
+    FVector A,B;
+    const auto* D=Director();
+    if(!D||!D->PixelToWorld(Missile.Screen,Missile.X,Missile.Y,A)||
+        !D->PixelToWorld(Missile.Screen,Missile.X+FMath::Max(0,Range),Missile.Y,B))return false;
+    const float Radius=FMath::Max(1.f,float(FVector::Dist2D(A,B)));
+    const FVector Start=Actor->GetActorLocation();FHitResult Hit;
+    return Fitted->SweepComponent(Hit,Start,Start+FVector(0,0,.1),FQuat::Identity,FCollisionShape::MakeSphere(Radius),true);
 }

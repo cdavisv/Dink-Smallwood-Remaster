@@ -1,0 +1,13 @@
+PASS SK_Duck (creature) tris={'LOD0': 20898, 'LOD1': 10444, 'LOD2': 5176}
+   WARNING NON_MANIFOLD           2448 non-manifold edges (2448 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)
+   WARNING NON_MANIFOLD           1218 non-manifold edges (1218 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)
+   WARNING NON_MANIFOLD           540 non-manifold edges (540 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)
+   WARNING TEXEL_DENSITY          texel density 1512 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)
+PASS SK_Duck_Headless (creature) tris={'LOD0': 20800, 'LOD1': 10396, 'LOD2': 5152}
+   WARNING NON_MANIFOLD           2448 non-manifold edges (2448 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)
+   WARNING NON_MANIFOLD           1218 non-manifold edges (1218 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)
+   WARNING NON_MANIFOLD           540 non-manifold edges (540 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)
+   WARNING TEXEL_DENSITY          texel density 1482 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)
+PASS SM_Duck_Head (prop_small) tris={'LOD0': 4604, 'LOD1': 2302, 'LOD2': 1150}
+   WARNING TRIS_OVER_TARGET       LOD0 has 4604 triangles, target for prop_small is 1500 (hard max 5000)
+summary: {"assets": 3, "assets_passed": 3, "errors": 0, "warnings": 9}

@@ -81,10 +81,10 @@
   "binding": {
     "pid": 828353,
     "start_ticks": 8647351,
-    "exe": "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+    "exe": "<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
     "argv": [
-      "/home/davisc/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
-      "/home/davisc/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DinkRemaster.uproject",
+      "<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor",
+      "<HOME>/Work/DinkOutdoorPortalCamera/DinkRemasterUE/DinkRemaster.uproject",
       "/Game/Dink/_Generated/Maps/L_Greybox_World",
       "-game",
       "-sdlvideodriver=x11",
@@ -104,11 +104,11 @@
       "-notraceserver",
       "-DDC=InstalledNoZenLocalFallback",
       "-DDC-NoDefaultGraph",
-      "-LocalDataCachePath=/home/davisc/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/RunDDC",
+      "-LocalDataCachePath=<HOME>/Work/DinkQA/OutdoorPortalCameraNativePreparation/Candidate2/RunDDC",
       "-SharedDataCachePath=None",
       "-ZenSharedDataCacheHost=None",
-      "-UserDir=/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/User",
-      "-abslog=/home/davisc/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/game.log"
+      "-UserDir=<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/User",
+      "-abslog=<HOME>/Work/DinkQA/OutdoorPortalCameraGPUPreparation/Runs/705397b6-44f9-4cab-a0ba-6565b24b3244/game.log"
     ],
     "nonce": "af1a4101-de2c-4829-887f-8fbd16b432e3",
     "namespace_pid": 2
@@ -524,7 +524,7 @@
     "scope": "Actual read-only generated InteriorWall hidden/visible flags and owning screen metadata; no setters or inferred pixel/shadow/collision acceptance."
   },
   "publication_summary": {
-    "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/GPU/state-portal-free-corrected.json",
+    "original_path": "<HOME>/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/GPU/state-portal-free-corrected.json",
     "original_sha256": "ea91dde9614ecd79b43d7d77aa3ed47e53c276d68c1cc92800032ff468f67a1f",
     "omitted": "Repeated full debug-component and wall-owner inventories; counts retained, raw receipt unchanged."
   }

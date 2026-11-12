@@ -1,0 +1,91 @@
+{
+ "name": "SM_Chest_Small_Open_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small_Open/SM_Chest_Small_Open_PR.fbx",
+ "materials": [
+  "MI_Chest_Small"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Chest_Small_PR.blend",
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "chest_small (opened state)",
+  "chest_medium / chest_large opened (scale)"
+ ],
+ "supersedes": "none (new: the opened state of SM_Chest_Small_PR)",
+ "dresses": "the iron-bound chest with its lid thrown back 102 degrees on the back hinges: same mesh and the same texture set as SM_Chest_Small_PR (T_Chest_Small_PR_*), empty plank interior",
+ "fit": {
+  "pivot": "base centre, identical to SM_Chest_Small_PR: swap the mesh in place to open the chest",
+  "hinge": "hinge axis along X through (y 0.257, z 0.36) m; lid angle 102 degrees; put loot or a glow inside the body cavity (floor at z 0.048)"
+ },
+ "lod0_triangles": 1448,
+ "lod1_triangles": 812,
+ "lod2_triangles": 438,
+ "bounds_min_m": [
+  -0.47,
+  -0.26,
+  -0.0
+ ],
+ "bounds_max_m": [
+  0.47,
+  0.481,
+  0.883
+ ],
+ "dimensions_m": [
+  0.94,
+  0.741,
+  0.883
+ ],
+ "baked": {
+  "texture_folder": "Chest_Small",
+  "textures": {
+   "BC": "T_Chest_Small_PR_BC.png",
+   "N": "T_Chest_Small_PR_N.png",
+   "ORM": "T_Chest_Small_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Chest_Small",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 48.5,
+    "p99": 128.0
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.565,
+    "p95": 0.855
+   },
+   "metallic_mean": 0.079
+  },
+  "hi_triangles": 10876,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Chest_Small_PR.blend",
+  "extra": null,
+  "shares_textures_of": "SM_Chest_Small_PR"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small_Open",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "As SM_Chest_Small_PR (same bake). The interior is empty and stained like the outside; the lid is fixed at 102 degrees (no animation, swap meshes).",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small/T_Chest_Small_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small/T_Chest_Small_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chest_Small/T_Chest_Small_PR_ORM.png"
+ }
+}

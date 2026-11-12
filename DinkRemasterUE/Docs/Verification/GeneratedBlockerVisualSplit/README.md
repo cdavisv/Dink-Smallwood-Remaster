@@ -2,7 +2,7 @@
 
 Oversized cream prisms in joined interiors were debug geometry baked into the normal scenery mesh. Normal scenery now contains ground and water; an optional separate DebugBlockers component defaults hidden, has no collision, navigation, overlaps or shadows, and is shown only with `dink.GreyboxBlockers 1`. The original collision builders, collision hashes, sprite cards and decor remain unchanged. Generated interior proxy walls also follow their owning active/joined-room context.
 
-This candidate was built and tested at `2b683008675e3181b294a474e5cfd187158dacd9` in `/home/davisc/Work/DinkGeneratedBlockerVisuals`, branch `fix/generated-blocker-visuals`, based on accepted master `c608c303`. Evidence publication changes documentation only after those tests.
+This candidate was built and tested at `2b683008675e3181b294a474e5cfd187158dacd9` in `<HOME>/Work/DinkGeneratedBlockerVisuals`, branch `fix/generated-blocker-visuals`, based on accepted master `c608c303`. Evidence publication changes documentation only after those tests.
 
 Own Editor and Game builds pass. The full native suite passes 198/198 (164 clean successes, 34 successes with retained warnings). Both production mesh-writer and real-physics debug-toggle fixtures pass. The first compiler failure and cold PIE-readiness timeout are preserved; the unchanged warm focused repeat passes all five cases.
 

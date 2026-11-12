@@ -1,0 +1,52 @@
+{
+ "name": "LavaCrust",
+ "files": {
+  "BC": "LavaCrust/T_Terrain_LavaCrust_BC.png",
+  "N": "LavaCrust/T_Terrain_LavaCrust_N.png",
+  "ORM": "LavaCrust/T_Terrain_LavaCrust_ORM.png",
+  "H": "LavaCrust/T_Terrain_LavaCrust_H.png",
+  "Macro": "LavaCrust/T_Terrain_LavaCrust_Macro.png",
+  "E": "LavaCrust/T_Terrain_LavaCrust_E.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 3.0,
+ "texel_mm_per_px": 1.465,
+ "height_range_m": 0.0826,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.503",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "lava",
+  "wasteland"
+ ],
+ "status": "interim",
+ "method": "built here (no CC0 lava scan is usable): plates of varied size from three overlaid crack fields, each plate at its own level and tilt, ropy pahoehoe folds with a glassy skin on some plates and rough aa clinker on the others, oxidised rims, Poly Haven rock_face_04 for surface grain. The E mask is the floor of the main cracks only, in the hot 40 percent of the field, with a faint halo up the crack walls",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_face_04",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1.5
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 48.0,
+  "max": 140.2
+ },
+ "mean_srgb": [
+  50,
+  47,
+  50
+ ],
+ "roughness_mean": 0.613,
+ "known_weaknesses": "third pass: the glow is now broken into lengths in the deep cracks, but plate outlines are still smooth-noise contours (rounded, loop-shaped) rather than fracture; still fails as photoreal lava crust",
+ "emissive": "E mask 0..1; suggested colour ramp (1.0,0.12,0.0) to (1.0,0.75,0.25), strength 20-60 nits scaled by E"
+}

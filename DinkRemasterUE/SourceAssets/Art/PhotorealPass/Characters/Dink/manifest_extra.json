@@ -1,0 +1,115 @@
+{
+ "class": "character_hero",
+ "families": [
+  "dink (hero walk/idle/attack/push sequences, sheet_dink.png)"
+ ],
+ "supersedes": [
+  "Characters/Dink/SK_Dink (SK_Dink_LOD0-3)",
+  "Characters/Dink/HandBindingV2/SK_Dink_Hands (current player mesh)"
+ ],
+ "budget_note": "LOD0 61.3k triangles: over the 40k soft target, under the 70k hard cap. Head and hands keep the MakeHuman topology (15.6k), the hair groom is 10.3k, garments carry their large folds as geometry.",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "rough_linen",
+   "use": "shirt weave (colour detail, normal, roughness), recoloured grey-blue"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "caban",
+   "use": "wool trousers, recoloured olive"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "brown_leather",
+   "use": "jerkin, bracers, belt, soles, pack flap: grain normal/roughness, recoloured"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "fabric_leather_02",
+   "use": "boots and pack body: creased leather"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "hessian_230",
+   "use": "bracer lace cord"
+  },
+  {
+   "source": "MakeHuman CC0 (in repo, Characters/ThirdParty/MakeHuman)",
+   "asset_id": "base mesh head/hands, young_caucasian_male skin albedo, eyebrow001, eyelashes01",
+   "use": "head and hand topology with shipped weights; albedo is the base of the authored skin set; brow and lash cards"
+  }
+ ],
+ "authored_here": "all garment and gear geometry, folds, stitches; hair cards and strand atlas; eyeballs and eye texture; skin colour zones, freckles, pore/crease normal, roughness, SSS map; all bakes",
+ "importer_changes": [
+  "New asset name SK_Dink_Photoreal (4 LOD FBX in Dink/Export); to make it the player mesh set player.mesh in the character manifest to SK_Dink_Photoreal (currently SK_Dink / SK_Dink_Hands at runtime).",
+  "Material slots change from [MI_Dink_Skin, MI_Dink_Eyes, MI_Dink_Hair, MI_Dink_BrowLash, MI_Dink_Wardrobe] to [MI_Dink_PR_Skin, MI_Dink_PR_Eyes, MI_Dink_PR_Hair, MI_Dink_PR_Outfit, MI_Dink_PR_Gear]: still five slots; brows/lashes moved into the hair slot, wardrobe split into Outfit (4K) and Gear (2K).",
+  "Each slot has its own BC/N/ORM set instead of one shared atlas; manifest 'materials' entries need per-slot texture paths. Hair: alpha_mask/masked/two_sided true (alpha is in BC). Gear uses ORM.B metallic (brass and iron buckles). Skin: subsurface on; T_Dink_PR_Skin_SSS.png (rgb scatter colour x thickness) is extra and optional.",
+  "Normal maps are OpenGL (+Y) like the existing sets: keep normal_flip_green true.",
+  "Textures: Skin 4096, Outfit 4096, Gear 2048, Hair 2048, Eyes 1024.",
+  "Skeleton unchanged: 89 bones, same names/hierarchy/rest pose as HandBindingV2; hand and head skin weights are the shipped ones; garments take weights by surface transfer from the shipped hero. Existing clips (MM idle/walk, A_Dink_Fist) apply unchanged.",
+  "A Physics Asset still has to be generated in Unreal as for the existing hero.",
+  "Brows and lashes are alpha cards inside the MI_Dink_PR_Hair slot (bottom quarter of T_Dink_PR_Hair_BC): the slot must be masked/two-sided or they render as solid quads; there is no separate BrowLash slot any more.",
+  "Hair cards: UV V runs along the strands (root at the top of each strip), so an anisotropic/hair shading model should take its tangent from V. Roughness is in ORM.G; keep specular low.",
+  "UV uniqueness is per slot (see uv_per_slot): Skin 0 %, Outfit 1.7 %, Gear 0.9 % overlap (thickness lips share their border texels); Hair cards share strand strips and both eyes share one texture by design. The validator's whole-mesh UV_OVERLAP error is expected with five texture sets."
+ ],
+ "review_renders": [
+  "Review/r7_body.png",
+  "Review/r7_face.png",
+  "Review/r7_overcast.png (face, sky only)",
+  "Review/r7_game.png (3 m)",
+  "Review/r7_poses.png (walk x2, fist wind-up and impact, reach, crouch)",
+  "Review/r6_head.png",
+  "Review/r6_lods.png",
+  "Review/r5_details.png"
+ ],
+ "known_weaknesses": [
+  "Not photoreal at 1 m. Round 2 rebuilt the hair (undercoat cap + five card layers, soft hairline wisps), firmed brow/jaw/chin, added lip colour and stubble shadow, shrank and darkened the iris; it now reads as a young man in sun and overcast, but: freckles are heavy and the cheek still shows faint pore scaling, lower-lid/tear-line detail and caruncle are texture only, no teeth (no jaw bone), round 7 flattened the crown cards and thinned the flyaways: two or three edge-on slivers still show at the crown silhouette in the overcast close-up.",
+  "Proportions: garments were slimmed 2 mm; shoulders, neck length, hands and feet are set by the shared 89-bone rig and the shipped head/hand skin, so he is not visibly lankier.",
+  "Shirt collar notch is still ragged; round 7 culls and tucks the neck skin under the collar so skin no longer shows through it in the overcast close-up (r7_overcast), but the torn-looking notch remains; jerkin hem has stretched texels.",
+  "Folds are authored displacement fields; periodic ripple was reduced and directional folds strengthened, some regularity remains on the sleeves.",
+  "Armhole: the shirt body continues under the jerkin so raised arms show cloth; round 7 raised garment weight smoothing from 3 to 8 passes and the reach pose (r7_poses, fifth pose) still pinches at the armpit just as before: not fixed, it needs corrective shapes or a re-cut armhole.",
+  "LOD3 rebuilt at 10.7k triangles (was 6.4k) to keep the face and hem; LODs checked in one Blender render only.",
+  "Validator: whole-mesh UV_OVERLAP error (see importer_changes); LOD0 over the soft triangle target.",
+  "Not imported or seen in Unreal; Physics Asset not made.",
+  "Pose tests: idle boundary pose, four samples of the Epic walk reference (read-only, nothing embedded), Dink_Fist frames 3 and 8, two hand-made stress poses."
+ ],
+ "uv_per_slot": {
+  "MI_Dink_PR_Skin": {
+   "uv_area": 0.4988,
+   "texels_used_1k": 462402,
+   "texels_overlapping_1k": 0,
+   "overlap_fraction": 0.0,
+   "outside_0_1": 0
+  },
+  "MI_Dink_PR_Eyes": {
+   "uv_area": 1.5143,
+   "texels_used_1k": 714875,
+   "texels_overlapping_1k": 686837,
+   "overlap_fraction": 0.9608,
+   "outside_0_1": 0
+  },
+  "MI_Dink_PR_Hair": {
+   "uv_area": 21.3607,
+   "texels_used_1k": 695251,
+   "texels_overlapping_1k": 600480,
+   "overlap_fraction": 0.8637,
+   "outside_0_1": 0
+  },
+  "MI_Dink_PR_Outfit": {
+   "uv_area": 0.5503,
+   "texels_used_1k": 497349,
+   "texels_overlapping_1k": 8290,
+   "overlap_fraction": 0.0167,
+   "outside_0_1": 0
+  },
+  "MI_Dink_PR_Gear": {
+   "uv_area": 0.6762,
+   "texels_used_1k": 622380,
+   "texels_overlapping_1k": 5460,
+   "overlap_fraction": 0.0088,
+   "outside_0_1": 0
+  }
+ },
+ "round7": "Task C leftovers, 12 Nov 2026: Dink/cfg/head.json (crown_roll, fly, fly_lift) and Dink/cfg/assemble.json (skin_cull_r, skin_tuck, smooth_it) drive stages 4, 5b, 6; outfit bakes untouched."
+}

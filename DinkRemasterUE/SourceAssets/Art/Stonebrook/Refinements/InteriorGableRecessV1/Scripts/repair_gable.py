@@ -7,7 +7,7 @@ import argparse,hashlib,json,os,struct,sys,traceback
 from pathlib import Path
 import bpy
 from mathutils import Vector
-SOURCE_SHA='5c87f7f4b295ea7c34057f7aa5548e55c9a3db9efedda748e66b91347f7fe745'
+SOURCE_SHA='68b16e12d2ddff37d32758d247bb2b5445de7bef2f095ef4fff3dfb82fa5652c'
 SOURCE_REL='SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/InteriorRoof_Shared2mCandidate.blend'
 GABLES=tuple('SM_IndoorRoof_Gable_'+side+'_01' for side in ('EN','ES','WN','WS'))
 

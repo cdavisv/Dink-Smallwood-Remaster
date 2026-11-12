@@ -1,0 +1,1051 @@
+{
+  "status": "SETUP_ONLY_NO_EXECUTION",
+  "scope": "REVIEW ONLY exact50 canonical fresh import; no launch/native permission",
+  "manifest_sha256": "872ad03358216f4aaa2e900dc3f9e53e42dec5da918bd6551a14249d1a25fbed",
+  "binary_audit_sha256": "90ab2c39de836cf62a81742e13e5d04b858884eb0c12ba94e6a6c1c1a1980be9",
+  "namespace": "/Game/Dink/Refinements/RoofChimneyV12d",
+  "package_count": 50,
+  "packages": [
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_BC",
+      "kind": "Texture2D",
+      "source": "Textures/T_FireplaceV2_Atlas_BC.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_BC",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": true
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_E",
+      "kind": "Texture2D",
+      "source": "Textures/T_FireplaceV2_Atlas_E.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_E",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": true
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_N",
+      "kind": "Texture2D",
+      "source": "Textures/T_FireplaceV2_Atlas_N.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_N",
+        "native_flip_green": true,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_ORM",
+      "kind": "Texture2D",
+      "source": "Textures/T_FireplaceV2_Atlas_ORM.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_FireplaceV2_Atlas_ORM",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_GablePlaster_BC",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_GablePlaster_BC.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_GablePlaster_BC",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": true
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_GablePlaster_N",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_GablePlaster_N.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_GablePlaster_N",
+        "native_flip_green": false,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_GablePlaster_ORM",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_GablePlaster_ORM.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_GablePlaster_ORM",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakEndgrain_BC",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_OakEndgrain_BC.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakEndgrain_BC",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": true
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakEndgrain_N",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_OakEndgrain_N.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakEndgrain_N",
+        "native_flip_green": false,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakEndgrain_ORM",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_OakEndgrain_ORM.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakEndgrain_ORM",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakLonggrain_BC",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_OakLonggrain_BC.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakLonggrain_BC",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": true
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakLonggrain_N",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_OakLonggrain_N.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakLonggrain_N",
+        "native_flip_green": false,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakLonggrain_ORM",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_OakLonggrain_ORM.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_OakLonggrain_ORM",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_RoofBoards_BC",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_RoofBoards_BC.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_RoofBoards_BC",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": true
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_RoofBoards_N",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_RoofBoards_N.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_RoofBoards_N",
+        "native_flip_green": false,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_RoofBoards_ORM",
+      "kind": "Texture2D",
+      "source": "Textures/T_InteriorRoof_RoofBoards_ORM.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_InteriorRoof_RoofBoards_ORM",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_BC",
+      "kind": "Texture2D",
+      "source": "Textures/T_V8_CoursedLimestone_BC.png.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_BC",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": true
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_N",
+      "kind": "Texture2D",
+      "source": "Textures/T_V8_CoursedLimestone_N.png.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_N",
+        "native_flip_green": true,
+        "native_address": "Wrap",
+        "native_sRGB": false,
+        "native_normal_convention": "OpenGL_Yplus"
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_ORM",
+      "kind": "Texture2D",
+      "source": "Textures/T_V8_CoursedLimestone_ORM.png.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_ORM",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_BC",
+      "kind": "Texture2D",
+      "source": "Textures/T_V8_DullZinc_BC.png.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_BC",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": true
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_N",
+      "kind": "Texture2D",
+      "source": "Textures/T_V8_DullZinc_N.png.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_N",
+        "native_flip_green": true,
+        "native_address": "Wrap",
+        "native_sRGB": false,
+        "native_normal_convention": "OpenGL_Yplus"
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_ORM",
+      "kind": "Texture2D",
+      "source": "Textures/T_V8_DullZinc_ORM.png.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_ORM",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_BC",
+      "kind": "Texture2D",
+      "source": "Textures/T_V8_SootLining_BC.png.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_BC",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": true
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_N",
+      "kind": "Texture2D",
+      "source": "Textures/T_V8_SootLining_N.png.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_N",
+        "native_flip_green": true,
+        "native_address": "Wrap",
+        "native_sRGB": false,
+        "native_normal_convention": "OpenGL_Yplus"
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_ORM",
+      "kind": "Texture2D",
+      "source": "Textures/T_V8_SootLining_ORM.png.png",
+      "settings": {
+        "native_texture_proposal": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_ORM",
+        "native_flip_green": null,
+        "native_address": "Wrap",
+        "native_sRGB": false
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_FireplaceV2_Atlas",
+      "kind": "Material",
+      "source_role": "MI_FireplaceV2_Atlas",
+      "variant": "opaque",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.5,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 1.2000000476837158,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_FireplaceV2_Atlas_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_FireplaceV2_Atlas_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_FireplaceV2_Atlas_ORM",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.003",
+            "image": "T_FireplaceV2_Atlas_E",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_FireplaceV2_Atlas_CameraMasked",
+      "kind": "Material",
+      "source_role": "MI_FireplaceV2_Atlas",
+      "variant": "masked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.5,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 1.2000000476837158,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_FireplaceV2_Atlas_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_FireplaceV2_Atlas_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_FireplaceV2_Atlas_ORM",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.003",
+            "image": "T_FireplaceV2_Atlas_E",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_InteriorRoof_GablePlaster_Baked",
+      "kind": "Material",
+      "source_role": "MI_InteriorRoof_GablePlaster_Baked",
+      "variant": "opaque",
+      "source_parameters": {
+        "source_IOR": 1.4600000381469727,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_GablePlaster_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_GablePlaster_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_GablePlaster_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_InteriorRoof_GablePlaster_Baked_CameraMasked",
+      "kind": "Material",
+      "source_role": "MI_InteriorRoof_GablePlaster_Baked",
+      "variant": "masked",
+      "source_parameters": {
+        "source_IOR": 1.4600000381469727,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_GablePlaster_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_GablePlaster_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_GablePlaster_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_InteriorRoof_OakEndgrain_Baked",
+      "kind": "Material",
+      "source_role": "MI_InteriorRoof_OakEndgrain_Baked",
+      "variant": "opaque",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_OakEndgrain_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_OakEndgrain_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_OakEndgrain_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_InteriorRoof_OakEndgrain_Baked_CameraMasked",
+      "kind": "Material",
+      "source_role": "MI_InteriorRoof_OakEndgrain_Baked",
+      "variant": "masked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_OakEndgrain_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_OakEndgrain_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_OakEndgrain_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_InteriorRoof_OakLonggrain_Baked",
+      "kind": "Material",
+      "source_role": "MI_InteriorRoof_OakLonggrain_Baked",
+      "variant": "opaque",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_OakLonggrain_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_OakLonggrain_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_OakLonggrain_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_InteriorRoof_OakLonggrain_Baked_CameraMasked",
+      "kind": "Material",
+      "source_role": "MI_InteriorRoof_OakLonggrain_Baked",
+      "variant": "masked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_OakLonggrain_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_OakLonggrain_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_OakLonggrain_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_InteriorRoof_RoofBoards_Baked",
+      "kind": "Material",
+      "source_role": "MI_InteriorRoof_RoofBoards_Baked",
+      "variant": "opaque",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_RoofBoards_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_RoofBoards_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_RoofBoards_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_InteriorRoof_RoofBoards_Baked_CameraMasked",
+      "kind": "Material",
+      "source_role": "MI_InteriorRoof_RoofBoards_Baked",
+      "variant": "masked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "Image Texture",
+            "image": "T_InteriorRoof_RoofBoards_BC",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.001",
+            "image": "T_InteriorRoof_RoofBoards_N",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "Image Texture.002",
+            "image": "T_InteriorRoof_RoofBoards_ORM",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_CoursedLimestone_StudyV1",
+      "kind": "Material",
+      "source_role": "MI_V8_CoursedLimestone_StudyV1",
+      "variant": "opaque",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "TYPED_BC",
+            "image": "T_V8_CoursedLimestone_BC.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_N",
+            "image": "T_V8_CoursedLimestone_N.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_ORM",
+            "image": "T_V8_CoursedLimestone_ORM.png",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_CoursedLimestone_StudyV1_CameraMasked",
+      "kind": "Material",
+      "source_role": "MI_V8_CoursedLimestone_StudyV1",
+      "variant": "masked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "TYPED_BC",
+            "image": "T_V8_CoursedLimestone_BC.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_N",
+            "image": "T_V8_CoursedLimestone_N.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_ORM",
+            "image": "T_V8_CoursedLimestone_ORM.png",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_DullZinc_StudyV1",
+      "kind": "Material",
+      "source_role": "MI_V8_DullZinc_StudyV1",
+      "variant": "opaque",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "TYPED_BC",
+            "image": "T_V8_DullZinc_BC.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_N",
+            "image": "T_V8_DullZinc_N.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_ORM",
+            "image": "T_V8_DullZinc_ORM.png",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_SootLining_StudyV1",
+      "kind": "Material",
+      "source_role": "MI_V8_SootLining_StudyV1",
+      "variant": "opaque",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "TYPED_BC",
+            "image": "T_V8_SootLining_BC.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_N",
+            "image": "T_V8_SootLining_N.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_ORM",
+            "image": "T_V8_SootLining_ORM.png",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Materials/MI_V8_SootLining_StudyV1_CameraMasked",
+      "kind": "Material",
+      "source_role": "MI_V8_SootLining_StudyV1",
+      "variant": "masked",
+      "source_parameters": {
+        "source_IOR": 1.5,
+        "source_specular_IOR_level": 0.25,
+        "source_coat_weight": 0.0,
+        "source_emission_strength": 0.0,
+        "image_nodes": [
+          {
+            "node": "TYPED_BC",
+            "image": "T_V8_SootLining_BC.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_N",
+            "image": "T_V8_SootLining_N.png",
+            "extension": "REPEAT"
+          },
+          {
+            "node": "TYPED_ORM",
+            "image": "T_V8_SootLining_ORM.png",
+            "extension": "REPEAT"
+          }
+        ]
+      }
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_Chimney_Stonebrook_V8",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Rootapproved newupper"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_Chimney_Stonebrook_V8.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 1486,
+          "expected_UCX": 92
+        }
+      ]
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_Fireplace_Stonebrook_V3Contact",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AS_COMPLEX",
+        "nanite": "PRESERVE_ENABLED_FULL_FALLBACK",
+        "source_policy": "Proposed preservation of actual original FP native readback; coordinating approval pending"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 15912,
+          "expected_UCX": 16
+        },
+        {
+          "index": 1,
+          "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 8672,
+          "expected_UCX": 0
+        },
+        {
+          "index": 2,
+          "file": "FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 4698,
+          "expected_UCX": 0
+        }
+      ]
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_EN_01",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_IndoorRoof_EN_01.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 4986,
+          "expected_UCX": 48
+        }
+      ]
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_ES_01",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_IndoorRoof_ES_01.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 3474,
+          "expected_UCX": 45
+        }
+      ]
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_EN_01",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_IndoorRoof_Gable_EN_01.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 266,
+          "expected_UCX": 3
+        }
+      ]
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_ES_01",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_IndoorRoof_Gable_ES_01.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 266,
+          "expected_UCX": 3
+        }
+      ]
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WN_01",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_IndoorRoof_Gable_WN_01.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 266,
+          "expected_UCX": 3
+        }
+      ]
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_Gable_WS_01",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_IndoorRoof_Gable_WS_01.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 266,
+          "expected_UCX": 3
+        }
+      ]
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WN_01",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_IndoorRoof_WN_01.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 4924,
+          "expected_UCX": 57
+        }
+      ]
+    },
+    {
+      "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_IndoorRoof_WS_01",
+      "kind": "StaticMesh",
+      "collision_policy": {
+        "collision": "SIMPLE_AND_COMPLEX",
+        "nanite": false,
+        "can_affect_navigation": false,
+        "generate_overlap_events": false,
+        "source_policy": "Existingroofpolicy"
+      },
+      "LODs": [
+        {
+          "index": 0,
+          "file": "FBX/SM_IndoorRoof_WS_01.fbx",
+          "full_precision_uv": true,
+          "expected_source_triangles": 2874,
+          "expected_UCX": 42
+        }
+      ]
+    }
+  ],
+  "import_settings": {
+    "normal_import_method": "FBXNIM_IMPORT_NORMALS",
+    "recompute_normals": false,
+    "recompute_tangents": true,
+    "use_mikk_t_space": true,
+    "remove_degenerates": false,
+    "generate_lightmap_u_vs": false,
+    "auto_generate_collision": false,
+    "one_convex_hull_per_ucx": true,
+    "combine_meshes": false,
+    "import_mesh_lods": false,
+    "convert_scene": true,
+    "convert_scene_unit": true,
+    "force_front_x_axis": false,
+    "import_uniform_scale": 1,
+    "transform_vertex_to_absolute": true,
+    "bake_pivot_in_vertex": false,
+    "material_texture_autoimport": false,
+    "use_full_precision_u_vs": true,
+    "full_precision_UV_scope": "EVERYnewLOD, including explicitFPLOD1/2 afterLODimport; do notmodifyoldV7nativepackages",
+    "normal_generation_method": "MIKK_T_SPACE"
+  },
+  "built_UV_gate": {
+    "required": true,
+    "source_estimate": "source_uv_precision_v11.json",
+    "half_worst_texels_at2048": 3.994140625,
+    "half_new_degenerate_UV_triangles": 3378,
+    "source_float32_loss": 0,
+    "builtin": "unreal.ProceduralMeshLibrary.get_section_from_static_mesh",
+    "installed_CPP": "<HOME>/UnrealEngine/UE_5.8.4/Engine/Plugins/Runtime/ProceduralMeshComponent/Source/ProceduralMeshComponent/Private/KismetProceduralMeshLibrary.cpp:439",
+    "actual_data": "StaticMesh->GetRenderData()->LODResources[LOD].VertexBuffers.StaticMeshVertexBuffer.GetVertexUV(index,0), with actual section index buffer",
+    "not_sufficient": [
+      "MeshDescriptionUV alone",
+      "importsettingsalone",
+      "sourcefloat32estimatealone"
+    ],
+    "verification_scope": "PrivateQA actualbuilt StaticMeshLODResources; legacyFP Naniteinternalstream not additionallyasserted",
+    "plugin_availability": "Resolvebuiltin innewprivateQAproject; no newC++bridge, no liveRootchanges",
+    "python_alias_provenance": "Installed KismetProceduralMeshLibrary.h UCLASS(meta=(ScriptName=\"ProceduralMeshLibrary\")); never infer Python class name from C++ prefix"
+  },
+  "isolation_requirements": [
+    "Fresh ordinary copy; no symlink/hardlink to Root or previous QA content",
+    "Record baseline input/content/plugin hashes before launch; recheck before every save",
+    "Save only these exact 50 package paths; refuse existing target packages",
+    "Reuse reviewed prebuilt read-only bridge and ProceduralMesh plugin; resolve exact pins before execution",
+    "Headless asset-only NullRHI; separate DDC/UserDir; no GPU or live Root changes"
+  ],
+  "acceptance_gates": [
+    "Fresh saved/reopened every LOD build settings and actual LODRenderData UV comparison",
+    "Actual native geometry, corner normals, material roles and all 312 convex hull correspondence",
+    "Typed PBR graph and source texture SHA/normal convention audit; preserve fireplace emission",
+    "No unexpected new/changed baseline package, old V7 and Root unchanged"
+  ],
+  "deferred_to_scene_phase": [
+    "Actor placement and lower fireplace existing tags/scripts/collision responses",
+    "Upper component navigation/overlap flags",
+    "Camera masking/occlusion, ceiling slab removal, door and gameplay regression checks"
+  ],
+  "known_limits": [
+    "Source FBX preserves polygons; native SDK triangulation has not been run",
+    "Native scene and final photoreal appearance acceptance remain outstanding"
+  ],
+  "supersedes": "native_asset_only_proposal_v11b.json",
+  "package_name_corrections": {
+    "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_BC.png": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_BC",
+    "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_N.png": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_N",
+    "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_ORM.png": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_CoursedLimestone_ORM",
+    "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_BC.png": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_BC",
+    "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_N.png": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_N",
+    "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_ORM.png": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_DullZinc_ORM",
+    "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_BC.png": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_BC",
+    "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_N.png": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_N",
+    "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_ORM.png": "/Game/Dink/Refinements/RoofChimneyV12d/Textures/T_V8_SootLining_ORM"
+  },
+  "normal_policy_corrections": {
+    "source_images": [
+      "T_V8_CoursedLimestone_N.png",
+      "T_V8_DullZinc_N.png",
+      "T_V8_SootLining_N.png"
+    ],
+    "reason": "Original extension-sensitive _N classifier missed embedded .png; actual source uses OpenGL+Y",
+    "source_bytes_modified": false
+  },
+  "original_reference_evidence": {
+    "sha256": "b0e58d85160f8c51726d98af37333455e2c1ac139d54fe616a877aa3ffe14ba6",
+    "native_receipt_sha256": "d082fbd29b298dacc1572e03773009b20f37f9e899751567027f8b5d7ce06d4f",
+    "raw_collision": "<CollisionTraceFlag.CTF_USE_SIMPLE_AS_COMPLEX: 2>",
+    "raw_nanite": {
+      "enabled": true,
+      "fallback_percent_triangles": 1.0,
+      "fallback_relative_error": 0.0,
+      "fallback_target": "<NaniteFallbackTarget.PERCENT_TRIANGLES: 1>"
+    },
+    "preservation_proposal": [
+      {
+        "package": "/Game/Dink/Refinements/RoofChimneyV12d/Meshes/SM_Fireplace_Stonebrook_V3Contact",
+        "previous_assumption": "COMPLEX_AS_SIMPLE",
+        "observed_original": "SIMPLE_AS_COMPLEX"
+      }
+    ],
+    "CPU_access_scope": "Original saved FP=False; new private candidate=True solely for required actual built-buffer proof; original reference/Root unchanged",
+    "historical_author_receipt": "<HOME>/Work/DinkQA/RoofNativeV11QA/Setup/REFERENCE_READBACK_V11B_RESULT.json",
+    "runtime_dependency": false
+  },
+  "source_version": "V12d",
+  "approved_modes": []
+}

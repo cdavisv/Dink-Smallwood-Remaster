@@ -6,7 +6,7 @@ Player acceleration is 900 cm/s², braking is 850 cm/s², and turn rate is 300°
 
 The player mesh layer is bounded to pitch −20..6°, roll ±9°, yaw ±8°, and a 12 cm offset magnitude, in addition to shared secondary motion. It does not drive the capsule or lock controls. The optional authored posture replaces only the baseline −2.4° pitch. Shared NPC dynamics, clips, and rig assets are unchanged; this delivery does not establish acceptance of the separate new hero/art work.
 
-Validation receipts are in this folder; raw runs remain under `Saved/ClumsyV2` in `/home/davisc/Work/DinkClumsyV2/DinkRemasterUE`:
+Validation receipts are in this folder; raw runs remain under `Saved/ClumsyV2` in `<HOME>/Work/DinkClumsyV2/DinkRemasterUE`:
 
 - Independent source review finds no material blockers; all four reviewed source hashes match the compiled/tested files.
 - Native movement checks pass 7/7 without warnings, including real input during landing recovery, transition resets, frame-rate bounds, and capsule stability.

@@ -8,7 +8,7 @@ public class DinkParity : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 		PrivateDependencyModuleNames.AddRange(new string[] {
-			"Core", "CoreUObject", "Engine", "InputCore", "DinkCore", "DinkNarrative", "InkPlusPlus", "Json", "UnrealEd", "MeshDescription", "StaticMeshDescription"
+			"Core", "CoreUObject", "Engine", "InputCore", "DinkCore", "DinkNarrative", "InkPlusPlus", "Json", "UnrealEd", "MeshDescription", "StaticMeshDescription", "Chaos", "EngineSettings"
 		});
 	}
 }

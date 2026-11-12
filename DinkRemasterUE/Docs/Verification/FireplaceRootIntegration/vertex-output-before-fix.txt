@@ -1,0 +1,116 @@
+EEE.........
+======================================================================
+ERROR: test_all_seven_construct_and_read_back_with_installed_vertex_output_rules (test_fireplace_material_readback.FireplaceGraphReadbackTests.test_all_seven_construct_and_read_back_with_installed_vertex_output_rules) (role='MI_Shared_FiredClay2m')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/tests/test_fireplace_material_readback.py", line 26, in test_all_seven_construct_and_read_back_with_installed_vertex_output_rules
+    m,r=self.construct(r['source_material'].removeprefix('MI_Shared_'),InstalledOutputEngine)
+        ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/tests/test_fireplace_material_readback.py", line 13, in construct
+    r=copy.deepcopy(next(r for r in self.contract['materials']if r['source_material']=='MI_Shared_'+name));r['source_graph_reviewed']=True;m=F.Material(r['package']);textures={n:F.Texture(p)for n,p in r['textures'].items()};F.Engine.textures={t.path:t for t in textures.values()};build_graph(engine,m,r,r['source_graph'],textures,lambda:None);return m,r
+                                                                                                                                                                                                                                                                                        ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 134, in build_graph
+    socket=next(x['index']for x in root['inputs']if x['name']==name);v=input_value(root['name'],socket);require(call(E.connect_material_property,v[0],v[1],getattr(U.MaterialProperty,native)),'Failed master surface connection')
+                                                                       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 96, in input_value
+    edge=edges.get((name,index));return expression(*edge)if edge else constant(nodes[name]['inputs'][index]['value'])
+                                        ~~~~~~~~~~^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 128, in expression
+    v=op('Multiply',{'A':input_value(name,1),'B':input_value(name,2)})if n['blend_type']=='MULTIPLY'else op('LinearInterpolate',{'A':input_value(name,1),'B':input_value(name,2),'Alpha':input_value(name,0)})
+                                                                                                                                     ~~~~~~~~~~~^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 96, in input_value
+    edge=edges.get((name,index));return expression(*edge)if edge else constant(nodes[name]['inputs'][index]['value'])
+                                        ~~~~~~~~~~^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 128, in expression
+    v=op('Multiply',{'A':input_value(name,1),'B':input_value(name,2)})if n['blend_type']=='MULTIPLY'else op('LinearInterpolate',{'A':input_value(name,1),'B':input_value(name,2),'Alpha':input_value(name,0)})
+      ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 92, in op
+    for pin,value in values.items():connect(value,o,pin)
+                                    ~~~~~~~^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 84, in connect
+    require(call(E.connect_material_expressions,value[0],value[1],to,name),'Failed expression edge: '+pin)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 6, in require
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Failed expression edge: B
+
+======================================================================
+ERROR: test_all_seven_construct_and_read_back_with_installed_vertex_output_rules (test_fireplace_material_readback.FireplaceGraphReadbackTests.test_all_seven_construct_and_read_back_with_installed_vertex_output_rules) (role='MI_Shared_FiredClayMasonry2m')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/tests/test_fireplace_material_readback.py", line 26, in test_all_seven_construct_and_read_back_with_installed_vertex_output_rules
+    m,r=self.construct(r['source_material'].removeprefix('MI_Shared_'),InstalledOutputEngine)
+        ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/tests/test_fireplace_material_readback.py", line 13, in construct
+    r=copy.deepcopy(next(r for r in self.contract['materials']if r['source_material']=='MI_Shared_'+name));r['source_graph_reviewed']=True;m=F.Material(r['package']);textures={n:F.Texture(p)for n,p in r['textures'].items()};F.Engine.textures={t.path:t for t in textures.values()};build_graph(engine,m,r,r['source_graph'],textures,lambda:None);return m,r
+                                                                                                                                                                                                                                                                                        ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 134, in build_graph
+    socket=next(x['index']for x in root['inputs']if x['name']==name);v=input_value(root['name'],socket);require(call(E.connect_material_property,v[0],v[1],getattr(U.MaterialProperty,native)),'Failed master surface connection')
+                                                                       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 96, in input_value
+    edge=edges.get((name,index));return expression(*edge)if edge else constant(nodes[name]['inputs'][index]['value'])
+                                        ~~~~~~~~~~^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 128, in expression
+    v=op('Multiply',{'A':input_value(name,1),'B':input_value(name,2)})if n['blend_type']=='MULTIPLY'else op('LinearInterpolate',{'A':input_value(name,1),'B':input_value(name,2),'Alpha':input_value(name,0)})
+                                                                                                                                     ~~~~~~~~~~~^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 96, in input_value
+    edge=edges.get((name,index));return expression(*edge)if edge else constant(nodes[name]['inputs'][index]['value'])
+                                        ~~~~~~~~~~^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 128, in expression
+    v=op('Multiply',{'A':input_value(name,1),'B':input_value(name,2)})if n['blend_type']=='MULTIPLY'else op('LinearInterpolate',{'A':input_value(name,1),'B':input_value(name,2),'Alpha':input_value(name,0)})
+      ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 92, in op
+    for pin,value in values.items():connect(value,o,pin)
+                                    ~~~~~~~^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 84, in connect
+    require(call(E.connect_material_expressions,value[0],value[1],to,name),'Failed expression edge: '+pin)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 6, in require
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Failed expression edge: B
+
+======================================================================
+ERROR: test_all_seven_construct_and_read_back_with_installed_vertex_output_rules (test_fireplace_material_readback.FireplaceGraphReadbackTests.test_all_seven_construct_and_read_back_with_installed_vertex_output_rules) (role='MI_Shared_FieldstoneSeed2m')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/tests/test_fireplace_material_readback.py", line 26, in test_all_seven_construct_and_read_back_with_installed_vertex_output_rules
+    m,r=self.construct(r['source_material'].removeprefix('MI_Shared_'),InstalledOutputEngine)
+        ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/tests/test_fireplace_material_readback.py", line 13, in construct
+    r=copy.deepcopy(next(r for r in self.contract['materials']if r['source_material']=='MI_Shared_'+name));r['source_graph_reviewed']=True;m=F.Material(r['package']);textures={n:F.Texture(p)for n,p in r['textures'].items()};F.Engine.textures={t.path:t for t in textures.values()};build_graph(engine,m,r,r['source_graph'],textures,lambda:None);return m,r
+                                                                                                                                                                                                                                                                                        ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 134, in build_graph
+    socket=next(x['index']for x in root['inputs']if x['name']==name);v=input_value(root['name'],socket);require(call(E.connect_material_property,v[0],v[1],getattr(U.MaterialProperty,native)),'Failed master surface connection')
+                                                                       ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 96, in input_value
+    edge=edges.get((name,index));return expression(*edge)if edge else constant(nodes[name]['inputs'][index]['value'])
+                                        ~~~~~~~~~~^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 128, in expression
+    v=op('Multiply',{'A':input_value(name,1),'B':input_value(name,2)})if n['blend_type']=='MULTIPLY'else op('LinearInterpolate',{'A':input_value(name,1),'B':input_value(name,2),'Alpha':input_value(name,0)})
+                                                 ~~~~~~~~~~~^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 96, in input_value
+    edge=edges.get((name,index));return expression(*edge)if edge else constant(nodes[name]['inputs'][index]['value'])
+                                        ~~~~~~~~~~^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 125, in expression
+    else:v=op('Add',{'A':op('Multiply',{'A':input_value(name,0),'B':input_value(name,1)}),'B':input_value(name,2)})
+                                            ~~~~~~~~~~~^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 96, in input_value
+    edge=edges.get((name,index));return expression(*edge)if edge else constant(nodes[name]['inputs'][index]['value'])
+                                        ~~~~~~~~~~^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 119, in expression
+    o=new('ComponentMask');setp(o,'r',index==0);setp(o,'g',index==1);setp(o,'b',index==2);setp(o,'a',False);connect(input_value(name,0),o,'Input');v=(o,'')
+                                                                                                            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 84, in connect
+    require(call(E.connect_material_expressions,value[0],value[1],to,name),'Failed expression edge: '+pin)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py", line 6, in require
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Failed expression edge: Input
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.693s
+
+FAILED (errors=3)

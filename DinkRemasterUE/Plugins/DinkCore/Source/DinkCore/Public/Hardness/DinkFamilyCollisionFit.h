@@ -1,0 +1,166 @@
+#pragma once
+#include "CoreMinimal.h"
+#include "DinkOriginId.h"
+#include "DinkLayout.h"
+#include "Engine/EngineTypes.h"
+#include "UObject/StrongObjectPtr.h"
+
+class ADinkPlaceholderActor;
+class UStaticMesh;
+class UStaticMeshComponent;
+class UBodySetup;
+class UMaterialInterface;
+class UTexture;
+class UTexture2D;
+class UWorld;
+namespace DinkFamilyCollisionFit
+{
+    inline constexpr int32 DescriptorSchemaVersion = 2;
+    inline constexpr TCHAR PromotedBackgroundTag[] = TEXT("DinkFitPromotedBackground");
+}
+
+/** Explicit origin policy under families.json. Schema 1 retains the original pair. */
+struct DINKCORE_API FDinkFamilyCollisionFitRule
+{
+    FDinkOriginId Origin;
+    FString Mesh;
+    FString GeometrySha1; // Legacy schema1/2 ordered cooked identity only.
+    FString CanonicalSurfaceSha1; // Schema3 stable oriented surface contract only.
+    FString SourceHash; // Empty only for the legacy schema 1 pair.
+    FName SourceScript;
+    int32 SourceType = 1;
+    bool IsStaticBackground() const { return SourceType == 0; }
+};
+/** Optional single final173/6 visual. Absent means the exact legacy-card path. */
+struct DINKCORE_API FDinkReleasedFamilyVisualBinding
+{
+    bool bRequested=false;
+    FString Mesh;
+    TArray<FString> Materials;
+};
+/** Source-reader image geometry. Hash authenticates this descriptor, not native texture pixels. */
+struct DINKCORE_API FDinkLegacyPictureDescriptor
+{
+    int32 Sequence=0,Frame=0,Width=0,Height=0,OriginX=0,OriginY=0;
+    FString Sha1;
+};
+struct DINKCORE_API FDinkFamilyFitSpriteState
+{
+    int32 SchemaVersion=DinkFamilyCollisionFit::DescriptorSchemaVersion;
+    FDinkOriginId Origin;
+    TWeakObjectPtr<ADinkPlaceholderActor> Actor;
+    TWeakObjectPtr<ADinkPlaceholderActor> SourceActor;
+    FName ScriptName;
+    int32 RuntimeHandle=0;
+    int32 CurrentScreen=0; // current owner/map; Origin remains immutable source identity
+    bool bPrebirth=false; // handle0, explicit source actor, no main executed
+    double EngineX=0,EngineY=0;
+    int32 DisplayedSequence=0,DisplayedFrame=0,Hard=1,Prop=0;
+    bool bActive=false;
+    int32 AnimationSequence=0,Brain=0,NoHit=0;
+    FDinkLegacyPictureDescriptor SourcePicture,DisplayedPicture;
+};
+/** Exact cooked query triangles, not a guessed box and not a300cm raster prism.
+ * UCX is separately retained provenance and is NOT the selected query shape. */
+struct DINKCORE_API FDinkFamilyFittedGeometry
+{
+    int32 SchemaVersion=DinkFamilyCollisionFit::DescriptorSchemaVersion;
+    TWeakObjectPtr<UStaticMesh> Mesh;
+    TWeakObjectPtr<UBodySetup> BodySetup;
+    FGuid BodySetupGuid;
+    bool bDoubleSided=false,bCullsBackFaceRaycast=false; // EFFECTIVE active policy: !DoubleSided
+    bool bSourceCullsBackFaceRaycast=false; // raw cache diagnostic only, not policy identity
+    TArray<FVector3f> Vertices;
+    TArray<FIntVector> Triangles;
+    TArray<uint16> MaterialIndices;
+    TArray<FVector> AuthoredUCXVertices;
+    FBox RenderBounds;
+    FString CookedGeometrySha1; // Exact ordered identity retained within each admission.
+    FString CanonicalSurfaceSha1;
+};
+/** Prepared descriptor only. The physical coordinator must replace the original
+ * owner layer, physical body, logical/hit footprint and clear semantics together.
+ * Cell-centre raster is an approximation; WorldFootprint/actual triangles remain
+ * the geometry authority. No producer creates/changes a physical body. */
+struct DINKCORE_API FDinkFamilyCollisionFitCandidate
+{
+    int32 SchemaVersion=DinkFamilyCollisionFit::DescriptorSchemaVersion;
+    FDinkOriginId Origin;
+    FDinkFamilyFitSpriteState Sprite;
+    TWeakObjectPtr<UWorld> World;
+    TWeakObjectPtr<ADinkPlaceholderActor> Actor,SourceActor;
+    TWeakObjectPtr<UStaticMeshComponent> FamilyComponent,Card;
+    TWeakObjectPtr<UStaticMesh> BeforeCardMesh;
+    FDinkScreenCorners Corners;
+    FTransform BeforeActor,BeforeFamily,BeforeCard,ProposedWorld;
+    FTransform ImportedCardBaseline;
+    bool bImportedCardBaselinePresent=false;
+    TArray<TWeakObjectPtr<UMaterialInterface>> BeforeMaterials,BeforeCardMaterials;
+    FString SourceHash;
+    FName ScriptName,BeforeProfile;
+    FCollisionResponseContainer BeforeResponses;
+    ECollisionEnabled::Type BeforeCollision=ECollisionEnabled::NoCollision;
+    ECollisionChannel BeforeObjectType=ECC_WorldStatic;
+    bool BeforeNavigation=false,BeforeOverlaps=false,BeforeVisible=true;
+    bool BeforeActorCollision=true,BeforeActorHidden=false;
+    bool BeforeFamilyHidden=false,BeforeCardHidden=true,BeforeCardVisible=true;
+    uint8 BeforeMobility=0;
+    FDinkFamilyFittedGeometry Geometry;
+    TArray<FVector2D> WorldFootprint; // CCW, ordered from lexicographically first point
+    TArray<FIntPoint> LogicalCells; // map pixel centres, Y-major then X; no conservative dilation
+    double MinWorldZ=0,MaxWorldZ=0,MaximumRasterBoundaryErrorCm=0;
+    bool bVisualApplied=false;
+    bool bReleaseOnly=false;
+    FTransform ReleaseCardRelative;
+    TSharedPtr<TStrongObjectPtr<UMaterialInterface>> ReleaseMaterial,SourcePictureMaterial;
+    TSharedPtr<TStrongObjectPtr<UTexture>> ReleaseTexture,SourcePictureTexture;
+    FDinkLegacyPictureDescriptor ReleasePicture;
+    bool bReleasePicturePrepared=false;
+    TSharedPtr<const FDinkFamilyCollisionFitCandidate> RestoreReleaseWitness;
+    // Optional visual-only final mesh. No physical geometry or recursive witness copy.
+    bool bReleasedMeshPrepared=false;
+    TSharedPtr<TStrongObjectPtr<UStaticMesh>> ReleasedMesh;
+    FString ReleasedMeshPath;
+    TArray<FString> ReleasedMaterialPaths;
+    TArray<TSharedPtr<TStrongObjectPtr<UMaterialInterface>>> ReleasedMaterials;
+    FBox ReleasedBounds;
+    const void* ReleasedRenderData=nullptr;
+    int32 ReleasedLodCount=0;
+    FTransform ReleasedRelative,ReleasedWorld;
+    TWeakObjectPtr<UStaticMeshComponent> ReleasedComponent;
+    TSharedPtr<TStrongObjectPtr<UStaticMeshComponent>> NewReleasedComponent;
+    bool BeforeReleasedVisible=false,BeforeReleasedHidden=true;
+    ECollisionChannel ReleasedObjectType=ECC_WorldStatic;
+    FCollisionResponseContainer ReleasedResponses;
+};
+/** Implemented by the ONE admitted owner coordinator, not by the family layer.
+ * The implementation must verify held loading gate and matching committed
+ * logical+physical descriptor. No boolean caller approval substitutes for it. */
+struct DINKCORE_API IDinkFamilyFitVisualAuthority
+{
+    virtual ~IDinkFamilyFitVisualAuthority()=default;
+    virtual int32 GetSchemaVersion() const=0;
+    virtual bool CanPublishVisual(const FDinkFamilyCollisionFitCandidate& Candidate,FString& Error) const=0;
+    virtual bool CanReleaseVisual(const FDinkFamilyCollisionFitCandidate&,const FDinkFamilyFitSpriteState&,FString&) const { return false; }
+};
+namespace DinkFamilyCollisionFit
+{
+    DINKCORE_API bool ParseReleasedVisual(const FString& FamiliesJson,FDinkReleasedFamilyVisualBinding& Out,FString& Error);
+    DINKCORE_API bool ParsePolicy(const FString& FamiliesJson,TArray<FDinkFamilyCollisionFitRule>& Out,FString& Error);
+    DINKCORE_API bool ReadCookedGeometry(UStaticMesh& Mesh,FDinkFamilyFittedGeometry& Out,FString& Error);
+    DINKCORE_API bool BuildFootprint(const FDinkFamilyFittedGeometry& Geometry,const FTransform& Proposed,
+        const FDinkScreenCorners& Corners,TArray<FVector2D>& Polygon,TArray<FIntPoint>& Cells,
+        double& MinZ,double& MaxZ,double& BoundaryErrorCm,FString& Error);
+}
+
+namespace DinkFamilyCollisionFit
+{
+    /** Authoring dimensions, available without a rendered/compiled platform resource in Editor and cooked Game. */
+    DINKCORE_API bool MatchesLegacyPictureImportedSize(const FDinkLegacyPictureDescriptor& Picture,
+        const UTexture2D& Texture,FIntPoint* Observed=nullptr);
+    DINKCORE_API bool ValidateReleasedPictureAssets(const FDinkFamilyCollisionFitCandidate& Candidate,FString& Error);
+    DINKCORE_API bool ValidatePictureDescriptor(const FDinkLegacyPictureDescriptor& Picture);
+    DINKCORE_API bool ProjectLegacyCard(const FDinkLegacyPictureDescriptor& Source,
+        const FDinkLegacyPictureDescriptor& Displayed,const FTransform& ImportedBaseline,
+        FTransform& Out,FString& Error);
+}

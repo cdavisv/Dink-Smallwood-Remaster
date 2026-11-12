@@ -742,7 +742,7 @@
         },
         {
           "type": "Warning",
-          "message": "LogHttp: 0x58f80e1f500 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1C60D-4657-7B04-B195-8697C9C2D193%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=b8b91a92d10e4078b778d30ea0314c5c-000003e8%7C%7Cb8b91a92d10e4078b778d30ea0314c5c&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'ConnectionError' after 0.01s",
+          "message": "LogHttp: 0x58f80e1f500 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1C60D-4657-7B04-B195-8697C9C2D193%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=00000000000000000000000000000000-000003e8%7C%7C00000000000000000000000000000000&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'ConnectionError' after 0.01s",
           "message_excerpt": false,
           "full_message_utf8_bytes": 428,
           "full_message_sha256": "8d3fba5d1f7d85f86e39fa332c142bf2c1b407aea85431701ac593107aa7e161"
@@ -1761,7 +1761,7 @@
         },
         {
           "type": "Warning",
-          "message": "LogHttp: 0x58f2e718c00 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1C60D-4657-7B04-B195-8697C9C2D193%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=b8b91a92d10e4078b778d30ea0314c5c-000003e8%7C%7Cb8b91a92d10e4078b778d30ea0314c5c&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'ConnectionError' after 0.01s",
+          "message": "LogHttp: 0x58f2e718c00 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1C60D-4657-7B04-B195-8697C9C2D193%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=00000000000000000000000000000000-000003e8%7C%7C00000000000000000000000000000000&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'ConnectionError' after 0.01s",
           "message_excerpt": false,
           "full_message_utf8_bytes": 428,
           "full_message_sha256": "883818b6607f05ac4aa4cb6d80004034d0fb705d1a627565637731608c954913"
@@ -2755,7 +2755,7 @@
         },
         {
           "type": "Warning",
-          "message": "LogHttp: 0x58f2e71af00 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1C60D-4657-7B04-B195-8697C9C2D193%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=b8b91a92d10e4078b778d30ea0314c5c-000003e8%7C%7Cb8b91a92d10e4078b778d30ea0314c5c&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'ConnectionError' after 0.02s",
+          "message": "LogHttp: 0x58f2e71af00 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1C60D-4657-7B04-B195-8697C9C2D193%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=00000000000000000000000000000000-000003e8%7C%7C00000000000000000000000000000000&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'ConnectionError' after 0.02s",
           "message_excerpt": false,
           "full_message_utf8_bytes": 428,
           "full_message_sha256": "90e522bd670d973bd8eddc013875ac5e75d4f20f9986009138ebad3711a33b5a"
@@ -2951,7 +2951,7 @@
         },
         {
           "type": "Warning",
-          "message": "LogHttp: 0x58f39b28c00 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1C60D-4657-7B04-B195-8697C9C2D193%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=b8b91a92d10e4078b778d30ea0314c5c-000003e8%7C%7Cb8b91a92d10e4078b778d30ea0314c5c&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'ConnectionError' after 0.01s",
+          "message": "LogHttp: 0x58f39b28c00 POST https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B01A1C60D-4657-7B04-B195-8697C9C2D193%7D&AppID=UEEditor.Rocket.Release&AppVersion=5.8.4-58902052%2B%2B%2BUE5%2BRelease-5.8&UserID=00000000000000000000000000000000-000003e8%7C%7C00000000000000000000000000000000&AppEnvironment=datacollector-binary&UploadType=eteventstream completed with reason 'ConnectionError' after 0.01s",
           "message_excerpt": false,
           "full_message_utf8_bytes": 428,
           "full_message_sha256": "079aa672a56768036c2fec9b541bcda4c75ef41681e11c8e285fe695f631ef53"
@@ -3273,7 +3273,7 @@
   ],
   "qualification": "Actualcompletedcases; unchangedsource/assertions/timeouts betweenruns, sameOWNC2DDC device50/inode6704932. Coldreadinesstimeoutsretained, warmnotcoldproof.",
   "publication_summary": {
-    "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/Native/Cold9.json",
+    "original_path": "<HOME>/Work/DinkQA/OutdoorPortalCameraEvidenceDraftV2/Native/Cold9.json",
     "original_sha256": "ec768783fbfeac97bc05a9032b1cd8e57ffa9172a1302caf36aade61ac72eba6",
     "omitted": "Large info-event/scene inventories; test states, counts, durations and error/warning excerpts with full-message hashes retained."
   }

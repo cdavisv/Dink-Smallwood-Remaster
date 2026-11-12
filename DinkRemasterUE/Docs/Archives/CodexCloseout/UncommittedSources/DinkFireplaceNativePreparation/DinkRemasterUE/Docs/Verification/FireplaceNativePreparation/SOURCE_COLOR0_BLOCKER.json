@@ -1,0 +1,108 @@
+{
+  "status": "NATIVE_IMPORT_BLOCKED_SOURCE_REVIEW_REQUIRED",
+  "source_immutable": true,
+  "no_tolerance_or_reference_waiver": true,
+  "rows": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "ranges": [
+        [
+          0.7699999809265137,
+          0.7699999809265137
+        ],
+        [
+          0.7200000286102295,
+          0.7200000286102295
+        ],
+        [
+          0.6899999976158142,
+          0.6899999976158142
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "max_clipping_loss": 0.0,
+      "saturated_polygon_corners_by_role": {}
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "ranges": [
+        [
+          0.00845765694975853,
+          1.0197542905807495
+        ],
+        [
+          0.00845765694975853,
+          1.0016785860061646
+        ],
+        [
+          0.00845765694975853,
+          0.9910684823989868
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "max_clipping_loss": 0.01975429058074951,
+      "saturated_polygon_corners_by_role": {
+        "MI_Shared_FiredClay2m": 8808,
+        "MI_Shared_LimeMortar2m": 180
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "ranges": [
+        [
+          0.00845765694975853,
+          1.0197542905807495
+        ],
+        [
+          0.00845765694975853,
+          1.0016785860061646
+        ],
+        [
+          0.00845765694975853,
+          0.9910684823989868
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "max_clipping_loss": 0.01975429058074951,
+      "saturated_polygon_corners_by_role": {
+        "MI_Shared_FiredClay2m": 6216,
+        "MI_Shared_LimeMortar2m": 180
+      }
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "ranges": [
+        [
+          0.00845765694975853,
+          1.0197542905807495
+        ],
+        [
+          0.00845765694975853,
+          1.0016785860061646
+        ],
+        [
+          0.00845765694975853,
+          0.9910684823989868
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "max_clipping_loss": 0.01975429058074951,
+      "saturated_polygon_corners_by_role": {
+        "MI_Shared_FiredClay2m": 2952,
+        "MI_Shared_LimeMortar2m": 180
+      }
+    }
+  ]
+}

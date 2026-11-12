@@ -20,3 +20,9 @@ DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/RoofChimneyV12d/**/*.gz f
 
 # Shared interior roof actual binary corner diagnostics.
 DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/**/*.gz filter=lfs diff=lfs merge=lfs -text
+
+# Fireplace shared source actual serialized corner evidence.
+DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/**/*.gz filter=lfs diff=lfs merge=lfs -text
+
+# Fired-clay fireplace actual serialized corner evidence.
+DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV3/**/*.gz filter=lfs diff=lfs merge=lfs -text

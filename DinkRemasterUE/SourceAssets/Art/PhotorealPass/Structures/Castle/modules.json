@@ -1,0 +1,206 @@
+[
+ {
+  "name": "SM_Castle_Wall_8m",
+  "class": "building",
+  "fbx": "SM_Castle_Wall_8m.fbx",
+  "materials": [
+   "MI_Struct_CastleAshlar",
+   "MI_Struct_OakWeathered"
+  ],
+  "source_blend": "Castle.blend",
+  "lod0_triangles": 14072,
+  "lod1_triangles": 6332,
+  "lod2_triangles": 2814,
+  "dimensions_m": [
+   8.015,
+   2.6,
+   9.138
+  ],
+  "bounds_min_m": [
+   -4.004,
+   -1.529,
+   0.0
+  ],
+  "bounds_max_m": [
+   4.011,
+   1.071,
+   9.138
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "castle_wall_diag",
+   "castle_wall_corner"
+  ],
+  "sprite_family": "67 struct/castle/castl-",
+  "sprite_frames": "frames 6, 7, 9 (350 px wall runs) and 8",
+  "supersedes": "none (family 67 had no final art)",
+  "dresses": "curtain wall, 8.0 m long, 1.8 m thick, courses about 0.55 m; wall-walk at 7.0 m oversailing the field face by 0.3 m on a corbel table, crenellated parapet to 9.2 m (four merlons, period 2.0 m, so runs tile), inner kerb, paved walk, offset plinth courses, proud and shy blocks and two rows of putlog holes on the faces, two stone water spouts",
+  "fit": {
+   "pivot": "ground centre; field face toward -Y",
+   "frames": "the 350 px frames are oblique views of a wall run: yaw 45 degrees for the diagonal frames (6, 7, 9); one module per sprite, 8.75 m of card for 8.0 m of wall, so allow a 0.75 m overlap into the towers or scale X by 1.09"
+  }
+ },
+ {
+  "name": "SM_Castle_Wall_Corner",
+  "class": "building",
+  "fbx": "SM_Castle_Wall_Corner.fbx",
+  "materials": [
+   "MI_Struct_CastleAshlar",
+   "MI_Struct_OakWeathered"
+  ],
+  "source_blend": "Castle.blend",
+  "lod0_triangles": 14848,
+  "lod1_triangles": 6680,
+  "lod2_triangles": 2968,
+  "dimensions_m": [
+   5.541,
+   5.525,
+   9.146
+  ],
+  "bounds_min_m": [
+   -2.932,
+   -2.92,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.608,
+   2.604,
+   9.146
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "castle_wall_corner"
+  ],
+  "sprite_family": "67 struct/castle/castl-",
+  "sprite_frames": "frame 8 (350x505 px)",
+  "supersedes": "none (family 67 had no final art)",
+  "dresses": "outer corner of the curtain wall: two arms 4.0 m long measured from the angle, field faces toward -X and -Y, the same corbelled parapet, plinth and putlog holes as the wall, dressed quoins up the angle",
+  "fit": {
+   "pivot": "ground centre of the L footprint; the outer angle of the two field faces is at (-2.30, -2.30) from the pivot; arms run toward +X and +Y and end square, so SM_Castle_Wall_8m butts against them"
+  }
+ },
+ {
+  "name": "SM_Castle_Wall_End",
+  "class": "building",
+  "fbx": "SM_Castle_Wall_End.fbx",
+  "materials": [
+   "MI_Struct_CastleAshlar",
+   "MI_Struct_OakWeathered"
+  ],
+  "source_blend": "Castle.blend",
+  "lod0_triangles": 5124,
+  "lod1_triangles": 2304,
+  "lod2_triangles": 1024,
+  "dimensions_m": [
+   2.565,
+   2.592,
+   9.137
+  ],
+  "bounds_min_m": [
+   -1.256,
+   -1.524,
+   0.0
+  ],
+  "bounds_max_m": [
+   1.309,
+   1.068,
+   9.137
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "castle_wall_end"
+  ],
+  "sprite_family": "67 struct/castle/castl-",
+  "sprite_frames": "frame 12 (100x340 px)",
+  "supersedes": "none (family 67 had no final art)",
+  "dresses": "2.5 m wall end with dressed quoins on its free (+X) end, one merlon",
+  "fit": {
+   "pivot": "ground centre; the quoined free end is at +X: yaw 180 for the other hand"
+  }
+ },
+ {
+  "name": "SM_Castle_Tower_Round",
+  "class": "building",
+  "fbx": "SM_Castle_Tower_Round.fbx",
+  "materials": [
+   "MI_Struct_CastleAshlar",
+   "MI_Struct_OakWeathered"
+  ],
+  "source_blend": "Castle.blend",
+  "lod0_triangles": 18504,
+  "lod1_triangles": 8326,
+  "lod2_triangles": 3700,
+  "dimensions_m": [
+   6.196,
+   6.203,
+   12.097
+  ],
+  "bounds_min_m": [
+   -3.108,
+   -3.098,
+   0.0
+  ],
+  "bounds_max_m": [
+   3.088,
+   3.104,
+   12.097
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "castle_tower_round"
+  ],
+  "sprite_family": "67 struct/castle/castl-",
+  "sprite_frames": "frames 1-4 (193 px wide)",
+  "supersedes": "none (family 67 had no final art)",
+  "dresses": "round tower, 5.2 m across (6.0 m at the battered foot), 10 m to the paved top, corbel table of three oversailing courses, ten merlons with copings to 12.1 m, six arrow loops in two tiers",
+  "fit": {
+   "pivot": "ground centre",
+   "frames": "frames 1-4 differ only in which wall stubs are drawn against the tower: one mesh serves all four; the 193 px card is 4.8 m"
+  }
+ },
+ {
+  "name": "SM_Castle_Gatehouse",
+  "class": "building",
+  "fbx": "SM_Castle_Gatehouse.fbx",
+  "materials": [
+   "MI_Struct_CastleAshlar",
+   "MI_Struct_OakWeathered"
+  ],
+  "source_blend": "Castle.blend",
+  "lod0_triangles": 35892,
+  "lod1_triangles": 16150,
+  "lod2_triangles": 7178,
+  "dimensions_m": [
+   11.268,
+   6.888,
+   12.1
+  ],
+  "bounds_min_m": [
+   -5.637,
+   -4.218,
+   0.0
+  ],
+  "bounds_max_m": [
+   5.632,
+   2.67,
+   12.1
+  ],
+  "open_edges": 0,
+  "collision_hulls": 5,
+  "families": [
+   "castle_gatehouse"
+  ],
+  "sprite_family": "67 struct/castle/castl-",
+  "sprite_frames": "frame 5 (335x389 px)",
+  "supersedes": "none (family 67 had no final art)",
+  "dresses": "gatehouse 8.0 x 5.0 m, 8.5 m to its paved roof: 3.2 m round-arched passage with a barrel vault, voussoirs and jamb stones on both faces, raised iron-shod oak portcullis, carved panel and two loops over the arch, crenellated parapet all round, two round flanking turrets to 12.4 m",
+  "fit": {
+   "pivot": "ground centre; field face -Y; the passage runs along Y at x = 0, 3.2 m wide, 4.4 m to the crown, portcullis foot at 2.0 m",
+   "note": "the sprite shows a closed block with two half-round turrets and no visible gate (seen from inside the walls); this module has the arch on both faces"
+  }
+ }
+]

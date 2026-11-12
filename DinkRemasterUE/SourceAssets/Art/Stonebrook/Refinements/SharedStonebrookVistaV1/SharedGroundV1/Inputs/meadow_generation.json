@@ -1,8 +1,8 @@
 {
   "tool": "built-in image_gen",
-  "skill": "/home/davisc/.codex/skills/.system/imagegen/SKILL.md",
-  "source_file": "/home/davisc/.local/state/omarchy/agents/accounts/codex/personal/generated_images/01a1bca0-f0d5-71c2-8660-f77e1a521a1f/exec-fc09301b-11c2-4909-be05-4673f8158305.png",
-  "workspace_file": "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/Textures/GeneratedMeadow_Albedo_V1.png",
+  "skill": "<HOME>/.codex/skills/.system/imagegen/SKILL.md",
+  "source_file": "<HOME>/.local/state/omarchy/agents/accounts/codex/personal/generated_images/01a1bca0-f0d5-71c2-8660-f77e1a521a1f/exec-fc09301b-11c2-4909-be05-4673f8158305.png",
+  "workspace_file": "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/Textures/GeneratedMeadow_Albedo_V1.png",
   "sha256": "f477ca4e29bc02253ce2913a71c0d6452062979f0c9d0c5ed32007b4994080c3",
   "purpose": "Original generated photoreal meadow albedo source candidate; independently authored shader/3Dgrass response, not normal/height/roughness derived from image",
   "prompt": "Use case: photorealistic-natural. Asset type: square seamless PBR base-color/albedo texture for realistic medieval village meadow ground in a Blender-to-Unreal game. Generate an edge-to-edge orthographic cross-polarized material scan of closely cropped natural meadow turf: small irregular fine grass blades, mixed soft green and restrained olive fresh shoots, some dry beige fibres and occasional tiny glimpses of brown soil. Real natural photographic organic detail at approximately 1 square metre coverage, short grass rather than tufts seen from the side. Dense but irregular and calm, no large repeating clumps or stylized stripes. Flat even diffuse neutral illumination, no cast shadows, no directional shading, no gloss highlights, no ambient-occlusion dark seams. This is a base-color material texture, not a photograph of a landscape or a scene. Full square opaque surface with compatible opposite edges for tiling. No path, fence, stones, flowers, objects, animals, people, text, border or watermark. Avoid neon/lime saturation, flat painted green, giant dark blobs, sharp broad streaks and obvious regular repeats.",

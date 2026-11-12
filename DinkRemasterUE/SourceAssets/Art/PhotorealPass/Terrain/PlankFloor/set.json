@@ -1,0 +1,49 @@
+{
+ "name": "PlankFloor",
+ "files": {
+  "BC": "PlankFloor/T_Terrain_PlankFloor_BC.png",
+  "N": "PlankFloor/T_Terrain_PlankFloor_N.png",
+  "ORM": "PlankFloor/T_Terrain_PlankFloor_ORM.png",
+  "H": "PlankFloor/T_Terrain_PlankFloor_H.png",
+  "Macro": "PlankFloor/T_Terrain_PlankFloor_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 3.0,
+ "texel_mm_per_px": 1.465,
+ "height_range_m": 0.0208,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.781",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "wood_floor"
+ ],
+ "status": "finished",
+ "method": "Poly Haven old_wood_floor (worn, gapped softwood boards with nail heads and traffic wear), warmed to the original floor brown",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "old_wood_floor",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 31.2,
+  "mean": 81.4,
+  "max": 204.6
+ },
+ "mean_srgb": [
+  106,
+  77,
+  56
+ ],
+ "roughness_mean": 0.733,
+ "known_weaknesses": "boards are narrow (about 12 cm) and run across the full tile width: butt joints are rare; single scan"
+}

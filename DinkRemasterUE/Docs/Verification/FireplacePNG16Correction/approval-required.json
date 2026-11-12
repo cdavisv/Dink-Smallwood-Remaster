@@ -1,0 +1,16 @@
+{
+  "approved": false,
+  "contract_digest": "d4259c36e6d07dcfd76dce55126c3a5d33592d61469d2b6f950d55b72b0b9894",
+  "source_graphs_reviewed": true,
+  "pivot_compensation_reviewed": true,
+  "geometry_tolerances": {
+    "position_cm": 0.002,
+    "normal_component": 0.005,
+    "UV": 4.8828125e-06,
+    "raw_color": 1e-06,
+    "built_color": 0.0039225686274509805,
+    "frame_unit": 0.02,
+    "frame_dot": 0.02
+  },
+  "qualification": "Source/numeric/pivot selections retained; new native execution requires Root review of Python epoch and fresh disabled packet."
+}

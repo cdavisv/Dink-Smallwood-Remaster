@@ -2,7 +2,7 @@
 import bpy,json,math,sys
 from pathlib import Path
 from mathutils import Vector,Matrix
-ROOT=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE');ART=ROOT/'SourceAssets/Art/Characters/Milder'
+ROOT=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE');ART=ROOT/'SourceAssets/Art/Characters/Milder'
 bpy.ops.wm.open_mainfile(filepath=str(ART/'Milder_Working.blend'))
 coll=bpy.data.collections['SK_Milder'];arm=next(o for o in coll.objects if o.type=='ARMATURE');arm.name='Armature'
 ref=bpy.data.objects['Reference_Manny'];ref.hide_set(False);ref.hide_render=True

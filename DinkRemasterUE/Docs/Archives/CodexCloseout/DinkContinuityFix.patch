@@ -1,0 +1,292 @@
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp
+index 23133cf..255c74f 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtContextActor.cpp
+@@ -36,9 +36,34 @@ void ADinkArtContextActor::BeginPlay()
+ void ADinkArtContextActor::ConfigureOwnerScreen(int32 ScreenNumber)
+ {
+     OwnerScreenNumber = ScreenNumber > 0 ? ScreenNumber : 0;
++    VisibleScreens.Reset();
+     if (HasActorBegunPlay())
+         UpdateVisibility();
+ }
++bool ADinkArtContextActor::ConfigureScreenSet(const TArray<int32>& ScreenNumbers)
++{
++    if (OwnerScreenNumber<=0 || ScreenNumbers.IsEmpty() || ScreenNumbers.Num()>32) return false;
++    TSet<int32> Prepared;
++    for (const int32 Screen : ScreenNumbers)
++    {
++        if (Screen<1 || Screen>768 || Prepared.Contains(Screen)) return false;
++        Prepared.Add(Screen);
++    }
++    if (!Prepared.Contains(OwnerScreenNumber)) return false;
++    VisibleScreens=MoveTemp(Prepared);
++    if (HasActorBegunPlay()) UpdateVisibility();
++    return true;
++}
++
++bool ADinkArtContextActor::IncludesScreenPair(int32 CachedScreen, int32 PhysicalScreen) const
++{
++    if (VisibleScreens.IsEmpty())
++        return OwnerScreenNumber>0 && CachedScreen==OwnerScreenNumber && PhysicalScreen==OwnerScreenNumber;
++    // The screen cache intentionally lags slightly. Crossing between two covered screens
++    // must retain the SAME world dressing while both locations remain within the group.
++    return VisibleScreens.Contains(CachedScreen) && VisibleScreens.Contains(PhysicalScreen);
++}
++
+ UStaticMeshComponent *ADinkArtContextActor::AddRenderOnlyMesh(UStaticMesh *Mesh, const FTransform &Transform)
+ {
+     if (!IsValid(Mesh) || Transform.ContainsNaN())
+@@ -83,8 +108,10 @@ void ADinkArtContextActor::UpdateVisibility()
+     const ADinkScreenVolume *Screen = Greybox.IsValid() ? Greybox->GetCurrentScreen() : nullptr;
+     // The screen subsystem deliberately updates at0.25s intervals. The exact pawn
+     // location prevents showing stale context during possession/load transitions.
+-    const bool Visible = OwnerScreenNumber > 0 && Pawn && Screen && Screen->ScreenNumber == OwnerScreenNumber &&
+-                         Greybox->FindScreenAt(Pawn->GetActorLocation()) == Screen;
++    const ADinkScreenVolume* Physical=Pawn && Greybox.IsValid() ? Greybox->FindScreenAt(Pawn->GetActorLocation()) : nullptr;
++    const bool Visible=Pawn && Screen && Physical &&
++        (VisibleScreens.IsEmpty() ? Physical==Screen && Screen->ScreenNumber==OwnerScreenNumber :
++                                   IncludesScreenPair(Screen->ScreenNumber,Physical->ScreenNumber));
+     SetActorHiddenInGame(!Visible);
+ }
+ void ADinkArtContextActor::EndPlay(const EEndPlayReason::Type Reason)
+@@ -113,9 +140,26 @@ ADinkArtContextActor *ADinkArtContextActor::CreateFromManifest(UWorld &World, co
+     if (OwnerScreen <= 0 || !Manifest->TryGetStringField(TEXT("schema"), Schema) || Schema != TEXT("dink-art/1") ||
+         !Manifest->TryGetNumberField(TEXT("screen"), ExplicitScreen) || ExplicitScreen != OwnerScreen ||
+         !Manifest->TryGetObjectField(TEXT("context"), Context) ||
+-        !(*Context)->TryGetStringField(TEXT("visibility"), Visibility) || Visibility != TEXT("owner_screen_only") ||
++        !(*Context)->TryGetStringField(TEXT("visibility"), Visibility) ||
++        (Visibility != TEXT("owner_screen_only") && Visibility != TEXT("screen_set")) ||
+         !(*Context)->TryGetBoolField(TEXT("render_only"), RenderOnly) || !RenderOnly)
+         return nullptr;
++    TArray<int32> ScreenSet;
++    if (Visibility==TEXT("screen_set"))
++    {
++        const TArray<TSharedPtr<FJsonValue>>* Screens=nullptr;
++        if (!(*Context)->TryGetArrayField(TEXT("screens"),Screens) || Screens->IsEmpty() || Screens->Num()>32) return nullptr;
++        TSet<int32> Seen;
++        for (const auto& Value:*Screens)
++        {
++            double Number=0;
++            if (Value->Type!=EJson::Number || !Value->TryGetNumber(Number) || !FMath::IsFinite(Number) ||
++                Number<1 || Number>768 || Number!=FMath::FloorToDouble(Number) || Seen.Contains(int32(Number))) return nullptr;
++            Seen.Add(int32(Number)); ScreenSet.Add(int32(Number));
++        }
++        if (!Seen.Contains(OwnerScreen)) return nullptr;
++    }
++    else if ((*Context)->HasField(TEXT("screens"))) return nullptr;
+     for (const TCHAR *Key : {TEXT("replacements"), TEXT("warp_overrides"), TEXT("hide_origins"),
+                              TEXT("hide_screen_visuals"), TEXT("authored_collision_screens"),
+                              TEXT("preserve_low_collision_screens"), TEXT("lights"), TEXT("postprocess")})
+@@ -169,5 +213,9 @@ ADinkArtContextActor *ADinkArtContextActor::CreateFromManifest(UWorld &World, co
+             return nullptr;
+         }
+     Actor->ConfigureOwnerScreen(OwnerScreen);
++    if (!ScreenSet.IsEmpty() && !Actor->ConfigureScreenSet(ScreenSet))
++    {
++        Actor->Destroy(); return nullptr;
++    }
+     return Actor;
+ }
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp
+index 59a973d..c82a744 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp
+@@ -1,5 +1,8 @@
+ #include "DinkArtSubsystem.h"
+ #include "DinkArtContextActor.h"
++#include "DinkEarlyPostureAnimInstance.h"
++#include "DinkPostureComponent.h"
++#include "Animation/AnimBlueprintGeneratedClass.h"
+ #include "DinkScreenExposureComponent.h"
+ #include "DinkCoreModule.h"
+ #include "DinkOriginComponent.h"
+@@ -360,6 +363,25 @@ bool UDinkArtSubsystem::ApplyPlayer(USkeletalMeshComponent& Component)
+ 	}
+ 	Component.SetSkeletalMesh(Mesh);
+     ConfigurePlayerActions(Component);
++    FString PosturePath;
++    UClass* PostureClass=nullptr;
++    if ((*Row)->TryGetStringField(TEXT("posture_class"),PosturePath))
++    {
++        UClass* Candidate=LoadClass<UDinkEarlyPostureAnimInstance>(nullptr,*PosturePath);
++        const UAnimBlueprintGeneratedClass* Graph=Cast<UAnimBlueprintGeneratedClass>(Candidate);
++        if (Graph && Graph->GetTargetSkeleton()==Mesh->GetSkeleton()) PostureClass=Candidate;
++        else UE_LOG(LogDink,Warning,TEXT("Player posture class missing or incompatible: %s"),*PosturePath);
++    }
++    if (AActor* Owner=Component.GetOwner())
++    {
++        UDinkPostureComponent* Posture=Owner->FindComponentByClass<UDinkPostureComponent>();
++        if (!Posture && PostureClass)
++        {
++            Posture=NewObject<UDinkPostureComponent>(Owner,TEXT("PlayerPosture"));
++            Owner->AddInstanceComponent(Posture); Posture->RegisterComponent();
++        }
++        if (Posture) Posture->Configure(&Component,PostureClass);
++    }
+ 	UE_LOG(LogDink, Display, TEXT("DINK PLAYER ART OK: %s; existing locomotion and collision retained"), *Path);
+ 	return true;
+ }
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
+index e03bf13..2506eb8 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
+@@ -151,6 +151,7 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
+     const bool SameMode = bSelectedScreen && bInteriorMode == bool(Screen && Screen->bIndoor);
+     const float PreviousArm = Arm->TargetArmLength;
+     RestoreOccluders(); CurrentScreen=Screen; bSelectedScreen=true;
++    bAppliedCutaway=bEnableWallCutaway;
+     bInteriorMode = Screen && Screen->bIndoor;
+     if (bInteriorMode)
+     {
+@@ -163,7 +164,9 @@ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
+     if (SameMode) Arm->TargetArmLength=PreviousArm;
+     // Outdoor meshes participate only through the same explicit tag and complete
+     // authored material mapping. Their physical collision and outdoor camera stay intact.
+-    if (!Screen) return;
++    // Normal play retracts the camera against solid architecture instead of removing it.
++    // This also prevents a single exterior-cottage component from fading the whole house.
++    if (!Screen || !bEnableWallCutaway) return;
+     const FName ScreenTag(*FString::Printf(TEXT("DinkArtScreen_%d"),Screen->ScreenNumber));
+     for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+     {
+@@ -313,7 +316,7 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
+     }
+     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
+     ADinkScreenVolume* Screen=Grey ? Grey->GetCurrentScreen() : nullptr;
+-    if (!bSelectedScreen || Screen!=CurrentScreen.Get()) SelectScreen(Screen);
++    if (!bSelectedScreen || Screen!=CurrentScreen.Get() || bAppliedCutaway!=bEnableWallCutaway) SelectScreen(Screen);
+     Arm->TargetArmLength = FMath::FInterpTo(Arm->TargetArmLength, GetDesiredArmLength(), DeltaTime, 10.f);
+     if (bInteriorMode) UpdateFraming(DeltaTime);
+     if (Occluders.IsEmpty()) return;
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp
+index 3a7e28a..b87af24 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp
+@@ -1,6 +1,7 @@
+ #include "Greybox/DinkGreyboxCharacter.h"
+ #include "DinkCoreModule.h"
+ #include "DinkArtSubsystem.h"
++#include "DinkEarlyPostureAnimInstance.h"
+ #include "DinkInteriorCameraComponent.h"
+ #include "DinkInventoryComponent.h"
+ #include "DinkStatsComponent.h"
+@@ -228,6 +229,12 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
+ 	const FQuat Base = AppliedBodyRotation.Inverse() * GetMesh()->GetRelativeRotation().Quaternion();
+ 	AppliedBodyRotation = BodyDynamics.Update(GetActorLocation(), GetActorQuat(), DeltaSeconds,
+ 		Grounded).Quaternion() * HeroPhysicality.GetRotation().Quaternion();
++    if (Allowed && !Teleported && DeltaSeconds>SMALL_NUMBER &&
++        Cast<UDinkEarlyPostureAnimInstance>(GetMesh()->GetPostProcessInstance()))
++    {
++        // Bone-level authored slouch owns the baseline posture; keep shuffle/stumble only.
++        AppliedBodyRotation = AppliedBodyRotation * FRotator(1.2f,0,0).Quaternion();
++    }
+ 	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
+ 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
+ 	AppliedBodyOffset = HeroPhysicality.GetOffset();
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h
+index f9b9968..3c57672 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkArtContextActor.h
+@@ -23,6 +23,9 @@ class DINKCORE_API ADinkArtContextActor : public AActor
+                                                     const TMap<FString, UStaticMesh *> &Meshes, int32 OwnerScreen);
+     /** Call after all components are prepared, so an incomplete manifest remains hidden. */
+     void ConfigureOwnerScreen(int32 ScreenNumber);
++    /** Optional shared exterior group; owner must be included. No visibility outside this set. */
++    bool ConfigureScreenSet(const TArray<int32>& ScreenNumbers);
++    bool IncludesScreenPair(int32 CachedScreen, int32 PhysicalScreen) const;
+     UStaticMeshComponent *AddRenderOnlyMesh(UStaticMesh *Mesh, const FTransform &WorldTransform);
+     int32 GetOwnerScreenNumber() const
+     {
+@@ -38,6 +41,7 @@ class DINKCORE_API ADinkArtContextActor : public AActor
+     void ScreenChanged(ADinkScreenVolume *Screen);
+     void PawnChanged(APawn *Pawn);
+     int32 OwnerScreenNumber = 0;
++    TSet<int32> VisibleScreens;
+     TWeakObjectPtr<UDinkGreyboxSubsystem> Greybox;
+     TWeakObjectPtr<APlayerController> BoundController;
+     FDelegateHandle ScreenHandle, PawnHandle;
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h
+index 3f2f1d8..111c653 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h
+@@ -35,6 +35,8 @@ class DINKCORE_API UDinkInteriorCameraComponent : public UActorComponent
+     GENERATED_BODY()
+ public:
+     UDinkInteriorCameraComponent();
++    /** Historical cutaway mode for comparison fixtures only. Normal play keeps architecture opaque. */
++    UPROPERTY(Transient) bool bEnableWallCutaway = false;
+     /** Positive steps move closer. Kept separate from interior/outdoor base distances. */
+     void AddZoomInput(float Steps);
+     float GetZoomOffset() const { return ZoomOffset; }
+@@ -79,5 +81,6 @@ private:
+     FVector OutdoorPivot = FVector::ZeroVector;
+     FVector OutdoorSocket = FVector::ZeroVector;
+     bool bSelectedScreen = false;
++    bool bAppliedCutaway = false;
+     float ZoomOffset = 0.f;
+ };
+diff --git c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs
+index 6304c6e..9f925cb 100644
+--- c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs
++++ w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs
+@@ -10,5 +10,7 @@ public class DinkParity : ModuleRules
+ 		PrivateDependencyModuleNames.AddRange(new string[] {
+ 			"Core", "CoreUObject", "Engine", "InputCore", "DinkCore", "DinkNarrative", "InkPlusPlus", "Json", "UnrealEd", "MeshDescription", "StaticMeshDescription"
+ 		});
++		if (Target.bBuildEditor)
++			PrivateDependencyModuleNames.AddRange(new string[] { "AnimGraph", "AnimGraphRuntime", "BlueprintGraph", "KismetCompiler" });
+ 	}
+ }
+diff --git c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp
+index 0695a48..c916650 100644
+--- c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp
++++ w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkArtContextTests.cpp
+@@ -211,7 +211,7 @@ class FContextPIE : public IAutomationLatentCommand
+             auto Camera=H ? H->FindComponentByClass<UDinkInteriorCameraComponent>() : nullptr;
+             auto Grey=W->GetSubsystem<UDinkGreyboxSubsystem>();
+             const bool ManagedCottage=B.M->GetStaticMesh() && B.M->GetStaticMesh()->GetName()==TEXT("SM_Cottage_Stonebrook_01") &&
+-                B.M->GetOwner()->ActorHasTag(TEXT("DinkCameraOccluder")) && Grey->GetCurrentScreen()==Yard && Camera && !Camera->bInteriorMode;
++                B.M->GetOwner()->ActorHasTag(TEXT("DinkCameraOccluder")) && Grey->GetCurrentScreen()==Yard && Camera && Camera->bEnableWallCutaway && !Camera->bInteriorMode;
+             if (ManagedCottage)
+             {
+                 auto Expected=B.Responses;Expected.SetResponse(ECC_Camera,ECR_Ignore);
+diff --git c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
+index 7d0aae2..1f7070d 100644
+--- c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
++++ w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp
+@@ -63,6 +63,9 @@ public:
+         UDinkInteriorCameraComponent* C=Hero->FindComponentByClass<UDinkInteriorCameraComponent>();
+         if (Phase==0)
+         {
++            // Retain historical cutaway ownership/restore coverage explicitly; default play
++            // uses opaque architecture and is tested by WallsRemainSolid below.
++            if (C) C->bEnableWallCutaway=true;
+             if (!ViewportReady)
+             {
+                 ULocalPlayer* Local=PC->GetLocalPlayer(); FViewport* V=Local && Local->ViewportClient ? Local->ViewportClient->Viewport : nullptr;
+diff --git c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp
+index 2cea8f7..dea0d3c 100644
+--- c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp
++++ w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkOutdoorCameraTests.cpp
+@@ -55,6 +55,7 @@ public:
+   {
+    Story->SkipDialogue(); if (Story->GetActiveMenu() || Story->GetDirector()->GetDink().bFrozen || PC->IsMoveInputIgnored()) return false;
+    if (!Test->TestNotNull(TEXT("actual character camera policy"),Camera)) return true;
++   Camera->bEnableWallCutaway=true; // explicit historical comparison, before leaving the room
+    auto* Local=PC->GetLocalPlayer(); auto* Viewport=Local && Local->ViewportClient ? Local->ViewportClient->Viewport : nullptr;
+    if (!Test->TestNotNull(TEXT("real PIE local viewport"),Viewport)) return true;
+    if (Viewport->GetSizeXY()==FIntPoint::ZeroValue) Viewport->SetInitialSize(FIntPoint(1280,720));
+diff --git c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp
+index a78810f..01594d8 100644
+--- c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp
++++ w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPerimeterSkirtTests.cpp
+@@ -67,7 +67,7 @@ public:
+         if(Phase==1)
+         {
+             Check(true);if(auto* C=H->FindComponentByClass<UDinkInteriorCameraComponent>())
+-                T->TestEqual(TEXT("skirt never adds a camera occluder"),C->ManagedOccluderCount,85);
++                T->TestEqual(TEXT("skirt never adds a disappearing camera surface"),C->ManagedOccluderCount,C->bEnableWallCutaway ? 85 : 0);
+             else T->AddError(TEXT("real interior camera component missing"));
+             Move(H,G,Yard);Phase=2;At=FPlatformTime::Seconds();return false;
+         }

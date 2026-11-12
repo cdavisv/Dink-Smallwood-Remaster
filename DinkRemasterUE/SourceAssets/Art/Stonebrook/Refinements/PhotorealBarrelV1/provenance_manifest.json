@@ -43,15 +43,15 @@
   ],
   "inherited_input": {
     "file": "Inputs/PhotorealPropsV1_Input.blend",
-    "sha256": "529499138c3d0392fc1649429a9e3e47af75660c886bb7f59ff8dac8ba3a1609",
+    "sha256": "e0b3859fa3f4501defeced742bc5fe6dbe6b0850e9e3ad01c7589525d616332f",
     "role": "Immutable prior project-authored source scene; old barrel bounds/pivot and retained source context"
   },
   "oak_reference": {
     "mode": "Built-in image_gen tool; no CLI/API fallback",
     "purpose": "Work-only original oak albedo candidate; not a normal/roughness/height map",
     "prompt": "Use case: photorealistic-natural. Asset type: seamless PBR base-color/albedo texture for a realistic medieval cottage's worn oak floor in a Blender-to-Unreal game. Generate a square, edge-to-edge orthographic material scan of natural quarter-sawn warm oak wood, unvarnished and gently worn. One continuous wood surface with long grain running vertically: thin irregular fibres, fine open pores, subtle medullary rays, small natural deviations and occasional restrained tiny knots, believable mottled warm tan/brown color variation. Natural photographic detail instead of regular sine-wave stripes. Even diffuse cross-polarized neutral illumination: no cast shadows, no directional lighting, no ambient occlusion, no highlights or baked gloss. This is an albedo texture, not a photograph of a floor scene. No plank borders, seams, nails, objects, text, border or watermark. Avoid giant dark wavy ink lines, broad zebra stripes, orange saturation, painted plastic or perfectly parallel uniform lines. Aim for a tileable original texture with compatible opposite edges; dense fine detail suitable for repeating over oak boards at game scale. Opaque background.",
-    "source_file": "/home/davisc/.local/state/omarchy/agents/accounts/codex/nrcodex/generated_images/01a1b489-6b5b-7d03-a461-8e4363b7c168/exec-697818b8-e979-4c93-ae3e-d60ed93ad81d.png",
-    "workspace_file": "/home/davisc/Work/DinkQA/OakAlbedoCandidate/GeneratedOak_Albedo_V1.png",
+    "source_file": "<HOME>/.local/state/omarchy/agents/accounts/codex/nrcodex/generated_images/01a1b489-6b5b-7d03-a461-8e4363b7c168/exec-697818b8-e979-4c93-ae3e-d60ed93ad81d.png",
+    "workspace_file": "<HOME>/Work/DinkQA/OakAlbedoCandidate/GeneratedOak_Albedo_V1.png",
     "sha256": "fea05123f8c56d9a03fc5e0fe717be72215ba33ae9282be44006cf17446a782a",
     "image": {
       "dimensions": [

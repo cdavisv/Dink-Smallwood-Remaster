@@ -1,0 +1,88 @@
+{
+ "name": "SM_Jar_Jug_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Jug/SM_Jar_Jug_PR.fbx",
+ "materials": [
+  "MI_Jar_Jug"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Jar_Jug_PR.blend",
+ "lod0_triangles": 1584,
+ "lod1_triangles": 792,
+ "lod2_triangles": 348,
+ "dimensions_m": [
+  0.53,
+  0.441,
+  0.584
+ ],
+ "bounds_min_m": [
+  -0.263,
+  -0.22,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.267,
+  0.22,
+  0.584
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "448 items/cup/cup- frames 6, 8, 16",
+  "jar_vase"
+ ],
+ "supersedes": "none (family 448 was placeholder: jar_vase 52, bowl 17 placements)",
+ "dresses": "two-handled crock, 0.55 x 0.58 m, blue-grey glaze, two pulled strap handles; otherwise as the storage jar",
+ "fit": {
+  "pivot": "base centre",
+  "colours": "the sprite frames differ only in glaze colour: swap the material instance (MI_Prop_Glaze_Brown / _Blue / _Red / _Green / _Purple, all in materials.json) per frame",
+  "sprite_scale": "frames are 12-22 px wide (0.3-0.55 m at 0.025 m/px)"
+ },
+ "baked": {
+  "texture_folder": "Jar_Jug",
+  "textures": {
+   "BC": "T_Jar_Jug_PR_BC.png",
+   "N": "T_Jar_Jug_PR_N.png",
+   "ORM": "T_Jar_Jug_PR_ORM.png"
+  },
+  "px": 1024,
+  "slots": [
+   {
+    "material": "MI_Jar_Jug",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 52.7,
+    "p99": 135.3
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.076,
+    "p95": 0.175
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 23032,
+  "third_party": [],
+  "source_blend": "_build/bake/SM_Jar_Jug_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Jug",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "As SM_Jar_Storage_PR; the strap handles are plain flattened tubes thumbed on without finger marks.",
+ "third_party": [],
+ "texture_sets": [],
+ "textures_px": 1024,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Jug/T_Jar_Jug_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Jug/T_Jar_Jug_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Jug/T_Jar_Jug_PR_ORM.png"
+ }
+}

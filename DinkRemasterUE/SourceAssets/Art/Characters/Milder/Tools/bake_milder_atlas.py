@@ -2,7 +2,7 @@
 import bpy,json,sys
 from pathlib import Path
 import numpy as np
-ROOT=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE');ART=ROOT/'SourceAssets/Art/Characters/Milder';TEX=ART/'Textures'
+ROOT=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE');ART=ROOT/'SourceAssets/Art/Characters/Milder';TEX=ART/'Textures'
 bpy.ops.wm.open_mainfile(filepath=str(ART/'Working/Milder_Rigged_PreBake.blend'))
 scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.samples=1
 ob=bpy.data.objects['SK_Milder_LOD0'];arm=bpy.data.objects['Armature'];arm.data.pose_position='REST'

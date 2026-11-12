@@ -785,6 +785,12 @@ def review_setup(ground='forrest_ground_01', ground_scale=0.8, exposure=-4.6, su
     except Exception:
         pass
     sc.render.image_settings.file_format = 'PNG'; sc.render.image_settings.color_mode = 'RGB'
+    for k in dir(sc.render):                         # no render metadata in the PNG: it would carry the absolute path of the .blend
+        if k.startswith('use_stamp'):
+            try:
+                setattr(sc.render, k, False)
+            except Exception:
+                pass
     sc.view_settings.view_transform = 'AgX'
     try:
         sc.view_settings.look = 'AgX - Medium High Contrast'
@@ -850,13 +856,19 @@ def shot(R, path, obs=None, az=35.0, el=28.0, fill=0.72, lens=70.0, res=(1200, 9
 
 
 # ------------------------------------------------------------------ export / manifest
+def scratch_export(path):
+    """FBX stores the absolute path it was written to: write under a scratch folder, then move it into place"""
+    d = os.path.join(os.environ.get('TMPDIR', '/tmp'), 'dink_unclaimed_export'); os.makedirs(d, exist_ok=True); os.makedirs(os.path.dirname(path), exist_ok=True)
+    return os.path.join(d, os.path.basename(path))
+
+
 def export_fbx(path, obs):
-    activate(obs[0], obs[1:]); os.makedirs(os.path.dirname(path), exist_ok=True)
+    activate(obs[0], obs[1:]); final = path; path = scratch_export(final)
     hid = [(o, o.hide_render) for o in obs]
     bpy.ops.export_scene.fbx(filepath=path, use_selection=True, apply_unit_scale=True, global_scale=1.0, apply_scale_options='FBX_SCALE_ALL', axis_forward='Y', axis_up='Z',
                              bake_space_transform=False, use_triangles=True, mesh_smooth_type='FACE', use_tspace=False, add_leaf_bones=False, bake_anim=False, path_mode='STRIP',
                              object_types={'MESH', 'ARMATURE', 'EMPTY'}, colors_type='NONE', use_mesh_modifiers=True)
-    return path
+    import shutil; shutil.move(path, final); return final
 
 
 def save_blend(path=None):

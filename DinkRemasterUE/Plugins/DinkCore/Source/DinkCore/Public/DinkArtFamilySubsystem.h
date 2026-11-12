@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
+#include "Hardness/DinkFamilyCollisionFit.h"
 #include "DinkArtFamilySubsystem.generated.h"
 
 class ADinkGreyboxScreen;
@@ -136,6 +137,21 @@ public:
 	bool IsScreenApplied(int32 ScreenNumber) const { return AppliedScreens.Contains(ScreenNumber); }
 	bool IsReady() const { return bReady; }
 	const TArray<FDinkFamilyBinding>& GetBindings() const { return Bindings; }
+    /** Typed producer for the single marked-world authority.
+     * Absence of policy preserves PR40/41. */
+    bool PrepareCollisionFit(const FDinkOriginId& Origin,const FDinkFamilyFitSpriteState& Sprite,
+        FDinkFamilyCollisionFitCandidate& Out,FString& Error) const;
+    bool ValidateCollisionFit(const FDinkFamilyCollisionFitCandidate& Candidate,
+        const FDinkFamilyFitSpriteState& Current,FString& Error) const;
+    bool ApplyCollisionFitVisual(FDinkFamilyCollisionFitCandidate& Candidate,
+        const FDinkFamilyFitSpriteState& Current,const IDinkFamilyFitVisualAuthority& Authority,FString& Error);
+    bool IsCollisionFitRequested(const FDinkOriginId& Origin) const;
+    bool PrepareCollisionFitReleaseCandidate(const FDinkOriginId& Origin,const FDinkFamilyFitSpriteState& Current,
+        FDinkFamilyCollisionFitCandidate& Out,FString& Error) const;
+    bool ReleaseCollisionFitVisual(const FDinkFamilyCollisionFitCandidate& Candidate,
+        const FDinkFamilyFitSpriteState& Current,const IDinkFamilyFitVisualAuthority& Authority,FString& Error);
+    const TArray<FDinkFamilyCollisionFitRule>& GetCollisionFitRules() const { return CollisionFitRules; }
+    bool HasCollisionFitPolicyError() const { return bCollisionFitPolicyError; }
 	const FDinkFamilyPrecedence& GetPrecedence() const { return Precedence; }
 	/** Placements dressed so far, and skip counts by decision. */
 	int32 GetDressedCount() const { return Dressed; }
@@ -145,6 +161,11 @@ protected:
 	virtual bool DoesSupportWorldType(EWorldType::Type WorldType) const override;
 
 private:
+    friend class FDinkHardnessFittedLifecycle; // native scratch-policy fixture; no public bypass
+    static UStaticMeshComponent* MakeUnpublishedReleasedVisual(ADinkPlaceholderActor& Actor,UStaticMesh& Mesh);
+    bool LoadCollisionFitPolicy(const FString& File,FString& Text,FString& Error);
+    bool PrepareCollisionFitImpl(const FDinkOriginId& Origin,const FDinkFamilyFitSpriteState& Sprite,
+        FDinkFamilyCollisionFitCandidate& Out,FString& Error,bool Release) const;
 	void ScreenChanged(ADinkScreenVolume* Screen);
 	void BuildIndex(UWorld& World);
 	UStaticMesh* MeshFor(const FDinkFamilyBinding& Binding);
@@ -152,6 +173,9 @@ private:
 	int32 DressInstances(ADinkGreyboxScreen& Screen);
 
 	TArray<FDinkFamilyBinding> Bindings;
+    TArray<FDinkFamilyCollisionFitRule> CollisionFitRules;
+    FDinkReleasedFamilyVisualBinding ReleasedVisualBinding;
+    bool bCollisionFitPolicyError=true; // unavailable until the mandatory file has been read and parsed
 	FDinkFamilyPrecedence Precedence;
 	UPROPERTY(Transient)
 	TMap<FString, TObjectPtr<UStaticMesh>> Meshes;

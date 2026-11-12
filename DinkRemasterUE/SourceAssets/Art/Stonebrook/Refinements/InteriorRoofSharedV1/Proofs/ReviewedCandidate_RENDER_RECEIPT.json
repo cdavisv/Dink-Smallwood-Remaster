@@ -1,5 +1,5 @@
 {
-  "source": "/home/davisc/Work/DinkQA/PhotorealSessions/InteriorRoofSharedV1/InteriorRoof_Shared2mCandidate.blend",
+  "source": "<HOME>/Work/DinkQA/PhotorealSessions/InteriorRoofSharedV1/InteriorRoof_Shared2mCandidate.blend",
   "source_sha256": "54abf083265417dd5c83406e3103522140a36ba9d46ef2f80e8c803f18bf33d8",
   "CPU_threads": 2,
   "resolution": [
@@ -11,7 +11,7 @@
   "views": [
     {
       "image": "interior_wide.png",
-      "sha256": "d986b3f5dd4a603a4c4b4084330f6904f6b2cfcf59c50e8f3b8707be67494be5",
+      "sha256": "373a943e71f806e5f09c883f9bdfdb762e3bebf1b259d19ec9c47da5d18c3f80",
       "camera_m": [
         3,
         -5,
@@ -26,7 +26,7 @@
     },
     {
       "image": "joinery_close.png",
-      "sha256": "2855732cc10822d9e246827768348a4a81fd5f7f88018306c506cc2a3708c1ac",
+      "sha256": "39b588eda2291077b76b2328f1a61089f5d78f0abf5ff33681f400d8f8239f16",
       "camera_m": [
         1.1,
         -0.8,
@@ -41,7 +41,7 @@
     },
     {
       "image": "gable_plaster.png",
-      "sha256": "17666deded659bf4b3112b40cd6e4a8f984dc63fd6d339087f90bf1f8d54c1f3",
+      "sha256": "1a1b14759918eeac908eef019ba67945c86392ab5e371e6603fa454038d0d132",
       "camera_m": [
         2,
         0,

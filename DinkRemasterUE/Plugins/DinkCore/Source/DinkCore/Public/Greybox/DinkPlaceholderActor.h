@@ -9,6 +9,8 @@ class UDinkInstanceOriginsComponent;
 class UDinkOriginComponent;
 class UDinkWarpComponent;
 class UStaticMeshComponent;
+class UMaterialInterface;
+struct FDinkFamilyCollisionFitCandidate;
 
 /**
  * Greybox stand-in for one original sprite placement: an upright two-sided card that shows the
@@ -52,6 +54,28 @@ public:
 	/** Card size rule: "layout" (stretched with the ground) or "base" (true size, characters and loose items). */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Dink|Placeholder")
 	FName CardScaleMode;
+
+    /** Immutable importer card baseline; effective runtime pictures never overwrite this. */
+    UPROPERTY(VisibleAnywhere, Category="Dink|Placeholder")
+    FTransform ImportedCardRelativeTransform;
+    UPROPERTY(VisibleAnywhere, Category="Dink|Placeholder")
+    bool bHasImportedCardBaseline=false;
+    /** Last published legacy geometry/material; yaw remains owned by ordinary billboarding. */
+    UPROPERTY(Transient)
+    FTransform PublishedLegacyCardRelative;
+    UPROPERTY(Transient)
+    FTransform PublishedImportedCardBaseline;
+    UPROPERTY(Transient)
+    FString PublishedSourcePictureSha1;
+    UPROPERTY(Transient)
+    TObjectPtr<UMaterialInterface> PublishedLegacyCardMaterial;
+    UPROPERTY(Transient)
+    bool bHasPublishedLegacyPicture=false;
+    /** Lean successful release epoch; weak actor/components, strong picture assets. */
+    TSharedPtr<const FDinkFamilyCollisionFitCandidate> PublishedLegacyReleaseWitness;
+    /** Optional guarded final-picture mesh; never a family collision source or authored interaction shape. */
+    UPROPERTY(Transient)
+    TObjectPtr<UStaticMeshComponent> ReleasedFamilyArt;
 
 	/** The original stamps this placement's hardbox into the screen's hardness. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Dink|Placeholder")

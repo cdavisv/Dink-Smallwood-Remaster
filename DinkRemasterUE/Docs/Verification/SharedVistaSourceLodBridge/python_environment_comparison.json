@@ -3,10 +3,10 @@
     {
       "exit_code": 245,
       "command": [
-        "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
-        "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+        "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
         "-run=pythonscript",
-        "-script=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/python_capability.py",
+        "-script=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/python_capability.py",
         "-nullrhi",
         "-unattended",
         "-nosplash",
@@ -15,7 +15,7 @@
         "-NoCompile",
         "-stdout",
         "-FullStdOutLogOutput",
-        "-abslog=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/capability_Unreal.log"
+        "-abslog=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/capability_Unreal.log"
       ],
       "pinned_files": 51404,
       "changes": {
@@ -24,7 +24,7 @@
         "changed": []
       },
       "all_owned_modules": true,
-      "HOME": "/home/davisc",
+      "HOME": "<HOME>",
       "run": "capability"
     },
     {
@@ -40,16 +40,16 @@
         "changed": []
       },
       "all_owned_modules": true,
-      "HOME": "/home/davisc",
+      "HOME": "<HOME>",
       "run": "walls"
     },
     {
       "exit_code": 0,
       "command": [
-        "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
-        "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+        "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
         "-run=pythonscript",
-        "-script=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/load_only.py",
+        "-script=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/load_only.py",
         "-nullrhi",
         "-unattended",
         "-nosplash",
@@ -58,7 +58,7 @@
         "-NoCompile",
         "-stdout",
         "-FullStdOutLogOutput",
-        "-abslog=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/load_only_Unreal.log"
+        "-abslog=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/load_only_Unreal.log"
       ],
       "pinned_files": 51404,
       "changes": {
@@ -67,16 +67,16 @@
         "changed": []
       },
       "all_owned_modules": true,
-      "HOME": "/home/davisc",
+      "HOME": "<HOME>",
       "run": "load_only"
     },
     {
       "exit_code": 0,
       "command": [
-        "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
-        "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+        "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
         "-run=pythonscript",
-        "-script=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_capability.py",
+        "-script=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_capability.py",
         "-nullrhi",
         "-unattended",
         "-nosplash",
@@ -85,7 +85,7 @@
         "-NoCompile",
         "-stdout",
         "-FullStdOutLogOutput",
-        "-abslog=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_Unreal.log"
+        "-abslog=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/cleanup_Unreal.log"
       ],
       "pinned_files": 51404,
       "changes": {
@@ -94,16 +94,16 @@
         "changed": []
       },
       "all_owned_modules": true,
-      "HOME": "/home/davisc",
+      "HOME": "<HOME>",
       "run": "cleanup"
     },
     {
       "exit_code": 245,
       "command": [
-        "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
-        "/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
+        "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/EngineFacade/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/DinkRemaster.uproject",
         "-run=pythonscript",
-        "-script=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/old_callable.py",
+        "-script=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/old_callable.py",
         "-nullrhi",
         "-unattended",
         "-nosplash",
@@ -112,7 +112,7 @@
         "-NoCompile",
         "-stdout",
         "-FullStdOutLogOutput",
-        "-abslog=/home/davisc/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/old_callable_Unreal.log"
+        "-abslog=<HOME>/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/BridgeProof/BwrapEpoch2/old_callable_Unreal.log"
       ],
       "pinned_files": 51404,
       "changes": {
@@ -121,7 +121,7 @@
         "changed": []
       },
       "all_owned_modules": true,
-      "HOME": "/home/davisc",
+      "HOME": "<HOME>",
       "run": "old_callable"
     }
   ],

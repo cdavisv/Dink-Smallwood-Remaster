@@ -1,0 +1,21 @@
+{
+  "ActualCottagePane_OpticalReference.blend": "c678f5712cb409e1f2cdd67a2a6f3b9f6d97fd0abd8faf2fdea4549e05468a87",
+  "ActualCottagePane_ReflectionControl.blend": "8c71cd97970b068a7d70fdb1c8fcc84abf1dcb36a79f92c6c353dbf519ae2c9e",
+  "PACKED_RESOURCE_CHECK.json": "5a6570f5d59a8f0f724a7082d0df76adc12fdd01b916937056b298ac7d4678bc",
+  "README.md": "1f9666051f9fee80c4a0644dc74448b9ea0b7f50bf6711bf6ad82d7eada2451d",
+  "REFERENCE.json": "eb32fd949ec0f5528da3e46c5b66e4ac7d80e1894ffb75d6242fadd5d7ce048d",
+  "REFLECTION_CONTROL.json": "6d7ddc90aa5cea6697275ad74d189c63bd9342b45185703bfaf4cbcc9da9f4c6",
+  "RELOCATION_CHECK.json": "ff1b41141d7cdc00264560cdf4914682b80cefb4520abaa61fc7248b37c9286f",
+  "inside_card_bare.png": "6793fd27325ada2d80b8c317785d07d50fa5f04f35e5cf609c0409ed6a383eac",
+  "inside_card_glass.png": "130292cce4a871a11f8a5058979a07c3fcc1b90e95d3ec5c82b44007467db65c",
+  "localize_study.py": "4eefd2cf8e552cbbf196b060d0db2b627a9a1ce5d853ff5ebd4f774f2328358f",
+  "outside_card_bare.png": "529abfe5900c329ee097bcd53be433a7249185fc07904b6d16a5c1a933c49df9",
+  "outside_card_glass.png": "83764654f1a18288a8d85e54c1c85a2f0936fbb15302578e1439d1250ef6ed25",
+  "outside_grazing_bare.png": "443cc54ae62348d7ca38ae47b8789e6d34da672ffbd253af94bd4bda007ca849",
+  "outside_grazing_glass.png": "d40c840676648c364b4b94f60030fe71136fc6bf43c04e2bddd5bda10f13705c",
+  "outside_grazing_reflection_bare.png": "d208765dae47ccb1ce68950a7d4af9ff755706d281233305372aedfc150f1597",
+  "outside_grazing_reflection_glass.png": "4686f6214e3ef744959d8ed6671f1ca96d0ea011e6688758bdaf04a51439d3b3",
+  "render_actual_pane.py": "70e0eb93aec817fe652061c7ecd674c2517a7d2efbb4e5834a32001927ea4884",
+  "render_reflection_control.py": "4b44dc1fcd624906a7060acb148e2a5723726b70afd9f3ee90f15ded3d01c88a",
+  "verify_packed_scene.py": "0c3a1e65665687098023bfa7c6a1cdb178645c0875d7393366c2a118eee7c264"
+}

@@ -7,9 +7,9 @@ assert len(args)==2 and args[0]=='--output'
 out=Path(args[1]).resolve();repo=Q.parents[5]
 assert not out.exists() and out.is_absolute() and out!=repo and repo not in out.parents
 source=Q/'portable.source.blend';script=Q/'Scripts/Historical/export_lod0.py'
-assert hashlib.sha256(source.read_bytes()).hexdigest()=='d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c'
-assert hashlib.sha256(script.read_bytes()).hexdigest()=='bebb4563b1bbd86ad240a186d25b26704270c936b698dd1d18e6208167112ba9'
-text=script.read_text();old="SRC=Path('/home/davisc/Work/DinkQA/PhotorealBrokenBarrelAsymmetricV4Variant/PhotorealBrokenBarrelV4_AsymmetricComposition.blend')"
+assert hashlib.sha256(source.read_bytes()).hexdigest()=='ee159f2d54a0431e6d8fa67541df5b3a370b85ccf4e42e3ea80bdacfe4c0faa5'
+assert hashlib.sha256(script.read_bytes()).hexdigest()=='c8c0c835c005dedfe151b48f9fa8c7f0935091473727e7139338d1216658649e'
+text=script.read_text();old="SRC=Path('<HOME>/Work/DinkQA/PhotorealBrokenBarrelAsymmetricV4Variant/PhotorealBrokenBarrelV4_AsymmetricComposition.blend')"
 assert text.count(old)==1 and text.count('Q=Path(__file__).resolve().parent')==1
 text=text.replace(old,'SRC=Path('+repr(str(source))+')').replace('Q=Path(__file__).resolve().parent','Q=Path('+repr(str(out))+')')
 out.mkdir(parents=True,exist_ok=False)

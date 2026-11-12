@@ -7,7 +7,7 @@
     "publish_photoreal_barrel.py": "dca0f4b276bab24801094a54ed1875fb4a4c6e3e0f6d08eed097402c894854dd",
     "barrel_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
   },
-  "handoff_sha256": "2b662c9bc62383da792e18f7fd1a44bf5d9c66790cf98f8a5f100d3491cfc5c5",
+  "handoff_sha256": "115c4095508f3c33d49d9b42f708d6ed5d3a7f8be118f2690fe16b4700acfbbc",
   "base_tool_hashes": {
     "props_contract.py": "41d03f91aa9bf34199df817220f7ce7b2ae4716738ed5bdec6445b1793796de2",
     "import_photoreal_props.py": "f87d3074128a7d81a76eecce54009f2a9ae6dba128f9216b704cc92725a3dd03",
@@ -22,8 +22,8 @@
     "all_scratch_python_AST_passed": true
   },
   "actual_source_checks": {
-    "publication_bundle": "/home/davisc/Work/DinkPhotorealBarrelSources/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
-    "selected_handoff_sha256": "fa0805fa7fa5064cccc924e4b28c32408d69e6797d7e8dc3d5cb88d126badc57",
+    "publication_bundle": "<HOME>/Work/DinkPhotorealBarrelSources/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
+    "selected_handoff_sha256": "058c846bd2c0883266d3fa709b6012757012a4223ed19c99997b8a7743c8168c",
     "load_plan_with_real_pngs_and_FBX": "PASS",
     "source_triangles": 16648,
     "self_oriented_bijective_match": "PASS0cm0UVdelta",

@@ -3,7 +3,7 @@
   "after": "FocusedAfterPossess/verification.json: Outdoor1/1 and Art22/22 zero warnings;6868inputs stable.",
   "material_import": "Materials/verification.json:3unique new packages; alloriginal packages unchanged; separatecheck changes0; floorframing unchanged.",
   "prior_failed_green": "Focused/verification.json preserved: camera400cm allpolicygates passed; only testfixture failed to accountfor enginePossess resetting pitch. Corrected by recordingactualpostPossess baseline; initialexit stillstrict(-18,90).",
-  "source_packet": "/home/davisc/Work/DinkVistaStage/Saved/OutdoorCamera/SourceReview",
+  "source_packet": "<HOME>/Work/DinkVistaStage/Saved/OutdoorCamera/SourceReview",
   "source_and_asset_pins": {
     "Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp": "8fb9cedbaedba8b7c5d0d25e8944d1002709da5fdb7e66764561784aab67d09d",
     "Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkInteriorCameraTests.cpp": "cba69f7e5b43241b09652a8f9db23df3dca2d11b19f1dfad86b5badcf99b96d7",

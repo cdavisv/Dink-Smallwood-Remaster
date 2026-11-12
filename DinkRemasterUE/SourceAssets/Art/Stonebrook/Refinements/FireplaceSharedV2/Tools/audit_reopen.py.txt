@@ -1,0 +1,34 @@
+import bpy,hashlib,json,math,struct,os
+from pathlib import Path
+O=Path(__file__).resolve().parent;B=json.load(open(O.parent/'SOURCE_PRESERVATION.json'));SRC=Path(B['source'])
+def snapshot(path):
+ bpy.ops.wm.open_mainfile(filepath=str(path));r={}
+ for o in bpy.data.objects:
+  if o.type!='MESH':continue
+  m=o.data
+  r[o.name]=dict(vertices=[tuple(v.co)for v in m.vertices],edges=[tuple(e.vertices)for e in m.edges],polygons=[tuple(p.vertices)for p in m.polygons],smooth=[p.use_smooth for p in m.polygons],normals=[tuple(n.vector)for n in m.corner_normals],matrix=[list(row)for row in o.matrix_world],modifiers=[(x.name,x.type,x.show_render,x.show_viewport)for x in o.modifiers],uv=[[tuple(l.uv)for l in u.data]for u in m.uv_layers],materials=[x.name if x else None for x in m.materials])
+ return r
+base=snapshot(SRC);new=snapshot(O/'Fireplace_SharedContractV2.blend');checks={}
+for name,a in base.items():
+ b=new[name];protected=not name.startswith(('SM_Fireplace','SM_Chimney'));checks[name]={k:a[k]==b[k]for k in a if protected or k not in ['uv','materials']}
+assert set(base)==set(new)and all(all(c.values())for c in checks.values())
+report={'status':'PASS','objects':len(new),'UCX':sum(n.startswith('UCX_')for n in new),'roof8':sum(n.startswith('SM_IndoorRoof')for n in new),'checks':checks,'target_UV':{},'active_images':{}}
+for o in bpy.data.objects:
+ if o.type!='MESH'or not o.name.startswith(('SM_Fireplace','SM_Chimney')):continue
+ m=o.data;uv=m.uv_layers.active;m.calc_loop_triangles();areas=[];degen=0
+ for t in m.loop_triangles:
+  a,b,c=[uv.data[i].uv for i in t.loops];ua=abs((b-a).cross(c-a))/2
+  if t.area>1e-12:
+   if ua<1e-12:degen+=1
+   else:areas.append(math.sqrt(ua/t.area)*1024)
+ m.calc_tangents(uvmap=uv.name);invalid=sum(not all(math.isfinite(v)for v in (*l.tangent,l.bitangent_sign))for l in m.loops)
+ areas.sort();report['target_UV'][o.name]=dict(finite=all(math.isfinite(x)for l in uv.data for x in l.uv),zero_area_triangles=degen,tangent_nonfinite=invalid,nominal_density=512,projected_density_min=areas[0],projected_density_median=areas[len(areas)//2],projected_density_max=areas[-1],overlap='intentional shared repeats; planar dominant-axis projection per polygon')
+ for mat in m.materials:
+  if not mat or not mat.use_nodes:continue
+  for node in mat.node_tree.nodes:
+   if node.type=='TEX_IMAGE'and node.image:
+    im=node.image;report['active_images'][im.name]=dict(packed=bool(im.packed_file),size=list(im.size),colour_space=im.colorspace_settings.name)
+assert all(v['packed']and v['size']==[1024,1024]for v in report['active_images'].values());assert all(v['finite']and not v['zero_area_triangles']and not v['tangent_nonfinite']for v in report['target_UV'].values())
+json.dump(report,open(O/'REOPEN_GEOMETRY_UV.json','w'),indent=2);print('REOPEN_GEOMETRY_UV_PASS',flush=True)
+
+os._exit(0)

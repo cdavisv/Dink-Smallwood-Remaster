@@ -1,8 +1,8 @@
 {
   "schema": "dink-house-independent-publication-review/1",
   "conclusion": "APPROVE corrected bounded SOURCE/EXPORT publication candidate; NOT native/game/final-in-game-art acceptance",
-  "reviewed_handoff_sha256": "50bf30b343047baed5339fc27c5950cb9017e7173c71d9e9cb1ab51cbb67b950",
-  "reviewed_source_sha256": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
+  "reviewed_handoff_sha256": "ea4ca945a367367a94e41f1c37e2ba6243ad1f7bdd0dfd97e0cbb7e3f72511e9",
+  "reviewed_source_sha256": "8fc2f297e8c71f7999484f602a76b274f2b2fd72dac004a7e1b179f4990c1411",
   "reviewed_file_count": 70,
   "blocking_findings": [],
   "resolved_blocking_findings": [
@@ -191,17 +191,17 @@
     "Nanitefallback/performance/final in-gameart acceptance"
   ],
   "evidence": {
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/copy_receipt.json": "71eb4b068631aa2a004909fafd5847724139d15dca54df82fb1b880bedd3ba8d",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/portable_audit.json": "40630f44233ea2d198584cd10c0d8163158324dcdc67a385207028ff698b059b",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/independent_graph_archive_inspection.json": "bc63fca294f2d406ced57b016614fa9397e25cab77a6063d1e676afbeda6eaed",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/independent_numeric_roundtrip.json": "9afad49e9814b84a9b84a8acf59b350550641813f0f00691d7bfd8f4762f38bc",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/independent_pixel_audit.json": "f1a0dbc7dd4451e61e90d6366ef3130f256cbafb32b5b8ec9c26b2ab4531f313",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/guide_failure_probe.log": "430aa876d0e2d54cdb080ee6d5783db759b6de2150fea1e3f40fa631ce343fc0",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/copy_receipt.json": "1ed108b7db32b8de960e2d4273d69c4cf98279203cb38b9b7d1a136f194c6c06",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/guide_failure_probe.log": "c570a34e88b47575cc8f95f465a4c6af2aebe559820f159194aa544926e0bd3b",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/export_failure_probe.log": "a8786652d83bd99286a06abec94c6ddebeafafef2f009625a0ccba31b5046a9f",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/raw_guide.json": "5129405d694806d89bed5057fed769ced6dbfcb5301430c2341214c3711d6d81",
-    "/home/davisc/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/export_success.json": "061edd1bbafabe42c998e10c4486c133ef639e7ed73258d68c12a50137c1d624"
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/copy_receipt.json": "71eb4b068631aa2a004909fafd5847724139d15dca54df82fb1b880bedd3ba8d",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/portable_audit.json": "40630f44233ea2d198584cd10c0d8163158324dcdc67a385207028ff698b059b",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/independent_graph_archive_inspection.json": "bc63fca294f2d406ced57b016614fa9397e25cab77a6063d1e676afbeda6eaed",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/independent_numeric_roundtrip.json": "9afad49e9814b84a9b84a8acf59b350550641813f0f00691d7bfd8f4762f38bc",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/independent_pixel_audit.json": "f1a0dbc7dd4451e61e90d6366ef3130f256cbafb32b5b8ec9c26b2ab4531f313",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run01/guide_failure_probe.log": "430aa876d0e2d54cdb080ee6d5783db759b6de2150fea1e3f40fa631ce343fc0",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/copy_receipt.json": "1ed108b7db32b8de960e2d4273d69c4cf98279203cb38b9b7d1a136f194c6c06",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/guide_failure_probe.log": "c570a34e88b47575cc8f95f465a4c6af2aebe559820f159194aa544926e0bd3b",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/export_failure_probe.log": "a8786652d83bd99286a06abec94c6ddebeafafef2f009625a0ccba31b5046a9f",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/raw_guide.json": "5129405d694806d89bed5057fed769ced6dbfcb5301430c2341214c3711d6d81",
+    "<HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/HouseIndependentReview/Run02/export_success.json": "061edd1bbafabe42c998e10c4486c133ef639e7ed73258d68c12a50137c1d624"
   },
   "no_frozen_or_repo_native_GPU_mutations_by_reviewer": true
 }

@@ -1,0 +1,548 @@
+{
+  "passed": true,
+  "all24sources_valid": true,
+  "source8_count": 15,
+  "source16_count": 9,
+  "actual_exports_compared": 16,
+  "actual_failed16_export_exact": true,
+  "normalization_or_precision_waiver": false,
+  "new_UE_execution": false,
+  "rows": [
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_BC",
+      "source_sha256": "e5cbb13c9fcb0031c17ad2b216afea746508ae0129d7655c3c656f4ba439622d",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "a50dd28ac4be84c057c0303822ff0bcc48b803905b5489ab9598029d7b2737ba",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "a50dd28ac4be84c057c0303822ff0bcc48b803905b5489ab9598029d7b2737ba",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_N_GL",
+      "source_sha256": "ec06f6e3e64ae8259673b1bda2d2915b7acb1308677ed23b0539b08f49984ac3",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "079efb73d9cfd98000307ce49d15675a065923e81c7f84174bff7736f9edee90",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "079efb73d9cfd98000307ce49d15675a065923e81c7f84174bff7736f9edee90",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_ORM",
+      "source_sha256": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "b303087d9a534fe4cc4c4160ad922c57ce7024e7d3e401edc48da3762b3ce60f",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "b303087d9a534fe4cc4c4160ad922c57ce7024e7d3e401edc48da3762b3ce60f",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_BC",
+      "source_sha256": "1ad8700f05582506c22b081bbcbb41e753a36799c9c83fd31e17ae1cc83c9fa9",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "e0b9218b62c1830d36334e88383e761476eaec248dd8ed0e8dfee2636c980dd8",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "e0b9218b62c1830d36334e88383e761476eaec248dd8ed0e8dfee2636c980dd8",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_N_GL",
+      "source_sha256": "a8edca91ca3532920567795cdca4cb23b171be17047aa62b0927d6961f010aba",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "bfbec3ab7b4a566158988558c2ed4a3a2210861442a4bdaa2c090db77caed182",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "bfbec3ab7b4a566158988558c2ed4a3a2210861442a4bdaa2c090db77caed182",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_ORM",
+      "source_sha256": "22b7784b04a55970ce02a11d7dd94529e7b7d748ff233422853bae22e5f36d0f",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "b303087d9a534fe4cc4c4160ad922c57ce7024e7d3e401edc48da3762b3ce60f",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "b303087d9a534fe4cc4c4160ad922c57ce7024e7d3e401edc48da3762b3ce60f",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_BC",
+      "source_sha256": "0ff6fdf4b992abf47ebcfa85a429f2e76d3f9ad73242f6bcbd13d91ff88fae20",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "c482eed5c3335d76e274fd9f7a637acae09011f7aa77cf248e67a977f385033f",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "c482eed5c3335d76e274fd9f7a637acae09011f7aa77cf248e67a977f385033f",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_N_GL",
+      "source_sha256": "e6793d3bd757f2fed403a93c8e3d917f4a1e13589f3c060e74f3ecc31ccc47c1",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "b314f197a60355107d4900670342f7e8474aa66e08935c92792a322101f21ba8",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "b314f197a60355107d4900670342f7e8474aa66e08935c92792a322101f21ba8",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_ORM",
+      "source_sha256": "a5203bcf72b142c740d8e3b91591bc9d8e22ce3b128f31161115ce5c93d3b41b",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "9f8c0c2902922a4b64b6e2ed96e3612029fa83755ca2860c79e5c253029c7213",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "9f8c0c2902922a4b64b6e2ed96e3612029fa83755ca2860c79e5c253029c7213",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_BC",
+      "source_sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "14896d6f8e3d4dac27e8d8c333e0359045eb6c33f4937c4cfcdd753c57321ae1",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "14896d6f8e3d4dac27e8d8c333e0359045eb6c33f4937c4cfcdd753c57321ae1",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_N_GL",
+      "source_sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "2b9a7a22d4b720fba2380402ca4706d863eb575d3fb41e98aaf3adf1d5c6bbc5",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "2b9a7a22d4b720fba2380402ca4706d863eb575d3fb41e98aaf3adf1d5c6bbc5",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_ORM",
+      "source_sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "e50e371131b541fd4ded258198c7b0f35c06822c8f6762161ac0114c3b0540c4",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "e50e371131b541fd4ded258198c7b0f35c06822c8f6762161ac0114c3b0540c4",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_BC",
+      "source_sha256": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "70d1eac611068e27f2629810bb2b35b1548561d1c78cf7907904f8d1806f740f",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "70d1eac611068e27f2629810bb2b35b1548561d1c78cf7907904f8d1806f740f",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_N_GL",
+      "source_sha256": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "0f0396d5f8308928916b388350a1df7a5789d85c36c16b5298c1a2fb6667161d",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "0f0396d5f8308928916b388350a1df7a5789d85c36c16b5298c1a2fb6667161d",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_ORM",
+      "source_sha256": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+      "decoded_bit_depth": 8,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "e0a6933615b1c1c792521f4cd0bf1bcab3d7d2e7f44c29e39cc337e7e6c5ab8f",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 8,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "e0a6933615b1c1c792521f4cd0bf1bcab3d7d2e7f44c29e39cc337e7e6c5ab8f",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_BC",
+      "source_sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+      "decoded_bit_depth": 16,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "c2cbe42331256503ded4356acd69d9cffb71f89c4dc7f36990d5bb0b6c543452",
+      "actual_native_export_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 6,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "actual_export_RGB_sha256": "c2cbe42331256503ded4356acd69d9cffb71f89c4dc7f36990d5bb0b6c543452",
+      "actual_native_export_pixels_exact": true
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL",
+      "source_sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+      "decoded_bit_depth": 16,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "6213abb517634f5a42ecaeda616cfd9759a51231605c5607f815e6b70226ea17"
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_ORM",
+      "source_sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+      "decoded_bit_depth": 16,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "0afa7d90f051a970062125c97666b0d99e370d7918ee929f84cdcf1af7d17bb5"
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_BC",
+      "source_sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+      "decoded_bit_depth": 16,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "fe8c734d49a7e36c8dc9d08e24dcbb34408b30e24287b56e929beb1d7beee6e4"
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_N_GL",
+      "source_sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+      "decoded_bit_depth": 16,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "2c534908cd3206e6932c8ce3d6b149c503e5dc640482af9f2262c9a30e74ec49"
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_ORM",
+      "source_sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+      "decoded_bit_depth": 16,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "de1c6455cca715050122593c1e9e2e6bc826316e0c84125f8061581643c7d5f5"
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_BC",
+      "source_sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+      "decoded_bit_depth": 16,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "f6fa6a94f9453c69819ab980a871120f62a6cd1b7f8c59f14f4fad98d689daab"
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL",
+      "source_sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+      "decoded_bit_depth": 16,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "88ebbce45cfa30cba29eba65c751377a99996265f52f66ab4d81f3cf5cf04fba"
+    },
+    {
+      "package": "/Game/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM",
+      "source_sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+      "decoded_bit_depth": 16,
+      "source_format": {
+        "width": 1024,
+        "height": 1024,
+        "bit_depth": 16,
+        "color_type": 2,
+        "compression": 0,
+        "filter": 0,
+        "interlace": 0
+      },
+      "decoded_RGB_sha256": "17a00839be4e57256da3d72977324fa743a63807d571238e8e8ee8ce7b4fca31"
+    }
+  ]
+}

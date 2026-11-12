@@ -1,0 +1,92 @@
+{
+ "name": "SM_Bench_Oak_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bench_Oak/SM_Bench_Oak_PR.fbx",
+ "materials": [
+  "MI_Bench_Oak"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Bench_Oak_PR.blend",
+ "lod0_triangles": 160,
+ "lod1_triangles": 104,
+ "lod2_triangles": 50,
+ "dimensions_m": [
+  2.303,
+  0.302,
+  0.462
+ ],
+ "bounds_min_m": [
+  -1.152,
+  -0.151,
+  -0.001
+ ],
+ "bounds_max_m": [
+  1.151,
+  0.151,
+  0.461
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "87 inside/details/table- frames 2, 4, 6",
+  "bench_long",
+  "bench_short"
+ ],
+ "supersedes": "none (bench_long 6, bench_short 8 placements)",
+ "dresses": "plank bench 2.3 x 0.3 x 0.46 m: one thick board on two slab ends with boot notches, through tenons standing proud of the seat, a pegged stretcher",
+ "fit": {
+  "pivot": "base centre, along X",
+  "short": "bench_short (76 px) is the same bench scaled 0.8 in X, or build bench(L=1.9)"
+ },
+ "baked": {
+  "texture_folder": "Bench_Oak",
+  "textures": {
+   "BC": "T_Bench_Oak_PR_BC.png",
+   "N": "T_Bench_Oak_PR_N.png",
+   "ORM": "T_Bench_Oak_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Bench_Oak",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 43.3,
+    "p99": 106.7
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.395,
+    "p95": 0.711
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 400,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Bench_Oak_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bench_Oak",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake, two review rounds. Last look still faults: one clean thick board with slight warp; boot notches are a simple splayed V; texture soft at 1 m (2.3 m bench in one 2048 set); no end grain.",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bench_Oak/T_Bench_Oak_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bench_Oak/T_Bench_Oak_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bench_Oak/T_Bench_Oak_PR_ORM.png"
+ }
+}

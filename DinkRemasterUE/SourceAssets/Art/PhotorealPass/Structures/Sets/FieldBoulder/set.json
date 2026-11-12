@@ -1,0 +1,55 @@
+{
+ "name": "FieldBoulder",
+ "files": {
+  "BC": "FieldBoulder/T_Terrain_FieldBoulder_BC.png",
+  "N": "FieldBoulder/T_Terrain_FieldBoulder_N.png",
+  "ORM": "FieldBoulder/T_Terrain_FieldBoulder_ORM.png",
+  "H": "FieldBoulder/T_Terrain_FieldBoulder_H.png",
+  "Macro": "FieldBoulder/T_Terrain_FieldBoulder_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.0,
+ "texel_mm_per_px": 0.977,
+ "height_range_m": 0.0408,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.487",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "interim",
+ "method": "Poly Haven rock_face height-blended with rock_face_04, flattened, graded to a weathered grey field stone",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_face",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_face_04",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.9,
+  "mean": 109.6,
+  "max": 240.0
+ },
+ "mean_srgb": [
+  115,
+  109,
+  100
+ ],
+ "roughness_mean": 0.884,
+ "known_weaknesses": "projected by dominant axis on the boulders: seams hide under moss and smooth shading only partly"
+}

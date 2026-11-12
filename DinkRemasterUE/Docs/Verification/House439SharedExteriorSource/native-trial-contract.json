@@ -1,0 +1,4739 @@
+{
+  "schema": "dink-house439-native-trial/1",
+  "source_pins": {
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/SHA256SUMS.json": "9f579eefb3f356287c3577c35c665671363b88ba36c4b15541e269788d0028b5",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/EXPORTED_METADATA.json": "74b7b0e253f073b070cb40541b565aad008a810945fed5746f572f62ad8291d4",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/FBX/SM_Cottage_Stonebrook_01.fbx": "926a3586c00d958994706c0fc1e4b3ddf3655251da087f9596fa92eed911d028",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/FULL_FBX_REPORT.json": "3246c8d467feddc0853f68fe155d557cc0229aa744ca5db1efb7cfce91a5cc61",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/House439_SharedExterior_Source.blend": "fed8cbd70095548c3bf5b38fc45b9145c15747e732a8021ffefc0d5f47a4134d",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/JOIN_PROBE.json": "9a8df24da0822cface498dede7581c3d0e28f97160998478e5a28a8368e6560f",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/OPAQUE_GRAPH_SOURCE.json": "fc5d3be1894a71b271bc4a3e8568b45adb73719279351a1f7b23f616ed096d40",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/PROVENANCE.md": "ead9eccd0036d4dd00f1b7b75e6b4a4a2b2fe927888f7d7f0243ae2d7f893202",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Provenance/ReviewedGeometry_Source.blend": "140622758031f459fc2b00f0886dd2e141ef6ab9d23dc85df67368bad283d089",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Provenance/ReviewedV6_BUILD_RECEIPT.json": "61e38fb89f9182046c2beee0fe779f25207ccac20846a25b7b170e16bf55254f",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Provenance/ReviewedV6_CONTACT_COMPARISON.json": "c94d17864ae4261298324e17eef4493190845b70793d6d9064d2e853713a54fb",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Provenance/ReviewedV6_PRESERVATION_REPORT.json": "c00349b171d97532da25fb2f7f3ee9a5799d67969726a0a1f27d4a6b7f98369d",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Provenance/ReviewedV6_TRIANGLE_DEFORMATION_AUDIT.json": "32d737917f14a794cebff4bdffc338d84a3a501fc0c11503451907f38e257499",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Provenance/ReviewedV6_UV_METRIC_AUDIT.json": "a9d910630e4af01c4a0fe9bf2bc94d26561bbcb8d5556c9f8c8855a0bfbe239c",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Provenance/ReviewedV6_VISUAL_REVIEW.json": "3cfa634ae91d4d873b525758774f074edcd7e63b3f7698bfd05d7011b8455de5",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/README.md": "dd96ab31f14c8c934f9439af414b64cfa46b10d3ead2b03a7cee19e48cce4e26",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Review/COLOR_RENDER_RECEIPT.json": "650cc384879d30d61df9d68540c785c6078e2c57a975075d784525320af1670c",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Review/color_broad_front.png": "885a85b8edddd1657831a77b9b5f585c50c7e6b764e84ece483b8519c273a80a",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Review/color_hip_eave_closeup.png": "3175523113079609126db2d7202abb8d03d2f97baee89cafec4aec7aa8cb8d2b",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Review/color_wood_window_closeup.png": "2ffed7a38228368377cd2f3fc59b2d502e3f19d074537faf9509004be09e8349",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/SOURCE_EQUIVALENCE.json": "af3a729a701206b4193af4a02a4a1c2f29226582bfe0ec7b97a65d4ce5bd4172",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Tools/build_source.py": "d2cc941a4765c8390d3b7e4d261e2d35f735f11828fb81e07e5b0409a902915e",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Tools/export_readback.py": "9545da96febdc3924384518a1cd8197beaa6d3e71fb34eddab87ed98675b736e",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Tools/extract_opaque_graphs.py": "a621790a5b11f63b444bae194574b205012615b666fd7c546a64e0ed92d81edd",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Tools/inspect_export_metadata.py": "f9407c4d28b1c291f1f268fcab6be0dec73dedd6623c43abccf8d777192a0877",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/Tools/render_review.py": "cdabfb98ad620821fd38741d0ec1a5e19f8726320d39ccd5093e302d24e19be4",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/export_manifest.json": "9e74190d5fb069251326699dd38ea55dc6673665b64f4e739a05b01e3d38caba",
+    "SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/manifest.json": "89f6b16fc6da759dce1d334d48489e18aca3940b5ad1f42b9f3061ae91bfaf72",
+    "SourceAssets/Art/SharedMaterials/SHA256SUMS.json": "98a496c86321e8356b2d82b271bd3e68551672031c9cbcb13b651be4acd3e51d",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/GenericReuse_2m4m.blend": "38d97a6b9ae78910cb787eb068703dc12862ef55218bbf5cbc6a2ef5372ccab3",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/NORMALIZATION.json": "1de809f6a58a39f1db04e0171a7a83cceae6fc2f4f075a3417a99607325ea732",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/PROVENANCE.md": "b1ee23f1d995e7e56745ffaf37f7f6ee4390d06f1bf5a9a5afefa8260432a7ed",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/DressedReed2m_donor_manifest.json": "2d8b31806d2e5d9995a36fcc6819c46afaa6f744ca21f3a6355a5add750efbca",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/EndgrainOriginalPhoto.jpg": "62abb8f05310141907a4cf452718d44e4cffe79b4e7576c71b49f70a93d028da",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/EndgrainPhoto_PROVENANCE.json": "ddbc02a73a8214064a35430726630255e92169672cfdc9743daceb2ec7d797ef",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/EndgrainPublisher.html": "316593147f3e07aa7047a58e5bc4695c5d67c1289b1fd530236a6559bbe5c1b8",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/FieldstoneSeed2m_donor_manifest.json": "3fb14404627139c0dd2e7732c66b70e08ab2d36aed5b8d9f63259dea7dd43ded",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/FieldstoneWall2m_donor_manifest.json": "9083abfa7ea56868e479daa15c14db3a9f9813ef225337777cc454b43bfc0575",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/FineGrainedWood/DOWNLOAD_RECEIPT.json": "4c4a9143aadd6c058d85c51854004a2942eacdb6b1da0dd0a8eb8680bfda8bf0",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/FineGrainedWood/polyhaven_asset_license.html": "2904dda3b01b63b035b53dfc0f47eef48f4c1dc183397da0ffe719ee35a32902",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/FineGrainedWood/publisher.html": "9f40eee66b59ab84b9b1685ff8c954d27f1961dd481b1d97dc1f4afac2ca8faf",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/IronLead2m_donor_manifest.json": "e44caedc34edf0755245058e04a2c2c3ca83d55e0c7997e9e5d6a23aa4ee6317",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/LimeMortarSoot2m_donor_manifest.json": "684a16b33ef217cc55c0eec8fa26b482084e6960be62b3fffbade8a11b724aed",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/MetalPlate02/CC0_license_snapshot.html": "2904dda3b01b63b035b53dfc0f47eef48f4c1dc183397da0ffe719ee35a32902",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/MetalPlate02/DOWNLOAD_RECEIPT.json": "b4c37a75743f49faaa4ea17a774603cec9576b8cdc0e772f71cdfc41f14f9ce4",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/MetalPlate02/IRON_SOURCE_AUDIT.json": "e2012d834b09d859965028248785a77f570bc0f6a7efa49f53d5ba270f508939",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/MetalPlate02/SCAN_DECODE_RECEIPT.json": "02b300aed10ba2986a4d27221099aae3f4d5b580d0347b5ba3f052a7dee49155",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/MetalPlate02/metal_plate_02_publisher.html": "204c97e94390ce3e58992364707cdf0dab163b8ff4d7f36282610a8233af82ad",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/RockBoulderDry/DOWNLOAD_RECEIPT.json": "8996516fbf9e8efdde1a8a36e8f6adab44c1ca61f5c49cc45c30a354fecae25f",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/RockBoulderDry/polyhaven_asset_license.html": "2904dda3b01b63b035b53dfc0f47eef48f4c1dc183397da0ffe719ee35a32902",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/RockBoulderDry/publisher.html": "896de5b5132b5be8ae000f82fb96e139855719080eef00b55fee88bc43e1bc5f",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/StoneWallPublisher.html": "1b6fc416b4312e9b963983a23aab5f11090e72af81e74757ae52c35ff87bd93b",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/StoneWall_CC0.html": "2904dda3b01b63b035b53dfc0f47eef48f4c1dc183397da0ffe719ee35a32902",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/TimberLonggrain_donor_manifest.json": "a9b65d1095ac77d2d7634f6e0ce3015728b84a8066e8dd5295e2b4019b3bee79",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Provenance/WeatheredTimber2m_donor_manifest.json": "27c6fc1a1e4d4fa1539566c7f9d563ef7e84051d48367aff59989832164b3cd6",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/README.md": "7fce8d26d1c8e6cc18799f9f0e038fd152c8463a953647eeba0764fb803f7d94",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/RELOCATION_REPLAY.json": "d402071d41b30ced149b0156d4ef73d59be2fdd17c10cefd907bd3e46ec8d41d",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Review/generic_2m4m.png": "596e6ce7a261259fee1a6f5375eb741dbf41d489659bc347e06a504779002e2f",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/SharedArchitecturalSurfaces_Source.blend": "4afd2bbd4ad817303aec343959d4f306efebfea5050febf4aa71877422d37419",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_BC.png": "e0f6ba3b08674632e2129eca9ce1c3c56d50db71c44b4b44cb5111c61b834451",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_N_GL.png": "cf2b58555cc2ccbb9a3ffae139f07af8e7e327760bbdf602726de2215508424f",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_ORM.png": "24c93de030609caed793c88f434d50efe0fff4b4344cd2ff86394f092d97ba32",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_BC.png": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_N_GL.png": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_ORM.png": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC.png": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.png": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.png": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_BC.png": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_N_GL.png": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_ORM.png": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_BC.png": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL.png": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_ORM.png": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_BC.png": "d1975c8e299283b21828e7470a69033668889728ed84c68f57c6465d3e672857",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL.png": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_ORM.png": "36eb1478ec2fb059ee0604fcc92ce654d6582855fa285dec66d8a6f9a6c48133",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_BC.png": "bb8ec47e552bc366e9f150762846c31be838508c01a5724fc1e69a78668ed792",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL.png": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM.png": "fd074489d73817bab5c165c8d844cc978cb1c95244a36de53643524a858baa99",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_BC.png": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL.png": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM.png": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Tools/build_library.py": "a92ac7b9ab712cf053687f56ec7708115e62d58601b06b9777d02c9a24fa8657",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Tools/build_reed_maps.py": "7d5243e53b8f2d427e8e91b3a7fa7ce24a24f090e7922e76dd986db4c9754835",
+    "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/registry.json": "30a209262804cffe64a33965a7f78f813a2c22c93a36cdaf39f2a8e8ba0df47b",
+    "SourceAssets/Art/SharedMaterials/History/0875d01c69c3821e3269f9b477dc90168f3badbe0a8c130e37e04a110981104a/manifest.json": "0875d01c69c3821e3269f9b477dc90168f3badbe0a8c130e37e04a110981104a",
+    "SourceAssets/Art/SharedMaterials/History/bd2d18a233b820b1aebddf68b95f30c7c8d030cb22d1e7368eec213120cde986/SHA256SUMS.json": "5f2293cd732f7b15ab5499e697ef8c33f50a812936fa84560c5b7a68f17cae94",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/GenericReuse_2m4m.blend": "5214247b013b4d55747dfa8846dc363626817203596f37b9d76f1387b9bb315d",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Inputs/OakReference/AgedOak_Albedo_Raw.png": "2475c5a8a57e5d85570934d76b4a6566486a88dddfd7dff085a52c3e4209799f",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Inputs/OakReference/actual_tool_prompt.txt": "44303f06d9802e4b57c3902fa0ab95fa7db7e5f76f6f55fa38f3df62b6200227",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Inputs/OakReference/prompt.txt": "97deabe9e66cc72b2e0ff09601ac0bc3075e24f7cc8e455be51011716dbd32b7",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Inputs/OakReference/provenance.json": "e2bc9cbbf9004d2f76c36adeab05e0aa347c1b074bca1c8ff4069d786cd32092",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/NORMALIZATION.json": "40b6d6fc7f81627b4274e44e6f009eed610c66a01ab51d80b1ed0d2437e32779",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/PROVENANCE.md": "8faf4f1efd308d2dadeccaa5703380bb6195f76e82dc589b383d3e20374700cd",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/README.md": "486f59500a822b137513b8af6b27c7b696c790b15cc011b67d4c0de38550288c",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Review/reuse_2m4m.png": "d2d6ae5bd6f6b93d894523a439a58a583438119c3c8c5b26e42a2f08ab9358cc",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_LibraryCandidate.blend": "2b072073ff3c8673a63391f4390f87ebb7e0d8fd0a09144607e39bd568f2b488",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Shared2m_ProceduralSources.blend": "e082fc88413e2115d9b82163ebf2e2890b0a4cfc2a99414eba07a4c7fb70938a",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_LimePlaster2m_BC.png": "631382152572c1f129a162a81f30126676a5d0270e5aa3e07af4749552855b17",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_LimePlaster2m_N_GL.png": "bf0a609a48956d2b36b5c2509b4d9040d1ea752dbcdddf0e6e6060eaaedce4c3",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_LimePlaster2m_ORM.png": "21a8d7a9a18a20cd05373089ae2e9ca7825c08a8b38b9e04413c1a44fb84d70b",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_OakEndgrain2m_BC.png": "4a944ec3bc27fe0c36b05b82f104954758741175bb2eb3d1a0f9d6c60e2fc714",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_OakEndgrain2m_N_GL.png": "e60b435ea62ab152c1f224152e3a580fd10fef7671fd8243f70f23cbfe8da3be",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_OakEndgrain2m_ORM.png": "6f536e03e40931fc109f665e9556eb904bb3d1c50018d0354b0e172cba470539",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_OakLonggrain2m_BC.png": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_OakLonggrain2m_N_GL.png": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_OakLonggrain2m_ORM.png": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+    "SourceAssets/Art/SharedMaterials/OakLime2mV1/build_library.py": "73be5b57df77dc3bb9d01f4850fee0545ca9d1e2487a4d43f0a87c8029b19eb7",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/GenericReuse_2m4m.blend": "fd1494dcebeddf0661b8f2fb117fe093cff3958a775db41fec929c342df76208",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/PROVENANCE.md": "912334537116cba847dd786304ce0101f6ee9bebe7b13f9b41fbd0a5e3de5b1d",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Provenance/ThinGlassBakedReuse_2m4m.blend": "0521a3e52525112d7d1e76f052247ba77e2e50e9b2cdb8eefd2e7ac57064f570",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Provenance/ThinWavyGlass2m_BakedSource.blend": "7cece922583105d1995cfcca97d3eae7e73575eccecaa4f2878e753d11512047",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Provenance/ThinWavyGlass2m_PeriodicProcedural.blend": "1b2afcc522a54f7f1bc80844bfd726b37ff1d328185ff699155d13a4a648046b",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Provenance/ThinWavyGlass2m_Source.blend": "acdf4ea01aee187aeb89d5594a05ea643d91c818d298eed71c6e54e154a8d7b8",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/README.md": "22ca7e47f22a66bc13ddf2785ccfb7ded04843074751c57a10a37f8feeda1dec",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/REGISTRATION.json": "dc1e7b5dd7bc4c5a6df11bed2b83cbc0697ae780f042286292913743a88202c7",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Review/BAKED_PIXEL_CHECK.json": "14544d5dfb3c1a288106af6b97447e668c671ead7eaff7f4e555d653d6b5cce2",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Review/PERIODIC_BAKE.json": "9a23f6fddbc72766cc5aef5f2745739c2a80e2c8a05331952c92667b614e0042",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Review/SEAM_PIXEL_CHECK.json": "2a2bd410b03eb61e4e7d0f52e0a8e3f701efefa7493afbb6feb828dc171efed7",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Review/THIN_GLASS_STUDY.json": "54942524733e58e883c4ffa7b52cab57ea34d4f946731a9f0620470873e16478",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Review/generic_2m4m.png": "126aa8cff1cd6cc3239de589e6d7f30be2a961858eb4de3244792ec50c99cc12",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/SharedThinWavyGlass_Source.blend": "22eda561e5c0a5d9c5689217ddf7b21ab7f8ebb0a0a024274d5206a0f38bb4dc",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_BC.png": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_N_GL.png": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_ORM.png": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Tools/bake_periodic.py": "000090be8e3f8816ba8ac9517668bdf55ba355342e8a7ac7445a0b76e026c81d",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Tools/build_registered.py": "4b02c748213c0fac92fb10368fd6d2c558c0a8f3513bc52c2ce4ccda9e589557",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Tools/check_seams.py": "d574f56792b8f9db9bd257d30d5fd0ef9df3e99634f13c5d60e4cc1d71a057c7",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Tools/verify_registered.py": "ea71cc332bc6d62a665f7ab18abe48560f483f37f84b96bc4e5497b5d5a0ea1b",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/VERIFY_REGISTERED.json": "373244f5db0f14fe128faeb9bd724dee12626fa10ec7394e26aba22a08be4537",
+    "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/registry.json": "69bc3b8d0c7eb706c4dbe5092c25e41465cfe561f6c279c10b380b96c1241d8b",
+    "SourceAssets/Art/SharedMaterials/manifest.json": "b8d977abdda49a4cfadbba4fd5fd3bad02ba2d7d38b7817733a0dd274302dad5",
+    "Scripts/RoofNative/house439_contract.py": "a63f65ae58d2db23a1928cb1ad5c2ea94bfe35e7009b6d81c63d83b0b3cf77f1",
+    "Scripts/RoofNative/house439_native.py": "13aeefbcfe1fe14839d217d49f755b096005e6058c41257858cf65d175561b09",
+    "Scripts/RoofNative/house439_material_readback.py": "1e5f0b6f80f3448edaf36cab7f5e4782404fe84967a5656c4eb42024daa3e41f",
+    "Scripts/RoofNative/house439_mesh_readback.py": "70444a2518278af8071313e393889646fbf994048278df6191e5bb6f8557881f",
+    "Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h": "a19f2c37c0d5a23409bd2a099cfd029ad8fdfca8b827c7fbcfc64c51e5fdad1b",
+    "Plugins/DinkImport/Source/DinkImport/Private/DinkStaticMeshGeometryInspection.cpp": "e2a9e6abb7b3661f8ffbddde16fbe1805afe4cc4caccd1700f4681df302e5614",
+    "SourceAssets/Art/Stonebrook/Refinements/InteriorRoofSharedV1/fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",
+    "Scripts/RoofNative/house439_glass_material.py": "e190def7aa1172dd3fc13072353d1e55d5a692d43c035fe42c0d1e4ad1ed5598",
+    "Scripts/RoofNative/house439_opaque_material.py": "8e3f32f5531c94885447af71508e7474ed76d7a333fb46d53751d78f052e84d5",
+    "Scripts/RoofNative/native_mesh_tools_v11c.py": "80b1c1b6463db1d7b20a0ccab99f91d8165958b35862db43ba48c8addacd0757",
+    "Scripts/RoofNative/native_texture_tools_v11.py": "a6062257d3d9ed0f42ee5bf7f27409a170cc3be78604c7b235b043e204e9757e",
+    "Scripts/RoofNative/shared_roof_native.py": "e45f002697a43ee8177677b3883c3ef953277ba40b5476a3da31058d61032f7a",
+    "Scripts/RoofNative/native_material_slots_v11.py": "2c1b441784e52ab35fb2d7013ed8b4c67e44259db11fd02f74922b44731c5a11",
+    "Scripts/RoofNative/relative_source_metadata.py": "4835d97a0d7b85e7913c2449305b1ecafa4d06d65771d6b2cedeec5d557b4e33",
+    "Plugins/DinkImport/Source/DinkImport/Public/DinkRoofSourceMetadataLibrary.h": "d91836e2e81310e0aab8d645bed0d9ebbbd6ef13a7fd33a62cb3d9eb1bd17b36",
+    "Plugins/DinkImport/Source/DinkImport/Private/DinkRoofSourceMetadataLibrary.cpp": "a4f58a622e04213a320c4da9fcbb60ab403e6d6ae8cb771eb7710b9366b653e5"
+  },
+  "textures": [
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png",
+      "source_sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+      "source_sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+      "source_sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneWall2m_Wall_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_BC.png",
+      "source_sha256": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 8
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneWall2m_Wall_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_N_GL.png",
+      "source_sha256": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 8
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneWall2m_Wall_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_ORM.png",
+      "source_sha256": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 8
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_BC.png",
+      "source_sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL.png",
+      "source_sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM.png",
+      "source_sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_BC.png",
+      "source_sha256": "bb8ec47e552bc366e9f150762846c31be838508c01a5724fc1e69a78668ed792",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL.png",
+      "source_sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM.png",
+      "source_sha256": "fd074489d73817bab5c165c8d844cc978cb1c95244a36de53643524a858baa99",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC.png",
+      "source_sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.png",
+      "source_sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.png",
+      "source_sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_DullLead_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_BC.png",
+      "source_sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_DullLead_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_N_GL.png",
+      "source_sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_DullLead_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_ORM.png",
+      "source_sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Lime_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_BC.png",
+      "source_sha256": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL.png",
+      "source_sha256": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Lime_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_ORM.png",
+      "source_sha256": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Soot_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_BC.png",
+      "source_sha256": "d1975c8e299283b21828e7470a69033668889728ed84c68f57c6465d3e672857",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL.png",
+      "source_sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Soot_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_ORM.png",
+      "source_sha256": "36eb1478ec2fb059ee0604fcc92ce654d6582855fa285dec66d8a6f9a6c48133",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_DressedReed2m_Reed_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_BC.png",
+      "source_sha256": "e0f6ba3b08674632e2129eca9ce1c3c56d50db71c44b4b44cb5111c61b834451",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_DressedReed2m_Reed_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_N_GL.png",
+      "source_sha256": "cf2b58555cc2ccbb9a3ffae139f07af8e7e327760bbdf602726de2215508424f",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_DressedReed2m_Reed_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_ORM.png",
+      "source_sha256": "24c93de030609caed793c88f434d50efe0fff4b4344cd2ff86394f092d97ba32",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_ThinWavyGlass2m_BC",
+      "source_file": "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_BC.png",
+      "source_sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+      "srgb": true,
+      "flip_green": false,
+      "compression": "TC_DEFAULT",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_ThinWavyGlass2m_N_GL",
+      "source_file": "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_N_GL.png",
+      "source_sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+      "srgb": false,
+      "flip_green": true,
+      "compression": "TC_NORMALMAP",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_ThinWavyGlass2m_ORM",
+      "source_file": "SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_ORM.png",
+      "source_sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+      "srgb": false,
+      "flip_green": false,
+      "compression": "TC_MASKS",
+      "address": "Wrap",
+      "size": 1024,
+      "bit_depth": 16
+    }
+  ],
+  "materials": [
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_FieldstoneSeed2m",
+      "source_material": "MI_Shared_FieldstoneSeed2m",
+      "textures": {
+        "T_Shared_FieldstoneSeed2m_Stone_BC.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC",
+        "T_Shared_FieldstoneSeed2m_Stone_N_GL.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL",
+        "T_Shared_FieldstoneSeed2m_Stone_ORM.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM"
+      },
+      "profile": "opaque_surface_2m",
+      "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
+      "source_graph": {
+        "nodes": [
+          {
+            "name": "Principled BSDF",
+            "type": "BSDF_PRINCIPLED",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Base Color",
+                "value": [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Metallic",
+                "value": 0.0,
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Roughness",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 3,
+                "name": "IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 4,
+                "name": "Alpha",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 5,
+                "name": "Thin Wall",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 6,
+                "name": "Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 7,
+                "name": "Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 8,
+                "name": "Diffuse Roughness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 9,
+                "name": "Subsurface Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 10,
+                "name": "Subsurface Radius",
+                "value": [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ],
+                "linked": false
+              },
+              {
+                "index": 11,
+                "name": "Subsurface Scale",
+                "value": 0.004999999888241291,
+                "linked": false
+              },
+              {
+                "index": 12,
+                "name": "Subsurface IOR",
+                "value": 1.399999976158142,
+                "linked": false
+              },
+              {
+                "index": 13,
+                "name": "Subsurface Anisotropy",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 14,
+                "name": "Specular IOR Level",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 15,
+                "name": "Specular Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 16,
+                "name": "Anisotropic",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 17,
+                "name": "Anisotropic Rotation",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 18,
+                "name": "Tangent",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 19,
+                "name": "Transmission Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 20,
+                "name": "Coat Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 21,
+                "name": "Coat Roughness",
+                "value": 0.029999999329447746,
+                "linked": false
+              },
+              {
+                "index": 22,
+                "name": "Coat IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 23,
+                "name": "Coat Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 24,
+                "name": "Coat Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 25,
+                "name": "Sheen Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 26,
+                "name": "Sheen Roughness",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 27,
+                "name": "Sheen Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 28,
+                "name": "Emission Color",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 29,
+                "name": "Emission Strength",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 30,
+                "name": "Thin Film Thickness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 31,
+                "name": "Thin Film IOR",
+                "value": 1.3300000429153442,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "Material Output",
+            "type": "OUTPUT_MATERIAL",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Surface",
+                "value": null,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Volume",
+                "value": null,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Displacement",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 3,
+                "name": "Thickness",
+                "value": 0.0,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "UVMAP",
+            "inputs": [],
+            "uv_map": "UV0"
+          },
+          {
+            "name": "Image Texture",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_FieldstoneSeed2m_Stone_BC.png",
+              "packed_sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+              "colorspace": "sRGB"
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_FieldstoneSeed2m_Stone_N_GL.png",
+              "packed_sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_FieldstoneSeed2m_Stone_ORM.png",
+              "packed_sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Color Attribute",
+            "type": "VERTEX_COLOR",
+            "inputs": [],
+            "layer_name": "SharedSurfaceData"
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          },
+          {
+            "name": "Math",
+            "type": "MATH",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Value",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Value",
+                "value": 0.10000000149011612,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Value",
+                "value": 0.9399999976158142,
+                "linked": false
+              }
+            ],
+            "operation": "MULTIPLY_ADD",
+            "use_clamp": false
+          },
+          {
+            "name": "Mix (Legacy)",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MULTIPLY",
+            "use_clamp": false
+          },
+          {
+            "name": "Separate XYZ.001",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          },
+          {
+            "name": "Normal Map",
+            "type": "NORMAL_MAP",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Strength",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 1,
+                "name": "Color",
+                "value": [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "uv_map": "UV0",
+            "space": "TANGENT"
+          }
+        ],
+        "links": [
+          {
+            "from_node": "Principled BSDF",
+            "from_socket": 0,
+            "from_name": "BSDF",
+            "to_node": "Material Output",
+            "to_socket": 0,
+            "to_name": "Surface"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.002",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Color Attribute",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Separate XYZ",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ",
+            "from_socket": 0,
+            "from_name": "X",
+            "to_node": "Math",
+            "to_socket": 0,
+            "to_name": "Value"
+          },
+          {
+            "from_node": "Image Texture",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "Mix (Legacy)",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Principled BSDF",
+            "to_socket": 0,
+            "to_name": "Base Color"
+          },
+          {
+            "from_node": "Image Texture.002",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Separate XYZ.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ.001",
+            "from_socket": 1,
+            "from_name": "Y",
+            "to_node": "Principled BSDF",
+            "to_socket": 2,
+            "to_name": "Roughness"
+          },
+          {
+            "from_node": "Separate XYZ.001",
+            "from_socket": 2,
+            "from_name": "Z",
+            "to_node": "Principled BSDF",
+            "to_socket": 1,
+            "to_name": "Metallic"
+          },
+          {
+            "from_node": "Image Texture.001",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Normal Map",
+            "to_socket": 1,
+            "to_name": "Color"
+          },
+          {
+            "from_node": "Normal Map",
+            "from_socket": 0,
+            "from_name": "Normal",
+            "to_node": "Principled BSDF",
+            "to_socket": 6,
+            "to_name": "Normal"
+          }
+        ]
+      },
+      "source_graph_sha256": "03d582958a879a11cbf3a3bf5ea67473d6ef6582ed563e1af3066c0aedf4a907"
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_FieldstoneWall2m",
+      "source_material": "MI_Shared_FieldstoneWall2m",
+      "textures": {
+        "T_Shared_FieldstoneWall2m_Wall_BC.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneWall2m_Wall_BC",
+        "T_Shared_FieldstoneWall2m_Wall_N_GL.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneWall2m_Wall_N_GL",
+        "T_Shared_FieldstoneWall2m_Wall_ORM.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneWall2m_Wall_ORM"
+      },
+      "profile": "opaque_surface_2m",
+      "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
+      "source_graph": {
+        "nodes": [
+          {
+            "name": "Principled BSDF",
+            "type": "BSDF_PRINCIPLED",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Base Color",
+                "value": [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Metallic",
+                "value": 0.0,
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Roughness",
+                "value": 0.800000011920929,
+                "linked": true
+              },
+              {
+                "index": 3,
+                "name": "IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 4,
+                "name": "Alpha",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 5,
+                "name": "Thin Wall",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 6,
+                "name": "Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 7,
+                "name": "Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 8,
+                "name": "Diffuse Roughness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 9,
+                "name": "Subsurface Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 10,
+                "name": "Subsurface Radius",
+                "value": [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ],
+                "linked": false
+              },
+              {
+                "index": 11,
+                "name": "Subsurface Scale",
+                "value": 0.004999999888241291,
+                "linked": false
+              },
+              {
+                "index": 12,
+                "name": "Subsurface IOR",
+                "value": 1.399999976158142,
+                "linked": false
+              },
+              {
+                "index": 13,
+                "name": "Subsurface Anisotropy",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 14,
+                "name": "Specular IOR Level",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 15,
+                "name": "Specular Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 16,
+                "name": "Anisotropic",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 17,
+                "name": "Anisotropic Rotation",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 18,
+                "name": "Tangent",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 19,
+                "name": "Transmission Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 20,
+                "name": "Coat Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 21,
+                "name": "Coat Roughness",
+                "value": 0.029999999329447746,
+                "linked": false
+              },
+              {
+                "index": 22,
+                "name": "Coat IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 23,
+                "name": "Coat Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 24,
+                "name": "Coat Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 25,
+                "name": "Sheen Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 26,
+                "name": "Sheen Roughness",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 27,
+                "name": "Sheen Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 28,
+                "name": "Emission Color",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 29,
+                "name": "Emission Strength",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 30,
+                "name": "Thin Film Thickness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 31,
+                "name": "Thin Film IOR",
+                "value": 1.3300000429153442,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "Material Output",
+            "type": "OUTPUT_MATERIAL",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Surface",
+                "value": null,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Volume",
+                "value": null,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Displacement",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 3,
+                "name": "Thickness",
+                "value": 0.0,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "UVMAP",
+            "inputs": [],
+            "uv_map": "UV0"
+          },
+          {
+            "name": "Image Texture",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_FieldstoneWall2m_Wall_BC.png",
+              "packed_sha256": "147371608a464037c12c4b5c1880a43eeee9ad8038fb84ec1bbbe55271647e5d",
+              "colorspace": "sRGB"
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_FieldstoneWall2m_Wall_ORM.png",
+              "packed_sha256": "7c8744d2a39c98f02f59e4511cb10027fee2e5782a8900f5f64ce33562075305",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_FieldstoneWall2m_Wall_N_GL.png",
+              "packed_sha256": "547f5925735cff6ede4552aa4d2114edbd146521a3f0e32ac5864d6285c42bd6",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Normal Map",
+            "type": "NORMAL_MAP",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Strength",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 1,
+                "name": "Color",
+                "value": [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "uv_map": "UV0",
+            "space": "TANGENT"
+          }
+        ],
+        "links": [
+          {
+            "from_node": "Principled BSDF",
+            "from_socket": 0,
+            "from_name": "BSDF",
+            "to_node": "Material Output",
+            "to_socket": 0,
+            "to_name": "Surface"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Image Texture",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Principled BSDF",
+            "to_socket": 0,
+            "to_name": "Base Color"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Image Texture.001",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Separate XYZ",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ",
+            "from_socket": 1,
+            "from_name": "Y",
+            "to_node": "Principled BSDF",
+            "to_socket": 2,
+            "to_name": "Roughness"
+          },
+          {
+            "from_node": "Separate XYZ",
+            "from_socket": 2,
+            "from_name": "Z",
+            "to_node": "Principled BSDF",
+            "to_socket": 1,
+            "to_name": "Metallic"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.002",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Image Texture.002",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Normal Map",
+            "to_socket": 1,
+            "to_name": "Color"
+          },
+          {
+            "from_node": "Normal Map",
+            "from_socket": 0,
+            "from_name": "Normal",
+            "to_node": "Principled BSDF",
+            "to_socket": 6,
+            "to_name": "Normal"
+          }
+        ]
+      },
+      "source_graph_sha256": "9a1932a599062641984219443915e0b77e6002e81bcc977840a2a844a7d45847"
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_WeatheredTimber2m",
+      "source_material": "MI_Shared_WeatheredTimber2m",
+      "textures": {
+        "T_Shared_WeatheredTimber2m_Longgrain_BC.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_BC",
+        "T_Shared_WeatheredTimber2m_Longgrain_N_GL.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL",
+        "T_Shared_WeatheredTimber2m_Longgrain_ORM.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM",
+        "T_Shared_WeatheredTimber2m_Endgrain_BC.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_BC",
+        "T_Shared_WeatheredTimber2m_Endgrain_N_GL.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL",
+        "T_Shared_WeatheredTimber2m_Endgrain_ORM.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM"
+      },
+      "profile": "opaque_variant_tint_2m",
+      "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
+      "source_graph": {
+        "nodes": [
+          {
+            "name": "Principled BSDF",
+            "type": "BSDF_PRINCIPLED",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Base Color",
+                "value": [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Metallic",
+                "value": 0.0,
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Roughness",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 3,
+                "name": "IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 4,
+                "name": "Alpha",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 5,
+                "name": "Thin Wall",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 6,
+                "name": "Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 7,
+                "name": "Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 8,
+                "name": "Diffuse Roughness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 9,
+                "name": "Subsurface Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 10,
+                "name": "Subsurface Radius",
+                "value": [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ],
+                "linked": false
+              },
+              {
+                "index": 11,
+                "name": "Subsurface Scale",
+                "value": 0.004999999888241291,
+                "linked": false
+              },
+              {
+                "index": 12,
+                "name": "Subsurface IOR",
+                "value": 1.399999976158142,
+                "linked": false
+              },
+              {
+                "index": 13,
+                "name": "Subsurface Anisotropy",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 14,
+                "name": "Specular IOR Level",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 15,
+                "name": "Specular Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 16,
+                "name": "Anisotropic",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 17,
+                "name": "Anisotropic Rotation",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 18,
+                "name": "Tangent",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 19,
+                "name": "Transmission Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 20,
+                "name": "Coat Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 21,
+                "name": "Coat Roughness",
+                "value": 0.029999999329447746,
+                "linked": false
+              },
+              {
+                "index": 22,
+                "name": "Coat IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 23,
+                "name": "Coat Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 24,
+                "name": "Coat Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 25,
+                "name": "Sheen Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 26,
+                "name": "Sheen Roughness",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 27,
+                "name": "Sheen Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 28,
+                "name": "Emission Color",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 29,
+                "name": "Emission Strength",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 30,
+                "name": "Thin Film Thickness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 31,
+                "name": "Thin Film IOR",
+                "value": 1.3300000429153442,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "Material Output",
+            "type": "OUTPUT_MATERIAL",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Surface",
+                "value": null,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Volume",
+                "value": null,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Displacement",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 3,
+                "name": "Thickness",
+                "value": 0.0,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "UVMAP",
+            "inputs": [],
+            "uv_map": "UV0"
+          },
+          {
+            "name": "UV Map.001",
+            "type": "UVMAP",
+            "inputs": [],
+            "uv_map": "UV1_SharedData"
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          },
+          {
+            "name": "Math",
+            "type": "MATH",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Value",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Value",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Value",
+                "value": 0.5,
+                "linked": false
+              }
+            ],
+            "operation": "GREATER_THAN",
+            "use_clamp": false
+          },
+          {
+            "name": "Image Texture",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_WeatheredTimber2m_Longgrain_BC.png",
+              "packed_sha256": "dbd2947d8de5610c664bc8826e74f9f264d7396c3329535e17540cf0d7192200",
+              "colorspace": "sRGB"
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_WeatheredTimber2m_Endgrain_BC.png",
+              "packed_sha256": "bb8ec47e552bc366e9f150762846c31be838508c01a5724fc1e69a78668ed792",
+              "colorspace": "sRGB"
+            }
+          },
+          {
+            "name": "Mix (Legacy)",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MIX",
+            "use_clamp": false
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_WeatheredTimber2m_Longgrain_N_GL.png",
+              "packed_sha256": "9614afd66cafe39bbf9de5db00958e196c5cc074a4a3f25fedd798731164c56d",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Image Texture.003",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_WeatheredTimber2m_Endgrain_N_GL.png",
+              "packed_sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Mix (Legacy).001",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MIX",
+            "use_clamp": false
+          },
+          {
+            "name": "Image Texture.004",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_WeatheredTimber2m_Longgrain_ORM.png",
+              "packed_sha256": "742741518fde82018b708131f8b0cafb95ca3ac8f2e617db70c00ca2e4cbb77f",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Image Texture.005",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_WeatheredTimber2m_Endgrain_ORM.png",
+              "packed_sha256": "fd074489d73817bab5c165c8d844cc978cb1c95244a36de53643524a858baa99",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Mix (Legacy).002",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MIX",
+            "use_clamp": false
+          },
+          {
+            "name": "Separate XYZ.001",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          },
+          {
+            "name": "Normal Map",
+            "type": "NORMAL_MAP",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Strength",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 1,
+                "name": "Color",
+                "value": [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "uv_map": "UV0",
+            "space": "TANGENT"
+          }
+        ],
+        "links": [
+          {
+            "from_node": "Principled BSDF",
+            "from_socket": 0,
+            "from_name": "BSDF",
+            "to_node": "Material Output",
+            "to_socket": 0,
+            "to_name": "Surface"
+          },
+          {
+            "from_node": "UV Map.001",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Separate XYZ",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ",
+            "from_socket": 0,
+            "from_name": "X",
+            "to_node": "Math",
+            "to_socket": 0,
+            "to_name": "Value"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 0,
+            "to_name": "Factor"
+          },
+          {
+            "from_node": "Image Texture",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Image Texture.001",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.002",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.003",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy).001",
+            "to_socket": 0,
+            "to_name": "Factor"
+          },
+          {
+            "from_node": "Image Texture.002",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).001",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Image Texture.003",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).001",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.004",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.005",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy).002",
+            "to_socket": 0,
+            "to_name": "Factor"
+          },
+          {
+            "from_node": "Image Texture.004",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).002",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Image Texture.005",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).002",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "Mix (Legacy)",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Principled BSDF",
+            "to_socket": 0,
+            "to_name": "Base Color"
+          },
+          {
+            "from_node": "Mix (Legacy).002",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Separate XYZ.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ.001",
+            "from_socket": 1,
+            "from_name": "Y",
+            "to_node": "Principled BSDF",
+            "to_socket": 2,
+            "to_name": "Roughness"
+          },
+          {
+            "from_node": "Separate XYZ.001",
+            "from_socket": 2,
+            "from_name": "Z",
+            "to_node": "Principled BSDF",
+            "to_socket": 1,
+            "to_name": "Metallic"
+          },
+          {
+            "from_node": "Mix (Legacy).001",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Normal Map",
+            "to_socket": 1,
+            "to_name": "Color"
+          },
+          {
+            "from_node": "Normal Map",
+            "from_socket": 0,
+            "from_name": "Normal",
+            "to_node": "Principled BSDF",
+            "to_socket": 6,
+            "to_name": "Normal"
+          }
+        ]
+      },
+      "source_graph_sha256": "4d82863d9bda9915a55415d82b1caa5f1937a9c492b398a17ac904414c477d74"
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_IronLead2m",
+      "source_material": "MI_Shared_IronLead2m",
+      "textures": {
+        "T_Shared_IronLead2m_BlackenedIron_BC.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC",
+        "T_Shared_IronLead2m_BlackenedIron_N_GL.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL",
+        "T_Shared_IronLead2m_BlackenedIron_ORM.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM",
+        "T_Shared_IronLead2m_DullLead_BC.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_DullLead_BC",
+        "T_Shared_IronLead2m_DullLead_N_GL.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_DullLead_N_GL",
+        "T_Shared_IronLead2m_DullLead_ORM.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_DullLead_ORM"
+      },
+      "profile": "opaque_variant_tint_2m",
+      "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
+      "source_graph": {
+        "nodes": [
+          {
+            "name": "Principled BSDF",
+            "type": "BSDF_PRINCIPLED",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Base Color",
+                "value": [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Metallic",
+                "value": 0.0,
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Roughness",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 3,
+                "name": "IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 4,
+                "name": "Alpha",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 5,
+                "name": "Thin Wall",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 6,
+                "name": "Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 7,
+                "name": "Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 8,
+                "name": "Diffuse Roughness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 9,
+                "name": "Subsurface Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 10,
+                "name": "Subsurface Radius",
+                "value": [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ],
+                "linked": false
+              },
+              {
+                "index": 11,
+                "name": "Subsurface Scale",
+                "value": 0.004999999888241291,
+                "linked": false
+              },
+              {
+                "index": 12,
+                "name": "Subsurface IOR",
+                "value": 1.399999976158142,
+                "linked": false
+              },
+              {
+                "index": 13,
+                "name": "Subsurface Anisotropy",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 14,
+                "name": "Specular IOR Level",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 15,
+                "name": "Specular Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 16,
+                "name": "Anisotropic",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 17,
+                "name": "Anisotropic Rotation",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 18,
+                "name": "Tangent",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 19,
+                "name": "Transmission Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 20,
+                "name": "Coat Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 21,
+                "name": "Coat Roughness",
+                "value": 0.029999999329447746,
+                "linked": false
+              },
+              {
+                "index": 22,
+                "name": "Coat IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 23,
+                "name": "Coat Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 24,
+                "name": "Coat Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 25,
+                "name": "Sheen Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 26,
+                "name": "Sheen Roughness",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 27,
+                "name": "Sheen Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 28,
+                "name": "Emission Color",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 29,
+                "name": "Emission Strength",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 30,
+                "name": "Thin Film Thickness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 31,
+                "name": "Thin Film IOR",
+                "value": 1.3300000429153442,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "Material Output",
+            "type": "OUTPUT_MATERIAL",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Surface",
+                "value": null,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Volume",
+                "value": null,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Displacement",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 3,
+                "name": "Thickness",
+                "value": 0.0,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "UVMAP",
+            "inputs": [],
+            "uv_map": "UV0"
+          },
+          {
+            "name": "UV Map.001",
+            "type": "UVMAP",
+            "inputs": [],
+            "uv_map": "UV1_SharedData"
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          },
+          {
+            "name": "Math",
+            "type": "MATH",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Value",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Value",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Value",
+                "value": 0.5,
+                "linked": false
+              }
+            ],
+            "operation": "GREATER_THAN",
+            "use_clamp": false
+          },
+          {
+            "name": "Image Texture",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_IronLead2m_BlackenedIron_BC.png",
+              "packed_sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+              "colorspace": "sRGB"
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_IronLead2m_DullLead_BC.png",
+              "packed_sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+              "colorspace": "sRGB"
+            }
+          },
+          {
+            "name": "Mix (Legacy)",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MIX",
+            "use_clamp": false
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_IronLead2m_BlackenedIron_N_GL.png",
+              "packed_sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Image Texture.003",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_IronLead2m_DullLead_N_GL.png",
+              "packed_sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Mix (Legacy).001",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MIX",
+            "use_clamp": false
+          },
+          {
+            "name": "Image Texture.004",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_IronLead2m_BlackenedIron_ORM.png",
+              "packed_sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Image Texture.005",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_IronLead2m_DullLead_ORM.png",
+              "packed_sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Mix (Legacy).002",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MIX",
+            "use_clamp": false
+          },
+          {
+            "name": "Separate XYZ.001",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          },
+          {
+            "name": "Normal Map",
+            "type": "NORMAL_MAP",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Strength",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 1,
+                "name": "Color",
+                "value": [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "uv_map": "UV0",
+            "space": "TANGENT"
+          }
+        ],
+        "links": [
+          {
+            "from_node": "Principled BSDF",
+            "from_socket": 0,
+            "from_name": "BSDF",
+            "to_node": "Material Output",
+            "to_socket": 0,
+            "to_name": "Surface"
+          },
+          {
+            "from_node": "UV Map.001",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Separate XYZ",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ",
+            "from_socket": 0,
+            "from_name": "X",
+            "to_node": "Math",
+            "to_socket": 0,
+            "to_name": "Value"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 0,
+            "to_name": "Factor"
+          },
+          {
+            "from_node": "Image Texture",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Image Texture.001",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.002",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.003",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy).001",
+            "to_socket": 0,
+            "to_name": "Factor"
+          },
+          {
+            "from_node": "Image Texture.002",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).001",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Image Texture.003",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).001",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.004",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.005",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy).002",
+            "to_socket": 0,
+            "to_name": "Factor"
+          },
+          {
+            "from_node": "Image Texture.004",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).002",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Image Texture.005",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).002",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "Mix (Legacy)",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Principled BSDF",
+            "to_socket": 0,
+            "to_name": "Base Color"
+          },
+          {
+            "from_node": "Mix (Legacy).002",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Separate XYZ.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ.001",
+            "from_socket": 1,
+            "from_name": "Y",
+            "to_node": "Principled BSDF",
+            "to_socket": 2,
+            "to_name": "Roughness"
+          },
+          {
+            "from_node": "Separate XYZ.001",
+            "from_socket": 2,
+            "from_name": "Z",
+            "to_node": "Principled BSDF",
+            "to_socket": 1,
+            "to_name": "Metallic"
+          },
+          {
+            "from_node": "Mix (Legacy).001",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Normal Map",
+            "to_socket": 1,
+            "to_name": "Color"
+          },
+          {
+            "from_node": "Normal Map",
+            "from_socket": 0,
+            "from_name": "Normal",
+            "to_node": "Principled BSDF",
+            "to_socket": 6,
+            "to_name": "Normal"
+          }
+        ]
+      },
+      "source_graph_sha256": "916466f309b87b644e8a2ac0200d3574e4d2e23e93007cdd1f9de1004fa3e024"
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_LimeMortarSoot2m",
+      "source_material": "MI_Shared_LimeMortarSoot2m",
+      "textures": {
+        "T_Shared_LimeMortarSoot2m_Lime_BC.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Lime_BC",
+        "T_Shared_LimeMortarSoot2m_Lime_N_GL.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL",
+        "T_Shared_LimeMortarSoot2m_Lime_ORM.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Lime_ORM",
+        "T_Shared_LimeMortarSoot2m_Soot_BC.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Soot_BC",
+        "T_Shared_LimeMortarSoot2m_Soot_N_GL.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL",
+        "T_Shared_LimeMortarSoot2m_Soot_ORM.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Soot_ORM"
+      },
+      "profile": "opaque_variant_tint_2m",
+      "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
+      "source_graph": {
+        "nodes": [
+          {
+            "name": "Principled BSDF",
+            "type": "BSDF_PRINCIPLED",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Base Color",
+                "value": [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Metallic",
+                "value": 0.0,
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Roughness",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 3,
+                "name": "IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 4,
+                "name": "Alpha",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 5,
+                "name": "Thin Wall",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 6,
+                "name": "Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 7,
+                "name": "Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 8,
+                "name": "Diffuse Roughness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 9,
+                "name": "Subsurface Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 10,
+                "name": "Subsurface Radius",
+                "value": [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ],
+                "linked": false
+              },
+              {
+                "index": 11,
+                "name": "Subsurface Scale",
+                "value": 0.004999999888241291,
+                "linked": false
+              },
+              {
+                "index": 12,
+                "name": "Subsurface IOR",
+                "value": 1.399999976158142,
+                "linked": false
+              },
+              {
+                "index": 13,
+                "name": "Subsurface Anisotropy",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 14,
+                "name": "Specular IOR Level",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 15,
+                "name": "Specular Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 16,
+                "name": "Anisotropic",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 17,
+                "name": "Anisotropic Rotation",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 18,
+                "name": "Tangent",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 19,
+                "name": "Transmission Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 20,
+                "name": "Coat Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 21,
+                "name": "Coat Roughness",
+                "value": 0.029999999329447746,
+                "linked": false
+              },
+              {
+                "index": 22,
+                "name": "Coat IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 23,
+                "name": "Coat Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 24,
+                "name": "Coat Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 25,
+                "name": "Sheen Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 26,
+                "name": "Sheen Roughness",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 27,
+                "name": "Sheen Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 28,
+                "name": "Emission Color",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 29,
+                "name": "Emission Strength",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 30,
+                "name": "Thin Film Thickness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 31,
+                "name": "Thin Film IOR",
+                "value": 1.3300000429153442,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "Material Output",
+            "type": "OUTPUT_MATERIAL",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Surface",
+                "value": null,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Volume",
+                "value": null,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Displacement",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 3,
+                "name": "Thickness",
+                "value": 0.0,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "UVMAP",
+            "inputs": [],
+            "uv_map": "UV0"
+          },
+          {
+            "name": "UV Map.001",
+            "type": "UVMAP",
+            "inputs": [],
+            "uv_map": "UV1_SharedData"
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          },
+          {
+            "name": "Math",
+            "type": "MATH",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Value",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Value",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Value",
+                "value": 0.5,
+                "linked": false
+              }
+            ],
+            "operation": "GREATER_THAN",
+            "use_clamp": false
+          },
+          {
+            "name": "Image Texture",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_LimeMortarSoot2m_Lime_BC.png",
+              "packed_sha256": "2d043f56ecad604a269fb16e9e544a19c5bda442eb07ec17299dd479bf70acf2",
+              "colorspace": "sRGB"
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_LimeMortarSoot2m_Soot_BC.png",
+              "packed_sha256": "d1975c8e299283b21828e7470a69033668889728ed84c68f57c6465d3e672857",
+              "colorspace": "sRGB"
+            }
+          },
+          {
+            "name": "Mix (Legacy)",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MIX",
+            "use_clamp": false
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_LimeMortarSoot2m_Lime_N_GL.png",
+              "packed_sha256": "961ecced7ca53b936032915617f2a73603f57e03878687f4810b1ed9d95126c9",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Image Texture.003",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_LimeMortarSoot2m_Soot_N_GL.png",
+              "packed_sha256": "9c88a7a66be37780c283c69610327ed2ef8c4c96f3a9fa8a6fdade1b5864db54",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Mix (Legacy).001",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MIX",
+            "use_clamp": false
+          },
+          {
+            "name": "Image Texture.004",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_LimeMortarSoot2m_Lime_ORM.png",
+              "packed_sha256": "bcbd8bf96099eee05ea11c765afaa26cfac158d5d32b9eac3ce487bb4f7c4ef2",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Image Texture.005",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_LimeMortarSoot2m_Soot_ORM.png",
+              "packed_sha256": "36eb1478ec2fb059ee0604fcc92ce654d6582855fa285dec66d8a6f9a6c48133",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Mix (Legacy).002",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MIX",
+            "use_clamp": false
+          },
+          {
+            "name": "Color Attribute",
+            "type": "VERTEX_COLOR",
+            "inputs": [],
+            "layer_name": "SharedSurfaceData"
+          },
+          {
+            "name": "Mix (Legacy).003",
+            "type": "MIX_RGB",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Factor",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 1,
+                "name": "Color1",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Color2",
+                "value": [
+                  0.5,
+                  0.5,
+                  0.5,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "blend_type": "MULTIPLY",
+            "use_clamp": false
+          },
+          {
+            "name": "Separate XYZ.001",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          },
+          {
+            "name": "Math.001",
+            "type": "MATH",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Value",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Value",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 2,
+                "name": "Value",
+                "value": 0.5,
+                "linked": false
+              }
+            ],
+            "operation": "ADD",
+            "use_clamp": true
+          },
+          {
+            "name": "Normal Map",
+            "type": "NORMAL_MAP",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Strength",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 1,
+                "name": "Color",
+                "value": [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "uv_map": "UV0",
+            "space": "TANGENT"
+          }
+        ],
+        "links": [
+          {
+            "from_node": "Principled BSDF",
+            "from_socket": 0,
+            "from_name": "BSDF",
+            "to_node": "Material Output",
+            "to_socket": 0,
+            "to_name": "Surface"
+          },
+          {
+            "from_node": "UV Map.001",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Separate XYZ",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ",
+            "from_socket": 0,
+            "from_name": "X",
+            "to_node": "Math",
+            "to_socket": 0,
+            "to_name": "Value"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 0,
+            "to_name": "Factor"
+          },
+          {
+            "from_node": "Image Texture",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Image Texture.001",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy)",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.002",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.003",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy).001",
+            "to_socket": 0,
+            "to_name": "Factor"
+          },
+          {
+            "from_node": "Image Texture.002",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).001",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Image Texture.003",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).001",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.004",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.005",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Math",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Mix (Legacy).002",
+            "to_socket": 0,
+            "to_name": "Factor"
+          },
+          {
+            "from_node": "Image Texture.004",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).002",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Image Texture.005",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).002",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "Mix (Legacy)",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).003",
+            "to_socket": 1,
+            "to_name": "Color1"
+          },
+          {
+            "from_node": "Color Attribute",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Mix (Legacy).003",
+            "to_socket": 2,
+            "to_name": "Color2"
+          },
+          {
+            "from_node": "Mix (Legacy).003",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Principled BSDF",
+            "to_socket": 0,
+            "to_name": "Base Color"
+          },
+          {
+            "from_node": "Mix (Legacy).002",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Separate XYZ.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ.001",
+            "from_socket": 1,
+            "from_name": "Y",
+            "to_node": "Math.001",
+            "to_socket": 0,
+            "to_name": "Value"
+          },
+          {
+            "from_node": "Separate XYZ",
+            "from_socket": 1,
+            "from_name": "Y",
+            "to_node": "Math.001",
+            "to_socket": 1,
+            "to_name": "Value"
+          },
+          {
+            "from_node": "Math.001",
+            "from_socket": 0,
+            "from_name": "Value",
+            "to_node": "Principled BSDF",
+            "to_socket": 2,
+            "to_name": "Roughness"
+          },
+          {
+            "from_node": "Separate XYZ.001",
+            "from_socket": 2,
+            "from_name": "Z",
+            "to_node": "Principled BSDF",
+            "to_socket": 1,
+            "to_name": "Metallic"
+          },
+          {
+            "from_node": "Mix (Legacy).001",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Normal Map",
+            "to_socket": 1,
+            "to_name": "Color"
+          },
+          {
+            "from_node": "Normal Map",
+            "from_socket": 0,
+            "from_name": "Normal",
+            "to_node": "Principled BSDF",
+            "to_socket": 6,
+            "to_name": "Normal"
+          }
+        ]
+      },
+      "source_graph_sha256": "812d2b1549aec0f4d0baddce0afe2eb90b2f9d83e99a85b60d117bd87a4ebf61"
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_DressedReed2m",
+      "source_material": "MI_Shared_DressedReed2m",
+      "textures": {
+        "T_Shared_DressedReed2m_Reed_BC.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_DressedReed2m_Reed_BC",
+        "T_Shared_DressedReed2m_Reed_N_GL.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_DressedReed2m_Reed_N_GL",
+        "T_Shared_DressedReed2m_Reed_ORM.png": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_DressedReed2m_Reed_ORM"
+      },
+      "profile": "opaque_surface_2m",
+      "source_graph_reviewed": false,
+      "uv1_semantic_decode": "U,1-V",
+      "source_graph": {
+        "nodes": [
+          {
+            "name": "Principled BSDF",
+            "type": "BSDF_PRINCIPLED",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Base Color",
+                "value": [
+                  0.800000011920929,
+                  0.800000011920929,
+                  0.800000011920929,
+                  1.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Metallic",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Roughness",
+                "value": 0.5,
+                "linked": true
+              },
+              {
+                "index": 3,
+                "name": "IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 4,
+                "name": "Alpha",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 5,
+                "name": "Thin Wall",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 6,
+                "name": "Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              },
+              {
+                "index": 7,
+                "name": "Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 8,
+                "name": "Diffuse Roughness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 9,
+                "name": "Subsurface Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 10,
+                "name": "Subsurface Radius",
+                "value": [
+                  1.0,
+                  0.20000000298023224,
+                  0.10000000149011612
+                ],
+                "linked": false
+              },
+              {
+                "index": 11,
+                "name": "Subsurface Scale",
+                "value": 0.004999999888241291,
+                "linked": false
+              },
+              {
+                "index": 12,
+                "name": "Subsurface IOR",
+                "value": 1.399999976158142,
+                "linked": false
+              },
+              {
+                "index": 13,
+                "name": "Subsurface Anisotropy",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 14,
+                "name": "Specular IOR Level",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 15,
+                "name": "Specular Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 16,
+                "name": "Anisotropic",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 17,
+                "name": "Anisotropic Rotation",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 18,
+                "name": "Tangent",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 19,
+                "name": "Transmission Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 20,
+                "name": "Coat Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 21,
+                "name": "Coat Roughness",
+                "value": 0.029999999329447746,
+                "linked": false
+              },
+              {
+                "index": 22,
+                "name": "Coat IOR",
+                "value": 1.5,
+                "linked": false
+              },
+              {
+                "index": 23,
+                "name": "Coat Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 24,
+                "name": "Coat Normal",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 25,
+                "name": "Sheen Weight",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 26,
+                "name": "Sheen Roughness",
+                "value": 0.5,
+                "linked": false
+              },
+              {
+                "index": 27,
+                "name": "Sheen Tint",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 28,
+                "name": "Emission Color",
+                "value": [
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 29,
+                "name": "Emission Strength",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 30,
+                "name": "Thin Film Thickness",
+                "value": 0.0,
+                "linked": false
+              },
+              {
+                "index": 31,
+                "name": "Thin Film IOR",
+                "value": 1.3300000429153442,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "Material Output",
+            "type": "OUTPUT_MATERIAL",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Surface",
+                "value": null,
+                "linked": true
+              },
+              {
+                "index": 1,
+                "name": "Volume",
+                "value": null,
+                "linked": false
+              },
+              {
+                "index": 2,
+                "name": "Displacement",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": false
+              },
+              {
+                "index": 3,
+                "name": "Thickness",
+                "value": 0.0,
+                "linked": false
+              }
+            ]
+          },
+          {
+            "name": "UV Map",
+            "type": "UVMAP",
+            "inputs": [],
+            "uv_map": "UV0"
+          },
+          {
+            "name": "Image Texture",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_DressedReed2m_Reed_BC.png",
+              "packed_sha256": "e0f6ba3b08674632e2129eca9ce1c3c56d50db71c44b4b44cb5111c61b834451",
+              "colorspace": "sRGB"
+            }
+          },
+          {
+            "name": "Image Texture.001",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_DressedReed2m_Reed_N_GL.png",
+              "packed_sha256": "cf2b58555cc2ccbb9a3ffae139f07af8e7e327760bbdf602726de2215508424f",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Normal Map",
+            "type": "NORMAL_MAP",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Strength",
+                "value": 1.0,
+                "linked": false
+              },
+              {
+                "index": 1,
+                "name": "Color",
+                "value": [
+                  0.5,
+                  0.5,
+                  1.0,
+                  1.0
+                ],
+                "linked": true
+              }
+            ],
+            "uv_map": "UV0",
+            "space": "TANGENT"
+          },
+          {
+            "name": "Image Texture.002",
+            "type": "TEX_IMAGE",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ],
+            "interpolation": "Linear",
+            "extension": "REPEAT",
+            "image": {
+              "name": "T_Shared_DressedReed2m_Reed_ORM.png",
+              "packed_sha256": "24c93de030609caed793c88f434d50efe0fff4b4344cd2ff86394f092d97ba32",
+              "colorspace": "Non-Color"
+            }
+          },
+          {
+            "name": "Separate XYZ",
+            "type": "SEPXYZ",
+            "inputs": [
+              {
+                "index": 0,
+                "name": "Vector",
+                "value": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "linked": true
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "from_node": "Principled BSDF",
+            "from_socket": 0,
+            "from_name": "BSDF",
+            "to_node": "Material Output",
+            "to_socket": 0,
+            "to_name": "Surface"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Image Texture",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Principled BSDF",
+            "to_socket": 0,
+            "to_name": "Base Color"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.001",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Image Texture.001",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Normal Map",
+            "to_socket": 1,
+            "to_name": "Color"
+          },
+          {
+            "from_node": "Normal Map",
+            "from_socket": 0,
+            "from_name": "Normal",
+            "to_node": "Principled BSDF",
+            "to_socket": 6,
+            "to_name": "Normal"
+          },
+          {
+            "from_node": "UV Map",
+            "from_socket": 0,
+            "from_name": "UV",
+            "to_node": "Image Texture.002",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Image Texture.002",
+            "from_socket": 0,
+            "from_name": "Color",
+            "to_node": "Separate XYZ",
+            "to_socket": 0,
+            "to_name": "Vector"
+          },
+          {
+            "from_node": "Separate XYZ",
+            "from_socket": 1,
+            "from_name": "Y",
+            "to_node": "Principled BSDF",
+            "to_socket": 2,
+            "to_name": "Roughness"
+          }
+        ]
+      },
+      "source_graph_sha256": "6eb9bc03e06513d47752e3ec08267d1542d851a74aee1174bd82ed4c44c8eeb7"
+    },
+    {
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_ThinWavyGlass2m",
+      "source_material": "MI_Shared_ThinWavyGlass2m",
+      "textures": {
+        "BC": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_ThinWavyGlass2m_BC",
+        "N": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_ThinWavyGlass2m_N_GL",
+        "ORM": "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_ThinWavyGlass2m_ORM"
+      },
+      "profile": "thin_transmissive_surface_2m",
+      "native_policy_reviewed": false,
+      "physical_uv_reviewed": false,
+      "front_back_policy": "closed_panes_front_faces_only",
+      "uv_channel": 0,
+      "transmission": 1,
+      "surface_coverage": 1,
+      "top_material_coverage": 0,
+      "IOR": 1.48,
+      "unreal_specular": 0.46826222684703434,
+      "two_sided": false,
+      "substrate_enabled": false
+    }
+  ],
+  "meshes": [
+    {
+      "name": "SM_Cottage_Stonebrook_01",
+      "package": "/Game/Dink/Refinements/House439SharedExteriorV1/Meshes/SM_Cottage_Stonebrook_01",
+      "file": "FBX/SM_Cottage_Stonebrook_01.fbx",
+      "source_sha256": "926a3586c00d958994706c0fc1e4b3ddf3655251da087f9596fa92eed911d028",
+      "triangles": 194192,
+      "UCX": 6,
+      "material_slots": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortarSoot2m",
+        "MI_Shared_WeatheredTimber2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_ThinWavyGlass2m",
+        "MI_Shared_FieldstoneWall2m",
+        "MI_Shared_DressedReed2m"
+      ],
+      "UV_channels": [
+        "UV0",
+        "UV1_SharedData"
+      ],
+      "color0": "SharedSurfaceData",
+      "normal_tangent_basis": "UV0",
+      "native_UV_convention": "LegacyFBX imports V=1-sourceV on allchannels; semanticUV1Y decoded byOneMinus inmaterial, UV0 stays texture convention",
+      "collision": "SIMPLE_AND_COMPLEX",
+      "nanite": false
+    }
+  ],
+  "trial_packages": {
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_FieldstoneSeed2m": "Material",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneWall2m_Wall_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneWall2m_Wall_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_FieldstoneWall2m_Wall_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_FieldstoneWall2m": "Material",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_WeatheredTimber2m": "Material",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_DullLead_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_DullLead_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_IronLead2m_DullLead_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_IronLead2m": "Material",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Lime_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Lime_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Soot_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_LimeMortarSoot2m_Soot_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_LimeMortarSoot2m": "Material",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_DressedReed2m_Reed_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_DressedReed2m_Reed_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_DressedReed2m_Reed_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_DressedReed2m": "Material",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_ThinWavyGlass2m_BC": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_ThinWavyGlass2m_N_GL": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Textures/T_Shared_ThinWavyGlass2m_ORM": "Texture2D",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Materials/MI_Shared_ThinWavyGlass2m": "Material",
+    "/Game/Dink/Refinements/House439SharedExteriorV1/Meshes/SM_Cottage_Stonebrook_01": "StaticMesh"
+  },
+  "production_activated": false,
+  "native_review_required": true,
+  "digest": "33c49c4a804ef7c9fb8a00dde8c170f049f3cfb93394f5a40df88db7da4193f3"
+}

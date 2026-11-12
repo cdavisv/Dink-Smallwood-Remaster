@@ -5,7 +5,7 @@
     {
       "directory": "PhotorealHouse440V1",
       "handoff": "HANDOFF.json",
-      "handoff_sha256": "50bf30b343047baed5339fc27c5950cb9017e7173c71d9e9cb1ab51cbb67b950",
+      "handoff_sha256": "ea4ca945a367367a94e41f1c37e2ba6243ad1f7bdd0dfd97e0cbb7e3f72511e9",
       "core_files": 69,
       "source_only": true,
       "native_imported": false
@@ -13,7 +13,7 @@
     {
       "directory": "PhotorealWillowV1",
       "handoff": "delivery_handoff.json",
-      "handoff_sha256": "aab276ad3fb63ec9282f0ea573f63d3c76a386d6c629acfba4cad7a59fdf40b6",
+      "handoff_sha256": "7fe07de587bee8f2183bd8e8fb21e3e41dd521325c37e0ce9bdeec9ff549c269",
       "core_files": 45,
       "source_only": true,
       "native_imported": false
@@ -21,7 +21,7 @@
     {
       "directory": "SharedGroundV1",
       "handoff": "delivery_handoff.json",
-      "handoff_sha256": "b388dcc4a4a54f6629b57d62a2b95cd0dd783084e7bf9a68d02a9b8475451ed5",
+      "handoff_sha256": "e40da882e57bb6ad885c96a6c36b431dd291d1e05049a4ad34c1c78039a0031c",
       "core_files": 255,
       "source_only": true,
       "native_imported": false
@@ -4835,7 +4835,7 @@
   "existing_outdoor_static_copy_count_excluding_own_cottage": 411,
   "house_independent_review": {
     "file": "house_independent_publication_review.json",
-    "sha256": "117c3c7375a56e3fe280ef5a1b7e94ef161774f112381b00000cdea62d89d1ab",
+    "sha256": "d60943f8e87867af63c4114861126edafe6f6dd3ba1f6a990a124772a651a42b",
     "approved_scope": "Corrected bounded source/export publication only; nativephysics/world/finalgame art pending"
   }
 }

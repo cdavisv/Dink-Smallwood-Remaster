@@ -47,7 +47,7 @@
   "source_files": {
     "editable_clean_source": {
       "file": "WornOakFloorV5_Source.blend",
-      "sha256": "a7dd05b547773ea77cca3837cbdc17a549f10a8567b0395bb7a34fce6cccac87"
+      "sha256": "e7c974d3314bd2d1887c78c3d35ad8875288ad94609d03bb4ae7d2538ac1b884"
     },
     "portable_rebuild_script": {
       "file": "rebake_from_clean_source.py",
@@ -55,7 +55,7 @@
     },
     "generation_provenance": {
       "file": "Inputs/generation.json",
-      "sha256": "3833afde7df1e65b9292926f6513f5af9336edc2dace0768003b55fb720d61d9"
+      "sha256": "8463dbc35ff0195ee35c8c2f607076ad59bb4577fd1ee222fa4b9b9c90278581"
     },
     "albedo_calibration": {
       "file": "albedo_calibration.json",
@@ -115,19 +115,19 @@
   "verification_artifacts": {
     "rendered_scene": {
       "file": "WornOakFloorV5_BakedPreview.blend",
-      "sha256": "aa5bfb87884e80a8143a6537a258568281fa490b5225215e9cbf4c5cc8356811"
+      "sha256": "24b705e9ee07b6de1c9c39f0b18cc3abeb130231375a8a096f55e7c4e91b6af0"
     },
     "roundtrip_receipt": {
       "file": "roundtrip_receipt.json",
-      "sha256": "5f6467b673abe0769f7071c1275f67c49839f2df8eead6045ac3dd6bac5f4e7a"
+      "sha256": "26b4770f5ea97a4dd83384d5a6d81c195512be35697060236a7440095fa9e5b9"
     },
     "source_validation": {
       "file": "source_validation.json",
-      "sha256": "5902d11f67ccf16c3a2b12668573a555862df66e436972d85e141b04eb75628d"
+      "sha256": "e16ed5c41443f91a0a448f2109a8f12651561a9427242ebe50b258e536814099"
     },
     "portable_rebuild_proof": {
       "file": "portable_rebuild_receipt.json",
-      "sha256": "e4b90edd33221d9869478b3d6989528be2b6eca60221570a93ffa20285a5747e"
+      "sha256": "c36a4245d14883eb571ed143b212c1f6f2fb90f1a8600dd88b2915e55b31bd37"
     }
   },
   "roundtrip_review": {

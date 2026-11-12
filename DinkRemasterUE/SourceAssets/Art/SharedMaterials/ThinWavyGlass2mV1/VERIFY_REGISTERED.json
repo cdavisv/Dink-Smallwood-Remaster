@@ -1,0 +1,57 @@
+{
+  "status": "PASS_packed_local_maps_parameters_and_independent_reuse",
+  "records": [
+    {
+      "file": "SharedThinWavyGlass_Source.blend",
+      "maps": [
+        {
+          "image": "T_Shared_ThinWavyGlass2m_BC.png",
+          "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+          "packed": true,
+          "file_local": true
+        },
+        {
+          "image": "T_Shared_ThinWavyGlass2m_N_GL.png",
+          "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+          "packed": true,
+          "file_local": true
+        },
+        {
+          "image": "T_Shared_ThinWavyGlass2m_ORM.png",
+          "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+          "packed": true,
+          "file_local": true
+        }
+      ],
+      "surfaces": []
+    },
+    {
+      "file": "GenericReuse_2m4m.blend",
+      "maps": [
+        {
+          "image": "T_Shared_ThinWavyGlass2m_BC.png",
+          "sha256": "5b6431ab46bf6c367be063ad1cc429dd360429a5bfc67bd2ad77e73fce682aa4",
+          "packed": true,
+          "file_local": true
+        },
+        {
+          "image": "T_Shared_ThinWavyGlass2m_N_GL.png",
+          "sha256": "5a9306e23b417b832ba8f6d860ee1847d34dd49ba1c57aa3bac52edd18a13399",
+          "packed": true,
+          "file_local": true
+        },
+        {
+          "image": "T_Shared_ThinWavyGlass2m_ORM.png",
+          "sha256": "a3bc1f3e4710a34e469b2b72cb9099b08ab11df04b420cde0dae274716a71607",
+          "packed": true,
+          "file_local": true
+        }
+      ],
+      "surfaces": [
+        "Glass2m",
+        "Glass4m"
+      ]
+    }
+  ],
+  "scope": "Source-only; no native or final appearance acceptance"
+}

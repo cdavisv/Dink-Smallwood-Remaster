@@ -44,7 +44,7 @@
       ],
       "expected_screen": 439,
       "actual_W_pulses": null,
-      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-exit.json",
+      "original_path": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-exit.json",
       "original_sha256": "9d0c9b91d6d3b0395467e3187cb5a365dbca679858b79ab111c11acb33f24ab3",
       "pulse_count_qualification": "Raw door-transition receipt omits pulse counts; null means unrecorded, not zero input. Real held-W movement and positions are recorded."
     },
@@ -90,7 +90,7 @@
       ],
       "expected_screen": 1,
       "actual_W_pulses": null,
-      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-return.json",
+      "original_path": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/route-spawn-door-return.json",
       "original_sha256": "b0ed2e66c4191c02733361a6accf11edfc327227f45c43da73d5c85626f73061",
       "pulse_count_qualification": "Raw door-transition receipt omits pulse counts; null means unrecorded, not zero input. Real held-W movement and positions are recorded."
     },
@@ -136,7 +136,7 @@
       ],
       "expected_screen": null,
       "actual_W_pulses": 9,
-      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-east.json",
+      "original_path": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-east.json",
       "original_sha256": "6df5def59065a23d0bd2876a69e0971bf4ce63f3d8ea5445290c96d3fa34d29f"
     },
     "walk-corridor-west.json": {
@@ -181,7 +181,7 @@
       ],
       "expected_screen": null,
       "actual_W_pulses": 20,
-      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-west.json",
+      "original_path": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-corridor-west.json",
       "original_sha256": "18e75388aa9ce9194cf89c4685098ba908fdd53f778acdd222570b5fc94fbd88"
     },
     "walk-door-approach.json": {
@@ -226,7 +226,7 @@
       ],
       "expected_screen": null,
       "actual_W_pulses": 7,
-      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-door-approach.json",
+      "original_path": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-door-approach.json",
       "original_sha256": "366f0973ecb58c4d1ecbd25eea3cd1fcef2892f8a6e85eacfdfabcb7097ccb23"
     },
     "walk-south-bypass.json": {
@@ -271,7 +271,7 @@
       ],
       "expected_screen": null,
       "actual_W_pulses": 11,
-      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-south-bypass.json",
+      "original_path": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-south-bypass.json",
       "original_sha256": "ee3c05d3bd063f6e56e902a2d1bc8c6dc7b09e4bd3b59e9aae18ef32cb0c2e05"
     },
     "walk-west.json": {
@@ -316,7 +316,7 @@
       ],
       "expected_screen": null,
       "actual_W_pulses": 10,
-      "original_path": "/home/davisc/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-west.json",
+      "original_path": "<HOME>/Work/DinkQA/OutdoorPortalCameraPackagedGPUPreparation/Runs/086c11ca-55d7-4bf1-9767-00fbe48db2e3/walk-west.json",
       "original_sha256": "fabea96331dcd2b6fc4498ec0124c02aeedc4eb0c44aef9a6aecb8098362611a"
     }
   },

@@ -1,0 +1,82 @@
+{
+  "MI_Duck_Feather": {
+    "base_color": [
+      0.7,
+      0.688,
+      0.64
+    ],
+    "roughness": 0.7,
+    "metallic": 0,
+    "masked": true,
+    "alpha_mask": true,
+    "opacity_mask_clip": 0.4,
+    "two_sided": true,
+    "subsurface": 0.0,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Duck_Atlas_BC.png",
+      "N": "Textures/T_Duck_Atlas_N.png",
+      "ORM": "Textures/T_Duck_Atlas_ORM.png"
+    },
+    "notes": "Opacity mask = BC alpha (contour-feather cards, blood films); everything else alpha 1. Two-sided for the cards. Wound caps and blood films use this material too: their wet look comes from the ORM roughness. Blender preview adds sheen 0.22; recreate in Unreal optionally."
+  },
+  "MI_Duck_Bill": {
+    "base_color": [
+      0.8,
+      0.33,
+      0.035
+    ],
+    "roughness": 0.58,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0.18,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Duck_Atlas_BC.png",
+      "N": "Textures/T_Duck_Atlas_N.png",
+      "ORM": "Textures/T_Duck_Atlas_ORM.png"
+    }
+  },
+  "MI_Duck_Feet": {
+    "base_color": [
+      0.74,
+      0.26,
+      0.04
+    ],
+    "roughness": 0.5,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0.1,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "textures": {
+      "BC": "Textures/T_Duck_Atlas_BC.png",
+      "N": "Textures/T_Duck_Atlas_N.png",
+      "ORM": "Textures/T_Duck_Atlas_ORM.png"
+    }
+  },
+  "MI_Duck_Eye": {
+    "base_color": [
+      0.105,
+      0.052,
+      0.022
+    ],
+    "roughness": 0.035,
+    "metallic": 0,
+    "masked": false,
+    "two_sided": false,
+    "subsurface": 0.0,
+    "normal_strength": 1,
+    "normal_flip_green": true,
+    "clear_coat": 1.0,
+    "textures": {
+      "BC": "Textures/T_Duck_Atlas_BC.png",
+      "N": "Textures/T_Duck_Atlas_N.png",
+      "ORM": "Textures/T_Duck_Atlas_ORM.png"
+    }
+  }
+}

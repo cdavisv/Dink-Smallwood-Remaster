@@ -1,0 +1,304 @@
+{
+ "schema": "dink-structures/1",
+ "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle",
+ "source_blend": "Castle.blend",
+ "build": "blender -b -t 4 --python ../tools/castle_build.py",
+ "fit": {
+  "general": "Class building (pieces are 9-12 m tall, over the 8 m kit range): pivot at the ground centre of the footprint, field face toward -Y. Real size, fit 'none'. A run: tower centres 14.4 m apart take one 8 m wall between them (walls run 0.6 m into each tower); wall-walk at 7.0 m (oversailing the field face by 0.3 m on corbels) continues through the tower drums only visually (no doorways are cut).",
+  "sprite_scale": "0.025 m/px: towers 193 px = 4.8 m (mesh 5.2 m), wall frames 350 px = 8.75 m (mesh 8.0 m), gatehouse 335 px = 8.4 m (mesh 8.0 m + turrets)."
+ },
+ "materials": {
+  "see": "integration",
+  "material_exception": "Kit materials on shared tiling sets with a vertex-colour layer, not private bakes; not yet rows of ART_STANDARD.md section 2 (add with the import)."
+ },
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_wall_08",
+   "used_by": "Sets/CastleAshlar",
+   "licence": "CC0-1.0"
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "old_planks_02",
+   "used_by": "Sets/OakWeathered",
+   "licence": "CC0-1.0"
+  }
+ ],
+ "sheet_top": [
+  "Castle_far",
+  "Castle_gate",
+  "Castle_foot",
+  "Castle_walk",
+  "Mod_Wall_8m_sun",
+  "Mod_Wall_Corner_sun",
+  "Mod_Wall_End_sun",
+  "Mod_Tower_Round_sun",
+  "Mod_Gatehouse_sun"
+ ],
+ "prefix": "SM_Castle_",
+ "all_modules": {
+  "status": "round 2 of this kit (after the coordinator's review): three review rounds in all (Structures/review/castle1-3); not claimed photoreal",
+  "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported."
+ },
+ "modules": {
+  "SM_Castle_Wall_8m": {
+   "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. Corbelled wall-walk and parapet are individual stones. No stair or door to the walk (no sprite frame of family 67 shows one). Hard line at the ground."
+  },
+  "SM_Castle_Wall_Corner": {
+   "status": "new in round 2; one render",
+   "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. Two wall arms joined at a right angle with quoins: the parapets of the two arms simply meet, the corner merlon is not specially cut; the inner angle of the wall-walk has overlapping paving."
+  },
+  "SM_Castle_Wall_End": {
+   "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. One merlon only."
+  },
+  "SM_Castle_Tower_Round": {
+   "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. Parapet and corbels are straight chord blocks (faceted ring). Arrow loops now have jambs cut on the splay and a 0.25 m deep dark slot, still not a true embrasure through the wall. No door, roof or stair turret."
+  },
+  "SM_Castle_Gatehouse": {
+   "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. 36,000 triangles. Passage walls and vault are plain scan faces; no gate leaves, murder holes or portcullis grooves; the carved panel is blank. Validator PIVOT by design (pivot is the centre of the gate block, turrets project to the field side). The sprite shows a closed block: the arch is an addition."
+  }
+ },
+ "validator": {
+  "result": "5 assets, 4 pass, 1 error by design",
+  "errors_by_design": {
+   "PIVOT on SM_Castle_Gatehouse": "base_center wants the origin at the centre of the bounds; the pivot is the centre of the 8 x 5 m gate block so it lines up with the wall modules, and the two turrets project 1.5 m to the field side"
+  },
+  "warnings": "UV_DEGENERATE, NAME_TEXTURE, DUPLICATE_VERTS (touching blocks)"
+ },
+ "not_done": "Stair or door to the wall-walk (no frame shows one); roofs; true through-wall embrasures; a second masonry scan. Nothing imported into Unreal.",
+ "render_dir": "castle3",
+ "integration": {
+  "contract": {
+   "uv": "UV0 already carries the tiling: one UV unit is one repeat of the set (tile_size_m is the nominal size the UVs were laid out for; small blocks use up to 2x denser UVs). Sample BC, N, ORM and H at UV0; sample Macro at UV0 / 7. Do not rescale.",
+   "textures": "BC sRGB; N linear OpenGL (flip green on import); ORM linear (R ambient occlusion, G roughness, B metallic = 0); H linear 16-bit height, used 0..1; Macro linear 512 px (R large, G medium, B small variation).",
+   "vertex_colour": "FBX vertex colour set 'Grime', linear RGBA float, exported with every LOD. R = dirt and damp, G = moss / algae, B = bleaching (silvered oak, lichen, dressed stone, fresh straw), A = material switch (see below; 1 everywhere else).",
+   "graph": [
+    "base = BC * tint * (1 - macro + 2 * macro * Macro.R)",
+    "base = lerp(base, base * ORM.R, 0.5)",
+    "fd = saturate(R * (1.15 - 0.5 * H))",
+    "dirt_mode multiply: c = lerp(base, base * dirt, fd * dirt_amount);   dirt_mode mix: c = lerp(base, dirt * (3 * luminance(base) + 0.35), fd * dirt_amount)",
+    "fb = saturate(B * saturate(0.9 * H + 0.35));   c = lerp(c, pale * (2.2 * luminance(c) + 0.55), fb * pale_amount)",
+    "fm = saturate(4 * ((G + 0.5 * Macro.B) - (0.55 * H + 0.62))) * (G > 0.02);   c = lerp(c, moss * (0.9 * Macro.G + 0.55), fm)",
+    "roughness = lerp(ORM.G, moss_roughness, fm) - 0.10 * fd;   normal = N;   metallic = 0",
+    "alpha_switch materials only: A < 0.875 lead (only where alpha_lead is true): colour (0.15, 0.16, 0.17) * (0.7 * Macro.G + 0.65), roughness 0.42, flat normal;  A < 0.625 (A < 0.75 where alpha_lead is false) black iron, charred wood, burnt straw or unlit void: colour (0.016, 0.015, 0.014), roughness 0.5 + 0.42 * R (iron has R = 0, char has R = 1), normal kept;  A < 0.25 window glass: colour glass_tint, roughness 0.06, flat normal, opaque (the pane mesh is faceted so each quarry reflects differently; a dark closed box stands behind it). Values written: 1, 0.75, 0.5, 0.",
+    "alpha_soot materials only: fs = saturate((1 - A) * (0.7 * Macro.G + 1.0));  c = lerp(c, (0.012, 0.011, 0.010), fs);  roughness = lerp(roughness, 0.97, fs)"
+   ],
+   "colours": "all colours are linear RGB",
+   "fbx": "One FBX per asset beside the manifest: mesh objects <asset>_LOD0, _LOD1, _LOD2 (import as one static mesh with three LODs) and UCX_<asset>_LOD0_NN convex hulls; metres with UnitScaleFactor 100; Z up, front -Y; smoothing by edge (import normals); material slots in the order of each module's \"materials\" list. Family meshes are visual only (ART_STANDARD section 5)."
+  },
+  "materials": {
+   "MI_Struct_CastleAshlar": {
+    "dirt": [
+     0.3,
+     0.22,
+     0.12
+    ],
+    "dirt_amount": 0.92,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.04,
+     0.055,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.6,
+     0.6,
+     0.52
+    ],
+    "pale_amount": 0.5,
+    "macro": 0.22,
+    "tint": [
+     1,
+     1,
+     1
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 3.3,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_Macro.png"
+    },
+    "third_party": [
+     "rock_wall_08"
+    ],
+    "texture_set": "CastleAshlar"
+   },
+   "MI_Struct_OakWeathered": {
+    "dirt": [
+     0.22,
+     0.16,
+     0.11
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.46,
+     0.45,
+     0.42
+    ],
+    "pale_amount": 0.55,
+    "macro": 0.22,
+    "tint": [
+     0.8,
+     0.62,
+     0.47
+    ],
+    "alpha_switch": true,
+    "alpha_lead": true,
+    "alpha_soot": false,
+    "glass_tint": [
+     0.035,
+     0.05,
+     0.065
+    ],
+    "tile_size_m": 2.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+    },
+    "third_party": [
+     "old_planks_02"
+    ],
+    "texture_set": "OakWeathered"
+   }
+  },
+  "assets": {
+   "SM_Castle_Wall_8m": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Wall_8m.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     14072,
+     6332,
+     2814
+    ],
+    "bounds_min_m": [
+     -4.004,
+     -1.529,
+     0.0
+    ],
+    "bounds_max_m": [
+     4.011,
+     1.071,
+     9.138
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Castle_Wall_Corner": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Wall_Corner.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     14848,
+     6680,
+     2968
+    ],
+    "bounds_min_m": [
+     -2.932,
+     -2.92,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.608,
+     2.604,
+     9.146
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Castle_Wall_End": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Wall_End.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     5124,
+     2304,
+     1024
+    ],
+    "bounds_min_m": [
+     -1.256,
+     -1.524,
+     0.0
+    ],
+    "bounds_max_m": [
+     1.309,
+     1.068,
+     9.137
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Castle_Tower_Round": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Tower_Round.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     18504,
+     8326,
+     3700
+    ],
+    "bounds_min_m": [
+     -3.108,
+     -3.098,
+     0.0
+    ],
+    "bounds_max_m": [
+     3.088,
+     3.104,
+     12.097
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Castle_Gatehouse": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Gatehouse.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     35892,
+     16150,
+     7178
+    ],
+    "bounds_min_m": [
+     -5.637,
+     -4.218,
+     0.0
+    ],
+    "bounds_max_m": [
+     5.632,
+     2.67,
+     12.1
+    ],
+    "collision_hulls": 5
+   }
+  }
+ }
+}

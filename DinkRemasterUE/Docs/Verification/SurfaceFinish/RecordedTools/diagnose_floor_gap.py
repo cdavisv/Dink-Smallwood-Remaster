@@ -2,10 +2,10 @@ import json,math,re
 from pathlib import Path
 import numpy as np
 from PIL import Image
-OUT=Path('/home/davisc/Work/DinkQA/SurfaceNative/Before')
-s=json.loads(Path('/home/davisc/Work/DinkQA/FloorNativePreparation/native_snapshot.json').read_text())
+OUT=Path('<HOME>/Work/DinkQA/SurfaceNative/Before')
+s=json.loads(Path('<HOME>/Work/DinkQA/FloorNativePreparation/native_snapshot.json').read_text())
 p=np.array(s['vertices']);v=np.array([p[x[0]] for x in s['instances']]);tris=v[np.array([x[1] for x in s['triangles']])]
-layout=json.loads(Path('/home/davisc/Work/DinkSurfaceDelivery/DinkRemasterUE/Content/Dink/Data/Art/stonebrook.json').read_text())
+layout=json.loads(Path('<HOME>/Work/DinkSurfaceDelivery/DinkRemasterUE/Content/Dink/Data/Art/stonebrook.json').read_text())
 world=[]
 for row in layout['elements']:
  if row['mesh'].endswith('.SM_Floor_Oak_2m_01'):

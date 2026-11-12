@@ -1,0 +1,101 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "<HOME>/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Slime/SK_Slime.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 5
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SK_Slime",
+      "class": "creature",
+      "collection": "SK_Slime",
+      "tris_per_lod": {
+        "LOD0": 10000,
+        "LOD1": 5000,
+        "LOD2": 2500
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -42.772,
+          -30.936,
+          -0.0
+        ],
+        "blender_max_cm": [
+          49.068,
+          27.109,
+          27.429
+        ],
+        "size_cm": [
+          91.84,
+          58.045,
+          27.429
+        ],
+        "unreal_min_cm": [
+          -42.772,
+          -27.109,
+          -0.0
+        ],
+        "unreal_max_cm": [
+          49.068,
+          30.936,
+          27.429
+        ]
+      },
+      "errors": 0,
+      "warnings": 5,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Slime",
+          "message": "mesh data 'Icosphere.001' differs from object name 'SK_Slime_LOD0'",
+          "object": "SK_Slime_LOD0"
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "texel density 1405 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SK_Slime_LOD0",
+          "data": {
+            "density_px_per_m": 1405.5,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Blue_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Blue_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Blue_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Slime",
+          "message": "image 'T_Slime_Blue_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

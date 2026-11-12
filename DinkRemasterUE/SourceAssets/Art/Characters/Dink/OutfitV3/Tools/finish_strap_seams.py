@@ -1,6 +1,6 @@
 import bpy,bmesh,json,math
 from pathlib import Path
-ART=Path('/home/davisc/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
 bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));rows=[]
 for lod in range(4):
  ob=bpy.data.objects[f'SK_Dink_OutfitV3_LOD{lod}'];mesh=ob.data;keys={v.index:tuple(round(x,6) for x in v.co) for v in mesh.vertices};vf={};adj={}

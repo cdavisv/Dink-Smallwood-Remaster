@@ -1,0 +1,104 @@
+{
+ "name": "SM_Prop_Brazier_Standing_01",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Brazier_Standing_01/SM_Prop_Brazier_Standing_01.fbx",
+ "materials": [
+  "MI_Prop_Brazier_Standing_01"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Prop_Brazier_Standing_01.blend",
+ "lod0_triangles": 2948,
+ "lod1_triangles": 1474,
+ "lod2_triangles": 648,
+ "dimensions_m": [
+  0.722,
+  0.702,
+  0.985
+ ],
+ "bounds_min_m": [
+  -0.321,
+  -0.405,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.401,
+  0.297,
+  0.985
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "standing brazier (integrator light sources)",
+  "small_fire_fx / fire_fx hosts"
+ ],
+ "supersedes": "none (new)",
+ "dresses": "standing fire basket, 0.72 x 0.70 x 0.99 m: three twisted square forged legs with beaten feet, collar and stretcher ring, a basket of ten flaring straps riveted to three hoops over an ash pan, a heaped bed of charcoal with ash on the tops and live embers in the gaps (emissive mask)",
+ "fit": {
+  "pivot": "base centre",
+  "socket": "flame socket: [0.0, 0.0, 0.97], on top of the coals"
+ },
+ "emissive": {
+  "type": "flame, done in engine (no flame mesh in the FBX)",
+  "flame_socket_m": [
+   0.0,
+   0.0,
+   0.97
+  ],
+  "position_m": [
+   0.0,
+   0.0,
+   0.97
+  ],
+  "colour_temperature_K": 1800,
+  "attenuation_radius_m": 7.0,
+  "intensity_cd": 45.0,
+  "note": "point light 15 cm above the socket, soft radius 12 cm, flicker 10-20 percent; T_Prop_Brazier_Standing_01_E is the ember bed mask (emissive = E * 120 nits, slow pulse 0.7-1.0; 0 when unlit); a dim red fill light inside the basket is still worth adding"
+ },
+ "baked": {
+  "texture_folder": "Prop_Brazier_Standing_01",
+  "textures": {
+   "BC": "T_Prop_Brazier_Standing_01_BC.png",
+   "N": "T_Prop_Brazier_Standing_01_N.png",
+   "ORM": "T_Prop_Brazier_Standing_01_ORM.png",
+   "E": "T_Prop_Brazier_Standing_01_E.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Prop_Brazier_Standing_01",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": 120.0,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 56.9,
+    "p99": 171.6
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.567,
+    "p95": 0.96
+   },
+   "metallic_mean": 0.132
+  },
+  "hi_triangles": 38408,
+  "third_party": [],
+  "source_blend": "_build/bake/SM_Prop_Brazier_Standing_01.blend"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Brazier_Standing_01",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2, three review rounds (r5-r6). Last look still faults: charcoal lumps are faceted blobs that read slightly like dark rock in full sun (no long split-wood charcoal shapes); straps are even in width; rivets on the hoops are baked, not geometry; the ash pan is a plain dish. Ember glow (E) reads well in the dark.",
+ "third_party": [],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Brazier_Standing_01/T_Prop_Brazier_Standing_01_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Brazier_Standing_01/T_Prop_Brazier_Standing_01_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Brazier_Standing_01/T_Prop_Brazier_Standing_01_ORM.png",
+  "E": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Brazier_Standing_01/T_Prop_Brazier_Standing_01_E.png"
+ }
+}

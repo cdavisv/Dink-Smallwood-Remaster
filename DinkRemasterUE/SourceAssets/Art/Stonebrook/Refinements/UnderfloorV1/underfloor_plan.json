@@ -1096,7 +1096,7 @@
   "conservative_reported_culling_or_nail_envelope_cm": -14.0,
   "below_conservative_envelope_clearance_cm": 2.0,
   "blue_gap_witness": {
-    "matching_camera_file": "/home/davisc/Work/DinkQA/SurfaceNative/Before/door-room-camera.json",
+    "matching_camera_file": "<HOME>/Work/DinkQA/SurfaceNative/Before/door-room-camera.json",
     "matching_camera_sha256": "4962a7ec13a45b0b3e1eecbccd2d69088cc882f052a3f5fa4d65062ec374b619",
     "camera_world_cm": [
       -183761.09749999997,

@@ -1,0 +1,57 @@
+{
+ "name": "SM_Jar_Jug_PR",
+ "class": "prop",
+ "px": 1024,
+ "slots": [
+  {
+   "material": "MI_Jar_Jug",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Jar_Jug_PR_BC.png",
+  "N": "T_Jar_Jug_PR_N.png",
+  "ORM": "T_Jar_Jug_PR_ORM.png"
+ },
+ "lod_triangles": [
+  1584,
+  792,
+  348
+ ],
+ "hi_triangles": 23032,
+ "bounds_min_m": [
+  -0.263,
+  -0.22,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.267,
+  0.22,
+  0.584
+ ],
+ "dimensions_m": [
+  0.53,
+  0.441,
+  0.584
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 52.7,
+   "p99": 135.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.076,
+   "p95": 0.175
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

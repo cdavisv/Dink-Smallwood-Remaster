@@ -8,7 +8,7 @@ args=parser.parse_args(sys.argv[sys.argv.index('--')+1:]);Q=Path(args.output).re
 SRC=Path(__file__).resolve().parents[1]/'portable.source.blend'
 assert not Q.exists(),'Use a nonexistent disposable output';assert not Q.is_relative_to(Path(__file__).resolve().parents[6]),'Never write inside project'
 Q.mkdir(parents=True)
-PIN='bf95cae93c5f5be0827953c0d40e0e8428ca9b1ea7225b99bafe5942886a6217'
+PIN='a6d0dbad44c8a4df3f64223044c79894ef82c0533de20ae1e24900c2aa053b03'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def material_signature(m):
  return {'nodes':sorted((n.name,n.bl_idname,[(i.name,str(i.default_value[:])if hasattr(i.default_value,'__len__')else str(i.default_value))for i in n.inputs if hasattr(i,'default_value')],n.image.name if n.type=='TEX_IMAGE'and n.image else None)for n in m.node_tree.nodes),'links':sorted((l.from_node.name,l.from_socket.name,l.to_node.name,l.to_socket.name)for l in m.node_tree.links)}

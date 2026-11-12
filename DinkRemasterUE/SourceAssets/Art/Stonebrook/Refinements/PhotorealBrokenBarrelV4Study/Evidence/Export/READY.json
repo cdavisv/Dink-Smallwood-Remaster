@@ -1,7 +1,7 @@
 {
   "status": "SOURCE_EXPORT_CANDIDATE__BLENDER_NORMAL_ROUNDTRIP_FAILED",
-  "source_sha256": "d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c",
-  "fbx_sha256": "1a6997e7488e3c2a4d623a6b77c94047776641d236ce19ba7b46d85a14326c98",
+  "source_sha256": "ee159f2d54a0431e6d8fa67541df5b3a370b85ccf4e42e3ea80bdacfe4c0faa5",
+  "fbx_sha256": "bb84fe22bdd116cbe6d1beb1af3a8051039263f419c5347d1a016e90065448d3",
   "single_mesh_LOD0_triangles": 15680,
   "serialized_source_position_UV_normal_material_exact": true,
   "fresh_Blender_positions_UV_materials_exact": true,
@@ -19,9 +19,9 @@
     "tools/blender/dinkasset/fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
   },
   "files_sha256": {
-    "BLENDER_ROUNDTRIP.json": "88a436bf7fa4075bfc315b63be16833459ec7caae1b60f9e8f0fd987167771d9",
+    "BLENDER_ROUNDTRIP.json": "a345fe2ee78b13a76e0cc0ca203face3971f4bd170a5c2b3a18da4765d747919",
     "BrokenBarrelCurvedV4_ExportOnly.blend": "9a7c54001d8aee010f28a10c62220d478975c7939e4fe78ac1017ad3c3041ed7",
-    "EXPORT_RECEIPT.json": "8f637c265eac9db223b97f551db33157d7c48333267895c224d0222e1ba08233",
+    "EXPORT_RECEIPT.json": "0fc389222ea22265e20a1eee976dba393201caabcb444b29acef3637ab752fc5",
     "FAILED_numpy_uv_check.log": "9780684da4fec12e1be697d58ef53dccc865abb0abd85ecb71ece8e9287245bb",
     "HANDOFF.md": "99ae469a01267adbeeae736675666a88ef8f307651822163d0ace9751cfffb79",
     "PREEXPORT.npz": "c48886e7123456c3c7e38761b7a40a72339088503f7faecda1888762cc1eeb78",
@@ -36,14 +36,14 @@
     "RejectedSmoothUnion/PREEXPORT.npz": "9a1aa5a6e35a4f728d84c45c057620afb85ac5127f26e6622ecda56145096d9d",
     "RejectedSmoothUnion/export.log": "d65b74684c0b566d54865eb2a88fe0292b8f67825c90fd7a7197e6d9fa0b1dba",
     "RejectedSmoothUnion/export_lod0.py": "dddedeffa6b5e9ae7e081796aad365391ff4bb6a25ab13c6fe896b294770bd2a",
-    "SELECTION.md": "a04fb312895c8004adc7cea3322d0286db84a3db67973a0292aba9bc925e05c0",
-    "SERIALIZED_FBX_CHECK.json": "9ab0f87154c47243755be9090f7fbf166ea990321364907efb7dac6f19ed4446",
-    "SM_Barrel_Broken_CurvedV4_LOD0.fbx": "1a6997e7488e3c2a4d623a6b77c94047776641d236ce19ba7b46d85a14326c98",
+    "SELECTION.md": "47d2d8e55bb4b549179b3e27d7a762ca78c53c7b635364ad8d59d86969da8d34",
+    "SERIALIZED_FBX_CHECK.json": "7cf6f43942511e6ef3a744420aed1c58574e6a0c454194f1d03e937bbf718021",
+    "SM_Barrel_Broken_CurvedV4_LOD0.fbx": "bb84fe22bdd116cbe6d1beb1af3a8051039263f419c5347d1a016e90065448d3",
     "SOURCE_TRIANGLES.npz": "f116f82882ae63e6d73d556205190d32dc22a18c37bef9dcb3a7f7a9d7b3ff85",
     "export.log": "f224ed7bd2959193881c86d2f08b268ff553e2bb59a9a6dafb8ca86637bc74c6",
-    "export_lod0.py": "bebb4563b1bbd86ad240a186d25b26704270c936b698dd1d18e6208167112ba9",
+    "export_lod0.py": "c8c0c835c005dedfe151b48f9fa8c7f0935091473727e7139338d1216658649e",
     "roundtrip.log": "4cb84106db5f3e5e5b52d6ade72b78443a56d920d6e6a1a1e6e29196970729e1",
     "roundtrip_blender.py": "17977487c36c88ac2d700e4274228d3311cbacf01bd337567832fe164284689e",
-    "verify_fbx.py": "d459751d0f8b22fdff0408e4fb5a6ef9f5df8a6640d553d89c413f3618d73fed"
+    "verify_fbx.py": "793ca50c1105b536e35b8c2dc587d3b789a73aeedcb1eaa1761de6185c538b1a"
   }
 }

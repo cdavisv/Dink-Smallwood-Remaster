@@ -37,6 +37,6 @@ r=json.load(open(O/'FBX_ROUNDTRIP.json'))
 for row in r:
  if row['name']=='SM_Chimney_Stonebrook_V8':row['sha256']=hashlib.sha256(p.read_bytes()).hexdigest()
 (O/'FBX_ROUNDTRIP.json').write_text(json.dumps(r,indent=2)+'\n')
-graph=json.load(open(O/'ACTUAL_SOURCE_GRAPHS.json'));baseline=json.load(open('/home/davisc/Work/DinkFireplaceNativePreparation/DinkRemasterUE/Docs/Verification/FireplaceNativePreparation/ACTUAL_SOURCE_GRAPHS.json'));assert graph['materials']==baseline['materials']
+graph=json.load(open(O/'ACTUAL_SOURCE_GRAPHS.json'));baseline=json.load(open('<HOME>/Work/DinkFireplaceNativePreparation/DinkRemasterUE/Docs/Verification/FireplaceNativePreparation/ACTUAL_SOURCE_GRAPHS.json'));assert graph['materials']==baseline['materials']
 (O/'BINARY_SUCCESSOR_PROOF.json').write_text(json.dumps(dict(status='PASS',rows=rows,chimney_entire_FBX_byte_exact=True,all_seven_actual_material_graphs_and_packed_images_exact=True,no_texture_library_duplication=True),indent=2)+'\n')
 print('BINARY_SUCCESSOR_PASS',rows)

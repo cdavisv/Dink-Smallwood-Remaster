@@ -8,7 +8,7 @@
     "publish_photoreal_props.py": "6a32131de837b74bf344d38da2247e536f5daefcd7f991bf8b6b7f0ac99ce630",
     "props_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
   },
-  "compared_against": "/home/davisc/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts",
+  "compared_against": "<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts",
   "tests": {
     "command": "python3 -m unittest discover -p 'test_*.py'",
     "exit_code": 0,

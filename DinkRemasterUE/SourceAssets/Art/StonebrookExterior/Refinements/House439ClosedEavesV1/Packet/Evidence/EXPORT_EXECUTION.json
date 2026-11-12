@@ -1,0 +1,8 @@
+{
+  "actual_relocated_root": "/tmp/dink-all-eaves-relocated-ktu3qeov",
+  "recipe": "Scripts/export_validate.py",
+  "recipe_sha256": "d5ddb99e594a584f5fa8e241c49764ef3c9b36ca633203818cb767464f694dd9",
+  "full_export_readback_pass": true,
+  "fbx_sha256": "aa4e091a48f3337f7b9bda4b1f044786c46149c163df511978bebb86bc210f27",
+  "native_executed": false
+}

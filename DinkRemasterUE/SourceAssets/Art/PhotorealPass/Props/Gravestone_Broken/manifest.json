@@ -1,0 +1,62 @@
+{
+ "name": "SM_Gravestone_Broken_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Gravestone_Broken/SM_Gravestone_Broken_PR.fbx",
+ "materials": [
+  "MI_Struct_FieldBoulder",
+  "MI_Prop_OakWarm",
+  "MI_Struct_Earth",
+  "MI_Prop_Bone"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 4376,
+ "lod1_triangles": 2188,
+ "lod2_triangles": 962,
+ "dimensions_m": [
+  1.141,
+  1.981,
+  1.179
+ ],
+ "bounds_min_m": [
+  -0.544,
+  -1.704,
+  -0.385
+ ],
+ "bounds_max_m": [
+  0.597,
+  0.277,
+  0.794
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "446 items/tomb/tomb- frame 2",
+  "gravestone"
+ ],
+ "supersedes": "none (gravestone placeholder, 14 placements)",
+ "dresses": "headstone snapped across on a slant, its head lying face down on the grave, and a skull worked up out of the mound beside it; weather-rounded edges, moss from the foot and on the north face, lichen; a turfed grave mound in front (the stone runs 0.35 m into the ground)",
+ "fit": {
+  "pivot": "ground at the foot of the stone; face to -Y, the grave lies toward -Y"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Gravestone_Broken",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "As the round stone; the fallen head does not match the break line of the stump; the skull beside it is the simple SM_Skull_PR. 4 material slots (limit 3).",
+ "third_party": [
+  "dirt_floor",
+  "old_planks_02",
+  "painted_plaster_wall",
+  "plastered_wall_04",
+  "rock_face",
+  "rock_face_04",
+  "rocky_trail"
+ ],
+ "texture_sets": [
+  "EarthPath",
+  "FieldBoulder",
+  "OakWeathered",
+  "PlasterWall"
+ ],
+ "textures_px": 2048
+}
