@@ -46,7 +46,7 @@ def main():
         sheet.paste(t, ((i % cols) * 384, (i // cols) * 326))
     sheet.save(os.path.join(UNC, 'contact_sheet.png'), optimize=True)
     # ---- STATUS.md
-    rows_ = []; tot = {'delivered': [0, 0], 'partial': [0, 0], 'not started': [0, 0]}
+    rows_ = []; tot = {'delivered': [0, 0], 'partial': [0, 0], 'built elsewhere': [0, 0], 'not started': [0, 0]}
     for f in fams:
         n = notes.get(f['family'], {}); ms = by.get(f['family'], [])
         st = n.get('status') or ('delivered' if ms else 'not started')
@@ -59,7 +59,8 @@ def main():
          '| | families | placements |', '|---|---:|---:|'] + ['| %s | %d | %d |' % (k, v[0], v[1]) for k, v in tot.items()] + \
         ['| total unclaimed | %d | %d |' % (len(fams), sum(f['placements'] for f in fams)), '',
          '**delivered**: game mesh or decal set, textures, FBX, source .blend, manifest and final renders are in the folder, and the last review round found nothing left that could still be fixed in this pass (each manifest lists `known_weaknesses`). ',
-         '**partial**: something the task asks for is missing or the last review round still faulted the look; the line says what.', '',
+         '**partial**: something the task asks for is missing or the last review round still faulted the look; the line says what. ',
+         '**built elsewhere**: another stream built the family; what this folder holds for it is an alternate, not the chosen asset.', '',
          'Contact sheet of every final render: `contact_sheet.png` (%d assets).' % len(tiles), '',
          '| # | family | original shows | placements | status | assets | note |', '|---:|---|---|---:|---|---|---|'] + rows_ + ['']
     vp = os.path.join(UNC, 'validation_summary.json')

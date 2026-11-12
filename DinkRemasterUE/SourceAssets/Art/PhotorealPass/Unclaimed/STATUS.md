@@ -6,23 +6,25 @@ Sources only: nothing here is imported into Unreal or bound in `families.json`, 
 
 | | families | placements |
 |---|---:|---:|
-| delivered | 31 | 274 |
+| delivered | 29 | 202 |
 | partial | 17 | 190 |
+| built elsewhere | 2 | 72 |
 | not started | 63 | 137 |
 | total unclaimed | 111 | 601 |
 
 **delivered**: game mesh or decal set, textures, FBX, source .blend, manifest and final renders are in the folder, and the last review round found nothing left that could still be fixed in this pass (each manifest lists `known_weaknesses`). 
-**partial**: something the task asks for is missing or the last review round still faulted the look; the line says what.
+**partial**: something the task asks for is missing or the last review round still faulted the look; the line says what. 
+**built elsewhere**: another stream built the family; what this folder holds for it is an alternate, not the chosen asset.
 
 Contact sheet of every final render: `contact_sheet.png` (60 assets).
 
 | # | family | original shows | placements | status | assets | note |
 |---:|---|---|---:|---|---|---|
-| 24 | `blood_splat` | Blood splatter | 46 | delivered | `Decal_Blood_Drips_01`, `Decal_Blood_Drops_Large_01`, `Decal_Blood_Pool_01`, `Decal_Blood_Pool_02`, `Decal_Blood_Spurt_L_01`, `Decal_Blood_Spurt_L_02`, `Decal_Blood_Spurt_R_01`, `Decal_Blood_Spurt_R_02` | 8 decal sets, one per original frame (pools, drips, left and right spurts): BC + opacity, normal, ORM at 1024 px |
+| 24 | `blood_splat` | Blood splatter | 46 | built elsewhere | `Decal_Blood_Drips_01`, `Decal_Blood_Drops_Large_01`, `Decal_Blood_Pool_01`, `Decal_Blood_Pool_02`, `Decal_Blood_Spurt_L_01`, `Decal_Blood_Spurt_L_02`, `Decal_Blood_Spurt_R_01`, `Decal_Blood_Spurt_R_02` | the photoreal pass built this family (one set, `PhotorealPass/Props/Decals/T_Decal_BloodSplat_*`, not yet on master). The 8 per-frame sets in this folder were finished before that notice and are kept as alternates for the reviewer to keep or delete |
 | 31 | `tree_fruit` | Fruit hanging in a tree | 34 | partial | `SM_Acorn_Hanging_PR` | 1 mesh (large acorn; identity guessed from a 7x12 px frame). The last review still faults the cup: its scales are a soft displaced pattern that reads as a rough cap at 1 m |
 | 34 | `hand_tool_small` | Small hand tool | 30 | delivered | `SM_Axe_Felling_PR`, `SM_Hammer_Smith_PR`, `SM_Tongs_Smith_PR` | 3 meshes for the 8 frames: felling axe (4 frames), smith's hammer (2), tongs (2); game meshes are decimations of the swept sources |
 | 36 | `seashell_conch` | Conch shell | 29 | delivered | `SM_Seashell_Conch_PR` | 1 mesh: knobbed spiral shell, 14 cm, lying on its aperture; a few dark bake fringes at the canal tip and lip |
-| 38 | `burn_hole_decal` | Burnt hole / scorch mark | 26 | delivered | `Decal_Burn_Scorch_01`, `Decal_Burn_Scorch_02`, `Decal_Burn_Scorch_03` | 3 decal sets, one per original frame; the burnt-through middle is a flat black patch with a normal-map lip, not a real hole |
+| 38 | `burn_hole_decal` | Burnt hole / scorch mark | 26 | built elsewhere | `Decal_Burn_Scorch_01`, `Decal_Burn_Scorch_02`, `Decal_Burn_Scorch_03` | the photoreal pass built this family (one set, `PhotorealPass/Props/Decals/T_Decal_BurnHole_*`, not yet on master). The 3 per-frame sets in this folder were finished before that notice and are kept as alternates for the reviewer to keep or delete |
 | 41 | `bonca_gray` | Bonca | 21 | partial | `SK_Bonca_PR` | rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips |
 | 43 | `slayer` | Slayer | 21 | partial | `SK_Slayer_PR` | rigged creature (27-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested). Partial because the last review still faults it: maquette look at 1 m, invented anatomy, no mouth or jaw, no animation clips |
 | 53 | `npc_knight_blue` | Knight | 18 | partial | `SK_Knight_PR` | rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips |
