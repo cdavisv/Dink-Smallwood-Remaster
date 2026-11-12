@@ -1,20 +1,20 @@
 {
-  "production_blend_sha256": "49b3464b88fc749bc212f45a2be7d686cb6a909f028429de50b35c16ec6d1d02",
+  "production_blend_sha256": "33ebdce8332434e8f1a44fc680abc5e2d05c0887d34178b8c1f6144a6e468ca9",
   "generator_sha256": "cc17ba11bd0da8eab25162ff26c882c8339b33deda19290e0903d99b86d6d48d",
   "paired_previews_from_same_completed_generator_run": true,
   "producer_exit": 0,
   "preview_backend": "Blender5.2.2 CyclesCPU40samples AgX1100square studio; not game screenshots",
   "previews": {
     "preview-front.png": {
-      "sha256": "bc1326768dd3c564a67d820c50c6045882859cbc91606a903a29cc451c811596",
+      "sha256": "ffc574df2c8bd12e70108682507211773e480e43310e7e2891819f5c51e9dd9f",
       "after_source_save": true
     },
     "preview-threequarter.png": {
-      "sha256": "a9710f2751fd7313d04c6d0856237d434acfcdc58b74859704851d1e20c1e274",
+      "sha256": "3205a828064e749a447f5f6d857115bad25ff1a58410d0be56e5120c594994de",
       "after_source_save": true
     },
     "preview-firebox.png": {
-      "sha256": "43f40351e2d2ff60935176c4bf5364ff2320cf1142b937d3599477dec35a8a0b",
+      "sha256": "7cac3b0d90ab30537df58ac57a7f1a5d51a7517df1338cbb5111674c04b3be3a",
       "after_source_save": true
     }
   },

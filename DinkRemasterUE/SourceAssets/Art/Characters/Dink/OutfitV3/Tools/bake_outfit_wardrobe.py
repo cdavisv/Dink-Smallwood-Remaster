@@ -60,7 +60,7 @@ bm.to_mesh(ward.data);bm.free()
 bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT');bpy.ops.uv.unwrap(method='ANGLE_BASED',margin=.003);bpy.ops.uv.pack_islands(rotate=True,margin=.003);bpy.ops.object.mode_set(mode='OBJECT')
 # Isolate any remaining folded chart faces, then repack; never weaken validator.
 import sys,inspect
-sys.path.insert(0,'/home/artist/Repos/Dink-Smallwood/Dink-Smallwood-Remaster/tools/blender')
+sys.path.insert(0,str(Path(__file__).resolve().parents[7]/'tools/blender'))
 from dinkasset import validate as uvcheck
 code=inspect.getsource(uvcheck.uv_stats).replace('def uv_stats(', 'def chart_audit(').replace('area > 1e-7','area > 1e-10').replace('degenerate = 0','degenerate = 0; collapsed_polys=set()').replace('degenerate += 1','degenerate += 1; collapsed_polys.add(t.polygon_index)').replace('"uv_area": total_uv_area,','"overlapping_polys": sorted({tris[i][0] for i in overlapping_tris}|collapsed_polys), "uv_area": total_uv_area,')
 namespace=dict(uvcheck.__dict__);exec(code,namespace);chart_audit=namespace['chart_audit']

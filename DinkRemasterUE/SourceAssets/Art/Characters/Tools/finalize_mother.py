@@ -2,7 +2,7 @@
 import bpy,json,sys,math,os
 from pathlib import Path
 from mathutils import Vector
-ROOT=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE');ART=ROOT/'SourceAssets/Art/Characters'
+ROOT=Path(Path(__file__).resolve().parents[4]);ART=ROOT/'SourceAssets/Art/Characters'
 sys.path.insert(0,str(ROOT.parent/'Dink-Smallwood-Remaster/tools/blender'))
 from dinkasset import common,make_lods,validate,export_ue
 bpy.ops.wm.open_mainfile(filepath=str(ART/'Working/Mother_Baked.blend'))

@@ -2,12 +2,12 @@
   "status": "PerLOD source bridge checked; no native acceptance",
   "files": {
     "HANDOFF.md": "00c1ebf5776a6a96ef1cf5d900a988bacd84d3265b99a8fe4fb56e29b4dca7b7",
-    "SM_Candle_Iron_01_LOD0.fbx": "7309e735b730758b3384bad44046efdff581baf1346fe236891f6f963b89bf93",
-    "SM_Candle_Iron_01_LOD1.fbx": "614c2a402e17bbd4829cf74d3bea3afb9f2ac901134029e114fb1f803a297d8a",
-    "SM_Candle_Iron_01_LOD2.fbx": "065a9c3467a004f4750da0b8fb696d3e0c42c40fc8cb0f9ac1a37b9c36e9908b",
-    "export_native_lods.py": "445b27b88f1390119c2943e407c9a5013d13a2a515d12d113db51cb3dfbdd958",
-    "lod_manifest.json": "b0c099237d9e7c288bc2352776f818bc198258799403d6503a97b2ab4bde0995",
-    "lod_roundtrip_receipt.json": "e3264431dbbee77cf1e37d76a6a8917a7ad7d226855502df347419aabd0c9725",
+    "SM_Candle_Iron_01_LOD0.fbx": "0683bb4104616fb6b1ba3649892762348213dcca91ff260341e954f69e0268bd",
+    "SM_Candle_Iron_01_LOD1.fbx": "c00b2de9b9f9ad9e735dac994b61b5a994f70a209336f36bbe1720cc3a254a8f",
+    "SM_Candle_Iron_01_LOD2.fbx": "1a10958a29de30acfcd796268faf41c6355dc77e2924995a8cc75bad12a3a1ff",
+    "export_native_lods.py": "242c7511375dd742f15547b59be396a77d1495857ef6c5d7ebab7786cca81a30",
+    "lod_manifest.json": "4dabf9f4a10c73fce1ded378c6e2361d008d1a3872807dd5f56b609dc3bbc53d",
+    "lod_roundtrip_receipt.json": "ccc396efd9543137cd6feeaeb87f8eaae1d5cf620d4059944e08773ba1a6ff95",
     "verify_lod_exports.py": "e4213c6709e8bdfbe10d1f79d66506f7844a065a7e8a9da43f47bd8d4f85ab14"
   },
   "prior38_source_and41_export_pins_unchanged": true

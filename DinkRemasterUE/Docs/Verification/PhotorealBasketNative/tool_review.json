@@ -1,6 +1,6 @@
 {
   "status": "No blocking findings; approved for root-owned native preflight/import/verify, not runtime publication acceptance",
-  "handoff_sha256": "13e0386fea53ad756317c0a5e7cef144d290c7f9b8ce86316aa7d5816dd20cc1",
+  "handoff_sha256": "6a473b77197bc1d6f2a989a5281eebc6d24fd0531e08c3b3bf491ac5dcfb674c",
   "tools": {
     "basket_contract.py": "8dcbf4986c3c11c238f95f623304555c61d092a1a864981c2482ce466723f7a8",
     "basket_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322",

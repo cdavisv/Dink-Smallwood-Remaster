@@ -1,7 +1,7 @@
 import hashlib,json,math,sys,time
 from pathlib import Path
-ROOT=Path('/home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE')
-OUT=Path('/home/artist/Work/DinkQA/SurfaceNative/AfterFinal');LOG=OUT/'game.log'
+ROOT=Path(Path.home()/'Work/DinkSurfaceDelivery/DinkRemasterUE')
+OUT=Path(Path.home()/'Work/DinkQA/SurfaceNative/AfterFinal');LOG=OUT/'game.log'
 sys.path.insert(0,str(ROOT/'Scripts'))
 import playtest_desktop as d
 import playtest_interactions as q

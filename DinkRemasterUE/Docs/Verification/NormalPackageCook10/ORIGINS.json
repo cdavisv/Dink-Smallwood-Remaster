@@ -1,7 +1,7 @@
 {
   "cook/HOST_TERMINAL.json": {
     "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_TERMINAL.json",
-    "sha256": "7fbef8b5febf394549da8b433742cf1b2d927659b7634ca6f7e05eec33421590"
+    "sha256": "b763d34e35c5acb5b08a2e02376badea8bbf6bd42139b304ccfb2ed7afef96dc"
   },
   "cook/NATIVE_TERMINAL.json": {
     "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/NATIVE_TERMINAL.json",
@@ -9,31 +9,31 @@
   },
   "cook/HOST_NORMAL_HELPER_PROOF.json": {
     "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_NORMAL_HELPER_PROOF.json",
-    "sha256": "ba3f91f8c6564cd52ce8ae6998db5d1cd19292af27712661e761d8f4c2458330"
+    "sha256": "49119588211f46516f074d8fe04f56e7a6a85ed988539a8817a2faf1172bb2b1"
   },
   "cook/HOST_SHADERPRINT_BEFORE.json": {
     "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_SHADERPRINT_BEFORE.json",
-    "sha256": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798"
+    "sha256": "ec06db55b3aad01ae80d314d0ad089d139af169b2a7bcbbdbee853c7b013f784"
   },
   "cook/HOST_SHADERPRINT_AFTER.json": {
     "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_SHADERPRINT_AFTER.json",
-    "sha256": "f759c3181bc8fb080d8a1cb35d89cf837361156e4ccd522b23bd11b69bb69798"
+    "sha256": "ec06db55b3aad01ae80d314d0ad089d139af169b2a7bcbbdbee853c7b013f784"
   },
   "cook/HOST_ENGINE_STAGE_BEFORE.json": {
     "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_ENGINE_STAGE_BEFORE.json",
-    "sha256": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941"
+    "sha256": "fca586feb4aee5f9d8c7b0552fd3306e77783cdaca9379ea676917cefa638d63"
   },
   "cook/HOST_ENGINE_STAGE_AFTER.json": {
     "source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/HOST_ENGINE_STAGE_AFTER.json",
-    "sha256": "e1a04b8bd91601f5f55969f0f54917f8df627ed14c3e231c5181acc63cc04941"
+    "sha256": "fca586feb4aee5f9d8c7b0552fd3306e77783cdaca9379ea676917cefa638d63"
   },
   "shaders/REPORT.json": {
     "source": "/home/artist/Work/DinkQA/Cook10FourShaderValidation/REPORT.json",
-    "sha256": "747f8b741c7cdcfefd1721a24a2e31d693f3e109e4ae5c98b2969dd131f2941d"
+    "sha256": "59476f2736462fcc8d2ee5b7a3160b9fe86c2d26acdfba74dc99afe4e9b01820"
   },
   "shaders/STAGE_EQUIVALENCE.json": {
     "source": "/home/artist/Work/DinkQA/Cook10FourShaderValidation/STAGE_EQUIVALENCE.json",
-    "sha256": "6ef755095e8f6794823255a1beab536b100efc7ad137e00654549152c2aa93a7"
+    "sha256": "bbb1f16bef4f1e7431e5d60b010c012e363e06d2185e04294fc35bdb3bfbbdf3"
   },
   "inventory/ACTUAL_COOKED_ROOF_REVIEW.json": {
     "source": "/home/artist/Work/DinkQA/RoofCook10Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
@@ -49,7 +49,7 @@
   },
   "ch1/RESULT.json": {
     "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/Runs/cb2be1d5009747ba98f1c6b54b8d57b7/RESULT.json",
-    "sha256": "ef84f90d63c3889163944b24f7aaaf662a8ec715e556652fbd042e65d2b9dd24"
+    "sha256": "f8653eed00222580039e3df6b536f10896412833642ad0513d2824ea1a65a4f9"
   },
   "ch1/NATIVE_TERMINAL.json": {
     "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedCH1Preparation/Runs/cb2be1d5009747ba98f1c6b54b8d57b7/NATIVE_TERMINAL.json",
@@ -77,7 +77,7 @@
   },
   "separate_source_review/REVIEW_0236131.json": {
     "source": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsIndependentReview/REVIEW_0236131.json",
-    "sha256": "5aaa764ae099f38a6c6a88437e6a383e50ff2f36ce2d6e948cc67d09e7738990"
+    "sha256": "01c8a25fbdfb3d9872378a06d58703e70c591ad66e4cafa37af1d9f58860e8ff"
   },
   "shaders/BCEFF2D799E37774.validation.txt": {
     "source": "/home/artist/Work/DinkQA/Cook10FourShaderValidation/BCEFF2D799E37774.validation.txt",
@@ -101,7 +101,7 @@
   },
   "gpu/DISPLAY_CLOSED.json": {
     "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/DISPLAY_CLOSED.json",
-    "sha256": "19cd54f23bb41e5fdeb5be65d52669746e152a52ce7694044399b95aea93d4a4"
+    "sha256": "50b258392ec49c3f48e994cd9e7476170347073ba51697fad7927a2687b6d5b8"
   },
   "gpu/DISPLAY_TERM_REQUESTED.json": {
     "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/DISPLAY_TERM_REQUESTED.json",
@@ -117,11 +117,11 @@
   },
   "gpu/actions.json": {
     "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/actions.json",
-    "sha256": "b360deb22cdc480c7059542e352083572ac1390c8a3f224aa96cb84a6714e523"
+    "sha256": "ba0fd6a3b64308e9acca26258f2e676173feec5dfa4a74584748455918700edd"
   },
   "gpu/game.log": {
     "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/game.log",
-    "sha256": "cb05f0a0b9f310f8681a2cda87df5c2e16e51299c2f24bdc538495f10841deb0"
+    "sha256": "8f4c5d7a7447fb2019092ef15bd5a53c76f77d3fca14c74bd89407c87c548aa5"
   },
   "gpu/player-room.json": {
     "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/player-room.json",
@@ -181,6 +181,6 @@
   },
   "gpu/DRIVER_REVIEW.json": {
     "source": "/home/artist/Work/DinkQA/SharedRoofCook10PackagedGPUPreparation/Runs/7002189d-f3c4-4c47-932a-d6f1cd383d6a/DRIVER_REVIEW.json",
-    "sha256": "96dfc2e9d1a508197e0038549b1a4c3416379e42f561ec7e0059985a630b676e"
+    "sha256": "6c47d26c7595408de0ba2e7b66cc8e6d723ecceb5ce74bbeb94de92e460027c6"
   }
 }

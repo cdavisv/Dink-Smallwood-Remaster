@@ -6,7 +6,7 @@
   "patch_sha256": "c4b66fe82d74c94e8cd1d2aa730194c5bfb33babfac0c6a344a6b095e1d54859",
   "delivery_sha256": "6ad4023a861dd9c6fa3e62482d6b371f3fd2e36c79fab6da1f5644356ef9487e",
   "final_verification_sha256": "2f5b14ae2516c8ec94b0dcaa9eeb6351e00358daea875f0cd744e2077f09085b",
-  "input_pins_sha256": "ac8862f891aaa883e144960e7a50982f452aeb22b769569ff4f0536815dfddb5",
+  "input_pins_sha256": "092a3492aa47ed572fc98b42550407371b26d484260e18e16e9dd58b851d10ad",
   "freeze_count": 8941,
   "source_pin_hashes": {
     "Plugins/DinkCore/Source/DinkCore/Private/DinkArtSubsystem.cpp": "bfa57b4832d73f236c2e94cb91abdf997906e23d54004e6e4a40794c7cf34a86",

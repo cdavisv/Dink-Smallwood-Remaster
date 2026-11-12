@@ -71,7 +71,7 @@
   },
   "GPU_final_review": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/DRIVER_REVIEW_FINAL.json",
-    "sha256": "a65ec2fb17903ca4be82fe0d3d3b83fab501b37a636f8c19044faa5a6522a464",
+    "sha256": "015dbd8d2957ad13517d763cf1dc255d19fc89ab43e49688fb2edd6c088703f8",
     "bytes": 22323
   },
   "screenshot/joined3-default-off.png": {
@@ -111,37 +111,37 @@
   },
   "fresh_spawn_v3_final": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/DRIVER_REVIEW_FINAL.json",
-    "sha256": "a948906b2e85e85de72b7face3cb25272023987e834bd1a7dd1f28e198548d90",
+    "sha256": "8c50da65e96a13b2022d09cc1e3e0caafb993dfa756be589e4cebcc819d96890",
     "bytes": 18217
   },
   "actual_corrected_chair_contact": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/PAWN_CONTACT_CORRECTION.json",
-    "sha256": "2c354598c5e7c75d616d19f5f36619d2f1b7b0f55f0ae0447f59629fe54c3770",
+    "sha256": "b7671c83688aade8cb7980a13dc1bc1675db0dec8799f3403ef3e5cf65d5dec8",
     "bytes": 13636
   },
   "contact_caller_provenance": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerContactProbeCorrection/CALLER_PROVENANCE.json",
-    "sha256": "d31624998828efff71b882fff630888d225bc6aacd35e23d3b0cf1b8e36326a8",
+    "sha256": "056ee51ec4bd4f5f8cd62a6b08748392c4bae495ba6f79d406a36e86539d9561",
     "bytes": 493
   },
   "fresh_spawn_V1_failure": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparation/Runs/2d5d8b8c-9b9c-4858-9d9b-84eaa89919b9/DRIVER_SPAWN_FAILURE.json",
-    "sha256": "3cf688371c7d1ed7f42819177225d79d1a062a71a4152e1479a21f9dbafe25fc",
+    "sha256": "e85fb70778a354d2b974df16728d9f5a76f5265cc93481a74e8423281b8c8b1a",
     "bytes": 1114
   },
   "fresh_spawn_V1_review": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparation/Runs/2d5d8b8c-9b9c-4858-9d9b-84eaa89919b9/DRIVER_REVIEW_FINAL.json",
-    "sha256": "4528b9c36c425be6cd326f865fc468474c3ea968c4e125c4722c4cd799168819",
+    "sha256": "0c449576c5836db788426c91c205396bdf76e27dfd1dfd90741fc4835c0e7a95",
     "bytes": 9648
   },
   "fresh_spawn_V2_failure": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV2/Runs/bf8b2649-0023-4a91-8885-73c01feb19e0/DRIVER_SPAWN_FAILURE.json",
-    "sha256": "fe69154440812661a57b2fbb9602786912b28c839033d3528e2dc0e7659ebbcc",
+    "sha256": "97e4b8f87df873207eab71d5e97d93ce120a42f0f547f818a016843d9d8b46c8",
     "bytes": 1406
   },
   "fresh_spawn_V2_review": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV2/Runs/bf8b2649-0023-4a91-8885-73c01feb19e0/DRIVER_REVIEW_FINAL.json",
-    "sha256": "63b3cc7e4027e2c16a8015a1976acfee268da6ed3182567d3c8e93c8c875a093",
+    "sha256": "7222484cf09982a3298012a4e8838d880c6d92fe76e3c7ff005d2c201cb061c8",
     "bytes": 13728
   },
   "freshspawn_capture/spawn-initial.png": {
@@ -176,12 +176,12 @@
   },
   "actual_packaged_CH1": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedCH1Preparation/Runs/8e434c6bab494623b1d7e86c0b56d643/RESULT.json",
-    "sha256": "30e7067630ad97a5c7ecf6fdf9c2ac51a0674eb6f5256a76d682c33359476e81",
+    "sha256": "08f8fa0faff72bdd17a7399ae5194b40a6068af60c731c69d977e8544741f7d2",
     "bytes": 842
   },
   "packagedGPU/DRIVER_REVIEW_FINAL.json": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/DRIVER_REVIEW_FINAL.json",
-    "sha256": "7247cab508c6ffe3e150e17cf31869f09264a55e9e6c19deb0f7690f0993c28a",
+    "sha256": "265597a81295b70ed04741352fa98acaec5edf521992794f2a98caf06968156a",
     "bytes": 6676
   },
   "packagedGPU/DRIVER_HOST_CLOSURE.json": {
@@ -196,7 +196,7 @@
   },
   "packagedGPU/DISPLAY_CLOSED.json": {
     "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/DISPLAY_CLOSED.json",
-    "sha256": "0a7b599c909ea8842221c70fd05989b6f3ad67bf193e1b811bbc4fa5c0bbdb37",
+    "sha256": "0cfdd3b905a6a5ec3d4257d3e6b10b73ee704df716a748e4d773fb55d26c8f04",
     "bytes": 558
   },
   "packagedGPU/joined3-default-off.png": {

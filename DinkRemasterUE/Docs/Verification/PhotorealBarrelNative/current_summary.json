@@ -9,7 +9,7 @@
     "publish_photoreal_barrel.py": "dca0f4b276bab24801094a54ed1875fb4a4c6e3e0f6d08eed097402c894854dd",
     "barrel_fbxparse.py": "1013817953309dd2e64d525c5908f485218f3a9bceeabb7be51cdd04d9797322"
   },
-  "source_handoff_sha256": "fa0805fa7fa5064cccc924e4b28c32408d69e6797d7e8dc3d5cb88d126badc57",
+  "source_handoff_sha256": "d8c5144aaba9351e96fdf6888885159739f55276b1985fbd58048bf12598e483",
   "source": "SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
   "preflight": {
     "passed": true,
@@ -25,7 +25,7 @@
     "passed": true,
     "seconds": 42.565171241760254,
     "all_scope_changes": [],
-    "receipt_sha256": "ab9b95b0e6710cfaac85943415064b6b9446b17f51ff8449de5f0d231561b0b3",
+    "receipt_sha256": "011b8d19535129d9afc257a7ebbcf9fbf036c3ea7a4fa17077ca772514fd94fd",
     "candidate_bytes_identical_to_import": true
   },
   "geometry": {
@@ -100,7 +100,7 @@
     "SM_Barrel_Oak_01/FBX": {
       "file": "Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.fbx",
       "resolved_filename": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1/Export/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.fbx",
-      "sha256": "3935f2e946b04b2d04364c17f6ece89241fdb5cff8b6954634e86b02300372cc",
+      "sha256": "156204dbffe97c0938dc350a9ad2728b22854b0b5431fe7da76c8e8aee2a0a6b",
       "native_getter_resolved_selected_source": true
     },
     "SM_Barrel_Oak_01/BC": {
@@ -125,9 +125,9 @@
   "packages": {
     "Content/Dink/Materials/Stonebrook/PhotorealBarrelV1/MI_Barrel_Oak_01_PhotoBaked.uasset": "16d882748dc3c0ca2613503eb45cc6498872a10be88b8a62545d0425968fa5d2",
     "Content/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.uasset": "7265f0036eceadfd26d1342a1e6f9fa0eb265221d5f7ca5db9381f0d3e646b00",
-    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_BC.uasset": "47b41a06a40ca3361ef0be3fa49a6fedd6b57b909153b25f10eda381368b2349",
-    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_N.uasset": "e47170383f04c979e90b1a8b218637b451b7123603809877bcb95326095819f7",
-    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_ORM.uasset": "be1a2566e3cc61a5b3385efa2b217345df9507cf60577d32cc1b9bf90692e3cd"
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_BC.uasset": "2f34628a3806ca859948b6b122a1cab1ecbf7967bacc3e80574187dfbebdd4c1",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_N.uasset": "2a31bc15aafcb76b2b5b95cacd9c3a4dd5d590a7cfeb0f9294121abfd6230368",
+    "Content/Dink/Textures/Stonebrook/PhotorealBarrelV1/T_Barrel_Oak_01_Photo_ORM.uasset": "65e39406051cbdb8aa9f194f1bada3fd132698b03bd270cedca50e4544a34dad"
   },
   "pure_tests": 83,
   "runtime_publication": {
@@ -138,7 +138,7 @@
     "decorative_instances": 2,
     "before_house_sha256": "f565c0d094c5f65f3565c773711f181efb8652ce2b79271a2887fd2ac677c853",
     "after_house_sha256": "f0fb12c21b1cdaf0409f4915c1f98917656c125be245fec607661f96551d71da",
-    "verification_sha256": "ab9b95b0e6710cfaac85943415064b6b9446b17f51ff8449de5f0d231561b0b3",
+    "verification_sha256": "011b8d19535129d9afc257a7ebbcf9fbf036c3ea7a4fa17077ca772514fd94fd",
     "all_non_mesh_semantics_preserved": true,
     "writer_scope": "three_mesh_paths",
     "scene_data_approval": false

@@ -1,7 +1,7 @@
 {
   "utc": "2026-11-09T01:46:16.743941+00:00",
   "exit_code": 1,
-  "summary": "TESTS FAILED (editor exit 255): 153/154 passed, 1 failed [filter 'Dink'] in 1178s. Failed: Dink.Art.Camera.WallsRemainSolid. Log: /home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/Logs/test_bridge_full_verified.log\n[2026.11.09-01.28.38:014][521]LogAutomationController: Error: Test Completed. Result={Fail} Name={WallsRemainSolid} Path={Dink.Art.Camera.WallsRemainSolid}\n",
+  "summary": "TESTS FAILED (editor exit 255): 153/154 passed, 1 failed [filter 'Dink'] in 1178s. Failed: Dink.Art.Camera.WallsRemainSolid. Log: ~/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/Logs/test_bridge_full_verified.log\n[2026.11.09-01.28.38:014][521]LogAutomationController: Error: Test Completed. Result={Fail} Name={WallsRemainSolid} Path={Dink.Art.Camera.WallsRemainSolid}\n",
   "frozen_inputs": 8562,
   "changes": {
     "added": [],
@@ -9,6 +9,6 @@
     "changed": []
   },
   "Root_all_scopes_unchanged": true,
-  "report": "/home/artist/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/Automation/bridge_full_verified/index.html",
+  "report": "~/Work/DinkSharedVistaBridgeProof/DinkRemasterUE/Saved/Automation/bridge_full_verified/index.html",
   "wrapper_sha256": "7c2caadca685b03fb3e77fa431d0df90967942a3e6b635e44c880a26fc5d0d04"
 }

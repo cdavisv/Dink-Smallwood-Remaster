@@ -168,7 +168,7 @@
     "[2026.11.10-14.56.08:233][ 34]LogVulkanRHI: Warning:  ** LEAK 000 [07800000-004d0008] 5046280  ImageRT "
   ],
   "error_lines": [],
-  "normal_display_closure_sha256": "0a7b599c909ea8842221c70fd05989b6f3ad67bf193e1b811bbc4fa5c0bbdb37",
+  "normal_display_closure_sha256": "0cfdd3b905a6a5ec3d4257d3e6b10b73ee704df716a748e4d773fb55d26c8f04",
   "host_process_closure_sha256": "f1ddc82a1980c9537268f89d8f928a7c9d3720ffb4330fcc3e824f7ad7f19166",
   "fresh_postclosure_input_count": 13647,
   "source_physics_material_light_setters": "None. Existing compileddebugCVar only; original physics unchanged."

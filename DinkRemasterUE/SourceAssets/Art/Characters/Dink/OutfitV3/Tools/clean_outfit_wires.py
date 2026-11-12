@@ -1,6 +1,6 @@
 import bpy,bmesh,json
 from pathlib import Path
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path(Path(__file__).resolve().parents[1])
 bpy.ops.wm.open_mainfile(filepath=str(ART.parent/'HandBindingV2/SK_Dink_Hands.blend'))
 sourcewires=[]
 for lod in range(4):
