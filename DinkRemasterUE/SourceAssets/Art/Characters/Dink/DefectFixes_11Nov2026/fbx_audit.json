@@ -1,0 +1,58 @@
+{
+  "SK_Dink_LOD0.fbx": {
+    "sha256": "8d2c39e5f9b788ee3a4d118385c253c2619d27c7718facd1731b0f6c0b20bcc8",
+    "bytes": 1600956,
+    "unit_scale_factor": 0.9999999776482582,
+    "meshes": 1,
+    "bones": 89
+  },
+  "SK_Dink_LOD1.fbx": {
+    "sha256": "976ee2e5bed2b10860b9a16002bdaecbcae30d18f08e48427b8d344e206794be",
+    "bytes": 939724,
+    "unit_scale_factor": 0.9999999776482582,
+    "meshes": 1,
+    "bones": 89
+  },
+  "SK_Dink_LOD2.fbx": {
+    "sha256": "9990e5448b0d48f0594c7badb051032d9aacd6b6ab895c45aa70f96207424c53",
+    "bytes": 590412,
+    "unit_scale_factor": 0.9999999776482582,
+    "meshes": 1,
+    "bones": 89
+  },
+  "SK_Dink_LOD3.fbx": {
+    "sha256": "ae157b24508b74d091d1c110ffe9a1e45c2562a4283e1b17c00679da66292f86",
+    "bytes": 401532,
+    "unit_scale_factor": 0.9999999776482582,
+    "meshes": 1,
+    "bones": 89
+  },
+  "SK_Dink_Hands_LOD0.fbx": {
+    "sha256": "5b5aae8aab9acd2562cb5da64fc92ade4045df7dd7d8d573716a94d607f4ac3d",
+    "bytes": 1573724,
+    "unit_scale_factor": 0.9999999776482582,
+    "meshes": 1,
+    "bones": 89
+  },
+  "SK_Dink_Hands_LOD1.fbx": {
+    "sha256": "097419912d95efcd3122c563d9fa1e372fe25eb166d5a6ba44001d3079700f1f",
+    "bytes": 926572,
+    "unit_scale_factor": 0.9999999776482582,
+    "meshes": 1,
+    "bones": 89
+  },
+  "SK_Dink_Hands_LOD2.fbx": {
+    "sha256": "e370d26b8c331b75c3348f6c373160a4a8bf362daec5bedf7c422f72f461f134",
+    "bytes": 583772,
+    "unit_scale_factor": 0.9999999776482582,
+    "meshes": 1,
+    "bones": 89
+  },
+  "SK_Dink_Hands_LOD3.fbx": {
+    "sha256": "323bf80631908e8d32af53680b4b49e5c6e02ef181120a5ac2e1636e8b600ec0",
+    "bytes": 397708,
+    "unit_scale_factor": 0.9999999776482582,
+    "meshes": 1,
+    "bones": 89
+  }
+}
