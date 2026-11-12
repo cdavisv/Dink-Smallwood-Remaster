@@ -24,11 +24,11 @@ def sack_lying(b):
     Gt = P[:ny * nx].reshape(ny, nx, 3); Gb = P[ib.ravel()].reshape(ny, nx, 3); uv = np.stack([PX, PY], -1)
     st = b.d(3, 1); sel = (lambda G: sel4(G, st)) if st > 1 else (lambda G: G)
     if not hi:                                                # the game mesh keeps a wedge of thickness at the seams so its LODs stay closed solids
-        Gb = Gb.copy(); Gb[..., 2] = np.minimum(Gb[..., 2], Gt[..., 2] - 0.02 * np.clip(edge / 0.06, 0, 1)); Gb[..., 2] = np.maximum(Gb[..., 2], 0.0)
-    sheet_solid(b, sel(Gt), sel(Gb), sel(uv), 'jute', rim=False)
+        Gb = Gb.copy(); Gb[..., 2] = np.minimum(Gb[..., 2], Gt[..., 2] - 0.012 - 0.02 * np.clip(edge / 0.06, 0, 1)); Gb[..., 2] = np.maximum(Gb[..., 2], 0.0)
+    sheet_solid(b, sel(Gt), sel(Gb), sel(uv), 'jute', rim=not hi)
     seam = Gt[:, -1]                                           # the mouth: a rolled hem along the +X edge, whipped with twine
-    b.tube([p + [0.004, 0, 0] for p in seam[::b.d(6, 1)]], b.d(0.011, 0.009), sides=b.d(5, 10), mat='jute')
-    if hi:
+    if hi:                                                    # hem, stitches and seams are baked: a thin tube shell does not survive LOD decimation as a closed solid
+        b.tube([p + [0.004, 0, 0] for p in seam], 0.009, sides=10, mat='jute')
         for k in range(3, ny - 3, 3):
             p = seam[k]; q = seam[k + 1]
             ring = [p + [0.004 + 0.0125 * math.cos(t), (q[1] - p[1]) * t / 6.28, 0.0125 * math.sin(t)] for t in np.linspace(0, 6.28, 10)]

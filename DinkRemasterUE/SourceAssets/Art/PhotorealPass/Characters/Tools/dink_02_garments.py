@@ -119,7 +119,7 @@ def tro_class(C, N):
 tro_charts = {21: ('cyl', [T, K, A], (1, 0, 0), .075), 22: ('cyl', [T * MIR, K * MIR, A * MIR], (-1, 0, 0), .075),
               23: ('cyl', TA, (0, -1, 0), .17), 24: ('cyl', TA, (0, 1, 0), .17)}
 trousers, trousers_hi = finish(tr, folds.trousers, 7200, (tro_class, tro_charts), 'wool', 'Trousers', lipsel=lambda c: False)
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / 'Dink/Work/dink_garments_a.blend'))
+save_blend(filepath=str(OUT / 'Dink/Work/dink_garments_a.blend'))
 # quick look
 for nm in ('OldHair', 'OldEyes', 'BrowLash', 'OldWardrobe', 'OldShirtTopo', 'OldTrousersTopo', 'BodyVol', 'Shirt_HI', 'Jerkin_HI', 'Trousers_HI'):
     bpy.data.objects[nm].hide_render = True

@@ -29,6 +29,19 @@ def use_hip_gpu(scene=None):
     except Exception as ex: log('HIP not available', ex)
     scene.cycles.device = 'GPU' if found else 'CPU'; log('Cycles device', scene.cycles.device); return found
 
+def save_blend(filepath=None, **kw):
+    """Save the .blend with relative image / library paths (the repository is public: no absolute paths inside files).
+    filepath None = save in place; copy=True keeps the current file as the working file."""
+    def rel():
+        try: bpy.ops.file.make_paths_relative()
+        except Exception as ex: log('make_paths_relative skipped:', str(ex)[:120])
+    if filepath is None:
+        rel(); bpy.ops.wm.save_mainfile(); return
+    if kw.get('copy'):
+        if bpy.data.filepath: rel()
+        bpy.ops.wm.save_as_mainfile(filepath=str(filepath), **kw); return
+    bpy.ops.wm.save_as_mainfile(filepath=str(filepath), **kw); rel(); bpy.ops.wm.save_mainfile()
+
 def deselect():
     for o in list(bpy.context.view_layer.objects):
         if o is not None: o.select_set(False)

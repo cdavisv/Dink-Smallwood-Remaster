@@ -1,0 +1,59 @@
+{
+ "name": "SM_Bones_Scatter_PR",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Bones_Scatter",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Bones_Scatter_PR_BC.png",
+  "N": "T_Bones_Scatter_PR_N.png",
+  "ORM": "T_Bones_Scatter_PR_ORM.png"
+ },
+ "lod_triangles": [
+  2556,
+  1278,
+  562
+ ],
+ "hi_triangles": 105184,
+ "bounds_min_m": [
+  -0.394,
+  -0.361,
+  -0.009
+ ],
+ "bounds_max_m": [
+  0.351,
+  0.293,
+  0.163
+ ],
+ "dimensions_m": [
+  0.745,
+  0.653,
+  0.171
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 93.4,
+   "p99": 176.7
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.586,
+   "p95": 0.93
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [],
+ "variants": {},
+ "meta": {
+  "rehull": true
+ },
+ "extra": null
+}

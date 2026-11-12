@@ -517,11 +517,21 @@ class Cards:
                 an = ph + tw * k / nseg; n_ = a_ * math.cos(an) + b_ * math.sin(an); P.append(p + n_ * r * rk); Nn.append(n_); Wd.append(unit(np.cross(tg, n_)))
             s.strip(P, Nn, Wd, 2 * math.pi * radius / strips * width_k, int(rng.choice(tiles)), layer, rng, v_span=(.04, .9))
     def build(s, name='Hair'):
-        V_ = np.array(s.v); HN_ = np.array(s.hn); F_ = []
-        for f in s.f:      # geometric normal on the side of the shading normal (a two-sided card whose two normals disagree renders black)
-            gn = np.cross(V_[f[1]] - V_[f[0]], V_[f[2]] - V_[f[0]]); F_.append(tuple(reversed(f)) if gn @ HN_[list(f)].sum(0) < 0 else f)
-        s.f = F_
         o = new_obj(name, s.v, s.f); me = o.data
+        # one winding per connected card, on the side of its shading normals (a two-sided card whose two normals disagree renders black)
+        HN_ = np.array(s.hn); bm = bmesh.new(); bm.from_mesh(me); bm.faces.ensure_lookup_table(); bmesh.ops.recalc_face_normals(bm, faces=bm.faces); bm.normal_update()
+        seen = set(); flip = []
+        for f0 in bm.faces:
+            if f0.index in seen: continue
+            st = [f0]; seen.add(f0.index); grp = []
+            while st:
+                g_ = st.pop(); grp.append(g_)
+                for e_ in g_.edges:
+                    for h2 in e_.link_faces:
+                        if h2.index not in seen: seen.add(h2.index); st.append(h2)
+            if sum(float(np.array(g_.normal) @ HN_[[v.index for v in g_.verts]].sum(0)) for g_ in grp) < 0: flip += grp
+        if flip: bmesh.ops.reverse_faces(bm, faces=flip)
+        bm.to_mesh(me); bm.free(); me.update()
         uv = me.uv_layers.new(name='UVMap'); li = np.empty(len(me.loops), np.int32); me.loops.foreach_get('vertex_index', li)
         uv.data.foreach_set('uv', np.array(s.uv, np.float32)[li].ravel())
         me.attributes.new('hl', 'FLOAT', 'POINT').data.foreach_set('value', np.array(s.hl, np.float32))

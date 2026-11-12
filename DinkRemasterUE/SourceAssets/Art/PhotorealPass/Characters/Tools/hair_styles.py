@@ -34,7 +34,7 @@ STYLES = {
                 L_top=.042, L_side=.020, L_nape=.014, L_fringe=.022, el_top=30, el_side=14, sweep=-.5, tousle=.3, jit=.08, gravity=.3, lift_tip=.002, wander=.03,
                 clump=.35, clump_d=.006, noise_d=.0015, frizz_d=.0008, trim_rand=.006,
                 strand=dict(melanin=.58, redness=.8, rough=.3, radial=.4, rand_col=.10),
-                albedo=(.105, .042, .017), col_var=.2, cap_h=.45, brow=dict(th=.0060, n=700), brow_dark=.8, brow_melanin=.2, card_mat=dict(spec=.005, spec2=20.0, transl=.8), brow_rgb='70,40,26', lash_rgb='46,28,20',
+                albedo=(.105, .042, .017), col_var=.2, cap_h=.45, brow=dict(th=.0054, n=600), brow_dark=.85, brow_px=2.3, brow_melanin=.2, card_mat=dict(spec=.005, spec2=20.0, transl=.8), brow_rgb='70,40,26', lash_rgb='46,28,20',
                 tile=dict(frizz=.008, wave=.012, clump=.5, stray=.015, tip_gain=.2, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0), shells=narrow_short(.9, .8, 0, 1.25), edge_narrow=.3, cap_rings=17, cap_segs=38),
  'Mother': dict(kind='bun', seed=21, hairline=(.46, .12, -.5), part_split=.06, guides=1100, density=700000, interp=4, K=16, resample=24,
                 bun_dir=(0, .93, -.28), bun_r=(.040, .036, .030), bun_bundles=7, lift_tip=.005, jit=.04, wander=.008, wisps=8, wisps_nape=6,

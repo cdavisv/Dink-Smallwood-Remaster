@@ -2,14 +2,14 @@
   "tool": "validate",
   "schema_version": 1,
   "blender": "5.2.2 LTS",
-  "file": "<HOME>/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+  "file": "Props.blend",
   "strict": false,
   "passed": false,
   "summary": {
     "assets": 37,
-    "assets_passed": 18,
-    "errors": 24,
-    "warnings": 191
+    "assets_passed": 21,
+    "errors": 20,
+    "warnings": 169
   },
   "scene_findings": [],
   "assets": [
@@ -347,9 +347,9 @@
       "class": "prop",
       "collection": "SM_Sack_Grain_PR",
       "tris_per_lod": {
-        "LOD0": 950,
-        "LOD1": 950,
-        "LOD2": 410
+        "LOD0": 1004,
+        "LOD1": 502,
+        "LOD2": 220
       },
       "bounds": {
         "blender_min_cm": [
@@ -358,12 +358,12 @@
           0.0
         ],
         "blender_max_cm": [
-          51.378,
+          50.0,
           34.5,
           26.458
         ],
         "size_cm": [
-          98.378,
+          97.0,
           69.2,
           26.458
         ],
@@ -373,41 +373,24 @@
           0.0
         ],
         "unreal_max_cm": [
-          51.378,
+          50.0,
           34.7,
           26.458
         ]
       },
-      "errors": 2,
+      "errors": 0,
       "warnings": 1,
       "findings": [
-        {
-          "code": "NORMALS_INCONSISTENT",
-          "severity": "error",
-          "asset": "SM_Sack_Grain_PR",
-          "message": "6 edges join faces with opposite winding (flipped faces)",
-          "object": "SM_Sack_Grain_PR_LOD2",
-          "data": {
-            "edges": 6
-          }
-        },
         {
           "code": "TEXEL_DENSITY",
           "severity": "warning",
           "asset": "SM_Sack_Grain_PR",
-          "message": "texel density 1352 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "message": "texel density 1374 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
           "object": "SM_Sack_Grain_PR_LOD0",
           "data": {
-            "density_px_per_m": 1351.8,
+            "density_px_per_m": 1373.5,
             "target": 512
           }
-        },
-        {
-          "code": "LOD_NOT_DECREASING",
-          "severity": "error",
-          "asset": "SM_Sack_Grain_PR",
-          "message": "LOD1 has 950 triangles, LOD0 has 950: each LOD must be lighter",
-          "object": "SM_Sack_Grain_PR_LOD1"
         },
         {
           "code": "LOD_UNEXPECTED",
@@ -416,7 +399,7 @@
           "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
         }
       ],
-      "passed": false
+      "passed": true
     },
     {
       "name": "SM_FeedSack_Jute_PR",
@@ -1316,257 +1299,103 @@
       "class": "prop_small",
       "collection": "SM_Skull_PR",
       "tris_per_lod": {
-        "LOD0": 1712,
-        "LOD1": 856,
-        "LOD2": 376
+        "LOD0": 1520,
+        "LOD1": 760,
+        "LOD2": 334
       },
       "bounds": {
         "blender_min_cm": [
-          -8.6,
-          -10.102,
-          0.0
+          -7.666,
+          -10.138,
+          -0.002
         ],
         "blender_max_cm": [
-          8.6,
-          12.928,
-          20.212
+          7.587,
+          12.4,
+          19.992
         ],
         "size_cm": [
-          17.2,
-          23.03,
-          20.212
+          15.253,
+          22.538,
+          19.993
         ],
         "unreal_min_cm": [
-          -8.6,
-          -12.928,
-          0.0
+          -7.666,
+          -12.4,
+          -0.002
         ],
         "unreal_max_cm": [
-          8.6,
-          10.102,
-          20.212
+          7.587,
+          10.138,
+          19.992
         ]
       },
-      "errors": 1,
-      "warnings": 12,
+      "errors": 0,
+      "warnings": 1,
       "findings": [
         {
           "code": "TRIS_OVER_TARGET",
           "severity": "warning",
           "asset": "SM_Skull_PR",
-          "message": "LOD0 has 1712 triangles, target for prop_small is 1500 (hard max 5000)",
+          "message": "LOD0 has 1520 triangles, target for prop_small is 1500 (hard max 5000)",
           "object": "SM_Skull_PR_LOD0",
           "data": {
-            "tris": 1712,
+            "tris": 1520,
             "target": 1500
           }
-        },
-        {
-          "code": "UV_OVERLAP",
-          "severity": "error",
-          "asset": "SM_Skull_PR",
-          "message": "UV0 islands overlap (1.1 % of UV area, 118 triangles); class prop_small needs unique UVs",
-          "object": "SM_Skull_PR_LOD0",
-          "data": {
-            "overlap_ratio": 0.01123
-          }
-        },
-        {
-          "code": "UV_RANGE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "80 triangles have UVs outside 0-1",
-          "object": "SM_Skull_PR_LOD0"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_PlasterWall_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_PlasterWall_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_PlasterWall_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_PlasterWall_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_PlasterWall_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Skull_PR",
-          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
         }
       ],
-      "passed": false
+      "passed": true
     },
     {
       "name": "SM_Bones_Scatter_PR",
       "class": "prop",
       "collection": "SM_Bones_Scatter_PR",
       "tris_per_lod": {
-        "LOD0": 3312,
-        "LOD1": 1656,
-        "LOD2": 728
+        "LOD0": 2556,
+        "LOD1": 1278,
+        "LOD2": 562
       },
       "bounds": {
         "blender_min_cm": [
-          -42.209,
-          -37.171,
-          0.0
+          -39.411,
+          -36.064,
+          -0.879
         ],
         "blender_max_cm": [
-          36.314,
-          31.333,
-          18.559
+          35.081,
+          29.274,
+          16.263
         ],
         "size_cm": [
-          78.524,
-          68.504,
-          18.559
+          74.492,
+          65.338,
+          17.142
         ],
         "unreal_min_cm": [
-          -42.209,
-          -31.333,
-          0.0
+          -39.411,
+          -29.274,
+          -0.879
         ],
         "unreal_max_cm": [
-          36.314,
-          37.171,
-          18.559
+          35.081,
+          36.064,
+          16.263
         ]
       },
-      "errors": 1,
-      "warnings": 12,
+      "errors": 0,
+      "warnings": 1,
       "findings": [
-        {
-          "code": "UV_OVERLAP",
-          "severity": "error",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "UV0 islands overlap (60.2 % of UV area, 1319 triangles); class prop needs unique UVs",
-          "object": "SM_Bones_Scatter_PR_LOD0",
-          "data": {
-            "overlap_ratio": 0.60178
-          }
-        },
-        {
-          "code": "UV_RANGE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "181 triangles have UVs outside 0-1",
-          "object": "SM_Bones_Scatter_PR_LOD0"
-        },
         {
           "code": "TEXEL_DENSITY",
           "severity": "warning",
           "asset": "SM_Bones_Scatter_PR",
-          "message": "texel density 2100 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "message": "texel density 2619 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
           "object": "SM_Bones_Scatter_PR_LOD0",
           "data": {
-            "density_px_per_m": 2100.4,
+            "density_px_per_m": 2619.1,
             "target": 512
           }
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_PlasterWall_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_PlasterWall_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_PlasterWall_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_PlasterWall_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_PlasterWall_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_OakWeathered_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_OakWeathered_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_OakWeathered_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_OakWeathered_H.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-        },
-        {
-          "code": "NAME_TEXTURE",
-          "severity": "warning",
-          "asset": "SM_Bones_Scatter_PR",
-          "message": "image 'T_Terrain_OakWeathered_Macro.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
         },
         {
           "code": "LOD_UNEXPECTED",
@@ -1575,7 +1404,7 @@
           "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
         }
       ],
-      "passed": false
+      "passed": true
     },
     {
       "name": "SM_Candle_Iron_PR",

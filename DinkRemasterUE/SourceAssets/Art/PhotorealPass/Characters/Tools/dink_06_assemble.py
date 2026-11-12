@@ -40,6 +40,13 @@ def one_point(o, p):
         if w > 0: o.vertex_groups.new(name=names[gi]).add(list(range(len(o.data.vertices))), w, 'REPLACE')
     bpy.data.objects.remove(t, do_unlink=True)
 parts = [o for o in D if o.type == 'MESH' and 'fabric' in o]
+for nm_, ratio_ in CFG.get('decimate', {}).items():   # budget: thin over-tessellated smooth parts (belt loops, buckles, flat leather) before skinning; UVs and bakes stay valid
+    o_ = D.get(nm_)
+    if o_ is None: log('decimate: no part', nm_); continue
+    t0_ = tri_count(o_); d_ = o_.modifiers.new('dec', 'DECIMATE'); d_.ratio = ratio_; d_.delimit = {'UV'}; apply_mods(o_); smooth_shade(o_); log('decimated', nm_, t0_, '->', tri_count(o_))
+if CFG.get('eye_back_cull'):   # the back of each eyeball sits inside the skull and is never seen (the eyes are rigid on the head bone)
+    bm = bmesh.new(); bm.from_mesh(eyes.data); bm.normal_update(); dead = [f for f in bm.faces if f.normal.y > CFG['eye_back_cull']]; nt_ = sum(len(f.verts) - 2 for f in dead)
+    bmesh.ops.delete(bm, geom=dead, context='FACES'); bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS'); bm.to_mesh(eyes.data); bm.free(); log('eye back faces removed, tris', nt_)
 for o in parts:
     if o.get('weights') == 'keep': pass
     elif o.get('rigidw'):
@@ -100,7 +107,7 @@ if CFG.get('scalp_cull'):   # scalp skin that the opaque hair cap always hides g
     log('scalp skin under the hair cap removed, tris', nt_)
 if CFG.get('skin_tuck_q'):   # open neckline: the skin just outside the dress opening sinks under the cloth so it cannot poke through the hem
     qc, qr, q0, q1, dep = CFG['skin_tuck_q']; skin.data.update(); c_ = co_np(skin.data); n_ = normals_np(skin.data)
-    q_ = np.sqrt((((c_ - np.array(qc)) / np.array(qr)) ** 2).sum(1)); w_ = sstep(q0, q1, q_) * (c_[:, 2] > 1.30) * (c_[:, 2] < 1.50) * (np.abs(c_[:, 0]) < .19)
+    q_ = np.sqrt((((c_ - np.array(qc)) / np.array(qr)) ** 2).sum(1)); w_ = sstep(q0, q1, q_) * (c_[:, 2] > 1.30) * (c_[:, 2] < 1.56) * (np.abs(c_[:, 0]) < .19) * sstep(.070, .082, np.sqrt(c_[:, 0] ** 2 + (c_[:, 1] - .008) ** 2))
     set_co(skin.data, c_ - n_ * (w_ * dep)[:, None]); log('skin tucked under the neckline', int((w_ > 0).sum()))
 prep(skin, 'Skin'); prep(eyes, 'Eyes'); prep(hair, 'Hair')
 for o in parts: prep(o, 'Outfit' if o['mat'] == 'outfit' else 'Gear')
@@ -129,19 +136,35 @@ if CFG.get('hidden_cull'):
     # 13-ray fan about the face normal is blocked within `reach`. Hair, eyes and the head are never touched; loose cloth is not tight, so it stays.
     reach = float(CFG['hidden_cull']); me_ = lod0.data; bm = bmesh.new(); bm.from_mesh(me_); bm.faces.ensure_lookup_table(); bm.normal_update()
     hs_, es_, ss_ = order.index('Hair'), order.index('Eyes'), order.index('Skin')
+    isl = {}; ni = 0        # connected pieces: a face only counts as covered when a DIFFERENT piece blocks it (pleats and folds cover themselves)
+    for f0 in bm.faces:
+        if f0.index in isl: continue
+        st = [f0]; isl[f0.index] = ni
+        while st:
+            g_ = st.pop()
+            for e_ in g_.edges:
+                for h2 in e_.link_faces:
+                    if h2.index not in isl: isl[h2.index] = ni; st.append(h2)
+        ni += 1
     occl = [f for f in bm.faces if f.material_index != hs_]; tree = BVHTree.FromPolygons([v.co.copy() for v in bm.verts], [[v.index for v in f.verts] for f in occl])
     fan = [(0.0, 0.0)] + [(math.radians(28), 2 * math.pi * k / 4 + .4) for k in range(4)] + [(math.radians(58), 2 * math.pi * k / 8) for k in range(8)]
     dead = []; per = {}
     for f in bm.faces:
-        if f.material_index in (hs_, es_): continue
+        if f.material_index == hs_: continue
         c = f.calc_center_median()
         if f.material_index == ss_ and c.z > 1.46: continue
         n = f.normal
         if n.length < .5: continue
         t1 = n.orthogonal().normalized(); t2 = n.cross(t1); vis = False
-        for el, az in fan:
-            d = n * math.cos(el) + (t1 * math.cos(az) + t2 * math.sin(az)) * math.sin(el)
-            if tree.ray_cast(c + n * .0012, d, reach)[0] is None: vis = True; break
+        vs_ = [v.co for v in f.verts]; nv_ = len(vs_)
+        # the whole face must be covered, not just its middle: centre, corners (pulled in a little) and edge midpoints
+        pts_ = [c] + [v_ + (c - v_) * .12 for v_ in vs_] + [(vs_[k_] + vs_[(k_ + 1) % nv_]) * .5 + (c - (vs_[k_] + vs_[(k_ + 1) % nv_]) * .5) * .06 for k_ in range(nv_)]
+        for p_ in pts_:
+            for el, az in fan:
+                d = n * math.cos(el) + (t1 * math.cos(az) + t2 * math.sin(az)) * math.sin(el)
+                hit = tree.ray_cast(p_ + n * .0012, d, reach)
+                if hit[0] is None or isl[occl[hit[2]].index] == isl[f.index]: vis = True; break
+            if vis: break
         if not vis: dead.append(f); per[order[f.material_index]] = per.get(order[f.material_index], 0) + len(f.verts) - 2
     bmesh.ops.delete(bm, geom=dead, context='FACES'); bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS'); bm.to_mesh(me_); bm.free(); me_.update()
     log('tightly covered faces removed, tris per slot', per)
@@ -189,6 +212,7 @@ def make_lod(i, ratio):
     d = o.modifiers.new('dec', 'DECIMATE'); d.ratio = ratio; d.vertex_group = '_dec'; d.use_collapse_triangulate = True
     activate(o); bpy.ops.object.modifier_move_to_index(modifier='dec', index=0); bpy.ops.object.modifier_apply(modifier='dec')
     o.vertex_groups.remove(o.vertex_groups['_dec'])
+    bm = bmesh.new(); bm.from_mesh(o.data); bmesh.ops.delete(bm, geom=[e for e in bm.edges if not e.link_faces], context='EDGES'); bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS'); bm.to_mesh(o.data); bm.free()
     clean_weights(o); return o
 lods = [lod0] + [make_lod(i, CFG['lod_ratios'][i]) for i in (1, 2, 3)]
 for o in lods:
@@ -197,4 +221,4 @@ for o in lods:
     o.hide_render = o is not lod0
 arm.data.pose_position = 'REST'
 bpy.ops.file.make_paths_relative() if False else None
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / CFG['out']))
+save_blend(filepath=str(OUT / CFG['out']))

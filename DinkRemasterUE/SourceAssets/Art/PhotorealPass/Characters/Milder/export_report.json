@@ -3,69 +3,44 @@
  "validation": {
   "assets": 1,
   "assets_passed": 0,
-  "errors": 6,
+  "errors": 1,
   "warnings": 23
  },
  "findings": [
   [
-   "error",
-   "TRIS_OVER_BUDGET",
-   "LOD0 has 36001 triangles, hard budget for character_humanoid is 35000"
+   "warning",
+   "TRIS_OVER_TARGET",
+   "LOD0 has 32561 triangles, target for character_humanoid is 20000 (hard max 35000)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "8423 non-manifold edges (8390 open boundary, 33 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "error",
-   "NORMALS_INCONSISTENT",
-   "5 edges join faces with opposite winding (flipped faces)"
+   "9217 non-manifold edges (9207 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "8273 non-manifold edges (8240 open boundary, 33 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "error",
-   "NORMALS_INCONSISTENT",
-   "5 edges join faces with opposite winding (flipped faces)"
+   "9009 non-manifold edges (8999 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "7018 non-manifold edges (6985 open boundary, 33 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "error",
-   "NORMALS_INCONSISTENT",
-   "2 edges join faces with opposite winding (flipped faces)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 114 loose (wire) edges"
+   "7529 non-manifold edges (7519 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "4011 non-manifold edges (3864 open boundary, 33 >2 faces, 114 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "error",
-   "NORMALS_INCONSISTENT",
-   "2 edges join faces with opposite winding (flipped faces)"
+   "4196 non-manifold edges (4186 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (5.3 % of UV area, 5914 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (6.8 % of UV area, 5865 triangles); class character_humanoid needs unique UVs"
   ],
   [
    "warning",
    "UV_DEGENERATE",
-   "3958 triangles are collapsed in UV space"
+   "2916 triangles are collapsed in UV space"
   ],
   [
    "info",
@@ -165,43 +140,43 @@
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD1",
-   "flat_faces_for_cancelled_normals": 22
+   "flat_faces_for_cancelled_normals": 18
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD2",
-   "flat_faces_for_cancelled_normals": 26
+   "flat_faces_for_cancelled_normals": 18
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD3",
-   "flat_faces_for_cancelled_normals": 26
+   "flat_faces_for_cancelled_normals": 18
   }
  ],
  "lods": [
   {
    "mesh": "SK_Milder_Photoreal_LOD0",
-   "triangles": 36001,
-   "vertices": 23196,
+   "triangles": 32561,
+   "vertices": 21813,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD1",
-   "triangles": 19799,
-   "vertices": 15020,
+   "triangles": 17907,
+   "vertices": 14382,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD2",
-   "triangles": 11330,
-   "vertices": 10014,
+   "triangles": 10229,
+   "vertices": 9673,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD3",
-   "triangles": 6069,
-   "vertices": 5515,
+   "triangles": 5450,
+   "vertices": 5212,
    "max_influences": 4,
    "unweighted": 0
   }
@@ -312,17 +287,17 @@
  ],
  "uv_per_slot": {
   "MI_Milder_PR_Skin": {
-   "uv_area": 0.4033,
-   "texels_used_1k": 371627,
-   "texels_overlapping_1k": 1993,
-   "overlap_fraction": 0.0054,
+   "uv_area": 0.3789,
+   "texels_used_1k": 350524,
+   "texels_overlapping_1k": 482,
+   "overlap_fraction": 0.0014,
    "outside_0_1": 0
   },
   "MI_Milder_PR_Eyes": {
-   "uv_area": 1.5143,
-   "texels_used_1k": 712642,
-   "texels_overlapping_1k": 689152,
-   "overlap_fraction": 0.967,
+   "uv_area": 1.3662,
+   "texels_used_1k": 653693,
+   "texels_overlapping_1k": 611104,
+   "overlap_fraction": 0.9348,
    "outside_0_1": 0
   },
   "MI_Milder_PR_Hair": {
@@ -333,17 +308,17 @@
    "outside_0_1": 0
   },
   "MI_Milder_PR_Outfit": {
-   "uv_area": 0.3182,
-   "texels_used_1k": 287412,
-   "texels_overlapping_1k": 7499,
-   "overlap_fraction": 0.0261,
+   "uv_area": 0.329,
+   "texels_used_1k": 291367,
+   "texels_overlapping_1k": 11148,
+   "overlap_fraction": 0.0383,
    "outside_0_1": 0
   },
   "MI_Milder_PR_Gear": {
-   "uv_area": 0.8601,
-   "texels_used_1k": 797148,
-   "texels_overlapping_1k": 2141,
-   "overlap_fraction": 0.0027,
+   "uv_area": 0.8046,
+   "texels_used_1k": 744782,
+   "texels_overlapping_1k": 1756,
+   "overlap_fraction": 0.0024,
    "outside_0_1": 0
   }
  }

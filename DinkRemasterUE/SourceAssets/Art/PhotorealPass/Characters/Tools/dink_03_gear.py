@@ -402,7 +402,7 @@ for o in made:
     if 'UVMetric' not in o.data.uv_layers: log('NO UV', o.name)
 log('gear', {o.name: tri_count(o) for o in made if not o.name.endswith('_HI')})
 log('gear total game tris', sum(tri_count(o) for o in made if not o.name.endswith('_HI')))
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / 'Dink/Work/dink_garments_b.blend'))
+save_blend(filepath=str(OUT / 'Dink/Work/dink_garments_b.blend'))
 if 'norender' in args(): sys.exit(0)
 # preview
 cols = {'leather_boot': (.16, .09, .05), 'leather_sole': (.08, .06, .04), 'leather_red': (.42, .07, .05), 'cord': (.5, .4, .3), 'leather_belt': (.14, .08, .04), 'brass': (.7, .5, .2),

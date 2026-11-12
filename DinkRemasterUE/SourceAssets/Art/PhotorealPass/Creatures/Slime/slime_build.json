@@ -14,20 +14,20 @@
  "lods": [
   {
    "name": "SK_Slime_LOD0",
-   "triangles": 13678
+   "triangles": 13550
   },
   {
    "name": "SK_Slime_LOD1",
-   "triangles": 6839
+   "triangles": 6775
   },
   {
    "name": "SK_Slime_LOD2",
-   "triangles": 3420
+   "triangles": 3387
   }
  ],
  "dimensions_m": [
-  1.0512681007385254,
-  0.6670642495155334,
+  0.9935588836669922,
+  0.6418240070343018,
   0.3129276633262634
  ],
  "actions": {

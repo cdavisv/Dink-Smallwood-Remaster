@@ -461,7 +461,7 @@ def wire_game_material(m, files, emis_strength=0.0, params=None):
 
 def finish_lo(ob, lods=(0.5, 0.22), margin=0.004):
     """pack the primitive charts into 0-1 without overlap and make LOD1 / LOD2"""
-    for o in bpy.context.view_layer.objects:
+    for o in [x_ for x_ in bpy.context.view_layer.objects if x_ is not None]:
         o.select_set(False)
     ob.select_set(True); bpy.context.view_layer.objects.active = ob
     bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.mesh.select_all(action='SELECT'); bpy.ops.uv.select_all(action='SELECT')
@@ -520,7 +520,7 @@ def finish_lo(ob, lods=(0.5, 0.22), margin=0.004):
             prev = out[out.index(o) - 1]; old = o.data; done = False
             for ratio in (0.5, 0.33, 0.2):                # planar dissolve of the finer LOD (never opens a mesh), kept only if closed and lighter
                 o.data = prev.data.copy(); md = o.modifiers.new('d', 'DECIMATE'); md.decimate_type = 'DISSOLVE'; md.angle_limit = ratio; md.delimit = {'UV'}
-                for q in bpy.context.view_layer.objects:
+                for q in [x_ for x_ in bpy.context.view_layer.objects if x_ is not None]:
                     q.select_set(False)
                 hr = o.hide_render; bpy.context.view_layer.objects.active = o; o.select_set(True); bpy.ops.object.modifier_apply(modifier='d'); o.select_set(False); o.hide_render = hr
                 b2 = bmesh.new(); b2.from_mesh(o.data); bmesh.ops.triangulate(b2, faces=b2.faces); ok = all(len(e.link_faces) == 2 for e in b2.edges) and len(b2.faces) < 0.85 * tris(prev)
@@ -560,7 +560,7 @@ def bake(asset, hi_obs, lo, px, outdir, extrude=0.006, maxdist=0.02, emissive=Fa
     sc.cycles.use_denoising = False; sc.cycles.max_bounces = 2; sc.cycles.use_adaptive_sampling = False
     os.makedirs(outdir, exist_ok=True)
     tname = 'T_' + asset[3:] if asset.startswith('SM_') else 'T_' + asset
-    for o in bpy.context.view_layer.objects:
+    for o in [x_ for x_ in bpy.context.view_layer.objects if x_ is not None]:
         o.select_set(False)
     for o in hi_obs:
         o.hide_render = False; o.select_set(True)

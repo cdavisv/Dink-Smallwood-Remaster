@@ -499,7 +499,7 @@ def build(name, A):
 
 def main():
     names = [a for a in ARGV if a in ASSETS]
-    rdir = opt('--review'); views = (opt('--views') or 'game,close,int,open').split(',')
+    rdir = opt('--review'); views = (opt('--views') or 'game,close,int,open,side').split(',')
     for name in names:
         A = ASSETS[name]
         bpy.ops.wm.read_factory_settings(use_empty=True); CH.clear()

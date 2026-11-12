@@ -27,4 +27,4 @@ sh.data.materials.clear(); sh.data.materials.append(mat)
 bpy.data.objects['OldShirtTopo'].hide_render = True; bpy.data.objects['OldTrousersTopo'].hide_render = True; col.hide_render = True
 setup_render(samples=24, res=(900, 900))
 shoot(OUT / 'Dink/Review/exp_sim_front.png', (0.9, -2.6, 1.5), (0, 0, 1.25), lens=60)
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / 'Dink/Work/exp_sim.blend'))
+save_blend(filepath=str(OUT / 'Dink/Work/exp_sim.blend'))

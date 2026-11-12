@@ -345,7 +345,7 @@ def game_material(name, tex, sss=False, alpha=False, sss_radius=(.012, .005, .00
 # ------------------------------------------------------------------ review rendering
 def setup_review(samples=48, res=(1200, 900), ground='dirt', sun_elev=40, sun_az=200, ground_scale=2.2, strength=.09):
     sc = bpy.context.scene; sc.render.engine = 'CYCLES'; use_hip_gpu(sc); sc.cycles.samples = samples; sc.cycles.use_denoising = True
-    sc.cycles.use_adaptive_sampling = True; sc.cycles.adaptive_threshold = .03; sc.cycles.max_bounces = 6; sc.cycles.transparent_max_bounces = 16
+    sc.cycles.use_adaptive_sampling = True; sc.cycles.adaptive_threshold = .03; sc.cycles.max_bounces = 6; sc.cycles.transparent_max_bounces = 96      # layered alpha cards: 16 left black specks where more layers overlap
     sc.render.resolution_x, sc.render.resolution_y = res; sc.render.resolution_percentage = 100; sc.render.threads_mode = 'FIXED'; sc.render.threads = 4
     sc.view_settings.view_transform = 'AgX'
     try: sc.view_settings.look = 'AgX - Medium High Contrast'

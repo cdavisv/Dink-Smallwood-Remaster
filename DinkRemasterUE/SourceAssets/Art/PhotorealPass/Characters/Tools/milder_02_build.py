@@ -320,7 +320,7 @@ for o in made:
     smooth_shade(o)
     if 'UVMetric' not in o.data.uv_layers: log('NO UV', o.name)
 log('game tris', {o.name: tri_count(o) for o in made if not o.name.endswith('_HI')}, 'total', sum(tri_count(o) for o in made if not o.name.endswith('_HI')))
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / N / 'Work/milder_garments_b.blend'))
+save_blend(filepath=str(OUT / N / 'Work/milder_garments_b.blend'))
 if 'norender' in args(): sys.exit(0)
 cols = {'wool_tan': (.30, .17, .07), 'leather_tabard': (.33, .13, .04), 'wool_blue': (.03, .05, .18), 'mail': (.4, .4, .42), 'steel': (.4, .4, .42), 'leather_grey': (.07, .07, .07),
         'leather_sole': (.04, .03, .02), 'leather_belt': (.09, .04, .02), 'brass': (.7, .5, .2), 'iron': (.3, .3, .3)}

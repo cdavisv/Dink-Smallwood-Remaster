@@ -13,7 +13,7 @@ DST = OUT / 'Duck'; (DST / 'Review').mkdir(parents=True, exist_ok=True); (DST / 
 SRC = ART / 'Creatures/Duck/SK_Duck.blend'
 random.seed(21); V = Vector
 MATN = ['MI_Duck_Feather', 'MI_Duck_Bill', 'MI_Duck_Feet', 'MI_Duck_Eye']
-NCONTOUR = 1800
+NCONTOUR = 2800
 CUT_P = V((.1035, 0, .335)); CUT_N = V((.12, 0, 1)).normalized()       # decapitation plane across the neck
 
 
@@ -32,7 +32,7 @@ def open_rig():
 def wingS(s, a, b):
     """Folded-wing surface: a 0 front (wrist/shoulder) .. 1 rear (beyond 1 = free feather tips), b -1 bottom .. 1 top."""
     C = V((.080, s * .090, .232)); ex = V((-1, 0, -.19)).normalized(); ez = V((-.19, 0, 1)).normalized()
-    bulge = .010 * math.sqrt(max(0.0, 1 - (2 * min(a, 1.0) - 1) ** 2 * .85 - b * b * .8))
+    bulge = (.010 + .008 * max(0.0, 1 - a * 2.2)) * math.sqrt(max(0.0, 1 - (2 * min(a, 1.0) - 1) ** 2 * .85 - b * b * .8))
     inw = .10 * max(0.0, a - .5) ** 2 + .014 * max(0, -b) * a + .010 * max(0, b) ** 2
     p = C + ex * (a * .215) + ez * (b * .055 * max(.04, 1 - .93 * min(max(a, 0.0), 1.2) ** 2.2) - .016 * a * a) + V((0, s * (bulge - inw), 0))
     return p
@@ -74,11 +74,11 @@ def build_high(arm):
         st.append((p, V((0, r, 0)), fw * r * 1.1, None, 2.0))
     add(*loft(st, 24))
     # head: wedge skull, crown highest behind the eye, forehead sloping straight into the culmen, full cheeks
-    H = [(.081, .404, .008, .008, .008, 2.0), (.089, .406, .024, .022, .020, 2.0), (.101, .410, .0305, .028, .027, 2.1), (.116, .4115, .0325, .0305, .0292, 2.2), (.130, .410, .0295, .030, .0272, 2.2),
+    H = [(.075, .404, .008, .008, .008, 2.0), (.084, .406, .0225, .022, .020, 2.0), (.099, .4095, .0275, .028, .027, 2.3), (.116, .4105, .0285, .0305, .0292, 2.5), (.130, .4095, .0272, .030, .0272, 2.2),
          (.142, .4075, .0235, .027, .0245, 2.15), (.153, .4045, .0185, .023, .0212, 2.15), (.160, .4025, .0145, .019, .0190, 2.2)]
     add(*loft([((x, 0, zc), (0, hw, 0), (0, 0, hu), (0, 0, hd), e) for x, zc, hu, hd, hw, e in H], 28))
     for s in (1, -1):
-        vs, fs, d = ellipsoid((.126, s * .015, .397), (.028, .0135, .020), 14, 8); add(vs, fs)              # cheeks
+        vs, fs, d = ellipsoid((.124, s * .016, .394), (.030, .0165, .021), 14, 8); add(vs, fs)              # cheeks
         vs, fs, d = ellipsoid((-.035, s * .06, .125), (.055, .04, .05), 14, 8); add(vs, fs)               # feathered thighs
     body = join(parts, 'DuckBody')
     apply_mod(body, 'REMESH', mode='VOXEL', voxel_size=.003, adaptivity=0)
@@ -92,7 +92,7 @@ def build_high(arm):
     co -= n * (.0025 * gauss(y, .006) * ss(.435, .445, z) * (x > .1) * (x < .15))[:, None]                 # slight median furrow on the crown
     eyes = []
     for s in (1, -1):
-        hit, loc, nor, _ = body.ray_cast(V((.1385, s * .2, .4215)), V((0, -s, 0)))
+        hit, loc, nor, _ = body.ray_cast(V((.1335, s * .2, .4235)), V((0, -s, 0)))
         loc = np.array(loc); nn = np.array(nor); eyes.append((loc, nn)); q = co - loc; d = np.sqrt((q[:, 0] / 1.25) ** 2 + q[:, 1] ** 2 + q[:, 2] ** 2)
         co -= nn[None, :] * (gauss(d, .0062) * .0055)[:, None]; co += nn[None, :] * (gauss(d - .0082, .0024) * .0016)[:, None]   # socket and lid ring
         co -= nn[None, :] * (gauss(np.hypot(q[:, 0] - .013, q[:, 2] + .004), .006) * .0012 * (np.abs(q[:, 1]) < .02))[:, None]   # lore groove toward the bill
@@ -130,6 +130,14 @@ def build_high(arm):
     m = np.zeros((len(c), 4)); m[:, 0] = edge; m[:, 1] = ss(.006, .0045, nd) * top; m[:, 2] = .33; set_color_attr(o.data, 'msk', m)
     Lw = [(.148, .3995, .0040, .0115, .0165, 2.2), (.166, .3978, .0030, .0085, .0172, 2.3), (.188, .3958, .0026, .0062, .0188, 2.5), (.208, .3942, .0022, .0048, .0200, 2.6), (.226, .3930, .0018, .0036, .0188, 2.5), (.2385, .3922, .0014, .0024, .0115, 2.2)]
     vs, fs = loft([((x_, 0, zc), (0, hw, 0), (0, 0, hu), (0, 0, hd), e) for x_, zc, hu, hd, hw, e in Lw], 18)
+    def mouth(o_):
+        l_ = np.zeros((len(o_.data.vertices), 4)); l_[:, 2] = 1; set_color_attr(o_.data, 'loc', l_)
+    ton = [(.156, .4050, .0030, .0030, .0085, 2.0), (.172, .4030, .0032, .0030, .0090, 2.0), (.190, .4005, .0028, .0026, .0085, 2.0), (.206, .3985, .0022, .0022, .0070, 2.0), (.217, .3972, .0012, .0012, .0035, 2.0)]
+    vs_, fs_ = loft([((x_, 0, zc), (0, hw, 0), (0, 0, hu), (0, 0, hd), e) for x_, zc, hu, hd, hw, e in ton], 12); mouth(hp(vs_, fs_, (0, 0, .33, 0), 2, sub=1))                 # tongue, on the jaw
+    flo = [(.152, .4015, .0008, .0008, .0150, 2.6), (.19, .3985, .0008, .0008, .0175, 2.6), (.225, .3952, .0008, .0008, .0170, 2.6), (.236, .3942, .0006, .0006, .0100, 2.4)]
+    vs_, fs_ = loft([((x_, 0, zc), (0, hw, 0), (0, 0, hu), (0, 0, hd), e) for x_, zc, hu, hd, hw, e in flo], 12); mouth(hp(vs_, fs_, (0, 0, .33, 0), 2))                        # floor of the mouth
+    roof = [(.152, .3990, .0008, .0008, .0160, 2.6), (.19, .3962, .0008, .0008, .0190, 2.6), (.225, .3938, .0008, .0008, .0205, 2.6), (.240, .3928, .0006, .0006, .0110, 2.4)]
+    vs_, fs_ = loft([((x_, 0, zc), (0, hw, 0), (0, 0, hu), (0, 0, hd), e) for x_, zc, hu, hd, hw, e in roof], 12); mouth(hp(vs_, fs_, (0, 0, .33, 0), 1))                       # palate, on the head
     o = hp(vs, fs, (0, 0, .33, 0), 2, sub=1); c = co_np(o.data); hwl = np.interp(c[:, 0], [u_[0] for u_ in Lw], [u_[4] for u_ in Lw])
     m = np.zeros((len(c), 4)); m[:, 0] = ss(.72, .92, np.abs(c[:, 1]) / np.maximum(hwl, 1e-4)) * (c[:, 2] > .393) * (c[:, 0] > .158); m[:, 2] = .33; set_color_attr(o.data, 'msk', m)
     # --- legs and webbed feet (3..8: calf/foot/toes per side): scaled tarsus, knuckled toes, sagging webs with thickness
@@ -164,7 +172,8 @@ def build_high(arm):
             hp(vs, fs, (.5, .5, .66, 0), base + 2)
         hb = tb + V((-.014, -s * .006, .004)); vs, fs, ts, an = tube([tb + V((-.002, 0, .004)), hb, hb + V((-.006, 0, -.003))], [.004, .003, .0006], 6); hp(vs, fs, (0, .5, .66, 0), base + 1)    # hind toe
     for s, (loc, nn) in zip((1, -1), eyes):
-        c = loc - nn * .0046; vs, fs, d = ellipsoid(c, (.0058, .0058, .0058), 16, 10); hp(vs, fs, (0, 0, 1, 0), 9)
+        c = loc - nn * .0050; vs, fs, d = ellipsoid(c, (.0064, .0064, .0064), 18, 12); o = hp(vs, fs, (0, 0, 1, 0), 9)
+        q = co_np(o.data); l = np.zeros((len(q), 4)); l[:, 0] = np.clip(((q - np.array(c)) / .0064) @ nn, 0, 1); set_color_attr(o.data, 'loc', l)
     # --- wings: thin low shell (parts 10/11) under the feather tracts; modelled feathers are bake source, the same placements become cards
     feath = []
     def fadd(vs, fs, uv, tint, nr):
@@ -194,7 +203,7 @@ def build_high(arm):
         hp(vs, fs, (0, 0, 0, .0), part)
         # tracts: (a0, a1, count, b, length, width, angle_down, lift offset, card cell)  marginal/lesser, median, greater coverts, scapulars/tertials, secondaries, primaries
         rows = [(-.04, .40, 16, .86, .026, .022, -.08, .0004, 6), (-.03, .48, 16, .58, .032, .024, -.04, .0008, 6), (-.02, .60, 17, .30, .040, .026, .0, .0012, 6), (.02, .72, 16, .02, .052, .028, .04, .0018, 6),
-                (.42, .80, 6, .46, .090, .030, .0, .0030, 2), (.18, .74, 12, -.40, .098, .024, .09, .0010, 1), (.66, .90, 8, -.48, .135, .020, .12, .0004, 0)]
+                (.42, .80, 6, .46, .090, .030, .0, .0030, 2), (.18, .74, 12, -.40, .098, .024, .09, .0010, 1), (.60, .86, 8, -.36, .105, .020, .10, .0004, 0)]
         ex = V((-1, 0, -.19)).normalized(); ez = V((-.19, 0, 1)).normalized(); allf = []
         for ri, (a0, a1, cnt, b, L, W, ang, off, cell) in enumerate(rows):
             for k in range(cnt):
@@ -238,8 +247,8 @@ def body_feathers(body):
         if hd > .5: flow = V((-1, 0, -.55)) + V((random.uniform(-.35, .35), random.uniform(-.35, .35), random.uniform(-.3, .3)))
         f = flow - nr * flow.dot(nr)
         if f.length < 1e-4: continue
-        f.normalize(); side = nr.cross(f).normalized(); base = p - f * (L * .3) + nr * .0006
-        vs, fs, uv = leaf(base, f, side, nr, L, L * random.uniform(.55, .72) * (1.25 if hd > .5 else 1), lift=random.uniform(.03, .07) if hd < .5 else random.uniform(.0, .02), na=6, nb=5, droop=.07 if hd < .5 else .02, shape=.8)
+        f.normalize(); side = nr.cross(f).normalized(); base = p - f * (L * (.3 + random.uniform(-.25, .25))) + side * (L * random.uniform(-.3, .3)) + nr * .0006      # jitter: the remesh grid otherwise shows as feather rows
+        vs, fs, uv = leaf(base, f, side, nr, L, L * random.uniform(.55, .72) * (1.25 if hd > .5 else 1), lift=random.uniform(.03, .07) if hd < .5 else 0.0, na=6, nb=5, droop=.07 if hd < .5 else .02, shape=.8)
         o = len(vs_all); vs_all += vs; fs_all += [tuple(o + q for q in fc) for fc in fs]; uv_all += uv; tint += [random.random()] * len(vs); nr_all += [tuple(nr)] * len(vs); cnt += 1
     o = mesh_obj('bodyfeathers', vs_all, fs_all); orient(o, nr_all); k = len(vs_all); m = np.zeros((k, 4)); m[:, 0] = np.array(tint)
     bm_ = get_color_attr(me, 'msk')
@@ -278,13 +287,16 @@ def duckmat(mat):
     bn, _ = t.noise(P, 70, 4, .65); bb, _ = t.noise(P, 14, 3, .6)
     bc = t.mix(bb, (.70, .30, .03), (.86, .47, .06))
     bc = t.mix(t.smooth(px, .15, .19), t.mix(bn, (.60, .22, .03), (.74, .34, .04)), bc)                    # deeper orange toward the base
-    bc = t.mix(mG, bc, t.mix(bn, (.78, .58, .34), (.62, .44, .26)))                                         # nail
+    bc = t.mix(t.math('MULTIPLY', t.math('SUBTRACT', 1.0, t.smooth(px, .150, .172)), .7), bc, t.mix(bn, (.62, .26, .17), (.50, .17, .12)))    # pinkish base
+    bc = t.mix(mG, bc, t.mix(bn, (.40, .27, .15), (.24, .15, .08)))                                         # nail
     bc = t.mix(t.math('MULTIPLY', t.smooth(bn, .52, .74), .42), bc, (.42, .19, .035))
     lam = t.math('SINE', t.math('MULTIPLY', px, 3300.0)); lamf = t.math('MULTIPLY', mR, isBill)
     bc = t.mix(t.math('MULTIPLY', lamf, t.math('ADD', .35, t.math('MULTIPLY', t.smooth(lam, -.3, .6), .45))), bc, (.22, .09, .02))
     bc = t.mix(t.math('MULTIPLY', cav, .9), bc, (.12, .06, .025))
+    bst_, _ = t.noise(P, 30, 3, .7); bc = t.mix(t.math('MULTIPLY', t.smooth(bst_, .55, .75), .4), bc, (.30, .15, .05))                  # stains
     bsc, _ = t.noise(t.mapping(P, (500, 40, 500)), 1.0, 2, .5)
     bc = t.mix(t.math('MULTIPLY', t.smooth(bsc, .62, .7), .25), bc, (.90, .66, .30))                        # fine scratches
+    bc = t.mix(_x, bc, t.mix(bn, (.40, .09, .09), (.26, .05, .06)))                                        # mouth lining and tongue
     c = t.mix(isBill, c, bc)
     # legs and feet: leathery reticulate scales, darker in the creases, horn nails
     sd, sc_ = t.voronoi(t.mapping(P, (1, 1, 1.5)), 330, 'F1'); scale_edge = t.smooth(sd, .28, .52)
@@ -292,7 +304,8 @@ def duckmat(mat):
     fc = t.mix(t.math('MULTIPLY', t.smooth(bn, .5, .75), .3), fc, (.50, .20, .04))
     fc = t.mix(t.math('MULTIPLY', mR, t.math('GREATER_THAN', mR, .8)), fc, (.26, .20, .14))               # horn nails
     c = t.mix(isFoot, c, fc)
-    c = t.mix(isEye, c, (.010, .007, .006))
+    ey = t.mix(t.smooth(fu, .52, .60), (.030, .022, .018), t.mix(fine, (.20, .085, .02), (.09, .035, .01))); ey = t.mix(t.smooth(fu, .86, .90), ey, (.004, .003, .003))
+    c = t.mix(isEye, c, ey)                                                                               # dark lid skin, brown iris, pupil
     dirtc = t.mix(dn, (.11, .085, .055), (.27, .22, .15))
     c = t.mix(t.math('MULTIPLY', dirt, t.mixf(isFoot, .78, .9)), c, dirtc)
     # roughness
@@ -323,7 +336,7 @@ def gore_textures():
         tx = tx * tx * (3 - 2 * tx); ty = ty * ty * (3 - 2 * ty); return g[iy, ix] * (1 - tx) * (1 - ty) + g[iy, ix + 1] * tx * (1 - ty) + g[iy + 1, ix] * (1 - tx) * ty + g[iy + 1, ix + 1] * tx * ty
     n1 = vn(6, 1); n2 = vn(24, 2); n3 = vn(90, 3)
     rr = r * (1 + .08 * (n1 - .5))
-    col = np.zeros((N, N, 3)); col[:] = (.15, .010, .010)                                                   # muscle
+    col = np.zeros((N, N, 3)); col[:] = (.10, .007, .007)                                                   # muscle
     fib = n2; col *= (.75 + .35 * fib * n3)[..., None]
     col = np.where((rr > .80)[..., None], np.array((.42, .26, .14)) * (.7 + .5 * n2[..., None]), col)      # fat
     col = np.where((rr > .92)[..., None], np.array((.48, .30, .25)), col)                                  # skin edge
@@ -335,8 +348,10 @@ def gore_textures():
     d = disc(.3, .05, .15); col = np.where((d < 1)[..., None], np.array((.46, .10, .09)) * (.8 + .4 * n2[..., None]), col); col = np.where((d < .3)[..., None], np.array((.05, .005, .005)), col); h = np.where(d < 1, .5 - .6 * (d < .3), h)        # oesophagus
     for cx, cy in ((-.42, -.05), (.44, -.3)):
         d = disc(cx, cy, .07); col = np.where((d < 1)[..., None], np.array((.16, .0, .0)), col); h = np.where(d < 1, .1, h)                                          # vessels
-    blood = np.clip((n1 - .30) * 4 + (n3 - .5) * .8, 0, 1) * (rr < 1.05); blood = np.maximum(blood, .85 * np.clip((rr - .62) / .25, 0, 1)); col = col * (1 - blood[..., None] * .85) + np.array((.085, .002, .002)) * blood[..., None] * .85
-    rough = np.clip(.34 - .22 * blood + .12 * n3, .06, 1); h = h * (1 - .6 * blood)
+    blood = np.clip((n1 - .30) * 4 + (n3 - .5) * .8, 0, 1) * (rr < 1.05); blood = np.maximum(blood, .97 * np.clip((rr - .52) / .2, 0, 1)); col = col * (1 - blood[..., None] * .85) + np.array((.085, .002, .002)) * blood[..., None] * .85
+    clot = np.clip((n2 - .58) * 7, 0, 1) * np.clip((n1 - .25) * 3, 0, 1); col = col * (1 - clot[..., None] * .85) + np.array((.018, .001, .001)) * clot[..., None] * .85
+    rough = np.clip(.30 - .24 * blood + .10 * n3 + .25 * clot * n3, .04, 1); h = h * (1 - .6 * blood) + .5 * clot
+    pool = (u < -.84) & (v < -.84); col[pool] = np.array((.042, .0015, .0015)) * (.7 + .6 * n3[pool][:, None]); rough[pool] = .05 + .06 * n3[pool]; h[pool] = 0    # pooled blood patch (UV corner 0..0.08)
     def srgb(x_): return np.where(x_ <= .0031308, x_ * 12.92, 1.055 * np.clip(x_, 0, 1) ** (1 / 2.4) - .055)
     P_ = DST / 'Textures'
     Image.fromarray((np.clip(srgb(col), 0, 1) * 255 + .5).astype(np.uint8)[::-1]).save(P_ / 'T_Duck_Gore_BC.png')
@@ -382,8 +397,9 @@ def build_cards(low_body, wing_feathers, arm):
     primaries crossing over the rump), tail coverts and rectrices. Skinned from the nearest body vertex or to wing/tail bones.
     Each card carries the skin normal ('bn') so the plumage shades as one soft surface."""
     B = {b.name: (b.head_local.copy(), b.tail_local.copy()) for b in arm.data.bones}
-    vs_all = []; fs_all = []; uv_all = []; wts = []; nrs = []
-    def put(vs, fs, uv, w, nr, blend=.3):
+    vs_all = []; fs_all = []; uv_all = []; wts = []; nrs = []; tints = []; trn = random.Random(5)
+    def put(vs, fs, uv, w, nr, blend=.3, tint=(1, 1, 1)):
+        k_ = trn.uniform(.90, 1.0); tints.extend([(tint[0] * k_, tint[1] * k_, tint[2] * k_, 1.0)] * len(vs))
         o = len(vs_all); vs_all.extend(vs); fs_all.extend([tuple(o + q for q in f) for f in fs]); uv_all.extend(uv); wts.extend([w] * len(vs)); nrs.extend([(tuple(nr), blend)] * len(vs))
     for s in (1, -1):
         sd = 'l' if s > 0 else 'r'; x0 = B['wing_' + sd][0].x; x1 = B['wingtip_' + sd][0].x
@@ -398,7 +414,7 @@ def build_cards(low_body, wing_feathers, arm):
     for k in range(9):                                                                                    # upper tail coverts
         a = (k - 4) / 4; ang = a * .45; fd = V((-math.cos(ang), math.sin(ang), .10)).normalized(); side = V((0, 0, 1)).cross(fd).normalized(); nr = fd.cross(side) * -1
         vs, fs, uv = card(V((-.150, a * .035, .222 - .012 * abs(a))), fd, side, nr, .058, .042, 4 + k % 2, segs=1, lift=.03); put(vs, fs, uv, {'tail_01': .5, 'tail_02': .5}, V((0, 0, 1)), .3)
-    me = low_body.data; co = co_np(me); n = nrm_np(me); gn = {g.index: g.name for g in low_body.vertex_groups}
+    me = low_body.data; co = co_np(me); n = nrm_np(me); gn = {g.index: g.name for g in low_body.vertex_groups}; bmsk = get_color_attr(me, 'msk')
     tris = []; areas = []
     for pl in me.polygons:
         vv = list(pl.vertices)
@@ -422,11 +438,12 @@ def build_cards(low_body, wing_feathers, arm):
         f = flow - nr * flow.dot(nr)
         if f.length < 1e-4: continue
         f.normalize(); side = nr.cross(f).normalized()
-        cell = (7 if rng.random() < .35 else 5) if (low or (breast and rng.random() < .6)) else int(rng.choice((4, 5, 4, 6)))
-        vs, fs, uv = card(p - f * L * .4 + nr * .0015, f, side, nr, L * 1.3, L * (.85 if cell != 7 else .9), cell, segs=1, lift=rng.uniform(.08, .18) if not (low or breast) else rng.uniform(.03, .08), droop=.0)
+        cell = int(rng.choice((7, 5, 5, 4, 4, 6))) if (low or breast) else int(rng.choice((4, 5, 4, 6)))
+        vs, fs, uv = card(p - f * L * .4 + nr * .0015, f, side, nr, L * 1.3, L * (.85 if cell != 7 else .9), cell, segs=1, lift=rng.uniform(.08, .18) if not (low or breast) else rng.uniform(.02, .06), droop=.0)
         w = {gn[g.group]: g.weight for g in me.vertices[i].groups if g.weight > .01}
         if not w: continue
-        put(vs, fs, uv, w, nr, .08 if (low or breast) else .25); cnt += 1
+        st_ = float(bmsk[i, 0]) * .6; dt_ = float(bmsk[i, 1]) * .8; tn = tuple((1 - st_ + st_ * c_) * (1 - dt_ + dt_ * d_) for c_, d_ in zip((1, .88, .60), (.50, .42, .32)))      # cream preen-oil stain, soil
+        put(vs, fs, uv, w, nr, .08 if (low or breast) else .25, tn); cnt += 1
     o = mesh_obj('cards', vs_all, fs_all)
     bm = bmesh.new(); bm.from_mesh(o.data); bm.faces.ensure_lookup_table()                               # every card faces out of the plumage
     bmesh.ops.reverse_faces(bm, faces=[f_ for f_ in bm.faces if f_.normal.dot(V(nrs[f_.verts[0].index][0])) < 0]); bm.to_mesh(o.data); bm.free()
@@ -441,6 +458,7 @@ def build_cards(low_body, wing_feathers, arm):
         if g.dot(nrv) < 0: g = -g
         bn.append(tuple((nrv * (1 - bl) + g * bl).normalized()))
     a = o.data.attributes.new('bn', 'FLOAT_VECTOR', 'POINT'); a.data.foreach_set('vector', np.asarray(bn, np.float32).ravel())
+    set_color_attr(o.data, 'Col', tints)
     log('cards', len(fs_all), 'quads; contour', cnt); return o
 
 
@@ -457,7 +475,9 @@ def card_material(name='MI_Duck_FeatherCards', prefix='T_Duck_FeatherCards'):
     m = bpy.data.materials.new(name); m.use_nodes = True; nt = m.node_tree; b = nt.nodes['Principled BSDF']
     def im(suffix, linear):
         x = nt.nodes.new('ShaderNodeTexImage'); x.image = bpy.data.images.load(str(DST / 'Textures' / (prefix + suffix)), check_existing=True); x.image.colorspace_settings.name = 'Non-Color' if linear else 'sRGB'; return x
-    bc = im('_BC.png', False); nt.links.new(bc.outputs[0], b.inputs['Base Color']); nt.links.new(bc.outputs['Alpha'], b.inputs['Alpha'])
+    bc = im('_BC.png', False); nt.links.new(bc.outputs['Alpha'], b.inputs['Alpha'])
+    vc = nt.nodes.new('ShaderNodeAttribute'); vc.attribute_name = 'Col'; mu = nt.nodes.new('ShaderNodeMix'); mu.data_type = 'RGBA'; mu.blend_type = 'MULTIPLY'; mu.inputs[0].default_value = 1.0     # vertex colour tints each feather
+    nt.links.new(bc.outputs[0], mu.inputs[6]); nt.links.new(vc.outputs['Color'], mu.inputs[7]); nt.links.new(mu.outputs[2], b.inputs['Base Color'])
     orm = im('_ORM.png', True); sp = nt.nodes.new('ShaderNodeSeparateColor'); nt.links.new(orm.outputs[0], sp.inputs[0]); nt.links.new(sp.outputs[1], b.inputs['Roughness'])
     nm = nt.nodes.new('ShaderNodeNormalMap'); nm.inputs['Strength'].default_value = .6; nt.links.new(im('_N.png', True).outputs[0], nm.inputs['Color']); nt.links.new(nm.outputs[0], b.inputs['Normal'])
     b.inputs['Subsurface Weight'].default_value = .25; b.inputs['Subsurface Radius'].default_value = (.006, .004, .003); b.inputs['Subsurface Scale'].default_value = 1.0
@@ -591,6 +611,9 @@ def cut_variant(src, name, keep_upper, coll, gore_mat, bloody_cards=None):
                 c = f.calc_center_median(); d = (c - CUT_P).length
                 if d < .06 + .025 * math.sin(c.x * 300 + c.y * 170) + (.035 if c.x > CUT_P.x else 0): f.material_index = bi
     bm.to_mesh(o.data); bm.free(); clean_mesh(o)
+    used = {p_.material_index for p_ in o.data.polygons}                                   # drop slots the cut removed (bill and eye on the body, feet on the head)
+    for i in sorted(set(range(len(o.data.materials))) - used, reverse=True):
+        o.data.materials.pop(index=i)
     if not keep_upper and 'neck_02' in o.vertex_groups:
         for v in o.data.vertices:
             if not any(g.weight > 1e-5 for g in v.groups): o.vertex_groups['neck_02'].add([v.index], 1.0, 'REPLACE')
@@ -619,6 +642,11 @@ def shots(arm, tag, which, samples=48, scale=1.0, objs=None):
     if 'pose' in which:
         for act, fr, az in (('Duck_Walk', 4, -70), ('Duck_Peck', 18, -50), ('Duck_Quack', 8, -30)):
             set_action(arm, act, fr); f = D / ('%s_%s%02d.png' % (tag, act[5:].lower(), fr)); shoot(f, game_cam((0, 0, .2), 1.5, az, 20), (0, 0, .2), 80, R(1000, 750), samples, exposure=-.7); fl.append(f)
+    if 'lods' in which:
+        tmp = []
+        for nm in ('SK_Duck_LOD0', 'SK_Duck_LOD1', 'SK_Duck_LOD2'):
+            vis(nm); set_action(arm, 'Duck_Walk', 4); f = D / ('_lod_%s.png' % nm); shoot(f, game_cam((0, 0, .2), 6.0, -55, 45), (0, 0, .2), 300, (600, 450), 64, exposure=-.7); tmp.append(f)
+        montage(tmp, D / (tag + '_lods.png'), cols=3); [f.unlink() for f in tmp]; vis('SK_Duck_LOD0')
     if 'gore' in which:
         vis('SK_Duck_Headless_LOD0'); set_action(arm, 'Duck_HeadlessRun', 4); f = D / (tag + '_headless.png'); shoot(f, game_cam((0, 0, .2), 1.3, -50, 32), (0, 0, .2), 80, R(1000, 750), samples, exposure=-.7); fl.append(f)
         set_action(arm, None, 1); vis('SM_Duck_Head_LOD0'); f = D / (tag + '_head.png'); shoot(f, (-.12, -.42, .22), (0.0, 0, .03), 85, R(1000, 750), samples, exposure=-.7); fl.append(f); vis('SK_Duck_LOD0')
@@ -673,10 +701,11 @@ if STAGE in ('look', 'final'):
         high.hide_render = True; high.hide_viewport = True
         # feather cards
         cards = build_cards(low_body, wing_feathers, arm); cm = card_material(); cards.data.materials.append(cm)
-        low.data.attributes.new('bn', 'FLOAT_VECTOR', 'POINT')
+        low.data.attributes.new('bn', 'FLOAT_VECTOR', 'POINT'); set_color_attr(low.data, 'Col', np.ones((len(low.data.vertices), 4)))
         low.data.materials.append(cm); ci = len(low.data.materials) - 1
         nf0 = len(low.data.polygons)
         low = join([low, cards], 'SK_Duck_LOD0')
+        low.data.color_attributes.active_color = low.data.color_attributes['Col']; low.data.color_attributes.render_color_index = list(low.data.color_attributes.keys()).index('Col')     # the FBX vertex colour is the feather tint
         for p in low.data.polygons[nf0:]: p.material_index = ci
         for v in low.data.vertices:
             if not any(g.weight > 1e-5 for g in v.groups): low.vertex_groups['spine_01'].add([v.index], 1.0, 'REPLACE')
@@ -698,6 +727,23 @@ if STAGE in ('look', 'final'):
         head.vertex_groups.clear()
         c = co_np(head.data); ctr = np.array(CUT_P); c -= ctr; rot = Matrix.Rotation(math.radians(90), 3, 'X') @ Matrix.Rotation(math.radians(-25), 3, 'Y')
         c = c @ np.array(rot).T; c[:, 2] -= c[:, 2].min(); c[:, 0] -= (c[:, 0].min() + c[:, 0].max()) / 2; c[:, 1] -= (c[:, 1].min() + c[:, 1].max()) / 2; set_co(head.data, c)
+        # pooled blood under the stump
+        gi_ = next(i for i, s_ in enumerate(head.material_slots) if s_.material and s_.material.name == 'MI_Duck_Gore')
+        stump = c[[p_.vertices[0] for p_ in head.data.polygons if p_.material_index == gi_]].mean(0)
+        bm = bmesh.new(); bm.from_mesh(head.data); uvl = bm.loops.layers.uv.verify(); rp = random.Random(3)
+        def puddle(cx, cy, r, k):
+            K_ = 48; cv = bm.verts.new((cx, cy, .0045 + r * .012)); rings = []
+            for fr, zz in ((.6, .004 + r * .008), (.92, .003), (1.0, .0012)):          # 1-5 mm thick so it neither z-fights nor sinks into the ground
+                rings.append([bm.verts.new((cx + fr * r * (1 + .22 * math.sin(3 * a_ + k) + .08 * math.sin(5 * a_ + 2 * k)) * math.cos(a_), cy + fr * r * (.82 + .18 * math.sin(2 * a_ + k)) * math.sin(a_), zz)) for a_ in [math.tau * j / K_ for j in range(K_)]])
+            fl_ = [(cv, rings[0][j], rings[0][(j + 1) % K_]) for j in range(K_)] + [(rings[q_][j], rings[q_ + 1][j], rings[q_ + 1][(j + 1) % K_], rings[q_][(j + 1) % K_]) for q_ in (0, 1) for j in range(K_)]
+            for vv in fl_:
+                f_ = bm.faces.new(vv); f_.material_index = gi_; f_.smooth = True
+                if f_.normal.z < 0 or (f_.normal_update() or f_.normal.z < 0): f_.normal_flip()
+                for l_ in f_.loops: l_[uvl].uv = (.02 + .03 * rp.random(), .02 + .03 * rp.random())          # the pooled-blood patch in the corner of T_Duck_Gore
+        hc_ = c[:, :2].mean(0); dv = stump[:2] - hc_; dv = dv / max(1e-6, np.linalg.norm(dv)); pc = stump[:2] + dv * .03
+        puddle(pc[0], pc[1], .078, 1.0)
+        for j in range(9): puddle(pc[0] + rp.uniform(-.13, .13), pc[1] + rp.uniform(-.12, .12), rp.uniform(.004, .012), j)
+        bm.to_mesh(head.data); bm.free(); c = co_np(head.data); c[:, 0] -= (c[:, 0].min() + c[:, 0].max()) / 2; c[:, 1] -= (c[:, 1].min() + c[:, 1].max()) / 2; set_co(head.data, c)
         bnv = np.zeros(len(head.data.vertices) * 3, np.float32); head.data.attributes['bn'].data.foreach_get('vector', bnv); head.data.attributes['bn'].data.foreach_set('vector', (bnv.reshape(-1, 3) @ np.array(rot).T).astype(np.float32).ravel())
         from dinkasset import common, make_lods
         report = {}

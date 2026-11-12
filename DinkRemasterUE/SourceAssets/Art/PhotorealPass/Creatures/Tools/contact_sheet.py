@@ -3,10 +3,13 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 OUT = Path(__file__).resolve().parents[1]
 ROWS = [
-    ('Pillbug (SK_Pillbug + SM_Pillbug_Corpse)', 'Pillbug/Review', ['r3_game.png', 'r3_close.png', 'r3_back.png', 'r3_run05.png', 'corpse_game.png']),
-    ('Pig (SK_Pig)', 'Pig/Review', ['final_game.png', 'final_close.png', 'final_side.png', 'final_walk06.png', 'final_feed07.png']),
-    ('Duck (SK_Duck, SK_Duck_Headless, SM_Duck_Head)', 'Duck/Review', ['final_mid.png', 'final_close.png', 'final_back.png', 'final_headless.png', 'final_head.png']),
-    ('Slime (SK_Slime: blue / green / red)', 'Slime/Review', ['final_game.png', 'final_close.png', 'green_close.png', 'red_close.png', 'final_attack07.png']),
+    ('Pillbug (SK_Pillbug + SM_Pillbug_Corpse): game 6 m / 1 m / back / run / corpse', 'Pillbug/Review', ['r4_game.png', 'r4_close.png', 'r4_back.png', 'r3_run05.png', 'corpse_game.png']),
+    ('Pig v2 (SK_Pig): game 6 m / 1 m / side / back / feed pose', 'Pig/Review', ['final_game.png', 'final_close.png', 'final_side.png', 'final_back.png', 'final_feed07.png']),
+    ('Pig v2 poses: walk f6 / run f4', 'Pig/Review', ['final_walk06.png', 'final_run04.png']),
+    ('Duck v2 (SK_Duck): game 6 m / 2 m / 1 m / back / walk', 'Duck/Review', ['final_game.png', 'final_mid.png', 'final_close.png', 'final_back.png', 'final_walk04.png']),
+    ('Duck v2 gore and underside (SK_Duck_Headless, SM_Duck_Head): headless run / severed head / underside / peck / quack', 'Duck/Review', ['final_headless.png', 'final_head.png', 'final_under.png', 'final_peck18.png', 'final_quack08.png']),
+    ('Slime v2 (SK_Slime blue / green / red, SM_Slime_Trail): game 6 m / 1 m / green / red / back', 'Slime/Review', ['final_game.png', 'final_close.png', 'green_close.png', 'red_close.png', 'final_back.png']),
+    ('Slime v2 poses: walk f8 / attack f7 / death f31', 'Slime/Review', ['final_walk08.png', 'final_attack07.png', 'final_death31.png']),
 ]
 TW, TH = 480, 360
 try: font = ImageFont.truetype('/usr/share/fonts/TTF/DejaVuSans.ttf', 20)

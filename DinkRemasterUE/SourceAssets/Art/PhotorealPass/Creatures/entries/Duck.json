@@ -4,68 +4,68 @@
  "class": "creature",
  "supersedes": "SourceAssets/Art/Creatures/Duck (untracked stylised candidate: SK_Duck, SK_Duck_Headless, SM_Duck_Head)",
  "source_blend": "Duck/SK_Duck.blend (three collections plus the hidden high-poly DuckHigh)",
- "build_script": "Tools/duck.py, Tools/gen_feather_atlas.py",
+ "build_script": "Tools/duck.py, Tools/gen_feather_atlas2.py",
  "dimensions_m": [
-  0.5146675109863281,
-  0.23534412682056427,
-  0.44064226746559143
+  0.5114108324050903,
+  0.23549595475196838,
+  0.4368896782398224
  ],
  "lods": {
   "SK_Duck": [
    {
     "name": "SK_Duck_LOD0",
-    "triangles": 15693
+    "triangles": 17694
    },
    {
     "name": "SK_Duck_LOD1",
-    "triangles": 7846
+    "triangles": 8847
    },
    {
     "name": "SK_Duck_LOD2",
-    "triangles": 3923
+    "triangles": 4424
    }
   ],
   "SK_Duck_Headless": [
    {
     "name": "SK_Duck_Headless_LOD0",
-    "triangles": 13729
+    "triangles": 15413
    },
    {
     "name": "SK_Duck_Headless_LOD1",
-    "triangles": 6864
+    "triangles": 7705
    },
    {
     "name": "SK_Duck_Headless_LOD2",
-    "triangles": 3432
+    "triangles": 3853
    }
   ],
   "SM_Duck_Head": [
    {
     "name": "SM_Duck_Head_LOD0",
-    "triangles": 3493
+    "triangles": 6260
    },
    {
     "name": "SM_Duck_Head_LOD1",
-    "triangles": 1745
+    "triangles": 3130
    },
    {
     "name": "SM_Duck_Head_LOD2",
-    "triangles": 872
+    "triangles": 1565
    }
   ]
  },
  "uv": {
-  "uv_area": 0.6553021201319486,
-  "area_3d": 0.3585853986577312,
-  "overlap_area": 8.988287819228225e-06,
-  "overlap_ratio": 1.3716250173917315e-05,
-  "overlapping_tris": 29,
+  "uv_area": 0.6564693836535902,
+  "area_3d": 0.373851706895774,
+  "overlap_area": 4.735344981535161e-06,
+  "overlap_ratio": 7.213352365620659e-06,
+  "overlapping_tris": 16,
   "degenerate_tris": 0,
   "tris_out_of_range": 0,
   "truncated": false,
-  "tris": 11399
+  "tris": 11400
  },
- "high_triangles": 221416,
+ "high_triangles": 224000,
  "families": [
   "duck",
   "21/23/24/26/27/29 animals/duck/dkNw-",
@@ -73,6 +73,7 @@
   "duck_corpse",
   "121/127 animals/duck/death/dkhNx-"
  ],
+ "species_note": "All-white domestic (Pekin type) duck with orange bill and feet, as every frame of the sprite shows. The black patches on the earlier contact sheet were a shading defect (inverted normals baked from back-facing feather vanes, plus vertices left behind by dropped skin weights), not a colour choice; both causes are fixed in duck.py.",
  "slots": [
   "MI_Duck_Feather",
   "MI_Duck_Bill",
@@ -80,7 +81,7 @@
   "MI_Duck_Eye",
   "MI_Duck_FeatherCards"
  ],
- "slot_note": "First four keep the candidate names and share T_Duck_Atlas_*. MI_Duck_FeatherCards (masked, two-sided) uses T_Duck_FeatherCards_* for wing primaries, tail fan and a few flank feathers. Gore variants: SK_Duck_Headless and SM_Duck_Head swap MI_Duck_Feather for MI_Duck_Feather_Bloody (T_Duck_Atlas_Bloody_BC/ORM, same N) and add MI_Duck_Gore (T_Duck_Gore_*, the neck cross-section).",
+ "slot_note": "First four keep the candidate names and share T_Duck_Atlas_*. MI_Duck_FeatherCards (masked or dithered, two-sided, NO dynamic shadow; multiply base colour by the mesh vertex colour, which carries a per-feather tint: cream staining, belly soil, slight value jitter) uses T_Duck_FeatherCards_BC (alpha) / _N / _ORM, an 8-cell feather atlas, for about 2,150 cards: contour and down feathers over body and neck, wing coverts, scapulars, secondaries, primaries, tail coverts and rectrices. Cards carry custom vertex normals blended toward the skin normal: import normals, do not recompute. Gore variants: SK_Duck_Headless and SM_Duck_Head swap MI_Duck_Feather for MI_Duck_Feather_Bloody (T_Duck_Atlas_Bloody_BC/ORM, same N), use MI_Duck_FeatherCards_Bloody (T_Duck_FeatherCards_Bloody_*) on the cards round the wound, and add MI_Duck_Gore (T_Duck_Gore_*, two-sided: wound section, torn skin collar, vertebra stub, trachea, oesophagus, vessels).",
  "textures": [
   {
    "file": "Textures/T_Duck_Atlas_BC.png"
@@ -108,6 +109,15 @@
   },
   {
    "file": "Textures/T_Duck_FeatherCards_ORM.png"
+  },
+  {
+   "file": "Textures/T_Duck_FeatherCards_Bloody_BC.png"
+  },
+  {
+   "file": "Textures/T_Duck_FeatherCards_Bloody_N.png"
+  },
+  {
+   "file": "Textures/T_Duck_FeatherCards_Bloody_ORM.png"
   },
   {
    "file": "Textures/T_Duck_Gore_BC.png"
@@ -139,8 +149,8 @@
   "Export/SM_Duck_Head_LOD1.fbx",
   "Export/SM_Duck_Head_LOD2.fbx"
  ],
- "rig_compatibility": "Existing 23-bone armature and all nine actions (Idle, Walk, Run, Peck, Quack, Hit, Death, HeadlessRun, HeadlessDeath, 30 fps) carried over untouched. Body skinned with bone heat with wing, shin, foot and jaw influences stripped from the plumage; bill, legs, feet, eyes rigid; wing shells blend wing -> wingtip. SK_Duck_Headless shares the armature (import against the SK_Duck skeleton). Verified by rendering Walk f4, Peck f18, Quack f8 and HeadlessRun f4.",
- "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. SM_Duck_Head is a static prop (three LOD FBXs, no UCX hull authored; a simple sphere collision is enough). The earlier candidate was never imported, so this is a first import.",
+ "rig_compatibility": "Existing 23-bone armature and all nine actions (Idle, Walk, Run, Peck, Quack, Hit, Death, HeadlessRun, HeadlessDeath, 30 fps) carried over untouched; no bone added or renamed. Mesh rebuilt on 12 Nov 2026 (v2). Body skinned with bone heat; the wing, shin, foot and jaw influences on the plumage are handed to spine_01, pelvis and head; bill, legs, feet, eyes rigid; wing shells and wing cards blend wing -> wingtip; tail cards on tail_01/02; stump parts on neck_02. SK_Duck_Headless shares the armature (import against the SK_Duck skeleton). Verified by rendering Walk f4, Peck f18, Quack f8 and HeadlessRun f4.",
+ "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. SM_Duck_Head is a static prop (three LOD FBXs, no UCX hull authored; a simple sphere collision is enough). The earlier candidate was never imported, so this is a first import. Validator reports UV_OVERLAP because the feather cards (own atlas, own slot) share UV0 space with the body atlas; the body islands do not overlap.",
  "third_party": [],
  "review_only_third_party": [
   "polyhaven/leafy_grass (review ground)"
@@ -150,30 +160,35 @@
    "SK_Duck_Headless",
    "SM_Duck_Head"
   ],
-  "note": "Decapitation kept: neck bisected, wound capped with a modelled-in-texture cross-section (vertebra, cord, trachea, oesophagus, vessels, fat, skin) and blood soaking the plumage around the cut and running down the breast (texture-space composite from a baked position map)."
+  "note": "Decapitation kept. The neck is bisected and capped with the cross-section texture; on top of the cap sits modelled stump anatomy: a ragged collar of torn skin flaps, the cervical vertebra stub with transverse processes, a ringed open trachea pulled forward, the collapsed oesophagus and hanging clotted vessels (body side). Plumage round the cut is blood-soaked in the baked atlas (texture-space composite from the position map, runs down the breast) and the feather cards near the wound switch to a blood-matted card atlas. The severed head carries the matching short stump."
  },
- "status": "NOT photoreal and NOT ready to import: an unresolved shading defect leaves black patches on the plumage (see first weakness). Reads as a white duck otherwise at gameplay distance; fails at 1 m.",
- "review_rounds": 5,
+ "status": "NOT photoreal at 1 m; a believable white farm duck at the game camera and at 2 m. Round 3 (12 Nov): head, eye, bill, mouth, wing shoulder, denser tinted plumage and gore reworked.",
+ "review_rounds": 10,
  "final_renders": [
   "Review/final_game.png",
   "Review/final_mid.png",
   "Review/final_close.png",
   "Review/final_back.png",
+  "Review/final_under.png",
   "Review/final_walk04.png",
   "Review/final_peck18.png",
   "Review/final_quack08.png",
   "Review/final_headless.png",
-  "Review/final_head.png"
+  "Review/final_head.png",
+  "Review/final_lods.png"
  ],
+ "fixed_defect": "Black patches: (1) the high-poly feather vanes were loose islands whose faces Blender oriented at random, so about half baked inverted tangent normals (black shading wherever the normal map was applied); every vane is now oriented along its skin normal and the baker flips any remaining inverted texel. (2) Dropping the wing/leg/jaw skin weights from the plumage left some vertices on spine_01, which stretched black faces under the head and between the wings in posed frames; the weight is now handed to head/spine_01/pelvis. (3) In the Cycles review, more than 16 overlapping alpha cards hit the transparent-bounce limit and rendered black specks; the review now allows 96 (renderer setting only).",
  "known_weaknesses": [
-  "BLOCKING DEFECT, unresolved: black patches on the back between the wings, in a ring under the head and on one side of the breast, in every baked review render (final_mid.png, final_back.png, final_close.png). Ruled out: bake ray misses (a position-map fill changed nothing), collapsed UV faces (none found), cage size (0.007 and 0.012 m give the same patches). Only about 10,400 texels of the 2048 atlas are black, far too few for the area affected, so the cause is probably on the mesh side (zero-length normals or inverted faces on the decimated low body or on the wing/tail cards), not in the textures. Next step: render LOD0 with a plain grey material to separate mesh from texture.",
-  "Plumage is a baked relief of about 2,000 modelled contour feathers plus wing tracts; at 1 m the feathers read as stiff overlapping scales, not soft vanes with barbs.",
-  "Contour-feather cards were built and then removed after review (they looked like stuck-on paper tabs). Only wing primaries and the tail fan are alpha cards, so the body silhouette is a smooth shell. The brief asked for contour feather cards over the base: only partly met.",
-  "Folded wings are lens-shaped shells with baked feather rows: they read as pillows from above, with a blunt trailing end.",
-  "Head plumage is an anisotropic noise bump (reads like yarn at 0.5 m); the head is close to a sphere. The bill is a clean orange spatula: nostrils and nail are modelled, lamellae are not.",
-  "White plumage clips to pure white in full sun under the review tone curve (review exposure was lowered by 0.7 stop); base colour is about 0.66-0.76 linear, check it in engine.",
-  "Feet: webs are flat two-sided sheets, toes are simple tubes with a scale bump.",
-  "Gore: blood on the plumage is a texture-space composite (soft-edged, no clotting or matting); the wound is a flat capped section with a painted cross-section, no protruding bone or trachea geometry.",
-  "Cards reuse atlas cells, so the validator reports UV overlap on LOD0, and the mesh has 5 material slots."
- ]
+  "Head feathers are still a fine horizontal woolly relief at 0.5 m (very visible on the severed head, which is seen closest); the request for tiny cards or a fur-like normal is not met. Crown is flatter but the head still reads round from three-quarter front.",
+  "Eye: iris and pupil read now, but on the severed head the iris is a flat bright orange disc with a hard edge and no eye ring relief.",
+  "Blood pool under the severed head: glossy and dark, but its three-lobed outline has straight-looking edges and reads as a cut-out shape at 0.4 m; satellite drops are domed beads. It is flat-ground geometry: on slopes it will float.",
+  "Stump: collar now mostly blood-covered with clots, but blood on the neck feathers is still a clean saturated red with scalloped card edges; matting is a texture swap, not clumped feathers.",
+  "Breast: denser and lower-lying, fewer petals, but still individually readable grey-shaded cards at 1 m rather than soft down. Cream and soil tint is subtle; the bird is still clean.",
+  "Folded wing: shoulder is rounder and the primaries are tucked, yet from the front three-quarter view the leading edge is still a straight vertical line with a dark gap behind it; covert rows are not clearly scalloped.",
+  "Bill: colour variation is mild at game distance; no serration relief on the mouth lining; tongue is a simple pad.",
+  "Feet: unchanged (knuckled toes, webs with sag); not dirtier than before.",
+  "LODs judged by eye at the game camera (final_lods.png): LOD1 holds. LOD2 FAILS on the bill and feet: decimation collapses the bill into a dark crooked spike and darkens the feet; plumage and silhouette hold. LOD2 needs the bill and feet excluded from decimation (not done).",
+  "Validator: UV_OVERLAP on all three (cards share UV0 with the atlas, intended); 5 zero-area faces at the headless neck cut. LOD0 17,694 triangles (SK_Duck), 15,413 (headless), 6,260 (head prop with pool)."
+ ],
+ "round3_changes": "Head: flatter crown (higher superellipse exponent, lower top), fuller cheeks, eye moved up and back, larger eye with dark lid skin, brown iris and pupil; head feathers lie flat. Bill: pinkish base, darker nail, stains; palate, mouth floor and tongue added (visible in Quack and on the severed head). Wing: rounded shoulder bulge, primaries shortened and tucked. Plumage: 2,800 contour cards (was 1,800) with per-feather vertex-colour tint (cream staining, belly soil, value jitter). Gore: darker flesh, clots, blood rim on the collar, darker blood-matted card atlas, and a 1-5 mm thick pooled-blood mesh with satellite drops under the severed head (UV corner patch of T_Duck_Gore)."
 }

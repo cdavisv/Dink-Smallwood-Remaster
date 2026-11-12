@@ -7,7 +7,7 @@ from prlib import *; from garlib import *; from chars import CHARS_CFG
 N = args()[0]; C = CHARS_CFG[N]; n = N.lower()
 WORK = OUT / N / 'Work'; WORK.mkdir(parents=True, exist_ok=True); (OUT / N / 'Review').mkdir(exist_ok=True); (OUT / N / 'Textures').mkdir(exist_ok=True)
 bpy.ops.wm.open_mainfile(filepath=str(CHARS / C['src']))
-bpy.ops.wm.save_as_mainfile(filepath=str(WORK / (n + '_base.blend')), copy=False)
+save_blend(filepath=str(WORK / (n + '_base.blend')), copy=False)
 sc = bpy.context.scene
 for o in list(bpy.data.objects):
     if o.type in ('CAMERA', 'LIGHT') or (o.type == 'MESH' and not o.name.endswith('LOD0')):
@@ -64,7 +64,7 @@ if C.get('hand_ratio'):   # the MakeHuman hands are 3.3k triangles each: thin th
     for m in list(sk.modifiers):
         if m.type != 'DECIMATE': sk.modifiers.remove(m)
     activate(sk); bpy.ops.object.modifier_apply(modifier='dec'); sk.vertex_groups.remove(sk.vertex_groups['_dec']); log('hands decimated', t0, '->', tri_count(sk))
-bpy.ops.wm.save_mainfile()
+save_blend()
 
 # ---------------------------------------------------------------- body volume
 B = arm.data.bones
@@ -133,7 +133,7 @@ if cull:   # skin that the new outfit always hides goes before the skin atlas is
     bmesh.ops.delete(bm, geom=dead, context='FACES'); bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS'); bm.to_mesh(sk.data); bm.free()
     log('skin culled faces', len(dead), 'skin tris now', tri_count(sk))
 
-bpy.ops.wm.save_as_mainfile(filepath=str(WORK / (n + '_bodyvol.blend')))
+save_blend(filepath=str(WORK / (n + '_bodyvol.blend')))
 if 'norender' in args(): sys.exit(0)
 for o in D:
     if o.type == 'MESH': o.hide_render = o.name not in (('Skin',) if 'skinonly' in args() else ('BodyVol', 'Skin'))

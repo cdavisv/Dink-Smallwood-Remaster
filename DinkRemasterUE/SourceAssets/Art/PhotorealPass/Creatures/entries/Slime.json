@@ -3,25 +3,25 @@
  "folder": "Slime",
  "class": "creature",
  "supersedes": null,
- "source_blend": "Slime/SK_Slime.blend (with the hidden high-poly SlimeHigh)",
+ "source_blend": "Slime/SK_Slime.blend (with the hidden high-poly SlimeHigh; collection SM_Slime_Trail holds the trail decal mesh)",
  "build_script": "Tools/slime.py",
  "dimensions_m": [
-  1.0512681007385254,
-  0.6670642495155334,
+  0.9935588836669922,
+  0.6418240070343018,
   0.3129276633262634
  ],
  "lods": [
   {
    "name": "SK_Slime_LOD0",
-   "triangles": 13678
+   "triangles": 13550
   },
   {
    "name": "SK_Slime_LOD1",
-   "triangles": 6839
+   "triangles": 6775
   },
   {
    "name": "SK_Slime_LOD2",
-   "triangles": 3420
+   "triangles": 3387
   }
  ],
  "uv": {
@@ -44,9 +44,33 @@
   "691/693 foes/puddle/red/walk"
  ],
  "slots": [
-  "MI_Slime"
+  "MI_Slime",
+  "MI_Slime_Core",
+  "MI_Slime_Wet"
  ],
- "slot_note": "One mesh, three colour variants by material instance: MI_Slime (T_Slime_Blue_BC), MI_Slime_Green (T_Slime_Green_BC), MI_Slime_Red (T_Slime_Red_BC); all share T_Slime_Blue_N / _ORM / _SSS.",
+ "slot_note": "Three slots on SK_Slime: MI_Slime (gel shell), MI_Slime_Core (interior), MI_Slime_Wet (meniscus film). Colour variants Blue / Green / Red are material instances that swap T_Slime_<Var>_BC, T_Slime_Core_<Var>_BC and T_Slime_Trail_<Var>_BC; N / ORM / SSS are shared (T_Slime_Blue_*, T_Slime_Core_Blue_*). See engine_material for the integrator.",
+ "engine_material": {
+  "status": "NOT built or tested in Unreal by this stream (the brief forbids starting the editor). What follows is the intended setup; the Cycles review renders use a refracting stand-in, so the engine look will differ.",
+  "MI_Slime (shell)": [
+   "Blend mode Translucent, lighting mode Surface Translucency Volume (or Surface ForwardShading if the per-pixel cost is acceptable: it gives the sharp wet highlight). Thin Translucent shading model is the alternative when the project uses it: base colour as transmittance tint.",
+   "Refraction OFF (no refraction input, no pixel-offset refraction): the interior is real geometry and refraction would smear it and cost a scene-colour copy.",
+   "Opacity = alpha of T_Slime_<Var>_BC (clear gel 0.04-0.4, pigment spots, grit and foot soil near 1). Multiply by a scalar (default 1) so the integrator can tune it; add a fresnel term (about +0.35 at grazing angles) so the rim reads thicker than the centre.",
+   "Base colour = BC rgb. Subsurface / transmittance tint per variant (linear): Blue (0.17, 0.28, 0.72), Green (0.55, 0.54, 0.10), Red (0.62, 0.22, 0.15) - slime.py TINT. T_Slime_Blue_SSS is the subsurface weight mask.",
+   "Roughness from ORM G (0.10-0.35 on gel, about 0.85 on grit). Specular 0.5-0.8. Wet coat: with Substrate use a thin clear coat slab of roughness 0.05; otherwise clamp roughness low, the highlight is the coat.",
+   "Normal T_Slime_Blue_N (OpenGL: flip green on import). Two-sided off. Cast shadow ON with a masked shadow proxy or as an opaque caster: a translucent mesh casts none by default (bCastVolumetricTranslucentShadow, or simply let MI_Slime_Core cast the shadow)."
+  ],
+  "MI_Slime_Core (interior)": [
+   "Opaque default-lit, T_Slime_Core_<Var>_BC + T_Slime_Core_Blue_N / _ORM (1024). It is a separate element inside the same skeletal mesh (murky core, bubbles, grit, ribs, bird skull), skinned to the same bones. Casts the body shadow."
+  ],
+  "MI_Slime_Wet (meniscus)": [
+   "Translucent, unlit-cheap or Surface Translucency Volume, opacity = alpha of T_Slime_Wet_BC, roughness about 0.05, dark base colour. No shadow. Alternative: masked + DBuffer-style darkening is not possible on a skeletal mesh, so keep it translucent."
+  ],
+  "MI_Slime_Trail (SM_Slime_Trail)": [
+   "Either a translucent mesh decal (blend Translucent, decal response off, depth bias) or copy T_Slime_Trail_<Var>_BC / _N / _ORM into a deferred decal material (DBuffer colour + normal + roughness) projected down 10 cm. Spawn behind the moving slime every about 1.2 m, fade opacity to 0 over 20-30 s."
+  ],
+  "sort_order": "Opaque core renders first (opaque pass). Translucent sort priority: meniscus -1, trail -2 (both below the shell), shell 0. All three shell-family elements are in one skeletal mesh, so set the priority on the component only if the shell is split out; otherwise rely on the element order in the FBX (shell element 0, core 1, meniscus 2) and on the core being opaque. If the shell sorts wrongly against the meniscus, enable Render After DOF off / translucency sort by distance on the component.",
+  "fallback": "If translucency is not acceptable: make MI_Slime opaque subsurface with the same maps (ignore BC alpha). The slime then looks as in the earlier delivery (wet, spotted, solid) and the core is hidden."
+ },
  "textures": [
   {
    "file": "Textures/T_Slime_Blue_BC.png"
@@ -65,6 +89,57 @@
   },
   {
    "file": "Textures/T_Slime_Blue_SSS.png"
+  },
+  {
+   "file": "Textures/T_Slime_Core_Blue_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Core_Green_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Core_Red_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Core_Blue_N.png"
+  },
+  {
+   "file": "Textures/T_Slime_Core_Blue_ORM.png"
+  },
+  {
+   "file": "Textures/T_Slime_Wet_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Wet_N.png"
+  },
+  {
+   "file": "Textures/T_Slime_Wet_ORM.png"
+  },
+  {
+   "file": "Textures/T_Slime_Trail_Blue_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Trail_Blue_N.png"
+  },
+  {
+   "file": "Textures/T_Slime_Trail_Blue_ORM.png"
+  },
+  {
+   "file": "Textures/T_Slime_Trail_Green_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Trail_Green_N.png"
+  },
+  {
+   "file": "Textures/T_Slime_Trail_Green_ORM.png"
+  },
+  {
+   "file": "Textures/T_Slime_Trail_Red_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Trail_Red_N.png"
+  },
+  {
+   "file": "Textures/T_Slime_Trail_Red_ORM.png"
   }
  ],
  "exports": [
@@ -74,16 +149,17 @@
   "Export/A_Slime_Walk.fbx",
   "Export/SK_Slime_LOD0.fbx",
   "Export/SK_Slime_LOD1.fbx",
-  "Export/SK_Slime_LOD2.fbx"
+  "Export/SK_Slime_LOD2.fbx",
+  "Export/SM_Slime_Trail_LOD0.fbx"
  ],
- "rig_compatibility": "NEW rig, no earlier asset existed: 10 bones (root, pelvis, body_01..04, head, hump_02..04), identity root, all bones world-aligned. Clips are translation/rotation only (no bone scale): {\"Idle\": {\"frames\": [1, 61], \"loop\": true}, \"Walk\": {\"frames\": [1, 28], \"loop\": true}, \"Attack\": {\"frames\": [1, 16], \"loop\": false}, \"Death\": {\"frames\": [1, 31], \"loop\": false}} at 30 fps, in place, nominal walk speed 30 cm/s (a guess: fit playback to the en-slim* brain speed).",
- "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. New skeleton and new creatures.json asset row needed; no locomotion blendspace exists yet. Death sprites 661/663/681/683/701/703 (splatter) are not covered by a separate prop: the Death clip flattens the body into a puddle and holds.",
+ "rig_compatibility": "NEW rig (made in this pass, no earlier asset existed): 10 bones (root, pelvis, body_01..04, head, hump_02..04), identity root, all bones world-aligned; unchanged from the first delivery of this pass, so its four clips still apply. Interior and meniscus are skinned to the same bones by position. Clips are translation/rotation only (no bone scale): {\"Idle\": {\"frames\": [1, 61], \"loop\": true}, \"Walk\": {\"frames\": [1, 28], \"loop\": true}, \"Attack\": {\"frames\": [1, 16], \"loop\": false}, \"Death\": {\"frames\": [1, 31], \"loop\": false}} at 30 fps, in place, nominal walk speed 30 cm/s (a guess: fit playback to the en-slim* brain speed).",
+ "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. New skeleton and new creatures.json asset row needed; no locomotion blendspace exists yet. Death sprites 661/663/681/683/701/703 (splatter) are not covered by a separate prop: the Death clip flattens the body into a puddle and holds. The meniscus film is part of the skeletal mesh: it is the lowest 3 cm band of the shell pushed outward 2-3 cm and laid 0.6 mm above z=0, so it follows every bay of the foot; on uneven ground it will still float or clip.",
  "third_party": [],
  "review_only_third_party": [
   "polyhaven/forrest_ground_03 (review ground)"
  ],
- "status": "NOT photoreal: reads as a wet, spotted organic mass but also as a wet painted boulder. New rig and clips.",
- "review_rounds": 3,
+ "status": "NOT photoreal, and unproven in engine: reads as a lopsided wet gel with a thin meniscus and a coloured trail in the Cycles stand-in. The Unreal material is specified in engine_material but not built.",
+ "review_rounds": 10,
  "final_renders": [
   "Review/final_game.png",
   "Review/final_close.png",
@@ -95,11 +171,13 @@
   "Review/final_death31.png"
  ],
  "known_weaknesses": [
-  "Opaque: the game material is base colour + SSS mask, with no translucency or refraction, so there is no gelatinous depth; from behind, in shade, it reads as rock.",
-  "Macro form is a ridged mound: too hard-edged and mountain-like for something that should sag and pool.",
-  "Pigment spots are ringed dots of similar size: too regular.",
-  "No slime trail, drips or strands; the soil and grit band at the foot is a painted gradient.",
-  "The sprite is about 24x18 px beside a 47 px pillbug; the mesh is 0.92 x 0.58 x 0.27 m. Scale is my estimate.",
-  "Clips are first-pass procedural motion (peristaltic walk, lunge, collapse); never seen in engine. No hit clip. Death splatter sprites are not covered by a prop."
+  "The see-through look depends on an Unreal translucent material nobody has built; engine_material in the manifest is a specification, not a tested asset. Sorting of shell, core and meniscus inside one skeletal mesh is the main risk.",
+  "Interior (core, bubbles, grit, ribs, bird skull) shows as soft lighter and darker shapes; it is clearest in green and red, weakest in blue. Bubbles are opaque pale balls, not hollow.",
+  "Wrinkle relief was softened: it now reads as gel, but large areas are smooth and a little plastic; highlights are broad.",
+  "Pigment spots are still similar in size.",
+  "Meniscus is now the foot band of the shell pushed out 2-3 cm (follows every bay, no bridging); it is a uniform dark rim, without puddling variation, and assumes flat ground.",
+  "Trail: per-colour tint is subtle (about a third of the wet film takes the body colour); still a net-like braid at the old end.",
+  "Crest keeps a sharp dimple at the top. Scale is an estimate. Clips are procedural, unseen in engine; no hit clip; no splatter prop for the death sprites.",
+  "Validator: UV_OVERLAP 24 % (interior and meniscus use their own texture sets in the same UV0, intended)."
  ]
 }

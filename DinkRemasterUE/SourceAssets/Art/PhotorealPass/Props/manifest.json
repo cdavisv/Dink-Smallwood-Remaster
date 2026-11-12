@@ -3,20 +3,14 @@
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props",
  "date": "2026-11-12",
  "contact_sheet": "contact_sheet.png",
- "summary": "31 prop meshes: four light sources asked for by the Unreal integrator (wall torch, standing brazier, candle on holder, hanging lantern) and 27 props for the most-placed placeholder families and the opening cottage. All use tiling scan sets with the vertex-colour weathering contract of the structure kits (no unique bakes), so every one is status interim; see known_weaknesses per asset.",
- "review": "Props/review/r1-r4: sun and sky at the gameplay camera, 1 m close-ups, and a warm point light under a dim sky for the interior props. Three rounds for the 27 props (r1-r3, with r4 the final frames); one round for the four light sources and the late additions.",
+ "summary": "37 prop meshes. Round 2 (12 Nov 2026): 24 of them now carry a unique bake from a high-detail source (BC / N / ORM, E where lit; true metal in ORM.B; subsurface and translucent slot kinds; non-overlapping UV0): the four light sources, candle alias, barrel, chest (+ new opened-lid variant SM_Chest_Small_Open_PR), two crates, long and round table, bench, stool, chair, bed (cloth-simulated blanket and pillow), four pots, two sacks (cloth simulation), skull and bones scatter. 13 props are still round-1 tiling sets with vertex-colour weathering (gravestones, fireplace, basket, pie, potion flask, counter, post, cabinet, pillar, rubble, bottle shelf). Two decal texture sets (blood splat, burn hole) are in Props/Decals. Nothing is claimed photoreal where known_weaknesses lists faults, which is every asset.",
+ "review": "Round 2: Props/review/r5 and r6, per baked prop: sun and sky at the game camera (45 degrees down from 6 m), a 1 m close-up, a warm dim interior light (plus the opened chest and a skull side view), 96 samples on the GPU, looked at and criticised two to five rounds each (counts in known_weaknesses). Round 1 props: review/r1-r4. The decals were judged on a flat lit preview (Props/Decals/preview.png), not in Cycles.",
  "validator": {
   "tool": "tools/blender/dinkasset/validate.py on Props/_build/Props.blend (report Props/_build/validation.json)",
-  "result": "36 assets, 3 pass: 41 errors, all by design (33 UV_OVERLAP, 5 PIVOT, 2 SLOTS_OVER) except ZERO_AREA on SM_Jar_Jug_PR (4 sliver faces at a handle root, not fixed); TRIS_OVER_TARGET warnings on SM_Bed_Oak_PR (8,104), SM_Pie_Rustic_PR, SM_Skull_PR; summary in Props/_build/validation_summary.json",
-  "errors_by_design": {
-   "UV_OVERLAP (every prop)": "UV0 carries tiling scan sets at real texel density, not a unique 0-1 unwrap; weathering is vertex colour",
-   "PIVOT on SM_Gravestone_*": "origin is the foot of the stone on the ground; the mound lies in front and the slab runs 0.35 m into the earth",
-   "PIVOT on SM_Prop_Torch_Wall_01 / SM_Prop_Lantern_Hanging_01": "wall-mounted (origin on the wall plane) and ceiling-hung (origin at the hook) by request",
-   "SLOTS_OVER on SM_Bed_Oak_PR, SM_Gravestone_Broken_PR, SM_Shelf_Bottles_PR and others listed in validation_summary": "each visibly different substance is its own tiling material (oak, linen, dyed blanket, madder border; three glaze colours)"
-  },
-  "warnings": "NAME_TEXTURE, TEXEL_DENSITY, UV_RANGE, UV_DEGENERATE (tiling UVs), TRIS_OVER_TARGET where listed, DUPLICATE_VERTS (touching parts)"
+  "result": "37 assets, 21 pass, 20 errors, 169 warnings. All 24 baked props pass except three PIVOT errors that are by design (SM_Prop_Torch_Wall_01 wall-mounted, SM_Prop_Lantern_Hanging_01 hung from its hook, SM_Chest_Small_Open_PR keeps the closed chest's pivot). The other 17 errors are on the 13 unbaked round-1 props: UV_OVERLAP (tiling UVs, by design), PIVOT on the three gravestones, SLOTS_OVER on SM_Gravestone_Broken_PR.",
+  "warnings": "baked props: TEXEL_DENSITY above target on small props (2048 or 1024 px on a small object), TRIS_OVER_TARGET by 12-20 triangles on SM_Skull_PR and the candle"
  },
- "not_done": "No unique bakes (everything is tiling sets + vertex colour); no opening chest lid, no broken barrel states, no brick fireplace, no shelf without bottles; nothing imported into Unreal. Beach shells and starfish, snake pillar, idol, fountain and free-standing arch from the coordinator's priority list were not reached.",
+ "not_done": "Round 2 did not reach, in the coordinator's order: fireplace (no soot bake, ash bed, firedogs or ember mask), gravestones, pie, basket, sign posts and doors (Structures/Misc untouched), and of the not-reached list everything except the two decals: beach shells / starfish / conch (Terrain/Scatter not taken over), fruit tree, hand tools, snake pillar, idol, fountain, free-standing arch, gold piles and coins, food, bookcase and empty shelf, hearts and pickups, shop sign, farm tools. No broken barrel states. Nothing imported into Unreal by this agent; the baked props need new materials per integration.contract.round2_material_upgrades (same asset names, pivots and bounds within millimetres; slot names changed to one MI_<Asset> per baked prop, see integration.assets).",
  "inventory": {
   "generated_from": "Saved/Import/art_coverage.csv + coverage.csv + tools/data/sprite_classes.csv",
   "scope": "placements whose art_kind is prop or other",
@@ -1379,6 +1373,40 @@
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sets/Linen"
   }
  ],
+ "decals": {
+  "schema": "dink-decals/1",
+  "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Decals",
+  "sets": [
+   {
+    "name": "BloodSplat",
+    "class": "blood_splat (46 placements)",
+    "files": {
+     "BC": "T_Decal_BloodSplat_BC.png",
+     "N": "T_Decal_BloodSplat_N.png",
+     "ORM": "T_Decal_BloodSplat_ORM.png"
+    },
+    "resolution_px": 1024,
+    "atlas": "2 x 2 variants, 512 px cells; pick one cell per placement, random yaw",
+    "size_m": "one cell covers about 0.9 x 0.9 m (the pool is 0.3-0.4 m across)",
+    "material": "deferred decal, translucent blend: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G (0.07 wet centre to 0.6 dried rim), metallic 0, specular 0.5; no emissive",
+    "known_weaknesses": "procedural: streaks are straight tapered lines, droplets are ellipses, there is no soak-in tint on porous ground and no directional cast-off pattern; four variants only"
+   },
+   {
+    "name": "BurnHole",
+    "class": "burn_hole_decal (26 placements)",
+    "files": {
+     "BC": "T_Decal_BurnHole_BC.png",
+     "N": "T_Decal_BurnHole_N.png",
+     "ORM": "T_Decal_BurnHole_ORM.png"
+    },
+    "resolution_px": 1024,
+    "atlas": "2 x 2 variants, 512 px cells",
+    "size_m": "one cell covers about 1.2 x 1.2 m (the charred pit is 0.5-0.6 m across)",
+    "material": "deferred decal, translucent blend: base colour = BC.rgb, opacity = BC.a (scorch halo fades out), normal = N (sunk pit with a raised lip and crazed char), roughness = ORM.G, AO = ORM.R, metallic 0; optional faint ember emissive is not authored",
+    "known_weaknesses": "procedural: the crazing is an even cell pattern, ash is flecks of flat grey, no burnt debris or soot streak downwind; a decal cannot really sink the ground (normal only)"
+   }
+  ]
+ },
  "assets": [
   {
    "name": "SM_Barrel_Oak_PR",
@@ -2012,27 +2040,26 @@
    "class": "prop",
    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/SM_Sack_Grain_PR.fbx",
    "materials": [
-    "MI_Prop_Hessian",
-    "MI_Struct_Rope"
+    "MI_Sack_Grain"
    ],
-   "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
-   "lod0_triangles": 2134,
-   "lod1_triangles": 1066,
-   "lod2_triangles": 468,
+   "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Sack_Grain_PR.blend",
+   "lod0_triangles": 1004,
+   "lod1_triangles": 502,
+   "lod2_triangles": 220,
    "dimensions_m": [
-    0.971,
-    0.693,
-    0.257
+    0.97,
+    0.692,
+    0.265
    ],
    "bounds_min_m": [
     -0.47,
-    -0.348,
+    -0.347,
     0.0
    ],
    "bounds_max_m": [
-    0.501,
+    0.5,
     0.345,
-    0.257
+    0.265
    ],
    "open_edges": 0,
    "collision_hulls": 1,
@@ -2041,52 +2068,89 @@
     "grain_sack"
    ],
    "supersedes": "none (grain_sack placeholder, 19 placements)",
-   "dresses": "full grain sack lying on its side, 0.95 x 0.64 x 0.3 m: slumped flat underneath, sewn mouth with nine twine stitches and a loose tail, gusset corners",
+   "dresses": "full grain sack lying on its side, 0.97 x 0.69 x 0.26 m: jute sackcloth (hessian scan), simulated bulge with pinched corner ears, rolled and whip-stitched mouth at +X with a loose tail of twine, sewn side seams (baked)",
    "fit": {
     "pivot": "base centre; mouth to +X",
     "colours": "frames are tan, olive and madder red: MI_Prop_Hessian, MI_Prop_Hessian_Olive, MI_Prop_Hessian_Red"
    },
+   "baked": {
+    "texture_folder": "Sack_Grain",
+    "textures": {
+     "BC": "T_Sack_Grain_PR_BC.png",
+     "N": "T_Sack_Grain_PR_N.png",
+     "ORM": "T_Sack_Grain_PR_ORM.png"
+    },
+    "px": 2048,
+    "slots": [
+     {
+      "material": "MI_Sack_Grain",
+      "kind": "opaque"
+     }
+    ],
+    "emissive_nits": null,
+    "params": null,
+    "stats": {
+     "albedo_luma_srgb": {
+      "p1": 0.0,
+      "mean": 54.4,
+      "p99": 102.6
+     },
+     "roughness": {
+      "p5": 0.0,
+      "mean": 0.554,
+      "p95": 0.869
+     },
+     "metallic_mean": 0.0
+    },
+    "hi_triangles": 10726,
+    "third_party": [
+     "hessian_230"
+    ],
+    "source_blend": "_build/bake/SM_Sack_Grain_PR.blend",
+    "extra": null,
+    "shares_textures_of": null
+   },
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain",
-   "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
-   "status": "interim: reviewed, not claimed photoreal",
-   "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
-   "known_weaknesses": "Jute weave from a 0.3 m scan reads true close up, but the form is a smooth pillow with a flattened base: creases are shallow sine folds, the sewn mouth is nine loose stitches without a rolled seam, one flat facet line shows low on one side. Colour variants are material swaps.",
+   "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+   "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+   "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+   "known_weaknesses": "Round 2 unique bake from a cloth simulation (sewn pouch inflated by pressure and dropped on the floor), four review rounds (r6). Last look still faults: the cloth is clean (few stains, no patch or stencil), folds are the soft dimples of an inflated cushion rather than the sag of loose grain, the rolled hem, twine stitches and side seams are baked into the normal map only, so the mouth has no silhouette detail. Colour variants of round 1 (olive, madder) are now a BC tint for the integrator.",
    "third_party": [
-    "hessian_230",
-    "thatch_roof_angled"
+    "hessian_230"
    ],
-   "texture_sets": [
-    "Hessian",
-    "Thatch"
-   ],
-   "textures_px": 2048
+   "texture_sets": [],
+   "textures_px": 2048,
+   "textures": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_ORM.png"
+   }
   },
   {
    "name": "SM_FeedSack_Jute_PR",
    "class": "prop",
    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/SM_FeedSack_Jute_PR.fbx",
    "materials": [
-    "MI_Prop_Hessian",
-    "MI_Struct_Rope"
+    "MI_FeedSack_Jute"
    ],
-   "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
-   "lod0_triangles": 5550,
-   "lod1_triangles": 2774,
-   "lod2_triangles": 1220,
+   "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_FeedSack_Jute_PR.blend",
+   "lod0_triangles": 1272,
+   "lod1_triangles": 636,
+   "lod2_triangles": 278,
    "dimensions_m": [
-    0.749,
-    0.566,
-    0.77
+    0.734,
+    0.542,
+    0.821
    ],
    "bounds_min_m": [
-    -0.372,
-    -0.287,
+    -0.364,
+    -0.275,
     0.0
    ],
    "bounds_max_m": [
-    0.377,
-    0.279,
-    0.77
+    0.369,
+    0.267,
+    0.821
    ],
    "open_edges": 0,
    "collision_hulls": 1,
@@ -2094,25 +2158,63 @@
     "opening cottage (screen 1) feed sacks"
    ],
    "supersedes": "Stonebrook/SM_FeedSack_Jute_01 (0.72 x 0.55 x 0.75 m, base_center)",
-   "dresses": "feed sack stood on end, 0.72 x 0.56 x 0.75 m: weight settled to the bottom, neck gathered in folds and whipped with twine, a flared ruff above the tie",
+   "dresses": "feed sack stood on end, 0.74 x 0.56 x 0.77 m: jute sackcloth, weight settled to the bottom with simulated pleats running up to a gathered neck whipped with twine, a ruff of loose cloth above the tie flopping to one side",
    "fit": {
     "pivot": "base centre",
     "size": "as SM_FeedSack_Jute_01"
    },
+   "baked": {
+    "texture_folder": "FeedSack_Jute",
+    "textures": {
+     "BC": "T_FeedSack_Jute_PR_BC.png",
+     "N": "T_FeedSack_Jute_PR_N.png",
+     "ORM": "T_FeedSack_Jute_PR_ORM.png"
+    },
+    "px": 2048,
+    "slots": [
+     {
+      "material": "MI_FeedSack_Jute",
+      "kind": "opaque"
+     }
+    ],
+    "emissive_nits": null,
+    "params": null,
+    "stats": {
+     "albedo_luma_srgb": {
+      "p1": 0.0,
+      "mean": 54.5,
+      "p99": 123.5
+     },
+     "roughness": {
+      "p5": 0.0,
+      "mean": 0.573,
+      "p95": 0.87
+     },
+     "metallic_mean": 0.0
+    },
+    "hi_triangles": 14906,
+    "third_party": [
+     "hessian_230"
+    ],
+    "source_blend": "_build/bake/SM_FeedSack_Jute_PR.blend",
+    "extra": null,
+    "shares_textures_of": null
+   },
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute",
-   "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
-   "status": "interim: reviewed, not claimed photoreal",
-   "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
-   "known_weaknesses": "Body and weave pass at gameplay distance; the gathered neck and ruff are regular lathe folds and read stiff, like card, at 1 m; no side seam.",
+   "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+   "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+   "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+   "known_weaknesses": "Round 2 unique bake from a cloth simulation (bag pinned at the tie, inflated, settled on the floor), three review rounds (r6). Last look still faults: clean cloth with few stains; the ruff above the tie is a procedural gathered form, stiffer than the simulated body; the twine tie is one ring on the game mesh (five turns baked); no side seam in silhouette.",
    "third_party": [
-    "hessian_230",
-    "thatch_roof_angled"
+    "hessian_230"
    ],
-   "texture_sets": [
-    "Hessian",
-    "Thatch"
-   ],
-   "textures_px": 2048
+   "texture_sets": [],
+   "textures_px": 2048,
+   "textures": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/T_FeedSack_Jute_PR_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/T_FeedSack_Jute_PR_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/T_FeedSack_Jute_PR_ORM.png"
+   }
   },
   {
    "name": "SM_Table_Oak_Long_PR",
@@ -2933,27 +3035,26 @@
    "class": "prop_small",
    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/SM_Skull_PR.fbx",
    "materials": [
-    "MI_Prop_Bone",
-    "MI_Prop_OakWarm"
+    "MI_Skull"
    ],
-   "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
-   "lod0_triangles": 1712,
-   "lod1_triangles": 856,
-   "lod2_triangles": 376,
+   "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Skull_PR.blend",
+   "lod0_triangles": 1520,
+   "lod1_triangles": 760,
+   "lod2_triangles": 334,
    "dimensions_m": [
-    0.172,
-    0.23,
-    0.202
+    0.153,
+    0.225,
+    0.2
    ],
    "bounds_min_m": [
-    -0.086,
+    -0.077,
     -0.101,
-    0.0
+    -0.0
    ],
    "bounds_max_m": [
-    0.086,
-    0.129,
-    0.202
+    0.076,
+    0.124,
+    0.2
    ],
    "open_edges": 0,
    "collision_hulls": 0,
@@ -2962,52 +3063,84 @@
     "skull"
    ],
    "supersedes": "none (skull placeholder, 13 placements)",
-   "dresses": "human skull without the jaw, 0.17 x 0.22 x 0.2 m: cranium, brow ridge, cheek bones, eye sockets and nose as dark hollows, eight upper teeth; earth-stained, lichened",
+   "dresses": "human skull without the jaw, 0.16 x 0.2 x 0.2 m, facing -Y, resting on its teeth and skull base: domed cranium with zig-zag sutures, brow ridges, orbits, pear-shaped nasal aperture, cheek bones and zygomatic arches, temporal fossae, palate, eleven upper teeth (three lost); stained and pitted old bone",
    "fit": {
     "pivot": "base centre (resting on the palate), faces -Y; tip it on its side for variety"
    },
+   "baked": {
+    "texture_folder": "Skull",
+    "textures": {
+     "BC": "T_Skull_PR_BC.png",
+     "N": "T_Skull_PR_N.png",
+     "ORM": "T_Skull_PR_ORM.png"
+    },
+    "px": 1024,
+    "slots": [
+     {
+      "material": "MI_Skull",
+      "kind": "opaque"
+     }
+    ],
+    "emissive_nits": null,
+    "params": null,
+    "stats": {
+     "albedo_luma_srgb": {
+      "p1": 0.0,
+      "mean": 100.4,
+      "p99": 178.8
+     },
+     "roughness": {
+      "p5": 0.0,
+      "mean": 0.574,
+      "p95": 0.93
+     },
+     "metallic_mean": 0.0
+    },
+    "hi_triangles": 92468,
+    "third_party": [],
+    "source_blend": "_build/bake/SM_Skull_PR.blend",
+    "extra": null,
+    "shares_textures_of": null
+   },
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull",
-   "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
-   "status": "interim: reviewed, not claimed photoreal",
-   "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
-   "known_weaknesses": "NOT photoreal: a lathed cranium pushed into shape with three dark hollows and eight block teeth. Reads as a skull at gameplay distance only; no sutures, no zygomatic arches, no nasal bone.",
-   "third_party": [
-    "old_planks_02",
-    "painted_plaster_wall",
-    "plastered_wall_04"
-   ],
-   "texture_sets": [
-    "OakWeathered",
-    "PlasterWall"
-   ],
-   "textures_px": 2048
+   "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+   "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+   "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+   "known_weaknesses": "Round 2 unique bake from a sculpt (ellipsoid union minus cavities, voxel remesh; cached), four review rounds (r6). NOT photoreal. Last look still faults: the brain case is too large for the face (the face is about a third of the height, so it reads slightly juvenile or stylised), surfaces are smooth and clay-like between features, the zygomatic arch is a straight rod, the mastoids are knobs, orbits and nasal aperture are shallow and not dark enough inside, the teeth are separate pegs without sockets, soil staining is patchy but mild; the squamous and other minor sutures are missing. Sutures (sagittal, coronal, lambdoid), pitting, hairline cracks, lichen specks and three lost teeth are there.",
+   "third_party": [],
+   "texture_sets": [],
+   "textures_px": 1024,
+   "textures": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_ORM.png"
+   }
   },
   {
    "name": "SM_Bones_Scatter_PR",
    "class": "prop",
    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/SM_Bones_Scatter_PR.fbx",
    "materials": [
-    "MI_Prop_Bone",
-    "MI_Prop_OakWarm"
+    "MI_Bones_Scatter"
    ],
-   "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
-   "lod0_triangles": 3312,
-   "lod1_triangles": 1656,
-   "lod2_triangles": 728,
+   "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Bones_Scatter_PR.blend",
+   "lod0_triangles": 2556,
+   "lod1_triangles": 1278,
+   "lod2_triangles": 562,
    "dimensions_m": [
-    0.785,
-    0.685,
-    0.186
+    0.745,
+    0.653,
+    0.171
    ],
    "bounds_min_m": [
-    -0.422,
-    -0.372,
-    0.0
+    -0.394,
+    -0.361,
+    -0.009
    ],
    "bounds_max_m": [
-    0.363,
-    0.313,
-    0.186
+    0.351,
+    0.293,
+    0.163
    ],
    "open_edges": 0,
    "collision_hulls": 1,
@@ -3016,26 +3149,60 @@
     "bones"
    ],
    "supersedes": "none (bones placeholder, 46 placements)",
-   "dresses": "scatter of human remains, 0.8 x 0.7 m: a skull on its side, four long bones with knuckled ends, five ribs (one snapped)",
+   "dresses": "scatter of human remains, 0.8 x 0.7 m: a skull on its side, four long bones with knuckled spongy ends, five ribs (one short, snapped)",
    "fit": {
     "pivot": "ground centre; yaw at random",
     "gore": "kept as the sprite has it: these lie about the graveyards and dungeons"
    },
+   "baked": {
+    "texture_folder": "Bones_Scatter",
+    "textures": {
+     "BC": "T_Bones_Scatter_PR_BC.png",
+     "N": "T_Bones_Scatter_PR_N.png",
+     "ORM": "T_Bones_Scatter_PR_ORM.png"
+    },
+    "px": 2048,
+    "slots": [
+     {
+      "material": "MI_Bones_Scatter",
+      "kind": "opaque"
+     }
+    ],
+    "emissive_nits": null,
+    "params": null,
+    "stats": {
+     "albedo_luma_srgb": {
+      "p1": 0.0,
+      "mean": 93.4,
+      "p99": 176.7
+     },
+     "roughness": {
+      "p5": 0.0,
+      "mean": 0.586,
+      "p95": 0.93
+     },
+     "metallic_mean": 0.0
+    },
+    "hi_triangles": 105184,
+    "third_party": [],
+    "source_blend": "_build/bake/SM_Bones_Scatter_PR.blend",
+    "extra": null,
+    "shares_textures_of": null
+   },
+   "rehull": true,
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter",
-   "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
-   "status": "interim: reviewed, not claimed photoreal",
-   "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
-   "known_weaknesses": "NOT photoreal: long bones are swept tubes with swollen ends, ribs are curved blades; smooth and regular like casts; colour and lichen are vertex-level.",
-   "third_party": [
-    "old_planks_02",
-    "painted_plaster_wall",
-    "plastered_wall_04"
-   ],
-   "texture_sets": [
-    "OakWeathered",
-    "PlasterWall"
-   ],
-   "textures_px": 2048
+   "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+   "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+   "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+   "known_weaknesses": "Round 2 unique bake, two review rounds (r6). Reads as human remains at the gameplay camera; at 1 m: the skull has the faults of SM_Skull_PR, long bones are near-straight shafts with ball knuckles (no real femur neck, tibial crest or fibula), ribs are plain curved flat rods, there is no spine, pelvis or hand bones, and no cloth or sinew; staining is mild.",
+   "third_party": [],
+   "texture_sets": [],
+   "textures_px": 2048,
+   "textures": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/T_Bones_Scatter_PR_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/T_Bones_Scatter_PR_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/T_Bones_Scatter_PR_ORM.png"
+   }
   },
   {
    "name": "SM_Candle_Iron_PR",
@@ -4277,6 +4444,8 @@
      "subsurface": "wax / tallow: Subsurface (or Subsurface Profile) shading model, subsurface colour = BC * 0.9, mean free path about 8 mm (params.sss_radius = RGB radii in metres), opaque",
      "translucent": "glass / horn panes: thin translucent, two-sided, no refraction needed. Horn: Translucent or Two Sided Foliage style with opacity 0.75 and transmission colour = BC; glass: Translucent, opacity 0.35 + fresnel, tint = BC. Emissive from E as for the other slots (the horn panes of a lit lantern glow through E). The mesh carries dink_translucent (Nanite off)."
     },
+    "glass_and_embers_not_baked": "Props still on tiling sets (asset entry has no \"baked\"): SM_Potion_Flask_PR: the alpha 0 region of MI_Prop_PotionGlass_* is the glass; give that material a translucent variant (opacity 0.35 + fresnel, tint = glass_tint, roughness 0.06, two-sided) and the flask reads as glass with the dark liquid box behind it. SM_Shelf_Bottles_PR bottles are glazed earthenware, opaque by design. SM_Fireplace_Fieldstone_PR has NO ember mask yet (not reached in round 2): light the hearth with an engine fire effect.",
+    "decals": "Props/Decals (decals.json): T_Decal_BloodSplat_* and T_Decal_BurnHole_*, 2 x 2 atlases, BC alpha = opacity; see the 'decals' block of this manifest.",
     "texture_caps": "Baked props ship 2048 px (prop) or 1024 px (prop_small and the lantern). Props that dress a family as scatter are capped at 1024 by ART_STANDARD section 4: list T_<Asset>_ in Content/Dink/Data/Art/texture_import_caps.json to cap on import if wanted; the source stays 2048."
    }
   },
@@ -4383,6 +4552,38 @@
     "emissive_nits": null,
     "params": null,
     "third_party": [],
+    "texture_set": null
+   },
+   "MI_Sack_Grain": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_ORM.png"
+    },
+    "resolution_px": 2048,
+    "emissive_nits": null,
+    "params": null,
+    "third_party": [
+     "hessian_230"
+    ],
+    "texture_set": null
+   },
+   "MI_FeedSack_Jute": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/T_FeedSack_Jute_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/T_FeedSack_Jute_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/T_FeedSack_Jute_PR_ORM.png"
+    },
+    "resolution_px": 2048,
+    "emissive_nits": null,
+    "params": null,
+    "third_party": [
+     "hessian_230"
+    ],
     "texture_set": null
    },
    "MI_Table_Oak_Long": {
@@ -4497,6 +4698,34 @@
     "third_party": [
      "rough_wood"
     ],
+    "texture_set": null
+   },
+   "MI_Skull": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_ORM.png"
+    },
+    "resolution_px": 1024,
+    "emissive_nits": null,
+    "params": null,
+    "third_party": [],
+    "texture_set": null
+   },
+   "MI_Bones_Scatter": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/T_Bones_Scatter_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/T_Bones_Scatter_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/T_Bones_Scatter_PR_ORM.png"
+    },
+    "resolution_px": 2048,
+    "emissive_nits": null,
+    "params": null,
+    "third_party": [],
     "texture_set": null
    },
    "MI_Prop_Candle_Holder_01": {
@@ -6017,49 +6246,79 @@
     "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/SM_Sack_Grain_PR.fbx",
     "class": "prop",
     "material_slots": [
-     "MI_Prop_Hessian",
-     "MI_Struct_Rope"
+     "MI_Sack_Grain"
     ],
     "lod_triangles": [
-     2134,
-     1066,
-     468
+     1004,
+     502,
+     220
     ],
     "bounds_min_m": [
      -0.47,
-     -0.348,
+     -0.347,
      0.0
     ],
     "bounds_max_m": [
-     0.501,
+     0.5,
      0.345,
-     0.257
+     0.265
     ],
-    "collision_hulls": 1
+    "collision_hulls": 1,
+    "baked": {
+     "slots": [
+      {
+       "material": "MI_Sack_Grain",
+       "kind": "opaque"
+      }
+     ],
+     "textures": {
+      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_BC.png",
+      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_N.png",
+      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/T_Sack_Grain_PR_ORM.png"
+     },
+     "resolution_px": 2048,
+     "emissive_nits": null,
+     "params": null
+    }
    },
    "SM_FeedSack_Jute_PR": {
     "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/SM_FeedSack_Jute_PR.fbx",
     "class": "prop",
     "material_slots": [
-     "MI_Prop_Hessian",
-     "MI_Struct_Rope"
+     "MI_FeedSack_Jute"
     ],
     "lod_triangles": [
-     5550,
-     2774,
-     1220
+     1272,
+     636,
+     278
     ],
     "bounds_min_m": [
-     -0.372,
-     -0.287,
+     -0.364,
+     -0.275,
      0.0
     ],
     "bounds_max_m": [
-     0.377,
-     0.279,
-     0.77
+     0.369,
+     0.267,
+     0.821
     ],
-    "collision_hulls": 1
+    "collision_hulls": 1,
+    "baked": {
+     "slots": [
+      {
+       "material": "MI_FeedSack_Jute",
+       "kind": "opaque"
+      }
+     ],
+     "textures": {
+      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/T_FeedSack_Jute_PR_BC.png",
+      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/T_FeedSack_Jute_PR_N.png",
+      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/T_FeedSack_Jute_PR_ORM.png"
+     },
+     "resolution_px": 2048,
+     "emissive_nits": null,
+     "params": null
+    }
    },
    "SM_Table_Oak_Long_PR": {
     "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Long/SM_Table_Oak_Long_PR.fbx",
@@ -6412,49 +6671,79 @@
     "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/SM_Skull_PR.fbx",
     "class": "prop_small",
     "material_slots": [
-     "MI_Prop_Bone",
-     "MI_Prop_OakWarm"
+     "MI_Skull"
     ],
     "lod_triangles": [
-     1712,
-     856,
-     376
+     1520,
+     760,
+     334
     ],
     "bounds_min_m": [
-     -0.086,
+     -0.077,
      -0.101,
-     0.0
+     -0.0
     ],
     "bounds_max_m": [
-     0.086,
-     0.129,
-     0.202
+     0.076,
+     0.124,
+     0.2
     ],
-    "collision_hulls": 0
+    "collision_hulls": 0,
+    "baked": {
+     "slots": [
+      {
+       "material": "MI_Skull",
+       "kind": "opaque"
+      }
+     ],
+     "textures": {
+      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_BC.png",
+      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_N.png",
+      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/T_Skull_PR_ORM.png"
+     },
+     "resolution_px": 1024,
+     "emissive_nits": null,
+     "params": null
+    }
    },
    "SM_Bones_Scatter_PR": {
     "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/SM_Bones_Scatter_PR.fbx",
     "class": "prop",
     "material_slots": [
-     "MI_Prop_Bone",
-     "MI_Prop_OakWarm"
+     "MI_Bones_Scatter"
     ],
     "lod_triangles": [
-     3312,
-     1656,
-     728
+     2556,
+     1278,
+     562
     ],
     "bounds_min_m": [
-     -0.422,
-     -0.372,
-     0.0
+     -0.394,
+     -0.361,
+     -0.009
     ],
     "bounds_max_m": [
-     0.363,
-     0.313,
-     0.186
+     0.351,
+     0.293,
+     0.163
     ],
-    "collision_hulls": 1
+    "collision_hulls": 1,
+    "baked": {
+     "slots": [
+      {
+       "material": "MI_Bones_Scatter",
+       "kind": "opaque"
+      }
+     ],
+     "textures": {
+      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/T_Bones_Scatter_PR_BC.png",
+      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/T_Bones_Scatter_PR_N.png",
+      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Bones_Scatter/T_Bones_Scatter_PR_ORM.png"
+     },
+     "resolution_px": 2048,
+     "emissive_nits": null,
+     "params": null
+    }
    },
    "SM_Candle_Iron_PR": {
     "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Candle_Iron/SM_Candle_Iron_PR.fbx",

@@ -277,4 +277,4 @@ log('hair tris', tri_count(hair), 'eyes tris', tri_count(ey), 'skin tris', tri_c
 for nm in ('OldHair', 'OldEyes', 'BrowLash'): bpy.data.objects.remove(D[nm], do_unlink=True)
 Path(OUT / CFG['out']).parent.mkdir(parents=True, exist_ok=True)
 json.dump({'nose': nose.tolist(), 'top': float(top), 'back': float(back), 'ctr': ctr.tolist(), 'eyes': {str(k): [v[0].tolist(), v[1]] for k, v in eyes.items()}}, open(str(OUT / CFG['out']) + '.json', 'w'))
-bpy.ops.wm.save_as_mainfile(filepath=str(OUT / CFG['out']))
+save_blend(filepath=str(OUT / CFG['out']))
