@@ -52,3 +52,6 @@ Thumbs.db
 
 # Wavefront source geometry is not a compiler object file.
 !SourceAssets/**/*.obj
+
+# Derived immutable foundations are reproduced by the normal world importer.
+Content/Dink/RuntimeHardnessV1/
