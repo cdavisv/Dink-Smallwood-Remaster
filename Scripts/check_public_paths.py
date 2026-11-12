@@ -11,9 +11,14 @@ import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Split the prefixes so this checker does not flag its own source.
-PATTERN = re.compile(r'/(?:@?ho' + r'me|Us' + r'ers)/[A-Za-z0-9_.-]+|[A-Za-z]:[\\/]+Us' + r'ers[\\/]+[A-Za-z0-9_.-]+')
+PATTERN = re.compile(r'(?<![A-Za-z0-9_])/(?:@?ho' + r'me|Us' + r'ers)/[A-Za-z0-9_.-]+|[A-Za-z]:[\\/]+Us' + r'ers[\\/]+[A-Za-z0-9_.-]+')
 
 IDENTITY_PATTERN = re.compile(r'((?:LoginId|MachineId|EpicAccountId)\s*[=:]\s*)([A-Fa-f0-9-]{16,})', re.IGNORECASE)
+
+NEUTRAL_USERS = {'artist', 'user', 'username', 'runner', 'name', 'you', 'me', 'ubuntu', 'vsts', 'builder', 'build', 'work', 'home', 'dev', 'developer', 'example', 'someone', 'linuxbrew', 'git', 'jenkins', 'circleci', 'glados'}
+
+def private_home(match):
+    return re.split(r'[\\/]+', match[0])[-1].lower() not in NEUTRAL_USERS
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -32,11 +37,11 @@ def main():
             text = data.decode('utf-8')
         except UnicodeDecodeError:
             continue
-        if PATTERN.search(text) or IDENTITY_PATTERN.search(text):
+        if any(private_home(match) for match in PATTERN.finditer(text)) or IDENTITY_PATTERN.search(text):
             found.append(name)
             if args.fix:
                 # Historical receipts retain their useful suffix without disclosing a user.
-                clean = PATTERN.sub('<HOME>', text)
+                clean = PATTERN.sub(lambda match: '<HOME>' if private_home(match) else match[0], text)
                 clean = IDENTITY_PATTERN.sub(lambda match: match.group(1) + '<REDACTED>', clean)
                 path.write_bytes(clean.encode('utf-8'))
     print(f'Public path and identity check: {len(found)} text files ' + ('normalized' if args.fix else 'flagged'))

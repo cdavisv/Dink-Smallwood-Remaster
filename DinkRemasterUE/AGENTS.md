@@ -1,6 +1,6 @@
 ## Codex development pass closed — 12 November 2026
 
-Current validation: 809 Python tests pass; native 238/252 pass, with Chapter7 Sanctuary and thirteen dependent story probes unresolved. Preserve that limitation. An upgrade from old generated maps requires current gameplay data and fresh generated worlds/card baselines; derived `RuntimeHardnessV1` foundations remain ignored. Some historical source images require relinking; no final source-rerender acceptance.
+Current validation: 822 Python tests pass; native 238/252 pass, with Chapter7 Sanctuary and thirteen dependent story probes unresolved. Preserve that limitation. An upgrade from old generated maps requires current gameplay data and fresh generated worlds/card baselines; derived `RuntimeHardnessV1` foundations remain ignored. Some historical source images require relinking; no final source-rerender acceptance.
 
 The owner requested reconciliation and publication, then a pause in Codex remaster work. Do not restart art development without a new request. See the current `HANDOFF.md` and `Docs/Archives/CodexCloseout`. Preserve inactive source alternatives and independently owned Claude work. Public files must exclude user-home paths and local login strings. Keep shared-material registry entries from both old and new source families, preserve explicit historical/current hero ledger rows, and retain current master art defaults over superseded branch defaults. Privacy changes require refreshing current checksum manifests and validating source formats.
 
