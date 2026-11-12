@@ -1,0 +1,251 @@
+{
+  "tool": "export",
+  "ok": true,
+  "out": "<HOME>/Repos/Dink-Smallwood/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/StonebrookRuins/Export",
+  "manifest": "<HOME>/Repos/Dink-Smallwood/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/StonebrookRuins/Export/manifest.json",
+  "exported": [
+    {
+      "name": "SM_Cottage_Stonebrook_Burning_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burning_01.fbx"
+      },
+      "tris": {
+        "LOD0": 169932,
+        "LOD1": 84966,
+        "LOD2": 42482
+      }
+    },
+    {
+      "name": "SM_Cottage_Stonebrook_Burnt_01",
+      "files": {
+        "fbx": "Game/Dink/Buildings/StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01.fbx"
+      },
+      "tris": {
+        "LOD0": 162286,
+        "LOD1": 81142,
+        "LOD2": 40571
+      }
+    },
+    {
+      "name": "SM_Door_Cottage_Fallen_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Door_Cottage_Fallen_01.fbx"
+      },
+      "tris": {
+        "LOD0": 3316,
+        "LOD1": 1658,
+        "LOD2": 828
+      }
+    },
+    {
+      "name": "SM_Debris_AshPile_Large_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Large_01.fbx"
+      },
+      "tris": {
+        "LOD0": 3546,
+        "LOD1": 1772,
+        "LOD2": 886
+      }
+    },
+    {
+      "name": "SM_Debris_AshPile_Small_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Debris_AshPile_Small_01.fbx"
+      },
+      "tris": {
+        "LOD0": 1594,
+        "LOD1": 796,
+        "LOD2": 398
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_3m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_3m_01.fbx"
+      },
+      "tris": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_01.fbx"
+      },
+      "tris": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_2m_02",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_2m_02.fbx"
+      },
+      "tris": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_1m5_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Ground_1m5_01.fbx"
+      },
+      "tris": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      }
+    },
+    {
+      "name": "SM_Mother_Remains_Fire_01",
+      "files": {
+        "fbx": "Game/Dink/Foliage/StonebrookRuins/SM_Mother_Remains_Fire_01.fbx"
+      },
+      "tris": {
+        "LOD0": 16082,
+        "LOD1": 8040,
+        "LOD2": 3859
+      }
+    },
+    {
+      "name": "SM_Decal_Blood_Floor_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Blood_Floor_01.fbx"
+      },
+      "tris": {
+        "LOD0": 672,
+        "LOD1": 336,
+        "LOD2": 168
+      }
+    },
+    {
+      "name": "SM_Wall_Limewash_Burnt_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Wall_Limewash_Burnt_2m_01.fbx"
+      },
+      "tris": {
+        "LOD0": 1672,
+        "LOD1": 836,
+        "LOD2": 418
+      }
+    },
+    {
+      "name": "SM_Window_Limewash_Burnt_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Window_Limewash_Burnt_2m_01.fbx"
+      },
+      "tris": {
+        "LOD0": 1824,
+        "LOD1": 912,
+        "LOD2": 456
+      }
+    },
+    {
+      "name": "SM_Doorway_Limewash_Burnt_4m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Doorway_Limewash_Burnt_4m_01.fbx"
+      },
+      "tris": {
+        "LOD0": 2172,
+        "LOD1": 1086,
+        "LOD2": 542
+      }
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_01.fbx"
+      },
+      "tris": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      }
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_02",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_02.fbx"
+      },
+      "tris": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      }
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_03",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_03.fbx"
+      },
+      "tris": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      }
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_04",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Floor_Oak_Burnt_2m_04.fbx"
+      },
+      "tris": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      }
+    },
+    {
+      "name": "SM_Ceiling_Oak_Burnt_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_Burnt_2m_01.fbx"
+      },
+      "tris": {
+        "LOD0": 2340,
+        "LOD1": 1170,
+        "LOD2": 584
+      }
+    },
+    {
+      "name": "SM_Ceiling_Oak_BurntHole_2m_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Ceiling_Oak_BurntHole_2m_01.fbx"
+      },
+      "tris": {
+        "LOD0": 2252,
+        "LOD1": 1126,
+        "LOD2": 562
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Floor_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Floor_01.fbx"
+      },
+      "tris": {
+        "LOD0": 672,
+        "LOD1": 336,
+        "LOD2": 168
+      }
+    },
+    {
+      "name": "SM_Decal_Scorch_Wall_01",
+      "files": {
+        "fbx": "Game/Dink/Kits/StonebrookRuins/SM_Decal_Scorch_Wall_01.fbx"
+      },
+      "tris": {
+        "LOD0": 672,
+        "LOD1": 336,
+        "LOD2": 168
+      }
+    }
+  ],
+  "rejected": []
+}

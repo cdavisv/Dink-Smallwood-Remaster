@@ -6,10 +6,10 @@
     "taskset",
     "-c",
     "8,9",
-    "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
-    "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/DinkRemaster.uproject",
+    "<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+    "<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/DinkRemaster.uproject",
     "-run=pythonscript",
-    "-script=/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts/import_photoreal_barrel.py",
+    "-script=<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts/import_photoreal_barrel.py",
     "-nullrhi",
     "-notraceserver",
     "-unattended",
@@ -19,15 +19,15 @@
     "-stdout",
     "-FullStdOutLogOutput",
     "-ddc=InstalledNoZenLocalFallback",
-    "-LocalDataCachePath=/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/DDC",
-    "-UserDir=/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/User",
-    "-abslog=/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/Attempt03_verify/unreal.log"
+    "-LocalDataCachePath=<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/DDC",
+    "-UserDir=<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/User",
+    "-abslog=<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/Attempt03_verify/unreal.log"
   ],
   "env_overrides": {
     "DINK_BARREL_MODE": "verify",
-    "DINK_BARREL_SOURCE": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
-    "DINK_BARREL_REPORT": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/Attempt03_verify/receipt.json",
-    "DINK_BARREL_IMPORT_RECEIPT": "/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/approved_import_receipt.json"
+    "DINK_BARREL_SOURCE": "<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
+    "DINK_BARREL_REPORT": "<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/Attempt03_verify/receipt.json",
+    "DINK_BARREL_IMPORT_RECEIPT": "<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Saved/BarrelReviewed/approved_import_receipt.json"
   },
   "build_module_sha256": {
     "Binaries/Linux/libUnrealEditor-DinkRemaster.so": "e6a582121a9156a8e50966b28e9056f051e2746f7d5ed5a40de0e17eca50ae6d",

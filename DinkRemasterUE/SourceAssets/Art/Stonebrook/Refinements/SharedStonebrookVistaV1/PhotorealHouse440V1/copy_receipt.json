@@ -3,8 +3,8 @@
   "files": [
     {
       "file": "SharedHouse440_GameV6.blend",
-      "source_sha256": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
-      "copy_sha256": "0c5af0c33cd33b39b669d640504d4c24e1b2a6846c2f91508b7bebee6ffec694",
+      "source_sha256": "8fc2f297e8c71f7999484f602a76b274f2b2fd72dac004a7e1b179f4990c1411",
+      "copy_sha256": "8fc2f297e8c71f7999484f602a76b274f2b2fd72dac004a7e1b179f4990c1411",
       "independent_inode": true
     },
     {
@@ -15,8 +15,8 @@
     },
     {
       "file": "guide_house_raw_v6.json",
-      "source_sha256": "1a08737ce49c7373c0eef900505c089e85fde9e41c0f76179a9b124fcd64fda4",
-      "copy_sha256": "1a08737ce49c7373c0eef900505c089e85fde9e41c0f76179a9b124fcd64fda4",
+      "source_sha256": "14be24018d47198d686e200e6b9ed1ed7f16dbecde3b7dfa2014166e0f4cc612",
+      "copy_sha256": "14be24018d47198d686e200e6b9ed1ed7f16dbecde3b7dfa2014166e0f4cc612",
       "independent_inode": true
     },
     {
@@ -27,20 +27,20 @@
     },
     {
       "file": "export_report_v6.json",
-      "source_sha256": "43cbf6cb0fc20e76fc1fa928b6e45cd4b27ec042020abe583bbd764d7541e9a3",
-      "copy_sha256": "43cbf6cb0fc20e76fc1fa928b6e45cd4b27ec042020abe583bbd764d7541e9a3",
+      "source_sha256": "85e13a1cf6601ff28a09a0b8772560dfe5527cba88c2835902dcc3698c92a151",
+      "copy_sha256": "85e13a1cf6601ff28a09a0b8772560dfe5527cba88c2835902dcc3698c92a151",
       "independent_inode": true
     },
     {
       "file": "actual_fbx_proof_v6.json",
-      "source_sha256": "e325c8f6fd4c7bd0ab20022161cdf5ea3b7f4643679f07ed424a7f9da51d8745",
-      "copy_sha256": "e325c8f6fd4c7bd0ab20022161cdf5ea3b7f4643679f07ed424a7f9da51d8745",
+      "source_sha256": "1dce3ae232fe4266465dbcd84974f663accf4c343fcdade95d39851bc6b3168a",
+      "copy_sha256": "1dce3ae232fe4266465dbcd84974f663accf4c343fcdade95d39851bc6b3168a",
       "independent_inode": true
     },
     {
       "file": "roundtrip_house_v6.json",
-      "source_sha256": "4a8ec00277af6a19d45b448eb8733eb61dc41b5563e6d50088076f14e7df277a",
-      "copy_sha256": "4a8ec00277af6a19d45b448eb8733eb61dc41b5563e6d50088076f14e7df277a",
+      "source_sha256": "582ad55b0f285dead09f791ff7cec8e07fe5d8c017a6abbf39561c7a8a6bbe68",
+      "copy_sha256": "582ad55b0f285dead09f791ff7cec8e07fe5d8c017a6abbf39561c7a8a6bbe68",
       "independent_inode": true
     },
     {
@@ -51,8 +51,8 @@
     },
     {
       "file": "matched_context_review_v6.json",
-      "source_sha256": "f2180a7a22385e660ee369aceeb5693cd4761c84cdcb91c67983e726da162583",
-      "copy_sha256": "f2180a7a22385e660ee369aceeb5693cd4761c84cdcb91c67983e726da162583",
+      "source_sha256": "0508e269af32c9b149a262a5509ecdc2190cce671fc44ff67201df6e7829582e",
+      "copy_sha256": "0508e269af32c9b149a262a5509ecdc2190cce671fc44ff67201df6e7829582e",
       "independent_inode": true
     },
     {
@@ -147,14 +147,14 @@
     },
     {
       "file": "Export/manifest.json",
-      "source_sha256": "0140e6032bb8f7acfaf5729d675e61ba3c649cac240623ff592969d40dc83ee6",
-      "copy_sha256": "0140e6032bb8f7acfaf5729d675e61ba3c649cac240623ff592969d40dc83ee6",
+      "source_sha256": "068c31307734577caa03c00af30ab06d899c53364e341bf9089cfe41652b50a2",
+      "copy_sha256": "068c31307734577caa03c00af30ab06d899c53364e341bf9089cfe41652b50a2",
       "independent_inode": true
     },
     {
       "file": "Export/Game/Dink/Buildings/Stonebrook/SharedVista/SM_Shared_House440_01.fbx",
-      "source_sha256": "3d54c58a65b818fef5813f7d425e919f554a0940d722b92de9f2414fa973bc23",
-      "copy_sha256": "3d54c58a65b818fef5813f7d425e919f554a0940d722b92de9f2414fa973bc23",
+      "source_sha256": "88cb7891efb385c578f0dc12fbef3e1c969f88aa33fd563d957624568f821b47",
+      "copy_sha256": "88cb7891efb385c578f0dc12fbef3e1c969f88aa33fd563d957624568f821b47",
       "independent_inode": true
     },
     {
@@ -255,20 +255,20 @@
     },
     {
       "file": "SourceReference/HouseHighV11_Extract.blend",
-      "source_sha256": "a48f9e3f8bca7d7a3e24d28e73ea9a6c76f01110b81771f05a0dd056a63925ee",
-      "copy_sha256": "a48f9e3f8bca7d7a3e24d28e73ea9a6c76f01110b81771f05a0dd056a63925ee",
+      "source_sha256": "f48037d4bd8d85f7c4e3c72a019499e112d19254a34a7770320652e17c139baa",
+      "copy_sha256": "f48037d4bd8d85f7c4e3c72a019499e112d19254a34a7770320652e17c139baa",
       "independent_inode": true
     },
     {
       "file": "SourceReference/high_extract_v11.json",
-      "source_sha256": "160a03e83ccb51175269c6d18ec9749917031bb7e236885c1e3b45008e166e9e",
-      "copy_sha256": "160a03e83ccb51175269c6d18ec9749917031bb7e236885c1e3b45008e166e9e",
+      "source_sha256": "603b863207a5c121effbc7451f23b0f9ea45b5083350137c6860cd02814dee97",
+      "copy_sha256": "603b863207a5c121effbc7451f23b0f9ea45b5083350137c6860cd02814dee97",
       "independent_inode": true
     },
     {
       "file": "SourceReference/FieldstoneNormalSourceV6.blend",
-      "source_sha256": "a0ed1fdee8ca69f36893a29f7baa75d2a816a3418ed7a993ffbd4bec8efe88f6",
-      "copy_sha256": "a0ed1fdee8ca69f36893a29f7baa75d2a816a3418ed7a993ffbd4bec8efe88f6",
+      "source_sha256": "339761c7a1ba3c99f6f32e9eb345112caa0bf8858f520ec84faa61fb802cf696",
+      "copy_sha256": "339761c7a1ba3c99f6f32e9eb345112caa0bf8858f520ec84faa61fb802cf696",
       "independent_inode": true
     },
     {
@@ -279,8 +279,8 @@
     },
     {
       "file": "Previews/house-detail.png",
-      "source_sha256": "b4eeeaa35a25d97e5c9b9fd8208e64c96ada9f53d33b5e06b876fa308d7cbd05",
-      "copy_sha256": "b4eeeaa35a25d97e5c9b9fd8208e64c96ada9f53d33b5e06b876fa308d7cbd05",
+      "source_sha256": "d2ccffeb41dcf4a7d84c17ddff2a1cfc52c3973eb72c19dee61b3fa9564e21a3",
+      "copy_sha256": "d2ccffeb41dcf4a7d84c17ddff2a1cfc52c3973eb72c19dee61b3fa9564e21a3",
       "independent_inode": true
     }
   ]

@@ -1,12 +1,12 @@
 {
   "status": "PASS",
-  "canonical_library_source_sha256": "970d2f2829ee423181347810e2edb954396317396ff837ca1545ef95aa78e88b",
-  "relocated_library_source_sha256": "970d2f2829ee423181347810e2edb954396317396ff837ca1545ef95aa78e88b",
+  "canonical_library_source_sha256": "4afd2bbd4ad817303aec343959d4f306efebfea5050febf4aa71877422d37419",
+  "relocated_library_source_sha256": "4afd2bbd4ad817303aec343959d4f306efebfea5050febf4aa71877422d37419",
   "source_bytes_identical": true,
   "material_fingerprints_exact": 6,
   "independent_surfaces_exact": 18,
   "replay": "DefaultTools/build_library.py usedrelocatedpackedregisteredSource; no--donor/currentQAsource argument",
   "actual_first_render_review": "All18panels viewed:nominal2m/4mpatternscale andvariantseparation visible;flatpanelsfunctionalreuseproof,notfinalphotoreal/gameapproval",
   "relocated_render_review": "Inspected actual relocated render: all18panels present; 2m/4m extent and nine variants visible. Functional reuse evidence only; no final photoreal or native approval.",
-  "image_sha256": "810404af05ab0c0f7ccffb0d7e027855217999b50bc92e8c5b3fab478d20b540"
+  "image_sha256": "596e6ce7a261259fee1a6f5375eb741dbf41d489659bc347e06a504779002e2f"
 }

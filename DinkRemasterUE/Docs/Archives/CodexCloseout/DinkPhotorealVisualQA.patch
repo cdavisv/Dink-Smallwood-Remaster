@@ -1,0 +1,472 @@
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkHumanoidComponent.cpp w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkHumanoidComponent.cpp
+index bdfac03..6dd3487 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkHumanoidComponent.cpp
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkHumanoidComponent.cpp
+@@ -15,6 +15,13 @@ UDinkHumanoidComponent::UDinkHumanoidComponent()
+ 
+ void UDinkHumanoidComponent::Configure(USkeletalMesh* Mesh, UBlendSpace* Locomotion)
+ {
++	// A script size/profile reapply may already have supplied a fresh authored transform.
++	// Strip our last lean only if that exact pose is still ours; never remove it from a new base.
++	const FQuat Current = GetRelativeRotation().Quaternion();
++	if (bBodyRotationApplied && Current.Equals(LastBodyRotation, .00001f))
++		SetRelativeRotation(AppliedBodyRotation.Inverse() * Current);
++	AppliedBodyRotation = FQuat::Identity;
++	bBodyRotationApplied = false;
+ 	SetSkeletalMesh(Mesh);
+ 	LocomotionAsset = Locomotion;
+ 	if (Locomotion)
+@@ -24,6 +31,7 @@ void UDinkHumanoidComponent::Configure(USkeletalMesh* Mesh, UBlendSpace* Locomot
+ 		if (UAnimSingleNodeInstance* Animation=GetSingleNodeInstance()) Animation->SetPlayRate(1.f);
+ 	}
+ 	Motion.Reset();
++	BodyDynamics.Reset();
+ 	LocomotionSpeed = 0.f;
+ }
+ 
+@@ -32,6 +40,13 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
+ 	if (AActor* Owner = GetOwner())
+ 	{
+ 		const FVector Location = Owner->GetActorLocation();
++		const FQuat Current = GetRelativeRotation().Quaternion();
++		const FQuat Base = bBodyRotationApplied && Current.Equals(LastBodyRotation, .00001f)
++			? AppliedBodyRotation.Inverse() * Current : Current;
++		AppliedBodyRotation = BodyDynamics.Update(Location, Owner->GetActorQuat(), DeltaTime).Quaternion();
++		LastBodyRotation = AppliedBodyRotation * Base;
++		SetRelativeRotation(LastBodyRotation);
++		bBodyRotationApplied = true;
+ 		LocomotionSpeed = Motion.Update(Location, DeltaTime);
+ 		if (UAnimSingleNodeInstance* Animation = GetSingleNodeInstance(); Animation && LocomotionAsset)
+ 		{
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
+index bdb1b30..e03bf13 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkInteriorCameraComponent.cpp
+@@ -80,6 +80,21 @@ void UDinkInteriorCameraComponent::BeginPlay()
+     }
+ }
+ 
++float UDinkInteriorCameraComponent::GetDesiredArmLength() const
++{
++    return FMath::Clamp((bInteriorMode ? InteriorArmLength : OutdoorArm) + ZoomOffset,
++        MinimumArmLength, bInteriorMode ? MaximumInteriorArmLength : MaximumOutdoorArmLength);
++}
++
++void UDinkInteriorCameraComponent::AddZoomInput(float Steps)
++{
++    if (!FMath::IsFinite(Steps) || FMath::IsNearlyZero(Steps)) return;
++    const float Base = bInteriorMode ? InteriorArmLength : OutdoorArm;
++    // Clamp from the effective distance, so reversing at a limit responds immediately.
++    ZoomOffset = FMath::Clamp(GetDesiredArmLength() - FMath::Clamp(Steps, -10.f, 10.f) * ZoomStep,
++        MinimumArmLength, bInteriorMode ? MaximumInteriorArmLength : MaximumOutdoorArmLength) - Base;
++}
++
+ void UDinkInteriorCameraComponent::RestoreCamera()
+ {
+     FloorFramingShift=FVector::ZeroVector; bFloorFramingAvailable=false; bFloorFramingFeasible=true;
+@@ -133,15 +148,19 @@ void UDinkInteriorCameraComponent::RestoreOccluders()
+ 
+ void UDinkInteriorCameraComponent::SelectScreen(ADinkScreenVolume* Screen)
+ {
++    const bool SameMode = bSelectedScreen && bInteriorMode == bool(Screen && Screen->bIndoor);
++    const float PreviousArm = Arm->TargetArmLength;
+     RestoreOccluders(); CurrentScreen=Screen; bSelectedScreen=true;
+     bInteriorMode = Screen && Screen->bIndoor;
+     if (bInteriorMode)
+     {
+-        Arm->TargetArmLength=InteriorArmLength; Arm->TargetOffset=OutdoorPivot+InteriorPivotOffset;
++        Arm->TargetArmLength=GetDesiredArmLength(); Arm->TargetOffset=OutdoorPivot+InteriorPivotOffset;
+         Arm->SocketOffset=OutdoorSocket+InteriorShoulderOffset; Camera->SetFieldOfView(InteriorFieldOfView);
+         ShoulderTargetSign=1.f; CurrentShoulderY=InteriorShoulderOffset.Y; bSnapFraming=true;
+     }
+-    else RestoreCamera();
++    else { RestoreCamera(); Arm->TargetArmLength=GetDesiredArmLength(); }
++    // Adjacent screens must not restart an in-progress zoom or flash the unzoomed preset.
++    if (SameMode) Arm->TargetArmLength=PreviousArm;
+     // Outdoor meshes participate only through the same explicit tag and complete
+     // authored material mapping. Their physical collision and outdoor camera stay intact.
+     if (!Screen) return;
+@@ -295,6 +314,7 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
+     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
+     ADinkScreenVolume* Screen=Grey ? Grey->GetCurrentScreen() : nullptr;
+     if (!bSelectedScreen || Screen!=CurrentScreen.Get()) SelectScreen(Screen);
++    Arm->TargetArmLength = FMath::FInterpTo(Arm->TargetArmLength, GetDesiredArmLength(), DeltaTime, 10.f);
+     if (bInteriorMode) UpdateFraming(DeltaTime);
+     if (Occluders.IsEmpty()) return;
+     const FRotator Rotation=Arm->GetTargetRotation();
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp
+index 10ed104..3a7e28a 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/Greybox/DinkGreyboxCharacter.cpp
+@@ -18,6 +18,8 @@
+ #include "InputAction.h"
+ #include "InputActionValue.h"
+ #include "InputMappingContext.h"
++#include "InputModifiers.h"
++#include "InputTriggers.h"
+ 
+ ADinkGreyboxCharacter::ADinkGreyboxCharacter()
+ {
+@@ -30,12 +32,37 @@ ADinkGreyboxCharacter::ADinkGreyboxCharacter()
+ 
+ 	UCharacterMovementComponent* Move = GetCharacterMovement();
+ 	Move->bOrientRotationToMovement = true;
+-	Move->RotationRate = FRotator(0.f, 500.f, 0.f);
++	Move->RotationRate = FRotator(0.f, 360.f, 0.f);
++	Move->MaxAcceleration = 1100.f;
++	Move->GroundFriction = 6.f;
+ 	Move->MaxWalkSpeed = RunSpeed;
+ 	Move->MinAnalogWalkSpeed = 20.f;
+-	Move->BrakingDecelerationWalking = 2000.f;
+-	Move->JumpZVelocity = 0.f;
+-	Move->GetNavAgentPropertiesRef().bCanJump = false;
++	Move->BrakingDecelerationWalking = 950.f;
++	Move->JumpZVelocity = 280.f;
++	Move->GravityScale = 1.45f;
++	Move->AirControl = .2f;
++	Move->BrakingDecelerationFalling = 150.f;
++	Move->MaxStepHeight = 35.f;
++	Move->GetNavAgentPropertiesRef().bCanJump = true;
++	JumpMaxHoldTime = .08f;
++	JumpMaxCount = 1;
++
++	ThirdPersonMapping = CreateDefaultSubobject<UInputMappingContext>(TEXT("ThirdPersonControls"));
++	WalkInputAction = CreateDefaultSubobject<UInputAction>(TEXT("WalkAction"));
++	JumpInputAction = CreateDefaultSubobject<UInputAction>(TEXT("JumpAction"));
++	ZoomInputAction = CreateDefaultSubobject<UInputAction>(TEXT("ZoomAction"));
++	WalkInputAction->ValueType = EInputActionValueType::Boolean;
++	JumpInputAction->ValueType = EInputActionValueType::Boolean;
++	ZoomInputAction->ValueType = EInputActionValueType::Axis1D;
++	ThirdPersonMapping->MapKey(WalkInputAction, EKeys::LeftShift);
++	ThirdPersonMapping->MapKey(WalkInputAction, EKeys::Gamepad_LeftShoulder);
++	ThirdPersonMapping->MapKey(JumpInputAction, EKeys::SpaceBar);
++	ThirdPersonMapping->MapKey(JumpInputAction, EKeys::Gamepad_FaceButton_Bottom);
++	ThirdPersonMapping->MapKey(ZoomInputAction, EKeys::MouseWheelAxis);
++	ThirdPersonMapping->MapKey(ZoomInputAction, EKeys::Gamepad_DPad_Up).Triggers.Add(CreateDefaultSubobject<UInputTriggerPressed>(TEXT("ZoomInPress")));
++	FEnhancedActionKeyMapping& ZoomOut = ThirdPersonMapping->MapKey(ZoomInputAction, EKeys::Gamepad_DPad_Down);
++	ZoomOut.Triggers.Add(CreateDefaultSubobject<UInputTriggerPressed>(TEXT("ZoomOutPress")));
++	ZoomOut.Modifiers.Add(CreateDefaultSubobject<UInputModifierNegate>(TEXT("ZoomOutDirection")));
+ 
+ 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
+ 	CameraBoom->SetupAttachment(RootComponent);
+@@ -80,13 +107,27 @@ void ADinkGreyboxCharacter::BeginPlay()
+ 	}
+ }
+ 
++void ADinkGreyboxCharacter::EndPlay(const EEndPlayReason::Type Reason)
++{
++	if (UEnhancedInputLocalPlayerSubsystem* Input = BoundInputSubsystem.Get())
++		Input->RemoveMappingContext(ThirdPersonMapping);
++	BoundInputSubsystem.Reset();
++	Super::EndPlay(Reason);
++}
++
+ void ADinkGreyboxCharacter::NotifyControllerChanged()
+ {
++	if (UEnhancedInputLocalPlayerSubsystem* Input = BoundInputSubsystem.Get())
++		Input->RemoveMappingContext(ThirdPersonMapping);
++	BoundInputSubsystem.Reset();
++	StopJumping();
+ 	Super::NotifyControllerChanged();
+ 	if (APlayerController* PC = Cast<APlayerController>(Controller))
+ 	{
+ 		if (UEnhancedInputLocalPlayerSubsystem* Input = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
+ 		{
++			BoundInputSubsystem = Input;
++			Input->AddMappingContext(ThirdPersonMapping, 1);
+ 			for (const TSoftObjectPtr<UInputMappingContext>& Soft : MappingContexts)
+ 			{
+ 				if (UInputMappingContext* Context = Soft.LoadSynchronous())
+@@ -123,6 +164,74 @@ void ADinkGreyboxCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
+ 	{
+ 		Input->BindAction(A, ETriggerEvent::Triggered, this, &ADinkGreyboxCharacter::Look);
+ 	}
++	// Dialogue's Slate handler consumes Space before Enhanced Input sees it.
++	Input->BindAction(WalkInputAction, ETriggerEvent::Started, this, &ADinkGreyboxCharacter::StartWalking);
++	Input->BindAction(WalkInputAction, ETriggerEvent::Completed, this, &ADinkGreyboxCharacter::StopWalking);
++	Input->BindAction(WalkInputAction, ETriggerEvent::Canceled, this, &ADinkGreyboxCharacter::StopWalking);
++	Input->BindAction(JumpInputAction, ETriggerEvent::Started, this, &ADinkGreyboxCharacter::Jump);
++	Input->BindAction(JumpInputAction, ETriggerEvent::Completed, this, &ADinkGreyboxCharacter::StopJumping);
++	Input->BindAction(JumpInputAction, ETriggerEvent::Canceled, this, &ADinkGreyboxCharacter::StopJumping);
++	Input->BindAction(ZoomInputAction, ETriggerEvent::Triggered, this, &ADinkGreyboxCharacter::Zoom);
++}
++
++void ADinkGreyboxCharacter::SetWalking(bool bWalking)
++{
++	bWalkingHeld = bWalking;
++	GetCharacterMovement()->MaxWalkSpeed = bWalking ? WalkSpeed : RunSpeed;
++}
++
++void ADinkGreyboxCharacter::Jump()
++{
++	if (Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead()) Super::Jump();
++}
++
++void ADinkGreyboxCharacter::Landed(const FHitResult& Hit)
++{
++	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
++	if (Allowed) HeroPhysicality.Land(FMath::Max(0.f, -GetVelocity().Z), AirSeconds, LandingStumbleChance);
++	AirSeconds = 0.f;
++	Super::Landed(Hit);
++}
++
++void ADinkGreyboxCharacter::Zoom(const FInputActionValue& Value)
++{
++	ZoomCamera(Value.Get<float>());
++}
++
++void ADinkGreyboxCharacter::ZoomCamera(float Steps)
++{
++	if (UDinkInteriorCameraComponent* Camera = FindComponentByClass<UDinkInteriorCameraComponent>())
++		Camera->AddZoomInput(Steps);
++}
++
++void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
++{
++	if (APlayerController* PC = Cast<APlayerController>(Controller); PC && IsLocallyControlled())
++	{
++		// Poll held controls too: losing focus or a consumed menu key-up must never stick a gait/jump.
++		const bool Held = PC->IsInputKeyDown(EKeys::LeftShift) || PC->IsInputKeyDown(EKeys::Gamepad_LeftShoulder);
++		if (Held != bWalkingHeld) SetWalking(Held);
++		if (PC->IsMoveInputIgnored() || Stats->IsDead() ||
++			(!PC->IsInputKeyDown(EKeys::SpaceBar) && !PC->IsInputKeyDown(EKeys::Gamepad_FaceButton_Bottom))) StopJumping();
++	}
++	Super::Tick(DeltaSeconds);
++	const FVector Location = GetActorLocation();
++	const bool Teleported = !bBodyLocationReady || FVector::DistSquared(Location, PreviousBodyLocation) >= FMath::Square(200.);
++	if (Teleported) { HeroPhysicality.Cancel(); AirSeconds = 0.f; }
++	const bool Grounded = GetCharacterMovement()->IsMovingOnGround();
++	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
++	if (!Allowed) AirSeconds = 0.f;
++	else if (!Grounded) AirSeconds += DeltaSeconds;
++	else AirSeconds = 0.f;
++	HeroPhysicality.Update(DeltaSeconds, GetVelocity().Size2D(), Grounded, Allowed && !Teleported);
++	PreviousBodyLocation = Location; bBodyLocationReady = true;
++	const FQuat Base = AppliedBodyRotation.Inverse() * GetMesh()->GetRelativeRotation().Quaternion();
++	AppliedBodyRotation = BodyDynamics.Update(GetActorLocation(), GetActorQuat(), DeltaSeconds,
++		Grounded).Quaternion() * HeroPhysicality.GetRotation().Quaternion();
++	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
++	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
++	AppliedBodyOffset = HeroPhysicality.GetOffset();
++	GetMesh()->SetRelativeLocation(BaseLocation + AppliedBodyOffset);
+ }
+ 
+ void ADinkGreyboxCharacter::Move(const FInputActionValue& Value)
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkHumanoidComponent.h w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkHumanoidComponent.h
+index 7f75e85..ff6fc83 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkHumanoidComponent.h
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkHumanoidComponent.h
+@@ -2,6 +2,7 @@
+ 
+ #include "CoreMinimal.h"
+ #include "DinkMotionEstimate.h"
++#include "DinkBodyDynamics.h"
+ #include "Components/SkeletalMeshComponent.h"
+ #include "DinkHumanoidComponent.generated.h"
+ 
+@@ -22,6 +23,10 @@ public:
+ 	float GetLocomotionSpeed() const { return LocomotionSpeed; }
+ private:
+ 	FDinkMotionEstimate Motion;
++	FDinkBodyDynamics BodyDynamics;
++	FQuat AppliedBodyRotation = FQuat::Identity;
++	FQuat LastBodyRotation = FQuat::Identity;
++	bool bBodyRotationApplied = false;
+ 	float LocomotionSpeed = 0.f;
+ 	UPROPERTY(Transient)
+ 	TObjectPtr<UBlendSpace> LocomotionAsset;
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h
+index a6d3a5e..3f2f1d8 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkInteriorCameraComponent.h
+@@ -35,6 +35,14 @@ class DINKCORE_API UDinkInteriorCameraComponent : public UActorComponent
+     GENERATED_BODY()
+ public:
+     UDinkInteriorCameraComponent();
++    /** Positive steps move closer. Kept separate from interior/outdoor base distances. */
++    void AddZoomInput(float Steps);
++    float GetZoomOffset() const { return ZoomOffset; }
++    float GetDesiredArmLength() const;
++    UPROPERTY(EditAnywhere, Category="Dink|Camera") float ZoomStep = 35.f;
++    UPROPERTY(EditAnywhere, Category="Dink|Camera") float MinimumArmLength = 180.f;
++    UPROPERTY(EditAnywhere, Category="Dink|Camera") float MaximumOutdoorArmLength = 650.f;
++    UPROPERTY(EditAnywhere, Category="Dink|Camera") float MaximumInteriorArmLength = 320.f;
+     virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* TickFunction) override;
+     UPROPERTY(EditAnywhere, Category="Dink|Camera") float InteriorArmLength = 240.f;
+     UPROPERTY(EditAnywhere, Category="Dink|Camera") FVector InteriorPivotOffset = FVector(0,0,52);
+@@ -71,4 +79,5 @@ private:
+     FVector OutdoorPivot = FVector::ZeroVector;
+     FVector OutdoorSocket = FVector::ZeroVector;
+     bool bSelectedScreen = false;
++    float ZoomOffset = 0.f;
+ };
+diff --git c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h
+index 7f2218d..6817ed0 100644
+--- c/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h
++++ w/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Greybox/DinkGreyboxCharacter.h
+@@ -1,11 +1,14 @@
+ #pragma once
+ 
+ #include "CoreMinimal.h"
++#include "DinkBodyDynamics.h"
++#include "DinkHeroPhysicality.h"
+ #include "GameFramework/Character.h"
+ #include "GameFramework/GameModeBase.h"
+ #include "DinkGreyboxCharacter.generated.h"
+ 
+ class UCameraComponent;
++class UEnhancedInputLocalPlayerSubsystem;
+ class UDinkInventoryComponent;
+ class UDinkStatsComponent;
+ class UInputAction;
+@@ -17,8 +20,7 @@ struct FInputActionValue;
+  * Walk-around character for the greybox: the engine's third-person template behaviour (camera
+  * boom, orient to movement, Enhanced Input) with the mannequin, animation blueprint and input
+  * assets copied from the engine's template content into /Game/Characters and /Game/Input
+- * (Scripts/copy_template_content.sh). Runs at 6 m/s. No jump: the original has none, and the
+- * hardness blockers are built for a walker.
++ * (Scripts/copy_template_content.sh). Runs at 6 m/s, walks at 2 m/s, with variable-height jump.
+  *
+  * Carries Dink's stats (mirrored both ways with the engine-kind facts, so a script's `&gold -= 100`
+  * reaches them) and inventory, so the narrative layer's add_item/count_item work in the greybox.
+@@ -63,9 +65,38 @@ public:
+ 
+ 	/** Running speed, cm/s (6 m/s; the layout's travel-time figures assume it). */
+ 	static constexpr float RunSpeed = 600.f;
++	static constexpr float WalkSpeed = 200.f;
++	virtual void Tick(float DeltaSeconds) override;
++	virtual void Jump() override;
++	virtual void Landed(const FHitResult& Hit) override;
++	UPROPERTY(EditAnywhere, Category="Dink|Physicality", meta=(ClampMin="0", ClampMax="1"))
++	float LandingStumbleChance = .3f;
++	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
++	bool IsStumbling() const { return HeroPhysicality.IsStumbling(); }
++	void SetWalking(bool bWalking);
++	void ZoomCamera(float Steps);
++
++private:
++	void StartWalking() { SetWalking(true); }
++	void StopWalking() { SetWalking(false); }
++	void Zoom(const FInputActionValue& Value);
++	UPROPERTY() TObjectPtr<UInputMappingContext> ThirdPersonMapping;
++	UPROPERTY() TObjectPtr<UInputAction> WalkInputAction;
++	UPROPERTY() TObjectPtr<UInputAction> JumpInputAction;
++	UPROPERTY() TObjectPtr<UInputAction> ZoomInputAction;
++	TWeakObjectPtr<UEnhancedInputLocalPlayerSubsystem> BoundInputSubsystem;
++	bool bWalkingHeld = false;
++	FDinkBodyDynamics BodyDynamics;
++	FDinkHeroPhysicality HeroPhysicality;
++	FVector PreviousBodyLocation = FVector::ZeroVector;
++	FVector AppliedBodyOffset = FVector::ZeroVector;
++	float AirSeconds = 0.f;
++	bool bBodyLocationReady = false;
++	FQuat AppliedBodyRotation = FQuat::Identity;
+ 
+ protected:
+ 	virtual void BeginPlay() override;
++	virtual void EndPlay(const EEndPlayReason::Type Reason) override;
+ 	virtual void NotifyControllerChanged() override;
+ 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
+ 
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeConsole.cpp w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeConsole.cpp
+index d1966c3..d72d967 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeConsole.cpp
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeConsole.cpp
+@@ -227,7 +227,7 @@ static FAutoConsoleCommandWithWorld GDinkAttackCommand(
+ 
+ static FAutoConsoleCommandWithWorld GDinkMagicCommand(
+ 	TEXT("dink.Magic"),
+-	TEXT("dink.Magic: the magic key (Q / Left Shift): casts the armed spell if &magic_level >= &magic_cost."),
++	TEXT("dink.Magic: the magic key (Q): casts the armed spell if &magic_level >= &magic_cost."),
+ 	FConsoleCommandWithWorldDelegate::CreateLambda([](UWorld* World)
+ 	{
+ 		if (UDinkStorySubsystem* S = GetStory(World))
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeInput.h w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeInput.h
+index 4b65bc7..6778666 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeInput.h
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativeInput.h
+@@ -11,7 +11,7 @@ class UDinkStorySubsystem;
+  *   Space/Enter/E    skip the say_stop text being waited on (the original's skip)
+  *   Up/Down, W/S     move the menu highlight;  Enter/Space/E pick;  1-9 pick directly
+  *   F / Left Ctrl    attack: the armed item's `use` (fists, sword, pig feed...; the original's Ctrl)
+- *   Q / Left Shift   cast the armed spell when charged (the original's Shift)
++ *   Q                cast the armed spell when charged (the original's Shift)
+  * Only acts in a game world, and never while the console is open.
+  */
+ class FDinkNarrativeInputProcessor : public IInputProcessor
+diff --git c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativePresentation.cpp w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativePresentation.cpp
+index a3bbe13..21ab736 100644
+--- c/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativePresentation.cpp
++++ w/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkNarrativePresentation.cpp
+@@ -199,12 +199,12 @@ bool FDinkNarrativeInputProcessor::HandleKeyDownEvent(FSlateApplication& SlateAp
+ 		APlayerController* PC = World->GetFirstPlayerController();
+ 		return S->TryTalk(PC ? PC->GetPawn() : nullptr);
+ 	}
+-	// The original's Ctrl (attack / use the armed item) and Shift (cast the armed spell).
++	// Shift now holds the third-person walk gait; Q remains the spell control.
+ 	if (Key == EKeys::F || Key == EKeys::LeftControl)
+ 	{
+ 		return S->GetGameplay()->PlayerAttack();
+ 	}
+-	if (Key == EKeys::Q || Key == EKeys::LeftShift)
++	if (Key == EKeys::Q)
+ 	{
+ 		return S->GetGameplay()->PlayerCastMagic();
+ 	}
+diff --git c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs
+index f715450..6304c6e 100644
+--- c/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs
++++ w/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/DinkParity.Build.cs
+@@ -8,7 +8,7 @@ public class DinkParity : ModuleRules
+ 	{
+ 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+ 		PrivateDependencyModuleNames.AddRange(new string[] {
+-			"Core", "CoreUObject", "Engine", "DinkCore", "DinkNarrative", "InkPlusPlus", "Json", "UnrealEd", "MeshDescription", "StaticMeshDescription"
++			"Core", "CoreUObject", "Engine", "InputCore", "DinkCore", "DinkNarrative", "InkPlusPlus", "Json", "UnrealEd", "MeshDescription", "StaticMeshDescription"
+ 		});
+ 	}
+ }
+diff --git c/DinkRemasterUE/README.md w/DinkRemasterUE/README.md
+index 13c80cf..4536986 100644
+--- c/DinkRemasterUE/README.md
++++ w/DinkRemasterUE/README.md
+@@ -52,10 +52,16 @@ Scripts/import_greybox.sh --region all          # the whole world, about 45 s mo
+ 
+ Then open the project in the editor, File > Open Level >
+ `Content/Dink/_Generated/Maps/L_Greybox_World` (or `L_Greybox_Stonebrook`) and press Play. You
+-start in Dink's house. WASD and mouse to run (6 m/s); the line at the top left names the original
++start in Dink's house. WASD and mouse to run (6 m/s), hold **Left Shift** to walk (2 m/s), **Space** for a small hop (hold briefly for more height), and scroll the **mouse wheel** to zoom in/out; the line at the top left names the original
+ screen you are on. Console commands: `dink.Goto <screen>` jumps to any original screen,
+ `dink.Vision <screen> <value>` shows a quest-state variant (try `dink.Vision 1 2`), `dink.Where`.
+ 
++Gamepad: left shoulder holds walk, bottom face button jumps, and D-pad Up/Down adjusts zoom. Camera zoom blends smoothly and uses a shorter range indoors. Dialogue confirmations take priority over jumping.
++
++Player movement has acceleration, braking, gravity and air control. Player and authored humanoid NPC meshes have bounded spring-driven weight shifts, cornering lean and subtle idle motion; the player also reacts to landings. NPC gait cadence continues to follow actual movement, including scripted movement.
++
++Dink carries himself awkwardly: a slight hunch, uneven shoulder sway and shuffle, slower starts and turns, and a much lower jump. Substantial landings have a 30% chance of a brief off-balance catch-step. He recovers in 0.7 seconds while movement and attacks remain available; tiny steps do not trigger it. This procedural layer is specific to Dink.
++
+ ## See a conversation
+ 
+ Press Play in `L_Greybox_Stonebrook` (or `_World`). On a new game Dink's mother (in the house
+@@ -81,7 +87,7 @@ by eye, are in `AGENTS.md`, section "Greybox import".
+ 
+ In `L_Greybox_Stonebrook`: **F** (or Left Ctrl) attacks with the armed item (fists on a new game;
+ the hit lands on the attack animation's hit frame, about 0.2 s later, 28 px of the original screen
+-in front of Dink), **Q** (or Left Shift) casts the armed spell, **E** talks. Walk onto the sack of
++in front of Dink), **Q** casts the armed spell, **E** talks. Walk onto the sack of
+ pig feed in Dink's house to pick it up; `dink.Inventory` lists items, `dink.Arm 2` arms slot 2 (or
+ `dink.Arm item-pig`), `dink.ArmMagic 1` arms a spell (there is no inventory screen yet). Hit the
+ furniture in the houses (`S002_P21`, `S003_P16`), the pillbugs south of the village (`dink.Goto 278`)
+diff --git c/doc/remaster/REMASTER_PLAN.md w/doc/remaster/REMASTER_PLAN.md
+index a544c9e..f3d92f0 100644
+--- c/doc/remaster/REMASTER_PLAN.md
++++ w/doc/remaster/REMASTER_PLAN.md
+@@ -108,7 +108,7 @@ The original damage formula is ported into one function and the original numbers
+ 
+ ## 6. Art direction and pipeline
+ 
+-**Look:** stylised realism at Fable/Gothic distance, not photoreal faces. Photoreal heads delivering 2,125 unvoiced lines look dead and fight the comedy. Dink keeps his silhouette and colours (red-brown hair, grey-blue sleeves, brown jerkin and backpack, olive trousers, red bracers); buildings keep their 1997 shapes.
++**Look (owner update,8Nov2026 UTC):** photorealistic art authored in Blender, using the original sprites as guide and inspiration. Preserve Dink’s recognisable silhouette and colours (red-brown hair, grey-blue sleeves, brown jerkin/backpack, olive trousers and red bracers), the original buildings’ character and gameplay identities. Improve believable construction, materials, cloth, skin, wear and lighting. This owner request supersedes the earlier stylised-realism preference; use the original art as a design reference rather than copying its low-resolution rendering.
+ 
+ **Tools (free):** Blender 5.2 LTS, MPFB2 for base human bodies, Material Maker/ArmorPaint, Krita, UE for materials, lighting and VFX.
+ 

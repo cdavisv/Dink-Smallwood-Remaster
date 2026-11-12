@@ -3,7 +3,7 @@
   "findings": [],
   "patch_sha256": "4bdffbc56eabe9cee9ef036a622ffd30f82234b0850cf1d4a119b2d5cdb62467",
   "delivery_sha256": "5ea39a5db244c54a87fa0c28bd555931d2a60ade295c4469ed4743aaf8972c40",
-  "input_pins_sha256": "8003dec337f5af37f92508efa896c50637b26632f256772ee4b1900055503bf7",
+  "input_pins_sha256": "cc0a68d871d7fd80f850e622e155a8d2fb88bf43cf5459cfad00e301bd3211b8",
   "base": "2adc5ea3f89f2a368fc3f945c25270ca937b7acd",
   "prerequisite_camera_posture_patch_sha256": "c4b66fe82d74c94e8cd1d2aa730194c5bfb33babfac0c6a344a6b095e1d54859",
   "review_scope": "Read-only exact3filepatch, source/pin and raw focused-report inspection. No build/native/GPU or repository changes.",
@@ -22,7 +22,7 @@
     "superseded_patch_sha256": "e05d6bb4a9c7430241879150e680dc83b7a9cf838926b02f6655b9756c6ca694"
   },
   "native_focused_evidence": {
-    "report": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/shared_context_focus_v2/index.json",
+    "report": "<HOME>/Work/DinkContinuityFix/DinkRemasterUE/Saved/Automation/shared_context_focus_v2/index.json",
     "sha256": "16ff0a45b9b993192ba4c66b111a9d9ef346513a9ea8660e7081bfda8ce9dc97",
     "tests": 2,
     "actual_states": {

@@ -1,231 +1,231 @@
 {
   "own_C2_build": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualSplitBuildPreparation/Candidate2/Runs/39fc0f9f6cb64c0ab9515f4e1f51fcf1/SEQUENCE_RESULT.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualSplitBuildPreparation/Candidate2/Runs/39fc0f9f6cb64c0ab9515f4e1f51fcf1/SEQUENCE_RESULT.json",
     "sha256": "0c50c9edf8fb70816304c89f6149c3e7a38f43fc1c0f950e66aed88f6e0f4684",
     "bytes": 2017
   },
   "failed_C1_compile_log": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualSplitBuildPreparation/Candidate1/Runs/7e629cf99ac5445d948a7f9470f1026e/editor/build_stdout.log",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualSplitBuildPreparation/Candidate1/Runs/7e629cf99ac5445d948a7f9470f1026e/editor/build_stdout.log",
     "sha256": "241b0a77ccc98e953b1eb5323780861c9d957d89cb640fb9c461b2e4fb1a0816",
     "bytes": 456
   },
   "cold_native5": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualSplitNativePreparation/Candidate1/Runs/1ed780f99e564f789df99503b816794e/HOST_TERMINAL.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualSplitNativePreparation/Candidate1/Runs/1ed780f99e564f789df99503b816794e/HOST_TERMINAL.json",
     "sha256": "69829d55645c485454e8bffac3c1ea22c20c79e13c5add258429dad73a642aba",
     "bytes": 5230
   },
   "warm_native5": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualSplitNativePreparation/Candidate2/Runs/41f468288e274128b678dde00df9e617/HOST_TERMINAL.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualSplitNativePreparation/Candidate2/Runs/41f468288e274128b678dde00df9e617/HOST_TERMINAL.json",
     "sha256": "863cef1c0296f9249d09a94a69be8456ce86aeaa19dc95d739517675d3a2824e",
     "bytes": 5226
   },
   "regen_C2_failed": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate2/Runs/81cac9b0f3814575b660241470848d02/HOST_TERMINAL.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate2/Runs/81cac9b0f3814575b660241470848d02/HOST_TERMINAL.json",
     "sha256": "6673ec8f29fe9c1dcc5f95d55c844eb1dff39c8b8c9a5d0e998e0aeb511722ad",
     "bytes": 479411
   },
   "regen_C2_fatal_log": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate2/Runs/81cac9b0f3814575b660241470848d02/ProjectSaved/Logs/import_all.log",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate2/Runs/81cac9b0f3814575b660241470848d02/ProjectSaved/Logs/import_all.log",
     "sha256": "0ac3189b2c0a48143df23572083bfac2c556595030dec2db0511e497e4c2267f",
     "bytes": 6788
   },
   "regen_C3_pass": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate3/Runs/de8fb33febee438daad0f8b226894be1/HOST_TERMINAL.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate3/Runs/de8fb33febee438daad0f8b226894be1/HOST_TERMINAL.json",
     "sha256": "ee2e0f2abd648b9e8c3515c1679c9386e93398c940364516f54e1e62ca75271f",
     "bytes": 623179
   },
   "regen_C4_idempotent": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate4/Runs/da52167e40ac4e7cbd44963d43251314/HOST_TERMINAL.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate4/Runs/da52167e40ac4e7cbd44963d43251314/HOST_TERMINAL.json",
     "sha256": "116f6b48b3472def21e206c3b963a7012258649a6ed3d7c2bfebcb79ff1e9517",
     "bytes": 558316
   },
   "regen_C4_before": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate4/Runs/da52167e40ac4e7cbd44963d43251314/GENERATED_BEFORE.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate4/Runs/da52167e40ac4e7cbd44963d43251314/GENERATED_BEFORE.json",
     "sha256": "5dd3553c962ea8a19500678dcba8ef375eb15144bf704e02b998f6832c683f6d",
     "bytes": 543962
   },
   "saved_readback_raw": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSavedReadback/Candidate1/Runs/9eeb471f0a5246859434991597af073c/READBACK.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSavedReadback/Candidate1/Runs/9eeb471f0a5246859434991597af073c/READBACK.json",
     "sha256": "cd3f7f1ae9ee1dc76c0078efce898e76d0ee84b6ca1ae06754a28e822e756a55",
     "bytes": 21707889
   },
   "saved_readback_terminal": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSavedReadback/Candidate1/Runs/9eeb471f0a5246859434991597af073c/HOST_TERMINAL.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSavedReadback/Candidate1/Runs/9eeb471f0a5246859434991597af073c/HOST_TERMINAL.json",
     "sha256": "ccfd222d591cecde8a12efab25305e454974a78d7499b31c35b905d59eed2398",
     "bytes": 558053
   },
   "saved_readback_generated_pins": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSavedReadback/READBACK_DISABLED.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSavedReadback/READBACK_DISABLED.json",
     "sha256": "4d8c140f4ae18122a81054cf1f5ed6e9b0ae84de17a2e386e84295e336479a08",
     "bytes": 2316812
   },
   "protected_physical_pins": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate3/PHYSICAL_PINS.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerRegenerationPreparation/Candidate3/PHYSICAL_PINS.json",
     "sha256": "18a1281b2e9ab80bb176434f24939f8d9670f0117a51666cfb768aa0b39c770a",
     "bytes": 484359
   },
   "full198": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualSplitNativePreparation/Candidate3/Runs/80fee17a3c584d8b95357f5d0dee3c44/HOST_TERMINAL.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualSplitNativePreparation/Candidate3/Runs/80fee17a3c584d8b95357f5d0dee3c44/HOST_TERMINAL.json",
     "sha256": "4782dc031a6f561171106c792af26b885cc93fda014ec6b6e76fa825306381b2",
     "bytes": 14152
   },
   "GPU_final_review": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/DRIVER_REVIEW_FINAL.json",
-    "sha256": "a65ec2fb17903ca4be82fe0d3d3b83fab501b37a636f8c19044faa5a6522a464",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/DRIVER_REVIEW_FINAL.json",
+    "sha256": "945df1e3ec3d7da30813e8053b1df127192ae4ee1152428a04013af6dd32205a",
     "bytes": 22323
   },
   "screenshot/joined3-default-off.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/joined3-default-off.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/joined3-default-off.png",
     "sha256": "86dc01fcfae397e3af1c843036ed3b81b5c098d1348533327a358982fc2a090d",
     "bytes": 1251099
   },
   "screenshot/joined3-debug-on.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/joined3-debug-on.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/joined3-debug-on.png",
     "sha256": "293dfc81205ffc9f0f17806d576d8608dc76060238cc3da5083a77b195a0d005",
     "bytes": 948625
   },
   "screenshot/joined3-restored-off.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/joined3-restored-off.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/joined3-restored-off.png",
     "sha256": "997f9699fd354ab9d96e1b8f574eec8ddaba5538be794e1f2c0b54af1b0b5af6",
     "bytes": 1261335
   },
   "screenshot/water276.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/water276.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/water276.png",
     "sha256": "eca78b9ee442b3525b1e85fd854e37dc36e04ff9094c86229d3cd227991445cf",
     "bytes": 1185707
   },
   "screenshot/door-exit.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/door-exit.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/door-exit.png",
     "sha256": "e4376bb789ffdbd1b7983697df6bc37d567b504cd1c578ae71bc39a2eaa738ec",
     "bytes": 1190533
   },
   "screenshot/door-return.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/door-return.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/door-return.png",
     "sha256": "a55e16bc12a714e6442d5f5d4c2182e5d0db6a70d60f4ff5a75b7d6e9e6613ca",
     "bytes": 1012052
   },
   "screenshot/house-wide.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/house-wide.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerVisualsGPUPreparation/Runs/6dfa83f2-62c9-4f47-b9a4-3902373210c7/house-wide.png",
     "sha256": "f8a01989f64782c1b0b5f70b94b009c40b7b85ab92d4d12cf5bd04689ce09b42",
     "bytes": 1022482
   },
   "fresh_spawn_v3_final": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/DRIVER_REVIEW_FINAL.json",
-    "sha256": "a948906b2e85e85de72b7face3cb25272023987e834bd1a7dd1f28e198548d90",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/DRIVER_REVIEW_FINAL.json",
+    "sha256": "72069c5440c25b9d380c67f2424eb6e83093a6b199158f0e2e625552b875774c",
     "bytes": 18217
   },
   "actual_corrected_chair_contact": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/PAWN_CONTACT_CORRECTION.json",
-    "sha256": "2c354598c5e7c75d616d19f5f36619d2f1b7b0f55f0ae0447f59629fe54c3770",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/PAWN_CONTACT_CORRECTION.json",
+    "sha256": "4f9365b12aa125fe02ec77cb7e5d9c9717e586efcc2ddd9e255ffd468c67b937",
     "bytes": 13636
   },
   "contact_caller_provenance": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerContactProbeCorrection/CALLER_PROVENANCE.json",
-    "sha256": "d31624998828efff71b882fff630888d225bc6aacd35e23d3b0cf1b8e36326a8",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerContactProbeCorrection/CALLER_PROVENANCE.json",
+    "sha256": "02434d2d36543ed6409370e3c397a272eac7f67989cbc53252566db13dbc2a89",
     "bytes": 493
   },
   "fresh_spawn_V1_failure": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparation/Runs/2d5d8b8c-9b9c-4858-9d9b-84eaa89919b9/DRIVER_SPAWN_FAILURE.json",
-    "sha256": "3cf688371c7d1ed7f42819177225d79d1a062a71a4152e1479a21f9dbafe25fc",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSpawnGPUPreparation/Runs/2d5d8b8c-9b9c-4858-9d9b-84eaa89919b9/DRIVER_SPAWN_FAILURE.json",
+    "sha256": "ec1e880454b78223141e8699619af5a7f79fd84162df722112b99458859adeeb",
     "bytes": 1114
   },
   "fresh_spawn_V1_review": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparation/Runs/2d5d8b8c-9b9c-4858-9d9b-84eaa89919b9/DRIVER_REVIEW_FINAL.json",
-    "sha256": "4528b9c36c425be6cd326f865fc468474c3ea968c4e125c4722c4cd799168819",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSpawnGPUPreparation/Runs/2d5d8b8c-9b9c-4858-9d9b-84eaa89919b9/DRIVER_REVIEW_FINAL.json",
+    "sha256": "ad38ca30fb5d05ef9bf59653f613f264e9807515c158674c73f6b1c19f9f98f9",
     "bytes": 9648
   },
   "fresh_spawn_V2_failure": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV2/Runs/bf8b2649-0023-4a91-8885-73c01feb19e0/DRIVER_SPAWN_FAILURE.json",
-    "sha256": "fe69154440812661a57b2fbb9602786912b28c839033d3528e2dc0e7659ebbcc",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV2/Runs/bf8b2649-0023-4a91-8885-73c01feb19e0/DRIVER_SPAWN_FAILURE.json",
+    "sha256": "26dfa21b454ea1f26f302054a40183fb381668ddaea91fb39b606ed12a5d3897",
     "bytes": 1406
   },
   "fresh_spawn_V2_review": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV2/Runs/bf8b2649-0023-4a91-8885-73c01feb19e0/DRIVER_REVIEW_FINAL.json",
-    "sha256": "63b3cc7e4027e2c16a8015a1976acfee268da6ed3182567d3c8e93c8c875a093",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV2/Runs/bf8b2649-0023-4a91-8885-73c01feb19e0/DRIVER_REVIEW_FINAL.json",
+    "sha256": "c29fca11e02bd7059f8adbeb0adb2c51f92860dc88f48aec6f2d2d52a573c927",
     "bytes": 13728
   },
   "freshspawn_capture/spawn-initial.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/spawn-initial.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/spawn-initial.png",
     "sha256": "fda688f94a4c411aed291aaa4176d2616b9792cb912c8be44d63a66d7f0d6734",
     "bytes": 959678
   },
   "freshspawn_capture/pawn-contact.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/pawn-contact.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/pawn-contact.png",
     "sha256": "963ddb4516ad5dfff1de074e489320d90f179b4f85dca8edbe70fba697395907",
     "bytes": 958232
   },
   "freshspawn_capture/spawn-door-exit.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/spawn-door-exit.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerSpawnGPUPreparationV3/Runs/c333df3d-c50b-4052-9fdf-bf71ea97c7b4/spawn-door-exit.png",
     "sha256": "4984a7999b8820cf0b12b4a1298e62c46dba080a746d388a9ef53d6d6b28ec1c",
     "bytes": 736550
   },
   "actual_normal_cook": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagingPreparation/Candidate1/Runs/c887dca0feee4535b8f71133dc7af8be/HOST_TERMINAL.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagingPreparation/Candidate1/Runs/c887dca0feee4535b8f71133dc7af8be/HOST_TERMINAL.json",
     "sha256": "be4ea2794edbb0f64ad98c5ffbed93ad5f3de09b111f1111953d528f0c1f3aa7",
     "bytes": 22158
   },
   "actual_shader4": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerCookFourShaderValidation/REPORT.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerCookFourShaderValidation/REPORT.json",
     "sha256": "81d968838bfb92ee7bce191ff06fc870a2894e0a35028c3faf76dc339ef2b531",
     "bytes": 1583
   },
   "actual_packaged_inventory": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerCook1Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerCook1Inventory/ACTUAL_COOKED_ROOF_REVIEW.json",
     "sha256": "dad695a33d1933dadde4b111551ca111cf6f26171b7ff5df6290c49fa8434536",
     "bytes": 1506
   },
   "actual_packaged_CH1": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedCH1Preparation/Runs/8e434c6bab494623b1d7e86c0b56d643/RESULT.json",
-    "sha256": "30e7067630ad97a5c7ecf6fdf9c2ac51a0674eb6f5256a76d682c33359476e81",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedCH1Preparation/Runs/8e434c6bab494623b1d7e86c0b56d643/RESULT.json",
+    "sha256": "568e84efe487a5d4cf6a88e7f478a5260f9b0c77a9e1aad2403d6f816e1c0567",
     "bytes": 842
   },
   "packagedGPU/DRIVER_REVIEW_FINAL.json": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/DRIVER_REVIEW_FINAL.json",
-    "sha256": "7247cab508c6ffe3e150e17cf31869f09264a55e9e6c19deb0f7690f0993c28a",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/DRIVER_REVIEW_FINAL.json",
+    "sha256": "d82598fcb2abb411c873c08f73945b80f2322d4e1a38fd3f3f655f8c11a58a4a",
     "bytes": 6676
   },
   "packagedGPU/DRIVER_HOST_CLOSURE.json": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/DRIVER_HOST_CLOSURE.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/DRIVER_HOST_CLOSURE.json",
     "sha256": "f1ddc82a1980c9537268f89d8f928a7c9d3720ffb4330fcc3e824f7ad7f19166",
     "bytes": 408
   },
   "packagedGPU/result.json": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/result.json",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/result.json",
     "sha256": "36e1fdc14ed7efffeb1a554b8cf00e517b4d53b8ed976827c51247022f9241c2",
     "bytes": 197
   },
   "packagedGPU/DISPLAY_CLOSED.json": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/DISPLAY_CLOSED.json",
-    "sha256": "0a7b599c909ea8842221c70fd05989b6f3ad67bf193e1b811bbc4fa5c0bbdb37",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/DISPLAY_CLOSED.json",
+    "sha256": "7102e828963622b7498dad124e512bc4e7cea79110a4a622dcceca273df8ab40",
     "bytes": 558
   },
   "packagedGPU/joined3-default-off.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/joined3-default-off.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/joined3-default-off.png",
     "sha256": "32504512f77b493b6594b54b6bce06a8561075494a6fbf68ebe0fd3302f22e94",
     "bytes": 1240419
   },
   "packagedGPU/joined3-debug-on.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/joined3-debug-on.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/joined3-debug-on.png",
     "sha256": "a946bc6ec4d180d879842b0a979a3f886d8265b9e50cbdc86c8c7f71dcbf44a6",
     "bytes": 950357
   },
   "packagedGPU/joined3-restored-off.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/joined3-restored-off.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/joined3-restored-off.png",
     "sha256": "c213cdcab586a303fa215c252d82eb631711f42c855f54048a324b6566ae9161",
     "bytes": 1246762
   },
   "packagedGPU/water276.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/water276.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/water276.png",
     "sha256": "92d473c97f30454243177916ebd3e0e4b1c2bfcc8a53f03797d6f3b8ecea3f48",
     "bytes": 1191245
   },
   "packagedGPU/door-exit.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/door-exit.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/door-exit.png",
     "sha256": "134612286b634fc0c743502148e883818b5476425b958cb589b34bd62b6ce42e",
     "bytes": 1187128
   },
   "packagedGPU/door-return.png": {
-    "path": "/home/artist/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/door-return.png",
+    "path": "<HOME>/Work/DinkQA/GeneratedBlockerPackagedGPUPreparation/Runs/75a271d5-f482-45bf-b11c-606e32c69249/door-return.png",
     "sha256": "5f29a281790dbe6d1d92ef71a2101ae52b81e8c4eca94a2d88bde1a7ed20c377",
     "bytes": 1017484
   }

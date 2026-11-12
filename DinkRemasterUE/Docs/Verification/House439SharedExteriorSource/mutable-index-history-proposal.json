@@ -1,0 +1,20 @@
+{
+  "status": "ROOT_REVIEWED_APPROVED_AND_ACTUAL_FULL_METADATA_AUDITS_PASS",
+  "records": [
+    {
+      "mutable_index": "SourceAssets/Art/SharedMaterials/manifest.json",
+      "historical_sha256": "0875d01c69c3821e3269f9b477dc90168f3badbe0a8c130e37e04a110981104a",
+      "frozen_copy": "SourceAssets/Art/SharedMaterials/History/0875d01c69c3821e3269f9b477dc90168f3badbe0a8c130e37e04a110981104a/manifest.json"
+    },
+    {
+      "mutable_index": "SourceAssets/Art/SharedMaterials/SHA256SUMS.json",
+      "historical_sha256": "5f2293cd732f7b15ab5499e697ef8c33f50a812936fa84560c5b7a68f17cae94",
+      "frozen_copy": "SourceAssets/Art/SharedMaterials/History/bd2d18a233b820b1aebddf68b95f30c7c8d030cb22d1e7368eec213120cde986/SHA256SUMS.json"
+    }
+  ],
+  "rule": "Preservepriorrawledgerrows; validateoldhashagainstexactarchivedbytes, requirelatestrowtomatchcurrentindex. Onlythese2explicitlibraryindexeseligible. Noothermutablepath/hashwaiver.",
+  "tests_passed": 11,
+  "full_source_audit_passed": true,
+  "scope": "Onlytwoeligiblemutableindexes; archivedoldhash+latest/currenthashrequired; priorsrawrowsunchanged",
+  "root_independent_tests_passed": 11
+}

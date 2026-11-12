@@ -1,0 +1,1068 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "<HOME>/Repos/Dink-Smallwood/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/Stonebrook440/KIT_Stonebrook440.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 13,
+    "assets_passed": 13,
+    "errors": 0,
+    "warnings": 62
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Pitchfork_Ash_01",
+      "class": "prop",
+      "collection": "SM_Pitchfork_Ash_01",
+      "tris_per_lod": {
+        "LOD0": 1316,
+        "LOD1": 658,
+        "LOD2": 328
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -9.433,
+          -3.802,
+          0.0
+        ],
+        "blender_max_cm": [
+          9.433,
+          3.802,
+          165.561
+        ],
+        "size_cm": [
+          18.866,
+          7.603,
+          165.561
+        ],
+        "unreal_min_cm": [
+          -9.433,
+          -3.802,
+          0.0
+        ],
+        "unreal_max_cm": [
+          9.433,
+          3.802,
+          165.561
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Pitchfork_Ash_01",
+          "message": "image 'T_S440_Pitchfork_Ash_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Pitchfork_Ash_01",
+          "message": "image 'T_S440_Pitchfork_Ash_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Pitchfork_Ash_01",
+          "message": "image 'T_S440_Pitchfork_Ash_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Pitchfork_Ash_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Scythe_Ash_01",
+      "class": "prop",
+      "collection": "SM_Scythe_Ash_01",
+      "tris_per_lod": {
+        "LOD0": 2776,
+        "LOD1": 1388,
+        "LOD2": 694
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -40.352,
+          -12.124,
+          0.0
+        ],
+        "blender_max_cm": [
+          40.352,
+          12.124,
+          155.688
+        ],
+        "size_cm": [
+          80.704,
+          24.248,
+          155.688
+        ],
+        "unreal_min_cm": [
+          -40.352,
+          -12.124,
+          0.0
+        ],
+        "unreal_max_cm": [
+          40.352,
+          12.124,
+          155.688
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Scythe_Ash_01",
+          "message": "image 'T_S440_Scythe_Ash_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Scythe_Ash_01",
+          "message": "image 'T_S440_Scythe_Ash_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Scythe_Ash_01",
+          "message": "image 'T_S440_Scythe_Ash_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Scythe_Ash_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Hoe_Ash_01",
+      "class": "prop",
+      "collection": "SM_Hoe_Ash_01",
+      "tris_per_lod": {
+        "LOD0": 1316,
+        "LOD1": 658,
+        "LOD2": 328
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -8.25,
+          -9.126,
+          0.0
+        ],
+        "blender_max_cm": [
+          8.25,
+          9.126,
+          143.5
+        ],
+        "size_cm": [
+          16.5,
+          18.253,
+          143.5
+        ],
+        "unreal_min_cm": [
+          -8.25,
+          -9.126,
+          0.0
+        ],
+        "unreal_max_cm": [
+          8.25,
+          9.126,
+          143.5
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Hoe_Ash_01",
+          "message": "image 'T_S440_Hoe_Ash_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Hoe_Ash_01",
+          "message": "image 'T_S440_Hoe_Ash_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Hoe_Ash_01",
+          "message": "image 'T_S440_Hoe_Ash_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Hoe_Ash_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Shovel_Ash_01",
+      "class": "prop",
+      "collection": "SM_Shovel_Ash_01",
+      "tris_per_lod": {
+        "LOD0": 2036,
+        "LOD1": 1018,
+        "LOD2": 508
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -13.869,
+          -3.238,
+          0.0
+        ],
+        "blender_max_cm": [
+          13.869,
+          3.238,
+          107.533
+        ],
+        "size_cm": [
+          27.739,
+          6.475,
+          107.533
+        ],
+        "unreal_min_cm": [
+          -13.869,
+          -3.238,
+          0.0
+        ],
+        "unreal_max_cm": [
+          13.869,
+          3.238,
+          107.533
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Shovel_Ash_01",
+          "message": "texel density 1560 px/m at the declared 1024 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_Shovel_Ash_01_LOD0",
+          "data": {
+            "density_px_per_m": 1559.7,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Shovel_Ash_01",
+          "message": "image 'T_S440_Shovel_Ash_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Shovel_Ash_01",
+          "message": "image 'T_S440_Shovel_Ash_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Shovel_Ash_01",
+          "message": "image 'T_S440_Shovel_Ash_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Shovel_Ash_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Axe_Felling_01",
+      "class": "prop",
+      "collection": "SM_Axe_Felling_01",
+      "tris_per_lod": {
+        "LOD0": 1248,
+        "LOD1": 624,
+        "LOD2": 312
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -43.747,
+          -11.963,
+          0.0
+        ],
+        "blender_max_cm": [
+          43.747,
+          11.963,
+          3.51
+        ],
+        "size_cm": [
+          87.494,
+          23.926,
+          3.51
+        ],
+        "unreal_min_cm": [
+          -43.747,
+          -11.963,
+          0.0
+        ],
+        "unreal_max_cm": [
+          43.747,
+          11.963,
+          3.51
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SM_Axe_Felling_01",
+          "message": "texel density 1163 px/m at the declared 1024 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SM_Axe_Felling_01_LOD0",
+          "data": {
+            "density_px_per_m": 1162.8,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Axe_Felling_01",
+          "message": "image 'T_S440_Axe_Felling_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Axe_Felling_01",
+          "message": "image 'T_S440_Axe_Felling_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Axe_Felling_01",
+          "message": "image 'T_S440_Axe_Felling_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Axe_Felling_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Hatchet_01",
+      "class": "prop_small",
+      "collection": "SM_Hatchet_01",
+      "tris_per_lod": {
+        "LOD0": 1248,
+        "LOD1": 624,
+        "LOD2": 312
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -20.35,
+          -8.463,
+          0.0
+        ],
+        "blender_max_cm": [
+          20.35,
+          8.463,
+          3.51
+        ],
+        "size_cm": [
+          40.7,
+          16.925,
+          3.51
+        ],
+        "unreal_min_cm": [
+          -20.35,
+          -8.463,
+          0.0
+        ],
+        "unreal_max_cm": [
+          20.35,
+          8.463,
+          3.51
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Hatchet_01",
+          "message": "image 'T_S440_Hatchet_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Hatchet_01",
+          "message": "image 'T_S440_Hatchet_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Hatchet_01",
+          "message": "image 'T_S440_Hatchet_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Tongs_Iron_01",
+      "class": "prop_small",
+      "collection": "SM_Tongs_Iron_01",
+      "tris_per_lod": {
+        "LOD0": 488,
+        "LOD1": 244,
+        "LOD2": 122
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -22.351,
+          -3.419,
+          0.0
+        ],
+        "blender_max_cm": [
+          22.351,
+          3.419,
+          2.2
+        ],
+        "size_cm": [
+          44.701,
+          6.838,
+          2.2
+        ],
+        "unreal_min_cm": [
+          -22.351,
+          -3.419,
+          0.0
+        ],
+        "unreal_max_cm": [
+          22.351,
+          3.419,
+          2.2
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Tongs_Iron_01",
+          "message": "image 'T_S440_Tongs_Iron_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Tongs_Iron_01",
+          "message": "image 'T_S440_Tongs_Iron_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Tongs_Iron_01",
+          "message": "image 'T_S440_Tongs_Iron_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_ChoppingBlock_Axe_01",
+      "class": "prop",
+      "collection": "SM_ChoppingBlock_Axe_01",
+      "tris_per_lod": {
+        "LOD0": 1364,
+        "LOD1": 682,
+        "LOD2": 340
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -45.898,
+          -28.96,
+          0.0
+        ],
+        "blender_max_cm": [
+          45.898,
+          28.96,
+          84.593
+        ],
+        "size_cm": [
+          91.796,
+          57.92,
+          84.593
+        ],
+        "unreal_min_cm": [
+          -45.898,
+          -28.96,
+          0.0
+        ],
+        "unreal_max_cm": [
+          45.898,
+          28.96,
+          84.593
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_ChoppingBlock_Axe_01",
+          "message": "image 'T_S440_ChoppingBlock_Axe_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_ChoppingBlock_Axe_01",
+          "message": "image 'T_S440_ChoppingBlock_Axe_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_ChoppingBlock_Axe_01",
+          "message": "image 'T_S440_ChoppingBlock_Axe_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_ChoppingBlock_Axe_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Wheelbarrow_Oak_01",
+      "class": "prop",
+      "collection": "SM_Wheelbarrow_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 4172,
+        "LOD1": 2086,
+        "LOD2": 1042
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -32.654,
+          -84.663,
+          0.0
+        ],
+        "blender_max_cm": [
+          32.654,
+          84.663,
+          76.983
+        ],
+        "size_cm": [
+          65.308,
+          169.327,
+          76.983
+        ],
+        "unreal_min_cm": [
+          -32.654,
+          -84.663,
+          0.0
+        ],
+        "unreal_max_cm": [
+          32.654,
+          84.663,
+          76.983
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Wheelbarrow_Oak_01",
+          "message": "image 'T_S440_Wheelbarrow_Oak_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Wheelbarrow_Oak_01",
+          "message": "image 'T_S440_Wheelbarrow_Oak_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Wheelbarrow_Oak_01",
+          "message": "image 'T_S440_Wheelbarrow_Oak_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "COLLISION_BOUNDS",
+          "severity": "warning",
+          "asset": "SM_Wheelbarrow_Oak_01",
+          "message": "collision extends 7 cm beyond the render mesh bounds",
+          "object": "UCX_SM_Wheelbarrow_Oak_01_LOD0_01"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Wheelbarrow_Oak_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_WaterTrough_Oak_01",
+      "class": "prop",
+      "collection": "SM_WaterTrough_Oak_01",
+      "tris_per_lod": {
+        "LOD0": 2752,
+        "LOD1": 1376,
+        "LOD2": 688
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -75.0,
+          -33.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          75.0,
+          33.0,
+          50.5
+        ],
+        "size_cm": [
+          150.0,
+          66.0,
+          50.5
+        ],
+        "unreal_min_cm": [
+          -75.0,
+          -33.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          75.0,
+          33.0,
+          50.5
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_WaterTrough_Oak_01",
+          "message": "image 'T_S440_WaterTrough_Oak_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_WaterTrough_Oak_01",
+          "message": "image 'T_S440_WaterTrough_Oak_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_WaterTrough_Oak_01",
+          "message": "image 'T_S440_WaterTrough_Oak_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_WaterTrough_Oak_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Woodpile_Split_01",
+      "class": "prop",
+      "collection": "SM_Woodpile_Split_01",
+      "tris_per_lod": {
+        "LOD0": 4008,
+        "LOD1": 2004,
+        "LOD2": 1002
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -110.2,
+          -23.75,
+          0.0
+        ],
+        "blender_max_cm": [
+          110.2,
+          23.75,
+          112.0
+        ],
+        "size_cm": [
+          220.4,
+          47.5,
+          112.0
+        ],
+        "unreal_min_cm": [
+          -110.2,
+          -23.75,
+          0.0
+        ],
+        "unreal_max_cm": [
+          110.2,
+          23.75,
+          112.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 3,
+      "findings": [
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Woodpile_Split_01",
+          "message": "image 'T_S440_Woodpile_Split_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Woodpile_Split_01",
+          "message": "image 'T_S440_Woodpile_Split_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_Woodpile_Split_01",
+          "message": "image 'T_S440_Woodpile_Split_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Woodpile_Split_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_House_Stonebrook_TwoStorey_01",
+      "class": "building",
+      "collection": "SM_House_Stonebrook_TwoStorey_01",
+      "tris_per_lod": {
+        "LOD0": 143396,
+        "LOD1": 71697,
+        "LOD2": 35847
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -663.304,
+          -538.846,
+          0.0
+        ],
+        "blender_max_cm": [
+          663.304,
+          538.846,
+          1161.0
+        ],
+        "size_cm": [
+          1326.608,
+          1077.692,
+          1161.0
+        ],
+        "unreal_min_cm": [
+          -663.304,
+          -538.846,
+          0.0
+        ],
+        "unreal_max_cm": [
+          663.304,
+          538.846,
+          1161.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 22,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "mesh data 'SM_House_Stonebrook_TwoStorey_01_LOD0.001' differs from object name 'SM_House_Stonebrook_TwoStorey_01_LOD0'",
+          "object": "SM_House_Stonebrook_TwoStorey_01_LOD0"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "mesh data 'SM_House_Stonebrook_TwoStorey_01_LOD1.001' differs from object name 'SM_House_Stonebrook_TwoStorey_01_LOD1'",
+          "object": "SM_House_Stonebrook_TwoStorey_01_LOD1"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "mesh data 'SM_House_Stonebrook_TwoStorey_01_LOD2.001' differs from object name 'SM_House_Stonebrook_TwoStorey_01_LOD2'",
+          "object": "SM_House_Stonebrook_TwoStorey_01_LOD2"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "LOD0 has 143396 triangles, target for building is 60000 (hard max 200000)",
+          "object": "SM_House_Stonebrook_TwoStorey_01_LOD0",
+          "data": {
+            "tris": 143396,
+            "target": 60000
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "3222 non-manifold edges (2470 open boundary, 752 >2 faces, 0 wire); acceptable for building only if intentional (cards)",
+          "object": "SM_House_Stonebrook_TwoStorey_01_LOD0",
+          "data": {
+            "boundary": 2470,
+            "multi_face": 752,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "2387 non-manifold edges (1635 open boundary, 752 >2 faces, 0 wire); acceptable for building only if intentional (cards)",
+          "object": "SM_House_Stonebrook_TwoStorey_01_LOD1",
+          "data": {
+            "boundary": 1635,
+            "multi_face": 752,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "1841 non-manifold edges (1089 open boundary, 752 >2 faces, 0 wire); acceptable for building only if intentional (cards)",
+          "object": "SM_House_Stonebrook_TwoStorey_01_LOD2",
+          "data": {
+            "boundary": 1089,
+            "multi_face": 752,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "UV overlap / texel checks skipped: 143396 triangles is above the 120000 limit of the Python test",
+          "object": "SM_House_Stonebrook_TwoStorey_01_LOD0"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_Rubble_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_Rubble_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_Rubble_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_Stonebrook_Limewash_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_Stonebrook_Limewash_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_Stonebrook_Limewash_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_WeatheredOak_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_WeatheredOak_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_WeatheredOak_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_Stonebrook_WroughtIron_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_Stonebrook_WroughtIron_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_Stonebrook_WroughtIron_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_LeadedGlass_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_LeadedGlass_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_LeadedGlass_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_Thatch_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_Thatch_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "image 'T_S440_Thatch_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_House_Stonebrook_TwoStorey_01",
+          "message": "building uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_HayBale_01",
+      "class": "prop",
+      "collection": "SM_HayBale_01",
+      "tris_per_lod": {
+        "LOD0": 12912,
+        "LOD1": 7996,
+        "LOD2": 3998
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -55.926,
+          -34.646,
+          0.0
+        ],
+        "blender_max_cm": [
+          55.926,
+          34.646,
+          46.069
+        ],
+        "size_cm": [
+          111.851,
+          69.292,
+          46.069
+        ],
+        "unreal_min_cm": [
+          -55.926,
+          -34.646,
+          0.0
+        ],
+        "unreal_max_cm": [
+          55.926,
+          34.646,
+          46.069
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_HayBale_01",
+          "message": "LOD0 has 12912 triangles, target for prop is 6000 (hard max 20000)",
+          "object": "SM_HayBale_01_LOD0",
+          "data": {
+            "tris": 12912,
+            "target": 6000
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_HayBale_01",
+          "message": "image 'T_S440_HayBale_01_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_HayBale_01",
+          "message": "image 'T_S440_HayBale_01_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SM_HayBale_01",
+          "message": "image 'T_S440_HayBale_01_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_HayBale_01",
+          "message": "prop uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

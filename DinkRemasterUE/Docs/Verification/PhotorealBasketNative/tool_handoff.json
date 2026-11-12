@@ -21,15 +21,15 @@
       "test_basket_tolerant_matching.py": "ae4a356d68b1deb1f75dd807dcb287a0c73d8ede0f47eb5ed5eef38417bfd45f"
     },
     "log_sha256": "a21b62cc7832e04adb6db4db980b06b17ae60d1e087c242c07530804dfdf09e3",
-    "command": "python -m unittest discover -s /home/artist/Work/DinkQA/BasketImportDevelopment -p 'test_basket*.py' -v"
+    "command": "python -m unittest discover -s <HOME>/Work/DinkQA/BasketImportDevelopment -p 'test_basket*.py' -v"
   },
-  "source_plan_sha256": "18e2a747a8c81be41f624e313f1e12752d403bb6ff779f922956ded1158ee445",
-  "source_self_consistency_sha256": "0d16fc6d18236f02e2cc552555411e8580a1457dda25f05909c5f810cb3ee1f8",
-  "source_material_readback_sha256": "224de139c8be0232b956846aec50789ae5bf654425f105ef3df137f2c7b02eda",
+  "source_plan_sha256": "e92c95999b4c60402509e3003df5a2ed8f035ba5b3779f80663caab7b807b981",
+  "source_self_consistency_sha256": "6f9a875adc299b9889b68c297996529f214f6ceb41d219b236da73bcf47619b6",
+  "source_material_readback_sha256": "2cf266caa14fb43f87968f9604e9fee321dd4ec17ef194c3a819b3e93866a67a",
   "base_tool_pins_sha256": "e7f4d420e8c8a84b761dbf8d15a0d04a7bfac3fbd634e073c70c06c8b0e35c1e",
-  "coordinator_native_baseline_sha256": "f397e0ba1c34729cc931cec532181ac80b98b12e23159f02f0ecf2af7a1f8900",
+  "coordinator_native_baseline_sha256": "92ccf85793c14c4037440a8d3dff5db4547ead53e90ad7911bdb5af88f66279e",
   "source_dependencies": 57,
-  "source_handoff_sha256": "3eb71614767ab045461741739182c93b7d43aaeea3b502730f0ba4bd36a72c5b",
+  "source_handoff_sha256": "9f41ddb07623cce0986ae0a2636c08a4cf0543c291c7d91efaba633b5072ce21",
   "specular": {
     "UE_constant": 0.21853724634807323,
     "native_tolerance": 1e-06,

@@ -22,7 +22,7 @@ The following records the original source-review state; pending build/native wor
 
 # Outdoor portal camera source checkpoint
 
-Isolated branch `fix/outdoor-portal-camera`, base `2b683008675e3181b294a474e5cfd187158dacd9`, checkout `/home/artist/Work/DinkOutdoorPortalCamera`. This is an uncompiled source candidate; no UE, build, native or rendered acceptance is claimed.
+Isolated branch `fix/outdoor-portal-camera`, base `2b683008675e3181b294a474e5cfd187158dacd9`, checkout `<HOME>/Work/DinkOutdoorPortalCamera`. This is an uncompiled source candidate; no UE, build, native or rendered acceptance is claimed.
 
 The recorded screen439 outdoor pawn had a clear 400cm Camera sweep through the cottage doorway and an eye inside the dark shell. The new optional sidecar binds the exact spawned `stonebrook_exterior.json:DinksCottage` component, screen and full mesh path. Its source file records existing generator/export hashes and existing native package SHA256. This checkout verifies the native LFS OID as metadata, not a hydrated binary proof. Runtime local bounds are a provenance sanity check, never the framing authority. No V77 or other unadmitted geometry is used.
 

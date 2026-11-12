@@ -1,0 +1,72 @@
+{
+  "status": "QUALIFIED_VERBATIM_PUBLIC_SOURCE_HTML_ONLY",
+  "paths": {
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/FiredClay2mV1/Sources/RedBrick/CC0_license.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      }
+    ],
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials/FiredClay2mV1/Sources/RedBrick/red_brick_publisher.html": [
+      {
+        "line": 4,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 8,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 10,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 78,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 82,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 84,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 152,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 156,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 158,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 226,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 230,
+        "warning": "space before tab in indent."
+      },
+      {
+        "line": 232,
+        "warning": "space before tab in indent."
+      }
+    ]
+  },
+  "reason": "Exact downloaded publisher/license bytes retained; no rewrites or global whitespace-rule suppression",
+  "git_index_bytes_exact": true,
+  "authored_sources_check_exit": 0
+}

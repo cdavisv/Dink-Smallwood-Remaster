@@ -1,0 +1,12 @@
+{
+  "status": "PASS_NO_NEW_VIOLATIONS_ONE_JUSTIFIED_BUDGET_WARNING",
+  "baseline_violations": 202,
+  "after_violations": 202,
+  "violations_exact": true,
+  "baseline_warnings": 26,
+  "after_warnings": 27,
+  "new_warnings": [
+    "Stonebrook/Refinements/FireplaceFiredClayV3:SM_Fireplace_Stonebrook_V3Contact: 57,296 LOD0 triangles > prop_large soft target 20,000 (hard cap 60,000)"
+  ],
+  "qualification": "57296triLOD0>20000soft but<60000hard forreal1429brickcells and edge/joint work; actualLOD1/2=37908/19998; inherited202violatingassetsremainexplicit"
+}

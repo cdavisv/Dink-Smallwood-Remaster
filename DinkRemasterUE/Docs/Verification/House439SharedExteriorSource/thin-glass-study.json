@@ -1,0 +1,28 @@
+{
+  "status": "INDEPENDENT_SOURCE_STUDY_RENDER_INSPECTED_NATIVE_PENDING",
+  "IOR": 1.48,
+  "normal_incidence_F0": 0.037460978147762745,
+  "transmission": 1,
+  "thin_wall": true,
+  "roughness": "0.06 + 0.055 * Noise(position_m * 65)",
+  "waviness": "Noise(position_m *12); Bump strength0.6 distance0.0003m",
+  "mapping": "UV0 *2 = physical metres; independent2m/4m panels",
+  "derivative_changes": [
+    "World-position noise replaced by UV-plane physical coordinates",
+    "Thin-wall surface replaces source volumetric absorption; not exact source optics",
+    "No mesh/UV mutation in reviewed cottage"
+  ],
+  "license": "Authored procedural graph; no external bitmap assets",
+  "pending": [
+    "Portable BC/N/ORM map source and seam review",
+    "Native thin-translucent implementation and Root review",
+    "Adapt source cottage explicitly, preserve geometry and collision",
+    "Actual game optical review"
+  ],
+  "visual_review": "Pattern remains visible through both panels, with subtle pale reflected area and darker blurred panel/shadow boundaries. Waviness is not clearly resolved at this image scale. Functional transmission study only; not cottage optics or final appearance acceptance.",
+  "files": {
+    "ThinWavyGlass2m_Source.blend": "acdf4ea01aee187aeb89d5594a05ea643d91c818d298eed71c6e54e154a8d7b8",
+    "ThinGlassReuse_2m4m.blend": "a64233a2e426c6b69df1830537c6f3eb804fd4eefe4dcbfcc32aa9a9079668b3",
+    "ThinGlassReuse_2m4m.png": "81eb69eb20384cb5ca031c9800265108d806ed22826a05a190fd2b8b70f17c8b"
+  }
+}

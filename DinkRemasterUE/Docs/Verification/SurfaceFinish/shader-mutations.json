@@ -44,13 +44,13 @@
     }
   ],
   "importer_sha256": "e040c2192a7ba1e0c1c33fed623578928aebd98f1e83571f87a90d937b1671eb",
-  "native_verification_sha256": "dddb24f686cccd5bf06bda0138d0361c68db08d0a548ea49708db90fe8a15727",
+  "native_verification_sha256": "4c16eb88937e3587b2e74357c1c44db3f0863abb4492f988bd94ab889ac7598a",
   "saved_packages_unchanged": true,
   "saved_package_sha256": {
     "Content/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.uasset": "ddb79f010d61b889ac94c7a9ee2768c1126ac70abefab77167bcf96ad5804516",
     "Content/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.uasset": "be45e75634193f53e2236214d5972632e025272750e658962b3b2e7ff909dbec",
-    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_BC.uasset": "960239305c2ddb22349335fb6e061e5ef247154d9eb1056768a56a2879447b34",
-    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_N.uasset": "653c4bccee6069ba858b3675d0bba7e30acf2f385207c0b797ab8f8cb7a91944",
-    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_ORM.uasset": "4f2b5eb6d5aa6c25edd46382677c02f52b7912f84f0a23539b7d0ba9dcb56e35"
+    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_BC.uasset": "f296ef54415ba76c58399472e6934b8a46de26d30c96652164d27cf4dfd24c2e",
+    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_N.uasset": "79b9a97f693ae26a9c403bc6da96b03f5a79bbc35abc8e7c86416556546018c1",
+    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_ORM.uasset": "836ba218664f344d18db96d1c0eddc57a51932db5f359b630c349a6005472aea"
   }
 }

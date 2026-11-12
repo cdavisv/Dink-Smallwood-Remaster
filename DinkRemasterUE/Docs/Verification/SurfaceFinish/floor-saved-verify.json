@@ -1,6 +1,6 @@
 {
   "mode": "verify",
-  "source_manifest_sha256": "daaa37e4c2a48f79baab8099e0feb6d74e4a10212ad4ae22b8dafb5014f72567",
+  "source_manifest_sha256": "e605730377c7e0f3a264caf08e621b1e7415274065ddd3d8f1c8ca418e36c020",
   "packages": [
     "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01",
     "/Game/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1",
@@ -10,7 +10,7 @@
   ],
   "original_mesh": "/Game/Dink/Kits/Stonebrook/SM_Floor_Oak_2m_01",
   "protected_existing_packages": 4752,
-  "project": "/home/artist/Work/DinkSurfaceDelivery/DinkRemasterUE",
+  "project": "<HOME>/Work/DinkSurfaceDelivery/DinkRemasterUE",
   "importer_sha256": "e040c2192a7ba1e0c1c33fed623578928aebd98f1e83571f87a90d937b1671eb",
   "protected_runtime_data_files": 667,
   "runtime_data_sha256": {
@@ -25,7 +25,7 @@
     "Content/Dink/Data/Art/stonebrook_fields_438.json": "ae3dff73df0bedc3399525dc396c7a03670c176ef13f44825d99a15e83b7f1a0",
     "Content/Dink/Data/Art/stonebrook_fields_471.json": "5406b785f0af7f6bc11d347268e5f201d3989f4ebe7641f773a91be2f967f829",
     "Content/Dink/Data/Art/stonebrook_refinement_fireplace_v2.json": "f4d1eb172aaf4d55549f28effa032b7e99c456f205feb8b02c767f7c191b0267",
-    "Content/Dink/Data/Art/stonebrook_vista_v4.json": "c6c83b57adb235668b5378e3965b8301512b4ae48f18aacab0155985f69c5c94",
+    "Content/Dink/Data/Art/stonebrook_vista_v4.json": "56c1183adeed7c7c97562cd7f95452eed9b15763512ed96bdd9b3c7064125e8a",
     "Content/Dink/Data/Audio/approved.json": "8c1f7699fbe1a998acf8cd92270d3d7b91d3d17e6d046802207fba4ee2f9e627",
     "Content/Dink/Data/Facts/dink_globals.csv": "6e4a4b7d15338d3c92c9d76d867869b67b904bfc8061db35e0c18207ec51de6d",
     "Content/Dink/Data/Gameplay/frames.csv": "d9668443af88f18a7094c00770c8424c793d5e9374e3ffee27529c2630e26381",
@@ -734,9 +734,9 @@
   "saved_package_sha256": {
     "Content/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.uasset": "ddb79f010d61b889ac94c7a9ee2768c1126ac70abefab77167bcf96ad5804516",
     "Content/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.uasset": "be45e75634193f53e2236214d5972632e025272750e658962b3b2e7ff909dbec",
-    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_BC.uasset": "960239305c2ddb22349335fb6e061e5ef247154d9eb1056768a56a2879447b34",
-    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_N.uasset": "653c4bccee6069ba858b3675d0bba7e30acf2f385207c0b797ab8f8cb7a91944",
-    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_ORM.uasset": "4f2b5eb6d5aa6c25edd46382677c02f52b7912f84f0a23539b7d0ba9dcb56e35"
+    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_BC.uasset": "f296ef54415ba76c58399472e6934b8a46de26d30c96652164d27cf4dfd24c2e",
+    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_N.uasset": "79b9a97f693ae26a9c403bc6da96b03f5a79bbc35abc8e7c86416556546018c1",
+    "Content/Dink/Textures/Stonebrook/Refinements/T_Stonebrook_FloorOakV1_ORM.uasset": "836ba218664f344d18db96d1c0eddc57a51932db5f359b630c349a6005472aea"
   },
   "runtime_manifest_published": false,
   "passed": true

@@ -2,7 +2,7 @@
 
 
 
-BUILT_PRODUCTS_DIR=/Users/Seth/build/Build/Products/Release
+BUILT_PRODUCTS_DIR=<HOME>/build/Build/Products/Release
 PROJECT_DIR=/Volumes/projects/proton/RTDink/OSX
 #Note: It assumes your .app is in ~/Build/Release which may not be the case…
 

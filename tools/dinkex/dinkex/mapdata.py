@@ -130,6 +130,7 @@ class ScreenRecord:
     v: list
     s: str
     sprites: dict               # index (0..100) -> dict (only active ones)
+    editor_hard_flags: list     # raw map.dat slots1..99, including inactive records
     sprite_slots_total: int
     script: str                 # base script (raw case)
     random: str
@@ -150,7 +151,7 @@ def parse_screen(blk, record):
     return ScreenRecord(
         record=record, name=cstr(blk[0:20]), tiles=tiles,
         v=list(struct.unpack_from("<40i", blk, 7780)), s=cstr(blk[7940:8020]),
-        sprites=sprites, sprite_slots_total=SPRITE_SLOTS,
+        sprites=sprites, editor_hard_flags=[struct.unpack_from("<i",blk,SPRITE_BASE+i*SPRITE_SIZE+120)[0] for i in range(1,ENGINE_SPRITE_MAX+1)], sprite_slots_total=SPRITE_SLOTS,
         script=cstr(blk[30240:30253]), random=cstr(blk[30253:30266]), load=cstr(blk[30266:30279]),
         buffer_nonzero=any(blk[30279:31280]),
     )

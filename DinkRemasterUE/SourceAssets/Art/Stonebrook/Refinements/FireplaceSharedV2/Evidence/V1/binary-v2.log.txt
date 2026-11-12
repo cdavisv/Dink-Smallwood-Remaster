@@ -1,0 +1,12 @@
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-10-13 09:33:20)
+[ALSOFT] (EE) Failed to connect PipeWire event context (errno: 1)
+00:00.238  blend            | Read blend: "<HOME>/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/Fireplace_Shared2mCandidate.blend"
+Traceback (most recent call last):
+  File "<HOME>/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/audit_binary.py", line 19, in <module>
+    r=dict(name=o.name,serialized_fields=['UV','N','T','B'],UV_max_error=float(abs(uv-su).max()),N_max_angle_deg=angle(n,sn),T_max_angle_deg=angle(t,st),B_max_angle_deg=angle(b,sb),handedness_changes=int((sign!=ss).sum()),finite=all(np.isfinite(a).all()for a in [uv,n,t,b]),corners=count)
+                                                                                                                                             ~~~~~^^^^^^
+  File "<HOME>/Work/DinkQA/PhotorealSessions/FireplaceSharedV1/audit_binary.py", line 13, in angle
+    den=np.linalg.norm(a,axis=1)*np.linalg.norm(b,axis=1);assert den.min()>1e-8;return float(np.degrees(np.arccos(np.clip(np.sum(a*b,axis=1)/den,-1,1))).max())
+                                                                 ^^^^^^^^^^^^^^
+AssertionError
+pa_write() failed while trying to wake up the mainloop: Operation not permitted

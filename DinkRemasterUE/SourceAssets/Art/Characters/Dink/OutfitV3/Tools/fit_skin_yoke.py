@@ -1,7 +1,7 @@
 import bpy,json,math,hashlib,numpy as np
 from pathlib import Path
 from mathutils import Vector
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
 bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));size=4096;tile=16;grid=size//tile;images={suffix:bpy.data.images['T_Dink_WardrobeV3_'+suffix] for suffix in ['BC','N','ORM']}
 # Find one coherent original blue cloth patch, then copy its PBR pixels only to unused atlas regions.
 pixels=np.empty(size*size*4,np.float32);images['BC'].pixels.foreach_get(pixels);bc=pixels.reshape(size,size,4);blue=(bc[:,:,2]>bc[:,:,0]*1.15)&(bc[:,:,1]>bc[:,:,0]*1.1)&(bc[:,:,0]>.025);donors=blue.reshape(grid,tile,grid,tile).all(axis=(1,3));candidate=np.argwhere(donors);assert len(candidate),'No coherent blue-cloth donor patch'

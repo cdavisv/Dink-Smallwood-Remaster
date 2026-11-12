@@ -6,7 +6,7 @@
     "loaded_custom_modules": [],
     "success": true,
     "terminal_log_sha256": "2abd067ecbe691233f0eaf372443e3fcb15a70060b90ef5f3cc2e35066fe7ce6",
-    "raw_run_directory": "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/build",
+    "raw_run_directory": "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/build",
     "compiler_warnings": 0
   },
   "game-build": {
@@ -14,26 +14,26 @@
     "exit_code": 0,
     "elapsed_seconds": 752.3824530139973,
     "loaded_custom_modules": [
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
     ],
     "success": true,
     "terminal_log_sha256": "352ff918bd7cddea8529aa580b21c2b0adf54308f0c1a797408b9216c2ee3e09",
-    "raw_run_directory": "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/game-build",
+    "raw_run_directory": "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/game-build",
     "compiler_warnings": 0,
     "editor_modules_unchanged": {
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": "ea9b3ef2ed542320c5d02b205b562914728245418ee12f580a441affb4883d44",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "88d60f5f725fe7ac0f8955d44565909522253565ea7a4b474738eb1a1c99725e",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "d0dbfc574e5083f28d5a288c0b4197b3e6158ff3d8fdf070c1255299919dd059",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "4560925fd8b48f08af39cc7f35e0e6b1cf228605fb137d4707920f8f742053b6",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "405377b371619e16fee69952237870b4a0e2e15601b668e4a3621ae0fc36dc36",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "d733fb2c773e3d32a8dd92b7132c59d50b2df76713d77b432f734c1fb2d65b60",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "6447c86da78b8dc9b54606ac36f5576d2e6f3dfb5243d3a3a5f59ff57abef501"
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": "ea9b3ef2ed542320c5d02b205b562914728245418ee12f580a441affb4883d44",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "88d60f5f725fe7ac0f8955d44565909522253565ea7a4b474738eb1a1c99725e",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "d0dbfc574e5083f28d5a288c0b4197b3e6158ff3d8fdf070c1255299919dd059",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "4560925fd8b48f08af39cc7f35e0e6b1cf228605fb137d4707920f8f742053b6",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "405377b371619e16fee69952237870b4a0e2e15601b668e4a3621ae0fc36dc36",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "d733fb2c773e3d32a8dd92b7132c59d50b2df76713d77b432f734c1fb2d65b60",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "6447c86da78b8dc9b54606ac36f5576d2e6f3dfb5243d3a3a5f59ff57abef501"
     },
     "loaded_custom_modules_observation": "Concurrent own full-suite process observation; the Game build does not load editor DLLs and this is not a Game executable launch."
   },
@@ -42,13 +42,13 @@
     "exit_code": 0,
     "elapsed_seconds": 29.606003927008715,
     "loaded_custom_modules": [
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
     ],
     "tests": 7,
     "failed": 0,
@@ -62,7 +62,7 @@
     "all_loaded_custom_owned": true,
     "success": true,
     "terminal_log_sha256": "273d90765c1a27df438c3fb1445cf4c650f9c40b59e04bafcbc45c3425ffe6e5",
-    "raw_run_directory": "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/focused",
+    "raw_run_directory": "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/focused",
     "report_index_sha256": "65792f5af77adba5273e9aa3b331a93df399669e4bd0ebe4109a47d18f5efd3e"
   },
   "full": {
@@ -70,13 +70,13 @@
     "exit_code": 0,
     "elapsed_seconds": 1857.2981532340054,
     "loaded_custom_modules": [
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-      "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+      "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so"
     ],
     "tests": 164,
     "failed": 0,
@@ -90,7 +90,7 @@
     "all_loaded_custom_owned": true,
     "success": true,
     "terminal_log_sha256": "e860c91371967b1eea9e0682b620a8e1ac1c61c885a3da8f8a50db580a2c3a94",
-    "raw_run_directory": "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/full",
+    "raw_run_directory": "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/full",
     "report_index_sha256": "899bb747fa11a783cbe74e8bbf14423579f72a5ee445e78e92fe23d7ebc2c444",
     "warning_events": [
       {
@@ -117,7 +117,7 @@
   },
   "source_audit": {
     "exit_code": 0,
-    "log": "/home/artist/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/source_audit_delivery.log",
+    "log": "<HOME>/Work/DinkClumsyV2/DinkRemasterUE/Saved/ClumsyV2/source_audit_delivery.log",
     "sha256": "2455864cf64159329e4883abd1df979d86c3688dcc7e0efe656619ee3df6c274"
   }
 }

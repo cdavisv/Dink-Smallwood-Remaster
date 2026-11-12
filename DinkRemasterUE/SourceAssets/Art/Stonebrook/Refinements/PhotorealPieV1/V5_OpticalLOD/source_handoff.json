@@ -4,17 +4,17 @@
     {
       "path": "HANDOFF.md",
       "bytes": 2905,
-      "sha256": "7398605a578a9f844908a19dda15737385a522abee6989ee2b97c3b81482e117"
+      "sha256": "3f8511c3bdbe47c1b7b04c88d7f0297658cda58bec5999946d483c366f147126"
     },
     {
       "path": "Inputs/V4_Export.blend",
       "bytes": 6118542,
-      "sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e"
+      "sha256": "ee515daa6f66be20d5ebfd1ae557badc386aaed425624ebfecd435ab06d0f3e1"
     },
     {
       "path": "PhotorealPieV1_Export.blend",
       "bytes": 6126003,
-      "sha256": "2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a"
+      "sha256": "ca0400ba99ec2e547b5f006cc31e74d6b0c1ab8fdd3f96016b7f8b45c5851102"
     },
     {
       "path": "Pipeline/dinkasset/__init__.py",
@@ -64,22 +64,22 @@
     {
       "path": "Roundtrip/PieSource-front-LOD1.png",
       "bytes": 542318,
-      "sha256": "e35ef0018886e01d02c188f8e46eb97787b4dcc548b0bd143a18cd11226983f0"
+      "sha256": "8ab2035250cf6cabaac7fcdb41578b0640cd821833a7fb68dc26ebe5b557daaa"
     },
     {
       "path": "Roundtrip/PieSource-front-LOD2.png",
       "bytes": 546023,
-      "sha256": "4a413cc98c73a1026b60f891cbd8b63b5b8dc1a053484984daa822670123e353"
+      "sha256": "c143fb85b046caa5701b9c8aa7eb34807677d5e6fd5f9d49a2fdff162a5f5d69"
     },
     {
       "path": "Roundtrip/PieSource-game-distance-LOD1.png",
       "bytes": 474454,
-      "sha256": "c293c6ac552f848ac01c8059012896f4ea342ebd8972c3126bdcdcce943b657d"
+      "sha256": "ac91dfc9b9cc8d599cce3a12fc19d519d940f6da8bc257c24c8c1ca0dbe9fcb7"
     },
     {
       "path": "Roundtrip/PieSource-game-distance-LOD2.png",
       "bytes": 475817,
-      "sha256": "59f5003e57c9a9329563ea6eee5fbf0e4b67644f2404ec98307cb94c4e0cd779"
+      "sha256": "9d13140a487fa4954f688f6a94230166eb136385d63d7e526ff91d31831445e1"
     },
     {
       "path": "Textures/T_Pie_Rustic_01_Photo_BC.png",
@@ -104,27 +104,27 @@
     {
       "path": "export_uv_verification.json",
       "bytes": 2885,
-      "sha256": "d49adfc0c97da93b0c35a7bd758f83b4201dd88eac55dd588db2625bfa39dae1"
+      "sha256": "3eb391c869a2d105a11a00083e9cb57ac16f301d8b96eee61cfee506d257f6da"
     },
     {
       "path": "guide_validation.json",
       "bytes": 1459,
-      "sha256": "11dca28c5b76d89cf5bfd5111ee45a734933b22cc403431788107d2eb4144deb"
+      "sha256": "a076e994a84293c082268f044d34200c90ff010e9668eb8fbeab3d8059ac2a9d"
     },
     {
       "path": "optical_lod_report.json",
       "bytes": 731,
-      "sha256": "6c1b00cc9090b0fbcdd44ec18df53482683b4e788875f4b2c026dabb6d3b4c44"
+      "sha256": "8be5231c45d178fdb441cb322a5476f64e3a9ebf9be49f1fdb0ac00d79e19ee3"
     },
     {
       "path": "pixel_comparison.json",
       "bytes": 1562,
-      "sha256": "313dfa10bdfaad43537432d61f29ffa3fa2776c5fc808276268eecf02c3dc301"
+      "sha256": "b1c12913ded50f98ba781629a4721c51f747830991f8e7e9f25c7eb0d24ca28f"
     },
     {
       "path": "portable_export_receipt.json",
       "bytes": 808,
-      "sha256": "84a7f507c68a742dd55d389a22a6c7e9544a9cc41a2de3d255302ecd20fdf8d8"
+      "sha256": "80012e91bc6b03925f171024fbeec1ec5099831ca7cc9e42a95dcaa90b124574"
     },
     {
       "path": "preservation.json",
@@ -139,7 +139,7 @@
     {
       "path": "retain_ceramic.py",
       "bytes": 3376,
-      "sha256": "ab1ea12d2d6796d5c82388ff8924aa5a9be19db12fda3a6a55b38a277b828527"
+      "sha256": "e4dac7d59b75c9ab431d24b384ab1cbd6e5e067bebaeb021e83d81035f2a0038"
     },
     {
       "path": "validate_source.py",

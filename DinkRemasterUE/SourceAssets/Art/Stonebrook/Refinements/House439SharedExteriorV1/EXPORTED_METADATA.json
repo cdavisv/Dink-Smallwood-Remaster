@@ -1,0 +1,43 @@
+{
+  "name": "SM_Cottage_Stonebrook_01",
+  "triangles": 194192,
+  "dimensions_m": [
+    18.815841674804688,
+    10.5363450050354,
+    7.930000305175781
+  ],
+  "bounds_m": [
+    [
+      -9.407503128051758,
+      -5.268467903137207,
+      0.0
+    ],
+    [
+      9.40833854675293,
+      5.267877101898193,
+      7.930000305175781
+    ]
+  ],
+  "material_slots": [
+    "MI_Shared_FieldstoneSeed2m",
+    "MI_Shared_LimeMortarSoot2m",
+    "MI_Shared_WeatheredTimber2m",
+    "MI_Shared_IronLead2m",
+    "MI_Shared_ThinWavyGlass2m",
+    "MI_Shared_FieldstoneWall2m",
+    "MI_Shared_DressedReed2m"
+  ],
+  "UV_layers": [
+    "UV0",
+    "UV1_SharedData"
+  ],
+  "source_file_sha256": "926a3586c00d958994706c0fc1e4b3ddf3655251da087f9596fa92eed911d028",
+  "collision_hulls": [
+    "UCX_SM_Cottage_Stonebrook_01_01",
+    "UCX_SM_Cottage_Stonebrook_01_02",
+    "UCX_SM_Cottage_Stonebrook_01_03",
+    "UCX_SM_Cottage_Stonebrook_01_04",
+    "UCX_SM_Cottage_Stonebrook_01_05",
+    "UCX_SM_Cottage_Stonebrook_01_06"
+  ]
+}

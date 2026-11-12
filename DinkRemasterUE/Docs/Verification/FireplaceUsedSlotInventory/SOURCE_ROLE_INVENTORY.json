@@ -1,0 +1,138 @@
+{
+  "registered_parent_count": 7,
+  "mesh_rows": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "source_declared": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FiredClayMasonry2m"
+      ],
+      "source_used": [
+        "MI_Shared_FiredClayMasonry2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_Soot2m"
+      ],
+      "source_unused": [
+        "MI_Shared_FieldstoneSeed2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_OakLonggrain2m"
+      ],
+      "native_expected_roles": [
+        "MI_Shared_Soot2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_FiredClayMasonry2m"
+      ],
+      "source_face_counts": {
+        "MI_Shared_FiredClayMasonry2m": 628,
+        "MI_Shared_Soot2m": 176,
+        "MI_Shared_IronLead2m": 682
+      },
+      "source_sha256": "4cd7b54813d5eba685aaeeea8a8d2818f47388103528f24fabeaa539f98c8413"
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "source_declared": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m"
+      ],
+      "source_used": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_Soot2m"
+      ],
+      "source_unused": [],
+      "native_expected_roles": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m"
+      ],
+      "source_face_counts": {
+        "MI_Shared_LimeMortar2m": 1008,
+        "MI_Shared_IronLead2m": 2008,
+        "MI_Shared_FiredClay2m": 52196,
+        "MI_Shared_Soot2m": 944,
+        "MI_Shared_OakLonggrain2m": 1140
+      },
+      "source_sha256": "1280616f71af17e0c20b728c1818f1dfe6049234714dd42086fb8a131fb18cb4"
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "source_declared": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m"
+      ],
+      "source_used": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_Soot2m"
+      ],
+      "source_unused": [],
+      "native_expected_roles": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m"
+      ],
+      "source_face_counts": {
+        "MI_Shared_LimeMortar2m": 954,
+        "MI_Shared_IronLead2m": 1006,
+        "MI_Shared_FiredClay2m": 34510,
+        "MI_Shared_Soot2m": 858,
+        "MI_Shared_OakLonggrain2m": 580
+      },
+      "source_sha256": "9573ace7963f96a828e3853cdc79ab9e80a17fa225e1e2dfa347349f0827b291"
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "source_declared": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m"
+      ],
+      "source_used": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_IronLead2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_Soot2m"
+      ],
+      "source_unused": [],
+      "native_expected_roles": [
+        "MI_Shared_FiredClay2m",
+        "MI_Shared_LimeMortar2m",
+        "MI_Shared_Soot2m",
+        "MI_Shared_OakLonggrain2m",
+        "MI_Shared_IronLead2m"
+      ],
+      "source_face_counts": {
+        "MI_Shared_LimeMortar2m": 920,
+        "MI_Shared_FiredClay2m": 17190,
+        "MI_Shared_Soot2m": 834,
+        "MI_Shared_IronLead2m": 660,
+        "MI_Shared_OakLonggrain2m": 394
+      },
+      "source_sha256": "9cdec5823993dbc984f0d46c2e7890e32e5d8ec8af0e833d91ec4bbb094f5b36"
+    }
+  ],
+  "source_inventory_preserved": true,
+  "native_policy": "exact verified source-used role set; no forced order"
+}

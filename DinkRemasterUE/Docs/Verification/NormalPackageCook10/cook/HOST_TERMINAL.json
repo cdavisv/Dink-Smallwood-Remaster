@@ -3,7 +3,7 @@
   "elapsed": 308.2480328620004,
   "immutable_changes": [],
   "mapped_modules": {
-    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": {
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": {
       "inode": 3965105,
       "stat_device": 50,
       "mapped_device": 35,
@@ -12,7 +12,7 @@
       "namespace_samefile": true,
       "sha256": "6365ba6a23742e4daca10eaf59c8348e56aadd1fa34d9a12848f5cada7fb6181"
     },
-    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": {
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": {
       "inode": 3965142,
       "stat_device": 50,
       "mapped_device": 35,
@@ -21,7 +21,7 @@
       "namespace_samefile": true,
       "sha256": "7f582e2f23ed81044606a77d5dfb6cad349dcdbb5b44a7eb1c26f83bca31ea7c"
     },
-    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": {
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": {
       "inode": 5415836,
       "stat_device": 50,
       "mapped_device": 35,
@@ -30,7 +30,7 @@
       "namespace_samefile": true,
       "sha256": "fafd3cc71626885e52e814e536b8f010cfeecf9889d6e4e51fbb21f31b0f025c"
     },
-    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": {
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": {
       "inode": 4514928,
       "stat_device": 50,
       "mapped_device": 35,
@@ -39,7 +39,7 @@
       "namespace_samefile": true,
       "sha256": "b267bf90501868c5f90b3768a6134447a194cea6a8be776f9f4208703f06ba1b"
     },
-    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": {
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": {
       "inode": 5415873,
       "stat_device": 50,
       "mapped_device": 35,
@@ -48,7 +48,7 @@
       "namespace_samefile": true,
       "sha256": "62390feddda8009762e5b35e70b1de2d2ba528b04f8e964530c5cceb02686882"
     },
-    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": {
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": {
       "inode": 5415843,
       "stat_device": 50,
       "mapped_device": 35,
@@ -57,7 +57,7 @@
       "namespace_samefile": true,
       "sha256": "b334b9efe1acec6725a38aa8c41a6bb8316d258ecca6158b5bfa81662b7d1180"
     },
-    "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": {
+    "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": {
       "inode": 5415830,
       "stat_device": 50,
       "mapped_device": 35,
@@ -71,39 +71,39 @@
     "734761": {
       "pid": 734761,
       "start_ticks": 7382768,
-      "exe": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+      "exe": "<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
       "argv": [
-        "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
-        "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/DinkRemaster.uproject",
+        "<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+        "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/DinkRemaster.uproject",
         "-run=Cook",
         "-Map=/Game/Dink/_Generated/Maps/L_Greybox_World",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Kits",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Props",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Foliage",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Camera",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Refinements",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Audio",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Creatures",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/NPC",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Hero",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Materials",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Textures",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Characters",
-        "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Input",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Kits",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Props",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Foliage",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Camera",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Refinements",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Audio",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Creatures",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/NPC",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Hero",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Materials",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Textures",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Characters",
+        "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Input",
         "-TargetPlatform=Linux",
         "-unversioned",
-        "-UserDir=/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/User",
+        "-UserDir=<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/User",
         "-DinkQARunId=a4a170b7efed44e4a9a823d30ab78c80",
         "-DDC=InstalledNoZenLocalFallback",
         "-DDC-NoDefaultGraph",
-        "-LocalDataCachePath=/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/DDC",
+        "-LocalDataCachePath=<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/DDC",
         "-SharedDataCachePath=None",
         "-ZenSharedDataCacheHost=None",
         "-notraceserver",
         "-SkipZenStore",
-        "-ini:Engine:[VirtualTextureChunkDDCCache]:Path=/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/VT",
+        "-ini:Engine:[VirtualTextureChunkDDCCache]:Path=<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/VT",
         "-fileopenlog",
-        "-abslog=/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/EngineSaved/Cook-2026.11.10-04.04.37.txt",
+        "-abslog=<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/EngineSaved/Cook-2026.11.10-04.04.37.txt",
         "-stdout",
         "-CrashForUAT",
         "-unattended",
@@ -117,39 +117,39 @@
         "process": {
           "pid": 734761,
           "start_ticks": 7382768,
-          "exe": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+          "exe": "<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
           "argv": [
-            "/home/artist/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
-            "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/DinkRemaster.uproject",
+            "<HOME>/UnrealEngine/UE_5.8.4/Engine/Binaries/Linux/UnrealEditor-Cmd",
+            "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/DinkRemaster.uproject",
             "-run=Cook",
             "-Map=/Game/Dink/_Generated/Maps/L_Greybox_World",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Kits",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Props",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Foliage",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Camera",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Refinements",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Audio",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Creatures",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/NPC",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Hero",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Materials",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Textures",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Characters",
-            "-CookDir=/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Input",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Kits",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Props",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Foliage",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Camera",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Refinements",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Audio",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Creatures",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/NPC",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Hero",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Materials",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Dink/Textures",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Characters",
+            "-CookDir=<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content/Input",
             "-TargetPlatform=Linux",
             "-unversioned",
-            "-UserDir=/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/User",
+            "-UserDir=<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/User",
             "-DinkQARunId=a4a170b7efed44e4a9a823d30ab78c80",
             "-DDC=InstalledNoZenLocalFallback",
             "-DDC-NoDefaultGraph",
-            "-LocalDataCachePath=/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/DDC",
+            "-LocalDataCachePath=<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/DDC",
             "-SharedDataCachePath=None",
             "-ZenSharedDataCacheHost=None",
             "-notraceserver",
             "-SkipZenStore",
-            "-ini:Engine:[VirtualTextureChunkDDCCache]:Path=/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/VT",
+            "-ini:Engine:[VirtualTextureChunkDDCCache]:Path=<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/VT",
             "-fileopenlog",
-            "-abslog=/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/EngineSaved/Cook-2026.11.10-04.04.37.txt",
+            "-abslog=<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/EngineSaved/Cook-2026.11.10-04.04.37.txt",
             "-stdout",
             "-CrashForUAT",
             "-unattended",
@@ -159,8 +159,8 @@
         "actual_shader_sha256": "c832c56f04778bab2a8f73adbb3b905d84619693113cfd36da1de3ea8dcabd64",
         "mount": {
           "id": 1209,
-          "root": "/@home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/Tmp/dink-shaderprint-23l_p8m1/ShaderPrint.ush",
-          "target": "/home/artist/UnrealEngine/UE_5.8.4/Engine/Shaders/Private/ShaderPrint.ush",
+          "root": "<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/Tmp/dink-shaderprint-23l_p8m1/ShaderPrint.ush",
+          "target": "<HOME>/UnrealEngine/UE_5.8.4/Engine/Shaders/Private/ShaderPrint.ush",
           "options": [
             "ro",
             "nosuid",
@@ -169,7 +169,7 @@
           ],
           "filesystem": "btrfs"
         },
-        "private_source": "/home/artist/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/Tmp/dink-shaderprint-23l_p8m1/ShaderPrint.ush",
+        "private_source": "<HOME>/Work/DinkQA/RoofCanonicalPackagingPreparation/PackagingCandidate10/Runs/01ff808f3db24176b772c798a6171a71/Tmp/dink-shaderprint-23l_p8m1/ShaderPrint.ush",
         "source_inode": 6394454,
         "source_device": 50,
         "source_mode": 256,
@@ -177,10 +177,10 @@
         "namespace_source_samefile": true,
         "namespace_target_samefile": true,
         "readonly_source_and_Editor_mounts": {
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE": {
             "id": 1165,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
             "options": [
               "ro",
               "nosuid",
@@ -189,10 +189,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Content": {
             "id": 1165,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
             "options": [
               "ro",
               "nosuid",
@@ -201,10 +201,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Source": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Source": {
             "id": 1165,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
             "options": [
               "ro",
               "nosuid",
@@ -213,10 +213,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Scripts": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Scripts": {
             "id": 1165,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
             "options": [
               "ro",
               "nosuid",
@@ -225,10 +225,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/SourceAssets": {
             "id": 1165,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE",
             "options": [
               "ro",
               "nosuid",
@@ -237,7 +237,7 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/UnrealEngine/UE_5.8.4/Engine/Source": {
+          "<HOME>/UnrealEngine/UE_5.8.4/Engine/Source": {
             "id": 1164,
             "root": "/@home",
             "target": "/home",
@@ -249,7 +249,7 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/UnrealEngine/UE_5.8.4/Engine/Config": {
+          "<HOME>/UnrealEngine/UE_5.8.4/Engine/Config": {
             "id": 1164,
             "root": "/@home",
             "target": "/home",
@@ -261,7 +261,7 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/UnrealEngine/UE_5.8.4/Engine/Shaders": {
+          "<HOME>/UnrealEngine/UE_5.8.4/Engine/Shaders": {
             "id": 1164,
             "root": "/@home",
             "target": "/home",
@@ -273,10 +273,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target": {
             "id": 1169,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target",
             "options": [
               "ro",
               "nosuid",
@@ -285,10 +285,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules": {
             "id": 1170,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules",
             "options": [
               "ro",
               "nosuid",
@@ -297,10 +297,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": {
             "id": 1171,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so",
             "options": [
               "ro",
               "nosuid",
@@ -309,10 +309,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules": {
             "id": 1178,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules",
             "options": [
               "ro",
               "nosuid",
@@ -321,10 +321,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": {
             "id": 1179,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so",
             "options": [
               "ro",
               "nosuid",
@@ -333,10 +333,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules": {
             "id": 1181,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules",
             "options": [
               "ro",
               "nosuid",
@@ -345,10 +345,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": {
             "id": 1182,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so",
             "options": [
               "ro",
               "nosuid",
@@ -357,10 +357,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules": {
             "id": 1184,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules",
             "options": [
               "ro",
               "nosuid",
@@ -369,10 +369,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": {
             "id": 1185,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so",
             "options": [
               "ro",
               "nosuid",
@@ -381,10 +381,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules": {
             "id": 1187,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules",
             "options": [
               "ro",
               "nosuid",
@@ -393,10 +393,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": {
             "id": 1188,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so",
             "options": [
               "ro",
               "nosuid",
@@ -405,10 +405,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": {
             "id": 1189,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so",
             "options": [
               "ro",
               "nosuid",
@@ -417,10 +417,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules": {
             "id": 1191,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules",
             "options": [
               "ro",
               "nosuid",
@@ -429,10 +429,10 @@
             ],
             "filesystem": "btrfs"
           },
-          "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": {
+          "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": {
             "id": 1192,
-            "root": "/@home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so",
-            "target": "/home/artist/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so",
+            "root": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so",
+            "target": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so",
             "options": [
               "ro",
               "nosuid",

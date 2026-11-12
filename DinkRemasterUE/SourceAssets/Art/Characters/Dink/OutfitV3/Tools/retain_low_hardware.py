@@ -2,7 +2,7 @@ import bpy,bmesh,json,math,numpy as np
 from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
 def facekey(mesh,p):return tuple(sorted(tuple(round(x,6) for x in mesh.vertices[i].co) for i in p.vertices))
 bpy.ops.wm.open_mainfile(filepath=str(ART/'Tools/Checkpoints/PreIntegrated.blend.snapshot'));hardware=[]
 for lod in range(4):

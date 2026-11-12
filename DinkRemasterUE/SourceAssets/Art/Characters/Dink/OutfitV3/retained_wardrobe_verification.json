@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "candidate_sha256": "59445d2de287a82ea980d5dca4d10cbfc7a8c02808eb180a0b38855bc5d98743",
+  "candidate_sha256": "c7fa7470980f163e940a313ab0fabe13173519fed82956f9551b8b522cbbaf3b",
   "scope": "Independent reload proves all four LODs have byte-exact same verified Wardrobe face ordering/winding, positions, named weights, smooth flags and per-corner UVs. Four anatomical LODs independently frozen by scope_verification.json.",
   "lods": [
     {

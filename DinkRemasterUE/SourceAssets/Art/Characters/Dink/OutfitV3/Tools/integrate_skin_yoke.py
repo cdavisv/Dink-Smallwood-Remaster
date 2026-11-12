@@ -3,7 +3,7 @@ from mathutils.bvhtree import BVHTree
 from mathutils.geometry import barycentric_transform
 from pathlib import Path
 from mathutils import Vector
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
 bpy.ops.wm.open_mainfile(filepath=str(ART/'SK_Dink_OutfitV3.blend'));# Work from the exact pre-yoke source checkpoint; do not accumulate overlay collars.
 backreport=json.loads((ART/'back_strap_attachment_report.json').read_text())['lods']
 for lod in range(4):

@@ -1,0 +1,24 @@
+{
+  "status": "REGRESSION_REPRODUCED_BEFORE_AND_FIXED_AFTER_IN_CONSTRUCTED_GRAPH_MODEL",
+  "cases": [
+    {
+      "source_bias": -0.01,
+      "expected_source_roughness": 0.95,
+      "before_native_graph_model": 1.0,
+      "after_native_graph_model": 0.95
+    },
+    {
+      "source_bias": 0.0,
+      "expected_source_roughness": 0.96,
+      "before_native_graph_model": 1.0,
+      "after_native_graph_model": 0.96
+    },
+    {
+      "source_bias": 0.01,
+      "expected_source_roughness": 0.97,
+      "before_native_graph_model": 1.0,
+      "after_native_graph_model": 0.97
+    }
+  ],
+  "qualification": "Actual builder constructs graph into synthetic API backend, evaluated with importedUVinputs and synthetictexels. Not Unreal API execution, texture compression, shader compile or GPU proof."
+}

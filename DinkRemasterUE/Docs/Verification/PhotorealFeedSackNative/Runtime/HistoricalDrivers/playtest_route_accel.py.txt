@@ -17,7 +17,7 @@ import json
 import math
 from pathlib import Path
 import sys
-sys.path.insert(0,'/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts')
+sys.path.insert(0,'<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/Scripts')
 import re
 import subprocess
 import time
@@ -86,7 +86,7 @@ def map_world(screen, point):
 
 def walk_route(route_path, log, out):
     route = json.loads(route_path.read_text())
-    screens = {s['screen']: s for s in json.loads((Path('/home/artist/Work/DinkPhotorealArtIntegration/DinkRemasterUE/ImportData/screens.json')).read_text())['screens']}
+    screens = {s['screen']: s for s in json.loads((Path('<HOME>/Work/DinkPhotorealArtIntegration/DinkRemasterUE/ImportData/screens.json')).read_text())['screens']}
     evidence = {'route': str(route_path), 'input': 'normal held W keys, camera yaw only; no teleports', 'steps': []}
     try:
         for waypoint in route['waypoints']:

@@ -3,7 +3,7 @@
   "new_lfs_payloads": [
     {
       "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/GenericReuse.blend",
-      "sha256": "56ecd7a116c1c41c02fef1d17a6c2e5f2ab05491faf1ae9b7977794b9add5bc9",
+      "sha256": "ae4c9aa7d95fc2684fa59cddbd82ed67d8ed5067710613de98d19d9813ad772b",
       "size": 2235758,
       "actual_payload_matches_index_pointer": true
     },
@@ -21,13 +21,13 @@
     },
     {
       "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/SharedThornBroadleaf_LibraryCandidate.blend",
-      "sha256": "e95c4d177200c7f1cbbfbdeb1f320a664fabcd41cf88025b7ac78bc7eca33122",
+      "sha256": "9dd135ddfd62867867dd0ff00f090bd90b3f9e05bc858d4012e36ec9c0c9f13a",
       "size": 2231401,
       "actual_payload_matches_index_pointer": true
     },
     {
       "path": "DinkRemasterUE/SourceAssets/Art/SharedMaterials/ThornBarkBroadleafV1/SharedThornBroadleaf_ProceduralSource.blend",
-      "sha256": "8822d83c2efe779db20a0218bdfc346cf3b9b8a62818e228d538724b910f4872",
+      "sha256": "ba8aad7d3934645920a57eb62c9faf5fa4f860f1885354eeebc07bb6aa87921f",
       "size": 102126,
       "actual_payload_matches_index_pointer": true
     },
@@ -81,25 +81,25 @@
     },
     {
       "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/Review/shared_00.png",
-      "sha256": "2e6a6e7854a5ec4817cb43c245dfe1711d11a097cad89d9aa3555c6d7bfaacfc",
+      "sha256": "3d1fc2c50dfb32cfda37711b23136a9e9b5f26537ee9a72e492f09a6032ac932",
       "size": 992362,
       "actual_payload_matches_index_pointer": true
     },
     {
       "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/Review/shared_01.png",
-      "sha256": "67e89832e88c292633d33f00401bd304b5feca0ff19a6f9e048165d8237e6c79",
+      "sha256": "95570cb0a0e0e1b321fc10f48eb9c80f7e7b8244613ddd700a42bcc21f935cd6",
       "size": 973310,
       "actual_payload_matches_index_pointer": true
     },
     {
       "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/Review/shared_02.png",
-      "sha256": "c32b2ede911045aa1a9d07764d3589379d0ebb072ea5229afff1f946a0819db5",
+      "sha256": "855fe67c3130e89e575e59b5920683a2c58d9193df001dd6ea5f499c9ce37a2f",
       "size": 1019620,
       "actual_payload_matches_index_pointer": true
     },
     {
       "path": "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/ThornBrambleV9Candidate/ThornBramble_SharedSourceV1.blend",
-      "sha256": "83fb0d4736f2f0bf8a1cad0b5e7bd9ac7f60a3a2d524a5da55a1abbeafbea1b2",
+      "sha256": "80bedc2399c6244e87e109f5c6e0e5b936a04fdd12ff897a79d9c7c0d44199a6",
       "size": 3366670,
       "actual_payload_matches_index_pointer": true
     }

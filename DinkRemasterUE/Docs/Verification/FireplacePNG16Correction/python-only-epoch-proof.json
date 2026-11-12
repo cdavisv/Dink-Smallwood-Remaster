@@ -1,0 +1,16 @@
+{
+  "predecessor": "fefad5870cf2aa3114ba3934e0c242d33d6a3d7b",
+  "old_native_contract": "06e4eae36563e0285ad4a2163ecbd936788e91e0c9a5a5a9c2c433defe073b9e",
+  "new_native_contract": "d4259c36e6d07dcfd76dce55126c3a5d33592d61469d2b6f950d55b72b0b9894",
+  "unchanged_recipe_mesh_material_texture_targets": true,
+  "Cpp_Source_Config_SourceAssets_Content_unchanged": true,
+  "ledger_raw_bytes_unchanged": true,
+  "actual_build7_14_Game2_rehashed": {
+    "modules": 7,
+    "editor_files": 14,
+    "game_capabilities": 2
+  },
+  "all35_targets_absent": true,
+  "actual_build_proof": "Candidate3/64887 bcfb26079f4d491792ea292d8860dd19; existing C++ epoch valid; Python source successor explicit",
+  "no_UE_retry": true
+}

@@ -1,4 +1,5 @@
 #include "DinkArtSubsystem.h"
+#include "Misc/ScopeExit.h"
 #include "DinkArtContextActor.h"
 #include "DinkEarlyPostureAnimInstance.h"
 #include "DinkPostureComponent.h"
@@ -130,6 +131,9 @@ bool UDinkArtSubsystem::DoesSupportWorldType(EWorldType::Type WorldType) const
 
 void UDinkArtSubsystem::OnWorldBeginPlay(UWorld& World)
 {
+    bInitialApplicationComplete = false;
+    AuthoredCollisionScreens.Reset();
+    ON_SCOPE_EXIT { bInitialApplicationComplete = true; };
 	Super::OnWorldBeginPlay(World);
     LoadExteriorCameraRules();
 	if (!CVarDinkArtEnabled.GetValueOnGameThread()) return;
@@ -280,6 +284,7 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 	{
 		TSet<int32> Screens, PreserveLow;
 		for (const TSharedPtr<FJsonValue>& Value : *Rows) Screens.Add(int32(Value->AsNumber()));
+        for (int32 Screen : Screens) AuthoredCollisionScreens.Add(Screen);
 		const TArray<TSharedPtr<FJsonValue>>* LowScreens = nullptr;
 		if (Manifest->TryGetArrayField(TEXT("preserve_low_collision_screens"), LowScreens))
 			for (const TSharedPtr<FJsonValue>& Value : *LowScreens) PreserveLow.Add(int32(Value->AsNumber()));

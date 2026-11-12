@@ -31,11 +31,11 @@
       "response": "[2026.11.08-04.56.14:555][ 82]LogEngine: Onscreen warnings/messages are now DISABLED\n"
     },
     {
-      "command": "py QA_FLOOR_PHASE='Before'; exec(open('/home/artist/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())",
+      "command": "py QA_FLOOR_PHASE='Before'; exec(open('<HOME>/Work/DinkQA/SurfaceNative/read_floor_runtime.py').read())",
       "response": "[2026.11.08-04.56.17:491][264]LogPython: QA_FLOOR_READER_READY\n"
     },
     {
-      "command": "py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('/home/artist/Work/DinkQA/read_native_camera.py').read())",
+      "command": "py QA_NATIVE_CAMERA_OUTPUT='SurfaceFloor'; exec(open('<HOME>/Work/DinkQA/read_native_camera.py').read())",
       "response": "[2026.11.08-04.56.20:461][449]LogPython: QA_NATIVE_CAMERA_READER_READY\n"
     },
     {

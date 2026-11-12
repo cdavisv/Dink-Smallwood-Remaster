@@ -1,0 +1,223 @@
+{
+  "schema": "dink-shared-materials/1",
+  "status": "QA_SUCCESSOR_EXACT_SHARED_CONTRACTS_NATIVE_PENDING",
+  "materials": {
+    "FieldstoneSeed2m": {
+      "material": "MI_Shared_FieldstoneSeed2m",
+      "use": "individual modeled stone blocks and mantel",
+      "repeat_m": 2,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "nominal_texels_per_m": 512,
+      "maps": {
+        "BC": {
+          "file": "../Textures/T_Shared_Fieldstone2m_BC.png",
+          "sha256": "349d284568f3df0703a2a19c201ce4df95d4f0f154edf7466f7bcf9fcd9192db",
+          "sRGB": true
+        },
+        "N_GL": {
+          "file": "../Textures/T_Shared_Fieldstone2m_N_GL.png",
+          "sha256": "a2bd3b4839b1f2732d44f1ef9aeee86e5e5cef798db40b9fc32fbdaac68b54a4",
+          "sRGB": false
+        },
+        "ORM": {
+          "file": "../Textures/T_Shared_Fieldstone2m_ORM.png",
+          "sha256": "41feddac6278afc718979c3d49702abbd519d5a7d1cbddc08b92c97d0df1b693",
+          "sRGB": false
+        }
+      },
+      "normal": "OpenGL; native flip_green true",
+      "ORM": "R=AO G=roughness B=metallic",
+      "normal_strength": 1.0,
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "colour_seed": "LINEAR CORNER SharedSurfaceData.R; .94+.10R factor",
+      "source_registration": "Exact graph match to exterior ArchitecturalSurfaces2mV1 library under its source admission checkout, not yet canonical/native admission here"
+    },
+    "LimeMortar2m": {
+      "material": "MI_Shared_LimeMortar2m",
+      "use": "backing behind firebox masonry",
+      "repeat_m": 2,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "nominal_texels_per_m": 512,
+      "maps": {
+        "BC": {
+          "file": "../Textures/T_Shared_LimeMortar2m_BC.png",
+          "sha256": "0ff6fdf4b992abf47ebcfa85a429f2e76d3f9ad73242f6bcbd13d91ff88fae20",
+          "sRGB": true
+        },
+        "N_GL": {
+          "file": "../Textures/T_Shared_LimeMortar2m_N_GL.png",
+          "sha256": "e6793d3bd757f2fed403a93c8e3d917f4a1e13589f3c060e74f3ecc31ccc47c1",
+          "sRGB": false
+        },
+        "ORM": {
+          "file": "../Textures/T_Shared_LimeMortar2m_ORM.png",
+          "sha256": "a5203bcf72b142c740d8e3b91591bc9d8e22ce3b128f31161115ce5c93d3b41b",
+          "sRGB": false
+        }
+      },
+      "normal": "OpenGL; native flip_green true",
+      "ORM": "R=AO G=roughness B=metallic",
+      "normal_strength": 1.0,
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "source_registration": "New generic proposal, uniform parent; registration remains required before canonical use"
+    },
+    "Soot2m": {
+      "material": "MI_Shared_Soot2m",
+      "use": "fire-exposed liner, hearth plate and charcoal",
+      "repeat_m": 2,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "nominal_texels_per_m": 512,
+      "maps": {
+        "BC": {
+          "file": "../Textures/T_Shared_Soot2m_BC.png",
+          "sha256": "6a9c5a45e28f1bb8e34579adaadf10645f0d2bde7ec05e08b5ed859f46e75b2f",
+          "sRGB": true
+        },
+        "N_GL": {
+          "file": "../Textures/T_Shared_Soot2m_N_GL.png",
+          "sha256": "09a83cb73e19aee3cf34ee5381e9bf338210ebc1fa50d799a13a5403ce105cd6",
+          "sRGB": false
+        },
+        "ORM": {
+          "file": "../Textures/T_Shared_Soot2m_ORM.png",
+          "sha256": "c924ed5dc4b040ed2a2d9eb3b19a366f7108fe820f6aedcb290c6a7a261f74a8",
+          "sRGB": false
+        }
+      },
+      "normal": "OpenGL; native flip_green true",
+      "ORM": "R=AO G=roughness B=metallic",
+      "normal_strength": 1.0,
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "source_registration": "New generic proposal, uniform parent; registration remains required before canonical use"
+    },
+    "OakLonggrain2m": {
+      "material": "MI_Shared_OakLonggrain2m",
+      "use": "three existing logs",
+      "repeat_m": 2,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "nominal_texels_per_m": 512,
+      "maps": {
+        "BC": {
+          "file": "../Textures/T_Shared_OakLonggrain2m_BC.png",
+          "sha256": "53fba25dcef3e56233affaa1648ca311a802b0e06992bfeb5f31d9bd33e66b07",
+          "sRGB": true
+        },
+        "N_GL": {
+          "file": "../Textures/T_Shared_OakLonggrain2m_N_GL.png",
+          "sha256": "8fb8cb90ee7c44cdb3792ff619bb893b6792a48cc771e324c6e96bb764a8a0bf",
+          "sRGB": false
+        },
+        "ORM": {
+          "file": "../Textures/T_Shared_OakLonggrain2m_ORM.png",
+          "sha256": "84bff499c0b9d466d72f367f9ab22da9ee6d00757e9e1fd9c5fcb25f48da3e16",
+          "sRGB": false
+        }
+      },
+      "normal": "OpenGL; native flip_green true",
+      "ORM": "R=AO G=roughness B=metallic",
+      "normal_strength": 1.0,
+      "IOR": 1.5,
+      "specular_IOR_level": 0.25,
+      "source_registration": "Exact appended registered OakLime2mV1 graph including UVMap normal basis and specIOR.25"
+    },
+    "FieldstoneCoursed2m": {
+      "material": "MI_Shared_FieldstoneCoursed2m",
+      "use": "continuous chimney masonry",
+      "repeat_m": 2,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "nominal_texels_per_m": 512,
+      "maps": {
+        "BC": {
+          "file": "../Textures/T_Shared_FieldstoneCoursed2m_BC.png",
+          "sha256": "f90ff36926b7990f7702810e8ecd86971b37659960178b8d82ecf0559330a15f",
+          "sRGB": true
+        },
+        "N_GL": {
+          "file": "../Textures/T_Shared_FieldstoneCoursed2m_N_GL.png",
+          "sha256": "a8c6e1270cef5033a0ccb998fd880afad639536364c65eb73dae30c9d24d4067",
+          "sRGB": false
+        },
+        "ORM": {
+          "file": "../Textures/T_Shared_FieldstoneCoursed2m_ORM.png",
+          "sha256": "6a360d2e6de2a11e02ce432fef0187b7a661fb192137abf888a0c03a627cb7c0",
+          "sRGB": false
+        }
+      },
+      "normal": "OpenGL; native flip_green true",
+      "ORM": "R=AO G=roughness B=metallic",
+      "normal_strength": 1.0,
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "source_registration": "New generic proposal, uniform parent; registration remains required before canonical use"
+    },
+    "IronLead2m": {
+      "material": "MI_Shared_IronLead2m",
+      "variants": {
+        "Iron": {
+          "BC": {
+            "file": "../Textures/T_Shared_BlackenedIron2m_BC.png",
+            "sha256": "333f4fdc9e850fdb27dfffeb37c1c988ce04bfa87e180cfe7f656cf888b605fd",
+            "sRGB": true
+          },
+          "N_GL": {
+            "file": "../Textures/T_Shared_BlackenedIron2m_N_GL.png",
+            "sha256": "4a8923746b52b2f55aa8fc4365170cd78bbfce925a94df0858d1e4e2204c2700",
+            "sRGB": false
+          },
+          "ORM": {
+            "file": "../Textures/T_Shared_BlackenedIron2m_ORM.png",
+            "sha256": "a045cd8f0ba22d0fcfc30dc424d4ea8988d9af9a005dea9b2dce6725b19af03c",
+            "sRGB": false
+          }
+        },
+        "Lead": {
+          "BC": {
+            "file": "../Textures/T_Shared_DullLead2m_BC.png",
+            "sha256": "d99a7e616af13a43e8d0167aee23a0a00f73d0e5f303b354f91e6a3ab26445f9",
+            "sRGB": true
+          },
+          "N_GL": {
+            "file": "../Textures/T_Shared_DullLead2m_N_GL.png",
+            "sha256": "64aea4856a460776344a44fb5e936aa0e15694581e22b0e3607eb640e3c8a77d",
+            "sRGB": false
+          },
+          "ORM": {
+            "file": "../Textures/T_Shared_DullLead2m_ORM.png",
+            "sha256": "7114aeb90b2dea4d7902224600766861ca95372ef472326392be5db43dc7d76b",
+            "sRGB": false
+          }
+        }
+      },
+      "selector": "UV1_SharedData.x:0iron/1lead",
+      "repeat_m": 2,
+      "resolution": [
+        1024,
+        1024
+      ],
+      "normal_strength": 1,
+      "IOR": 1.5,
+      "specular_IOR_level": 0.5,
+      "source_registration": "Exact appended exterior graph; REGISTERED_GRAPH_COMPARISON.json binds actual admission-library source hash"
+    }
+  },
+  "old_conflicting_role": "MI_Shared_Fieldstone2m from frozenV1 is superseded, not registered or aliased",
+  "UV": "UV0 metric coordinates unchanged; selector UV1_SharedData; UVMap duplicate supports exact registered oak graph"
+}

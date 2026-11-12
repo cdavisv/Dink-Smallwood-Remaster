@@ -1,0 +1,592 @@
+[
+  {
+    "branch": "art/beach-pebble-source-v1",
+    "head": "fc27b75b15a1de6317631c9a1a2fdbe369c2cabe",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/broken-barrel-v3-source-study",
+    "head": "b1bcfe49a712871ca1decbdb171771af3c86776b",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "art/broken-barrel-v4-source",
+    "head": "4f20fd2cfb171a20042bfb720b3f130534fb6a56",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/fireplace-fired-clay-source",
+    "head": "fcb5d0b9683ea3e180aaf8b341ba6e0bac40b6bb",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/fireplace-fired-clay-v4-delivery",
+    "head": "6fbefdea982aca2dfc0e83f76ba41c7ea1b8aad4",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/fireplace-fired-clay-v4-source",
+    "head": "f96d0b924af8be2e8b47a470ada9090de6f38e0f",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/fireplace-native-preparation",
+    "head": "fcb5d0b9683ea3e180aaf8b341ba6e0bac40b6bb",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/fireplace-shared-source",
+    "head": "e801345c45ad9452a1bf5910c4bbb7dbc9e6f9d5",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/fireplace-v4-native-preparation",
+    "head": "759595a01c3b2e989feeb100b0dea379a09e8bb2",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/fireplace-v4-root-integration",
+    "head": "a185ebc32a43ff62c3c37dae394e2b1d90fe255b",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/house-surface-finish",
+    "head": "0c90c801d59bf75c1b9b2f65674c41793764d575",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/house439-closed-eaves-native",
+    "head": "dbb8f5caaa62a11eb8a292fbe280f1efc2ef6383",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "art/house439-focused-source-delivery",
+    "head": "e730c2c30906e35ee0d6874c4e5f5890ec02a299",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/house439-shared-exterior-source",
+    "head": "420b27dbcf7f2ec2ee3e3770c3ac8ecc5266f9ea",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/interior-gable-recess-source",
+    "head": "8a6212b6f5d59c0a8f902252a3954fff8b1e8b63",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/interior-roof-native",
+    "head": "3d3cc0155a1987deb1743eaa29001148eb8f729a",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "art/interior-roof-shared-library",
+    "head": "5c1ee6907ef3ea2760da98de26994df615a27f12",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/mother-clothing-realism",
+    "head": "5bcfde43c2cd2db24223432594684f9246b8f5b2",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-barrel-native",
+    "head": "7930e7b921ec6f52f4c44f31fb59e5b7c4c741a6",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-barrel-source",
+    "head": "0bccfacea6e09c61b771025e00011c336f0e5c87",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-basket-native",
+    "head": "43db0b05207efc7f8520fff4a8b8e9453d738886",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-basket-source",
+    "head": "0cbbae8e1e0dbc72f5e0aed8b169fa21b06fea0b",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-broken-barrel-source",
+    "head": "bac7b08a30739c61ede9e949bafea16a9a0a12e6",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-candle-source",
+    "head": "b4d19f0d6c02704b3d6eea13b7f8d09f13b3d192",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-feedsack-native",
+    "head": "ed78d643d1dff2144a8c66f28f345bf787f5a16e",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-feedsack-source",
+    "head": "dc7a3dd4f03ab09fc36cc750bdce1947839d4c42",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-house-v1",
+    "head": "bb66d7d9da31691368aa5cafabad3f1517c615a7",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-pie-v5-source",
+    "head": "22083f38c03a6964e575e22b22491ac6634e5863",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-props-native",
+    "head": "2adc5ea3f89f2a368fc3f945c25270ca937b7acd",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-props-source",
+    "head": "4e19a362fefabfee86d636d5f03bb6e74a4f2f39",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/photoreal-trousers-source",
+    "head": "94363f57c77694bc64ee535f5ed49ea0c33418a3",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/roof-chimney-native",
+    "head": "b12d91d954360b7a77dd9e2ae16837fb3891bf6e",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/roof-chimney-source",
+    "head": "aefd7313be7aa2018f8b9cf9f722b11d1e631740",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/roof-native-current",
+    "head": "4fb68a9b9aec0da6fe1a880864452a1ea97b56b2",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/shared-roof-data-activation",
+    "head": "d0ab7523a50b090bec5ef2b2d93daf4591fd3f7a",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/shared-stonebrook-vista-source",
+    "head": "adedf4c633f3f98fd20165be0390cc6b9784dff5",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/starting-house-vista",
+    "head": "064c9e84c49fae79af0a0cb0f0dfb370cc4bc644",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "art/thorn-bramble-cpu-review-v9",
+    "head": "aad0ad871025b3d54635531f781f301c13e3a895",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "controls/clumsier-dink",
+    "head": "49f03f0b83c8dbd2f8119fba868f011fc9a42252",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "controls/clumsy-dink",
+    "head": "775e0f94cba6994f4c664ecc676fe59b3b3a79de",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "controls/third-person-movement",
+    "head": "a8c149ce686cb06983fe17eef06663151cb83241",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "dev/house439-live-owner-readback",
+    "head": "63025ee5a23af0080889b0166af6a019f3d7c1cf",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "dev/house439-registered-owner-delivery",
+    "head": "b4cce7c727656d0f4b6bcaf719a2843ba6d88d1f",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "feat/guarded-released-family-visual",
+    "head": "2c4247cf44eee6af2debb763ec2f38678267455e",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "feat/interior-gable-source-metadata-producer",
+    "head": "cf29c2b5a3740a4ce6efa789dc47f81bc3bc44a9",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "feat/released-family-visual-delivery",
+    "head": "22e912fa227617ab9695eb41df9ad577d00a9a73",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "feat/released-family-visual-owned",
+    "head": "575f43dda9b75923859f770fa6cdafbc9923d24e",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/arrival-door-reexit",
+    "head": "e9ab1c22ed6898a70e9cb2a3465d922feb4c5e77",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/art-element-navigation",
+    "head": "5e7cf0749702cad985fc957c32c7aa053327113a",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-ci-fbx-fixture",
+    "head": "514080335db0b65795007f237f37915df00e6e3f",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-collision-rollout",
+    "head": "ea24ea409e585db8ecfa7d7379cb8c1ace14ab05",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-combined-delivery",
+    "head": "7fc61d34fda84c02f2b7f73fe825e204a7cda198",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-hidden-card-billboard",
+    "head": "9fd084de044e6c73a04b52a5000d4e40dec2564c",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-identity-picture-scale",
+    "head": "c0bb86774a61ff6ed7161dca6bc7ad3321aab601",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/barrel-owned-copy-associations",
+    "head": "b200b42beb65641cb365afe92704cee225c7c497",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-policy-load-fail-closed",
+    "head": "a31942cb46fb2eea101c8103b3f1403fc06ed75c",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-portable-generation",
+    "head": "5423e47cdb9d60ec2a5f5eb0b65d6655bc566631",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-published-intact-owned-incremental",
+    "head": "b4b9e1d343198ecacfbe562f1b7fe88e1f375698",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-published-intact-restore",
+    "head": "5294ff6539c2d1f6a92f20c57ecd3e0b4958dec6",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/barrel-released-picture-projection",
+    "head": "a02601f71ea1b098b72d441849251dcc08fc1c54",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-rollout-acceptance",
+    "head": "e61e30fbd9df196c61e3d9ca72b3fa95632caba0",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/barrel-rollout-current-master",
+    "head": "932ea9c134207a7e114905e698ee2259899d6174",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/camera-world-continuity",
+    "head": "2adc5ea3f89f2a368fc3f945c25270ca937b7acd",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/ch6-contact-safe-fallback",
+    "head": "f26bfddc18e87e73bdab8cfa2f77d47d4612e8ed",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/ch6-contact-safe-fallback-current",
+    "head": "784e256f043d45980315b46f3cd17f27893728d5",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/family-barrel-collision-fit",
+    "head": "5d65ed88cb4761fea565b75755a5b03b4bb2d82c",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/fitted-brain5-final-background",
+    "head": "341f6aae6c6b918c91c4fd38b22a67286561d1f2",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/generated-blocker-visuals",
+    "head": "20b517ea9cb0539725c089baa3a8041a3fdad59b",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/generated-interior-visibility",
+    "head": "683a4c16d215cbb7ec54bc7bdbb350bad29e7c86",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/house-camera-and-contexts",
+    "head": "93f9ae58bbaf5a91e80141dbfecf6aa004b74678",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/house-window-lighting",
+    "head": "8fd866131b30da39711709af299db368ba67be91",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/house439-capture-inspection-owned",
+    "head": "13b7d24f826a9c555998d733f6918fcc59fb48d5",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/house439-source-encoding-owned",
+    "head": "13b7d24f826a9c555998d733f6918fcc59fb48d5",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/house439-source-encoding-v1",
+    "head": "e87a036b35c0c0423967439f3a0280a81f1af670",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/local-hero-camera-intrusion",
+    "head": "1b5a365a3a2f56a163553bdecd69195fe789944f",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/optional-screen-debug-labels",
+    "head": "e0f64a4d6db6620758b4c8b727f963694868d6d6",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/outdoor-camera-headroom",
+    "head": "8178b08e2284989f76b3240bfda866432022c0a1",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/outdoor-portal-camera",
+    "head": "cdd4eaa8a92a6450f56465443a5102b4a8bdb413",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/package-dynamic-sprite-cook",
+    "head": "d3bc5fb90d8319b25cf7a20cb3613b4a8accc39c",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/photoreal-barrel-rollout",
+    "head": "68a77c1490876e1fdbcbb160dbf0f67de567a0d7",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/photoreal-visual-qa",
+    "head": "067b3cb7cad5148c09f309fd4f5b4750dc2d8515",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/released-picture-imported-size",
+    "head": "ebe0778c76e32e67b5a9a776c699daddecabdf04",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/released-picture-world-owned-incremental",
+    "head": "93a8619e228094a94ce6fc3b5b62a8427d8c459e",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/released-picture-world-publication",
+    "head": "3958ab23c7cbec7a81935f51db4434248a21ad09",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "fix/runtime-hardness-current",
+    "head": "0432cb24c9b4807028256015e9cc9f80a6b4afe0",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/runtime-hardness-integration",
+    "head": "5d65ed88cb4761fea565b75755a5b03b4bb2d82c",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/runtime-hardness-transitions",
+    "head": "3962970b9bac5e855fce19c3b21cc3f013e1c5f0",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "fix/warp-overlap-intent",
+    "head": "5040e632d53125571b1769b715fc54cfa521126d",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "master",
+    "head": "bdc9e6b32666fc1f8978c598fa5123ce5a372918",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "qa/art-runtime-master29",
+    "head": "3aefd6f2b41c7a40b9c43f7a89f4a073965a517a",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "qa/roof-first-master31",
+    "head": "286da79bf1b2adc04961c4c089c3221a2217c14e",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "reconcile/codex-closeout",
+    "head": "ec43df2dac8fb77b3f1e375f9c47620dbe71f214",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "remaster/restore-lfs",
+    "head": "05b8343eb90bb60093f718470f5857a9f32dddd4",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "remaster/unreal-house-debug",
+    "head": "36e0a2c714e1adc1d092e2eadb025c60b0a43784",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "remaster/unreal-house-delivery",
+    "head": "5d3c47b54eb12873d499f5c8063a8d73171276ac",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/barrel-live-contact-native",
+    "head": "a3573515280e071cc6ce6bccebc146db48818cae",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/barrel-ordinary-fixture-readiness",
+    "head": "053dc875b0a8a80e53bf322ca90667ce882dfefa",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/barrel-owned-copy-metrology",
+    "head": "c59e1abeb441cf5b52751a7ab454a6747a73143b",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/barrel031-attack-queue-observer",
+    "head": "50d712da8dec9bc52c85fb1b43b213b372951d93",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/barrel031-exact-attack-metrology",
+    "head": "681cf60beb4d47797dac7e07b78559a5d5fad0d9",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/ch6-contact-safe-fallback-owned",
+    "head": "d82485443aec2003daf67c88b82608459ef65280",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/ch6-rejected-route-metrology",
+    "head": "cd4ec1e11c00f9b5561b83c32e6bf2fd48621680",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/ch6-route-decision-telemetry",
+    "head": "121e608016c03e68c748e817d325925c4fc6b78c",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/ch6-route-metrology",
+    "head": "d60d74d66c449268c9f3198f19674d8fa3a5d915",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/ch6-startup-predicate-diagnostic",
+    "head": "011015e353e224ee249e294f89ff3de05643d0bf",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/cooked-released-picture-metadata",
+    "head": "5482aa4b571e372a3adaa1f7aa42bfbf5a7c4246",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/hero-native-inspection",
+    "head": "a6eff0ae3a4da077135726dfe6224b3398e138d2",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/hero-native-inspection-delivery",
+    "head": "0c79e013fccc08b1a5e9cb282e92d0a87ad8d43f",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/hero-native-inspection-integration",
+    "head": "41eb1e956ca6aaaa17a2f8e4cd7b2d71b8cce3d2",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/house439-live-registered-owner",
+    "head": "1b5a365a3a2f56a163553bdecd69195fe789944f",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/probe-load-transform-diagnostics",
+    "head": "75e1c9c5c758698d0920a38f9e1fb8019af4713c",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/probe-original-load-oracle",
+    "head": "36dcc55388d0fed3f7e2fb97d135d47b62ca22a1",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/released-picture-preflight-diagnostic",
+    "head": "dd87511829cbc909713bfaef06b99f9a39a13f6d",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/released-picture-redraw-errors",
+    "head": "e7b8bd44f9d6a817461c9f85d20794cbac6060ad",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/released-picture-redraw-owned-incremental",
+    "head": "b2a6ac02138d6e7395dd2da3f2b17f2bb942500b",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/released-visual-ch6-telemetry-owned",
+    "head": "be33993562fc3174b32538b2f4e2da6ad08f65f9",
+    "disposition": "merged into consolidated tree"
+  },
+  {
+    "branch": "test/remaster-world-contracts",
+    "head": "e8a950e4b1ff0859e04ab41c39a2a5589518340e",
+    "disposition": "older/cherry-picked/superseded implementation retained locally; current implementation takes precedence"
+  },
+  {
+    "branch": "test/sharedvista-source-lod-bridge",
+    "head": "3394440b3ec6bc9a4d9f64c9a65e388329ad9de4",
+    "disposition": "merged into consolidated tree"
+  }
+]

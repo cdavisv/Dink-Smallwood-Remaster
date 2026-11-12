@@ -1,7 +1,7 @@
 {
   "status": "Prepared exact source-only copy/append plan; no repository changes unless explicit--apply to authorized delivery checkout",
-  "bundle": "/home/artist/Work/DinkQA/PhotorealSessions/Pie",
-  "top_handoff_sha256": "b544f8290327c0c3fbd24be4d21b6126b1609fc4f2fdddedaf18364538a1b7af",
+  "bundle": "<HOME>/Work/DinkQA/PhotorealSessions/Pie",
+  "top_handoff_sha256": "ed0f9da6d84e6a7083fd5581c691cb1b69a507644f55768ac53dd055a20a5177",
   "target_relative": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1",
   "baseline_ledger": {
     "sha256": "4bde11e38cf703774d080815e3de008d251fca7ab8b606618be1219123119faa",
@@ -27,49 +27,49 @@
     {
       "source": "NativeLODExportsV5/SM_Pie_Rustic_01_LOD0.fbx",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/SM_Pie_Rustic_01_LOD0.fbx",
-      "sha256": "bb641826c54637cfe999e3545f3c574fe8422a4d1ae7b61269533c34fc5932eb",
+      "sha256": "6ef4504a8805ad2d69ce75bd1c64857d466a25e1abe4f797b1bcb1881cc2fcc2",
       "bytes": 179500,
       "kind": "mesh_export"
     },
     {
       "source": "NativeLODExportsV5/SM_Pie_Rustic_01_LOD1.fbx",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/SM_Pie_Rustic_01_LOD1.fbx",
-      "sha256": "2d65949e1e44257d6db21f48355a4b5998ce6b02b5e40eeba2151d72dbe2f0fa",
+      "sha256": "dfc3b86cb8c893f06dbd223e2386e66cdd6ae28abb3a3073c8f87c485bfc711f",
       "bytes": 130476,
       "kind": "mesh_export"
     },
     {
       "source": "NativeLODExportsV5/SM_Pie_Rustic_01_LOD2.fbx",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/SM_Pie_Rustic_01_LOD2.fbx",
-      "sha256": "97676b59124b78c2c8ae52ca78984f5dd03197ea119bfa33c60c59be03fd4a36",
+      "sha256": "116059ca72f5027e70d6a95276138f792c76acd6c39a004a553e7e0f4e0b9fc8",
       "bytes": 93532,
       "kind": "mesh_export"
     },
     {
       "source": "NativeLODExportsV5/candidate_handoff.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/candidate_handoff.json",
-      "sha256": "6bdab934b3a149409df4e241deaa9878bf8caed933193303d9a9ceea0fb65a9c",
+      "sha256": "c159aa12aa50c1cc8860c7216f011007a80e2c79183065d9f4e7d5ba19c3e77a",
       "bytes": 1273,
       "kind": "source_evidence"
     },
     {
       "source": "NativeLODExportsV5/export_native_lods.py",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/export_native_lods.py",
-      "sha256": "5b015f1f71d0307943418ab25755d2fc780b75e888b2705ddd8a3ffd7c1a06f0",
+      "sha256": "22946472f28c74e90cd3631c1d5b96ca4c37d9a9ccfe6613a2bb71e135fb2482",
       "bytes": 1537,
       "kind": "source_script"
     },
     {
       "source": "NativeLODExportsV5/lod_manifest.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/lod_manifest.json",
-      "sha256": "32f6521c933c27f550fd99bdb6da48405bccf7c10cc57a0ff0078802c1d863c4",
+      "sha256": "de80cfbde7c3723ce11d5d02488722a661d17e5220f964ec385ecc3c6c1e0516",
       "bytes": 1405,
       "kind": "source_metadata"
     },
     {
       "source": "NativeLODExportsV5/lod_roundtrip_receipt.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/NativeLODExportsV5/lod_roundtrip_receipt.json",
-      "sha256": "cfef6d19a728c5f2ad56c601dbd7da2504e2d93df67b5bccebc0b3062690cef2",
+      "sha256": "4e6768937a37fb6bbae564b2ebd1fb006f05a597e5dc05a913752b56c634690d",
       "bytes": 2324,
       "kind": "source_evidence"
     },
@@ -83,14 +83,14 @@
     {
       "source": "V4_BakeExportIteration/AuthoringDonorValidation.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/AuthoringDonorValidation.json",
-      "sha256": "45d1b628fde24ee31c518db5a906c6c1a57055840bd4fdab151fa142bc67493b",
+      "sha256": "1d5aee801e43a80083323a748a42f63d71ad8b6b808dfaf58cb31f76146e556d",
       "bytes": 1942,
       "kind": "source_metadata"
     },
     {
       "source": "V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.fbx",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.fbx",
-      "sha256": "6687fc7dc2b7dc9e0f92481bc70f26ebbc798be0ac6bebe4deae4b796f6d4133",
+      "sha256": "1c4a73ed5ca1d867afbce2a0f967baa0eebe9e0fc6c67e632d133f75b3224f44",
       "bytes": 329132,
       "kind": "mesh_export"
     },
@@ -125,14 +125,14 @@
     {
       "source": "V4_BakeExportIteration/Export/manifest.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Export/manifest.json",
-      "sha256": "e6e264b8077448e94c12a8c00091a41e2c29d070f6273646075b36fbfe65679c",
+      "sha256": "2bee07e3483b42133f44df8b9cbe5f39860fb5766ec61a1d9b930f865d526755",
       "bytes": 3680,
       "kind": "source_metadata"
     },
     {
       "source": "V4_BakeExportIteration/HANDOFF.md",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/HANDOFF.md",
-      "sha256": "7f11618489137856dab68221751659e71f1f030e18ef3a9ba1593f08955b1aa9",
+      "sha256": "0873bf038c1a614f4ab934db1ba7c5f9ca785e71f0d39b3242c46b3c67e280bb",
       "bytes": 3409,
       "kind": "source_documentation"
     },
@@ -146,21 +146,21 @@
     {
       "source": "V4_BakeExportIteration/PREPARATION.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/PREPARATION.json",
-      "sha256": "c07b447c6908f9e5be216d2ac19617ea696f6bd4c507f0c5b9204f3319fcd497",
+      "sha256": "de1bd94f933398b4d4627687be5129f457e804a18b6aeb9007402ace1655e202",
       "bytes": 1095,
       "kind": "source_metadata"
     },
     {
       "source": "V4_BakeExportIteration/PhotorealPieV1_Export.blend",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/PhotorealPieV1_Export.blend",
-      "sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+      "sha256": "ee515daa6f66be20d5ebfd1ae557badc386aaed425624ebfecd435ab06d0f3e1",
       "bytes": 6118542,
       "kind": "source_blend"
     },
     {
       "source": "V4_BakeExportIteration/PhotorealPieV1_Source.blend",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/PhotorealPieV1_Source.blend",
-      "sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+      "sha256": "9b95c90fbdd5166ebc0d88b6107ec43e7f5ad985f44f18c3b5fa63cb8056fb55",
       "bytes": 14609796,
       "kind": "source_blend"
     },
@@ -230,28 +230,28 @@
     {
       "source": "V4_BakeExportIteration/Roundtrip/PieSource-crust.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Roundtrip/PieSource-crust.png",
-      "sha256": "434a77b703eee537269d12a0a7eb17efd536cc78f6ce4b9e928a43e89f12ab91",
+      "sha256": "2b819f76b4fe44dd0cf73a199b38d2348adf0664a74560345470c418699e1e50",
       "bytes": 795690,
       "kind": "source_texture"
     },
     {
       "source": "V4_BakeExportIteration/Roundtrip/PieSource-dish.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Roundtrip/PieSource-dish.png",
-      "sha256": "f073677051c2c49d11a7621be94e661d72e3887d55f9e4cd40eb2662b96255fd",
+      "sha256": "f2198cbf93a23a5cb376ad31bea3a5547ad3b6425eb7fb9c497a3c3785abd7ae",
       "bytes": 682944,
       "kind": "source_texture"
     },
     {
       "source": "V4_BakeExportIteration/Roundtrip/PieSource-front.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Roundtrip/PieSource-front.png",
-      "sha256": "1ff01069e229e7bddb041ccacb714c88c90e1f40ac62978c73bbe72876f8f91c",
+      "sha256": "1cb16af926a59f7cc2141fc0654a5a14a0caa88a4e158672ecb9769a045f81e3",
       "bytes": 544077,
       "kind": "source_texture"
     },
     {
       "source": "V4_BakeExportIteration/Roundtrip/PieSource-game-distance.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/Roundtrip/PieSource-game-distance.png",
-      "sha256": "c4a22db5ff39b2d0909cb0a8f75c932f16b5b58a02bca34adef907cec144641e",
+      "sha256": "6743d17c3541b31c2cd8d12e60e221cab2b6989b55c075c37d45e649a7a0cd5f",
       "bytes": 474355,
       "kind": "source_texture"
     },
@@ -293,14 +293,14 @@
     {
       "source": "V4_BakeExportIteration/bake_pie.py",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/bake_pie.py",
-      "sha256": "b2e43db43a6751477b7d5904a2c98da9efac7dcc12fed63b58c56f96e346bbf5",
+      "sha256": "dd422d416652495d4e4632aa0987e8cb127870893700c878dbef2ed8eadc58a9",
       "bytes": 7643,
       "kind": "source_script"
     },
     {
       "source": "V4_BakeExportIteration/bake_receipt.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/bake_receipt.json",
-      "sha256": "924631cc6a10821ad95a2b6a517f062a6dae48dacad96d93a86edc08b854f3ee",
+      "sha256": "db1a76b68afdaeb138954955f9afcb7e89bbe88eef8bd1911b06f3b3097cf8d9",
       "bytes": 1428,
       "kind": "source_evidence"
     },
@@ -321,14 +321,14 @@
     {
       "source": "V4_BakeExportIteration/closed_crumb_restoration_receipt.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/closed_crumb_restoration_receipt.json",
-      "sha256": "29463e3bab118419fbe71eb8df8aeb82d240447eaa5c6fa03463575824864931",
+      "sha256": "785cbfc757dd8dc9e8d961e4343940b9639ea4390d44dc1070820f8052b0b692",
       "bytes": 2278,
       "kind": "source_evidence"
     },
     {
       "source": "V4_BakeExportIteration/export_contract_verification.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/export_contract_verification.json",
-      "sha256": "f003e2616d986740aa255b15c8ab1bc8b064e2171d02007fd7a8859f9b3b290f",
+      "sha256": "c87cace369e8a2459274a8adf4918f64c4f62b46254f18a65ce78ff6eab9c213",
       "bytes": 1205,
       "kind": "source_metadata"
     },
@@ -342,14 +342,14 @@
     {
       "source": "V4_BakeExportIteration/export_report.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/export_report.json",
-      "sha256": "69c1401e23201fc62ca6c2879293a6b007c81923131eb60806abc488c6c3ad2a",
+      "sha256": "ab8387755320faad7ea28f3b4e4b7b43bc8d747d7255f3b38bae6c4325d42780",
       "bytes": 595,
       "kind": "source_metadata"
     },
     {
       "source": "V4_BakeExportIteration/export_uv_verification.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/export_uv_verification.json",
-      "sha256": "4f3bf52d6f67df1f123b66dc1c9e2d7384cf0e8b32f1a3d9d452d46eea438420",
+      "sha256": "abfccabb832b06fdd7f755b157d2d581c8d1ef42d348aaeb39f69bb4b5a8916a",
       "bytes": 2885,
       "kind": "source_metadata"
     },
@@ -363,14 +363,14 @@
     {
       "source": "V4_BakeExportIteration/pixel_comparison.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/pixel_comparison.json",
-      "sha256": "f9680556f6622713121aceda94857684fc13bf0d78357c0eb7fc94ea5e4340e9",
+      "sha256": "779a33569ebd26c1880ad4832780834c01fe2cf8edce7b94aa7a6eab430dfe10",
       "bytes": 1762,
       "kind": "source_metadata"
     },
     {
       "source": "V4_BakeExportIteration/portable_export_receipt.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/portable_export_receipt.json",
-      "sha256": "7229468c98637a49c9e1e412e76fa67664673cd91cbf66f1eea08797f153cf5c",
+      "sha256": "a06c06e06ec46071332d09b73af73398bb1c23d65d7edef3c0178db3bd55bd6d",
       "bytes": 808,
       "kind": "source_evidence"
     },
@@ -391,7 +391,7 @@
     {
       "source": "V4_BakeExportIteration/review_authorization.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/review_authorization.json",
-      "sha256": "7e0e99477b4f2d7a584290ec8874b103e46b927d1e3688dda9a1589252f65c2f",
+      "sha256": "4c2ed536a9544c29a919e8b69e33ea788367f488174942816c49e18d05c1ecd3",
       "bytes": 610,
       "kind": "source_evidence"
     },
@@ -405,14 +405,14 @@
     {
       "source": "V4_BakeExportIteration/roundtrip_receipt.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/roundtrip_receipt.json",
-      "sha256": "ca50fd38051fd594049f72acb0710700a2928a48c5f68e7095a23016dcbe9834",
+      "sha256": "4d7e14fc25fe2f94f2c0cad558002dae0eb7bc9188f66c0a49282259ccef7945",
       "bytes": 2036,
       "kind": "source_evidence"
     },
     {
       "source": "V4_BakeExportIteration/source_export_handoff.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_BakeExportIteration/source_export_handoff.json",
-      "sha256": "8ee754888a40d4cf6c135845ff60140a48102262ca468bed7aa00facbb069d90",
+      "sha256": "25bc477716e062b36bab1cd009fd1ff43820ba0da4c72d13f5143b44f6d152d3",
       "bytes": 6127,
       "kind": "source_evidence"
     },
@@ -454,14 +454,14 @@
     {
       "source": "V4_ReferenceAlbedo/HANDOFF.md",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/HANDOFF.md",
-      "sha256": "f7211b584dd9f2f95fe0ab585964af5aedec3259f7b3198a0df41ad9633c762d",
+      "sha256": "707529103579f0b36b9b4f2c09011e3ec01d0d3283f0b3e49a0066570a4b410c",
       "bytes": 2990,
       "kind": "source_documentation"
     },
     {
       "source": "V4_ReferenceAlbedo/Inputs/KIT_Stonebrook_Input.blend",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/KIT_Stonebrook_Input.blend",
-      "sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+      "sha256": "7a8851706c725ce89dfb35f5b288a7d60bd779aa846f0f844a28ffe3bafab604",
       "bytes": 1084207,
       "kind": "source_blend"
     },
@@ -517,7 +517,7 @@
     {
       "source": "V4_ReferenceAlbedo/Inputs/V3_Source.blend",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Inputs/V3_Source.blend",
-      "sha256": "e82a96fda986e016830a77715ecd1413c43efd1332b3bf3265fea3897632a1dc",
+      "sha256": "df2c32b2fa9e35c1e9d0b4e0f8173df836fd70cc3e0620261aab026693fe0e0e",
       "bytes": 11460918,
       "kind": "source_blend"
     },
@@ -545,7 +545,7 @@
     {
       "source": "V4_ReferenceAlbedo/PhotorealPieV1_Source.blend",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/PhotorealPieV1_Source.blend",
-      "sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+      "sha256": "9b95c90fbdd5166ebc0d88b6107ec43e7f5ad985f44f18c3b5fa63cb8056fb55",
       "bytes": 14609796,
       "kind": "source_blend"
     },
@@ -615,28 +615,28 @@
     {
       "source": "V4_ReferenceAlbedo/Previews/PieSource-crust.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Previews/PieSource-crust.png",
-      "sha256": "7a047d746068bd9eb4647b2dc3417d1bd842a03aadb1f784f0b33118f15e8432",
+      "sha256": "4abdd596a238da142974696d8517ea50b9d3590062a0316a66eec733b9c8f5ea",
       "bytes": 888968,
       "kind": "source_preview"
     },
     {
       "source": "V4_ReferenceAlbedo/Previews/PieSource-dish.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Previews/PieSource-dish.png",
-      "sha256": "4bd4d7408a8d7bd6317460cb14216b28c97c012972dec8d3e603ac2cfa524cdb",
+      "sha256": "26e079457511895e8c7820e4ffec7458f499b02e0a7a17b196d448576595ba9d",
       "bytes": 750729,
       "kind": "source_preview"
     },
     {
       "source": "V4_ReferenceAlbedo/Previews/PieSource-front.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Previews/PieSource-front.png",
-      "sha256": "4efde13a67e7e8d5dfb3722a6d05329366183f9bc14e99a4c97e12ecfd4a44af",
+      "sha256": "3f49731762d08ed93b3c24b6a9c523eff56577433d2291dc45518c986a73ed22",
       "bytes": 546545,
       "kind": "source_preview"
     },
     {
       "source": "V4_ReferenceAlbedo/Previews/PieSource-game-distance.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Previews/PieSource-game-distance.png",
-      "sha256": "7f8b66d9584c48401964e8ab17c5cec7014ef9737202838fa3f0f1d5a0f849a0",
+      "sha256": "659752a6924d6ea0aedaa244a09b50c2a5302eac5471cddea972b7e1c3e0ee2e",
       "bytes": 474423,
       "kind": "source_preview"
     },
@@ -650,7 +650,7 @@
     {
       "source": "V4_ReferenceAlbedo/Textures/generation_provenance.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/Textures/generation_provenance.json",
-      "sha256": "cc6f3d6df7e48603113afe497f97fcf2ceeeeeb0b7250198fcfdba2bbc01cf68",
+      "sha256": "9acdf308f2ad92ddc19b065f03045a47a8faafa29a07d2ea631142acd5cae484",
       "bytes": 1671,
       "kind": "source_evidence"
     },
@@ -664,7 +664,7 @@
     {
       "source": "V4_ReferenceAlbedo/apply_albedo_reference.py",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/apply_albedo_reference.py",
-      "sha256": "64bc55b05c48e5d64595ae5cc605353f0c72947450f8d6457368c774e54ca629",
+      "sha256": "3845ed8c14c891a256e1fa37732359b786a071d5c1c59db1eb784f2bc3f1bc95",
       "bytes": 3754,
       "kind": "source_script"
     },
@@ -678,7 +678,7 @@
     {
       "source": "V4_ReferenceAlbedo/candidate_handoff.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/candidate_handoff.json",
-      "sha256": "ca97ec1b2120e793584dc2048fa8fc87373d97fbafa707a3c1aa349918f56875",
+      "sha256": "f8d33db73c9efb3ef567aea61f6d96a7ab717da1f98702df3a0c3444b7a4cda6",
       "bytes": 4983,
       "kind": "source_evidence"
     },
@@ -699,49 +699,49 @@
     {
       "source": "V4_ReferenceAlbedo/finish_verification.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/finish_verification.json",
-      "sha256": "8c6ca4fd6810c0685a8a879d04b5875e54f252deb524b4a1fdcd78237d8229ea",
+      "sha256": "6b53873fbfe7d122c5686922c2c90bc0ae0bce242a169f34f43dece09ae58389",
       "bytes": 2891,
       "kind": "source_metadata"
     },
     {
       "source": "V4_ReferenceAlbedo/guide_validation.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/guide_validation.json",
-      "sha256": "45d1b628fde24ee31c518db5a906c6c1a57055840bd4fdab151fa142bc67493b",
+      "sha256": "1d5aee801e43a80083323a748a42f63d71ad8b6b808dfaf58cb31f76146e556d",
       "bytes": 1942,
       "kind": "source_evidence"
     },
     {
       "source": "V4_ReferenceAlbedo/independent_audit.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/independent_audit.json",
-      "sha256": "9b49d2b16dfeb557375ea13d671f0e1f38eac3e1f251e17e5ba1c4c72fd4fb6b",
+      "sha256": "3a0d0189e5f5f93d691d92cd5775bb0f317140bde17d8380305cd8c744c24c6d",
       "bytes": 789,
       "kind": "source_evidence"
     },
     {
       "source": "V4_ReferenceAlbedo/input_provenance.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/input_provenance.json",
-      "sha256": "8c891f209af6b0d3b37dedb5240254a51badbe59e38a77f784a3a1b98e070c63",
+      "sha256": "66ce8c8b6ed4527ea8d691cdb0e938484b2baa8adf5eaef52839ac5a57584169",
       "bytes": 1297,
       "kind": "source_evidence"
     },
     {
       "source": "V4_ReferenceAlbedo/portable_receipt.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/portable_receipt.json",
-      "sha256": "a1bda1a551e507a6a255f896001ce4eb1cddbd7e82a0a81292013aaba12a391d",
+      "sha256": "5cc8b6839454bb33ed76994c04280a0f26a28a1ef907d2970037147813fc5467",
       "bytes": 1505,
       "kind": "source_evidence"
     },
     {
       "source": "V4_ReferenceAlbedo/reference_application.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/reference_application.json",
-      "sha256": "e479e606331d25ec6f525720f685970fb4e2b7c0935274ad0cd7aa3a91d9d914",
+      "sha256": "fbe0100ab1ece3fe6c358fc8db1fa9a1b30efc7f6f061f4ec20345a46f82edee",
       "bytes": 686,
       "kind": "source_metadata"
     },
     {
       "source": "V4_ReferenceAlbedo/reference_only_verification.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/reference_only_verification.json",
-      "sha256": "a7c11b56a5f142cf06bf2baf347e3fdae595d39c244db94dc776dc88afa7516e",
+      "sha256": "3f8a2c8ca289a85baf07a456cba8135259d1e5184852d36bc9ab30c9417b61b7",
       "bytes": 570,
       "kind": "source_metadata"
     },
@@ -762,28 +762,28 @@
     {
       "source": "V4_ReferenceAlbedo/verify_reference_only.py",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V4_ReferenceAlbedo/verify_reference_only.py",
-      "sha256": "51c4edd3ce28be2751802159bf181c512048fb8c02c77bf53c070023cf9c3046",
+      "sha256": "85b11c2266fa78dee81ab17086a7c038f106399d8f85e897439095ea765ec5c0",
       "bytes": 3428,
       "kind": "source_script"
     },
     {
       "source": "V5_OpticalLOD/HANDOFF.md",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/HANDOFF.md",
-      "sha256": "7398605a578a9f844908a19dda15737385a522abee6989ee2b97c3b81482e117",
+      "sha256": "3f8511c3bdbe47c1b7b04c88d7f0297658cda58bec5999946d483c366f147126",
       "bytes": 2905,
       "kind": "source_documentation"
     },
     {
       "source": "V5_OpticalLOD/Inputs/V4_Export.blend",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Inputs/V4_Export.blend",
-      "sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+      "sha256": "ee515daa6f66be20d5ebfd1ae557badc386aaed425624ebfecd435ab06d0f3e1",
       "bytes": 6118542,
       "kind": "source_blend"
     },
     {
       "source": "V5_OpticalLOD/PhotorealPieV1_Export.blend",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/PhotorealPieV1_Export.blend",
-      "sha256": "2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a",
+      "sha256": "ca0400ba99ec2e547b5f006cc31e74d6b0c1ab8fdd3f96016b7f8b45c5851102",
       "bytes": 6126003,
       "kind": "source_blend"
     },
@@ -853,28 +853,28 @@
     {
       "source": "V5_OpticalLOD/Roundtrip/PieSource-front-LOD1.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Roundtrip/PieSource-front-LOD1.png",
-      "sha256": "e35ef0018886e01d02c188f8e46eb97787b4dcc548b0bd143a18cd11226983f0",
+      "sha256": "8ab2035250cf6cabaac7fcdb41578b0640cd821833a7fb68dc26ebe5b557daaa",
       "bytes": 542318,
       "kind": "source_texture"
     },
     {
       "source": "V5_OpticalLOD/Roundtrip/PieSource-front-LOD2.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Roundtrip/PieSource-front-LOD2.png",
-      "sha256": "4a413cc98c73a1026b60f891cbd8b63b5b8dc1a053484984daa822670123e353",
+      "sha256": "c143fb85b046caa5701b9c8aa7eb34807677d5e6fd5f9d49a2fdff162a5f5d69",
       "bytes": 546023,
       "kind": "source_texture"
     },
     {
       "source": "V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD1.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD1.png",
-      "sha256": "c293c6ac552f848ac01c8059012896f4ea342ebd8972c3126bdcdcce943b657d",
+      "sha256": "ac91dfc9b9cc8d599cce3a12fc19d519d940f6da8bc257c24c8c1ca0dbe9fcb7",
       "bytes": 474454,
       "kind": "source_texture"
     },
     {
       "source": "V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD2.png",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD2.png",
-      "sha256": "59f5003e57c9a9329563ea6eee5fbf0e4b67644f2404ec98307cb94c4e0cd779",
+      "sha256": "9d13140a487fa4954f688f6a94230166eb136385d63d7e526ff91d31831445e1",
       "bytes": 475817,
       "kind": "source_texture"
     },
@@ -909,35 +909,35 @@
     {
       "source": "V5_OpticalLOD/export_uv_verification.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/export_uv_verification.json",
-      "sha256": "d49adfc0c97da93b0c35a7bd758f83b4201dd88eac55dd588db2625bfa39dae1",
+      "sha256": "3eb391c869a2d105a11a00083e9cb57ac16f301d8b96eee61cfee506d257f6da",
       "bytes": 2885,
       "kind": "source_metadata"
     },
     {
       "source": "V5_OpticalLOD/guide_validation.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/guide_validation.json",
-      "sha256": "11dca28c5b76d89cf5bfd5111ee45a734933b22cc403431788107d2eb4144deb",
+      "sha256": "a076e994a84293c082268f044d34200c90ff010e9668eb8fbeab3d8059ac2a9d",
       "bytes": 1459,
       "kind": "source_evidence"
     },
     {
       "source": "V5_OpticalLOD/optical_lod_report.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/optical_lod_report.json",
-      "sha256": "6c1b00cc9090b0fbcdd44ec18df53482683b4e788875f4b2c026dabb6d3b4c44",
+      "sha256": "8be5231c45d178fdb441cb322a5476f64e3a9ebf9be49f1fdb0ac00d79e19ee3",
       "bytes": 731,
       "kind": "source_metadata"
     },
     {
       "source": "V5_OpticalLOD/pixel_comparison.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/pixel_comparison.json",
-      "sha256": "313dfa10bdfaad43537432d61f29ffa3fa2776c5fc808276268eecf02c3dc301",
+      "sha256": "b1c12913ded50f98ba781629a4721c51f747830991f8e7e9f25c7eb0d24ca28f",
       "bytes": 1562,
       "kind": "source_metadata"
     },
     {
       "source": "V5_OpticalLOD/portable_export_receipt.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/portable_export_receipt.json",
-      "sha256": "84a7f507c68a742dd55d389a22a6c7e9544a9cc41a2de3d255302ecd20fdf8d8",
+      "sha256": "80012e91bc6b03925f171024fbeec1ec5099831ca7cc9e42a95dcaa90b124574",
       "bytes": 808,
       "kind": "source_evidence"
     },
@@ -958,14 +958,14 @@
     {
       "source": "V5_OpticalLOD/retain_ceramic.py",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/retain_ceramic.py",
-      "sha256": "ab1ea12d2d6796d5c82388ff8924aa5a9be19db12fda3a6a55b38a277b828527",
+      "sha256": "e4dac7d59b75c9ab431d24b384ab1cbd6e5e067bebaeb021e83d81035f2a0038",
       "bytes": 3376,
       "kind": "source_script"
     },
     {
       "source": "V5_OpticalLOD/source_handoff.json",
       "destination": "SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1/V5_OpticalLOD/source_handoff.json",
-      "sha256": "6a47780b949f2c7c1976c9ca148c982a1772a56a709a7a2c0e4f4120bec099b9",
+      "sha256": "1a9fbf96ff7dabed98003ce7b73175c01b721180e9e4e2607b0cfb04cc7a2fc3",
       "bytes": 5170,
       "kind": "source_evidence"
     },
@@ -1000,37 +1000,37 @@
     },
     {
       "file": "NativeLODExportsV5/SM_Pie_Rustic_01_LOD0.fbx",
-      "sha256": "bb641826c54637cfe999e3545f3c574fe8422a4d1ae7b61269533c34fc5932eb",
+      "sha256": "6ef4504a8805ad2d69ce75bd1c64857d466a25e1abe4f797b1bcb1881cc2fcc2",
       "independent_inode": true
     },
     {
       "file": "NativeLODExportsV5/SM_Pie_Rustic_01_LOD1.fbx",
-      "sha256": "2d65949e1e44257d6db21f48355a4b5998ce6b02b5e40eeba2151d72dbe2f0fa",
+      "sha256": "dfc3b86cb8c893f06dbd223e2386e66cdd6ae28abb3a3073c8f87c485bfc711f",
       "independent_inode": true
     },
     {
       "file": "NativeLODExportsV5/SM_Pie_Rustic_01_LOD2.fbx",
-      "sha256": "97676b59124b78c2c8ae52ca78984f5dd03197ea119bfa33c60c59be03fd4a36",
+      "sha256": "116059ca72f5027e70d6a95276138f792c76acd6c39a004a553e7e0f4e0b9fc8",
       "independent_inode": true
     },
     {
       "file": "NativeLODExportsV5/candidate_handoff.json",
-      "sha256": "6bdab934b3a149409df4e241deaa9878bf8caed933193303d9a9ceea0fb65a9c",
+      "sha256": "c159aa12aa50c1cc8860c7216f011007a80e2c79183065d9f4e7d5ba19c3e77a",
       "independent_inode": true
     },
     {
       "file": "NativeLODExportsV5/export_native_lods.py",
-      "sha256": "5b015f1f71d0307943418ab25755d2fc780b75e888b2705ddd8a3ffd7c1a06f0",
+      "sha256": "22946472f28c74e90cd3631c1d5b96ca4c37d9a9ccfe6613a2bb71e135fb2482",
       "independent_inode": true
     },
     {
       "file": "NativeLODExportsV5/lod_manifest.json",
-      "sha256": "32f6521c933c27f550fd99bdb6da48405bccf7c10cc57a0ff0078802c1d863c4",
+      "sha256": "de80cfbde7c3723ce11d5d02488722a661d17e5220f964ec385ecc3c6c1e0516",
       "independent_inode": true
     },
     {
       "file": "NativeLODExportsV5/lod_roundtrip_receipt.json",
-      "sha256": "cfef6d19a728c5f2ad56c601dbd7da2504e2d93df67b5bccebc0b3062690cef2",
+      "sha256": "4e6768937a37fb6bbae564b2ebd1fb006f05a597e5dc05a913752b56c634690d",
       "independent_inode": true
     },
     {
@@ -1040,12 +1040,12 @@
     },
     {
       "file": "V4_BakeExportIteration/AuthoringDonorValidation.json",
-      "sha256": "45d1b628fde24ee31c518db5a906c6c1a57055840bd4fdab151fa142bc67493b",
+      "sha256": "1d5aee801e43a80083323a748a42f63d71ad8b6b808dfaf58cb31f76146e556d",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/Export/Game/Dink/Props/Stonebrook/PhotorealPieV1/SM_Pie_Rustic_01.fbx",
-      "sha256": "6687fc7dc2b7dc9e0f92481bc70f26ebbc798be0ac6bebe4deae4b796f6d4133",
+      "sha256": "1c4a73ed5ca1d867afbce2a0f967baa0eebe9e0fc6c67e632d133f75b3224f44",
       "independent_inode": true
     },
     {
@@ -1070,12 +1070,12 @@
     },
     {
       "file": "V4_BakeExportIteration/Export/manifest.json",
-      "sha256": "e6e264b8077448e94c12a8c00091a41e2c29d070f6273646075b36fbfe65679c",
+      "sha256": "2bee07e3483b42133f44df8b9cbe5f39860fb5766ec61a1d9b930f865d526755",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/HANDOFF.md",
-      "sha256": "7f11618489137856dab68221751659e71f1f030e18ef3a9ba1593f08955b1aa9",
+      "sha256": "0873bf038c1a614f4ab934db1ba7c5f9ca785e71f0d39b3242c46b3c67e280bb",
       "independent_inode": true
     },
     {
@@ -1085,17 +1085,17 @@
     },
     {
       "file": "V4_BakeExportIteration/PREPARATION.json",
-      "sha256": "c07b447c6908f9e5be216d2ac19617ea696f6bd4c507f0c5b9204f3319fcd497",
+      "sha256": "de1bd94f933398b4d4627687be5129f457e804a18b6aeb9007402ace1655e202",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/PhotorealPieV1_Export.blend",
-      "sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+      "sha256": "ee515daa6f66be20d5ebfd1ae557badc386aaed425624ebfecd435ab06d0f3e1",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/PhotorealPieV1_Source.blend",
-      "sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+      "sha256": "9b95c90fbdd5166ebc0d88b6107ec43e7f5ad985f44f18c3b5fa63cb8056fb55",
       "independent_inode": true
     },
     {
@@ -1145,22 +1145,22 @@
     },
     {
       "file": "V4_BakeExportIteration/Roundtrip/PieSource-crust.png",
-      "sha256": "434a77b703eee537269d12a0a7eb17efd536cc78f6ce4b9e928a43e89f12ab91",
+      "sha256": "2b819f76b4fe44dd0cf73a199b38d2348adf0664a74560345470c418699e1e50",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/Roundtrip/PieSource-dish.png",
-      "sha256": "f073677051c2c49d11a7621be94e661d72e3887d55f9e4cd40eb2662b96255fd",
+      "sha256": "f2198cbf93a23a5cb376ad31bea3a5547ad3b6425eb7fb9c497a3c3785abd7ae",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/Roundtrip/PieSource-front.png",
-      "sha256": "1ff01069e229e7bddb041ccacb714c88c90e1f40ac62978c73bbe72876f8f91c",
+      "sha256": "1cb16af926a59f7cc2141fc0654a5a14a0caa88a4e158672ecb9769a045f81e3",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/Roundtrip/PieSource-game-distance.png",
-      "sha256": "c4a22db5ff39b2d0909cb0a8f75c932f16b5b58a02bca34adef907cec144641e",
+      "sha256": "6743d17c3541b31c2cd8d12e60e221cab2b6989b55c075c37d45e649a7a0cd5f",
       "independent_inode": true
     },
     {
@@ -1190,12 +1190,12 @@
     },
     {
       "file": "V4_BakeExportIteration/bake_pie.py",
-      "sha256": "b2e43db43a6751477b7d5904a2c98da9efac7dcc12fed63b58c56f96e346bbf5",
+      "sha256": "dd422d416652495d4e4632aa0987e8cb127870893700c878dbef2ed8eadc58a9",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/bake_receipt.json",
-      "sha256": "924631cc6a10821ad95a2b6a517f062a6dae48dacad96d93a86edc08b854f3ee",
+      "sha256": "db1a76b68afdaeb138954955f9afcb7e89bbe88eef8bd1911b06f3b3097cf8d9",
       "independent_inode": true
     },
     {
@@ -1210,12 +1210,12 @@
     },
     {
       "file": "V4_BakeExportIteration/closed_crumb_restoration_receipt.json",
-      "sha256": "29463e3bab118419fbe71eb8df8aeb82d240447eaa5c6fa03463575824864931",
+      "sha256": "785cbfc757dd8dc9e8d961e4343940b9639ea4390d44dc1070820f8052b0b692",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/export_contract_verification.json",
-      "sha256": "f003e2616d986740aa255b15c8ab1bc8b064e2171d02007fd7a8859f9b3b290f",
+      "sha256": "c87cace369e8a2459274a8adf4918f64c4f62b46254f18a65ce78ff6eab9c213",
       "independent_inode": true
     },
     {
@@ -1225,12 +1225,12 @@
     },
     {
       "file": "V4_BakeExportIteration/export_report.json",
-      "sha256": "69c1401e23201fc62ca6c2879293a6b007c81923131eb60806abc488c6c3ad2a",
+      "sha256": "ab8387755320faad7ea28f3b4e4b7b43bc8d747d7255f3b38bae6c4325d42780",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/export_uv_verification.json",
-      "sha256": "4f3bf52d6f67df1f123b66dc1c9e2d7384cf0e8b32f1a3d9d452d46eea438420",
+      "sha256": "abfccabb832b06fdd7f755b157d2d581c8d1ef42d348aaeb39f69bb4b5a8916a",
       "independent_inode": true
     },
     {
@@ -1240,12 +1240,12 @@
     },
     {
       "file": "V4_BakeExportIteration/pixel_comparison.json",
-      "sha256": "f9680556f6622713121aceda94857684fc13bf0d78357c0eb7fc94ea5e4340e9",
+      "sha256": "779a33569ebd26c1880ad4832780834c01fe2cf8edce7b94aa7a6eab430dfe10",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/portable_export_receipt.json",
-      "sha256": "7229468c98637a49c9e1e412e76fa67664673cd91cbf66f1eea08797f153cf5c",
+      "sha256": "a06c06e06ec46071332d09b73af73398bb1c23d65d7edef3c0178db3bd55bd6d",
       "independent_inode": true
     },
     {
@@ -1260,7 +1260,7 @@
     },
     {
       "file": "V4_BakeExportIteration/review_authorization.json",
-      "sha256": "7e0e99477b4f2d7a584290ec8874b103e46b927d1e3688dda9a1589252f65c2f",
+      "sha256": "4c2ed536a9544c29a919e8b69e33ea788367f488174942816c49e18d05c1ecd3",
       "independent_inode": true
     },
     {
@@ -1270,12 +1270,12 @@
     },
     {
       "file": "V4_BakeExportIteration/roundtrip_receipt.json",
-      "sha256": "ca50fd38051fd594049f72acb0710700a2928a48c5f68e7095a23016dcbe9834",
+      "sha256": "4d7e14fc25fe2f94f2c0cad558002dae0eb7bc9188f66c0a49282259ccef7945",
       "independent_inode": true
     },
     {
       "file": "V4_BakeExportIteration/source_export_handoff.json",
-      "sha256": "8ee754888a40d4cf6c135845ff60140a48102262ca468bed7aa00facbb069d90",
+      "sha256": "25bc477716e062b36bab1cd009fd1ff43820ba0da4c72d13f5143b44f6d152d3",
       "independent_inode": true
     },
     {
@@ -1305,12 +1305,12 @@
     },
     {
       "file": "V4_ReferenceAlbedo/HANDOFF.md",
-      "sha256": "f7211b584dd9f2f95fe0ab585964af5aedec3259f7b3198a0df41ad9633c762d",
+      "sha256": "707529103579f0b36b9b4f2c09011e3ec01d0d3283f0b3e49a0066570a4b410c",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/Inputs/KIT_Stonebrook_Input.blend",
-      "sha256": "f6712d08f8ee9d9eebde404cf0a45389690a7cc75547f602a6247d94d0ffd3f9",
+      "sha256": "7a8851706c725ce89dfb35f5b288a7d60bd779aa846f0f844a28ffe3bafab604",
       "independent_inode": true
     },
     {
@@ -1350,7 +1350,7 @@
     },
     {
       "file": "V4_ReferenceAlbedo/Inputs/V3_Source.blend",
-      "sha256": "e82a96fda986e016830a77715ecd1413c43efd1332b3bf3265fea3897632a1dc",
+      "sha256": "df2c32b2fa9e35c1e9d0b4e0f8173df836fd70cc3e0620261aab026693fe0e0e",
       "independent_inode": true
     },
     {
@@ -1370,7 +1370,7 @@
     },
     {
       "file": "V4_ReferenceAlbedo/PhotorealPieV1_Source.blend",
-      "sha256": "9eddc6e18db9dd6813ebbbdc2adcda1911c3dec8f84a680d0e6e3afcf72a986a",
+      "sha256": "9b95c90fbdd5166ebc0d88b6107ec43e7f5ad985f44f18c3b5fa63cb8056fb55",
       "independent_inode": true
     },
     {
@@ -1420,22 +1420,22 @@
     },
     {
       "file": "V4_ReferenceAlbedo/Previews/PieSource-crust.png",
-      "sha256": "7a047d746068bd9eb4647b2dc3417d1bd842a03aadb1f784f0b33118f15e8432",
+      "sha256": "4abdd596a238da142974696d8517ea50b9d3590062a0316a66eec733b9c8f5ea",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/Previews/PieSource-dish.png",
-      "sha256": "4bd4d7408a8d7bd6317460cb14216b28c97c012972dec8d3e603ac2cfa524cdb",
+      "sha256": "26e079457511895e8c7820e4ffec7458f499b02e0a7a17b196d448576595ba9d",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/Previews/PieSource-front.png",
-      "sha256": "4efde13a67e7e8d5dfb3722a6d05329366183f9bc14e99a4c97e12ecfd4a44af",
+      "sha256": "3f49731762d08ed93b3c24b6a9c523eff56577433d2291dc45518c986a73ed22",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/Previews/PieSource-game-distance.png",
-      "sha256": "7f8b66d9584c48401964e8ab17c5cec7014ef9737202838fa3f0f1d5a0f849a0",
+      "sha256": "659752a6924d6ea0aedaa244a09b50c2a5302eac5471cddea972b7e1c3e0ee2e",
       "independent_inode": true
     },
     {
@@ -1445,7 +1445,7 @@
     },
     {
       "file": "V4_ReferenceAlbedo/Textures/generation_provenance.json",
-      "sha256": "cc6f3d6df7e48603113afe497f97fcf2ceeeeeb0b7250198fcfdba2bbc01cf68",
+      "sha256": "9acdf308f2ad92ddc19b065f03045a47a8faafa29a07d2ea631142acd5cae484",
       "independent_inode": true
     },
     {
@@ -1455,7 +1455,7 @@
     },
     {
       "file": "V4_ReferenceAlbedo/apply_albedo_reference.py",
-      "sha256": "64bc55b05c48e5d64595ae5cc605353f0c72947450f8d6457368c774e54ca629",
+      "sha256": "3845ed8c14c891a256e1fa37732359b786a071d5c1c59db1eb784f2bc3f1bc95",
       "independent_inode": true
     },
     {
@@ -1465,7 +1465,7 @@
     },
     {
       "file": "V4_ReferenceAlbedo/candidate_handoff.json",
-      "sha256": "ca97ec1b2120e793584dc2048fa8fc87373d97fbafa707a3c1aa349918f56875",
+      "sha256": "f8d33db73c9efb3ef567aea61f6d96a7ab717da1f98702df3a0c3444b7a4cda6",
       "independent_inode": true
     },
     {
@@ -1480,37 +1480,37 @@
     },
     {
       "file": "V4_ReferenceAlbedo/finish_verification.json",
-      "sha256": "8c6ca4fd6810c0685a8a879d04b5875e54f252deb524b4a1fdcd78237d8229ea",
+      "sha256": "6b53873fbfe7d122c5686922c2c90bc0ae0bce242a169f34f43dece09ae58389",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/guide_validation.json",
-      "sha256": "45d1b628fde24ee31c518db5a906c6c1a57055840bd4fdab151fa142bc67493b",
+      "sha256": "1d5aee801e43a80083323a748a42f63d71ad8b6b808dfaf58cb31f76146e556d",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/independent_audit.json",
-      "sha256": "9b49d2b16dfeb557375ea13d671f0e1f38eac3e1f251e17e5ba1c4c72fd4fb6b",
+      "sha256": "3a0d0189e5f5f93d691d92cd5775bb0f317140bde17d8380305cd8c744c24c6d",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/input_provenance.json",
-      "sha256": "8c891f209af6b0d3b37dedb5240254a51badbe59e38a77f784a3a1b98e070c63",
+      "sha256": "66ce8c8b6ed4527ea8d691cdb0e938484b2baa8adf5eaef52839ac5a57584169",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/portable_receipt.json",
-      "sha256": "a1bda1a551e507a6a255f896001ce4eb1cddbd7e82a0a81292013aaba12a391d",
+      "sha256": "5cc8b6839454bb33ed76994c04280a0f26a28a1ef907d2970037147813fc5467",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/reference_application.json",
-      "sha256": "e479e606331d25ec6f525720f685970fb4e2b7c0935274ad0cd7aa3a91d9d914",
+      "sha256": "fbe0100ab1ece3fe6c358fc8db1fa9a1b30efc7f6f061f4ec20345a46f82edee",
       "independent_inode": true
     },
     {
       "file": "V4_ReferenceAlbedo/reference_only_verification.json",
-      "sha256": "a7c11b56a5f142cf06bf2baf347e3fdae595d39c244db94dc776dc88afa7516e",
+      "sha256": "3f8a2c8ca289a85baf07a456cba8135259d1e5184852d36bc9ab30c9417b61b7",
       "independent_inode": true
     },
     {
@@ -1525,22 +1525,22 @@
     },
     {
       "file": "V4_ReferenceAlbedo/verify_reference_only.py",
-      "sha256": "51c4edd3ce28be2751802159bf181c512048fb8c02c77bf53c070023cf9c3046",
+      "sha256": "85b11c2266fa78dee81ab17086a7c038f106399d8f85e897439095ea765ec5c0",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/HANDOFF.md",
-      "sha256": "7398605a578a9f844908a19dda15737385a522abee6989ee2b97c3b81482e117",
+      "sha256": "3f8511c3bdbe47c1b7b04c88d7f0297658cda58bec5999946d483c366f147126",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/Inputs/V4_Export.blend",
-      "sha256": "92215f62f62097cad6c412e19242b8467a62dcec2be04ba8ce23dbb933c03d6e",
+      "sha256": "ee515daa6f66be20d5ebfd1ae557badc386aaed425624ebfecd435ab06d0f3e1",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/PhotorealPieV1_Export.blend",
-      "sha256": "2c407ff8bb6485ace844bf816316a19a8f49ae09ac70b19a80e0551fe4f7e88a",
+      "sha256": "ca0400ba99ec2e547b5f006cc31e74d6b0c1ab8fdd3f96016b7f8b45c5851102",
       "independent_inode": true
     },
     {
@@ -1590,22 +1590,22 @@
     },
     {
       "file": "V5_OpticalLOD/Roundtrip/PieSource-front-LOD1.png",
-      "sha256": "e35ef0018886e01d02c188f8e46eb97787b4dcc548b0bd143a18cd11226983f0",
+      "sha256": "8ab2035250cf6cabaac7fcdb41578b0640cd821833a7fb68dc26ebe5b557daaa",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/Roundtrip/PieSource-front-LOD2.png",
-      "sha256": "4a413cc98c73a1026b60f891cbd8b63b5b8dc1a053484984daa822670123e353",
+      "sha256": "c143fb85b046caa5701b9c8aa7eb34807677d5e6fd5f9d49a2fdff162a5f5d69",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD1.png",
-      "sha256": "c293c6ac552f848ac01c8059012896f4ea342ebd8972c3126bdcdcce943b657d",
+      "sha256": "ac91dfc9b9cc8d599cce3a12fc19d519d940f6da8bc257c24c8c1ca0dbe9fcb7",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/Roundtrip/PieSource-game-distance-LOD2.png",
-      "sha256": "59f5003e57c9a9329563ea6eee5fbf0e4b67644f2404ec98307cb94c4e0cd779",
+      "sha256": "9d13140a487fa4954f688f6a94230166eb136385d63d7e526ff91d31831445e1",
       "independent_inode": true
     },
     {
@@ -1630,27 +1630,27 @@
     },
     {
       "file": "V5_OpticalLOD/export_uv_verification.json",
-      "sha256": "d49adfc0c97da93b0c35a7bd758f83b4201dd88eac55dd588db2625bfa39dae1",
+      "sha256": "3eb391c869a2d105a11a00083e9cb57ac16f301d8b96eee61cfee506d257f6da",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/guide_validation.json",
-      "sha256": "11dca28c5b76d89cf5bfd5111ee45a734933b22cc403431788107d2eb4144deb",
+      "sha256": "a076e994a84293c082268f044d34200c90ff010e9668eb8fbeab3d8059ac2a9d",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/optical_lod_report.json",
-      "sha256": "6c1b00cc9090b0fbcdd44ec18df53482683b4e788875f4b2c026dabb6d3b4c44",
+      "sha256": "8be5231c45d178fdb441cb322a5476f64e3a9ebf9be49f1fdb0ac00d79e19ee3",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/pixel_comparison.json",
-      "sha256": "313dfa10bdfaad43537432d61f29ffa3fa2776c5fc808276268eecf02c3dc301",
+      "sha256": "b1c12913ded50f98ba781629a4721c51f747830991f8e7e9f25c7eb0d24ca28f",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/portable_export_receipt.json",
-      "sha256": "84a7f507c68a742dd55d389a22a6c7e9544a9cc41a2de3d255302ecd20fdf8d8",
+      "sha256": "80012e91bc6b03925f171024fbeec1ec5099831ca7cc9e42a95dcaa90b124574",
       "independent_inode": true
     },
     {
@@ -1665,12 +1665,12 @@
     },
     {
       "file": "V5_OpticalLOD/retain_ceramic.py",
-      "sha256": "ab1ea12d2d6796d5c82388ff8924aa5a9be19db12fda3a6a55b38a277b828527",
+      "sha256": "e4dac7d59b75c9ab431d24b384ab1cbd6e5e067bebaeb021e83d81035f2a0038",
       "independent_inode": true
     },
     {
       "file": "V5_OpticalLOD/source_handoff.json",
-      "sha256": "6a47780b949f2c7c1976c9ca148c982a1772a56a709a7a2c0e4f4120bec099b9",
+      "sha256": "1a9fbf96ff7dabed98003ce7b73175c01b721180e9e4e2607b0cfb04cc7a2fc3",
       "independent_inode": true
     },
     {
@@ -1689,6 +1689,6 @@
       "independent_inode": true
     }
   ],
-  "destination": "/home/artist/Work/DinkPieV5SourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1",
+  "destination": "<HOME>/Work/DinkPieV5SourceDelivery/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealPieV1",
   "ledger_write": "Exclusive cooperative lock + O_APPEND, never replace/truncate; any unexpected concurrent state stops for review without rolling back another writer"
 }

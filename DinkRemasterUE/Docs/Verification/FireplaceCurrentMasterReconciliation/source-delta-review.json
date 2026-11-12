@@ -1,0 +1,17 @@
+{
+  "prior": "7927fc594dddc89fed4c072a27d186683954e890",
+  "accepted_master": "cbdd4f60514653e2f8a8c714272612096d368748",
+  "master_changed_production_paths_exact": 21,
+  "master_production_delta_byte_exact": true,
+  "fireplace_protected_scopes_exact": [
+    "DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4",
+    "DinkRemasterUE/SourceAssets/Art/SharedMaterials",
+    "DinkRemasterUE/Scripts/RoofNative",
+    "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkRoofSourceMetadataLibrary.cpp",
+    "DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkStaticMeshGeometryInspection.cpp"
+  ],
+  "no_existing_native_package_changes": true,
+  "new_Data_JSON_only": "Content/Dink/Data/Art/camera_exteriors.json",
+  "ledger_append": "4646rawprior+2exactmaster=4648",
+  "no_UE_execution": true
+}

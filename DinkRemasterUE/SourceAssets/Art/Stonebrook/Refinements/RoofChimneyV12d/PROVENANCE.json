@@ -3,7 +3,7 @@
   "base_commit": "c17793772ed2a80e6d0516c4062a29f18fcbb3c2",
   "payload_count": 100,
   "payload_manifest": "SHA256SUMS.json",
-  "source_blend_sha256": "3f13a5d20ee69ed74e5adf22143a2d5bc3e8042f96028683e5837bb02d0d05ec",
+  "source_blend_sha256": "761b51a83454f323c4b23e58d67e36d124c86c8f51a9dc6f47893997928867d1",
   "historical_source_review_index_sha256": "4a1886b3524b6f559772d6681b1af81944153e2a1a90e51fc97611bf26f6f200",
   "historical_source_review": "SourceV12/ReviewV12d_Run01/REVIEW_INDEX.json",
   "historical_source_native_receipts": "Old absolute paths and source-only/failed/intermediate statuses inside sealed payloads are historical records, not portable commands or current production approval.",

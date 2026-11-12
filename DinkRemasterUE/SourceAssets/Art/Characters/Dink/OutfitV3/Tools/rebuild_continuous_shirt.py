@@ -3,7 +3,7 @@ from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 from mathutils.geometry import barycentric_transform
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3')
 bpy.ops.wm.open_mainfile(filepath=str(ART.parent/'HandBindingV2/SK_Dink_Hands.blend'))
 ob=bpy.data.objects['SK_Dink_Hands_LOD0'];m=ob.data;origco=[v.co.copy() for v in m.vertices];origweights=[{ob.vertex_groups[g.group].name:g.weight for g in v.groups} for v in m.vertices]
 shirtpolys=list(m.polygons)[9834:13139];shirtids=sorted({i for p in shirtpolys for i in p.vertices});rank={i:j for j,i in enumerate(shirtids)}

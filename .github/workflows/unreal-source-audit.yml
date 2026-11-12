@@ -3,12 +3,16 @@ on:
   pull_request:
     paths:
       - 'DinkRemasterUE/**'
+      - 'Scripts/check_public_paths.py'
       - '.github/workflows/unreal-source-audit.yml'
+      - '.github/fixtures/house439-source-lfs.txt'
   push:
     branches: [master]
     paths:
       - 'DinkRemasterUE/**'
+      - 'Scripts/check_public_paths.py'
       - '.github/workflows/unreal-source-audit.yml'
+      - '.github/fixtures/house439-source-lfs.txt'
 permissions:
   contents: read
 jobs:
@@ -21,7 +25,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Reject personal home paths in public text
+        run: python3 Scripts/check_public_paths.py
       - name: Check syntax, approved audio and pinned asset metadata
         run: python3 DinkRemasterUE/Scripts/verify_sources.py --metadata-only
+      - name: Hydrate the source FBX geometry fixture
+        run: |
+          git lfs install --local --skip-smudge
+          git lfs pull --include="DinkRemasterUE/SourceAssets/Art/Stonebrook/Export/Game/Dink/Props/Stonebrook/SM_Barrel_Oak_01.fbx" --exclude=""
+      - name: Hydrate exact closed-eaves source test fixtures
+        run: |
+          house_include=$(paste -sd, .github/fixtures/house439-source-lfs.txt)
+          git lfs pull --include="$house_include" --exclude=""
+      - name: Install pinned numeric source-test dependency
+        run: python3 -m pip install 'numpy==2.5.4'
       - name: Exercise asset bootstrap and import protections
         run: python3 -m unittest discover -s DinkRemasterUE/Scripts/tests -p 'test_*.py'

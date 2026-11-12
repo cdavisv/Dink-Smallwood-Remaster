@@ -1,6 +1,6 @@
 # Willow game source handoff
 
-Work-only folder: /home/artist/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery. No Git branch/worktree, repository, native, GPU or ledger changes. The coordinator owns DinkPhotorealArtIntegration; this author never writes there. Current final candidate is WillowGameV6.blend, not V1–V5 drafts. Freeze this folder after delivery_handoff.json is written; subsequent ground work belongs in SharedGroundDelivery.
+Work-only folder: <HOME>/Work/DinkQA/PhotorealSessions/SharedStonebrookVista/WillowGameDelivery. No Git branch/worktree, repository, native, GPU or ledger changes. The coordinator owns DinkPhotorealArtIntegration; this author never writes there. Current final candidate is WillowGameV6.blend, not V1–V5 drafts. Freeze this folder after delivery_handoff.json is written; subsequent ground work belongs in SharedGroundDelivery.
 
 The donor V11 shared scene remains byte-identical (fd8e334ef871080ed8bcb16eaa108ed8a77415ae34a145515bdc8184265902e1). Original broadleaf sprites32_03/32_04 guide/inspire its authored weeping adaptation; this derivative is not a literal original-species reconstruction or final photoreal approval. The complete authored128,796-triangle high willow is retained separately as WillowHighV11_Extract.blend, with geometry/provenance receipt. No original560reference object is exported as new outdoor geometry.
 

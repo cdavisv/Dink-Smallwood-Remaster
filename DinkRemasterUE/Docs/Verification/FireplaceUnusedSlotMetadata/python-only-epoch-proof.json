@@ -1,0 +1,52 @@
+{
+  "predecessor": "5ad27e6cf57b5e82d25634d43e3a2627cf180f0a",
+  "cpp_build_source_HEAD": "fefad5870cf2aa3114ba3934e0c242d33d6a3d7b",
+  "old_native_contract": "d4259c36e6d07dcfd76dce55126c3a5d33592d61469d2b6f950d55b72b0b9894",
+  "new_native_contract": "894831ea8b077896d9ca5cf22aeb090ebc5bca88c2d459aeb238eae42c43bfbe",
+  "only_changed_contract_pins": [
+    "Scripts/RoofNative/fireplace_mesh_readback.py",
+    "Scripts/RoofNative/fireplace_native.py"
+  ],
+  "mesh_material_texture_targets_identical": true,
+  "protected_diagnostic_pins_rehashed": 11532,
+  "protected_scopes_identical_to_C3": [
+    "Plugins",
+    "Source",
+    "Config",
+    "Content",
+    "SourceAssets"
+  ],
+  "actual_build7_14_Game2_rehashed": {
+    "EXPECTED_MODULES.json": {
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": "f71e1ccce78d21095b35e99f8c88917e3c4377eff00e795a946f69f8f50490c7",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "17a1e05a3f99b5dfe52d7788cbd3e56d28527e4af72020e18038d39a491a83d2",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "02561474193b282332b956972be50fa34e23314ae9ef59ff2e93c7e971f54c91",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "b60d56336690fde960516df06f913642664008576d39ff324ccbe398687f585e",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "e70dc42d2a7f1ab54b13ec0aab6fd453246d9d3f829f7e1651cbf7313cf2e879",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "256a7bd3d84b9450702af943871987aa1ebb0eb56bfd477968960f13e0929004",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "fb635c19d8d428251671344c99e1ba8352945b438bb2b32592cfcf597a13616c"
+    },
+    "EXPECTED_EDITOR_FILES.json": {
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Binaries/Linux/DinkRemasterEditor.target": "61caaf2d8062ee7894fd5d5b55f5acc4c17dbe70cdff85d38aff924882f1b00b",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Binaries/Linux/UnrealEditor.modules": "50e71b8cea63b595813c570811cb477ec860913b0551d19b76a4c01ee3448bc6",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Binaries/Linux/libUnrealEditor-DinkRemaster.so": "f71e1ccce78d21095b35e99f8c88917e3c4377eff00e795a946f69f8f50490c7",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/UnrealEditor.modules": "34394c331c9db0a4b4346129e98d539f9dc43f2f55f2b9eaccae63110ca635fe",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkCore/Binaries/Linux/libUnrealEditor-DinkCore.so": "17a1e05a3f99b5dfe52d7788cbd3e56d28527e4af72020e18038d39a491a83d2",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/UnrealEditor.modules": "b08684e64c905d1ab328ab70ff94a6a8d16859399c21a8cc061ef1f77e566c1a",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkImport/Binaries/Linux/libUnrealEditor-DinkImport.so": "02561474193b282332b956972be50fa34e23314ae9ef59ff2e93c7e971f54c91",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/UnrealEditor.modules": "1b0f035bb899912dbecfff96271ab9919b5c500a8974535c5d2c1da34f27afed",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkNarrative/Binaries/Linux/libUnrealEditor-DinkNarrative.so": "b60d56336690fde960516df06f913642664008576d39ff324ccbe398687f585e",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/UnrealEditor.modules": "590773e98044d167c323255a518690a4f88bc44f55bad01408f9456ba01063a3",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkParity.so": "e70dc42d2a7f1ab54b13ec0aab6fd453246d9d3f829f7e1651cbf7313cf2e879",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/DinkParity/Binaries/Linux/libUnrealEditor-DinkProbe.so": "256a7bd3d84b9450702af943871987aa1ebb0eb56bfd477968960f13e0929004",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/UnrealEditor.modules": "63bdb00b4c702eab5069e8262f0ee59640c110c67dd67a5d3ed1ce15107efe24",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Plugins/Inkpot/Binaries/Linux/libUnrealEditor-InkPlusPlus.so": "fb635c19d8d428251671344c99e1ba8352945b438bb2b32592cfcf597a13616c"
+    },
+    "EXPECTED_GAME_FILES.json": {
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Binaries/Linux/DinkRemaster": "addb3524e6aaeba0588048664b187067110687050c50050892a42c27699c5ac2",
+      "<HOME>/Work/DinkFireplaceV4RootIntegration/DinkRemasterUE/Binaries/Linux/DinkRemaster.target": "c99ecbeb1dffed24c484fcbab456b45ce03a301c63655dc2335faa6f9dc1a40e"
+    }
+  },
+  "held31_reference_sha256": "66e505978f52bbb584aff1d2685fb4b934c9edd44a921d38199c9957ef7517f8",
+  "no_new_build_or_UE": true
+}

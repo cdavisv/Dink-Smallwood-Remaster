@@ -20,6 +20,10 @@
 		{
 			"Name": "DinkCore",
 			"Enabled": true
+		},
+		{
+			"Name": "DinkNarrative",
+			"Enabled": true
 		}
 	]
 }

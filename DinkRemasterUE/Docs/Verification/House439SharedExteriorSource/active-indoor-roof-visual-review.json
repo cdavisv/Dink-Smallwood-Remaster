@@ -1,0 +1,25 @@
+{
+  "status": "ACTUAL_GAME_IMAGES_VISUALLY_REVIEWED_STRUCTURAL_CEILING_REQUIREMENT_SUPPORTED",
+  "tested_commit": "e65b19bc0a0566265b90ca043eeaee1cdbb7d6e3",
+  "evidence_owner": "Coordinating Root actual renderedgame run, not a newrun in this source lane",
+  "root_evidence_path": "<HOME>/Work/DinkRoofNativeDelivery/DinkRemasterUE/Docs/Verification/InteriorRoofSharedActivationGameplay",
+  "source_results_sha256": "0b25a5a8c8a6b68454a010488f071ede47e8985f9341a194473e73f379f45dd8",
+  "images": {
+    "house-room.png": "bb5503e7fd55ed1cfe9d5626ddd9aa58e6ed9dce7601dae45a9c552a20be6d21",
+    "roof-clear-0.png": "5f42f028b3ae82cf2daabe75e145ba647e271630963642fefe87459fce320631",
+    "roof-clear-270.png": "912ac4396c03da881e5f912ce278d185c7b62716624ec9dad7ce6f5755aa4dd9"
+  },
+  "user_requirements": {
+    "rafters_visible": "SUPPORTED inroof-clear-0 and270: repeatedpitchedrafters andmajorcrossbeams",
+    "roof_underside_visible": "SUPPORTED: slopingdeckboards visiblebetweenrafters",
+    "ceiling_distinct_from_floor": "SUPPORTEDstructurally: pitchedroof/trusses differfromhorizontalfloor",
+    "all_assets_photorealistic": "NOT_ESTABLISHED; broaderasset/exterior/fireplace/character/lightingworkstillincomplete"
+  },
+  "visual_limits": [
+    "Noobviousskyopening inthesefixedviews; notexhaustivejunctionclosureproof",
+    "Character/window/furniture/lighting qualitynotfinalacceptance",
+    "NewHouse439exteriorsource/thinsheetglass NOTshownorvalidatedbythisrun",
+    "Rootfullnative suite/cook/finalintegrationstillseparate"
+  ],
+  "changes": "Read-onlyvisualreview only; noRootSource/Content/Data/runtime/lighting/collision changes."
+}

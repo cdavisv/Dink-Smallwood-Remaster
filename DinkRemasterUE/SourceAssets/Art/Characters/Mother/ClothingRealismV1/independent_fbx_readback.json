@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "lods": [
+    {
+      "lod": 0,
+      "sha256": "ac509eb70b1781f56122b43a33e4974d2253f16245ecf2f777d9d7597aa8c1d0",
+      "bytes": 1520316,
+      "unit_header": 0.9999999776482582,
+      "bones_exact_baseline": 89,
+      "meshes": 1
+    },
+    {
+      "lod": 1,
+      "sha256": "dd0a89f5b1760c746f1e4516d9442fa8eccd66fb6ebc0c33a24a546c7e40fd36",
+      "bytes": 911084,
+      "unit_header": 0.9999999776482582,
+      "bones_exact_baseline": 89,
+      "meshes": 1
+    },
+    {
+      "lod": 2,
+      "sha256": "847228ade77a143f7ea3d846328179584f683bfdf91c1a92dfd2499d7b9fb1ce",
+      "bytes": 577068,
+      "unit_header": 0.9999999776482582,
+      "bones_exact_baseline": 89,
+      "meshes": 1
+    },
+    {
+      "lod": 3,
+      "sha256": "2b125869bbe083732882ad8f66a9b4a6ee59ef446aa25d5e9e301bf1aae827e8",
+      "bytes": 395612,
+      "unit_header": 0.9999999776482582,
+      "bones_exact_baseline": 89,
+      "meshes": 1
+    }
+  ]
+}

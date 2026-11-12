@@ -1,0 +1,1568 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "<HOME>/Repos/Dink-Smallwood/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/StonebrookRuins/KIT_StonebrookRuins.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 22,
+    "assets_passed": 22,
+    "errors": 0,
+    "warnings": 43
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SM_Cottage_Stonebrook_Burning_01",
+      "class": "building",
+      "collection": "SM_Cottage_Stonebrook_Burning_01",
+      "tris_per_lod": {
+        "LOD0": 169932,
+        "LOD1": 84966,
+        "LOD2": 42482
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -941.5,
+          -527.341,
+          0.0
+        ],
+        "blender_max_cm": [
+          941.5,
+          527.331,
+          793.0
+        ],
+        "size_cm": [
+          1883.0,
+          1054.672,
+          793.0
+        ],
+        "unreal_min_cm": [
+          -941.5,
+          -527.331,
+          0.0
+        ],
+        "unreal_max_cm": [
+          941.5,
+          527.341,
+          793.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_Burning_01",
+          "message": "LOD0 has 169932 triangles, target for building is 60000 (hard max 200000)",
+          "object": "SM_Cottage_Stonebrook_Burning_01_LOD0",
+          "data": {
+            "tris": 169932,
+            "target": 60000
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_Burning_01",
+          "message": "247 non-manifold edges (172 open boundary, 75 >2 faces, 0 wire); acceptable for building only if intentional (cards)",
+          "object": "SM_Cottage_Stonebrook_Burning_01_LOD0",
+          "data": {
+            "boundary": 172,
+            "multi_face": 75,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_Burning_01",
+          "message": "147 non-manifold edges (72 open boundary, 75 >2 faces, 0 wire); acceptable for building only if intentional (cards)",
+          "object": "SM_Cottage_Stonebrook_Burning_01_LOD1",
+          "data": {
+            "boundary": 72,
+            "multi_face": 75,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_Burning_01",
+          "message": "107 non-manifold edges (32 open boundary, 75 >2 faces, 0 wire); acceptable for building only if intentional (cards)",
+          "object": "SM_Cottage_Stonebrook_Burning_01_LOD2",
+          "data": {
+            "boundary": 32,
+            "multi_face": 75,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Cottage_Stonebrook_Burning_01",
+          "message": "UV overlap / texel checks skipped: 169932 triangles is above the 120000 limit of the Python test",
+          "object": "SM_Cottage_Stonebrook_Burning_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Cottage_Stonebrook_Burning_01",
+          "message": "building uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Cottage_Stonebrook_Burnt_01",
+      "class": "building",
+      "collection": "SM_Cottage_Stonebrook_Burnt_01",
+      "tris_per_lod": {
+        "LOD0": 162286,
+        "LOD1": 81142,
+        "LOD2": 40571
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -941.5,
+          -529.002,
+          0.0
+        ],
+        "blender_max_cm": [
+          946.5,
+          530.749,
+          793.0
+        ],
+        "size_cm": [
+          1888.0,
+          1059.751,
+          793.0
+        ],
+        "unreal_min_cm": [
+          -941.5,
+          -530.749,
+          0.0
+        ],
+        "unreal_max_cm": [
+          946.5,
+          529.002,
+          793.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 4,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_Burnt_01",
+          "message": "LOD0 has 162286 triangles, target for building is 60000 (hard max 200000)",
+          "object": "SM_Cottage_Stonebrook_Burnt_01_LOD0",
+          "data": {
+            "tris": 162286,
+            "target": 60000
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_Burnt_01",
+          "message": "640 non-manifold edges (638 open boundary, 2 >2 faces, 0 wire); acceptable for building only if intentional (cards)",
+          "object": "SM_Cottage_Stonebrook_Burnt_01_LOD0",
+          "data": {
+            "boundary": 638,
+            "multi_face": 2,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_Burnt_01",
+          "message": "478 non-manifold edges (476 open boundary, 2 >2 faces, 0 wire); acceptable for building only if intentional (cards)",
+          "object": "SM_Cottage_Stonebrook_Burnt_01_LOD1",
+          "data": {
+            "boundary": 476,
+            "multi_face": 2,
+            "wire": 0
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Cottage_Stonebrook_Burnt_01",
+          "message": "331 non-manifold edges (329 open boundary, 2 >2 faces, 0 wire); acceptable for building only if intentional (cards)",
+          "object": "SM_Cottage_Stonebrook_Burnt_01_LOD2",
+          "data": {
+            "boundary": 329,
+            "multi_face": 2,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SM_Cottage_Stonebrook_Burnt_01",
+          "message": "UV overlap / texel checks skipped: 162286 triangles is above the 120000 limit of the Python test",
+          "object": "SM_Cottage_Stonebrook_Burnt_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Cottage_Stonebrook_Burnt_01",
+          "message": "building uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Door_Cottage_Fallen_01",
+      "class": "kit_piece",
+      "collection": "SM_Door_Cottage_Fallen_01",
+      "tris_per_lod": {
+        "LOD0": 3316,
+        "LOD1": 1658,
+        "LOD2": 828
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -66.614,
+          -111.038,
+          0.0
+        ],
+        "blender_max_cm": [
+          66.614,
+          111.038,
+          9.88
+        ],
+        "size_cm": [
+          133.227,
+          222.075,
+          9.88
+        ],
+        "unreal_min_cm": [
+          -66.614,
+          -111.038,
+          0.0
+        ],
+        "unreal_max_cm": [
+          66.614,
+          111.038,
+          9.88
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Door_Cottage_Fallen_01",
+          "message": "LOD0 has 3316 triangles, target for kit_piece is 3000 (hard max 10000)",
+          "object": "SM_Door_Cottage_Fallen_01_LOD0",
+          "data": {
+            "tris": 3316,
+            "target": 3000
+          }
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Door_Cottage_Fallen_01",
+          "message": "kit_piece uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Debris_AshPile_Large_01",
+      "class": "kit_piece",
+      "collection": "SM_Debris_AshPile_Large_01",
+      "tris_per_lod": {
+        "LOD0": 3546,
+        "LOD1": 1772,
+        "LOD2": 886
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -131.18,
+          -105.589,
+          0.0
+        ],
+        "blender_max_cm": [
+          131.18,
+          105.589,
+          60.109
+        ],
+        "size_cm": [
+          262.36,
+          211.178,
+          60.109
+        ],
+        "unreal_min_cm": [
+          -131.18,
+          -105.589,
+          0.0
+        ],
+        "unreal_max_cm": [
+          131.18,
+          105.589,
+          60.109
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Debris_AshPile_Large_01",
+          "message": "LOD0 has 3546 triangles, target for kit_piece is 3000 (hard max 10000)",
+          "object": "SM_Debris_AshPile_Large_01_LOD0",
+          "data": {
+            "tris": 3546,
+            "target": 3000
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Debris_AshPile_Large_01",
+          "message": "156 triangles are collapsed in UV space",
+          "object": "SM_Debris_AshPile_Large_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Debris_AshPile_Large_01",
+          "message": "kit_piece uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Debris_AshPile_Small_01",
+      "class": "kit_piece",
+      "collection": "SM_Debris_AshPile_Small_01",
+      "tris_per_lod": {
+        "LOD0": 1594,
+        "LOD1": 796,
+        "LOD2": 398
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -59.549,
+          -45.05,
+          0.0
+        ],
+        "blender_max_cm": [
+          59.549,
+          45.05,
+          28.157
+        ],
+        "size_cm": [
+          119.098,
+          90.099,
+          28.157
+        ],
+        "unreal_min_cm": [
+          -59.549,
+          -45.05,
+          0.0
+        ],
+        "unreal_max_cm": [
+          59.549,
+          45.05,
+          28.157
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Debris_AshPile_Small_01",
+          "message": "54 triangles are collapsed in UV space",
+          "object": "SM_Debris_AshPile_Small_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Debris_AshPile_Small_01",
+          "message": "kit_piece uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_3m_01",
+      "class": "kit_floor",
+      "collection": "SM_Decal_Scorch_Ground_3m_01",
+      "tris_per_lod": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.292
+        ],
+        "blender_max_cm": [
+          300.0,
+          300.0,
+          0.0
+        ],
+        "size_cm": [
+          300.0,
+          300.0,
+          2.292
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -300.0,
+          -2.292
+        ],
+        "unreal_max_cm": [
+          300.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "SNAP",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Ground_3m_01",
+          "message": "x extent 3.00 m is a half module (not a multiple of 2 m)",
+          "object": "SM_Decal_Scorch_Ground_3m_01_LOD0"
+        },
+        {
+          "code": "SNAP",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Ground_3m_01",
+          "message": "y extent 3.00 m is a half module (not a multiple of 2 m)",
+          "object": "SM_Decal_Scorch_Ground_3m_01_LOD0"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Ground_3m_01",
+          "message": "LOD0 has 1440 triangles, target for kit_floor is 1000 (hard max 4000)",
+          "object": "SM_Decal_Scorch_Ground_3m_01_LOD0",
+          "data": {
+            "tris": 1440,
+            "target": 1000
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Ground_3m_01",
+          "message": "144 triangles are collapsed in UV space",
+          "object": "SM_Decal_Scorch_Ground_3m_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Ground_3m_01",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_2m_01",
+      "class": "kit_floor",
+      "collection": "SM_Decal_Scorch_Ground_2m_01",
+      "tris_per_lod": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.271
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          0.0
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          2.271
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          -2.271
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Ground_2m_01",
+          "message": "LOD0 has 1440 triangles, target for kit_floor is 1000 (hard max 4000)",
+          "object": "SM_Decal_Scorch_Ground_2m_01_LOD0",
+          "data": {
+            "tris": 1440,
+            "target": 1000
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Ground_2m_01",
+          "message": "144 triangles are collapsed in UV space",
+          "object": "SM_Decal_Scorch_Ground_2m_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Ground_2m_01",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_2m_02",
+      "class": "kit_floor",
+      "collection": "SM_Decal_Scorch_Ground_2m_02",
+      "tris_per_lod": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.32
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          0.0
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          2.32
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          -2.32
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Ground_2m_02",
+          "message": "LOD0 has 1440 triangles, target for kit_floor is 1000 (hard max 4000)",
+          "object": "SM_Decal_Scorch_Ground_2m_02_LOD0",
+          "data": {
+            "tris": 1440,
+            "target": 1000
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Ground_2m_02",
+          "message": "144 triangles are collapsed in UV space",
+          "object": "SM_Decal_Scorch_Ground_2m_02_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Ground_2m_02",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Decal_Scorch_Ground_1m5_01",
+      "class": "kit_floor",
+      "collection": "SM_Decal_Scorch_Ground_1m5_01",
+      "tris_per_lod": {
+        "LOD0": 1440,
+        "LOD1": 720,
+        "LOD2": 360
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -2.531
+        ],
+        "blender_max_cm": [
+          150.0,
+          150.0,
+          0.0
+        ],
+        "size_cm": [
+          150.0,
+          150.0,
+          2.531
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -150.0,
+          -2.531
+        ],
+        "unreal_max_cm": [
+          150.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "SNAP",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Ground_1m5_01",
+          "message": "x extent 1.50 m is a half module (not a multiple of 2 m)",
+          "object": "SM_Decal_Scorch_Ground_1m5_01_LOD0"
+        },
+        {
+          "code": "SNAP",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Ground_1m5_01",
+          "message": "y extent 1.50 m is a half module (not a multiple of 2 m)",
+          "object": "SM_Decal_Scorch_Ground_1m5_01_LOD0"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Ground_1m5_01",
+          "message": "LOD0 has 1440 triangles, target for kit_floor is 1000 (hard max 4000)",
+          "object": "SM_Decal_Scorch_Ground_1m5_01_LOD0",
+          "data": {
+            "tris": 1440,
+            "target": 1000
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Ground_1m5_01",
+          "message": "144 triangles are collapsed in UV space",
+          "object": "SM_Decal_Scorch_Ground_1m5_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Ground_1m5_01",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Mother_Remains_Fire_01",
+      "class": "foliage",
+      "collection": "SM_Mother_Remains_Fire_01",
+      "tris_per_lod": {
+        "LOD0": 16082,
+        "LOD1": 8040,
+        "LOD2": 3859
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -55.396,
+          -90.269,
+          0.0
+        ],
+        "blender_max_cm": [
+          55.396,
+          90.269,
+          37.474
+        ],
+        "size_cm": [
+          110.792,
+          180.537,
+          37.474
+        ],
+        "unreal_min_cm": [
+          -55.396,
+          -90.269,
+          0.0
+        ],
+        "unreal_max_cm": [
+          55.396,
+          90.269,
+          37.474
+        ]
+      },
+      "errors": 0,
+      "warnings": 7,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "mesh data 'MotherRemains_LOD0_Mesh' differs from object name 'SM_Mother_Remains_Fire_01_LOD0'",
+          "object": "SM_Mother_Remains_Fire_01_LOD0"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "mesh data 'MotherRemains_LOD1_Mesh' differs from object name 'SM_Mother_Remains_Fire_01_LOD1'",
+          "object": "SM_Mother_Remains_Fire_01_LOD1"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "mesh data 'MotherRemains_LOD2_Mesh' differs from object name 'SM_Mother_Remains_Fire_01_LOD2'",
+          "object": "SM_Mother_Remains_Fire_01_LOD2"
+        },
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "LOD0 has 16082 triangles, target for foliage is 8000 (hard max 25000)",
+          "object": "SM_Mother_Remains_Fire_01_LOD0",
+          "data": {
+            "tris": 16082,
+            "target": 8000
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "4 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SM_Mother_Remains_Fire_01_LOD0",
+          "data": {
+            "vertices": 4
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "1998 non-manifold edges (1998 open boundary, 0 >2 faces, 0 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Mother_Remains_Fire_01_LOD0",
+          "data": {
+            "boundary": 1998,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "0 loose vertices, 10 loose (wire) edges",
+          "object": "SM_Mother_Remains_Fire_01_LOD1",
+          "data": {
+            "vertices": 0,
+            "edges": 10
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "1458 non-manifold edges (1448 open boundary, 0 >2 faces, 10 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Mother_Remains_Fire_01_LOD1",
+          "data": {
+            "boundary": 1448,
+            "multi_face": 0,
+            "wire": 10
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "0 loose vertices, 83 loose (wire) edges",
+          "object": "SM_Mother_Remains_Fire_01_LOD2",
+          "data": {
+            "vertices": 0,
+            "edges": 83
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SM_Mother_Remains_Fire_01",
+          "message": "936 non-manifold edges (853 open boundary, 0 >2 faces, 83 wire); acceptable for foliage only if intentional (cards)",
+          "object": "SM_Mother_Remains_Fire_01_LOD2",
+          "data": {
+            "boundary": 853,
+            "multi_face": 0,
+            "wire": 83
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Decal_Blood_Floor_01",
+      "class": "kit_floor",
+      "collection": "SM_Decal_Blood_Floor_01",
+      "tris_per_lod": {
+        "LOD0": 672,
+        "LOD1": 336,
+        "LOD2": 168
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -0.4
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          0.0
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          0.4
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          -0.4
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Decal_Blood_Floor_01",
+          "message": "96 triangles are collapsed in UV space",
+          "object": "SM_Decal_Blood_Floor_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Decal_Blood_Floor_01",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Wall_Limewash_Burnt_2m_01",
+      "class": "kit_wall",
+      "collection": "SM_Wall_Limewash_Burnt_2m_01",
+      "tris_per_lod": {
+        "LOD0": 1672,
+        "LOD1": 836,
+        "LOD2": 418
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          -17.793,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          17.793,
+          350.0
+        ],
+        "size_cm": [
+          200.0,
+          35.586,
+          350.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -17.793,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          17.793,
+          350.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Wall_Limewash_Burnt_2m_01",
+          "message": "4 triangles are collapsed in UV space",
+          "object": "SM_Wall_Limewash_Burnt_2m_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Wall_Limewash_Burnt_2m_01",
+          "message": "kit_wall uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Window_Limewash_Burnt_2m_01",
+      "class": "kit_wall",
+      "collection": "SM_Window_Limewash_Burnt_2m_01",
+      "tris_per_lod": {
+        "LOD0": 1824,
+        "LOD1": 912,
+        "LOD2": 456
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          -20.418,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          20.418,
+          350.0
+        ],
+        "size_cm": [
+          200.0,
+          40.836,
+          350.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -20.418,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          20.418,
+          350.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Window_Limewash_Burnt_2m_01",
+          "message": "16 triangles are collapsed in UV space",
+          "object": "SM_Window_Limewash_Burnt_2m_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Window_Limewash_Burnt_2m_01",
+          "message": "kit_wall uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Doorway_Limewash_Burnt_4m_01",
+      "class": "kit_piece",
+      "collection": "SM_Doorway_Limewash_Burnt_4m_01",
+      "tris_per_lod": {
+        "LOD0": 2172,
+        "LOD1": 1086,
+        "LOD2": 542
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          -15.738,
+          0.0
+        ],
+        "blender_max_cm": [
+          400.0,
+          15.743,
+          350.0
+        ],
+        "size_cm": [
+          400.0,
+          31.481,
+          350.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -15.743,
+          0.0
+        ],
+        "unreal_max_cm": [
+          400.0,
+          15.738,
+          350.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Doorway_Limewash_Burnt_4m_01",
+          "message": "12 triangles are collapsed in UV space",
+          "object": "SM_Doorway_Limewash_Burnt_4m_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Doorway_Limewash_Burnt_4m_01",
+          "message": "kit_piece uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_01",
+      "class": "kit_floor",
+      "collection": "SM_Floor_Oak_Burnt_2m_01",
+      "tris_per_lod": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "blender_max_cm": [
+          199.4,
+          199.2,
+          0.0
+        ],
+        "size_cm": [
+          199.4,
+          199.2,
+          11.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -199.2,
+          -11.0
+        ],
+        "unreal_max_cm": [
+          199.4,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Floor_Oak_Burnt_2m_01",
+          "message": "LOD0 has 1088 triangles, target for kit_floor is 1000 (hard max 4000)",
+          "object": "SM_Floor_Oak_Burnt_2m_01_LOD0",
+          "data": {
+            "tris": 1088,
+            "target": 1000
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Floor_Oak_Burnt_2m_01",
+          "message": "256 triangles are collapsed in UV space",
+          "object": "SM_Floor_Oak_Burnt_2m_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Floor_Oak_Burnt_2m_01",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_02",
+      "class": "kit_floor",
+      "collection": "SM_Floor_Oak_Burnt_2m_02",
+      "tris_per_lod": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "blender_max_cm": [
+          199.4,
+          199.2,
+          0.0
+        ],
+        "size_cm": [
+          199.4,
+          199.2,
+          11.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -199.2,
+          -11.0
+        ],
+        "unreal_max_cm": [
+          199.4,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Floor_Oak_Burnt_2m_02",
+          "message": "LOD0 has 1088 triangles, target for kit_floor is 1000 (hard max 4000)",
+          "object": "SM_Floor_Oak_Burnt_2m_02_LOD0",
+          "data": {
+            "tris": 1088,
+            "target": 1000
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Floor_Oak_Burnt_2m_02",
+          "message": "256 triangles are collapsed in UV space",
+          "object": "SM_Floor_Oak_Burnt_2m_02_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Floor_Oak_Burnt_2m_02",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_03",
+      "class": "kit_floor",
+      "collection": "SM_Floor_Oak_Burnt_2m_03",
+      "tris_per_lod": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "blender_max_cm": [
+          199.4,
+          199.2,
+          0.0
+        ],
+        "size_cm": [
+          199.4,
+          199.2,
+          11.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -199.2,
+          -11.0
+        ],
+        "unreal_max_cm": [
+          199.4,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Floor_Oak_Burnt_2m_03",
+          "message": "LOD0 has 1088 triangles, target for kit_floor is 1000 (hard max 4000)",
+          "object": "SM_Floor_Oak_Burnt_2m_03_LOD0",
+          "data": {
+            "tris": 1088,
+            "target": 1000
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Floor_Oak_Burnt_2m_03",
+          "message": "256 triangles are collapsed in UV space",
+          "object": "SM_Floor_Oak_Burnt_2m_03_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Floor_Oak_Burnt_2m_03",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Floor_Oak_Burnt_2m_04",
+      "class": "kit_floor",
+      "collection": "SM_Floor_Oak_Burnt_2m_04",
+      "tris_per_lod": {
+        "LOD0": 1088,
+        "LOD1": 544,
+        "LOD2": 272
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "blender_max_cm": [
+          199.4,
+          199.2,
+          0.0
+        ],
+        "size_cm": [
+          199.4,
+          199.2,
+          11.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -199.2,
+          -11.0
+        ],
+        "unreal_max_cm": [
+          199.4,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 2,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Floor_Oak_Burnt_2m_04",
+          "message": "LOD0 has 1088 triangles, target for kit_floor is 1000 (hard max 4000)",
+          "object": "SM_Floor_Oak_Burnt_2m_04_LOD0",
+          "data": {
+            "tris": 1088,
+            "target": 1000
+          }
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Floor_Oak_Burnt_2m_04",
+          "message": "256 triangles are collapsed in UV space",
+          "object": "SM_Floor_Oak_Burnt_2m_04_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Floor_Oak_Burnt_2m_04",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Ceiling_Oak_Burnt_2m_01",
+      "class": "kit_ceiling",
+      "collection": "SM_Ceiling_Oak_Burnt_2m_01",
+      "tris_per_lod": {
+        "LOD0": 2340,
+        "LOD1": 1170,
+        "LOD2": 584
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          20.0
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          20.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          20.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Ceiling_Oak_Burnt_2m_01",
+          "message": "LOD0 has 2340 triangles, target for kit_ceiling is 1000 (hard max 4000)",
+          "object": "SM_Ceiling_Oak_Burnt_2m_01_LOD0",
+          "data": {
+            "tris": 2340,
+            "target": 1000
+          }
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Ceiling_Oak_Burnt_2m_01",
+          "message": "kit_ceiling uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Ceiling_Oak_BurntHole_2m_01",
+      "class": "kit_ceiling",
+      "collection": "SM_Ceiling_Oak_BurntHole_2m_01",
+      "tris_per_lod": {
+        "LOD0": 2252,
+        "LOD1": 1126,
+        "LOD2": 562
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "blender_max_cm": [
+          200.0,
+          200.0,
+          22.206
+        ],
+        "size_cm": [
+          200.0,
+          200.0,
+          22.206
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -200.0,
+          0.0
+        ],
+        "unreal_max_cm": [
+          200.0,
+          -0.0,
+          22.206
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "TRIS_OVER_TARGET",
+          "severity": "warning",
+          "asset": "SM_Ceiling_Oak_BurntHole_2m_01",
+          "message": "LOD0 has 2252 triangles, target for kit_ceiling is 1000 (hard max 4000)",
+          "object": "SM_Ceiling_Oak_BurntHole_2m_01_LOD0",
+          "data": {
+            "tris": 2252,
+            "target": 1000
+          }
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Ceiling_Oak_BurntHole_2m_01",
+          "message": "kit_ceiling uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Decal_Scorch_Floor_01",
+      "class": "kit_floor",
+      "collection": "SM_Decal_Scorch_Floor_01",
+      "tris_per_lod": {
+        "LOD0": 672,
+        "LOD1": 336,
+        "LOD2": 168
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          0.0,
+          -0.4
+        ],
+        "blender_max_cm": [
+          150.0,
+          150.0,
+          0.0
+        ],
+        "size_cm": [
+          150.0,
+          150.0,
+          0.4
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -150.0,
+          -0.4
+        ],
+        "unreal_max_cm": [
+          150.0,
+          -0.0,
+          0.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "SNAP",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Floor_01",
+          "message": "x extent 1.50 m is a half module (not a multiple of 2 m)",
+          "object": "SM_Decal_Scorch_Floor_01_LOD0"
+        },
+        {
+          "code": "SNAP",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Floor_01",
+          "message": "y extent 1.50 m is a half module (not a multiple of 2 m)",
+          "object": "SM_Decal_Scorch_Floor_01_LOD0"
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Floor_01",
+          "message": "96 triangles are collapsed in UV space",
+          "object": "SM_Decal_Scorch_Floor_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Floor_01",
+          "message": "kit_floor uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "SM_Decal_Scorch_Wall_01",
+      "class": "kit_wall",
+      "collection": "SM_Decal_Scorch_Wall_01",
+      "tris_per_lod": {
+        "LOD0": 672,
+        "LOD1": 336,
+        "LOD2": 168
+      },
+      "bounds": {
+        "blender_min_cm": [
+          0.0,
+          -0.2,
+          0.0
+        ],
+        "blender_max_cm": [
+          150.0,
+          0.2,
+          200.0
+        ],
+        "size_cm": [
+          150.0,
+          0.4,
+          200.0
+        ],
+        "unreal_min_cm": [
+          0.0,
+          -0.2,
+          0.0
+        ],
+        "unreal_max_cm": [
+          150.0,
+          0.2,
+          200.0
+        ]
+      },
+      "errors": 0,
+      "warnings": 1,
+      "findings": [
+        {
+          "code": "SNAP",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Wall_01",
+          "message": "x extent 1.50 m is a half module (not a multiple of 2 m)",
+          "object": "SM_Decal_Scorch_Wall_01_LOD0"
+        },
+        {
+          "code": "UV_DEGENERATE",
+          "severity": "warning",
+          "asset": "SM_Decal_Scorch_Wall_01",
+          "message": "96 triangles are collapsed in UV space",
+          "object": "SM_Decal_Scorch_Wall_01_LOD0"
+        },
+        {
+          "code": "LOD_UNEXPECTED",
+          "severity": "info",
+          "asset": "SM_Decal_Scorch_Wall_01",
+          "message": "kit_wall uses Nanite: the LOD chain is only a fallback; keep it only if the fallback matters"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

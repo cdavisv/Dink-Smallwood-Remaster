@@ -1,5 +1,5 @@
 {
-  "route": "/home/artist/Work/DinkContinuityFix/DinkRemasterUE/Scripts/Playtest/house_exit_art.json",
+  "route": "<HOME>/Work/DinkContinuityFix/DinkRemasterUE/Scripts/Playtest/house_exit_art.json",
   "input": "normal held W keys, camera yaw only; no teleports",
   "steps": [
     {

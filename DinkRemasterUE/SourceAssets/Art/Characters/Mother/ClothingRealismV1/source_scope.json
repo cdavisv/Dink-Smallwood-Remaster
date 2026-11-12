@@ -1,0 +1,155 @@
+{
+  "schema": "dink-mother-clothing-source/1",
+  "baseline": "../../SK_Mother.blend",
+  "baseline_sha256": "09e64ca591b105db697a116a810457a1d0ace0f70e35b9261d8204f47081ca49",
+  "rig_bones": 89,
+  "before": {
+    "rig": "50e37e7d9a386e7311afb6c362779168a4ac710b12b22e1bc372a3ef7f2c1c66",
+    "meshes": {
+      "SK_Mother_LOD0": {
+        "topology": "4604d04784d6182109307cf4a1ffa9924b7d82efa7c4c9581134056e4294a0d4",
+        "uv": "def6927a36d74b45fb2ae3be656049cd5953589b3ee8cd22d10f2d14d13a110d",
+        "weights": "3764a568017f3303b8a56794bcabfe39389a9261eeaa5b8342ba366942858764",
+        "nonwardrobe": "9f8377821fc7029eb010ce82c4a83cc4a161a123c0bac9e7d193a812354e19d7",
+        "materials": [
+          "MI_Mother_Skin",
+          "MI_Mother_Eyes",
+          "MI_Mother_Hair",
+          "MI_Mother_BrowLash",
+          "MI_Mother_Wardrobe"
+        ],
+        "triangles": 32164
+      },
+      "SK_Mother_LOD1": {
+        "topology": "a3c11cff4c1d50dca2028f8d992d1ef34e335b1b82fb23a6bdb538f709ab1668",
+        "uv": "5f4884adfb96df596a6ef1eb10effb0c95a09d087b0a3291ea0ac9722fa39f38",
+        "weights": "d99796617e5a90b7e2b0798eefec6ded100db73ed28e2e2ce4e8da3d7a88ba1b",
+        "nonwardrobe": "083ae0a8a9cf9426bedd2f8b43000a6744ab30ca5155a70b08069fb5cb51a946",
+        "materials": [
+          "MI_Mother_Skin",
+          "MI_Mother_Eyes",
+          "MI_Mother_Hair",
+          "MI_Mother_BrowLash",
+          "MI_Mother_Wardrobe"
+        ],
+        "triangles": 16082
+      },
+      "SK_Mother_LOD2": {
+        "topology": "a82bbf305430c097cf67c896df2365ec5767867bc65683853064924bfbdade1d",
+        "uv": "3a7cb73853dddec1e8c9fd7bb21ac0b12d1c91f60aea68a9c20725dc533edcf2",
+        "weights": "e3ddc77e12ee5f81b4e91ab76731d5690bde9b85595349faa73fbe365bd31102",
+        "nonwardrobe": "3ddc11bae9579d2393b2d8cf02379bce154972ac820df33df4633746ec2b37ee",
+        "materials": [
+          "MI_Mother_Skin",
+          "MI_Mother_Eyes",
+          "MI_Mother_Hair",
+          "MI_Mother_BrowLash",
+          "MI_Mother_Wardrobe"
+        ],
+        "triangles": 8040
+      },
+      "SK_Mother_LOD3": {
+        "topology": "803b6e20d35a1fc2069d67c0e8035b2a86a7c704e9958838003fab11df28dddf",
+        "uv": "28ff86fc6cfea1a69f9a60ac850383e3b3c1572d20a8ca51a14058c0b4e1c5b2",
+        "weights": "f36c1b7be4653d9faaa72939e419a769335f69c1c18517fcbf80f9b4f3eddbd8",
+        "nonwardrobe": "8fc60d3353c68568b4c0693e70b7ae6200d10ec44b5132e17f325732b477fb5c",
+        "materials": [
+          "MI_Mother_Skin",
+          "MI_Mother_Eyes",
+          "MI_Mother_Hair",
+          "MI_Mother_BrowLash",
+          "MI_Mother_Wardrobe"
+        ],
+        "triangles": 3859
+      }
+    }
+  },
+  "after": {
+    "rig": "50e37e7d9a386e7311afb6c362779168a4ac710b12b22e1bc372a3ef7f2c1c66",
+    "meshes": {
+      "SK_Mother_LOD0": {
+        "topology": "4604d04784d6182109307cf4a1ffa9924b7d82efa7c4c9581134056e4294a0d4",
+        "uv": "def6927a36d74b45fb2ae3be656049cd5953589b3ee8cd22d10f2d14d13a110d",
+        "weights": "3764a568017f3303b8a56794bcabfe39389a9261eeaa5b8342ba366942858764",
+        "nonwardrobe": "9f8377821fc7029eb010ce82c4a83cc4a161a123c0bac9e7d193a812354e19d7",
+        "materials": [
+          "MI_Mother_Skin",
+          "MI_Mother_Eyes",
+          "MI_Mother_Hair",
+          "MI_Mother_BrowLash",
+          "MI_Mother_ClothingRealismV1"
+        ],
+        "triangles": 32164
+      },
+      "SK_Mother_LOD1": {
+        "topology": "a3c11cff4c1d50dca2028f8d992d1ef34e335b1b82fb23a6bdb538f709ab1668",
+        "uv": "5f4884adfb96df596a6ef1eb10effb0c95a09d087b0a3291ea0ac9722fa39f38",
+        "weights": "d99796617e5a90b7e2b0798eefec6ded100db73ed28e2e2ce4e8da3d7a88ba1b",
+        "nonwardrobe": "083ae0a8a9cf9426bedd2f8b43000a6744ab30ca5155a70b08069fb5cb51a946",
+        "materials": [
+          "MI_Mother_Skin",
+          "MI_Mother_Eyes",
+          "MI_Mother_Hair",
+          "MI_Mother_BrowLash",
+          "MI_Mother_ClothingRealismV1"
+        ],
+        "triangles": 16082
+      },
+      "SK_Mother_LOD2": {
+        "topology": "a82bbf305430c097cf67c896df2365ec5767867bc65683853064924bfbdade1d",
+        "uv": "3a7cb73853dddec1e8c9fd7bb21ac0b12d1c91f60aea68a9c20725dc533edcf2",
+        "weights": "e3ddc77e12ee5f81b4e91ab76731d5690bde9b85595349faa73fbe365bd31102",
+        "nonwardrobe": "3ddc11bae9579d2393b2d8cf02379bce154972ac820df33df4633746ec2b37ee",
+        "materials": [
+          "MI_Mother_Skin",
+          "MI_Mother_Eyes",
+          "MI_Mother_Hair",
+          "MI_Mother_BrowLash",
+          "MI_Mother_ClothingRealismV1"
+        ],
+        "triangles": 8040
+      },
+      "SK_Mother_LOD3": {
+        "topology": "803b6e20d35a1fc2069d67c0e8035b2a86a7c704e9958838003fab11df28dddf",
+        "uv": "28ff86fc6cfea1a69f9a60ac850383e3b3c1572d20a8ca51a14058c0b4e1c5b2",
+        "weights": "f36c1b7be4653d9faaa72939e419a769335f69c1c18517fcbf80f9b4f3eddbd8",
+        "nonwardrobe": "8fc60d3353c68568b4c0693e70b7ae6200d10ec44b5132e17f325732b477fb5c",
+        "materials": [
+          "MI_Mother_Skin",
+          "MI_Mother_Eyes",
+          "MI_Mother_Hair",
+          "MI_Mother_BrowLash",
+          "MI_Mother_ClothingRealismV1"
+        ],
+        "triangles": 3859
+      }
+    }
+  },
+  "changes": [
+    {
+      "mesh": "SK_Mother_LOD0",
+      "changed_clothing_vertices": 2715,
+      "max_displacement_m": 0.04078438834468631,
+      "locally_backtracked_fold_vertices": 45
+    },
+    {
+      "mesh": "SK_Mother_LOD1",
+      "changed_clothing_vertices": 1637,
+      "max_displacement_m": 0.04078438834468631,
+      "locally_backtracked_fold_vertices": 11
+    },
+    {
+      "mesh": "SK_Mother_LOD2",
+      "changed_clothing_vertices": 761,
+      "max_displacement_m": 0.04037930123483882,
+      "locally_backtracked_fold_vertices": 10
+    },
+    {
+      "mesh": "SK_Mother_LOD3",
+      "changed_clothing_vertices": 393,
+      "max_displacement_m": 0.04162350280883971,
+      "locally_backtracked_fold_vertices": 0
+    }
+  ],
+  "scope": "Only existing wardrobe vertex positions and wardrobe shader; original topology/UV/weights/nonwardrobe geometry and89 rest bones exact. New textile material source requires atlas bake and native animation/performance gates before activation."
+}

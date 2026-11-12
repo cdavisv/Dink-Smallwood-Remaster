@@ -85,7 +85,7 @@
   "data_files": 666,
   "runtime_layer_published": false,
   "ledger_written": false,
-  "pinned_source_sha256": "46712f5b263ca747ac8f8f0e0ad32a05f01f1cc95a4b8816035ff0b6eb3a4fa0",
+  "pinned_source_sha256": "6c952a483ac6a0f0e1e23aa36ae688fefccea1c8db9e6bc9a54d6529c6b69e2f",
   "source_files": 139,
   "prior_failures": [
     "first_failure.json:doorstep classification",
@@ -95,7 +95,7 @@
   "standalone": "13/13PASS",
   "scripts": {
     "Scripts/import_stonebrook_vista.py": "813e036ad98511d9bac753bf4625bd2b4ab6fe2d223f4c195455877cdf49d41c",
-    "Scripts/vista_import_support.py": "7a8ad9d9596574b210fcdcf89cc477b0aa9d6e3e829154e9e31e66e8fa40b84d",
+    "Scripts/vista_import_support.py": "2b66e6f061b5be63fb5582ad36302cc134c2bdd76cd3a6f53b0ee7bbf0a1eb12",
     "Scripts/tests/test_vista_import.py": "2ab9d00b584d04642366e6740f36e96b48cfe3b016a96f1d1cf47fa0bb8b39f7"
   }
 }

@@ -1,6 +1,6 @@
 {
   "branch": "art/interior-roof-shared-library",
-  "worktree": "/home/artist/Work/DinkInteriorSharedMaterialsAdmission",
+  "worktree": "<HOME>/Work/DinkInteriorSharedMaterialsAdmission",
   "fix": "Configure raw-relative mesh source filenames before mesh_check; persist mesh without repeating setup.",
   "native_failure": "Root run 057887d4e6f3490c94e810ffd888209f saved 15 shared packages then failed first mesh source-filename check. Root reports protected inputs unchanged and no finalization crash.",
   "validation": {

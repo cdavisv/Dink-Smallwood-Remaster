@@ -1,5 +1,5 @@
 import json,subprocess,os,sys,hashlib,zipfile,datetime,fcntl
-TP='/home/artist/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/ThirdParty'
+TP='<HOME>/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/ThirdParty'
 CSV=TP+'/downloads.csv'
 HDR='source,asset_id,asset_url,file,sha256,licence,author,resolution,used_by,date\n'
 def curl(url,out):

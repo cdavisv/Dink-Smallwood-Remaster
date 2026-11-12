@@ -2,10 +2,10 @@
 import bpy,json,math
 from pathlib import Path
 from mathutils import Vector,Matrix,Quaternion
-ART=Path('/home/artist/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3');CHARS=ART.parents[1]
+ART=Path('<HOME>/Repos/Dink-Smallwood/DinkRemasterUE/SourceAssets/Art/Characters/Dink/OutfitV3');CHARS=ART.parents[1]
 # Read the existingEpic walk reference into temporary memory only, never into
 # the saved candidate or any authored/exported animation asset.
-walk_samples=[];walk_rest={};walk_path=Path('/home/artist/Work/DinkQA/CharacterReference/Manny_Walk_Reference.fbx')
+walk_samples=[];walk_rest={};walk_path=Path('<HOME>/Work/DinkQA/CharacterReference/Manny_Walk_Reference.fbx')
 if not walk_path.exists():walk_path=Path('/tmp/dink-character-reference/Manny_Walk_Reference.fbx')
 if walk_path.exists():
  bpy.ops.wm.read_factory_settings(use_empty=True)

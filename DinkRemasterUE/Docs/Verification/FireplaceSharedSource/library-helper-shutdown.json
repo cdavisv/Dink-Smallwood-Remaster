@@ -1,0 +1,30 @@
+{
+  "only_owned_exact_scripts": true,
+  "completed_final_report_PASS": true,
+  "processes": [
+    {
+      "pid": 565458,
+      "parent_pid": 565455,
+      "script": "<HOME>/Work/DinkFireplaceSharedSourceAdmission/DinkRemasterUE/SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Tools/build_library.py",
+      "reason": "Own completed helper stalled in audio shutdown; final artifact/report already PASS; parent stopped first to prevent queued retries"
+    },
+    {
+      "pid": 566048,
+      "parent_pid": 566045,
+      "script": "<HOME>/Work/DinkFireplaceSharedSourceAdmission/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/verify_portable.py",
+      "reason": "Own completed helper stalled in audio shutdown; final artifact/report already PASS; parent stopped first to prevent queued retries"
+    },
+    {
+      "pid": 566429,
+      "parent_pid": 566427,
+      "script": "<HOME>/Work/DinkFireplaceSharedSourceAdmission/DinkRemasterUE/SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Tools/build_library.py",
+      "reason": "Own completed helper stalled in audio shutdown; final artifact/report already PASS; parent stopped first to prevent queued retries"
+    },
+    {
+      "pid": 566928,
+      "parent_pid": 566899,
+      "script": "<HOME>/Work/DinkFireplaceSharedSourceAdmission/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/FireplaceSharedV2/Tools/verify_portable.py",
+      "reason": "Own completed helper stalled in audio shutdown; final artifact/report already PASS; parent stopped first to prevent queued retries"
+    }
+  ]
+}

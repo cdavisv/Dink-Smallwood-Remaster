@@ -1,0 +1,361 @@
+[
+  {
+    "worktree": "DinkDeliveryRepo",
+    "branch": "remaster/unreal-house-debug",
+    "base": "36e0a2c714e1adc1d092e2eadb025c60b0a43784",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkDeliveryRepo/DinkRemasterUE/Scripts/verify_sources.py"
+    ]
+  },
+  {
+    "worktree": "DinkPhotorealVisualQA",
+    "branch": "fix/photoreal-visual-qa",
+    "base": "067b3cb7cad5148c09f309fd4f5b4750dc2d8515",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkPhotorealVisualQA.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkPhotorealVisualQA/DinkRemasterUE/HANDOFF.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkPhotorealVisualQA/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkBodyDynamics.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkPhotorealVisualQA/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkHeroPhysicality.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkPhotorealVisualQA/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkThirdPersonTests.cpp"
+    ]
+  },
+  {
+    "worktree": "DinkContinuityFix",
+    "branch": "fix/camera-world-continuity",
+    "base": "2adc5ea3f89f2a368fc3f945c25270ca937b7acd",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkContinuityFix.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/HANDOFF.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkEarlyPostureAnimInstance.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkPostureComponent.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkEarlyPostureAnimInstance.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkPostureComponent.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/DinkPostureQALibrary.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkContextGroupTests.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkPostureGraphTests.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkSolidWallsTests.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkContinuityFix/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Public/DinkPostureQALibrary.h"
+    ]
+  },
+  {
+    "worktree": "DinkDoorWarpFix",
+    "branch": "fix/warp-overlap-intent",
+    "base": "5040e632d53125571b1769b715fc54cfa521126d",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkDoorWarpFix.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkDoorWarpFix/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkDoorRetryTests.cpp"
+    ]
+  },
+  {
+    "worktree": "DinkArtRuntimeQA29",
+    "branch": "qa/art-runtime-master29",
+    "base": "3aefd6f2b41c7a40b9c43f7a89f4a073965a517a",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkArtNavPolicy",
+    "branch": "fix/art-element-navigation",
+    "base": "5e7cf0749702cad985fc957c32c7aa053327113a",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkTrouserSourceDelivery",
+    "branch": "art/photoreal-trousers-source",
+    "base": "94363f57c77694bc64ee535f5ed49ea0c33418a3",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkLatestPlaytest20261109",
+    "branch": "",
+    "base": "286da79bf1b2adc04961c4c089c3221a2217c14e",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkScreenLabelFix",
+    "branch": "fix/optional-screen-debug-labels",
+    "base": "e0f64a4d6db6620758b4c8b727f963694868d6d6",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkRoofFirstPlaytest31",
+    "branch": "qa/roof-first-master31",
+    "base": "286da79bf1b2adc04961c4c089c3221a2217c14e",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkRoofFirstPlaytest31.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofFirstPlaytest31/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/Tests/DinkPrimitiveResponseInspectionTests.cpp"
+    ]
+  },
+  {
+    "worktree": "DinkRoofCanonicalNative",
+    "branch": "art/roof-chimney-native",
+    "base": "b12d91d954360b7a77dd9e2ae16837fb3891bf6e",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkRoofCanonicalNative.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkRoofSourceMetadataLibrary.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/Tests/DinkPrimitiveResponseInspectionTests.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/Tests/DinkRoofSourceMetadataTests.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkRoofSourceMetadataLibrary.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/README.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/audit_position_tolerance_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/binding.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/canonical_contract.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/geometry_only_match_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_asset_only_proposal_v12.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_asset_readback_v12.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_buffer_capture_v11d.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_built_buffer_reader_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_collision_readback_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_fp_baseline_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_import_metadata_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_import_sequence_v12.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_material_builder_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_material_builder_v12.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_material_readback_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_material_readback_v12.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_material_recipe_v12.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_material_slots_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_material_usage_v12.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_mesh_tools_v11c.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/native_texture_tools_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/png_source_v11.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/readback_sequence.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/relative_source_metadata.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/source_export_inventory_v12.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/source_pixels_baseline_v12.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/test_offline.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRoofCanonicalNative/DinkRemasterUE/Scripts/RoofNative/vista_geometry.py"
+    ]
+  },
+  {
+    "worktree": "DinkRuntimeHardnessFix",
+    "branch": "fix/runtime-hardness-transitions",
+    "base": "3962970b9bac5e855fce19c3b21cc3f013e1c5f0",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkRuntimeHardnessFix.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Docs/Verification/RuntimeHardness/ADAPTER_PHASES.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Docs/Verification/RuntimeHardness/MIGRATION.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Docs/Verification/RuntimeHardness/PHYSICS_MIGRATION_PROPOSAL.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Hardness/DinkHardnessAuthority.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Hardness/DinkHardnessShell.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkHardnessFoundationLibrary.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkHardnessFoundationBuilder.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkHardnessFoundationLibrary.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkHardnessFoundationSource.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkHardnessPrismComponent.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkRegisteredHardnessOwner.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkRuntimeHardness.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkRuntimeHardnessSource.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkRuntimeHardnessWorldSubsystem.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkDisplayedHardness.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkEditorPicture.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessActivation.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessFoundationSource.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessLayers.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessPrismComponent.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessSession.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessSlots.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkRegisteredHardnessOwner.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkRuntimeHardnessSource.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkRuntimeHardnessWorldSubsystem.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkRuntimeHardnessTests.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Scripts/build_runtime_hardness_descriptors.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Scripts/tests/native/runtime_hardness.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Scripts/tests/native/runtime_hardness_session.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Scripts/tests/native/runtime_hardness_shell.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Scripts/tests/native/runtime_hardness_slots.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Scripts/tests/test_runtime_hardness_descriptors.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Scripts/tests/test_runtime_hardness_native.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Scripts/tests/test_runtime_hardness_slots.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/DinkRemasterUE/Scripts/tests/test_runtime_hardness_sync.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/tools/dinkex/dinkex/runtime_hardness.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessFix/tools/dinkex/tests/test_runtime_hardness.py"
+    ]
+  },
+  {
+    "worktree": "DinkRuntimeHardnessIntegration",
+    "branch": "fix/runtime-hardness-integration",
+    "base": "5d65ed88cb4761fea565b75755a5b03b4bb2d82c",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkRuntimeHardnessIntegration.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Docs/Verification/RuntimeHardness/ADAPTER_PHASES.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Docs/Verification/RuntimeHardness/MIGRATION.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Docs/Verification/RuntimeHardness/PHYSICS_MIGRATION_PROPOSAL.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Hardness/DinkHardnessAuthority.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Hardness/DinkHardnessShell.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkHardnessFoundationLibrary.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkHardnessFoundationBuilder.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Public/DinkHardnessFoundationLibrary.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkHardnessFoundationSource.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkHardnessPrismComponent.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkRegisteredHardnessOwner.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkRuntimeHardness.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkRuntimeHardnessSource.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Private/DinkRuntimeHardnessWorldSubsystem.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkDisplayedHardness.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkEditorPicture.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessActivation.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessFoundationSource.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessLayers.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessPrismComponent.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessSession.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkHardnessSlots.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkRegisteredHardnessOwner.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkRuntimeHardnessSource.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkNarrative/Source/DinkNarrative/Public/Hardness/DinkRuntimeHardnessWorldSubsystem.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkRuntimeHardnessTests.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Scripts/build_runtime_hardness_descriptors.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Scripts/tests/native/runtime_hardness.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Scripts/tests/native/runtime_hardness_session.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Scripts/tests/native/runtime_hardness_shell.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Scripts/tests/native/runtime_hardness_slots.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Scripts/tests/test_runtime_hardness_descriptors.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Scripts/tests/test_runtime_hardness_native.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Scripts/tests/test_runtime_hardness_slots.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/DinkRemasterUE/Scripts/tests/test_runtime_hardness_sync.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/tools/dinkex/dinkex/runtime_hardness.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkRuntimeHardnessIntegration/tools/dinkex/tests/test_runtime_hardness.py"
+    ]
+  },
+  {
+    "worktree": "DinkFamilyCollisionFit",
+    "branch": "fix/family-barrel-collision-fit",
+    "base": "5d65ed88cb4761fea565b75755a5b03b4bb2d82c",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkFamilyCollisionFit.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFamilyCollisionFit/DinkRemasterUE/Docs/Verification/FamilyCollisionFit/NATIVE_FIXTURES.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFamilyCollisionFit/DinkRemasterUE/Docs/Verification/FamilyCollisionFit/README.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFamilyCollisionFit/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Private/DinkFamilyCollisionFit.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFamilyCollisionFit/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Hardness/DinkFamilyCollisionFit.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFamilyCollisionFit/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/Hardness/DinkFamilyFitMath.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFamilyCollisionFit/DinkRemasterUE/Plugins/DinkParity/Source/DinkParity/Private/Tests/DinkFamilyCollisionFitTests.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFamilyCollisionFit/DinkRemasterUE/Scripts/tests/native/family_collision_fit.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFamilyCollisionFit/DinkRemasterUE/Scripts/tests/test_family_collision_fit.py"
+    ]
+  },
+  {
+    "worktree": "DinkRuntimeHardnessIntegrationCurrent",
+    "branch": "fix/runtime-hardness-current",
+    "base": "0432cb24c9b4807028256015e9cc9f80a6b4afe0",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkHeroGrowth",
+    "branch": "fix/hero-growth-review",
+    "base": "21d1c122cae9b4c051f31920acccd8b8d624ad90",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkHouseExteriorSourceAdmission",
+    "branch": "art/house439-shared-exterior-source",
+    "base": "420b27dbcf7f2ec2ee3e3770c3ac8ecc5266f9ea",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkHouseExteriorSourceAdmission.patch",
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkFireplaceNativePreparation",
+    "branch": "art/fireplace-native-preparation",
+    "base": "fcb5d0b9683ea3e180aaf8b341ba6e0bac40b6bb",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkFireplaceNativePreparation.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Docs/Verification/FireplaceNativePreparation/ACTUAL_SOURCE_GRAPHS.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Docs/Verification/FireplaceNativePreparation/README.md",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Docs/Verification/FireplaceNativePreparation/SOURCE_COLOR0_BLOCKER.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Docs/Verification/FireplaceNativePreparation/reviewed-dependencies.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Docs/Verification/FireplaceNativePreparation/source-audit.json",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Plugins/DinkImport/Source/DinkImport/Private/DinkStaticMeshGeometryInspection.cpp",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/RoofNative/fireplace_contract.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/RoofNative/fireplace_material.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/RoofNative/fireplace_material_readback.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/RoofNative/fireplace_mesh_readback.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/RoofNative/fireplace_native.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/RoofNative/house439_material_readback.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/RoofNative/house439_mesh_readback.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/tests/test_fireplace_material.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/tests/test_fireplace_material_readback.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/tests/test_fireplace_mesh_readback.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/tests/test_fireplace_native_contract.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/tests/test_house439_material_readback.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/tests/test_house439_mesh_readback.py",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkFireplaceNativePreparation/DinkRemasterUE/Scripts/tests/test_house439_metadata_order.py"
+    ]
+  },
+  {
+    "worktree": "DinkFireplaceV4RootIntegration",
+    "branch": "art/fireplace-v4-root-integration",
+    "base": "a185ebc32a43ff62c3c37dae394e2b1d90fe255b",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkHouse439FlatCoatBridgeBuild",
+    "branch": "",
+    "base": "6fbefdea982aca2dfc0e83f76ba41c7ea1b8aad4",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkHouse439FlatCoatBridgeBuild.patch",
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkBarrelLiveContactDiagnostic",
+    "branch": "test/barrel-live-contact-native",
+    "base": "a3573515280e071cc6ce6bccebc146db48818cae",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": []
+  },
+  {
+    "worktree": "DinkHouse439ClosedEavesNative",
+    "branch": "fix/house439-source-encoding-owned",
+    "base": "13b7d24f826a9c555998d733f6918fcc59fb48d5",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": null,
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkHouse439ClosedEavesNative/DinkRemasterUE/Docs/Verification/House439ClosedEavesNative/MaterialProfile/build_actual_roof_gradient_fixture.py"
+    ]
+  },
+  {
+    "worktree": "DinkHouse439RegisteredOwnerDelivery",
+    "branch": "dev/house439-registered-owner-delivery",
+    "base": "b4cce7c727656d0f4b6bcaf719a2843ba6d88d1f",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkHouse439RegisteredOwnerDelivery.patch",
+    "extra_sources": [
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkHouse439RegisteredOwnerDelivery/DinkRemasterUE/Plugins/DinkCore/Source/DinkCore/Public/DinkExteriorPortalTestAccess.h",
+      "DinkRemasterUE/Docs/Archives/CodexCloseout/UncommittedSources/DinkHouse439RegisteredOwnerDelivery/DinkRemasterUE/Plugins/DinkParity/Source/DinkProbe/Private/DinkHouse439OwnerDiagnostic.cpp"
+    ]
+  },
+  {
+    "worktree": "DinkLocalHeroCameraIntrusionFix",
+    "branch": "fix/local-hero-camera-intrusion",
+    "base": "1b5a365a3a2f56a163553bdecd69195fe789944f",
+    "disposition": "Superseded or unfinished local changes retained as inactive review patches and source snapshots; existing worktree preserved.",
+    "patch": "DinkLocalHeroCameraIntrusionFix.patch",
+    "extra_sources": []
+  }
+]

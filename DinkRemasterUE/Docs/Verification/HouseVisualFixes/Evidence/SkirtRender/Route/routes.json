@@ -68,14 +68,14 @@
     "display": ":189",
     "server_pid": 83420,
     "game_pid": 87819,
-    "log": "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/skirt-game.log",
+    "log": "<HOME>/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/skirt-game.log",
     "audio_enabled": false,
     "pulse_sink": null,
     "serial_rhi_diagnostic": true,
     "serial_vulkan_submission_diagnostic": true,
     "command": [
-      "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/EngineWrapper/Engine/Binaries/Linux/UnrealEditor",
-      "/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/DinkRemaster.uproject",
+      "<HOME>/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/EngineWrapper/Engine/Binaries/Linux/UnrealEditor",
+      "<HOME>/Work/DinkPhotorealDelivery/DinkRemasterUE/DinkRemaster.uproject",
       "/Game/Dink/_Generated/Maps/L_Greybox_World",
       "-game",
       "-sdlvideodriver=x11",
@@ -84,7 +84,7 @@
       "-ResY=720",
       "-nosplash",
       "-unattended",
-      "-abslog=/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/skirt-game.log",
+      "-abslog=<HOME>/Work/DinkPhotorealDelivery/DinkRemasterUE/Saved/VisualQA/skirt-game.log",
       "-norhithread",
       "-forcerhibypass",
       "-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0",
@@ -98,7 +98,7 @@
       "output": "[2026.11.08-08.21.43:925][217]dink.ScreenInfo = \"0\"\n"
     },
     {
-      "command": "py exec(open('/home/artist/Work/DinkPhotorealDelivery/DinkRemasterUE/Scripts/Playtest/read_visual_qa.py').read())",
+      "command": "py exec(open('<HOME>/Work/DinkPhotorealDelivery/DinkRemasterUE/Scripts/Playtest/read_visual_qa.py').read())",
       "output": "[2026.11.08-08.21.46:939][413]LogPython: QA_VISUAL_READER_READY\n"
     },
     {

@@ -1,0 +1,16 @@
+{
+  "first": {
+    "source_selected_exact": true,
+    "selected_cooked_after_documented_flip_exact": true,
+    "triangle_count": 16648
+  },
+  "second": {
+    "source_selected_exact": true,
+    "selected_cooked_after_documented_flip_exact": true,
+    "triangle_count": 16648
+  },
+  "cross_cache_cooked_exact": true,
+  "domain_ascii_with_nul": "DinkOrientedTrianglesF32LEMaterialU16LE/1\\0",
+  "candidate_surface_sha1": "de0f514e0172077e7bbd9dc0b30c75f5c40939e6",
+  "effective_cull": true
+}

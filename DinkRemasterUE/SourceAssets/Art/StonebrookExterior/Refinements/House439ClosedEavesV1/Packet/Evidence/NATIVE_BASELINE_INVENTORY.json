@@ -1,0 +1,1062 @@
+{
+  "scope": "read-only current native baseline snapshot; no Data/package writes or native execution",
+  "baseline_root": "<HOME>/Work/DinkBarrelCombinedDelivery",
+  "baseline_head": "7fc61d34fda84c02f2b7f73fe825e204a7cda198",
+  "data_sha256": {
+    "stonebrook_exterior.json": "c574f9a66679de272fe803137ca20ec942513e31d61846d132be12a7886eaa5b",
+    "stonebrook.json": "a49adb38cfa78cf6796677f56bddd25b52ece23e5071c99c2f4f574963a43ef6",
+    "stonebrook_refinement_fireplace_v2.json": "9e283317494e2c1d45c3bd90aadbecfe3ea445bf22d96f93a8152767f2692c33",
+    "camera_exteriors.json": "4cc29eae3e1fb0f0df4cca02b5bcba472c3b5a0dcc7c716ad47dcc704cc8d045"
+  },
+  "cottage_element": {
+    "name": "DinksCottage",
+    "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+    "world_cm": [
+      97131.61092968748,
+      36920.324198125,
+      0.0
+    ],
+    "rotation_deg": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "collision": true,
+    "camera_occluder": true
+  },
+  "cottage_asset": {
+    "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+    "expected_size_cm": [
+      1882.9998016357422,
+      1054.6720504760742,
+      793.0000305175781
+    ],
+    "expected_lods": 1,
+    "bounds_tolerance_cm": 1.0
+  },
+  "camera_rules": [
+    {
+      "owner_manifest": "stonebrook_exterior.json",
+      "owner_element": "DinksCottage",
+      "owner_screen": 439,
+      "expected_mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+      "portal_point_cm": [
+        530,
+        479.5,
+        0
+      ],
+      "outward_normal": [
+        0,
+        1,
+        0
+      ],
+      "tangent": [
+        1,
+        0,
+        0
+      ],
+      "aperture_min_cm": [
+        -75,
+        22
+      ],
+      "aperture_max_cm": [
+        75,
+        250
+      ],
+      "interior_point_cm": [
+        0,
+        0,
+        100
+      ],
+      "interior_planes": [
+        [
+          1,
+          0,
+          0,
+          875
+        ],
+        [
+          -1,
+          0,
+          0,
+          875
+        ],
+        [
+          0,
+          1,
+          0,
+          425
+        ],
+        [
+          0,
+          -1,
+          0,
+          425
+        ],
+        [
+          0,
+          0,
+          -1,
+          -22
+        ],
+        [
+          0,
+          0.6,
+          0.8,
+          558.4
+        ],
+        [
+          0,
+          -0.6,
+          0.8,
+          558.4
+        ]
+      ],
+      "native_mesh_package_sha256": "82f17f498de91094d68794e74059cf334d266726243f8c2aa20491b301e400c8",
+      "native_bounds_min_cm": [
+        -941.5,
+        -527.336,
+        0
+      ],
+      "native_bounds_max_cm": [
+        941.5,
+        527.336,
+        793
+      ]
+    }
+  ],
+  "preserved_chimney": {
+    "name": "Chimney_Stonebrook_V8",
+    "mesh": "/Game/Dink/Refinements/FireplaceFiredClayV4/Meshes/SM_Chimney_Stonebrook_V8.SM_Chimney_Stonebrook_V8",
+    "world_cm": [
+      -183821.41,
+      392939.73,
+      350
+    ],
+    "rotation_deg": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "collision": true,
+    "camera_occluder": true,
+    "can_affect_navigation": false
+  },
+  "preserved_fireplace_replacement": [
+    {
+      "origin": "S001_P19",
+      "offset_cm": [
+        6.5625,
+        -28.437499999941792,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "mesh": "/Game/Dink/Refinements/FireplaceFiredClayV4Assembly/Meshes/SM_Fireplace_Stonebrook_FiredClayV4.SM_Fireplace_Stonebrook_FiredClayV4"
+    }
+  ],
+  "preserved_PR59_lights": [
+    {
+      "world_cm": [
+        -183821.41,
+        392856.60500000004,
+        150.0
+      ],
+      "lumens": 50,
+      "kelvin": 2700,
+      "radius_cm": 520
+    },
+    {
+      "world_cm": [
+        -183869.535,
+        392353.48000000004,
+        55
+      ],
+      "lumens": 40,
+      "kelvin": 2000,
+      "radius_cm": 390
+    },
+    {
+      "name": "Daylight_NorthWall_1",
+      "kind": "rect",
+      "world_cm": [
+        -184286.25375,
+        392253.48,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_NorthWall_6",
+      "kind": "rect",
+      "world_cm": [
+        -183356.56625,
+        392253.48,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        90,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_WestWall_2",
+      "kind": "rect",
+      "world_cm": [
+        -184595.15999999997,
+        392752.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_WestWall_4",
+      "kind": "rect",
+      "world_cm": [
+        -184595.15999999997,
+        393127.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_EastWall_2",
+      "kind": "rect",
+      "world_cm": [
+        -183047.66,
+        392752.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    },
+    {
+      "name": "Daylight_EastWall_4",
+      "kind": "rect",
+      "world_cm": [
+        -183047.65999999997,
+        393127.23,
+        185
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        0
+      ],
+      "lumens": 170,
+      "kelvin": 5000,
+      "radius_cm": 1000,
+      "source_width_cm": 80,
+      "source_height_cm": 130
+    }
+  ],
+  "rect_count": 6,
+  "practical_count": 2,
+  "postprocess": [
+    {
+      "world_cm": [
+        -183821.41,
+        392939.73,
+        175.0
+      ],
+      "extent_cm": [
+        770,
+        680,
+        250
+      ],
+      "exposure_bias": -2.0
+    }
+  ],
+  "declared_dependency_packages": [
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.SM_Floor_Oak_2m_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/Refinements/FloorOakV1/SM_Floor_Oak_2m_01.uasset",
+      "sha256": "ddb79f010d61b889ac94c7a9ee2768c1126ac70abefab77167bcf96ad5804516",
+      "bytes": 72595,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.uasset",
+      "sha256": "09c6ffa3bbd27aac90e0279c8cfb9650ddbb0936e6be6c6746158de6e606510c",
+      "bytes": 446553,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/SM_Candle_Iron_01.SM_Candle_Iron_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/SM_Candle_Iron_01.uasset",
+      "sha256": "d49fcaa031cd2a4f1345c49465e45602697357e2ec4160cf5daf6c3a7ae8f7ac",
+      "bytes": 162116,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.SM_Ceiling_Oak_2m_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/SM_Ceiling_Oak_2m_01.uasset",
+      "sha256": "b9784302b233d98c9b04fe3138649d5a4a274b9f7bf194a75216a3ea721349c2",
+      "bytes": 155740,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/SM_Doorway_Limewash_4m_01.SM_Doorway_Limewash_4m_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/SM_Doorway_Limewash_4m_01.uasset",
+      "sha256": "61e4aeccdfe415b29a5f86805adafcd912fcc2f3071c1d14855af0e65ba4646f",
+      "bytes": 162672,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/SM_FeedSack_Jute_01.SM_FeedSack_Jute_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/SM_FeedSack_Jute_01.uasset",
+      "sha256": "4d5597a242fb8df320ca65b03266ee2dc0da2373a29760c6c7223a1b4e048849",
+      "bytes": 224117,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/SM_Fireplace_Fieldstone_01.SM_Fireplace_Fieldstone_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/SM_Fireplace_Fieldstone_01.uasset",
+      "sha256": "6b4b404e9aff152c6af417598290bb3f5fd2ae171fd026c059447f360121495d",
+      "bytes": 450439,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/SM_Pie_Rustic_01.SM_Pie_Rustic_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/SM_Pie_Rustic_01.uasset",
+      "sha256": "202699b0dca5210b60b0ea812de51b144b7552a87a5ebce64549a066cc22c633",
+      "bytes": 150832,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.SM_Wall_Limewash_2m_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/SM_Wall_Limewash_2m_01.uasset",
+      "sha256": "4f6e83fdc8869527b0b0c5eaeecd3326bb8e7fe5087685d8d5a9a7a11f59c3b4",
+      "bytes": 159981,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.SM_Window_Limewash_2m_01",
+      "relative_path": "Content/Dink/Kits/Stonebrook/SM_Window_Limewash_2m_01.uasset",
+      "sha256": "cb2ad98ac2601339e46f035f7d487dbdc177e203414662e2b4b4fe2392001ebf",
+      "bytes": 171508,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "relative_path": "Content/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.uasset",
+      "sha256": "1388314983baa1b44d78144651b9e10923047b6c150cdd4f95e096691748616e",
+      "bytes": 58287,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.SM_Cottage_Stonebrook_01",
+      "relative_path": "Content/Dink/Kits/StonebrookExterior/SM_Cottage_Stonebrook_01.uasset",
+      "sha256": "82f17f498de91094d68794e74059cf334d266726243f8c2aa20491b301e400c8",
+      "bytes": 3851558,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "relative_path": "Content/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.uasset",
+      "sha256": "11f8f0b0643fdf1743fb0269e2f44bd04663d3fa3776cfc162cb9bafec5dbf30",
+      "bytes": 48237,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.SM_Grass_Meadow_01",
+      "relative_path": "Content/Dink/Kits/StonebrookExterior/SM_Grass_Meadow_01.uasset",
+      "sha256": "d306fc8d21e05f8421c58e38bdfecf01341a6aa41689e5d51bcd319d83014a7d",
+      "bytes": 78102,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/StonebrookExterior/SM_Ground_Meadow_20m_01.SM_Ground_Meadow_20m_01",
+      "relative_path": "Content/Dink/Kits/StonebrookExterior/SM_Ground_Meadow_20m_01.uasset",
+      "sha256": "5e2fd69bd2da4daaeea37e200399ab93d5101b27afd25657748b8fce343ab5c8",
+      "bytes": 14110,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.SM_Oak_Stonebrook_01",
+      "relative_path": "Content/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01.uasset",
+      "sha256": "d36425b0a5ef1b19f71d03ebfc43a970af892dd9cf7a44890fe695ef85cc7648",
+      "bytes": 2156765,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+      "relative_path": "Content/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.uasset",
+      "sha256": "5dcbdec7670efb32284d6c5cca8dfb923281e2bbb5e3b7f52701564ba7c75f13",
+      "bytes": 18196,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.SM_Barrel_Oak_01",
+      "relative_path": "Content/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01.uasset",
+      "sha256": "7265f0036eceadfd26d1342a1e6f9fa0eb265221d5f7ca5db9381f0d3e646b00",
+      "bytes": 671543,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.SM_Basket_Wicker_01",
+      "relative_path": "Content/Dink/Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01.uasset",
+      "sha256": "bfef775257000b6be874f95a4788b92f7c67803b2efacd7b64e32a9d07910791",
+      "bytes": 600309,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.SM_FeedSack_Jute_01",
+      "relative_path": "Content/Dink/Props/Stonebrook/PhotorealFeedSackV1/SM_FeedSack_Jute_01.uasset",
+      "sha256": "8422c48e170994a5f30fc421342d9ef5b8c99e2124735f1c7e3e20e9649f6145",
+      "bytes": 635917,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.SM_Bed_Oak_01",
+      "relative_path": "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Bed_Oak_01.uasset",
+      "sha256": "f535e1442be40dda7f7227dc1a39fdcc2ef5388e508cf8f460a3df63f5225379",
+      "bytes": 723227,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.SM_Chair_Oak_01",
+      "relative_path": "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Chair_Oak_01.uasset",
+      "sha256": "6cef01ac4bf85e5515d97c5d04a5d111b75fbf249b4cced3803640f85d9700f3",
+      "bytes": 218602,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.SM_Table_Oak_01",
+      "relative_path": "Content/Dink/Props/Stonebrook/PhotorealPropsV1/SM_Table_Oak_01.uasset",
+      "sha256": "e040ffde7adeeb5ef83dc7d4a0c51b444df89a58c48598db5d4eddb89b9c13fa",
+      "bytes": 297208,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/FireplaceFiredClayV4/Meshes/SM_Chimney_Stonebrook_V8.SM_Chimney_Stonebrook_V8",
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Meshes/SM_Chimney_Stonebrook_V8.uasset",
+      "sha256": "eef8cf0d81f34ba1e75eab1102696a11ad700bd93aab429eb9cf12ca3396fb8d",
+      "bytes": 182622,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/FireplaceFiredClayV4Assembly/Meshes/SM_Fireplace_Stonebrook_FiredClayV4.SM_Fireplace_Stonebrook_FiredClayV4",
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4Assembly/Meshes/SM_Fireplace_Stonebrook_FiredClayV4.uasset",
+      "sha256": "441efa7ea859185f48336a26aed8a84abe19add81874fa296010b909632dbdc0",
+      "bytes": 3943380,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.SM_IndoorRoof_EN_01",
+      "relative_path": "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_EN_01.uasset",
+      "sha256": "dd9eabf1a7910cf4575694aca59028bdf376f0b2eac127fc5608a54db951ae5d",
+      "bytes": 277974,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.SM_IndoorRoof_ES_01",
+      "relative_path": "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_ES_01.uasset",
+      "sha256": "bdc611910954b0b0c11e01cf2a0a20fa9cc8ac164f3694c9ff1622eec6b4344a",
+      "bytes": 205741,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01.SM_IndoorRoof_Gable_EN_01",
+      "relative_path": "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_EN_01.uasset",
+      "sha256": "a848b5457fa90d140809a3fbff6fa94670b9c9a8314184949231f9fdc2d3e030",
+      "bytes": 26079,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01.SM_IndoorRoof_Gable_ES_01",
+      "relative_path": "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_ES_01.uasset",
+      "sha256": "95a3f86bf402b7317035034ccc595c585089586d4e119bccc682b3cc85b7f7cf",
+      "bytes": 26038,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01.SM_IndoorRoof_Gable_WN_01",
+      "relative_path": "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WN_01.uasset",
+      "sha256": "2a6c5fccbecaa56d444e03765f88189ccb75663c11ae54466421674c3157bbfe",
+      "bytes": 26070,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01.SM_IndoorRoof_Gable_WS_01",
+      "relative_path": "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_Gable_WS_01.uasset",
+      "sha256": "2fa2abcf448ea2b01d5e6d6a7185b8fa34df9bf5a59c8c8d7132daa9c7c28087",
+      "bytes": 26048,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.SM_IndoorRoof_WN_01",
+      "relative_path": "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WN_01.uasset",
+      "sha256": "44abbfe740090ef4b85d80208bcf498f43af76449d7b392b868773c5c20375d8",
+      "bytes": 302078,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    },
+    {
+      "reference": "/Game/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.SM_IndoorRoof_WS_01",
+      "relative_path": "Content/Dink/Refinements/InteriorRoofSharedV1/Meshes/SM_IndoorRoof_WS_01.uasset",
+      "sha256": "f02f1f033bc865e53ff7d5a42eb70b75a043618f88a1114fd5e231be98f7b465",
+      "bytes": 177690,
+      "scope": "read-only baseline dependency, not a native material-slot readback"
+    }
+  ],
+  "protected_material_fireplace_packages": [
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Dink_BrowLash.uasset",
+      "sha256": "6bc530c0639f9c3f0d63ba46f2693718e8a7b258cbf2897897f873f2a13a2044",
+      "bytes": 10049
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Dink_Eyes.uasset",
+      "sha256": "fa428e86cb633f22f4974bd6ea95f8a50eb599a8ce270f021ddb34796ce4b6c7",
+      "bytes": 9759
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Dink_Hair.uasset",
+      "sha256": "43d3914b982bde1e4cb32352e9ab1a57c5107ae48e831935f8acaaaa3ad4d62c",
+      "bytes": 10029
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Dink_Skin.uasset",
+      "sha256": "d190f6b0339f95285ff0abb70384056d972dacc97c0fb6d049713f6a8c2344cc",
+      "bytes": 9759
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Dink_Wardrobe.uasset",
+      "sha256": "58b2d1e6f804dcc3545d0ca07b9314db699f688ddd4ae8f786fe89bbbda6f0e7",
+      "bytes": 9779
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Milder_BrowLash.uasset",
+      "sha256": "b216d24f85d90230601ff27df4bcc976f7d6b22bbaf364dc6a18235949b56ef2",
+      "bytes": 9066
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Milder_Eyes.uasset",
+      "sha256": "c4885bb1c9bc8efd8ecbdfc18d0a1959bb546a58410a287d9cbde78eef074650",
+      "bytes": 8776
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Milder_Hair.uasset",
+      "sha256": "2954ac52bcaa924a1a846be08b9b54a16ce69763908569ccbb0b312e2141eeaa",
+      "bytes": 9046
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Milder_Skin.uasset",
+      "sha256": "de94ef9d0dc7c58431371726df2a4a1e8f63f45b2604077df45e11b9debb57ba",
+      "bytes": 8776
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Milder_Wardrobe.uasset",
+      "sha256": "a03d7d0b4bf35d3ed2b50d30558eefac903e67bbf7c85905c50fca6b0a34f8e5",
+      "bytes": 8796
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Mother_BrowLash.uasset",
+      "sha256": "ca9ea3218ff2e33b8e0616db1addc8ee4745932793abef08b18296bec3079bbe",
+      "bytes": 10950
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Mother_Eyes.uasset",
+      "sha256": "dfc2ae93395791d9a5a2240d3cf9dca6a953b6fee1a8fc72ad82be859b234536",
+      "bytes": 10660
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Mother_Hair.uasset",
+      "sha256": "65c178ab24f0df3957f40ea7e8afbe18b471f412b9e9ad451a174fbb40683590",
+      "bytes": 10930
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Mother_Skin.uasset",
+      "sha256": "6d16443aec58ce59abb0c7f73bc2f1c1f14d50b8d30c18af2b22d0b9a69933ce",
+      "bytes": 10660
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Characters/MI_Mother_Wardrobe.uasset",
+      "sha256": "6515605212c9292d44cc9aef91347caf44a4cbd46c8b1365817021742f6e20e6",
+      "bytes": 10680
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Creatures/MI_Pig_Eye.uasset",
+      "sha256": "8ee071dffbad42727af46f68b6159c98215ad7024f22ec09102fbd0bf66bcec1",
+      "bytes": 10234
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Creatures/MI_Pig_HornBristle.uasset",
+      "sha256": "d7c285181776acdbf202a78e36149a0eda72708528e0e88a56c589ed83533d54",
+      "bytes": 10274
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Creatures/MI_Pig_Muzzle.uasset",
+      "sha256": "d3a97a53479a29e6923b4c7312f95fe7144dfbc278f9bf1a03f8905875b04bf0",
+      "bytes": 10249
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Creatures/MI_Pig_Skin.uasset",
+      "sha256": "8890fbf99859b6f050286d5eef25c7997b843cad430711301f26d5e9a513c89e",
+      "bytes": 10239
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Creatures/MI_Pillbug_Carapace.uasset",
+      "sha256": "2125f854119fb9d38dd03379ddf785365da9878bb7793415dcaa642574feaa34",
+      "bytes": 8802
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Creatures/MI_Pillbug_Eyes.uasset",
+      "sha256": "2744b668ff227af9604d1d42b10ce9b29d4cd451d73d4eaef759d5913eec42ca",
+      "bytes": 8782
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Creatures/MI_Pillbug_Joints.uasset",
+      "sha256": "94b1aa5e3e437f2116518b0d45def5033376a0388052b235bf926ee4b172b8a6",
+      "bytes": 8792
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Creatures/MI_Pillbug_Ochre.uasset",
+      "sha256": "6c7159e7642a90c227c6645aa56ce78c27c1713875dda4af033cd18f85c30b86",
+      "bytes": 8787
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/MI_Shared_LimePlaster2m.uasset",
+      "sha256": "bc8dbb30f9749f6e5abdae01edf1ba11f87dfcf58407acec1adf1ddd33d15484",
+      "bytes": 7063
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/MI_Shared_LimePlaster2m_CameraMasked.uasset",
+      "sha256": "d3c195a24e5f3eb9f44ee6eaff4ad6b022f06fb505e555b38bb9f38610ef742b",
+      "bytes": 8922
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/MI_Shared_OakEndgrain2m.uasset",
+      "sha256": "360e3381e0aac0bd549cb4b2db4a73a96c7544ef3c7afde12a98301296641511",
+      "bytes": 7063
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/MI_Shared_OakEndgrain2m_CameraMasked.uasset",
+      "sha256": "385f351590ce1b381cc7485917241b5fabdf7ac0890f4005d5c7ebf27c41cbe4",
+      "bytes": 8922
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/MI_Shared_OakLonggrain2m.uasset",
+      "sha256": "641e84ee13527605f4405ce89c69ca48953a120241c4482ee0549a7251741f6d",
+      "bytes": 7074
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/MI_Shared_OakLonggrain2m_CameraMasked.uasset",
+      "sha256": "58cc09ab9dd734aa816df91675795253e273441c2b7905bb0c4dc2aba8660742",
+      "bytes": 8933
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_BC.uasset",
+      "sha256": "787cb2dfe75770958c97db4c8f86164ff23918b3dd60b072a736f3a7ad890faf",
+      "bytes": 376287
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_N_GL.uasset",
+      "sha256": "fc206a07f98a05ae4697c5eb8b331aeb2e3eac939d0b16cf7633b6d6bee931cc",
+      "bytes": 1153136
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/Textures/T_Shared_LimePlaster2m_ORM.uasset",
+      "sha256": "02f228b9636f528e8250b540bf28f7b8042efd90fe5c4771310c84ab6e48cc0e",
+      "bytes": 204871
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_BC.uasset",
+      "sha256": "a5ce325b49697b44cb3b33018fc9d1adae22a18679f1c589ad6e76dc62d6c630",
+      "bytes": 926998
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_N_GL.uasset",
+      "sha256": "530684d6a906199e15a62f595f30d01e9db1798bb27f69ac60ba1514411bf85a",
+      "bytes": 16986
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/Textures/T_Shared_OakEndgrain2m_ORM.uasset",
+      "sha256": "c1e496586d3a5e29faddbc83cf6c78b252bff8d38cc799f14e3fb2f03dcea662",
+      "bytes": 248468
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_BC.uasset",
+      "sha256": "fe18563d53c2390cdaeb31ce4826f59e8f8e67556964b6f2ec2a4acacea34873",
+      "bytes": 1418800
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_N_GL.uasset",
+      "sha256": "9e56ff9c774ee13d26ac5be1f67f3fd1111ddd4dca854f7d819d9442ec92601d",
+      "bytes": 212177
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Shared/Textures/T_Shared_OakLonggrain2m_ORM.uasset",
+      "sha256": "d26b6f0ad0184aec000f75ef71768d68477ac94f680e2bd3aa90ccdf76264582",
+      "bytes": 268013
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_PigPen_Wheat.uasset",
+      "sha256": "18a80e83b0e218250e2748d9dbeea942d30cf964203d977e42a11effe4de832b",
+      "bytes": 6806
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_Earth.uasset",
+      "sha256": "3eddeb4c321651bfca5f2b274e563ffae6c348faa01230331da19351bba2055a",
+      "bytes": 10757
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_Fieldstone.uasset",
+      "sha256": "dc1f18bc41655e10839e787d83deba858f20e1334632c7fe77f09345d3fb2026",
+      "bytes": 10812
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_Limewash.uasset",
+      "sha256": "4a5a4c881984910cd571640f0944c46248f93c172117ed51a33ebcdcef142ee8",
+      "bytes": 10790
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_Linen.uasset",
+      "sha256": "6ff14fe908bfb9505ded22df4f3fad6e2f290590593f27b6ab459f93a0ce1c7a",
+      "bytes": 10757
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_Meadow.uasset",
+      "sha256": "60cb8b2284a85021c613bb92fc096aa551697d96805d5602e52c2a95bddb5c60",
+      "bytes": 10768
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_Oak.uasset",
+      "sha256": "db6f84283f5c2274d051926ebd6fa0875405ed74176be80c169bae34be0bf498",
+      "bytes": 10735
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_OakLeaf.uasset",
+      "sha256": "cf8866b3878d55dade56a6dcd67d147d4f3267123141840de81472dcda6c4ae0",
+      "bytes": 10821
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_Soot.uasset",
+      "sha256": "25124591f28e2f29ca6712b573ebbdc2013b4b0679da83660c3755a66ab3af7b",
+      "bytes": 10746
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_Thatch.uasset",
+      "sha256": "e90668d026f00fb8e944ad3baf76d38a8cb901ccd4dc00335a26baf210ca838b",
+      "bytes": 10768
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_Wicker.uasset",
+      "sha256": "384ae2cfa6e0d93efbe24bf7224c82303b8def3b84f2e81574f54fb20f6cc7ff",
+      "bytes": 10768
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/MI_Stonebrook_WroughtIron.uasset",
+      "sha256": "eade0528fe5486558746457e020c43099cfa2c00f772177d59f5a17f690f1022",
+      "bytes": 10823
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/PhotorealBarrelV1/MI_Barrel_Oak_01_PhotoBaked.uasset",
+      "sha256": "16d882748dc3c0ca2613503eb45cc6498872a10be88b8a62545d0425968fa5d2",
+      "bytes": 7200
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/PhotorealBasketV1/MI_Basket_Wicker_01_PhotoBaked.uasset",
+      "sha256": "fd957da18de4ce517ea9e6349fa7cea8fba8d0e05bd0c26a9990afdba2dd5438",
+      "bytes": 7301
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Cord_PhotoBaked.uasset",
+      "sha256": "0495c3df04c68fed58cba85d618e072e2e61c35da7ae39de6c81092da7581d63",
+      "bytes": 7293
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/PhotorealFeedSackV1/MI_FeedSack_Jute_PhotoBaked.uasset",
+      "sha256": "d06c41e9e3081a047804e31e7b9adfc5b3cb01280456554d8f561601b222afff",
+      "bytes": 7293
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Bed_Oak_01_PhotoBaked.uasset",
+      "sha256": "d51793bd88d5c98d3baac245f962b10d4d5e5588d0b4ff2b6e3a5c57caf9c411",
+      "bytes": 7162
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Chair_Oak_01_PhotoBaked.uasset",
+      "sha256": "87ec485313938aeb688a452714c900843314b3ad16713f581605773edf24f3ae",
+      "bytes": 7184
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/PhotorealPropsV1/MI_Table_Oak_01_PhotoBaked.uasset",
+      "sha256": "8554b8fdccc95d80d379b526ebac25e910795894b538abddf3b2af0e87d27697",
+      "bytes": 7184
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/Refinements/MI_Stonebrook_FloorOakV1.uasset",
+      "sha256": "be45e75634193f53e2236214d5972632e025272750e658962b3b2e7ff909dbec",
+      "bytes": 7438
+    },
+    {
+      "relative_path": "Content/Dink/Materials/Stonebrook/Refinements/M_Stonebrook_Underfloor_DarkOak_V1.uasset",
+      "sha256": "0b9e5223923c3dbcfa8b169f28641ad8d0915c10a4d7606a560988805c3da9cb",
+      "bytes": 6032
+    },
+    {
+      "relative_path": "Content/Dink/Materials/StonebrookFields/MI_Fields_StreamWater.uasset",
+      "sha256": "a50d89308b9de0e5472443ad9bbf1da4046ede4f6f754cc161204c1861425ed4",
+      "bytes": 11531
+    },
+    {
+      "relative_path": "Content/Dink/Materials/StonebrookFields/MI_PineV3_Bark.uasset",
+      "sha256": "3e2c56162ff0b6cf9500f7d11e39c857510ae946499463f3a7535dbd2bf81663",
+      "bytes": 8823
+    },
+    {
+      "relative_path": "Content/Dink/Materials/StonebrookFields/MI_PineV3_Sprays.uasset",
+      "sha256": "9a8db2be5755047e5dc571aa8de1ab2bdb85c9af801841d87823d01a220c61c0",
+      "bytes": 9173
+    },
+    {
+      "relative_path": "Content/Dink/Materials/StonebrookFields/MI_Stonebrook_Earth.uasset",
+      "sha256": "14029917622e0871f5967340acf91be0161c6793a6681b2d484e397fa7e82a05",
+      "bytes": 10842
+    },
+    {
+      "relative_path": "Content/Dink/Materials/StonebrookFields/MI_Stonebrook_Meadow.uasset",
+      "sha256": "fa3c85a9c5ada5b3b17ef0e975ead6105395669781cbe58f4d9bf4a2b3068400",
+      "bytes": 10853
+    },
+    {
+      "relative_path": "Content/Dink/Materials/StonebrookFields/MI_Stonebrook_Oak.uasset",
+      "sha256": "a16742e815b1d6335ab21d562c0ab09931bad35adad83eee25139eea07372357",
+      "bytes": 10357
+    },
+    {
+      "relative_path": "Content/Dink/Materials/StonebrookFields/MI_Stonebrook_OakLeaf.uasset",
+      "sha256": "322d696c14bca1bb235a497ad709b985af48b8e12dc6f56b5aa9c8505079e169",
+      "bytes": 10443
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_FieldstoneSeed2m.uasset",
+      "sha256": "0b8a1404c1e0cd5d3e4f70360f039654d22e71cdc3295ab51c2e3a22c3051319",
+      "bytes": 11560
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_FiredClay2m.uasset",
+      "sha256": "7c768454b9759e0ec92b8fbe4b745b461173846013d37cccaf32e7a8d9b96dad",
+      "bytes": 13534
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_FiredClayMasonry2m.uasset",
+      "sha256": "0872adabad8db7d48be9d0fde51531d47c866b75f7f126d96d2b343cb29f095f",
+      "bytes": 13611
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_IronLead2m.uasset",
+      "sha256": "802f10ad0616c279bb7709de10d1af60429c6e2fefb0ff2a227a2bd4d1f417f3",
+      "bytes": 16498
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_LimeMortar2m.uasset",
+      "sha256": "830bea384022caf1ab8ebd7bbfd7143bab2b6f1817849ff2a8f1e2ed3f139160",
+      "bytes": 9366
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_OakLonggrain2m.uasset",
+      "sha256": "7a4115e9bb60d8b3ce987f164aa80dc66090d0c29567bfc2b2a6d7737efe8374",
+      "bytes": 9388
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Materials/MI_Shared_Soot2m.uasset",
+      "sha256": "7011f7ab83a153de6760bf1e615985c14153708ef94c2e7655a8b487c6117954",
+      "bytes": 9300
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Meshes/SM_Chimney_Stonebrook_V8.uasset",
+      "sha256": "eef8cf0d81f34ba1e75eab1102696a11ad700bd93aab429eb9cf12ca3396fb8d",
+      "bytes": 182622
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.uasset",
+      "sha256": "12005b467eeabd15605a77aa6a1c6af48f3c83de7bbdc193f11fc1922e77ced1",
+      "bytes": 3050345
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.uasset",
+      "sha256": "cdc157956018e3d15befcb3eaf0a380b81a076f35f559648a9b8f494b000b45e",
+      "bytes": 2682056
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.uasset",
+      "sha256": "b088cf9c14c615bb0e835672cf2afa1d6bd0d6dbdaeeeef0e180020402ac7be1",
+      "bytes": 1084523
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_BC.uasset",
+      "sha256": "73c4063c7a6b2f57d59f59a532e480cefc848e630f37eb84dce5d2fd65c5c4a3",
+      "bytes": 1461525
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_N_GL.uasset",
+      "sha256": "497db99e556113100627f263604bc6fc300bc4b5d1a7320c3497e921655af55e",
+      "bytes": 2303936
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClay2m_ORM.uasset",
+      "sha256": "4439c7a0e6b7b0cccb7ca080637677b421ea5a41e74ddc99b2813c61aa23bb57",
+      "bytes": 81649
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_BC.uasset",
+      "sha256": "5c48001b41cca8ff7832c2531819939dc69f55066aa75316ba9cdb93c322d939",
+      "bytes": 1432541
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_N_GL.uasset",
+      "sha256": "f72a7d31bbd7a3498b2ffd621bba881c1db174e1a0577a84f15393a0c888c7aa",
+      "bytes": 2461101
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_FiredClayMasonry2m_ORM.uasset",
+      "sha256": "b15450863a00e41804de26a68ec9581db19f4fc3b5f43acc14a0812c66df0319",
+      "bytes": 81804
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_BC.uasset",
+      "sha256": "668bb44ea018a93eaa0a7d2d26d4965ae78521bbb362b8ec191756fa3495713a",
+      "bytes": 4532114
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.uasset",
+      "sha256": "e72ff44120de66b5fffc6ff0b2253e4136af1de0563b47d3f74b9f4f3bab6ba5",
+      "bytes": 2568346
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.uasset",
+      "sha256": "26ed29b083eb42ac4f53a3b415692049885e2971a27f591d49e4b473196f2f1a",
+      "bytes": 2680987
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_BC.uasset",
+      "sha256": "00154f2e7b7b9425dba4e1c3059e3f92c2d376c93985d3a954ec679d2e9f75fb",
+      "bytes": 12605
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_N_GL.uasset",
+      "sha256": "3a7871781301d5bcd221b3854f42f378ec774c70c86f07a2724e4263d72447cb",
+      "bytes": 1651038
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_IronLead2m_DullLead_ORM.uasset",
+      "sha256": "11e0182512558a8c10964d091cb2cbbbb25fa159f2c23ca4ebca5c409e8dc1dd",
+      "bytes": 1181073
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_BC.uasset",
+      "sha256": "17a7aed6de719136aab446dad093228bd15b4ab56b2029c2e721517c6174e934",
+      "bytes": 609295
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_N_GL.uasset",
+      "sha256": "52015643c5a43343e5c1a2ae094c8d8d77953762b66138dee287246698f3ecfd",
+      "bytes": 500266
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_LimeMortar2m_ORM.uasset",
+      "sha256": "52f223a51415b10f10fe4c7638c6bb451e404b6e9a023f208285e184828eccd8",
+      "bytes": 198947
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_BC.uasset",
+      "sha256": "be257c28a953263be4d7ce58639b0c2f1cba69a360de2ad3461136e2ac32aac4",
+      "bytes": 1418938
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_N_GL.uasset",
+      "sha256": "0d374c18bf818a2bd65d52b7a5b867b8fef58126dd6d8c85ab42fd4057c2ecb9",
+      "bytes": 212315
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_OakLonggrain2m_ORM.uasset",
+      "sha256": "906b7ea8ae60bf226fefd90da183e38eec9c575a983ca004d5e5d2ed2a34a1c5",
+      "bytes": 268151
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_BC.uasset",
+      "sha256": "9e721b3e99a9e8c6115cdcb0cd05379174bb59defb969c4904ce8d66635eeb1c",
+      "bytes": 261647
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_N_GL.uasset",
+      "sha256": "4a7e3d040c8dabf2e284cd5c9cc04ba72596412bc93811aeeac3c5c59754df63",
+      "bytes": 498467
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4/Textures/T_Shared_Soot2m_ORM.uasset",
+      "sha256": "f9f39f0c8563a13470903e174f98a9840d0bdd579cdec92e5981b89c57c62bcb",
+      "bytes": 196191
+    },
+    {
+      "relative_path": "Content/Dink/Refinements/FireplaceFiredClayV4Assembly/Meshes/SM_Fireplace_Stonebrook_FiredClayV4.uasset",
+      "sha256": "441efa7ea859185f48336a26aed8a84abe19add81874fa296010b909632dbdc0",
+      "bytes": 3943380
+    }
+  ],
+  "actual_current_static_mesh_material_slots": "requires fresh editor readback after coordinated build lease; not inferred from names",
+  "old_AB_Data_reuse_permitted": false,
+  "source_role_inventory": "ROLE_BINDINGS_AND_FRAME.json"
+}

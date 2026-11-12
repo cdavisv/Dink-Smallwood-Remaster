@@ -100,7 +100,7 @@
 					"event":
 					{
 						"type": "Warning",
-						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"message": "LogUnixPlatformFile: open('<HOME>/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
 						"context": "log",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -112,7 +112,7 @@
 					"event":
 					{
 						"type": "Warning",
-						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"message": "LogUnixPlatformFile: open('<HOME>/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
 						"context": "log",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -479,7 +479,7 @@
 					"event":
 					{
 						"type": "Warning",
-						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"message": "LogUnixPlatformFile: open('<HOME>/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
 						"context": "log",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -491,7 +491,7 @@
 					"event":
 					{
 						"type": "Warning",
-						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"message": "LogUnixPlatformFile: open('<HOME>/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
 						"context": "log",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -1045,7 +1045,7 @@
 					"event":
 					{
 						"type": "Warning",
-						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"message": "LogUnixPlatformFile: open('<HOME>/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
 						"context": "log",
 						"artifact": "00000000000000000000000000000000"
 					},
@@ -1057,7 +1057,7 @@
 					"event":
 					{
 						"type": "Warning",
-						"message": "LogUnixPlatformFile: open('/home/artist/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
+						"message": "LogUnixPlatformFile: open('<HOME>/.config/Epic/UnrealEngine/Editor/FilterBar.json', Flags=0x00080041) failed: errno=30 (Read-only file system)",
 						"context": "log",
 						"artifact": "00000000000000000000000000000000"
 					},

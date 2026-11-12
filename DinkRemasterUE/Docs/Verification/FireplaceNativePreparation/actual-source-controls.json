@@ -1,0 +1,38 @@
+{
+  "source": "V4",
+  "native_run": false,
+  "rows": [
+    {
+      "name": "SM_Chimney_Stonebrook_V8",
+      "triangles": 1486,
+      "hulls": 92,
+      "self_geometry_ambiguous_triangles": 0,
+      "Color0_representable": true,
+      "UVMap_equals_UV0": true
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD0",
+      "triangles": 57296,
+      "hulls": 16,
+      "self_geometry_ambiguous_triangles": 0,
+      "Color0_representable": true,
+      "UVMap_equals_UV0": true
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD1",
+      "triangles": 37908,
+      "hulls": 0,
+      "self_geometry_ambiguous_triangles": 0,
+      "Color0_representable": true,
+      "UVMap_equals_UV0": true
+    },
+    {
+      "name": "SM_Fireplace_Stonebrook_V3Contact_LOD2",
+      "triangles": 19998,
+      "hulls": 0,
+      "self_geometry_ambiguous_triangles": 0,
+      "Color0_representable": true,
+      "UVMap_equals_UV0": true
+    }
+  ]
+}

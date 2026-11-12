@@ -1,0 +1,14 @@
+import bpy,json,hashlib,ast,os
+from pathlib import Path
+D=Path(__file__).resolve().parent
+# Execute only the pure graph-inspection function, not the authoring program.
+tree=ast.parse((D/'build_successor.py').read_text());fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef)and n.name=='graph');exec(compile(ast.Module(body=[fn],type_ignores=[]),'<graph inspector>','exec'))
+bpy.ops.wm.open_mainfile(filepath=str(D/'Fireplace_SharedContractV2.blend'));contract=json.load(open(D/'SHARED_CONTRACT.json'));checks={name:json.loads(json.dumps(graph(bpy.data.materials[name])))==expected for name,expected in contract['graphs'].items()};assert all(checks.values())
+prior=D.parent/'Fireplace_Shared2mCandidate.blend';targets={}
+for o in bpy.data.objects:
+ if o.type!='MESH'or not o.name.startswith(('SM_Fireplace','SM_Chimney')):continue
+ m=o.data;targets[o.name]=dict(uv0=[tuple(q.uv)for q in m.uv_layers['UV0'].data],seed=[tuple(c.color)for c in m.color_attributes['SharedSurfaceData'].data]);assert targets[o.name]['uv0']==[tuple(q.uv)for q in m.uv_layers['UVMap'].data]
+bpy.ops.wm.open_mainfile(filepath=str(prior))
+for name,r in targets.items():assert r['uv0']==[tuple(q.uv)for q in bpy.data.objects[name].data.uv_layers.active.data]
+seal=json.load(open(D.parent/'SHA256SUMS.json'));frozen={k:hashlib.sha256((D.parent/k).read_bytes()).hexdigest()==v for k,v in seal.items()};assert all(frozen.values())
+json.dump(dict(status='PASS',donor_graphs_exact_after_reopen=checks,UV0_original_coordinates_exact=list(targets),UVMap_alias_exact=True,original_frozen_payloads_unchanged=len(frozen)),open(D/'CONTRACT_REOPEN.json','w'),indent=2);print('CONTRACT_REOPEN_PASS',flush=True);os._exit(0)

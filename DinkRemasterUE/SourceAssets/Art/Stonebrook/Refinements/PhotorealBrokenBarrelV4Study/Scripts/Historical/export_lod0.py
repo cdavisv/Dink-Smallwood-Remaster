@@ -1,8 +1,8 @@
 import bpy,bmesh,numpy as np,json,hashlib,sys,os,traceback
 from pathlib import Path
 Q=Path(__file__).resolve().parent
-SRC=Path('/home/artist/Work/DinkQA/PhotorealBrokenBarrelAsymmetricV4Variant/PhotorealBrokenBarrelV4_AsymmetricComposition.blend')
-PIN='d91d35d37225aeec36a5795197dcc5ec1b425b7bb2cfb7c6c2e1fe00650bee8c'
+SRC=Path('<HOME>/Work/DinkQA/PhotorealBrokenBarrelAsymmetricV4Variant/PhotorealBrokenBarrelV4_AsymmetricComposition.blend')
+PIN='ee159f2d54a0431e6d8fa67541df5b3a370b85ccf4e42e3ea80bdacfe4c0faa5'
 MATS=['MI_Shared_OakLonggrain2m','MI_Shared_OakEndgrain2m','MI_Stonebrook_WroughtIron']
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def angle(a,b):

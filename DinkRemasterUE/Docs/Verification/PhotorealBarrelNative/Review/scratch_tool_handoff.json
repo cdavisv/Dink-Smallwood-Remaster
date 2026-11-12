@@ -42,10 +42,10 @@
     "locator_contract": "Exact mesh-count/Barrel1+Barrel2 identities, not fragile array indices; semantic reverse verifies every non-mesh value remains unchanged."
   },
   "source_plan": {
-    "author_bundle": "/home/artist/Work/DinkQA/PhotorealSessions/Barrel",
-    "author_handoff_sha256": "4c610cd46469502419a7a832367704548635f24fa24260d1ea5f6829fa77e646",
-    "publication_bundle": "/home/artist/Work/DinkPhotorealBarrelSources/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
-    "publication_handoff_sha256": "fa0805fa7fa5064cccc924e4b28c32408d69e6797d7e8dc3d5cb88d126badc57",
+    "author_bundle": "<HOME>/Work/DinkQA/PhotorealSessions/Barrel",
+    "author_handoff_sha256": "8ae92b96ff505658bc7d809ff42fbd4cb12c60378b4673255ca1280699679219",
+    "publication_bundle": "<HOME>/Work/DinkPhotorealBarrelSources/DinkRemasterUE/SourceAssets/Art/Stonebrook/Refinements/PhotorealBarrelV1",
+    "publication_handoff_sha256": "058c846bd2c0883266d3fa709b6012757012a4223ed19c99997b8a7743c8168c",
     "asset_plan_identical": true,
     "required_packages": [
       "Content/Dink/Materials/Stonebrook/PhotorealBarrelV1/MI_Barrel_Oak_01_PhotoBaked.uasset",

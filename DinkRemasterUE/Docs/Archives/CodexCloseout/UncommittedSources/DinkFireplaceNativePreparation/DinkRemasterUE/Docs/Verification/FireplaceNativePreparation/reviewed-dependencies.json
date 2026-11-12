@@ -1,0 +1,63 @@
+{
+  "status": "EXACT_REVIEWED_SOURCE_COPY_NO_MERGE",
+  "base": "fcb5d0b",
+  "source": "233c75b includes eec0124 CPU/compiling guards and RAW color fix",
+  "files": [
+    {
+      "file": "Plugins/DinkImport/Source/DinkImport/Private/DinkStaticMeshGeometryInspection.cpp",
+      "reviewed_commit": "233c75b",
+      "sha256": "e2a9e6abb7b3661f8ffbddde16fbe1805afe4cc4caccd1700f4681df302e5614",
+      "byte_exact": true
+    },
+    {
+      "file": "Plugins/DinkImport/Source/DinkImport/Public/DinkMaterialArtLibrary.h",
+      "reviewed_commit": "233c75b",
+      "sha256": "a19f2c37c0d5a23409bd2a099cfd029ad8fdfca8b827c7fbcfc64c51e5fdad1b",
+      "byte_exact": true
+    },
+    {
+      "file": "Scripts/RoofNative/house439_contract.py",
+      "reviewed_commit": "233c75b",
+      "sha256": "a63f65ae58d2db23a1928cb1ad5c2ea94bfe35e7009b6d81c63d83b0b3cf77f1",
+      "byte_exact": true
+    },
+    {
+      "file": "Scripts/RoofNative/house439_material_readback.py",
+      "reviewed_commit": "233c75b",
+      "sha256": "1e5f0b6f80f3448edaf36cab7f5e4782404fe84967a5656c4eb42024daa3e41f",
+      "byte_exact": true
+    },
+    {
+      "file": "Scripts/RoofNative/house439_mesh_readback.py",
+      "reviewed_commit": "233c75b",
+      "sha256": "70444a2518278af8071313e393889646fbf994048278df6191e5bb6f8557881f",
+      "byte_exact": true
+    },
+    {
+      "file": "Scripts/RoofNative/house439_native.py",
+      "reviewed_commit": "233c75b",
+      "sha256": "13aeefbcfe1fe14839d217d49f755b096005e6058c41257858cf65d175561b09",
+      "byte_exact": true
+    },
+    {
+      "file": "Scripts/tests/test_house439_material_readback.py",
+      "reviewed_commit": "233c75b",
+      "sha256": "11b41639720c3bcb3c43e034d91a9a9ad247ed921f8f4e26bbdf3832460521b4",
+      "byte_exact": true
+    },
+    {
+      "file": "Scripts/tests/test_house439_mesh_readback.py",
+      "reviewed_commit": "233c75b",
+      "sha256": "6dab3de356ab2e4234d4ce4699cc39dd19b0c3cd3a346153d118b81a955ff20b",
+      "byte_exact": true
+    },
+    {
+      "file": "Scripts/tests/test_house439_metadata_order.py",
+      "reviewed_commit": "233c75b",
+      "sha256": "92c30d92e840582c4e26ffb6f9b79b6be8b607deb60c503c3686250e2d39a87e",
+      "byte_exact": true
+    }
+  ],
+  "source_art_and_ledger_untouched": true,
+  "compiled_or_native_run": false
+}

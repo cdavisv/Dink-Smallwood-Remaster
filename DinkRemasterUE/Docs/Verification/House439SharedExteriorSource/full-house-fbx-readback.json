@@ -1,0 +1,78 @@
+{
+  "scope": "Actual disposable one-mesh full-house FBX plus6UCX export/import and rawColor0 arrays. Not native Unreal shader/material/collision/art acceptance.",
+  "triangles_before_after": [
+    194192,
+    194192
+  ],
+  "max_position_error_m": 0.0,
+  "UV_errors": {
+    "UV0": 0.0,
+    "UV1_SharedData": 0.0
+  },
+  "linear_RGBA_import_error": 0.0,
+  "normal_difference_degrees": [
+    0.0,
+    0.0027749674099368953,
+    0.03508511812212596
+  ],
+  "Mikk_difference_degrees": [
+    0.0,
+    0.002142193450246273,
+    0.028552323580591097
+  ],
+  "zeroT_counts": [
+    0,
+    0
+  ],
+  "bitangent_sign_changes": 0,
+  "material_roles_exact": true,
+  "rawColor0": [
+    {
+      "geometry": "SM_Cottage_Stonebrook_01_Mesh.002",
+      "layer0": "SharedSurfaceData",
+      "corners": 582576,
+      "RGBA_error": 0.0
+    }
+  ],
+  "collision_hulls": [
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_01",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_02",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_03",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_04",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_05",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    },
+    {
+      "name": "UCX_SM_Cottage_Stonebrook_01_06",
+      "positions_shape_exact": true,
+      "max_position_error_m": 0.0,
+      "max_TRS_error": 0.0
+    }
+  ],
+  "source_sha256_unchanged": "140622758031f459fc2b00f0886dd2e141ef6ab9d23dc85df67368bad283d089",
+  "fbx_sha256": "5093359851fe2be8b8bc49b808a3989c76cda92a7fe8e11e023f4dfa699186d7",
+  "pass": true
+}

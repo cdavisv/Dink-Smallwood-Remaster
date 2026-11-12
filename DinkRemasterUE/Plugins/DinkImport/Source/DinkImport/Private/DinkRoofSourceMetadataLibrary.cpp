@@ -65,6 +65,27 @@ bool UDinkRoofSourceMetadataLibrary::SupportsSharedRoofSourceFilenames()
  return true; // Read-only capability check, so old DLLs refuse before any import.
 }
 
+bool UDinkRoofSourceMetadataLibrary::SupportsInteriorGableRecessSourceFilenames()
+{
+ return true; // A missing/old module must refuse before any candidate import.
+}
+
+bool UDinkRoofSourceMetadataLibrary::SetInteriorGableRecessSourceFilenamesRelative(UObject* Asset,const TArray<FString>& ExpectedAbsoluteFiles)
+{
+ UStaticMesh* Mesh=Cast<UStaticMesh>(Asset);if (!Mesh||Mesh->IsTemplate()) return false;
+ UAssetImportData* Data=Mesh->GetAssetImportData();
+ if (!Data||Data->GetOuter()!=Mesh||Data->IsTemplate()||Data->GetSourceFileCount()!=1||Mesh->GetNumSourceModels()!=1||ExpectedAbsoluteFiles.Num()!=1) return false;
+ static const TSet<FString> Gables={TEXT("SM_IndoorRoof_Gable_EN_01"),TEXT("SM_IndoorRoof_Gable_ES_01"),TEXT("SM_IndoorRoof_Gable_WN_01"),TEXT("SM_IndoorRoof_Gable_WS_01")};
+ const FString Name=Mesh->GetName();const FString Package=Mesh->GetOutermost()->GetName();
+ if (!Gables.Contains(Name)||Package!=TEXT("/Game/Dink/Refinements/InteriorGableRecessV1/Meshes/")+Name||FPackageName::DoesPackageExist(Package)) return false;
+ const FString Canonical=Full(FPaths::ProjectDir()/TEXT("SourceAssets/Art/Stonebrook/Refinements/InteriorGableRecessV1/FBX")/(Name+TEXT(".fbx")));
+ const FString& File=ExpectedAbsoluteFiles[0];
+ if (FPaths::IsRelative(File)||Full(File)!=File||File!=Canonical||!FPaths::FileExists(File)) return false;
+ const FString Stored=UAssetImportData::SanitizeImportFilename(File,Mesh->GetOutermost());
+ if (Stored.IsEmpty()||!FPaths::IsRelative(Stored)||Full(UAssetImportData::ResolveImportFilename(Stored,Mesh->GetOutermost()))!=File) return false;
+ return ApplyFilenameTransaction(Mesh,ExpectedAbsoluteFiles);
+}
+
 bool UDinkRoofSourceMetadataLibrary::SetRoofSourceFilenamesRelative(UObject* Asset,const TArray<FString>& ExpectedAbsoluteFiles)
 {
  UAssetImportData* Data=ImportData(Asset);if (!Data||Data->GetSourceFileCount()!=1) return false;
@@ -118,4 +139,120 @@ bool UDinkRoofSourceMetadataLibrary::ApplyFilenameTransaction(UObject* Asset,con
  Asset->Modify();Data->Modify();Data->UpdateFilenameOnly(ExpectedAbsoluteFiles[0],0);
  if (Mesh) for (int32 Index=0;Index<Count;++Index) Mesh->GetSourceModel(Index).SourceImportFilename=Relative[Index];
  Asset->MarkPackageDirty();return true;
+}
+
+bool UDinkRoofSourceMetadataLibrary::SupportsHouse439SharedSourceFilenames()
+{
+ return true; // Capability only; old editor modules refuse before imports.
+}
+
+bool UDinkRoofSourceMetadataLibrary::SetHouse439SourceFilenamesRelative(UObject* Asset,const TArray<FString>& ExpectedAbsoluteFiles)
+{
+ UAssetImportData* Data=ImportData(Asset);
+ if (!Data||Data->GetSourceFileCount()!=1||ExpectedAbsoluteFiles.Num()!=1) return false;
+ const UStaticMesh* Mesh=Cast<UStaticMesh>(Asset);
+ const UTexture2D* Texture=Cast<UTexture2D>(Asset);
+ if ((!Mesh&&!Texture)||(Mesh&&Mesh->GetNumSourceModels()!=1)) return false;
+ const FString Name=Asset->GetName();
+ const FString Namespace=TEXT("/Game/Dink/Refinements/House439SharedExteriorV1/");
+ const FString Package=Asset->GetOutermost()->GetName();
+ if (Package!=Namespace+(Mesh?TEXT("Meshes/"):TEXT("Textures/"))+Name||FPackageName::DoesPackageExist(Package)) return false;
+ static const TMap<FString,FString> Textures={
+  {TEXT("T_Shared_FieldstoneSeed2m_Stone_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png")},
+  {TEXT("T_Shared_FieldstoneSeed2m_Stone_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png")},
+  {TEXT("T_Shared_FieldstoneSeed2m_Stone_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png")},
+  {TEXT("T_Shared_FieldstoneWall2m_Wall_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_BC.png")},
+  {TEXT("T_Shared_FieldstoneWall2m_Wall_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_N_GL.png")},
+  {TEXT("T_Shared_FieldstoneWall2m_Wall_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneWall2m_Wall_ORM.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Longgrain_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_BC.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Longgrain_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_N_GL.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Longgrain_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Longgrain_ORM.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Endgrain_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_BC.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Endgrain_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_N_GL.png")},
+  {TEXT("T_Shared_WeatheredTimber2m_Endgrain_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_WeatheredTimber2m_Endgrain_ORM.png")},
+  {TEXT("T_Shared_IronLead2m_BlackenedIron_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC.png")},
+  {TEXT("T_Shared_IronLead2m_BlackenedIron_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.png")},
+  {TEXT("T_Shared_IronLead2m_BlackenedIron_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.png")},
+  {TEXT("T_Shared_IronLead2m_DullLead_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_BC.png")},
+  {TEXT("T_Shared_IronLead2m_DullLead_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_N_GL.png")},
+  {TEXT("T_Shared_IronLead2m_DullLead_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_ORM.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Lime_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_BC.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Lime_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_N_GL.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Lime_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Lime_ORM.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Soot_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_BC.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Soot_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_N_GL.png")},
+  {TEXT("T_Shared_LimeMortarSoot2m_Soot_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_LimeMortarSoot2m_Soot_ORM.png")},
+  {TEXT("T_Shared_DressedReed2m_Reed_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_BC.png")},
+  {TEXT("T_Shared_DressedReed2m_Reed_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_N_GL.png")},
+  {TEXT("T_Shared_DressedReed2m_Reed_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_DressedReed2m_Reed_ORM.png")},
+  {TEXT("T_Shared_ThinWavyGlass2m_BC"),TEXT("SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_BC.png")},
+  {TEXT("T_Shared_ThinWavyGlass2m_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_N_GL.png")},
+  {TEXT("T_Shared_ThinWavyGlass2m_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ThinWavyGlass2mV1/Textures/T_Shared_ThinWavyGlass2m_ORM.png")},
+ };
+ FString RelativeSource;
+ if (Mesh)
+ {
+  if (Name!=TEXT("SM_Cottage_Stonebrook_01")) return false;
+  RelativeSource=TEXT("SourceAssets/Art/Stonebrook/Refinements/House439SharedExteriorV1/FBX/SM_Cottage_Stonebrook_01.fbx");
+ }
+ else
+ {
+  const FString* Source=Textures.Find(Name);if (!Source) return false;
+  RelativeSource=*Source;
+ }
+ const FString Expected=Full(FPaths::ProjectDir()/RelativeSource);
+ if (ExpectedAbsoluteFiles[0]!=Expected||!FPaths::FileExists(Expected)) return false;
+ return ApplyFilenameTransaction(Asset,ExpectedAbsoluteFiles);
+}
+
+bool UDinkRoofSourceMetadataLibrary::SupportsFireplaceFiredClayV4SourceFilenames()
+{
+ return true; // Old DLLs must refuse the trial before any import.
+}
+
+bool UDinkRoofSourceMetadataLibrary::SetFireplaceFiredClayV4SourceFilenamesRelative(UObject* Asset,const TArray<FString>& ExpectedAbsoluteFiles)
+{
+ UAssetImportData* Data=ImportData(Asset);
+ if (!Data||Data->GetSourceFileCount()!=1||ExpectedAbsoluteFiles.Num()!=1) return false;
+ const UStaticMesh* Mesh=Cast<UStaticMesh>(Asset);const UTexture2D* Texture=Cast<UTexture2D>(Asset);
+ if ((!Mesh&&!Texture)||(Mesh&&Mesh->GetNumSourceModels()!=1)) return false;
+ const FString Name=Asset->GetName(),Package=Asset->GetOutermost()->GetName();
+ const FString Namespace=TEXT("/Game/Dink/Refinements/FireplaceFiredClayV4/");
+ if (Package!=Namespace+(Mesh?TEXT("Meshes/"):TEXT("Textures/"))+Name||FPackageName::DoesPackageExist(Package)) return false;
+ static const TMap<FString,FString> MeshFiles={
+  {TEXT("SM_Chimney_Stonebrook_V8"),TEXT("SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/FBX/SM_Chimney_Stonebrook_V8.fbx")},
+  {TEXT("SM_Fireplace_Stonebrook_V3Contact_LOD0"),TEXT("SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD0.fbx")},
+  {TEXT("SM_Fireplace_Stonebrook_V3Contact_LOD1"),TEXT("SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD1.fbx")},
+  {TEXT("SM_Fireplace_Stonebrook_V3Contact_LOD2"),TEXT("SourceAssets/Art/Stonebrook/Refinements/FireplaceFiredClayV4/FBX/SM_Fireplace_Stonebrook_V3Contact_LOD2.fbx")},
+ };
+ static const TMap<FString,FString> TextureFiles={
+  {TEXT("T_Shared_FiredClay2m_BC"),TEXT("SourceAssets/Art/SharedMaterials/FiredClay2mV1/Textures/T_Shared_FiredClay2m_BC.png")},
+  {TEXT("T_Shared_FiredClay2m_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/FiredClay2mV1/Textures/T_Shared_FiredClay2m_N_GL.png")},
+  {TEXT("T_Shared_FiredClay2m_ORM"),TEXT("SourceAssets/Art/SharedMaterials/FiredClay2mV1/Textures/T_Shared_FiredClay2m_ORM.png")},
+  {TEXT("T_Shared_FiredClayMasonry2m_BC"),TEXT("SourceAssets/Art/SharedMaterials/FiredClay2mV1/Textures/T_Shared_FiredClayMasonry2m_BC.png")},
+  {TEXT("T_Shared_FiredClayMasonry2m_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/FiredClay2mV1/Textures/T_Shared_FiredClayMasonry2m_N_GL.png")},
+  {TEXT("T_Shared_FiredClayMasonry2m_ORM"),TEXT("SourceAssets/Art/SharedMaterials/FiredClay2mV1/Textures/T_Shared_FiredClayMasonry2m_ORM.png")},
+  {TEXT("T_Shared_LimeMortar2m_BC"),TEXT("SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_BC.png")},
+  {TEXT("T_Shared_LimeMortar2m_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_N_GL.png")},
+  {TEXT("T_Shared_LimeMortar2m_ORM"),TEXT("SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_LimeMortar2m_ORM.png")},
+  {TEXT("T_Shared_Soot2m_BC"),TEXT("SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_Soot2m_BC.png")},
+  {TEXT("T_Shared_Soot2m_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_Soot2m_N_GL.png")},
+  {TEXT("T_Shared_Soot2m_ORM"),TEXT("SourceAssets/Art/SharedMaterials/MineralMasonry2mV1/Textures/T_Shared_Soot2m_ORM.png")},
+  {TEXT("T_Shared_OakLonggrain2m_BC"),TEXT("SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_OakLonggrain2m_BC.png")},
+  {TEXT("T_Shared_OakLonggrain2m_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_OakLonggrain2m_N_GL.png")},
+  {TEXT("T_Shared_OakLonggrain2m_ORM"),TEXT("SourceAssets/Art/SharedMaterials/OakLime2mV1/Textures/T_Shared_OakLonggrain2m_ORM.png")},
+  {TEXT("T_Shared_IronLead2m_BlackenedIron_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_BC.png")},
+  {TEXT("T_Shared_IronLead2m_BlackenedIron_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_N_GL.png")},
+  {TEXT("T_Shared_IronLead2m_BlackenedIron_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_BlackenedIron_ORM.png")},
+  {TEXT("T_Shared_IronLead2m_DullLead_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_BC.png")},
+  {TEXT("T_Shared_IronLead2m_DullLead_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_N_GL.png")},
+  {TEXT("T_Shared_IronLead2m_DullLead_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_IronLead2m_DullLead_ORM.png")},
+  {TEXT("T_Shared_FieldstoneSeed2m_Stone_BC"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_BC.png")},
+  {TEXT("T_Shared_FieldstoneSeed2m_Stone_N_GL"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_N_GL.png")},
+  {TEXT("T_Shared_FieldstoneSeed2m_Stone_ORM"),TEXT("SourceAssets/Art/SharedMaterials/ArchitecturalSurfaces2mV1/Textures/T_Shared_FieldstoneSeed2m_Stone_ORM.png")},
+ };
+ const FString* Relative=(Mesh?MeshFiles:TextureFiles).Find(Name);if (!Relative) return false;
+ const FString Expected=Full(FPaths::ProjectDir()/(*Relative));
+ if (ExpectedAbsoluteFiles[0]!=Expected||!FPaths::FileExists(Expected)) return false;
+ return ApplyFilenameTransaction(Asset,ExpectedAbsoluteFiles);
 }
