@@ -1,0 +1,540 @@
+[
+ {
+  "name": "SM_Wall_Plaster_Straight_A",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Plaster_Straight_A.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.19,
+  "families": [
+   "int_wall_plaster",
+   "int_wall_plaster_side"
+  ],
+  "sprite_family": "31 inside/innwalls/walls/inn-",
+  "sprite_frames": "frames 26-30 (100x100 px) and frame 23 (18x100 px edge-on strip)",
+  "dresses": "straight 2.5 m run: sill beam, top plate, a post at the left end and one mid-span, two plaster bays. The right end has no post: the next module's left post (or an End/CornerPost module) closes it. For int_wall_plaster_side the same module is yawed 90 degrees",
+  "materials": [
+   "MI_Wall_Plaster",
+   "MI_Wall_Timber"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 2072,
+  "lod1_triangles": 932,
+  "dimensions_m": [
+   2.5,
+   0.203,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Plaster_Straight_B",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Plaster_Straight_B.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.19,
+  "families": [
+   "int_wall_plaster"
+  ],
+  "sprite_family": "31 inside/innwalls/walls/inn-",
+  "sprite_frames": "frames 27-30 (texture variants of 26)",
+  "dresses": "the same run with a mid rail at 1.4 m and a diagonal brace in the right-hand lower bay; vertex colour B marks two fallen-plaster patches. Use for about one module in four",
+  "materials": [
+   "MI_Wall_Plaster",
+   "MI_Wall_Timber"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 2524,
+  "lod1_triangles": 1134,
+  "dimensions_m": [
+   2.5,
+   0.201,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Plaster_CornerPost_L",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Plaster_CornerPost_L.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.19,
+  "families": [
+   "int_wall_plaster_corner_l"
+  ],
+  "sprite_family": "31 inside/innwalls/walls/inn-",
+  "sprite_frames": "frame 22 (post at the left)",
+  "dresses": "run with a full-height 18 cm chamfered corner post at its left end, standing 1.5 cm proud of the frame on both faces; the post centre is 9 cm in from the module end",
+  "materials": [
+   "MI_Wall_Plaster",
+   "MI_Wall_Timber"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 2144,
+  "lod1_triangles": 964,
+  "dimensions_m": [
+   2.5,
+   0.203,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Plaster_CornerPost_R",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Plaster_CornerPost_R.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.19,
+  "families": [
+   "int_wall_plaster_corner_r"
+  ],
+  "sprite_family": "31 inside/innwalls/walls/inn-",
+  "sprite_frames": "frame 21 (post at the right)",
+  "dresses": "run with a full-height 18 cm chamfered corner post at its right end, standing 1.5 cm proud of the frame on both faces; the post centre is 9 cm in from the module end",
+  "materials": [
+   "MI_Wall_Plaster",
+   "MI_Wall_Timber"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 2400,
+  "lod1_triangles": 1080,
+  "dimensions_m": [
+   2.5,
+   0.206,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Plaster_End_L",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Plaster_End_L.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.19,
+  "families": [
+   "int_wall_plaster_end_l"
+  ],
+  "sprite_family": "31 inside/innwalls/walls/inn-",
+  "sprite_frames": "frame 20 (free end at the left)",
+  "dresses": "run whose free left end is a full post, so the wall reads solid edge-on",
+  "materials": [
+   "MI_Wall_Plaster",
+   "MI_Wall_Timber"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 2072,
+  "lod1_triangles": 932,
+  "dimensions_m": [
+   2.5,
+   0.206,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Plaster_End_R",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Plaster_End_R.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.19,
+  "families": [
+   "int_wall_plaster_end_r"
+  ],
+  "sprite_family": "31 inside/innwalls/walls/inn-",
+  "sprite_frames": "frame 19 (free end at the right)",
+  "dresses": "run whose free right end is a full post, so the wall reads solid edge-on",
+  "materials": [
+   "MI_Wall_Plaster",
+   "MI_Wall_Timber"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 2328,
+  "lod1_triangles": 1046,
+  "dimensions_m": [
+   2.5,
+   0.205,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Plaster_DoorJamb_L",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Plaster_DoorJamb_L.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 0.45,
+  "height_m": 3.0,
+  "thickness_m": 0.19,
+  "families": [
+   "int_wall_plaster_doorjamb"
+  ],
+  "sprite_family": "31 inside/innwalls/walls/inn-",
+  "sprite_frames": "frame 35 (left of the door)",
+  "dresses": "45 cm stub: a 14 cm door post on the door side, a 10 cm stud on the wall side, a narrow plaster bay between, sill and plate. One class covers both frames: bind frame 35 to _L and frame 36 to _R by sequence row, or use yaw_from_sprite",
+  "materials": [
+   "MI_Wall_Plaster",
+   "MI_Wall_Timber"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 1168,
+  "lod1_triangles": 524,
+  "dimensions_m": [
+   0.45,
+   0.207,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Plaster_DoorJamb_R",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Plaster_DoorJamb_R.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 0.45,
+  "height_m": 3.0,
+  "thickness_m": 0.19,
+  "families": [
+   "int_wall_plaster_doorjamb"
+  ],
+  "sprite_family": "31 inside/innwalls/walls/inn-",
+  "sprite_frames": "frame 36 (right of the door)",
+  "dresses": "45 cm stub: a 14 cm door post on the door side, a 10 cm stud on the wall side, a narrow plaster bay between, sill and plate. One class covers both frames: bind frame 35 to _L and frame 36 to _R by sequence row, or use yaw_from_sprite",
+  "materials": [
+   "MI_Wall_Plaster",
+   "MI_Wall_Timber"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 1168,
+  "lod1_triangles": 524,
+  "dimensions_m": [
+   0.45,
+   0.204,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Plaster_DoorHeader",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Plaster_DoorHeader.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 1.0,
+  "height_m": 3.0,
+  "thickness_m": 0.19,
+  "families": [],
+  "sprite_family": "31 inside/innwalls/walls/inn-",
+  "sprite_frames": "no sprite: the original leaves the door gap open to the top",
+  "dresses": "authored architecture: pegged lintel beam with a plaster bay and the top plate over a 1.0 m x 2.06 m door opening (pivot on the floor line, so the mesh starts 2.06 m up), between a DoorJamb_L and a DoorJamb_R. Not family-bound; place by hand per doorway",
+  "materials": [
+   "MI_Wall_Plaster",
+   "MI_Wall_Timber"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 588,
+  "lod1_triangles": 264,
+  "dimensions_m": [
+   1.0,
+   0.2,
+   0.948
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Dungeon_Straight_A",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Dungeon_Straight_A.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.75,
+  "families": [
+   "dungeon_wall_stone",
+   "dungeon_wall_stone_side"
+  ],
+  "sprite_family": "80 inside/stnwalls/stonw-",
+  "sprite_frames": "frames 1-4, 12, 14, 15 (100x100 px) and frame 5 (30x100 px edge-on strip)",
+  "dresses": "straight 2.5 m run, 0.75 m thick (the 30 px strip), with a coping of individual stones, a plinth course and dressed quoin columns at both ends. For dungeon_wall_stone_side frame 5 the same module is yawed 90 degrees",
+  "materials": [
+   "MI_Wall_DungeonMasonry"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 2020,
+  "lod1_triangles": 908,
+  "dimensions_m": [
+   2.5,
+   0.85,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Dungeon_Straight_B",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Dungeon_Straight_B.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.75,
+  "families": [
+   "dungeon_wall_stone"
+  ],
+  "sprite_family": "80 inside/stnwalls/stonw-",
+  "sprite_frames": "frames 2-4 (texture variants)",
+  "dresses": "same run with different coping, plinth and quoin stones, damp and moss risen to about 1.5 m; alternate with _A",
+  "materials": [
+   "MI_Wall_DungeonMasonry"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 2020,
+  "lod1_triangles": 908,
+  "dimensions_m": [
+   2.5,
+   0.852,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Dungeon_Half",
+  "class": "kit_wall",
+  "fbx": "SM_Wall_Dungeon_Half.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 1.25,
+  "height_m": 3.0,
+  "thickness_m": 0.75,
+  "families": [
+   "dungeon_wall_stone_side"
+  ],
+  "sprite_family": "80 inside/stnwalls/stonw-",
+  "sprite_frames": "frame 6 (30x50 px half strip)",
+  "dresses": "1.25 m run; yawed 90 degrees for the half-length edge-on strip",
+  "materials": [
+   "MI_Wall_DungeonMasonry"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 1380,
+  "lod1_triangles": 620,
+  "dimensions_m": [
+   1.25,
+   0.838,
+   3.0
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Dungeon_Curve",
+  "class": "kit_piece",
+  "fbx": "SM_Wall_Dungeon_Curve.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 3.927,
+  "height_m": 3.0,
+  "thickness_m": 0.75,
+  "families": [
+   "dungeon_wall_stone_curve"
+  ],
+  "sprite_family": "80 inside/stnwalls/stonw-",
+  "sprite_frames": "frames 7-10 (100x150 px, four orientations)",
+  "dresses": "quarter-circle wall, centre-line radius 2.5 m: starts at the pivot heading +X, ends at (2.5, 2.5) heading +Y. One mesh for all four frames by yaw (7: 0, 8: 90, 9: 180, 10: 270 degrees is my reading of the sprites; verify per screen)",
+  "materials": [
+   "MI_Wall_DungeonMasonry"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 2816,
+  "lod1_triangles": 1266,
+  "dimensions_m": [
+   2.906,
+   2.914,
+   3.068
+  ],
+  "open_edges": 0,
+  "collision_hulls": 4
+ },
+ {
+  "name": "SM_Wall_Dungeon_Arch",
+  "class": "kit_piece",
+  "fbx": "SM_Wall_Dungeon_Arch.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.5,
+  "thickness_m": 0.75,
+  "families": [
+   "dungeon_wall_stone_arch"
+  ],
+  "sprite_family": "80 inside/stnwalls/stonw-",
+  "sprite_frames": "frame 16 (100x129 px)",
+  "dresses": "free-standing arch as drawn: two 0.5 m piers on plinths and a ring of eleven voussoirs with a proud keystone; clear opening 1.5 m wide, 2.95 m at the crown; 3.5 m overall. Walk-through: collision is the two piers and the crown only",
+  "materials": [
+   "MI_Wall_DungeonMasonry"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 1388,
+  "lod1_triangles": 624,
+  "dimensions_m": [
+   2.5,
+   0.845,
+   3.5
+  ],
+  "open_edges": 0,
+  "collision_hulls": 3
+ },
+ {
+  "name": "SM_Wall_Dungeon_Ivy",
+  "class": "kit_piece",
+  "fbx": "SM_Wall_Dungeon_Ivy.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.75,
+  "families": [
+   "dungeon_wall_stone_ivy"
+  ],
+  "sprite_family": "80 inside/stnwalls/stonw-",
+  "sprite_frames": "frames 18, 19 (100x118 px)",
+  "dresses": "straight run with ivy on the front (-Y) face: woody stems from the base, leaf masses as alpha cards from a scanned ivy leaf atlas, growth over the coping and hanging tips. Second material MI_Wall_Ivy (WallKits/Textures/T_Wall_Ivy_BC/N/ORM, alpha-tested, two-sided)",
+  "materials": [
+   "MI_Wall_DungeonMasonry",
+   "MI_Wall_Ivy"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 7360,
+  "lod1_triangles": 3312,
+  "dimensions_m": [
+   2.514,
+   0.953,
+   3.227
+  ],
+  "open_edges": 5529,
+  "collision_hulls": 1
+ },
+ {
+  "name": "SM_Wall_Dungeon_Breach",
+  "class": "kit_piece",
+  "fbx": "SM_Wall_Dungeon_Breach.fbx",
+  "pivot": "grid_wall (left end x=0, thickness centred on y=0, floor z=0, runs +X, front faces -Y)",
+  "module_length_m": 2.5,
+  "height_m": 3.0,
+  "thickness_m": 0.75,
+  "families": [
+   "dungeon_wall_stone_cracked"
+  ],
+  "sprite_family": "80 inside/stnwalls/stonw-",
+  "sprite_frames": "frame 20 (100x103 px)",
+  "dresses": "run with a collapse stepped down the courses to 1.5 m below the top, the rubble core exposed between the faces, loose stones on the steps and a heap of fallen blocks over a mound on both sides (up to 1.3 m out from each face: outside the wall footprint). The class notes call this the likely visual for breached walls, so keep its script binding",
+  "materials": [
+   "MI_Wall_DungeonMasonry"
+  ],
+  "uv_channels": {
+   "0": "tiling, world-planar at the set tile size (2.5 m plaster and masonry, 3 m timber) with a per-module offset; timbers map inside single boards",
+   "1": "UVGrime: U = distance along the wall / 2.5 m, V = height / module height (0 floor, 1 top), for the WallGrime mask"
+  },
+  "vertex_colour": "Grime (linear). Plaster and masonry verts: R damp and hand-height grime, G soot at the top, B fallen-plaster blend. Timber verts: R dark handling and sill, G soot, B limewash (pale plate, posts and rails)",
+  "source_blend": "WallKits.blend",
+  "lod0_triangles": 3860,
+  "lod1_triangles": 1736,
+  "dimensions_m": [
+   2.513,
+   2.816,
+   3.055
+  ],
+  "open_edges": 0,
+  "collision_hulls": 3
+ }
+]

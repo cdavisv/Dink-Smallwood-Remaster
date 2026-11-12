@@ -1,0 +1,49 @@
+{
+ "name": "WroughtIron",
+ "files": {
+  "BC": "WroughtIron/T_Terrain_WroughtIron_BC.png",
+  "N": "WroughtIron/T_Terrain_WroughtIron_N.png",
+  "ORM": "WroughtIron/T_Terrain_WroughtIron_ORM.png",
+  "H": "WroughtIron/T_Terrain_WroughtIron_H.png",
+  "Macro": "WroughtIron/T_Terrain_WroughtIron_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 1.0,
+ "texel_mm_per_px": 0.488,
+ "height_range_m": 0.0059,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.526",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "interim",
+ "method": "forge-black iron: procedural hammered relief and scale, rust patches placed by the rust mask of Poly Haven rusty_metal_02",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "rusty_metal_02",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 45.9,
+  "max": 71.6
+ },
+ "mean_srgb": [
+  48,
+  45,
+  44
+ ],
+ "roughness_mean": 0.447,
+ "known_weaknesses": "dielectric black oxide (metallic 0); no pitting"
+}
