@@ -1,0 +1,1345 @@
+{
+ "schema": "dink-photoreal-creatures/1",
+ "date": "2026-11-12",
+ "stream": "PhotorealPass/Creatures",
+ "contact_sheet": "contact_sheet.png",
+ "tools": "Tools/ (crlib.py shared; one script per creature; stages look/final/review/export)",
+ "inventory": {
+  "generated_from": [
+   "Saved/Import/art_coverage.csv (Scripts/art_coverage.py)",
+   "Content/Dink/Data/Art/creatures.json",
+   "tools/data/sprite_classes.csv"
+  ],
+  "existing_sources": [
+   {
+    "asset": "SK_Pillbug",
+    "path": "SourceAssets/Art/Creatures/Pillbug",
+    "rig": "43 bones: root, pelvis, tergite_01..07, tail, head, leg_NN_upper/lower_l/r (14 two-bone legs), antenna_01/02_l/r",
+    "clips": [
+     "Pillbug_Idle",
+     "Pillbug_Walk",
+     "Pillbug_Run"
+    ],
+    "fps": 40,
+    "imported": true,
+    "look": "stylised (flat turquoise plates, ochre rims)"
+   },
+   {
+    "asset": "SK_Pig",
+    "path": "SourceAssets/Art/Creatures/Pig",
+    "rig": "26 bones: root, pelvis, spine_01..03, neck_01..02, head, jaw, ear_l/r, upperarm/lowerarm/hand_l/r, thigh/calf/foot_l/r, tail_01..03",
+    "clips": [
+     "Pig_Idle",
+     "Pig_Walk",
+     "Pig_Run",
+     "Pig_Feed"
+    ],
+    "fps": 30,
+    "imported": true,
+    "look": "stylised (smooth pale toy pig)"
+   },
+   {
+    "asset": "SK_Duck (+ SK_Duck_Headless, SM_Duck_Head)",
+    "path": "SourceAssets/Art/Creatures/Duck (untracked candidate)",
+    "rig": "23 bones: root, pelvis, spine_01..02, neck_01..03, head, jaw, wing/wingtip_l/r, tail_01..02, thigh/calf/foot/toes_l/r",
+    "clips": [
+     "Duck_Idle",
+     "Duck_Walk",
+     "Duck_Run",
+     "Duck_Peck",
+     "Duck_Quack",
+     "Duck_Hit",
+     "Duck_Death",
+     "Duck_HeadlessRun",
+     "Duck_HeadlessDeath"
+    ],
+    "fps": 30,
+    "imported": false,
+    "look": "stylised candidate, never imported"
+   }
+  ],
+  "runtime_binding": "Content/Dink/Data/Art/creatures.json (schema dink-creatures/1): `assets` (mesh, skeleton, animation_reports, body_boxes, locomotion blendspace) and `placements` (origin -> mesh). Written by Scripts/import_creature_art.sh from each creature source manifest; UDinkCreatureSubsystem attaches the mesh to the existing actor. See Scripts/ART_PIPELINE.md \"Pig pen and own-rig creatures\".",
+  "placements_bound_today": {
+   "SK_Pig": 5,
+   "SK_Pillbug": 6
+  },
+  "placeholder_by_class": [
+   {
+    "class_id": "pillbug",
+    "placeholder": 154,
+    "final": 6,
+    "cut": 6
+   },
+   {
+    "class_id": "duck_head",
+    "placeholder": 91,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "duck",
+    "placeholder": 91,
+    "final": 0,
+    "cut": 1
+   },
+   {
+    "class_id": "slime_blue",
+    "placeholder": 67,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "slime_red",
+    "placeholder": 29,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "slayer",
+    "placeholder": 21,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "bonca_gray",
+    "placeholder": 21,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "dragon",
+    "placeholder": 16,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "stone_giant",
+    "placeholder": 14,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "bonca_brown",
+    "placeholder": 12,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "slime_green",
+    "placeholder": 11,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "bonca_purple",
+    "placeholder": 9,
+    "final": 0,
+    "cut": 1
+   },
+   {
+    "class_id": "fish",
+    "placeholder": 8,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "pig",
+    "placeholder": 8,
+    "final": 5,
+    "cut": 0
+   },
+   {
+    "class_id": "goblin_soldier",
+    "placeholder": 6,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "fish_flopping",
+    "placeholder": 4,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "goblin_hammer",
+    "placeholder": 4,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "pillbug_corpse",
+    "placeholder": 3,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "dragon_corpse",
+    "placeholder": 3,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "class_id": "duck_corpse",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   }
+  ],
+  "placeholder_by_sprite_family": [
+   {
+    "sprite_family": "121 animals/duck/death/dkh1x-",
+    "class_id": "duck_head",
+    "placeholder": 91,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "133 foes/pill/f1-w3-",
+    "class_id": "pillbug",
+    "placeholder": 89,
+    "final": 1,
+    "cut": 0
+   },
+   {
+    "sprite_family": "651 foes/puddle/blue/walk/f06w1-",
+    "class_id": "slime_blue",
+    "placeholder": 67,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "131 foes/pill/f1-w1-",
+    "class_id": "pillbug",
+    "placeholder": 65,
+    "final": 5,
+    "cut": 6
+   },
+   {
+    "sprite_family": "23 animals/duck/dk3w-",
+    "class_id": "duck",
+    "placeholder": 24,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "29 animals/duck/dk9w-",
+    "class_id": "duck",
+    "placeholder": 18,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "693 foes/puddle/red/walk/f06w3-",
+    "class_id": "slime_red",
+    "placeholder": 17,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "24 animals/duck/dk4w-",
+    "class_id": "duck",
+    "placeholder": 14,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "26 animals/duck/dk6w-",
+    "class_id": "duck",
+    "placeholder": 12,
+    "final": 0,
+    "cut": 1
+   },
+   {
+    "sprite_family": "27 animals/duck/dk7w-",
+    "class_id": "duck",
+    "placeholder": 12,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "691 foes/puddle/red/walk/f06w1-",
+    "class_id": "slime_red",
+    "placeholder": 12,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "21 animals/duck/dk1w-",
+    "class_id": "duck",
+    "placeholder": 11,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "671 foes/puddle/green/walk/f06w1-",
+    "class_id": "slime_green",
+    "placeholder": 11,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "202 foes/dragon/f2-w2-",
+    "class_id": "dragon",
+    "placeholder": 8,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "821 foes/stonegnt/walk/f01w1-",
+    "class_id": "stone_giant",
+    "placeholder": 8,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "434 animals/fish/fish1/fish1-",
+    "class_id": "fish",
+    "placeholder": 8,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "632 foes/slayers/attack/f04a2-",
+    "class_id": "slayer",
+    "placeholder": 7,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "641 foes/slayers/walk/f04w1-",
+    "class_id": "slayer",
+    "placeholder": 6,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "601 foes/bonca/gray/walk/f03w1-",
+    "class_id": "bonca_gray",
+    "placeholder": 6,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "613 foes/bonca/purple/walk/f03w3-",
+    "class_id": "bonca_purple",
+    "placeholder": 6,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "41 animals/pig/pg-w1-",
+    "class_id": "pig",
+    "placeholder": 5,
+    "final": 3,
+    "cut": 0
+   },
+   {
+    "sprite_family": "206 foes/dragon/f2-w6-",
+    "class_id": "dragon",
+    "placeholder": 4,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "603 foes/bonca/gray/walk/f03w3-",
+    "class_id": "bonca_gray",
+    "placeholder": 4,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "609 foes/bonca/gray/walk/f03w9-",
+    "class_id": "bonca_gray",
+    "placeholder": 4,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "634 foes/slayers/attack/f04a4-",
+    "class_id": "slayer",
+    "placeholder": 4,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "592 foes/bonca/gray/attack/f03a6-",
+    "class_id": "bonca_gray",
+    "placeholder": 3,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "204 foes/dragon/f2-w4-",
+    "class_id": "dragon",
+    "placeholder": 3,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "607 foes/bonca/gray/walk/f03w7-",
+    "class_id": "bonca_gray",
+    "placeholder": 3,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "823 foes/stonegnt/walk/f01w3-",
+    "class_id": "stone_giant",
+    "placeholder": 3,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "809 foes/goblin/soldier/walk/f01w9-",
+    "class_id": "goblin_soldier",
+    "placeholder": 3,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "439 animals/fish/flop/fishx-",
+    "class_id": "fish_flopping",
+    "placeholder": 3,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "542 foes/bonca/attack/f03a6-",
+    "class_id": "bonca_brown",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "544 foes/bonca/attack/f03a2-",
+    "class_id": "bonca_brown",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "533 foes/bonca/walk/f03w3-",
+    "class_id": "bonca_brown",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "141 foes/pill/f1-x1-",
+    "class_id": "pillbug_corpse",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "212 foes/dragon/f2-x3-",
+    "class_id": "dragon_corpse",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "539 foes/bonca/walk/f03w9-",
+    "class_id": "bonca_brown",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "537 foes/bonca/walk/f03w7-",
+    "class_id": "bonca_brown",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "531 foes/bonca/walk/f03w1-",
+    "class_id": "bonca_brown",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "43 animals/pig/pg-w3-",
+    "class_id": "pig",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "801 foes/goblin/soldier/walk/f01w1-",
+    "class_id": "goblin_soldier",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "763 foes/goblin/hammer/walk/f01w3-",
+    "class_id": "goblin_hammer",
+    "placeholder": 2,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "594 foes/bonca/gray/attack/f03a2-",
+    "class_id": "bonca_gray",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "143 foes/pill/f1-x3-",
+    "class_id": "pillbug_corpse",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "127 animals/duck/death/dkh7x-",
+    "class_id": "duck_corpse",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "643 foes/slayers/walk/f04w3-",
+    "class_id": "slayer",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "649 foes/slayers/walk/f04w9-",
+    "class_id": "slayer",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "647 foes/slayers/walk/f04w7-",
+    "class_id": "slayer",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "216 foes/dragon/f2-x7-",
+    "class_id": "dragon_corpse",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "208 foes/dragon/f2-w8-",
+    "class_id": "dragon",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "816 foes/stonegnt/attack/f01a6-",
+    "class_id": "stone_giant",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "829 foes/stonegnt/walk/f01w9-",
+    "class_id": "stone_giant",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "827 foes/stonegnt/walk/f01w7-",
+    "class_id": "stone_giant",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "49 animals/pig/pg-w9-",
+    "class_id": "pig",
+    "placeholder": 1,
+    "final": 1,
+    "cut": 0
+   },
+   {
+    "sprite_family": "619 foes/bonca/purple/walk/f03w9-",
+    "class_id": "bonca_purple",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "628 foes/bonca/purple/attack/f03a4-",
+    "class_id": "bonca_purple",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "626 foes/bonca/purple/attack/f03a8-",
+    "class_id": "bonca_purple",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "761 foes/goblin/hammer/walk/f01w1-",
+    "class_id": "goblin_hammer",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "769 foes/goblin/hammer/walk/f01w9-",
+    "class_id": "goblin_hammer",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "636 foes/slayers/attack/f04a6-",
+    "class_id": "slayer",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "803 foes/goblin/soldier/walk/f01w3-",
+    "class_id": "goblin_soldier",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "441 animals/fish/flop/flop2-",
+    "class_id": "fish_flopping",
+    "placeholder": 1,
+    "final": 0,
+    "cut": 0
+   },
+   {
+    "sprite_family": "611 foes/bonca/purple/walk/f03w1-",
+    "class_id": "bonca_purple",
+    "placeholder": 0,
+    "final": 0,
+    "cut": 1
+   },
+   {
+    "sprite_family": "47 animals/pig/pg-w7-",
+    "class_id": "pig",
+    "placeholder": 0,
+    "final": 1,
+    "cut": 0
+   }
+  ]
+ },
+ "creatures": {
+  "SK_Duck": {
+   "asset": "SK_Duck",
+   "folder": "Duck",
+   "class": "creature",
+   "supersedes": "SourceAssets/Art/Creatures/Duck (untracked stylised candidate: SK_Duck, SK_Duck_Headless, SM_Duck_Head)",
+   "source_blend": "Duck/SK_Duck.blend (three collections plus the hidden high-poly DuckHigh)",
+   "build_script": "Tools/duck.py, Tools/gen_feather_atlas.py",
+   "dimensions_m": [
+    0.5146675109863281,
+    0.23534412682056427,
+    0.44064226746559143
+   ],
+   "lods": {
+    "SK_Duck": [
+     {
+      "name": "SK_Duck_LOD0",
+      "triangles": 15693
+     },
+     {
+      "name": "SK_Duck_LOD1",
+      "triangles": 7846
+     },
+     {
+      "name": "SK_Duck_LOD2",
+      "triangles": 3923
+     }
+    ],
+    "SK_Duck_Headless": [
+     {
+      "name": "SK_Duck_Headless_LOD0",
+      "triangles": 13729
+     },
+     {
+      "name": "SK_Duck_Headless_LOD1",
+      "triangles": 6864
+     },
+     {
+      "name": "SK_Duck_Headless_LOD2",
+      "triangles": 3432
+     }
+    ],
+    "SM_Duck_Head": [
+     {
+      "name": "SM_Duck_Head_LOD0",
+      "triangles": 3493
+     },
+     {
+      "name": "SM_Duck_Head_LOD1",
+      "triangles": 1745
+     },
+     {
+      "name": "SM_Duck_Head_LOD2",
+      "triangles": 872
+     }
+    ]
+   },
+   "uv": {
+    "uv_area": 0.6553021201319486,
+    "area_3d": 0.3585853986577312,
+    "overlap_area": 8.988287819228225e-06,
+    "overlap_ratio": 1.3716250173917315e-05,
+    "overlapping_tris": 29,
+    "degenerate_tris": 0,
+    "tris_out_of_range": 0,
+    "truncated": false,
+    "tris": 11399
+   },
+   "high_triangles": 221416,
+   "families": [
+    "duck",
+    "21/23/24/26/27/29 animals/duck/dkNw-",
+    "duck_head",
+    "duck_corpse",
+    "121/127 animals/duck/death/dkhNx-"
+   ],
+   "slots": [
+    "MI_Duck_Feather",
+    "MI_Duck_Bill",
+    "MI_Duck_Feet",
+    "MI_Duck_Eye",
+    "MI_Duck_FeatherCards"
+   ],
+   "slot_note": "First four keep the candidate names and share T_Duck_Atlas_*. MI_Duck_FeatherCards (masked, two-sided) uses T_Duck_FeatherCards_* for wing primaries, tail fan and a few flank feathers. Gore variants: SK_Duck_Headless and SM_Duck_Head swap MI_Duck_Feather for MI_Duck_Feather_Bloody (T_Duck_Atlas_Bloody_BC/ORM, same N) and add MI_Duck_Gore (T_Duck_Gore_*, the neck cross-section).",
+   "textures": [
+    {
+     "file": "Textures/T_Duck_Atlas_BC.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "a844c2d5fd0876ce"
+    },
+    {
+     "file": "Textures/T_Duck_Atlas_N.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "40d1259d28d2bd4d"
+    },
+    {
+     "file": "Textures/T_Duck_Atlas_ORM.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "511b17ef479273ec"
+    },
+    {
+     "file": "Textures/T_Duck_Atlas_SSS.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "e08c0fbe0752e6bd"
+    },
+    {
+     "file": "Textures/T_Duck_Atlas_Bloody_BC.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "a9f89e14a113c4e6"
+    },
+    {
+     "file": "Textures/T_Duck_Atlas_Bloody_ORM.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "5cc5c2b4b46f2688"
+    },
+    {
+     "file": "Textures/T_Duck_FeatherCards_BC.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "0d99ab993cad97c5"
+    },
+    {
+     "file": "Textures/T_Duck_FeatherCards_N.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "e7b9910972bd59cf"
+    },
+    {
+     "file": "Textures/T_Duck_FeatherCards_ORM.png",
+     "px": [
+      1024,
+      1024
+     ],
+     "sha256": "13a27ccdb2a6f8f1"
+    },
+    {
+     "file": "Textures/T_Duck_Gore_BC.png",
+     "px": [
+      512,
+      512
+     ],
+     "sha256": "b85bcd191b72f5a7"
+    },
+    {
+     "file": "Textures/T_Duck_Gore_N.png",
+     "px": [
+      512,
+      512
+     ],
+     "sha256": "075c37d8c20ede93"
+    },
+    {
+     "file": "Textures/T_Duck_Gore_ORM.png",
+     "px": [
+      512,
+      512
+     ],
+     "sha256": "9112e6761d83718e"
+    }
+   ],
+   "exports": [
+    "Export/A_Duck_Death.fbx",
+    "Export/A_Duck_HeadlessDeath.fbx",
+    "Export/A_Duck_HeadlessRun.fbx",
+    "Export/A_Duck_Hit.fbx",
+    "Export/A_Duck_Idle.fbx",
+    "Export/A_Duck_Peck.fbx",
+    "Export/A_Duck_Quack.fbx",
+    "Export/A_Duck_Run.fbx",
+    "Export/A_Duck_Walk.fbx",
+    "Export/SK_Duck_Headless_LOD0.fbx",
+    "Export/SK_Duck_Headless_LOD1.fbx",
+    "Export/SK_Duck_Headless_LOD2.fbx",
+    "Export/SK_Duck_LOD0.fbx",
+    "Export/SK_Duck_LOD1.fbx",
+    "Export/SK_Duck_LOD2.fbx",
+    "Export/SM_Duck_Head_LOD0.fbx",
+    "Export/SM_Duck_Head_LOD1.fbx",
+    "Export/SM_Duck_Head_LOD2.fbx"
+   ],
+   "rig_compatibility": "Existing 23-bone armature and all nine actions (Idle, Walk, Run, Peck, Quack, Hit, Death, HeadlessRun, HeadlessDeath, 30 fps) carried over untouched. Body skinned with bone heat with wing, shin, foot and jaw influences stripped from the plumage; bill, legs, feet, eyes rigid; wing shells blend wing -> wingtip. SK_Duck_Headless shares the armature (import against the SK_Duck skeleton). Verified by rendering Walk f4, Peck f18, Quack f8 and HeadlessRun f4.",
+   "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. SM_Duck_Head is a static prop (three LOD FBXs, no UCX hull authored; a simple sphere collision is enough). The earlier candidate was never imported, so this is a first import.",
+   "third_party": [],
+   "review_only_third_party": [
+    "polyhaven/leafy_grass (review ground)"
+   ],
+   "gore": {
+    "assets": [
+     "SK_Duck_Headless",
+     "SM_Duck_Head"
+    ],
+    "note": "Decapitation kept: neck bisected, wound capped with a modelled-in-texture cross-section (vertebra, cord, trachea, oesophagus, vessels, fat, skin) and blood soaking the plumage around the cut and running down the breast (texture-space composite from a baked position map)."
+   },
+   "status": "NOT photoreal and NOT ready to import: an unresolved shading defect leaves black patches on the plumage (see first weakness). Reads as a white duck otherwise at gameplay distance; fails at 1 m.",
+   "review_rounds": 5,
+   "final_renders": [
+    "Review/final_game.png",
+    "Review/final_mid.png",
+    "Review/final_close.png",
+    "Review/final_back.png",
+    "Review/final_walk04.png",
+    "Review/final_peck18.png",
+    "Review/final_quack08.png",
+    "Review/final_headless.png",
+    "Review/final_head.png"
+   ],
+   "known_weaknesses": [
+    "BLOCKING DEFECT, unresolved: black patches on the back between the wings, in a ring under the head and on one side of the breast, in every baked review render (final_mid.png, final_back.png, final_close.png). Ruled out: bake ray misses (a position-map fill changed nothing), collapsed UV faces (none found), cage size (0.007 and 0.012 m give the same patches). Only about 10,400 texels of the 2048 atlas are black, far too few for the area affected, so the cause is probably on the mesh side (zero-length normals or inverted faces on the decimated low body or on the wing/tail cards), not in the textures. Next step: render LOD0 with a plain grey material to separate mesh from texture.",
+    "Plumage is a baked relief of about 2,000 modelled contour feathers plus wing tracts; at 1 m the feathers read as stiff overlapping scales, not soft vanes with barbs.",
+    "Contour-feather cards were built and then removed after review (they looked like stuck-on paper tabs). Only wing primaries and the tail fan are alpha cards, so the body silhouette is a smooth shell. The brief asked for contour feather cards over the base: only partly met.",
+    "Folded wings are lens-shaped shells with baked feather rows: they read as pillows from above, with a blunt trailing end.",
+    "Head plumage is an anisotropic noise bump (reads like yarn at 0.5 m); the head is close to a sphere. The bill is a clean orange spatula: nostrils and nail are modelled, lamellae are not.",
+    "White plumage clips to pure white in full sun under the review tone curve (review exposure was lowered by 0.7 stop); base colour is about 0.66-0.76 linear, check it in engine.",
+    "Feet: webs are flat two-sided sheets, toes are simple tubes with a scale bump.",
+    "Gore: blood on the plumage is a texture-space composite (soft-edged, no clotting or matting); the wound is a flat capped section with a painted cross-section, no protruding bone or trachea geometry.",
+    "Cards reuse atlas cells, so the validator reports UV overlap on LOD0, and the mesh has 5 material slots."
+   ]
+  },
+  "SK_Pig": {
+   "asset": "SK_Pig",
+   "folder": "Pig",
+   "class": "creature_quadruped",
+   "supersedes": "SourceAssets/Art/Creatures/Pig (SK_Pig, stylised)",
+   "source_blend": "Pig/SK_Pig.blend (contains the high-poly bake source PigHigh, hidden)",
+   "build_script": "Tools/pig.py, Tools/gen_bristle_atlas.py",
+   "dimensions_m": [
+    1.7938382625579834,
+    0.766901969909668,
+    0.9998620748519897
+   ],
+   "lods": [
+    {
+     "name": "SK_Pig_LOD0",
+     "triangles": 16228
+    },
+    {
+     "name": "SK_Pig_LOD1",
+     "triangles": 8114
+    },
+    {
+     "name": "SK_Pig_LOD2",
+     "triangles": 4056
+    }
+   ],
+   "uv": {
+    "uv_area": 0.5620884874719975,
+    "area_3d": 4.41619538839013,
+    "overlap_area": 0.0001866036257734858,
+    "overlap_ratio": 0.00033198265029895697,
+    "overlapping_tris": 113,
+    "degenerate_tris": 0,
+    "tris_out_of_range": 0,
+    "truncated": false,
+    "tris": 13200
+   },
+   "high_triangles": 233212,
+   "families": [
+    "pig",
+    "41 animals/pig/pg-w1-",
+    "43 animals/pig/pg-w3-",
+    "47 animals/pig/pg-w7-",
+    "49 animals/pig/pg-w9-"
+   ],
+   "slots": [
+    "MI_Pig_Skin",
+    "MI_Pig_Muzzle",
+    "MI_Pig_HornBristle",
+    "MI_Pig_Eye"
+   ],
+   "slot_note": "Same four slot names as the asset it replaces. MI_Pig_Skin, MI_Pig_Muzzle and MI_Pig_Eye read T_Pig_Atlas_* (hooves and dewclaws now sit in MI_Pig_Skin). MI_Pig_HornBristle now carries ONLY the bristle cards and reads T_Pig_BristleCards_BC (alpha) / _N / _ORM: make it a masked or dithered two-sided material that casts NO dynamic shadow (the review renders switch card shadows off; with shadows on, every card prints a dark tick on the skin). The cards carry custom vertex normals copied from the skin: import normals, do not recompute them.",
+   "textures": [
+    {
+     "file": "Textures/T_Pig_Atlas_BC.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "8cd2fbafc7f547e6"
+    },
+    {
+     "file": "Textures/T_Pig_Atlas_N.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "31923748ac911518"
+    },
+    {
+     "file": "Textures/T_Pig_Atlas_ORM.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "a74dff475a5af8b2"
+    },
+    {
+     "file": "Textures/T_Pig_Atlas_SSS.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "5c93e677f9150f24"
+    },
+    {
+     "file": "Textures/T_Pig_BristleCards_BC.png",
+     "px": [
+      512,
+      512
+     ],
+     "sha256": "9c6183fe96b92652"
+    },
+    {
+     "file": "Textures/T_Pig_BristleCards_N.png",
+     "px": [
+      512,
+      512
+     ],
+     "sha256": "dc52854ad5879de8"
+    },
+    {
+     "file": "Textures/T_Pig_BristleCards_ORM.png",
+     "px": [
+      512,
+      512
+     ],
+     "sha256": "af201f4e95002051"
+    }
+   ],
+   "exports": [
+    "Export/A_Pig_Feed.fbx",
+    "Export/A_Pig_Idle.fbx",
+    "Export/A_Pig_Run.fbx",
+    "Export/A_Pig_Walk.fbx",
+    "Export/SK_Pig_LOD0.fbx",
+    "Export/SK_Pig_LOD1.fbx",
+    "Export/SK_Pig_LOD2.fbx"
+   ],
+   "rig_compatibility": "Existing 26-bone armature and its four actions (Pig_Idle, Pig_Walk, Pig_Run, Pig_Feed, 30 fps) carried over untouched; rest matrices identical; no bone added or renamed. Mesh rebuilt on 12 Nov 2026 (v2: deep barrel, sagging belly, stout legs, wedge head) and skinned with bone heat (max 4 influences); hooves, eyes rigid; ears and tail weighted to their own bones; bristle cards take the weights of the skin under them. Verified by rendering Walk f6, Run f4 and Feed f7.",
+   "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. Body is about 0.77 m wide, 1.79 m long, 1.0 m to the ear tips: re-measure body_boxes on import, they feed the fitted trunk/head boxes. Validator: UV_OVERLAP is reported because the bristle cards (own texture, own slot) share UV0 space with the atlas; the atlas islands themselves do not overlap (0.03 %).",
+   "third_party": [
+    "polyhaven/brown_mud_02 (diffuse: wet mud layer, box-projected and tinted inside the baked atlas)",
+    "polyhaven/mud_cracked_dry_riverbed_002 (diffuse: dry caked mud layer, same use)"
+   ],
+   "review_only_third_party": [
+    "polyhaven/dirt (review ground)"
+   ],
+   "status": "NOT photoreal yet, but a pig: proportions rebuilt and surfaced; my last look still faults it at 1 m and in the run pose. Acceptable at the game camera in idle, walk and feed.",
+   "review_rounds": 8,
+   "final_renders": [
+    "Review/final_game.png",
+    "Review/final_close.png",
+    "Review/final_side.png",
+    "Review/final_back.png",
+    "Review/final_walk06.png",
+    "Review/final_run04.png",
+    "Review/final_feed07.png"
+   ],
+   "known_weaknesses": [
+    "Run f4 (gathered phase of the existing clip): the hind legs fold forward under the belly and the hindquarters balloon into a bag; the deep belly and ham skin follow the thigh bones. Not anatomical. Needs either hand-painted ham/flank weights or a retimed run clip; neither done.",
+    "Ears: large and cupped now, with veins and subsurface, but in the 1 m shot they glow saturated orange when backlit and the root still sits on a mound rather than growing out of the skull. From the side they read narrow.",
+    "Eyes: small brown glossy balls in a modelled socket with lid rims; no visible sclera, tear duct or lid thickness. The lash cards exist but are too fine to read.",
+    "Bristles: about 1,500 alpha cards with skin normals and no shadow. They give a bristly topline and a coarse coat at 1 m; at the game camera they add only a faint sheen, and some cards on the neck and face cross at odd angles. If the engine material casts shadows from them, the 'dark tick' defect of the earlier attempt returns.",
+    "Skin: blotches, dirt patches, dung on the hams, mud socks and a muddy snout are there, but the back and flanks seen from the game camera are still mostly even pale pink; the dirt patches have soft, same-sized edges; the mud on the belly reads as flat tan paint, not as thick caked relief.",
+    "Dung on the rump is one large grey-olive field in the back view rather than smears and runs.",
+    "Front legs still slant forward from the elbow (rest pose of the existing rig); leg wrinkles are even rings.",
+    "Snout: disc, rim, nostrils and bridge wrinkles are modelled; the wet mud on the lower disc is speckled green-brown and reads noisy at 1 m. Muzzle is slightly tubular in the three-quarter view.",
+    "LOD0 is 16,228 triangles (soft target 15,000, hard 30,000). LOD1/LOD2 keep decimated bristle cards, not checked by eye.",
+    "Validator errors: UV_OVERLAP (bristle cards over the atlas UV space, intended). Warnings: 6,056 open edges (cards), texture naming (T_Pig_Atlas_*)."
+   ]
+  },
+  "SK_Pillbug": {
+   "asset": "SK_Pillbug",
+   "folder": "Pillbug",
+   "class": "creature",
+   "supersedes": "SourceAssets/Art/Creatures/Pillbug (SK_Pillbug, stylised)",
+   "source_blend": "Pillbug/SK_Pillbug.blend",
+   "build_script": "Tools/pillbug.py",
+   "dimensions_m": [
+    1.8517934083938599,
+    1.1484967470169067,
+    0.4951809346675873
+   ],
+   "lods": [
+    {
+     "name": "SK_Pillbug_LOD0",
+     "triangles": 26136
+    },
+    {
+     "name": "SK_Pillbug_LOD1",
+     "triangles": 13068
+    },
+    {
+     "name": "SK_Pillbug_LOD2",
+     "triangles": 6534
+    }
+   ],
+   "uv": {
+    "uv_area": 0.4781443135812943,
+    "area_3d": 6.190955119073042,
+    "overlap_area": 3.125176492591031e-07,
+    "overlap_ratio": 6.536052827196672e-07,
+    "overlapping_tris": 2,
+    "degenerate_tris": 0,
+    "tris_out_of_range": 0,
+    "truncated": true,
+    "tris": 26136
+   },
+   "families": [
+    "pillbug",
+    "131 foes/pill/f1-w1-",
+    "133 foes/pill/f1-w3-",
+    "137/139 (same actor facings)"
+   ],
+   "slots": [
+    "MI_Pillbug_Carapace",
+    "MI_Pillbug_Ochre",
+    "MI_Pillbug_Joints",
+    "MI_Pillbug_Eyes"
+   ],
+   "slot_note": "Same four slot names and the same atlas file names (T_Pillbug_Atlas_BC/N/ORM) as the asset it replaces, so the existing material instances rebind. All four slots read one atlas; MI_Pillbug_Eyes only needs lower roughness headroom. New: T_Pillbug_Atlas_SSS (membranes and leg translucency).",
+   "textures": [
+    {
+     "file": "Textures/T_Pillbug_Atlas_BC.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "9149637e7484a864"
+    },
+    {
+     "file": "Textures/T_Pillbug_Atlas_N.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "ced7e998f2458a8f"
+    },
+    {
+     "file": "Textures/T_Pillbug_Atlas_ORM.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "f6a530325281366b"
+    },
+    {
+     "file": "Textures/T_Pillbug_Atlas_SSS.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "aaa802d02a1528f8"
+    }
+   ],
+   "exports": [
+    "Export/A_Pillbug_Idle.fbx",
+    "Export/A_Pillbug_Run.fbx",
+    "Export/A_Pillbug_Walk.fbx",
+    "Export/SK_Pillbug_LOD0.fbx",
+    "Export/SK_Pillbug_LOD1.fbx",
+    "Export/SK_Pillbug_LOD2.fbx",
+    "Export/SM_Pillbug_Corpse_LOD0.fbx",
+    "Export/SM_Pillbug_Corpse_LOD1.fbx",
+    "Export/SM_Pillbug_Corpse_LOD2.fbx"
+   ],
+   "rig_compatibility": "Existing 43-bone armature and its three actions (Pillbug_Idle, Pillbug_Walk, Pillbug_Run, 40 fps) are carried over untouched from Creatures/Pillbug/SK_Pillbug.blend; rest matrices identical, so the imported skeleton, blendspace and clips stay valid. Rigid one-bone weights per cuticle part (the earlier convention); the ventral hull follows pelvis/head/tail. Verified by rendering Idle, Walk f9 and Run f5.",
+   "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. Bounds grew slightly (antennae and uropods): re-measure expected_size_cm and body_boxes on import.",
+   "third_party": [],
+   "review_only_third_party": [
+    "polyhaven/dirt (ground plane of the review renders, not shipped)"
+   ],
+   "gore": {
+    "asset": "SM_Pillbug_Corpse",
+    "class": "prop_large",
+    "families": [
+     "pillbug_corpse",
+     "141 foes/pill/f1-x1-",
+     "143 foes/pill/f1-x3-"
+    ],
+    "source_blend": "Pillbug/SM_Pillbug_Corpse.blend",
+    "lods": [
+     {
+      "name": "SM_Pillbug_Corpse_LOD0",
+      "triangles": 21456
+     },
+     {
+      "name": "SM_Pillbug_Corpse_LOD1",
+      "triangles": 10728
+     },
+     {
+      "name": "SM_Pillbug_Corpse_LOD2",
+      "triangles": 5363
+     }
+    ],
+    "dimensions_m": [
+     2.557528257369995,
+     2.1733245849609375,
+     0.47241321206092834
+    ],
+    "slots": [
+     "MI_Pillbug_Carapace",
+     "MI_Pillbug_Ochre",
+     "MI_Pillbug_Joints",
+     "MI_Pillbug_Eyes",
+     "MI_Pillbug_Gore"
+    ],
+    "textures": [
+     {
+      "file": "Textures/T_Pillbug_Gore_BC.png"
+     },
+     {
+      "file": "Textures/T_Pillbug_Gore_N.png"
+     },
+     {
+      "file": "Textures/T_Pillbug_Gore_ORM.png"
+     },
+     {
+      "file": "Textures/T_Pillbug_Gore_SSS.png"
+     }
+    ],
+    "note": "Burst carcass for the death frames: the same mesh posed through the rig (collapsed, two tergites torn off and flipped, legs folded), frozen to a static mesh, in a blood pool with clots and spilled viscera. Red blood kept as in the sprite. No UCX collision authored (decal-like prop). The live death today hides the actor at once; spawning this prop on death is a runtime change for the coordinator."
+   },
+   "status": "photoreal at gameplay distance (2-8 m) by my last review; NOT at 1 m",
+   "review_rounds": 8,
+   "final_renders": [
+    "Review/r4_game.png",
+    "Review/r4_close.png",
+    "Review/r4_back.png",
+    "Review/r3_under.png",
+    "Review/r3_run05.png",
+    "Review/r3_walk09.png",
+    "Review/corpse_game.png",
+    "Review/corpse_close.png"
+   ],
+   "known_weaknesses": [
+    "Scratch pass (12 Nov): scratches are noise-contour lines, all of similar weight; at 1 m they read as a light frosting rather than individual gouges with a direction history.",
+    "1 m close-up: the cephalon is a plain bean shape; compound eyes are glossy domes with a faint facet bump, no readable ommatidia; mouthparts (labrum, mandibles, maxillipeds, palps) are simple lofted forms without real articulation.",
+    "Legs: the two-bone leg rig forces four straight articles per lower leg; they read as smooth, slightly bead-like tubes at 1 m. Setae are 3-sided spines, not hairs.",
+    "Underside: ventral hull is a smooth segmented tub with pleopod plates; fine from the low rear shot, not from below.",
+    "Stance is rig-imposed: hips sit 25 cm up with the knees above them, so the animal rides high on its legs compared with a real isopod. Changing it means new clips.",
+    "Validator (tools/blender/dinkasset) reports one error on SK_Pillbug: PIVOT, 'origin is 8.0 cm off, should move by (8.0, 0, 1.1) cm' (the new antennae, uropods and leg reach shift the measured footprint). The armature and root were deliberately left where the existing clips expect them, so this is unfixed; the asset it replaces passed. Warnings: 648 open edges (seta spines have no base caps), 66 coincident vertices, triangle count over target.",
+    "LOD0 is 26,136 triangles, 4.5 % over the 25k soft target (hard max 60k). The corpse prop is ~18k triangles for a prop_large; cut LOD0 to LOD1 if that class budget matters.",
+    "Shipped atlas is 2048 px (about 800 px/m); a 4096 bake was made in round r2 and looked the same at both review distances, so the smaller set was kept.",
+    "Iridescence is only a painted blue-green cast in base colour; there is no thin-film term in the game material.",
+    "Corpse (SM_Pillbug_Corpse) is NOT photoreal: the blood pool is a thin flat lobed film that reads as a red stain, the satellite drops are flat discs, the viscera are clean pink coils with too little blood over them, and the shell pieces carry no blood in their texture. Gore meshes are separate shells laid over the collapsed carcass. No collision hull authored. It keeps the sprite's red splat with grey shell fragments, which was the point."
+   ],
+   "change_12_nov": "Texture-only update after the coordinator's review (accepted asset, being imported): per-tergite colour shift, brown-olive and slate patches and more scratches on the back plates. Rebaked on the saved unwrapped mesh (pillbug.py retex): T_Pillbug_Atlas_BC/N/ORM/SSS changed; FBX files, names, rig, UVs and pivot are byte-for-byte the files exported at 05:28."
+  },
+  "SK_Slime": {
+   "asset": "SK_Slime",
+   "folder": "Slime",
+   "class": "creature",
+   "supersedes": null,
+   "source_blend": "Slime/SK_Slime.blend (with the hidden high-poly SlimeHigh)",
+   "build_script": "Tools/slime.py",
+   "dimensions_m": [
+    1.0512681007385254,
+    0.6670642495155334,
+    0.3129276633262634
+   ],
+   "lods": [
+    {
+     "name": "SK_Slime_LOD0",
+     "triangles": 13678
+    },
+    {
+     "name": "SK_Slime_LOD1",
+     "triangles": 6839
+    },
+    {
+     "name": "SK_Slime_LOD2",
+     "triangles": 3420
+    }
+   ],
+   "uv": {
+    "uv_area": 0.44007577573694656,
+    "area_3d": 1.0218170376994562,
+    "overlap_area": 0.0,
+    "overlap_ratio": 0.0,
+    "overlapping_tris": 0,
+    "degenerate_tris": 0,
+    "tris_out_of_range": 0,
+    "truncated": false,
+    "tris": 8600
+   },
+   "families": [
+    "slime_blue",
+    "slime_green",
+    "slime_red",
+    "651/653 foes/puddle/blue/walk",
+    "671/673 foes/puddle/green/walk",
+    "691/693 foes/puddle/red/walk"
+   ],
+   "slots": [
+    "MI_Slime"
+   ],
+   "slot_note": "One mesh, three colour variants by material instance: MI_Slime (T_Slime_Blue_BC), MI_Slime_Green (T_Slime_Green_BC), MI_Slime_Red (T_Slime_Red_BC); all share T_Slime_Blue_N / _ORM / _SSS.",
+   "textures": [
+    {
+     "file": "Textures/T_Slime_Blue_BC.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "4fcf4627266dbf51"
+    },
+    {
+     "file": "Textures/T_Slime_Green_BC.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "d17208939e4a967f"
+    },
+    {
+     "file": "Textures/T_Slime_Red_BC.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "b87b33860a2f64f5"
+    },
+    {
+     "file": "Textures/T_Slime_Blue_N.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "a7583d3dfbf1a600"
+    },
+    {
+     "file": "Textures/T_Slime_Blue_ORM.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "54f4d5dda2022cd0"
+    },
+    {
+     "file": "Textures/T_Slime_Blue_SSS.png",
+     "px": [
+      2048,
+      2048
+     ],
+     "sha256": "90730d2fd30b7560"
+    }
+   ],
+   "exports": [
+    "Export/A_Slime_Attack.fbx",
+    "Export/A_Slime_Death.fbx",
+    "Export/A_Slime_Idle.fbx",
+    "Export/A_Slime_Walk.fbx",
+    "Export/SK_Slime_LOD0.fbx",
+    "Export/SK_Slime_LOD1.fbx",
+    "Export/SK_Slime_LOD2.fbx"
+   ],
+   "rig_compatibility": "NEW rig, no earlier asset existed: 10 bones (root, pelvis, body_01..04, head, hump_02..04), identity root, all bones world-aligned. Clips are translation/rotation only (no bone scale): {\"Idle\": {\"frames\": [1, 61], \"loop\": true}, \"Walk\": {\"frames\": [1, 28], \"loop\": true}, \"Attack\": {\"frames\": [1, 16], \"loop\": false}, \"Death\": {\"frames\": [1, 31], \"loop\": false}} at 30 fps, in place, nominal walk speed 30 cm/s (a guess: fit playback to the en-slim* brain speed).",
+   "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. New skeleton and new creatures.json asset row needed; no locomotion blendspace exists yet. Death sprites 661/663/681/683/701/703 (splatter) are not covered by a separate prop: the Death clip flattens the body into a puddle and holds.",
+   "third_party": [],
+   "review_only_third_party": [
+    "polyhaven/forrest_ground_03 (review ground)"
+   ],
+   "status": "NOT photoreal: reads as a wet, spotted organic mass but also as a wet painted boulder. New rig and clips.",
+   "review_rounds": 3,
+   "final_renders": [
+    "Review/final_game.png",
+    "Review/final_close.png",
+    "Review/final_back.png",
+    "Review/green_close.png",
+    "Review/red_close.png",
+    "Review/final_walk08.png",
+    "Review/final_attack07.png",
+    "Review/final_death31.png"
+   ],
+   "known_weaknesses": [
+    "Opaque: the game material is base colour + SSS mask, with no translucency or refraction, so there is no gelatinous depth; from behind, in shade, it reads as rock.",
+    "Macro form is a ridged mound: too hard-edged and mountain-like for something that should sag and pool.",
+    "Pigment spots are ringed dots of similar size: too regular.",
+    "No slime trail, drips or strands; the soil and grit band at the foot is a painted gradient.",
+    "The sprite is about 24x18 px beside a 47 px pillbug; the mesh is 0.92 x 0.58 x 0.27 m. Scale is my estimate.",
+    "Clips are first-pass procedural motion (peristaltic walk, lunge, collapse); never seen in engine. No hit clip. Death splatter sprites are not covered by a prop."
+   ]
+  }
+ }
+}

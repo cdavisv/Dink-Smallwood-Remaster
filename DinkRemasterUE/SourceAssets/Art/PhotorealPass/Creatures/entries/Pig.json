@@ -1,0 +1,117 @@
+{
+ "asset": "SK_Pig",
+ "folder": "Pig",
+ "class": "creature_quadruped",
+ "supersedes": "SourceAssets/Art/Creatures/Pig (SK_Pig, stylised)",
+ "source_blend": "Pig/SK_Pig.blend (contains the high-poly bake source PigHigh, hidden)",
+ "build_script": "Tools/pig.py, Tools/gen_bristle_atlas.py",
+ "dimensions_m": [
+  1.7938382625579834,
+  0.766901969909668,
+  0.9998620748519897
+ ],
+ "lods": [
+  {
+   "name": "SK_Pig_LOD0",
+   "triangles": 16228
+  },
+  {
+   "name": "SK_Pig_LOD1",
+   "triangles": 8114
+  },
+  {
+   "name": "SK_Pig_LOD2",
+   "triangles": 4056
+  }
+ ],
+ "uv": {
+  "uv_area": 0.5620884874719975,
+  "area_3d": 4.41619538839013,
+  "overlap_area": 0.0001866036257734858,
+  "overlap_ratio": 0.00033198265029895697,
+  "overlapping_tris": 113,
+  "degenerate_tris": 0,
+  "tris_out_of_range": 0,
+  "truncated": false,
+  "tris": 13200
+ },
+ "high_triangles": 233212,
+ "families": [
+  "pig",
+  "41 animals/pig/pg-w1-",
+  "43 animals/pig/pg-w3-",
+  "47 animals/pig/pg-w7-",
+  "49 animals/pig/pg-w9-"
+ ],
+ "slots": [
+  "MI_Pig_Skin",
+  "MI_Pig_Muzzle",
+  "MI_Pig_HornBristle",
+  "MI_Pig_Eye"
+ ],
+ "slot_note": "Same four slot names as the asset it replaces. MI_Pig_Skin, MI_Pig_Muzzle and MI_Pig_Eye read T_Pig_Atlas_* (hooves and dewclaws now sit in MI_Pig_Skin). MI_Pig_HornBristle now carries ONLY the bristle cards and reads T_Pig_BristleCards_BC (alpha) / _N / _ORM: make it a masked or dithered two-sided material that casts NO dynamic shadow (the review renders switch card shadows off; with shadows on, every card prints a dark tick on the skin). The cards carry custom vertex normals copied from the skin: import normals, do not recompute them.",
+ "textures": [
+  {
+   "file": "Textures/T_Pig_Atlas_BC.png"
+  },
+  {
+   "file": "Textures/T_Pig_Atlas_N.png"
+  },
+  {
+   "file": "Textures/T_Pig_Atlas_ORM.png"
+  },
+  {
+   "file": "Textures/T_Pig_Atlas_SSS.png"
+  },
+  {
+   "file": "Textures/T_Pig_BristleCards_BC.png"
+  },
+  {
+   "file": "Textures/T_Pig_BristleCards_N.png"
+  },
+  {
+   "file": "Textures/T_Pig_BristleCards_ORM.png"
+  }
+ ],
+ "exports": [
+  "Export/A_Pig_Feed.fbx",
+  "Export/A_Pig_Idle.fbx",
+  "Export/A_Pig_Run.fbx",
+  "Export/A_Pig_Walk.fbx",
+  "Export/SK_Pig_LOD0.fbx",
+  "Export/SK_Pig_LOD1.fbx",
+  "Export/SK_Pig_LOD2.fbx"
+ ],
+ "rig_compatibility": "Existing 26-bone armature and its four actions (Pig_Idle, Pig_Walk, Pig_Run, Pig_Feed, 30 fps) carried over untouched; rest matrices identical; no bone added or renamed. Mesh rebuilt on 12 Nov 2026 (v2: deep barrel, sagging belly, stout legs, wedge head) and skinned with bone heat (max 4 influences); hooves, eyes rigid; ears and tail weighted to their own bones; bristle cards take the weights of the skin under them. Verified by rendering Walk f6, Run f4 and Feed f7.",
+ "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. Body is about 0.77 m wide, 1.79 m long, 1.0 m to the ear tips: re-measure body_boxes on import, they feed the fitted trunk/head boxes. Validator: UV_OVERLAP is reported because the bristle cards (own texture, own slot) share UV0 space with the atlas; the atlas islands themselves do not overlap (0.03 %).",
+ "third_party": [
+  "polyhaven/brown_mud_02 (diffuse: wet mud layer, box-projected and tinted inside the baked atlas)",
+  "polyhaven/mud_cracked_dry_riverbed_002 (diffuse: dry caked mud layer, same use)"
+ ],
+ "review_only_third_party": [
+  "polyhaven/dirt (review ground)"
+ ],
+ "status": "NOT photoreal yet, but a pig: proportions rebuilt and surfaced; my last look still faults it at 1 m and in the run pose. Acceptable at the game camera in idle, walk and feed.",
+ "review_rounds": 8,
+ "final_renders": [
+  "Review/final_game.png",
+  "Review/final_close.png",
+  "Review/final_side.png",
+  "Review/final_back.png",
+  "Review/final_walk06.png",
+  "Review/final_run04.png",
+  "Review/final_feed07.png"
+ ],
+ "known_weaknesses": [
+  "Run f4 (gathered phase of the existing clip): the hind legs fold forward under the belly and the hindquarters balloon into a bag; the deep belly and ham skin follow the thigh bones. Not anatomical. Needs either hand-painted ham/flank weights or a retimed run clip; neither done.",
+  "Ears: large and cupped now, with veins and subsurface, but in the 1 m shot they glow saturated orange when backlit and the root still sits on a mound rather than growing out of the skull. From the side they read narrow.",
+  "Eyes: small brown glossy balls in a modelled socket with lid rims; no visible sclera, tear duct or lid thickness. The lash cards exist but are too fine to read.",
+  "Bristles: about 1,500 alpha cards with skin normals and no shadow. They give a bristly topline and a coarse coat at 1 m; at the game camera they add only a faint sheen, and some cards on the neck and face cross at odd angles. If the engine material casts shadows from them, the 'dark tick' defect of the earlier attempt returns.",
+  "Skin: blotches, dirt patches, dung on the hams, mud socks and a muddy snout are there, but the back and flanks seen from the game camera are still mostly even pale pink; the dirt patches have soft, same-sized edges; the mud on the belly reads as flat tan paint, not as thick caked relief.",
+  "Dung on the rump is one large grey-olive field in the back view rather than smears and runs.",
+  "Front legs still slant forward from the elbow (rest pose of the existing rig); leg wrinkles are even rings.",
+  "Snout: disc, rim, nostrils and bridge wrinkles are modelled; the wet mud on the lower disc is speckled green-brown and reads noisy at 1 m. Muzzle is slightly tubular in the three-quarter view.",
+  "LOD0 is 16,228 triangles (soft target 15,000, hard 30,000). LOD1/LOD2 keep decimated bristle cards, not checked by eye.",
+  "Validator errors: UV_OVERLAP (bristle cards over the atlas UV space, intended). Warnings: 6,056 open edges (cards), texture naming (T_Pig_Atlas_*)."
+ ]
+}

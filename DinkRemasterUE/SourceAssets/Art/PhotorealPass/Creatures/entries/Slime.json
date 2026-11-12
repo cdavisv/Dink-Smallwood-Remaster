@@ -1,0 +1,105 @@
+{
+ "asset": "SK_Slime",
+ "folder": "Slime",
+ "class": "creature",
+ "supersedes": null,
+ "source_blend": "Slime/SK_Slime.blend (with the hidden high-poly SlimeHigh)",
+ "build_script": "Tools/slime.py",
+ "dimensions_m": [
+  1.0512681007385254,
+  0.6670642495155334,
+  0.3129276633262634
+ ],
+ "lods": [
+  {
+   "name": "SK_Slime_LOD0",
+   "triangles": 13678
+  },
+  {
+   "name": "SK_Slime_LOD1",
+   "triangles": 6839
+  },
+  {
+   "name": "SK_Slime_LOD2",
+   "triangles": 3420
+  }
+ ],
+ "uv": {
+  "uv_area": 0.44007577573694656,
+  "area_3d": 1.0218170376994562,
+  "overlap_area": 0.0,
+  "overlap_ratio": 0.0,
+  "overlapping_tris": 0,
+  "degenerate_tris": 0,
+  "tris_out_of_range": 0,
+  "truncated": false,
+  "tris": 8600
+ },
+ "families": [
+  "slime_blue",
+  "slime_green",
+  "slime_red",
+  "651/653 foes/puddle/blue/walk",
+  "671/673 foes/puddle/green/walk",
+  "691/693 foes/puddle/red/walk"
+ ],
+ "slots": [
+  "MI_Slime"
+ ],
+ "slot_note": "One mesh, three colour variants by material instance: MI_Slime (T_Slime_Blue_BC), MI_Slime_Green (T_Slime_Green_BC), MI_Slime_Red (T_Slime_Red_BC); all share T_Slime_Blue_N / _ORM / _SSS.",
+ "textures": [
+  {
+   "file": "Textures/T_Slime_Blue_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Green_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Red_BC.png"
+  },
+  {
+   "file": "Textures/T_Slime_Blue_N.png"
+  },
+  {
+   "file": "Textures/T_Slime_Blue_ORM.png"
+  },
+  {
+   "file": "Textures/T_Slime_Blue_SSS.png"
+  }
+ ],
+ "exports": [
+  "Export/A_Slime_Attack.fbx",
+  "Export/A_Slime_Death.fbx",
+  "Export/A_Slime_Idle.fbx",
+  "Export/A_Slime_Walk.fbx",
+  "Export/SK_Slime_LOD0.fbx",
+  "Export/SK_Slime_LOD1.fbx",
+  "Export/SK_Slime_LOD2.fbx"
+ ],
+ "rig_compatibility": "NEW rig, no earlier asset existed: 10 bones (root, pelvis, body_01..04, head, hump_02..04), identity root, all bones world-aligned. Clips are translation/rotation only (no bone scale): {\"Idle\": {\"frames\": [1, 61], \"loop\": true}, \"Walk\": {\"frames\": [1, 28], \"loop\": true}, \"Attack\": {\"frames\": [1, 16], \"loop\": false}, \"Death\": {\"frames\": [1, 31], \"loop\": false}} at 30 fps, in place, nominal walk speed 30 cm/s (a guess: fit playback to the en-slim* brain speed).",
+ "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. New skeleton and new creatures.json asset row needed; no locomotion blendspace exists yet. Death sprites 661/663/681/683/701/703 (splatter) are not covered by a separate prop: the Death clip flattens the body into a puddle and holds.",
+ "third_party": [],
+ "review_only_third_party": [
+  "polyhaven/forrest_ground_03 (review ground)"
+ ],
+ "status": "NOT photoreal: reads as a wet, spotted organic mass but also as a wet painted boulder. New rig and clips.",
+ "review_rounds": 3,
+ "final_renders": [
+  "Review/final_game.png",
+  "Review/final_close.png",
+  "Review/final_back.png",
+  "Review/green_close.png",
+  "Review/red_close.png",
+  "Review/final_walk08.png",
+  "Review/final_attack07.png",
+  "Review/final_death31.png"
+ ],
+ "known_weaknesses": [
+  "Opaque: the game material is base colour + SSS mask, with no translucency or refraction, so there is no gelatinous depth; from behind, in shade, it reads as rock.",
+  "Macro form is a ridged mound: too hard-edged and mountain-like for something that should sag and pool.",
+  "Pigment spots are ringed dots of similar size: too regular.",
+  "No slime trail, drips or strands; the soil and grit band at the foot is a painted gradient.",
+  "The sprite is about 24x18 px beside a 47 px pillbug; the mesh is 0.92 x 0.58 x 0.27 m. Scale is my estimate.",
+  "Clips are first-pass procedural motion (peristaltic walk, lunge, collapse); never seen in engine. No hit clip. Death splatter sprites are not covered by a prop."
+ ]
+}

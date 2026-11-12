@@ -1,0 +1,158 @@
+{
+ "asset": "SK_Pillbug",
+ "folder": "Pillbug",
+ "class": "creature",
+ "supersedes": "SourceAssets/Art/Creatures/Pillbug (SK_Pillbug, stylised)",
+ "source_blend": "Pillbug/SK_Pillbug.blend",
+ "build_script": "Tools/pillbug.py",
+ "dimensions_m": [
+  1.8517934083938599,
+  1.1484967470169067,
+  0.4951809346675873
+ ],
+ "lods": [
+  {
+   "name": "SK_Pillbug_LOD0",
+   "triangles": 26136
+  },
+  {
+   "name": "SK_Pillbug_LOD1",
+   "triangles": 13068
+  },
+  {
+   "name": "SK_Pillbug_LOD2",
+   "triangles": 6534
+  }
+ ],
+ "uv": {
+  "uv_area": 0.4781443135812943,
+  "area_3d": 6.190955119073042,
+  "overlap_area": 3.125176492591031e-07,
+  "overlap_ratio": 6.536052827196672e-07,
+  "overlapping_tris": 2,
+  "degenerate_tris": 0,
+  "tris_out_of_range": 0,
+  "truncated": true,
+  "tris": 26136
+ },
+ "families": [
+  "pillbug",
+  "131 foes/pill/f1-w1-",
+  "133 foes/pill/f1-w3-",
+  "137/139 (same actor facings)"
+ ],
+ "slots": [
+  "MI_Pillbug_Carapace",
+  "MI_Pillbug_Ochre",
+  "MI_Pillbug_Joints",
+  "MI_Pillbug_Eyes"
+ ],
+ "slot_note": "Same four slot names and the same atlas file names (T_Pillbug_Atlas_BC/N/ORM) as the asset it replaces, so the existing material instances rebind. All four slots read one atlas; MI_Pillbug_Eyes only needs lower roughness headroom. New: T_Pillbug_Atlas_SSS (membranes and leg translucency).",
+ "textures": [
+  {
+   "file": "Textures/T_Pillbug_Atlas_BC.png"
+  },
+  {
+   "file": "Textures/T_Pillbug_Atlas_N.png"
+  },
+  {
+   "file": "Textures/T_Pillbug_Atlas_ORM.png"
+  },
+  {
+   "file": "Textures/T_Pillbug_Atlas_SSS.png"
+  }
+ ],
+ "exports": [
+  "Export/A_Pillbug_Idle.fbx",
+  "Export/A_Pillbug_Run.fbx",
+  "Export/A_Pillbug_Walk.fbx",
+  "Export/SK_Pillbug_LOD0.fbx",
+  "Export/SK_Pillbug_LOD1.fbx",
+  "Export/SK_Pillbug_LOD2.fbx",
+  "Export/SM_Pillbug_Corpse_LOD0.fbx",
+  "Export/SM_Pillbug_Corpse_LOD1.fbx",
+  "Export/SM_Pillbug_Corpse_LOD2.fbx"
+ ],
+ "rig_compatibility": "Existing 43-bone armature and its three actions (Pillbug_Idle, Pillbug_Walk, Pillbug_Run, 40 fps) are carried over untouched from Creatures/Pillbug/SK_Pillbug.blend; rest matrices identical, so the imported skeleton, blendspace and clips stay valid. Rigid one-bone weights per cuticle part (the earlier convention); the ventral hull follows pelvis/head/tail. Verified by rendering Idle, Walk f9 and Run f5.",
+ "importer_notes": "One FBX per LOD (Export/<Asset>_LOD0..2.fbx) plus one armature-only FBX per clip, written with the same recipe as the existing creature exporters (metres source, temporary x100 export scene, FBX_SCALE_ALL, Armature wrapper node, no leaf bones). Import each LOD explicitly, as Scripts/import_creature_art.sh does. Normal maps are OpenGL (green up): keep the importer green-channel flip used by the existing creature manifests. ORM = AO/roughness/metallic, linear. SSS map (linear, single channel) is a subsurface weight mask for the creature material; without a subsurface profile the asset still reads, only flatter. Bounds grew slightly (antennae and uropods): re-measure expected_size_cm and body_boxes on import.",
+ "third_party": [],
+ "review_only_third_party": [
+  "polyhaven/dirt (ground plane of the review renders, not shipped)"
+ ],
+ "gore": {
+  "asset": "SM_Pillbug_Corpse",
+  "class": "prop_large",
+  "families": [
+   "pillbug_corpse",
+   "141 foes/pill/f1-x1-",
+   "143 foes/pill/f1-x3-"
+  ],
+  "source_blend": "Pillbug/SM_Pillbug_Corpse.blend",
+  "lods": [
+   {
+    "name": "SM_Pillbug_Corpse_LOD0",
+    "triangles": 21456
+   },
+   {
+    "name": "SM_Pillbug_Corpse_LOD1",
+    "triangles": 10728
+   },
+   {
+    "name": "SM_Pillbug_Corpse_LOD2",
+    "triangles": 5363
+   }
+  ],
+  "dimensions_m": [
+   2.557528257369995,
+   2.1733245849609375,
+   0.47241321206092834
+  ],
+  "slots": [
+   "MI_Pillbug_Carapace",
+   "MI_Pillbug_Ochre",
+   "MI_Pillbug_Joints",
+   "MI_Pillbug_Eyes",
+   "MI_Pillbug_Gore"
+  ],
+  "textures": [
+   {
+    "file": "Textures/T_Pillbug_Gore_BC.png"
+   },
+   {
+    "file": "Textures/T_Pillbug_Gore_N.png"
+   },
+   {
+    "file": "Textures/T_Pillbug_Gore_ORM.png"
+   },
+   {
+    "file": "Textures/T_Pillbug_Gore_SSS.png"
+   }
+  ],
+  "note": "Burst carcass for the death frames: the same mesh posed through the rig (collapsed, two tergites torn off and flipped, legs folded), frozen to a static mesh, in a blood pool with clots and spilled viscera. Red blood kept as in the sprite. No UCX collision authored (decal-like prop). The live death today hides the actor at once; spawning this prop on death is a runtime change for the coordinator."
+ },
+ "status": "photoreal at gameplay distance (2-8 m) by my last review; NOT at 1 m",
+ "review_rounds": 8,
+ "final_renders": [
+  "Review/r4_game.png",
+  "Review/r4_close.png",
+  "Review/r4_back.png",
+  "Review/r3_under.png",
+  "Review/r3_run05.png",
+  "Review/r3_walk09.png",
+  "Review/corpse_game.png",
+  "Review/corpse_close.png"
+ ],
+ "known_weaknesses": [
+  "Scratch pass (12 Nov): scratches are noise-contour lines, all of similar weight; at 1 m they read as a light frosting rather than individual gouges with a direction history.",
+  "1 m close-up: the cephalon is a plain bean shape; compound eyes are glossy domes with a faint facet bump, no readable ommatidia; mouthparts (labrum, mandibles, maxillipeds, palps) are simple lofted forms without real articulation.",
+  "Legs: the two-bone leg rig forces four straight articles per lower leg; they read as smooth, slightly bead-like tubes at 1 m. Setae are 3-sided spines, not hairs.",
+  "Underside: ventral hull is a smooth segmented tub with pleopod plates; fine from the low rear shot, not from below.",
+  "Stance is rig-imposed: hips sit 25 cm up with the knees above them, so the animal rides high on its legs compared with a real isopod. Changing it means new clips.",
+  "Validator (tools/blender/dinkasset) reports one error on SK_Pillbug: PIVOT, 'origin is 8.0 cm off, should move by (8.0, 0, 1.1) cm' (the new antennae, uropods and leg reach shift the measured footprint). The armature and root were deliberately left where the existing clips expect them, so this is unfixed; the asset it replaces passed. Warnings: 648 open edges (seta spines have no base caps), 66 coincident vertices, triangle count over target.",
+  "LOD0 is 26,136 triangles, 4.5 % over the 25k soft target (hard max 60k). The corpse prop is ~18k triangles for a prop_large; cut LOD0 to LOD1 if that class budget matters.",
+  "Shipped atlas is 2048 px (about 800 px/m); a 4096 bake was made in round r2 and looked the same at both review distances, so the smaller set was kept.",
+  "Iridescence is only a painted blue-green cast in base colour; there is no thin-film term in the game material.",
+  "Corpse (SM_Pillbug_Corpse) is NOT photoreal: the blood pool is a thin flat lobed film that reads as a red stain, the satellite drops are flat discs, the viscera are clean pink coils with too little blood over them, and the shell pieces carry no blood in their texture. Gore meshes are separate shells laid over the collapsed carcass. No collision hull authored. It keeps the sprite's red splat with grey shell fragments, which was the point."
+ ],
+ "change_12_nov": "Texture-only update after the coordinator's review (accepted asset, being imported): per-tergite colour shift, brown-olive and slate patches and more scratches on the back plates. Rebaked on the saved unwrapped mesh (pillbug.py retex): T_Pillbug_Atlas_BC/N/ORM/SSS changed; FBX files, names, rig, UVs and pivot are byte-for-byte the files exported at 05:28."
+}
