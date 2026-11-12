@@ -29,5 +29,9 @@
  "bonca_purple": {
   "status": "partial",
   "why": "rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips"
+ },
+ "slayer": {
+  "status": "partial",
+  "why": "rigged creature (27-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested). Partial because the last review still faults it: maquette look at 1 m, invented anatomy, no mouth or jaw, no animation clips"
  }
 }
