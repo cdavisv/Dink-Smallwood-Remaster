@@ -1,0 +1,134 @@
+{
+ "name": "SM_Acorn_Hanging_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/tree_fruit/Acorn_Hanging/SM_Acorn_Hanging_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/tree_fruit/Acorn_Hanging/SM_Acorn_Hanging_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_fruit.py Acorn_Hanging final",
+ "dimensions_m": [
+  0.0416,
+  0.0416,
+  0.071
+ ],
+ "bounds_min_m": [
+  -0.0208,
+  -0.0208,
+  -0.071
+ ],
+ "bounds_max_m": [
+  0.0208,
+  0.0208,
+  0.0
+ ],
+ "lod0_triangles": 840,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/tree_fruit/Acorn_Hanging/T_Acorn_Hanging_PR_BC.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/tree_fruit/Acorn_Hanging/T_Acorn_Hanging_PR_N.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/tree_fruit/Acorn_Hanging/T_Acorn_Hanging_PR_ORM.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Acorn_Hanging_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0023,
+   0.998
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 59.0,
+   "p99": 136.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.325,
+   "p95": 0.822
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.358
+ },
+ "pivot": "top of the stalk at the origin (hangs from a twig); the nut points down -Z",
+ "families": [
+  "tree_fruit",
+  "421 items/food/food- frame 23"
+ ],
+ "origin_ids": {
+  "tree_fruit": [
+   "S442_P02",
+   "S442_P04",
+   "S442_P05",
+   "S442_P06",
+   "S442_P07",
+   "S442_P08",
+   "S442_P09",
+   "S442_P10",
+   "S442_P11",
+   "S442_P12",
+   "S442_P15",
+   "S442_P16",
+   "S442_P17",
+   "S442_P18",
+   "S442_P19",
+   "S442_P20",
+   "S442_P21",
+   "S442_P22",
+   "S442_P23",
+   "S474_P02",
+   "S474_P03",
+   "S474_P04",
+   "S474_P05",
+   "S474_P06",
+   "S474_P07",
+   "S474_P08",
+   "S474_P09",
+   "S474_P10",
+   "S474_P11",
+   "S474_P12",
+   "S474_P13",
+   "S474_P15",
+   "S474_P16",
+   "S474_P17"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "the fruit hanging in the fruit tree: a large acorn-shaped nut, 5.3 cm, tan striped shell in a scaled brown cup on a 1 cm stalk; origin at the top of the stalk so it hangs from a twig",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Identity is a guess from a 7x12 px frame (brown cap over a yellow body, pointed below): built as a large acorn, 5.3 cm, which is big for an oak; scale it at placement if it must read from the gameplay camera. Cup scales are a soft displaced pattern, not individual scales: at 1 m the cup reads as a rough brown cap rather than as imbricate scales. No twig or leaves: the tree it hangs in belongs to the vegetation pass.",
+ "origin_ids_note": "the family shares its origin IDs between all of its frames; this asset dresses the placements that show frame 421/23"
+}

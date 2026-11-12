@@ -1,0 +1,18 @@
+{
+ "blood_splat": {
+  "why": "8 decal sets, one per original frame (pools, drips, left and right spurts): BC + opacity, normal, ORM at 1024 px"
+ },
+ "burn_hole_decal": {
+  "why": "3 decal sets, one per original frame; the burnt-through middle is a flat black patch with a normal-map lip, not a real hole"
+ },
+ "food_fruit": {
+  "why": "6 meshes, one per original frame: three bell peppers, pumpkin, tomato, aubergine"
+ },
+ "tree_fruit": {
+  "status": "partial",
+  "why": "1 mesh (large acorn; identity guessed from a 7x12 px frame). The last review still faults the cup: its scales are a soft displaced pattern that reads as a rough cap at 1 m"
+ },
+ "hand_tool_small": {
+  "why": "3 meshes for the 8 frames: felling axe (4 frames), smith's hammer (2), tongs (2); game meshes are decimations of the swept sources"
+ }
+}
