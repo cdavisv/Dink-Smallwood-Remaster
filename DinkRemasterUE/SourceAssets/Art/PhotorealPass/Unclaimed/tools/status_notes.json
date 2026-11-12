@@ -14,5 +14,20 @@
  },
  "hand_tool_small": {
   "why": "3 meshes for the 8 frames: felling axe (4 frames), smith's hammer (2), tongs (2); game meshes are decimations of the swept sources"
+ },
+ "seashell_conch": {
+  "why": "1 mesh: knobbed spiral shell, 14 cm, lying on its aperture; a few dark bake fringes at the canal tip and lip"
+ },
+ "bonca_gray": {
+  "status": "partial",
+  "why": "rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips"
+ },
+ "bonca_brown": {
+  "status": "partial",
+  "why": "rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips"
+ },
+ "bonca_purple": {
+  "status": "partial",
+  "why": "rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips"
  }
 }

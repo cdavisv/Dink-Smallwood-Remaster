@@ -1,0 +1,211 @@
+{
+ "name": "SK_Bonca_PR",
+ "class": "creature",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/SK_Bonca_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/SK_Bonca_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/SK_Bonca_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/SK_Bonca_PR_LOD2.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/SK_Bonca_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_bonca.py final",
+ "dimensions_m": [
+  0.9389,
+  2.6027,
+  1.4403
+ ],
+ "bounds_min_m": [
+  -0.4695,
+  -0.9469,
+  -0.0006
+ ],
+ "bounds_max_m": [
+  0.4695,
+  1.6559,
+  1.4397
+ ],
+ "lod0_triangles": 14000,
+ "lod1_triangles": 7000,
+ "lod2_triangles": 3500,
+ "triangle_budget": {
+  "soft": 25000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/T_Bonca_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/T_Bonca_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/T_Bonca_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/T_Bonca_PR_Brown_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB, colour variant \"Brown\" (shares N and ORM)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bonca_gray/Bonca/T_Bonca_PR_Purple_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB, colour variant \"Purple\" (shares N and ORM)"
+  }
+ ],
+ "materials": [
+  "MI_Bonca_PR",
+  "MI_Bonca_PR_Brown",
+  "MI_Bonca_PR_Purple"
+ ],
+ "rig": {
+  "root_bone": "root",
+  "bones": [
+   "root",
+   "pelvis",
+   "spine_01",
+   "spine_02",
+   "spine_03",
+   "head",
+   "tail_01",
+   "tail_02",
+   "tail_03",
+   "tail_04",
+   "tail_05",
+   "thigh_l",
+   "calf_l",
+   "foot_l",
+   "ball_l",
+   "thigh_r",
+   "calf_r",
+   "foot_r",
+   "ball_r"
+  ],
+  "bone_count": 19,
+  "weights": {
+   "method": "inverse distance",
+   "max_influences": 4,
+   "unweighted_vertices": 0
+  },
+  "rest_pose": "standing pose as modelled (not a T pose)",
+  "animation": "none: skeleton and skin weights only; no clips, no Physics Asset, no control rig",
+  "skeleton": "bespoke (CONVENTIONS.md section 11: any skeleton with a single root bone named root)"
+ },
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "uv_range": [
+   0.0046,
+   0.9954
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 77.4,
+   "p99": 148.9
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.518,
+   "p95": 0.713
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.697
+ },
+ "pivot": "feet: armature origin on the ground between the feet, front on -Y",
+ "families": [
+  "bonca_gray",
+  "bonca_brown",
+  "bonca_purple",
+  "601-609 foes/bonca/gray/walk",
+  "592-598 foes/bonca/gray/attack",
+  "531-544 foes/bonca",
+  "613-628 foes/bonca/purple"
+ ],
+ "origin_ids": {
+  "bonca_gray": [
+   "S027_P10",
+   "S074_P23",
+   "S090_P06",
+   "S090_P07",
+   "S090_P08",
+   "S090_P09",
+   "S137_P18",
+   "S156_P06",
+   "S160_P07",
+   "S160_P08",
+   "S160_P09",
+   "S170_P13",
+   "S170_P14",
+   "S480_P04",
+   "S480_P05",
+   "S583_P09",
+   "S632_P11",
+   "S632_P12",
+   "S633_P16",
+   "S696_P04",
+   "S715_P01"
+  ],
+  "bonca_brown": [
+   "S029_P03",
+   "S029_P04",
+   "S029_P05",
+   "S029_P06",
+   "S029_P07",
+   "S100_P35",
+   "S302_P06",
+   "S302_P07",
+   "S306_P06",
+   "S562_P03",
+   "S583_P10",
+   "S648_P07"
+  ],
+  "bonca_purple": [
+   "S514_P15",
+   "S514_P16",
+   "S515_P14",
+   "S547_P14",
+   "S547_P16",
+   "S547_P17",
+   "S577_P14",
+   "S577_P15",
+   "S609_P13"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "bonca: a hunched, neckless biped about 1.45 m at the hump and 2.5 m nose to tail tip; grey-green banded hide with pale fold crests, pale eyes low in the front of the trunk, wide slit mouth with peg teeth, three-clawed feet with a rear spur, thick tail",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "NOT photoreal at 1 m: it reads as a carefully lit maquette, smooth and rubbery, and passes only at gameplay distance. Anatomy is invented from 90-pixel sprites: a blob of a trunk on a joint graph, with no modelled musculature, knees or ankle tendons; folds are a sine band pattern, not sculpted. The face is two amber eye domes, a displaced slit and nine peg teeth; no lids, nostrils, gums or tongue, and the mouth cannot open (no jaw bone). The game mesh is a decimation of the remeshed source, so it has no edge loops at the joints: it will crease when the legs and tail bend far. Skin weights are inverse-distance to the bones (bone heat did not solve on the multi-shell mesh), checked in one test pose only (render_pose.png). No animation clips, no Physics Asset. Smart-projected UVs: many islands, so mip seams are possible. The brown and purple hides are tints of the grey base colour, not separately painted.",
+ "colour_families": {
+  "bonca_gray": "T_Bonca_PR_BC.png",
+  "bonca_brown": "T_Bonca_PR_Brown_BC.png",
+  "bonca_purple": "T_Bonca_PR_Purple_BC.png"
+ },
+ "contact_crop": 0.9
+}
