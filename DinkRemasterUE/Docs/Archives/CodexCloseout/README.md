@@ -12,3 +12,7 @@ The owner ended this development pass on 12 November 2026 and requested reconcil
 This is a source reconciliation, not a claim that all art is finished or that every historical candidate passed native or visual review. See the current handoff for validation and remaining limitations.
 
 Current master art defaults take precedence over older pending branch defaults: the fired-clay chimney stays an opaque camera blocker and window emitters retain an 80cm source height. The pending chimney inventory correction is included. Third-party PR81 independently addresses the same moved-path issue.
+
+Source-editing qualification: the read-only Blender scan found 333 unresolved unpacked image entries across historical sources (some may be unused authoring data), and no linked libraries. Reopen/packed-image checks do not establish a complete standalone rerender. Available project textures and compiled packages are retained; historical external image references may need relinking before source editing. Original local files remain backed up.
+
+Upgrade validation requires current ordered hardness inputs and a fresh generated world: old serialized actors can lack the new immutable card baseline even after an incremental import. The closeout includes synchronized runtime hardness layers; derived worlds and RuntimeHardnessV1 foundations are regenerated locally and remain untracked.

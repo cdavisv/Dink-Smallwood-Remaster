@@ -7,6 +7,35 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from sync_gameplay_data import hardness_layers
 
 class RuntimeLayerSyncTests(unittest.TestCase):
+    def source_without_variants(self, root):
+        (root/'hardness').mkdir();(root/'screens').mkdir()
+        packet=dict(schema='dinkex.runtime-hardness/2',width=600,height=400,vision=0,
+                    skipped_tile_indices=[],editor_hard_flags=[0]*99,
+                    tile_base_rle=[[[600,0]]]*400,ordered_stamps=[])
+        (root/'hardness/SCR_276_layers.json').write_text(json.dumps(packet))
+        (root/'screens/SCR_276.json').write_text(json.dumps({'hardness':{'vision_variants':{}}}))
+        return packet
+    def test_required_unused_visions_preserve_original_overlay(self):
+        with tempfile.TemporaryDirectory() as work:
+            root=Path(work);packet=self.source_without_variants(root)
+            source=(root/'hardness/SCR_276_layers.json').read_bytes()
+            result=hardness_layers(root,{276:{1,2}})
+            for vision in (1,2):
+                self.assertEqual(json.loads(result[f'Hardness/SCR_276_v{vision}_layers.json']),dict(packet,vision=vision))
+            self.assertEqual((root/'hardness/SCR_276_layers.json').read_bytes(),source)
+    def test_retained_unused_vision_must_match_source_and_keeps_exact_bytes(self):
+        with tempfile.TemporaryDirectory() as work:
+            root=Path(work);packet=self.source_without_variants(root);retained=root/'reviewed';retained.mkdir()
+            file=retained/'SCR_276_v1_layers.json';raw=json.dumps(dict(packet,vision=1),indent=3).encode();file.write_bytes(raw)
+            self.assertEqual(hardness_layers(root,{276:{1}},retained)['Hardness/SCR_276_v1_layers.json'],raw)
+            changed=dict(packet,vision=1,ordered_stamps=[{'owner':3}]);file.write_text(json.dumps(changed));before=file.read_bytes()
+            with self.assertRaisesRegex(ValueError,'retained vision differs'):hardness_layers(root,{276:{1}},retained)
+            self.assertEqual(file.read_bytes(),before)
+    def test_declared_vision_cannot_be_inferred_when_source_sidecar_is_missing(self):
+        with tempfile.TemporaryDirectory() as work:
+            root=Path(work);self.source_without_variants(root)
+            (root/'screens/SCR_276.json').write_text(json.dumps({'hardness':{'vision_variants':{'1':'hardness/SCR_276_v1.png'}}}))
+            with self.assertRaisesRegex(ValueError,'missing declared source vision'):hardness_layers(root,{276:{1}})
     def test_legacy_absence_and_exact_bytes_with_bound_vision(self):
         with tempfile.TemporaryDirectory() as work:
             root=Path(work);(root/'hardness').mkdir()
