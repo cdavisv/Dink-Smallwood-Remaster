@@ -1,0 +1,188 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Repos/Dink-Smallwood/Dink-Smallwood-Remaster/DinkRemasterUE/Saved/HeroFix2Work/DinkRemasterUE/SourceAssets/Art/Characters/Dink/DefectFixes_11Nov2026/HandBindingV2/SK_Dink_Hands.blend",
+  "strict": false,
+  "passed": true,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 1,
+    "errors": 0,
+    "warnings": 11
+  },
+  "scene_findings": [],
+  "assets": [
+    {
+      "name": "SK_Dink_Hands",
+      "class": "character_hero",
+      "collection": "SK_Dink_Hands",
+      "tris_per_lod": {
+        "LOD0": 31688,
+        "LOD1": 15844,
+        "LOD2": 7921,
+        "LOD3": 3803
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -55.017,
+          -28.466,
+          -0.0
+        ],
+        "blender_max_cm": [
+          55.017,
+          15.046,
+          180.138
+        ],
+        "size_cm": [
+          110.035,
+          43.512,
+          180.138
+        ],
+        "unreal_min_cm": [
+          -55.017,
+          -15.046,
+          -0.0
+        ],
+        "unreal_max_cm": [
+          55.017,
+          28.466,
+          180.138
+        ]
+      },
+      "errors": 0,
+      "warnings": 11,
+      "findings": [
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "369 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Dink_Hands_LOD0",
+          "data": {
+            "vertices": 369
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "1104 non-manifold edges (1104 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "SK_Dink_Hands_LOD0",
+          "data": {
+            "boundary": 1104,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "0 loose vertices, 1 loose (wire) edges",
+          "object": "SK_Dink_Hands_LOD1",
+          "data": {
+            "vertices": 0,
+            "edges": 1
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "315 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Dink_Hands_LOD1",
+          "data": {
+            "vertices": 315
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "997 non-manifold edges (996 open boundary, 0 >2 faces, 1 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "SK_Dink_Hands_LOD1",
+          "data": {
+            "boundary": 996,
+            "multi_face": 0,
+            "wire": 1
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "0 loose vertices, 3 loose (wire) edges",
+          "object": "SK_Dink_Hands_LOD2",
+          "data": {
+            "vertices": 0,
+            "edges": 3
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "273 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Dink_Hands_LOD2",
+          "data": {
+            "vertices": 273
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "854 non-manifold edges (851 open boundary, 0 >2 faces, 3 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "SK_Dink_Hands_LOD2",
+          "data": {
+            "boundary": 851,
+            "multi_face": 0,
+            "wire": 3
+          }
+        },
+        {
+          "code": "LOOSE_GEOMETRY",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "0 loose vertices, 7 loose (wire) edges",
+          "object": "SK_Dink_Hands_LOD3",
+          "data": {
+            "vertices": 0,
+            "edges": 7
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "226 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Dink_Hands_LOD3",
+          "data": {
+            "vertices": 226
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Dink_Hands",
+          "message": "718 non-manifold edges (711 open boundary, 0 >2 faces, 7 wire); acceptable for character_hero only if intentional (cards)",
+          "object": "SK_Dink_Hands_LOD3",
+          "data": {
+            "boundary": 711,
+            "multi_face": 0,
+            "wire": 7
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "info",
+          "asset": "SK_Dink_Hands",
+          "message": "UV overlap test truncated (very dense UVs); result is a lower bound",
+          "object": "SK_Dink_Hands_LOD0"
+        }
+      ],
+      "passed": true
+    }
+  ]
+}
