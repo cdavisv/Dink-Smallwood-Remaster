@@ -1,0 +1,102 @@
+{
+ "Pillbug": {
+  "status": "photoreal at gameplay distance (2-8 m) by my last review; NOT at 1 m",
+  "review_rounds": 8,
+  "final_renders": [
+   "Review/r4_game.png",
+   "Review/r4_close.png",
+   "Review/r4_back.png",
+   "Review/r3_under.png",
+   "Review/r3_run05.png",
+   "Review/r3_walk09.png",
+   "Review/corpse_game.png",
+   "Review/corpse_close.png"
+  ],
+  "known_weaknesses": [
+   "Scratch pass (12 Nov): scratches are noise-contour lines, all of similar weight; at 1 m they read as a light frosting rather than individual gouges with a direction history.",
+   "1 m close-up: the cephalon is a plain bean shape; compound eyes are glossy domes with a faint facet bump, no readable ommatidia; mouthparts (labrum, mandibles, maxillipeds, palps) are simple lofted forms without real articulation.",
+   "Legs: the two-bone leg rig forces four straight articles per lower leg; they read as smooth, slightly bead-like tubes at 1 m. Setae are 3-sided spines, not hairs.",
+   "Underside: ventral hull is a smooth segmented tub with pleopod plates; fine from the low rear shot, not from below.",
+   "Stance is rig-imposed: hips sit 25 cm up with the knees above them, so the animal rides high on its legs compared with a real isopod. Changing it means new clips.",
+   "Validator (tools/blender/dinkasset) reports one error on SK_Pillbug: PIVOT, 'origin is 8.0 cm off, should move by (8.0, 0, 1.1) cm' (the new antennae, uropods and leg reach shift the measured footprint). The armature and root were deliberately left where the existing clips expect them, so this is unfixed; the asset it replaces passed. Warnings: 648 open edges (seta spines have no base caps), 66 coincident vertices, triangle count over target.",
+   "LOD0 is 26,136 triangles, 4.5 % over the 25k soft target (hard max 60k). The corpse prop is ~18k triangles for a prop_large; cut LOD0 to LOD1 if that class budget matters.",
+   "Shipped atlas is 2048 px (about 800 px/m); a 4096 bake was made in round r2 and looked the same at both review distances, so the smaller set was kept.",
+   "Iridescence is only a painted blue-green cast in base colour; there is no thin-film term in the game material.",
+   "Corpse (SM_Pillbug_Corpse) is NOT photoreal: the blood pool is a thin flat lobed film that reads as a red stain, the satellite drops are flat discs, the viscera are clean pink coils with too little blood over them, and the shell pieces carry no blood in their texture. Gore meshes are separate shells laid over the collapsed carcass. No collision hull authored. It keeps the sprite's red splat with grey shell fragments, which was the point."
+  ],
+  "change_12_nov": "Texture-only update after the coordinator's review (accepted asset, being imported): per-tergite colour shift, brown-olive and slate patches and more scratches on the back plates. Rebaked on the saved unwrapped mesh (pillbug.py retex): T_Pillbug_Atlas_BC/N/ORM/SSS changed; FBX files, names, rig, UVs and pivot are byte-for-byte the files exported at 05:28."
+ },
+ "Pig": {
+  "status": "NOT photoreal yet, but a pig: proportions rebuilt and surfaced; my last look still faults it at 1 m and in the run pose. Acceptable at the game camera in idle, walk and feed.",
+  "review_rounds": 8,
+  "final_renders": [
+   "Review/final_game.png",
+   "Review/final_close.png",
+   "Review/final_side.png",
+   "Review/final_back.png",
+   "Review/final_walk06.png",
+   "Review/final_run04.png",
+   "Review/final_feed07.png"
+  ],
+  "known_weaknesses": [
+   "Run f4 (gathered phase of the existing clip): the hind legs fold forward under the belly and the hindquarters balloon into a bag; the deep belly and ham skin follow the thigh bones. Not anatomical. Needs either hand-painted ham/flank weights or a retimed run clip; neither done.",
+   "Ears: large and cupped now, with veins and subsurface, but in the 1 m shot they glow saturated orange when backlit and the root still sits on a mound rather than growing out of the skull. From the side they read narrow.",
+   "Eyes: small brown glossy balls in a modelled socket with lid rims; no visible sclera, tear duct or lid thickness. The lash cards exist but are too fine to read.",
+   "Bristles: about 1,500 alpha cards with skin normals and no shadow. They give a bristly topline and a coarse coat at 1 m; at the game camera they add only a faint sheen, and some cards on the neck and face cross at odd angles. If the engine material casts shadows from them, the 'dark tick' defect of the earlier attempt returns.",
+   "Skin: blotches, dirt patches, dung on the hams, mud socks and a muddy snout are there, but the back and flanks seen from the game camera are still mostly even pale pink; the dirt patches have soft, same-sized edges; the mud on the belly reads as flat tan paint, not as thick caked relief.",
+   "Dung on the rump is one large grey-olive field in the back view rather than smears and runs.",
+   "Front legs still slant forward from the elbow (rest pose of the existing rig); leg wrinkles are even rings.",
+   "Snout: disc, rim, nostrils and bridge wrinkles are modelled; the wet mud on the lower disc is speckled green-brown and reads noisy at 1 m. Muzzle is slightly tubular in the three-quarter view.",
+   "LOD0 is 16,228 triangles (soft target 15,000, hard 30,000). LOD1/LOD2 keep decimated bristle cards, not checked by eye.",
+   "Validator errors: UV_OVERLAP (bristle cards over the atlas UV space, intended). Warnings: 6,056 open edges (cards), texture naming (T_Pig_Atlas_*)."
+  ]
+ },
+ "Duck": {
+  "status": "NOT photoreal and NOT ready to import: an unresolved shading defect leaves black patches on the plumage (see first weakness). Reads as a white duck otherwise at gameplay distance; fails at 1 m.",
+  "review_rounds": 5,
+  "final_renders": [
+   "Review/final_game.png",
+   "Review/final_mid.png",
+   "Review/final_close.png",
+   "Review/final_back.png",
+   "Review/final_walk04.png",
+   "Review/final_peck18.png",
+   "Review/final_quack08.png",
+   "Review/final_headless.png",
+   "Review/final_head.png"
+  ],
+  "known_weaknesses": [
+   "BLOCKING DEFECT, unresolved: black patches on the back between the wings, in a ring under the head and on one side of the breast, in every baked review render (final_mid.png, final_back.png, final_close.png). Ruled out: bake ray misses (a position-map fill changed nothing), collapsed UV faces (none found), cage size (0.007 and 0.012 m give the same patches). Only about 10,400 texels of the 2048 atlas are black, far too few for the area affected, so the cause is probably on the mesh side (zero-length normals or inverted faces on the decimated low body or on the wing/tail cards), not in the textures. Next step: render LOD0 with a plain grey material to separate mesh from texture.",
+   "Plumage is a baked relief of about 2,000 modelled contour feathers plus wing tracts; at 1 m the feathers read as stiff overlapping scales, not soft vanes with barbs.",
+   "Contour-feather cards were built and then removed after review (they looked like stuck-on paper tabs). Only wing primaries and the tail fan are alpha cards, so the body silhouette is a smooth shell. The brief asked for contour feather cards over the base: only partly met.",
+   "Folded wings are lens-shaped shells with baked feather rows: they read as pillows from above, with a blunt trailing end.",
+   "Head plumage is an anisotropic noise bump (reads like yarn at 0.5 m); the head is close to a sphere. The bill is a clean orange spatula: nostrils and nail are modelled, lamellae are not.",
+   "White plumage clips to pure white in full sun under the review tone curve (review exposure was lowered by 0.7 stop); base colour is about 0.66-0.76 linear, check it in engine.",
+   "Feet: webs are flat two-sided sheets, toes are simple tubes with a scale bump.",
+   "Gore: blood on the plumage is a texture-space composite (soft-edged, no clotting or matting); the wound is a flat capped section with a painted cross-section, no protruding bone or trachea geometry.",
+   "Cards reuse atlas cells, so the validator reports UV overlap on LOD0, and the mesh has 5 material slots."
+  ]
+ },
+ "Slime": {
+  "status": "NOT photoreal: reads as a wet, spotted organic mass but also as a wet painted boulder. New rig and clips.",
+  "review_rounds": 3,
+  "final_renders": [
+   "Review/final_game.png",
+   "Review/final_close.png",
+   "Review/final_back.png",
+   "Review/green_close.png",
+   "Review/red_close.png",
+   "Review/final_walk08.png",
+   "Review/final_attack07.png",
+   "Review/final_death31.png"
+  ],
+  "known_weaknesses": [
+   "Opaque: the game material is base colour + SSS mask, with no translucency or refraction, so there is no gelatinous depth; from behind, in shade, it reads as rock.",
+   "Macro form is a ridged mound: too hard-edged and mountain-like for something that should sag and pool.",
+   "Pigment spots are ringed dots of similar size: too regular.",
+   "No slime trail, drips or strands; the soil and grit band at the foot is a painted gradient.",
+   "The sprite is about 24x18 px beside a 47 px pillbug; the mesh is 0.92 x 0.58 x 0.27 m. Scale is my estimate.",
+   "Clips are first-pass procedural motion (peristaltic walk, lunge, collapse); never seen in engine. No hit clip. Death splatter sprites are not covered by a prop."
+  ]
+ }
+}

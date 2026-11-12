@@ -1,0 +1,216 @@
+{
+  "tool": "validate",
+  "schema_version": 1,
+  "blender": "5.2.2 LTS",
+  "file": "/home/davisc/Work/DinkPhotorealPassClaude/Dink-Smallwood-Remaster/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Duck/SK_Duck.blend",
+  "strict": false,
+  "passed": false,
+  "summary": {
+    "assets": 1,
+    "assets_passed": 0,
+    "errors": 1,
+    "warnings": 15
+  },
+  "scene_findings": [
+    {
+      "code": "ORPHAN_OBJECTS",
+      "severity": "warning",
+      "asset": null,
+      "message": "6 mesh objects are outside any asset collection and will not be exported: SK_Duck_Headless_LOD0, SK_Duck_Headless_LOD1, SK_Duck_Headless_LOD2, SM_Duck_Head_LOD0, SM_Duck_Head_LOD1, SM_Duck_Head_LOD2"
+    }
+  ],
+  "assets": [
+    {
+      "name": "SK_Duck",
+      "class": "creature",
+      "collection": "SK_Duck",
+      "tris_per_lod": {
+        "LOD0": 11418,
+        "LOD1": 5703,
+        "LOD2": 2853
+      },
+      "bounds": {
+        "blender_min_cm": [
+          -26.463,
+          -10.689,
+          0.061
+        ],
+        "blender_max_cm": [
+          24.45,
+          10.689,
+          45.079
+        ],
+        "size_cm": [
+          50.913,
+          21.379,
+          45.017
+        ],
+        "unreal_min_cm": [
+          -26.463,
+          -10.689,
+          0.061
+        ],
+        "unreal_max_cm": [
+          24.45,
+          10.689,
+          45.079
+        ]
+      },
+      "errors": 1,
+      "warnings": 14,
+      "findings": [
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Duck",
+          "message": "mesh data 'SK_Duck_LOD0.001' differs from object name 'SK_Duck_LOD0'",
+          "object": "SK_Duck_LOD0"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Duck",
+          "message": "mesh data 'SK_Duck_LOD1.001' differs from object name 'SK_Duck_LOD1'",
+          "object": "SK_Duck_LOD1"
+        },
+        {
+          "code": "NAME_MESHDATA",
+          "severity": "info",
+          "asset": "SK_Duck",
+          "message": "mesh data 'SK_Duck_LOD2.001' differs from object name 'SK_Duck_LOD2'",
+          "object": "SK_Duck_LOD2"
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "80 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Duck_LOD0",
+          "data": {
+            "vertices": 80
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "336 non-manifold edges (336 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Duck_LOD0",
+          "data": {
+            "boundary": 336,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "9 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Duck_LOD1",
+          "data": {
+            "vertices": 9
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "159 non-manifold edges (159 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Duck_LOD1",
+          "data": {
+            "boundary": 159,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "DUPLICATE_VERTS",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "4 vertices coincide with another vertex (within 0.01 mm); merge by distance",
+          "object": "SK_Duck_LOD2",
+          "data": {
+            "vertices": 4
+          }
+        },
+        {
+          "code": "NON_MANIFOLD",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "127 non-manifold edges (127 open boundary, 0 >2 faces, 0 wire); acceptable for creature only if intentional (cards)",
+          "object": "SK_Duck_LOD2",
+          "data": {
+            "boundary": 127,
+            "multi_face": 0,
+            "wire": 0
+          }
+        },
+        {
+          "code": "UV_OVERLAP",
+          "severity": "error",
+          "asset": "SK_Duck",
+          "message": "UV0 islands overlap (327.8 % of UV area, 4310 triangles); class creature needs unique UVs",
+          "object": "SK_Duck_LOD0",
+          "data": {
+            "overlap_ratio": 3.27829
+          }
+        },
+        {
+          "code": "TEXEL_DENSITY",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "texel density 5756 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "object": "SK_Duck_LOD0",
+          "data": {
+            "density_px_per_m": 5756.3,
+            "target": 512
+          }
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "image 'T_Duck_Atlas_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "image 'T_Duck_Atlas_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "image 'T_Duck_Atlas_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "image 'T_Duck_Atlas_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "image 'T_Duck_FeatherCards_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "image 'T_Duck_FeatherCards_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        },
+        {
+          "code": "NAME_TEXTURE",
+          "severity": "warning",
+          "asset": "SK_Duck",
+          "message": "image 'T_Duck_FeatherCards_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+        }
+      ],
+      "passed": false
+    }
+  ]
+}
