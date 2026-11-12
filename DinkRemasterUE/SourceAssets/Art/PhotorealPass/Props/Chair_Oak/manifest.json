@@ -1,0 +1,91 @@
+{
+ "name": "SM_Chair_Oak_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chair_Oak/SM_Chair_Oak_PR.fbx",
+ "materials": [
+  "MI_Chair_Oak"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Chair_Oak_PR.blend",
+ "lod0_triangles": 328,
+ "lod1_triangles": 188,
+ "lod2_triangles": 80,
+ "dimensions_m": [
+  0.515,
+  0.548,
+  0.995
+ ],
+ "bounds_min_m": [
+  -0.257,
+  -0.241,
+  -0.001
+ ],
+ "bounds_max_m": [
+  0.258,
+  0.307,
+  0.993
+ ],
+ "open_edges": 0,
+ "collision_hulls": 2,
+ "families": [
+  "chair (19 placements)",
+  "opening cottage chairs"
+ ],
+ "supersedes": "Stonebrook/SM_Chair_Oak_01 (0.65 x 0.54 x 1.005 m, base_center) and the family binding of chair",
+ "dresses": "joined oak side chair, 0.52 x 0.56 x 1.0 m: raked back legs with a kicked foot, three-board seat, seat rails and stretchers, shaped crest rail and a slat, pegged (baked)",
+ "fit": {
+  "pivot": "base centre; the sitter faces -Y",
+  "size": "seat 0.46 m high; 0.13 m narrower than SM_Chair_Oak_01, same height"
+ },
+ "baked": {
+  "texture_folder": "Chair_Oak",
+  "textures": {
+   "BC": "T_Chair_Oak_PR_BC.png",
+   "N": "T_Chair_Oak_PR_N.png",
+   "ORM": "T_Chair_Oak_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Chair_Oak",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 57.3,
+    "p99": 109.0
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.57,
+    "p95": 0.716
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 1112,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Chair_Oak_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chair_Oak",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake, two review rounds. Last look faults little at gameplay distance; at 1 m: members are straight square stock except the raked back legs, joints show no shoulders, pegs are baked, seat boards are flat (no saddle or wear hollow).",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chair_Oak/T_Chair_Oak_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chair_Oak/T_Chair_Oak_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Chair_Oak/T_Chair_Oak_PR_ORM.png"
+ }
+}

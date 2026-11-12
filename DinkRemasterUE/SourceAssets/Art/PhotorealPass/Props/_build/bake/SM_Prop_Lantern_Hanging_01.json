@@ -1,0 +1,69 @@
+{
+ "name": "SM_Prop_Lantern_Hanging_01",
+ "class": "prop",
+ "px": 1024,
+ "slots": [
+  {
+   "material": "MI_Prop_Lantern_Hanging_01",
+   "kind": "opaque"
+  },
+  {
+   "material": "MI_Prop_Lantern_Hanging_01_Horn",
+   "kind": "translucent"
+  }
+ ],
+ "textures": {
+  "BC": "T_Prop_Lantern_Hanging_01_BC.png",
+  "N": "T_Prop_Lantern_Hanging_01_N.png",
+  "ORM": "T_Prop_Lantern_Hanging_01_ORM.png",
+  "E": "T_Prop_Lantern_Hanging_01_E.png"
+ },
+ "lod_triangles": [
+  1122,
+  624,
+  286
+ ],
+ "hi_triangles": 5512,
+ "bounds_min_m": [
+  -0.097,
+  -0.096,
+  -0.78
+ ],
+ "bounds_max_m": [
+  0.096,
+  0.096,
+  0.001
+ ],
+ "dimensions_m": [
+  0.193,
+  0.192,
+  0.781
+ ],
+ "emissive_nits": 60.0,
+ "params": {
+  "transmission": 0.6,
+  "ior": 1.5,
+  "thin": true
+ },
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 80.1,
+   "p99": 180.5
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.51,
+   "p95": 0.96
+  },
+  "metallic_mean": 0.27
+ },
+ "info": {
+  "socket": [
+   0.0,
+   0.0,
+   -0.665
+  ]
+ },
+ "third_party": []
+}

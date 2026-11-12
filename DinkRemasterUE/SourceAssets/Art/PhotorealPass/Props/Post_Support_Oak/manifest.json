@@ -1,0 +1,55 @@
+{
+ "name": "SM_Post_Support_Oak_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Post_Support_Oak/SM_Post_Support_Oak_PR.fbx",
+ "materials": [
+  "MI_Prop_OakWarm",
+  "MI_Struct_FieldBoulder"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 480,
+ "lod1_triangles": 240,
+ "lod2_triangles": 104,
+ "dimensions_m": [
+  1.16,
+  0.452,
+  2.652
+ ],
+ "bounds_min_m": [
+  -0.58,
+  -0.23,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.58,
+  0.221,
+  2.652
+ ],
+ "open_edges": 0,
+ "collision_hulls": 2,
+ "families": [
+  "87 inside/details/table- frame 10",
+  "support_post_timber"
+ ],
+ "supersedes": "none (support_post_timber placeholder, 21 placements)",
+ "dresses": "oak roof post 2.65 m on a two-course dressed stone pad, with a cross head and two pegged braces",
+ "fit": {
+  "pivot": "base centre; the cross head runs along X",
+  "sprite_scale": "frame 10 is 106 px (2.65 m) tall"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Post_Support_Oak",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "One review round. Post and braces are clean sawn timbers with pegs; brace ends are butted, not housed; the stone pad is four dressed blocks.",
+ "third_party": [
+  "old_planks_02",
+  "rock_face",
+  "rock_face_04"
+ ],
+ "texture_sets": [
+  "FieldBoulder",
+  "OakWeathered"
+ ],
+ "textures_px": 2048
+}

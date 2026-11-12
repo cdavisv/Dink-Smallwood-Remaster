@@ -1,0 +1,73 @@
+{
+ "name": "SM_Fireplace_Fieldstone_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Fireplace_Fieldstone/SM_Fireplace_Fieldstone_PR.fbx",
+ "materials": [
+  "MI_Struct_Fieldstone",
+  "MI_Prop_OakWarm",
+  "MI_Struct_FieldBoulder",
+  "MI_Prop_Iron"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 3216,
+ "lod1_triangles": 1608,
+ "lod2_triangles": 706,
+ "dimensions_m": [
+  3.998,
+  1.575,
+  4.149
+ ],
+ "bounds_min_m": [
+  -1.997,
+  -0.772,
+  0.0
+ ],
+ "bounds_max_m": [
+  2.001,
+  0.802,
+  4.149
+ ],
+ "open_edges": 0,
+ "collision_hulls": 6,
+ "families": [
+  "opening cottage (screen 1) fireplace",
+  "64 inside/details/inacc- frame 5 (fireplace_brick)"
+ ],
+ "supersedes": "Stonebrook/SM_Fireplace_Fieldstone_01 (4.02 x 1.54 x 4.145 m, base_center) and its FiredClay / V2 refinements",
+ "dresses": "fieldstone cottage hearth, 4.0 x 1.54 x 4.14 m: rubble jambs with dressed stones up the opening and corners, an oak bressummer and mantel shelf over a 1.6 x 1.5 m opening, a smoke-blackened fireback and breast, a stack in a second stage with weathered shoulders, a flagged hearth, two iron fire dogs carrying three logs burnt through in the middle on a bed of ash, a swinging crane with a pot hook",
+ "fit": {
+  "pivot": "base centre of the 4.0 x 1.54 m footprint; opening faces -Y, the back (+Y) stands against the wall",
+  "size": "as SM_Fireplace_Fieldstone_01"
+ },
+ "emissive": {
+  "type": "hearth fire (no flame mesh in the FBX: use the engine fire, sprite seq hearth_fire, on the logs)",
+  "position_m": [
+   0.0,
+   0.2,
+   0.42
+  ],
+  "colour_temperature_K": 1900,
+  "attenuation_radius_m": 7.0,
+  "intensity_cd": 60.0,
+  "note": "point light among the logs with a 15 cm soft source radius, flicker 10-20 percent at 4-9 Hz; a second dim red light (1200 K, 2 m radius) on the ash bed sells the embers; the logs carry no emissive ember mask"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Fireplace_Fieldstone",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "Masonry reads as real rubble with dressed jamb stones; soot on fireback and breast is the vertex-colour soot switch on a coarse grid, so its edge is soft; logs are swept tubes with a charred middle, no bark, no split faces, no embers; the bressummer has no adze marks; stack top is cut square at 4.14 m as the mesh it replaces. Brick version of sprite 64 frame 5 not built.",
+ "third_party": [
+  "old_planks_02",
+  "old_stone_wall",
+  "rock_face",
+  "rock_face_04",
+  "rusty_metal_02"
+ ],
+ "texture_sets": [
+  "FieldBoulder",
+  "Fieldstone",
+  "OakWeathered",
+  "WroughtIron"
+ ],
+ "textures_px": 2048
+}

@@ -1,0 +1,695 @@
+[
+ {
+  "name": "SM_Bridge_Wood_Deck_PR",
+  "class": "kit_piece",
+  "fbx": "SM_Bridge_Wood_Deck_PR.fbx",
+  "materials": [
+   "MI_Struct_OakDark"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 2376,
+  "lod1_triangles": 1068,
+  "lod2_triangles": 474,
+  "dimensions_m": [
+   2.508,
+   1.762,
+   0.279
+  ],
+  "bounds_min_m": [
+   -1.252,
+   -0.875,
+   -0.211
+  ],
+  "bounds_max_m": [
+   1.255,
+   0.886,
+   0.067
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "58 struct/bridge/brdge- frames 1-3, 5",
+   "bridge_wood_deck"
+  ],
+  "supersedes": "none (family 58 was placeholder)",
+  "dresses": "2.5 m length of plank bridge deck, 1.7 m wide: thirteen riven cross planks of uneven width and thickness, one broken short, spiked with forged nails to two round stringers",
+  "fit": {
+   "pivot": "centre of the deck at walking level: plank tops are at z = +0.04 to +0.06 m, the stringers hang to z = -0.2 m (over water or a ditch they show; on a bank they are buried)",
+   "run": "along X; butt modules end to end every 2.5 m; yaw for the n-s and diagonal frames",
+   "sprite_scale": "frames 1-3 are 65 px (1.6 m) wide"
+  }
+ },
+ {
+  "name": "SM_Bridge_Wood_Rail_Rope_PR",
+  "class": "prop",
+  "fbx": "SM_Bridge_Wood_Rail_Rope_PR.fbx",
+  "materials": [
+   "MI_Struct_OakDark",
+   "MI_Struct_Rope"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 3646,
+  "lod1_triangles": 1640,
+  "lod2_triangles": 728,
+  "dimensions_m": [
+   2.506,
+   0.186,
+   1.581
+  ],
+  "bounds_min_m": [
+   -1.253,
+   -0.099,
+   -0.3
+  ],
+  "bounds_max_m": [
+   1.253,
+   0.087,
+   1.281
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "58 struct/bridge/brdge- frames 4, 7, 9, 11",
+   "bridge_wood_rail_rope"
+  ],
+  "supersedes": "none",
+  "dresses": "2.5 m of rope hand rail: one cleft post 1.28 m with two foot struts, a three-strand rope swagged over its head and hitched, hanging to 0.82 m at both module ends",
+  "fit": {
+   "pivot": "foot of the post at deck level; the rope ends at x = -1.25 and +1.25 at z = 0.82 with a level tangent, so consecutive modules join in mid-span",
+   "place": "stand it on the deck edge, y = +-0.8 m from the deck centre line"
+  }
+ },
+ {
+  "name": "SM_Bridge_Wood_Rail_Plank_PR",
+  "class": "prop",
+  "fbx": "SM_Bridge_Wood_Rail_Plank_PR.fbx",
+  "materials": [
+   "MI_Struct_OakDark",
+   "MI_Struct_Rope"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 5890,
+  "lod1_triangles": 2650,
+  "lod2_triangles": 1178,
+  "dimensions_m": [
+   2.508,
+   0.264,
+   1.58
+  ],
+  "bounds_min_m": [
+   -1.255,
+   -0.117,
+   -0.3
+  ],
+  "bounds_max_m": [
+   1.253,
+   0.147,
+   1.28
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "58 struct/bridge/brdge- frames 6, 8, 10",
+   "bridge_wood_rail_plank"
+  ],
+  "supersedes": "none",
+  "dresses": "the boarded side of the bridge: fourteen upright boards hung on two ledger poles from below deck level to 0.76 m, with the same post and rope rail above",
+  "fit": {
+   "pivot": "as SM_Bridge_Wood_Rail_Rope_PR; the boards hang on the +Y side of the post line (outside the deck)"
+  }
+ },
+ {
+  "name": "SM_Bridge_Stone_PR",
+  "class": "prop_large",
+  "fbx": "SM_Bridge_Stone_PR.fbx",
+  "materials": [
+   "MI_Struct_CastleAshlar",
+   "MI_Struct_FieldBoulder"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 11420,
+  "lod1_triangles": 5138,
+  "lod2_triangles": 2284,
+  "dimensions_m": [
+   8.023,
+   4.624,
+   3.031
+  ],
+  "bounds_min_m": [
+   -4.013,
+   -2.319,
+   -2.5
+  ],
+  "bounds_max_m": [
+   4.011,
+   2.305,
+   0.531
+  ],
+  "open_edges": 0,
+  "collision_hulls": 3,
+  "families": [
+   "186 struct/landmark/landm- frames 4-6",
+   "bridge_stone"
+  ],
+  "supersedes": "none (bridge_stone was placeholder)",
+  "dresses": "two-arch stone river bridge, 8.0 x 4.4 m: battered spandrel walls, rings of thirteen cut voussoirs with a deeper keystone, a projecting string course, kerb stones carrying square merlons (the toothed edge of the sprite; one fallen onto the deck), a roadway of some fifty individually laid flags, mossed between the wheel lines",
+  "fit": {
+   "pivot": "centre of the roadway at walking level (flag tops at z = 0 to -0.03); the structure goes down to z = -2.5 m: set it across a river bed about 2 m below the banks, or sink the lower part in water",
+   "run": "along X; roadway 3.6 m between kerbs",
+   "frames": "frame 4 (437 px) is the long three-arch view, frames 5-6 the short one; this is one mesh of two arches; build stone_bridge(L=12, narches=3) for a three-arch variant"
+  }
+ },
+ {
+  "name": "SM_Door_Wood_Single_PR",
+  "class": "door",
+  "fbx": "SM_Door_Wood_Single_PR.fbx",
+  "materials": [
+   "MI_Struct_OakDark"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 1922,
+  "lod1_triangles": 864,
+  "lod2_triangles": 384,
+  "dimensions_m": [
+   0.978,
+   0.112,
+   2.012
+  ],
+  "bounds_min_m": [
+   0.0,
+   -0.056,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.978,
+   0.056,
+   2.012
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "61 struct/details/door/odor1-",
+   "door_wood_single"
+  ],
+  "supersedes": "none (family 61 was placeholder)",
+  "dresses": "ledged-and-braced plank door, 0.95 x 2.02 m: six boards of uneven width, three chamfered ledges and two braces on the back, two forged strap hinges with spear ends and rose-head nails, clenched nail rows, ring latch on a back plate",
+  "fit": {
+   "pivot": "hinge: board edge on x = 0, centred through the 4 cm thickness, floor level; closed leaf along +X, face to -Y; the sprite frames 1-6 are the leaf swinging, so animate yaw",
+   "sprite_scale": "the sprite leaf is 64 px (1.6 m) tall: the 3D door is life size, as the town and cottage doors"
+  }
+ },
+ {
+  "name": "SM_Door_Wood_Wide_PR",
+  "class": "door",
+  "fbx": "SM_Door_Wood_Wide_PR.fbx",
+  "materials": [
+   "MI_Struct_OakDark"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 2502,
+  "lod1_triangles": 1124,
+  "lod2_triangles": 500,
+  "dimensions_m": [
+   1.527,
+   0.117,
+   2.093
+  ],
+  "bounds_min_m": [
+   0.0,
+   -0.061,
+   0.0
+  ],
+  "bounds_max_m": [
+   1.527,
+   0.056,
+   2.093
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "62 struct/details/door/odor2-",
+   "door_wood_wide"
+  ],
+  "supersedes": "none (family 62 was placeholder)",
+  "dresses": "wide ledged-and-braced door, 1.5 x 2.1 m: the same construction with three long strap hinges, a box lock and a draw bar in two staples",
+  "fit": {
+   "pivot": "hinge, as SM_Door_Wood_Single_PR"
+  }
+ },
+ {
+  "name": "SM_SignPost_Single_PR",
+  "class": "prop",
+  "fbx": "SM_SignPost_Single_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakDark"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 896,
+  "lod1_triangles": 402,
+  "lod2_triangles": 178,
+  "dimensions_m": [
+   1.071,
+   0.309,
+   2.35
+  ],
+  "bounds_min_m": [
+   -0.508,
+   -0.184,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.564,
+   0.124,
+   2.35
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "186 struct/landmark/landm- frame 7",
+   "sign_post"
+  ],
+  "supersedes": "none (sign_post was placeholder)",
+  "dresses": "road sign: hewn oak post 2.3 m with a lead cap and packing stones, 1 board(s) each of riven planks of unequal length nailed across it",
+  "fit": {
+   "pivot": "foot of the post, boards face -Y",
+   "text": "the boards carry no lettering (the game shows the sign text in a dialogue box)"
+  }
+ },
+ {
+  "name": "SM_SignPost_Double_PR",
+  "class": "prop",
+  "fbx": "SM_SignPost_Double_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakDark"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 1316,
+  "lod1_triangles": 592,
+  "lod2_triangles": 262,
+  "dimensions_m": [
+   1.062,
+   0.327,
+   2.349
+  ],
+  "bounds_min_m": [
+   -0.513,
+   -0.165,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.549,
+   0.162,
+   2.349
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "186 struct/landmark/landm- frame 8",
+   "sign_post"
+  ],
+  "supersedes": "none (sign_post was placeholder)",
+  "dresses": "road sign: hewn oak post 2.3 m with a lead cap and packing stones, 2 board(s) each of riven planks of unequal length nailed across it",
+  "fit": {
+   "pivot": "foot of the post, boards face -Y",
+   "text": "the boards carry no lettering (the game shows the sign text in a dialogue box)"
+  }
+ },
+ {
+  "name": "SM_SignPost_Triple_PR",
+  "class": "prop",
+  "fbx": "SM_SignPost_Triple_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakDark"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 1456,
+  "lod1_triangles": 654,
+  "lod2_triangles": 290,
+  "dimensions_m": [
+   1.409,
+   0.29,
+   2.35
+  ],
+  "bounds_min_m": [
+   -0.672,
+   -0.179,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.737,
+   0.111,
+   2.35
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "186 struct/landmark/landm- frames 9, 10",
+   "sign_post"
+  ],
+  "supersedes": "none (sign_post was placeholder)",
+  "dresses": "road sign: hewn oak post 2.3 m with a lead cap and packing stones, 3 board(s) each of riven planks of unequal length nailed across it",
+  "fit": {
+   "pivot": "foot of the post, boards face -Y",
+   "text": "the boards carry no lettering (the game shows the sign text in a dialogue box)"
+  }
+ },
+ {
+  "name": "SM_Chimney_Stone_Short_PR",
+  "class": "prop",
+  "fbx": "SM_Chimney_Stone_Short_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_FieldBoulder"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 864,
+  "lod1_triangles": 388,
+  "lod2_triangles": 172,
+  "dimensions_m": [
+   1.102,
+   0.951,
+   1.453
+  ],
+  "bounds_min_m": [
+   -0.552,
+   -0.474,
+   -0.003
+  ],
+  "bounds_max_m": [
+   0.549,
+   0.477,
+   1.45
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "63 struct/home/home- frames 11, 12",
+   "chimney_stone"
+  ],
+  "supersedes": "none",
+  "dresses": "fieldstone chimney top to stand on a thatched roof: 0.95 x 0.8 m stack of individually set blocks, 1.43 m, oversailing cap course, sooted flue",
+  "fit": {
+   "pivot": "centre of the base: sink it 0.3-0.5 m into the thatch at the ridge"
+  }
+ },
+ {
+  "name": "SM_Chimney_Stone_Tall_PR",
+  "class": "prop_large",
+  "fbx": "SM_Chimney_Stone_Tall_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_FieldBoulder"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 3328,
+  "lod1_triangles": 1496,
+  "lod2_triangles": 664,
+  "dimensions_m": [
+   1.363,
+   0.814,
+   4.735
+  ],
+  "bounds_min_m": [
+   -0.684,
+   -0.41,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.679,
+   0.404,
+   4.735
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "63 struct/home/home- frame 13",
+   "chimney_stone"
+  ],
+  "supersedes": "none",
+  "dresses": "gable-end chimney from the ground: 1.3 m breast, two weathered offsets, 0.82 m flue, 4.73 m (sprite 187 px = 4.7 m)",
+  "fit": {
+   "pivot": "centre of the base at ground level; stand it against an end wall"
+  }
+ },
+ {
+  "name": "SM_Cottage_Thatched_TwoStorey_PR",
+  "class": "building",
+  "fbx": "SM_Cottage_Thatched_TwoStorey_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Thatch",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 40126,
+  "lod1_triangles": 18056,
+  "lod2_triangles": 8024,
+  "dimensions_m": [
+   8.25,
+   7.688,
+   9.22
+  ],
+  "bounds_min_m": [
+   -4.15,
+   -3.888,
+   0.0
+  ],
+  "bounds_max_m": [
+   4.1,
+   3.8,
+   9.22
+  ],
+  "open_edges": 0,
+  "collision_hulls": 5,
+  "families": [
+   "63 struct/home/home- frames 4, 5",
+   "cottage_thatched_two_storey"
+  ],
+  "supersedes": "none (not built in round 1)",
+  "dresses": "two-storey fieldstone cottage as sprite 63 frames 4-5: 6.6 x 6.0 m lower storey with quoins, footing stones and two shuttered windows under a thatched pentice roof on all four sides; a 4.9 x 4.3 m upper storey rises through it under its own hipped thatch with block ridge and chimney",
+  "fit": {
+   "pivot": "ground centre of the lower wall rectangle; front -Y",
+   "footprint": "lower walls 6.6 x 6.0 m, eaves 7.6 x 7.0 m; ridge 8.3 m, chimney top 9.2 m",
+   "door": "no doorway is cut: stand SM_Cottage_Door_PR where the door sprite is, as for the other family-63 cottages"
+  }
+ },
+ {
+  "name": "SM_Cottage_Thatched_LShape_PR",
+  "class": "building",
+  "fbx": "SM_Cottage_Thatched_LShape_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Thatch",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 63110,
+  "lod1_triangles": 28398,
+  "lod2_triangles": 12622,
+  "dimensions_m": [
+   10.6,
+   11.4,
+   9.215
+  ],
+  "bounds_min_m": [
+   -5.3,
+   -6.2,
+   0.0
+  ],
+  "bounds_max_m": [
+   5.3,
+   5.2,
+   9.215
+  ],
+  "open_edges": 0,
+  "collision_hulls": 8,
+  "families": [
+   "63 struct/home/home- frame 10",
+   "cottage_thatched_l_shape"
+  ],
+  "supersedes": "none (not built in round 1)",
+  "dresses": "L-shaped cottage as sprite 63 frame 10: the two-storey block with a single-storey hipped wing (4.4 x 5.6 m) thrown forward from its right half",
+  "fit": {
+   "pivot": "ground; the two-storey block is centred at (-1.2, +1.4), the wing at (+2.3, -2.6), front -Y",
+   "footprint": "about 9.3 x 11.2 m over the eaves"
+  }
+ },
+ {
+  "name": "SM_Island_Hut_Round_PR",
+  "class": "building",
+  "fbx": "SM_Island_Hut_Round_PR.fbx",
+  "materials": [
+   "MI_Island_DaubBlue",
+   "MI_Struct_OakWeathered",
+   "MI_Island_PalmThatch",
+   "MI_Island_DaubOlive",
+   "MI_Island_DaubOxblood",
+   "MI_Island_Bone",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 15684,
+  "lod1_triangles": 7056,
+  "lod2_triangles": 3136,
+  "dimensions_m": [
+   6.419,
+   7.728,
+   4.67
+  ],
+  "bounds_min_m": [
+   -3.118,
+   -4.547,
+   -0.068
+  ],
+  "bounds_max_m": [
+   3.301,
+   3.181,
+   4.602
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "424 struct/island/isle- frames 1-3",
+   "island_hut_round"
+  ],
+  "supersedes": "none (family 424 was placeholder)",
+  "dresses": "round island hut, 5.2 m across the wall, 6.4 m across the eaves, 4.6 m to the finial: bulging daub wall limewashed blue below a stepped border, olive above, with ox-blood panels (separate material slots, so the colours are paint, not tint); nine weathered whale-rib buttresses; doorway with ox-blood jambs inlaid with shell lozenges under two crossed tusks; domed conical thatch in twelve sectors with a ragged fringe, cane ties, three cane hoops and a whipped finial",
+  "fit": {
+   "pivot": "ground centre; doorway faces -Y (frames 1-3 are the same hut turned: yaw it)",
+   "door": "opening 1.08 m wide, 1.7 m high at y = -2.50; a dark closed box stands behind it"
+  }
+ },
+ {
+  "name": "SM_Island_Hut_TwoStorey_PR",
+  "class": "building",
+  "fbx": "SM_Island_Hut_TwoStorey_PR.fbx",
+  "materials": [
+   "MI_Island_DaubBlue",
+   "MI_Struct_OakWeathered",
+   "MI_Island_PalmThatch",
+   "MI_Island_DaubOlive",
+   "MI_Island_DaubOxblood",
+   "MI_Island_Bone",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 29720,
+  "lod1_triangles": 13374,
+  "lod2_triangles": 5944,
+  "dimensions_m": [
+   7.21,
+   8.527,
+   6.92
+  ],
+  "bounds_min_m": [
+   -3.508,
+   -4.947,
+   -0.068
+  ],
+  "bounds_max_m": [
+   3.701,
+   3.58,
+   6.852
+  ],
+  "open_edges": 0,
+  "collision_hulls": 2,
+  "families": [
+   "424 struct/island/isle- frames 4-6",
+   "island_hut_two_storey"
+  ],
+  "supersedes": "none (family 424 was placeholder)",
+  "dresses": "two-storey round hut: a 6.0 m drum under a thatch skirt with a 4.4 m drum and cone rising through it: bulging daub wall limewashed blue below a stepped border, olive above, with ox-blood panels (separate material slots, so the colours are paint, not tint); nine weathered whale-rib buttresses; doorway with ox-blood jambs inlaid with shell lozenges under two crossed tusks; domed conical thatch in twelve sectors with a ragged fringe, cane ties, three cane hoops and a whipped finial",
+  "fit": {
+   "pivot": "ground centre; doorway faces -Y (frames 1-3 are the same hut turned: yaw it)",
+   "door": "opening 1.08 m wide, 1.7 m high at y = -2.90; a dark closed box stands behind it"
+  }
+ },
+ {
+  "name": "SM_Island_Fence_Lattice_PR",
+  "class": "prop_large",
+  "fbx": "SM_Island_Fence_Lattice_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Island_Bamboo",
+   "MI_Struct_Rope"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 11040,
+  "lod1_triangles": 4968,
+  "lod2_triangles": 2208,
+  "dimensions_m": [
+   4.766,
+   0.402,
+   1.784
+  ],
+  "bounds_min_m": [
+   -2.405,
+   -0.242,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.36,
+   0.159,
+   1.784
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "424 struct/island/isle- frames 7-12",
+   "island_fence_lattice"
+  ],
+  "supersedes": "none",
+  "dresses": "4.4 m run of cane lattice fence: three posts, two rails, crossed diagonals in each bay, all bamboo with node rings, rope lashings at every crossing",
+  "fit": {
+   "pivot": "ground centre, run along X; end posts at x = +-2.2 (share a post between runs as with the split-rail fence)"
+  }
+ },
+ {
+  "name": "SM_Island_TorchPole_PR",
+  "class": "prop",
+  "fbx": "SM_Island_TorchPole_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Island_Bamboo",
+   "MI_Island_RedCloth"
+  ],
+  "source_blend": "Misc.blend",
+  "lod0_triangles": 1258,
+  "lod1_triangles": 566,
+  "lod2_triangles": 250,
+  "dimensions_m": [
+   0.423,
+   0.335,
+   2.592
+  ],
+  "bounds_min_m": [
+   -0.238,
+   -0.135,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.185,
+   0.2,
+   2.592
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "424 struct/island/isle- frame 18",
+   "island_totem_pole"
+  ],
+  "supersedes": "none",
+  "dresses": "three-tined cane pole, 2.6 m, bound with red cloth below the tines, tips charred (class island_totem_pole; frame 18)",
+  "fit": {
+   "pivot": "foot of the pole",
+   "light": "unlit; if the game lights it, put flames on the three tips at z = 2.58 m"
+  }
+ }
+]

@@ -1,0 +1,57 @@
+{
+ "name": "EarthPath",
+ "files": {
+  "BC": "EarthPath/T_Terrain_EarthPath_BC.png",
+  "N": "EarthPath/T_Terrain_EarthPath_N.png",
+  "ORM": "EarthPath/T_Terrain_EarthPath_ORM.png",
+  "H": "EarthPath/T_Terrain_EarthPath_H.png",
+  "Macro": "EarthPath/T_Terrain_EarthPath_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 4.0,
+ "texel_mm_per_px": 1.953,
+ "height_range_m": 0.0558,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.423",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "path",
+  "dirt",
+  "gravel"
+ ],
+ "status": "finished",
+ "method": "Poly Haven dirt_floor (2x2, compacted earth with dry crazing) height-blended with rocky_trail (2x2, embedded stones and grit) plus a periodic footprint-scale undulation with damp hollows",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "dirt_floor",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "rocky_trail",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 31.2,
+  "mean": 120.4,
+  "max": 207.0
+ },
+ "mean_srgb": [
+  137,
+  118,
+  97
+ ],
+ "roughness_mean": 0.8,
+ "known_weaknesses": "no explicit wheel ruts or readable footprints (kept direction-free so it tiles under any path shape); stones are at most a few centimetres"
+}

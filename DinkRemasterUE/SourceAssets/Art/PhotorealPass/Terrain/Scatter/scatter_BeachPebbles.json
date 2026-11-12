@@ -1,0 +1,118 @@
+[
+ {
+  "name": "SM_BeachPebbles_A",
+  "class": "prop_small",
+  "fbx": "Scatter/SM_BeachPebbles_A.fbx",
+  "dimensions_m": [
+   0.1379,
+   0.144,
+   0.0378
+  ],
+  "lod0_triangles": 1158,
+  "lod1_triangles": 486,
+  "textures": {
+   "BC": "Scatter/Textures/T_Scatter_BeachPebbles_BC.png",
+   "N": "Scatter/Textures/T_Scatter_BeachPebbles_N.png",
+   "ORM": "Scatter/Textures/T_Scatter_BeachPebbles_ORM.png"
+  },
+  "texture_px": 1024,
+  "material": "MI_Scatter_BeachPebbles",
+  "families": [
+   "beach_pebbles"
+  ],
+  "pivot": "base_center",
+  "checks": {
+   "non_manifold_edges": 0,
+   "uv_min": 0.0025,
+   "uv_max": 0.4975
+  },
+  "source_blend": "Scatter/Scatter_BeachPebbles.blend"
+ },
+ {
+  "name": "SM_BeachPebbles_B",
+  "class": "prop_small",
+  "fbx": "Scatter/SM_BeachPebbles_B.fbx",
+  "dimensions_m": [
+   0.2892,
+   0.2234,
+   0.0326
+  ],
+  "lod0_triangles": 1511,
+  "lod1_triangles": 633,
+  "textures": {
+   "BC": "Scatter/Textures/T_Scatter_BeachPebbles_BC.png",
+   "N": "Scatter/Textures/T_Scatter_BeachPebbles_N.png",
+   "ORM": "Scatter/Textures/T_Scatter_BeachPebbles_ORM.png"
+  },
+  "texture_px": 1024,
+  "material": "MI_Scatter_BeachPebbles",
+  "families": [
+   "beach_pebbles"
+  ],
+  "pivot": "base_center",
+  "checks": {
+   "non_manifold_edges": 5,
+   "uv_min": 0.0035,
+   "uv_max": 0.9951
+  },
+  "source_blend": "Scatter/Scatter_BeachPebbles.blend"
+ },
+ {
+  "name": "SM_BeachPebbles_C",
+  "class": "prop_small",
+  "fbx": "Scatter/SM_BeachPebbles_C.fbx",
+  "dimensions_m": [
+   0.4532,
+   0.3011,
+   0.0338
+  ],
+  "lod0_triangles": 1618,
+  "lod1_triangles": 678,
+  "textures": {
+   "BC": "Scatter/Textures/T_Scatter_BeachPebbles_BC.png",
+   "N": "Scatter/Textures/T_Scatter_BeachPebbles_N.png",
+   "ORM": "Scatter/Textures/T_Scatter_BeachPebbles_ORM.png"
+  },
+  "texture_px": 1024,
+  "material": "MI_Scatter_BeachPebbles",
+  "families": [
+   "beach_pebbles"
+  ],
+  "pivot": "base_center",
+  "checks": {
+   "non_manifold_edges": 0,
+   "uv_min": 0.0038,
+   "uv_max": 0.9911
+  },
+  "source_blend": "Scatter/Scatter_BeachPebbles.blend"
+ },
+ {
+  "name": "SM_BeachPebbles_D",
+  "class": "prop_small",
+  "fbx": "Scatter/SM_BeachPebbles_D.fbx",
+  "dimensions_m": [
+   0.2178,
+   0.1464,
+   0.0469
+  ],
+  "lod0_triangles": 780,
+  "lod1_triangles": 326,
+  "textures": {
+   "BC": "Scatter/Textures/T_Scatter_BeachPebbles_BC.png",
+   "N": "Scatter/Textures/T_Scatter_BeachPebbles_N.png",
+   "ORM": "Scatter/Textures/T_Scatter_BeachPebbles_ORM.png"
+  },
+  "texture_px": 1024,
+  "material": "MI_Scatter_BeachPebbles",
+  "families": [
+   "beach_pebbles"
+  ],
+  "pivot": "base_center",
+  "checks": {
+   "non_manifold_edges": 0,
+   "uv_min": 0.5021,
+   "uv_max": 0.998
+  },
+  "source_blend": "Scatter/Scatter_BeachPebbles.blend"
+ }
+]

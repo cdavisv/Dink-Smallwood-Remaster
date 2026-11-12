@@ -1,0 +1,56 @@
+{
+ "name": "CliffRock",
+ "files": {
+  "BC": "CliffRock/T_Terrain_CliffRock_BC.png",
+  "N": "CliffRock/T_Terrain_CliffRock_N.png",
+  "ORM": "CliffRock/T_Terrain_CliffRock_ORM.png",
+  "H": "CliffRock/T_Terrain_CliffRock_H.png",
+  "Macro": "CliffRock/T_Terrain_CliffRock_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.7,
+ "texel_mm_per_px": 1.318,
+ "height_range_m": 0.07,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.488",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "cliff_face",
+  "rock_mass"
+ ],
+ "status": "finished",
+ "method": "Poly Haven rock_face_03 with its two straight through-going joints located and covered by a turned, enlarged copy of itself, plus patches of Poly Haven rock_face at a non-commensurate scale; large-scale brightness drift removed; graded to the dark grey-brown of the original cliffs",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_face_03",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  },
+  {
+   "source": "polyhaven",
+   "asset_id": "rock_face",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1.13
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 33.2,
+  "mean": 90.6,
+  "max": 235.2
+ },
+ "mean_srgb": [
+  103,
+  88,
+  73
+ ],
+ "roughness_mean": 0.819,
+ "known_weaknesses": "no bedding direction, so it does not read as layered strata; relief of 8 cm needs parallax or tessellation to show on a flat cliff mesh"
+}

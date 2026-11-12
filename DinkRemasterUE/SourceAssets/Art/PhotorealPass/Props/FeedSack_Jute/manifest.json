@@ -1,0 +1,53 @@
+{
+ "name": "SM_FeedSack_Jute_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute/SM_FeedSack_Jute_PR.fbx",
+ "materials": [
+  "MI_Prop_Hessian",
+  "MI_Struct_Rope"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 5550,
+ "lod1_triangles": 2774,
+ "lod2_triangles": 1220,
+ "dimensions_m": [
+  0.749,
+  0.566,
+  0.77
+ ],
+ "bounds_min_m": [
+  -0.372,
+  -0.287,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.377,
+  0.279,
+  0.77
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "opening cottage (screen 1) feed sacks"
+ ],
+ "supersedes": "Stonebrook/SM_FeedSack_Jute_01 (0.72 x 0.55 x 0.75 m, base_center)",
+ "dresses": "feed sack stood on end, 0.72 x 0.56 x 0.75 m: weight settled to the bottom, neck gathered in folds and whipped with twine, a flared ruff above the tie",
+ "fit": {
+  "pivot": "base centre",
+  "size": "as SM_FeedSack_Jute_01"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/FeedSack_Jute",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "Body and weave pass at gameplay distance; the gathered neck and ruff are regular lathe folds and read stiff, like card, at 1 m; no side seam.",
+ "third_party": [
+  "hessian_230",
+  "thatch_roof_angled"
+ ],
+ "texture_sets": [
+  "Hessian",
+  "Thatch"
+ ],
+ "textures_px": 2048
+}

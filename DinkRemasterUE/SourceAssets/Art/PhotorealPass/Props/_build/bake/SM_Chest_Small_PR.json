@@ -1,0 +1,96 @@
+{
+ "name": "SM_Chest_Small_PR",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Chest_Small",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Chest_Small_PR_BC.png",
+  "N": "T_Chest_Small_PR_N.png",
+  "ORM": "T_Chest_Small_PR_ORM.png"
+ },
+ "lod_triangles": [
+  1448,
+  812,
+  438
+ ],
+ "hi_triangles": 10876,
+ "bounds_min_m": [
+  -0.47,
+  -0.264,
+  -0.0
+ ],
+ "bounds_max_m": [
+  0.47,
+  0.264,
+  0.528
+ ],
+ "dimensions_m": [
+  0.94,
+  0.528,
+  0.528
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 48.5,
+   "p99": 128.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.565,
+   "p95": 0.855
+  },
+  "metallic_mean": 0.079
+ },
+ "info": {
+  "hinge": [
+   0.0,
+   0.257,
+   0.36
+  ]
+ },
+ "third_party": [
+  "rough_wood"
+ ],
+ "variants": {
+  "SM_Chest_Small_Open_PR": {
+   "bounds_min_m": [
+    -0.47,
+    -0.26,
+    -0.0
+   ],
+   "bounds_max_m": [
+    0.47,
+    0.481,
+    0.883
+   ],
+   "dimensions_m": [
+    0.94,
+    0.741,
+    0.883
+   ],
+   "meta": {
+    "class": "prop",
+    "families": [
+     "chest_small (opened state)",
+     "chest_medium / chest_large opened (scale)"
+    ],
+    "supersedes": "none (new: the opened state of SM_Chest_Small_PR)",
+    "dresses": "the iron-bound chest with its lid thrown back 102 degrees on the back hinges: same mesh and the same texture set as SM_Chest_Small_PR (T_Chest_Small_PR_*), empty plank interior",
+    "fit": {
+     "pivot": "base centre, identical to SM_Chest_Small_PR: swap the mesh in place to open the chest",
+     "hinge": "hinge axis along X through (y 0.257, z 0.36) m; lid angle 102 degrees; put loot or a glow inside the body cavity (floor at z 0.048)"
+    }
+   }
+  }
+ },
+ "meta": null,
+ "extra": null
+}

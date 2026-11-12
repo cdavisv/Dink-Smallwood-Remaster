@@ -1,0 +1,113 @@
+{
+ "name": "SM_Prop_Candle_Holder_01",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Candle_Holder_01/SM_Prop_Candle_Holder_01.fbx",
+ "materials": [
+  "MI_Prop_Candle_Holder_01",
+  "MI_Prop_Candle_Holder_01_Wax"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Prop_Candle_Holder_01.blend",
+ "lod0_triangles": 1512,
+ "lod1_triangles": 756,
+ "lod2_triangles": 332,
+ "dimensions_m": [
+  0.201,
+  0.198,
+  0.45
+ ],
+ "bounds_min_m": [
+  -0.101,
+  -0.1,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.1,
+  0.098,
+  0.45
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "candle on a holder (integrator light sources)",
+  "opening cottage candles"
+ ],
+ "supersedes": "Stonebrook/SM_Candle_Iron_01 (same mesh as SM_Candle_Iron_PR under the name the integrator asked for)",
+ "dresses": "tallow candle on a forged iron pricket stick, 0.2 x 0.45 m (identical to SM_Candle_Iron_PR)",
+ "fit": {
+  "pivot": "base centre",
+  "socket": "flame socket: [0.003, 0.0, 0.452] (top of the wick)"
+ },
+ "emissive": {
+  "type": "flame, done in engine (no flame mesh in the FBX)",
+  "flame_socket_m": [
+   0.003,
+   0.0,
+   0.452
+  ],
+  "position_m": [
+   0.003,
+   0.0,
+   0.452
+  ],
+  "colour_temperature_K": 1850,
+  "attenuation_radius_m": 3.5,
+  "intensity_cd": 1.0,
+  "note": "point light 2 cm above the wick, soft radius 1 cm, slow flicker 5-10 percent; slot MI_Prop_Candle_Holder_01_Wax is kind subsurface (the wax near the flame glows by scattering; no emissive mask)"
+ },
+ "baked": {
+  "texture_folder": "Prop_Candle_Holder_01",
+  "textures": {
+   "BC": "T_Prop_Candle_Holder_01_BC.png",
+   "N": "T_Prop_Candle_Holder_01_N.png",
+   "ORM": "T_Prop_Candle_Holder_01_ORM.png"
+  },
+  "px": 1024,
+  "slots": [
+   {
+    "material": "MI_Prop_Candle_Holder_01",
+    "kind": "opaque"
+   },
+   {
+    "material": "MI_Prop_Candle_Holder_01_Wax",
+    "kind": "subsurface"
+   }
+  ],
+  "emissive_nits": null,
+  "params": {
+   "sss_radius": [
+    0.012,
+    0.007,
+    0.004
+   ]
+  },
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 94.2,
+    "p99": 207.5
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.503,
+    "p95": 0.709
+   },
+   "metallic_mean": 0.632
+  },
+  "hi_triangles": 12396,
+  "third_party": [],
+  "source_blend": "_build/bake/SM_Prop_Candle_Holder_01.blend"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Candle_Holder_01",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2, three review rounds. Last look faults little: the pricket stick is a clean lathe (hammer texture only in the normal), the puddle in the pan is thin, the wick is a plain bent tube. Wax needs the subsurface slot honoured in engine or it reads as chalk.",
+ "third_party": [],
+ "texture_sets": [],
+ "textures_px": 1024,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Candle_Holder_01/T_Prop_Candle_Holder_01_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Candle_Holder_01/T_Prop_Candle_Holder_01_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Candle_Holder_01/T_Prop_Candle_Holder_01_ORM.png"
+ }
+}

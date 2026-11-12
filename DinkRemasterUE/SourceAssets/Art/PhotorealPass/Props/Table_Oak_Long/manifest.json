@@ -1,0 +1,91 @@
+{
+ "name": "SM_Table_Oak_Long_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Long/SM_Table_Oak_Long_PR.fbx",
+ "materials": [
+  "MI_Table_Oak_Long"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Table_Oak_Long_PR.blend",
+ "lod0_triangles": 252,
+ "lod1_triangles": 142,
+ "lod2_triangles": 62,
+ "dimensions_m": [
+  2.66,
+  1.499,
+  0.91
+ ],
+ "bounds_min_m": [
+  -1.327,
+  -0.748,
+  -0.002
+ ],
+ "bounds_max_m": [
+  1.333,
+  0.752,
+  0.908
+ ],
+ "open_edges": 0,
+ "collision_hulls": 5,
+ "families": [
+  "87 inside/details/table- frames 3, 5",
+  "table_long"
+ ],
+ "supersedes": "Stonebrook/SM_Table_Oak_01 (2.65 x 1.50 x 0.906 m, base_center) and the family binding of table_long (7 placements)",
+ "dresses": "oak table 2.65 x 1.5 x 0.905 m: six-board top with uneven ends and slight steps between boards, four square tapered legs, rails and foot rails pegged into the legs (pegs baked), a long stretcher; dark handled oak with scores, rings and greasy polish on the top",
+ "fit": {
+  "pivot": "base centre",
+  "size": "as SM_Table_Oak_01"
+ },
+ "baked": {
+  "texture_folder": "Table_Oak_Long",
+  "textures": {
+   "BC": "T_Table_Oak_Long_PR_BC.png",
+   "N": "T_Table_Oak_Long_PR_N.png",
+   "ORM": "T_Table_Oak_Long_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Table_Oak_Long",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 51.5,
+    "p99": 105.1
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.504,
+    "p95": 0.713
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 2132,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Table_Oak_Long_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Long",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake, two review rounds (r6). Last look still faults: about 700 px/m on a 2.65 m table, so the top is soft at 1 m; knife scores and mug rings are present but faint, spills read as blotches; board ends carry long-grain texture (no end grain); pegs are baked discs; legs and rails are straight square stock. Only 252 triangles.",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Long/T_Table_Oak_Long_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Long/T_Table_Oak_Long_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Table_Oak_Long/T_Table_Oak_Long_PR_ORM.png"
+ }
+}

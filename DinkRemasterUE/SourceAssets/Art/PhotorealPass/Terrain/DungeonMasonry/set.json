@@ -1,0 +1,51 @@
+{
+ "name": "DungeonMasonry",
+ "files": {
+  "BC": "DungeonMasonry/T_Terrain_DungeonMasonry_BC.png",
+  "N": "DungeonMasonry/T_Terrain_DungeonMasonry_N.png",
+  "ORM": "DungeonMasonry/T_Terrain_DungeonMasonry_ORM.png",
+  "H": "DungeonMasonry/T_Terrain_DungeonMasonry_H.png",
+  "Macro": "DungeonMasonry/T_Terrain_DungeonMasonry_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.5,
+ "texel_mm_per_px": 1.221,
+ "height_range_m": 0.0492,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.387",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade",
+  "cave_wall"
+ ],
+ "status": "finished",
+ "method": "Poly Haven stone_brick_wall_001 (coursed rough-faced ashlar, mixed block sizes, deeply recessed mortar), graded to the golden olive-brown of the original dungeon wall sprites. Walls only: horizontal courses along U",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "stone_brick_wall_001",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 93.0,
+  "max": 225.7
+ },
+ "mean_srgb": [
+  106,
+  92,
+  67
+ ],
+ "roughness_mean": 0.838,
+ "known_weaknesses": "single scan at 2.5 m, the same as one wall module, so the block layout repeats per module unless the mesh UVs are offset (the wall kit does this); courses are 15-35 cm",
+ "wall_grime_mask": "PlasterWall/T_Terrain_PlasterWall_WallGrime.png works for this set too (R damp at the base: blend toward DungeonMasonryDamp)"
+}

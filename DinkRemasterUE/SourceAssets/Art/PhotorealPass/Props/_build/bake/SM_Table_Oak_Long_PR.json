@@ -1,0 +1,59 @@
+{
+ "name": "SM_Table_Oak_Long_PR",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Table_Oak_Long",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Table_Oak_Long_PR_BC.png",
+  "N": "T_Table_Oak_Long_PR_N.png",
+  "ORM": "T_Table_Oak_Long_PR_ORM.png"
+ },
+ "lod_triangles": [
+  252,
+  142,
+  62
+ ],
+ "hi_triangles": 2132,
+ "bounds_min_m": [
+  -1.327,
+  -0.748,
+  -0.002
+ ],
+ "bounds_max_m": [
+  1.333,
+  0.752,
+  0.908
+ ],
+ "dimensions_m": [
+  2.66,
+  1.499,
+  0.91
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 51.5,
+   "p99": 105.1
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.504,
+   "p95": 0.713
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [
+  "rough_wood"
+ ],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

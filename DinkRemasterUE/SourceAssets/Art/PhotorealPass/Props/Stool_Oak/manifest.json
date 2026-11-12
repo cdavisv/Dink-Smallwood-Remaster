@@ -1,0 +1,89 @@
+{
+ "name": "SM_Stool_Oak_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Stool_Oak/SM_Stool_Oak_PR.fbx",
+ "materials": [
+  "MI_Stool_Oak"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Stool_Oak_PR.blend",
+ "lod0_triangles": 408,
+ "lod1_triangles": 204,
+ "lod2_triangles": 88,
+ "dimensions_m": [
+  0.356,
+  0.355,
+  0.452
+ ],
+ "bounds_min_m": [
+  -0.17,
+  -0.192,
+  -0.002
+ ],
+ "bounds_max_m": [
+  0.186,
+  0.163,
+  0.45
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "stool (10 placements)"
+ ],
+ "supersedes": "none",
+ "dresses": "three-legged stool, 0.36 m dished plank seat, 0.45 m, splayed shaved legs",
+ "fit": {
+  "pivot": "base centre"
+ },
+ "baked": {
+  "texture_folder": "Stool_Oak",
+  "textures": {
+   "BC": "T_Stool_Oak_PR_BC.png",
+   "N": "T_Stool_Oak_PR_N.png",
+   "ORM": "T_Stool_Oak_PR_ORM.png"
+  },
+  "px": 1024,
+  "slots": [
+   {
+    "material": "MI_Stool_Oak",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 51.0,
+    "p99": 100.3
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.494,
+    "p95": 0.716
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 3236,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Stool_Oak_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Stool_Oak",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake, three review rounds (radial seat grain fixed). Last look still faults: legs meet the seat without visible wedged tenons on top; the seat rim carries stretched grain; turned legs are simple tapers.",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 1024,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Stool_Oak/T_Stool_Oak_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Stool_Oak/T_Stool_Oak_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Stool_Oak/T_Stool_Oak_PR_ORM.png"
+ }
+}

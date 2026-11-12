@@ -1,0 +1,64 @@
+{
+ "uv": {
+  "uv_area": 0.6553021201319486,
+  "area_3d": 0.3585853986577312,
+  "overlap_area": 8.988287819228225e-06,
+  "overlap_ratio": 1.3716250173917315e-05,
+  "overlapping_tris": 29,
+  "degenerate_tris": 0,
+  "tris_out_of_range": 0,
+  "truncated": false,
+  "tris": 11399
+ },
+ "texture_px": 2048,
+ "lods": {
+  "SK_Duck": [
+   {
+    "name": "SK_Duck_LOD0",
+    "triangles": 15693
+   },
+   {
+    "name": "SK_Duck_LOD1",
+    "triangles": 7846
+   },
+   {
+    "name": "SK_Duck_LOD2",
+    "triangles": 3923
+   }
+  ],
+  "SK_Duck_Headless": [
+   {
+    "name": "SK_Duck_Headless_LOD0",
+    "triangles": 13729
+   },
+   {
+    "name": "SK_Duck_Headless_LOD1",
+    "triangles": 6864
+   },
+   {
+    "name": "SK_Duck_Headless_LOD2",
+    "triangles": 3432
+   }
+  ],
+  "SM_Duck_Head": [
+   {
+    "name": "SM_Duck_Head_LOD0",
+    "triangles": 3493
+   },
+   {
+    "name": "SM_Duck_Head_LOD1",
+    "triangles": 1745
+   },
+   {
+    "name": "SM_Duck_Head_LOD2",
+    "triangles": 872
+   }
+  ]
+ },
+ "dimensions_m": [
+  0.5146675109863281,
+  0.23534412682056427,
+  0.44064226746559143
+ ],
+ "high_triangles": 221416
+}

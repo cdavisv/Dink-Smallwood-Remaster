@@ -1,0 +1,50 @@
+{
+ "name": "Snow",
+ "files": {
+  "BC": "Snow/T_Terrain_Snow_BC.png",
+  "N": "Snow/T_Terrain_Snow_N.png",
+  "ORM": "Snow/T_Terrain_Snow_ORM.png",
+  "H": "Snow/T_Terrain_Snow_H.png",
+  "Macro": "Snow/T_Terrain_Snow_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 3.0,
+ "texel_mm_per_px": 1.465,
+ "height_range_m": 0.0683,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.459",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "snow",
+  "ice"
+ ],
+ "status": "finished",
+ "method": "wind-sculpted fresh snow built here: sastrugi as wind-aligned terraced ridges with undercut risers over low drift swells (synthesised height, 3 m period), fine crust normal from ambientCG Snow008A, glazed wind-packed crests and sparse crystal glints in roughness. No tracks. Wind runs along U",
+ "third_party": [
+  {
+   "source": "ambientcg",
+   "asset_id": "Snow008A",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1.5
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 209.6,
+  "mean": 225.8,
+  "max": 235.2
+ },
+ "mean_srgb": [
+  219,
+  227,
+  231
+ ],
+ "roughness_mean": 0.673,
+ "known_weaknesses": "sastrugi are synthesised, fine and even in size (no large drifts); wind direction is fixed along U; albedo is capped at 240 so subsurface and sparkle bloom must come from the Unreal material; two review rounds on this version"
+}

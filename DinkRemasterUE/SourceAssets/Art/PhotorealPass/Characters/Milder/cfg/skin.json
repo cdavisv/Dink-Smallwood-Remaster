@@ -1,0 +1,40 @@
+{
+ "head": "Milder/Work/milder_head.blend",
+ "tex": "Milder/Textures",
+ "prefix": "T_Milder_PR",
+ "size": 4096,
+ "skin": "ThirdParty/MakeHuman/skins/young_caucasian_male/young_lightskinned_male_diffuse.png",
+ "hair_col": [
+  0.07,
+  0.032,
+  0.018
+ ],
+ "freckles": 0.08,
+ "redness": 0.8,
+ "age": 0.12,
+ "tan": [
+  0.93,
+  0.8,
+  0.7
+ ],
+ "grime": 0.25,
+ "stubble": 0.26,
+ "seed": 23,
+ "hairline": [
+  0.47,
+  0.16,
+  -0.5
+ ],
+ "capillary": 0.2,
+ "sun": 0.35,
+ "moles": 3,
+ "glove": [
+  0.085,
+  0.082,
+  0.08
+ ],
+ "micro": 1.7,
+ "nrm_k": 0.27,
+ "rough_micro": 0.11,
+ "rough_meso": 0.08
+}

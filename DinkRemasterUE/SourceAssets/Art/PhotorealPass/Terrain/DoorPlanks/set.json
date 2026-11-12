@@ -1,0 +1,49 @@
+{
+ "name": "DoorPlanks",
+ "files": {
+  "BC": "DoorPlanks/T_Terrain_DoorPlanks_BC.png",
+  "N": "DoorPlanks/T_Terrain_DoorPlanks_N.png",
+  "ORM": "DoorPlanks/T_Terrain_DoorPlanks_ORM.png",
+  "H": "DoorPlanks/T_Terrain_DoorPlanks_H.png",
+  "Macro": "DoorPlanks/T_Terrain_DoorPlanks_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 2.0,
+ "texel_mm_per_px": 0.977,
+ "height_range_m": 0.0245,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.446",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "structure_facade"
+ ],
+ "status": "interim",
+ "method": "Poly Haven medieval_wood (vertical riven planks with rows of iron stud nails), warmed to the dark brown of the original doors. Planks run along V",
+ "third_party": [
+  {
+   "source": "polyhaven",
+   "asset_id": "medieval_wood",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 1
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 30.0,
+  "mean": 65.7,
+  "max": 165.8
+ },
+ "mean_srgb": [
+  84,
+  62,
+  47
+ ],
+ "roughness_mean": 0.535,
+ "known_weaknesses": "single scan; studs are part of the texture, not geometry; never rendered in the 4x4 tiling check, only seen on the wall and town kits"
+}

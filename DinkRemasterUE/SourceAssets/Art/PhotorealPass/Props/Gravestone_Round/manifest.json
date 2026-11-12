@@ -1,0 +1,55 @@
+{
+ "name": "SM_Gravestone_Round_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Gravestone_Round/SM_Gravestone_Round_PR.fbx",
+ "materials": [
+  "MI_Struct_FieldBoulder",
+  "MI_Struct_Earth"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 2448,
+ "lod1_triangles": 1224,
+ "lod2_triangles": 538,
+ "dimensions_m": [
+  1.085,
+  1.973,
+  1.413
+ ],
+ "bounds_min_m": [
+  -0.486,
+  -1.73,
+  -0.365
+ ],
+ "bounds_max_m": [
+  0.6,
+  0.243,
+  1.049
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "446 items/tomb/tomb- frame 1",
+  "gravestone"
+ ],
+ "supersedes": "none (gravestone placeholder, 14 placements)",
+ "dresses": "round-headed headstone 0.8 x 1.05 m, leaning, a cross in worn relief; weather-rounded edges, moss from the foot and on the north face, lichen; a turfed grave mound in front (the stone runs 0.35 m into the ground)",
+ "fit": {
+  "pivot": "ground at the foot of the stone; face to -Y, the grave lies toward -Y"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Gravestone_Round",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "Stone reads as real rock (FieldBoulder scans) with moss and lichen in vertex colour; faults: the cross is two applied bars, no inscription, edges are pinched thin rather than chipped, the turfed mound is a smooth dome with a clean rim against the ground.",
+ "third_party": [
+  "dirt_floor",
+  "rock_face",
+  "rock_face_04",
+  "rocky_trail"
+ ],
+ "texture_sets": [
+  "EarthPath",
+  "FieldBoulder"
+ ],
+ "textures_px": 2048
+}

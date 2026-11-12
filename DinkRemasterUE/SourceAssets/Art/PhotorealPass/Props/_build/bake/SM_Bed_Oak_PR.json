@@ -1,0 +1,61 @@
+{
+ "name": "SM_Bed_Oak_PR",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Bed_Oak",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Bed_Oak_PR_BC.png",
+  "N": "T_Bed_Oak_PR_N.png",
+  "ORM": "T_Bed_Oak_PR_ORM.png"
+ },
+ "lod_triangles": [
+  3288,
+  1868,
+  858
+ ],
+ "hi_triangles": 52200,
+ "bounds_min_m": [
+  -1.25,
+  -0.708,
+  -0.002
+ ],
+ "bounds_max_m": [
+  1.25,
+  0.744,
+  1.146
+ ],
+ "dimensions_m": [
+  2.5,
+  1.453,
+  1.148
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 67.7,
+   "p99": 151.5
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.66,
+   "p95": 0.857
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [
+  "rough_wood",
+  "rough_linen",
+  "caban"
+ ],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

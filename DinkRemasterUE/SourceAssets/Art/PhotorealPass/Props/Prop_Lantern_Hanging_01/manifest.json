@@ -1,0 +1,113 @@
+{
+ "name": "SM_Prop_Lantern_Hanging_01",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Lantern_Hanging_01/SM_Prop_Lantern_Hanging_01.fbx",
+ "materials": [
+  "MI_Prop_Lantern_Hanging_01",
+  "MI_Prop_Lantern_Hanging_01_Horn"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Prop_Lantern_Hanging_01.blend",
+ "lod0_triangles": 1122,
+ "lod1_triangles": 624,
+ "lod2_triangles": 286,
+ "dimensions_m": [
+  0.193,
+  0.192,
+  0.781
+ ],
+ "bounds_min_m": [
+  -0.097,
+  -0.096,
+  -0.78
+ ],
+ "bounds_max_m": [
+  0.096,
+  0.096,
+  0.001
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "hanging lantern (integrator light sources)"
+ ],
+ "supersedes": "none (new)",
+ "dresses": "hanging lantern, 0.19 x 0.19 x 0.78 m with its chain: riveted iron tray and pierced pyramid cap, four corner bars, four scraped-horn panes each with a glazing bar, door hinges and hasp (baked), a candle stub inside, seven links of chain to a ceiling hook and plate",
+ "fit": {
+  "pivot": "the ceiling plate (top of the hook): the lantern hangs down -Z from the origin; the lantern body spans z = -0.78 to -0.39",
+  "socket": "flame socket: [0.0, 0.0, -0.665], inside the body",
+  "panes": "slot MI_Prop_Lantern_Hanging_01_Horn is kind translucent (thin, two-sided, diffusing amber horn: transmission colour = BC, about 60 percent of light carried through); T_Prop_Lantern_Hanging_01_E holds the glow of the panes around the candle (emissive = E * 60 nits when lit, 0 unlit)"
+ },
+ "emissive": {
+  "type": "flame, done in engine (no flame mesh in the FBX)",
+  "flame_socket_m": [
+   0.0,
+   0.0,
+   -0.665
+  ],
+  "position_m": [
+   0.0,
+   0.0,
+   -0.665
+  ],
+  "colour_temperature_K": 2000,
+  "attenuation_radius_m": 5.0,
+  "intensity_cd": 6.0,
+  "note": "point light at the socket with shadow casting off for the lantern mesh itself; pane glow from E as in fit.panes"
+ },
+ "baked": {
+  "texture_folder": "Prop_Lantern_Hanging_01",
+  "textures": {
+   "BC": "T_Prop_Lantern_Hanging_01_BC.png",
+   "N": "T_Prop_Lantern_Hanging_01_N.png",
+   "ORM": "T_Prop_Lantern_Hanging_01_ORM.png",
+   "E": "T_Prop_Lantern_Hanging_01_E.png"
+  },
+  "px": 1024,
+  "slots": [
+   {
+    "material": "MI_Prop_Lantern_Hanging_01",
+    "kind": "opaque"
+   },
+   {
+    "material": "MI_Prop_Lantern_Hanging_01_Horn",
+    "kind": "translucent"
+   }
+  ],
+  "emissive_nits": 60.0,
+  "params": {
+   "transmission": 0.6,
+   "ior": 1.5,
+   "thin": true
+  },
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 80.1,
+    "p99": 180.5
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.51,
+    "p95": 0.96
+   },
+   "metallic_mean": 0.27
+  },
+  "hi_triangles": 5512,
+  "third_party": [],
+  "source_blend": "_build/bake/SM_Prop_Lantern_Hanging_01.blend"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Lantern_Hanging_01",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2, four review rounds (r5-r6). Last look still faults: the pyramid cap is plain flat sheet (vents and rivets are baked only, no seam or lapped edge), frame bars are clean square section, the horn panes are flat with a cloudy amber pattern that is a little even from pane to pane, chain links are plain ovals; inside there is only a candle stub (no pricket). Lit state depends on the integrator honouring the translucent slot and E.",
+ "third_party": [],
+ "texture_sets": [],
+ "textures_px": 1024,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Lantern_Hanging_01/T_Prop_Lantern_Hanging_01_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Lantern_Hanging_01/T_Prop_Lantern_Hanging_01_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Lantern_Hanging_01/T_Prop_Lantern_Hanging_01_ORM.png",
+  "E": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Prop_Lantern_Hanging_01/T_Prop_Lantern_Hanging_01_E.png"
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "uv": {
+  "uv_area": 0.4781443135812943,
+  "area_3d": 6.190955119073042,
+  "overlap_area": 3.125176492591031e-07,
+  "overlap_ratio": 6.536052827196672e-07,
+  "overlapping_tris": 2,
+  "degenerate_tris": 0,
+  "tris_out_of_range": 0,
+  "truncated": true,
+  "tris": 26136
+ },
+ "texture_px": 2048,
+ "lods": [
+  {
+   "name": "SK_Pillbug_LOD0",
+   "triangles": 26136
+  },
+  {
+   "name": "SK_Pillbug_LOD1",
+   "triangles": 13068
+  },
+  {
+   "name": "SK_Pillbug_LOD2",
+   "triangles": 6534
+  }
+ ],
+ "dimensions_m": [
+  1.8517934083938599,
+  1.1484967470169067,
+  0.4951809346675873
+ ]
+}

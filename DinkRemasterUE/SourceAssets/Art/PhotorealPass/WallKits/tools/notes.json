@@ -1,0 +1,86 @@
+{
+ "fit": {
+  "scale": "0.025 m per original pixel (tools/analyse/regions.toml base_m_per_px): a 100 px wall sprite is one 2.5 m module, the 18 px plaster strip and door jamb are 0.45 m, the 30 px dungeon strip is the 0.75 m wall thickness",
+  "card_vs_real": "The sprite card is 100 px (2.5 m) tall but is an oblique view of a wall; the modules are 3.0 m tall (both kits; the arch is 3.5 m). Use fit 'none' (authored size), never 'footprint' or 'height'.",
+  "anchor": "Modules use the kit_wall grid_wall pivot (left end, x = 0). A family placement stands at the card's ground point, which is the card's bottom centre: offset the mesh by -module_length/2 along its own X (-1.25 m for the 2.5 m modules, -0.225 m for door jambs), or re-pivot on import.",
+  "thickness": "Plaster walls are a 0.15 m timber frame with a 0.19 m top plate, not the 0.45 m of the 18 px strip: the strip also shows the top of the wall in perspective. Dungeon walls keep the full 0.75 m.",
+  "edge_on_strips": "int_wall_plaster_side (18x100) and dungeon_wall_stone_side (30x100, 30x50) are east/west walls seen edge-on, one sprite per 2.5 m (or 1.25 m) of depth: bind them to the straight module yawed 90 degrees so it runs along the screen's depth axis.",
+  "facing": "Front face looks down -Y. The straight modules are finished on both faces; the ivy is on the front face only.",
+  "joints": "Module ends are closed and flat, so runs butt together. Tiling UVs carry a per-module offset so two neighbours never show the same stones or trowel marks; cap and plinth stones are separate blocks, different in every module.",
+  "collision": "UCX hulls are in each FBX (kit_wall requires collision). If these are bound as visual-only family meshes, drop the hulls on import: the placements keep their original hardboxes."
+ },
+ "materials": {
+  "MI_Wall_Plaster": "Terrain/PlasterWall, blended to Terrain/PlasterWallBroken by vertex colour B (height-aware); vertex colour R darkens and green-tints damp at the base, G multiplies soot at the top; or drive the same from Terrain/PlasterWall/T_Terrain_PlasterWall_WallGrime.png on UV channel 1",
+  "MI_Wall_Timber": "Terrain/TimberBeam (each timber is mapped inside one board). Vertex colour on timber verts: B = limewash (pale plate, posts, rails, as the sprite's pale top rail), R = dark sill and handling, G = soot",
+  "MI_Wall_DungeonMasonry": "Terrain/DungeonMasonry blended to Terrain/DungeonMasonryDamp by vertex colour R (same block layout in both sets); G multiplies soot. Coping, quoin, plinth and loose stones are separate blocks whose faces are each mapped inside one big block face of the scan, so they carry no mortar lines",
+  "MI_Wall_Ivy": "WallKits/Textures/T_Wall_Ivy_BC (alpha) / N / ORM: a 3x3 ivy leaf atlas from ambientCG LeafSet029 (CC0), darkened; alpha-tested, two-sided"
+ },
+ "third_party": "Terrain sets (scans listed per set in Terrain/manifest.json: PlasterWall, PlasterWallBroken, TimberBeam, DungeonMasonry, DungeonMasonryDamp) plus ambientCG LeafSet029 for the ivy atlas.",
+ "modules": {
+  "SM_Wall_Plaster_Straight_A": {
+   "status": "finished",
+   "known_weaknesses": "holds at the gameplay camera and in the assembled room; closer than about 2 m the timbers read as sawn boards (hewn facets are geometry, but there are no adze marks or checks in the texture), pegs are small, joints are darkened only at the sill, and the plaster has no cracks running from panel corners. Validator: passes except where noted"
+  },
+  "SM_Wall_Plaster_Straight_B": {
+   "status": "finished",
+   "known_weaknesses": "holds at the gameplay camera and in the assembled room; closer than about 2 m the timbers read as sawn boards (hewn facets are geometry, but there are no adze marks or checks in the texture), pegs are small, joints are darkened only at the sill, and the plaster has no cracks running from panel corners. Validator: passes except where noted; the fallen-plaster blend still reads as a stain, not a broken patch"
+  },
+  "SM_Wall_Plaster_CornerPost_L": {
+   "status": "finished",
+   "known_weaknesses": "holds at the gameplay camera and in the assembled room; closer than about 2 m the timbers read as sawn boards (hewn facets are geometry, but there are no adze marks or checks in the texture), pegs are small, joints are darkened only at the sill, and the plaster has no cracks running from panel corners. Validator: passes except where noted"
+  },
+  "SM_Wall_Plaster_CornerPost_R": {
+   "status": "finished",
+   "known_weaknesses": "holds at the gameplay camera and in the assembled room; closer than about 2 m the timbers read as sawn boards (hewn facets are geometry, but there are no adze marks or checks in the texture), pegs are small, joints are darkened only at the sill, and the plaster has no cracks running from panel corners. Validator: passes except where noted"
+  },
+  "SM_Wall_Plaster_End_L": {
+   "status": "finished",
+   "known_weaknesses": "holds at the gameplay camera and in the assembled room; closer than about 2 m the timbers read as sawn boards (hewn facets are geometry, but there are no adze marks or checks in the texture), pegs are small, joints are darkened only at the sill, and the plaster has no cracks running from panel corners. Validator: passes except where noted"
+  },
+  "SM_Wall_Plaster_End_R": {
+   "status": "finished",
+   "known_weaknesses": "holds at the gameplay camera and in the assembled room; closer than about 2 m the timbers read as sawn boards (hewn facets are geometry, but there are no adze marks or checks in the texture), pegs are small, joints are darkened only at the sill, and the plaster has no cracks running from panel corners. Validator: passes except where noted"
+  },
+  "SM_Wall_Plaster_DoorJamb_L": {
+   "status": "finished",
+   "known_weaknesses": "holds at the gameplay camera and in the assembled room; closer than about 2 m the timbers read as sawn boards (hewn facets are geometry, but there are no adze marks or checks in the texture), pegs are small, joints are darkened only at the sill, and the plaster has no cracks running from panel corners. Validator: passes except where noted. Validator SNAP error: 0.45 m long (the 18 px sprite), not on the 0.5 m grid"
+  },
+  "SM_Wall_Plaster_DoorJamb_R": {
+   "status": "finished",
+   "known_weaknesses": "holds at the gameplay camera and in the assembled room; closer than about 2 m the timbers read as sawn boards (hewn facets are geometry, but there are no adze marks or checks in the texture), pegs are small, joints are darkened only at the sill, and the plaster has no cracks running from panel corners. Validator: passes except where noted. Validator SNAP error: 0.45 m long (the 18 px sprite), not on the 0.5 m grid"
+  },
+  "SM_Wall_Plaster_DoorHeader": {
+   "status": "finished",
+   "known_weaknesses": "holds at the gameplay camera and in the assembled room; closer than about 2 m the timbers read as sawn boards (hewn facets are geometry, but there are no adze marks or checks in the texture), pegs are small, joints are darkened only at the sill, and the plaster has no cracks running from panel corners. Validator: passes except where noted. Validator PIVOT and SNAP errors: the pivot is on the floor line under a piece that starts 2.06 m up, by design"
+  },
+  "SM_Wall_Dungeon_Straight_A": {
+   "status": "finished",
+   "known_weaknesses": "wall faces between the stones are flat sheets with normal-map relief; coping, quoin and plinth stones are real blocks. Quoin columns at both ends of every module make a pilaster rhythm every 2.5 m along a run. Three review rounds on this version"
+  },
+  "SM_Wall_Dungeon_Straight_B": {
+   "status": "finished",
+   "known_weaknesses": "wall faces between the stones are flat sheets with normal-map relief; coping, quoin and plinth stones are real blocks. Quoin columns at both ends of every module make a pilaster rhythm every 2.5 m along a run. Three review rounds on this version"
+  },
+  "SM_Wall_Dungeon_Half": {
+   "status": "finished",
+   "known_weaknesses": "wall faces between the stones are flat sheets with normal-map relief; coping, quoin and plinth stones are real blocks. Quoin columns at both ends of every module make a pilaster rhythm every 2.5 m along a run. Three review rounds on this version. Validator SNAP error: 1.25 m long (the 50 px sprite)"
+  },
+  "SM_Wall_Dungeon_Curve": {
+   "status": "finished",
+   "known_weaknesses": "wall faces between the stones are flat sheets with normal-map relief; coping, quoin and plinth stones are real blocks. Quoin columns at both ends of every module make a pilaster rhythm every 2.5 m along a run. Three review rounds on this version; 20 flat facets; 2,816 triangles (soft target 3,000 as kit_piece). Validator PIVOT error: kit_piece wants the pivot inside the footprint, this keeps the wall-run pivot at the start of the curve so runs chain"
+  },
+  "SM_Wall_Dungeon_Arch": {
+   "status": "finished",
+   "known_weaknesses": "voussoirs are uniform in size; 3.5 m tall where the sprite is 3.2 m (kit snap)"
+  },
+  "SM_Wall_Dungeon_Ivy": {
+   "status": "interim",
+   "known_weaknesses": "leaves are a fresh mid-green and all one size class; up close they are flat folded cards; stems are masonry-textured tubes; 7,360 triangles (hard cap 10,000 as kit_piece, soft 3,000). Validator NON_MANIFOLD: leaf cards are open by nature"
+  },
+  "SM_Wall_Dungeon_Breach": {
+   "status": "interim",
+   "known_weaknesses": "the stepped collapse and fallen blocks read well from the gameplay camera; the dust mound is a smooth low cone with stretched masonry texture and the exposed core is a flat face, not rubble; 3,840 triangles. Validator PIVOT error as the curve"
+  }
+ },
+ "validator": "tools/blender/dinkasset/validate.py on WallKits.blend: 13 errors remain, all listed per module above (sprite-dictated sizes off the 0.5 m grid, wall-run pivots on kit_piece modules, open ivy leaf cards, the floating door header). All other modules are closed solids with pivot and snap passing."
+}

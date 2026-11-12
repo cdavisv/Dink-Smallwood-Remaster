@@ -1,0 +1,51 @@
+{
+ "name": "SM_Basket_Wicker_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Basket_Wicker/SM_Basket_Wicker_PR.fbx",
+ "materials": [
+  "MI_Prop_Wicker"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 4880,
+ "lod1_triangles": 2440,
+ "lod2_triangles": 1072,
+ "dimensions_m": [
+  1.032,
+  0.83,
+  0.683
+ ],
+ "bounds_min_m": [
+  -0.515,
+  -0.414,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.517,
+  0.417,
+  0.683
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "opening cottage basket",
+  "basket_wicker"
+ ],
+ "supersedes": "Stonebrook/SM_Basket_Wicker_01 (1.14 x 0.94 x 0.67 m, base_center)",
+ "dresses": "oval willow basket 1.0 x 0.8 x 0.7 m with a bow handle: the stake-and-strand weave is modelled in the wall (22 rows over 22 stakes), waled foot, twisted border",
+ "fit": {
+  "pivot": "base centre",
+  "size": "0.14 m smaller in plan than SM_Basket_Wicker_01, same height over the handle; empty"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Basket_Wicker",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "Weave is modelled as alternating bumps, one per stake: reads as wicker at gameplay distance, as a ribbed bowl at 1 m (no separate strands, no ends). Straw scan stands in for willow. Empty.",
+ "third_party": [
+  "thatch_roof_angled"
+ ],
+ "texture_sets": [
+  "Thatch"
+ ],
+ "textures_px": 2048
+}
