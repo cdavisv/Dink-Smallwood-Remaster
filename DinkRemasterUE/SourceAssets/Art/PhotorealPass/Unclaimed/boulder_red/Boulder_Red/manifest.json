@@ -1,0 +1,103 @@
+{
+ "name": "SM_Boulder_Red_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/SM_Boulder_Red_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/SM_Boulder_Red_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Boulder_Red final",
+ "dimensions_m": [
+  1.3676,
+  1.0193,
+  0.6442
+ ],
+ "bounds_min_m": [
+  -0.6838,
+  -0.5097,
+  -0.0201
+ ],
+ "bounds_max_m": [
+  0.6838,
+  0.5097,
+  0.6241
+ ],
+ "lod0_triangles": 1800,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/T_Boulder_Red_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/T_Boulder_Red_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/T_Boulder_Red_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Boulder_Red_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0055,
+   0.9946
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 95.3,
+   "p99": 128.2
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.65,
+   "p95": 0.862
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.851
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "boulder_red",
+  "95 lands/rocks/rock- frame 3"
+ ],
+ "origin_ids": {
+  "boulder_red": [
+   "S536_P15",
+   "S590_P04"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "angular reddish-brown boulder, 1.5 x 1.1 x 0.7 m, visibly cracked (the bombable rock of the game)",
+ "third_party": [
+  "rock_boulder_dry"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A sphere cut by random break planes and gently displaced: edges are soft, with no undercuts, overhangs or split-off slabs, and the base is a flat clip rather than a buried foot with soil piled against it. One rock scan, box projected and tinted, carries all surface detail; its features do not follow the displaced form. Moss and lichen are procedural masks. Deep cracks are modelled because the scripted (bombable) red rocks must look cracked; the main crack reads a little like a seam, and an intact variant is not built."
+}

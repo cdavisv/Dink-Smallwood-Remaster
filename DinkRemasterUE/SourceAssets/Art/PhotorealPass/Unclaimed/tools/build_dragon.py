@@ -64,7 +64,10 @@ def membrane_mat():
     t.set(base=base, rough=t.mixf(n, 0.4, 0.62), normal=t.bump(t.math('ADD', t.math('MAXIMUM', vein, ray), t.math('MULTIPLY', n2, 0.3)), 0.5, 0.003), sss=0.1, sss_scale=0.02); return t.mat
 
 
-def membrane(name, a0, a1, b0, b1, c, hi, sag=0.12, thick=0.012):
+MEMBRANE_THICK = 0.012
+
+
+def membrane(name, a0, a1, b0, b1, c, hi, sag=0.12, thick=None):
     """skin stretched between two spars (a0 -> a1 and b0 -> b1), scalloped at the free edge; a thin closed shell"""
     a0, a1, b0, b1 = (np.array(p, float) for p in (a0, a1, b0, b1)); nu, nv = (40, 40) if hi else (7, 7)
 
@@ -74,7 +77,7 @@ def membrane(name, a0, a1, b0, b1, c, hi, sag=0.12, thick=0.012):
         d = (a0 + b0) / 2 - P; d /= np.linalg.norm(d, axis=1)[:, None] + 1e-9; span = np.linalg.norm(a1 - b1)
         P = P + d * (pull * span)[:, None]; P[:, 2] -= 0.04 * span * np.sin(np.pi * U) * V                                  # and bellies down a little
         return P
-    ob = L.grid_surface(name, fn, nu, nv, c, closed_u=False); L.mod(ob, 'SOLIDIFY', thickness=thick, offset=0.0); L.apply_mods(ob); L.fix_normals(ob); return ob
+    ob = L.grid_surface(name, fn, nu, nv, c, closed_u=False); L.mod(ob, 'SOLIDIFY', thickness=thick or MEMBRANE_THICK, offset=0.0); L.apply_mods(ob); L.fix_normals(ob); return ob
 
 
 def build_hi(c, hi=True):

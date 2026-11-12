@@ -383,6 +383,44 @@ def make_lo(hi_obs, tris, name, c=None, angle=66, margin=0.012, weld=0.0):
 
 
 
+def remesh_lo(hi_obs, voxel, tris, name, c=None, angle=66, margin=0.012, smooth=2):
+    """game mesh for a heap of many small solids: one closed skin over their union (voxel remesh), decimated and unwrapped"""
+    cps = []
+    for o in hi_obs:
+        d = dup(o, o.name + '_tmp', c); apply_mods(d); d.data.materials.clear(); cps.append(d)
+    lo = join(cps, name) if len(cps) > 1 else cps[0]; lo.name = name; lo.data.name = name
+    for l in list(lo.data.uv_layers):
+        lo.data.uv_layers.remove(l)
+    mod(lo, 'REMESH', mode='VOXEL', voxel_size=voxel, adaptivity=0.0, use_smooth_shade=True); apply_mods(lo)
+    if smooth:
+        mod(lo, 'SMOOTH', factor=0.5, iterations=smooth); apply_mods(lo)
+    if tri_count(lo) > tris:
+        mod(lo, 'DECIMATE', ratio=tris / tri_count(lo)); apply_mods(lo)
+    lo.data.polygons.foreach_set('use_smooth', [True] * len(lo.data.polygons)); fix_normals(lo); smart_uv(lo, angle=angle, margin=margin); pack_uv(lo, margin=margin)
+    return lo
+
+
+def icosphere(name, radius=1.0, sub=5, c=None, scale=(1, 1, 1)):
+    bm = bmesh.new(); bmesh.ops.create_icosphere(bm, subdivisions=sub, radius=radius, matrix=Matrix.Diagonal((scale[0], scale[1], scale[2], 1.0))); return bm_obj(name, bm, c)
+
+
+
+def box(name, mn, mx, c=None, hi=False, bevel=0.003, warp=0.0, seed=0, rot=None):
+    """board / block between two corners. Game mesh: 12 triangles. Dense source: bevelled edges, subdivided, optionally warped."""
+    mn = np.array(mn, float); mx = np.array(mx, float); V = [(x, y, z) for x in (mn[0], mx[0]) for y in (mn[1], mx[1]) for z in (mn[2], mx[2])]
+    F = [(0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)]; ob = new_obj(name, V, F, c, smooth=False); fix_normals(ob)
+    if hi:
+        mod(ob, 'BEVEL', width=min(bevel, float((mx - mn).min()) * 0.3), segments=3, limit_method='ANGLE'); apply_mods(ob)
+        m = mod(ob, 'SUBSURF', levels=4, render_levels=4); m.subdivision_type = 'SIMPLE'; apply_mods(ob)
+        if warp:
+            P = co(ob); P = P + warp * np.stack([fbm(P, seed + k * 7, 2.0, 2) for k in range(3)], 1) + 0.15 * warp * np.stack([fbm(P, seed + 30 + k * 7, 40.0, 2) for k in range(3)], 1); set_co(ob, P)
+        ob.data.polygons.foreach_set('use_smooth', [True] * len(ob.data.polygons))
+    if rot is not None:                      # (axis, angle_rad, pivot)
+        ax, ang, piv = rot; ob.matrix_world = Matrix.Translation(Vector(piv)) @ Matrix.Rotation(ang, 4, ax) @ Matrix.Translation(-Vector(piv)); apply_xf(ob)
+    return ob
+
+
+
 def pack_uv(ob, margin=0.012, average=True, rotate=True):
     activate(ob); bpy.ops.object.mode_set(mode='EDIT'); bpy.ops.mesh.select_all(action='SELECT'); bpy.ops.uv.select_all(action='SELECT')
     if average:
@@ -608,6 +646,12 @@ def bake_set(lo, hi_obs, px, outdir, tname, extrude=0.004, maxdist=0.02, alpha=F
     ss = supersample factor (bake at px*ss, box-filter down). The game mesh needs one material slot (any) and UVs in 0..1."""
     sc = bpy.context.scene; use_hip_gpu(sc); sc.cycles.use_denoising = False; sc.cycles.max_bounces = 2; sc.cycles.use_adaptive_sampling = False
     os.makedirs(outdir, exist_ok=True); P = px * ss
+    joined = None
+    if len(hi_obs) > 6:                              # Blender bakes every selected source object as its own pass: join copies of a many-part source first
+        cps = [dup(o, o.name + '_bk') for o in hi_obs]
+        for o in hi_obs:
+            o.hide_render = True
+        joined = join(cps, 'bake_source'); hi_all = hi_obs; hi_obs = [joined]
     hidden = [o for o in sc.objects if o.type == 'MESH' and o not in hi_obs and o is not lo and not o.hide_render]
     for o in hidden:
         o.hide_render = True
@@ -659,6 +703,10 @@ def bake_set(lo, hi_obs, px, outdir, tname, extrude=0.004, maxdist=0.02, alpha=F
         setattr(lo, k, True)
     for o in hidden:
         o.hide_render = False
+    if joined:
+        bpy.data.objects.remove(joined)
+        for o in hi_all:
+            o.hide_render = False
     if post:
         post(res)
     ao = np.clip(res['ao'][..., 0], 0, 1); ao = ao_floor + (1 - ao_floor) * ao
