@@ -1,0 +1,114 @@
+{
+ "name": "SM_Gold_Pile_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_pile/Gold_Pile/SM_Gold_Pile_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_pile/Gold_Pile/SM_Gold_Pile_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Gold_Pile final",
+ "dimensions_m": [
+  0.4251,
+  0.3696,
+  0.1205
+ ],
+ "bounds_min_m": [
+  -0.2126,
+  -0.1848,
+  -0.0011
+ ],
+ "bounds_max_m": [
+  0.2126,
+  0.1848,
+  0.1194
+ ],
+ "lod0_triangles": 2176,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_pile/Gold_Pile/T_Gold_Pile_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_pile/Gold_Pile/T_Gold_Pile_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_pile/Gold_Pile/T_Gold_Pile_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Gold_Pile_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0079,
+   0.9921
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 146.4,
+   "p99": 201.9
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.338,
+   "p95": 0.5
+  },
+  "metallic_mean": 0.879,
+  "ao_mean": 0.638
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "gold_pile",
+  "178 bonuses/coins/coin- frame 4"
+ ],
+ "origin_ids": {
+  "gold_pile": [
+   "S352_P22",
+   "S352_P23",
+   "S352_P24",
+   "S352_P25",
+   "S352_P26",
+   "S352_P27",
+   "S352_P28",
+   "S352_P29",
+   "S352_P31",
+   "S352_P32",
+   "S352_P34",
+   "S352_P35",
+   "S352_P36",
+   "S352_P38",
+   "S352_P39"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "heap of about 430 gold coins, 36 cm across and 11 cm high, with strays round the foot",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Coins are placed on a mound by rule, not settled by simulation, so some float a little or cut into their neighbours. The game mesh is a smooth mound with the coins baked onto it as colour and normal (only the eighteen strays are real discs), so the heap has a clean dome silhouette and no parallax between coins at 1 m. No gems, bag or chest."
+}

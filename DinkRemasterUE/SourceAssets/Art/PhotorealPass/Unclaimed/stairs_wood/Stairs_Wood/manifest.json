@@ -1,0 +1,108 @@
+{
+ "name": "SM_Stairs_Wood_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stairs_wood/Stairs_Wood/SM_Stairs_Wood_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stairs_wood/Stairs_Wood/SM_Stairs_Wood_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_wood.py Stairs_Wood final",
+ "dimensions_m": [
+  1.024,
+  4.6774,
+  3.7191
+ ],
+ "bounds_min_m": [
+  -0.512,
+  -2.3387,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.512,
+  2.3387,
+  3.7191
+ ],
+ "lod0_triangles": 228,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stairs_wood/Stairs_Wood/T_Stairs_Wood_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stairs_wood/Stairs_Wood/T_Stairs_Wood_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stairs_wood/Stairs_Wood/T_Stairs_Wood_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Stairs_Wood_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0107,
+   0.9893
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 64.3,
+   "p99": 100.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.467,
+   "p95": 0.63
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.547
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "stairs_wood",
+  "428 inside/stairs/stair- frames 1, 2"
+ ],
+ "origin_ids": {
+  "stairs_wood": [
+   "S003_P28",
+   "S003_P29",
+   "S004_P13",
+   "S036_P27",
+   "S037_P13",
+   "S163_P27",
+   "S163_P28",
+   "S228_P23",
+   "S229_P01"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "straight open oak stair for the 3.5 m storey: eighteen risers, 1.0 m wide, two strings and seventeen treads",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "An open flight without handrail, newels or risers, sized to the 3.5 m storey of the kit; the original frames show a short cellar-style flight and a floor opening with its trimmer frame, which is not built. No UCX collision is exported: a stair needs stepped hulls or a ramp, which is a level decision. Boards are bevelled blocks butted together: no joints, pegs, nails or tool marks are modelled, and the grain is procedural streaking, not a scan. Every board is 12 triangles in the game mesh, so edge rounding is in the normal map only."
+}

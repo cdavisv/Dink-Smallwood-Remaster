@@ -55,7 +55,7 @@
   "MI_Arrow_PR"
  ],
  "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
- "collision_hulls": 0,
+ "collision_hulls": 1,
  "validation": {
   "non_manifold_edges": 0,
   "open_edges": 0,

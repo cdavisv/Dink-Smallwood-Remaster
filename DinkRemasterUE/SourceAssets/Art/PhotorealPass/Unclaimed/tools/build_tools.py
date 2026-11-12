@@ -133,7 +133,7 @@ def build(name, mode):
     for o in hi:
         o.location = tuple(-off); L.apply_xf(o)
     L.finish_static(asset, sp['cls'], lo, hi, outdir, sp['px'], families=['hand_tool_small', '447 items/tools/tool- frames %s' % sp['frames']], origin={'hand_tool_small': ids}, dresses=sp['dresses'],
-                    extrude=0.0015, maxdist=0.006, third_party=['rusty_metal_02'], script=SCRIPT + ' ' + name + ' final', ss=2, weaknesses=sp['weak'], collision=False,
+                    extrude=0.0015, maxdist=0.006, third_party=['rusty_metal_02'], script=SCRIPT + ' ' + name + ' final', ss=2, weaknesses=sp['weak'],
                     extra={'origin_ids_note': 'the family shares its origin IDs between all of its frames; this asset dresses the placements that show frames %s' % sp['frames'],
                            'contact_crop': 0.8})
     for o in hi:

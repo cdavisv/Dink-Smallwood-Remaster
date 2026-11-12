@@ -76,7 +76,10 @@ def leaf(name, hi, root, length, width, yaw, droop=0.5, curl=0.25, res=(6, 10), 
         return np.stack([x, y, z], -1)
     ob = L.grid_surface(name, fn, nu, nv, c, closed_u=False)
     L.mod(ob, 'SOLIDIFY', thickness=thick, offset=0.0); L.apply_mods(ob)
-    ob.rotation_euler = (0, 0, yaw); ob.location = root; L.apply_xf(ob); return ob
+    ob.rotation_euler = (0, 0, yaw); ob.location = root; L.apply_xf(ob)
+    if not hi:                                  # the solidified shell needs its own unwrap: both faces would share the grid UVs otherwise
+        L.smart_uv(ob, angle=60, margin=0.02)
+    return ob
 
 
 # ---------------------------------------------------------------------------------------------- materials (dense source)
@@ -297,6 +300,10 @@ def build(name, mode):
     if mode == 'review':
         shots(hi, name + '_hi', L.REVIEW); return
     lo = L.join(sp['fn'](False, L.coll(asset)), asset); L.pack_uv(lo, margin=0.02)
+    if not hang:                                # pivot at the base centre: move the game mesh and its source together
+        P0 = L.co(lo); cen = (P0.min(0) + P0.max(0)) / 2; cen[2] = P0[:, 2].min()
+        for o in [lo] + hi:
+            L.set_co(o, L.co(o) - cen)
     for o in hi:
         o.hide_render = True
     ids = L.origin_ids([sp['fam']])[sp['fam']]

@@ -1,0 +1,108 @@
+{
+ "name": "SM_Bookcase_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bookcase/Bookcase/SM_Bookcase_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bookcase/Bookcase/SM_Bookcase_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_wood.py Bookcase final",
+ "dimensions_m": [
+  1.93,
+  0.355,
+  1.816
+ ],
+ "bounds_min_m": [
+  -0.965,
+  -0.1775,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.965,
+  0.1775,
+  1.816
+ ],
+ "lod0_triangles": 1644,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bookcase/Bookcase/T_Bookcase_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bookcase/Bookcase/T_Bookcase_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bookcase/Bookcase/T_Bookcase_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Bookcase_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0121,
+   0.9879
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 38.2,
+   "p99": 179.2
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.259,
+   "p95": 0.633
+  },
+  "metallic_mean": 0.002,
+  "ao_mean": 0.113
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "bookcase",
+  "64 inside/details/inacc- frame 4"
+ ],
+ "origin_ids": {
+  "bookcase": [
+   "S004_P19",
+   "S006_P18",
+   "S038_P13",
+   "S067_P07",
+   "S067_P28",
+   "S067_P29",
+   "S067_P30",
+   "S129_P23",
+   "S161_P21"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "oak bookcase, 1.9 m wide, 1.8 m tall, four shelves packed with about a hundred leather-bound books, a few leaning or stacked flat",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "About a hundred books as bevelled blocks sharing one material (colour picked per book): no titles, raised bands, headbands or individual wear, and all stand square. Boards are bevelled blocks butted together: no joints, pegs, nails or tool marks are modelled, and the grain is procedural streaking, not a scan. Every board is 12 triangles in the game mesh, so edge rounding is in the normal map only. Game mesh spends 12 triangles on every book, including hidden faces; UVs are several hundred small islands."
+}

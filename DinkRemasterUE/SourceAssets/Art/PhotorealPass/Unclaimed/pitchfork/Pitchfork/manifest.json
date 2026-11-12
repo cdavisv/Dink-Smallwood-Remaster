@@ -1,0 +1,107 @@
+{
+ "name": "SM_Pitchfork_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/pitchfork/Pitchfork/SM_Pitchfork_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/pitchfork/Pitchfork/SM_Pitchfork_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props2.py Pitchfork final",
+ "dimensions_m": [
+  1.7447,
+  0.1647,
+  0.0369
+ ],
+ "bounds_min_m": [
+  -0.8724,
+  -0.0823,
+  -0.0014
+ ],
+ "bounds_max_m": [
+  0.8724,
+  0.0823,
+  0.0355
+ ],
+ "lod0_triangles": 1500,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/pitchfork/Pitchfork/T_Pitchfork_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/pitchfork/Pitchfork/T_Pitchfork_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/pitchfork/Pitchfork/T_Pitchfork_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Pitchfork_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0015,
+   0.9985
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 18.0,
+   "p99": 109.9
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.126,
+   "p95": 0.625
+  },
+  "metallic_mean": 0.04,
+  "ao_mean": 0.206
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "pitchfork",
+  "447 items/tools/tool- frames 1, 11"
+ ],
+ "origin_ids": {
+  "pitchfork": [
+   "S035_P30",
+   "S196_P39",
+   "S229_P10",
+   "S274_P12",
+   "S440_P21",
+   "S762_P07"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "hay fork, 1.75 m: ash shaft, forged socket, three curved tines",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Tines are smooth round sweeps without forge facets. Parts are separate swept solids pushed together (no modelled sockets, rivets, wedges or pegs). Wood grain is procedural streaking along the object axis. Authored lying flat; the original frames show it leaning against a wall, which is a placement rotation. A 1.75 m object in a 1024 px set: about 1.5 px per mm on the shaft."
+}

@@ -1,0 +1,100 @@
+{
+ "name": "SM_Bread_Braided_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_bread/Bread_Braided/SM_Bread_Braided_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_bread/Bread_Braided/SM_Bread_Braided_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props2.py Bread_Braided final",
+ "dimensions_m": [
+  0.3542,
+  0.1457,
+  0.0909
+ ],
+ "bounds_min_m": [
+  -0.1771,
+  -0.0728,
+  -0.0088
+ ],
+ "bounds_max_m": [
+  0.1771,
+  0.0728,
+  0.082
+ ],
+ "lod0_triangles": 1500,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_bread/Bread_Braided/T_Bread_Braided_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_bread/Bread_Braided/T_Bread_Braided_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_bread/Bread_Braided/T_Bread_Braided_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Bread_Braided_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0069,
+   0.9933
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 152.4,
+   "p99": 189.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.624,
+   "p95": 0.75
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.41
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "food_bread",
+  "421 items/food/food- frame 7"
+ ],
+ "origin_ids": {
+  "food_bread": [
+   "S070_P33"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "braided loaf, 36 cm, three strands, dark glazed crests and floury creases",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Three strands plaited as swept tubes: they do not flatten against each other or the board as dough does, and the ends are simply tapered rather than pinched. Crust blistering and flour are procedural."
+}

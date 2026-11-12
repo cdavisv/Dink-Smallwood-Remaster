@@ -27,13 +27,13 @@ def ham(hi, c):
     if hi:
         P_ = L.co(body); N = L.vnormals(body); face = smoothstep(-0.6, -0.9, N[:, 0]); L.set_co(body, P_ + N * ((0.0025 * fbm(P_, 3, 16, 3) + 0.001 * fbm(P_, 5, 70, 2)) * (1 - face))[:, None]); C.set_attr(body, 'face', face)
         t = NT('ham'); f = t.attr('face'); sp = t.sep(t.obj); rr = t.vmath('LENGTH', t.comb(0.0, sp[1], t.math('SUBTRACT', sp[2], z))); n = t.noise(40, 4, 0.6); n2 = t.noise(220, 3, 0.6)
-        rind = t.ramp(t.noise(9, 5, 0.65), [(0.3, (0.060, 0.022, 0.008)), (0.6, (0.17, 0.065, 0.02)), (0.85, (0.30, 0.13, 0.04))]); net = t.voronoi(42, feature='DISTANCE_TO_EDGE'); netl = t.ramp(net, [(0.0, 1.0), (0.06, 0.0)])
-        rind = t.mix(t.math('MULTIPLY', netl, 0.55), rind, (0.035, 0.014, 0.006))
+        rind = t.ramp(t.noise(9, 5, 0.65), [(0.3, (0.060, 0.022, 0.008)), (0.6, (0.17, 0.065, 0.02)), (0.85, (0.30, 0.13, 0.04))]); net = t.voronoi(95, feature='DISTANCE_TO_EDGE'); netl = t.ramp(net, [(0.0, 1.0), (0.09, 0.0)])
+        rind = t.mix(t.math('MULTIPLY', netl, 0.22), rind, (0.035, 0.014, 0.006))
         seam = t.ramp(t.voronoi(55, feature='DISTANCE_TO_EDGE', vec=t.mapping(scale=(0.2, 1, 1))), [(0.0, 1.0), (0.07, 0.0)])
         lean = t.mix(n, (0.30, 0.045, 0.045), (0.52, 0.12, 0.11)); lean = t.mix(t.math('MULTIPLY', seam, 0.7), lean, (0.72, 0.60, 0.50))
         fat = t.mix(n2, (0.70, 0.62, 0.48), (0.86, 0.80, 0.68)); meat = t.mix(t.maprange(t.math('ADD', rr, t.math('MULTIPLY', t.math('SUBTRACT', n, 0.5), 0.012)), 0.058, 0.066, 0.0, 1.0), lean, fat)
         meat = t.mix(t.maprange(rr, 0.076, 0.08, 0.0, 1.0), meat, (0.20, 0.08, 0.03)); meat = t.mix(t.maprange(rr, 0.017, 0.014, 0.0, 1.0), meat, (0.74, 0.68, 0.55)); meat = t.mix(t.maprange(rr, 0.008, 0.006, 0.0, 1.0), meat, (0.30, 0.10, 0.07))
-        t.set(base=t.mix(f, rind, meat), rough=t.mixf(f, t.mixf(n, 0.3, 0.5), t.mixf(n2, 0.28, 0.42)), normal=t.bump(t.math('ADD', t.math('MULTIPLY', netl, -1.0), t.math('MULTIPLY', n2, 0.3)), 0.35, 0.002), sss=0.15, sss_scale=0.01)
+        t.set(base=t.mix(f, rind, meat), rough=t.mixf(f, t.mixf(n, 0.3, 0.5), t.mixf(n2, 0.28, 0.42)), normal=t.bump(t.math('ADD', t.math('MULTIPLY', netl, -0.5), t.math('MULTIPLY', n2, 0.5)), 0.3, 0.0012), sss=0.15, sss_scale=0.01)
         body.data.materials.append(t.mat)
         b = NT('bone'); bn = b.noise(60, 4, 0.6); b.set(base=b.mix(bn, (0.50, 0.44, 0.32), (0.76, 0.72, 0.60)), rough=b.mixf(bn, 0.4, 0.6), normal=b.bump(b.noise(300, 2, 0.5), 0.2, 0.0005)); bone.data.materials.append(b.mat)
     return [body, bone]
@@ -77,7 +77,7 @@ def cheese(hi, c):
         eyes = t.ramp(t.voronoi(55, feature='F1'), [(0.0, 1.0), (0.2, 0.0)]); paste = t.mix(n, (0.62, 0.42, 0.12), (0.80, 0.60, 0.24)); paste = t.mix(t.math('MULTIPLY', eyes, 0.6), paste, (0.30, 0.17, 0.04))
         rind = t.mix(n, (0.50, 0.24, 0.035), (0.72, 0.42, 0.08)); rind = t.mix(t.ramp(t.noise(12, 4, 0.7), [(0.6, 0.0), (0.72, 0.6)]), rind, (0.62, 0.56, 0.42)); cloth = t.math('SINE', t.math('MULTIPLY', sp[2], 2400.0))
         t.set(base=t.mix(inside, rind, paste), rough=t.mixf(inside, t.mixf(n, 0.3, 0.5), t.mixf(n2, 0.4, 0.55)), normal=t.bump(t.math('ADD', t.math('MULTIPLY', t.math('MULTIPLY', eyes, inside), -3.0), t.math('MULTIPLY', t.math('MULTIPLY', cloth, t.math('SUBTRACT', 1.0, inside)), 0.25)), 0.4, 0.001),
-              sss=0.12, sss_scale=0.008); wheel.data.materials.append(t.mat)
+              sss=0.12, sss_scale=0.008); L.assign(wheel, t.mat)             # the boolean leaves an empty slot: replace, do not append
     return [wheel]
 
 
@@ -96,7 +96,7 @@ def grapes(hi, c):
     lf = F.leaf('leaf', hi, (-0.078, 0.004, 0.036), 0.085, 0.085, yaw=math.radians(105), droop=0.5, curl=0.1, c=c, seed=3, pitch=0.12)
     if hi:
         t = NT('grape'); n = t.noise(70, 4, 0.6); bl = t.ramp(t.noise(28, 4, 0.65, vec=t.mapping(loc=(3, 1, 2))), [(0.35, 0.0), (0.7, 1.0)]); cv = t.sep(t.voronoi(60, out='Color'))
-        base = t.mix(n, (0.016, 0.006, 0.03), (0.07, 0.016, 0.085)); base = t.mix(t.math('MULTIPLY', bl, 0.45), base, (0.30, 0.30, 0.42)); t.set(base=base, rough=t.math('ADD', t.mixf(n, 0.12, 0.25), t.math('MULTIPLY', bl, 0.3)), sss=0.2, sss_radius=(0.6, 0.1, 0.5), sss_scale=0.004)
+        base = t.mix(n, (0.008, 0.003, 0.016), (0.035, 0.008, 0.045)); base = t.mix(t.math('MULTIPLY', bl, 0.22), base, (0.20, 0.20, 0.30)); t.set(base=base, rough=t.math('ADD', t.mixf(n, 0.08, 0.2), t.math('MULTIPLY', bl, 0.25)), sss=0.2, sss_radius=(0.6, 0.1, 0.5), sss_scale=0.004)
         for o in obs:
             o.data.materials.append(t.mat)
         stalk.data.materials.append(F.stem_mat('stalk', green=(0.10, 0.11, 0.035), woody=0.5)); lf.data.materials.append(F.leaf_mat('leaf', col=(0.045, 0.085, 0.02)))
@@ -110,10 +110,10 @@ def steak(hi, c):
     if hi:
         L.displace_np(o, lambda Q: 0.0008 * fbm(Q, 3, 40, 3))
         t = NT('steak'); sp = t.sep(t.obj); n = t.noise(24, 5, 0.65); n2 = t.noise(180, 3, 0.6); ao = t.ao(0.01, 6)
-        marb = t.ramp(t.noise(1.0, 5, 0.75, vec=t.mapping(scale=(60, 22, 60)), distortion=1.5), [(0.56, 0.0), (0.62, 1.0)]); lean = t.mix(n, (0.28, 0.022, 0.03), (0.50, 0.06, 0.07)); lean = t.mix(t.math('MULTIPLY', marb, 0.8), lean, (0.78, 0.66, 0.58))
+        marb = t.ramp(t.noise(1.0, 5, 0.75, vec=t.mapping(scale=(60, 22, 60)), distortion=1.5), [(0.50, 0.0), (0.56, 1.0)]); lean = t.mix(n, (0.28, 0.022, 0.03), (0.50, 0.06, 0.07)); lean = t.mix(t.math('MULTIPLY', marb, 0.8), lean, (0.78, 0.66, 0.58))
         edge = t.ramp(t.pointiness, [(0.50, 0.0), (0.54, 1.0)]); rim = t.maprange(t.math('ADD', sp[1], t.math('MULTIPLY', t.math('SUBTRACT', n, 0.5), 0.03)), 0.045, 0.062, 0.0, 1.0); fat = t.mix(n2, (0.72, 0.62, 0.50), (0.88, 0.82, 0.72)); base = t.mix(rim, lean, fat)
-        bone = t.math('MAXIMUM', t.ramp(t.math('ABSOLUTE', t.math('SUBTRACT', sp[0], 0.012)), [(0.008, 1.0), (0.011, 0.0)]), t.math('MULTIPLY', t.ramp(t.math('ABSOLUTE', t.math('SUBTRACT', sp[1], 0.03)), [(0.007, 1.0), (0.01, 0.0)]), t.maprange(sp[0], -0.05, -0.04, 0.0, 1.0)))
-        bone = t.math('MULTIPLY', t.math('MULTIPLY', bone, t.maprange(sp[1], -0.05, -0.04, 0.0, 1.0)), t.maprange(sp[0], 0.075, 0.065, 0.0, 1.0)); base = t.mix(bone, base, t.mix(n2, (0.62, 0.55, 0.42), (0.80, 0.76, 0.64)))
+        bw = t.math('MULTIPLY', t.math('SUBTRACT', n, 0.5), 0.012); bone = t.math('MAXIMUM', t.ramp(t.math('ABSOLUTE', t.math('ADD', t.math('SUBTRACT', sp[0], 0.012), bw)), [(0.005, 1.0), (0.008, 0.0)]), t.math('MULTIPLY', t.ramp(t.math('ABSOLUTE', t.math('ADD', t.math('SUBTRACT', sp[1], 0.03), bw)), [(0.0045, 1.0), (0.007, 0.0)]), t.maprange(sp[0], -0.04, -0.03, 0.0, 1.0)))
+        bone = t.math('MULTIPLY', t.math('MULTIPLY', bone, t.maprange(sp[1], -0.05, -0.04, 0.0, 1.0)), t.maprange(sp[0], 0.075, 0.065, 0.0, 1.0)); base = t.mix(bone, base, t.mix(n2, (0.40, 0.31, 0.22), (0.62, 0.55, 0.42)))
         t.set(base=base, rough=t.mixf(bone, t.mixf(n, 0.16, 0.34), 0.5), normal=t.bump(t.math('ADD', t.math('MULTIPLY', marb, 0.4), t.math('MULTIPLY', bone, 1.2)), 0.25, 0.0008), sss=0.2, sss_radius=(1.0, 0.2, 0.15), sss_scale=0.006, coat=0.3, coat_rough=0.15)
         o.data.materials.append(t.mat)
     return [o]
@@ -197,14 +197,14 @@ SPECS = {
                    dresses='bunch of about seventy dark purple grapes with bloom, on a stalk with one vine leaf, 22 cm'),
     'Steak_TBone': dict(fn=steak, fam='food_ham', seq='421 items/food/food- frame 3', cls='prop_small', px=1024, tris=900, ground='weathered_brown_planks', third=[],
                         weak='A slab with a painted cut: bone, fat rim and marbling are colour and normal only and identical on both faces. The outline is smooth.', dresses='raw T-bone steak, 27 cm, marbled lean with a fat rim and the bone through it (the frame the audit calls ham / steak)'),
-    'Pitchfork': dict(fn=pitchfork, fam='pitchfork', seq='447 items/tools/tool- frames 1, 11', cls='prop', px=1024, tris=1500, ground='forrest_ground_01', third=['rusty_metal_02'], collision=False, extrude=0.0015, maxdist=0.005, shot=SH_LONG,
+    'Pitchfork': dict(fn=pitchfork, fam='pitchfork', seq='447 items/tools/tool- frames 1, 11', cls='prop', px=1024, tris=1500, ground='forrest_ground_01', third=['rusty_metal_02'], extrude=0.0015, maxdist=0.005, shot=SH_LONG,
                       weak='Tines are smooth round sweeps without forge facets.' + W_TOOL + ' A 1.75 m object in a 1024 px set: about 1.5 px per mm on the shaft.', dresses='hay fork, 1.75 m: ash shaft, forged socket, three curved tines'),
-    'Rake': dict(fn=rake, fam='rake', seq='447 items/tools/tool- frames 3, 13', cls='prop', px=1024, tris=2400, ground='forrest_ground_01', third=[], collision=False, extrude=0.0015, maxdist=0.005, shot=SH_LONG,
+    'Rake': dict(fn=rake, fam='rake', seq='447 items/tools/tool- frames 3, 13', cls='prop', px=1024, tris=2400, ground='forrest_ground_01', third=[], extrude=0.0015, maxdist=0.005, shot=SH_LONG,
                  weak='Teeth are identical tapered pegs.' + W_TOOL, dresses='wooden hay rake, 1.75 m: ash shaft with a split bow, 62 cm head, fourteen pegged teeth'),
-    'Scythe': dict(fn=scythe, fam='scythe', seq='447 items/tools/tool- frame 12', cls='prop', px=1024, tris=1700, ground='forrest_ground_01', third=['rusty_metal_02'], collision=False, extrude=0.0015, maxdist=0.005, shot=dict(az=22, el=34, fill=0.95, close=(0.8, 0.6, 0.5, 0.2)),
+    'Scythe': dict(fn=scythe, fam='scythe', seq='447 items/tools/tool- frame 12', cls='prop', px=1024, tris=1700, ground='forrest_ground_01', third=['rusty_metal_02'], extrude=0.0015, maxdist=0.005, shot=dict(az=22, el=34, fill=0.95, close=(0.8, 0.6, 0.5, 0.2)),
                    weak='The blade is a flat tapered sweep: no rib along its back, no tang, and the edge is not ground to a bevel. The original frame is closer to a long-handled hook; a scythe was built.' + W_TOOL,
                    dresses='scythe, 1.6 m snath with two grips, iron ring and a 75 cm curved blade'),
-    'Spear_Island': dict(fn=spear, fam='island_spear_pole', seq='424 struct/island/isle- frames 13, 16, 17', cls='prop', px=1024, tris=1300, ground='forrest_ground_01', third=['rusty_metal_02'], collision=False, extrude=0.0015, maxdist=0.005, keep_z=True,
+    'Spear_Island': dict(fn=spear, fam='island_spear_pole', seq='424 struct/island/isle- frames 13, 16, 17', cls='prop', px=1024, tris=1300, ground='forrest_ground_01', third=['rusty_metal_02'], extrude=0.0015, maxdist=0.005, keep_z=True,
                          shot=dict(az=30, el=10, fill=1.2, close=(0.5, 0.5, 0.88, 0.14)),
                          weak='The cloth strip is a stiff swept ribbon, not simulated cloth. Lashing is a sleeve with a cord pattern in the normal map. The pole is straight and evenly round. Stands upright with 12 cm below ground for planting.',
                          dresses='island spear planted upright, 2.2 m above ground: wooden pole, forged leaf head bound with cord, a strip of red cloth under the head',

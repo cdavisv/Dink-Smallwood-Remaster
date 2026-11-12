@@ -1,0 +1,446 @@
+{
+ "arrow_prop/Arrow/SM_Arrow_PR.blend": {
+  "asset": "SM_Arrow_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "bomb_item/Bomb/SM_Bomb_PR.blend": {
+  "asset": "SM_Bomb_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "bonca_gray/Bonca/SK_Bonca_PR.blend": {
+  "asset": "SK_Bonca_PR",
+  "class": "creature",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "SKIN_INFLUENCES"
+  ],
+  "error_messages": []
+ },
+ "bookcase/Bookcase/SM_Bookcase_PR.blend": {
+  "asset": "SM_Bookcase_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS",
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "boulder_flat/Boulder_Flat/SM_Boulder_Flat_PR.blend": {
+  "asset": "SM_Boulder_Flat_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "boulder_grey_tall/Boulder_Grey_Tall/SM_Boulder_Grey_Tall_PR.blend": {
+  "asset": "SM_Boulder_Grey_Tall_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "boulder_large/Boulder_Large/SM_Boulder_Large_PR.blend": {
+  "asset": "SM_Boulder_Large_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "boulder_red/Boulder_Red/SM_Boulder_Red_PR.blend": {
+  "asset": "SM_Boulder_Red_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "boulder_white_pair/Boulder_White_Pair/SM_Boulder_White_Pair_PR.blend": {
+  "asset": "SM_Boulder_White_Pair_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "dragon/Dragon/SK_Dragon_PR.blend": {
+  "asset": "SK_Dragon_PR",
+  "class": "creature",
+  "passed": false,
+  "errors": [
+   "PIVOT"
+  ],
+  "warnings": [
+   "SKIN_INFLUENCES",
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": [
+   "pivot is wrong for creature (rule feet): origin is 105.4 cm off, should move by (0.2, 105.4, -0.1) cm. "
+  ]
+ },
+ "dragon_statue/Dragon_Statue/SM_Dragon_Statue_PR.blend": {
+  "asset": "SM_Dragon_Statue_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": []
+ },
+ "fish/Fish/SK_Fish_PR.blend": {
+  "asset": "SK_Fish_PR",
+  "class": "creature",
+  "passed": false,
+  "errors": [
+   "PIVOT"
+  ],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": [
+   "pivot is wrong for creature (rule feet): origin is 3.6 cm off, should move by (3.4, -0.0, -1.0) cm. "
+  ]
+ },
+ "food_bread/Bread_Braided/SM_Bread_Braided_PR.blend": {
+  "asset": "SM_Bread_Braided_PR",
+  "class": "prop_small",
+  "passed": false,
+  "errors": [
+   "UV_OVERLAP"
+  ],
+  "warnings": [],
+  "error_messages": [
+   "UV0 islands overlap (0.7 % of UV area, 124 triangles); class prop_small needs unique UVs"
+  ]
+ },
+ "food_cheese/Cheese_Wheel/SM_Cheese_Wheel_PR.blend": {
+  "asset": "SM_Cheese_Wheel_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "food_drumstick/Ham_Leg/SM_Ham_Leg_PR.blend": {
+  "asset": "SM_Ham_Leg_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "food_fruit/Aubergine/SM_Aubergine_PR.blend": {
+  "asset": "SM_Aubergine_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "food_fruit/Pepper_Green/SM_Pepper_Green_PR.blend": {
+  "asset": "SM_Pepper_Green_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS",
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "food_fruit/Pepper_Red/SM_Pepper_Red_PR.blend": {
+  "asset": "SM_Pepper_Red_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS",
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "food_fruit/Pepper_Yellow/SM_Pepper_Yellow_PR.blend": {
+  "asset": "SM_Pepper_Yellow_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS",
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "food_fruit/Pumpkin/SM_Pumpkin_PR.blend": {
+  "asset": "SM_Pumpkin_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "DUPLICATE_VERTS",
+   "TEXEL_DENSITY",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": []
+ },
+ "food_fruit/Tomato/SM_Tomato_PR.blend": {
+  "asset": "SM_Tomato_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": []
+ },
+ "food_grapes/Grapes/SM_Grapes_PR.blend": {
+  "asset": "SM_Grapes_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": []
+ },
+ "food_ham/Steak_TBone/SM_Steak_TBone_PR.blend": {
+  "asset": "SM_Steak_TBone_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "gold_coin/Gold_Coin/SM_Gold_Coin_PR.blend": {
+  "asset": "SM_Gold_Coin_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "gold_coins_small/Gold_Coins_Few/SM_Gold_Coins_Few_PR.blend": {
+  "asset": "SM_Gold_Coins_Few_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "gold_pile/Gold_Pile/SM_Gold_Pile_PR.blend": {
+  "asset": "SM_Gold_Pile_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": []
+ },
+ "golden_heart/Heart_Gold/SM_Heart_Gold_PR.blend": {
+  "asset": "SM_Heart_Gold_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "hand_tool_small/Axe_Felling/SM_Axe_Felling_PR.blend": {
+  "asset": "SM_Axe_Felling_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "hand_tool_small/Hammer_Smith/SM_Hammer_Smith_PR.blend": {
+  "asset": "SM_Hammer_Smith_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "hand_tool_small/Tongs_Smith/SM_Tongs_Smith_PR.blend": {
+  "asset": "SM_Tongs_Smith_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "heart_pickup/Heart_Red/SM_Heart_Red_PR.blend": {
+  "asset": "SM_Heart_Red_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "island_spear_pole/Spear_Island/SM_Spear_Island_PR.blend": {
+  "asset": "SM_Spear_Island_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "PIVOT"
+  ],
+  "warnings": [],
+  "error_messages": [
+   "pivot is wrong for prop (rule base_center): origin is 12.4 cm off, should move by (0.0, 0.0, -12.4) cm. "
+  ]
+ },
+ "log_cabin_window/Cabin_Window/SM_Cabin_Window_PR.blend": {
+  "asset": "SM_Cabin_Window_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "npc_knight_blue/Knight/SK_Knight_PR.blend": {
+  "asset": "SK_Knight_PR",
+  "class": "character_humanoid",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "ore_rock_blue/Ore_Rock_Blue/SM_Ore_Rock_Blue_PR.blend": {
+  "asset": "SM_Ore_Rock_Blue_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "pitchfork/Pitchfork/SM_Pitchfork_PR.blend": {
+  "asset": "SM_Pitchfork_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "rake/Rake/SM_Rake_PR.blend": {
+  "asset": "SM_Rake_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "scythe/Scythe/SM_Scythe_PR.blend": {
+  "asset": "SM_Scythe_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "seashell_conch/Conch/SM_Seashell_Conch_PR.blend": {
+  "asset": "SM_Seashell_Conch_PR",
+  "class": "prop_small",
+  "passed": true,
+  "errors": [],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": []
+ },
+ "shop_sign/Sign_Healer/SM_Sign_Healer_PR.blend": {
+  "asset": "SM_Sign_Healer_PR",
+  "class": "prop",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "slayer/Slayer/SK_Slayer_PR.blend": {
+  "asset": "SK_Slayer_PR",
+  "class": "creature",
+  "passed": false,
+  "errors": [
+   "PIVOT"
+  ],
+  "warnings": [
+   "SKIN_INFLUENCES"
+  ],
+  "error_messages": [
+   "pivot is wrong for creature (rule feet): origin is 54.5 cm off, should move by (-0.1, 54.5, 0.5) cm. "
+  ]
+ },
+ "stairs_wood/Stairs_Wood/SM_Stairs_Wood_PR.blend": {
+  "asset": "SM_Stairs_Wood_PR",
+  "class": "prop_large",
+  "passed": true,
+  "errors": [],
+  "warnings": [],
+  "error_messages": []
+ },
+ "stone_giant/Stone_Giant/SK_Stone_Giant_PR.blend": {
+  "asset": "SK_Stone_Giant_PR",
+  "class": "creature",
+  "passed": false,
+  "errors": [
+   "PIVOT"
+  ],
+  "warnings": [
+   "SKIN_INFLUENCES",
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": [
+   "pivot is wrong for creature (rule feet): origin is 27.6 cm off, should move by (0.1, -27.6, -1.4) cm. "
+  ]
+ },
+ "tree_fruit/Acorn_Hanging/SM_Acorn_Hanging_PR.blend": {
+  "asset": "SM_Acorn_Hanging_PR",
+  "class": "prop_small",
+  "passed": false,
+  "errors": [
+   "PIVOT"
+  ],
+  "warnings": [
+   "TEXEL_DENSITY"
+  ],
+  "error_messages": [
+   "pivot is wrong for prop_small (rule base_center): origin is 7.1 cm off, should move by (0.0, 0.0, -7.1) cm. "
+  ]
+ }
+}

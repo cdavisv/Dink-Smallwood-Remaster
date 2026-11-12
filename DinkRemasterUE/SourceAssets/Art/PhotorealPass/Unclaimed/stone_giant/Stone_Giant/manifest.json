@@ -1,0 +1,153 @@
+{
+ "name": "SK_Stone_Giant_PR",
+ "class": "creature",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stone_giant/Stone_Giant/SK_Stone_Giant_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stone_giant/Stone_Giant/SK_Stone_Giant_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stone_giant/Stone_Giant/SK_Stone_Giant_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stone_giant/Stone_Giant/SK_Stone_Giant_PR_LOD2.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stone_giant/Stone_Giant/SK_Stone_Giant_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_giant.py final",
+ "dimensions_m": [
+  2.096,
+  1.8511,
+  2.0888
+ ],
+ "bounds_min_m": [
+  -1.0472,
+  -1.2013,
+  -0.0135
+ ],
+ "bounds_max_m": [
+  1.0489,
+  0.6499,
+  2.0753
+ ],
+ "lod0_triangles": 14000,
+ "lod1_triangles": 7000,
+ "lod2_triangles": 3500,
+ "triangle_budget": {
+  "soft": 25000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stone_giant/Stone_Giant/T_Stone_Giant_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stone_giant/Stone_Giant/T_Stone_Giant_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/stone_giant/Stone_Giant/T_Stone_Giant_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Stone_Giant_PR"
+ ],
+ "rig": {
+  "root_bone": "root",
+  "bones": [
+   "root",
+   "pelvis",
+   "spine_01",
+   "spine_02",
+   "neck_01",
+   "head",
+   "upperarm_l",
+   "lowerarm_l",
+   "hand_l",
+   "upperarm_r",
+   "lowerarm_r",
+   "hand_r",
+   "thigh_l",
+   "calf_l",
+   "foot_l",
+   "thigh_r",
+   "calf_r",
+   "foot_r"
+  ],
+  "bone_count": 18,
+  "weights": {
+   "method": "bone heat",
+   "max_influences": 4,
+   "unweighted_vertices": 0
+  },
+  "rest_pose": "standing pose as modelled (not a T pose)",
+  "animation": "none: skeleton and skin weights only; no clips, no Physics Asset, no control rig",
+  "skeleton": "bespoke (CONVENTIONS.md section 11: any skeleton with a single root bone named root)"
+ },
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "uv_range": [
+   0.0061,
+   0.9939
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 99.9,
+   "p99": 164.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.509,
+   "p95": 0.832
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.53
+ },
+ "pivot": "feet: armature origin on the ground between the feet, front on -Y",
+ "families": [
+  "stone_giant",
+  "821-829 foes/stonegnt/walk",
+  "816 foes/stonegnt/attack"
+ ],
+ "origin_ids": {
+  "stone_giant": [
+   "S178_P10",
+   "S178_P11",
+   "S182_P13",
+   "S183_P12",
+   "S209_P14",
+   "S209_P16",
+   "S211_P01",
+   "S212_P08",
+   "S213_P10",
+   "S215_P11",
+   "S242_P15",
+   "S245_P01",
+   "S245_P02",
+   "S246_P03"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "stone giant: a knuckle-walking, ape-built giant of bedded tan sandstone, 2.1 m at the shoulder and 1.9 m across, with massive forearms, a small head sunk between the shoulders and deep-set eye pits",
+ "third_party": [
+  "rock_boulder_dry"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "NOT photoreal at 1 m: a blob figure with a rock texture. The body is a fused joint graph with strata, jointing and chips from displacement; it does not break into separate blocks at the joints, so it reads as a stone-skinned ape rather than as stacked rock. Eyes and mouth are displaced pits only. The game mesh is a decimation (no joint loops) and stone should not stretch: skinned deformation will smear the bedding at the shoulders and hips; rigid chunks per bone would be the right build. Inverse-distance or bone-heat automatic weights, one test pose. No animation clips, no Physics Asset.",
+ "contact_crop": 0.9
+}

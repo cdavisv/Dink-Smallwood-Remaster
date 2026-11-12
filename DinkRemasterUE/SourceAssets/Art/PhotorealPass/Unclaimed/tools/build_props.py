@@ -48,7 +48,7 @@ def boulder(name, dims, seed, c, hi, rough_amp=0.16, strata=0.0, cracks=0.0, sin
         zz = P[:, 2] / dims[2]; st = (np.floor(zz * 9 + 0.6 * fbm(P, seed + 9, 1.5, 2)) % 2) * 2 - 1; P[:, :2] *= (1 + strata * st * (0.5 + 0.5 * fbm(P, seed + 11, 3, 2)))[:, None]
     if cracks and hi:
         cr = np.abs(fbm(P, seed + 13, 2.2 / max(dims), 3)); m = smoothstep(0.035, 0.0, cr); nrm = P / (np.linalg.norm(P, axis=1)[:, None] + 1e-9); P = P - nrm * (m * cracks)[:, None]
-    P[:, 2] += dims[2] * (0.5 - sink); P[:, 2] = np.maximum(P[:, 2], -0.02)
+    P[:, 2] += dims[2] * (0.5 - sink); P[:, 2] = np.maximum(P[:, 2], 0.0)
     ca, sa = math.cos(yaw), math.sin(yaw); P = P @ np.array([[ca, sa, 0], [-sa, ca, 0], [0, 0, 1]]) + np.array(offset); L.set_co(ob, P)
     if crystal and hi:
         v = fbm(P, seed + 31, 9, 3); C.set_attr(ob, 'crystal', smoothstep(0.08, 0.2, v) * smoothstep(0.1, 0.25, P[:, 2] / dims[2]))
@@ -145,7 +145,7 @@ def scatter_coins(c, hi, n, spread, seed, heap=None):
 
 
 def g_coin(hi, c):
-    o = coin('coin', c, hi, seed=3)
+    o = coin('coin', c, hi, r=0.0155, seed=3)
     if hi:
         o.data.materials.append(gold_mat())
     return [o]
@@ -262,8 +262,8 @@ SPECS = {
                           weak=W_ROCK + ' The blue mineral is a glossy colour mask on the rock plus nine plain prisms; it is not a modelled crystal druse and has no transmission or internal colour.',
                           dresses='dark angular rock, 0.75 x 0.6 x 0.45 m, crusted with blue-green mineral and a cluster of small blue crystal prisms on top'),
     'Gold_Coin': dict(fn=g_coin, fam='gold_coin', seq='178 bonuses/coins/coin- frame 1', cls='prop_small', px=256, tris=96, lo='param', ground='weathered_brown_planks', third=[], extrude=0.0006, maxdist=0.002,
-                      weak='A 2.6 cm coin: at the gameplay camera it is a few pixels, so it will need a scale-up or a glint effect to read as a pickup. The device on its faces is a noise relief, not a designed coin. 36 triangles of flat disc; the relief is in the normal map only.',
-                      dresses='one hammered gold coin, 26 mm, lying flat'),
+                      weak='A 3.1 cm coin: at the gameplay camera it is a few pixels, so it will need a scale-up or a glint effect to read as a pickup. The device on its faces is a noise relief, not a designed coin. 36 triangles of flat disc; the relief is in the normal map only.',
+                      dresses='one hammered gold coin, 31 mm, lying flat'),
     'Gold_Coins_Few': dict(fn=g_few, fam='gold_coins_small', seq='178 bonuses/coins/coin- frame 2', cls='prop_small', px=512, tris=500, lo='param', ground='weathered_brown_planks', third=[], extrude=0.0006, maxdist=0.002,
                            weak='Eleven identical-profile coins laid by rule (three leaning); they do not overlap or stack as spilled coins would. Relief is in the normal map only.',
                            dresses='eleven gold coins spilled over 25 cm'),
@@ -278,7 +278,7 @@ SPECS = {
     'Bomb': dict(fn=bomb, fam='bomb_item', seq='420 items/bomb/bomb- frame 1', cls='prop_small', px=1024, tris=900, ground='weathered_brown_planks', third=['rusty_metal_02'],
                  weak='A plain cast sphere with a mould seam and a rope fuse: no filling plug detail, lettering or carrying lugs. The fuse is a smooth rope with a twist in the normal map and a charred tip, without frayed fibres.',
                  dresses='cast-iron bomb, 21 cm, blue-black with rust bloom and soot round the fuse hole, short hemp fuse'),
-    'Arrow': dict(fn=arrow, fam='arrow_prop', seq='25 effects/arrow/arrow- frames 2, 3, 4, 5, 8', cls='prop', px=1024, tris=900, ground='forrest_ground_01', third=['rusty_metal_02'], extrude=0.001, maxdist=0.004, collision=False,
+    'Arrow': dict(fn=arrow, fam='arrow_prop', seq='25 effects/arrow/arrow- frames 2, 3, 4, 5, 8', cls='prop', px=1024, tris=900, ground='forrest_ground_01', third=['rusty_metal_02'], extrude=0.001, maxdist=0.004,
                   weak='Vanes are 0.7 mm solid sheets with barbs in the normal map, not alpha-carded feathers, so their edges are clean. Authored lying flat; the frames show it stuck in the ground at several angles and laid on a shop table, which is a placement rotation (bury the head 5 cm). A long thin object gets little texture area: about 2 px per mm on the shaft.',
                   dresses='war arrow, 82 cm: ash shaft, forged leaf head, horn nock, three red goose-feather vanes bound with thread'),
 }
@@ -305,7 +305,7 @@ def build(name, mode):
         lo = L.remesh_lo(hi, sp['voxel'], sp['tris'], asset, lc, margin=0.006)
     else:
         lo = L.make_lo(hi, sp['tris'], asset, lc, angle=66, margin=0.008)
-    size = float(np.linalg.norm(np.array(lo.dimensions))); P0 = L.co(lo); cen = (P0.min(0) + P0.max(0)) / 2; cen[2] = max(0.0, P0[:, 2].min()) if not sp.get('keep_z', 'Boulder' in name or 'Ore' in name) else 0.0
+    size = float(np.linalg.norm(np.array(lo.dimensions))); P0 = L.co(lo); cen = (P0.min(0) + P0.max(0)) / 2; cen[2] = P0[:, 2].min() if not sp.get('keep_z', 'Boulder' in name or 'Ore' in name) else 0.0
     for o in [lo] + hi:
         o.location = tuple(-cen); L.apply_xf(o)
     ids = L.origin_ids(fams)
