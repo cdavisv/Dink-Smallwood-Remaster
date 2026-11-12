@@ -1,0 +1,115 @@
+{
+ "name": "SM_Pepper_Green_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Green/SM_Pepper_Green_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Green/SM_Pepper_Green_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_fruit.py Pepper_Green final",
+ "dimensions_m": [
+  0.0855,
+  0.1225,
+  0.121
+ ],
+ "bounds_min_m": [
+  -0.0388,
+  -0.0429,
+  -0.0
+ ],
+ "bounds_max_m": [
+  0.0467,
+  0.0796,
+  0.121
+ ],
+ "lod0_triangles": 1436,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Green/T_Pepper_Green_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Green/T_Pepper_Green_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Green/T_Pepper_Green_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Pepper_Green_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0032,
+   0.9976
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 85.9,
+   "p99": 136.9
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.201,
+   "p95": 0.465
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.519
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "food_fruit",
+  "421 items/food/food- frame 19"
+ ],
+ "origin_ids": {
+  "food_fruit": [
+   "S070_P31",
+   "S070_P35",
+   "S070_P36",
+   "S070_P37",
+   "S693_P07",
+   "S693_P08",
+   "S693_P09",
+   "S693_P10",
+   "S693_P11",
+   "S693_P12",
+   "S693_P13",
+   "S693_P14",
+   "S693_P15",
+   "S693_P16",
+   "S693_P17"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "green bell pepper, four lobes, about 9.5 cm tall with stalk, calyx and one leaf",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Same generator as the red pepper with four lobes: the two read as siblings rather than as two individual fruit. No subsurface in the game material; leaf is a thin closed shell.",
+ "origin_ids_note": "the family shares its origin IDs between all of its frames; this asset dresses the placements that show frame 421/19"
+}
