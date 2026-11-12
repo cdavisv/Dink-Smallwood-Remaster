@@ -1,0 +1,116 @@
+{
+ "name": "SM_Dragon_Statue_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_statue/Dragon_Statue/SM_Dragon_Statue_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_statue/Dragon_Statue/SM_Dragon_Statue_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_statue.py final",
+ "dimensions_m": [
+  1.6812,
+  1.3016,
+  3.2811
+ ],
+ "bounds_min_m": [
+  -0.8406,
+  -0.6508,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.8406,
+  0.6508,
+  3.2811
+ ],
+ "lod0_triangles": 9000,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_statue/Dragon_Statue/T_Dragon_Statue_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_statue/Dragon_Statue/T_Dragon_Statue_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_statue/Dragon_Statue/T_Dragon_Statue_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Dragon_Statue_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.004,
+   0.996
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 87.8,
+   "p99": 127.7
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.708,
+   "p95": 0.888
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.684
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "dragon_statue",
+  "159 struct/stone/mdink/monum- frames 5, 6"
+ ],
+ "origin_ids": {
+  "dragon_statue": [
+   "S153_P03",
+   "S154_P01",
+   "S154_P02",
+   "S170_P15",
+   "S170_P16",
+   "S170_P17",
+   "S170_P18",
+   "S170_P19",
+   "S170_P20",
+   "S170_P21",
+   "S170_P22",
+   "S202_P11",
+   "S202_P12"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "stone statue of a dragon rearing on an orb, 3 m to the wing tips on a 1 m plinth: wings half raised, tail wound down round the orb, grey weathered stone with moss and lichen",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The dragon is the creature source shrunk and fused, so it has the same invented anatomy, softened by the voxel fusion: claws, horns, teeth and wing fingers are blunt nubs, as on a worn carving, but nothing reads as tool-cut. Wing membranes are flat 27 mm slabs. The tail wraps the orb without touching it everywhere. Stone is one tinted rock scan with procedural moss and lichen; no bedding, chips or repairs. The original is a dark blue-grey statue lit from the side; this one is paler grey.",
+ "contact_crop": 0.95,
+ "triangle_note": "9,000 triangles: above the 6,000 soft target of class prop (hard cap 20,000), spent on the wings and the wound tail"
+}

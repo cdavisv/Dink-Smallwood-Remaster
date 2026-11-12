@@ -1,0 +1,103 @@
+{
+ "name": "SM_Boulder_White_Pair_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_white_pair/Boulder_White_Pair/SM_Boulder_White_Pair_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_white_pair/Boulder_White_Pair/SM_Boulder_White_Pair_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Boulder_White_Pair final",
+ "dimensions_m": [
+  1.3694,
+  0.7091,
+  0.6366
+ ],
+ "bounds_min_m": [
+  -0.6847,
+  -0.3545,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.6847,
+  0.3545,
+  0.6366
+ ],
+ "lod0_triangles": 2200,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_white_pair/Boulder_White_Pair/T_Boulder_White_Pair_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_white_pair/Boulder_White_Pair/T_Boulder_White_Pair_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_white_pair/Boulder_White_Pair/T_Boulder_White_Pair_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Boulder_White_Pair_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0026,
+   0.9974
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 99.3,
+   "p99": 178.2
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.587,
+   "p95": 0.9
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.639
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "boulder_white_pair",
+  "95 lands/rocks/rock- frame 9"
+ ],
+ "origin_ids": {
+  "boulder_white_pair": [
+   "S165_P23",
+   "S590_P02"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "two pale rounded boulders leaning together, 1.5 m across the pair, 0.7 m tall",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A sphere cut by random break planes and gently displaced: edges are soft, with no undercuts, overhangs or split-off slabs, and the base is a flat clip rather than a buried foot with soil piled against it. One rock scan, box projected and tinted, carries all surface detail; its features do not follow the displaced form. Moss and lichen are procedural masks."
+}

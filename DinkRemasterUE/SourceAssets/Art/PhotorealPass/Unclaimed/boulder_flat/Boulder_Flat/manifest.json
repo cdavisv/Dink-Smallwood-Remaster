@@ -1,0 +1,105 @@
+{
+ "name": "SM_Boulder_Flat_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/SM_Boulder_Flat_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/SM_Boulder_Flat_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Boulder_Flat final",
+ "dimensions_m": [
+  1.1988,
+  0.9548,
+  0.532
+ ],
+ "bounds_min_m": [
+  -0.5994,
+  -0.4774,
+  -0.0
+ ],
+ "bounds_max_m": [
+  0.5994,
+  0.4774,
+  0.532
+ ],
+ "lod0_triangles": 1600,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/T_Boulder_Flat_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/T_Boulder_Flat_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/T_Boulder_Flat_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Boulder_Flat_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0053,
+   0.9947
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 93.9,
+   "p99": 136.7
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.729,
+   "p95": 0.907
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.76
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "boulder_flat",
+  "95 lands/rocks/rock- frames 4, 5"
+ ],
+ "origin_ids": {
+  "boulder_flat": [
+   "S535_P12",
+   "S590_P03",
+   "S590_P10",
+   "S590_P11"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "flat-topped bedded boulder, 1.35 x 1.05 x 0.55 m, pinkish grey with stepped ledges",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A sphere cut by random break planes and gently displaced: edges are soft, with no undercuts, overhangs or split-off slabs, and the base is a flat clip rather than a buried foot with soil piled against it. One rock scan, box projected and tinted, carries all surface detail; its features do not follow the displaced form. Moss and lichen are procedural masks."
+}

@@ -1,0 +1,100 @@
+{
+ "name": "SM_Cheese_Wheel_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_cheese/Cheese_Wheel/SM_Cheese_Wheel_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_cheese/Cheese_Wheel/SM_Cheese_Wheel_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props2.py Cheese_Wheel final",
+ "dimensions_m": [
+  0.1896,
+  0.192,
+  0.079
+ ],
+ "bounds_min_m": [
+  -0.0948,
+  -0.096,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.0948,
+  0.096,
+  0.079
+ ],
+ "lod0_triangles": 324,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_cheese/Cheese_Wheel/T_Cheese_Wheel_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_cheese/Cheese_Wheel/T_Cheese_Wheel_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_cheese/Cheese_Wheel/T_Cheese_Wheel_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Cheese_Wheel_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.005,
+   0.9952
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 123.1,
+   "p99": 189.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.307,
+   "p95": 0.432
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.701
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "food_cheese",
+  "421 items/food/food- frame 9"
+ ],
+ "origin_ids": {
+  "food_cheese": [
+   "S070_P26"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "small cheese wheel, 19 cm, orange-yellow rind, one wedge cut out showing paler paste with eyes",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The original frame is a plain yellow dome; a wheel with a wedge cut out was chosen to make it read as cheese. Paste eyes are a Voronoi dot pattern in the normal map, not holes. The rind is clean: no mould bloom or cloth seam beyond a faint weave."
+}

@@ -1,0 +1,133 @@
+{
+ "name": "SM_Axe_Felling_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Axe_Felling/SM_Axe_Felling_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Axe_Felling/SM_Axe_Felling_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_tools.py Axe_Felling final",
+ "dimensions_m": [
+  0.7681,
+  0.2198,
+  0.0357
+ ],
+ "bounds_min_m": [
+  -0.384,
+  -0.1099,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.384,
+  0.1099,
+  0.0357
+ ],
+ "lod0_triangles": 1500,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Axe_Felling/T_Axe_Felling_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Axe_Felling/T_Axe_Felling_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Axe_Felling/T_Axe_Felling_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Axe_Felling_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0016,
+   0.9984
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 22.7,
+   "p99": 109.6
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.166,
+   "p95": 0.631
+  },
+  "metallic_mean": 0.04,
+  "ao_mean": 0.266
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "hand_tool_small",
+  "447 items/tools/tool- frames 5, 6, 10, 15"
+ ],
+ "origin_ids": {
+  "hand_tool_small": [
+   "S035_P28",
+   "S035_P29",
+   "S196_P28",
+   "S196_P32",
+   "S196_P33",
+   "S196_P34",
+   "S196_P35",
+   "S196_P36",
+   "S228_P25",
+   "S228_P26",
+   "S228_P27",
+   "S228_P28",
+   "S228_P29",
+   "S228_P34",
+   "S228_P35",
+   "S228_P36",
+   "S228_P39",
+   "S229_P11",
+   "S229_P12",
+   "S229_P13",
+   "S229_P14",
+   "S261_P27",
+   "S261_P28",
+   "S261_P29",
+   "S261_P30",
+   "S261_P32",
+   "S440_P23",
+   "S440_P24",
+   "S440_P25",
+   "S734_P08"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "felling axe, 78 cm: bearded forged-iron head with a ground edge, on a curved ash helve; authored lying on its cheek (frames 5 and 15); frames 6 and 10 show the same axe leaning, a placement rotation",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Head and helve are separate swept solids that pass through each other: there is no eye, no wedge and no lip where the wood meets the iron. The helve grain is procedural streaking, not a scan, and does not follow the curve. Authored lying flat; the leaning frames need a tilt at placement and a wall or block to lean on.",
+ "origin_ids_note": "the family shares its origin IDs between all of its frames; this asset dresses the placements that show frames 5, 6, 10, 15",
+ "contact_crop": 0.8
+}

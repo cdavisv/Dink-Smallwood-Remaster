@@ -1,0 +1,101 @@
+{
+ "name": "SM_Ham_Leg_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_drumstick/Ham_Leg/SM_Ham_Leg_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_drumstick/Ham_Leg/SM_Ham_Leg_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props2.py Ham_Leg final",
+ "dimensions_m": [
+  0.4482,
+  0.2127,
+  0.175
+ ],
+ "bounds_min_m": [
+  -0.2241,
+  -0.1063,
+  -0.0019
+ ],
+ "bounds_max_m": [
+  0.2241,
+  0.1063,
+  0.1731
+ ],
+ "lod0_triangles": 1300,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_drumstick/Ham_Leg/T_Ham_Leg_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_drumstick/Ham_Leg/T_Ham_Leg_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_drumstick/Ham_Leg/T_Ham_Leg_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Ham_Leg_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0022,
+   0.9978
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 60.8,
+   "p99": 203.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.285,
+   "p95": 0.489
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.685
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "food_drumstick",
+  "421 items/food/food- frames 1, 2"
+ ],
+ "origin_ids": {
+  "food_drumstick": [
+   "S070_P23",
+   "S149_P10"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "cured ham leg, 42 cm: smoked brown rind with net marks, a cut face with lean, fat ring and bone, shank bone at the narrow end (the frame the audit calls a drumstick)",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The cut face is a painted pattern on a flat cap (rings by radius): no fibre direction, no moist sheen difference between lean and fat. Rind net marks are a Voronoi grid. No subsurface in the game material, which meat needs."
+}

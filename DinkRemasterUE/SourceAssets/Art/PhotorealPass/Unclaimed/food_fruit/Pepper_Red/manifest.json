@@ -10,13 +10,13 @@
   0.1218
  ],
  "bounds_min_m": [
-  -0.037,
-  -0.0393,
-  -0.0
+  -0.0449,
+  -0.0583,
+  0.0
  ],
  "bounds_max_m": [
-  0.0527,
-  0.0774,
+  0.0449,
+  0.0583,
   0.1218
  ],
  "lod0_triangles": 1436,
@@ -63,24 +63,24 @@
   "zero_area_faces": 0,
   "signed_volume_positive": true,
   "uv_range": [
-   0.0036,
-   0.9976
+   0.0035,
+   0.9965
   ],
   "transforms_applied": true
  },
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 51.4,
-   "p99": 109.0
+   "mean": 53.9,
+   "p99": 109.3
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.202,
-   "p95": 0.464
+   "mean": 0.231,
+   "p95": 0.465
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.532
+  "ao_mean": 0.584
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [

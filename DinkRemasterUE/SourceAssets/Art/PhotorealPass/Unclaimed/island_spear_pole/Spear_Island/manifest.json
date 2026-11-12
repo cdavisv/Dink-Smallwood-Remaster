@@ -1,0 +1,106 @@
+{
+ "name": "SM_Spear_Island_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/island_spear_pole/Spear_Island/SM_Spear_Island_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/island_spear_pole/Spear_Island/SM_Spear_Island_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props2.py Spear_Island final",
+ "dimensions_m": [
+  0.0725,
+  0.0642,
+  2.3237
+ ],
+ "bounds_min_m": [
+  -0.0362,
+  -0.0321,
+  -0.1236
+ ],
+ "bounds_max_m": [
+  0.0362,
+  0.0321,
+  2.2001
+ ],
+ "lod0_triangles": 1300,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/island_spear_pole/Spear_Island/T_Spear_Island_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/island_spear_pole/Spear_Island/T_Spear_Island_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/island_spear_pole/Spear_Island/T_Spear_Island_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Spear_Island_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0008,
+   0.9992
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 14.2,
+   "p99": 118.7
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.085,
+   "p95": 0.611
+  },
+  "metallic_mean": 0.008,
+  "ao_mean": 0.126
+ },
+ "pivot": "ground level on the pole axis (z = 0); the pole continues 12 cm below for planting",
+ "families": [
+  "island_spear_pole",
+  "424 struct/island/isle- frames 13, 16, 17"
+ ],
+ "origin_ids": {
+  "island_spear_pole": [
+   "S748_P02",
+   "S762_P04",
+   "S763_P22",
+   "S764_P12",
+   "S764_P15"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "island spear planted upright, 2.2 m above ground: wooden pole, forged leaf head bound with cord, a strip of red cloth under the head",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The cloth strip is a stiff swept ribbon, not simulated cloth. Lashing is a sleeve with a cord pattern in the normal map. The pole is straight and evenly round. Stands upright with 12 cm below ground for planting."
+}

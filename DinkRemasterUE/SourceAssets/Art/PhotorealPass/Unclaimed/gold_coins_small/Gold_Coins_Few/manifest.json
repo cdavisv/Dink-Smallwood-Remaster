@@ -1,0 +1,100 @@
+{
+ "name": "SM_Gold_Coins_Few_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coins_small/Gold_Coins_Few/SM_Gold_Coins_Few_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coins_small/Gold_Coins_Few/SM_Gold_Coins_Few_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Gold_Coins_Few final",
+ "dimensions_m": [
+  0.1841,
+  0.1626,
+  0.0113
+ ],
+ "bounds_min_m": [
+  -0.092,
+  -0.0813,
+  -0.0008
+ ],
+ "bounds_max_m": [
+  0.092,
+  0.0813,
+  0.0105
+ ],
+ "lod0_triangles": 440,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coins_small/Gold_Coins_Few/T_Gold_Coins_Few_PR_BC.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coins_small/Gold_Coins_Few/T_Gold_Coins_Few_PR_N.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coins_small/Gold_Coins_Few/T_Gold_Coins_Few_PR_ORM.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Gold_Coins_Few_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0102,
+   0.9898
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 177.6,
+   "p99": 202.1
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.287,
+   "p95": 0.341
+  },
+  "metallic_mean": 0.897,
+  "ao_mean": 0.856
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "gold_coins_small",
+  "178 bonuses/coins/coin- frame 2"
+ ],
+ "origin_ids": {
+  "gold_coins_small": [
+   "S663_P16"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "eleven gold coins spilled over 25 cm",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Eleven identical-profile coins laid by rule (three leaning); they do not overlap or stack as spilled coins would. Relief is in the normal map only."
+}

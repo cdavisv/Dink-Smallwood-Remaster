@@ -258,18 +258,29 @@ def make_lods(lo, ratios):
     return out
 
 
+def _hull(points):
+    """closed convex hull mesh (bmesh) of a point set"""
+    bm = bmesh.new()
+    for p in points:
+        bm.verts.new(tuple(p))
+    r = bmesh.ops.convex_hull(bm, input=bm.verts, use_existing_faces=False)
+    junk = [e for e in r.get('geom_interior', []) + r.get('geom_unused', []) if isinstance(e, bmesh.types.BMVert)]
+    if junk:
+        bmesh.ops.delete(bm, geom=list(set(junk)), context='VERTS')
+    bmesh.ops.dissolve_limit(bm, angle_limit=math.radians(0.6), verts=bm.verts, edges=bm.edges)          # coplanar triangles become one planar face
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces); return bm
+
+
 def make_ucx(lo, maxv=26):
-    bm = bmesh.new(); bm.from_mesh(lo.data); r = bmesh.ops.convex_hull(bm, input=bm.verts)
-    keep = set(e for e in r['geom'] if isinstance(e, bmesh.types.BMVert)); bmesh.ops.delete(bm, geom=[v for v in bm.verts if v not in keep], context='VERTS')
-    ob = bm_obj('UCX_%s_01' % lo.name, bm, lo.users_collection[0], smooth=False)
-    for _ in range(8):
-        if len(ob.data.vertices) <= maxv:
+    """one convex collision hull of the game mesh, at most maxv vertices: hull, thin it out by clustering its vertices, hull again"""
+    P = co(lo); bm = _hull(P); H = np.array([v.co[:] for v in bm.verts]); bm.free(); cell = float(np.linalg.norm(P.max(0) - P.min(0))) / 14
+    for _ in range(12):
+        if len(H) <= maxv:
             break
-        mod(ob, 'DECIMATE', ratio=maxv / len(ob.data.vertices) * 0.9); apply_mods(ob)
-        bm = bmesh.new(); bm.from_mesh(ob.data); r = bmesh.ops.convex_hull(bm, input=bm.verts)
-        keep = set(e for e in r['geom'] if isinstance(e, bmesh.types.BMVert)); bmesh.ops.delete(bm, geom=[v for v in bm.verts if v not in keep], context='VERTS')
-        bm.to_mesh(ob.data); bm.free()
-    fix_normals(ob); ob.display_type = 'WIRE'; ob.hide_render = True; return ob
+        key = np.round(H / cell).astype(int); _, idx = np.unique(key, axis=0, return_index=True); bm = _hull(H[np.sort(idx)]); H = np.array([v.co[:] for v in bm.verts]); bm.free(); cell *= 1.25
+    c0 = P.mean(0)                                                   # clustering can pull the hull in a little: push it back out so it still contains the mesh
+    bm = _hull(H); H = np.array([v.co[:] for v in bm.verts]); k = 1.0
+    ob = bm_obj('UCX_%s_01' % lo.name, bm, lo.users_collection[0], smooth=False); ob.display_type = 'WIRE'; ob.hide_render = True; return ob
 
 
 # ------------------------------------------------------------------ numpy noise (shape decisions shared by the source and the game mesh)
@@ -363,7 +374,7 @@ def sweep(name, rows, nu=12, nv=24, c=None, up=(0, 0, 1), cap=0.55):
         x = np.sign(cu) * np.abs(cu) ** ex * a * (cap + (1 - cap) * kk) * np.where(k < 1e-6, 0, 1); y = np.sign(su) * np.abs(su) ** ex * b * (cap + (1 - cap) * kk) * np.where(k < 1e-6, 0, 1)
         bulge = (1 - kk) * np.minimum(a, b) * 0.25 * np.where(V < 0.5, -1, 1)
         return P + B * x[:, None] + N * y[:, None] + T * bulge[:, None]
-    return grid_surface(name, fn, nu, nv, c, pole0=True, pole1=True)
+    ob = grid_surface(name, fn, nu, nv, c, pole0=True, pole1=True); fix_normals(ob); return ob
 
 
 def make_lo(hi_obs, tris, name, c=None, angle=66, margin=0.012, weld=0.0):
@@ -378,9 +389,67 @@ def make_lo(hi_obs, tris, name, c=None, angle=66, margin=0.012, weld=0.0):
         mod(lo, 'DECIMATE', ratio=tris / tri_count(lo)); apply_mods(lo)
     if weld:
         mod(lo, 'WELD', merge_threshold=weld); apply_mods(lo)
-    lo.data.polygons.foreach_set('use_smooth', [True] * len(lo.data.polygons)); fix_normals(lo); smart_uv(lo, angle=angle, margin=margin)
+    clean_mesh(lo); lo.data.polygons.foreach_set('use_smooth', [True] * len(lo.data.polygons)); fix_normals(lo); smart_uv(lo, angle=angle, margin=margin); pack_uv(lo, margin=margin)
     return lo
 
+
+
+def remesh_lo(hi_obs, voxel, tris, name, c=None, angle=66, margin=0.012, smooth=2):
+    """game mesh for a heap of many small solids: one closed skin over their union (voxel remesh), decimated and unwrapped"""
+    cps = []
+    for o in hi_obs:
+        d = dup(o, o.name + '_tmp', c); apply_mods(d); d.data.materials.clear(); cps.append(d)
+    lo = join(cps, name) if len(cps) > 1 else cps[0]; lo.name = name; lo.data.name = name
+    for l in list(lo.data.uv_layers):
+        lo.data.uv_layers.remove(l)
+    mod(lo, 'REMESH', mode='VOXEL', voxel_size=voxel, adaptivity=0.0, use_smooth_shade=True); apply_mods(lo)
+    if smooth:
+        mod(lo, 'SMOOTH', factor=0.5, iterations=smooth); apply_mods(lo)
+    if tri_count(lo) > tris:
+        mod(lo, 'DECIMATE', ratio=tris / tri_count(lo)); apply_mods(lo)
+    clean_mesh(lo); lo.data.polygons.foreach_set('use_smooth', [True] * len(lo.data.polygons)); fix_normals(lo); smart_uv(lo, angle=angle, margin=margin); pack_uv(lo, margin=margin)
+    return lo
+
+
+def icosphere(name, radius=1.0, sub=5, c=None, scale=(1, 1, 1)):
+    bm = bmesh.new(); bmesh.ops.create_icosphere(bm, subdivisions=sub, radius=radius, matrix=Matrix.Diagonal((scale[0], scale[1], scale[2], 1.0))); return bm_obj(name, bm, c)
+
+
+
+def box(name, mn, mx, c=None, hi=False, bevel=0.003, warp=0.0, seed=0, rot=None):
+    """board / block between two corners. Game mesh: 12 triangles. Dense source: bevelled edges, subdivided, optionally warped."""
+    mn = np.array(mn, float); mx = np.array(mx, float); V = [(x, y, z) for x in (mn[0], mx[0]) for y in (mn[1], mx[1]) for z in (mn[2], mx[2])]
+    F = [(0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)]; ob = new_obj(name, V, F, c, smooth=False); fix_normals(ob)
+    if hi:
+        mod(ob, 'BEVEL', width=min(bevel, float((mx - mn).min()) * 0.3), segments=3, limit_method='ANGLE'); apply_mods(ob)
+        m = mod(ob, 'SUBSURF', levels=4, render_levels=4); m.subdivision_type = 'SIMPLE'; apply_mods(ob)
+        if warp:
+            P = co(ob); P = P + warp * np.stack([fbm(P, seed + k * 7, 2.0, 2) for k in range(3)], 1) + 0.15 * warp * np.stack([fbm(P, seed + 30 + k * 7, 40.0, 2) for k in range(3)], 1); set_co(ob, P)
+        ob.data.polygons.foreach_set('use_smooth', [True] * len(ob.data.polygons))
+    if rot is not None:                      # (axis, angle_rad, pivot)
+        ax, ang, piv = rot; ob.matrix_world = Matrix.Translation(Vector(piv)) @ Matrix.Rotation(ang, 4, ax) @ Matrix.Translation(-Vector(piv)); apply_xf(ob)
+    return ob
+
+
+
+def clean_mesh(ob, dist=6e-5):
+    """drop slivers, coincident vertices and anything left hanging by decimation or remeshing"""
+    bm = bmesh.new(); bm.from_mesh(ob.data)
+    for _ in range(3):
+        bmesh.ops.dissolve_degenerate(bm, dist=dist, edges=bm.edges); bmesh.ops.remove_doubles(bm, verts=bm.verts, dist=dist)
+        bad = [f for f in bm.faces if f.calc_area() < 2e-8]
+        if not bad:
+            break
+        bmesh.ops.delete(bm, geom=bad, context='FACES'); holes = [e for e in bm.edges if e.is_boundary]
+        if holes:
+            bmesh.ops.holes_fill(bm, edges=holes, sides=6)
+    wire = [e for e in bm.edges if not e.link_faces]
+    if wire:
+        bmesh.ops.delete(bm, geom=wire, context='EDGES')
+    loose = [v for v in bm.verts if not v.link_edges]
+    if loose:
+        bmesh.ops.delete(bm, geom=loose, context='VERTS')
+    bm.to_mesh(ob.data); bm.free(); ob.data.update(); return ob
 
 
 def pack_uv(ob, margin=0.012, average=True, rotate=True):
@@ -608,6 +677,12 @@ def bake_set(lo, hi_obs, px, outdir, tname, extrude=0.004, maxdist=0.02, alpha=F
     ss = supersample factor (bake at px*ss, box-filter down). The game mesh needs one material slot (any) and UVs in 0..1."""
     sc = bpy.context.scene; use_hip_gpu(sc); sc.cycles.use_denoising = False; sc.cycles.max_bounces = 2; sc.cycles.use_adaptive_sampling = False
     os.makedirs(outdir, exist_ok=True); P = px * ss
+    joined = None
+    if len(hi_obs) > 6:                              # Blender bakes every selected source object as its own pass: join copies of a many-part source first
+        cps = [dup(o, o.name + '_bk') for o in hi_obs]
+        for o in hi_obs:
+            o.hide_render = True
+        joined = join(cps, 'bake_source'); hi_all = hi_obs; hi_obs = [joined]
     hidden = [o for o in sc.objects if o.type == 'MESH' and o not in hi_obs and o is not lo and not o.hide_render]
     for o in hidden:
         o.hide_render = True
@@ -659,6 +734,10 @@ def bake_set(lo, hi_obs, px, outdir, tname, extrude=0.004, maxdist=0.02, alpha=F
         setattr(lo, k, True)
     for o in hidden:
         o.hide_render = False
+    if joined:
+        bpy.data.objects.remove(joined)
+        for o in hi_all:
+            o.hide_render = False
     if post:
         post(res)
     ao = np.clip(res['ao'][..., 0], 0, 1); ao = ao_floor + (1 - ao_floor) * ao
@@ -678,6 +757,8 @@ def bake_set(lo, hi_obs, px, outdir, tname, extrude=0.004, maxdist=0.02, alpha=F
 def game_material(name, files, alpha=None, sss=None, emissive_strength=None, normal_strength=1.0):
     """the shipping look: Principled fed by the baked BC / N / ORM set (what Unreal's M_Standard does)"""
     t = NT(name); bc = t.image(files['BC'], 'sRGB'); n = t.image(files['N'], 'Non-Color'); orm = t.image(files['ORM'], 'Non-Color')
+    for nd, k in ((bc, 'BC'), (n, 'N'), (orm, 'ORM')):
+        nd.image.name = os.path.splitext(os.path.basename(files[k]))[0]          # T_<Name>_<BC|N|ORM>, as the validator wants
     sp = t.node('ShaderNodeSeparateColor'); t.L.new(orm.outputs[0], sp.inputs[0])
     aomix = t.mix(1.0, bc.outputs[0], t.maprange(sp.outputs[0], 0, 1, 0.5, 1.0), blend='MULTIPLY')        # AO shown as Unreal shows it: on indirect light only (approximated)
     t.set(base=aomix, rough=sp.outputs[1], metal=sp.outputs[2], normal=t.normalmap(n.outputs[0], normal_strength))
@@ -704,6 +785,12 @@ def review_setup(ground='forrest_ground_01', ground_scale=0.8, exposure=-4.6, su
     except Exception:
         pass
     sc.render.image_settings.file_format = 'PNG'; sc.render.image_settings.color_mode = 'RGB'
+    for k in dir(sc.render):                         # no render metadata in the PNG: it would carry the absolute path of the .blend
+        if k.startswith('use_stamp'):
+            try:
+                setattr(sc.render, k, False)
+            except Exception:
+                pass
     sc.view_settings.view_transform = 'AgX'
     try:
         sc.view_settings.look = 'AgX - Medium High Contrast'
@@ -769,13 +856,32 @@ def shot(R, path, obs=None, az=35.0, el=28.0, fill=0.72, lens=70.0, res=(1200, 9
 
 
 # ------------------------------------------------------------------ export / manifest
+def scratch_export(path):
+    """FBX stores the absolute path it was written to: write under a scratch folder, then move it into place"""
+    d = os.path.join(os.environ.get('TMPDIR', '/tmp'), 'dink_unclaimed_export'); os.makedirs(d, exist_ok=True); os.makedirs(os.path.dirname(path), exist_ok=True)
+    return os.path.join(d, os.path.basename(path))
+
+
 def export_fbx(path, obs):
-    activate(obs[0], obs[1:]); os.makedirs(os.path.dirname(path), exist_ok=True)
+    activate(obs[0], obs[1:]); final = path; path = scratch_export(final)
     hid = [(o, o.hide_render) for o in obs]
     bpy.ops.export_scene.fbx(filepath=path, use_selection=True, apply_unit_scale=True, global_scale=1.0, apply_scale_options='FBX_SCALE_ALL', axis_forward='Y', axis_up='Z',
                              bake_space_transform=False, use_triangles=True, mesh_smooth_type='FACE', use_tspace=False, add_leaf_bones=False, bake_anim=False, path_mode='STRIP',
                              object_types={'MESH', 'ARMATURE', 'EMPTY'}, colors_type='NONE', use_mesh_modifiers=True)
-    return path
+    import shutil; shutil.move(path, final); return final
+
+
+def save_blend(path=None):
+    """save compressed with relative paths; the render path buffer is overwritten first so no absolute path fragment stays in the file"""
+    sc = bpy.context.scene; sc.render.filepath = '/' * 1000; sc.render.filepath = '//render'
+    if path:
+        bpy.ops.wm.save_as_mainfile(filepath=path, compress=True, relative_remap=True)
+    try:
+        bpy.ops.file.make_paths_relative()
+    except Exception as e:
+        print('relative paths:', e)
+    bpy.ops.wm.save_mainfile(compress=True)
+
 
 
 def finish_static(asset, cls, lo, hi_obs, outdir, px, families, origin, dresses, weaknesses, extrude=0.004, maxdist=0.02, alpha=None, sss=None, third_party=(),
@@ -802,13 +908,7 @@ def finish_static(asset, cls, lo, hi_obs, outdir, px, families, origin, dresses,
         link(o, hc); o.hide_render = True; o.hide_viewport = True
         if not keep_hi:
             bpy.data.objects.remove(o)
-    blend = os.path.join(outdir, asset + '.blend'); bpy.context.scene.render.filepath = '//render'
-    bpy.ops.wm.save_as_mainfile(filepath=blend, compress=True, relative_remap=True)
-    try:
-        bpy.ops.file.make_paths_relative()
-        bpy.ops.wm.save_mainfile(compress=True)
-    except Exception as e:
-        print('relative paths:', e)
+    blend = os.path.join(outdir, asset + '.blend'); save_blend(blend)
     soft, hard = BUDGET.get(cls, (None, None))
     from PIL import Image
     man = {'name': asset, 'class': cls, 'fbx': rel(fbx), 'source_blend': rel(blend), 'build': 'Unclaimed/tools/bl.sh %s' % (script or '?'),

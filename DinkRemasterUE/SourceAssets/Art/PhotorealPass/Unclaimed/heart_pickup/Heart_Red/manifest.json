@@ -1,0 +1,111 @@
+{
+ "name": "SM_Heart_Red_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/heart_pickup/Heart_Red/SM_Heart_Red_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/heart_pickup/Heart_Red/SM_Heart_Red_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Heart_Red final",
+ "dimensions_m": [
+  0.1139,
+  0.0849,
+  0.111
+ ],
+ "bounds_min_m": [
+  -0.057,
+  -0.0425,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.057,
+  0.0425,
+  0.111
+ ],
+ "lod0_triangles": 900,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/heart_pickup/Heart_Red/T_Heart_Red_PR_BC.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/heart_pickup/Heart_Red/T_Heart_Red_PR_N.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/heart_pickup/Heart_Red/T_Heart_Red_PR_ORM.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Heart_Red_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.002,
+   0.998
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 40.0,
+   "p99": 52.9
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.056,
+   "p95": 0.077
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.8
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "heart_pickup",
+  "small_heart",
+  "52 bonuses/heart/heart, 54 bonuses/heart/smhrt"
+ ],
+ "origin_ids": {
+  "heart_pickup": [
+   "S190_P10"
+  ],
+  "small_heart": [
+   "S101_P03",
+   "S101_P04",
+   "S101_P05",
+   "S101_P06",
+   "S101_P07",
+   "S101_P08",
+   "S101_P09",
+   "S101_P10"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "heart pickup as a ruby-red glass heart, 12 cm; the small heart is the same mesh at half scale",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A game pickup has no real-world object behind it: built as a ruby-red glass heart, 12 cm. The game material is opaque (no transmission or subsurface), so it reads as glazed ceramic rather than glass. The small heart is this mesh at half scale, set at placement. In game it should float and glow; neither is authored here."
+}

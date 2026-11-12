@@ -1,0 +1,115 @@
+{
+ "name": "SM_Arrow_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/arrow_prop/Arrow/SM_Arrow_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/arrow_prop/Arrow/SM_Arrow_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props.py Arrow final",
+ "dimensions_m": [
+  0.8161,
+  0.0355,
+  0.0309
+ ],
+ "bounds_min_m": [
+  -0.408,
+  -0.0177,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.408,
+  0.0177,
+  0.0309
+ ],
+ "lod0_triangles": 900,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/arrow_prop/Arrow/T_Arrow_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/arrow_prop/Arrow/T_Arrow_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/arrow_prop/Arrow/T_Arrow_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Arrow_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0023,
+   0.9977
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 23.1,
+   "p99": 139.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.157,
+   "p95": 0.614
+  },
+  "metallic_mean": 0.013,
+  "ao_mean": 0.202
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "arrow_prop",
+  "25 effects/arrow/arrow- frames 2, 3, 4, 5, 8"
+ ],
+ "origin_ids": {
+  "arrow_prop": [
+   "S097_P25",
+   "S097_P26",
+   "S097_P27",
+   "S097_P28",
+   "S097_P29",
+   "S097_P30",
+   "S097_P31",
+   "S097_P32",
+   "S097_P33",
+   "S097_P34",
+   "S663_P20",
+   "S663_P21",
+   "S663_P22",
+   "S663_P23"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "war arrow, 82 cm: ash shaft, forged leaf head, horn nock, three red goose-feather vanes bound with thread",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Vanes are 0.7 mm solid sheets with barbs in the normal map, not alpha-carded feathers, so their edges are clean. Authored lying flat; the frames show it stuck in the ground at several angles and laid on a shop table, which is a placement rotation (bury the head 5 cm). A long thin object gets little texture area: about 2 px per mm on the shaft."
+}

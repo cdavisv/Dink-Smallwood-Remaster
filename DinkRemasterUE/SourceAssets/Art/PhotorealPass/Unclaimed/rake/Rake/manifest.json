@@ -1,0 +1,102 @@
+{
+ "name": "SM_Rake_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/rake/Rake/SM_Rake_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/rake/Rake/SM_Rake_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props2.py Rake final",
+ "dimensions_m": [
+  1.7538,
+  0.6275,
+  0.122
+ ],
+ "bounds_min_m": [
+  -0.8769,
+  -0.3138,
+  -0.001
+ ],
+ "bounds_max_m": [
+  0.8769,
+  0.3138,
+  0.121
+ ],
+ "lod0_triangles": 2400,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/rake/Rake/T_Rake_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/rake/Rake/T_Rake_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/rake/Rake/T_Rake_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Rake_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0027,
+   0.9973
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 34.9,
+   "p99": 113.1
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.212,
+   "p95": 0.622
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.306
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "rake",
+  "447 items/tools/tool- frames 3, 13"
+ ],
+ "origin_ids": {
+  "rake": [
+   "S035_P31",
+   "S409_P33",
+   "S734_P07"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "wooden hay rake, 1.75 m: ash shaft with a split bow, 62 cm head, fourteen pegged teeth",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Teeth are identical tapered pegs. Parts are separate swept solids pushed together (no modelled sockets, rivets, wedges or pegs). Wood grain is procedural streaking along the object axis. Authored lying flat; the original frames show it leaning against a wall, which is a placement rotation."
+}

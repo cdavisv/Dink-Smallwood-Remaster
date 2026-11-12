@@ -1,0 +1,133 @@
+{
+ "name": "SM_Tongs_Smith_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Tongs_Smith/SM_Tongs_Smith_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Tongs_Smith/SM_Tongs_Smith_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_tools.py Tongs_Smith final",
+ "dimensions_m": [
+  0.5594,
+  0.1255,
+  0.0212
+ ],
+ "bounds_min_m": [
+  -0.2797,
+  -0.0627,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.2797,
+  0.0627,
+  0.0212
+ ],
+ "lod0_triangles": 1300,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Tongs_Smith/T_Tongs_Smith_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Tongs_Smith/T_Tongs_Smith_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/hand_tool_small/Tongs_Smith/T_Tongs_Smith_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Tongs_Smith_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0019,
+   0.9981
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 20.1,
+   "p99": 106.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.217,
+   "p95": 0.747
+  },
+  "metallic_mean": 0.108,
+  "ao_mean": 0.287
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "hand_tool_small",
+  "447 items/tools/tool- frames 7, 14"
+ ],
+ "origin_ids": {
+  "hand_tool_small": [
+   "S035_P28",
+   "S035_P29",
+   "S196_P28",
+   "S196_P32",
+   "S196_P33",
+   "S196_P34",
+   "S196_P35",
+   "S196_P36",
+   "S228_P25",
+   "S228_P26",
+   "S228_P27",
+   "S228_P28",
+   "S228_P29",
+   "S228_P34",
+   "S228_P35",
+   "S228_P36",
+   "S228_P39",
+   "S229_P11",
+   "S229_P12",
+   "S229_P13",
+   "S229_P14",
+   "S261_P27",
+   "S261_P28",
+   "S261_P29",
+   "S261_P30",
+   "S261_P32",
+   "S440_P23",
+   "S440_P24",
+   "S440_P25",
+   "S734_P08"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "blacksmith's flat-jaw tongs, 55 cm: two forged bars on a domed rivet, lying slightly open",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Bars are smooth sweeps: no hammer facets or drawn-out taper marks beyond noise, and the boss is not visibly flattened by forging. Rust is one scan layered by a noise mask; it does not concentrate where water would sit. Thin reins give the bake little texel area (about 1 px per 0.5 mm).",
+ "origin_ids_note": "the family shares its origin IDs between all of its frames; this asset dresses the placements that show frames 7, 14",
+ "contact_crop": 0.8
+}

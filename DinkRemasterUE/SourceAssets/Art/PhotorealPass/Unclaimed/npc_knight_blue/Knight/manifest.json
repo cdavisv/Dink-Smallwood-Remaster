@@ -1,0 +1,211 @@
+{
+ "name": "SK_Knight_PR",
+ "class": "character_humanoid",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/SK_Knight_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/SK_Knight_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/SK_Knight_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/SK_Knight_PR_LOD2.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/SK_Knight_PR_LOD3.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/SK_Knight_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_knight.py final",
+ "dimensions_m": [
+  0.7527,
+  0.4616,
+  2.3343
+ ],
+ "bounds_min_m": [
+  -0.3774,
+  -0.297,
+  -0.0041
+ ],
+ "bounds_max_m": [
+  0.3753,
+  0.1646,
+  2.3302
+ ],
+ "lod0_triangles": 16008,
+ "lod1_triangles": 8004,
+ "lod2_triangles": 4002,
+ "lod3_triangles": 1920,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 35000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/T_Knight_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/T_Knight_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/T_Knight_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/T_Knight_PR_Red_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB, colour variant \"Red\" (shares N and ORM)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/T_Knight_PR_Silver_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB, colour variant \"Silver\" (shares N and ORM)"
+  }
+ ],
+ "materials": [
+  "MI_Knight_PR",
+  "MI_Knight_PR_Red",
+  "MI_Knight_PR_Silver"
+ ],
+ "rig": {
+  "root_bone": "root",
+  "bones": [
+   "root",
+   "pelvis",
+   "spine_01",
+   "spine_02",
+   "spine_03",
+   "spine_04",
+   "spine_05",
+   "neck_01",
+   "neck_02",
+   "head",
+   "clavicle_l",
+   "upperarm_l",
+   "lowerarm_l",
+   "hand_l",
+   "clavicle_r",
+   "upperarm_r",
+   "lowerarm_r",
+   "hand_r",
+   "thigh_l",
+   "calf_l",
+   "foot_l",
+   "ball_l",
+   "thigh_r",
+   "calf_r",
+   "foot_r",
+   "ball_r"
+  ],
+  "bone_count": 26,
+  "weights": {
+   "method": "rigid: every armour part is weighted 1.0 to one bone",
+   "max_influences": 1,
+   "unweighted_vertices": 0
+  },
+  "rest_pose": "standing pose as modelled (not a T pose)",
+  "animation": "none: skeleton and skin weights only; no clips, no Physics Asset, no control rig",
+  "skeleton": "bespoke (CONVENTIONS.md section 11: any skeleton with a single root bone named root)"
+ },
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "uv_range": [
+   0.0049,
+   0.9951
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 78.8,
+   "p99": 161.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.407,
+   "p95": 0.703
+  },
+  "metallic_mean": 0.534,
+  "ao_mean": 0.432
+ },
+ "pivot": "feet: armature origin on the ground between the feet, front on -Y",
+ "families": [
+  "npc_knight_blue",
+  "npc_knight_red",
+  "npc_knight_silver",
+  "npc_knight_red_attacking",
+  "281-289 people/knight/blue",
+  "271-279 people/knight/red",
+  "291-299 people/knight/silver",
+  "712 people/knight/red/attack"
+ ],
+ "origin_ids": {
+  "npc_knight_blue": [
+   "S070_P13",
+   "S070_P14",
+   "S070_P15",
+   "S070_P16",
+   "S070_P17",
+   "S070_P18",
+   "S102_P05",
+   "S102_P06",
+   "S102_P07",
+   "S102_P08",
+   "S102_P09",
+   "S102_P10",
+   "S102_P11",
+   "S102_P12",
+   "S102_P13",
+   "S102_P14",
+   "S243_P11",
+   "S243_P12"
+  ],
+  "npc_knight_red": [
+   "S149_P05",
+   "S149_P09",
+   "S374_P03",
+   "S374_P04"
+  ],
+  "npc_knight_silver": [
+   "S402_P03",
+   "S402_P05",
+   "S408_P04",
+   "S568_P06"
+  ],
+  "npc_knight_red_attacking": [
+   "S241_P03",
+   "S242_P03"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "castle guard in full plate, 1.85 m, with a 2.3 m halberd in the right hand: sallet with pointed visor and bevor, globose cuirass, three-lame pauldrons and fauld, mail skirt, tassets, winged couters and poleyns, greaves, pointed sabatons; blue painted steel worn to bare metal",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "NOT photoreal at 1 m. The harness is forty clean swept solids: lames have no rolled edges, rivets, straps, buckles or hinges, the helm has a painted-dark sight and breaths rather than cut ones, and there are no fingers, only a mitten gauntlet. Nobody is inside: no arming doublet at the joints, no mail at the armpit or neck, so gaps between plates look into empty space when the limbs bend. The halberd is merged into the mesh on hand_r rather than delivered as a separate weapon with a grip socket. Rest pose is a standing guard pose with the arms down, not the A pose of the Manny skeleton, so retargeted clips need a pose offset. Rigid one-bone skinning (correct for plate, wrong for the mail skirt and belt). No animation clips, no Physics Asset. The red and silver sets recolour only the blue paint of the base colour map.",
+ "colour_families": {
+  "npc_knight_blue": "T_Knight_PR_BC.png",
+  "npc_knight_red": "T_Knight_PR_Red_BC.png",
+  "npc_knight_silver": "T_Knight_PR_Silver_BC.png",
+  "npc_knight_red_attacking": "T_Knight_PR_Red_BC.png (the attack is a clip, not a mesh; no clip is delivered)"
+ },
+ "skeleton_note": "bone names and hierarchy of the project humanoid (CONVENTIONS.md section 11 core set: root, pelvis, spine_01..05, neck_01..02, head, clavicle/upperarm/lowerarm/hand/thigh/calf/foot/ball _l/_r)",
+ "contact_crop": 0.95
+}

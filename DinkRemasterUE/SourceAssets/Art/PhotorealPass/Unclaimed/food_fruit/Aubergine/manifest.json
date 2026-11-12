@@ -1,0 +1,115 @@
+{
+ "name": "SM_Aubergine_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Aubergine/SM_Aubergine_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Aubergine/SM_Aubergine_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_fruit.py Aubergine final",
+ "dimensions_m": [
+  0.2387,
+  0.0868,
+  0.1005
+ ],
+ "bounds_min_m": [
+  -0.1194,
+  -0.0434,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.1194,
+  0.0434,
+  0.1005
+ ],
+ "lod0_triangles": 1440,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Aubergine/T_Aubergine_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Aubergine/T_Aubergine_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Aubergine/T_Aubergine_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Aubergine_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0025,
+   0.998
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 28.4,
+   "p99": 88.1
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.147,
+   "p95": 0.509
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.528
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "food_fruit",
+  "421 items/food/food- frame 25"
+ ],
+ "origin_ids": {
+  "food_fruit": [
+   "S070_P31",
+   "S070_P35",
+   "S070_P36",
+   "S070_P37",
+   "S693_P07",
+   "S693_P08",
+   "S693_P09",
+   "S693_P10",
+   "S693_P11",
+   "S693_P12",
+   "S693_P13",
+   "S693_P14",
+   "S693_P15",
+   "S693_P16",
+   "S693_P17"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "aubergine lying on its side, about 21 cm long, dark purple with a waxy bloom, green five-pointed calyx and stalk",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Calyx lobes are smooth, without the prickles and veining of a real one. The waxy bloom is a procedural noise, not wiped where it would be handled. Shape is a clean teardrop.",
+ "origin_ids_note": "the family shares its origin IDs between all of its frames; this asset dresses the placements that show frame 421/25"
+}

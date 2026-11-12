@@ -1,0 +1,115 @@
+{
+ "name": "SM_Pepper_Yellow_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Yellow/SM_Pepper_Yellow_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Yellow/SM_Pepper_Yellow_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_fruit.py Pepper_Yellow final",
+ "dimensions_m": [
+  0.1019,
+  0.0938,
+  0.121
+ ],
+ "bounds_min_m": [
+  -0.051,
+  -0.0469,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.051,
+  0.0469,
+  0.121
+ ],
+ "lod0_triangles": 1436,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Yellow/T_Pepper_Yellow_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Yellow/T_Pepper_Yellow_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/food_fruit/Pepper_Yellow/T_Pepper_Yellow_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Pepper_Yellow_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0035,
+   0.9965
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 104.7,
+   "p99": 166.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.227,
+   "p95": 0.464
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.572
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "food_fruit",
+  "421 items/food/food- frame 20"
+ ],
+ "origin_ids": {
+  "food_fruit": [
+   "S070_P31",
+   "S070_P35",
+   "S070_P36",
+   "S070_P37",
+   "S693_P07",
+   "S693_P08",
+   "S693_P09",
+   "S693_P10",
+   "S693_P11",
+   "S693_P12",
+   "S693_P13",
+   "S693_P14",
+   "S693_P15",
+   "S693_P16",
+   "S693_P17"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "yellow-orange bell pepper ripening from green at the shoulder, three lobes, stalk, calyx and one leaf",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Same generator as the red pepper: sibling shape. The green-to-yellow ripening band follows height only, not the sun side. No subsurface in the game material.",
+ "origin_ids_note": "the family shares its origin IDs between all of its frames; this asset dresses the placements that show frame 421/20"
+}

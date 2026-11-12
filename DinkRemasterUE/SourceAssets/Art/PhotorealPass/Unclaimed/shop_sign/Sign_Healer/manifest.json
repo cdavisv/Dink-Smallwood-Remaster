@@ -1,0 +1,109 @@
+{
+ "name": "SM_Sign_Healer_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/shop_sign/Sign_Healer/SM_Sign_Healer_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/shop_sign/Sign_Healer/SM_Sign_Healer_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_wood.py Sign_Healer final",
+ "dimensions_m": [
+  0.1,
+  1.14,
+  1.0
+ ],
+ "bounds_min_m": [
+  -0.05,
+  -0.57,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.05,
+  0.57,
+  1.0
+ ],
+ "lod0_triangles": 120,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/shop_sign/Sign_Healer/T_Sign_Healer_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/shop_sign/Sign_Healer/T_Sign_Healer_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/shop_sign/Sign_Healer/T_Sign_Healer_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Sign_Healer_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0082,
+   0.9918
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 72.6,
+   "p99": 101.6
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.577,
+   "p95": 0.671
+  },
+  "metallic_mean": 0.019,
+  "ao_mean": 0.814
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "shop_sign",
+  "458 inside/details/sign- frames 1-5"
+ ],
+ "origin_ids": {
+  "shop_sign": [
+   "S498_P13",
+   "S498_P14",
+   "S499_P13",
+   "S504_P17",
+   "S506_P16",
+   "S538_P22",
+   "S539_P05",
+   "S585_P17"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "healer's hanging sign: timber post and bracket with a brace, a 72 x 48 cm board on two iron straps, painted with a worn red cross",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The bracket stands on its own post so the sign can be placed free or against a wall; the original hangs from a wall bracket only. Straps are flat bars, not chain. The cross is one painted shape with procedural flaking; the back of the board carries the same cross. Boards are bevelled blocks butted together: no joints, pegs, nails or tool marks are modelled, and the grain is procedural streaking, not a scan. Every board is 12 triangles in the game mesh, so edge rounding is in the normal map only."
+}

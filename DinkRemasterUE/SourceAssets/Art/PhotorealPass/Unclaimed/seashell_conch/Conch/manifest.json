@@ -1,0 +1,128 @@
+{
+ "name": "SM_Seashell_Conch_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/seashell_conch/Conch/SM_Seashell_Conch_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/seashell_conch/Conch/SM_Seashell_Conch_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_shell.py Conch final",
+ "dimensions_m": [
+  0.1375,
+  0.0773,
+  0.0772
+ ],
+ "bounds_min_m": [
+  -0.0687,
+  -0.0386,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.0687,
+  0.0386,
+  0.0772
+ ],
+ "lod0_triangles": 1440,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/seashell_conch/Conch/T_Seashell_Conch_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/seashell_conch/Conch/T_Seashell_Conch_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/seashell_conch/Conch/T_Seashell_Conch_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Seashell_Conch_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.002,
+   0.998
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 104.6,
+   "mean": 163.6,
+   "p99": 182.7
+  },
+  "roughness": {
+   "p5": 0.12,
+   "mean": 0.572,
+   "p95": 0.827
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.288
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "seashell_conch",
+  "92 lands/details/beach- frame 4"
+ ],
+ "origin_ids": {
+  "seashell_conch": [
+   "S257_P08",
+   "S385_P06",
+   "S388_P03",
+   "S417_P08",
+   "S449_P08",
+   "S481_P07",
+   "S482_P07",
+   "S518_P02",
+   "S519_P02",
+   "S520_P03",
+   "S550_P02",
+   "S551_P07",
+   "S551_P08",
+   "S582_P01",
+   "S614_P08",
+   "S646_P02",
+   "S678_P08",
+   "S679_P01",
+   "S710_P03",
+   "S725_P05",
+   "S728_P03",
+   "S729_P01",
+   "S732_P06",
+   "S742_P02",
+   "S752_P04",
+   "S761_P03",
+   "S761_P06",
+   "S764_P16",
+   "S765_P15"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "knobbed spiral sea shell (a conch or whelk), 14 cm, lying aperture-down: cream with two chestnut bands broken into flames, bleached spire, pink throat, sand in the hollows",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "One helico-spiral surface: the whorls pass through each other inside, the columella and inner lip are not modelled, and the aperture is a throat that narrows to a point rather than a spiral cavity. Knobs are a cosine of the spiral angle, so they are evenly spaced. The banding is procedural (two bands, axial flames); it is not a scan of a real species. 1,400 triangles on a 14 cm shell: the knobs are carried by the normal map more than by the silhouette. About a quarter of the texture holds the hidden inner whorl surfaces."
+}
