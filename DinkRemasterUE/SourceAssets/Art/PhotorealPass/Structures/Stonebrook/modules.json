@@ -1,0 +1,437 @@
+[
+ {
+  "name": "SM_Cottage_Stonebrook_PR",
+  "class": "building",
+  "fbx": "SM_Cottage_Stonebrook_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Thatch",
+   "MI_Town_DoorPlanks",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 78312,
+  "lod1_triangles": 35240,
+  "lod2_triangles": 15662,
+  "dimensions_m": [
+   19.6,
+   12.366,
+   7.952
+  ],
+  "bounds_min_m": [
+   -9.8,
+   -7.066,
+   0.0
+  ],
+  "bounds_max_m": [
+   9.8,
+   5.3,
+   7.952
+  ],
+  "open_edges": 0,
+  "collision_hulls": 5,
+  "families": [
+   "63 struct/home/home-",
+   "cottage_thatched_long",
+   "cottage_thatched_large"
+  ],
+  "supersedes": "StonebrookExterior/SM_Cottage_Stonebrook_01",
+  "dresses": "long fieldstone cottage under a hipped thatch (as sprite 63 frames 1 and 6): 18 x 9 m at the walls, 2.9 m walls 0.5 m thick with quoins and half-buried footing stones, oak lintels, four leaded windows with board shutters on the front, three on the back, one in each end; doorway 1.5 x 2.5 m; rafter-pole feet under 0.4 m thick eaves; block-cut ridge with hazel liggers and crossed spars; stone chimney through the west hip",
+  "fit": {
+   "pivot": "ground centre of the 18 x 9 m wall rectangle (same as the superseded mesh); front faces -Y in Blender (+Y in Unreal after the usual front flip)",
+   "door": "opening centre at x = +5.30 m on the front wall (y = -4.5 m), 1.5 m wide, 2.5 m high: cottage_door_local_cm [530, 450, 0] of the old manifest still holds",
+   "footprint": "walls 18.0 x 9.0 m; thatch eaves oversail by 0.5 m (19.0 x 10.0 m); the old mesh was 18.83 x 10.55 m with a gabled roof, this one is hipped as the sprite",
+   "height": "ridge 7.3 m, chimney top about 7.9 m (old mesh 7.93 m)"
+  }
+ },
+ {
+  "name": "SM_Cottage_Stonebrook_PR_Burnt",
+  "class": "building",
+  "fbx": "SM_Cottage_Stonebrook_PR_Burnt.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Thatch",
+   "MI_Town_DoorPlanks",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 63954,
+  "lod1_triangles": 28778,
+  "lod2_triangles": 12790,
+  "dimensions_m": [
+   20.6,
+   16.432,
+   7.954
+  ],
+  "bounds_min_m": [
+   -9.8,
+   -10.132,
+   0.0
+  ],
+  "bounds_max_m": [
+   10.8,
+   6.3,
+   7.954
+  ],
+  "open_edges": 0,
+  "collision_hulls": 4,
+  "families": [
+   "screen 439 burnt state (vision 2) of 63 struct/home/home-"
+  ],
+  "supersedes": "reference only: StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01 (Codex candidate, same 18 x 9 m walls and collision envelope)",
+  "dresses": "the Stonebrook cottage after the fire, same walls, pivot, doorway and collision as SM_Cottage_Stonebrook_PR: stone smoke-blackened above every opening and under the lost roof, window glass gone, lintels, frames and shutters charred; the west third of the thatch still hangs on, scorched and burnt back in a ragged line; beyond it charred rafter couples (some snapped), a broken ridge pole, a few laths, fallen timbers, heaps of burnt thatch and ash inside and spilled outside, the door burnt and fallen flat in front of the doorway, scorched earth at the wall foot",
+  "fit": {
+   "pivot": "as SM_Cottage_Stonebrook_PR: swap in place for vision 2",
+   "collision": "the same wall hulls with the doorway open; no roof hull (the roof is gone)",
+   "effects": "no embers, smoke or fire here: those are emitters; Codex's remains and scorch decals (StonebrookRuins) are separate assets and still apply"
+  }
+ },
+ {
+  "name": "SM_Cottage_Thatched_Small_PR",
+  "class": "building",
+  "fbx": "SM_Cottage_Thatched_Small_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Thatch",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 33636,
+  "lod1_triangles": 15136,
+  "lod2_triangles": 6726,
+  "dimensions_m": [
+   8.6,
+   7.106,
+   6.584
+  ],
+  "bounds_min_m": [
+   -4.3,
+   -3.55,
+   0.0
+  ],
+  "bounds_max_m": [
+   4.3,
+   3.556,
+   6.584
+  ],
+  "open_edges": 0,
+  "collision_hulls": 3,
+  "families": [
+   "cottage_thatched_small"
+  ],
+  "supersedes": "none (family 63 had no final art away from screen 439)",
+  "dresses": "fieldstone cottage under a hipped thatch, 7.0 x 5.5 m at the walls, built by the same generator as SM_Cottage_Stonebrook_PR (same walls, quoins, footing stones, shuttered leaded windows, rafter-pole feet, block ridge with liggers, chimney); no doorway is cut: the original places the door as its own sprite (cottage_door), so stand SM_Cottage_Door_PR against the wall where that sprite is",
+  "sprite_family": "63 struct/home/home-",
+  "sprite_frames": "frames 7, 8 (257x225 px)",
+  "fit": {
+   "pivot": "ground centre of the wall rectangle; front -Y",
+   "footprint": "walls 7.0 x 5.5 m, eaves oversail 0.5 m",
+   "not_covered": "two-storey (frames 4, 5) and L-shaped (frame 10) cottages and the separate chimney sprites (frames 11-13) are not built"
+  }
+ },
+ {
+  "name": "SM_Cottage_Thatched_Large_PR",
+  "class": "building",
+  "fbx": "SM_Cottage_Thatched_Large_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Thatch",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 47284,
+  "lod1_triangles": 21276,
+  "lod2_triangles": 9456,
+  "dimensions_m": [
+   11.6,
+   8.1,
+   6.976
+  ],
+  "bounds_min_m": [
+   -5.8,
+   -4.05,
+   0.0
+  ],
+  "bounds_max_m": [
+   5.8,
+   4.05,
+   6.976
+  ],
+  "open_edges": 0,
+  "collision_hulls": 3,
+  "families": [
+   "cottage_thatched_large",
+   "cottage_thatched_long"
+  ],
+  "supersedes": "none (family 63 had no final art away from screen 439)",
+  "dresses": "fieldstone cottage under a hipped thatch, 10.0 x 6.5 m at the walls, built by the same generator as SM_Cottage_Stonebrook_PR (same walls, quoins, footing stones, shuttered leaded windows, rafter-pole feet, block ridge with liggers, chimney); no doorway is cut: the original places the door as its own sprite (cottage_door), so stand SM_Cottage_Door_PR against the wall where that sprite is",
+  "sprite_family": "63 struct/home/home-",
+  "sprite_frames": "frames 6 (334x259 px) and 1 (332x260 px)",
+  "fit": {
+   "pivot": "ground centre of the wall rectangle; front -Y",
+   "footprint": "walls 10.0 x 6.5 m, eaves oversail 0.5 m",
+   "not_covered": "two-storey (frames 4, 5) and L-shaped (frame 10) cottages and the separate chimney sprites (frames 11-13) are not built"
+  }
+ },
+ {
+  "name": "SM_Cottage_Door_PR",
+  "class": "door",
+  "fbx": "SM_Cottage_Door_PR.fbx",
+  "materials": [
+   "MI_Town_DoorPlanks"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 2936,
+  "lod1_triangles": 1320,
+  "lod2_triangles": 586,
+  "dimensions_m": [
+   1.44,
+   0.11,
+   2.449
+  ],
+  "bounds_min_m": [
+   0.0,
+   -0.055,
+   0.0
+  ],
+  "bounds_max_m": [
+   1.44,
+   0.055,
+   2.449
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "cottage_door",
+   "63 struct/home/home- frames 2, 3"
+  ],
+  "supersedes": "none (the old cottage had an empty doorway)",
+  "dresses": "ledged oak plank door for the cottage doorway, 1.44 x 2.46 m, strap hinges, studs, ring pull. Hinge pivot: hang at x = +4.58 m on the front wall, 0.2 m behind its face; the sprite shows it standing open"
+ },
+ {
+  "name": "SM_Fence_SplitRail_4m_PR",
+  "class": "prop_large",
+  "fbx": "SM_Fence_SplitRail_4m_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Rope"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 2658,
+  "lod1_triangles": 1196,
+  "lod2_triangles": 530,
+  "dimensions_m": [
+   4.442,
+   0.387,
+   1.409
+  ],
+  "bounds_min_m": [
+   -2.191,
+   -0.208,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.251,
+   0.179,
+   1.409
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "93 lands/fence/fence-",
+   "fence_rail_ew",
+   "fence_rail_ns",
+   "fence_rail_diag_nw",
+   "fence_rail_diag_ne"
+  ],
+  "supersedes": "StonebrookExterior/SM_Fence_SplitRail_4m_01",
+  "dresses": "4 m run of post-and-rail fence as sprite 93: three cleft oak posts with packing stones at the foot, two tiers of cleft wedge-section rails lapped past the posts and lashed with rope",
+  "fit": {
+   "pivot": "ground centre, run along X (same as the superseded mesh, 4.18 x 0.19 x 1.44 m); yaw for the n-s and diagonal frames",
+   "ends": "end posts stand at x = -2.0 and +2.0: consecutive runs share a post position, so overlap them by one post or accept a doubled post"
+  }
+ },
+ {
+  "name": "SM_Fence_SplitRail_4m_Broken_PR",
+  "class": "prop_large",
+  "fbx": "SM_Fence_SplitRail_4m_Broken_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Rope"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 2742,
+  "lod1_triangles": 1232,
+  "lod2_triangles": 548,
+  "dimensions_m": [
+   4.308,
+   0.527,
+   1.408
+  ],
+  "bounds_min_m": [
+   -2.184,
+   -0.368,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.124,
+   0.159,
+   1.408
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [
+   "93 lands/fence/fence- (variant)"
+  ],
+  "supersedes": "none (variant of SM_Fence_SplitRail_4m_PR)",
+  "dresses": "the same 4 m run in disrepair: the top rail of one bay snapped with its long end on the ground, a lower rail slipped from its lashing. List as a variant in families.json so some runs are broken",
+  "fit": {
+   "pivot": "as SM_Fence_SplitRail_4m_PR"
+  }
+ },
+ {
+  "name": "SM_Fence_Gate_PR",
+  "class": "door",
+  "fbx": "SM_Fence_Gate_PR.fbx",
+  "materials": [
+   "MI_Struct_OakWeathered"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 1120,
+  "lod1_triangles": 504,
+  "lod2_triangles": 224,
+  "dimensions_m": [
+   2.482,
+   0.172,
+   1.26
+  ],
+  "bounds_min_m": [
+   0.0,
+   -0.086,
+   0.0
+  ],
+  "bounds_max_m": [
+   2.482,
+   0.086,
+   1.26
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [],
+  "supersedes": "none (new: the 4 m gateway of exterior_layout.json had no gate)",
+  "dresses": "five-bar cleft oak field gate, 2.4 m, diagonal brace, iron strap hinges and latch. Hinge pivot; hangs on SM_Fence_GatePost_PR"
+ },
+ {
+  "name": "SM_Fence_GatePost_PR",
+  "class": "prop",
+  "fbx": "SM_Fence_GatePost_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 486,
+  "lod1_triangles": 218,
+  "lod2_triangles": 96,
+  "dimensions_m": [
+   0.354,
+   0.329,
+   1.552
+  ],
+  "bounds_min_m": [
+   -0.162,
+   -0.177,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.192,
+   0.152,
+   1.552
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [],
+  "supersedes": "none (new)",
+  "dresses": "heavy cleft oak gate post, 1.55 m, with two iron hinge pins and packing stones; also the latch post"
+ },
+ {
+  "name": "SM_Well_Stone_PR",
+  "class": "prop_large",
+  "fbx": "SM_Well_Stone_PR.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Rope"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 20248,
+  "lod1_triangles": 9110,
+  "lod2_triangles": 4048,
+  "dimensions_m": [
+   2.7,
+   1.874,
+   6.755
+  ],
+  "bounds_min_m": [
+   -1.32,
+   -0.941,
+   -3.7
+  ],
+  "bounds_max_m": [
+   1.38,
+   0.933,
+   3.055
+  ],
+  "open_edges": 0,
+  "collision_hulls": 4,
+  "families": [
+   "well_stone",
+   "186 struct/landmark/landm- frames 1-3"
+  ],
+  "supersedes": "none in StonebrookExterior (the brief names a well, but its manifest has none); dresses class well_stone",
+  "dresses": "stone-lined well: 1.04 m shaft, four courses of individual field stones and nine capstones (wall 0.9 m high, 1.7 m across), oak posts with braces, windlass drum with iron crank and wound rope, staved bucket on the rim, shingled roof on rafters and battens",
+  "fit": {
+   "pivot": "ground centre of the shaft (the mesh goes 3.7 m below it)",
+   "size": "2.6 x 1.7 x 3.0 m above ground; the sprite card (107 x 136 px) is 2.7 x 3.4 m at 0.025 m/px",
+   "shaft": "REAL shaft: lining to -3.7 m with dark water at -3.45 m. The ground under the well needs a hole of 0.52 m radius (ground-chunk cut or landscape visibility mask); where that cannot be done, add SM_Well_ShaftCap_PR at the same pivot, which closes the shaft with an unlit black disc at ground level"
+  }
+ },
+ {
+  "name": "SM_Well_ShaftCap_PR",
+  "class": "prop",
+  "fbx": "SM_Well_ShaftCap_PR.fbx",
+  "materials": [
+   "MI_Struct_OakWeathered"
+  ],
+  "source_blend": "Stonebrook.blend",
+  "lod0_triangles": 80,
+  "lod1_triangles": 36,
+  "lod2_triangles": 16,
+  "dimensions_m": [
+   1.06,
+   1.06,
+   0.03
+  ],
+  "bounds_min_m": [
+   -0.53,
+   -0.53,
+   0.0
+  ],
+  "bounds_max_m": [
+   0.53,
+   0.53,
+   0.03
+  ],
+  "open_edges": 0,
+  "collision_hulls": 1,
+  "families": [],
+  "supersedes": "none",
+  "dresses": "fallback for SM_Well_Stone_PR where the ground cannot be cut: an unlit black disc, 1.06 m across, at ground level inside the well wall"
+ }
+]

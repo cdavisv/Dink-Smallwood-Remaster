@@ -1,0 +1,11 @@
+{"ground": "MeadowTurf", "modules": ["SM_Bridge_Stone_PR"], "floor_at_min": true, "res": [1100, 760],
+ "assemblies": [
+  {"name": "WoodBridge", "items": [["SM_Bridge_Wood_Deck_PR", -2.5, 0, 0.22, 0], ["SM_Bridge_Wood_Deck_PR", 0, 0, 0.22, 180], ["SM_Bridge_Wood_Deck_PR", 2.5, 0, 0.22, 0],
+     ["SM_Bridge_Wood_Rail_Rope_PR", -2.5, 0.8, 0.26, 0], ["SM_Bridge_Wood_Rail_Rope_PR", 0, 0.8, 0.26, 0], ["SM_Bridge_Wood_Rail_Rope_PR", 2.5, 0.8, 0.26, 0],
+     ["SM_Bridge_Wood_Rail_Plank_PR", -2.5, -0.8, 0.26, 180], ["SM_Bridge_Wood_Rail_Plank_PR", 0, -0.8, 0.26, 180], ["SM_Bridge_Wood_Rail_Plank_PR", 2.5, -0.8, 0.26, 180]],
+   "cams": [{"name": "gameplay", "loc": [2.5, -6.5, 7.5], "tgt": [0, 0, 0.5], "lens": 32}, {"name": "close", "loc": [-0.6, -2.0, 1.45], "tgt": [0.6, 0.3, 0.45], "lens": 28}]},
+  {"name": "Small", "items": [["SM_Door_Wood_Single_PR", -4.6, 0, 0, 0], ["SM_Door_Wood_Wide_PR", -3.2, 0, 0, 0], ["SM_SignPost_Single_PR", -0.6, 0, 0, 0], ["SM_SignPost_Double_PR", 0.9, 0, 0, 0], ["SM_SignPost_Triple_PR", 2.5, 0, 0, 0],
+     ["SM_Chimney_Stone_Short_PR", 4.3, 0, 0, 0], ["SM_Chimney_Stone_Tall_PR", 6.1, 0, 0, 0], ["SM_Door_Wood_Single_PR", -5.2, 2.5, 0, 180]],
+   "cams": [{"name": "gameplay", "loc": [3.0, -8.5, 9.0], "tgt": [0.7, 0, 1.2], "lens": 34}, {"name": "doors", "loc": [-3.2, -3.3, 1.5], "tgt": [-3.6, 0, 1.05], "lens": 30}, {"name": "signs", "loc": [1.6, -3.0, 1.6], "tgt": [1.0, 0, 1.75], "lens": 30}, {"name": "chimneys", "loc": [3.6, -3.6, 1.6], "tgt": [5.2, 0, 1.4], "lens": 26}]},
+  {"name": "Cottages", "items": [["SM_Cottage_Thatched_TwoStorey_PR", -5.5, 0, 0, 0], ["SM_Cottage_Thatched_LShape_PR", 5.5, 0, 0, 0]],
+   "cams": [{"name": "gameplay", "loc": [5.0, -19.0, 20.0], "tgt": [0.3, -0.5, 3.4], "lens": 30}, {"name": "eye", "loc": [-0.8, -9.5, 1.6], "tgt": [-5.0, -2.6, 3.6], "lens": 22}, {"name": "wing", "loc": [12.5, -11.5, 4.0], "tgt": [6.5, -1.5, 3.0], "lens": 26}]}]}

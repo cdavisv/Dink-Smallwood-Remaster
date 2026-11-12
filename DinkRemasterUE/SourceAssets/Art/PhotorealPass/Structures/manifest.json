@@ -1,0 +1,5721 @@
+{
+ "schema": "dink-structures/1",
+ "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures",
+ "date": "2026-11-12",
+ "contact_sheet": "contact_sheet.png",
+ "folders": {
+  "Stonebrook": "Stonebrook/manifest.json (11 assets: Stonebrook cottage, two family cottages, cottage door, fence run, gate, gate post, well, three boulders)",
+  "Castle": "Castle/manifest.json (4 assets: wall, wall end, round tower, gatehouse)",
+  "Sets": "tiling texture sets built here (tools/make_sets.py), contract of Terrain/manifest.json",
+  "tools": "kitlib.py (shared builder and material preview), stonebrook_build.py, castle_build.py, make_sets.py, review.py (sun-and-sky review renders), finish.py (manifest + sheet)",
+  "review": "every review round's renders",
+  "Misc": "Misc/manifest.json (17 assets, part 2: plank bridge deck and two rails, stone bridge, two plank doors, three sign posts, two chimney stacks, two-storey and L-shaped cottages, round and two-storey island huts, cane lattice fence, torch pole); built by tools/misc_build.py"
+ },
+ "families": {
+  "63 struct/home/home-": "Stonebrook: cottage_thatched_small, _large, _long, cottage_door. Misc: cottage_thatched_two_storey -> SM_Cottage_Thatched_TwoStorey_PR, cottage_thatched_l_shape -> SM_Cottage_Thatched_LShape_PR, chimney_stone -> SM_Chimney_Stone_Short_PR (frames 11, 12) and SM_Chimney_Stone_Tall_PR (frame 13)",
+  "67 struct/castle/castl-": "Castle: castle_wall_diag, castle_wall_end, castle_tower_round, castle_gatehouse; castle_wall_corner has no own module",
+  "93 lands/fence/fence-": "Stonebrook/SM_Fence_SplitRail_4m_PR for all four fence classes (yaw)",
+  "186 struct/landmark/landm-": "well_stone -> Stonebrook/SM_Well_Stone_PR; sign_post -> Misc/SM_SignPost_Single_PR, _Double_PR, _Triple_PR (frames 7, 8, 9-10); bridge_stone -> Misc/SM_Bridge_Stone_PR",
+  "58 struct/bridge/brdge-": "Misc: bridge_wood_deck -> SM_Bridge_Wood_Deck_PR, bridge_wood_rail_rope -> SM_Bridge_Wood_Rail_Rope_PR, bridge_wood_rail_plank -> SM_Bridge_Wood_Rail_Plank_PR",
+  "61, 62 struct/details/door/": "Misc: door_wood_single -> SM_Door_Wood_Single_PR, door_wood_wide -> SM_Door_Wood_Wide_PR",
+  "424 struct/island/isle-": "Misc: island_hut_round -> SM_Island_Hut_Round_PR, island_hut_two_storey -> SM_Island_Hut_TwoStorey_PR, island_fence_lattice -> SM_Island_Fence_Lattice_PR, island_totem_pole -> SM_Island_TorchPole_PR; island_spear_pole NOT built",
+  "33 struct/outinn/oinn-": "see ../TownExteriors/manifest.json"
+ },
+ "texture_sets": [
+  {
+   "name": "OakWeathered",
+   "files": {
+    "BC": "OakWeathered/T_Terrain_OakWeathered_BC.png",
+    "N": "OakWeathered/T_Terrain_OakWeathered_N.png",
+    "ORM": "OakWeathered/T_Terrain_OakWeathered_ORM.png",
+    "H": "OakWeathered/T_Terrain_OakWeathered_H.png",
+    "Macro": "OakWeathered/T_Terrain_OakWeathered_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.0,
+   "texel_mm_per_px": 0.977,
+   "height_range_m": 0.0132,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.695",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "Poly Haven old_planks_02 quarter-turned (grain along U, boards as rows), raised grain silvered, checks and joints darkened, graded to a grey-brown weathered oak",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "old_planks_02",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 91.0,
+    "max": 186.5
+   },
+   "mean_srgb": [
+    98,
+    90,
+    81
+   ],
+   "roughness_mean": 0.715,
+   "known_weaknesses": "sawn boards, not hewn baulks: adze facets, checks and pegs come from the geometry"
+  },
+  {
+   "name": "Thatch",
+   "files": {
+    "BC": "Thatch/T_Terrain_Thatch_BC.png",
+    "N": "Thatch/T_Terrain_Thatch_N.png",
+    "ORM": "Thatch/T_Terrain_Thatch_ORM.png",
+    "H": "Thatch/T_Terrain_Thatch_H.png",
+    "Macro": "Thatch/T_Terrain_Thatch_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 1.08,
+   "texel_mm_per_px": 0.527,
+   "height_range_m": 0.0046,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.398",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "Poly Haven thatch_roof_angled (0.54 m scan of weathered water-reed thatch, stalks down V) 2x2, blended with a shifted copy under an anisotropic mask, slope streaks, graded to the dull gold of the original roofs (weathered grey and fresh straw are vertex-colour blends in the material)",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "thatch_roof_angled",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 2
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 31.1,
+    "mean": 106.7,
+    "max": 229.6
+   },
+   "mean_srgb": [
+    130,
+    104,
+    61
+   ],
+   "roughness_mean": 0.89,
+   "known_weaknesses": "0.54 m scan period is findable close up; butt ends of the courses are geometry, not texture"
+  },
+  {
+   "name": "Fieldstone",
+   "files": {
+    "BC": "Fieldstone/T_Terrain_Fieldstone_BC.png",
+    "N": "Fieldstone/T_Terrain_Fieldstone_N.png",
+    "ORM": "Fieldstone/T_Terrain_Fieldstone_ORM.png",
+    "H": "Fieldstone/T_Terrain_Fieldstone_H.png",
+    "Macro": "Fieldstone/T_Terrain_Fieldstone_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.0,
+   "texel_mm_per_px": 0.977,
+   "height_range_m": 0.0531,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.772",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "Poly Haven old_stone_wall (random rubble in lime mortar), flattened, graded to the pale grey-buff of the original cottage walls",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "old_stone_wall",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 33.1,
+    "mean": 125.3,
+    "max": 235.3
+   },
+   "mean_srgb": [
+    132,
+    125,
+    110
+   ],
+   "roughness_mean": 0.937,
+   "known_weaknesses": "one scan at its true 2 m period"
+  },
+  {
+   "name": "CastleAshlar",
+   "files": {
+    "BC": "CastleAshlar/T_Terrain_CastleAshlar_BC.png",
+    "N": "CastleAshlar/T_Terrain_CastleAshlar_N.png",
+    "ORM": "CastleAshlar/T_Terrain_CastleAshlar_ORM.png",
+    "H": "CastleAshlar/T_Terrain_CastleAshlar_H.png",
+    "Macro": "CastleAshlar/T_Terrain_CastleAshlar_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 1.8,
+   "texel_mm_per_px": 0.879,
+   "height_range_m": 0.0282,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.792",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "Poly Haven rock_wall_08 (coursed squared blocks, worn arrises, lost mortar), flattened, faint vertical ochre run-off streaks, graded to the grey-green of the original castle",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_wall_08",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 31.0,
+    "mean": 101.5,
+    "max": 238.3
+   },
+   "mean_srgb": [
+    103,
+    102,
+    90
+   ],
+   "roughness_mean": 0.839,
+   "known_weaknesses": "blocks are about 0.3 m: smaller than the sprite castle blocks; one scan at its true period"
+  },
+  {
+   "name": "FieldBoulder",
+   "files": {
+    "BC": "FieldBoulder/T_Terrain_FieldBoulder_BC.png",
+    "N": "FieldBoulder/T_Terrain_FieldBoulder_N.png",
+    "ORM": "FieldBoulder/T_Terrain_FieldBoulder_ORM.png",
+    "H": "FieldBoulder/T_Terrain_FieldBoulder_H.png",
+    "Macro": "FieldBoulder/T_Terrain_FieldBoulder_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 2.0,
+   "texel_mm_per_px": 0.977,
+   "height_range_m": 0.0408,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.487",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "Poly Haven rock_face height-blended with rock_face_04, flattened, graded to a weathered grey field stone",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.9,
+    "mean": 109.6,
+    "max": 240.0
+   },
+   "mean_srgb": [
+    115,
+    109,
+    100
+   ],
+   "roughness_mean": 0.884,
+   "known_weaknesses": "projected by dominant axis on the boulders: seams hide under moss and smooth shading only partly"
+  },
+  {
+   "name": "WroughtIron",
+   "files": {
+    "BC": "WroughtIron/T_Terrain_WroughtIron_BC.png",
+    "N": "WroughtIron/T_Terrain_WroughtIron_N.png",
+    "ORM": "WroughtIron/T_Terrain_WroughtIron_ORM.png",
+    "H": "WroughtIron/T_Terrain_WroughtIron_H.png",
+    "Macro": "WroughtIron/T_Terrain_WroughtIron_Macro.png"
+   },
+   "resolution_px": 2048,
+   "macro_px": 512,
+   "tile_size_m": 1.0,
+   "texel_mm_per_px": 0.488,
+   "height_range_m": 0.0059,
+   "height_note": "H 0..65535 spans height_range_m; mid level about 0.526",
+   "colour_spaces": {
+    "BC": "sRGB",
+    "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+    "ORM": "linear; R AO, G roughness, B metallic 0",
+    "H": "linear 16-bit",
+    "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+    "E": "linear emissive mask"
+   },
+   "tile_classes": [
+    "structure_facade"
+   ],
+   "status": "interim",
+   "method": "forge-black iron: procedural hammered relief and scale, rust patches placed by the rust mask of Poly Haven rusty_metal_02",
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rusty_metal_02",
+     "licence": "CC0-1.0",
+     "repeats_in_tile": 1
+    }
+   ],
+   "albedo_luma_srgb": {
+    "min": 30.0,
+    "mean": 45.9,
+    "max": 71.6
+   },
+   "mean_srgb": [
+    48,
+    45,
+    44
+   ],
+   "roughness_mean": 0.447,
+   "known_weaknesses": "dielectric black oxide (metallic 0); no pitting"
+  }
+ ],
+ "third_party_note": "All scans are Poly Haven CC0-1.0 with rows in ../ThirdParty/downloads.csv. Downloaded for this work but not used by any delivered mesh: reed_roof_03, weathered_planks, medieval_blocks_05, castle_wall_varriation; rusty_metal_02 feeds Sets/WroughtIron, which no mesh uses yet (ironwork is the alpha switch of the oak material).",
+ "kits": {
+  "Stonebrook": {
+   "schema": "dink-structures/1",
+   "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook",
+   "source_blend": "Stonebrook.blend",
+   "build": "blender -b -t 4 --python ../tools/stonebrook_build.py ; blender -b -t 4 --python ../tools/boulder_bake.py (boulders: Boulders.blend, Textures/)",
+   "fit": {
+    "general": "FBX per asset beside this file, objects <name>_LOD0/_LOD1/_LOD2 and UCX_ hulls; real size, fit 'none'. Textures are the tiling sets under Structures/Sets and Terrain (not copied beside the FBX).",
+    "swap": "SM_Cottage_Stonebrook_PR (and _Burnt), SM_Fence_SplitRail_4m_PR and SM_Boulder_Field_A_PR keep the pivot (ground centre) and facing of StonebrookExterior's SM_Cottage_Stonebrook_01, SM_Fence_SplitRail_4m_01 and SM_Boulder_Fieldstone_01. The cottage is hipped fieldstone as sprite family 63, not the half-timbered gabled house of the old mesh; its earth apron and flagstones reach 2.6 m in front of the door."
+   },
+   "materials": {
+    "see": "integration",
+    "MI_Boulder_Field_*_PR": "private bakes (unique UVs, 2048 / 1024 px): material_exception, the brief asks for tri-planar scan projection baked without seams",
+    "material_exception": "Kit materials on shared tiling sets with a vertex-colour layer, not private bakes; not yet rows of ART_STANDARD.md section 2 (add with the import)."
+   },
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "old_stone_wall",
+     "used_by": "Sets/Fieldstone",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "thatch_roof_angled",
+     "used_by": "Sets/Thatch",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "old_planks_02",
+     "used_by": "Sets/OakWeathered",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face",
+     "used_by": "Sets/FieldBoulder",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "used_by": "Sets/FieldBoulder",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "medieval_wood",
+     "used_by": "Terrain/DoorPlanks",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "dirt_floor / rocky_trail (Terrain/EarthPath)",
+     "used_by": "MI_Struct_Earth",
+     "licence": "CC0-1.0"
+    }
+   ],
+   "validator": {
+    "result": "Stonebrook.blend: 11 assets, 20 errors. By design: 8 UV_OVERLAP, 3 PIVOT (below). NOT by design and not fixed: ZERO_AREA, 1-5 degenerate faces per LOD on the four cottages (thatch plane apexes and decimated LODs; LOD0 of the Stonebrook cottage has 5). Boulders.blend: 3 assets, all pass.",
+    "errors_by_design": {
+     "UV_OVERLAP on door, fences, gate, gate post, well, shaft cap": "classes prop, prop_large and door ask for unique UVs; these use tiling library sets (ART_STANDARD section 2)",
+     "PIVOT on the two Stonebrook cottages": "bounds include the earth apron, flagstones and (burnt) the fallen door in front; the pivot stays at the centre of the 18 x 9 m walls so the asset swaps in place",
+     "PIVOT on SM_Well_Stone_PR": "the shaft goes 3.7 m below the ground pivot",
+     "PIVOT on SM_Fence_SplitRail_4m_Broken_PR": "the fallen rail lies 0.2 m to one side, so the bounds are 11 cm off the post line; the pivot stays on the post line like the intact run",
+     "PIVOT on SM_Cottage_Stonebrook_PR_Burnt": "the burnt door lies 3 m in front of the doorway; pivot kept at the centre of the walls"
+    }
+   },
+   "not_done": "Family 63: two-storey (frames 4, 5) and L-shaped (frame 10) cottages, chimney sprites (frames 11-13). A burning (vision 1) state. Netting on the thatch. Nothing imported into Unreal; exterior_layout.json and families.json untouched.",
+   "render_dir": "sb6",
+   "integration": {
+    "contract": {
+     "uv": "UV0 already carries the tiling: one UV unit is one repeat of the set (tile_size_m is the nominal size the UVs were laid out for; small blocks use up to 2x denser UVs). Sample BC, N, ORM and H at UV0; sample Macro at UV0 / 7. Do not rescale.",
+     "textures": "BC sRGB; N linear OpenGL (flip green on import); ORM linear (R ambient occlusion, G roughness, B metallic = 0); H linear 16-bit height, used 0..1; Macro linear 512 px (R large, G medium, B small variation).",
+     "vertex_colour": "FBX vertex colour set 'Grime', linear RGBA float, exported with every LOD. R = dirt and damp, G = moss / algae, B = bleaching (silvered oak, lichen, dressed stone, fresh straw), A = material switch (see below; 1 everywhere else).",
+     "graph": [
+      "base = BC * tint * (1 - macro + 2 * macro * Macro.R)",
+      "base = lerp(base, base * ORM.R, 0.5)",
+      "fd = saturate(R * (1.15 - 0.5 * H))",
+      "dirt_mode multiply: c = lerp(base, base * dirt, fd * dirt_amount);   dirt_mode mix: c = lerp(base, dirt * (3 * luminance(base) + 0.35), fd * dirt_amount)",
+      "fb = saturate(B * saturate(0.9 * H + 0.35));   c = lerp(c, pale * (2.2 * luminance(c) + 0.55), fb * pale_amount)",
+      "fm = saturate(4 * ((G + 0.5 * Macro.B) - (0.55 * H + 0.62))) * (G > 0.02);   c = lerp(c, moss * (0.9 * Macro.G + 0.55), fm)",
+      "roughness = lerp(ORM.G, moss_roughness, fm) - 0.10 * fd;   normal = N;   metallic = 0",
+      "alpha_switch materials only: A < 0.875 lead (only where alpha_lead is true): colour (0.15, 0.16, 0.17) * (0.7 * Macro.G + 0.65), roughness 0.42, flat normal;  A < 0.625 (A < 0.75 where alpha_lead is false) black iron, charred wood, burnt straw or unlit void: colour (0.016, 0.015, 0.014), roughness 0.5 + 0.42 * R (iron has R = 0, char has R = 1), normal kept;  A < 0.25 window glass: colour glass_tint, roughness 0.06, flat normal, opaque (the pane mesh is faceted so each quarry reflects differently; a dark closed box stands behind it). Values written: 1, 0.75, 0.5, 0.",
+      "alpha_soot materials only: fs = saturate((1 - A) * (0.7 * Macro.G + 1.0));  c = lerp(c, (0.012, 0.011, 0.010), fs);  roughness = lerp(roughness, 0.97, fs)"
+     ],
+     "colours": "all colours are linear RGB",
+     "fbx": "One FBX per asset beside the manifest: mesh objects <asset>_LOD0, _LOD1, _LOD2 (import as one static mesh with three LODs) and UCX_<asset>_LOD0_NN convex hulls; metres with UnitScaleFactor 100; Z up, front -Y; smoothing by edge (import normals); material slots in the order of each module's \"materials\" list. Family meshes are visual only (ART_STANDARD section 5)."
+    },
+    "materials": {
+     "MI_Struct_OakWeathered": {
+      "dirt": [
+       0.22,
+       0.16,
+       0.11
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.46,
+       0.45,
+       0.42
+      ],
+      "pale_amount": 0.55,
+      "macro": 0.22,
+      "tint": [
+       0.8,
+       0.62,
+       0.47
+      ],
+      "alpha_switch": true,
+      "alpha_lead": true,
+      "alpha_soot": false,
+      "glass_tint": [
+       0.035,
+       0.05,
+       0.065
+      ],
+      "tile_size_m": 2.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+      },
+      "third_party": [
+       "old_planks_02"
+      ],
+      "texture_set": "OakWeathered"
+     },
+     "MI_Struct_Fieldstone": {
+      "dirt": [
+       0.36,
+       0.3,
+       0.22
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.62,
+       0.6,
+       0.52
+      ],
+      "pale_amount": 0.5,
+      "macro": 0.22,
+      "tint": [
+       1,
+       1,
+       1
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": true,
+      "tile_size_m": 2.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_Macro.png"
+      },
+      "third_party": [
+       "old_stone_wall"
+      ],
+      "texture_set": "Fieldstone"
+     },
+     "MI_Struct_Earth": {
+      "dirt": [
+       0.36,
+       0.3,
+       0.24
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.075,
+       0.02
+      ],
+      "moss_roughness": 0.9,
+      "pale": [
+       0.8,
+       0.79,
+       0.77
+      ],
+      "pale_amount": 0.85,
+      "macro": 0.22,
+      "tint": [
+       0.62,
+       0.56,
+       0.5
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": true,
+      "tile_size_m": 4.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_Macro.png"
+      },
+      "third_party": [
+       "dirt_floor",
+       "rocky_trail"
+      ],
+      "texture_set": "EarthPath"
+     },
+     "MI_Struct_Thatch": {
+      "dirt": [
+       0.105,
+       0.095,
+       0.08
+      ],
+      "dirt_amount": 0.95,
+      "dirt_mode": "mix",
+      "moss": [
+       0.05,
+       0.062,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.8,
+       0.63,
+       0.33
+      ],
+      "pale_amount": 0.6,
+      "macro": 0.22,
+      "tint": [
+       1,
+       1,
+       1
+      ],
+      "alpha_switch": true,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "glass_tint": [
+       0.035,
+       0.05,
+       0.065
+      ],
+      "tile_size_m": 1.08,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+      },
+      "third_party": [
+       "thatch_roof_angled"
+      ],
+      "texture_set": "Thatch"
+     },
+     "MI_Town_DoorPlanks": {
+      "dirt": [
+       0.3,
+       0.25,
+       0.2
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.42,
+       0.41,
+       0.38
+      ],
+      "pale_amount": 0.75,
+      "macro": 0.22,
+      "tint": [
+       1,
+       1,
+       1
+      ],
+      "alpha_switch": true,
+      "alpha_lead": true,
+      "alpha_soot": false,
+      "glass_tint": [
+       0.035,
+       0.05,
+       0.065
+      ],
+      "tile_size_m": 2.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_Macro.png"
+      },
+      "third_party": [
+       "medieval_wood"
+      ],
+      "texture_set": "DoorPlanks"
+     },
+     "MI_Struct_Rope": {
+      "dirt": [
+       0.5,
+       0.45,
+       0.38
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.7,
+       0.62,
+       0.45
+      ],
+      "pale_amount": 0.4,
+      "macro": 0.22,
+      "tint": [
+       0.9,
+       0.85,
+       0.8
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 1.08,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+      },
+      "third_party": [
+       "thatch_roof_angled"
+      ],
+      "texture_set": "Thatch"
+     },
+     "MI_Boulder_Field_A_PR": {
+      "baked": true,
+      "texture_px": 2048,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_A_PR_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_A_PR_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_A_PR_ORM.png"
+      },
+      "graph": "base colour = BC, normal = N (OpenGL, flip green), occlusion = ORM.R, roughness = ORM.G, metallic 0; UV0 is a unique unwrap in 0-1; no vertex colour"
+     },
+     "MI_Boulder_Field_B_PR": {
+      "baked": true,
+      "texture_px": 1024,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_B_PR_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_B_PR_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_B_PR_ORM.png"
+      },
+      "graph": "base colour = BC, normal = N (OpenGL, flip green), occlusion = ORM.R, roughness = ORM.G, metallic 0; UV0 is a unique unwrap in 0-1; no vertex colour"
+     },
+     "MI_Boulder_Field_C_PR": {
+      "baked": true,
+      "texture_px": 1024,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_C_PR_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_C_PR_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_C_PR_ORM.png"
+      },
+      "graph": "base colour = BC, normal = N (OpenGL, flip green), occlusion = ORM.R, roughness = ORM.G, metallic 0; UV0 is a unique unwrap in 0-1; no vertex colour"
+     }
+    },
+    "assets": {
+     "SM_Cottage_Stonebrook_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Stonebrook_PR.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_Thatch",
+       "MI_Town_DoorPlanks",
+       "MI_Struct_Earth"
+      ],
+      "lod_triangles": [
+       78312,
+       35240,
+       15662
+      ],
+      "bounds_min_m": [
+       -9.8,
+       -7.066,
+       0.0
+      ],
+      "bounds_max_m": [
+       9.8,
+       5.3,
+       7.952
+      ],
+      "collision_hulls": 5
+     },
+     "SM_Cottage_Stonebrook_PR_Burnt": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Stonebrook_PR_Burnt.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_Thatch",
+       "MI_Town_DoorPlanks",
+       "MI_Struct_Earth"
+      ],
+      "lod_triangles": [
+       63954,
+       28778,
+       12790
+      ],
+      "bounds_min_m": [
+       -9.8,
+       -10.132,
+       0.0
+      ],
+      "bounds_max_m": [
+       10.8,
+       6.3,
+       7.954
+      ],
+      "collision_hulls": 4
+     },
+     "SM_Cottage_Thatched_Small_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Thatched_Small_PR.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_Thatch",
+       "MI_Struct_Earth"
+      ],
+      "lod_triangles": [
+       33636,
+       15136,
+       6726
+      ],
+      "bounds_min_m": [
+       -4.3,
+       -3.55,
+       0.0
+      ],
+      "bounds_max_m": [
+       4.3,
+       3.556,
+       6.584
+      ],
+      "collision_hulls": 3
+     },
+     "SM_Cottage_Thatched_Large_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Thatched_Large_PR.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_Thatch",
+       "MI_Struct_Earth"
+      ],
+      "lod_triangles": [
+       47284,
+       21276,
+       9456
+      ],
+      "bounds_min_m": [
+       -5.8,
+       -4.05,
+       0.0
+      ],
+      "bounds_max_m": [
+       5.8,
+       4.05,
+       6.976
+      ],
+      "collision_hulls": 3
+     },
+     "SM_Cottage_Door_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Door_PR.fbx",
+      "class": "door",
+      "material_slots": [
+       "MI_Town_DoorPlanks"
+      ],
+      "lod_triangles": [
+       2936,
+       1320,
+       586
+      ],
+      "bounds_min_m": [
+       0.0,
+       -0.055,
+       0.0
+      ],
+      "bounds_max_m": [
+       1.44,
+       0.055,
+       2.449
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Fence_SplitRail_4m_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Fence_SplitRail_4m_PR.fbx",
+      "class": "prop_large",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_Rope"
+      ],
+      "lod_triangles": [
+       2658,
+       1196,
+       530
+      ],
+      "bounds_min_m": [
+       -2.191,
+       -0.208,
+       0.0
+      ],
+      "bounds_max_m": [
+       2.251,
+       0.179,
+       1.409
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Fence_SplitRail_4m_Broken_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Fence_SplitRail_4m_Broken_PR.fbx",
+      "class": "prop_large",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_Rope"
+      ],
+      "lod_triangles": [
+       2742,
+       1232,
+       548
+      ],
+      "bounds_min_m": [
+       -2.184,
+       -0.368,
+       0.0
+      ],
+      "bounds_max_m": [
+       2.124,
+       0.159,
+       1.408
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Fence_Gate_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Fence_Gate_PR.fbx",
+      "class": "door",
+      "material_slots": [
+       "MI_Struct_OakWeathered"
+      ],
+      "lod_triangles": [
+       1120,
+       504,
+       224
+      ],
+      "bounds_min_m": [
+       0.0,
+       -0.086,
+       0.0
+      ],
+      "bounds_max_m": [
+       2.482,
+       0.086,
+       1.26
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Fence_GatePost_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Fence_GatePost_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered"
+      ],
+      "lod_triangles": [
+       486,
+       218,
+       96
+      ],
+      "bounds_min_m": [
+       -0.162,
+       -0.177,
+       0.0
+      ],
+      "bounds_max_m": [
+       0.192,
+       0.152,
+       1.552
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Well_Stone_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Well_Stone_PR.fbx",
+      "class": "prop_large",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_Rope"
+      ],
+      "lod_triangles": [
+       20248,
+       9110,
+       4048
+      ],
+      "bounds_min_m": [
+       -1.32,
+       -0.941,
+       -3.7
+      ],
+      "bounds_max_m": [
+       1.38,
+       0.933,
+       3.055
+      ],
+      "collision_hulls": 4
+     },
+     "SM_Well_ShaftCap_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Well_ShaftCap_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Struct_OakWeathered"
+      ],
+      "lod_triangles": [
+       80,
+       36,
+       16
+      ],
+      "bounds_min_m": [
+       -0.53,
+       -0.53,
+       0.0
+      ],
+      "bounds_max_m": [
+       0.53,
+       0.53,
+       0.03
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Boulder_Field_A_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Boulder_Field_A_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Boulder_Field_A_PR"
+      ],
+      "lod_triangles": [
+       5600,
+       2520,
+       1120
+      ],
+      "bounds_min_m": [
+       -0.947,
+       -0.703,
+       -0.001
+      ],
+      "bounds_max_m": [
+       0.949,
+       0.701,
+       1.15
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Boulder_Field_B_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Boulder_Field_B_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Boulder_Field_B_PR"
+      ],
+      "lod_triangles": [
+       4200,
+       1890,
+       840
+      ],
+      "bounds_min_m": [
+       -0.863,
+       -0.487,
+       -0.0
+      ],
+      "bounds_max_m": [
+       0.861,
+       0.488,
+       0.854
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Boulder_Field_C_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Boulder_Field_C_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Boulder_Field_C_PR"
+      ],
+      "lod_triangles": [
+       3600,
+       1620,
+       720
+      ],
+      "bounds_min_m": [
+       -0.594,
+       -0.506,
+       -0.0
+      ],
+      "bounds_max_m": [
+       0.594,
+       0.506,
+       0.48
+      ],
+      "collision_hulls": 1
+     }
+    }
+   },
+   "modules": [
+    {
+     "name": "SM_Cottage_Stonebrook_PR",
+     "class": "building",
+     "fbx": "SM_Cottage_Stonebrook_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_Thatch",
+      "MI_Town_DoorPlanks",
+      "MI_Struct_Earth"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 78312,
+     "lod1_triangles": 35240,
+     "lod2_triangles": 15662,
+     "dimensions_m": [
+      19.6,
+      12.366,
+      7.952
+     ],
+     "bounds_min_m": [
+      -9.8,
+      -7.066,
+      0.0
+     ],
+     "bounds_max_m": [
+      9.8,
+      5.3,
+      7.952
+     ],
+     "open_edges": 0,
+     "collision_hulls": 5,
+     "families": [
+      "63 struct/home/home-",
+      "cottage_thatched_long",
+      "cottage_thatched_large"
+     ],
+     "supersedes": "StonebrookExterior/SM_Cottage_Stonebrook_01",
+     "dresses": "long fieldstone cottage under a hipped thatch (as sprite 63 frames 1 and 6): 18 x 9 m at the walls, 2.9 m walls 0.5 m thick with quoins and half-buried footing stones, oak lintels, four leaded windows with board shutters on the front, three on the back, one in each end; doorway 1.5 x 2.5 m; rafter-pole feet under 0.4 m thick eaves; block-cut ridge with hazel liggers and crossed spars; stone chimney through the west hip",
+     "fit": {
+      "pivot": "ground centre of the 18 x 9 m wall rectangle (same as the superseded mesh); front faces -Y in Blender (+Y in Unreal after the usual front flip)",
+      "door": "opening centre at x = +5.30 m on the front wall (y = -4.5 m), 1.5 m wide, 2.5 m high: cottage_door_local_cm [530, 450, 0] of the old manifest still holds",
+      "footprint": "walls 18.0 x 9.0 m; thatch eaves oversail by 0.5 m (19.0 x 10.0 m); the old mesh was 18.83 x 10.55 m with a gabled roof, this one is hipped as the sprite",
+      "height": "ridge 7.3 m, chimney top about 7.9 m (old mesh 7.93 m)"
+     },
+     "status": "round 3 of this kit (12 Nov 2026, after the coordinator's second review); review renders Structures/review/sb1-6; not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Thatch is now four slope planes with a rounded 0.4 m eaves roll, a 5 cm course ledge every 0.36 m, combed streaks, hollows, moss on the north pitch and ridge, hip rolls and a block ridge with three liggers a side; still faulted: the 0.54 m scan period shows close up; ledges are evenly spaced (real coats wander more); hip rolls are plain sweeps; no netting; the eaves butt is a smooth cut. Earth apron and flagstones are part of the mesh: its edge is a mesh edge against the terrain (vertex-colour green helps, it is not a blend). Door leaf is fixed ajar at 62 degrees (not a separate hinged object here; SM_Cottage_Door_PR is). The room behind the door is an unlit black face 0.3 m in. Jamb and quoin stones carry the rubble scan scaled, not single-stone textures. Rafter-pole feet are evenly spaced stubs. Bounds are not centred on the pivot any more (apron and flagstones reach 2.6 m in front): validator PIVOT by design, the pivot is still the centre of the 18 x 9 m walls. 77,000 triangles (soft target 60,000, hard 200,000)."
+    },
+    {
+     "name": "SM_Cottage_Stonebrook_PR_Burnt",
+     "class": "building",
+     "fbx": "SM_Cottage_Stonebrook_PR_Burnt.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_Thatch",
+      "MI_Town_DoorPlanks",
+      "MI_Struct_Earth"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 63954,
+     "lod1_triangles": 28778,
+     "lod2_triangles": 12790,
+     "dimensions_m": [
+      20.6,
+      16.432,
+      7.954
+     ],
+     "bounds_min_m": [
+      -9.8,
+      -10.132,
+      0.0
+     ],
+     "bounds_max_m": [
+      10.8,
+      6.3,
+      7.954
+     ],
+     "open_edges": 0,
+     "collision_hulls": 4,
+     "families": [
+      "screen 439 burnt state (vision 2) of 63 struct/home/home-"
+     ],
+     "supersedes": "reference only: StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01 (Codex candidate, same 18 x 9 m walls and collision envelope)",
+     "dresses": "the Stonebrook cottage after the fire, same walls, pivot, doorway and collision as SM_Cottage_Stonebrook_PR: stone smoke-blackened above every opening and under the lost roof, window glass gone, lintels, frames and shutters charred; the west third of the thatch still hangs on, scorched and burnt back in a ragged line; beyond it charred rafter couples (some snapped), a broken ridge pole, a few laths, fallen timbers, heaps of burnt thatch and ash inside and spilled outside, the door burnt and fallen flat in front of the doorway, scorched earth at the wall foot",
+     "fit": {
+      "pivot": "as SM_Cottage_Stonebrook_PR: swap in place for vision 2",
+      "collision": "the same wall hulls with the doorway open; no roof hull (the roof is gone)",
+      "effects": "no embers, smoke or fire here: those are emitters; Codex's remains and scorch decals (StonebrookRuins) are separate assets and still apply"
+     },
+     "status": "new in round 3; two review rounds (sb4, sb5) and the final render, not three full rounds",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Rafters, laths and fallen timbers are charred six-sided poles with little break-up: no alligator cracking, no burnt-through sections, laths read as a ladder. The surviving thatch ends in a ragged but clean-cut black edge, no hanging straw. Heaps of burnt thatch and ash are smooth domes. Soot is a vertex-colour layer (0.2 m): plumes above openings are soft. Walls are intact to full height (no fallen masonry, no spalled stones). The fallen door is the intact leaf blackened. No embers, smoke or glow (emitters). Collision keeps the intact walls. 63,000 triangles."
+    },
+    {
+     "name": "SM_Cottage_Thatched_Small_PR",
+     "class": "building",
+     "fbx": "SM_Cottage_Thatched_Small_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_Thatch",
+      "MI_Struct_Earth"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 33636,
+     "lod1_triangles": 15136,
+     "lod2_triangles": 6726,
+     "dimensions_m": [
+      8.6,
+      7.106,
+      6.584
+     ],
+     "bounds_min_m": [
+      -4.3,
+      -3.55,
+      0.0
+     ],
+     "bounds_max_m": [
+      4.3,
+      3.556,
+      6.584
+     ],
+     "open_edges": 0,
+     "collision_hulls": 3,
+     "families": [
+      "cottage_thatched_small"
+     ],
+     "supersedes": "none (family 63 had no final art away from screen 439)",
+     "dresses": "fieldstone cottage under a hipped thatch, 7.0 x 5.5 m at the walls, built by the same generator as SM_Cottage_Stonebrook_PR (same walls, quoins, footing stones, shuttered leaded windows, rafter-pole feet, block ridge with liggers, chimney); no doorway is cut: the original places the door as its own sprite (cottage_door), so stand SM_Cottage_Door_PR against the wall where that sprite is",
+     "sprite_family": "63 struct/home/home-",
+     "sprite_frames": "frames 7, 8 (257x225 px)",
+     "fit": {
+      "pivot": "ground centre of the wall rectangle; front -Y",
+      "footprint": "walls 7.0 x 5.5 m, eaves oversail 0.5 m",
+      "not_covered": "two-storey (frames 4, 5) and L-shaped (frame 10) cottages and the separate chimney sprites (frames 11-13) are not built"
+     },
+     "status": "same generator as the Stonebrook cottage; one render per round, not three own rounds",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "As SM_Cottage_Stonebrook_PR. Sized by judgement from the oblique sprite, no doorway (the original places the door as its own sprite). The ridge is only about 1.5 m long, so the block ridge is a short saddle."
+    },
+    {
+     "name": "SM_Cottage_Thatched_Large_PR",
+     "class": "building",
+     "fbx": "SM_Cottage_Thatched_Large_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_Thatch",
+      "MI_Struct_Earth"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 47284,
+     "lod1_triangles": 21276,
+     "lod2_triangles": 9456,
+     "dimensions_m": [
+      11.6,
+      8.1,
+      6.976
+     ],
+     "bounds_min_m": [
+      -5.8,
+      -4.05,
+      0.0
+     ],
+     "bounds_max_m": [
+      5.8,
+      4.05,
+      6.976
+     ],
+     "open_edges": 0,
+     "collision_hulls": 3,
+     "families": [
+      "cottage_thatched_large",
+      "cottage_thatched_long"
+     ],
+     "supersedes": "none (family 63 had no final art away from screen 439)",
+     "dresses": "fieldstone cottage under a hipped thatch, 10.0 x 6.5 m at the walls, built by the same generator as SM_Cottage_Stonebrook_PR (same walls, quoins, footing stones, shuttered leaded windows, rafter-pole feet, block ridge with liggers, chimney); no doorway is cut: the original places the door as its own sprite (cottage_door), so stand SM_Cottage_Door_PR against the wall where that sprite is",
+     "sprite_family": "63 struct/home/home-",
+     "sprite_frames": "frames 6 (334x259 px) and 1 (332x260 px)",
+     "fit": {
+      "pivot": "ground centre of the wall rectangle; front -Y",
+      "footprint": "walls 10.0 x 6.5 m, eaves oversail 0.5 m",
+      "not_covered": "two-storey (frames 4, 5) and L-shaped (frame 10) cottages and the separate chimney sprites (frames 11-13) are not built"
+     },
+     "status": "same generator as the Stonebrook cottage; one render per round, not three own rounds",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "As SM_Cottage_Stonebrook_PR. Sized by judgement from the oblique sprite, no doorway (the original places the door as its own sprite). Also bound to cottage_thatched_long."
+    },
+    {
+     "name": "SM_Cottage_Door_PR",
+     "class": "door",
+     "fbx": "SM_Cottage_Door_PR.fbx",
+     "materials": [
+      "MI_Town_DoorPlanks"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 2936,
+     "lod1_triangles": 1320,
+     "lod2_triangles": 586,
+     "dimensions_m": [
+      1.44,
+      0.11,
+      2.449
+     ],
+     "bounds_min_m": [
+      0.0,
+      -0.055,
+      0.0
+     ],
+     "bounds_max_m": [
+      1.44,
+      0.055,
+      2.449
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "cottage_door",
+      "63 struct/home/home- frames 2, 3"
+     ],
+     "supersedes": "none (the old cottage had an empty doorway)",
+     "dresses": "ledged oak plank door for the cottage doorway, 1.44 x 2.46 m, strap hinges, studs, ring pull. Hinge pivot: hang at x = +4.58 m on the front wall, 0.2 m behind its face; the sprite shows it standing open",
+     "status": "round 3 of this kit (12 Nov 2026, after the coordinator's second review); review renders Structures/review/sb1-6; not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "The town door leaf at 1.44 x 2.46 m: plank scan repeats across planks; studs are plain bevelled squares. Validator UV_OVERLAP by design (tiling library planks)."
+    },
+    {
+     "name": "SM_Fence_SplitRail_4m_PR",
+     "class": "prop_large",
+     "fbx": "SM_Fence_SplitRail_4m_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_Rope"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 2658,
+     "lod1_triangles": 1196,
+     "lod2_triangles": 530,
+     "dimensions_m": [
+      4.442,
+      0.387,
+      1.409
+     ],
+     "bounds_min_m": [
+      -2.191,
+      -0.208,
+      0.0
+     ],
+     "bounds_max_m": [
+      2.251,
+      0.179,
+      1.409
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "93 lands/fence/fence-",
+      "fence_rail_ew",
+      "fence_rail_ns",
+      "fence_rail_diag_nw",
+      "fence_rail_diag_ne"
+     ],
+     "supersedes": "StonebrookExterior/SM_Fence_SplitRail_4m_01",
+     "dresses": "4 m run of post-and-rail fence as sprite 93: three cleft oak posts with packing stones at the foot, two tiers of cleft wedge-section rails lapped past the posts and lashed with rope",
+     "fit": {
+      "pivot": "ground centre, run along X (same as the superseded mesh, 4.18 x 0.19 x 1.44 m); yaw for the n-s and diagonal frames",
+      "ends": "end posts stand at x = -2.0 and +2.0: consecutive runs share a post position, so overlap them by one post or accept a doubled post"
+     },
+     "status": "round 3 of this kit (12 Nov 2026, after the coordinator's second review); review renders Structures/review/sb1-6; not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Rails are six-sided wedge sweeps: knots and splits come only from the oak scan, not from geometry; lichen and moss are vertex-colour blends; post tops are plain tapers; lashings are a helix with the straw scan as fibre, no knot. Validator UV_OVERLAP by design (tiling library materials)."
+    },
+    {
+     "name": "SM_Fence_SplitRail_4m_Broken_PR",
+     "class": "prop_large",
+     "fbx": "SM_Fence_SplitRail_4m_Broken_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_Rope"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 2742,
+     "lod1_triangles": 1232,
+     "lod2_triangles": 548,
+     "dimensions_m": [
+      4.308,
+      0.527,
+      1.408
+     ],
+     "bounds_min_m": [
+      -2.184,
+      -0.368,
+      0.0
+     ],
+     "bounds_max_m": [
+      2.124,
+      0.159,
+      1.408
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "93 lands/fence/fence- (variant)"
+     ],
+     "supersedes": "none (variant of SM_Fence_SplitRail_4m_PR)",
+     "dresses": "the same 4 m run in disrepair: the top rail of one bay snapped with its long end on the ground, a lower rail slipped from its lashing. List as a variant in families.json so some runs are broken",
+     "fit": {
+      "pivot": "as SM_Fence_SplitRail_4m_PR"
+     },
+     "status": "new in round 3; one review round",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "As the intact run; the snapped rail ends are tapered points, not splintered breaks."
+    },
+    {
+     "name": "SM_Fence_Gate_PR",
+     "class": "door",
+     "fbx": "SM_Fence_Gate_PR.fbx",
+     "materials": [
+      "MI_Struct_OakWeathered"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 1120,
+     "lod1_triangles": 504,
+     "lod2_triangles": 224,
+     "dimensions_m": [
+      2.482,
+      0.172,
+      1.26
+     ],
+     "bounds_min_m": [
+      0.0,
+      -0.086,
+      0.0
+     ],
+     "bounds_max_m": [
+      2.482,
+      0.086,
+      1.26
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [],
+     "supersedes": "none (new: the 4 m gateway of exterior_layout.json had no gate)",
+     "dresses": "five-bar cleft oak field gate, 2.4 m, diagonal brace, iron strap hinges and latch. Hinge pivot; hangs on SM_Fence_GatePost_PR",
+     "status": "round 3 of this kit (12 Nov 2026, after the coordinator's second review); review renders Structures/review/sb1-6; not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Stiles are straight boxes; bars are not visibly mortised; hinges are flat straps without a forged eye. Validator UV_OVERLAP by design."
+    },
+    {
+     "name": "SM_Fence_GatePost_PR",
+     "class": "prop",
+     "fbx": "SM_Fence_GatePost_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 486,
+     "lod1_triangles": 218,
+     "lod2_triangles": 96,
+     "dimensions_m": [
+      0.354,
+      0.329,
+      1.552
+     ],
+     "bounds_min_m": [
+      -0.162,
+      -0.177,
+      0.0
+     ],
+     "bounds_max_m": [
+      0.192,
+      0.152,
+      1.552
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [],
+     "supersedes": "none (new)",
+     "dresses": "heavy cleft oak gate post, 1.55 m, with two iron hinge pins and packing stones; also the latch post",
+     "status": "round 3 of this kit (12 Nov 2026, after the coordinator's second review); review renders Structures/review/sb1-6; not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Very simple (462 triangles): a tapered seven-sided post, two pins, four stones. Validator UV_OVERLAP by design."
+    },
+    {
+     "name": "SM_Well_Stone_PR",
+     "class": "prop_large",
+     "fbx": "SM_Well_Stone_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_Rope"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 20248,
+     "lod1_triangles": 9110,
+     "lod2_triangles": 4048,
+     "dimensions_m": [
+      2.7,
+      1.874,
+      6.755
+     ],
+     "bounds_min_m": [
+      -1.32,
+      -0.941,
+      -3.7
+     ],
+     "bounds_max_m": [
+      1.38,
+      0.933,
+      3.055
+     ],
+     "open_edges": 0,
+     "collision_hulls": 4,
+     "families": [
+      "well_stone",
+      "186 struct/landmark/landm- frames 1-3"
+     ],
+     "supersedes": "none in StonebrookExterior (the brief names a well, but its manifest has none); dresses class well_stone",
+     "dresses": "stone-lined well: 1.04 m shaft, four courses of individual field stones and nine capstones (wall 0.9 m high, 1.7 m across), oak posts with braces, windlass drum with iron crank and wound rope, staved bucket on the rim, shingled roof on rafters and battens",
+     "fit": {
+      "pivot": "ground centre of the shaft (the mesh goes 3.7 m below it)",
+      "size": "2.6 x 1.7 x 3.0 m above ground; the sprite card (107 x 136 px) is 2.7 x 3.4 m at 0.025 m/px",
+      "shaft": "REAL shaft: lining to -3.7 m with dark water at -3.45 m. The ground under the well needs a hole of 0.52 m radius (ground-chunk cut or landscape visibility mask); where that cannot be done, add SM_Well_ShaftCap_PR at the same pivot, which closes the shaft with an unlit black disc at ground level"
+     },
+     "status": "round 3 of this kit (12 Nov 2026, after the coordinator's second review); review renders Structures/review/sb1-6; not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Real shaft to -3.7 m with dark water at -3.45 m: needs a hole in the ground (see fit) or SM_Well_ShaftCap_PR. The water is an opaque dark glossy disc (no transparency, no ripple); it is hard to see from the game camera. Wet moss and the rope-worn capstone are vertex-colour blends, no cut grooves. Stones are displaced icospheres (320 triangles each), rounded, no tool marks. Roof shingles are the oak board scan turned down the slope. Validator: UV_OVERLAP by design; PIVOT by design (the mesh goes below the ground pivot). 20,400 triangles."
+    },
+    {
+     "name": "SM_Well_ShaftCap_PR",
+     "class": "prop",
+     "fbx": "SM_Well_ShaftCap_PR.fbx",
+     "materials": [
+      "MI_Struct_OakWeathered"
+     ],
+     "source_blend": "Stonebrook.blend",
+     "lod0_triangles": 80,
+     "lod1_triangles": 36,
+     "lod2_triangles": 16,
+     "dimensions_m": [
+      1.06,
+      1.06,
+      0.03
+     ],
+     "bounds_min_m": [
+      -0.53,
+      -0.53,
+      0.0
+     ],
+     "bounds_max_m": [
+      0.53,
+      0.53,
+      0.03
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [],
+     "supersedes": "none",
+     "dresses": "fallback for SM_Well_Stone_PR where the ground cannot be cut: an unlit black disc, 1.06 m across, at ground level inside the well wall",
+     "status": "utility piece",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "a black disc; only for places where the ground cannot be cut"
+    },
+    {
+     "name": "SM_Boulder_Field_A_PR",
+     "class": "prop",
+     "fbx": "SM_Boulder_Field_A_PR.fbx",
+     "materials": [
+      "MI_Boulder_Field_A_PR"
+     ],
+     "source_blend": "Boulders.blend",
+     "lod0_triangles": 5600,
+     "lod1_triangles": 2520,
+     "lod2_triangles": 1120,
+     "dimensions_m": [
+      1.896,
+      1.404,
+      1.151
+     ],
+     "bounds_min_m": [
+      -0.947,
+      -0.703,
+      -0.001
+     ],
+     "bounds_max_m": [
+      0.949,
+      0.701,
+      1.15
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "textures": {
+      "BC": "Textures/T_Boulder_Field_A_PR_BC.png",
+      "N": "Textures/T_Boulder_Field_A_PR_N.png",
+      "ORM": "Textures/T_Boulder_Field_A_PR_ORM.png"
+     },
+     "texture_px": 2048,
+     "status": "rebuilt in round 3 as a unique bake; two review rounds",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Unique bake from a 20k-triangle fractured source: bedding ledges are too regular (reads as a stack of beds on every side), split faces are soft-edged after decimation, lichen rosettes are small and sparse from the game camera, the soil skirt is a baked tint (no modelled soil or grass). 1.90 x 1.40 x 1.15 m: about 10 % smaller in plan than the old SM_Boulder_Fieldstone_01 (2.12 x 1.69 x 1.19 m)."
+    },
+    {
+     "name": "SM_Boulder_Field_B_PR",
+     "class": "prop",
+     "fbx": "SM_Boulder_Field_B_PR.fbx",
+     "materials": [
+      "MI_Boulder_Field_B_PR"
+     ],
+     "source_blend": "Boulders.blend",
+     "lod0_triangles": 4200,
+     "lod1_triangles": 1890,
+     "lod2_triangles": 840,
+     "dimensions_m": [
+      1.724,
+      0.975,
+      0.854
+     ],
+     "bounds_min_m": [
+      -0.863,
+      -0.487,
+      -0.0
+     ],
+     "bounds_max_m": [
+      0.861,
+      0.488,
+      0.854
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "textures": {
+      "BC": "Textures/T_Boulder_Field_B_PR_BC.png",
+      "N": "Textures/T_Boulder_Field_B_PR_N.png",
+      "ORM": "Textures/T_Boulder_Field_B_PR_ORM.png"
+     },
+     "texture_px": 1024,
+     "status": "rebuilt in round 3 as a unique bake; two review rounds",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Unique bake from a 20k-triangle fractured source: bedding ledges are too regular (reads as a stack of beds on every side), split faces are soft-edged after decimation, lichen rosettes are small and sparse from the game camera, the soil skirt is a baked tint (no modelled soil or grass). The companion stone touches the main one without a modelled contact."
+    },
+    {
+     "name": "SM_Boulder_Field_C_PR",
+     "class": "prop",
+     "fbx": "SM_Boulder_Field_C_PR.fbx",
+     "materials": [
+      "MI_Boulder_Field_C_PR"
+     ],
+     "source_blend": "Boulders.blend",
+     "lod0_triangles": 3600,
+     "lod1_triangles": 1620,
+     "lod2_triangles": 720,
+     "dimensions_m": [
+      1.188,
+      1.012,
+      0.48
+     ],
+     "bounds_min_m": [
+      -0.594,
+      -0.506,
+      -0.0
+     ],
+     "bounds_max_m": [
+      0.594,
+      0.506,
+      0.48
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "textures": {
+      "BC": "Textures/T_Boulder_Field_C_PR_BC.png",
+      "N": "Textures/T_Boulder_Field_C_PR_N.png",
+      "ORM": "Textures/T_Boulder_Field_C_PR_ORM.png"
+     },
+     "texture_px": 1024,
+     "status": "rebuilt in round 3 as a unique bake; two review rounds",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Unique bake from a 20k-triangle fractured source: bedding ledges are too regular (reads as a stack of beds on every side), split faces are soft-edged after decimation, lichen rosettes are small and sparse from the game camera, the soil skirt is a baked tint (no modelled soil or grass). Three separate stones in one mesh, 1024 px shared."
+    }
+   ]
+  },
+  "Castle": {
+   "schema": "dink-structures/1",
+   "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle",
+   "source_blend": "Castle.blend",
+   "build": "blender -b -t 4 --python ../tools/castle_build.py",
+   "fit": {
+    "general": "Class building (pieces are 9-12 m tall, over the 8 m kit range): pivot at the ground centre of the footprint, field face toward -Y. Real size, fit 'none'. A run: tower centres 14.4 m apart take one 8 m wall between them (walls run 0.6 m into each tower); wall-walk at 7.0 m (oversailing the field face by 0.3 m on corbels) continues through the tower drums only visually (no doorways are cut).",
+    "sprite_scale": "0.025 m/px: towers 193 px = 4.8 m (mesh 5.2 m), wall frames 350 px = 8.75 m (mesh 8.0 m), gatehouse 335 px = 8.4 m (mesh 8.0 m + turrets)."
+   },
+   "materials": {
+    "see": "integration",
+    "material_exception": "Kit materials on shared tiling sets with a vertex-colour layer, not private bakes; not yet rows of ART_STANDARD.md section 2 (add with the import)."
+   },
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_wall_08",
+     "used_by": "Sets/CastleAshlar",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "old_planks_02",
+     "used_by": "Sets/OakWeathered",
+     "licence": "CC0-1.0"
+    }
+   ],
+   "validator": {
+    "result": "5 assets, 4 pass, 1 error by design",
+    "errors_by_design": {
+     "PIVOT on SM_Castle_Gatehouse": "base_center wants the origin at the centre of the bounds; the pivot is the centre of the 8 x 5 m gate block so it lines up with the wall modules, and the two turrets project 1.5 m to the field side"
+    },
+    "warnings": "UV_DEGENERATE, NAME_TEXTURE, DUPLICATE_VERTS (touching blocks)"
+   },
+   "not_done": "Stair or door to the wall-walk (no frame shows one); roofs; true through-wall embrasures; a second masonry scan. Nothing imported into Unreal.",
+   "render_dir": "castle3",
+   "integration": {
+    "contract": {
+     "uv": "UV0 already carries the tiling: one UV unit is one repeat of the set (tile_size_m is the nominal size the UVs were laid out for; small blocks use up to 2x denser UVs). Sample BC, N, ORM and H at UV0; sample Macro at UV0 / 7. Do not rescale.",
+     "textures": "BC sRGB; N linear OpenGL (flip green on import); ORM linear (R ambient occlusion, G roughness, B metallic = 0); H linear 16-bit height, used 0..1; Macro linear 512 px (R large, G medium, B small variation).",
+     "vertex_colour": "FBX vertex colour set 'Grime', linear RGBA float, exported with every LOD. R = dirt and damp, G = moss / algae, B = bleaching (silvered oak, lichen, dressed stone, fresh straw), A = material switch (see below; 1 everywhere else).",
+     "graph": [
+      "base = BC * tint * (1 - macro + 2 * macro * Macro.R)",
+      "base = lerp(base, base * ORM.R, 0.5)",
+      "fd = saturate(R * (1.15 - 0.5 * H))",
+      "dirt_mode multiply: c = lerp(base, base * dirt, fd * dirt_amount);   dirt_mode mix: c = lerp(base, dirt * (3 * luminance(base) + 0.35), fd * dirt_amount)",
+      "fb = saturate(B * saturate(0.9 * H + 0.35));   c = lerp(c, pale * (2.2 * luminance(c) + 0.55), fb * pale_amount)",
+      "fm = saturate(4 * ((G + 0.5 * Macro.B) - (0.55 * H + 0.62))) * (G > 0.02);   c = lerp(c, moss * (0.9 * Macro.G + 0.55), fm)",
+      "roughness = lerp(ORM.G, moss_roughness, fm) - 0.10 * fd;   normal = N;   metallic = 0",
+      "alpha_switch materials only: A < 0.875 lead (only where alpha_lead is true): colour (0.15, 0.16, 0.17) * (0.7 * Macro.G + 0.65), roughness 0.42, flat normal;  A < 0.625 (A < 0.75 where alpha_lead is false) black iron, charred wood, burnt straw or unlit void: colour (0.016, 0.015, 0.014), roughness 0.5 + 0.42 * R (iron has R = 0, char has R = 1), normal kept;  A < 0.25 window glass: colour glass_tint, roughness 0.06, flat normal, opaque (the pane mesh is faceted so each quarry reflects differently; a dark closed box stands behind it). Values written: 1, 0.75, 0.5, 0.",
+      "alpha_soot materials only: fs = saturate((1 - A) * (0.7 * Macro.G + 1.0));  c = lerp(c, (0.012, 0.011, 0.010), fs);  roughness = lerp(roughness, 0.97, fs)"
+     ],
+     "colours": "all colours are linear RGB",
+     "fbx": "One FBX per asset beside the manifest: mesh objects <asset>_LOD0, _LOD1, _LOD2 (import as one static mesh with three LODs) and UCX_<asset>_LOD0_NN convex hulls; metres with UnitScaleFactor 100; Z up, front -Y; smoothing by edge (import normals); material slots in the order of each module's \"materials\" list. Family meshes are visual only (ART_STANDARD section 5)."
+    },
+    "materials": {
+     "MI_Struct_CastleAshlar": {
+      "dirt": [
+       0.3,
+       0.22,
+       0.12
+      ],
+      "dirt_amount": 0.92,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.04,
+       0.055,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.6,
+       0.6,
+       0.52
+      ],
+      "pale_amount": 0.5,
+      "macro": 0.22,
+      "tint": [
+       1,
+       1,
+       1
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 3.3,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_Macro.png"
+      },
+      "third_party": [
+       "rock_wall_08"
+      ],
+      "texture_set": "CastleAshlar"
+     },
+     "MI_Struct_OakWeathered": {
+      "dirt": [
+       0.22,
+       0.16,
+       0.11
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.46,
+       0.45,
+       0.42
+      ],
+      "pale_amount": 0.55,
+      "macro": 0.22,
+      "tint": [
+       0.8,
+       0.62,
+       0.47
+      ],
+      "alpha_switch": true,
+      "alpha_lead": true,
+      "alpha_soot": false,
+      "glass_tint": [
+       0.035,
+       0.05,
+       0.065
+      ],
+      "tile_size_m": 2.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+      },
+      "third_party": [
+       "old_planks_02"
+      ],
+      "texture_set": "OakWeathered"
+     }
+    },
+    "assets": {
+     "SM_Castle_Wall_8m": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Wall_8m.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_CastleAshlar",
+       "MI_Struct_OakWeathered"
+      ],
+      "lod_triangles": [
+       14072,
+       6332,
+       2814
+      ],
+      "bounds_min_m": [
+       -4.004,
+       -1.529,
+       0.0
+      ],
+      "bounds_max_m": [
+       4.011,
+       1.071,
+       9.138
+      ],
+      "collision_hulls": 2
+     },
+     "SM_Castle_Wall_Corner": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Wall_Corner.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_CastleAshlar",
+       "MI_Struct_OakWeathered"
+      ],
+      "lod_triangles": [
+       14848,
+       6680,
+       2968
+      ],
+      "bounds_min_m": [
+       -2.932,
+       -2.92,
+       0.0
+      ],
+      "bounds_max_m": [
+       2.608,
+       2.604,
+       9.146
+      ],
+      "collision_hulls": 2
+     },
+     "SM_Castle_Wall_End": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Wall_End.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_CastleAshlar",
+       "MI_Struct_OakWeathered"
+      ],
+      "lod_triangles": [
+       5124,
+       2304,
+       1024
+      ],
+      "bounds_min_m": [
+       -1.256,
+       -1.524,
+       0.0
+      ],
+      "bounds_max_m": [
+       1.309,
+       1.068,
+       9.137
+      ],
+      "collision_hulls": 2
+     },
+     "SM_Castle_Tower_Round": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Tower_Round.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_CastleAshlar",
+       "MI_Struct_OakWeathered"
+      ],
+      "lod_triangles": [
+       18504,
+       8326,
+       3700
+      ],
+      "bounds_min_m": [
+       -3.108,
+       -3.098,
+       0.0
+      ],
+      "bounds_max_m": [
+       3.088,
+       3.104,
+       12.097
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Castle_Gatehouse": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Gatehouse.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_CastleAshlar",
+       "MI_Struct_OakWeathered"
+      ],
+      "lod_triangles": [
+       35892,
+       16150,
+       7178
+      ],
+      "bounds_min_m": [
+       -5.637,
+       -4.218,
+       0.0
+      ],
+      "bounds_max_m": [
+       5.632,
+       2.67,
+       12.1
+      ],
+      "collision_hulls": 5
+     }
+    }
+   },
+   "modules": [
+    {
+     "name": "SM_Castle_Wall_8m",
+     "class": "building",
+     "fbx": "SM_Castle_Wall_8m.fbx",
+     "materials": [
+      "MI_Struct_CastleAshlar",
+      "MI_Struct_OakWeathered"
+     ],
+     "source_blend": "Castle.blend",
+     "lod0_triangles": 14072,
+     "lod1_triangles": 6332,
+     "lod2_triangles": 2814,
+     "dimensions_m": [
+      8.015,
+      2.6,
+      9.138
+     ],
+     "bounds_min_m": [
+      -4.004,
+      -1.529,
+      0.0
+     ],
+     "bounds_max_m": [
+      4.011,
+      1.071,
+      9.138
+     ],
+     "open_edges": 0,
+     "collision_hulls": 2,
+     "families": [
+      "castle_wall_diag",
+      "castle_wall_corner"
+     ],
+     "sprite_family": "67 struct/castle/castl-",
+     "sprite_frames": "frames 6, 7, 9 (350 px wall runs) and 8",
+     "supersedes": "none (family 67 had no final art)",
+     "dresses": "curtain wall, 8.0 m long, 1.8 m thick, courses about 0.55 m; wall-walk at 7.0 m oversailing the field face by 0.3 m on a corbel table, crenellated parapet to 9.2 m (four merlons, period 2.0 m, so runs tile), inner kerb, paved walk, offset plinth courses, proud and shy blocks and two rows of putlog holes on the faces, two stone water spouts",
+     "fit": {
+      "pivot": "ground centre; field face toward -Y",
+      "frames": "the 350 px frames are oblique views of a wall run: yaw 45 degrees for the diagonal frames (6, 7, 9); one module per sprite, 8.75 m of card for 8.0 m of wall, so allow a 0.75 m overlap into the towers or scale X by 1.09"
+     },
+     "status": "round 2 of this kit (after the coordinator's review): three review rounds in all (Structures/review/castle1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. Corbelled wall-walk and parapet are individual stones. No stair or door to the walk (no sprite frame of family 67 shows one). Hard line at the ground."
+    },
+    {
+     "name": "SM_Castle_Wall_Corner",
+     "class": "building",
+     "fbx": "SM_Castle_Wall_Corner.fbx",
+     "materials": [
+      "MI_Struct_CastleAshlar",
+      "MI_Struct_OakWeathered"
+     ],
+     "source_blend": "Castle.blend",
+     "lod0_triangles": 14848,
+     "lod1_triangles": 6680,
+     "lod2_triangles": 2968,
+     "dimensions_m": [
+      5.541,
+      5.525,
+      9.146
+     ],
+     "bounds_min_m": [
+      -2.932,
+      -2.92,
+      0.0
+     ],
+     "bounds_max_m": [
+      2.608,
+      2.604,
+      9.146
+     ],
+     "open_edges": 0,
+     "collision_hulls": 2,
+     "families": [
+      "castle_wall_corner"
+     ],
+     "sprite_family": "67 struct/castle/castl-",
+     "sprite_frames": "frame 8 (350x505 px)",
+     "supersedes": "none (family 67 had no final art)",
+     "dresses": "outer corner of the curtain wall: two arms 4.0 m long measured from the angle, field faces toward -X and -Y, the same corbelled parapet, plinth and putlog holes as the wall, dressed quoins up the angle",
+     "fit": {
+      "pivot": "ground centre of the L footprint; the outer angle of the two field faces is at (-2.30, -2.30) from the pivot; arms run toward +X and +Y and end square, so SM_Castle_Wall_8m butts against them"
+     },
+     "status": "new in round 2; one render",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. Two wall arms joined at a right angle with quoins: the parapets of the two arms simply meet, the corner merlon is not specially cut; the inner angle of the wall-walk has overlapping paving."
+    },
+    {
+     "name": "SM_Castle_Wall_End",
+     "class": "building",
+     "fbx": "SM_Castle_Wall_End.fbx",
+     "materials": [
+      "MI_Struct_CastleAshlar",
+      "MI_Struct_OakWeathered"
+     ],
+     "source_blend": "Castle.blend",
+     "lod0_triangles": 5124,
+     "lod1_triangles": 2304,
+     "lod2_triangles": 1024,
+     "dimensions_m": [
+      2.565,
+      2.592,
+      9.137
+     ],
+     "bounds_min_m": [
+      -1.256,
+      -1.524,
+      0.0
+     ],
+     "bounds_max_m": [
+      1.309,
+      1.068,
+      9.137
+     ],
+     "open_edges": 0,
+     "collision_hulls": 2,
+     "families": [
+      "castle_wall_end"
+     ],
+     "sprite_family": "67 struct/castle/castl-",
+     "sprite_frames": "frame 12 (100x340 px)",
+     "supersedes": "none (family 67 had no final art)",
+     "dresses": "2.5 m wall end with dressed quoins on its free (+X) end, one merlon",
+     "fit": {
+      "pivot": "ground centre; the quoined free end is at +X: yaw 180 for the other hand"
+     },
+     "status": "round 2 of this kit (after the coordinator's review): three review rounds in all (Structures/review/castle1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. One merlon only."
+    },
+    {
+     "name": "SM_Castle_Tower_Round",
+     "class": "building",
+     "fbx": "SM_Castle_Tower_Round.fbx",
+     "materials": [
+      "MI_Struct_CastleAshlar",
+      "MI_Struct_OakWeathered"
+     ],
+     "source_blend": "Castle.blend",
+     "lod0_triangles": 18504,
+     "lod1_triangles": 8326,
+     "lod2_triangles": 3700,
+     "dimensions_m": [
+      6.196,
+      6.203,
+      12.097
+     ],
+     "bounds_min_m": [
+      -3.108,
+      -3.098,
+      0.0
+     ],
+     "bounds_max_m": [
+      3.088,
+      3.104,
+      12.097
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "castle_tower_round"
+     ],
+     "sprite_family": "67 struct/castle/castl-",
+     "sprite_frames": "frames 1-4 (193 px wide)",
+     "supersedes": "none (family 67 had no final art)",
+     "dresses": "round tower, 5.2 m across (6.0 m at the battered foot), 10 m to the paved top, corbel table of three oversailing courses, ten merlons with copings to 12.1 m, six arrow loops in two tiers",
+     "fit": {
+      "pivot": "ground centre",
+      "frames": "frames 1-4 differ only in which wall stubs are drawn against the tower: one mesh serves all four; the 193 px card is 4.8 m"
+     },
+     "status": "round 2 of this kit (after the coordinator's review): three review rounds in all (Structures/review/castle1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. Parapet and corbels are straight chord blocks (faceted ring). Arrow loops now have jambs cut on the splay and a 0.25 m deep dark slot, still not a true embrasure through the wall. No door, roof or stair turret."
+    },
+    {
+     "name": "SM_Castle_Gatehouse",
+     "class": "building",
+     "fbx": "SM_Castle_Gatehouse.fbx",
+     "materials": [
+      "MI_Struct_CastleAshlar",
+      "MI_Struct_OakWeathered"
+     ],
+     "source_blend": "Castle.blend",
+     "lod0_triangles": 35892,
+     "lod1_triangles": 16150,
+     "lod2_triangles": 7178,
+     "dimensions_m": [
+      11.268,
+      6.888,
+      12.1
+     ],
+     "bounds_min_m": [
+      -5.637,
+      -4.218,
+      0.0
+     ],
+     "bounds_max_m": [
+      5.632,
+      2.67,
+      12.1
+     ],
+     "open_edges": 0,
+     "collision_hulls": 5,
+     "families": [
+      "castle_gatehouse"
+     ],
+     "sprite_family": "67 struct/castle/castl-",
+     "sprite_frames": "frame 5 (335x389 px)",
+     "supersedes": "none (family 67 had no final art)",
+     "dresses": "gatehouse 8.0 x 5.0 m, 8.5 m to its paved roof: 3.2 m round-arched passage with a barrel vault, voussoirs and jamb stones on both faces, raised iron-shod oak portcullis, carved panel and two loops over the arch, crenellated parapet all round, two round flanking turrets to 12.4 m",
+     "fit": {
+      "pivot": "ground centre; field face -Y; the passage runs along Y at x = 0, 3.2 m wide, 4.4 m to the crown, portcullis foot at 2.0 m",
+      "note": "the sprite shows a closed block with two half-round turrets and no visible gate (seen from inside the walls); this module has the arch on both faces"
+     },
+     "status": "round 2 of this kit (after the coordinator's review): three review rounds in all (Structures/review/castle1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+     "known_weaknesses": "Courses now about 0.55 m (the 1.8 m scan laid 1.83x larger and blended with a shifted copy of itself): stone grain is coarse close up and it is still one scan. Wall faces are sheets with 2 cm undulation plus scattered single blocks 1-3.5 cm proud and two rows of putlog holes (dark sockets 0.25 m deep with a lintel stone); the proud blocks do not follow the scan's joints, so close up they read as applied. No mortar-loss geometry. 36,000 triangles. Passage walls and vault are plain scan faces; no gate leaves, murder holes or portcullis grooves; the carved panel is blank. Validator PIVOT by design (pivot is the centre of the gate block, turrets project to the field side). The sprite shows a closed block: the arch is an addition."
+    }
+   ]
+  },
+  "Misc": {
+   "schema": "dink-structures/1",
+   "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc",
+   "source_blend": "Misc.blend",
+   "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python ../tools/misc_build.py",
+   "fit": {
+    "general": "Real sizes at 0.025 m/px; front -Y; pivots as each module's fit note. Bridge: lay SM_Bridge_Wood_Deck_PR every 2.5 m and stand one rail module per deck module on each edge (rope rail one side, boarded rail the other, as the sprite frames pair them)."
+   },
+   "materials": {
+    "see": "integration",
+    "material_exception": "Kit materials on shared tiling sets with the vertex-colour layer, not private bakes; new instances MI_Struct_OakDark and MI_Island_* are parameter sets of the same graph; not yet rows of ART_STANDARD.md section 2."
+   },
+   "third_party": [
+    {
+     "source": "polyhaven",
+     "asset_id": "old_planks_02",
+     "used_by": "Sets/OakWeathered",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "thatch_roof_angled",
+     "used_by": "Sets/Thatch",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "old_stone_wall",
+     "used_by": "Sets/Fieldstone",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_wall_08",
+     "used_by": "Sets/CastleAshlar",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face",
+     "used_by": "Sets/FieldBoulder",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "rock_face_04",
+     "used_by": "Sets/FieldBoulder",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "painted_plaster_wall",
+     "used_by": "Terrain/PlasterWall",
+     "licence": "CC0-1.0"
+    },
+    {
+     "source": "polyhaven",
+     "asset_id": "plastered_wall_04",
+     "used_by": "Terrain/PlasterWall",
+     "licence": "CC0-1.0"
+    }
+   ],
+   "validator": {
+    "tool": "tools/blender/dinkasset/validate.py on Misc.blend (report Misc/validation.json)",
+    "errors_by_design": {
+     "UV_OVERLAP (all but the buildings)": "tiling UVs at real texel density, no unique unwrap",
+     "PIVOT on SM_Bridge_Wood_Deck_PR, SM_Bridge_Wood_Rail_*, SM_Bridge_Stone_PR": "origin is at walking level so the pieces snap to the bank height; stringers, post feet and arches hang below it",
+     "PIVOT on SM_Island_Hut_*": "origin is the centre of the round drum; the bounds are pulled forward by the tusks and the trodden apron at the door",
+     "SLOTS_OVER on SM_Island_Hut_* (7, limit 6)": "the three wall paints are separate tiling materials",
+     "ZERO_AREA on the cottages": "slivers where the Stonebrook thatch generator clips a plane; inherited",
+     "PIVOT on SM_SignPost_Triple_PR, SM_Island_Fence_Lattice_PR": "origin is the foot of the post / the centre line of the posts; boards and packing stones make the bounds lopsided by 3-4 cm"
+    },
+    "warnings": "NAME_TEXTURE, TEXEL_DENSITY, UV_RANGE, UV_DEGENERATE (tiling), DUPLICATE_VERTS (touching blocks), TRIS_OVER_TARGET on SM_Cottage_Thatched_LShape_PR and the rope rails",
+    "result": "17 assets, 0 pass: 28 errors, all by design or inherited (12 UV_OVERLAP, 8 PIVOT, 2 SLOTS_OVER, 6 ZERO_AREA findings on the two cottages); summary in Misc/validation_summary.json"
+   },
+   "not_done": "Three-arch long stone bridge (frame 4; build stone_bridge(L=12, narches=3)); diagonal and vertical views of the lattice fence are the same mesh yawed; island spear poles (frames 13-17); log cabin family 59; nothing imported into Unreal.",
+   "render_dir": "misc3",
+   "integration": {
+    "contract": {
+     "uv": "UV0 already carries the tiling: one UV unit is one repeat of the set (tile_size_m is the nominal size the UVs were laid out for; small blocks use up to 2x denser UVs). Sample BC, N, ORM and H at UV0; sample Macro at UV0 / 7. Do not rescale.",
+     "textures": "BC sRGB; N linear OpenGL (flip green on import); ORM linear (R ambient occlusion, G roughness, B metallic = 0); H linear 16-bit height, used 0..1; Macro linear 512 px (R large, G medium, B small variation).",
+     "vertex_colour": "FBX vertex colour set 'Grime', linear RGBA float, exported with every LOD. R = dirt and damp, G = moss / algae, B = bleaching (silvered oak, lichen, dressed stone, fresh straw), A = material switch (see below; 1 everywhere else).",
+     "graph": [
+      "base = BC * tint * (1 - macro + 2 * macro * Macro.R)",
+      "base = lerp(base, base * ORM.R, 0.5)",
+      "fd = saturate(R * (1.15 - 0.5 * H))",
+      "dirt_mode multiply: c = lerp(base, base * dirt, fd * dirt_amount);   dirt_mode mix: c = lerp(base, dirt * (3 * luminance(base) + 0.35), fd * dirt_amount)",
+      "fb = saturate(B * saturate(0.9 * H + 0.35));   c = lerp(c, pale * (2.2 * luminance(c) + 0.55), fb * pale_amount)",
+      "fm = saturate(4 * ((G + 0.5 * Macro.B) - (0.55 * H + 0.62))) * (G > 0.02);   c = lerp(c, moss * (0.9 * Macro.G + 0.55), fm)",
+      "roughness = lerp(ORM.G, moss_roughness, fm) - 0.10 * fd;   normal = N;   metallic = 0",
+      "alpha_switch materials only: A < 0.875 lead (only where alpha_lead is true): colour (0.15, 0.16, 0.17) * (0.7 * Macro.G + 0.65), roughness 0.42, flat normal;  A < 0.625 (A < 0.75 where alpha_lead is false) black iron, charred wood, burnt straw or unlit void: colour (0.016, 0.015, 0.014), roughness 0.5 + 0.42 * R (iron has R = 0, char has R = 1), normal kept;  A < 0.25 window glass: colour glass_tint, roughness 0.06, flat normal, opaque (the pane mesh is faceted so each quarry reflects differently; a dark closed box stands behind it). Values written: 1, 0.75, 0.5, 0.",
+      "alpha_soot materials only: fs = saturate((1 - A) * (0.7 * Macro.G + 1.0));  c = lerp(c, (0.012, 0.011, 0.010), fs);  roughness = lerp(roughness, 0.97, fs)"
+     ],
+     "colours": "all colours are linear RGB",
+     "fbx": "One FBX per asset beside the manifest: mesh objects <asset>_LOD0, _LOD1, _LOD2 (import as one static mesh with three LODs) and UCX_<asset>_LOD0_NN convex hulls; metres with UnitScaleFactor 100; Z up, front -Y; smoothing by edge (import normals); material slots in the order of each module's \"materials\" list. Family meshes are visual only (ART_STANDARD section 5)."
+    },
+    "materials": {
+     "MI_Struct_Fieldstone": {
+      "dirt": [
+       0.36,
+       0.3,
+       0.22
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.62,
+       0.6,
+       0.52
+      ],
+      "pale_amount": 0.5,
+      "macro": 0.22,
+      "tint": [
+       1,
+       1,
+       1
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": true,
+      "tile_size_m": 2.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_Macro.png"
+      },
+      "third_party": [
+       "old_stone_wall"
+      ],
+      "texture_set": "Fieldstone"
+     },
+     "MI_Struct_Earth": {
+      "dirt": [
+       0.36,
+       0.3,
+       0.24
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.075,
+       0.02
+      ],
+      "moss_roughness": 0.9,
+      "pale": [
+       0.8,
+       0.79,
+       0.77
+      ],
+      "pale_amount": 0.85,
+      "macro": 0.22,
+      "tint": [
+       0.62,
+       0.56,
+       0.5
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": true,
+      "tile_size_m": 4.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_Macro.png"
+      },
+      "third_party": [
+       "dirt_floor",
+       "rocky_trail"
+      ],
+      "texture_set": "EarthPath"
+     },
+     "MI_Struct_Thatch": {
+      "dirt": [
+       0.105,
+       0.095,
+       0.08
+      ],
+      "dirt_amount": 0.95,
+      "dirt_mode": "mix",
+      "moss": [
+       0.05,
+       0.062,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.8,
+       0.63,
+       0.33
+      ],
+      "pale_amount": 0.6,
+      "macro": 0.22,
+      "tint": [
+       1,
+       1,
+       1
+      ],
+      "alpha_switch": true,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "glass_tint": [
+       0.035,
+       0.05,
+       0.065
+      ],
+      "tile_size_m": 1.08,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+      },
+      "third_party": [
+       "thatch_roof_angled"
+      ],
+      "texture_set": "Thatch"
+     },
+     "MI_Struct_OakWeathered": {
+      "dirt": [
+       0.22,
+       0.16,
+       0.11
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.46,
+       0.45,
+       0.42
+      ],
+      "pale_amount": 0.55,
+      "macro": 0.22,
+      "tint": [
+       0.8,
+       0.62,
+       0.47
+      ],
+      "alpha_switch": true,
+      "alpha_lead": true,
+      "alpha_soot": false,
+      "glass_tint": [
+       0.035,
+       0.05,
+       0.065
+      ],
+      "tile_size_m": 2.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+      },
+      "third_party": [
+       "old_planks_02"
+      ],
+      "texture_set": "OakWeathered"
+     },
+     "MI_Struct_Rope": {
+      "dirt": [
+       0.5,
+       0.45,
+       0.38
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.7,
+       0.62,
+       0.45
+      ],
+      "pale_amount": 0.4,
+      "macro": 0.22,
+      "tint": [
+       0.9,
+       0.85,
+       0.8
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 1.08,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+      },
+      "third_party": [
+       "thatch_roof_angled"
+      ],
+      "texture_set": "Thatch"
+     },
+     "MI_Struct_FieldBoulder": {
+      "dirt": [
+       0.34,
+       0.27,
+       0.18
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.06,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.66,
+       0.66,
+       0.58
+      ],
+      "pale_amount": 0.5,
+      "macro": 0.22,
+      "tint": [
+       1,
+       1,
+       1
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 2.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_Macro.png"
+      },
+      "third_party": [
+       "rock_face",
+       "rock_face_04"
+      ],
+      "texture_set": "FieldBoulder"
+     },
+     "MI_Struct_CastleAshlar": {
+      "dirt": [
+       0.3,
+       0.22,
+       0.12
+      ],
+      "dirt_amount": 0.92,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.04,
+       0.055,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.6,
+       0.6,
+       0.52
+      ],
+      "pale_amount": 0.5,
+      "macro": 0.22,
+      "tint": [
+       1,
+       1,
+       1
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 3.3,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_Macro.png"
+      },
+      "third_party": [
+       "rock_wall_08"
+      ],
+      "texture_set": "CastleAshlar"
+     },
+     "MI_Island_Bamboo": {
+      "dirt": [
+       0.3,
+       0.26,
+       0.14
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.74,
+       0.7,
+       0.5
+      ],
+      "pale_amount": 0.7,
+      "macro": 0.3,
+      "tint": [
+       1.0,
+       0.92,
+       0.6
+      ],
+      "alpha_switch": true,
+      "alpha_lead": true,
+      "alpha_soot": false,
+      "glass_tint": [
+       0.035,
+       0.05,
+       0.065
+      ],
+      "tile_size_m": 2.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+      },
+      "third_party": [
+       "old_planks_02"
+      ],
+      "texture_set": "OakWeathered"
+     },
+     "MI_Island_PalmThatch": {
+      "dirt": [
+       0.12,
+       0.085,
+       0.06
+      ],
+      "dirt_amount": 0.9,
+      "dirt_mode": "mix",
+      "moss": [
+       0.06,
+       0.075,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.85,
+       0.6,
+       0.3
+      ],
+      "pale_amount": 0.5,
+      "macro": 0.22,
+      "tint": [
+       1.0,
+       0.78,
+       0.6
+      ],
+      "alpha_switch": true,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "glass_tint": [
+       0.035,
+       0.05,
+       0.065
+      ],
+      "tile_size_m": 1.08,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+      },
+      "third_party": [
+       "thatch_roof_angled"
+      ],
+      "texture_set": "Thatch"
+     },
+     "MI_Island_DaubBlue": {
+      "dirt": [
+       0.3,
+       0.24,
+       0.16
+      ],
+      "dirt_amount": 0.95,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.8,
+       0.78,
+       0.72
+      ],
+      "pale_amount": 0.35,
+      "macro": 0.22,
+      "tint": [
+       0.2,
+       0.33,
+       0.85
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 2.5,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_Macro.png"
+      },
+      "third_party": [
+       "painted_plaster_wall",
+       "plastered_wall_04"
+      ],
+      "texture_set": "PlasterWall"
+     },
+     "MI_Island_DaubOlive": {
+      "dirt": [
+       0.3,
+       0.24,
+       0.16
+      ],
+      "dirt_amount": 0.95,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.8,
+       0.78,
+       0.72
+      ],
+      "pale_amount": 0.35,
+      "macro": 0.22,
+      "tint": [
+       0.3,
+       0.33,
+       0.13
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 2.5,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_Macro.png"
+      },
+      "third_party": [
+       "painted_plaster_wall",
+       "plastered_wall_04"
+      ],
+      "texture_set": "PlasterWall"
+     },
+     "MI_Island_DaubOxblood": {
+      "dirt": [
+       0.3,
+       0.24,
+       0.16
+      ],
+      "dirt_amount": 0.95,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.8,
+       0.78,
+       0.72
+      ],
+      "pale_amount": 0.35,
+      "macro": 0.22,
+      "tint": [
+       0.42,
+       0.12,
+       0.06
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 2.5,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_Macro.png"
+      },
+      "third_party": [
+       "painted_plaster_wall",
+       "plastered_wall_04"
+      ],
+      "texture_set": "PlasterWall"
+     },
+     "MI_Island_Bone": {
+      "dirt": [
+       0.36,
+       0.33,
+       0.26
+      ],
+      "dirt_amount": 0.9,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.05,
+       0.07,
+       0.03
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.9,
+       0.9,
+       0.86
+      ],
+      "pale_amount": 0.5,
+      "macro": 0.22,
+      "tint": [
+       0.86,
+       0.9,
+       1.0
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 2.5,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_Macro.png"
+      },
+      "third_party": [
+       "painted_plaster_wall",
+       "plastered_wall_04"
+      ],
+      "texture_set": "PlasterWall"
+     },
+     "MI_Island_RedCloth": {
+      "dirt": [
+       0.3,
+       0.2,
+       0.16
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.8,
+       0.4,
+       0.3
+      ],
+      "pale_amount": 0.4,
+      "macro": 0.22,
+      "tint": [
+       0.85,
+       0.12,
+       0.08
+      ],
+      "alpha_switch": false,
+      "alpha_lead": false,
+      "alpha_soot": false,
+      "tile_size_m": 1.08,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+      },
+      "third_party": [
+       "thatch_roof_angled"
+      ],
+      "texture_set": "Thatch"
+     },
+     "MI_Struct_OakDark": {
+      "dirt": [
+       0.2,
+       0.14,
+       0.1
+      ],
+      "dirt_amount": 0.85,
+      "dirt_mode": "multiply",
+      "moss": [
+       0.045,
+       0.058,
+       0.02
+      ],
+      "moss_roughness": 0.95,
+      "pale": [
+       0.5,
+       0.47,
+       0.42
+      ],
+      "pale_amount": 0.5,
+      "macro": 0.22,
+      "tint": [
+       0.6,
+       0.36,
+       0.23
+      ],
+      "alpha_switch": true,
+      "alpha_lead": true,
+      "alpha_soot": false,
+      "glass_tint": [
+       0.035,
+       0.05,
+       0.065
+      ],
+      "tile_size_m": 2.0,
+      "files": {
+       "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+       "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+       "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+       "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+       "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+      },
+      "third_party": [
+       "old_planks_02"
+      ],
+      "texture_set": "OakWeathered"
+     }
+    },
+    "assets": {
+     "SM_Bridge_Wood_Deck_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Bridge_Wood_Deck_PR.fbx",
+      "class": "kit_piece",
+      "material_slots": [
+       "MI_Struct_OakDark"
+      ],
+      "lod_triangles": [
+       2376,
+       1068,
+       474
+      ],
+      "bounds_min_m": [
+       -1.252,
+       -0.875,
+       -0.211
+      ],
+      "bounds_max_m": [
+       1.255,
+       0.886,
+       0.067
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Bridge_Wood_Rail_Rope_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Bridge_Wood_Rail_Rope_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Struct_OakDark",
+       "MI_Struct_Rope"
+      ],
+      "lod_triangles": [
+       3646,
+       1640,
+       728
+      ],
+      "bounds_min_m": [
+       -1.253,
+       -0.099,
+       -0.3
+      ],
+      "bounds_max_m": [
+       1.253,
+       0.087,
+       1.281
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Bridge_Wood_Rail_Plank_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Bridge_Wood_Rail_Plank_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Struct_OakDark",
+       "MI_Struct_Rope"
+      ],
+      "lod_triangles": [
+       5890,
+       2650,
+       1178
+      ],
+      "bounds_min_m": [
+       -1.255,
+       -0.117,
+       -0.3
+      ],
+      "bounds_max_m": [
+       1.253,
+       0.147,
+       1.28
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Bridge_Stone_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Bridge_Stone_PR.fbx",
+      "class": "prop_large",
+      "material_slots": [
+       "MI_Struct_CastleAshlar",
+       "MI_Struct_FieldBoulder"
+      ],
+      "lod_triangles": [
+       11420,
+       5138,
+       2284
+      ],
+      "bounds_min_m": [
+       -4.013,
+       -2.319,
+       -2.5
+      ],
+      "bounds_max_m": [
+       4.011,
+       2.305,
+       0.531
+      ],
+      "collision_hulls": 3
+     },
+     "SM_Door_Wood_Single_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Door_Wood_Single_PR.fbx",
+      "class": "door",
+      "material_slots": [
+       "MI_Struct_OakDark"
+      ],
+      "lod_triangles": [
+       1922,
+       864,
+       384
+      ],
+      "bounds_min_m": [
+       0.0,
+       -0.056,
+       0.0
+      ],
+      "bounds_max_m": [
+       0.978,
+       0.056,
+       2.012
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Door_Wood_Wide_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Door_Wood_Wide_PR.fbx",
+      "class": "door",
+      "material_slots": [
+       "MI_Struct_OakDark"
+      ],
+      "lod_triangles": [
+       2502,
+       1124,
+       500
+      ],
+      "bounds_min_m": [
+       0.0,
+       -0.061,
+       0.0
+      ],
+      "bounds_max_m": [
+       1.527,
+       0.056,
+       2.093
+      ],
+      "collision_hulls": 1
+     },
+     "SM_SignPost_Single_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_SignPost_Single_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakDark"
+      ],
+      "lod_triangles": [
+       896,
+       402,
+       178
+      ],
+      "bounds_min_m": [
+       -0.508,
+       -0.184,
+       0.0
+      ],
+      "bounds_max_m": [
+       0.564,
+       0.124,
+       2.35
+      ],
+      "collision_hulls": 1
+     },
+     "SM_SignPost_Double_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_SignPost_Double_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakDark"
+      ],
+      "lod_triangles": [
+       1316,
+       592,
+       262
+      ],
+      "bounds_min_m": [
+       -0.513,
+       -0.165,
+       0.0
+      ],
+      "bounds_max_m": [
+       0.549,
+       0.162,
+       2.349
+      ],
+      "collision_hulls": 1
+     },
+     "SM_SignPost_Triple_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_SignPost_Triple_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakDark"
+      ],
+      "lod_triangles": [
+       1456,
+       654,
+       290
+      ],
+      "bounds_min_m": [
+       -0.672,
+       -0.179,
+       0.0
+      ],
+      "bounds_max_m": [
+       0.737,
+       0.111,
+       2.35
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Chimney_Stone_Short_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Chimney_Stone_Short_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_FieldBoulder"
+      ],
+      "lod_triangles": [
+       864,
+       388,
+       172
+      ],
+      "bounds_min_m": [
+       -0.552,
+       -0.474,
+       -0.003
+      ],
+      "bounds_max_m": [
+       0.549,
+       0.477,
+       1.45
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Chimney_Stone_Tall_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Chimney_Stone_Tall_PR.fbx",
+      "class": "prop_large",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_FieldBoulder"
+      ],
+      "lod_triangles": [
+       3328,
+       1496,
+       664
+      ],
+      "bounds_min_m": [
+       -0.684,
+       -0.41,
+       0.0
+      ],
+      "bounds_max_m": [
+       0.679,
+       0.404,
+       4.735
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Cottage_Thatched_TwoStorey_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Cottage_Thatched_TwoStorey_PR.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_Thatch",
+       "MI_Struct_Earth"
+      ],
+      "lod_triangles": [
+       40126,
+       18056,
+       8024
+      ],
+      "bounds_min_m": [
+       -4.15,
+       -3.888,
+       0.0
+      ],
+      "bounds_max_m": [
+       4.1,
+       3.8,
+       9.22
+      ],
+      "collision_hulls": 5
+     },
+     "SM_Cottage_Thatched_LShape_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Cottage_Thatched_LShape_PR.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Struct_OakWeathered",
+       "MI_Struct_Thatch",
+       "MI_Struct_Earth"
+      ],
+      "lod_triangles": [
+       63110,
+       28398,
+       12622
+      ],
+      "bounds_min_m": [
+       -5.3,
+       -6.2,
+       0.0
+      ],
+      "bounds_max_m": [
+       5.3,
+       5.2,
+       9.215
+      ],
+      "collision_hulls": 8
+     },
+     "SM_Island_Hut_Round_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Island_Hut_Round_PR.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Island_DaubBlue",
+       "MI_Struct_OakWeathered",
+       "MI_Island_PalmThatch",
+       "MI_Island_DaubOlive",
+       "MI_Island_DaubOxblood",
+       "MI_Island_Bone",
+       "MI_Struct_Earth"
+      ],
+      "lod_triangles": [
+       15684,
+       7056,
+       3136
+      ],
+      "bounds_min_m": [
+       -3.118,
+       -4.547,
+       -0.068
+      ],
+      "bounds_max_m": [
+       3.301,
+       3.181,
+       4.602
+      ],
+      "collision_hulls": 2
+     },
+     "SM_Island_Hut_TwoStorey_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Island_Hut_TwoStorey_PR.fbx",
+      "class": "building",
+      "material_slots": [
+       "MI_Island_DaubBlue",
+       "MI_Struct_OakWeathered",
+       "MI_Island_PalmThatch",
+       "MI_Island_DaubOlive",
+       "MI_Island_DaubOxblood",
+       "MI_Island_Bone",
+       "MI_Struct_Earth"
+      ],
+      "lod_triangles": [
+       29720,
+       13374,
+       5944
+      ],
+      "bounds_min_m": [
+       -3.508,
+       -4.947,
+       -0.068
+      ],
+      "bounds_max_m": [
+       3.701,
+       3.58,
+       6.852
+      ],
+      "collision_hulls": 2
+     },
+     "SM_Island_Fence_Lattice_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Island_Fence_Lattice_PR.fbx",
+      "class": "prop_large",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Island_Bamboo",
+       "MI_Struct_Rope"
+      ],
+      "lod_triangles": [
+       11040,
+       4968,
+       2208
+      ],
+      "bounds_min_m": [
+       -2.405,
+       -0.242,
+       0.0
+      ],
+      "bounds_max_m": [
+       2.36,
+       0.159,
+       1.784
+      ],
+      "collision_hulls": 1
+     },
+     "SM_Island_TorchPole_PR": {
+      "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Island_TorchPole_PR.fbx",
+      "class": "prop",
+      "material_slots": [
+       "MI_Struct_Fieldstone",
+       "MI_Island_Bamboo",
+       "MI_Island_RedCloth"
+      ],
+      "lod_triangles": [
+       1258,
+       566,
+       250
+      ],
+      "bounds_min_m": [
+       -0.238,
+       -0.135,
+       0.0
+      ],
+      "bounds_max_m": [
+       0.185,
+       0.2,
+       2.592
+      ],
+      "collision_hulls": 1
+     }
+    }
+   },
+   "modules": [
+    {
+     "name": "SM_Bridge_Wood_Deck_PR",
+     "class": "kit_piece",
+     "fbx": "SM_Bridge_Wood_Deck_PR.fbx",
+     "materials": [
+      "MI_Struct_OakDark"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 2376,
+     "lod1_triangles": 1068,
+     "lod2_triangles": 474,
+     "dimensions_m": [
+      2.508,
+      1.762,
+      0.279
+     ],
+     "bounds_min_m": [
+      -1.252,
+      -0.875,
+      -0.211
+     ],
+     "bounds_max_m": [
+      1.255,
+      0.886,
+      0.067
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "58 struct/bridge/brdge- frames 1-3, 5",
+      "bridge_wood_deck"
+     ],
+     "supersedes": "none (family 58 was placeholder)",
+     "dresses": "2.5 m length of plank bridge deck, 1.7 m wide: thirteen riven cross planks of uneven width and thickness, one broken short, spiked with forged nails to two round stringers",
+     "fit": {
+      "pivot": "centre of the deck at walking level: plank tops are at z = +0.04 to +0.06 m, the stringers hang to z = -0.2 m (over water or a ditch they show; on a bank they are buried)",
+      "run": "along X; butt modules end to end every 2.5 m; yaw for the n-s and diagonal frames",
+      "sprite_scale": "frames 1-3 are 65 px (1.6 m) wide"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Planks read as real riven boards (OakWeathered scan, per-board grain); faults: plank ends are square-sawn, the broken plank is simply shorter, spike heads are small dark discs, stringers are plain round poles without bark or lashings; no moss or wet staining specific to a river."
+    },
+    {
+     "name": "SM_Bridge_Wood_Rail_Rope_PR",
+     "class": "prop",
+     "fbx": "SM_Bridge_Wood_Rail_Rope_PR.fbx",
+     "materials": [
+      "MI_Struct_OakDark",
+      "MI_Struct_Rope"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 3646,
+     "lod1_triangles": 1640,
+     "lod2_triangles": 728,
+     "dimensions_m": [
+      2.506,
+      0.186,
+      1.581
+     ],
+     "bounds_min_m": [
+      -1.253,
+      -0.099,
+      -0.3
+     ],
+     "bounds_max_m": [
+      1.253,
+      0.087,
+      1.281
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "58 struct/bridge/brdge- frames 4, 7, 9, 11",
+      "bridge_wood_rail_rope"
+     ],
+     "supersedes": "none",
+     "dresses": "2.5 m of rope hand rail: one cleft post 1.28 m with two foot struts, a three-strand rope swagged over its head and hitched, hanging to 0.82 m at both module ends",
+     "fit": {
+      "pivot": "foot of the post at deck level; the rope ends at x = -1.25 and +1.25 at z = 0.82 with a level tangent, so consecutive modules join in mid-span",
+      "place": "stand it on the deck edge, y = +-0.8 m from the deck centre line"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Rope is a 12-sided twisted three-lobe sweep: reads as laid rope at gameplay distance, shows facets and a straw-coloured thatch scan at 1 m; the hitch on the post is a stack of round turns; struts are plain poles. 3,300 triangles for one post and 2.5 m of rope."
+    },
+    {
+     "name": "SM_Bridge_Wood_Rail_Plank_PR",
+     "class": "prop",
+     "fbx": "SM_Bridge_Wood_Rail_Plank_PR.fbx",
+     "materials": [
+      "MI_Struct_OakDark",
+      "MI_Struct_Rope"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 5890,
+     "lod1_triangles": 2650,
+     "lod2_triangles": 1178,
+     "dimensions_m": [
+      2.508,
+      0.264,
+      1.58
+     ],
+     "bounds_min_m": [
+      -1.255,
+      -0.117,
+      -0.3
+     ],
+     "bounds_max_m": [
+      1.253,
+      0.147,
+      1.28
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "58 struct/bridge/brdge- frames 6, 8, 10",
+      "bridge_wood_rail_plank"
+     ],
+     "supersedes": "none",
+     "dresses": "the boarded side of the bridge: fourteen upright boards hung on two ledger poles from below deck level to 0.76 m, with the same post and rope rail above",
+     "fit": {
+      "pivot": "as SM_Bridge_Wood_Rail_Rope_PR; the boards hang on the +Y side of the post line (outside the deck)"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "As the rope rail; the hung boards are convincing wood but all end square, top and bottom, and their nails are dots."
+    },
+    {
+     "name": "SM_Bridge_Stone_PR",
+     "class": "prop_large",
+     "fbx": "SM_Bridge_Stone_PR.fbx",
+     "materials": [
+      "MI_Struct_CastleAshlar",
+      "MI_Struct_FieldBoulder"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 11420,
+     "lod1_triangles": 5138,
+     "lod2_triangles": 2284,
+     "dimensions_m": [
+      8.023,
+      4.624,
+      3.031
+     ],
+     "bounds_min_m": [
+      -4.013,
+      -2.319,
+      -2.5
+     ],
+     "bounds_max_m": [
+      4.011,
+      2.305,
+      0.531
+     ],
+     "open_edges": 0,
+     "collision_hulls": 3,
+     "families": [
+      "186 struct/landmark/landm- frames 4-6",
+      "bridge_stone"
+     ],
+     "supersedes": "none (bridge_stone was placeholder)",
+     "dresses": "two-arch stone river bridge, 8.0 x 4.4 m: battered spandrel walls, rings of thirteen cut voussoirs with a deeper keystone, a projecting string course, kerb stones carrying square merlons (the toothed edge of the sprite; one fallen onto the deck), a roadway of some fifty individually laid flags, mossed between the wheel lines",
+     "fit": {
+      "pivot": "centre of the roadway at walking level (flag tops at z = 0 to -0.03); the structure goes down to z = -2.5 m: set it across a river bed about 2 m below the banks, or sink the lower part in water",
+      "run": "along X; roadway 3.6 m between kerbs",
+      "frames": "frame 4 (437 px) is the long three-arch view, frames 5-6 the short one; this is one mesh of two arches; build stone_bridge(L=12, narches=3) for a three-arch variant"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Reads as an old bridge from the gameplay camera. Faults: spandrel faces are a rubble scan on a sheet with applied voussoirs and string course (joints do not follow the scan); deck flags all carry the same FieldBoulder scan so their white veins repeat; no cutwaters, no parapet coping beyond the merlons, soffit is plain; moss is vertex colour. Hard line where it meets the ground (it is meant to stand in a river bed)."
+    },
+    {
+     "name": "SM_Door_Wood_Single_PR",
+     "class": "door",
+     "fbx": "SM_Door_Wood_Single_PR.fbx",
+     "materials": [
+      "MI_Struct_OakDark"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 1922,
+     "lod1_triangles": 864,
+     "lod2_triangles": 384,
+     "dimensions_m": [
+      0.978,
+      0.112,
+      2.012
+     ],
+     "bounds_min_m": [
+      0.0,
+      -0.056,
+      0.0
+     ],
+     "bounds_max_m": [
+      0.978,
+      0.056,
+      2.012
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "61 struct/details/door/odor1-",
+      "door_wood_single"
+     ],
+     "supersedes": "none (family 61 was placeholder)",
+     "dresses": "ledged-and-braced plank door, 0.95 x 2.02 m: six boards of uneven width, three chamfered ledges and two braces on the back, two forged strap hinges with spear ends and rose-head nails, clenched nail rows, ring latch on a back plate",
+     "fit": {
+      "pivot": "hinge: board edge on x = 0, centred through the 4 cm thickness, floor level; closed leaf along +X, face to -Y; the sprite frames 1-6 are the leaf swinging, so animate yaw",
+      "sprite_scale": "the sprite leaf is 64 px (1.6 m) tall: the 3D door is life size, as the town and cottage doors"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Last review found a believable ledged door at 1 m. Faults: boards square-ended and evenly weathered, no kick wear or rot at the foot beyond a vertex-colour darkening; ironwork is the black alpha-switch iron (flat colour, no forge texture); the draw bar and ledges are plain planed timber."
+    },
+    {
+     "name": "SM_Door_Wood_Wide_PR",
+     "class": "door",
+     "fbx": "SM_Door_Wood_Wide_PR.fbx",
+     "materials": [
+      "MI_Struct_OakDark"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 2502,
+     "lod1_triangles": 1124,
+     "lod2_triangles": 500,
+     "dimensions_m": [
+      1.527,
+      0.117,
+      2.093
+     ],
+     "bounds_min_m": [
+      0.0,
+      -0.061,
+      0.0
+     ],
+     "bounds_max_m": [
+      1.527,
+      0.056,
+      2.093
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "62 struct/details/door/odor2-",
+      "door_wood_wide"
+     ],
+     "supersedes": "none (family 62 was placeholder)",
+     "dresses": "wide ledged-and-braced door, 1.5 x 2.1 m: the same construction with three long strap hinges, a box lock and a draw bar in two staples",
+     "fit": {
+      "pivot": "hinge, as SM_Door_Wood_Single_PR"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "As the single door."
+    },
+    {
+     "name": "SM_SignPost_Single_PR",
+     "class": "prop",
+     "fbx": "SM_SignPost_Single_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakDark"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 896,
+     "lod1_triangles": 402,
+     "lod2_triangles": 178,
+     "dimensions_m": [
+      1.071,
+      0.309,
+      2.35
+     ],
+     "bounds_min_m": [
+      -0.508,
+      -0.184,
+      0.0
+     ],
+     "bounds_max_m": [
+      0.564,
+      0.124,
+      2.35
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "186 struct/landmark/landm- frame 7",
+      "sign_post"
+     ],
+     "supersedes": "none (sign_post was placeholder)",
+     "dresses": "road sign: hewn oak post 2.3 m with a lead cap and packing stones, 1 board(s) each of riven planks of unequal length nailed across it",
+     "fit": {
+      "pivot": "foot of the post, boards face -Y",
+      "text": "the boards carry no lettering (the game shows the sign text in a dialogue box)"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Boards are riven planks with slanted broken ends; no lettering or carving at all (the game shows the text), so the boards are blank; small dark slivers at some board ends where the end cut folds; post is a clean chamfered timber."
+    },
+    {
+     "name": "SM_SignPost_Double_PR",
+     "class": "prop",
+     "fbx": "SM_SignPost_Double_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakDark"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 1316,
+     "lod1_triangles": 592,
+     "lod2_triangles": 262,
+     "dimensions_m": [
+      1.062,
+      0.327,
+      2.349
+     ],
+     "bounds_min_m": [
+      -0.513,
+      -0.165,
+      0.0
+     ],
+     "bounds_max_m": [
+      0.549,
+      0.162,
+      2.349
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "186 struct/landmark/landm- frame 8",
+      "sign_post"
+     ],
+     "supersedes": "none (sign_post was placeholder)",
+     "dresses": "road sign: hewn oak post 2.3 m with a lead cap and packing stones, 2 board(s) each of riven planks of unequal length nailed across it",
+     "fit": {
+      "pivot": "foot of the post, boards face -Y",
+      "text": "the boards carry no lettering (the game shows the sign text in a dialogue box)"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "As the single sign."
+    },
+    {
+     "name": "SM_SignPost_Triple_PR",
+     "class": "prop",
+     "fbx": "SM_SignPost_Triple_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakDark"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 1456,
+     "lod1_triangles": 654,
+     "lod2_triangles": 290,
+     "dimensions_m": [
+      1.409,
+      0.29,
+      2.35
+     ],
+     "bounds_min_m": [
+      -0.672,
+      -0.179,
+      0.0
+     ],
+     "bounds_max_m": [
+      0.737,
+      0.111,
+      2.35
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "186 struct/landmark/landm- frames 9, 10",
+      "sign_post"
+     ],
+     "supersedes": "none (sign_post was placeholder)",
+     "dresses": "road sign: hewn oak post 2.3 m with a lead cap and packing stones, 3 board(s) each of riven planks of unequal length nailed across it",
+     "fit": {
+      "pivot": "foot of the post, boards face -Y",
+      "text": "the boards carry no lettering (the game shows the sign text in a dialogue box)"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "As the single sign; the pointing boards are only 10 cm longer in the middle plank, not cut to arrows as the sprite suggests."
+    },
+    {
+     "name": "SM_Chimney_Stone_Short_PR",
+     "class": "prop",
+     "fbx": "SM_Chimney_Stone_Short_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_FieldBoulder"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 864,
+     "lod1_triangles": 388,
+     "lod2_triangles": 172,
+     "dimensions_m": [
+      1.102,
+      0.951,
+      1.453
+     ],
+     "bounds_min_m": [
+      -0.552,
+      -0.474,
+      -0.003
+     ],
+     "bounds_max_m": [
+      0.549,
+      0.477,
+      1.45
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "63 struct/home/home- frames 11, 12",
+      "chimney_stone"
+     ],
+     "supersedes": "none",
+     "dresses": "fieldstone chimney top to stand on a thatched roof: 0.95 x 0.8 m stack of individually set blocks, 1.43 m, oversailing cap course, sooted flue",
+     "fit": {
+      "pivot": "centre of the base: sink it 0.3-0.5 m into the thatch at the ridge"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Individually set FieldBoulder blocks over a mortared core read as real masonry; the soot at the top is only a dirt darkening; flue is a black box."
+    },
+    {
+     "name": "SM_Chimney_Stone_Tall_PR",
+     "class": "prop_large",
+     "fbx": "SM_Chimney_Stone_Tall_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_FieldBoulder"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 3328,
+     "lod1_triangles": 1496,
+     "lod2_triangles": 664,
+     "dimensions_m": [
+      1.363,
+      0.814,
+      4.735
+     ],
+     "bounds_min_m": [
+      -0.684,
+      -0.41,
+      0.0
+     ],
+     "bounds_max_m": [
+      0.679,
+      0.404,
+      4.735
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "63 struct/home/home- frame 13",
+      "chimney_stone"
+     ],
+     "supersedes": "none",
+     "dresses": "gable-end chimney from the ground: 1.3 m breast, two weathered offsets, 0.82 m flue, 4.73 m (sprite 187 px = 4.7 m)",
+     "fit": {
+      "pivot": "centre of the base at ground level; stand it against an end wall"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "As the short stack; the two offsets are single tilted stones each side, crude; greyer than the buff fieldstone of the cottages it stands against."
+    },
+    {
+     "name": "SM_Cottage_Thatched_TwoStorey_PR",
+     "class": "building",
+     "fbx": "SM_Cottage_Thatched_TwoStorey_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_Thatch",
+      "MI_Struct_Earth"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 40126,
+     "lod1_triangles": 18056,
+     "lod2_triangles": 8024,
+     "dimensions_m": [
+      8.25,
+      7.688,
+      9.22
+     ],
+     "bounds_min_m": [
+      -4.15,
+      -3.888,
+      0.0
+     ],
+     "bounds_max_m": [
+      4.1,
+      3.8,
+      9.22
+     ],
+     "open_edges": 0,
+     "collision_hulls": 5,
+     "families": [
+      "63 struct/home/home- frames 4, 5",
+      "cottage_thatched_two_storey"
+     ],
+     "supersedes": "none (not built in round 1)",
+     "dresses": "two-storey fieldstone cottage as sprite 63 frames 4-5: 6.6 x 6.0 m lower storey with quoins, footing stones and two shuttered windows under a thatched pentice roof on all four sides; a 4.9 x 4.3 m upper storey rises through it under its own hipped thatch with block ridge and chimney",
+     "fit": {
+      "pivot": "ground centre of the lower wall rectangle; front -Y",
+      "footprint": "lower walls 6.6 x 6.0 m, eaves 7.6 x 7.0 m; ridge 8.3 m, chimney top 9.2 m",
+      "door": "no doorway is cut: stand SM_Cottage_Door_PR where the door sprite is, as for the other family-63 cottages"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Built from the Stonebrook cottage generator, so it shares that kit's faults (quoins and footing stones carry the rubble scan, thatch courses read as stacked plates from below, 0.54 m thatch scan period). New faults: the upper storey is a blank box with no window; the pentice thatch dies into the upper wall in a hard line with no flashing or mortar fillet; inside the pentice the lower cottage's hidden chimney and hip rolls are still there (wasted triangles); zero-area faces from the clipped thatch planes."
+    },
+    {
+     "name": "SM_Cottage_Thatched_LShape_PR",
+     "class": "building",
+     "fbx": "SM_Cottage_Thatched_LShape_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Struct_OakWeathered",
+      "MI_Struct_Thatch",
+      "MI_Struct_Earth"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 63110,
+     "lod1_triangles": 28398,
+     "lod2_triangles": 12622,
+     "dimensions_m": [
+      10.6,
+      11.4,
+      9.215
+     ],
+     "bounds_min_m": [
+      -5.3,
+      -6.2,
+      0.0
+     ],
+     "bounds_max_m": [
+      5.3,
+      5.2,
+      9.215
+     ],
+     "open_edges": 0,
+     "collision_hulls": 8,
+     "families": [
+      "63 struct/home/home- frame 10",
+      "cottage_thatched_l_shape"
+     ],
+     "supersedes": "none (not built in round 1)",
+     "dresses": "L-shaped cottage as sprite 63 frame 10: the two-storey block with a single-storey hipped wing (4.4 x 5.6 m) thrown forward from its right half",
+     "fit": {
+      "pivot": "ground; the two-storey block is centred at (-1.2, +1.4), the wing at (+2.3, -2.6), front -Y",
+      "footprint": "about 9.3 x 11.2 m over the eaves"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "As the two-storey cottage; the wing simply intersects the main block (thatch through thatch, wall through wall) with no valley; 63,000 triangles (soft target 60,000)."
+    },
+    {
+     "name": "SM_Island_Hut_Round_PR",
+     "class": "building",
+     "fbx": "SM_Island_Hut_Round_PR.fbx",
+     "materials": [
+      "MI_Island_DaubBlue",
+      "MI_Struct_OakWeathered",
+      "MI_Island_PalmThatch",
+      "MI_Island_DaubOlive",
+      "MI_Island_DaubOxblood",
+      "MI_Island_Bone",
+      "MI_Struct_Earth"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 15684,
+     "lod1_triangles": 7056,
+     "lod2_triangles": 3136,
+     "dimensions_m": [
+      6.419,
+      7.728,
+      4.67
+     ],
+     "bounds_min_m": [
+      -3.118,
+      -4.547,
+      -0.068
+     ],
+     "bounds_max_m": [
+      3.301,
+      3.181,
+      4.602
+     ],
+     "open_edges": 0,
+     "collision_hulls": 2,
+     "families": [
+      "424 struct/island/isle- frames 1-3",
+      "island_hut_round"
+     ],
+     "supersedes": "none (family 424 was placeholder)",
+     "dresses": "round island hut, 5.2 m across the wall, 6.4 m across the eaves, 4.6 m to the finial: bulging daub wall limewashed blue below a stepped border, olive above, with ox-blood panels (separate material slots, so the colours are paint, not tint); nine weathered whale-rib buttresses; doorway with ox-blood jambs inlaid with shell lozenges under two crossed tusks; domed conical thatch in twelve sectors with a ragged fringe, cane ties, three cane hoops and a whipped finial",
+     "fit": {
+      "pivot": "ground centre; doorway faces -Y (frames 1-3 are the same hut turned: yaw it)",
+      "door": "opening 1.08 m wide, 1.7 m high at y = -2.50; a dark closed box stands behind it"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Identity is right (blue dado with stepped border, olive wall, ox-blood jambs, crossed tusks, domed thatch with ties). Faults: the paint colours are flat tints of one plaster scan with per-face steps, no brush marks or flaking; tusks and ribs are smooth tapered sweeps of a plaster scan, clean and white; thatch sectors are regular with visible course plates and a fringe that is a wavy edge, not hanging straw; the doorway is a black box; 7 material slots (limit 6)."
+    },
+    {
+     "name": "SM_Island_Hut_TwoStorey_PR",
+     "class": "building",
+     "fbx": "SM_Island_Hut_TwoStorey_PR.fbx",
+     "materials": [
+      "MI_Island_DaubBlue",
+      "MI_Struct_OakWeathered",
+      "MI_Island_PalmThatch",
+      "MI_Island_DaubOlive",
+      "MI_Island_DaubOxblood",
+      "MI_Island_Bone",
+      "MI_Struct_Earth"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 29720,
+     "lod1_triangles": 13374,
+     "lod2_triangles": 5944,
+     "dimensions_m": [
+      7.21,
+      8.527,
+      6.92
+     ],
+     "bounds_min_m": [
+      -3.508,
+      -4.947,
+      -0.068
+     ],
+     "bounds_max_m": [
+      3.701,
+      3.58,
+      6.852
+     ],
+     "open_edges": 0,
+     "collision_hulls": 2,
+     "families": [
+      "424 struct/island/isle- frames 4-6",
+      "island_hut_two_storey"
+     ],
+     "supersedes": "none (family 424 was placeholder)",
+     "dresses": "two-storey round hut: a 6.0 m drum under a thatch skirt with a 4.4 m drum and cone rising through it: bulging daub wall limewashed blue below a stepped border, olive above, with ox-blood panels (separate material slots, so the colours are paint, not tint); nine weathered whale-rib buttresses; doorway with ox-blood jambs inlaid with shell lozenges under two crossed tusks; domed conical thatch in twelve sectors with a ragged fringe, cane ties, three cane hoops and a whipped finial",
+     "fit": {
+      "pivot": "ground centre; doorway faces -Y (frames 1-3 are the same hut turned: yaw it)",
+      "door": "opening 1.08 m wide, 1.7 m high at y = -2.90; a dark closed box stands behind it"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "As the round hut; the upper drum simply stands through the lower roof; 47,900 triangles."
+    },
+    {
+     "name": "SM_Island_Fence_Lattice_PR",
+     "class": "prop_large",
+     "fbx": "SM_Island_Fence_Lattice_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Island_Bamboo",
+      "MI_Struct_Rope"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 11040,
+     "lod1_triangles": 4968,
+     "lod2_triangles": 2208,
+     "dimensions_m": [
+      4.766,
+      0.402,
+      1.784
+     ],
+     "bounds_min_m": [
+      -2.405,
+      -0.242,
+      0.0
+     ],
+     "bounds_max_m": [
+      2.36,
+      0.159,
+      1.784
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "424 struct/island/isle- frames 7-12",
+      "island_fence_lattice"
+     ],
+     "supersedes": "none",
+     "dresses": "4.4 m run of cane lattice fence: three posts, two rails, crossed diagonals in each bay, all bamboo with node rings, rope lashings at every crossing",
+     "fit": {
+      "pivot": "ground centre, run along X; end posts at x = +-2.2 (share a post between runs as with the split-rail fence)"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Canes are straight sweeps with node rings on a tinted oak scan: read as bamboo at gameplay distance, as painted dowels at 1 m; lashings are stacked round turns."
+    },
+    {
+     "name": "SM_Island_TorchPole_PR",
+     "class": "prop",
+     "fbx": "SM_Island_TorchPole_PR.fbx",
+     "materials": [
+      "MI_Struct_Fieldstone",
+      "MI_Island_Bamboo",
+      "MI_Island_RedCloth"
+     ],
+     "source_blend": "Misc.blend",
+     "lod0_triangles": 1258,
+     "lod1_triangles": 566,
+     "lod2_triangles": 250,
+     "dimensions_m": [
+      0.423,
+      0.335,
+      2.592
+     ],
+     "bounds_min_m": [
+      -0.238,
+      -0.135,
+      0.0
+     ],
+     "bounds_max_m": [
+      0.185,
+      0.2,
+      2.592
+     ],
+     "open_edges": 0,
+     "collision_hulls": 1,
+     "families": [
+      "424 struct/island/isle- frame 18",
+      "island_totem_pole"
+     ],
+     "supersedes": "none",
+     "dresses": "three-tined cane pole, 2.6 m, bound with red cloth below the tines, tips charred (class island_totem_pole; frame 18)",
+     "fit": {
+      "pivot": "foot of the pole",
+      "light": "unlit; if the game lights it, put flames on the three tips at z = 2.58 m"
+     },
+     "status": "interim: three review rounds (Structures/review/misc1-3); not claimed photoreal",
+     "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer; not a private bake",
+     "known_weaknesses": "Simple: a cane, three tines, a wound red strip; tips are black, no burnt texture."
+    }
+   ]
+  }
+ },
+ "integration": {
+  "contract": {
+   "uv": "UV0 already carries the tiling: one UV unit is one repeat of the set (tile_size_m is the nominal size the UVs were laid out for; small blocks use up to 2x denser UVs). Sample BC, N, ORM and H at UV0; sample Macro at UV0 / 7. Do not rescale.",
+   "textures": "BC sRGB; N linear OpenGL (flip green on import); ORM linear (R ambient occlusion, G roughness, B metallic = 0); H linear 16-bit height, used 0..1; Macro linear 512 px (R large, G medium, B small variation).",
+   "vertex_colour": "FBX vertex colour set 'Grime', linear RGBA float, exported with every LOD. R = dirt and damp, G = moss / algae, B = bleaching (silvered oak, lichen, dressed stone, fresh straw), A = material switch (see below; 1 everywhere else).",
+   "graph": [
+    "base = BC * tint * (1 - macro + 2 * macro * Macro.R)",
+    "base = lerp(base, base * ORM.R, 0.5)",
+    "fd = saturate(R * (1.15 - 0.5 * H))",
+    "dirt_mode multiply: c = lerp(base, base * dirt, fd * dirt_amount);   dirt_mode mix: c = lerp(base, dirt * (3 * luminance(base) + 0.35), fd * dirt_amount)",
+    "fb = saturate(B * saturate(0.9 * H + 0.35));   c = lerp(c, pale * (2.2 * luminance(c) + 0.55), fb * pale_amount)",
+    "fm = saturate(4 * ((G + 0.5 * Macro.B) - (0.55 * H + 0.62))) * (G > 0.02);   c = lerp(c, moss * (0.9 * Macro.G + 0.55), fm)",
+    "roughness = lerp(ORM.G, moss_roughness, fm) - 0.10 * fd;   normal = N;   metallic = 0",
+    "alpha_switch materials only: A < 0.875 lead (only where alpha_lead is true): colour (0.15, 0.16, 0.17) * (0.7 * Macro.G + 0.65), roughness 0.42, flat normal;  A < 0.625 (A < 0.75 where alpha_lead is false) black iron, charred wood, burnt straw or unlit void: colour (0.016, 0.015, 0.014), roughness 0.5 + 0.42 * R (iron has R = 0, char has R = 1), normal kept;  A < 0.25 window glass: colour glass_tint, roughness 0.06, flat normal, opaque (the pane mesh is faceted so each quarry reflects differently; a dark closed box stands behind it). Values written: 1, 0.75, 0.5, 0.",
+    "alpha_soot materials only: fs = saturate((1 - A) * (0.7 * Macro.G + 1.0));  c = lerp(c, (0.012, 0.011, 0.010), fs);  roughness = lerp(roughness, 0.97, fs)"
+   ],
+   "colours": "all colours are linear RGB",
+   "fbx": "One FBX per asset beside the manifest: mesh objects <asset>_LOD0, _LOD1, _LOD2 (import as one static mesh with three LODs) and UCX_<asset>_LOD0_NN convex hulls; metres with UnitScaleFactor 100; Z up, front -Y; smoothing by edge (import normals); material slots in the order of each module's \"materials\" list. Family meshes are visual only (ART_STANDARD section 5)."
+  },
+  "materials": {
+   "MI_Struct_OakWeathered": {
+    "dirt": [
+     0.22,
+     0.16,
+     0.11
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.46,
+     0.45,
+     0.42
+    ],
+    "pale_amount": 0.55,
+    "macro": 0.22,
+    "tint": [
+     0.8,
+     0.62,
+     0.47
+    ],
+    "alpha_switch": true,
+    "alpha_lead": true,
+    "alpha_soot": false,
+    "glass_tint": [
+     0.035,
+     0.05,
+     0.065
+    ],
+    "tile_size_m": 2.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+    },
+    "third_party": [
+     "old_planks_02"
+    ],
+    "texture_set": "OakWeathered"
+   },
+   "MI_Struct_Fieldstone": {
+    "dirt": [
+     0.36,
+     0.3,
+     0.22
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.62,
+     0.6,
+     0.52
+    ],
+    "pale_amount": 0.5,
+    "macro": 0.22,
+    "tint": [
+     1,
+     1,
+     1
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": true,
+    "tile_size_m": 2.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Fieldstone/T_Terrain_Fieldstone_Macro.png"
+    },
+    "third_party": [
+     "old_stone_wall"
+    ],
+    "texture_set": "Fieldstone"
+   },
+   "MI_Struct_Earth": {
+    "dirt": [
+     0.36,
+     0.3,
+     0.24
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.075,
+     0.02
+    ],
+    "moss_roughness": 0.9,
+    "pale": [
+     0.8,
+     0.79,
+     0.77
+    ],
+    "pale_amount": 0.85,
+    "macro": 0.22,
+    "tint": [
+     0.62,
+     0.56,
+     0.5
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": true,
+    "tile_size_m": 4.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/EarthPath/T_Terrain_EarthPath_Macro.png"
+    },
+    "third_party": [
+     "dirt_floor",
+     "rocky_trail"
+    ],
+    "texture_set": "EarthPath"
+   },
+   "MI_Struct_Thatch": {
+    "dirt": [
+     0.105,
+     0.095,
+     0.08
+    ],
+    "dirt_amount": 0.95,
+    "dirt_mode": "mix",
+    "moss": [
+     0.05,
+     0.062,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.8,
+     0.63,
+     0.33
+    ],
+    "pale_amount": 0.6,
+    "macro": 0.22,
+    "tint": [
+     1,
+     1,
+     1
+    ],
+    "alpha_switch": true,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "glass_tint": [
+     0.035,
+     0.05,
+     0.065
+    ],
+    "tile_size_m": 1.08,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+    },
+    "third_party": [
+     "thatch_roof_angled"
+    ],
+    "texture_set": "Thatch"
+   },
+   "MI_Town_DoorPlanks": {
+    "dirt": [
+     0.3,
+     0.25,
+     0.2
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.42,
+     0.41,
+     0.38
+    ],
+    "pale_amount": 0.75,
+    "macro": 0.22,
+    "tint": [
+     1,
+     1,
+     1
+    ],
+    "alpha_switch": true,
+    "alpha_lead": true,
+    "alpha_soot": false,
+    "glass_tint": [
+     0.035,
+     0.05,
+     0.065
+    ],
+    "tile_size_m": 2.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/DoorPlanks/T_Terrain_DoorPlanks_Macro.png"
+    },
+    "third_party": [
+     "medieval_wood"
+    ],
+    "texture_set": "DoorPlanks"
+   },
+   "MI_Struct_Rope": {
+    "dirt": [
+     0.5,
+     0.45,
+     0.38
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.7,
+     0.62,
+     0.45
+    ],
+    "pale_amount": 0.4,
+    "macro": 0.22,
+    "tint": [
+     0.9,
+     0.85,
+     0.8
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 1.08,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+    },
+    "third_party": [
+     "thatch_roof_angled"
+    ],
+    "texture_set": "Thatch"
+   },
+   "MI_Boulder_Field_A_PR": {
+    "baked": true,
+    "texture_px": 2048,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_A_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_A_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_A_PR_ORM.png"
+    },
+    "graph": "base colour = BC, normal = N (OpenGL, flip green), occlusion = ORM.R, roughness = ORM.G, metallic 0; UV0 is a unique unwrap in 0-1; no vertex colour"
+   },
+   "MI_Boulder_Field_B_PR": {
+    "baked": true,
+    "texture_px": 1024,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_B_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_B_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_B_PR_ORM.png"
+    },
+    "graph": "base colour = BC, normal = N (OpenGL, flip green), occlusion = ORM.R, roughness = ORM.G, metallic 0; UV0 is a unique unwrap in 0-1; no vertex colour"
+   },
+   "MI_Boulder_Field_C_PR": {
+    "baked": true,
+    "texture_px": 1024,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_C_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_C_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_C_PR_ORM.png"
+    },
+    "graph": "base colour = BC, normal = N (OpenGL, flip green), occlusion = ORM.R, roughness = ORM.G, metallic 0; UV0 is a unique unwrap in 0-1; no vertex colour"
+   },
+   "MI_Struct_CastleAshlar": {
+    "dirt": [
+     0.3,
+     0.22,
+     0.12
+    ],
+    "dirt_amount": 0.92,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.04,
+     0.055,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.6,
+     0.6,
+     0.52
+    ],
+    "pale_amount": 0.5,
+    "macro": 0.22,
+    "tint": [
+     1,
+     1,
+     1
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 3.3,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/CastleAshlar/T_Terrain_CastleAshlar_Macro.png"
+    },
+    "third_party": [
+     "rock_wall_08"
+    ],
+    "texture_set": "CastleAshlar"
+   },
+   "MI_Struct_FieldBoulder": {
+    "dirt": [
+     0.34,
+     0.27,
+     0.18
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.06,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.66,
+     0.66,
+     0.58
+    ],
+    "pale_amount": 0.5,
+    "macro": 0.22,
+    "tint": [
+     1,
+     1,
+     1
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 2.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/FieldBoulder/T_Terrain_FieldBoulder_Macro.png"
+    },
+    "third_party": [
+     "rock_face",
+     "rock_face_04"
+    ],
+    "texture_set": "FieldBoulder"
+   },
+   "MI_Island_Bamboo": {
+    "dirt": [
+     0.3,
+     0.26,
+     0.14
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.74,
+     0.7,
+     0.5
+    ],
+    "pale_amount": 0.7,
+    "macro": 0.3,
+    "tint": [
+     1.0,
+     0.92,
+     0.6
+    ],
+    "alpha_switch": true,
+    "alpha_lead": true,
+    "alpha_soot": false,
+    "glass_tint": [
+     0.035,
+     0.05,
+     0.065
+    ],
+    "tile_size_m": 2.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+    },
+    "third_party": [
+     "old_planks_02"
+    ],
+    "texture_set": "OakWeathered"
+   },
+   "MI_Island_PalmThatch": {
+    "dirt": [
+     0.12,
+     0.085,
+     0.06
+    ],
+    "dirt_amount": 0.9,
+    "dirt_mode": "mix",
+    "moss": [
+     0.06,
+     0.075,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.85,
+     0.6,
+     0.3
+    ],
+    "pale_amount": 0.5,
+    "macro": 0.22,
+    "tint": [
+     1.0,
+     0.78,
+     0.6
+    ],
+    "alpha_switch": true,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "glass_tint": [
+     0.035,
+     0.05,
+     0.065
+    ],
+    "tile_size_m": 1.08,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+    },
+    "third_party": [
+     "thatch_roof_angled"
+    ],
+    "texture_set": "Thatch"
+   },
+   "MI_Island_DaubBlue": {
+    "dirt": [
+     0.3,
+     0.24,
+     0.16
+    ],
+    "dirt_amount": 0.95,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.8,
+     0.78,
+     0.72
+    ],
+    "pale_amount": 0.35,
+    "macro": 0.22,
+    "tint": [
+     0.2,
+     0.33,
+     0.85
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 2.5,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_Macro.png"
+    },
+    "third_party": [
+     "painted_plaster_wall",
+     "plastered_wall_04"
+    ],
+    "texture_set": "PlasterWall"
+   },
+   "MI_Island_DaubOlive": {
+    "dirt": [
+     0.3,
+     0.24,
+     0.16
+    ],
+    "dirt_amount": 0.95,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.8,
+     0.78,
+     0.72
+    ],
+    "pale_amount": 0.35,
+    "macro": 0.22,
+    "tint": [
+     0.3,
+     0.33,
+     0.13
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 2.5,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_Macro.png"
+    },
+    "third_party": [
+     "painted_plaster_wall",
+     "plastered_wall_04"
+    ],
+    "texture_set": "PlasterWall"
+   },
+   "MI_Island_DaubOxblood": {
+    "dirt": [
+     0.3,
+     0.24,
+     0.16
+    ],
+    "dirt_amount": 0.95,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.8,
+     0.78,
+     0.72
+    ],
+    "pale_amount": 0.35,
+    "macro": 0.22,
+    "tint": [
+     0.42,
+     0.12,
+     0.06
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 2.5,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_Macro.png"
+    },
+    "third_party": [
+     "painted_plaster_wall",
+     "plastered_wall_04"
+    ],
+    "texture_set": "PlasterWall"
+   },
+   "MI_Island_Bone": {
+    "dirt": [
+     0.36,
+     0.33,
+     0.26
+    ],
+    "dirt_amount": 0.9,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.05,
+     0.07,
+     0.03
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.9,
+     0.9,
+     0.86
+    ],
+    "pale_amount": 0.5,
+    "macro": 0.22,
+    "tint": [
+     0.86,
+     0.9,
+     1.0
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 2.5,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Terrain/PlasterWall/T_Terrain_PlasterWall_Macro.png"
+    },
+    "third_party": [
+     "painted_plaster_wall",
+     "plastered_wall_04"
+    ],
+    "texture_set": "PlasterWall"
+   },
+   "MI_Island_RedCloth": {
+    "dirt": [
+     0.3,
+     0.2,
+     0.16
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.8,
+     0.4,
+     0.3
+    ],
+    "pale_amount": 0.4,
+    "macro": 0.22,
+    "tint": [
+     0.85,
+     0.12,
+     0.08
+    ],
+    "alpha_switch": false,
+    "alpha_lead": false,
+    "alpha_soot": false,
+    "tile_size_m": 1.08,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/Thatch/T_Terrain_Thatch_Macro.png"
+    },
+    "third_party": [
+     "thatch_roof_angled"
+    ],
+    "texture_set": "Thatch"
+   },
+   "MI_Struct_OakDark": {
+    "dirt": [
+     0.2,
+     0.14,
+     0.1
+    ],
+    "dirt_amount": 0.85,
+    "dirt_mode": "multiply",
+    "moss": [
+     0.045,
+     0.058,
+     0.02
+    ],
+    "moss_roughness": 0.95,
+    "pale": [
+     0.5,
+     0.47,
+     0.42
+    ],
+    "pale_amount": 0.5,
+    "macro": 0.22,
+    "tint": [
+     0.6,
+     0.36,
+     0.23
+    ],
+    "alpha_switch": true,
+    "alpha_lead": true,
+    "alpha_soot": false,
+    "glass_tint": [
+     0.035,
+     0.05,
+     0.065
+    ],
+    "tile_size_m": 2.0,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_ORM.png",
+     "H": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_H.png",
+     "Macro": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Sets/OakWeathered/T_Terrain_OakWeathered_Macro.png"
+    },
+    "third_party": [
+     "old_planks_02"
+    ],
+    "texture_set": "OakWeathered"
+   }
+  },
+  "assets": {
+   "SM_Cottage_Stonebrook_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Stonebrook_PR.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Thatch",
+     "MI_Town_DoorPlanks",
+     "MI_Struct_Earth"
+    ],
+    "lod_triangles": [
+     78312,
+     35240,
+     15662
+    ],
+    "bounds_min_m": [
+     -9.8,
+     -7.066,
+     0.0
+    ],
+    "bounds_max_m": [
+     9.8,
+     5.3,
+     7.952
+    ],
+    "collision_hulls": 5
+   },
+   "SM_Cottage_Stonebrook_PR_Burnt": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Stonebrook_PR_Burnt.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Thatch",
+     "MI_Town_DoorPlanks",
+     "MI_Struct_Earth"
+    ],
+    "lod_triangles": [
+     63954,
+     28778,
+     12790
+    ],
+    "bounds_min_m": [
+     -9.8,
+     -10.132,
+     0.0
+    ],
+    "bounds_max_m": [
+     10.8,
+     6.3,
+     7.954
+    ],
+    "collision_hulls": 4
+   },
+   "SM_Cottage_Thatched_Small_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Thatched_Small_PR.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Thatch",
+     "MI_Struct_Earth"
+    ],
+    "lod_triangles": [
+     33636,
+     15136,
+     6726
+    ],
+    "bounds_min_m": [
+     -4.3,
+     -3.55,
+     0.0
+    ],
+    "bounds_max_m": [
+     4.3,
+     3.556,
+     6.584
+    ],
+    "collision_hulls": 3
+   },
+   "SM_Cottage_Thatched_Large_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Thatched_Large_PR.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Thatch",
+     "MI_Struct_Earth"
+    ],
+    "lod_triangles": [
+     47284,
+     21276,
+     9456
+    ],
+    "bounds_min_m": [
+     -5.8,
+     -4.05,
+     0.0
+    ],
+    "bounds_max_m": [
+     5.8,
+     4.05,
+     6.976
+    ],
+    "collision_hulls": 3
+   },
+   "SM_Cottage_Door_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Door_PR.fbx",
+    "class": "door",
+    "material_slots": [
+     "MI_Town_DoorPlanks"
+    ],
+    "lod_triangles": [
+     2936,
+     1320,
+     586
+    ],
+    "bounds_min_m": [
+     0.0,
+     -0.055,
+     0.0
+    ],
+    "bounds_max_m": [
+     1.44,
+     0.055,
+     2.449
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Fence_SplitRail_4m_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Fence_SplitRail_4m_PR.fbx",
+    "class": "prop_large",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Rope"
+    ],
+    "lod_triangles": [
+     2658,
+     1196,
+     530
+    ],
+    "bounds_min_m": [
+     -2.191,
+     -0.208,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.251,
+     0.179,
+     1.409
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Fence_SplitRail_4m_Broken_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Fence_SplitRail_4m_Broken_PR.fbx",
+    "class": "prop_large",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Rope"
+    ],
+    "lod_triangles": [
+     2742,
+     1232,
+     548
+    ],
+    "bounds_min_m": [
+     -2.184,
+     -0.368,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.124,
+     0.159,
+     1.408
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Fence_Gate_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Fence_Gate_PR.fbx",
+    "class": "door",
+    "material_slots": [
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     1120,
+     504,
+     224
+    ],
+    "bounds_min_m": [
+     0.0,
+     -0.086,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.482,
+     0.086,
+     1.26
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Fence_GatePost_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Fence_GatePost_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     486,
+     218,
+     96
+    ],
+    "bounds_min_m": [
+     -0.162,
+     -0.177,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.192,
+     0.152,
+     1.552
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Well_Stone_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Well_Stone_PR.fbx",
+    "class": "prop_large",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Rope"
+    ],
+    "lod_triangles": [
+     20248,
+     9110,
+     4048
+    ],
+    "bounds_min_m": [
+     -1.32,
+     -0.941,
+     -3.7
+    ],
+    "bounds_max_m": [
+     1.38,
+     0.933,
+     3.055
+    ],
+    "collision_hulls": 4
+   },
+   "SM_Well_ShaftCap_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Well_ShaftCap_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     80,
+     36,
+     16
+    ],
+    "bounds_min_m": [
+     -0.53,
+     -0.53,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.53,
+     0.53,
+     0.03
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Boulder_Field_A_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Boulder_Field_A_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Boulder_Field_A_PR"
+    ],
+    "lod_triangles": [
+     5600,
+     2520,
+     1120
+    ],
+    "bounds_min_m": [
+     -0.947,
+     -0.703,
+     -0.001
+    ],
+    "bounds_max_m": [
+     0.949,
+     0.701,
+     1.15
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Boulder_Field_B_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Boulder_Field_B_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Boulder_Field_B_PR"
+    ],
+    "lod_triangles": [
+     4200,
+     1890,
+     840
+    ],
+    "bounds_min_m": [
+     -0.863,
+     -0.487,
+     -0.0
+    ],
+    "bounds_max_m": [
+     0.861,
+     0.488,
+     0.854
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Boulder_Field_C_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Boulder_Field_C_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Boulder_Field_C_PR"
+    ],
+    "lod_triangles": [
+     3600,
+     1620,
+     720
+    ],
+    "bounds_min_m": [
+     -0.594,
+     -0.506,
+     -0.0
+    ],
+    "bounds_max_m": [
+     0.594,
+     0.506,
+     0.48
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Castle_Wall_8m": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Wall_8m.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     14072,
+     6332,
+     2814
+    ],
+    "bounds_min_m": [
+     -4.004,
+     -1.529,
+     0.0
+    ],
+    "bounds_max_m": [
+     4.011,
+     1.071,
+     9.138
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Castle_Wall_Corner": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Wall_Corner.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     14848,
+     6680,
+     2968
+    ],
+    "bounds_min_m": [
+     -2.932,
+     -2.92,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.608,
+     2.604,
+     9.146
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Castle_Wall_End": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Wall_End.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     5124,
+     2304,
+     1024
+    ],
+    "bounds_min_m": [
+     -1.256,
+     -1.524,
+     0.0
+    ],
+    "bounds_max_m": [
+     1.309,
+     1.068,
+     9.137
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Castle_Tower_Round": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Tower_Round.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     18504,
+     8326,
+     3700
+    ],
+    "bounds_min_m": [
+     -3.108,
+     -3.098,
+     0.0
+    ],
+    "bounds_max_m": [
+     3.088,
+     3.104,
+     12.097
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Castle_Gatehouse": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Castle/SM_Castle_Gatehouse.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_OakWeathered"
+    ],
+    "lod_triangles": [
+     35892,
+     16150,
+     7178
+    ],
+    "bounds_min_m": [
+     -5.637,
+     -4.218,
+     0.0
+    ],
+    "bounds_max_m": [
+     5.632,
+     2.67,
+     12.1
+    ],
+    "collision_hulls": 5
+   },
+   "SM_Bridge_Wood_Deck_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Bridge_Wood_Deck_PR.fbx",
+    "class": "kit_piece",
+    "material_slots": [
+     "MI_Struct_OakDark"
+    ],
+    "lod_triangles": [
+     2376,
+     1068,
+     474
+    ],
+    "bounds_min_m": [
+     -1.252,
+     -0.875,
+     -0.211
+    ],
+    "bounds_max_m": [
+     1.255,
+     0.886,
+     0.067
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Bridge_Wood_Rail_Rope_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Bridge_Wood_Rail_Rope_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Struct_OakDark",
+     "MI_Struct_Rope"
+    ],
+    "lod_triangles": [
+     3646,
+     1640,
+     728
+    ],
+    "bounds_min_m": [
+     -1.253,
+     -0.099,
+     -0.3
+    ],
+    "bounds_max_m": [
+     1.253,
+     0.087,
+     1.281
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Bridge_Wood_Rail_Plank_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Bridge_Wood_Rail_Plank_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Struct_OakDark",
+     "MI_Struct_Rope"
+    ],
+    "lod_triangles": [
+     5890,
+     2650,
+     1178
+    ],
+    "bounds_min_m": [
+     -1.255,
+     -0.117,
+     -0.3
+    ],
+    "bounds_max_m": [
+     1.253,
+     0.147,
+     1.28
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Bridge_Stone_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Bridge_Stone_PR.fbx",
+    "class": "prop_large",
+    "material_slots": [
+     "MI_Struct_CastleAshlar",
+     "MI_Struct_FieldBoulder"
+    ],
+    "lod_triangles": [
+     11420,
+     5138,
+     2284
+    ],
+    "bounds_min_m": [
+     -4.013,
+     -2.319,
+     -2.5
+    ],
+    "bounds_max_m": [
+     4.011,
+     2.305,
+     0.531
+    ],
+    "collision_hulls": 3
+   },
+   "SM_Door_Wood_Single_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Door_Wood_Single_PR.fbx",
+    "class": "door",
+    "material_slots": [
+     "MI_Struct_OakDark"
+    ],
+    "lod_triangles": [
+     1922,
+     864,
+     384
+    ],
+    "bounds_min_m": [
+     0.0,
+     -0.056,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.978,
+     0.056,
+     2.012
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Door_Wood_Wide_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Door_Wood_Wide_PR.fbx",
+    "class": "door",
+    "material_slots": [
+     "MI_Struct_OakDark"
+    ],
+    "lod_triangles": [
+     2502,
+     1124,
+     500
+    ],
+    "bounds_min_m": [
+     0.0,
+     -0.061,
+     0.0
+    ],
+    "bounds_max_m": [
+     1.527,
+     0.056,
+     2.093
+    ],
+    "collision_hulls": 1
+   },
+   "SM_SignPost_Single_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_SignPost_Single_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakDark"
+    ],
+    "lod_triangles": [
+     896,
+     402,
+     178
+    ],
+    "bounds_min_m": [
+     -0.508,
+     -0.184,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.564,
+     0.124,
+     2.35
+    ],
+    "collision_hulls": 1
+   },
+   "SM_SignPost_Double_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_SignPost_Double_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakDark"
+    ],
+    "lod_triangles": [
+     1316,
+     592,
+     262
+    ],
+    "bounds_min_m": [
+     -0.513,
+     -0.165,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.549,
+     0.162,
+     2.349
+    ],
+    "collision_hulls": 1
+   },
+   "SM_SignPost_Triple_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_SignPost_Triple_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakDark"
+    ],
+    "lod_triangles": [
+     1456,
+     654,
+     290
+    ],
+    "bounds_min_m": [
+     -0.672,
+     -0.179,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.737,
+     0.111,
+     2.35
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Chimney_Stone_Short_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Chimney_Stone_Short_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_FieldBoulder"
+    ],
+    "lod_triangles": [
+     864,
+     388,
+     172
+    ],
+    "bounds_min_m": [
+     -0.552,
+     -0.474,
+     -0.003
+    ],
+    "bounds_max_m": [
+     0.549,
+     0.477,
+     1.45
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Chimney_Stone_Tall_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Chimney_Stone_Tall_PR.fbx",
+    "class": "prop_large",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_FieldBoulder"
+    ],
+    "lod_triangles": [
+     3328,
+     1496,
+     664
+    ],
+    "bounds_min_m": [
+     -0.684,
+     -0.41,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.679,
+     0.404,
+     4.735
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Cottage_Thatched_TwoStorey_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Cottage_Thatched_TwoStorey_PR.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Thatch",
+     "MI_Struct_Earth"
+    ],
+    "lod_triangles": [
+     40126,
+     18056,
+     8024
+    ],
+    "bounds_min_m": [
+     -4.15,
+     -3.888,
+     0.0
+    ],
+    "bounds_max_m": [
+     4.1,
+     3.8,
+     9.22
+    ],
+    "collision_hulls": 5
+   },
+   "SM_Cottage_Thatched_LShape_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Cottage_Thatched_LShape_PR.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Thatch",
+     "MI_Struct_Earth"
+    ],
+    "lod_triangles": [
+     63110,
+     28398,
+     12622
+    ],
+    "bounds_min_m": [
+     -5.3,
+     -6.2,
+     0.0
+    ],
+    "bounds_max_m": [
+     5.3,
+     5.2,
+     9.215
+    ],
+    "collision_hulls": 8
+   },
+   "SM_Island_Hut_Round_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Island_Hut_Round_PR.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Island_DaubBlue",
+     "MI_Struct_OakWeathered",
+     "MI_Island_PalmThatch",
+     "MI_Island_DaubOlive",
+     "MI_Island_DaubOxblood",
+     "MI_Island_Bone",
+     "MI_Struct_Earth"
+    ],
+    "lod_triangles": [
+     15684,
+     7056,
+     3136
+    ],
+    "bounds_min_m": [
+     -3.118,
+     -4.547,
+     -0.068
+    ],
+    "bounds_max_m": [
+     3.301,
+     3.181,
+     4.602
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Island_Hut_TwoStorey_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Island_Hut_TwoStorey_PR.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Island_DaubBlue",
+     "MI_Struct_OakWeathered",
+     "MI_Island_PalmThatch",
+     "MI_Island_DaubOlive",
+     "MI_Island_DaubOxblood",
+     "MI_Island_Bone",
+     "MI_Struct_Earth"
+    ],
+    "lod_triangles": [
+     29720,
+     13374,
+     5944
+    ],
+    "bounds_min_m": [
+     -3.508,
+     -4.947,
+     -0.068
+    ],
+    "bounds_max_m": [
+     3.701,
+     3.58,
+     6.852
+    ],
+    "collision_hulls": 2
+   },
+   "SM_Island_Fence_Lattice_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Island_Fence_Lattice_PR.fbx",
+    "class": "prop_large",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Island_Bamboo",
+     "MI_Struct_Rope"
+    ],
+    "lod_triangles": [
+     11040,
+     4968,
+     2208
+    ],
+    "bounds_min_m": [
+     -2.405,
+     -0.242,
+     0.0
+    ],
+    "bounds_max_m": [
+     2.36,
+     0.159,
+     1.784
+    ],
+    "collision_hulls": 1
+   },
+   "SM_Island_TorchPole_PR": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Misc/SM_Island_TorchPole_PR.fbx",
+    "class": "prop",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Island_Bamboo",
+     "MI_Island_RedCloth"
+    ],
+    "lod_triangles": [
+     1258,
+     566,
+     250
+    ],
+    "bounds_min_m": [
+     -0.238,
+     -0.135,
+     0.0
+    ],
+    "bounds_max_m": [
+     0.185,
+     0.2,
+     2.592
+    ],
+    "collision_hulls": 1
+   }
+  }
+ },
+ "contact_sheet_part2": "contact_sheet_part2.png"
+}
