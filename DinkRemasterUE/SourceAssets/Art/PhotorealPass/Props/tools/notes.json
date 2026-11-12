@@ -1,0 +1,288 @@
+{
+ "date": "2026-11-12",
+ "render_dir": "r4",
+ "summary": "31 prop meshes: four light sources asked for by the Unreal integrator (wall torch, standing brazier, candle on holder, hanging lantern) and 27 props for the most-placed placeholder families and the opening cottage. All use tiling scan sets with the vertex-colour weathering contract of the structure kits (no unique bakes), so every one is status interim; see known_weaknesses per asset.",
+ "review": "Props/review/r1-r4: sun and sky at the gameplay camera, 1 m close-ups, and a warm point light under a dim sky for the interior props. Three rounds for the 27 props (r1-r3, with r4 the final frames); one round for the four light sources and the late additions.",
+ "all_assets": {
+  "status": "interim: reviewed, not claimed photoreal",
+  "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so."
+ },
+ "assets": {
+  "SM_Prop_Torch_Wall_01": {
+   "known_weaknesses": "Round 2, four review rounds (r5-r6). Last look still faults: the rag head reads as stiff overlapping bands rather than soft wound cloth (the game mesh has two wound strips, the other strips, tails and frayed threads are baked), dark and matte now but without loose hanging ends in silhouette; pitch drips on the stave are normal-map only; the smoke plate is a plain rectangle of sheet whose soot fades in a soft procedural edge; the stave grain is a scan recoloured, a little uniform along its length. No flame mesh (engine effect).",
+   "dresses": "wall torch, 0.16 x 0.36 x 0.95 m: forged back plate on two square-headed spikes, a sheet-iron smoke plate curled at the top and sooted above the flame, a twisted square bracket arm and stay with two riveted bands gripping a cleft ash stave at 19 degrees, the head a wad of pitch-soaked hessian wound in strips with torn tails, frayed charred fibres, wire binding and runs of pitch down the stave (baked)",
+   "emissive+": {
+    "note": "point light 10 cm above the socket; T_Prop_Torch_Wall_01_E is the ember mask of the charred rag end (emissive = E * 40 nits * flicker when lit, 0 when unlit); the flame itself is an engine effect"
+   }
+  },
+  "SM_Prop_Brazier_Standing_01": {
+   "known_weaknesses": "Round 2, three review rounds (r5-r6). Last look still faults: charcoal lumps are faceted blobs that read slightly like dark rock in full sun (no long split-wood charcoal shapes); straps are even in width; rivets on the hoops are baked, not geometry; the ash pan is a plain dish. Ember glow (E) reads well in the dark.",
+   "dresses": "standing fire basket, 0.72 x 0.70 x 0.99 m: three twisted square forged legs with beaten feet, collar and stretcher ring, a basket of ten flaring straps riveted to three hoops over an ash pan, a heaped bed of charcoal with ash on the tops and live embers in the gaps (emissive mask)",
+   "emissive+": {
+    "note": "point light 15 cm above the socket, soft radius 12 cm, flicker 10-20 percent; T_Prop_Brazier_Standing_01_E is the ember bed mask (emissive = E * 120 nits, slow pulse 0.7-1.0; 0 when unlit); a dim red fill light inside the basket is still worth adding"
+   }
+  },
+  "SM_Prop_Candle_Holder_01": {
+   "known_weaknesses": "Round 2, three review rounds. Last look faults little: the pricket stick is a clean lathe (hammer texture only in the normal), the puddle in the pan is thin, the wick is a plain bent tube. Wax needs the subsurface slot honoured in engine or it reads as chalk.",
+   "emissive+": {
+    "note": "point light 2 cm above the wick, soft radius 1 cm, slow flicker 5-10 percent; slot MI_Prop_Candle_Holder_01_Wax is kind subsurface (the wax near the flame glows by scattering; no emissive mask)"
+   }
+  },
+  "SM_Prop_Lantern_Hanging_01": {
+   "known_weaknesses": "Round 2, four review rounds (r5-r6). Last look still faults: the pyramid cap is plain flat sheet (vents and rivets are baked only, no seam or lapped edge), frame bars are clean square section, the horn panes are flat with a cloudy amber pattern that is a little even from pane to pane, chain links are plain ovals; inside there is only a candle stub (no pricket). Lit state depends on the integrator honouring the translucent slot and E.",
+   "dresses": "hanging lantern, 0.19 x 0.19 x 0.78 m with its chain: riveted iron tray and pierced pyramid cap, four corner bars, four scraped-horn panes each with a glazing bar, door hinges and hasp (baked), a candle stub inside, seven links of chain to a ceiling hook and plate",
+   "fit+": {
+    "panes": "slot MI_Prop_Lantern_Hanging_01_Horn is kind translucent (thin, two-sided, diffusing amber horn: transmission colour = BC, about 60 percent of light carried through); T_Prop_Lantern_Hanging_01_E holds the glow of the panes around the candle (emissive = E * 60 nits when lit, 0 unlit)"
+   },
+   "emissive+": {
+    "note": "point light at the socket with shadow casting off for the lantern mesh itself; pane glow from E as in fit.panes"
+   }
+  },
+  "SM_Barrel_Oak_PR": {
+   "known_weaknesses": "Round 2 unique bake, three review rounds (r6). Last look still faults: the joints between staves are drawn as even dark lines (AO dirt) rather than varying gaps; rust runs under the hoops are faint; the hoops are flat strap with baked rivets at the lap only; head boards have no chalk or brand marks; the chime is not undercut. Broken states not built.",
+   "dresses": "coopered oak barrel, 0.84 m at the bilge, 1.0 m: twenty separate staves of uneven width with gaps, five-board heads sawn round and set in the croze, four driven hoops a touch out of level with riveted laps (baked), a bung; true-metal hoops with rust, handling grease and a damp tide mark at the foot"
+  },
+  "SM_Crate_Large_PR": {
+   "known_weaknesses": "Round 2 unique bake, two review rounds (r6). Last look still faults: boards are straight-sawn with only slight warp, no split or missing slat, nail heads are baked and small, no stencil or brand, scratch marks are a little even over all faces. Low triangle count (312): slats are single boxes.",
+   "dresses": "slatted packing crate 0.97 x 0.67 x 0.58 m: four corner posts inside, three slats a side with open gaps onto a real interior with bottom boards, four lid boards under two nailed battens; weathered grey-brown softwood, damp at the foot"
+  },
+  "SM_Crate_Small_PR": {
+   "known_weaknesses": "As SM_Crate_Large_PR (same generator, its own bake and board layout).",
+   "dresses": "slatted packing crate 0.74 x 0.55 x 0.47 m, built as SM_Crate_Large_PR with three lid boards"
+  },
+  "SM_Jar_Storage_PR": {
+   "known_weaknesses": "Round 2 unique bake, two review rounds (r6). Last look still faults: glaze runs are thin dark streaks, not thick beaded drips; chips at rim and foot are small; glaze colour is even around the body apart from throwing rings; no clear-coat layer (single specular lobe), the inside is glazed like the outside and falls to black.",
+   "dresses": "wheel-thrown storage jar, 0.51 x 0.74 m, rolled rim, brown lead glaze with throwing rings, runs, crazing and pinholes over a bare biscuit foot with a wavy glaze line; thrown out of true, hollow to a real inner wall"
+  },
+  "SM_Jar_Jug_PR": {
+   "known_weaknesses": "As SM_Jar_Storage_PR; the strap handles are plain flattened tubes thumbed on without finger marks.",
+   "dresses": "two-handled crock, 0.55 x 0.58 m, blue-grey glaze, two pulled strap handles; otherwise as the storage jar"
+  },
+  "SM_Jar_Vase_PR": {
+   "known_weaknesses": "As SM_Jar_Storage_PR; the ox-red glaze is saturated and even.",
+   "dresses": "narrow-necked bottle vase, 0.25 x 0.68 m, ox-red glaze; otherwise as the storage jar"
+  },
+  "SM_Jar_Bowl_PR": {
+   "known_weaknesses": "As SM_Jar_Storage_PR; cream glaze inside with a dull pooled centre; empty (sprite frames 2-3 show a yellow content).",
+   "dresses": "footed dish, 0.42 x 0.17 m, brown outside, cream glaze inside, turned foot ring"
+  },
+  "SM_Sack_Grain_PR": {
+   "known_weaknesses": "Jute weave from a 0.3 m scan reads true close up, but the form is a smooth pillow with a flattened base: creases are shallow sine folds, the sewn mouth is nine loose stitches without a rolled seam, one flat facet line shows low on one side. Colour variants are material swaps."
+  },
+  "SM_FeedSack_Jute_PR": {
+   "known_weaknesses": "Body and weave pass at gameplay distance; the gathered neck and ruff are regular lathe folds and read stiff, like card, at 1 m; no side seam."
+  },
+  "SM_Table_Oak_Long_PR": {
+   "known_weaknesses": "Round 2 unique bake, two review rounds (r6). Last look still faults: about 700 px/m on a 2.65 m table, so the top is soft at 1 m; knife scores and mug rings are present but faint, spills read as blotches; board ends carry long-grain texture (no end grain); pegs are baked discs; legs and rails are straight square stock. Only 252 triangles.",
+   "dresses": "oak table 2.65 x 1.5 x 0.905 m: six-board top with uneven ends and slight steps between boards, four square tapered legs, rails and foot rails pegged into the legs (pegs baked), a long stretcher; dark handled oak with scores, rings and greasy polish on the top"
+  },
+  "SM_Table_Oak_Round_PR": {
+   "known_weaknesses": "As SM_Table_Oak_Long_PR; the round outline is sawn per board in ten segments, a little polygonal at 1 m.",
+   "dresses": "round oak table, 1.6 m across, 0.8 m: seven boards sawn to the round on two battens, four tapered legs, crossed stretchers"
+  },
+  "SM_Chair_Oak_PR": {
+   "known_weaknesses": "Round 2 unique bake, two review rounds. Last look faults little at gameplay distance; at 1 m: members are straight square stock except the raked back legs, joints show no shoulders, pegs are baked, seat boards are flat (no saddle or wear hollow).",
+   "dresses": "joined oak side chair, 0.52 x 0.56 x 1.0 m: raked back legs with a kicked foot, three-board seat, seat rails and stretchers, shaped crest rail and a slat, pegged (baked)"
+  },
+  "SM_Bench_Oak_PR": {
+   "known_weaknesses": "Round 2 unique bake, two review rounds. Last look still faults: one clean thick board with slight warp; boot notches are a simple splayed V; texture soft at 1 m (2.3 m bench in one 2048 set); no end grain.",
+   "dresses": "plank bench 2.3 x 0.3 x 0.46 m: one thick board on two slab ends with boot notches, through tenons standing proud of the seat, a pegged stretcher"
+  },
+  "SM_Stool_Oak_PR": {
+   "known_weaknesses": "Round 2 unique bake, three review rounds (radial seat grain fixed). Last look still faults: legs meet the seat without visible wedged tenons on top; the seat rim carries stretched grain; turned legs are simple tapers.",
+   "dresses": "three-legged stool, 0.36 m dished plank seat, 0.45 m, splayed shaved legs"
+  },
+  "SM_Bed_Oak_PR": {
+   "known_weaknesses": "Round 2 unique bake with cloth simulation (blanket and pillow; cached in _build/bake/cache), five review rounds (r6). Last look still faults: the blanket lies too flat on top (the 7 percent slack gave only shallow ripples, real folds show only at the turn-back and the hanging sides), its olive-yellow is even and the quilting is a regular diamond bump; the pillow is plump but smooth, without a sewn seam bead; tick stripes are printed-looking; the underside chart of the blanket bakes partly wrong where it lies on the tick (hidden in game). One 2048 set for a 2.5 m prop: soft at 1 m.",
+   "dresses": "oak bed 2.5 x 1.36 x 1.15 m (head at -X): four capped posts, plank head and foot boards, pegged side rails, slats, a lumpy sagging straw tick in striped linen, a pressure-simulated pillow, a quilted wool blanket (olive-yellow, madder lining and border) simulated over the tick, hanging over the rails and turned back at the head end"
+  },
+  "SM_Chest_Small_PR": {
+   "known_weaknesses": "Round 2 unique bake, two review rounds (r6). Last look still faults: the red stain is rather even from board to board (edge wear to pale oak is there but slight), lid staves are hard to tell apart, the inside is stained like the outside instead of raw wood, rivets and the keyhole are baked not modelled, handles are plain bent rod.",
+   "dresses": "iron-bound chest 0.94 x 0.52 x 0.53 m, closed: red-stained plank carcase on two battens, coopered lid of seven staves between D-shaped ends, three forged straps riveted over lid and body with hinge knuckles at the back, eight corner irons, lock plate with keyhole and hasp, drop handles on eyes; real plank interior (see SM_Chest_Small_Open_PR)"
+  },
+  "SM_Gravestone_Round_PR": {
+   "known_weaknesses": "Stone reads as real rock (FieldBoulder scans) with moss and lichen in vertex colour; faults: the cross is two applied bars, no inscription, edges are pinched thin rather than chipped, the turfed mound is a smooth dome with a clean rim against the ground."
+  },
+  "SM_Gravestone_Pointed_PR": {
+   "known_weaknesses": "As the round stone."
+  },
+  "SM_Gravestone_Broken_PR": {
+   "known_weaknesses": "As the round stone; the fallen head does not match the break line of the stump; the skull beside it is the simple SM_Skull_PR. 4 material slots (limit 3)."
+  },
+  "SM_Skull_PR": {
+   "known_weaknesses": "NOT photoreal: a lathed cranium pushed into shape with three dark hollows and eight block teeth. Reads as a skull at gameplay distance only; no sutures, no zygomatic arches, no nasal bone."
+  },
+  "SM_Bones_Scatter_PR": {
+   "known_weaknesses": "NOT photoreal: long bones are swept tubes with swollen ends, ribs are curved blades; smooth and regular like casts; colour and lichen are vertex-level."
+  },
+  "SM_Candle_Iron_PR": {
+   "known_weaknesses": "Same mesh and bake as SM_Prop_Candle_Holder_01 (textures T_Prop_Candle_Holder_01_* in Props/Prop_Candle_Holder_01); see there.",
+   "emissive+": {
+    "note": "as SM_Prop_Candle_Holder_01"
+   }
+  },
+  "SM_Fireplace_Fieldstone_PR": {
+   "known_weaknesses": "Masonry reads as real rubble with dressed jamb stones; soot on fireback and breast is the vertex-colour soot switch on a coarse grid, so its edge is soft; logs are swept tubes with a charred middle, no bark, no split faces, no embers; the bressummer has no adze marks; stack top is cut square at 4.14 m as the mesh it replaces. Brick version of sprite 64 frame 5 not built."
+  },
+  "SM_Basket_Wicker_PR": {
+   "known_weaknesses": "Weave is modelled as alternating bumps, one per stake: reads as wicker at gameplay distance, as a ribbed bowl at 1 m (no separate strands, no ends). Straw scan stands in for willow. Empty."
+  },
+  "SM_Pie_Rustic_PR": {
+   "known_weaknesses": "NOT photoreal: crust is a tinted plaster scan on a lathe with crimps; no flake, no glaze, no filling showing. Reads as a pie at gameplay distance only."
+  },
+  "SM_Potion_Flask_PR": {
+   "known_weaknesses": "NOT photoreal: the contract has no translucent material, so the flask is opaque dark glossy glass in one piece with a wood-coloured cork; no liquid level, no refraction."
+  },
+  "SM_Counter_Oak_PR": {
+   "known_weaknesses": "Plain plank counter, believable but new-looking: no wear on the customer edge beyond vertex colour, dark box behind the open front instead of real shelves with goods."
+  },
+  "SM_Post_Support_Oak_PR": {
+   "known_weaknesses": "One review round. Post and braces are clean sawn timbers with pegs; brace ends are butted, not housed; the stone pad is four dressed blocks."
+  },
+  "SM_Cabinet_Oak_PR": {
+   "known_weaknesses": "One review round. A plain side table with deep aprons; the class name says cabinet but the sprite shows no doors or drawers, and none are modelled."
+  },
+  "SM_Dungeon_Pillar_Twin_PR": {
+   "known_weaknesses": "One review round. Drums are lathes of the FieldBoulder scan: joints are thin gaps without mortar or chipping, mouldings are simple; the scan wraps round each drum with a seam."
+  },
+  "SM_Rubble_Pile_PR": {
+   "known_weaknesses": "One review round. Blocks and stones are scattered by rule, some float a centimetre or intersect; the dust mound has a clean rim; no small debris."
+  },
+  "SM_Shelf_Bottles_PR": {
+   "known_weaknesses": "One review round. Bottles are opaque glazed lathes of three shapes in three colours (sprite also has purple and teal), ten sides each, all upright and evenly spaced; the sprite's bottles are glass. Plank work is plain."
+  },
+  "SM_Chest_Small_Open_PR": {
+   "known_weaknesses": "As SM_Chest_Small_PR (same bake). The interior is empty and stained like the outside; the lid is fixed at 102 degrees (no animation, swap meshes)."
+  }
+ },
+ "sheet": [
+  [
+   "Lights_sun",
+   "light sources: wall torch, brazier, candle, lantern (sun)"
+  ],
+  [
+   "LightsInt_int",
+   "light sources, warm interior light"
+  ],
+  [
+   "Lights_torch",
+   "wall torch, 1 m"
+  ],
+  [
+   "Store_gameplay",
+   "store props, gameplay camera"
+  ],
+  [
+   "Store_closeA",
+   "barrel, sacks, crates"
+  ],
+  [
+   "Store_closeB",
+   "jars, chest, potion, candle"
+  ],
+  [
+   "Store_closeC",
+   "grain sack, pie, bowl"
+  ],
+  [
+   "StoreInt_closeA",
+   "interior light"
+  ],
+  [
+   "StoreInt_closeB",
+   "interior light"
+  ],
+  [
+   "Room_gameplay",
+   "furniture, gameplay camera"
+  ],
+  [
+   "Room_closeT",
+   "table, chair"
+  ],
+  [
+   "Room_closeBed",
+   "bed"
+  ],
+  [
+   "Room_hearth",
+   "fireplace"
+  ],
+  [
+   "RoomInt_gameplay",
+   "interior light"
+  ],
+  [
+   "RoomInt_hearth",
+   "interior light"
+  ],
+  [
+   "Graves_gameplay",
+   "gravestones, bones"
+  ],
+  [
+   "Graves_close",
+   "gravestones"
+  ],
+  [
+   "Graves_bones",
+   "bones, skull"
+  ],
+  [
+   "Extra_sun",
+   "late additions"
+  ],
+  [
+   "Extra_close",
+   "pillar, rubble, bottle shelf"
+  ]
+ ],
+ "built_classes": [
+  "barrel",
+  "crate",
+  "crate_small",
+  "crate_stack (by stacking)",
+  "jar_vase",
+  "bowl",
+  "grain_sack",
+  "table_long",
+  "table_round",
+  "chair",
+  "bench_long",
+  "bench_short (scale)",
+  "stool",
+  "bed",
+  "chest_small",
+  "gravestone",
+  "skull",
+  "bones",
+  "food_pie",
+  "potion_red/purple/blue",
+  "counter_wood",
+  "support_post_timber",
+  "cabinet_wood",
+  "dungeon_pillar",
+  "rubble_pile",
+  "shelf_bottles",
+  "basket_wicker",
+  "wall torch, brazier, candle, hanging lantern (new)",
+  "opening cottage: barrel, basket, bed, candle, chair, feed sack, fireplace, pie, table"
+ ],
+ "remaining_note": "Not built, by placeholder count: thorn_bush 138 (vegetation), seashell_clam 66 / starfish 47 / seashell_conch 29 (Terrain/Scatter has interim clam and starfish meshes by another agent: not taken over), blood_splat 46 (decal/effect), tree_fruit 34, hand_tool_small 30, burn_hole_decal 26, food_fruit 15 and other food 6, gold_pile 15 / gold_coin 8 (need a metallic material the contract lacks), arrow_prop 14, shelf_empty 12, crate_stack 11 (stack two crates), island_totem_pole 10 (Structures/Misc SM_Island_TorchPole_PR), bookcase 9, ground_crack 8, small_heart 8 / golden_heart 6, shop_sign 8, island_torch 8, snake_pillar 7, wall_stripe_red 7, pitchfork 6, rake 3, scythe 2, idol_statue_small 5, ground_hole_dark 5, island_spear_pole 5, posters 5, bomb_item 3, spinning_wheel 2, chest_medium 2 / chest_large 2 (scale the small chest), fountain_stone 2, dungeon_arch_freestanding 1, barrel_broken 1, scroll_note 1, axe_item 1, snake_carving 1; fire and sparkle effects are not props. sign_post 30 is delivered in Structures/Misc.",
+ "not_done": "No unique bakes (everything is tiling sets + vertex colour); no opening chest lid, no broken barrel states, no brick fireplace, no shelf without bottles; nothing imported into Unreal. Beach shells and starfish, snake pillar, idol, fountain and free-standing arch from the coordinator's priority list were not reached.",
+ "validator": {
+  "tool": "tools/blender/dinkasset/validate.py on Props/_build/Props.blend (report Props/_build/validation.json)",
+  "result": "36 assets, 3 pass: 41 errors, all by design (33 UV_OVERLAP, 5 PIVOT, 2 SLOTS_OVER) except ZERO_AREA on SM_Jar_Jug_PR (4 sliver faces at a handle root, not fixed); TRIS_OVER_TARGET warnings on SM_Bed_Oak_PR (8,104), SM_Pie_Rustic_PR, SM_Skull_PR; summary in Props/_build/validation_summary.json",
+  "errors_by_design": {
+   "UV_OVERLAP (every prop)": "UV0 carries tiling scan sets at real texel density, not a unique 0-1 unwrap; weathering is vertex colour",
+   "PIVOT on SM_Gravestone_*": "origin is the foot of the stone on the ground; the mound lies in front and the slab runs 0.35 m into the earth",
+   "PIVOT on SM_Prop_Torch_Wall_01 / SM_Prop_Lantern_Hanging_01": "wall-mounted (origin on the wall plane) and ceiling-hung (origin at the hook) by request",
+   "SLOTS_OVER on SM_Bed_Oak_PR, SM_Gravestone_Broken_PR, SM_Shelf_Bottles_PR and others listed in validation_summary": "each visibly different substance is its own tiling material (oak, linen, dyed blanket, madder border; three glaze colours)"
+  },
+  "warnings": "NAME_TEXTURE, TEXEL_DENSITY, UV_RANGE, UV_DEGENERATE (tiling UVs), TRIS_OVER_TARGET where listed, DUPLICATE_VERTS (touching parts)"
+ },
+ "baked_assets": {
+  "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+  "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour."
+ }
+}

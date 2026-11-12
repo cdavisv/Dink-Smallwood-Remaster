@@ -1,0 +1,54 @@
+{
+ "name": "SM_Sack_Grain_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain/SM_Sack_Grain_PR.fbx",
+ "materials": [
+  "MI_Prop_Hessian",
+  "MI_Struct_Rope"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 2134,
+ "lod1_triangles": 1066,
+ "lod2_triangles": 468,
+ "dimensions_m": [
+  0.971,
+  0.693,
+  0.257
+ ],
+ "bounds_min_m": [
+  -0.47,
+  -0.348,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.501,
+  0.345,
+  0.257
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "463 items/grain/bag-",
+  "grain_sack"
+ ],
+ "supersedes": "none (grain_sack placeholder, 19 placements)",
+ "dresses": "full grain sack lying on its side, 0.95 x 0.64 x 0.3 m: slumped flat underneath, sewn mouth with nine twine stitches and a loose tail, gusset corners",
+ "fit": {
+  "pivot": "base centre; mouth to +X",
+  "colours": "frames are tan, olive and madder red: MI_Prop_Hessian, MI_Prop_Hessian_Olive, MI_Prop_Hessian_Red"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Sack_Grain",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "Jute weave from a 0.3 m scan reads true close up, but the form is a smooth pillow with a flattened base: creases are shallow sine folds, the sewn mouth is nine loose stitches without a rolled seam, one flat facet line shows low on one side. Colour variants are material swaps.",
+ "third_party": [
+  "hessian_230",
+  "thatch_roof_angled"
+ ],
+ "texture_sets": [
+  "Hessian",
+  "Thatch"
+ ],
+ "textures_px": 2048
+}

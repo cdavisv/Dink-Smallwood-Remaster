@@ -1,0 +1,64 @@
+{
+ "name": "SM_Prop_Torch_Wall_01",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Prop_Torch_Wall_01",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Prop_Torch_Wall_01_BC.png",
+  "N": "T_Prop_Torch_Wall_01_N.png",
+  "ORM": "T_Prop_Torch_Wall_01_ORM.png",
+  "E": "T_Prop_Torch_Wall_01_E.png"
+ },
+ "lod_triangles": [
+  2548,
+  1274,
+  568
+ ],
+ "hi_triangles": 20378,
+ "bounds_min_m": [
+  -0.077,
+  -0.359,
+  -0.0
+ ],
+ "bounds_max_m": [
+  0.08,
+  0.0,
+  0.951
+ ],
+ "dimensions_m": [
+  0.157,
+  0.359,
+  0.952
+ ],
+ "emissive_nits": 40.0,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 20.8,
+   "p99": 78.2
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.465,
+   "p95": 0.958
+  },
+  "metallic_mean": 0.012
+ },
+ "info": {
+  "socket": [
+   0.0,
+   -0.329,
+   0.768
+  ]
+ },
+ "third_party": [
+  "rough_wood",
+  "hessian_230"
+ ]
+}

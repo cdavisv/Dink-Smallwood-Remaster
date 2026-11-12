@@ -1,0 +1,92 @@
+{
+ "name": "SM_Crate_Large_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Large/SM_Crate_Large_PR.fbx",
+ "materials": [
+  "MI_Crate_Large"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Crate_Large_PR.blend",
+ "lod0_triangles": 312,
+ "lod1_triangles": 244,
+ "lod2_triangles": 108,
+ "dimensions_m": [
+  0.983,
+  0.675,
+  0.577
+ ],
+ "bounds_min_m": [
+  -0.491,
+  -0.337,
+  -0.001
+ ],
+ "bounds_max_m": [
+  0.492,
+  0.338,
+  0.575
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "443 items/boxes/boxb1-",
+  "crate",
+  "crate_stack"
+ ],
+ "supersedes": "none (class was placeholder, 21 placements)",
+ "dresses": "slatted packing crate 0.97 x 0.67 x 0.58 m: four corner posts inside, three slats a side with open gaps onto a real interior with bottom boards, four lid boards under two nailed battens; weathered grey-brown softwood, damp at the foot",
+ "fit": {
+  "pivot": "base centre",
+  "stack": "class crate_stack (11 placements) is one large crate with a small one on top, turned about 20 degrees"
+ },
+ "baked": {
+  "texture_folder": "Crate_Large",
+  "textures": {
+   "BC": "T_Crate_Large_PR_BC.png",
+   "N": "T_Crate_Large_PR_N.png",
+   "ORM": "T_Crate_Large_PR_ORM.png"
+  },
+  "px": 2048,
+  "slots": [
+   {
+    "material": "MI_Crate_Large",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 58.7,
+    "p99": 132.0
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.558,
+    "p95": 0.807
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 4536,
+  "third_party": [
+   "rough_wood"
+  ],
+  "source_blend": "_build/bake/SM_Crate_Large_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Large",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "Round 2 unique bake, two review rounds (r6). Last look still faults: boards are straight-sawn with only slight warp, no split or missing slat, nail heads are baked and small, no stencil or brand, scratch marks are a little even over all faces. Low triangle count (312): slats are single boxes.",
+ "third_party": [
+  "rough_wood"
+ ],
+ "texture_sets": [],
+ "textures_px": 2048,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Large/T_Crate_Large_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Large/T_Crate_Large_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Crate_Large/T_Crate_Large_PR_ORM.png"
+ }
+}

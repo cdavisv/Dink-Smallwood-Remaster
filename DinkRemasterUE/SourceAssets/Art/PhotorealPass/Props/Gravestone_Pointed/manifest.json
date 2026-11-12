@@ -1,0 +1,55 @@
+{
+ "name": "SM_Gravestone_Pointed_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Gravestone_Pointed/SM_Gravestone_Pointed_PR.fbx",
+ "materials": [
+  "MI_Struct_FieldBoulder",
+  "MI_Struct_Earth"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 2448,
+ "lod1_triangles": 1224,
+ "lod2_triangles": 538,
+ "dimensions_m": [
+  1.082,
+  1.935,
+  1.568
+ ],
+ "bounds_min_m": [
+  -0.54,
+  -1.676,
+  -0.368
+ ],
+ "bounds_max_m": [
+  0.542,
+  0.259,
+  1.2
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "446 items/tomb/tomb- frame 3",
+  "gravestone"
+ ],
+ "supersedes": "none (gravestone placeholder, 14 placements)",
+ "dresses": "shouldered pointed headstone 0.66 x 1.2 m; weather-rounded edges, moss from the foot and on the north face, lichen; a turfed grave mound in front (the stone runs 0.35 m into the ground)",
+ "fit": {
+  "pivot": "ground at the foot of the stone; face to -Y, the grave lies toward -Y"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Gravestone_Pointed",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "As the round stone.",
+ "third_party": [
+  "dirt_floor",
+  "rock_face",
+  "rock_face_04",
+  "rocky_trail"
+ ],
+ "texture_sets": [
+  "EarthPath",
+  "FieldBoulder"
+ ],
+ "textures_px": 2048
+}

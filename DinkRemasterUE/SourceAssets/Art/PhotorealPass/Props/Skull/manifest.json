@@ -1,0 +1,54 @@
+{
+ "name": "SM_Skull_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull/SM_Skull_PR.fbx",
+ "materials": [
+  "MI_Prop_Bone",
+  "MI_Prop_OakWarm"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/Props.blend",
+ "lod0_triangles": 1712,
+ "lod1_triangles": 856,
+ "lod2_triangles": 376,
+ "dimensions_m": [
+  0.172,
+  0.23,
+  0.202
+ ],
+ "bounds_min_m": [
+  -0.086,
+  -0.101,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.086,
+  0.129,
+  0.202
+ ],
+ "open_edges": 0,
+ "collision_hulls": 0,
+ "families": [
+  "90 lands/details/grave- (skull frames)",
+  "skull"
+ ],
+ "supersedes": "none (skull placeholder, 13 placements)",
+ "dresses": "human skull without the jaw, 0.17 x 0.22 x 0.2 m: cranium, brow ridge, cheek bones, eye sockets and nose as dark hollows, eight upper teeth; earth-stained, lichened",
+ "fit": {
+  "pivot": "base centre (resting on the palate), faces -Y; tip it on its side for variety"
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Skull",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_build.py",
+ "status": "interim: reviewed, not claimed photoreal",
+ "material_exception": "shared tiling scan sets with a vertex-colour weathering layer (MI_Prop_* / MI_Struct_*), not private bakes and not yet rows of ART_STANDARD.md section 2. Edge wear, stains and soot are per-vertex. A unique bake per prop is the next step where the weaknesses say so.",
+ "known_weaknesses": "NOT photoreal: a lathed cranium pushed into shape with three dark hollows and eight block teeth. Reads as a skull at gameplay distance only; no sutures, no zygomatic arches, no nasal bone.",
+ "third_party": [
+  "old_planks_02",
+  "painted_plaster_wall",
+  "plastered_wall_04"
+ ],
+ "texture_sets": [
+  "OakWeathered",
+  "PlasterWall"
+ ],
+ "textures_px": 2048
+}

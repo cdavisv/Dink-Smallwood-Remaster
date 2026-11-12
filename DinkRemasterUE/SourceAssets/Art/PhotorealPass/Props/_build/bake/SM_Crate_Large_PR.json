@@ -1,0 +1,59 @@
+{
+ "name": "SM_Crate_Large_PR",
+ "class": "prop",
+ "px": 2048,
+ "slots": [
+  {
+   "material": "MI_Crate_Large",
+   "kind": "opaque"
+  }
+ ],
+ "textures": {
+  "BC": "T_Crate_Large_PR_BC.png",
+  "N": "T_Crate_Large_PR_N.png",
+  "ORM": "T_Crate_Large_PR_ORM.png"
+ },
+ "lod_triangles": [
+  312,
+  244,
+  108
+ ],
+ "hi_triangles": 4536,
+ "bounds_min_m": [
+  -0.491,
+  -0.337,
+  -0.001
+ ],
+ "bounds_max_m": [
+  0.492,
+  0.338,
+  0.575
+ ],
+ "dimensions_m": [
+  0.983,
+  0.675,
+  0.577
+ ],
+ "emissive_nits": null,
+ "params": null,
+ "stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 58.7,
+   "p99": 132.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.558,
+   "p95": 0.807
+  },
+  "metallic_mean": 0.0
+ },
+ "info": {},
+ "third_party": [
+  "rough_wood"
+ ],
+ "variants": {},
+ "meta": null,
+ "extra": null
+}

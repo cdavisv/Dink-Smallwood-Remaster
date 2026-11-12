@@ -1,0 +1,88 @@
+{
+ "name": "SM_Jar_Bowl_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Bowl/SM_Jar_Bowl_PR.fbx",
+ "materials": [
+  "MI_Jar_Bowl"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Jar_Bowl_PR.blend",
+ "lod0_triangles": 728,
+ "lod1_triangles": 364,
+ "lod2_triangles": 160,
+ "dimensions_m": [
+  0.419,
+  0.419,
+  0.168
+ ],
+ "bounds_min_m": [
+  -0.208,
+  -0.209,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.211,
+  0.209,
+  0.168
+ ],
+ "open_edges": 0,
+ "collision_hulls": 1,
+ "families": [
+  "448 items/cup/cup- frames 1-3",
+  "bowl"
+ ],
+ "supersedes": "none (family 448 was placeholder: jar_vase 52, bowl 17 placements)",
+ "dresses": "footed dish, 0.42 x 0.17 m, brown outside, cream glaze inside, turned foot ring",
+ "fit": {
+  "pivot": "base centre",
+  "colours": "the sprite frames differ only in glaze colour: swap the material instance (MI_Prop_Glaze_Brown / _Blue / _Red / _Green / _Purple, all in materials.json) per frame",
+  "sprite_scale": "frames are 12-22 px wide (0.3-0.55 m at 0.025 m/px)"
+ },
+ "baked": {
+  "texture_folder": "Jar_Bowl",
+  "textures": {
+   "BC": "T_Jar_Bowl_PR_BC.png",
+   "N": "T_Jar_Bowl_PR_N.png",
+   "ORM": "T_Jar_Bowl_PR_ORM.png"
+  },
+  "px": 1024,
+  "slots": [
+   {
+    "material": "MI_Jar_Bowl",
+    "kind": "opaque"
+   }
+  ],
+  "emissive_nits": null,
+  "params": null,
+  "stats": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 50.1,
+    "p99": 167.4
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.11,
+    "p95": 0.852
+   },
+   "metallic_mean": 0.0
+  },
+  "hi_triangles": 13320,
+  "third_party": [],
+  "source_blend": "_build/bake/SM_Jar_Bowl_PR.blend",
+  "extra": null,
+  "shares_textures_of": null
+ },
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Bowl",
+ "build": "DINK_PP=<PhotorealPass> blender -b -t 4 --python Props/tools/props_bake.py -- <asset>; then blender -b Props/_build/Props.blend --python Props/tools/props_merge.py",
+ "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
+ "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour.",
+ "known_weaknesses": "As SM_Jar_Storage_PR; cream glaze inside with a dull pooled centre; empty (sprite frames 2-3 show a yellow content).",
+ "third_party": [],
+ "texture_sets": [],
+ "textures_px": 1024,
+ "textures": {
+  "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Bowl/T_Jar_Bowl_PR_BC.png",
+  "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Bowl/T_Jar_Bowl_PR_N.png",
+  "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Jar_Bowl/T_Jar_Bowl_PR_ORM.png"
+ }
+}
