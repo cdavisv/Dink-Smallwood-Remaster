@@ -33,7 +33,7 @@ jobs:
         run: |
           git lfs install --local --skip-smudge
           git lfs pull --include="DinkRemasterUE/SourceAssets/Art/Stonebrook/Export/Game/Dink/Props/Stonebrook/SM_Barrel_Oak_01.fbx" --exclude=""
-      - name: Hydrate exact closed-eaves source test fixtures
+      - name: Hydrate explicit cottage and fireplace source fixtures
         run: |
           house_include=$(paste -sd, .github/fixtures/house439-source-lfs.txt)
           git lfs pull --include="$house_include" --exclude=""
