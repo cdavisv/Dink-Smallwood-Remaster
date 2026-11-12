@@ -1,0 +1,209 @@
+[
+  {
+    "candidate": "Original",
+    "sampled_rays": 16384,
+    "opaque_gable_hits": 8752,
+    "occupancy_exact_vs_original": true,
+    "maximum_sampled_hit_depth_change_m": 0.0,
+    "occupancy_sha256": "33c43460bb10e8c8413d2f6916df3f10a3237e0e366f7efa54349daaabde3fe9",
+    "recorded_sliver_rays": [
+      {
+        "target": [
+          -7.357499122619629,
+          3.6052417755126953,
+          5.099984645843506
+        ],
+        "hits": [
+          {
+            "object": "SM_IndoorRoof_Gable_WN_01",
+            "point": [
+              -7.357499122619629,
+              3.6052417755126953,
+              5.099984645843506
+            ],
+            "distance": 10.072885831149906,
+            "material": "MI_Shared_LimePlaster2m"
+          },
+          {
+            "object": "SM_IndoorRoof_WN_01",
+            "point": [
+              -7.357500076293945,
+              3.6052420139312744,
+              5.099984645843506
+            ],
+            "distance": 10.07288668324618,
+            "material": "MI_Shared_OakLonggrain2m"
+          }
+        ]
+      },
+      {
+        "target": [
+          -7.357499122619629,
+          4.611705780029297,
+          4.626028537750244
+        ],
+        "hits": [
+          {
+            "object": "SM_IndoorRoof_Gable_WN_01",
+            "point": [
+              -7.357499122619629,
+              4.611705780029297,
+              4.626028537750244
+            ],
+            "distance": 10.44304662863638,
+            "material": "MI_Shared_LimePlaster2m"
+          },
+          {
+            "object": "SM_IndoorRoof_WN_01",
+            "point": [
+              -7.357500076293945,
+              4.611706256866455,
+              4.626028537750244
+            ],
+            "distance": 10.443047541850989,
+            "material": "MI_Shared_OakLonggrain2m"
+          }
+        ]
+      }
+    ],
+    "limit": "Discrete source BVH rays plus exact YZ/topology preservation; not certified watertight manifold or native physics proof."
+  },
+  {
+    "candidate": "recess_20mm",
+    "sampled_rays": 16384,
+    "opaque_gable_hits": 8752,
+    "occupancy_exact_vs_original": true,
+    "maximum_sampled_hit_depth_change_m": 0.020001337235089345,
+    "occupancy_sha256": "33c43460bb10e8c8413d2f6916df3f10a3237e0e366f7efa54349daaabde3fe9",
+    "recorded_sliver_rays": [
+      {
+        "target": [
+          -7.357499122619629,
+          3.6052417755126953,
+          5.099984645843506
+        ],
+        "hits": [
+          {
+            "object": "SM_IndoorRoof_WN_01",
+            "point": [
+              -7.357500076293945,
+              3.6052420139312744,
+              5.099984645843506
+            ],
+            "distance": 10.07288668324618,
+            "material": "MI_Shared_OakLonggrain2m"
+          },
+          {
+            "object": "SM_IndoorRoof_Gable_WN_01",
+            "point": [
+              -7.377499580383301,
+              3.612947702407837,
+              5.102015018463135
+            ],
+            "distance": 10.094415480344948,
+            "material": "MI_Shared_LimePlaster2m"
+          }
+        ]
+      },
+      {
+        "target": [
+          -7.357499122619629,
+          4.611705780029297,
+          4.626028537750244
+        ],
+        "hits": [
+          {
+            "object": "SM_IndoorRoof_WN_01",
+            "point": [
+              -7.357500076293945,
+              4.611706256866455,
+              4.626028537750244
+            ],
+            "distance": 10.443047541850989,
+            "material": "MI_Shared_OakLonggrain2m"
+          },
+          {
+            "object": "SM_IndoorRoof_Gable_WN_01",
+            "point": [
+              -7.377499580383301,
+              4.621562957763672,
+              4.62704610824585
+            ],
+            "distance": 10.465367535835382,
+            "material": "MI_Shared_LimePlaster2m"
+          }
+        ]
+      }
+    ],
+    "limit": "Discrete source BVH rays plus exact YZ/topology preservation; not certified watertight manifold or native physics proof."
+  },
+  {
+    "candidate": "proud_8mm",
+    "sampled_rays": 16384,
+    "opaque_gable_hits": 8752,
+    "occupancy_exact_vs_original": true,
+    "maximum_sampled_hit_depth_change_m": 0.008001345574760066,
+    "occupancy_sha256": "33c43460bb10e8c8413d2f6916df3f10a3237e0e366f7efa54349daaabde3fe9",
+    "recorded_sliver_rays": [
+      {
+        "target": [
+          -7.357499122619629,
+          3.6052417755126953,
+          5.099984645843506
+        ],
+        "hits": [
+          {
+            "object": "SM_IndoorRoof_Gable_WN_01",
+            "point": [
+              -7.349499702453613,
+              3.6021597385406494,
+              5.099172592163086
+            ],
+            "distance": 10.064274930496167,
+            "material": "MI_Shared_LimePlaster2m"
+          },
+          {
+            "object": "SM_IndoorRoof_WN_01",
+            "point": [
+              -7.357500076293945,
+              3.6052420139312744,
+              5.099984645843506
+            ],
+            "distance": 10.07288668324618,
+            "material": "MI_Shared_OakLonggrain2m"
+          }
+        ]
+      },
+      {
+        "target": [
+          -7.357499122619629,
+          4.611705780029297,
+          4.626028537750244
+        ],
+        "hits": [
+          {
+            "object": "SM_IndoorRoof_Gable_WN_01",
+            "point": [
+              -7.34950065612793,
+              4.60776424407959,
+              4.625621795654297
+            ],
+            "distance": 10.434120438427538,
+            "material": "MI_Shared_LimePlaster2m"
+          },
+          {
+            "object": "SM_IndoorRoof_WN_01",
+            "point": [
+              -7.357500076293945,
+              4.611706256866455,
+              4.626028537750244
+            ],
+            "distance": 10.443047541850989,
+            "material": "MI_Shared_OakLonggrain2m"
+          }
+        ]
+      }
+    ],
+    "limit": "Discrete source BVH rays plus exact YZ/topology preservation; not certified watertight manifold or native physics proof."
+  }
+]

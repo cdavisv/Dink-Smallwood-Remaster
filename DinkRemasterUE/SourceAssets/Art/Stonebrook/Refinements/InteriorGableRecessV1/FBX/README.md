@@ -1,0 +1,7 @@
+# Four actual source FBXs — native producer staging
+
+## Actual four-gable FBX staging for the isolated native producer
+
+`FBX/SM_IndoorRoof_Gable_{EN,ES,WN,WS}_01.fbx` contains the four actual reviewed exports,266triangles and3unchangedUCX each, not a re-export or new geometry variant. SHA256 EN114f4af48d3e636a4ad7badc1cb339cc46e0f60bfebd21b6a705971337b5e046; ES700d0f4ec33277e7888a4817d1d6820645385934c5f22c020fd78b2161a42446; WN830bf28a18b5c09aac15f6344995c1cda64df74a08cdc3b028c2662e8e8489b5; WS9fb6944dda2dc9a82a696e89b157b5592c9cd1eb1deb8ae49762dcf9ef8a2abf. Existing frozen source/evidence hashes remain unchanged; this section and the new FBX files are additive.
+
+The exporter preserves the existing declared centimetre/model100/Rz180 transport; serialized source coordinates are not asserted to be UE interpreted positions. Actual binary readback shows14cm plaster slab depth and20mm recess, unchanged per-part UV/material/index/UCX contracts and preserved0.05degree gates. The candidate namespace is `/Game/Dink/Refinements/InteriorGableRecessV1/Meshes/` with the exact matching four names. Dedicated source-metadata capability is required before future import; canonical sources live in this FBX directory. No native import, save, registration, gameplay or pixel acceptance is supplied by this staging. Existing shared plaster and baseline collision policy must be read and preserved separately.
