@@ -6,24 +6,24 @@ Sources only: nothing here is imported into Unreal or bound in `families.json`, 
 
 | | families | placements |
 |---|---:|---:|
-| delivered | 4 | 117 |
-| partial | 1 | 34 |
-| not started | 106 | 450 |
+| delivered | 5 | 146 |
+| partial | 4 | 76 |
+| not started | 102 | 379 |
 | total unclaimed | 111 | 601 |
 
 **delivered**: game mesh or decal set, textures, FBX, source .blend, manifest and final renders are in the folder, and the last review round found nothing left that could still be fixed in this pass (each manifest lists `known_weaknesses`). 
 **partial**: something the task asks for is missing or the last review round still faulted the look; the line says what.
 
-Contact sheet of every final render: `contact_sheet.png` (21 assets).
+Contact sheet of every final render: `contact_sheet.png` (23 assets).
 
 | # | family | original shows | placements | status | assets | note |
 |---:|---|---|---:|---|---|---|
 | 24 | `blood_splat` | Blood splatter | 46 | delivered | `Decal_Blood_Drips_01`, `Decal_Blood_Drops_Large_01`, `Decal_Blood_Pool_01`, `Decal_Blood_Pool_02`, `Decal_Blood_Spurt_L_01`, `Decal_Blood_Spurt_L_02`, `Decal_Blood_Spurt_R_01`, `Decal_Blood_Spurt_R_02` | 8 decal sets, one per original frame (pools, drips, left and right spurts): BC + opacity, normal, ORM at 1024 px |
 | 31 | `tree_fruit` | Fruit hanging in a tree | 34 | partial | `SM_Acorn_Hanging_PR` | 1 mesh (large acorn; identity guessed from a 7x12 px frame). The last review still faults the cup: its scales are a soft displaced pattern that reads as a rough cap at 1 m |
 | 34 | `hand_tool_small` | Small hand tool | 30 | delivered | `SM_Axe_Felling_PR`, `SM_Hammer_Smith_PR`, `SM_Tongs_Smith_PR` | 3 meshes for the 8 frames: felling axe (4 frames), smith's hammer (2), tongs (2); game meshes are decimations of the swept sources |
-| 36 | `seashell_conch` | Conch shell | 29 | not started | - | not reached yet |
+| 36 | `seashell_conch` | Conch shell | 29 | delivered | `SM_Seashell_Conch_PR` | 1 mesh: knobbed spiral shell, 14 cm, lying on its aperture; a few dark bake fringes at the canal tip and lip |
 | 38 | `burn_hole_decal` | Burnt hole / scorch mark | 26 | delivered | `Decal_Burn_Scorch_01`, `Decal_Burn_Scorch_02`, `Decal_Burn_Scorch_03` | 3 decal sets, one per original frame; the burnt-through middle is a flat black patch with a normal-map lip, not a real hole |
-| 41 | `bonca_gray` | Bonca | 21 | not started | - | not reached yet |
+| 41 | `bonca_gray` | Bonca | 21 | partial | `SK_Bonca_PR` | rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips |
 | 43 | `slayer` | Slayer | 21 | not started | - | not reached yet |
 | 53 | `npc_knight_blue` | Knight | 18 | not started | - | not reached yet |
 | 62 | `dragon` | Dragon | 16 | not started | - | not reached yet |
@@ -32,10 +32,10 @@ Contact sheet of every final render: `contact_sheet.png` (21 assets).
 | 73 | `arrow_prop` | Arrow | 14 | not started | - | not reached yet |
 | 77 | `stone_giant` | Stone giant | 14 | not started | - | not reached yet |
 | 79 | `dragon_statue` | Dragon statue on orb | 13 | not started | - | not reached yet |
-| 81 | `bonca_brown` | Bonca | 12 | not started | - | not reached yet |
+| 81 | `bonca_brown` | Bonca | 12 | partial | `SK_Bonca_PR` | rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips |
 | 90 | `cave_hole_warp` | Hole into a cave | 10 | not started | - | not reached yet |
 | 93 | `save_machine` | Save machine | 10 | not started | - | not reached yet |
-| 95 | `bonca_purple` | Bonca | 9 | not started | - | not reached yet |
+| 95 | `bonca_purple` | Bonca | 9 | partial | `SK_Bonca_PR` | rigged creature (16-bone bespoke skeleton, 3 LODs, inverse-distance weights, pose-tested), grey / brown / purple base-colour sets on one mesh. Partial because the last review still faults it: stylised maquette look at 1 m, invented anatomy, no animation clips |
 | 96 | `bookcase` | Bookcase | 9 | not started | - | not reached yet |
 | 98 | `log_cabin_window` | Log cabin window | 9 | not started | - | not reached yet |
 | 100 | `stairs_wood` | Wooden stairs | 9 | not started | - | not reached yet |
