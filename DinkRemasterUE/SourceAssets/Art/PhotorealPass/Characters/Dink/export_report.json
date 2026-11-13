@@ -162,28 +162,44 @@
    "triangles": 60238,
    "vertices": 36482,
    "max_influences": 5,
-   "unweighted": 0
+   "unweighted": 0,
+   "shape_keys": [
+    "Physique_Scrawny",
+    "Physique_Brawny"
+   ]
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD1",
    "triangles": 30119,
    "vertices": 21300,
    "max_influences": 4,
-   "unweighted": 0
+   "unweighted": 0,
+   "shape_keys": [
+    "Physique_Scrawny",
+    "Physique_Brawny"
+   ]
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD2",
    "triangles": 17873,
    "vertices": 14378,
    "max_influences": 4,
-   "unweighted": 0
+   "unweighted": 0,
+   "shape_keys": [
+    "Physique_Scrawny",
+    "Physique_Brawny"
+   ]
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD3",
    "triangles": 10784,
    "vertices": 8413,
    "max_influences": 4,
-   "unweighted": 0
+   "unweighted": 0,
+   "shape_keys": [
+    "Physique_Scrawny",
+    "Physique_Brawny"
+   ]
   }
  ],
  "bones": [

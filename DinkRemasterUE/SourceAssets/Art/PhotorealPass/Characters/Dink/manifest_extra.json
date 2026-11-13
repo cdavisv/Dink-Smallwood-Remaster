@@ -52,7 +52,8 @@
   "Brows and lashes are alpha cards inside the MI_Dink_PR_Hair slot (bottom quarter of T_Dink_PR_Hair_BC): the slot must be masked/two-sided or they render as solid quads; there is no separate BrowLash slot any more.",
   "Hair cards: UV V runs along the strands (root at the top of each strip), so an anisotropic/hair shading model should take its tangent from V. Roughness is in ORM.G; keep specular low.",
   "UV uniqueness is per slot (see uv_per_slot): Skin 0 %, Outfit 1.7 %, Gear 0.9 % overlap (thickness lips share their border texels); Hair cards share strand strips and both eyes share one texture by design. The validator's whole-mesh UV_OVERLAP error is expected with five texture sets.",
-  "12 Nov 2026: hair slot gains two textures, T_Dink_PR_Hair_FLOW (strand direction + back-light mask) and T_Dink_PR_Hair_MSK; the hair atlas is now 4096 with a new layout (see materials.MI_Dink_PR_Hair). Asset, slot, bone and file names are unchanged; re-import the four FBX and the Hair, Outfit and Skin texture sets."
+  "12 Nov 2026: hair slot gains two textures, T_Dink_PR_Hair_FLOW (strand direction + back-light mask) and T_Dink_PR_Hair_MSK; the hair atlas is now 4096 with a new layout (see materials.MI_Dink_PR_Hair). Asset, slot, bone and file names are unchanged; re-import the four FBX and the Hair, Outfit and Skin texture sets.",
+  "12 Nov 2026 (build): the four LOD FBX now carry the blend shapes Physique_Scrawny and Physique_Brawny (see physique); import with morph targets on. The importer refuses a mesh on which a declared shape key is missing from any LOD."
  ],
  "review_renders": [
   "Review/r9_body.png",
@@ -74,5 +75,59 @@
   "Armhole: NOT fixed this round. The shirt body still continues under the jerkin and the reach pose (r9_poses, fifth pose) pinches at the armpit; it needs a re-cut armhole or a gusset.",
   "Validator: whole-mesh UV_OVERLAP error (five texture sets, hair cards share atlas tiles by design; see importer_changes); LOD0 over the soft triangle target."
  ],
- "hair": "Game hair rebuilt 12 Nov 2026 from the strand groom: (1) an opaque cap shell that carries the whole evaluated groom, projected about the head centre into the cap rect of a 4096 atlas (colour with root-dark to tip-light gradient, strand-relief normal, depth occlusion, flow map; dark under-fill inside the hairline so no scalp shows), (2) narrow lock cards (20-85 hairs per tile, 5-10 mm wide at the tip) laid along the same guide field in two lifted layers that never dip under the cap, (3) hairline wisps and a few flyaways, (4) brow cards baked from a short strand groom. Lashes are still the CC0 MakeHuman lash cards. Acceptance renders: Review/<tag>_hair_compare.png (top = strands, bottom = cards; 2 m sun, 0.5 m sun, 0.5 m overcast, back, crown)."
+ "hair": "Game hair rebuilt 12 Nov 2026 from the strand groom: (1) an opaque cap shell that carries the whole evaluated groom, projected about the head centre into the cap rect of a 4096 atlas (colour with root-dark to tip-light gradient, strand-relief normal, depth occlusion, flow map; dark under-fill inside the hairline so no scalp shows), (2) narrow lock cards (20-85 hairs per tile, 5-10 mm wide at the tip) laid along the same guide field in two lifted layers that never dip under the cap, (3) hairline wisps and a few flyaways, (4) brow cards baked from a short strand groom. Lashes are still the CC0 MakeHuman lash cards. Acceptance renders: Review/<tag>_hair_compare.png (top = strands, bottom = cards; 2 m sun, 0.5 m sun, 0.5 m overcast, back, crown).",
+ "physique": {
+  "shape_keys": [
+   "Physique_Scrawny",
+   "Physique_Brawny"
+  ],
+  "what": "Two shape keys on all four LODs (Unreal morph targets) move the hero between three builds of the same person: Physique_Scrawny 1 = the new-game pig farmer, both 0 = the exported mesh (a working farmhand), Physique_Brawny 1 = the late-game hero. Trunk, neck, arms and legs change; head, hair, hands and feet do not. Clothes and gear move with the body by the same field, so layers keep their spacing and thickness.",
+  "authoring": "Tools/physique.py holds the design as offset profiles (metres); Tools/dink_07_physique.py writes the keys and Dink/physique_report.json; Tools/render_physique.py renders the builds side by side; Tools/export_char.py exports keyed meshes without mesh evaluation so the keys survive (base geometry, normals and UVs are identical to the previous export).",
+  "runtime": "ADinkGreyboxCharacter drives the two morph targets from hero confidence (FDinkHeroPhysicality::GetBuild; farmhand at confidence 0.45) and scales the whole mesh 0.975 to 1; dink.HeroConfidence 0..1 shows any stage for review.",
+  "tape_cm": {
+   "Farmhand": {
+    "shoulder_width": 55.5,
+    "chest_girth": 102.7,
+    "waist_girth": 78.0,
+    "neck_girth": 35.0,
+    "upper_arm_girth": 31.9,
+    "forearm_girth": 31.7,
+    "thigh_girth": 59.7,
+    "calf_girth": 41.2,
+    "height": 182.0
+   },
+   "Scrawny": {
+    "shoulder_width": 53.1,
+    "chest_girth": 95.2,
+    "waist_girth": 74.0,
+    "neck_girth": 34.1,
+    "upper_arm_girth": 25.9,
+    "forearm_girth": 26.8,
+    "thigh_girth": 52.9,
+    "calf_girth": 37.2,
+    "height": 182.0
+   },
+   "Brawny": {
+    "shoulder_width": 58.7,
+    "chest_girth": 114.4,
+    "waist_girth": 79.7,
+    "neck_girth": 36.4,
+    "upper_arm_girth": 40.9,
+    "forearm_girth": 37.4,
+    "thigh_girth": 67.7,
+    "calf_girth": 46.3,
+    "height": 182.0
+   }
+  },
+  "tape_note": "Measured over the clothes on LOD0 in the rest pose (convex girths in cm; the pack is left out). Farmhand is the exported mesh.",
+  "review_renders": [
+   "Review/physique_front.png",
+   "Review/physique_threeq.png",
+   "Review/physique_back.png",
+   "Review/physique_torso.png",
+   "Review/physique_game.png",
+   "Review/physique_reach_torso.png"
+  ],
+  "limits": "Bone positions do not change, so shoulder width grows by muscle only (55.5 cm across the caps, 53.1 scrawny, 58.7 brawny). The build is silhouette-level: he is clothed, so there is no bare-muscle definition, and the clothes are not looser on the scrawny build, they follow the body. The armhole wing of the reach pose (known weakness below) is the same in all three builds."
+ }
 }

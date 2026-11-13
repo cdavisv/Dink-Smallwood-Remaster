@@ -1,4 +1,5 @@
 #include "DinkCharacterArtLibrary.h"
+#include "Animation/MorphTarget.h"
 #include "Animation/Skeleton.h"
 #include "Animation/AnimSequence.h"
 #include "Animation/BlendSpace1D.h"
@@ -45,6 +46,46 @@ FString UDinkCharacterArtLibrary::InspectRig(USkeletalMesh* Mesh)
 		Bones.Add(MakeShared<FJsonValueObject>(Bone));
 	}
 	Root->SetArrayField(TEXT("bones"), Bones);
+	// Shape keys (morph targets) with the number of moved vertices each LOD holds: a shape that is
+	// missing on a LOD makes the body snap back to the exported build when that LOD shows.
+	TArray<TSharedPtr<FJsonValue>> Morphs;
+	for (const UMorphTarget* Morph : Mesh->GetMorphTargets())
+	{
+		if (!Morph) continue;
+		TSharedRef<FJsonObject> Row = MakeShared<FJsonObject>();
+		Row->SetStringField(TEXT("name"), Morph->GetName());
+		TArray<TSharedPtr<FJsonValue>> Counts;
+		for (int32 Lod = 0; Lod < Mesh->GetLODNum(); ++Lod)
+			Counts.Add(MakeShared<FJsonValueNumber>(Morph->HasDataForLOD(Lod) ? Morph->GetMorphTargetDeltas(Lod).Num() : 0));
+		Row->SetArrayField(TEXT("lod_moved_vertices"), Counts);
+		// Per LOD: the largest move (cm), the largest and mean change of the normal (unit vectors: 2 is a
+		// full flip, and a change that cancels the normal renders black), and deltas that are not finite.
+		TArray<TSharedPtr<FJsonValue>> MaxMove, MaxNormal, MeanNormal, Bad;
+		for (int32 Lod = 0; Lod < Mesh->GetLODNum(); ++Lod)
+		{
+			double Move = 0., Normal = 0., Sum = 0.;
+			int32 NonFinite = 0, Num = 0;
+			if (Morph->HasDataForLOD(Lod))
+				for (const FMorphTargetDelta& Delta : Morph->GetMorphTargetDeltas(Lod))
+				{
+					++Num;
+					if (Delta.PositionDelta.ContainsNaN() || Delta.TangentZDelta.ContainsNaN()) { ++NonFinite; continue; }
+					Move = FMath::Max(Move, double(Delta.PositionDelta.Size()));
+					Normal = FMath::Max(Normal, double(Delta.TangentZDelta.Size()));
+					Sum += Delta.TangentZDelta.Size();
+				}
+			MaxMove.Add(MakeShared<FJsonValueNumber>(Move));
+			MaxNormal.Add(MakeShared<FJsonValueNumber>(Normal));
+			MeanNormal.Add(MakeShared<FJsonValueNumber>(Num ? Sum / Num : 0.));
+			Bad.Add(MakeShared<FJsonValueNumber>(NonFinite));
+		}
+		Row->SetArrayField(TEXT("lod_max_move_cm"), MaxMove);
+		Row->SetArrayField(TEXT("lod_max_normal_change"), MaxNormal);
+		Row->SetArrayField(TEXT("lod_mean_normal_change"), MeanNormal);
+		Row->SetArrayField(TEXT("lod_non_finite"), Bad);
+		Morphs.Add(MakeShared<FJsonValueObject>(Row));
+	}
+	Root->SetArrayField(TEXT("morph_targets"), Morphs);
 	FString Json;
 	FJsonSerializer::Serialize(Root, TJsonWriterFactory<>::Create(&Json));
 	return Json;
