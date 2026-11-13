@@ -38,10 +38,18 @@ bool FDinkOriginalLoadRearmTest::RunTest(const FString& Parameters)
 	const int32 Armed = Facts->GetFact(TEXT("strength"));
 	TestEqual(TEXT("item-sw1's arm adds 4 strength"), Armed, Before + 4);
 
-	// What a marked-world load does after restoring the saved facts: the runtime goes (no armed instance), then the re-arm.
+	// What a marked-world load does after restoring the saved facts (UDinkStorySubsystem::LoadStateFromJson): the runtime goes (no
+	// armed instance left), then the saved screen restarts with the saved runtime re-armed.
+	const int32 Screen = Story->GetDirector()->GetDink().Screen;
+	auto Load = [&]()
+	{
+		G->RestartOriginalSavedRuntime();
+		Story->OnScreenEntered(Screen, /*bForceVisionRebuild*/ true, 0, /*bRestartSavedRuntime*/ true);
+		Story->RunUntilIdle();
+	};
 	G->RestartOriginalSavedRuntime();
 	TestEqual(TEXT("the restart leaves no armed instance"), G->GetWeaponInstance(), 0);
-	G->RearmAfterOriginalLoad();
+	Story->OnScreenEntered(Screen, true, 0, true);
 	Story->RunUntilIdle();
 	TestEqual(TEXT("load_game's DISARM then ARM leaves the saved strength (dink.cpp:1435-1439)"), Facts->GetFact(TEXT("strength")), Armed);
 	const FDinkScriptInstance* Weapon = Story->FindInstance(G->GetWeaponInstance());
@@ -56,9 +64,7 @@ bool FDinkOriginalLoadRearmTest::RunTest(const FString& Parameters)
 	Facts->SetFact(TEXT("strength"), Armed);
 
 	// A second load in a row changes nothing either.
-	G->RestartOriginalSavedRuntime();
-	G->RearmAfterOriginalLoad();
-	Story->RunUntilIdle();
+	Load();
 	TestEqual(TEXT("two loads in a row: strength still as saved"), Facts->GetFact(TEXT("strength")), Armed);
 	return true;
 }
