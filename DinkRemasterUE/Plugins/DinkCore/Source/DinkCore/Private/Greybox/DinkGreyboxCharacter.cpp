@@ -24,6 +24,12 @@
 #include "InputModifiers.h"
 #include "InputTriggers.h"
 
+const FName ADinkGreyboxCharacter::ScrawnyShape(TEXT("Physique_Scrawny"));
+const FName ADinkGreyboxCharacter::BrawnyShape(TEXT("Physique_Brawny"));
+
+static TAutoConsoleVariable<float> CVarDinkHeroConfidence(TEXT("dink.HeroConfidence"), -1.f,
+	TEXT("Review tool: 0..1 shows the hero at that confidence at once (build, posture, gait and the player-only jump) whatever his stats; -1 = earned from his level, strength and defense."));
+
 ADinkGreyboxCharacter::ADinkGreyboxCharacter()
 {
 	// A 56 cm shoulder width fits the original house's 61 cm diagonal clearance between
@@ -244,7 +250,9 @@ void ADinkGreyboxCharacter::OnJumped_Implementation()
 void ADinkGreyboxCharacter::UpdateConfidence(bool bSnap)
 {
 	const FDinkStats& S = Stats->Stats;
-	HeroPhysicality.SetTargetConfidence(FDinkHeroPhysicality::ConfidenceFor(S.Level, S.Strength, S.Defense), bSnap);
+	const float Forced = CVarDinkHeroConfidence.GetValueOnGameThread();
+	if (Forced >= 0.f) HeroPhysicality.SetTargetConfidence(Forced, true);
+	else HeroPhysicality.SetTargetConfidence(FDinkHeroPhysicality::ConfidenceFor(S.Level, S.Strength, S.Defense), bSnap);
 	// Player-only jump (the original has none): a stronger Dink hops higher and steers in the air.
 	const float C = HeroPhysicality.GetConfidence();
 	if (C != AppliedJumpConfidence || bSnap)
@@ -315,9 +323,25 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 		PreviousLife = Life;
 	}
 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
-	// Scrawny frame that fills out with confidence; composed on whatever scale art authored.
+	// His build grows with confidence. A hero mesh that carries the two build shapes changes
+	// shape (trunk, neck, arms and legs; head, hands and feet stay his own) and is a touch
+	// smaller all over as a lad; any other mesh falls back to the old narrowed frame. Either
+	// way the scale is composed on whatever scale art authored. Visual only.
+	USkeletalMesh* ShownMesh = GetMesh()->GetSkeletalMeshAsset();
+	if (ShownMesh != BuildMesh.Get())
+	{
+		BuildMesh = ShownMesh;
+		bBuildShapes = ShownMesh && ShownMesh->FindMorphTarget(ScrawnyShape) && ShownMesh->FindMorphTarget(BrawnyShape);
+		AppliedBuild = FVector2f(-1.f, -1.f);
+	}
 	const FVector BaseScale = GetMesh()->GetRelativeScale3D() / AppliedPhysique;
-	AppliedPhysique = HeroPhysicality.GetPhysiqueScale();
+	AppliedPhysique = bBuildShapes ? HeroPhysicality.GetBuildScale() : HeroPhysicality.GetPhysiqueScale();
+	if (const FVector2f Build = HeroPhysicality.GetBuild(); bBuildShapes && !Build.Equals(AppliedBuild, 1e-4f))
+	{
+		GetMesh()->SetMorphTarget(ScrawnyShape, Build.X, false);
+		GetMesh()->SetMorphTarget(BrawnyShape, Build.Y, false);
+		AppliedBuild = Build;
+	}
 	// Wall clearance composes with the physicality offset: measure the mesh where the body
 	// layer puts it, then pull it back along the facing (actor-local -X) by the overlap. It
 	// rises at once (nothing shows through the wall) and releases over a few tenths of a second.

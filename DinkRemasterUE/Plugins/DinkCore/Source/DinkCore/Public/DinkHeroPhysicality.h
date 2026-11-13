@@ -6,7 +6,8 @@
  * consumes story/combat RNG.
  *
  * Dink starts as an unsure, scrawny farm lad and grows into a hero: confidence (0 = new game,
- * 1 = late game, see ConfidenceFor) is earned through levels and stats. The animation layer
+ * 1 = late game, see ConfidenceFor) is earned through levels and stats. His build follows it
+ * (GetBuild: scrawny, then a farmhand, then brawny). The animation layer
  * (UDinkBodyAnimInstance) turns it into posture and gait by mixing authored timid and confident
  * clips; nothing here rocks, bounces or tips the mesh any more. What remains procedural is what
  * a clip cannot know: a small trunk lean into accelerations and corners, the rare stumble of an
@@ -32,7 +33,28 @@ struct FDinkHeroPhysicality
     }
     float GetConfidence() const { return Confidence; }
 
-    /** Scrawny shoulders/chest that fill out with confidence; X/Y width, Z height. */
+    /**
+     * The build his body shows, for a hero mesh that carries the two build shapes (morph targets
+     * Physique_Scrawny and Physique_Brawny, authored by SourceAssets/Art/PhotorealPass/Characters/
+     * Tools/physique.py): X = how much of the scrawny shape, Y = how much of the brawny one. The
+     * mesh as exported is the build in between, a working farmhand, reached at BuildMidpoint.
+     * Only the trunk, neck, arms and legs change; head, hands and feet stay his own.
+     */
+    static constexpr float BuildMidpoint = .45f;
+    static FVector2f BuildFor(float InConfidence)
+    {
+        const float C = FMath::IsFinite(InConfidence) ? FMath::Clamp(InConfidence, 0.f, 1.f) : 0.f;
+        return FVector2f(FMath::Clamp(1.f - C / BuildMidpoint, 0.f, 1.f),
+            FMath::Clamp((C - BuildMidpoint) / (1.f - BuildMidpoint), 0.f, 1.f));
+    }
+    FVector2f GetBuild() const { return BuildFor(Confidence); }
+    /** Overall size that goes with the build shapes: the lad is a touch smaller all over, in
+     * proportion (nothing is squeezed, unlike GetPhysiqueScale). */
+    FVector GetBuildScale() const { return FVector(FMath::Lerp(.975f, 1.f, Confidence)); }
+
+    /** Fallback for a hero mesh WITHOUT the build shapes: a narrower frame that fills out with
+     * confidence; X/Y width, Z height. It narrows the head and hands too, which is why the
+     * photoreal hero uses GetBuild and GetBuildScale instead. */
     FVector GetPhysiqueScale() const
     {
         const float Width = FMath::Lerp(.86f, 1.f, Confidence);

@@ -35,7 +35,8 @@ bounds = [common.world_bounds(o) for o in asset.renders]; lo, hi = common.world_
 def infl(o): return max((len([g for g in v.groups if g.weight > 0]) for v in o.data.vertices), default=0)
 report = {'asset': base, 'validation': verdict['summary'], 'findings': finds, 'normals': normals,
           'lods': [{'mesh': o.name, 'triangles': common.tri_count(o), 'vertices': len(o.data.vertices), 'max_influences': infl(o),
-                    'unweighted': sum(1 for v in o.data.vertices if not v.groups)} for o in asset.renders],
+                    'unweighted': sum(1 for v in o.data.vertices if not v.groups),
+                    **({'shape_keys': [k.name for k in o.data.shape_keys.key_blocks[1:]]} if o.data.shape_keys else {})} for o in asset.renders],
           'bones': [b.name for b in arm.data.bones], 'bone_count': len(arm.data.bones), 'dimensions_m': list(hi - lo),
           'materials': [s.material.name for s in lod0.material_slots]}
 # the validator tests UV0 across the whole mesh; this asset has one texture set per slot, so test each slot on its own
@@ -65,8 +66,13 @@ def slot_uv(o):
 report['uv_per_slot'] = slot_uv(lod0)
 print('UV PER SLOT', json.dumps(report['uv_per_slot']), flush=True)
 REPORT.write_text(json.dumps(report, indent=1) + '\n')
+from mathutils import Matrix
 for mesh in asset.renders:
-    for v in mesh.data.vertices: v.co *= 100
+    if mesh.data.shape_keys:        # shape keys hold their own coordinates: scale mesh and keys together
+        for k in mesh.data.shape_keys.key_blocks: k.value = 0.0
+        mesh.data.transform(Matrix.Scale(100, 4), shape_keys=True); mesh.data.update()
+    else:
+        for v in mesh.data.vertices: v.co *= 100
 bpy.ops.object.select_all(action='DESELECT'); arm.hide_set(False); arm.select_set(True); bpy.context.view_layer.objects.active = arm
 bpy.ops.object.mode_set(mode='EDIT')
 for b in arm.data.edit_bones: b.head *= 100; b.tail *= 100
@@ -77,5 +83,22 @@ EXPORT.mkdir(parents=True, exist_ok=True)
 for lod in range(4):
     m = bpy.data.objects[f'{base}_LOD{lod}']
     proxy = type('ExportAsset', (), {'renders': [m], 'collision': [], 'armatures': [arm], 'sockets': []})()
+    if m.data.shape_keys:
+        # Blender's FBX exporter drops shape keys whenever it has to evaluate the mesh (apply modifiers, triangulate).
+        # The game meshes are triangles already and carry only the Armature modifier, so both can be switched off:
+        # the geometry written is the same and the keys go out as FBX blend shapes (Unreal morph targets).
+        if any(len(p.vertices) != 3 for p in m.data.polygons) or [x.type for x in m.modifiers] != ['ARMATURE']:
+            raise RuntimeError(f'{m.name}: shape keys need a triangulated mesh with only the Armature modifier')
+        with export_ue.unhidden([m, arm]), export_ue.renamed_armature(proxy, 'Armature'):
+            common.select_only([m, arm])
+            bpy.ops.export_scene.fbx(
+                filepath=str(EXPORT / f'{base}_LOD{lod}.fbx'), use_selection=True, object_types={'MESH', 'ARMATURE', 'EMPTY'},
+                use_mesh_modifiers=False, mesh_smooth_type='FACE', use_triangles=False, use_tspace=False,
+                use_custom_props=False, colors_type='NONE', apply_unit_scale=True, global_scale=1.0,
+                apply_scale_options=export_ue.FBX_SCALE_MODES['all'], axis_forward='Y', axis_up='Z', bake_space_transform=False,
+                use_space_transform=True, add_leaf_bones=False, primary_bone_axis='Y', secondary_bone_axis='X',
+                use_armature_deform_only=False, armature_nodetype='NULL', bake_anim=False, path_mode='STRIP',
+                embed_textures=False, batch_mode='OFF')
+        continue
     with export_ue.unhidden([m, arm]): export_ue.export_fbx(proxy, str(EXPORT / f'{base}_LOD{lod}.fbx'), 'all', 'Armature')
 print('EXPORT DONE', json.dumps({'asset': base, 'dims': report['dimensions_m'], 'validation': verdict['summary'], 'lods': [l['triangles'] for l in report['lods']]}), flush=True)

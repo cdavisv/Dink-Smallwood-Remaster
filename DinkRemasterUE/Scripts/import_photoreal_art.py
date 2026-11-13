@@ -151,7 +151,7 @@ def instance(folder, name, parent, textures=None, scalars=None):
 
 
 def surface_material(folder, name, defaults, foliage=False, wind=None, skeletal=False, shading='lit', two_sided=False, masked=False, profile=None,
-                     scatter=False, blend=None, blend_channel='r', ground_blend=False, timber=False):
+                     scatter=False, blend=None, blend_channel='r', ground_blend=False, timber=False, morph=False):
     """One parent material: BC/N/ORM (+SSS) texture parameters, optional alpha mask, optional wind offset."""
     mat = new_material(folder, name)
     bc = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -700, -300, parameter_name='BC', texture=defaults['BC'], sampler_type=ST.SAMPLERTYPE_COLOR)
@@ -409,6 +409,9 @@ return offset * s + (Obj - WP) * (1.0 - s);''', F3,
     EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_INSTANCED_STATIC_MESHES, True)
     if skeletal:
         EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_SKELETAL_MESH, True)
+    if morph:
+        # without this flag the game draws a mesh whose shape key is active in black or in the default grey material
+        EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_MORPH_TARGETS, True)
     EDIT.recompile_material(mat)
     save(mat)
     return mat
@@ -780,6 +783,7 @@ for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', '
         except Exception as error:
             warn(f'subsurface profile settings not applied ({error})')
     materials = {}
+    has_shapes = any(lod.get('shape_keys') for lod in manifest.get('lods', []))
     for mat_name, row in manifest['materials'].items():
         masked = 'masked' in row['shading'].lower()
         tex = {}
@@ -787,7 +791,7 @@ for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', '
             tex[role] = import_texture(HERO / rel, tex_folder, 'BCA' if (role == 'BC' and masked) else role)
         kind = 'skin' if 'SSS' in tex else 'hair' if 'Hair' in mat_name else 'eye' if 'Eyes' in mat_name else 'lit'
         parent = surface_material(folder, 'M_' + mat_name[3:], tex, skeletal=True, shading=kind, masked=masked, two_sided=masked,
-                                  profile=profile if kind == 'skin' else None)
+                                  profile=profile if kind == 'skin' else None, morph=has_shapes)
         materials[mat_name] = instance(folder, mat_name, parent, tex, {'ScatterAmount': 0.35} if kind == 'skin' else None)
         # Calibrated 12 Nov 2026 against Characters/contact_sheet.png (face close-up in sun, dink.CalCam): at the full
         # scatter strength the face blew out pale and flat (freckles, lids and nose shading gone); the hair read brown.
@@ -811,17 +815,22 @@ for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', '
         settings = {'convert_scene': True, 'convert_scene_unit': True, 'import_uniform_scale': 1.0,
                     'update_skeleton_reference_pose': False, 'use_t0_as_ref_pose': False, 'import_mesh_lods': False,
                     'import_meshes_in_bone_hierarchy': True,
+                    # build shapes (Physique_*, see Characters/Tools/physique.py) arrive as FBX blend shapes
+                    'import_morph_targets': True,
                     'normal_import_method': unreal.FBXNormalImportMethod.FBXNIM_IMPORT_NORMALS}
         for k, v in settings.items():
             data.set_editor_property(k, v)
         if mesh is not None:
+            # A re-import reads its options from the mesh's stored FBX import data, not from the task. import_lod goes
+            # through Interchange and leaves Interchange import data on the mesh; the FBX re-import then falls back to
+            # engine defaults, which drop morph targets. So the mesh gets FBX import data with these settings first.
             old = mesh.get_editor_property('asset_import_data')
-            try:
-                for k, v in settings.items():
-                    old.set_editor_property(k, v)
-                old.scripted_add_filename(str(fbx[0].resolve()), 0, '')
-            except Exception:
-                pass  # the stored import data is not the FBX kind (Interchange): the task's own options apply
+            if not isinstance(old, unreal.FbxSkeletalMeshImportData):
+                old = unreal.new_object(unreal.FbxSkeletalMeshImportData, outer=mesh)
+                mesh.set_editor_property('asset_import_data', old)
+            for k, v in settings.items():
+                old.set_editor_property(k, v)
+            old.scripted_add_filename(str(fbx[0].resolve()), 0, '')
         task = unreal.AssetImportTask()
         task.filename = str(fbx[0].resolve())
         task.destination_path = folder
@@ -844,6 +853,14 @@ for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', '
         for index, f in enumerate(fbx[1:], 1):
             if unreal.SkeletalMeshEditorSubsystem.import_lod(mesh, index, str(f.resolve())) != index:
                 raise RuntimeError(f'hero LOD{index} import failed')
+        # every shape key the source declares must have arrived, with data on every LOD
+        wanted = sorted({k for lod in manifest.get('lods', []) for k in lod.get('shape_keys', [])})
+        if wanted:
+            got = {m['name']: m['lod_moved_vertices'] for m in json.loads(unreal.DinkCharacterArtLibrary.inspect_rig(mesh)).get('morph_targets', [])}
+            for shape in wanted:
+                if shape not in got or len(got[shape]) != len(fbx) or min(got[shape]) <= 0:
+                    raise RuntimeError(f'hero shape key {shape} did not import on every LOD: {got.get(shape)}')
+            report['hero']['shape_keys'] = {shape: got[shape] for shape in wanted}
         LIB.set_metadata_tag(mesh, 'DinkSource', key)
         report['hero']['bounds_size_cm'] = rig['bounds_size_cm']
     slots = list(mesh.get_editor_property('materials'))

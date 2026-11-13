@@ -5,6 +5,9 @@
 #include "DinkEarlyPostureAnimInstance.h"
 #include "DinkHumanoidComponent.h"
 #include "Animation/BlendSpace.h"
+#include "Animation/MorphTarget.h"
+#include "Materials/Material.h"
+#include "HAL/IConsoleManager.h"
 #include "Engine/Engine.h"
 #include "Engine/SkeletalMesh.h"
 #include "DinkInteriorCameraComponent.h"
@@ -24,6 +27,12 @@
 #include "InputKeyEventArgs.h"
 #include "Misc/PackageName.h"
 #include "Tests/AutomationEditorCommon.h"
+
+namespace DinkHeroBuild
+{
+    static const TCHAR* Package=TEXT("/Game/Dink/Photoreal/Characters/Dink/SK_Dink_Photoreal");
+    static const TCHAR* Object=TEXT("/Game/Dink/Photoreal/Characters/Dink/SK_Dink_Photoreal.SK_Dink_Photoreal");
+}
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkBodyDynamicsTest, "Dink.Movement.SecondaryMotion", DINK_TEST_FLAGS)
 bool FDinkBodyDynamicsTest::RunTest(const FString&)
@@ -175,6 +184,25 @@ bool FDinkHeroGrowthTest::RunTest(const FString&)
     FDinkHeroPhysicality Timid, Hero;
     Hero.SetTargetConfidence(1.f,true);
     TestTrue(TEXT("scrawny frame fills out"),Timid.GetPhysiqueScale().X<.9 && Hero.GetPhysiqueScale().Equals(FVector::OneVector));
+    // The build: all scrawny at the start, the exported farmhand in between, all brawny at the end.
+    TestTrue(TEXT("new-game Dink is fully scrawny"),Timid.GetBuild().Equals(FVector2f(1.f,0.f)));
+    TestTrue(TEXT("the late-game hero is fully brawny"),Hero.GetBuild().Equals(FVector2f(0.f,1.f)));
+    TestTrue(TEXT("the exported farmhand build sits between them"),
+        FDinkHeroPhysicality::BuildFor(FDinkHeroPhysicality::BuildMidpoint).Equals(FVector2f::ZeroVector));
+    FVector2f PreviousBuild(1.f,0.f);
+    bool bPartScrawny=false, bPartBrawny=false;
+    for (int32 Level=1; Level<=14; ++Level)
+    {
+        const FVector2f Build=FDinkHeroPhysicality::BuildFor(FDinkHeroPhysicality::ConfidenceFor(Level,3+Level,Level/2));
+        TestTrue(TEXT("he never gets scrawnier or less brawny as he levels"),Build.X<=PreviousBuild.X && Build.Y>=PreviousBuild.Y);
+        TestTrue(TEXT("the two build shapes never show together"),Build.X==0.f || Build.Y==0.f);
+        bPartScrawny|=Build.X>.1f && Build.X<.9f; bPartBrawny|=Build.Y>.1f && Build.Y<.9f;
+        PreviousBuild=Build;
+    }
+    TestTrue(TEXT("the build changes over several levels, not at one"),bPartScrawny && bPartBrawny);
+    TestTrue(TEXT("a mesh with build shapes is only a touch smaller, in proportion"),
+        Timid.GetBuildScale().Equals(FVector(.975)) && Hero.GetBuildScale().Equals(FVector::OneVector));
+    TestTrue(TEXT("bad input shows the starting build"),FDinkHeroPhysicality::BuildFor(NAN).Equals(FVector2f(1.f,0.f)));
     TestTrue(TEXT("landing stumbles become rare"),FMath::IsNearlyEqual(Hero.ScaleChance(.45f,.08f),.036f,1e-4f)
         && FMath::IsNearlyEqual(Timid.ScaleChance(.45f,.08f),.45f));
 
@@ -210,6 +238,46 @@ bool FDinkHeroGrowthTest::RunTest(const FString&)
     TestTrue(TEXT("earned confidence relaxes the authored slouch too"),
         FMath::IsNearlyEqual(UDinkEarlyPostureAnimInstance::TargetWeight(0,true,false,false,1.f),.15f,1e-4f));
     TestEqual(TEXT("story-only relaxation is unchanged"),UDinkEarlyPostureAnimInstance::TargetWeight(7,true,false,false,0.f),.3f);
+    return true;
+}
+
+// The photoreal hero carries his two build shapes on every LOD, so the build never snaps back when a LOD changes.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkHeroBuildShapesTest,"Dink.Movement.HeroBuildShapes",DINK_TEST_FLAGS)
+bool FDinkHeroBuildShapesTest::RunTest(const FString&)
+{
+    if (!FPackageName::DoesPackageExist(DinkHeroBuild::Package))
+    {
+        AddInfo(TEXT("photoreal hero not imported: nothing to check"));
+        return true;
+    }
+    USkeletalMesh* Mesh=LoadObject<USkeletalMesh>(nullptr,DinkHeroBuild::Object);
+    if (!TestNotNull(TEXT("photoreal hero loads"),Mesh)) return false;
+    for (const FName Shape : {ADinkGreyboxCharacter::ScrawnyShape,ADinkGreyboxCharacter::BrawnyShape})
+    {
+        const UMorphTarget* Morph=Mesh->FindMorphTarget(Shape);
+        if (!TestNotNull(*FString::Printf(TEXT("%s is on the photoreal hero"),*Shape.ToString()),Morph)) continue;
+        for (int32 Lod=0; Lod<Mesh->GetLODNum(); ++Lod)
+        {
+            if (!TestTrue(*FString::Printf(TEXT("%s has data on LOD%d"),*Shape.ToString(),Lod),Morph->HasDataForLOD(Lod))) continue;
+            double Largest=0; int32 Moved=0;
+            for (const FMorphTargetDelta& Delta : Morph->GetMorphTargetDeltas(Lod))
+            {
+                Largest=FMath::Max(Largest,double(Delta.PositionDelta.Size())); Moved+=Delta.PositionDelta.SizeSquared()>1e-6f;
+            }
+            AddInfo(FString::Printf(TEXT("%s LOD%d: %d vertices move, at most %.2f cm"),*Shape.ToString(),Lod,Moved,Largest));
+            // A build change is centimetres of cloth and muscle: enough to read at play distance, never a deformity.
+            TestTrue(*FString::Printf(TEXT("%s LOD%d moves a real part of the body by a believable amount"),*Shape.ToString(),Lod),
+                Moved>1000 && Largest>1.5 && Largest<4.);
+        }
+    }
+    // A material that is not compiled for morph targets draws the body black or in the default grey
+    // material as soon as a shape is active (seen in the game, 12 Nov 2026).
+    for (const FSkeletalMaterial& Slot : Mesh->GetMaterials())
+    {
+        const UMaterial* Base=Slot.MaterialInterface ? Slot.MaterialInterface->GetMaterial() : nullptr;
+        if (!TestNotNull(*FString::Printf(TEXT("slot %s has a material"),*Slot.MaterialSlotName.ToString()),Base)) continue;
+        TestTrue(*FString::Printf(TEXT("%s is compiled for morph targets"),*Base->GetName()),Base->GetUsageByFlag(MATUSAGE_MorphTargets));
+    }
     return true;
 }
 
@@ -478,6 +546,46 @@ public:
             const double Growth=H->GetMesh()->GetRelativeScale3D().X/TimidWidth;
             Test->AddInfo(FString::Printf(TEXT("Mesh width grew by %.3f"),Growth));
             Test->TestTrue(TEXT("scrawny frame fills out on the real mesh"),FMath::IsNearlyEqual(Growth,1./.86,.005));
+            Test->TestFalse(TEXT("a mesh without build shapes keeps the narrowed-frame fallback"),H->HasBuildShapes());
+            // Dress him in the photoreal hero (headless runs keep the manifest's mesh): its build shapes take over.
+            USkeletalMesh* Photoreal=FPackageName::DoesPackageExist(DinkHeroBuild::Package)
+                ? LoadObject<USkeletalMesh>(nullptr,DinkHeroBuild::Object,nullptr,LOAD_NoWarn|LOAD_Quiet) : nullptr;
+            if (!Photoreal || Photoreal->GetSkeleton()!=H->GetMesh()->GetSkeletalMeshAsset()->GetSkeleton())
+            {
+                Test->AddInfo(TEXT("photoreal hero not imported on the shared skeleton: build-shape drive not exercised"));
+                return true;
+            }
+            FullWidth=H->GetMesh()->GetRelativeScale3D().X; FullZ=H->GetMesh()->GetRelativeScale3D().Z;
+            H->GetMesh()->SetSkeletalMeshAsset(Photoreal);
+            At=W->GetTimeSeconds(); Phase=14; return false;
+        }
+        if (Phase==14)
+        {
+            if (W->GetTimeSeconds()-At<.2) return false;
+            Test->TestTrue(TEXT("the photoreal hero's build shapes are driven"),H->HasBuildShapes());
+            Test->TestEqual(TEXT("levelled Dink is fully brawny"),H->GetMesh()->GetMorphTarget(ADinkGreyboxCharacter::BrawnyShape),1.f);
+            Test->TestEqual(TEXT("levelled Dink has nothing scrawny left"),H->GetMesh()->GetMorphTarget(ADinkGreyboxCharacter::ScrawnyShape),0.f);
+            Test->TestTrue(TEXT("the levelled hero is at full size"),FMath::IsNearlyEqual(H->GetMesh()->GetRelativeScale3D().X,FullWidth,1e-4));
+            // The review switch shows any stage at once, here the new-game lad.
+            if (IConsoleVariable* Forced=IConsoleManager::Get().FindConsoleVariable(TEXT("dink.HeroConfidence"))) Forced->Set(0.f);
+            At=W->GetTimeSeconds(); Phase=15; return false;
+        }
+        if (Phase==15)
+        {
+            if (W->GetTimeSeconds()-At<.2) return false;
+            Test->TestEqual(TEXT("the lad is fully scrawny"),H->GetMesh()->GetMorphTarget(ADinkGreyboxCharacter::ScrawnyShape),1.f);
+            Test->TestEqual(TEXT("the lad has nothing brawny"),H->GetMesh()->GetMorphTarget(ADinkGreyboxCharacter::BrawnyShape),0.f);
+            const FVector Scale=H->GetMesh()->GetRelativeScale3D();
+            Test->TestTrue(TEXT("with build shapes the lad is 2.5% smaller in proportion, not narrowed"),
+                FMath::IsNearlyEqual(Scale.X,FullWidth*.975,1e-4) && FMath::IsNearlyEqual(Scale.Z/Scale.X,FullZ/FullWidth,1e-4));
+            if (IConsoleVariable* Forced=IConsoleManager::Get().FindConsoleVariable(TEXT("dink.HeroConfidence"))) Forced->Set(.45f);
+            At=W->GetTimeSeconds(); Phase=16; return false;
+        }
+        if (Phase==16)
+        {
+            if (W->GetTimeSeconds()-At<.2) return false;
+            Test->TestTrue(TEXT("mid-game he wears the exported farmhand build"),H->GetShownBuild().IsNearlyZero(1e-4));
+            if (IConsoleVariable* Forced=IConsoleManager::Get().FindConsoleVariable(TEXT("dink.HeroConfidence"))) Forced->Set(-1.f);
             return true;
         }
         return false;
@@ -487,7 +595,7 @@ private:
     FAutomationTestBase* Test;
     double Began=0,At=0,StartZ=0,Peak=0;
     float TargetArm=0;
-    double TimidWidth=1;
+    double TimidWidth=1, FullWidth=1, FullZ=1;
     FVector RecoveryStart=FVector::ZeroVector;
     int32 Phase=0;
 };

@@ -12,6 +12,7 @@ run 5 blender -b -t 4 --python hair_groom.py -- Dink ${HAIR_STEPS:-atlas,save} $
 run 6 blender -b -t 4 --python dink_05_bake.py
 run 7 python3 -I post_tex.py "$O/Dink" T_Dink_PR
 run 8 blender -b -t 4 --python dink_06_assemble.py -- "$O/Dink/cfg/assemble.json"
+run 8 blender -b -t 4 --python dink_07_physique.py   # build shape keys: assembling rebuilds the meshes, so they are re-added every time
 run 9 blender -b -t 4 --python render_review.py -- Dink/SK_Dink_Photoreal.blend Dink/Review ${2:-r1} ${3:-body,face,hands,poses} 96
 run 10 blender -b -t 4 "$O/Dink/SK_Dink_Photoreal.blend" --python export_char.py -- "$O/Dink/Export" "$O/Dink/export_report.json" character_hero
 echo PIPELINE_DONE

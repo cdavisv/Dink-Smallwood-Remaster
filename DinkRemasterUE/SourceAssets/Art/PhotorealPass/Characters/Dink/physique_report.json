@@ -1,0 +1,101 @@
+{
+ "schema": "dink-hero-physique/1",
+ "keys": [
+  "Physique_Scrawny",
+  "Physique_Brawny"
+ ],
+ "lods": [
+  {
+   "mesh": "SK_Dink_Photoreal_LOD0",
+   "vertices": 36482,
+   "Scrawny": {
+    "moved_vertices": 17812,
+    "max_mm": 29.88,
+    "mean_mm": 7.2
+   },
+   "Brawny": {
+    "moved_vertices": 17739,
+    "max_mm": 33.6,
+    "mean_mm": 8.94
+   }
+  },
+  {
+   "mesh": "SK_Dink_Photoreal_LOD1",
+   "vertices": 21300,
+   "Scrawny": {
+    "moved_vertices": 8565,
+    "max_mm": 29.86,
+    "mean_mm": 7.33
+   },
+   "Brawny": {
+    "moved_vertices": 8564,
+    "max_mm": 33.58,
+    "mean_mm": 9.05
+   }
+  },
+  {
+   "mesh": "SK_Dink_Photoreal_LOD2",
+   "vertices": 14378,
+   "Scrawny": {
+    "moved_vertices": 4027,
+    "max_mm": 29.66,
+    "mean_mm": 7.31
+   },
+   "Brawny": {
+    "moved_vertices": 4022,
+    "max_mm": 32.78,
+    "mean_mm": 9.14
+   }
+  },
+  {
+   "mesh": "SK_Dink_Photoreal_LOD3",
+   "vertices": 8413,
+   "Scrawny": {
+    "moved_vertices": 2294,
+    "max_mm": 29.84,
+    "mean_mm": 7.24
+   },
+   "Brawny": {
+    "moved_vertices": 2295,
+    "max_mm": 32.75,
+    "mean_mm": 9.12
+   }
+  }
+ ],
+ "tape_cm": {
+  "Farmhand": {
+   "shoulder_width": 55.5,
+   "chest_girth": 102.7,
+   "waist_girth": 78.0,
+   "neck_girth": 35.0,
+   "upper_arm_girth": 31.9,
+   "forearm_girth": 31.7,
+   "thigh_girth": 59.7,
+   "calf_girth": 41.2,
+   "height": 182.0
+  },
+  "Scrawny": {
+   "shoulder_width": 53.1,
+   "chest_girth": 95.2,
+   "waist_girth": 74.0,
+   "neck_girth": 34.1,
+   "upper_arm_girth": 25.9,
+   "forearm_girth": 26.8,
+   "thigh_girth": 52.9,
+   "calf_girth": 37.2,
+   "height": 182.0
+  },
+  "Brawny": {
+   "shoulder_width": 58.7,
+   "chest_girth": 114.4,
+   "waist_girth": 79.7,
+   "neck_girth": 36.4,
+   "upper_arm_girth": 40.9,
+   "forearm_girth": 37.4,
+   "thigh_girth": 67.7,
+   "calf_girth": 46.3,
+   "height": 182.0
+  }
+ },
+ "tape_note": "Measured over the clothes on LOD0 in the rest pose (convex girths in cm; the pack is left out). Farmhand is the exported mesh."
+}

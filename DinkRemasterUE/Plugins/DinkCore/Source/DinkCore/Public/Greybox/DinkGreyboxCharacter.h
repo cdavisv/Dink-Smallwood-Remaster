@@ -87,6 +87,14 @@ public:
 	/** 0 = scrawny, timid new-game Dink; 1 = the late-game hero (see FDinkHeroPhysicality). */
 	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
 	float GetConfidence() const { return HeroPhysicality.GetConfidence(); }
+	/** Names of the build shapes (morph targets) a hero mesh may carry; see FDinkHeroPhysicality::GetBuild. */
+	static const FName ScrawnyShape, BrawnyShape;
+	/** True while the shown hero mesh carries both build shapes and they are being driven. */
+	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
+	bool HasBuildShapes() const { return bBuildShapes; }
+	/** Build shown now: X = scrawny, Y = brawny, each 0..1 (zero when the mesh has no build shapes). */
+	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
+	FVector2D GetShownBuild() const { return bBuildShapes ? FVector2D(AppliedBuild) : FVector2D::ZeroVector; }
 	/** The run key (Left Shift, left shoulder button): run while held, or walk if dink.Hero.RunByDefault is 1. */
 	void SetRunKeyHeld(bool bHeld);
 	bool IsRunKeyHeld() const { return bRunKeyHeld; }
@@ -139,6 +147,9 @@ private:
 	FVector PreviousBodyLocation = FVector::ZeroVector;
 	FVector AppliedBodyOffset = FVector::ZeroVector;
 	FVector AppliedPhysique = FVector::OneVector;
+	FVector2f AppliedBuild = FVector2f(-1.f, -1.f);
+	TWeakObjectPtr<class USkeletalMesh> BuildMesh;
+	bool bBuildShapes = false;
 	float AppliedJumpConfidence = -1.f;
 	float AirSeconds = 0.f;
     float PreviousBodyYaw = 0.f;
