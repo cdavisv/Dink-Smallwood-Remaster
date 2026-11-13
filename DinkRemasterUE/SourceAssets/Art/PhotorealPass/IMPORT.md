@@ -126,6 +126,22 @@ Owner feedback of 13 Nov 2026: "fix blocky and polygon looking art". What was fo
 - **Shading of generated meshes**: the wall kits are smooth shaded with hard edges where faces meet at more than 28 degrees (`shade()` in `wallkit_build.py`); flat shading showed every triangle of the uneven plaster and of the jittered stone faces. Round forms: lathe at least 24 sides for a pickup shown large, 40 to 48 for a pot, and run the profile through a curve (`_smooth_prof` in `Props/tools/props_gen_pots.py`): a profile of straight runs shows as corners in the outline whatever the normals are.
 - **A capture of a freshly imported mesh shows the default material until its shaders are compiled.** Spawn the meshes once off camera and wait before the shots.
 
+## Town houses in the audit (13 Nov 2026)
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| Town houses per screen with the accounting (offline, no editor) | `python3 -I Scripts/assemble_town_houses.py` | `ImportData/placements.json` | `Content/Dink/Data/Art/town_houses.json` (schema dink-town-houses/3) |
+| Captures of every town screen (play camera, above the south edge, above the north edge; `--close` adds street and roof views per house front) | `python3 -I Scripts/PhotorealQA/town_script.py <out dir> [--close]`, then `Scripts/PhotorealQA/run_capture.sh <out dir>/town.txt` (add `-dpcvars=dink.TownHouses=0` for the sprite cards) | `town_houses.json`, `ImportData`, the hardness files | PNG files in `<out dir>` |
+| Review sheets, one per screen | `python3 -I Scripts/PhotorealQA/town_sheet.py <on dir> <off dir> <out dir>` | the captures | `town_<screen>.jpg` |
+| Runtime check against the game's own log | `python3 -I Scripts/PhotorealQA/town_log_check.py <game log>` | the `DINK ENV: town houses on screen` lines | exit code 1 when a screen differs from the file |
+| Per-placement table | `python3 -I Scripts/art_coverage.py`, then `python3 -I Scripts/PhotorealQA/town_table.py <out.csv>` | `town_houses.json`, `Saved/Import` | the CSV |
+
+- **What the file says about each card** (schema 3): `buildings` groups the family 33 pictures that touch into the six 1997 buildings; every screen lists `stands_for` (card -> the assembled house that replaces it: a wall card its own run, a roof, dormer, ridge or gable card the nearest house of its building) and `uncovered_m` (cards whose picture did not lie within one kit bay, 2.5 m, of a house body, with the distance). The houses, modules, hide lists and footprints are what schema 2 held.
+- **What the audit counts** (`art_coverage.py` `town_house_cards`): a card is final when its own screen hides it, a house with modules stands for it, every kit mesh of that house exists, a house body covers where it stood, and the house is not listed in `REVIEW` of the script (house id -> reason; empty today). 121 of the 218 placements are final (80 window walls, 15 door walls, 21 gable ends, 5 roof cards right behind a deep house); 97 roof cards stay placeholder.
+- **Why the roof cards stay open**: the 1997 buildings are 45 to 70 m deep in the stretched settlement layout (walls, a band of upper-storey tiles, roof pictures up to the ridge); the assembled houses are 8 to 15 m deep and stand on the front line. Behind them the ground is open (`structure_facade` tiles drawn as a terrain layer). The cards are hidden and the houses carry complete roofs, so nothing is missing from the street; from behind, the block is not built. A house body that reaches back over that ground turns those cards final without touching the audit.
+- **Checks and captures**: `Docs/Verification/TownHouses_13Nov2026/`.
+- **Private project copies**: the built modules carry a library search path relative to the shared checkout's depth, so a copy under `Saved/<name>/DinkRemasterUE` fails to start the game with `Plugin 'DinkParity' failed to load because module 'DinkProbe' could not be loaded`. Until the copy is rebuilt, export `LD_LIBRARY_PATH` with its own `Plugins/*/Binaries/Linux` and `Binaries/Linux` folders.
+
 ## Turning the pass off
 
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):

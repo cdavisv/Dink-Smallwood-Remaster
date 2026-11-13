@@ -8,6 +8,14 @@ Owner after playing master `cb842dd2`: "improve the mother's stuttered walk". Pa
 - **Still glued (not changed here):** picture-card townsfolk and creature bodies (`UDinkCreatureComponent`) follow the scripted position pixel by pixel.
 - Review commands added with this work: `dink.CalAnchorNpc [n]` (capture camera on a humanoid NPC, offsets in its own frame), `dink.Npc.Hold 0|1` (brains stand still for portraits), `dink.Hero.Play <clip> [hold]` / `jump` / `stop`.
 
+## Town houses in the gate 2 audit (13 November 2026)
+
+- `Scripts/assemble_town_houses.py` (schema dink-town-houses/3) records, beside the unchanged houses, which assembled house stands for every hidden family 33 card (`stands_for`), the six 1997 buildings the cards form (`buildings`) and the cards no house body covers (`uncovered_m`, more than one kit bay from a body). `Scripts/art_coverage.py` `town_house_cards()` counts a card final only when its screen hides it, its house has modules whose kit meshes all exist, a body covers where it stood and the house is not in the script's `REVIEW` table. Result: final 3,972 -> 4,093; 121 of the 218 placements final (all 95 wall cards, all 21 gable ends, 5 roof cards), 97 roof cards placeholder.
+- The roof cards stay open on purpose: the 1997 buildings are 45 to 70 m deep in the stretched settlement layout, the kit houses 8 to 15 m, so the ground the roof pictures covered is open behind the houses (seen from above and from the far side; not from the street). Making the blocks as deep as the 1997 buildings is the follow-up that closes them.
+- The environment layer does not run headless (`FApp::CanEverRender()`), so no automation test can see the houses. The runtime check is `Scripts/PhotorealQA/town_log_check.py` on the log of a rendered capture run: 36 screens, 2,563 modules placed, 0 of unknown mesh, 218 cards hidden, all as the file says. Unit test: `Scripts/tests/test_town_house_coverage.py`.
+- Capture and review tools: `Scripts/PhotorealQA/town_script.py`, `town_sheet.py`, `town_table.py`; sheets and the per-placement table in `Docs/Verification/TownHouses_13Nov2026/`.
+- Trap: a private project copy under `Saved/<name>/DinkRemasterUE` does not start the game until it is rebuilt or `LD_LIBRARY_PATH` names its own module folders (the modules' search path is relative to the shared checkout's depth).
+
 ## Faceting sweep: grey unclaimed props, grey boulders, faceted thorns, coins, jars, walls (13 November 2026)
 
 Owner feedback of 13 Nov 2026 on master `cb842dd2`: "fix blocky and polygon looking art". Evidence and the full list: `Docs/Verification/FacetingSweep_13Nov2026/README.md`.
@@ -19,6 +27,7 @@ Owner feedback of 13 Nov 2026 on master `cb842dd2`: "fix blocky and polygon look
 - Boulder rows stay `fit` none. The four unclaimed boulders are 0.8 to 1.5 m wide, about half of what their sprites show beside the hero and smaller than the 3 m kit boulder they replace, inside unchanged collision 4 to 9 m wide; `fit` footprint was tried in the game and rejected (rocks 6 to 9 m wide that swallow the camera, soft textures). Fix the size in the source (`Unclaimed/tools`), not with `fit`.
 - Seen and left for the next change: the tree stumps' pointed root flares (`SM_Veg_Stump_01/02`, 47 placements; `bl_tree.py` `root_base` samples a root ridge at three angles) and the cabbage's crumpled leaf cards.
 - Tools used for the sweep are not committed (`Saved/`); the method is in the README. A capture of a freshly imported mesh shows the default material until its shaders compile: spawn it once off camera and wait.
+
 
 ## Hero build: scrawny lad to brawny hero by shape keys (12 November 2026)
 
