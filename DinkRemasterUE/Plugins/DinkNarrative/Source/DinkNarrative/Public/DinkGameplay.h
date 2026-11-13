@@ -417,6 +417,15 @@ public:
 	bool InputAttackPressed();
 	void InputAttackReleased();
 	const FDinkAttackGate& GetAttackGate() const { return AttackGate; }
+	/**
+	 * Human pace: the share (0..1] of its original speed a sprite moves at, from Content/Dink/Data/Gameplay/npc_pace.json and the
+	 * layout scale of its screen, so that townsfolk walk at a walking pace in the remaster's larger rooms. 1 for every sprite that
+	 * matches no class, for Dink, and whenever the pace is off (dink.Npc.HumanPace 0, or 1 during automated tests and headless runs).
+	 */
+	double PaceScale(const FDinkSprite& S) const;
+	/** World speed (cm/s) the pace table gives a sprite with this brain/script and sp_speed; 0 when no class matches. */
+	double PaceSpeedCm(int32 Brain, FName Script, int32 Speed) const;
+	bool IsHumanPaceActive() const;
 	/** Length of a sequence's frames in ms (0 if unknown): how long the original keeps Dink in an attack. */
 	int32 SequenceDurationMs(int32 Seq) const { return Data.SequenceDurationMs(Seq); }
 
@@ -712,6 +721,10 @@ private:
 	/** The attack key is held (PlayerAttackPress .. PlayerAttackRelease): the original's sjoy.joybit[1]. */
 	bool bAttackHeld = false;
 	FDinkAttackGate AttackGate;
+	struct FPaceClass { TArray<int32> Brains; TArray<FName> Scripts; double WalkCm = 120.0, MaxCm = 170.0; };
+	TArray<FPaceClass> PaceClasses;
+	mutable TMap<int32, double> PaceCmPerPixel;
+	void LoadPace();
 	/** True while the armed spell's `use` runs: its sp_seq must not be shown as a weapon attack. */
 	bool bCastingMagic = false;
 	bool StartGatedAttack();

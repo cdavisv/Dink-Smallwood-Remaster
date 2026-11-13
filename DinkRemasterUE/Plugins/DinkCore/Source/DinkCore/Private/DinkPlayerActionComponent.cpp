@@ -62,6 +62,8 @@ bool UDinkPlayerActionComponent::PlaySequence(int32 Sequence, FName Weapon)
 {
     UDinkBodyAnimInstance* Body = Target ? Cast<UDinkBodyAnimInstance>(Target->GetAnimInstance()) : nullptr;
     if (!Body || !IsReviewedSequence(Sequence) || !GetWorld()) return false;
+    // A spell cast sets the same sequence as a punch: it gets its own gesture.
+    if (Weapon == TEXT("magic")) return PlayClip(TEXT("Cast"));
     const FName Family = FamilyFor(Weapon);
     if (Family.IsNone()) return false;
     Combo.WindowSeconds = CVarComboWindow.GetValueOnGameThread() / 1000.f;
@@ -77,6 +79,16 @@ bool UDinkPlayerActionComponent::PlaySequence(int32 Sequence, FName Weapon)
     ActiveClip = Clip;
     ActiveSequence = Sequence;
     UE_LOG(LogDink, Verbose, TEXT("Player cosmetic action seq=%d clip=%s combo %d -> %d"), Sequence, *Clip.ToString(), Before, Step);
+    return true;
+}
+
+bool UDinkPlayerActionComponent::PlayClip(FName Clip, bool bHoldLastFrame)
+{
+    UDinkBodyAnimInstance* Body = Target ? Cast<UDinkBodyAnimInstance>(Target->GetAnimInstance()) : nullptr;
+    if (!Body || !Body->PlayAction(Clip, false, 1.f, .1f, .25f, bHoldLastFrame)) return false;
+    ActiveClip = Clip;
+    ActiveSequence = 0;
+    Combo.Reset();
     return true;
 }
 

@@ -36,6 +36,8 @@ class DINKCORE_API UDinkPlayerActionComponent : public UActorComponent
 public:
     bool Configure(USkeletalMeshComponent* Mesh);
     bool PlaySequence(int32 Sequence, FName Weapon = NAME_None);
+    /** Plays a named clip (Bow_Draw, Bow_Release, Cast). False when it is not imported. */
+    bool PlayClip(FName Clip, bool bHoldLastFrame = false);
     void Cancel();
     static bool IsReviewedSequence(int32 Sequence);
     /** Clip base name for a weapon script and combo step; NAME_None when the weapon has no clips. */

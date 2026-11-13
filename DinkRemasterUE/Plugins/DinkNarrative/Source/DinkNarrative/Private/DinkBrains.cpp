@@ -115,6 +115,21 @@ void UDinkGameplay::ThinkSprite(int32 H, double Tick)
 	const bool bScripted = S->bMoving;
 	if (!bScripted)
 	{
+		// Human pace (npc_pace.json): a townsperson takes only a share of the engine's frames, so that the
+		// original's pixel-a-frame walk is a walking pace in the remaster's larger rooms. Off (scale 1) in
+		// parity runs. Everything the brain does on a frame is taken or skipped together.
+		const double Pace = PaceScale(*S);
+		if (Pace < 1.0)
+		{
+			// (A diagonal step covers 1.41 pixels: fewer of those frames, so the pace is the same in every direction.)
+			const bool bDiagonal = S->Dir == 1 || S->Dir == 3 || S->Dir == 7 || S->Dir == 9;
+			S->PaceCarry += bDiagonal ? Pace * 0.70710678 : Pace;
+			if (S->PaceCarry < 1.0)
+			{
+				return;
+			}
+			S->PaceCarry -= 1.0;
+		}
 		S->X = Px(S->X);
 		S->Y = Px(S->Y);
 	}

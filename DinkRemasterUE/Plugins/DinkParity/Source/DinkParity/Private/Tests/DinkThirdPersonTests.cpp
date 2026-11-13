@@ -304,25 +304,64 @@ public:
         {
             if (!Move->IsMovingOnGround()) return false;
             StartZ=H->GetActorLocation().Z;
-            Key(EKeys::LeftShift,IE_Pressed);
             At=W->GetTimeSeconds(); Phase=2; return false;
         }
+        const double Since=W->GetTimeSeconds()-At;
         if (Phase==2)
         {
-            if (W->GetTimeSeconds()-At<.1) return false;
-            Test->TestEqual(TEXT("actual Shift input selects walk speed"),Move->MaxWalkSpeed,200.f);
+            // Nobody at the controls (the bot, scripted moves, debug commands): the run speed, exactly, as always.
             H->AddMovementInput(FVector(1,0,0));
-            if (W->GetTimeSeconds()-At<.7) return false;
-            Test->TestTrue(FString::Printf(TEXT("walk measured %.1f cm/s ignore=%d"),Move->Velocity.Size2D(),PC->IsMoveInputIgnored()),Move->Velocity.Size2D()>170 && Move->Velocity.Size2D()<=201);
+            Test->TestEqual(TEXT("direct movement input keeps the 6 m/s top speed"),Move->MaxWalkSpeed,600.f);
+            if (Since<1.) return false;
+            Test->TestTrue(FString::Printf(TEXT("bot-style run measured %.1f cm/s"),Move->Velocity.Size2D()),Move->Velocity.Size2D()>450);
+            Test->TestFalse(TEXT("direct input is not a person steering"),H->IsHumanSteering());
+            Move->StopMovementImmediately();
+            At=W->GetTimeSeconds(); Phase=20; return false;
+        }
+        if (Phase==20)
+        {
+            // A person at the controls walks by default.
+            H->PlayerMoveInput(FVector2D(0,1));
+            if (Since<1.2) return false;
+            Test->TestTrue(TEXT("the player's own input counts as steering"),H->IsHumanSteering());
+            Test->TestEqual(TEXT("a person's input walks by default"),Move->MaxWalkSpeed,ADinkGreyboxCharacter::WalkSpeed);
+            Test->TestTrue(FString::Printf(TEXT("walk measured %.1f cm/s ignore=%d"),Move->Velocity.Size2D(),PC->IsMoveInputIgnored()),
+                Move->Velocity.Size2D()>140 && Move->Velocity.Size2D()<=ADinkGreyboxCharacter::WalkSpeed+1);
+            Key(EKeys::LeftShift,IE_Pressed);
+            At=W->GetTimeSeconds(); Phase=21; bSawEase=false; return false;
+        }
+        if (Phase==21)
+        {
+            // Holding the run key runs; the top speed eases up instead of jumping.
+            H->PlayerMoveInput(FVector2D(0,1));
+            if (Move->MaxWalkSpeed>ADinkGreyboxCharacter::WalkSpeed+20 && Move->MaxWalkSpeed<580) bSawEase=true;
+            if (Since<1.4) return false;
+            Test->TestTrue(TEXT("the change from walk to run is eased"),bSawEase);
+            Test->TestEqual(TEXT("holding Shift runs"),Move->MaxWalkSpeed,600.f);
+            Test->TestTrue(FString::Printf(TEXT("run measured %.1f cm/s"),Move->Velocity.Size2D()),Move->Velocity.Size2D()>450);
             Key(EKeys::LeftShift,IE_Released);
+            At=W->GetTimeSeconds(); Phase=22; return false;
+        }
+        if (Phase==22)
+        {
+            H->PlayerMoveInput(FVector2D(0,1));
+            if (Since<1.6) return false;
+            Test->TestEqual(TEXT("releasing Shift returns to the walk"),Move->MaxWalkSpeed,ADinkGreyboxCharacter::WalkSpeed);
+            Test->TestTrue(FString::Printf(TEXT("walk again measured %.1f cm/s"),Move->Velocity.Size2D()),Move->Velocity.Size2D()<=ADinkGreyboxCharacter::WalkSpeed+25);
+            IConsoleVariable* RunDefault=IConsoleManager::Get().FindConsoleVariable(TEXT("dink.Hero.RunByDefault"));
+            RunDefault->Set(1);
+            Test->TestEqual(TEXT("the setting makes run the default"),H->DesiredTopSpeed(),600.f);
+            H->SetRunKeyHeld(true);
+            Test->TestEqual(TEXT("and then the key walks"),H->DesiredTopSpeed(),ADinkGreyboxCharacter::WalkSpeed);
+            H->SetRunKeyHeld(false);
+            RunDefault->Set(0);
             At=W->GetTimeSeconds(); Phase=3; return false;
         }
         if (Phase==3)
         {
-            H->AddMovementInput(FVector(1,0,0));
-            if (W->GetTimeSeconds()-At<.5) return false;
-            Test->TestEqual(TEXT("releasing Shift restores run"),Move->MaxWalkSpeed,600.f);
-            Test->TestTrue(FString::Printf(TEXT("run measured %.1f cm/s"),Move->Velocity.Size2D()),Move->Velocity.Size2D()>450);
+            if (Since<.5) return false;
+            Test->TestFalse(TEXT("steering ends shortly after the last input"),H->IsHumanSteering());
+            Test->TestEqual(TEXT("without a person steering the top speed is the run speed again"),Move->MaxWalkSpeed,600.f);
             Move->StopMovementImmediately();
             Freeze(true);
             H->Jump();
@@ -444,6 +483,7 @@ public:
         return false;
     }
 private:
+    bool bSawEase=false;
     FAutomationTestBase* Test;
     double Began=0,At=0,StartZ=0,Peak=0;
     float TargetArm=0;

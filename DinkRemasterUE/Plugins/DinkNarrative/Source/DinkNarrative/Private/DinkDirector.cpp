@@ -1806,7 +1806,11 @@ bool UDinkDirector::StepMove(FDinkSprite& Sprite, double DeltaMs)
 		return false;
 	}
 	const FIntPoint V = DirVector(Sprite.MoveDir);
-	const double Speed = FMath::Max(1, Sprite.GetProp(TEXT("speed"), 1)) * PixelsPerSecondPerSpeed;
+	double Speed = FMath::Max(1, Sprite.GetProp(TEXT("speed"), 1)) * PixelsPerSecondPerSpeed;
+	if (MovePaceScale && Sprite.Handle != 1)
+	{
+		Speed *= FMath::Clamp(MovePaceScale(Sprite), 0.01, 1.0); // the move ends at the same pixel, later
+	}
 	Sprite.X += V.X * Speed * DeltaMs / 1000.0;
 	Sprite.Y += V.Y * Speed * DeltaMs / 1000.0;
 	Sprite.MoveElapsedMs += DeltaMs;
