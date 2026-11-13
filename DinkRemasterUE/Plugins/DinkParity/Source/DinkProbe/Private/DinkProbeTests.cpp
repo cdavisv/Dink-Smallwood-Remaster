@@ -4422,9 +4422,8 @@ namespace DinkProbeTest
 					if (Target) { C.KiteAndPunch(Target, 30, true, 4); }
 				},
 				[](FCtx& C) { return C.Fact(TEXT("s4-duck")) == 2 && C.Fact(TEXT("story")) == 11 && C.Idle() && !C.Busy(); }, 400.0, {}, 0.001, true);
-			// Not beside the duck pen's chests: SCR_536 is still on the remaster's legacy placement path, which does not clear the script of
-			// an opened chest (update_play_changes clears it for every editor override, dink.cpp; the marked path does), so a load
-			// there would start ch3-ap's main again, which a 1997 load does not. Chapter 10 starts at the healer of Windemere anyway.
+			// Chapter 10 starts at the healer of Windemere: the chapter ends there, not beside the duck pen's chests and the ducks' scene
+			// (found while the legacy placement path still kept an opened chest's script; update_play_changes clears it, dink.cpp:5831).
 			Add(TEXT("to the healer's house in Windemere (SCR_195), where chapter 10 begins"),
 				[](FCtx& C) { if (!C.OnScreen(195)) { C.Goto(195, 300, 250); } },
 				[](FCtx& C) { return C.OnScreen(195) && C.Quiet(); }, 20.0, {}, 1.0);
@@ -4606,7 +4605,8 @@ namespace DinkProbeTest
 			AddPickup(TEXT("the defense potion of the King's hall (SCR_070 S070_P22 bpotion: defense +1)"), 70, 110, 240, TEXT("bpotion"), TEXT("defense"), 0);
 			AddPickup(TEXT("the magic chest of the castle's back rooms (SCR_069 S069_P02 ch1-mp: a punch, then the potion: magic +1)"), 69, 323, 255, TEXT("ppotion"), TEXT("magic"), 2);
 			AddPickup(TEXT("the gold-heart chest (SCR_101 S101_P02 ch1-gh: a punch, then the heart: lifemax +10)"), 101, 320, 255, TEXT("gheart"), TEXT("lifemax"), 2);
-			// Not where this chapter's last step leaves him: SCR_101 is on the legacy placement path, which does not clear the opened gold-heart chest's script (update_play_changes clears it, dink.cpp). A load restarts the screen (load_game, dink.cpp:1308).
+			// Chapter 14 starts at the Edge: the chapter ends there, not beside the opened gold-heart chest of SCR_101 (found while the legacy
+			// placement path still kept an opened chest's script; update_play_changes clears it, dink.cpp:5831).
 			Add(TEXT("to the Edge of the World (SCR_243), where chapter 14 begins"),
 				[](FCtx& C) { if (!C.OnScreen(243)) { C.Goto(243, 330, 160); } },
 				[](FCtx& C) { return C.OnScreen(243) && C.Quiet(); }, 20.0, {}, 1.0);

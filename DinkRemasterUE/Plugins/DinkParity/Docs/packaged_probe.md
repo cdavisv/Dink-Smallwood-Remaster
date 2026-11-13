@@ -9,6 +9,8 @@
 > now restarts the screen as `load_game` does (`dink.cpp:1308-1462`), so the chapter boundaries were re-cut to points it resumes and
 > the probe checks that at every save and load (`probe_route.md` 8.2). Step counts: Ch3 12, Ch7 4, Ch8 8, Ch9 7, Ch12 5, Ch15 3,
 > Ch16 3, Ch17 4, Ch18 3 (the rest as before). The alpha gate's first condition holds again.
+> Re-run the same day with PR #94 (an editor override clears the placement's script, `dink.cpp:5831`) on master 95df4848 and a
+> freshly regenerated world: the same twenty md5s in PIE and packaged, every chapter `PARITY OK`.
 >
 > Before: **Re-verified 9 Nov 2026, late night (master 9758852: PR #50 East Wilds doorway, Codex's PRs #47-#49 hero growth and camera headroom, PR #51 hero defect fixes).**
 > `Scripts/build.sh`, `Scripts/test.sh` (193/193 in 719 s), `Scripts/package.sh` (239 s, first cook after the hero meshes changed) and
