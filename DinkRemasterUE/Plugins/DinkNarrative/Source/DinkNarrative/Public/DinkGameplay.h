@@ -186,6 +186,8 @@ public:
 	const FDinkFrameInfo* FindInitSequence(int32 Seq) const { return InitSequences.Find(Seq); }
 	/** Time from the start of Seq until its first special (hit) frame shows; INDEX_NONE if it has none. */
 	int32 HitFrameDelayMs(int32 Seq) const;
+	/** Sum of the sequence's frame delays, ms (0 if the sequence is unknown). */
+	int32 SequenceDurationMs(int32 Seq) const;
 	const FDinkPlacementInfo* FindPlacement(const FDinkOriginId& Origin) const;
 	/** Placements of a screen in placement order. */
 	TArray<const FDinkPlacementInfo*> GetPlacementsOnScreen(int32 Screen) const;
@@ -208,6 +210,44 @@ private:
 	/** Screen -> vision -> map (lazy; the files are ~9 KB each). */
 	mutable TMap<int32, TMap<int32, TSharedPtr<FDinkHardnessMap>>> Hardness;
 	TMap<int32, TSharedPtr<FDinkHardnessMap>> HardnessOverrides;
+};
+
+/**
+ * The no-spam rule for the player's attack key, in game time. Pure state, no engine access.
+ *  - Press while idle: the attack starts now and Dink is locked for the attack's own length.
+ *  - Press while locked: remembered (one deep); it starts when the lock ends.
+ *  - A held key does nothing more: there is no auto-repeat, at any cadence.
+ */
+struct DINKNARRATIVE_API FDinkAttackGate
+{
+	enum class EPress : uint8 { Start, Buffered, Ignored };
+	/** The key went down at NowMs. Ignored when it was already down (an OS auto-repeat). */
+	EPress Press(double NowMs)
+	{
+		if (bHeld) return EPress::Ignored;
+		bHeld = true;
+		if (NowMs >= LockUntilMs) return EPress::Start;
+		bBuffered = true;
+		return EPress::Buffered;
+	}
+	void Release() { bHeld = false; }
+	/** An attack actually started at NowMs and locks Dink for LockMs. */
+	void Started(double NowMs, double LockMs) { LockUntilMs = NowMs + FMath::Max(0., LockMs); bBuffered = false; }
+	/** True once when a remembered press is due; the caller starts the attack and calls Started. */
+	bool TakeBuffered(double NowMs)
+	{
+		if (!bBuffered || NowMs < LockUntilMs) return false;
+		bBuffered = false;
+		return true;
+	}
+	void Reset() { *this = FDinkAttackGate(); }
+	bool IsHeld() const { return bHeld; }
+	bool IsLocked(double NowMs) const { return NowMs < LockUntilMs; }
+	bool HasBuffered() const { return bBuffered; }
+	double GetLockUntilMs() const { return LockUntilMs; }
+private:
+	double LockUntilMs = -1.;
+	bool bHeld = false, bBuffered = false;
 };
 
 /** A melee hit waiting for its attack animation's special frame. */
@@ -367,6 +407,18 @@ public:
 	/** Attack key up (sjoy.letgo[1], D:12091): a drawn bow is released at its next engine frame. */
 	void PlayerAttackRelease();
 	bool IsAttackHeld() const { return bAttackHeld; }
+	/**
+	 * The player's attack key, as the keyboard/gamepad layer reports it (the probe bot and the console keep calling
+	 * PlayerAttack/PlayerAttackPress directly and are not gated). One attack per press: holding the key never repeats.
+	 * While Dink is still locked in the previous attack (the original's sp_nocontrol: until its sequence has played,
+	 * 400 ms for the fists) a press is remembered, one deep, and starts the next attack the moment the lock ends, so
+	 * a quick second and third press chain into the combo. Returns true when an attack started on this call.
+	 */
+	bool InputAttackPressed();
+	void InputAttackReleased();
+	const FDinkAttackGate& GetAttackGate() const { return AttackGate; }
+	/** Length of a sequence's frames in ms (0 if unknown): how long the original keeps Dink in an attack. */
+	int32 SequenceDurationMs(int32 Seq) const { return Data.SequenceDurationMs(Seq); }
 
 	// ---- The bow (D:9397-9420, 14564-14621, 17344) ----
 
@@ -659,6 +711,10 @@ private:
 	FDinkBowStatus Bow;
 	/** The attack key is held (PlayerAttackPress .. PlayerAttackRelease): the original's sjoy.joybit[1]. */
 	bool bAttackHeld = false;
+	FDinkAttackGate AttackGate;
+	/** True while the armed spell's `use` runs: its sp_seq must not be shown as a weapon attack. */
+	bool bCastingMagic = false;
+	bool StartGatedAttack();
 	double NowMs = 0.0;
 	double NextStatusMs = 100.0;
 	bool bPushActive = false;

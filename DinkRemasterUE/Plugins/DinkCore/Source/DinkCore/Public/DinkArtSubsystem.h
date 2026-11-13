@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
 #include "DinkCameraPortal.h"
+#include "DinkBodyAnimInstance.h"
 #include "DinkArtSubsystem.generated.h"
 
 /** Applies authored Blender assets without modifying the regenerable greybox maps.
@@ -29,8 +30,11 @@ public:
     bool UsesAuthoredCollision(int32 Screen) const { return AuthoredCollisionScreens.Contains(Screen); }
 	/** Applies an optional authored player mesh after the pawn has loaded its animation rig. */
 	bool ApplyPlayer(class USkeletalMeshComponent& Component);
-    /** Cosmetic only: original script sequence and175ms damage scheduling remain authoritative. */
-    bool PlayPlayerSequence(AActor* Actor, int32 Sequence);
+    /** Cosmetic only: original script sequence and 175 ms damage scheduling remain authoritative.
+     * Weapon is the armed item's script (item-fst, item-sw1...) or "magic" for a spell cast. */
+    bool PlayPlayerSequence(AActor* Actor, int32 Sequence, FName Weapon = NAME_None);
+    /** The authored clips of the animation pass (animation_pass.json); empty when not imported. */
+    const TMap<FName, FDinkBodyClip>& GetAnimationLibrary();
 	/** Present dynamically scripted actors (such as Milder) without replacing their gameplay identity. */
 	bool ApplyScriptCharacter(AActor* Actor, FName Script, float SpriteScale = 1.f);
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
@@ -52,4 +56,6 @@ private:
 	void ApplyManifest(UWorld& World, const TSharedPtr<class FJsonObject>& Manifest, const FString& ManifestFile);
 	void ApplyCharacters(UWorld& World);
     void ConfigurePlayerActions(class USkeletalMeshComponent& Component);
+    UPROPERTY(Transient) TMap<FName, FDinkBodyClip> AnimationLibrary;
+    bool bAnimationLibraryLoaded = false;
 };

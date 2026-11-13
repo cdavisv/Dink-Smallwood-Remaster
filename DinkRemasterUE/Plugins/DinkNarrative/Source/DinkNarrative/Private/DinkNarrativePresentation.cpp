@@ -144,6 +144,34 @@ void UDinkStorySubsystem::DrawHUD(AHUD* HUD, UCanvas* Canvas)
 	}
 }
 
+void FDinkNarrativeInputProcessor::ReleaseAttack()
+{
+	AttackKeyDown = FKey();
+	PendingReleaseAt = -1.;
+	if (UDinkStorySubsystem* S = Story.Get(); S && S->IsReady())
+	{
+		S->GetGameplay()->InputAttackReleased();
+	}
+}
+
+void FDinkNarrativeInputProcessor::Tick(const float DeltaTime, FSlateApplication& SlateApp, TSharedRef<ICursor> Cursor)
+{
+	// A release that outlived the repeat guard is real; so is losing the window (no key-up will come).
+	if ((PendingReleaseAt >= 0. && FPlatformTime::Seconds() >= PendingReleaseAt) || (AttackKeyDown.IsValid() && !SlateApp.IsActive()))
+	{
+		ReleaseAttack();
+	}
+}
+
+bool FDinkNarrativeInputProcessor::HandleKeyUpEvent(FSlateApplication& SlateApp, const FKeyEvent& InKeyEvent)
+{
+	if (AttackKeyDown.IsValid() && InKeyEvent.GetKey() == AttackKeyDown)
+	{
+		PendingReleaseAt = FPlatformTime::Seconds() + RepeatGuardSeconds;
+	}
+	return false;
+}
+
 bool FDinkNarrativeInputProcessor::HandleKeyDownEvent(FSlateApplication& SlateApp, const FKeyEvent& InKeyEvent)
 {
 	UDinkStorySubsystem* S = Story.Get();
@@ -202,7 +230,20 @@ bool FDinkNarrativeInputProcessor::HandleKeyDownEvent(FSlateApplication& SlateAp
 	// Shift now holds the third-person walk gait; Q remains the spell control.
 	if (Key == EKeys::F || Key == EKeys::LeftControl)
 	{
-		return S->GetGameplay()->PlayerAttack();
+		if (AttackKeyDown == Key)
+		{
+			// Still the same press: an auto-repeat whose key-up is waiting out the guard.
+			PendingReleaseAt = -1.;
+			return true;
+		}
+		if (AttackKeyDown.IsValid())
+		{
+			return true; // the other attack key is already down
+		}
+		AttackKeyDown = Key;
+		PendingReleaseAt = -1.;
+		S->GetGameplay()->InputAttackPressed();
+		return true;
 	}
 	if (Key == EKeys::Q)
 	{

@@ -31,10 +31,11 @@ bool FDinkHeroWallClearanceTest::RunTest(const FString&)
 	World->AddController(PC);
 	PC->Possess(Hero);
 	if (!TestNotNull(TEXT("hero"), Hero) || !TestTrue(TEXT("player possesses the hero"), Hero->GetController() == PC)) return false;
-	// Stand-in for the lean/hunch/gait reach: an authored mesh offset 20 cm forward carries the
+	// Stand-in for the lean/hunch/gait reach: an authored mesh offset 22 cm forward carries the
 	// head 30+ cm ahead of the capsule axis, past the 28 cm capsule (as the hunch and the
 	// stop lurch do in the game). The character composes everything on top of it.
-	Hero->GetMesh()->SetRelativeLocation(FVector(20, 0, -96));
+	// (22 cm since the animation pass: the mesh is no longer pitched forward as a whole.)
+	Hero->GetMesh()->SetRelativeLocation(FVector(22, 0, -96));
 	const FVector Capsule = Hero->GetActorLocation();
 	auto Run = [&](int32 Frames) { for (int32 I = 0; I < Frames; ++I) Hero->Tick(1.f / 60.f); };
 

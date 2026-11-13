@@ -224,8 +224,17 @@ bool FDinkPlayerArtAnimationTest::RunTest(const FString& Parameters)
 	{
 		TestEqual(TEXT("missing optional mapping preserves the reference mesh"), Body->GetSkeletalMeshAsset(), Reference);
 	}
-	TestEqual(TEXT("mesh swap retains the current animation instance"), Body->GetAnimInstance(), Animation);
-	TestEqual(TEXT("mesh swap retains the existing animation blueprint class"), Body->GetAnimClass(), AnimClass);
+	if (bApplied && !Art->GetAnimationLibrary().IsEmpty())
+	{
+		// Animation pass imported: the player runs the native body animation with the hero clip set.
+		const UDinkBodyAnimInstance* Native = Cast<UDinkBodyAnimInstance>(Body->GetAnimInstance());
+		TestTrue(TEXT("the authored player runs the native body animation"), Native && Native->IsConfigured() && Native->HasClip(TEXT("Fist_Jab")));
+	}
+	else
+	{
+		TestEqual(TEXT("mesh swap retains the current animation instance"), Body->GetAnimInstance(), Animation);
+		TestEqual(TEXT("mesh swap retains the existing animation blueprint class"), Body->GetAnimClass(), AnimClass);
+	}
 	TestEqual(TEXT("mesh swap retains blueprint animation mode"), Body->GetAnimationMode(), EAnimationMode::AnimationBlueprint);
 	TestTrue(TEXT("authored player stays in the existing capsule/mesh coordinate frame"), Body->GetRelativeTransform().Equals(Transform, .001));
 	TestEqual(TEXT("authored player never changes the movement capsule radius"), Player->GetCapsuleComponent()->GetScaledCapsuleRadius(), Radius);

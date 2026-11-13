@@ -261,6 +261,16 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkCameraDistanceCommand(
 		if (USpringArmComponent* Boom = Pawn->FindComponentByClass<USpringArmComponent>()) Boom->TargetArmLength = FMath::Clamp(FCString::Atof(*Args[0]), 60.f, 2000.f);
 	}));
 
+#include "GameFramework/WorldSettings.h"
+
+static FAutoConsoleCommandWithWorldAndArgs GDinkTimeDilationCommand(
+	TEXT("dink.TimeDilation"), TEXT("dink.TimeDilation <0.01..4>: review-only game speed, for frame-by-frame animation captures (Scripts/AnimationQA)."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		if (World && World->IsGameWorld() && Args.Num() == 1)
+			World->GetWorldSettings()->SetTimeDilation(FMath::Clamp(FCString::Atof(*Args[0]), .01f, 4.f));
+	}));
+
 // ---------------------------------------------------------------------------------------------
 // Calibration stage (photoreal pass): put one mesh on the ground near the player and look at it
 // through a fixed camera that matches a Blender reference render, and override material
