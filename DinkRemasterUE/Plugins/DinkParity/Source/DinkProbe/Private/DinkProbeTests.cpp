@@ -4573,16 +4573,22 @@ namespace DinkProbeTest
 					C.DuelFight(Target, O);
 				},
 				[](FCtx& C) { const bool bOk = C.Fact(TEXT("story")) == 12 && C.Fact(TEXT("life")) > 0 && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 150.0, { TEXT("Increase Attack"), TEXT("I saved all of you, actually.") }, 0.001, true);
+			Add(TEXT("the dragons' loot (emake.xlarge), and the level-up of the second 400 exp (level 5: Attack)"),
+				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
+				// (level 5 only when the exp is there: chapter 11's rounds may have paid less than 800, and the level-up then comes in the Darklands)
+				[](FCtx& C) { return Drops(C) == 0 && (C.Fact(TEXT("level")) >= 5 || C.Fact(TEXT("exp")) < 1600) && C.Idle() && !C.Busy(); }, 40.0, { TEXT("Increase Attack") }, 0.5);
+			// Not in Joppa's square: the family's scene and the dragons' gold are made by scripts (s5-end.c, emake), and a load there
+			// (which restarts the screen, load_game, dink.cpp:1308) makes neither again, so the loot is taken here and chapter 13
+			// starts at the castle gate.
+			Add(TEXT("to the castle gate (SCR_402), where chapter 13 begins"),
+				[](FCtx& C) { if (!C.OnScreen(402)) { C.Goto(402, 321, 300); } },
+				[](FCtx& C) { return C.OnScreen(402) && C.Quiet(); }, 20.0, {}, 1.0);
 		}
 
 		// ---- Chapter 13 (test `ChDCastle`): after the dragons: their loot, the level-up, the castle guard, the King (&story 12 -> 13 -> 14), the dungeon's potions (Act D end, Act E steps 39-41) ----
 		void BuildChapter13()
 		{
 			// The two dragons' death spots hold emake.xlarge (gold200 and the like); the second kill's 400 exp reach 1600 (100 * 4 * 4): level 5, the menu "YOU ARE NOW LEVEL 5".
-			Add(TEXT("the dragons' loot (emake.xlarge), and the level-up of the second 400 exp (level 5: Attack)"),
-				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
-				// (level 5 only when the exp is there: chapter 11's rounds may have paid less than 800, and the level-up then comes in the Darklands)
-				[](FCtx& C) { return Drops(C) == 0 && (C.Fact(TEXT("level")) >= 5 || C.Fact(TEXT("exp")) < 1600) && C.Idle() && !C.Busy(); }, 40.0, { TEXT("Increase Attack") }, 0.5);
 			Add(TEXT("the castle gate (SCR_402, s2-ca-g talk at &story 12: \"Request an audience with King Daniel\": enter() -> SCR_102)"),
 				[](FCtx& C)
 				{
@@ -4600,6 +4606,10 @@ namespace DinkProbeTest
 			AddPickup(TEXT("the defense potion of the King's hall (SCR_070 S070_P22 bpotion: defense +1)"), 70, 110, 240, TEXT("bpotion"), TEXT("defense"), 0);
 			AddPickup(TEXT("the magic chest of the castle's back rooms (SCR_069 S069_P02 ch1-mp: a punch, then the potion: magic +1)"), 69, 323, 255, TEXT("ppotion"), TEXT("magic"), 2);
 			AddPickup(TEXT("the gold-heart chest (SCR_101 S101_P02 ch1-gh: a punch, then the heart: lifemax +10)"), 101, 320, 255, TEXT("gheart"), TEXT("lifemax"), 2);
+			// Not where this chapter's last step leaves him: SCR_101 is on the legacy placement path, which does not clear the opened gold-heart chest's script (update_play_changes clears it, dink.cpp). A load restarts the screen (load_game, dink.cpp:1308).
+			Add(TEXT("to the Edge of the World (SCR_243), where chapter 14 begins"),
+				[](FCtx& C) { if (!C.OnScreen(243)) { C.Goto(243, 330, 160); } },
+				[](FCtx& C) { return C.OnScreen(243) && C.Quiet(); }, 20.0, {}, 1.0);
 		}
 
 		// ---- Chapter 14 (test `ChEEdge`): the Edge of the World and the ancients' machine to the Darklands (Act E steps 42-45) ----
@@ -4665,6 +4675,10 @@ namespace DinkProbeTest
 					C.DuelFight(Target, O);
 				},
 				[](FCtx& C) { return C.OnScreen(156) && C.SpriteWithScript(TEXT("s7-slay")) == 0 && C.SpriteWithScript(TEXT("s7-bong")) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle(); }, 150.0, { TEXT("Increase Attack") }, 0.001, true);
+			// The room's loot is made by scripts (emake) and a load does not make it again: it is taken before the chapter ends.
+			Add(TEXT("SCR_156's loot (emake: the gold, the heart and the food where the monsters fell)"),
+				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
+				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 30.0, {}, 0.5);
 		}
 
 		// ---- Chapter 16 (test `ChGSlayers`): SCR_157, the four Slayers and the gold heart (Act F step 48) ----
@@ -4688,15 +4702,16 @@ namespace DinkProbeTest
 					C.SquadFight(O);
 				},
 				[](FCtx& C) { return C.OnScreen(157) && C.SpriteWithScript(TEXT("s7-slay")) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle(); }, 200.0, { TEXT("Increase Attack") }, 0.001, true);
+			// Their gold is made by a script (emake) and a load does not make it again: it is taken before the chapter ends.
+			Add(TEXT("the slayers' loot (emake.xlarge x4) lying on SCR_157"),
+				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
+				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 40.0, {}, 0.5);
+			// (The fight of chapter 16 can walk Dink over it: then it is taken already.)
 		}
 
 		// ---- Chapter 17 (test `ChHDucks`): the slayers' loot and gold heart, SCR_190's three duck-bugs and the full heart (Act F steps 48-49) ----
 		void BuildChapter17()
 		{
-			Add(TEXT("the slayers' loot (emake.xlarge x4) lying on SCR_157"),
-				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
-				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 40.0, {}, 0.5);
-			// (The fight of chapter 16 can walk Dink over it: then it is taken already.)
 			Add(TEXT("the gold heart of the locked room (SCR_157 S157_P09 gheart: lifemax +10)"),
 				[](FCtx& C)
 				{
@@ -4750,6 +4765,10 @@ namespace DinkProbeTest
 			// The chapter ends with Seth there (his first bomb on its way). The sword cannot win (defense 25: 0.5 net a swing); chapter 19 (BuildChapter19) walks out, gets
 			// the kit (strength 26 without the sword, bow lore, eleven elixirs) and arms the bow (UDinkGameplay's bow: activate_bow, process_bow); chapter 20 talks to Milder
 			// again (his `main` sets &fighting 0 on every load of SCR_086) and fights Seth with arrows (FCtx::BowDuel).
+			// Not where this chapter's last step leaves him: Seth is made by Milder's scene (s7-mil.c, s7-boss) and a load makes him again only through that talk, as chapter 20 does. A load restarts the screen (load_game, dink.cpp:1308).
+			Add(TEXT("out of the Darklands to SCR_209, where chapter 19 begins"),
+				[](FCtx& C) { if (!C.OnScreen(209)) { C.Goto(209, 540, 340); } },
+				[](FCtx& C) { return C.OnScreen(209) && C.Quiet(); }, 20.0, {}, 1.0);
 		}
 
 		// ---- Shared by chapters 19 and 20 ----
@@ -5063,8 +5082,10 @@ namespace DinkProbeTest
 			// sp_hard 1, draw_hard_sprite), and the greybox's collision follows since pitfall 77 was fixed (UDinkGameplay::DrawHardSprite).
 			// The golem S209_P16 starts beside the barrel in the same walkable pocket (x 399-446 below y 225, then the strip at y 175-200 to the east
 			// edge): Dink waits at the strip's west end until it has followed him out (30 px/s), then hits the barrel and takes the potion.
+			// "Out" is 80 px from the barrel: at 100 the golem on the strip (y 188, 92 px above the barrel) counted as near until it was
+			// within about 56 px of Dink, its touch reach, and a chain whose golem walked a little faster touched him to death there.
 			AddHitAndPickup(TEXT("the food barrel of SCR_209 (S209_P13 bar-f1: a blow from the north makes it flat and soft) and the potion behind it (S209_P10 rpotion: strength +1)"),
-				209, 13, 416, 280, 2, TEXT("rpotion"), TEXT("strength"), LevelUps, TEXT("en-stg"), 260, 188, 100.0);
+				209, 13, 416, 280, 2, TEXT("rpotion"), TEXT("strength"), LevelUps, TEXT("en-stg"), 260, 188, 80.0);
 			AddWindemereHealer(LevelUps);
 			AddPit(TEXT("the hole of SCR_180 (S180_P01 s6-hole2: touch, a 2 s fall, &player_map 166)"), 180, 1, 265, 72, 166, LevelUps);
 			Add(TEXT("SCR_166, the room below: two slayers (en-slay: 100 hp, defense 5, strength 20, range 45): SquadFight with the sword"),
@@ -5480,14 +5501,14 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh12Test, "Dink.Gameplay.Prob
 bool FDinkGameplayProbeCh12Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(12, TEXT("The two dragons of Joppa and the epilogue (&story 12)")), 3, 0);
+	return RunChapterTest(*this, MakeChapter(12, TEXT("The two dragons of Joppa, the epilogue (&story 12) and their loot")), 5, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh13Test, "Dink.Gameplay.Probe.ChDCastle", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh13Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(13, TEXT("After the dragons: their loot, the castle, the King (&story 14), the back rooms' potions")), 6, 0);
+	return RunChapterTest(*this, MakeChapter(13, TEXT("The castle, the King (&story 14), the back rooms' potions")), 6, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh14Test, "Dink.Gameplay.Probe.ChEEdge", DINK_TEST_FLAGS)
@@ -5501,28 +5522,28 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh15Test, "Dink.Gameplay.Prob
 bool FDinkGameplayProbeCh15Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(15, TEXT("The Darklands: the first room, SCR_156")), 2, 0);
+	return RunChapterTest(*this, MakeChapter(15, TEXT("The Darklands: the first room, SCR_156, and its loot")), 3, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh16Test, "Dink.Gameplay.Probe.ChGSlayers", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh16Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(16, TEXT("The Darklands: the four slayers of SCR_157")), 2, 0);
+	return RunChapterTest(*this, MakeChapter(16, TEXT("The Darklands: the four slayers of SCR_157")), 3, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh17Test, "Dink.Gameplay.Probe.ChHDucks", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh17Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(17, TEXT("The Darklands: the slayers' gold heart and the three duck-bugs of SCR_190")), 5, 0);
+	return RunChapterTest(*this, MakeChapter(17, TEXT("The Darklands: the slayers' gold heart and the three duck-bugs of SCR_190")), 4, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh18Test, "Dink.Gameplay.Probe.ChISeth", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh18Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(18, TEXT("The Darklands: Milder and the beginning of the Seth fight")), 2, 0);
+	return RunChapterTest(*this, MakeChapter(18, TEXT("The Darklands: Milder and the beginning of the Seth fight")), 3, 0);
 }
 
 // Chapter 19 sorts after ChISeth as `ChJ...`, chapter 20 as `ChK...` (pitfall 60).
