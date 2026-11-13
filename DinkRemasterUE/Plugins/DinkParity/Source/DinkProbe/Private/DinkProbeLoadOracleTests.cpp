@@ -45,6 +45,12 @@ bool FDinkProbePersistentLoadOracle::RunTest(const FString& Parameters)
     auto* FreshRuntime=DuplicateObject<UDinkSaveGame>(Saved,GetTransientPackage());
     FreshRuntime->SubsystemState[TEXT("narrative")].ReplaceInline(TEXT("\"instances\":[]"),TEXT("\"instances\":[{\"id\":10}]"));
     TestTrue(TEXT("fresh VM IDs are not falsely persistent"),DinkProbeLoadOracle::PersistentDifferences(*Saved,*FreshRuntime).IsEmpty());
+    // load_game's load_map resets &vision (dink.cpp:1017) and the restarted screen's base script sets it again (1462).
+    auto* Vision=DuplicateObject<UDinkSaveGame>(Saved,GetTransientPackage());
+    Saved->Facts.Add(TEXT("vision"),1);Vision->Facts.Add(TEXT("vision"),2);
+    TestTrue(TEXT("&vision set again by the restarted screen is not a persistent difference"),DinkProbeLoadOracle::PersistentDifferences(*Saved,*Vision).IsEmpty());
+    Vision->Facts.Remove(TEXT("story"));
+    TestFalse(TEXT("a missing fact still refuses"),DinkProbeLoadOracle::PersistentDifferences(*Saved,*Vision).IsEmpty());
     return true;
 }
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkProbeSavedBirthOracle,
