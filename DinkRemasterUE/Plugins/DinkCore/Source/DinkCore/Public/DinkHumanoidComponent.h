@@ -25,7 +25,7 @@ struct DINKCORE_API FDinkBodySmoother
 	float SmoothTime = .18f;
 	float TurnRateDeg = 300.f;
 	/** A jump of the scripted position beyond this is a warp, not a walk, cm. */
-	float WarpDistance = 150.f;
+	float WarpDistance = 200.f;
 
 	void Reset(const FVector& Location, float YawDeg) { Position = Location; Velocity = FVector::ZeroVector; Yaw = YawDeg; bReady = true; }
 	/** Advances towards Target (the scripted position) and returns where to show the body. */
