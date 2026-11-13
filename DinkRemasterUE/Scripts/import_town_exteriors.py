@@ -249,7 +249,8 @@ def instance(name, parent, textures, scalars, vectors):
 
 
 def import_module(fbx, name):
-    """One FBX with objects <name>_LOD0.._LOD2 and UCX hulls -> one static mesh with three LODs, no collision."""
+    """One FBX with objects <name>_LOD0.._LOD2 (or a single object <name>) and UCX hulls -> one static mesh
+    with the LODs the file holds, no collision."""
     target = FOLDER + '/' + name
     key = stamp_of(fbx) + ':town2'
     existing = LIB.load_asset(target) if LIB.does_asset_exist(target) else None
@@ -284,6 +285,9 @@ def import_module(fbx, name):
         for lod in (0, 1, 2):
             if asset.get_name().endswith(f'LOD{lod}'):
                 parts[lod] = asset
+        # A kit whose FBX holds one object named after the asset, with no LOD suffix (Unclaimed): that object is LOD0.
+        if asset.get_name() == name and 0 not in parts:
+            parts[0] = asset
     if 0 not in parts:
         raise RuntimeError(f'{name}: no LOD0 object in {fbx}')
     if existing is not None:
