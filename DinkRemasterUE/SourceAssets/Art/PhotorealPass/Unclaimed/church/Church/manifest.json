@@ -1,0 +1,112 @@
+{
+ "name": "SM_Church_PR",
+ "class": "building",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church/Church/SM_Church_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church/Church/SM_Church_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_buildings.py Church final",
+ "dimensions_m": [
+  22.25,
+  10.6,
+  18.6841
+ ],
+ "bounds_min_m": [
+  -11.125,
+  -5.3,
+  0.0
+ ],
+ "bounds_max_m": [
+  11.125,
+  5.3,
+  18.6841
+ ],
+ "lod0_triangles": 2104,
+ "triangle_budget": {
+  "soft": 60000,
+  "hard": 200000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church/Church/T_Church_PR_BC.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church/Church/T_Church_PR_N.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church/Church/T_Church_PR_ORM.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Church_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0126,
+   0.9874
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 24.4,
+   "p99": 116.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.277,
+   "p95": 1.0
+  },
+  "metallic_mean": 0.002,
+  "ao_mean": 0.114
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "church",
+  "60 struct/church/chrch- frame 1"
+ ],
+ "origin_ids": {
+  "church": [
+   "S187_P02",
+   "S188_P03",
+   "S188_P05"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "stone church, 19.5 m long and 17 m to the spire cross: buttressed nave of four bays with lancet windows, lower chancel, round apse with a conical roof, slate roofs at 50 degrees, a bell turret with a slated spire over the west gable",
+ "third_party": [
+  "rock_face_03",
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Lancets are plain pointed openings with dark leaded panes: no tracery, hood moulds or stained glass (the stained-glass assets can stand in them). Buttresses are two plain stages; there is no plinth course, string course, corbel table or porch, and the west door opening is empty for the church_door leaf. One 4096 px bake covers the whole building, about 100 px/m: it holds at the gameplay camera and is soft at 1 m (a tiling masonry material with trim would be the engine-side answer). Walls are flat slabs with the coursing in the textures; the inside is a dark core, not a room. One convex hull is exported.",
+ "openings_m": {
+  "west door": {
+   "x": -8.0,
+   "width": 1.6,
+   "height_to_crown": 3.1
+  }
+ }
+}

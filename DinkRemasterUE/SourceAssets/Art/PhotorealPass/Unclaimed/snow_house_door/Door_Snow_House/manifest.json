@@ -1,0 +1,102 @@
+{
+ "name": "SM_Door_Snow_House_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_door/Door_Snow_House/SM_Door_Snow_House_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_door/Door_Snow_House/SM_Door_Snow_House_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_doors.py Door_Snow_House final",
+ "dimensions_m": [
+  1.7605,
+  0.2021,
+  2.3604
+ ],
+ "bounds_min_m": [
+  -0.8802,
+  -0.1011,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.8802,
+  0.1011,
+  2.3604
+ ],
+ "lod0_triangles": 1300,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_door/Door_Snow_House/T_Door_Snow_House_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_door/Door_Snow_House/T_Door_Snow_House_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_door/Door_Snow_House/T_Door_Snow_House_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Door_Snow_House_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0037,
+   0.9963
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 62.2,
+   "p99": 127.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.539,
+   "p95": 0.682
+  },
+  "metallic_mean": 0.038,
+  "ao_mean": 0.67
+ },
+ "pivot": "base centre of the frame (the leaves are not separate), front on -Y",
+ "families": [
+  "snow_house_door",
+  "96 struct/building/build- frame 10"
+ ],
+ "origin_ids": {
+  "snow_house_door": [
+   "S149_P07"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "house door in its frame, 1.6 x 2.36 m: two plank leaves with strap hinges and a ring, dark timber posts and a projecting lintel",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Frame and both leaves are one mesh, so it cannot swing; it is classed as a prop with a base-centre pivot for that reason. Split the leaves off as door-class assets if it must open. One slab with the plank joints, grain and nails in the textures: the joints are not modelled gaps and the edge of the leaf shows no board ends. Iron straps are plain tapered bars without nail heads; there is no lock or latch. No frame or wall: the opening belongs to the building family."
+}

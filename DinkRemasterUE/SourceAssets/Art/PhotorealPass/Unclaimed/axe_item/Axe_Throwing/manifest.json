@@ -1,0 +1,102 @@
+{
+ "name": "SM_Axe_Throwing_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/axe_item/Axe_Throwing/SM_Axe_Throwing_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/axe_item/Axe_Throwing/SM_Axe_Throwing_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props4.py Axe_Throwing final",
+ "dimensions_m": [
+  0.8426,
+  0.3104,
+  0.033
+ ],
+ "bounds_min_m": [
+  -0.4213,
+  -0.1552,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.4213,
+  0.1552,
+  0.033
+ ],
+ "lod0_triangles": 1500,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/axe_item/Axe_Throwing/T_Axe_Throwing_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/axe_item/Axe_Throwing/T_Axe_Throwing_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/axe_item/Axe_Throwing/T_Axe_Throwing_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Axe_Throwing_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0016,
+   0.9984
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 26.9,
+   "p99": 109.2
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.232,
+   "p95": 0.622
+  },
+  "metallic_mean": 0.081,
+  "ao_mean": 0.352
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "axe_item",
+  "85 effects/axe/wpn02- frame 9"
+ ],
+ "origin_ids": {
+  "axe_item": [
+   "S170_P08"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "double-bitted throwing axe, 80 cm, lying flat: two crescent blades, ash haft, leather-wrapped grip",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Head and haft are swept solids pushed together, with no eye or wedge. The blades are symmetric crescents with a plain rust-and-patina surface: no ground bevel line. The thrown-weapon version in flight is an effect, not this prop."
+}

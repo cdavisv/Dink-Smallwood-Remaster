@@ -1,0 +1,73 @@
+{
+ "name": "SM_Corpse_Soldier_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_soldier/Corpse_Soldier/SM_Corpse_Soldier_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_soldier/Corpse_Soldier/SM_Corpse_Soldier_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_npcs.py Corpse_Soldier",
+ "derived_from": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Characters/Milder (SK_Milder_Photoreal, LOD2), posed and frozen",
+ "dimensions_m": [
+  1.7861,
+  1.1206,
+  0.5043
+ ],
+ "lod0_triangles": 10283,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_soldier/Corpse_Soldier/T_Corpse_Soldier_Skin_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB with baked blood (Skin)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_soldier/Corpse_Soldier/T_Corpse_Soldier_Outfit_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB with baked blood (Outfit)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_soldier/Corpse_Soldier/T_Corpse_Soldier_Gear_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB with baked blood (Gear)"
+  }
+ ],
+ "shared_textures": "N / ORM (and hair masks, eyes) are the base character's maps under PhotorealPass/Characters/Milder/Textures",
+ "materials": [
+  "MI_Corpse_Soldier_Skin",
+  "MI_Corpse_Soldier_Eyes",
+  "MI_Corpse_Soldier_Hair",
+  "MI_Corpse_Soldier_Outfit",
+  "MI_Corpse_Soldier_Gear"
+ ],
+ "collision_hulls": 1,
+ "companion_decal": "Unclaimed/blood_splat/Blood_Pool_02 (2.2 m), centred under the body; the render shows it",
+ "pivot": "base centre, lying on z = 0",
+ "families": [
+  "corpse_soldier",
+  "405 people/soldier/death-"
+ ],
+ "origin_ids": {
+  "corpse_soldier": [
+   "S086_P01"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "dead soldier in jerkin and mail lying on his back, limbs sprawled, in a pool of blood",
+ "third_party": [
+  "park_dirt (render ground)",
+  "see the base character manifest"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "A posed copy of SK_Milder_Photoreal (its LOD2, about 10283 triangles) with the pose applied: no ragdoll, no wounds cut into the mesh, eyes open as in the base, clothes not draped by simulation (the skirt and limbs are flattened towards the ground by rule). Blood is baked into copies of the base-colour maps from one 3D mask: it does not change roughness or normal, so soaked cloth is not glossy. The pool under the body is the separate decal named in `companion_decal`. Normal and ORM maps are the base character's. One convex hull is exported; corpses are visual only in the game."
+}

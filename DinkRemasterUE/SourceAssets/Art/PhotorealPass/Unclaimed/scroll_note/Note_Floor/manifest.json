@@ -1,0 +1,100 @@
+{
+ "name": "SM_Note_Floor_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scroll_note/Note_Floor/SM_Note_Floor_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scroll_note/Note_Floor/SM_Note_Floor_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props4.py Note_Floor final",
+ "dimensions_m": [
+  0.2979,
+  0.2479,
+  0.0269
+ ],
+ "bounds_min_m": [
+  -0.1489,
+  -0.1239,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.1489,
+  0.1239,
+  0.0269
+ ],
+ "lod0_triangles": 236,
+ "triangle_budget": {
+  "soft": 1500,
+  "hard": 5000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scroll_note/Note_Floor/T_Note_Floor_PR_BC.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scroll_note/Note_Floor/T_Note_Floor_PR_N.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/scroll_note/Note_Floor/T_Note_Floor_PR_ORM.png",
+   "size_px": [
+    512,
+    512
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Note_Floor_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0049,
+   0.9951
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 151.2,
+   "p99": 198.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.563,
+   "p95": 0.717
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.558
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "scroll_note",
+  "422 items/paper/paper- frame 1"
+ ],
+ "origin_ids": {
+  "scroll_note": [
+   "S006_P24"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "a note on the floor: a vellum sheet 34 x 24 cm with both ends rolled, nine lines of script",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Rolled ends are a 1.5-turn curl of the same sheet; the script is a generated stroke pattern. No seal, ribbon or creases."
+}

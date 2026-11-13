@@ -1,0 +1,104 @@
+{
+ "name": "SM_Window_Stained_Twin_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_stained_glass/Window_Stained_Twin/SM_Window_Stained_Twin_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_stained_glass/Window_Stained_Twin/SM_Window_Stained_Twin_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_doors.py Window_Stained_Twin final",
+ "dimensions_m": [
+  1.72,
+  0.35,
+  2.8976
+ ],
+ "bounds_min_m": [
+  -0.86,
+  -0.175,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.86,
+  0.175,
+  2.8976
+ ],
+ "lod0_triangles": 344,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_stained_glass/Window_Stained_Twin/T_Window_Stained_Twin_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_stained_glass/Window_Stained_Twin/T_Window_Stained_Twin_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_stained_glass/Window_Stained_Twin/T_Window_Stained_Twin_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Window_Stained_Twin_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0122,
+   0.9878
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 45.5,
+   "p99": 101.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.425,
+   "p95": 0.896
+  },
+  "metallic_mean": 0.031,
+  "ao_mean": 0.426
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "church_stained_glass",
+  "60 struct/church/chrch- frame 4"
+ ],
+ "origin_ids": {
+  "church_stained_glass": [
+   "S188_P07",
+   "S188_P08",
+   "S188_P09"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "two-light stained-glass window, 1.3 m wide and 2.6 m to the point: blue and green ground, red and amber figures, lead cames and saddle bars, stone surround with a mullion",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The figures are abstract: an oval of robe colours with a pale disc for a face in each light, not drawn saints. No tracery above the mullion. The glass is opaque: colour, lead and saddle bars are baked onto a flat pane, so it does not transmit light or throw colour (a translucent or emissive material is engine work). The surround is bevelled 12-triangle blocks with open joints."
+}

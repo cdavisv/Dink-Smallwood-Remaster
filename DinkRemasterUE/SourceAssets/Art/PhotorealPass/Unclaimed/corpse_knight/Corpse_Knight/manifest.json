@@ -1,0 +1,52 @@
+{
+ "name": "SM_Corpse_Knight_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_knight/Corpse_Knight/SM_Corpse_Knight_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_knight/Corpse_Knight/SM_Corpse_Knight_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_npcs.py Corpse_Knight",
+ "derived_from": "Unclaimed/npc_knight_blue/Knight (SK_Knight_PR, LOD1, red set), posed and frozen",
+ "dimensions_m": [
+  1.9901,
+  1.5111,
+  0.4699
+ ],
+ "lod0_triangles": 8004,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_knight/Corpse_Knight/T_Corpse_Knight_Knight_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB with baked blood"
+  }
+ ],
+ "shared_textures": "T_Knight_PR_N.png and T_Knight_PR_ORM.png of the knight",
+ "materials": [
+  "MI_Corpse_Knight"
+ ],
+ "collision_hulls": 1,
+ "companion_decal": "Unclaimed/blood_splat/Blood_Pool_02 (2.2 m), centred under the body; the render shows it",
+ "pivot": "base centre, lying on z = 0",
+ "families": [
+  "corpse_knight",
+  "275 people/knight/red/death-"
+ ],
+ "origin_ids": {
+  "corpse_knight": [
+   "S157_P04"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "dead knight in red plate lying on his back, the halberd beside him, armour streaked with blood",
+ "third_party": [
+  "park_dirt (render ground)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "The knight's rigid plate parts posed and frozen: an empty harness with nobody inside, as the standing knight. Blood is baked into the base colour only. The pool under the body is the separate decal named in `companion_decal`."
+}

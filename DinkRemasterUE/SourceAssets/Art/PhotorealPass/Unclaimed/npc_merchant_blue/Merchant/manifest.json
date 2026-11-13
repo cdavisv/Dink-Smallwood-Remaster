@@ -1,0 +1,236 @@
+{
+ "name": "SK_Merchant_PR",
+ "class": "character_humanoid",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/SK_Merchant_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/SK_Merchant_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/SK_Merchant_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/SK_Merchant_PR_LOD2.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/SK_Merchant_PR_LOD3.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/SK_Merchant_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_people.py Merchant final",
+ "dimensions_m": [
+  1.0278,
+  0.467,
+  1.6873
+ ],
+ "bounds_min_m": [
+  -0.5139,
+  -0.3215,
+  -0.0057
+ ],
+ "bounds_max_m": [
+  0.5139,
+  0.1456,
+  1.6815
+ ],
+ "lod0_triangles": 30594,
+ "lod1_triangles": 15297,
+ "lod2_triangles": 7648,
+ "lod3_triangles": 3670,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 35000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Skin_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Skin",
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Skin_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Skin",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Skin_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Skin",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Outfit",
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Outfit",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Outfit",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Hair_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Hair",
+   "channels": "base colour sRGB + alpha"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Hair_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Hair",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Eyes_BC.png",
+   "size_px": [
+    256,
+    256
+   ],
+   "slot": "Eyes",
+   "channels": "base colour sRGB"
+  }
+ ],
+ "materials": [
+  "MI_Merchant_PR_Skin",
+  "MI_Merchant_PR_Eyes",
+  "MI_Merchant_PR_Hair",
+  "MI_Merchant_PR_Outfit"
+ ],
+ "material_slots_note": "Skin and Outfit are baked BC/N/ORM sets; Hair is one alpha-tested atlas (hair, brows, lashes): base colour + alpha and a strand normal, no ORM (roughness 0.5 constant); Eyes is a base-colour iris map",
+ "rig": {
+  "root_bone": "root",
+  "bones": [
+   "root",
+   "pelvis",
+   "spine_01",
+   "spine_02",
+   "spine_03",
+   "spine_04",
+   "spine_05",
+   "neck_01",
+   "neck_02",
+   "head",
+   "clavicle_l",
+   "upperarm_l",
+   "lowerarm_l",
+   "hand_l",
+   "clavicle_r",
+   "upperarm_r",
+   "lowerarm_r",
+   "hand_r",
+   "thigh_l",
+   "calf_l",
+   "foot_l",
+   "ball_l",
+   "thigh_r",
+   "calf_r",
+   "foot_r",
+   "ball_r"
+  ],
+  "bone_count": 26,
+  "weights": {
+   "method": "bone heat",
+   "max_influences": 4,
+   "unweighted_vertices": 0
+  },
+  "rest_pose": "the A pose of the MakeHuman base mesh (arms about 45 degrees down)",
+  "skeleton": "project humanoid core set (CONVENTIONS.md section 11): root, pelvis, spine_01..05, neck_01..02, head, clavicle / upperarm / lowerarm / hand / thigh / calf / foot / ball _l/_r; no finger, twist or IK bones",
+  "animation": "none: skeleton and skin weights only"
+ },
+ "validation": {
+  "uv_range": [
+   0.0028,
+   0.9973
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "skin": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 48.9,
+    "p99": 193.4
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.153,
+    "p95": 0.511
+   },
+   "metallic_mean": 0.0,
+   "ao_mean": 0.249
+  },
+  "outfit": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 49.5,
+    "p99": 130.5
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.538,
+    "p95": 0.913
+   },
+   "metallic_mean": 0.003,
+   "ao_mean": 0.536
+  }
+ },
+ "pivot": "feet: armature origin on the ground between the feet, front on -Y",
+ "families": [
+  "npc_merchant_blue",
+  "371 people/merchant/blue/c09w1-",
+  "npc_merchant_green",
+  "381 people/merchant/green/c09w1-"
+ ],
+ "origin_ids": {
+  "npc_merchant_blue": [
+   "S290_P30",
+   "S374_P05"
+  ],
+  "npc_merchant_green": [
+   "S164_P02",
+   "S227_P02"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "travelling merchant: belted wool tunic to mid thigh with a darker shoulder cape and rolled collar, purse on the belt, brown hose, soft leather boots; blue (default) and green outfit maps cover both merchant families",
+ "third_party": [
+  "MakeHuman CC0 base mesh, skin, eyes, eyebrows, eyelashes and hair (Art/Characters/ThirdParty/MakeHuman)",
+  "forrest_ground_01 (render ground)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "Built on the CC0 MakeHuman base mesh and its bundled skin, eye, brow, lash and hair assets, morphed here by simple region scaling: the face is the base face (no likeness work), and the hair is the bundled card cap, not groomed strands. Clothes are cut from the base mesh's garment helpers and loosened, with folds only in the normal map: no cloth simulation, so skirts follow the thighs through skin weights and will clip on long strides. Skeleton is the project humanoid core set (25 bones, no fingers or twist bones); weights are automatic (bone heat) and unreviewed in motion; no animation, Physics Asset or facial rig. Hands are open (the base A pose). Hair has no ORM map. Not imported into Unreal. The green variant is a recolour of the blue base-colour map (shared N and ORM).",
+ "outfit_variants": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_Green_BC.png",
+   "variant": "Green",
+   "note": "base colour only; shares the Outfit N and ORM maps"
+  }
+ ]
+}

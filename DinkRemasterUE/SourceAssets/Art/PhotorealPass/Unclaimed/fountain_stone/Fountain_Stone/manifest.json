@@ -1,0 +1,103 @@
+{
+ "name": "SM_Fountain_Stone_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fountain_stone/Fountain_Stone/SM_Fountain_Stone_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fountain_stone/Fountain_Stone/SM_Fountain_Stone_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props3.py Fountain_Stone final",
+ "dimensions_m": [
+  2.7278,
+  2.7269,
+  1.1998
+ ],
+ "bounds_min_m": [
+  -1.3639,
+  -1.3635,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.3639,
+  1.3635,
+  1.1998
+ ],
+ "lod0_triangles": 5000,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fountain_stone/Fountain_Stone/T_Fountain_Stone_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fountain_stone/Fountain_Stone/T_Fountain_Stone_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fountain_stone/Fountain_Stone/T_Fountain_Stone_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Fountain_Stone_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0034,
+   0.9966
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 55.8,
+   "p99": 111.1
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.456,
+   "p95": 0.909
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.368
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "fountain_stone",
+  "66 lands/garden/gardn- frames 23, 24"
+ ],
+ "origin_ids": {
+  "fountain_stone": [
+   "S260_P07",
+   "S586_P03"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "round stone fountain, 2.75 m across: basin wall of twelve stones with a coping, dark still water, a central pedestal carrying an upper bowl, 1.2 m tall",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The water is a still, opaque dark disc with ripples in the normal map and a little algae: no transparency, depth or flow, and the spray of the original (family fountain_spray_fx) is not here. Wall stones are scored joints in one ring, not separate blocks. Stone is one tinted rock scan with procedural moss and lichen; carving detail comes from displacement, not from modelled tool work."
+}

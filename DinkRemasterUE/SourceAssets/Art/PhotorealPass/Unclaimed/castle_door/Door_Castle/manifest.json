@@ -1,0 +1,102 @@
+{
+ "name": "SM_Door_Castle_PR",
+ "class": "door",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_door/Door_Castle/SM_Door_Castle_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_door/Door_Castle/SM_Door_Castle_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_doors.py Door_Castle final",
+ "dimensions_m": [
+  1.935,
+  0.162,
+  3.4429
+ ],
+ "bounds_min_m": [
+  0.0,
+  -0.081,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.935,
+  0.081,
+  3.4429
+ ],
+ "lod0_triangles": 1100,
+ "triangle_budget": {
+  "soft": 4000,
+  "hard": 12000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_door/Door_Castle/T_Door_Castle_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_door/Door_Castle/T_Door_Castle_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_door/Door_Castle/T_Door_Castle_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Door_Castle_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0033,
+   0.9967
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 80.0,
+   "p99": 129.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.599,
+   "p95": 0.686
+  },
+  "metallic_mean": 0.085,
+  "ao_mean": 0.729
+ },
+ "pivot": "hinge edge at x = 0, centred through the thickness, floor at z = 0; the leaf extends along +X",
+ "families": [
+  "castle_door",
+  "68 struct/castle/cdoor- frame 1"
+ ],
+ "origin_ids": {
+  "castle_door": [
+   "S402_P04"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "castle door leaf, 1.9 x 3.45 m, round-headed, ten oak planks ledged behind, three long strap hinges, ring handle",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A single wide leaf; a gate this size would be two leaves with a wicket. One slab with the plank joints, grain and nails in the textures: the joints are not modelled gaps and the edge of the leaf shows no board ends. Iron straps are plain tapered bars without nail heads; there is no lock or latch. No frame or wall: the opening belongs to the building family."
+}

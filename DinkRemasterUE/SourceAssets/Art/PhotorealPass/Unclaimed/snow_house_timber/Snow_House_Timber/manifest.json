@@ -1,0 +1,101 @@
+{
+ "name": "SM_Snow_House_Timber_PR",
+ "class": "building",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_timber/Snow_House_Timber/SM_Snow_House_Timber_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_timber/Snow_House_Timber/SM_Snow_House_Timber_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_buildings.py Snow_House_Timber final",
+ "dimensions_m": [
+  10.74,
+  10.74,
+  2.8
+ ],
+ "bounds_min_m": [
+  -5.37,
+  -5.37,
+  0.0
+ ],
+ "bounds_max_m": [
+  5.37,
+  5.37,
+  2.8
+ ],
+ "lod0_triangles": 2316,
+ "triangle_budget": {
+  "soft": 60000,
+  "hard": 200000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_timber/Snow_House_Timber/T_Snow_House_Timber_PR_BC.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_timber/Snow_House_Timber/T_Snow_House_Timber_PR_N.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/snow_house_timber/Snow_House_Timber/T_Snow_House_Timber_PR_ORM.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Snow_House_Timber_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0107,
+   0.9893
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 21.9,
+   "p99": 164.9
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.199,
+   "p95": 0.874
+  },
+  "metallic_mean": 0.001,
+  "ao_mean": 0.153
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "snow_house_timber",
+  "96 struct/building/build- frame 2"
+ ],
+ "origin_ids": {
+  "snow_house_timber": [
+   "S149_P06"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "jettied upper storey, 10.6 x 10.6 m and 2.8 m high: close-studded dark timber frame with straight and curved braces over cream plaster, joist ends under the jetty, small leaded windows",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Braces are laid on the plaster rather than framed into the posts; the curved braces are swept bars of even section. Opaque window panels. Rendered standing on the ground; in use it sits on the lower storey. One 4096 px bake covers the whole building, about 100 px/m: it holds at the gameplay camera and is soft at 1 m (a tiling masonry material with trim would be the engine-side answer). Walls are flat slabs with the coursing in the textures; the inside is a dark core, not a room. One convex hull is exported.",
+ "stacking": "place at z = 3.0 m on SM_Snow_House_Lower_PR"
+}

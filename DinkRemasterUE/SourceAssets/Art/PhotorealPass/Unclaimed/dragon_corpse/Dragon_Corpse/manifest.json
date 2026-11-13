@@ -1,0 +1,55 @@
+{
+ "name": "SM_Dragon_Corpse_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_corpse/Dragon_Corpse/SM_Dragon_Corpse_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_corpse/Dragon_Corpse/SM_Dragon_Corpse_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_npcs.py Dragon_Corpse",
+ "derived_from": "Unclaimed/dragon/Dragon (SK_Dragon_PR, LOD1), posed and frozen",
+ "dimensions_m": [
+  5.2037,
+  3.0245,
+  2.9585
+ ],
+ "lod0_triangles": 12000,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_corpse/Dragon_Corpse/T_Dragon_Corpse_Dragon_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB with baked blood"
+  }
+ ],
+ "shared_textures": "T_Dragon_PR_N.png and T_Dragon_PR_ORM.png of the dragon",
+ "materials": [
+  "MI_Dragon_Corpse"
+ ],
+ "collision_hulls": 1,
+ "companion_decal": "a blood pool decal scaled to about 5 m under the body (the render shows Blood_Pool_02 at 2.2 m)",
+ "pivot": "base centre, lying on z = 0",
+ "families": [
+  "dragon_corpse",
+  "212 foes/dragon/f2-x3-",
+  "216 foes/dragon/f2-x7-"
+ ],
+ "origin_ids": {
+  "dragon_corpse": [
+   "S100_P34",
+   "S158_P07",
+   "S238_P12"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "the dead dragon collapsed on its side, wings folded, neck and tail on the ground, drenched in blood",
+ "third_party": [
+  "park_dirt (render ground)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "PARTIAL. The original frames show a torn carcass: raw flesh, a severed wing and tail, scattered chunks. This is the whole dragon posed dead and soaked in blood; nothing is cut, opened or separated, so the gore of the original is only hinted at by colour. Posed by bone rotations and frozen (no ragdoll); limbs and wings may pass through each other. Inherits every weakness of the dragon mesh."
+}

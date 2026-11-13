@@ -169,6 +169,244 @@
   "SK_Fish_PR": "origin under the body; the tail fin moves the bounding-box centre 3 cm and the pelvic fins dip 1 cm below it",
   "SM_Acorn_Hanging_PR": "intended: the pivot is the top of the stalk, so it hangs from a twig",
   "SM_Spear_Island_PR": "intended: the pivot is ground level, the pole runs 12 cm below it for planting",
-  "SM_Bread_Braided_PR": "0.7 % of the UV area overlaps where the smart projection folds between strands"
+  "SM_Bread_Braided_PR": "0.7 % of the UV area overlaps where the smart projection folds between strands",
+  "SM_Cave_Hole_PR": "intended: the pivot is ground level at the opening; the shaft is 1.3 m below it",
+  "SK_Goblin_Soldier_PR": "intended: origin between the feet; the shield and the polearm shift the bounding-box centre",
+  "SM_Snake_Pillar_PR": "0.2 % of the UV area overlaps where the smart projection folds on the coiled snake",
+  "SM_Corpse_Mother_PR": "a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing",
+  "SM_Corpse_Maiden_PR": "a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing",
+  "SM_Corpse_Soldier_PR": "a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing",
+  "SM_Dink_Dead_PR": "a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing",
+  "SM_Corpse_Knight_PR": "1.4 % of the UV area overlaps (inherited from the knight's LOD1 unwrap)",
+  "SK_Mother": "the maiden variants: derived from the photoreal pass Mother, whose .blend keeps its own collection and naming (the validator finds the armature collection and no mesh in it); see the base manifest's validator findings",
+  "SK_Milder": "the soldier variant: derived from the photoreal pass Milder; same remark as for the maidens",
+  "SK_Merchant_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_Peasant_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_Old_Man_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_Girl_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_Gnome_Wizard_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_King_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SM_Corpse_Merchant_PR": "a character frozen as a prop: it keeps the four character material slots (each with its own UV space) and its open garment sheets and hair cards, which the prop rules do not allow; it is visual set dressing",
+  "SM_Corpse_Peasant_PR": "a character frozen as a prop: it keeps the four character material slots (each with its own UV space) and its open garment sheets and hair cards, which the prop rules do not allow; it is visual set dressing",
+  "SM_Corpse_Girl_PR": "a character frozen as a prop: it keeps the four character material slots (each with its own UV space) and its open garment sheets and hair cards, which the prop rules do not allow; it is visual set dressing",
+  "SM_King_On_Throne_PR": "the seated king is a character frozen into the set piece: his four material slots plus the throne set make five, each with its own UV space, and his garments, hair cards and the cloak wings are open sheets; visual set dressing with one hull"
+ },
+ "save_machine": {
+  "why": "1 mesh with UCX hull: stone hearth ring with scrolls, spokes and grating; static, no glow or animation"
+ },
+ "cave_hole_warp": {
+  "why": "1 mesh: timber-shored shaft, 1.3 m deep below the pivot plane; it shows only where the terrain has a matching hole cut"
+ },
+ "snake_pillar": {
+  "why": "1 mesh with UCX hull: fluted column with a coiled snake (still frame; the scripted pillar animates)"
+ },
+ "snake_carving": {
+  "why": "1 mesh: small soapstone snake"
+ },
+ "wall_stripe_red": {
+  "why": "1 mesh: the red bar with a gold edge interpreted as a red wall hanging with a gold braid border"
+ },
+ "idol_statue_small": {
+  "status": "partial",
+  "why": "1 mesh with UCX hull. Partial: a fused blob figure with pressed-in features; reads as a worn idol at gameplay distance only"
+ },
+ "golden_duck_statue": {
+  "status": "partial",
+  "why": "1 mesh with UCX hull. Partial: the duck is a fused form with a wing relief, a cast lump in the shape of a duck at 1 m"
+ },
+ "dungeon_arch_freestanding": {
+  "why": "1 mesh: ashlar archway of separate blocks; one convex hull that blocks the opening (needs split hulls to walk through)"
+ },
+ "fountain_stone": {
+  "why": "1 mesh with UCX hull: basin, pedestal and still opaque water; the spray is a separate effect family"
+ },
+ "teleport_machine": {
+  "why": "1 mesh with UCX hull: armillary sphere on a brick drum; static, no flash"
+ },
+ "teleport_shrine": {
+  "why": "1 mesh with UCX hull: sandstone alcove with an opaque stained-glass light; static, no glow"
+ },
+ "poster_hark": {
+  "why": "1 mesh: vellum notice with a red title; body text is a generated stroke pattern"
+ },
+ "poster_wanted": {
+  "why": "1 mesh: vellum poster with a silhouette woodcut block and title"
+ },
+ "scroll_note": {
+  "why": "1 mesh: note with rolled ends"
+ },
+ "axe_item": {
+  "why": "1 mesh with UCX hull: double-bitted throwing axe, lying flat"
+ },
+ "cellar_hatch": {
+  "why": "1 mesh with UCX hull: closed plank hatch with a barred light; it does not open"
+ },
+ "spinning_wheel": {
+  "why": "1 mesh with UCX hull: twelve-spoke wheel, bench, flyer and treadle; no drive band or wool"
+ },
+ "barrel_broken": {
+  "why": "1 mesh with UCX hull: staves, split head and hoop pieces of a burst barrel (end state only)"
+ },
+ "dink_monument_rock": {
+  "why": "1 mesh with UCX hull: boulder with DINK / SMALLWOOD cut in; plain sans lettering, not the gothic of the original"
+ },
+ "church_door": {
+  "why": "1 door-class leaf (hinge pivot), round-headed"
+ },
+ "castle_door": {
+  "why": "1 door-class leaf (hinge pivot), round-headed, 3.45 m"
+ },
+ "log_cabin_door": {
+  "why": "1 door-class leaf (hinge pivot)"
+ },
+ "snow_house_door": {
+  "why": "1 mesh: two leaves in their timber frame as one prop; it cannot swing until the leaves are split off"
+ },
+ "church_window_small": {
+  "why": "1 mesh with UCX hull: round-headed leaded window in a stone surround; opaque glass"
+ },
+ "church_stained_glass": {
+  "why": "2 meshes: a two-light window and a lancet (one lancet stands for frames 5 and 6); figures are abstract, glass is opaque"
+ },
+ "catapult": {
+  "why": "1 mesh with UCX hull: counterweight catapult of separate timbers; static, nothing fires"
+ },
+ "ballista": {
+  "why": "1 mesh with UCX hull: ballista with a loaded bolt; static"
+ },
+ "goblin_soldier": {
+  "status": "partial",
+  "why": "rigged goblin (project humanoid bone names, 4 LODs, pose-tested) with scale coat, helmet, shield and bill. Partial: fused blob body with painted-on clothing, gear skinned by nearest bone, no animation clips"
+ },
+ "goblin_hammer": {
+  "status": "partial",
+  "why": "rigged goblin (same body as the soldier) with tunic, skullcap and war hammer. Partial for the same reasons as the soldier"
+ },
+ "burnt_floor_hole": {
+  "status": "partial",
+  "why": "1 decal set: burnt-through opening with joists painted across. Partial: a flat decal has no depth; a real hole needs the floor mesh cut"
+ },
+ "burn_damage_decal": {
+  "why": "1 decal set with an emissive ember map; the glow is static (no flicker or flames)"
+ },
+ "log_cabin": {
+  "why": "1 building mesh with UCX hull: log walls, shingle roof slabs, fieldstone chimney; corner notches are not cut, openings are empty for the door and window assets"
+ },
+ "church": {
+  "why": "1 building mesh with UCX hull: buttressed nave, chancel, round apse, slate roofs, bell turret and spire; one 4096 px bake, soft at 1 m"
+ },
+ "snow_house_lower": {
+  "why": "1 building mesh with UCX hull: framed and plastered ground storey; stacks under the timbered storey and the roof"
+ },
+ "snow_house_timber": {
+  "why": "1 building mesh with UCX hull: jettied timber-framed storey; place at z = 3.0 m on the lower storey"
+ },
+ "snow_house_roof": {
+  "why": "1 building mesh with UCX hull: pyramid roof of stone slates; place at z = 5.8 m"
+ },
+ "castle_drawbridge": {
+  "why": "1 mesh with UCX hull: gate arch in a wall sample, plank bridge fixed down, two chains; nothing moves"
+ },
+ "npc_maiden_blue": {
+  "status": "partial",
+  "why": "rigged colour variant of the photoreal pass Mother (same mesh, LODs, 89-bone skeleton and weights; new outfit and hair base colour). Partial by construction: the same face and body as the base, no clips of its own"
+ },
+ "npc_maiden_brown": {
+  "status": "partial",
+  "why": "rigged colour variant of the photoreal pass Mother (same mesh, LODs, 89-bone skeleton and weights; new outfit and hair base colour). Partial by construction: the same face and body as the base, no clips of its own"
+ },
+ "npc_maiden_red": {
+  "status": "partial",
+  "why": "rigged colour variant of the photoreal pass Mother (same mesh, LODs, 89-bone skeleton and weights; new outfit and hair base colour). Partial by construction: the same face and body as the base, no clips of its own"
+ },
+ "npc_soldier": {
+  "status": "partial",
+  "why": "rigged colour variant of the photoreal pass Milder (same mesh, LODs, 89-bone skeleton and weights; new outfit base colour). Partial by construction: the same face and body as the base, no clips of its own"
+ },
+ "corpse_mom": {
+  "why": "1 static mesh with UCX hull: the photoreal pass Mother posed dead on her back, blood baked into her base-colour maps; use with a blood pool decal"
+ },
+ "dink_dead": {
+  "why": "1 static mesh with UCX hull: the photoreal pass Dink posed dead on his back with baked blood (17,900 triangles, above the prop soft target)"
+ },
+ "corpse_maiden": {
+  "status": "partial",
+  "why": "1 static mesh: the Mother in a crimson dress with fair hair, posed dead with baked blood. Partial: the maiden herself is only a colour variant"
+ },
+ "corpse_soldier": {
+  "status": "partial",
+  "why": "1 static mesh: Milder posed dead with baked blood. Partial: the soldier himself is only a colour variant"
+ },
+ "corpse_knight": {
+  "status": "partial",
+  "why": "1 static mesh: this folder's knight (red set) posed dead with baked blood. Partial: an empty harness, as the standing knight"
+ },
+ "dragon_corpse": {
+  "status": "partial",
+  "why": "1 static mesh: this folder's dragon posed dead and soaked in blood. Partial: the original shows a torn carcass with severed parts; nothing is cut or opened here"
+ },
+ "hearth_fire": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, loops) synthesised from noise fields. Partial: a 2D flipbook source, no Niagara effect, light or embers"
+ },
+ "fireball_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, loops): burning head with a flame trail. Partial: flipbook source only"
+ },
+ "explosion_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, one shot): fireball cooling to smoke. Partial: flipbook source only, weak smoke, no debris or flash"
+ },
+ "fire_burst_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, one shot): rising mushroom of fire. Partial: flipbook source only"
+ },
+ "sparkle_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, loops): twinkling glints; one set for both original sequences. Partial: flipbook source only"
+ },
+ "fountain_spray_fx": {
+  "status": "partial",
+  "why": "flipbook atlas (64 frames, loops): ballistic drops. Partial: flipbook source only, no water sheet or splash"
+ },
+ "npc_girl": {
+  "status": "partial",
+  "why": "rigged girl on the CC0 MakeHuman base scaled to child proportions (25 bones, 4 LODs, pose-tested): red patterned dress, tied fair hair, basket and flowers rigid to the hands. Partial because the last review still faults it: an adult face made small, hair tied back where the sprite wears it loose, baked folds, open hands, no animation clips"
+ },
+ "corpse_girl": {
+  "status": "partial",
+  "why": "1 static mesh with UCX hull: this pass's girl posed dead on her back with baked blood, flowers still in her hand, basket left out. Partial: the girl herself is partial, decimated to a floor prop"
+ },
+ "npc_merchant_blue": {
+  "status": "partial",
+  "why": "rigged merchant on the CC0 MakeHuman base (25-bone project humanoid skeleton, 4 LODs, bone-heat weights, pose-tested): belted wool tunic, shoulder cape, purse, hose and boots; this is the blue outfit map. Partial because the last review still faults it: the face is the unmodified base face, hair is a card cap, cloth folds are baked rather than simulated, hands are open, no animation clips"
+ },
+ "npc_merchant_green": {
+  "status": "partial",
+  "why": "the same rigged merchant (asset under npc_merchant_blue) with the green outfit base-colour map; shares mesh, N and ORM. Partial for the same reasons as the blue merchant"
+ },
+ "corpse_merchant": {
+  "status": "partial",
+  "why": "1 static mesh with UCX hull: this pass's merchant posed dead on his back with blood baked into skin and outfit, blue and green outfit maps for the two placements; use with a blood pool decal. Partial: the merchant himself is partial, and the mesh is decimated to a floor prop"
+ },
+ "npc_peasant": {
+  "status": "partial",
+  "why": "rigged peasant on the CC0 MakeHuman base (25 bones, 4 LODs, pose-tested): linen tunic, rope belt, bare shins, shoes, plaited straw hat, long pole rigid to the right hand. Partial because the last review still faults it: the face is the unmodified base face, hair is a card cap, cloth folds are baked rather than simulated, hands are open, no animation clips"
+ },
+ "corpse_peasant": {
+  "status": "partial",
+  "why": "1 static mesh with UCX hull: this pass's peasant posed dead on his back with baked blood; hat and pole left out (the sprite shows the pole beside him). Partial: the peasant himself is partial, decimated to a floor prop"
+ },
+ "npc_old_man": {
+  "status": "partial",
+  "why": "rigged old man on the CC0 MakeHuman base (25 bones, 4 LODs, pose-tested), stooped rest pose: ankle-length hooded robe, rope belt, grey beard, walking stick. Partial because the last review still faults it: the face is the unmodified base face, hair is a card cap, cloth folds are baked rather than simulated, hands are open, no animation clips"
+ },
+ "npc_gnome_purple": {
+  "status": "partial",
+  "why": "rigged gnome wizard on the CC0 MakeHuman base scaled short with a large head (25 bones, 4 LODs, pose-tested): purple robe with gold dots and sleeves, bent pointed hat, long beard, boots. Partial because the last review still faults it: human proportions scaled rather than a gnome sculpt, dots where the sprite has stars, baked folds, no animation clips"
+ },
+ "king_on_throne": {
+  "status": "partial",
+  "why": "2 assets: the static set piece SM_King_On_Throne_PR (king seated and frozen, modelled cloak wings, ermine collar, throne and footstool; UCX hull) and the rigged standing king SK_King_PR it is posed from (25 bones, 4 LODs). Partial because the last review still faults it: the cloak is modelled, not draped, and does not pass behind his back; plain throne carving; base face; no animation"
  }
 }

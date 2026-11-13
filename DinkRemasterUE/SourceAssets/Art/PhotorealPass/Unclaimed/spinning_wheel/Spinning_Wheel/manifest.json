@@ -1,0 +1,101 @@
+{
+ "name": "SM_Spinning_Wheel_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/spinning_wheel/Spinning_Wheel/SM_Spinning_Wheel_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/spinning_wheel/Spinning_Wheel/SM_Spinning_Wheel_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props4.py Spinning_Wheel final",
+ "dimensions_m": [
+  1.0304,
+  0.5338,
+  1.172
+ ],
+ "bounds_min_m": [
+  -0.5152,
+  -0.2669,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.5152,
+  0.2669,
+  1.172
+ ],
+ "lod0_triangles": 4500,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/spinning_wheel/Spinning_Wheel/T_Spinning_Wheel_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/spinning_wheel/Spinning_Wheel/T_Spinning_Wheel_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/spinning_wheel/Spinning_Wheel/T_Spinning_Wheel_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Spinning_Wheel_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0061,
+   0.994
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 90.2,
+   "p99": 113.8
+  },
+  "roughness": {
+   "p5": 0.152,
+   "mean": 0.578,
+   "p95": 0.631
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.73
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "spinning_wheel",
+  "447 items/tools/tool- frame 4"
+ ],
+ "origin_ids": {
+  "spinning_wheel": [
+   "S004_P20",
+   "S035_P26"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "spinning wheel, 1.15 m tall: twelve-spoke wheel on two uprights, sloping three-legged bench, maidens and flyer, treadle and footman",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Turned parts are smooth sweeps without beads or coves; joints are parts pushed through each other. No drive band, bobbin, distaff or wool. One wood material with grain along world X for every part."
+}

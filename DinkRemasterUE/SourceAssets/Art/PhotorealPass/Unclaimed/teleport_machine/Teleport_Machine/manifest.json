@@ -1,0 +1,101 @@
+{
+ "name": "SM_Teleport_Machine_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_machine/Teleport_Machine/SM_Teleport_Machine_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_machine/Teleport_Machine/SM_Teleport_Machine_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props3.py Teleport_Machine final",
+ "dimensions_m": [
+  1.2913,
+  1.2649,
+  3.0449
+ ],
+ "bounds_min_m": [
+  -0.6456,
+  -0.6324,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.6456,
+  0.6324,
+  3.0449
+ ],
+ "lod0_triangles": 6000,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_machine/Teleport_Machine/T_Teleport_Machine_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_machine/Teleport_Machine/T_Teleport_Machine_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_machine/Teleport_Machine/T_Teleport_Machine_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Teleport_Machine_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0068,
+   0.9932
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 107.5,
+   "p99": 181.2
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.364,
+   "p95": 0.822
+  },
+  "metallic_mean": 0.455,
+  "ao_mean": 0.573
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "teleport_machine",
+  "84 struct/teleport/telep- frame 1"
+ ],
+ "origin_ids": {
+  "teleport_machine": [
+   "S154_P08",
+   "S253_P04"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "teleport machine: an armillary sphere 1.25 m across (meridian, equator and three tilted rings round a small globe on a polar axis) with a crescent finial, on a brick-domed drum, 3 m tall",
+ "third_party": [],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Rings are plain flattened brass hoops without graduations, pivots or the small planets of a real armillary, and they do not turn. The brick drum is one lathed body with joints pressed in. In game the machine flashes when used; no emissive map is authored."
+}

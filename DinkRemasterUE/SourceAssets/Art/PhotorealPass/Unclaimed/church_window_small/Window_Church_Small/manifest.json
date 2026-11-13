@@ -1,0 +1,103 @@
+{
+ "name": "SM_Window_Church_Small_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_window_small/Window_Church_Small/SM_Window_Church_Small_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_window_small/Window_Church_Small/SM_Window_Church_Small_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_doors.py Window_Church_Small final",
+ "dimensions_m": [
+  0.92,
+  0.35,
+  1.1687
+ ],
+ "bounds_min_m": [
+  -0.46,
+  -0.175,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.46,
+  0.175,
+  1.1687
+ ],
+ "lod0_triangles": 256,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_window_small/Window_Church_Small/T_Window_Church_Small_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_window_small/Window_Church_Small/T_Window_Church_Small_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/church_window_small/Window_Church_Small/T_Window_Church_Small_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Window_Church_Small_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.012,
+   0.988
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 55.8,
+   "p99": 90.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.652,
+   "p95": 0.908
+  },
+  "metallic_mean": 0.016,
+  "ao_mean": 0.518
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "church_window_small",
+  "60 struct/church/chrch- frames 2, 9"
+ ],
+ "origin_ids": {
+  "church_window_small": [
+   "S187_P01",
+   "S187_P03"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "small church window, 0.5 x 0.87 m opening: round-headed, dark leaded quarries, dressed dark stone surround and sill",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "A 19-pixel dark frame: built as a small round-headed leaded window in a stone surround. The glass is opaque: colour, lead and saddle bars are baked onto a flat pane, so it does not transmit light or throw colour (a translucent or emissive material is engine work). The surround is bevelled 12-triangle blocks with open joints."
+}

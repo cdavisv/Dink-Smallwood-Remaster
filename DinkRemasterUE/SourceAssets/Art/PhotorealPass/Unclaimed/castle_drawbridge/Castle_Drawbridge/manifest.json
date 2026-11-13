@@ -1,0 +1,103 @@
+{
+ "name": "SM_Castle_Drawbridge_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_drawbridge/Castle_Drawbridge/SM_Castle_Drawbridge_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_drawbridge/Castle_Drawbridge/SM_Castle_Drawbridge_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_buildings.py Castle_Drawbridge final",
+ "dimensions_m": [
+  5.2,
+  5.9,
+  6.0
+ ],
+ "bounds_min_m": [
+  -2.6,
+  -2.95,
+  0.0
+ ],
+ "bounds_max_m": [
+  2.6,
+  2.95,
+  6.0
+ ],
+ "lod0_triangles": 2520,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_drawbridge/Castle_Drawbridge/T_Castle_Drawbridge_PR_BC.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_drawbridge/Castle_Drawbridge/T_Castle_Drawbridge_PR_N.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/castle_drawbridge/Castle_Drawbridge/T_Castle_Drawbridge_PR_ORM.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Castle_Drawbridge_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0112,
+   0.9888
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 33.5,
+   "p99": 130.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.284,
+   "p95": 0.95
+  },
+  "metallic_mean": 0.026,
+  "ao_mean": 0.249
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "castle_drawbridge",
+  "68 struct/castle/cdoor- frame 6"
+ ],
+ "origin_ids": {
+  "castle_drawbridge": [
+   "S080_P05"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "castle gate with the drawbridge down: 5.2 m of crenellated curtain wall with a round-arched gateway, a 2.8 x 4.7 m oak plank bridge on three bearers, two iron chains to its outer corners",
+ "third_party": [
+  "rock_face_03",
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The bridge is fixed down: no pivot, no rig, and the chains are straight runs of links without sag. The gate passage is a dark slab 1 m in; the wall is a 5.2 m sample of curtain wall whose coursing is in the textures, not the castle kit. One convex hull covers wall and bridge."
+}

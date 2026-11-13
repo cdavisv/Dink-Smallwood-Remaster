@@ -1,0 +1,102 @@
+{
+ "name": "SM_Arch_Stone_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dungeon_arch_freestanding/Arch_Stone/SM_Arch_Stone_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dungeon_arch_freestanding/Arch_Stone/SM_Arch_Stone_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props3.py Arch_Stone final",
+ "dimensions_m": [
+  2.32,
+  0.52,
+  3.57
+ ],
+ "bounds_min_m": [
+  -1.16,
+  -0.26,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.16,
+  0.26,
+  3.57
+ ],
+ "lod0_triangles": 324,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dungeon_arch_freestanding/Arch_Stone/T_Arch_Stone_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dungeon_arch_freestanding/Arch_Stone/T_Arch_Stone_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dungeon_arch_freestanding/Arch_Stone/T_Arch_Stone_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Arch_Stone_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0141,
+   0.9859
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 55.1,
+   "p99": 128.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.465,
+   "p95": 0.898
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.353
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "dungeon_arch_freestanding",
+  "80 inside/stnwalls/stonw- frame 25"
+ ],
+ "origin_ids": {
+  "dungeon_arch_freestanding": [
+   "S579_P17"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "freestanding sandstone archway, 2.3 m wide and 3.4 m tall: plinths, two piers of six courses, imposts, a round arch of eleven voussoirs with a proud keystone",
+ "third_party": [
+  "rock_face_03"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Every stone is a bevelled block of 12 triangles in the game mesh: joints are real gaps, arrises are in the normal map only. No mortar, and all blocks of a course are one stone deep. One convex hull is exported, which blocks the opening: a walk-through arch needs two pier hulls and a lintel hull, a level decision. Stone is one tinted rock scan with procedural moss and lichen; carving detail comes from displacement, not from modelled tool work."
+}

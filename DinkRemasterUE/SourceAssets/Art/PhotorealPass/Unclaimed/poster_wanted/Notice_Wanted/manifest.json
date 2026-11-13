@@ -1,0 +1,102 @@
+{
+ "name": "SM_Notice_Wanted_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_wanted/Notice_Wanted/SM_Notice_Wanted_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_wanted/Notice_Wanted/SM_Notice_Wanted_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props4.py Notice_Wanted final",
+ "dimensions_m": [
+  0.4603,
+  0.0573,
+  0.6402
+ ],
+ "bounds_min_m": [
+  -0.2302,
+  -0.0286,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.2302,
+  0.0286,
+  0.6402
+ ],
+ "lod0_triangles": 296,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_wanted/Notice_Wanted/T_Notice_Wanted_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_wanted/Notice_Wanted/T_Notice_Wanted_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_wanted/Notice_Wanted/T_Notice_Wanted_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Notice_Wanted_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0038,
+   0.9962
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 121.1,
+   "p99": 193.6
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.526,
+   "p95": 0.717
+  },
+  "metallic_mean": 0.004,
+  "ao_mean": 0.746
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "poster_wanted",
+  "462 inner/poster frame 2"
+ ],
+ "origin_ids": {
+  "poster_wanted": [
+   "S035_P27"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "the \"Wanted\" poster: a vellum sheet, 46 x 64 cm, a woodcut portrait block, two lines of script and the title below",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The portrait is a hatched block with a head-and-shoulders silhouette, not a drawn face. The body text is a generated pattern of broken pen strokes, not writing: it reads as script at the gameplay camera and as scribble at 1 m. The title is set in Blender's built-in sans face, not a period hand. A flat sheet of 100 triangles with curl at the corners."
+}

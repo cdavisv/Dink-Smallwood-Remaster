@@ -1,0 +1,124 @@
+{
+ "name": "SM_Log_Cabin_PR",
+ "class": "building",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin/Log_Cabin/SM_Log_Cabin_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin/Log_Cabin/SM_Log_Cabin_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_buildings.py Log_Cabin final",
+ "dimensions_m": [
+  8.6125,
+  5.3,
+  5.6941
+ ],
+ "bounds_min_m": [
+  -4.3062,
+  -2.65,
+  0.0
+ ],
+ "bounds_max_m": [
+  4.3062,
+  2.65,
+  5.6941
+ ],
+ "lod0_triangles": 3900,
+ "triangle_budget": {
+  "soft": 60000,
+  "hard": 200000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin/Log_Cabin/T_Log_Cabin_PR_BC.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin/Log_Cabin/T_Log_Cabin_PR_N.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/log_cabin/Log_Cabin/T_Log_Cabin_PR_ORM.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Log_Cabin_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0111,
+   0.9889
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 19.9,
+   "p99": 117.5
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.202,
+   "p95": 0.823
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.082
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "log_cabin",
+  "59 struct/cabin/cabin- frame 1"
+ ],
+ "origin_ids": {
+  "log_cabin": [
+   "S251_P01",
+   "S270_P07"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "log cabin, 7.6 x 4.8 m and 5.4 m to the ridge: ten courses of weathered logs with proud ends, log gables, a mossy shingle roof at 38 degrees, a battered fieldstone chimney on the west gable, door and window openings in the south wall",
+ "third_party": [
+  "rock_boulder_dry"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "The corner notches are not cut: logs of one wall simply pass over those of the next with their ends proud, and the gaps between courses are closed by overlap rather than by chinking. The roof is two flat slabs with the shingles in the textures (no shingle silhouette at the eaves, no rafters or sagging); the inside is a dark core, not a room. Chimney stones are bevelled blocks. Door and window openings are empty: the leaf and the light are the log_cabin_door and log_cabin_window assets. One convex hull is exported.",
+ "openings_m": {
+  "door": {
+   "wall": "south (y = -2.1)",
+   "x": [
+    -1.9,
+    -0.9
+   ],
+   "height": 2.0
+  },
+  "window": {
+   "wall": "south (y = -2.1)",
+   "x": [
+    1.2,
+    2.2
+   ],
+   "z": [
+    0.95,
+    1.75
+   ]
+  }
+ }
+}

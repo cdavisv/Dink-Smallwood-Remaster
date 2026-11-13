@@ -1,0 +1,105 @@
+{
+ "name": "SM_Notice_Hark_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_hark/Notice_Hark/SM_Notice_Hark_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_hark/Notice_Hark/SM_Notice_Hark_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_props4.py Notice_Hark final",
+ "dimensions_m": [
+  0.4603,
+  0.0561,
+  0.6402
+ ],
+ "bounds_min_m": [
+  -0.2301,
+  -0.028,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.2301,
+  0.028,
+  0.6402
+ ],
+ "lod0_triangles": 296,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_hark/Notice_Hark/T_Notice_Hark_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_hark/Notice_Hark/T_Notice_Hark_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/poster_hark/Notice_Hark/T_Notice_Hark_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Notice_Hark_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 1,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0041,
+   0.9963
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 122.9,
+   "p99": 194.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.521,
+   "p95": 0.717
+  },
+  "metallic_mean": 0.003,
+  "ao_mean": 0.739
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "poster_hark",
+  "462 inner/poster frame 3"
+ ],
+ "origin_ids": {
+  "poster_hark": [
+   "S033_P30",
+   "S195_P30",
+   "S225_P30",
+   "S226_P30"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "the \"Hark!\" notice: a vellum sheet, 46 x 64 cm, red title, eleven lines of script, two nails",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Authored standing free for the render; in game it hangs on a wall (the back face is plain vellum). The body text is a generated pattern of broken pen strokes, not writing: it reads as script at the gameplay camera and as scribble at 1 m. The title is set in Blender's built-in sans face, not a period hand. A flat sheet of 100 triangles with curl at the corners."
+}
