@@ -1131,7 +1131,7 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,
     Gameplay->BeginOriginalIdentityScreen(Screen);
     if(!Gameplay->BeginOriginalHardnessScreen(Screen,HardnessError,InitialVision))
     {UE_LOG(LogDinkNarrative,Error,TEXT("hardness screen admission refused: %s"),*HardnessError);return;}
-    if(bRestartSavedRuntime){Gameplay->ArmWeapon();Gameplay->ArmMagic();}
+    if(bRestartSavedRuntime)Gameplay->RearmAfterOriginalLoad(); // DISARM then ARM, as load_game does (dink.cpp:1435-1439, 1452-1456)
 	Gameplay->SyncDinkFromActor();
 	// Remaster safety rule: the original cannot change screens while Dink is frozen, but a warp or
 	// dink.Goto can. If no surviving script is running (one that could unfreeze him), do it here.

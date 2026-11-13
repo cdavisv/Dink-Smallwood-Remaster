@@ -335,6 +335,8 @@ public:
     bool HasOriginalIdentityOnScreen(int32 Screen) const;
     bool BeginOriginalHardnessScreen(int32 Screen, FString& Error, int32 InitialVision=0);
     void RestartOriginalSavedRuntime();
+    /** After an original-style load: the armed item's and spell's DISARM on a freshly loaded script, then ARM (load_game, dink.cpp:1435-1439, 1452-1456). */
+    void RearmAfterOriginalLoad();
     void FinishLegacyHardnessLoad(int32 Screen) { if(!RequiresOriginalHardnessScreen(Screen))SetHardnessLoading(false); }
     void GateOriginalHardnessTransition() { SetHardnessLoading(true); }
     bool IsHardnessLoading() const { return bHardnessLoading; }

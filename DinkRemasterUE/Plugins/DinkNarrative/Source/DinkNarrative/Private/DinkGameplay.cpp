@@ -1768,6 +1768,31 @@ void UDinkGameplay::ArmWeapon()
 	RunInstanceProc(WeaponInstance, NAME_Arm);
 }
 
+void UDinkGameplay::RearmAfterOriginalLoad()
+{
+	// load_game (dink.cpp:1435-1439, 1452-1456) loads the armed item's script and runs its DISARM, then loads it again and runs its ARM.
+	// The saved stats already hold what the arm added (item-sw1: arm &strength += 4, disarm -= 4), so the two cancel; arming alone would
+	// add it again on every load. The restart has no armed instance left (RestartOriginalSavedRuntime), so the disarm gets a fresh one.
+	UDinkDirector* D = Director();
+	UDinkInventoryComponent* Inv = D ? D->GetInventory() : nullptr;
+	if (!Inv || !Story)
+	{
+		return;
+	}
+	const FName Item = Inv->GetItemAt(GetFact(TEXT("cur_weapon")) - 1);
+	if (!Item.IsNone() && Story->HasProcedure(Item, NAME_Disarm))
+	{
+		WeaponInstance = NewItemInstance(Item);
+	}
+	ArmWeapon();
+	const FName Spell = Inv->GetMagicAt(GetFact(TEXT("cur_magic")) - 1);
+	if (!Spell.IsNone() && Story->HasProcedure(Spell, NAME_Disarm))
+	{
+		MagicInstance = NewItemInstance(Spell);
+	}
+	ArmMagic();
+}
+
 void UDinkGameplay::ArmMagic()
 {
 	UDinkDirector* D = Director();
