@@ -1,0 +1,100 @@
+{
+ "name": "SM_King_On_Throne_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/king_on_throne/King_On_Throne/SM_King_On_Throne_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/king_on_throne/King_On_Throne/SM_King_On_Throne_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_people.py King final",
+ "derived_from": "Unclaimed/king_on_throne/King (SK_King_PR): the same build, posed seated and frozen",
+ "dimensions_m": [
+  2.154,
+  1.1868,
+  1.81
+ ],
+ "bounds_min_m": [
+  -1.077,
+  -0.5934,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.077,
+  0.5934,
+  1.81
+ ],
+ "lod0_triangles": 20392,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 60000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/king_on_throne/King_On_Throne/T_King_On_Throne_PR_Throne_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Throne",
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/king_on_throne/King_On_Throne/T_King_On_Throne_PR_Throne_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Throne",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/king_on_throne/King_On_Throne/T_King_On_Throne_PR_Throne_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Throne",
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "shared_textures": "the king's Skin, Outfit, Hair and Eyes maps are those of Unclaimed/king_on_throne/King (not copied)",
+ "materials": [
+  "MI_King_PR_Skin",
+  "MI_King_PR_Eyes",
+  "MI_King_PR_Hair",
+  "MI_King_PR_Outfit",
+  "MI_King_On_Throne_PR_Throne"
+ ],
+ "collision_hulls": 1,
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 74.3,
+   "p99": 221.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.552,
+   "p95": 0.787
+  },
+  "metallic_mean": 0.095,
+  "ao_mean": 0.416
+ },
+ "material_exception": "unique BC/N/ORM bake private to this asset for the throne, cloak, collar and footstool",
+ "pivot": "base centre on the floor, front on -Y",
+ "families": [
+  "king_on_throne",
+  "421 items/food/food- frame 31"
+ ],
+ "origin_ids": {
+  "king_on_throne": [
+   "S070_P03"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "King Daniel seated on his throne: crowned, bearded, in crimson with gold buttons, a purple cloak with a blue lining and red and blue borders spilling over the arm rests to the floor, ermine collar, feet on a green footstool; dark wood throne with gold rail, studs, finials and a sun crest",
+ "third_party": [
+  "MakeHuman CC0 base mesh, skin, eyes, eyebrows, eyelashes and hair (Art/Characters/ThirdParty/MakeHuman)",
+  "forrest_ground_01 (render ground)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "The king is the rigged SK_King_PR of the sibling folder, posed seated and frozen (about half its triangles): a static set piece, no animation, eyes open, and his tunic skirt is bent at the hips by skin weights, not draped. The cloak is two modelled wings that fall from the shoulders over the arm rests to the floor; it is not simulated, it does not continue behind his back (the throne back hides the gap from the front and sides), and its lining shows only where the dense source was baked from outside (the game mesh is one sheet: use a two-sided material). Throne carving is limited to mouldings, studs and a crest; no heraldry. One hull for collision. Not imported into Unreal."
+}

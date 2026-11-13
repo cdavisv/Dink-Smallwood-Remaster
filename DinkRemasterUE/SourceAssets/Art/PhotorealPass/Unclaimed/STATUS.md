@@ -7,16 +7,16 @@ Sources only: nothing here is imported into Unreal or bound in `families.json`, 
 | | families | placements |
 |---|---:|---:|
 | delivered | 63 | 282 |
-| partial | 36 | 230 |
+| partial | 46 | 247 |
 | built elsewhere | 2 | 72 |
-| not started | 10 | 17 |
+| not started | 0 | 0 |
 | total unclaimed | 111 | 601 |
 
 **delivered**: game mesh or decal set, textures, FBX, source .blend, manifest and final renders are in the folder, and the last review round found nothing left that could still be fixed in this pass (each manifest lists `known_weaknesses`). 
 **partial**: something the task asks for is missing or the last review round still faulted the look; the line says what. 
 **built elsewhere**: another stream built the family; what this folder holds for it is an alternate, not the chosen asset.
 
-Contact sheet of every final render: `contact_sheet.png` (114 assets).
+Contact sheet of every final render: `contact_sheet.png` (124 assets).
 
 | # | family | original shows | placements | status | assets | note |
 |---:|---|---|---:|---|---|---|
@@ -58,7 +58,7 @@ Contact sheet of every final render: `contact_sheet.png` (114 assets).
 | 136 | `boulder_flat` | Flat boulder | 4 | delivered | `SM_Boulder_Flat_PR` | 1 mesh with UCX hull: bedded flat boulder; scanned rock surface on an authored form, soft edges |
 | 140 | `fish_flopping` | Fish flopping on land | 4 | partial | `SK_Fish_PR` | same mesh as fish (SK_Fish_PR) laid on its side; the flop itself is a clip and none is delivered |
 | 141 | `goblin_hammer` | Goblin | 4 | partial | `SK_Goblin_Hammer_PR` | rigged goblin (same body as the soldier) with tunic, skullcap and war hammer. Partial for the same reasons as the soldier |
-| 143 | `npc_girl` | Girl | 4 | not started | - | not started: needs a child body, face and dress, which no existing source provides; a recolour of the Mother or Milder would not read as this character |
+| 143 | `npc_girl` | Girl | 4 | partial | `SK_Girl_PR` | rigged girl on the CC0 MakeHuman base scaled to child proportions (25 bones, 4 LODs, pose-tested): red patterned dress, tied fair hair, basket and flowers rigid to the hands. Partial because the last review still faults it: an adult face made small, hair tied back where the sprite wears it loose, baked folds, open hands, no animation clips |
 | 144 | `npc_knight_red` | Knight | 4 | partial | `SK_Knight_PR` | rigged plate-armoured guard with halberd (26-bone project humanoid skeleton, 4 LODs, rigid one-bone skinning, pose-tested), blue / red / silver base-colour sets on one mesh. Partial because the last review still faults it: clean swept plates without straps, rivets or fingers, nobody inside the harness, no animation clips |
 | 145 | `poster_hark` | "Hark!" notice | 4 | delivered | `SM_Notice_Hark_PR` | 1 mesh: vellum notice with a red title; body text is a generated stroke pattern |
 | 146 | `teleport_shrine` | Shrine with stained glass | 3 | delivered | `SM_Shrine_Glass_PR` | 1 mesh with UCX hull: sandstone alcove with an opaque stained-glass light; static, no glow |
@@ -74,7 +74,7 @@ Contact sheet of every final render: `contact_sheet.png` (114 assets).
 | 159 | `burnt_floor_hole` | Burnt hole in floor/roof | 2 | partial | `Decal_Burn_Floor_Hole_01` | 1 decal set: burnt-through opening with joists painted across. Partial: a flat decal has no depth; a real hole needs the floor mesh cut |
 | 161 | `cellar_hatch` | Cellar hatch / ladder | 2 | delivered | `SM_Cellar_Hatch_PR` | 1 mesh with UCX hull: closed plank hatch with a barred light; it does not open |
 | 164 | `church_window_small` | Church small window | 2 | delivered | `SM_Window_Church_Small_PR` | 1 mesh with UCX hull: round-headed leaded window in a stone surround; opaque glass |
-| 165 | `corpse_merchant` | Dead merchant | 2 | not started | - | not started: needs a civilian man (and the merchant himself), which no existing source provides; a recolour of the Mother or Milder would not read as this character |
+| 165 | `corpse_merchant` | Dead merchant | 2 | partial | `SM_Corpse_Merchant_PR` | 1 static mesh with UCX hull: this pass's merchant posed dead on his back with blood baked into skin and outfit, blue and green outfit maps for the two placements; use with a blood pool decal. Partial: the merchant himself is partial, and the mesh is decimated to a floor prop |
 | 168 | `explosion_fx` | Explosion | 2 | partial | `FX_Explosion` | flipbook atlas (64 frames, one shot): fireball cooling to smoke. Partial: flipbook source only, weak smoke, no debris or flash |
 | 169 | `fire_burst_fx` | Fire burst | 2 | partial | `FX_Fire_Burst` | flipbook atlas (64 frames, one shot): rising mushroom of fire. Partial: flipbook source only |
 | 170 | `fireball_fx` | Fireball | 2 | partial | `FX_Fireball` | flipbook atlas (64 frames, loops): burning head with a flame trail. Partial: flipbook source only |
@@ -85,9 +85,9 @@ Contact sheet of every final render: `contact_sheet.png` (114 assets).
 | 176 | `log_cabin` | Log cabin | 2 | delivered | `SM_Log_Cabin_PR` | 1 building mesh with UCX hull: log walls, shingle roof slabs, fieldstone chimney; corner notches are not cut, openings are empty for the door and window assets |
 | 177 | `log_cabin_door` | Log cabin door | 2 | delivered | `SM_Door_Cabin_PR` | 1 door-class leaf (hinge pivot) |
 | 178 | `npc_knight_red_attacking` | Knight | 2 | partial | `SK_Knight_PR` | same mesh as the red knight (SK_Knight_PR with the red base-colour set); the attack itself is an animation clip and no clip is delivered |
-| 179 | `npc_merchant_blue` | Merchant | 2 | not started | - | not started: needs a civilian man in a tunic (Milder cannot be taken out of his armour: the body under it is culled), which no existing source provides; a recolour of the Mother or Milder would not read as this character |
-| 180 | `npc_merchant_green` | Merchant | 2 | not started | - | not started: needs a civilian man in a tunic, which no existing source provides; a recolour of the Mother or Milder would not read as this character |
-| 181 | `npc_peasant` | Peasant | 2 | not started | - | not started: needs a thin man in ragged clothes with a staff, which no existing source provides; a recolour of the Mother or Milder would not read as this character |
+| 179 | `npc_merchant_blue` | Merchant | 2 | partial | `SK_Merchant_PR` | rigged merchant on the CC0 MakeHuman base (25-bone project humanoid skeleton, 4 LODs, bone-heat weights, pose-tested): belted wool tunic, shoulder cape, purse, hose and boots; this is the blue outfit map. Partial because the last review still faults it: the face is the unmodified base face, hair is a card cap, cloth folds are baked rather than simulated, hands are open, no animation clips |
+| 180 | `npc_merchant_green` | Merchant | 2 | partial | `SK_Merchant_PR` | the same rigged merchant (asset under npc_merchant_blue) with the green outfit base-colour map; shares mesh, N and ORM. Partial for the same reasons as the blue merchant |
+| 181 | `npc_peasant` | Peasant | 2 | partial | `SK_Peasant_PR` | rigged peasant on the CC0 MakeHuman base (25 bones, 4 LODs, pose-tested): linen tunic, rope belt, bare shins, shoes, plaited straw hat, long pole rigid to the right hand. Partial because the last review still faults it: the face is the unmodified base face, hair is a card cap, cloth folds are baked rather than simulated, hands are open, no animation clips |
 | 182 | `scythe` | Scythe / hook | 2 | delivered | `SM_Scythe_PR` | 1 mesh: scythe, lying flat; the frame is closer to a long-handled hook |
 | 183 | `sparkle_fx` | Sparkle | 2 | partial | `FX_Sparkle` | flipbook atlas (64 frames, loops): twinkling glints; one set for both original sequences. Partial: flipbook source only |
 | 184 | `spinning_wheel` | Spinning wheel | 2 | delivered | `SM_Spinning_Wheel_PR` | 1 mesh with UCX hull: twelve-spoke wheel, bench, flyer and treadle; no drive band or wool |
@@ -100,11 +100,11 @@ Contact sheet of every final render: `contact_sheet.png` (114 assets).
 | 195 | `castle_drawbridge` | Drawbridge with chains | 1 | delivered | `SM_Castle_Drawbridge_PR` | 1 mesh with UCX hull: gate arch in a wall sample, plank bridge fixed down, two chains; nothing moves |
 | 197 | `catapult` | Catapult | 1 | delivered | `SM_Catapult_PR` | 1 mesh with UCX hull: counterweight catapult of separate timbers; static, nothing fires |
 | 198 | `church_door` | Church door | 1 | delivered | `SM_Door_Church_PR` | 1 door-class leaf (hinge pivot), round-headed |
-| 199 | `corpse_girl` | Dead girl | 1 | not started | - | not started: needs a child body (and the girl herself), which no existing source provides; a recolour of the Mother or Milder would not read as this character |
+| 199 | `corpse_girl` | Dead girl | 1 | partial | `SM_Corpse_Girl_PR` | 1 static mesh with UCX hull: this pass's girl posed dead on her back with baked blood, flowers still in her hand, basket left out. Partial: the girl herself is partial, decimated to a floor prop |
 | 200 | `corpse_knight` | Dead knight | 1 | partial | `SM_Corpse_Knight_PR` | 1 static mesh: this folder's knight (red set) posed dead with baked blood. Partial: an empty harness, as the standing knight |
 | 201 | `corpse_maiden` | Dead woman | 1 | partial | `SM_Corpse_Maiden_PR` | 1 static mesh: the Mother in a crimson dress with fair hair, posed dead with baked blood. Partial: the maiden herself is only a colour variant |
 | 202 | `corpse_mom` | Dead mother | 1 | delivered | `SM_Corpse_Mother_PR` | 1 static mesh with UCX hull: the photoreal pass Mother posed dead on her back, blood baked into her base-colour maps; use with a blood pool decal |
-| 203 | `corpse_peasant` | Dead peasant | 1 | not started | - | not started: needs a peasant figure, which no existing source provides; a recolour of the Mother or Milder would not read as this character |
+| 203 | `corpse_peasant` | Dead peasant | 1 | partial | `SM_Corpse_Peasant_PR` | 1 static mesh with UCX hull: this pass's peasant posed dead on his back with baked blood; hat and pole left out (the sprite shows the pole beside him). Partial: the peasant himself is partial, decimated to a floor prop |
 | 204 | `corpse_soldier` | Dead soldier | 1 | partial | `SM_Corpse_Soldier_PR` | 1 static mesh: Milder posed dead with baked blood. Partial: the soldier himself is only a colour variant |
 | 205 | `dink_dead` | Dink lying dead | 1 | delivered | `SM_Dink_Dead_PR` | 1 static mesh with UCX hull: the photoreal pass Dink posed dead on his back with baked blood (17,900 triangles, above the prop soft target) |
 | 206 | `dink_monument_rock` | "Dink Smallwood" carved rock | 1 | delivered | `SM_Monument_Dink_PR` | 1 mesh with UCX hull: boulder with DINK / SMALLWOOD cut in; plain sans lettering, not the gothic of the original |
@@ -116,12 +116,12 @@ Contact sheet of every final render: `contact_sheet.png` (114 assets).
 | 212 | `gold_coins_small` | Few coins | 1 | delivered | `SM_Gold_Coins_Few_PR` | 1 mesh: eleven spilled coins |
 | 213 | `golden_duck_statue` | Golden duck statue | 1 | partial | `SM_Duck_Statue_Gold_PR` | 1 mesh with UCX hull. Partial: the duck is a fused form with a wing relief, a cast lump in the shape of a duck at 1 m |
 | 214 | `heart_pickup` | Heart | 1 | delivered | `SM_Heart_Red_PR` | 1 mesh: ruby-red glass heart, 12 cm (opaque in the game material) |
-| 215 | `king_on_throne` | King Daniel on throne | 1 | not started | - | not started: needs a seated robed king with a crown, and his throne, which no existing source provides; a recolour of the Mother or Milder would not read as this character |
-| 216 | `npc_gnome_purple` | Gnome / wizard | 1 | not started | - | not started: needs a short robed wizard with a pointed hat and beard, which no existing source provides; a recolour of the Mother or Milder would not read as this character |
+| 215 | `king_on_throne` | King Daniel on throne | 1 | partial | `SK_King_PR`, `SM_King_On_Throne_PR` | 2 assets: the static set piece SM_King_On_Throne_PR (king seated and frozen, modelled cloak wings, ermine collar, throne and footstool; UCX hull) and the rigged standing king SK_King_PR it is posed from (25 bones, 4 LODs). Partial because the last review still faults it: the cloak is modelled, not draped, and does not pass behind his back; plain throne carving; base face; no animation |
+| 216 | `npc_gnome_purple` | Gnome / wizard | 1 | partial | `SK_Gnome_Wizard_PR` | rigged gnome wizard on the CC0 MakeHuman base scaled short with a large head (25 bones, 4 LODs, pose-tested): purple robe with gold dots and sleeves, bent pointed hat, long beard, boots. Partial because the last review still faults it: human proportions scaled rather than a gnome sculpt, dots where the sprite has stars, baked folds, no animation clips |
 | 217 | `npc_maiden_blue` | Woman | 1 | partial | `SK_Maiden_Blue_PR` | rigged colour variant of the photoreal pass Mother (same mesh, LODs, 89-bone skeleton and weights; new outfit and hair base colour). Partial by construction: the same face and body as the base, no clips of its own |
 | 218 | `npc_maiden_brown` | Woman | 1 | partial | `SK_Maiden_Brown_PR` | rigged colour variant of the photoreal pass Mother (same mesh, LODs, 89-bone skeleton and weights; new outfit and hair base colour). Partial by construction: the same face and body as the base, no clips of its own |
 | 219 | `npc_maiden_red` | Woman | 1 | partial | `SK_Maiden_Red_PR` | rigged colour variant of the photoreal pass Mother (same mesh, LODs, 89-bone skeleton and weights; new outfit and hair base colour). Partial by construction: the same face and body as the base, no clips of its own |
-| 220 | `npc_old_man` | Old man | 1 | not started | - | not started: needs a bent old man in a hooded cloak, which no existing source provides; a recolour of the Mother or Milder would not read as this character |
+| 220 | `npc_old_man` | Old man | 1 | partial | `SK_Old_Man_PR` | rigged old man on the CC0 MakeHuman base (25 bones, 4 LODs, pose-tested), stooped rest pose: ankle-length hooded robe, rope belt, grey beard, walking stick. Partial because the last review still faults it: the face is the unmodified base face, hair is a card cap, cloth folds are baked rather than simulated, hands are open, no animation clips |
 | 221 | `npc_soldier` | Soldier | 1 | partial | `SK_Soldier_PR` | rigged colour variant of the photoreal pass Milder (same mesh, LODs, 89-bone skeleton and weights; new outfit base colour). Partial by construction: the same face and body as the base, no clips of its own |
 | 222 | `ore_rock_blue` | Blue crystal rock | 1 | partial | `SM_Ore_Rock_Blue_PR` | 1 mesh; the last review still faults the blue mineral: a glossy colour mask and seven plain prisms that read as plastic, not as crystal |
 | 223 | `poster_wanted` | "Wanted" poster | 1 | delivered | `SM_Notice_Wanted_PR` | 1 mesh: vellum poster with a silhouette woodcut block and title |
@@ -134,7 +134,7 @@ Contact sheet of every final render: `contact_sheet.png` (114 assets).
 
 ## Validator (`tools/blender/dinkasset/validate.py`)
 
-Run by `tools/validate_all.py` on every mesh asset .blend (decal sets have no mesh). 71 of 90 pass with no error; warnings are not failures. Full output: `validation_summary.json`.
+Run by `tools/validate_all.py` on every mesh asset .blend (decal sets have no mesh). 71 of 100 pass with no error; warnings are not failures. Full output: `validation_summary.json`.
 
 | asset | class | result | errors | warnings | note |
 |---|---|---|---|---|---|
@@ -160,9 +160,12 @@ Run by `tools/validate_all.py` on every mesh asset .blend (decal sets have no me
 | `SM_Window_Stained_Lancet_PR` | prop | pass | - | TEXEL_DENSITY |  |
 | `SM_Window_Stained_Twin_PR` | prop | pass | - | - |  |
 | `SM_Window_Church_Small_PR` | prop | pass | - | - |  |
+| `SM_Corpse_Girl_PR` | prop | FAIL | NON_MANIFOLD, SLOTS_OVER, UV_OVERLAP | NAME_TEXTURE, TRIS_OVER_TARGET | a character frozen as a prop: it keeps the four character material slots (each with its own UV space) and its open garment sheets and hair cards, which the prop rules do not allow; it is visual set dressing |
 | `SM_Corpse_Knight_PR` | prop | FAIL | UV_OVERLAP | NAME_TEXTURE, TRIS_OVER_TARGET, UV_RANGE | 1.4 % of the UV area overlaps (inherited from the knight's LOD1 unwrap) |
 | `SM_Corpse_Maiden_PR` | prop | FAIL | NON_MANIFOLD, SLOTS_OVER, TEXTURE_SIZE, UV_OVERLAP | DUPLICATE_VERTS, NAME_TEXTURE, TRIS_OVER_TARGET, UV_DEGENERATE | a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing |
+| `SM_Corpse_Merchant_PR` | prop | FAIL | NON_MANIFOLD, SLOTS_OVER, UV_OVERLAP | NAME_TEXTURE, TRIS_OVER_TARGET | a character frozen as a prop: it keeps the four character material slots (each with its own UV space) and its open garment sheets and hair cards, which the prop rules do not allow; it is visual set dressing |
 | `SM_Corpse_Mother_PR` | prop | FAIL | NON_MANIFOLD, SLOTS_OVER, TEXTURE_SIZE, UV_OVERLAP | DUPLICATE_VERTS, NAME_TEXTURE, TRIS_OVER_TARGET, UV_DEGENERATE | a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing |
+| `SM_Corpse_Peasant_PR` | prop | FAIL | NON_MANIFOLD, SLOTS_OVER, UV_OVERLAP | NAME_TEXTURE, TRIS_OVER_TARGET | a character frozen as a prop: it keeps the four character material slots (each with its own UV space) and its open garment sheets and hair cards, which the prop rules do not allow; it is visual set dressing |
 | `SM_Corpse_Soldier_PR` | prop | FAIL | NON_MANIFOLD, SLOTS_OVER, TEXTURE_SIZE, UV_OVERLAP | LOOSE_GEOMETRY, NAME_TEXTURE, TRIS_OVER_TARGET, UV_DEGENERATE | a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing |
 | `SM_Dink_Dead_PR` | prop | FAIL | NON_MANIFOLD, SLOTS_OVER, TEXTURE_SIZE, UV_OVERLAP | NAME_TEXTURE, TRIS_OVER_TARGET, UV_DEGENERATE | a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing |
 | `SM_Monument_Dink_PR` | prop | pass | - | - |  |
@@ -196,13 +199,20 @@ Run by `tools/validate_all.py` on every mesh asset .blend (decal sets have no me
 | `SM_Heart_Red_PR` | prop_small | pass | - | TEXEL_DENSITY |  |
 | `SM_Idol_Demon_PR` | prop | pass | - | - |  |
 | `SM_Spear_Island_PR` | prop | FAIL | PIVOT | - | intended: the pivot is ground level, the pole runs 12 cm below it for planting |
+| `SK_King_PR` | character_humanoid | FAIL | UV_OVERLAP | LOOSE_GEOMETRY, NON_MANIFOLD, SKIN_INFLUENCES, TRIS_OVER_TARGET | intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels |
+| `SM_King_On_Throne_PR` | prop_large | FAIL | NON_MANIFOLD, SLOTS_OVER, UV_OVERLAP | TRIS_OVER_TARGET | the seated king is a character frozen into the set piece: his four material slots plus the throne set make five, each with its own UV space, and his garments, hair cards and the cloak wings are open sheets; visual set dressing with one hull |
 | `SM_Log_Cabin_PR` | building | pass | - | DUPLICATE_VERTS |  |
 | `SM_Door_Cabin_PR` | door | pass | - | - |  |
 | `SM_Cabin_Window_PR` | prop | pass | - | - |  |
+| `SK_Girl_PR` | character_humanoid | FAIL | UV_OVERLAP | DUPLICATE_VERTS, LOOSE_GEOMETRY, NON_MANIFOLD, SKIN_INFLUENCES, TEXEL_DENSITY, TRIS_OVER_TARGET | intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels |
+| `SK_Gnome_Wizard_PR` | character_humanoid | FAIL | UV_OVERLAP | LOOSE_GEOMETRY, NON_MANIFOLD, SKIN_INFLUENCES, TRIS_OVER_TARGET | intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels |
 | `SK_Knight_PR` | character_humanoid | pass | - | - |  |
 | `SK_Mother` | character_humanoid | FAIL | NO_MESH | - | the maiden variants: derived from the photoreal pass Mother, whose .blend keeps its own collection and naming (the validator finds the armature collection and no mesh in it); see the base manifest's validator findings |
 | `SK_Mother` | character_humanoid | FAIL | NO_MESH | - | the maiden variants: derived from the photoreal pass Mother, whose .blend keeps its own collection and naming (the validator finds the armature collection and no mesh in it); see the base manifest's validator findings |
 | `SK_Mother` | character_humanoid | FAIL | NO_MESH | - | the maiden variants: derived from the photoreal pass Mother, whose .blend keeps its own collection and naming (the validator finds the armature collection and no mesh in it); see the base manifest's validator findings |
+| `SK_Merchant_PR` | character_humanoid | FAIL | UV_OVERLAP | LOOSE_GEOMETRY, NON_MANIFOLD, SKIN_INFLUENCES, TRIS_OVER_TARGET | intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels |
+| `SK_Old_Man_PR` | character_humanoid | FAIL | UV_OVERLAP | LOOSE_GEOMETRY, NON_MANIFOLD, SKIN_INFLUENCES, TRIS_OVER_TARGET | intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels |
+| `SK_Peasant_PR` | character_humanoid | FAIL | UV_OVERLAP | LOOSE_GEOMETRY, NON_MANIFOLD, SKIN_INFLUENCES, TRIS_OVER_TARGET | intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels |
 | `SK_Milder` | character_humanoid | FAIL | NO_MESH | - | the soldier variant: derived from the photoreal pass Milder; same remark as for the maidens |
 | `SM_Ore_Rock_Blue_PR` | prop | pass | - | - |  |
 | `SM_Pitchfork_PR` | prop | pass | - | - |  |

@@ -1,0 +1,226 @@
+{
+ "name": "SK_Girl_PR",
+ "class": "character_humanoid",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/SK_Girl_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/SK_Girl_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/SK_Girl_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/SK_Girl_PR_LOD2.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/SK_Girl_PR_LOD3.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/SK_Girl_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_people.py Girl final",
+ "dimensions_m": [
+  0.7526,
+  0.3947,
+  1.185
+ ],
+ "bounds_min_m": [
+  -0.3594,
+  -0.2315,
+  -0.0008
+ ],
+ "bounds_max_m": [
+  0.3931,
+  0.1632,
+  1.1842
+ ],
+ "lod0_triangles": 31022,
+ "lod1_triangles": 15510,
+ "lod2_triangles": 7754,
+ "lod3_triangles": 3722,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 35000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/T_Girl_PR_Skin_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Skin",
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/T_Girl_PR_Skin_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Skin",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/T_Girl_PR_Skin_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Skin",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/T_Girl_PR_Outfit_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Outfit",
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/T_Girl_PR_Outfit_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Outfit",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/T_Girl_PR_Outfit_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Outfit",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/T_Girl_PR_Hair_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Hair",
+   "channels": "base colour sRGB + alpha"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/T_Girl_PR_Hair_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "slot": "Hair",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_girl/Girl/T_Girl_PR_Eyes_BC.png",
+   "size_px": [
+    256,
+    256
+   ],
+   "slot": "Eyes",
+   "channels": "base colour sRGB"
+  }
+ ],
+ "materials": [
+  "MI_Girl_PR_Skin",
+  "MI_Girl_PR_Eyes",
+  "MI_Girl_PR_Hair",
+  "MI_Girl_PR_Outfit"
+ ],
+ "material_slots_note": "Skin and Outfit are baked BC/N/ORM sets; Hair is one alpha-tested atlas (hair, brows, lashes): base colour + alpha and a strand normal, no ORM (roughness 0.5 constant); Eyes is a base-colour iris map",
+ "rig": {
+  "root_bone": "root",
+  "bones": [
+   "root",
+   "pelvis",
+   "spine_01",
+   "spine_02",
+   "spine_03",
+   "spine_04",
+   "spine_05",
+   "neck_01",
+   "neck_02",
+   "head",
+   "clavicle_l",
+   "upperarm_l",
+   "lowerarm_l",
+   "hand_l",
+   "clavicle_r",
+   "upperarm_r",
+   "lowerarm_r",
+   "hand_r",
+   "thigh_l",
+   "calf_l",
+   "foot_l",
+   "ball_l",
+   "thigh_r",
+   "calf_r",
+   "foot_r",
+   "ball_r"
+  ],
+  "bone_count": 26,
+  "weights": {
+   "method": "bone heat",
+   "max_influences": 4,
+   "unweighted_vertices": 0
+  },
+  "rest_pose": "the A pose of the MakeHuman base mesh (arms about 45 degrees down)",
+  "skeleton": "project humanoid core set (CONVENTIONS.md section 11): root, pelvis, spine_01..05, neck_01..02, head, clavicle / upperarm / lowerarm / hand / thigh / calf / foot / ball _l/_r; no finger, twist or IK bones",
+  "animation": "none: skeleton and skin weights only"
+ },
+ "validation": {
+  "uv_range": [
+   0.0037,
+   0.9963
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "skin": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 60.9,
+    "p99": 189.1
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.199,
+    "p95": 0.513
+   },
+   "metallic_mean": 0.0,
+   "ao_mean": 0.335
+  },
+  "outfit": {
+   "albedo_luma_srgb": {
+    "p1": 0.0,
+    "mean": 90.6,
+    "p99": 237.9
+   },
+   "roughness": {
+    "p5": 0.0,
+    "mean": 0.705,
+    "p95": 0.884
+   },
+   "metallic_mean": 0.0,
+   "ao_mean": 0.689
+  }
+ },
+ "pivot": "feet: armature origin on the ground between the feet, front on -Y",
+ "families": [
+  "npc_girl",
+  "331 people/girl/c03w1-",
+  "339 people/girl/c03w9-"
+ ],
+ "origin_ids": {
+  "npc_girl": [
+   "S091_P22",
+   "S122_P10",
+   "S126_P06",
+   "S126_P07"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "village girl (child proportions, 1.2 m): red patterned dress with short sleeves and a sash, fair hair tied back, a wicker basket in the left hand and a bunch of white flowers in the right",
+ "third_party": [
+  "MakeHuman CC0 base mesh, skin, eyes, eyebrows, eyelashes and hair (Art/Characters/ThirdParty/MakeHuman)",
+  "forrest_ground_01 (render ground)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "Built on the CC0 MakeHuman base mesh and its bundled skin, eye, brow, lash and hair assets, morphed here by simple region scaling: the face is the base face (no likeness work), and the hair is the bundled card cap, not groomed strands. Clothes are cut from the base mesh's garment helpers and loosened, with folds only in the normal map: no cloth simulation, so skirts follow the thighs through skin weights and will clip on long strides. Skeleton is the project humanoid core set (25 bones, no fingers or twist bones); weights are automatic (bone heat) and unreviewed in motion; no animation, Physics Asset or facial rig. Hands are open (the base A pose). Hair has no ORM map. Not imported into Unreal. Child proportions come from scaling the adult base (larger head, shorter body), so the face is an adult face made small. Basket and flowers are rigid to the hand bones, not gripped."
+}

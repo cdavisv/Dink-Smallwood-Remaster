@@ -179,7 +179,17 @@
   "SM_Dink_Dead_PR": "a character frozen as a prop: it keeps the five character material slots on one shared UV layout, open garment and hair shells and the 4096 px maps of its base, none of which the prop rules allow; it is visual set dressing",
   "SM_Corpse_Knight_PR": "1.4 % of the UV area overlaps (inherited from the knight's LOD1 unwrap)",
   "SK_Mother": "the maiden variants: derived from the photoreal pass Mother, whose .blend keeps its own collection and naming (the validator finds the armature collection and no mesh in it); see the base manifest's validator findings",
-  "SK_Milder": "the soldier variant: derived from the photoreal pass Milder; same remark as for the maidens"
+  "SK_Milder": "the soldier variant: derived from the photoreal pass Milder; same remark as for the maidens",
+  "SK_Merchant_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_Peasant_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_Old_Man_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_Girl_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_Gnome_Wizard_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SK_King_PR": "intended: four material slots (skin, outfit, hair cards, eyes), each with its own 0 to 1 UV space, which the checker measures together; inside a slot only the hair cards and the two mirrored eyes share texels",
+  "SM_Corpse_Merchant_PR": "a character frozen as a prop: it keeps the four character material slots (each with its own UV space) and its open garment sheets and hair cards, which the prop rules do not allow; it is visual set dressing",
+  "SM_Corpse_Peasant_PR": "a character frozen as a prop: it keeps the four character material slots (each with its own UV space) and its open garment sheets and hair cards, which the prop rules do not allow; it is visual set dressing",
+  "SM_Corpse_Girl_PR": "a character frozen as a prop: it keeps the four character material slots (each with its own UV space) and its open garment sheets and hair cards, which the prop rules do not allow; it is visual set dressing",
+  "SM_King_On_Throne_PR": "the seated king is a character frozen into the set piece: his four material slots plus the throne set make five, each with its own UV space, and his garments, hair cards and the cloak wings are open sheets; visual set dressing with one hull"
  },
  "save_machine": {
   "why": "1 mesh with UCX hull: stone hearth ring with scrolls, spokes and grating; static, no glow or animation"
@@ -360,33 +370,43 @@
   "why": "flipbook atlas (64 frames, loops): ballistic drops. Partial: flipbook source only, no water sheet or splash"
  },
  "npc_girl": {
-  "why": "not started: needs a child body, face and dress, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "rigged girl on the CC0 MakeHuman base scaled to child proportions (25 bones, 4 LODs, pose-tested): red patterned dress, tied fair hair, basket and flowers rigid to the hands. Partial because the last review still faults it: an adult face made small, hair tied back where the sprite wears it loose, baked folds, open hands, no animation clips"
  },
  "corpse_girl": {
-  "why": "not started: needs a child body (and the girl herself), which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "1 static mesh with UCX hull: this pass's girl posed dead on her back with baked blood, flowers still in her hand, basket left out. Partial: the girl herself is partial, decimated to a floor prop"
  },
  "npc_merchant_blue": {
-  "why": "not started: needs a civilian man in a tunic (Milder cannot be taken out of his armour: the body under it is culled), which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "rigged merchant on the CC0 MakeHuman base (25-bone project humanoid skeleton, 4 LODs, bone-heat weights, pose-tested): belted wool tunic, shoulder cape, purse, hose and boots; this is the blue outfit map. Partial because the last review still faults it: the face is the unmodified base face, hair is a card cap, cloth folds are baked rather than simulated, hands are open, no animation clips"
  },
  "npc_merchant_green": {
-  "why": "not started: needs a civilian man in a tunic, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "the same rigged merchant (asset under npc_merchant_blue) with the green outfit base-colour map; shares mesh, N and ORM. Partial for the same reasons as the blue merchant"
  },
  "corpse_merchant": {
-  "why": "not started: needs a civilian man (and the merchant himself), which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "1 static mesh with UCX hull: this pass's merchant posed dead on his back with blood baked into skin and outfit, blue and green outfit maps for the two placements; use with a blood pool decal. Partial: the merchant himself is partial, and the mesh is decimated to a floor prop"
  },
  "npc_peasant": {
-  "why": "not started: needs a thin man in ragged clothes with a staff, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "rigged peasant on the CC0 MakeHuman base (25 bones, 4 LODs, pose-tested): linen tunic, rope belt, bare shins, shoes, plaited straw hat, long pole rigid to the right hand. Partial because the last review still faults it: the face is the unmodified base face, hair is a card cap, cloth folds are baked rather than simulated, hands are open, no animation clips"
  },
  "corpse_peasant": {
-  "why": "not started: needs a peasant figure, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "1 static mesh with UCX hull: this pass's peasant posed dead on his back with baked blood; hat and pole left out (the sprite shows the pole beside him). Partial: the peasant himself is partial, decimated to a floor prop"
  },
  "npc_old_man": {
-  "why": "not started: needs a bent old man in a hooded cloak, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "rigged old man on the CC0 MakeHuman base (25 bones, 4 LODs, pose-tested), stooped rest pose: ankle-length hooded robe, rope belt, grey beard, walking stick. Partial because the last review still faults it: the face is the unmodified base face, hair is a card cap, cloth folds are baked rather than simulated, hands are open, no animation clips"
  },
  "npc_gnome_purple": {
-  "why": "not started: needs a short robed wizard with a pointed hat and beard, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "rigged gnome wizard on the CC0 MakeHuman base scaled short with a large head (25 bones, 4 LODs, pose-tested): purple robe with gold dots and sleeves, bent pointed hat, long beard, boots. Partial because the last review still faults it: human proportions scaled rather than a gnome sculpt, dots where the sprite has stars, baked folds, no animation clips"
  },
  "king_on_throne": {
-  "why": "not started: needs a seated robed king with a crown, and his throne, which no existing source provides; a recolour of the Mother or Milder would not read as this character"
+  "status": "partial",
+  "why": "2 assets: the static set piece SM_King_On_Throne_PR (king seated and frozen, modelled cloak wings, ermine collar, throne and footstool; UCX hull) and the rigged standing king SK_King_PR it is posed from (25 bones, 4 LODs). Partial because the last review still faults it: the cloak is modelled, not draped, and does not pass behind his back; plain throne carving; base face; no animation"
  }
 }

@@ -1,0 +1,139 @@
+{
+ "name": "SM_Corpse_Girl_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/SM_Corpse_Girl_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/SM_Corpse_Girl_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_people.py Corpse_Girl final",
+ "derived_from": "Unclaimed/npc_girl/Girl (SK_Girl_PR), rebuilt, posed and frozen",
+ "dimensions_m": [
+  1.0354,
+  1.0467,
+  0.402
+ ],
+ "bounds_min_m": [
+  -0.5177,
+  -0.5233,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.5177,
+  0.5233,
+  0.402
+ ],
+ "lod0_triangles": 9000,
+ "triangle_budget": {
+  "soft": 6000,
+  "hard": 20000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/T_Corpse_Girl_PR_Skin_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "slot": "Skin",
+   "channels": "base colour sRGB with baked blood"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/T_Corpse_Girl_PR_Skin_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "slot": "Skin",
+   "channels": "tangent normal, OpenGL"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/T_Corpse_Girl_PR_Skin_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "slot": "Skin",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/T_Corpse_Girl_PR_Outfit_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "slot": "Outfit",
+   "channels": "base colour sRGB with baked blood"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/T_Corpse_Girl_PR_Outfit_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "slot": "Outfit",
+   "channels": "tangent normal, OpenGL"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/T_Corpse_Girl_PR_Outfit_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "slot": "Outfit",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/T_Corpse_Girl_PR_Hair_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "slot": "Hair",
+   "channels": "base colour sRGB + alpha"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/T_Corpse_Girl_PR_Hair_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "slot": "Hair",
+   "channels": "tangent normal, OpenGL"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl/T_Corpse_Girl_PR_Eyes_BC.png",
+   "size_px": [
+    256,
+    256
+   ],
+   "slot": "Eyes",
+   "channels": "base colour sRGB"
+  }
+ ],
+ "materials": [
+  "MI_Corpse_Girl_PR_Skin",
+  "MI_Corpse_Girl_PR_Eyes",
+  "MI_Corpse_Girl_PR_Hair",
+  "MI_Corpse_Girl_PR_Outfit"
+ ],
+ "collision_hulls": 1,
+ "material_slots_note": "Skin and Outfit are baked BC/N/ORM sets (blood in the base colour); Hair is an alpha-tested atlas with a strand normal; Eyes is a base-colour iris map",
+ "companion_decal": "Unclaimed/blood_splat/Blood_Pool_02 (2.2 m), centred under the body; the render shows it",
+ "pivot": "base centre, lying on z = 0",
+ "families": [
+  "corpse_girl",
+  "335 people/girl/death-"
+ ],
+ "origin_ids": {
+  "corpse_girl": [
+   "S222_P04"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "the dead village girl on her back in blood, red dress soaked, the bunch of white flowers still in her hand (the basket is left out)",
+ "third_party": [
+  "MakeHuman CC0 base mesh, skin, eyes, eyebrows, eyelashes and hair (Art/Characters/ThirdParty/MakeHuman)",
+  "park_dirt (render ground)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "A posed, frozen copy of the Girl character of this folder tree (same build script, maps baked again at 1024 px with blood painted into the base colour): no ragdoll, no wounds cut into the mesh, eyes open, clothes not draped by simulation. Decimated to about 9000 triangles for a floor prop, so the face and hands are coarse close up. The blood pool is a separate decal (companion_decal), not part of this mesh. Hair has no ORM map. Not imported into Unreal."
+}

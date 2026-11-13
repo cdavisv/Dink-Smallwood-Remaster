@@ -1,13 +1,18 @@
 """Run tools/blender/dinkasset/validate.py on every asset .blend under Unclaimed and write validation_summary.json.
 
-    python3 -I tools/validate_all.py        (one Blender at a time, behind the same lock as tools/bl.sh)
+    python3 -I tools/validate_all.py [family ...]        (one Blender at a time, behind the same lock as tools/bl.sh)
+
+With family names, only those folders are checked again and the rest of the summary is kept.
 """
-import glob, json, os, subprocess
+import glob, json, os, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__)); UNC = os.path.dirname(HERE); REPO = os.path.abspath(os.path.join(UNC, '..', '..', '..', '..', '..'))
-VAL = os.path.join(REPO, 'tools', 'blender', 'dinkasset', 'validate.py'); tmp = os.environ.get('TMPDIR', '/tmp'); out = {}
+VAL = os.path.join(REPO, 'tools', 'blender', 'dinkasset', 'validate.py'); tmp = os.environ.get('TMPDIR', '/tmp'); only = set(sys.argv[1:])
+out = json.load(open(os.path.join(UNC, 'validation_summary.json'))) if only else {}
 env = dict(os.environ, HOME=os.path.join(tmp, 'dink_unclaimed_home'))
 for b in sorted(glob.glob(os.path.join(UNC, '*', '*', 'S[MK]_*.blend'))):
+    if only and os.path.relpath(b, UNC).split(os.sep)[0] not in only:
+        continue
     r = subprocess.run(['flock', os.path.join(tmp, 'dink_unclaimed_blender.lock'), 'blender', '-b', '--factory-startup', '-t', '4', '-P', VAL, '--', '--blend', b], capture_output=True, text=True, env=env)
     t = r.stdout; key = os.path.relpath(b, UNC)
     if '@@DINK_REPORT_BEGIN@@' not in t:

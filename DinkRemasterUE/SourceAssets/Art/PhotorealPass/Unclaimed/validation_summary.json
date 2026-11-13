@@ -968,5 +968,184 @@
   "errors": [],
   "warnings": [],
   "error_messages": []
+ },
+ "corpse_girl/Corpse_Girl/SM_Corpse_Girl_PR.blend": {
+  "asset": "SM_Corpse_Girl_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "NON_MANIFOLD",
+   "SLOTS_OVER",
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "NAME_TEXTURE",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "1958 non-manifold edges (1958 open boundary, 0 shared by >2 faces, 0 wire); prop must be a closed solid",
+   "UV0 islands overlap (81.2 % of UV area, 8341 triangles); class prop needs unique UVs",
+   "4 material slots, limit for prop is 3"
+  ]
+ },
+ "corpse_merchant/Corpse_Merchant/SM_Corpse_Merchant_PR.blend": {
+  "asset": "SM_Corpse_Merchant_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "NON_MANIFOLD",
+   "SLOTS_OVER",
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "NAME_TEXTURE",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "670 non-manifold edges (670 open boundary, 0 shared by >2 faces, 0 wire); prop must be a closed solid",
+   "UV0 islands overlap (65.2 % of UV area, 7723 triangles); class prop needs unique UVs",
+   "4 material slots, limit for prop is 3"
+  ]
+ },
+ "corpse_peasant/Corpse_Peasant/SM_Corpse_Peasant_PR.blend": {
+  "asset": "SM_Corpse_Peasant_PR",
+  "class": "prop",
+  "passed": false,
+  "errors": [
+   "NON_MANIFOLD",
+   "SLOTS_OVER",
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "NAME_TEXTURE",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "642 non-manifold edges (642 open boundary, 0 shared by >2 faces, 0 wire); prop must be a closed solid",
+   "UV0 islands overlap (74.5 % of UV area, 7904 triangles); class prop needs unique UVs",
+   "4 material slots, limit for prop is 3"
+  ]
+ },
+ "king_on_throne/King/SK_King_PR.blend": {
+  "asset": "SK_King_PR",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "LOOSE_GEOMETRY",
+   "NON_MANIFOLD",
+   "SKIN_INFLUENCES",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "UV0 islands overlap (11.0 % of UV area, 5196 triangles); class character_humanoid needs unique UVs"
+  ]
+ },
+ "king_on_throne/King_On_Throne/SM_King_On_Throne_PR.blend": {
+  "asset": "SM_King_On_Throne_PR",
+  "class": "prop_large",
+  "passed": false,
+  "errors": [
+   "NON_MANIFOLD",
+   "SLOTS_OVER",
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "905 non-manifold edges (904 open boundary, 1 shared by >2 faces, 0 wire); prop_large must be a closed solid",
+   "UV0 islands overlap (40.3 % of UV area, 8915 triangles); class prop_large needs unique UVs",
+   "5 material slots, limit for prop_large is 4"
+  ]
+ },
+ "npc_girl/Girl/SK_Girl_PR.blend": {
+  "asset": "SK_Girl_PR",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "DUPLICATE_VERTS",
+   "LOOSE_GEOMETRY",
+   "NON_MANIFOLD",
+   "SKIN_INFLUENCES",
+   "TEXEL_DENSITY",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "UV0 islands overlap (13.2 % of UV area, 5189 triangles); class character_humanoid needs unique UVs"
+  ]
+ },
+ "npc_gnome_purple/Gnome_Wizard/SK_Gnome_Wizard_PR.blend": {
+  "asset": "SK_Gnome_Wizard_PR",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "LOOSE_GEOMETRY",
+   "NON_MANIFOLD",
+   "SKIN_INFLUENCES",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "UV0 islands overlap (7.9 % of UV area, 4993 triangles); class character_humanoid needs unique UVs"
+  ]
+ },
+ "npc_merchant_blue/Merchant/SK_Merchant_PR.blend": {
+  "asset": "SK_Merchant_PR",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "LOOSE_GEOMETRY",
+   "NON_MANIFOLD",
+   "SKIN_INFLUENCES",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "UV0 islands overlap (10.7 % of UV area, 4825 triangles); class character_humanoid needs unique UVs"
+  ]
+ },
+ "npc_old_man/Old_Man/SK_Old_Man_PR.blend": {
+  "asset": "SK_Old_Man_PR",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "LOOSE_GEOMETRY",
+   "NON_MANIFOLD",
+   "SKIN_INFLUENCES",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "UV0 islands overlap (12.8 % of UV area, 5157 triangles); class character_humanoid needs unique UVs"
+  ]
+ },
+ "npc_peasant/Peasant/SK_Peasant_PR.blend": {
+  "asset": "SK_Peasant_PR",
+  "class": "character_humanoid",
+  "passed": false,
+  "errors": [
+   "UV_OVERLAP"
+  ],
+  "warnings": [
+   "LOOSE_GEOMETRY",
+   "NON_MANIFOLD",
+   "SKIN_INFLUENCES",
+   "TRIS_OVER_TARGET"
+  ],
+  "error_messages": [
+   "UV0 islands overlap (11.2 % of UV area, 5192 triangles); class character_humanoid needs unique UVs"
+  ]
  }
 }
