@@ -1,6 +1,8 @@
 # Animation pass 1: hero and NPC clips, authored by code
 
-Twenty-seven clips for the shared 89-bone rig (Dink, Mother, Milder): locomotion, idles, jump, the fist combo, sword cuts, a hurt flinch and a stumble. Nothing is keyed by hand in a `.blend`: the Python under `Tools/` is the source, the FBX files under `Export/` are what Unreal imports, and `Strips/` holds the contact strips the clips were reviewed from.
+**Since pass 2 (12 Nov 2026) the runtime plays only the action clips from here** (fist combo, sword cuts, `Hurt`, `Stumble`, `Bow_Draw`, `Bow_Release`, `Cast`). Idle, walk, run, jump, fall and land come from the engine template's motion capture (`Content/Dink/Data/Art/animation_natural.json`). The generated locomotion and idle clips below are still built and imported so that `dink.BodyAnimation 2` can show them for comparison. The pass 2 strips of the revised and new action clips are in `Strips/hero_attack2/`.
+
+Thirty clips for the shared 89-bone rig (Dink, Mother, Milder): locomotion, idles, jump, the fist combo, sword cuts, a hurt flinch and a stumble. Nothing is keyed by hand in a `.blend`: the Python under `Tools/` is the source, the FBX files under `Export/` are what Unreal imports, and `Strips/` holds the contact strips the clips were reviewed from.
 
 The motion is original project work (procedural keyframes: analytic two-bone IK, heel/flat/ball foot roll, pelvis and spine rotation). No motion capture and no third-party animation is used. The rig is the project's existing Epic-compatible skeleton; the preview meshes are the project's existing characters.
 

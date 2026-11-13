@@ -3,6 +3,25 @@
  "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
  "folder": "/Game/Dink/Hero/Animations/Pass1",
  "clips": {
+  "Bow_Draw": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Bow_Draw.AN_Bow_Draw",
+   "duration_s": 0.5,
+   "loop": false,
+   "fps": 60
+  },
+  "Bow_Release": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Bow_Release.AN_Bow_Release",
+   "duration_s": 0.45,
+   "loop": false,
+   "fps": 60
+  },
+  "Cast": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Cast.AN_Cast",
+   "duration_s": 0.7,
+   "loop": false,
+   "fps": 60,
+   "cast_s": 0.0
+  },
   "Fall": {
    "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Fall.AN_Fall",
    "duration_s": 1.0,
@@ -59,7 +78,7 @@
   },
   "Hurt": {
    "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Hurt.AN_Hurt",
-   "duration_s": 0.4166666666666667,
+   "duration_s": 0.45,
    "loop": false,
    "fps": 60,
    "peak_s": 0.06

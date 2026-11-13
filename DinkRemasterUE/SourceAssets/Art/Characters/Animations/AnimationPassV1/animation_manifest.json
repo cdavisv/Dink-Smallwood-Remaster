@@ -3,6 +3,66 @@
  "skeleton_from_mesh": "/Game/Dink/Hero/SK_Dink.SK_Dink",
  "content_folder": "/Game/Dink/Hero/Animations/Pass1",
  "clips": {
+  "Bow_Draw": {
+   "frames": 31,
+   "fps": 60,
+   "duration_s": 0.5,
+   "speed_m_s": 0.0,
+   "stride_m": 0.0,
+   "planted_samples": 82,
+   "planted_drift_cm_per_frame_max": 0.0117,
+   "planted_drift_cm_per_frame_mean": 0.0003,
+   "planted_slide_cm_per_s_max": 0.704,
+   "ik_clamps": 0,
+   "lowest_sole_m": -0.0004,
+   "loop_seam_m": 0.0,
+   "loop": false,
+   "family": "hero_attack",
+   "fbx": "Export/A_Bow_Draw.fbx",
+   "asset_name": "AN_Bow_Draw",
+   "sha256": "4bb08255e26a201e4f52b42cde1e3fd3de899e10e69397bec2c4eb472d745937"
+  },
+  "Bow_Release": {
+   "frames": 28,
+   "fps": 60,
+   "duration_s": 0.45,
+   "speed_m_s": 0.0,
+   "stride_m": 0.0,
+   "planted_samples": 74,
+   "planted_drift_cm_per_frame_max": 0.0022,
+   "planted_drift_cm_per_frame_mean": 0.0001,
+   "planted_slide_cm_per_s_max": 0.133,
+   "ik_clamps": 0,
+   "lowest_sole_m": -0.0004,
+   "loop_seam_m": 0.0,
+   "loop": false,
+   "family": "hero_attack",
+   "fbx": "Export/A_Bow_Release.fbx",
+   "asset_name": "AN_Bow_Release",
+   "sha256": "bec95cf4cb2d5790690f4782e09b64e0666f34c47e07eb2f742a16bacfa82fe2"
+  },
+  "Cast": {
+   "frames": 43,
+   "fps": 60,
+   "duration_s": 0.7,
+   "speed_m_s": 0.0,
+   "stride_m": 0.0,
+   "planted_samples": 111,
+   "planted_drift_cm_per_frame_max": 0.0161,
+   "planted_drift_cm_per_frame_mean": 0.0007,
+   "planted_slide_cm_per_s_max": 0.969,
+   "ik_clamps": 0,
+   "lowest_sole_m": -0.0004,
+   "loop_seam_m": 0.0,
+   "loop": false,
+   "events": {
+    "cast_s": 0.0
+   },
+   "family": "hero_attack",
+   "fbx": "Export/A_Cast.fbx",
+   "asset_name": "AN_Cast",
+   "sha256": "4bfe1db4ede420e5adf48a361b48340ca2acd01673513b5cf08074e14121224b"
+  },
   "Fall": {
    "frames": 31,
    "fps": 30,
@@ -30,10 +90,10 @@
    "stride_m": 0.0,
    "planted_samples": 127,
    "planted_drift_cm_per_frame_max": 0.1429,
-   "planted_drift_cm_per_frame_mean": 0.0031,
+   "planted_drift_cm_per_frame_mean": 0.0022,
    "planted_slide_cm_per_s_max": 8.574,
    "ik_clamps": 0,
-   "lowest_sole_m": -0.0007,
+   "lowest_sole_m": -0.0004,
    "loop_seam_m": 0.0,
    "loop": false,
    "events": {
@@ -41,10 +101,10 @@
     "lock_s": 0.4
    },
    "family": "hero_attack",
-   "note": "wrist ahead of chest at hit (m): L -0.015 R 0.634; wrist height L 1.45 R 1.34",
+   "note": "wrist ahead of chest at hit (m): L -0.015 R 0.664; wrist height L 1.44 R 1.35",
    "fbx": "Export/A_Fist_Cross_Confident.fbx",
    "asset_name": "AN_Fist_Cross_Confident",
-   "sha256": "bbb1d7585ccd80a74359abe8b8694dc05c818f7f7ae8fdafc1e3d922300f8b10"
+   "sha256": "fcbae0c2185b0465b6e36e705d2474930478b3cfe7efc266327bf4f37a9ade3a"
   },
   "Fist_Cross_Timid": {
    "frames": 55,
@@ -53,11 +113,11 @@
    "speed_m_s": 0.0,
    "stride_m": 0.0,
    "planted_samples": 132,
-   "planted_drift_cm_per_frame_max": 0.0492,
-   "planted_drift_cm_per_frame_mean": 0.0017,
-   "planted_slide_cm_per_s_max": 2.952,
+   "planted_drift_cm_per_frame_max": 0.0198,
+   "planted_drift_cm_per_frame_mean": 0.0008,
+   "planted_slide_cm_per_s_max": 1.19,
    "ik_clamps": 0,
-   "lowest_sole_m": -0.0006,
+   "lowest_sole_m": -0.0004,
    "loop_seam_m": 0.0,
    "loop": false,
    "events": {
@@ -65,10 +125,10 @@
     "lock_s": 0.4
    },
    "family": "hero_attack",
-   "note": "wrist ahead of chest at hit (m): L -0.364 R 0.570; wrist height L 1.12 R 1.29",
+   "note": "wrist ahead of chest at hit (m): L -0.364 R 0.530; wrist height L 1.11 R 1.30",
    "fbx": "Export/A_Fist_Cross_Timid.fbx",
    "asset_name": "AN_Fist_Cross_Timid",
-   "sha256": "7e94d4c55f600c13d520e6a9d983ed690db006e657225d0cccc0e77ed2b12233"
+   "sha256": "7166982718c9b2b875466ef079bdd98d6299b6c85a1df956623b75682cfb73b1"
   },
   "Fist_Jab_Confident": {
    "frames": 49,
@@ -77,11 +137,11 @@
    "speed_m_s": 0.0,
    "stride_m": 0.0,
    "planted_samples": 125,
-   "planted_drift_cm_per_frame_max": 0.0318,
-   "planted_drift_cm_per_frame_mean": 0.0014,
-   "planted_slide_cm_per_s_max": 1.908,
+   "planted_drift_cm_per_frame_max": 0.0225,
+   "planted_drift_cm_per_frame_mean": 0.0008,
+   "planted_slide_cm_per_s_max": 1.347,
    "ik_clamps": 0,
-   "lowest_sole_m": -0.0007,
+   "lowest_sole_m": -0.0004,
    "loop_seam_m": 0.0,
    "loop": false,
    "events": {
@@ -89,10 +149,10 @@
     "lock_s": 0.4
    },
    "family": "hero_attack",
-   "note": "wrist ahead of chest at hit (m): L 0.582 R 0.064; wrist height L 1.35 R 1.45",
+   "note": "wrist ahead of chest at hit (m): L 0.607 R 0.040; wrist height L 1.36 R 1.43",
    "fbx": "Export/A_Fist_Jab_Confident.fbx",
    "asset_name": "AN_Fist_Jab_Confident",
-   "sha256": "e13496efc00d9ba51eaef0e9ae1e91da5f481a4e13533d437bdf772d08c8b7a9"
+   "sha256": "6681a71ab6f66bc46b58d0f67f9943d6d8dc9d25999bcca569322de290650727"
   },
   "Fist_Jab_Timid": {
    "frames": 49,
@@ -101,9 +161,33 @@
    "speed_m_s": 0.0,
    "stride_m": 0.0,
    "planted_samples": 126,
-   "planted_drift_cm_per_frame_max": 0.0299,
-   "planted_drift_cm_per_frame_mean": 0.0014,
-   "planted_slide_cm_per_s_max": 1.792,
+   "planted_drift_cm_per_frame_max": 0.0203,
+   "planted_drift_cm_per_frame_mean": 0.0009,
+   "planted_slide_cm_per_s_max": 1.218,
+   "ik_clamps": 0,
+   "lowest_sole_m": -0.0004,
+   "loop_seam_m": 0.0,
+   "loop": false,
+   "events": {
+    "hit_s": 0.175,
+    "lock_s": 0.4
+   },
+   "family": "hero_attack",
+   "note": "wrist ahead of chest at hit (m): L 0.564 R -0.339; wrist height L 1.31 R 1.14",
+   "fbx": "Export/A_Fist_Jab_Timid.fbx",
+   "asset_name": "AN_Fist_Jab_Timid",
+   "sha256": "2e6b6ca39487d1a25eea93618276e0a804d5440cb5970d5bbaad7ca719efcd51"
+  },
+  "Fist_Swing_Confident": {
+   "frames": 49,
+   "fps": 60,
+   "duration_s": 0.8,
+   "speed_m_s": 0.0,
+   "stride_m": 0.0,
+   "planted_samples": 118,
+   "planted_drift_cm_per_frame_max": 0.5284,
+   "planted_drift_cm_per_frame_mean": 0.0066,
+   "planted_slide_cm_per_s_max": 31.704,
    "ik_clamps": 0,
    "lowest_sole_m": -0.0006,
    "loop_seam_m": 0.0,
@@ -113,34 +197,10 @@
     "lock_s": 0.4
    },
    "family": "hero_attack",
-   "note": "wrist ahead of chest at hit (m): L 0.546 R -0.336; wrist height L 1.30 R 1.14",
-   "fbx": "Export/A_Fist_Jab_Timid.fbx",
-   "asset_name": "AN_Fist_Jab_Timid",
-   "sha256": "96c4e2596db3b6f86c459128e8699ec9624540dfa725e31ec800e1c2428b97fe"
-  },
-  "Fist_Swing_Confident": {
-   "frames": 49,
-   "fps": 60,
-   "duration_s": 0.8,
-   "speed_m_s": 0.0,
-   "stride_m": 0.0,
-   "planted_samples": 142,
-   "planted_drift_cm_per_frame_max": 0.5284,
-   "planted_drift_cm_per_frame_mean": 0.0061,
-   "planted_slide_cm_per_s_max": 31.704,
-   "ik_clamps": 0,
-   "lowest_sole_m": -0.001,
-   "loop_seam_m": 0.0,
-   "loop": false,
-   "events": {
-    "hit_s": 0.175,
-    "lock_s": 0.4
-   },
-   "family": "hero_attack",
-   "note": "wrist ahead of chest at hit (m): L 0.357 R -0.030; wrist height L 1.36 R 1.43",
+   "note": "wrist ahead of chest at hit (m): L 0.417 R -0.030; wrist height L 1.37 R 1.42",
    "fbx": "Export/A_Fist_Swing_Confident.fbx",
    "asset_name": "AN_Fist_Swing_Confident",
-   "sha256": "88d7e4600778d7e458e5a9eff16c45ed190e6b02db6fc7b3a5f462fc6e113431"
+   "sha256": "f8b707c5a5c6aa2e262f2434fe86cc0480ed9308fb592595309b1ddfa70aaa92"
   },
   "Fist_Swing_Timid": {
    "frames": 55,
@@ -148,12 +208,12 @@
    "duration_s": 0.9,
    "speed_m_s": 0.0,
    "stride_m": 0.0,
-   "planted_samples": 134,
-   "planted_drift_cm_per_frame_max": 0.0741,
-   "planted_drift_cm_per_frame_mean": 0.0024,
-   "planted_slide_cm_per_s_max": 4.444,
-   "ik_clamps": 2,
-   "lowest_sole_m": -0.0008,
+   "planted_samples": 135,
+   "planted_drift_cm_per_frame_max": 0.032,
+   "planted_drift_cm_per_frame_mean": 0.0012,
+   "planted_slide_cm_per_s_max": 1.918,
+   "ik_clamps": 0,
+   "lowest_sole_m": -0.0005,
    "loop_seam_m": 0.0,
    "loop": false,
    "events": {
@@ -161,23 +221,23 @@
     "lock_s": 0.4
    },
    "family": "hero_attack",
-   "note": "wrist ahead of chest at hit (m): L -0.386 R 0.439; wrist height L 1.14 R 1.32",
+   "note": "wrist ahead of chest at hit (m): L -0.381 R 0.674; wrist height L 1.15 R 1.33",
    "fbx": "Export/A_Fist_Swing_Timid.fbx",
    "asset_name": "AN_Fist_Swing_Timid",
-   "sha256": "63d72146094a84421747e951353b7048acfaa6968265f8acbf2ca77f9332b165"
+   "sha256": "40bbae876050187db2f197dbc27198ab6dffc73da5d48bc32869081d8fac3199"
   },
   "Hurt": {
-   "frames": 26,
+   "frames": 28,
    "fps": 60,
-   "duration_s": 0.4166666666666667,
+   "duration_s": 0.45,
    "speed_m_s": 0.0,
    "stride_m": 0.0,
-   "planted_samples": 59,
-   "planted_drift_cm_per_frame_max": 0.0163,
-   "planted_drift_cm_per_frame_mean": 0.0029,
-   "planted_slide_cm_per_s_max": 0.976,
+   "planted_samples": 67,
+   "planted_drift_cm_per_frame_max": 0.0296,
+   "planted_drift_cm_per_frame_mean": 0.0028,
+   "planted_slide_cm_per_s_max": 1.778,
    "ik_clamps": 0,
-   "lowest_sole_m": -0.0008,
+   "lowest_sole_m": -0.0005,
    "loop_seam_m": 0.0,
    "loop": false,
    "events": {
@@ -186,7 +246,7 @@
    "family": "hero_reaction",
    "fbx": "Export/A_Hurt.fbx",
    "asset_name": "AN_Hurt",
-   "sha256": "2d87f175f4d8112e88456ab6d3eb27e09aec59dd6ba7bf3816bfac6beafda30f"
+   "sha256": "cacc6f4fbe93b18e158e6d7485784eaf6c56c74d668d428bbf2c3dec6858dcf9"
   },
   "Idle_Confident": {
    "frames": 241,
