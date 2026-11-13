@@ -81,7 +81,7 @@ already binds. Not importable by the kit importer at all: the eight posed human 
 All in a worktree of master dd60127d, with a reflink copy of the shared checkout's built project and world import.
 
 - `Scripts/build.sh`: BUILD OK, 0 warnings.
-- Import: `DINK TOWN IMPORT OK`, 0 warnings (first run with all 74 importable meshes; the 38 that no row uses were removed again).
+- Import: `DINK TOWN IMPORT OK`, 0 warnings (first run with all 74 importable meshes; the 38 that no row uses were removed again, which leaves 181 packages: 36 meshes, 36 material instances, one master material, 108 textures).
 - `Scripts/test.sh Dink.Art.Family`: 12/12. `Scripts/test.sh Dink.Art`: 58/58, 0 warnings.
 - `python3 -m unittest discover -s Scripts/tests`: 822 tests OK.
 - **Probe traces do not move.** `Scripts/test.sh Dink.Gameplay.Probe` was run with master's `families.json` and with
@@ -92,7 +92,7 @@ All in a worktree of master dd60127d, with a reflink copy of the shared checkout
 - **A scripted pickup still vanishes when touched** (`pickup_touch_small_heart.jpg`): the hero is walked onto a small
   heart of screen 101 with `dink.WalkTo`; its mesh is gone afterwards and the second heart is still there. The same
   walk onto a gold heap was blocked before it reached the heap, so gold is not shown.
-- `python3 -I Scripts/scrub_private_paths.py --check`: clean after `--fix` on the 114 new texture packages.
+- `python3 -I Scripts/scrub_private_paths.py --check`: clean after `--fix` on the new texture packages (the importer writes the local project path into them).
 
 ## Not checked
 
