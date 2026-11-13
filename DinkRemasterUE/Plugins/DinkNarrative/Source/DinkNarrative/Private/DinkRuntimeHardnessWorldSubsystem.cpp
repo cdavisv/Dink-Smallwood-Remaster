@@ -20,11 +20,46 @@ struct UDinkRuntimeHardnessWorldSubsystem::FEntry
 bool UDinkRuntimeHardnessWorldSubsystem::DoesSupportWorldType(EWorldType::Type Type) const
 { return Type==EWorldType::Game || Type==EWorldType::PIE; }
 
+void UDinkRuntimeHardnessWorldSubsystem::Initialize(FSubsystemCollectionBase& Collection)
+{
+    Super::Initialize(Collection);
+    bHostIndexDirty=true;
+    if(UWorld* World=GetWorld())
+    {
+        SpawnHandle=World->AddOnActorSpawnedHandler(FOnActorSpawned::FDelegate::CreateWeakLambda(this,[this](AActor* Actor)
+        { if(Actor&&Actor->IsA<ADinkGreyboxScreen>())bHostIndexDirty=true; }));
+    }
+    auto Dirty=[this](ULevel*,UWorld* InWorld){ if(InWorld==GetWorld())bHostIndexDirty=true; };
+    LevelAddedHandle=FWorldDelegates::LevelAddedToWorld.AddWeakLambda(this,Dirty);
+    LevelRemovedHandle=FWorldDelegates::LevelRemovedFromWorld.AddWeakLambda(this,Dirty);
+}
+
+void UDinkRuntimeHardnessWorldSubsystem::RebuildHostIndex() const
+{
+    HostIndex.Reset();
+    if(UWorld* World=GetWorld())
+        for(TActorIterator<ADinkGreyboxScreen> It(World);It;++It)HostIndex.Add(It->ScreenNumber,*It);
+    bHostIndexDirty=false;
+}
+
 bool UDinkRuntimeHardnessWorldSubsystem::RequiresScreenCapability(int32 Screen) const
 {
-    UWorld* World=GetWorld();if(!World)return false;
-    for(TActorIterator<ADinkGreyboxScreen> It(World);It;++It)
-        if(It->ScreenNumber==Screen && It->ActorHasTag(TEXT("DinkHardnessWorldV1")))return true;
+    if(!GetWorld())return false;
+    if(bHostIndexDirty)RebuildHostIndex();
+    bool bStale=false;
+    for(auto It=HostIndex.CreateConstKeyIterator(Screen);It;++It)
+    {
+        const ADinkGreyboxScreen* Host=It.Value().Get();
+        if(!Host||Host->ScreenNumber!=Screen){bStale=true;continue;}
+        if(Host->ActorHasTag(TEXT("DinkHardnessWorldV1")))return true;
+    }
+    if(bStale)
+    {
+        // A host went away or was renumbered after the index was built: one full look, as before the index.
+        RebuildHostIndex();
+        for(auto It=HostIndex.CreateConstKeyIterator(Screen);It;++It)
+            if(const ADinkGreyboxScreen* Host=It.Value().Get();Host&&Host->ActorHasTag(TEXT("DinkHardnessWorldV1")))return true;
+    }
     // New Data alone MUST NOT change an old world's placement/main order.
     return false;
 }
@@ -88,5 +123,10 @@ TSharedPtr<DinkHardness::PhysicsOwner> UDinkRuntimeHardnessWorldSubsystem::Acqui
 void UDinkRuntimeHardnessWorldSubsystem::Deinitialize()
 {
     for(auto& Pair:Owners)if(Pair.Value && Pair.Value->Owner)Pair.Value->Owner->InvalidateForScreenRebuild();
-    Owners.Reset();Super::Deinitialize();
+    Owners.Reset();
+    if(UWorld* World=GetWorld();World&&SpawnHandle.IsValid())World->RemoveOnActorSpawnedHandler(SpawnHandle);
+    FWorldDelegates::LevelAddedToWorld.Remove(LevelAddedHandle);
+    FWorldDelegates::LevelRemovedFromWorld.Remove(LevelRemovedHandle);
+    HostIndex.Reset();bHostIndexDirty=true;
+    Super::Deinitialize();
 }

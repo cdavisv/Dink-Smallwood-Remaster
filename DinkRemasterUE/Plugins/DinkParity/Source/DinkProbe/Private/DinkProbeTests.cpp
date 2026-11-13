@@ -343,6 +343,57 @@ namespace DinkProbeTest
 
 		int32 Fact(const TCHAR* N) const { return F->GetFact(N); }
 		bool Idle() const { return !D->GetDink().bFrozen && !S->GetActiveMenu(); }
+		/** No procedure is running, waiting or choosing, Dink is free and no menu is open: a moment a 1997 save could hold. */
+		bool Quiet() const { return BoundaryViolations().IsEmpty(); }
+		/**
+		 * A script of the screen's base (sprite 0) or of a placement that the restarted screen starts again (init_scripts, D:11690):
+		 * its main, or any of its procedures idling in a plain wait (s2-healp.c's talk ends with `goto mainloop`, so after a talk
+		 * the talk keeps running main's wait(500) loop; a load runs that loop from main again).
+		 */
+		bool RestartedByLoad(const FDinkScriptInstance& I) const
+		{
+			if (I.Screen != D->GetDink().Screen) { return false; }
+			const FDinkSprite* Owner = I.Sprite == 0 ? nullptr : D->FindSprite(I.Sprite);
+			if (I.Sprite != 0 && !(Owner && Owner->Origin.IsValid() && Owner->Origin.Screen == I.Screen)) { return false; }
+			return I.Procedure == FName(TEXT("main")) || (I.State == EDinkInstanceState::Blocked && I.Block == EDinkBlock::Time);
+		}
+		/**
+		 * What a load of a save taken now would lose of the moment itself. The original's load_game (dink.cpp:1308-1420) kills every
+		 * sprite and script and restarts the screen (its base script and place_sprites_game, then init_scripts): a procedure in flight,
+		 * a frozen Dink and an open menu are not there after it. (Sprites: SpriteCensus before the save and after a load of it.)
+		 */
+		FString BoundaryViolations() const
+		{
+			TArray<FString> Out;
+			if (D->GetDink().bFrozen) { Out.Add(TEXT("Dink is frozen")); }
+			if (S->GetActiveMenu()) { Out.Add(TEXT("a choice menu is open")); }
+			for (const TUniquePtr<FDinkScriptInstance>& I : S->GetInstances())
+			{
+				// A base or placement main still looping (a healer's idle chatter) starts again with the restarted screen; anything else
+				// (a talk, a hit, a spawned scene's main) is not run again by the load.
+				if (I->IsAlive() && I->State != EDinkInstanceState::Idle && !RestartedByLoad(*I))
+				{
+					Out.Add(FString::Printf(TEXT("script %s.%s is in flight (instance %d, sprite %d)"), *I->Script.ToString(), *I->Procedure.ToString(), I->Id, I->Sprite));
+				}
+			}
+			return FString::Join(Out, TEXT("; "));
+		}
+		/** The live sprites of Dink's screen by script and brain (positions wander; a restarted screen makes the same ones again). */
+		TMap<FString, int32> SpriteCensus() const
+		{
+			TMap<FString, int32> Out;
+			const int32 Screen = D->GetDink().Screen;
+			for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
+			{
+				const FDinkSprite& Sp = Pair.Value;
+				if (Pair.Key == 1 || !Sp.bActive || Sp.bText || Sp.Screen != Screen)
+				{
+					continue;
+				}
+				++Out.FindOrAdd(FString::Printf(TEXT("%s/brain %d"), Sp.Script.IsNone() ? TEXT("(no script)") : *Sp.Script.ToString(), Sp.GetProp(TEXT("brain"))));
+			}
+			return Out;
+		}
 		/** Time dilation (slomo): the story clock follows the world's. Only while nothing is fought. */
 		void Dilate(float Factor) const { UGameplayStatics::SetGlobalTimeDilation(World, Factor); }
 		bool Busy() const
@@ -1856,10 +1907,45 @@ namespace DinkProbeTest
 					if (FMath::Abs(Dx) <= 3.0 && FMath::Abs(Dy) >= 100.0 && FMath::Abs(Dy) <= 230.0) { return Dy > 0 ? 2 : 8; }
 					return 0;
 				};
+				// LineClear sees the sprites where they stand. The fireball is in the air for up to 0.75 s: item-fb.c waits 100 ms, then
+				// 6 px a frame at timing 0 (360 px/s), and missile_brain (D:14240) ends it on the first live sprite whose hardbox,
+				// inflated by its range (10), holds it. So a walker that can step into the line before the ball passes would take the
+				// ball (and its `hit` makes it hostile too: s3-gs.c). Every other live sprite that can be hit gets its walking reach then.
+				struct FFlight { double L, T, R, B, Pace; };
+				TArray<FFlight> Walkers;
+				for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
+				{
+					const FDinkSprite& O = Pair.Value;
+					int32 L, Tp, R, B;
+					if (Pair.Key == 1 || Pair.Key == Handle || !O.bActive || O.bText || O.Screen != Screen || O.GetProp(TEXT("nohit")) == 1 || O.bNoTouch
+						|| O.GetProp(TEXT("speed")) <= 0 || !G->GetHardbox(O, L, Tp, R, B))
+					{
+						continue;
+					}
+					Walkers.Add(FFlight{ L - 10.0, Tp - 10.0, R + 10.0, B + 10.0,
+						1.42 * O.GetProp(TEXT("speed"), 1) * 1000.0 / FMath::Max(O.GetProp(TEXT("timing"), 33), 17) });
+				}
+				auto FlightClear = [&](double Qx, double Qy, int32 Dir)
+				{
+					const FIntPoint Step = Dir == 6 ? FIntPoint(6, 0) : Dir == 4 ? FIntPoint(-6, 0) : Dir == 2 ? FIntPoint(0, 6) : FIntPoint(0, -6);
+					FVector2D M(Qx + (Dir == 6 ? 30 : Dir == 4 ? -30 : 0), Qy);
+					const double Reached = Dir == 6 || Dir == 4 ? FMath::Abs(Tx - Qx) : FMath::Abs(Ty - Qy);
+					for (int32 N = 0; N * 6.0 <= Reached + 6.0; ++N, M += FVector2D(Step))
+					{
+						const double Sec = 0.1 + N * 6.0 / 360.0 + 0.1; // the wait, the flight so far, a frame or so of slack
+						for (const FFlight& W : Walkers)
+						{
+							const double Away = FMath::Max(FMath::Max3(W.L - M.X, 0.0, M.X - W.R), FMath::Max3(W.T - M.Y, 0.0, M.Y - W.B));
+							if (Away <= W.Pace * Sec) { return false; }
+						}
+					}
+					return true;
+				};
 				const int32 PullGoal = Nearest([&](int32 I, const FIntPoint& C)
 				{
 					const int32 Dir = LineDir(C.X, C.Y);
-					return Dir != 0 && Open[I] >= 0.5f && OthersLate(I, C, 1.5) && LineClear(Screen, C.X, C.Y, Dir, Handle, Obstacles);
+					return Dir != 0 && Open[I] >= 0.5f && OthersLate(I, C, 1.5) && LineClear(Screen, C.X, C.Y, Dir, Handle, Obstacles)
+						&& FlightClear(C.X, C.Y, Dir);
 				}, Isolation);
 				if (PullGoal != INDEX_NONE)
 				{
@@ -1894,7 +1980,8 @@ namespace DinkProbeTest
 					if (bCharged && FMath::Abs(DkP.X - GC.X) <= 3.5 && FMath::Abs(DkP.Y - GC.Y) <= 3.5)
 					{
 						const int32 Dir = LineDir(DkP.X, DkP.Y);
-						if (Dir != 0)
+						// Checked again where he stands now, with the sprites where they are now.
+						if (Dir != 0 && LineClear(Screen, FMath::RoundToInt32(DkP.X), FMath::RoundToInt32(DkP.Y), Dir, Handle, Obstacles) && FlightClear(DkP.X, DkP.Y, Dir))
 						{
 							Face(Screen, DkP.X, DkP.Y, Dir);
 							if (G->PlayerCastMagic()) { ++P->Casts; P->HoldUntilMs = Now + 150.0; }
@@ -3538,6 +3625,14 @@ namespace DinkProbeTest
 			}
 			if (!bStarted)
 			{
+				if (!Spec.LoadSlot.IsEmpty() && !bBoundaryChecked)
+				{
+					// The load restarts the saved screen (load_game, dink.cpp:1308): on a marked world its placements and mains wait for the
+					// runtime hardness to be admitted (the story clock stands still meanwhile). Then count what came back.
+					if (C.G->IsHardnessLoading() && ++LoadWaitFrames < 600) { return false; }
+					bBoundaryChecked = true;
+					CheckBoundaryCensus(C);
+				}
 				bStarted = true;
 				// Where in the game's life the probe began: the same in PIE and in a packaged process (the parity check needs it).
 				Test->AddInfo(FString::Printf(TEXT("probe begins at story clock %.4f ms, world time %.6f s"), C.S->GetNowMs(), C.World->GetTimeSeconds()));
@@ -3572,6 +3667,12 @@ namespace DinkProbeTest
 			}
 			if (!Steps.IsValidIndex(Current))
 			{
+				// A chapter that the next one loads ends at a quiet moment: the last step's lines and walks play out first (at most 15 s).
+				if (!TraceOut && Spec.Number < LastChapter && !C.Quiet())
+				{
+					if (SettleStart < 0.0) { SettleStart = Now; }
+					if (Now - SettleStart < 15.0) { return false; }
+				}
 				return Finish(C, TEXT("every step done"));
 			}
 			FStep& Step = Steps[Current];
@@ -3611,6 +3712,29 @@ namespace DinkProbeTest
 		}
 
 	private:
+		/** The previous chapter's sprites against what its save's load brought back: a sprite a script made (a scene's actors, a
+		 * crowd) is not there after a 1997 load, so a chapter must not end with one the next chapter needs. */
+		void CheckBoundaryCensus(FCtx& C)
+		{
+			const FString File = FPaths::ProjectSavedDir() / FString::Printf(TEXT("Narrative/probe_ch%d_census.txt"), Spec.Number - 1);
+			TArray<FString> Lines;
+			if (!FFileHelper::LoadFileToStringArray(Lines, *File))
+			{
+				Test->AddWarning(FString::Printf(TEXT("no %s: what the load of chapter %d's save brought back was not counted"), *File, Spec.Number - 1));
+				return;
+			}
+			const TMap<FString, int32> After = C.SpriteCensus();
+			TArray<FString> Lost;
+			for (const FString& L : Lines)
+			{
+				FString Count, Key;
+				if (!L.Split(TEXT("\t"), &Count, &Key)) { continue; }
+				const int32 Was = FCString::Atoi(*Count), Back = After.FindRef(Key);
+				if (Back < Was) { Lost.Add(FString::Printf(TEXT("%d of %d sprites %s"), Was - Back, Was, *Key)); }
+			}
+			Test->TestTrue(FString::Printf(TEXT("chapter %d ends where a 1997 load resumes it (load_game restarts the screen, dink.cpp:1308)%s%s"),
+				Spec.Number - 1, Lost.IsEmpty() ? TEXT("") : TEXT("; lost by the load: "), *FString::Join(Lost, TEXT("; "))), Lost.IsEmpty());
+		}
 		bool Finish(FCtx& C, const FString& Why)
 		{
 			if (Spec.Number == 6 && C.P->Ch6RouteRows.Num() > 0)
@@ -3661,10 +3785,24 @@ namespace DinkProbeTest
 			if (Current >= ExpectedSteps)
 			{
 				// The next chapter starts from this save, and compares what it loads with this dump.
+				const FString InFlight = Spec.Number < LastChapter ? C.BoundaryViolations() : FString();
+				const TMap<FString, int32> Before = C.SpriteCensus();
 				UDinkSaveSubsystem* Saves = C.World->GetGameInstance()->GetSubsystem<UDinkSaveSubsystem>();
 				const bool bSaved = Saves && Saves->SaveToSlot(Spec.SaveSlot, C.Pawn, C.Fact(TEXT("player_map")));
 				Test->TestTrue(FString::Printf(TEXT("the end of chapter %d is saved to slot '%s'"), Spec.Number, *Spec.SaveSlot), bSaved);
 				FFileHelper::SaveStringToFile(C.StateDump(), *(Dir + FString::Printf(TEXT("probe_ch%d_state.txt"), Spec.Number)));
+				// So it must end where a 1997 load resumes it: a boundary that saved a scene in flight only resumed while the remaster's
+				// load restored more than the original's does. What is in flight now is named here; the sprites the load must bring back
+				// are written down for the next chapter, which counts them once its load has restarted the screen.
+				if (bSaved && Spec.Number < LastChapter)
+				{
+					Test->TestTrue(FString::Printf(TEXT("chapter %d ends where a 1997 load resumes it (load_game restarts the screen, dink.cpp:1308)%s%s"),
+						Spec.Number, InFlight.IsEmpty() ? TEXT("") : TEXT("; in flight at the save: "), *InFlight), InFlight.IsEmpty());
+					TArray<FString> Census;
+					for (const TPair<FString, int32>& B : Before) { Census.Add(FString::Printf(TEXT("%d\t%s"), B.Value, *B.Key)); }
+					Census.Sort();
+					FFileHelper::SaveStringArrayToFile(Census, *(Dir + FString::Printf(TEXT("probe_ch%d_census.txt"), Spec.Number)));
+				}
 			}
 			else
 			{
@@ -4113,42 +4251,54 @@ namespace DinkProbeTest
 			// `DuelFight` (reach boxes, healer trips between the fights).
 		}
 
-		// ---- Chapter 7: the other three goblins of the sanctuary one at a time in melee (Act B step 21), Mog (22), the Cast camp (23); the ambush (24) is the stop ----
-		void BuildChapter7()
+		/** The healer of Terris (SCR_033) between the sanctuary's fights. */
+		void AddTerrisHeal(const TCHAR* Name)
+		{
+			Add(Name,
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+					if (!C.OnScreen(33)) { C.Goto(33, 300, 250); return; }
+					if (const int32 Healer = C.Placement(33, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, { TEXT("Get healed") }, 0.5, true);
+		}
+		/** One goblin of the sanctuary (SCR_680, placement Index) in melee; bLast: its death starts Mog. */
+		void AddSanctuaryGoblin(const TCHAR* Name, int32 Index, bool bLast = false)
 		{
 			const TArray<FString> LevelUps = { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") };
-			auto Heal = [this](const TCHAR* Name)
-			{
-				Add(Name,
-					[](FCtx& C)
-					{
-						if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
-						if (!C.OnScreen(33)) { C.Goto(33, 300, 250); return; }
-						if (const int32 Healer = C.Placement(33, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
-					},
-					[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, { TEXT("Get healed") }, 0.5, true);
-			};
-			auto Goblin = [this, LevelUps](const TCHAR* Name, int32 Index, bool bLast = false)
-			{
-				Add(Name,
-					[Index, bLast](FCtx& C)
-					{
-						if (!C.OnScreen(680)) { C.Goto(680, 600, 385); return; }
-						const int32 H = C.Placement(680, Index);
-						const FDinkSprite* T = H ? C.D->FindSprite(H) : nullptr;
-						if (!T) { return; }
-						FDuelOpts O;
-						O.CastFrom = 90.0;
-						if (bLast) { O.AvoidX = 317.0; O.AvoidY = 301.0; O.AvoidR = 110.0; } // Mog appears there when this one dies (s3-mog.c:10)
-						C.DuelFight(H, O);
-					},
-					[Index](FCtx& C) { return C.OnScreen(680) && C.Placement(680, Index) == 0 && C.Idle() && !C.Busy(); }, 150.0, LevelUps, 0.001, true);
-			};
-			Goblin(TEXT("goblin S680_P14 (s3-gh, 40 hp)"), 14);
-			Heal(TEXT("the healer in Terris (1 gold per missing life)"));
-			Goblin(TEXT("goblin S680_P11 (s3-gs, 60 hp)"), 11);
-			Heal(TEXT("the healer in Terris (1 gold per missing life)"));
-			Goblin(TEXT("goblin S680_P12 (s3-gs, 60 hp): the last, its death starts Mog (s3-gs.c:71)"), 12, true);
+			Add(Name,
+				[Index, bLast](FCtx& C)
+				{
+					if (!C.OnScreen(680)) { C.Goto(680, 600, 385); return; }
+					const int32 H = C.Placement(680, Index);
+					const FDinkSprite* T = H ? C.D->FindSprite(H) : nullptr;
+					if (!T) { return; }
+					FDuelOpts O;
+					O.CastFrom = 90.0;
+					if (bLast) { O.AvoidX = 317.0; O.AvoidY = 301.0; O.AvoidR = 110.0; } // Mog appears there when this one dies (s3-mog.c:10)
+					C.DuelFight(H, O);
+				},
+				[Index](FCtx& C) { return C.OnScreen(680) && C.Placement(680, Index) == 0 && C.Idle() && !C.Busy(); }, 150.0, LevelUps, 0.001, true);
+		}
+
+		// ---- Chapter 7: two of the other three goblins of the sanctuary one at a time in melee, with the healer between (Act B step 21) ----
+		void BuildChapter7()
+		{
+			AddSanctuaryGoblin(TEXT("goblin S680_P14 (s3-gh, 40 hp)"), 14);
+			AddTerrisHeal(TEXT("the healer in Terris (1 gold per missing life)"));
+			AddSanctuaryGoblin(TEXT("goblin S680_P11 (s3-gs, 60 hp)"), 11);
+			AddTerrisHeal(TEXT("the healer in Terris (1 gold per missing life)"));
+			// Chapter 7 ends here, healed in Terris with nothing in flight: the last goblin's death starts Mog (s3-gs.c:71), his death the warp
+			// to the Cast camp (s3-camp.c) and the camp walks Dink over the screen's edge into the ambush (s3-camps.c) in one scene, so no
+			// later point before the knights is one a 1997 load resumes (load_game restarts the screen, dink.cpp:1308). Chapter 8 plays it.
+		}
+
+		// ---- Chapter 8: the last goblin (Act B step 21), Mog (22), the Cast camp (23), the ambush of the three Cast knights (24), the Mayor's scroll and the parade (25, &story 10) ----
+		void BuildChapter8()
+		{
+			// The last goblin, Mog, the Cast camp and the ambush are one scene from the goblin's death to the knights' attack (see chapter 7).
+			AddSanctuaryGoblin(TEXT("goblin S680_P12 (s3-gs, 60 hp): the last, its death starts Mog (s3-gs.c:71)"), 12, true);
 			Add(TEXT("Mog (s3-mog.c scene, en-gmog.c: 50 hp, defense 4, range 45, screenlock): the duel; his death is the warp to SCR_489 (&gobpass 5)"),
 				[](FCtx& C)
 				{
@@ -4163,7 +4313,7 @@ namespace DinkProbeTest
 				[](FCtx& C) { return C.Fact(TEXT("gobpass")) == 5 && C.OnScreen(489); }, 150.0, { TEXT("Increase Attack") }, 0.001, true);
 			Add(TEXT("the Cast camp (SCR_489, s3-camp.c: Dink frozen, scripted walk and fade_down; the move over the screen's edge to SCR_521)"), nullptr,
 				[](FCtx& C) { return C.OnScreen(521); }, 120.0);
-			Add(TEXT("the ambush begins (SCR_521, s3-camps.c: fade_up, the scripted walk, dialogue, screenlock, three knights s3-dorks, &mayor 3 -> 4): played to the first blow, then the stop below"),
+			Add(TEXT("the ambush begins (SCR_521, s3-camps.c: fade_up, the scripted walk, dialogue, screenlock, three knights s3-dorks, &mayor 3 -> 4)"),
 				nullptr,
 				[](FCtx& C)
 				{
@@ -4171,13 +4321,6 @@ namespace DinkProbeTest
 					const FDinkSprite* K = Knight ? C.D->FindSprite(Knight) : nullptr;
 					return C.OnScreen(521) && C.Fact(TEXT("mayor")) == 4 && C.D->bScreenLocked && K && K->GetProp(TEXT("hitpoints")) > 0 && C.Idle();
 				}, 120.0);
-			// The ambush fight itself is chapter 8 (BuildChapter8), the Mayor and the parade too: this chapter ends when the scene has made its first blow possible.
-			// (Before the sp_script fix of 7 Nov 2026 the knights had 100 hit points here, not the original's 40: AGENTS.md pitfall 53.)
-		}
-
-		// ---- Chapter 8: the ambush of the three Cast knights (Act B step 24), the Mayor's scroll and the parade (25, &story 10) ----
-		void BuildChapter8()
-		{
 			// The knights have the original's 40 hit points since sp_script runs main at once (pitfall 53). Their blows hit every sprite in the box, each other
 			// too: `SquadFight` never stands in a blow's box (dodging those under way, keeping out of the potential box of any that could start one) and waits
 			// where they come together to swing, so they kill each other (and a punch or fireball from a safe cell finishes what is left).
@@ -4199,6 +4342,11 @@ namespace DinkProbeTest
 					if (const int32 Mayor = C.SpriteWithScript(TEXT("s3-mayor"))) { C.StandBy(Mayor, 25); C.S->TryTalk(C.Pawn); }
 				},
 				[](FCtx& C) { return C.Fact(TEXT("story")) == 10 && C.Fact(TEXT("mayor")) == 6 && C.Idle() && !C.Busy(); }, 150.0, { TEXT("Show him the scroll with the plans") }, 4.0);
+			// Not at the parade: its crowd is made by s3-tc.c, and a load there (which restarts the screen, load_game, dink.cpp:1308)
+			// would not make it again. Chapter 9 starts in Windemere at Pete's.
+			Add(TEXT("to Blistering Pete's in Windemere (SCR_196), where chapter 9 begins"),
+				[](FCtx& C) { if (!C.OnScreen(196)) { C.Goto(196, 300, 250); } },
+				[](FCtx& C) { return C.OnScreen(196) && C.Quiet(); }, 20.0, {}, 1.0);
 		}
 
 		// ---- Chapter 9: Windemere (Act C of Docs/probe_route.md, steps 26-30): Pete's bomb, the two all-potion chests, the cracked rock ----
@@ -4274,6 +4422,12 @@ namespace DinkProbeTest
 					if (Target) { C.KiteAndPunch(Target, 30, true, 4); }
 				},
 				[](FCtx& C) { return C.Fact(TEXT("s4-duck")) == 2 && C.Fact(TEXT("story")) == 11 && C.Idle() && !C.Busy(); }, 400.0, {}, 0.001, true);
+			// Not beside the duck pen's chests: SCR_536 is still on the remaster's legacy placement path, which does not clear the script of
+			// an opened chest (update_play_changes clears it for every editor override, dink.cpp; the marked path does), so a load
+			// there would start ch3-ap's main again, which a 1997 load does not. Chapter 10 starts at the healer of Windemere anyway.
+			Add(TEXT("to the healer's house in Windemere (SCR_195), where chapter 10 begins"),
+				[](FCtx& C) { if (!C.OnScreen(195)) { C.Goto(195, 300, 250); } },
+				[](FCtx& C) { return C.OnScreen(195) && C.Quiet(); }, 20.0, {}, 1.0);
 		}
 
 		/** A permanent pickup (potion, heart) touched by standing on it, or a chest opened by a punch whose potion is then touched: Fact must rise by one. */
@@ -4419,16 +4573,22 @@ namespace DinkProbeTest
 					C.DuelFight(Target, O);
 				},
 				[](FCtx& C) { const bool bOk = C.Fact(TEXT("story")) == 12 && C.Fact(TEXT("life")) > 0 && C.Idle() && !C.Busy(); if (bOk) { C.P->Mark = -1; } return bOk; }, 150.0, { TEXT("Increase Attack"), TEXT("I saved all of you, actually.") }, 0.001, true);
+			Add(TEXT("the dragons' loot (emake.xlarge), and the level-up of the second 400 exp (level 5: Attack)"),
+				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
+				// (level 5 only when the exp is there: chapter 11's rounds may have paid less than 800, and the level-up then comes in the Darklands)
+				[](FCtx& C) { return Drops(C) == 0 && (C.Fact(TEXT("level")) >= 5 || C.Fact(TEXT("exp")) < 1600) && C.Idle() && !C.Busy(); }, 40.0, { TEXT("Increase Attack") }, 0.5);
+			// Not in Joppa's square: the family's scene and the dragons' gold are made by scripts (s5-end.c, emake), and a load there
+			// (which restarts the screen, load_game, dink.cpp:1308) makes neither again, so the loot is taken here and chapter 13
+			// starts at the castle gate.
+			Add(TEXT("to the castle gate (SCR_402), where chapter 13 begins"),
+				[](FCtx& C) { if (!C.OnScreen(402)) { C.Goto(402, 321, 300); } },
+				[](FCtx& C) { return C.OnScreen(402) && C.Quiet(); }, 20.0, {}, 1.0);
 		}
 
 		// ---- Chapter 13 (test `ChDCastle`): after the dragons: their loot, the level-up, the castle guard, the King (&story 12 -> 13 -> 14), the dungeon's potions (Act D end, Act E steps 39-41) ----
 		void BuildChapter13()
 		{
 			// The two dragons' death spots hold emake.xlarge (gold200 and the like); the second kill's 400 exp reach 1600 (100 * 4 * 4): level 5, the menu "YOU ARE NOW LEVEL 5".
-			Add(TEXT("the dragons' loot (emake.xlarge), and the level-up of the second 400 exp (level 5: Attack)"),
-				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
-				// (level 5 only when the exp is there: chapter 11's rounds may have paid less than 800, and the level-up then comes in the Darklands)
-				[](FCtx& C) { return Drops(C) == 0 && (C.Fact(TEXT("level")) >= 5 || C.Fact(TEXT("exp")) < 1600) && C.Idle() && !C.Busy(); }, 40.0, { TEXT("Increase Attack") }, 0.5);
 			Add(TEXT("the castle gate (SCR_402, s2-ca-g talk at &story 12: \"Request an audience with King Daniel\": enter() -> SCR_102)"),
 				[](FCtx& C)
 				{
@@ -4446,6 +4606,10 @@ namespace DinkProbeTest
 			AddPickup(TEXT("the defense potion of the King's hall (SCR_070 S070_P22 bpotion: defense +1)"), 70, 110, 240, TEXT("bpotion"), TEXT("defense"), 0);
 			AddPickup(TEXT("the magic chest of the castle's back rooms (SCR_069 S069_P02 ch1-mp: a punch, then the potion: magic +1)"), 69, 323, 255, TEXT("ppotion"), TEXT("magic"), 2);
 			AddPickup(TEXT("the gold-heart chest (SCR_101 S101_P02 ch1-gh: a punch, then the heart: lifemax +10)"), 101, 320, 255, TEXT("gheart"), TEXT("lifemax"), 2);
+			// Not where this chapter's last step leaves him: SCR_101 is on the legacy placement path, which does not clear the opened gold-heart chest's script (update_play_changes clears it, dink.cpp). A load restarts the screen (load_game, dink.cpp:1308).
+			Add(TEXT("to the Edge of the World (SCR_243), where chapter 14 begins"),
+				[](FCtx& C) { if (!C.OnScreen(243)) { C.Goto(243, 330, 160); } },
+				[](FCtx& C) { return C.OnScreen(243) && C.Quiet(); }, 20.0, {}, 1.0);
 		}
 
 		// ---- Chapter 14 (test `ChEEdge`): the Edge of the World and the ancients' machine to the Darklands (Act E steps 42-45) ----
@@ -4511,6 +4675,10 @@ namespace DinkProbeTest
 					C.DuelFight(Target, O);
 				},
 				[](FCtx& C) { return C.OnScreen(156) && C.SpriteWithScript(TEXT("s7-slay")) == 0 && C.SpriteWithScript(TEXT("s7-bong")) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle(); }, 150.0, { TEXT("Increase Attack") }, 0.001, true);
+			// The room's loot is made by scripts (emake) and a load does not make it again: it is taken before the chapter ends.
+			Add(TEXT("SCR_156's loot (emake: the gold, the heart and the food where the monsters fell)"),
+				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
+				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 30.0, {}, 0.5);
 		}
 
 		// ---- Chapter 16 (test `ChGSlayers`): SCR_157, the four Slayers and the gold heart (Act F step 48) ----
@@ -4534,15 +4702,16 @@ namespace DinkProbeTest
 					C.SquadFight(O);
 				},
 				[](FCtx& C) { return C.OnScreen(157) && C.SpriteWithScript(TEXT("s7-slay")) == 0 && !C.D->bScreenLocked && C.Fact(TEXT("life")) > 0 && C.Idle(); }, 200.0, { TEXT("Increase Attack") }, 0.001, true);
+			// Their gold is made by a script (emake) and a load does not make it again: it is taken before the chapter ends.
+			Add(TEXT("the slayers' loot (emake.xlarge x4) lying on SCR_157"),
+				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
+				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 40.0, {}, 0.5);
+			// (The fight of chapter 16 can walk Dink over it: then it is taken already.)
 		}
 
 		// ---- Chapter 17 (test `ChHDucks`): the slayers' loot and gold heart, SCR_190's three duck-bugs and the full heart (Act F steps 48-49) ----
 		void BuildChapter17()
 		{
-			Add(TEXT("the slayers' loot (emake.xlarge x4) lying on SCR_157"),
-				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
-				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 40.0, {}, 0.5);
-			// (The fight of chapter 16 can walk Dink over it: then it is taken already.)
 			Add(TEXT("the gold heart of the locked room (SCR_157 S157_P09 gheart: lifemax +10)"),
 				[](FCtx& C)
 				{
@@ -4596,6 +4765,10 @@ namespace DinkProbeTest
 			// The chapter ends with Seth there (his first bomb on its way). The sword cannot win (defense 25: 0.5 net a swing); chapter 19 (BuildChapter19) walks out, gets
 			// the kit (strength 26 without the sword, bow lore, eleven elixirs) and arms the bow (UDinkGameplay's bow: activate_bow, process_bow); chapter 20 talks to Milder
 			// again (his `main` sets &fighting 0 on every load of SCR_086) and fights Seth with arrows (FCtx::BowDuel).
+			// Not where this chapter's last step leaves him: Seth is made by Milder's scene (s7-mil.c, s7-boss) and a load makes him again only through that talk, as chapter 20 does. A load restarts the screen (load_game, dink.cpp:1308).
+			Add(TEXT("out of the Darklands to SCR_209, where chapter 19 begins"),
+				[](FCtx& C) { if (!C.OnScreen(209)) { C.Goto(209, 540, 340); } },
+				[](FCtx& C) { return C.OnScreen(209) && C.Quiet(); }, 20.0, {}, 1.0);
 		}
 
 		// ---- Shared by chapters 19 and 20 ----
@@ -4909,8 +5082,10 @@ namespace DinkProbeTest
 			// sp_hard 1, draw_hard_sprite), and the greybox's collision follows since pitfall 77 was fixed (UDinkGameplay::DrawHardSprite).
 			// The golem S209_P16 starts beside the barrel in the same walkable pocket (x 399-446 below y 225, then the strip at y 175-200 to the east
 			// edge): Dink waits at the strip's west end until it has followed him out (30 px/s), then hits the barrel and takes the potion.
+			// "Out" is 80 px from the barrel: at 100 the golem on the strip (y 188, 92 px above the barrel) counted as near until it was
+			// within about 56 px of Dink, its touch reach, and a chain whose golem walked a little faster touched him to death there.
 			AddHitAndPickup(TEXT("the food barrel of SCR_209 (S209_P13 bar-f1: a blow from the north makes it flat and soft) and the potion behind it (S209_P10 rpotion: strength +1)"),
-				209, 13, 416, 280, 2, TEXT("rpotion"), TEXT("strength"), LevelUps, TEXT("en-stg"), 260, 188, 100.0);
+				209, 13, 416, 280, 2, TEXT("rpotion"), TEXT("strength"), LevelUps, TEXT("en-stg"), 260, 188, 80.0);
 			AddWindemereHealer(LevelUps);
 			AddPit(TEXT("the hole of SCR_180 (S180_P01 s6-hole2: touch, a 2 s fall, &player_map 166)"), 180, 1, 265, 72, 166, LevelUps);
 			Add(TEXT("SCR_166, the room below: two slayers (en-slay: 100 hp, defense 5, strength 20, range 45): SquadFight with the sword"),
@@ -5098,6 +5273,11 @@ namespace DinkProbeTest
 						if (const int32 Mayor = C.SpriteWithScript(TEXT("s3-mayor"))) { C.StandBy(Mayor, 25); C.S->TryTalk(C.Pawn); }
 					},
 					[](FCtx& C) { return C.Fact(TEXT("mayor")) == 3 && C.Idle() && !C.Busy(); }, 60.0, { TEXT("Tell him about the planned assault") }, 3.0);
+				// Not in the bookstore: its Mayor is made by a script, and once &mayor is 3 a load there (which restarts the screen,
+				// load_game, dink.cpp:1308) would not make him again. Chapter 4 starts from Arturous's shop, where its gold ends up anyway.
+				Add(TEXT("to Arturous's shop (SCR_097), where chapter 4 begins"),
+					[](FCtx& C) { if (!C.OnScreen(97)) { C.Goto(97, 300, 230); } },
+					[](FCtx& C) { return C.OnScreen(97) && C.Quiet(); }, 20.0, {}, 1.0);
 				}
 
 		// ---- Chapter 2: Terris, Nadine, the cult, Mary (&story 7 -> 8) ----
@@ -5160,6 +5340,13 @@ namespace DinkProbeTest
 		bool bActed = false;
 		double StepStart = 0.0;
 		double LastAct = 0.0;
+		/** Game seconds when the last step was done and the chapter began waiting for a quiet moment to end on (-1: not yet). */
+		double SettleStart = -1.0;
+		/** After a load: whether the previous chapter's census has been compared, and frames waited for the screen's restart. */
+		bool bBoundaryChecked = false;
+		int32 LoadWaitFrames = 0;
+		/** The last chapter: the only one no other chapter loads. */
+		static constexpr int32 LastChapter = 20;
 		int32 Searches = 0;
 		TArray<FString> Log;
 	};
@@ -5257,7 +5444,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh3Test, "Dink.Gameplay.Probe
 bool FDinkGameplayProbeCh3Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(3, TEXT("The roads: gold heart, three chests, strength potions, the Mayor")), 11, 0);
+	return RunChapterTest(*this, MakeChapter(3, TEXT("The roads: gold heart, three chests, strength potions, the Mayor")), 12, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh5Test, "Dink.Gameplay.Probe.Ch5Bow", DINK_TEST_FLAGS)
@@ -5278,21 +5465,21 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh7Test, "Dink.Gameplay.Probe
 bool FDinkGameplayProbeCh7Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(7, TEXT("The goblin sanctuary: the other goblins and Mog, the Cast camp, the ambush")), 8, 0);
+	return RunChapterTest(*this, MakeChapter(7, TEXT("The goblin sanctuary: two more goblins, the healer between")), 4, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh8Test, "Dink.Gameplay.Probe.Ch8Knights", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh8Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(8, TEXT("The ambush: the three Cast knights, the Mayor and the parade")), 3, 0);
+	return RunChapterTest(*this, MakeChapter(8, TEXT("The last goblin, Mog, the Cast camp, the ambush: the three Cast knights, the Mayor and the parade")), 8, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh9Test, "Dink.Gameplay.Probe.Ch9Windemere", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh9Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(9, TEXT("Windemere: Pete's bomb, the two all-potion chests, the cracked rock, the 27 ducks")), 6, 0);
+	return RunChapterTest(*this, MakeChapter(9, TEXT("Windemere: Pete's bomb, the two all-potion chests, the cracked rock, the 27 ducks")), 7, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh10Test, "Dink.Gameplay.Probe.ChAJoppa", DINK_TEST_FLAGS)
@@ -5314,14 +5501,14 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh12Test, "Dink.Gameplay.Prob
 bool FDinkGameplayProbeCh12Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(12, TEXT("The two dragons of Joppa and the epilogue (&story 12)")), 3, 0);
+	return RunChapterTest(*this, MakeChapter(12, TEXT("The two dragons of Joppa, the epilogue (&story 12) and their loot")), 5, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh13Test, "Dink.Gameplay.Probe.ChDCastle", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh13Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(13, TEXT("After the dragons: their loot, the castle, the King (&story 14), the back rooms' potions")), 6, 0);
+	return RunChapterTest(*this, MakeChapter(13, TEXT("The castle, the King (&story 14), the back rooms' potions")), 6, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh14Test, "Dink.Gameplay.Probe.ChEEdge", DINK_TEST_FLAGS)
@@ -5335,28 +5522,28 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh15Test, "Dink.Gameplay.Prob
 bool FDinkGameplayProbeCh15Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(15, TEXT("The Darklands: the first room, SCR_156")), 2, 0);
+	return RunChapterTest(*this, MakeChapter(15, TEXT("The Darklands: the first room, SCR_156, and its loot")), 3, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh16Test, "Dink.Gameplay.Probe.ChGSlayers", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh16Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(16, TEXT("The Darklands: the four slayers of SCR_157")), 2, 0);
+	return RunChapterTest(*this, MakeChapter(16, TEXT("The Darklands: the four slayers of SCR_157")), 3, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh17Test, "Dink.Gameplay.Probe.ChHDucks", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh17Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(17, TEXT("The Darklands: the slayers' gold heart and the three duck-bugs of SCR_190")), 5, 0);
+	return RunChapterTest(*this, MakeChapter(17, TEXT("The Darklands: the slayers' gold heart and the three duck-bugs of SCR_190")), 4, 0);
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayProbeCh18Test, "Dink.Gameplay.Probe.ChISeth", DINK_TEST_FLAGS)
 bool FDinkGameplayProbeCh18Test::RunTest(const FString& Parameters)
 {
 	using namespace DinkProbeTest;
-	return RunChapterTest(*this, MakeChapter(18, TEXT("The Darklands: Milder and the beginning of the Seth fight")), 2, 0);
+	return RunChapterTest(*this, MakeChapter(18, TEXT("The Darklands: Milder and the beginning of the Seth fight")), 3, 0);
 }
 
 // Chapter 19 sorts after ChISeth as `ChJ...`, chapter 20 as `ChK...` (pitfall 60).

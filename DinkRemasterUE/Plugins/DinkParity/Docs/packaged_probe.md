@@ -1,6 +1,16 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
-> **Re-verified 9 Nov 2026, late night (master 9758852: PR #50 East Wilds doorway, Codex's PRs #47-#49 hero growth and camera headroom, PR #51 hero defect fixes).**
+> **Re-verified 13 Nov 2026 (master 5d12e469 + the load re-arm fix + the probe re-cut; the world regenerated with the PR #82 importer).**
+> `Scripts/build.sh`, `Scripts/import_greybox.sh --region all` and `--region stonebrook`, `Scripts/test.sh` (259/259 in 913 s),
+> `Scripts/package.sh` (543 s) and `Scripts/run_packaged_tests.sh` (twenty processes): every chapter `PARITY OK`. Every hash moved:
+> Ch1 b4ad88c02c, Ch2 bc267a0dfc, Ch3 bbd401167c, Ch4 8740518c57, Ch5 d987c043f6, Ch6 2df37e4a27, Ch7 a16d1d23b8, Ch8 764e9d330f, Ch9 dd1e2662fa, Ch10 23fd57dfdc, Ch11 46604e11ea, Ch12 0f1138097d, Ch13 526b5a6b8e, Ch14 7310981258, Ch15 02bfdc508a, Ch16 c65b521238, Ch17 be907b9a20, Ch18 ca7035d487, Ch19 77a2fa5d99, Ch20 cc16518259.
+> Why: on the 38 screens the importer now tags `DinkHardnessWorldV1`, mains start in the original's rank order (`dink.cpp:5978-6003`)
+> and `force_vision` rebuilds the screen (8490); PR #82 had also changed the bot (chapters 4 and 6) without re-baselining; and a load
+> now restarts the screen as `load_game` does (`dink.cpp:1308-1462`), so the chapter boundaries were re-cut to points it resumes and
+> the probe checks that at every save and load (`probe_route.md` 8.2). Step counts: Ch3 12, Ch7 4, Ch8 8, Ch9 7, Ch12 5, Ch15 3,
+> Ch16 3, Ch17 4, Ch18 3 (the rest as before). The alpha gate's first condition holds again.
+>
+> Before: **Re-verified 9 Nov 2026, late night (master 9758852: PR #50 East Wilds doorway, Codex's PRs #47-#49 hero growth and camera headroom, PR #51 hero defect fixes).**
 > `Scripts/build.sh`, `Scripts/test.sh` (193/193 in 719 s), `Scripts/package.sh` (239 s, first cook after the hero meshes changed) and
 > `Scripts/run_packaged_tests.sh` (twenty processes): every chapter `PARITY OK`. Only chapter 1 moved, with the booth doorway
 > (merging the two booth interiors removed a 40 m gap in the interior layout, so the SCR_579 teleport lands one frame earlier; same

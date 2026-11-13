@@ -64,7 +64,26 @@ inline TArray<FString> PersistentDifferences(const UDinkSaveGame& Saved,const UD
     TArray<FString> Errors;
     // Exact reflected values: includes all stat fields, slots/armed slots,
     // override timestamps/variants and exit times. No text rounding or ignore list.
-    for(const TCHAR* Name:{TEXT("Facts"),TEXT("PlayerStats"),TEXT("Inventory"),TEXT("Overrides"),
+    // Facts: every one but &vision. load_game's load_map sets *pvision = 0 (dink.cpp:1017, called at 1460) and the restarted
+    // screen's base script sets it again (BuildScreenBackground, 1462), so a 1997 load keeps no saved &vision: when the screen
+    // changed since Dink entered it (SCR_536 after the bombed rock: saved 1, its base script now says 2) the load shows the new one.
+    {
+        TSet<FName> Keys;Saved.Facts.GetKeys(Keys);for(const auto& P:Actual.Facts)Keys.Add(P.Key);
+        bool bSame=true;TArray<FString> Moved;
+        for(const FName& Key:Keys)
+        {
+            if(Key==FName(TEXT("vision")))continue;
+            const int32* A=Saved.Facts.Find(Key);const int32* B=Actual.Facts.Find(Key);
+            if(!A||!B||*A!=*B)
+            {
+                bSame=false;
+                Moved.Add(FString::Printf(TEXT("persistent fact %s: saved %s, after the load %s"),*Key.ToString(),
+                    A?*FString::FromInt(*A):TEXT("(none)"),B?*FString::FromInt(*B):TEXT("(none)")));
+            }
+        }
+        if(!bSame){Errors.Add(TEXT("persistent Facts differs"));Errors.Append(Moved);}
+    }
+    for(const TCHAR* Name:{TEXT("PlayerStats"),TEXT("Inventory"),TEXT("Overrides"),
         TEXT("ScreenExitTimes"),TEXT("GameTimeMs"),TEXT("CurrentScreen"),TEXT("PlayerTransform")})
     {
         const FProperty* Field=FindFProperty<FProperty>(UDinkSaveGame::StaticClass(),Name);
