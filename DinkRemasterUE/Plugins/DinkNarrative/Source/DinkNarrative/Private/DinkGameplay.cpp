@@ -15,6 +15,9 @@
 #include "Engine/World.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
+#include "Misc/App.h"
+#include "Serialization/JsonReader.h"
+#include "Serialization/JsonSerializer.h"
 
 namespace
 {
@@ -431,6 +434,7 @@ void UDinkGameplay::Init(UDinkStorySubsystem* InStory)
 	}
 	SetRandomSeed(Seed);
 	AuthoredInteraction.Load();
+	LoadPace();
 	FString AdaptError;
 	if (!Adaptation.Load(FDinkAdaptationSettings::DefaultPath(), &AdaptError))
 	{
@@ -1336,6 +1340,10 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs)
 		return;
 	}
 	NowMs = InNowMs;
+	if (!D->MovePaceScale)
+	{
+		D->MovePaceScale = [this](const FDinkSprite& S) { return PaceScale(S); };
+	}
 	SyncDinkFromActor();
 	for (TPair<int32, FDinkSprite>& Pair : D->Sprites)
 	{
@@ -1440,6 +1448,17 @@ bool UDinkGameplay::PlayerCastMagic()
 	bCastingMagic = true;
 	RunInstanceProc(MagicInstance, NAME_Use);
 	bCastingMagic = false;
+	// A spell whose `use` set no hit sequence still gets its gesture (cosmetic).
+	if (UDinkDirector* D = Director())
+	{
+		AActor* Actor = D->GetActor(1);
+		UDinkArtSubsystem* Art = Actor && Actor->GetWorld() ? Actor->GetWorld()->GetSubsystem<UDinkArtSubsystem>() : nullptr;
+		const int32 Seq = D->GetDink().GetProp(P_Seq);
+		if (Art && !(Seq > 100 && Seq < 110))
+		{
+			Art->PlayPlayerClip(Actor, TEXT("Cast"));
+		}
+	}
 	return true;
 }
 
@@ -1447,6 +1466,104 @@ bool UDinkGameplay::PlayerAttackPress()
 {
 	bAttackHeld = true;
 	return PlayerAttack();
+}
+
+namespace
+{
+	TAutoConsoleVariable<int32> CVarNpcHumanPace(TEXT("dink.Npc.HumanPace"), 1,
+		TEXT("Pace of humanoid NPCs (npc_pace.json). 0: the original speed (60 px/s per point of sp_speed, a sprint in the remaster's larger rooms); 1: a walking pace in the rendered game, the original speed in automated tests and headless runs, whose recorded timings depend on it; 2: a walking pace everywhere."));
+}
+
+void UDinkGameplay::LoadPace()
+{
+	PaceClasses.Reset();
+	PaceCmPerPixel.Reset();
+	FString Text;
+	TSharedPtr<FJsonObject> Table;
+	FString Schema;
+	const TArray<TSharedPtr<FJsonValue>>* Rows = nullptr;
+	if (FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Gameplay/npc_pace.json"))) &&
+		FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Table) && Table &&
+		Table->TryGetStringField(TEXT("schema"), Schema) && Schema == TEXT("dink-npc-pace/1") && Table->TryGetArrayField(TEXT("classes"), Rows))
+	{
+		for (const TSharedPtr<FJsonValue>& Value : *Rows)
+		{
+			const TSharedPtr<FJsonObject>* Row = nullptr;
+			if (!Value->TryGetObject(Row) || !Row)
+			{
+				continue;
+			}
+			FPaceClass C;
+			const TArray<TSharedPtr<FJsonValue>>* List = nullptr;
+			if ((*Row)->TryGetArrayField(TEXT("brains"), List))
+			{
+				for (const TSharedPtr<FJsonValue>& V : *List) { C.Brains.Add(int32(V->AsNumber())); }
+			}
+			if ((*Row)->TryGetArrayField(TEXT("scripts"), List))
+			{
+				for (const TSharedPtr<FJsonValue>& V : *List) { C.Scripts.Add(FName(*V->AsString().ToLower())); }
+			}
+			(*Row)->TryGetNumberField(TEXT("walk_cm_s"), C.WalkCm);
+			(*Row)->TryGetNumberField(TEXT("max_cm_s"), C.MaxCm);
+			if (C.WalkCm > 1.0 && C.MaxCm >= C.WalkCm && (C.Brains.Num() > 0 || C.Scripts.Num() > 0))
+			{
+				PaceClasses.Add(MoveTemp(C));
+			}
+		}
+	}
+	if (UDinkDirector* D = Director())
+	{
+		D->MovePaceScale = [this](const FDinkSprite& S) { return PaceScale(S); };
+	}
+}
+
+bool UDinkGameplay::IsHumanPaceActive() const
+{
+	const int32 Mode = CVarNpcHumanPace.GetValueOnGameThread();
+	return Mode == 2 || (Mode == 1 && !GIsAutomationTesting && FApp::CanEverRender());
+}
+
+double UDinkGameplay::PaceSpeedCm(int32 Brain, FName Script, int32 Speed) const
+{
+	const FName Lower(*Script.ToString().ToLower());
+	for (const FPaceClass& C : PaceClasses)
+	{
+		if ((!Script.IsNone() && C.Scripts.Contains(Lower)) || C.Brains.Contains(Brain))
+		{
+			return FMath::Min(C.MaxCm, C.WalkCm * FMath::Max(1, Speed));
+		}
+	}
+	return 0.0;
+}
+
+double UDinkGameplay::PaceScale(const FDinkSprite& S) const
+{
+	if (S.Handle == 1 || PaceClasses.IsEmpty() || !IsHumanPaceActive())
+	{
+		return 1.0;
+	}
+	const int32 Speed = FMath::Max(1, S.GetProp(TEXT("speed"), 1));
+	const double Wanted = PaceSpeedCm(S.GetProp(P_Brain), S.Script, Speed);
+	if (Wanted <= 0.0)
+	{
+		return 1.0;
+	}
+	// How many centimetres one pixel of this sprite's screen is in the world (constant per screen to well within a percent).
+	double* CmPerPixel = PaceCmPerPixel.Find(S.Screen);
+	if (!CmPerPixel)
+	{
+		const UDinkDirector* D = const_cast<UDinkGameplay*>(this)->Director();
+		FVector A, B;
+		const double Value = D && D->PixelToWorld(S.Screen, 300.0, 200.0, A) && D->PixelToWorld(S.Screen, 310.0, 200.0, B) ? FVector::Dist2D(A, B) / 10.0 : 0.0;
+		if (Value <= 0.0)
+		{
+			return 1.0; // the screen is not laid out (yet): ask again next time
+		}
+		CmPerPixel = &PaceCmPerPixel.Add(S.Screen, Value);
+		UE_LOG(LogDinkNarrative, Display, TEXT("DINK NPC PACE: screen %d is %.2f cm per pixel; townsfolk there move at %.0f%% of the original speed"),
+			S.Screen, Value, 100.0 * FMath::Clamp(Wanted / (60.0 * Speed * Value), 0.01, 1.0));
+	}
+	return FMath::Clamp(Wanted / (60.0 * Speed * *CmPerPixel), 0.01, 1.0);
 }
 
 void UDinkGameplay::PlayerAttackRelease()
@@ -1518,6 +1635,14 @@ void UDinkGameplay::ActivateBow(int32 InstanceId)
 		Dink.Props.Add(P_PFrame, 1);
 	}
 	Bow.bActive = true;
+	if (D)
+	{
+		AActor* Actor = D->GetActor(1);
+		if (UDinkArtSubsystem* Art = Actor && Actor->GetWorld() ? Actor->GetWorld()->GetSubsystem<UDinkArtSubsystem>() : nullptr)
+		{
+			Art->PlayPlayerClip(Actor, TEXT("Bow_Draw"), true); // cosmetic: holds the draw until the release
+		}
+	}
 	Bow.Instance = InstanceId;
 	Bow.bHitMe = false;
 	Bow.Time = 0;
@@ -1573,6 +1698,14 @@ void UDinkGameplay::ProcessBow(double TickMs)
 		Bow.bActive = false;
 		Bow.LastPower = Bow.Time;
 		Note(FString::Printf(TEXT("bow released at power %d"), Bow.LastPower));
+		if (UDinkDirector* BowDirector = Director())
+		{
+			AActor* Actor = BowDirector->GetActor(1);
+			if (UDinkArtSubsystem* Art = Actor && Actor->GetWorld() ? Actor->GetWorld()->GetSubsystem<UDinkArtSubsystem>() : nullptr)
+			{
+				Art->PlayPlayerClip(Actor, TEXT("Bow_Release")); // cosmetic
+			}
+		}
 		if (Instance->State == EDinkInstanceState::Blocked && Instance->Block == EDinkBlock::Bow)
 		{
 			Instance->State = EDinkInstanceState::Running;

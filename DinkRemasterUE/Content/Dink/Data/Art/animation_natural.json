@@ -1,0 +1,138 @@
+{
+ "schema": "dink-animation-natural/1",
+ "note": "Motion-capture locomotion of the engine template mannequin (git-ignored engine content restored by Scripts/copy_template_content.sh), played on the shared skeleton. speed_cm_s is the speed the clip was captured at (its root travel over its length; the pose itself is played in place), stride_cm the ground the whole clip covers, cycles the gait cycles it holds, phase_start_s where the left foot first passes the right: see Dink.Animation.NaturalClipSurvey. These names replace the generated clips whose names begin with drop_prefixes. posture is a light layer in degrees (chest rounded forward, head lowered, shoulders drawn forward, upper arms brought in towards the body) for a timid and a confident body. slow_cadence_power says how a body walks slower than the walk clip: 1 keeps the clip's long stride and only slows the cadence, 0 keeps the cadence and only shortens the step (by mixing in the standing pose); Mother takes shorter, quicker steps than Dink.",
+ "drop_prefixes": [
+  "Idle_",
+  "Walk_",
+  "Run_",
+  "Shuffle",
+  "Fall",
+  "Land",
+  "Jump_Start",
+  "NpcF_",
+  "NpcM_"
+ ],
+ "clips": {
+  "Idle": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+   "loop": true
+  },
+  "Walk": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+   "loop": true,
+   "speed_cm_s": 273.0,
+   "stride_cm": 409.5,
+   "cycles": 2,
+   "phase_start_s": 0.408
+  },
+  "Run": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+   "loop": true,
+   "speed_cm_s": 600.0,
+   "stride_cm": 1060.6,
+   "cycles": 3,
+   "phase_start_s": 0.35
+  },
+  "Fall": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/Jump/MM_Fall_Loop.MM_Fall_Loop",
+   "loop": true
+  },
+  "Land": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/Jump/MM_Land.MM_Land",
+   "loop": false
+  },
+  "Jump": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/Jump/MM_Jump.MM_Jump",
+   "loop": false
+  },
+  "NpcF_Idle": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+   "loop": true
+  },
+  "NpcF_Walk": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+   "loop": true,
+   "speed_cm_s": 273.0,
+   "stride_cm": 409.5,
+   "cycles": 2,
+   "phase_start_s": 0.408
+  },
+  "NpcF_Hurry": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+   "loop": true,
+   "speed_cm_s": 600.0,
+   "stride_cm": 1060.6,
+   "cycles": 3,
+   "phase_start_s": 0.35
+  },
+  "NpcM_Idle": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+   "loop": true
+  },
+  "NpcM_Walk": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+   "loop": true,
+   "speed_cm_s": 273.0,
+   "stride_cm": 409.5,
+   "cycles": 2,
+   "phase_start_s": 0.408
+  },
+  "NpcM_Run": {
+   "asset": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+   "loop": true,
+   "speed_cm_s": 600.0,
+   "stride_cm": 1060.6,
+   "cycles": 3,
+   "phase_start_s": 0.35
+  }
+ },
+ "posture": {
+  "Hero": {
+   "timid": [
+    7,
+    7,
+    7,
+    0
+   ],
+   "confident": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "NpcF": {
+   "timid": [
+    2,
+    2,
+    3,
+    12
+   ],
+   "confident": [
+    2,
+    2,
+    3,
+    12
+   ]
+  },
+  "NpcM": {
+   "timid": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "confident": [
+    0,
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "slow_cadence_power": {
+  "Hero": 0.7,
+  "NpcF": 0.45,
+  "NpcM": 0.7
+ }
+}

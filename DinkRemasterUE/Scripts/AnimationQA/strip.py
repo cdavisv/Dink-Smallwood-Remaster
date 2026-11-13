@@ -13,7 +13,7 @@ for f in files:
     im = Image.open(f).convert('RGB')
     if crop:
         im = im.crop(crop)
-    im.thumbnail((240, 400))
+    im.thumbnail((int(sys.argv[3]) if len(sys.argv) > 3 else 240, 400))
     tiles.append((im, f.parent.name[len(name):] + f.stem))
 per_row = 8
 w, h = tiles[0][0].size

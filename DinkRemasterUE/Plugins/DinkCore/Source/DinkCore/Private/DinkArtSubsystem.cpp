@@ -184,7 +184,7 @@ static void DinkApplyEnvironmentMaterials(UStaticMeshComponent* Component)
 namespace
 {
 	TAutoConsoleVariable<int32> CVarDinkBodyAnimation(TEXT("dink.BodyAnimation"), 1,
-		TEXT("1: hero and humanoid NPCs use the animation pass's native body animation; 0: template blueprint and blend space."));
+		TEXT("1: hero and humanoid NPCs use the native body animation with motion-capture locomotion; 2: the same with the generated locomotion clips of pass 1; 0: template blueprint and blend space. Read when a world starts."));
 	TAutoConsoleVariable<int32> CVarDinkArtEnabled(TEXT("dink.ArtEnabled"), 1,
 		TEXT("Apply authored Blender art at world startup (0: original greybox, 1: authored art)."));
 
@@ -600,6 +600,8 @@ void UDinkArtSubsystem::ApplyCharacters(UWorld& World)
 		A->AddInstanceComponent(Human);
 		Human->RegisterComponent();
 		Human->Configure(Mesh, Locomotion, CVarDinkBodyAnimation.GetValueOnGameThread() != 0 ? &GetAnimationLibrary() : nullptr, AnimationSetOf(Row));
+		Human->SetPosture(GetAnimationPosture(AnimationSetOf(Row), 1.f));
+		Human->SetSlowCadencePower(GetAnimationSlowCadence(AnimationSetOf(Row)));
 		UCapsuleComponent* Body = NewObject<UCapsuleComponent>(A, TEXT("AuthoredBody"));
 		Body->SetupAttachment(A->GetRootComponent());
 		Body->SetMobility(EComponentMobility::Movable);
@@ -670,6 +672,7 @@ bool UDinkArtSubsystem::ApplyPlayer(USkeletalMeshComponent& Component)
 		UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(Component.GetAnimInstance());
 		if (Body && Body->Configure(GetAnimationLibrary(), TEXT("Hero")))
 		{
+			Body->SetSlowCadencePower(GetAnimationSlowCadence(TEXT("Hero")));
 			UE_LOG(LogDink, Display, TEXT("DINK PLAYER ANIMATION OK: native body animation, %d clips"), GetAnimationLibrary().Num());
 		}
 		else
@@ -738,6 +741,8 @@ bool UDinkArtSubsystem::ApplyScriptCharacter(AActor* Actor, FName Script, float 
 	Presentation.SetLocation(Presentation.GetLocation() / LogicalScale);
 	Human->SetRelativeTransform(Presentation);
 	Human->Configure(Mesh, Locomotion, CVarDinkBodyAnimation.GetValueOnGameThread() != 0 ? &GetAnimationLibrary() : nullptr, AnimationSetOf(*Row));
+	Human->SetPosture(GetAnimationPosture(AnimationSetOf(*Row), 1.f));
+	Human->SetSlowCadencePower(GetAnimationSlowCadence(AnimationSetOf(*Row)));
 	UCapsuleComponent* Body = FindObject<UCapsuleComponent>(Actor, TEXT("ScriptHumanoidBody"));
 	if (!Body)
 	{
@@ -790,7 +795,7 @@ const TMap<FName, FDinkBodyClip>& UDinkArtSubsystem::GetAnimationLibrary()
         if (!Pair.Value->TryGetObject(Row) || !Row || !(*Row)->TryGetStringField(TEXT("asset"), Path) || !FPackageName::DoesPackageExist(FPackageName::ObjectPathToPackageName(Path))) continue;
         FDinkBodyClip Clip;
         Clip.Sequence = LoadObject<UAnimSequence>(nullptr, *Path);
-        if (!Clip.Sequence || Clip.Sequence->HasRootMotion()) continue;
+        if (!Clip.Sequence) continue;
         Clip.Duration = Clip.Sequence->GetPlayLength();
         double Number = 0;
         if ((*Row)->TryGetNumberField(TEXT("speed_cm_s"), Number)) Clip.SpeedCm = float(Number);
@@ -799,6 +804,63 @@ const TMap<FName, FDinkBodyClip>& UDinkArtSubsystem::GetAnimationLibrary()
         if ((*Row)->TryGetNumberField(TEXT("lock_s"), Number)) Clip.LockS = float(Number);
         (*Row)->TryGetBoolField(TEXT("loop"), Clip.bLoop);
         if (Clip.IsValid()) AnimationLibrary.Add(FName(*Pair.Key), Clip);
+    }
+    // Locomotion comes from the template's motion-capture clips (animation_natural.json); the
+    // generated clips of the same roles are dropped. dink.BodyAnimation 2 keeps the generated ones.
+    TSharedPtr<FJsonObject> Natural;
+    const TSharedPtr<FJsonObject>* NaturalRows = nullptr;
+    if (CVarDinkBodyAnimation.GetValueOnGameThread() == 1 &&
+        FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Art/animation_natural.json"))) &&
+        FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Natural) && Natural &&
+        Natural->TryGetStringField(TEXT("schema"), Schema) && Schema == TEXT("dink-animation-natural/1") &&
+        Natural->TryGetObjectField(TEXT("clips"), NaturalRows) && NaturalRows)
+    {
+        TMap<FName, FDinkBodyClip> Loaded;
+        for (const auto& Pair : (*NaturalRows)->Values)
+        {
+            const TSharedPtr<FJsonObject>* Row = nullptr;
+            FString Path;
+            if (!Pair.Value->TryGetObject(Row) || !Row || !(*Row)->TryGetStringField(TEXT("asset"), Path) || !FPackageName::DoesPackageExist(FPackageName::ObjectPathToPackageName(Path))) continue;
+            FDinkBodyClip Clip;
+            Clip.Sequence = LoadObject<UAnimSequence>(nullptr, *Path);
+            if (!Clip.Sequence) continue;
+            Clip.Duration = Clip.Sequence->GetPlayLength();
+            double Number = 0;
+            if ((*Row)->TryGetNumberField(TEXT("speed_cm_s"), Number)) Clip.SpeedCm = float(Number);
+            if ((*Row)->TryGetNumberField(TEXT("stride_cm"), Number)) Clip.StrideCm = float(Number);
+            if ((*Row)->TryGetNumberField(TEXT("cycles"), Number)) Clip.Cycles = FMath::Max(1.f, float(Number));
+            if ((*Row)->TryGetNumberField(TEXT("phase_start_s"), Number)) Clip.PhaseStart = FMath::Clamp(float(Number), 0.f, Clip.Duration);
+            (*Row)->TryGetBoolField(TEXT("loop"), Clip.bLoop);
+            if (Clip.IsValid()) Loaded.Add(FName(*Pair.Key), Clip);
+        }
+        // All or nothing: a half-present template would mix two kinds of motion.
+        if (Loaded.Contains(TEXT("Idle")) && Loaded.Contains(TEXT("Walk")) && Loaded.Contains(TEXT("Run")))
+        {
+            const TArray<TSharedPtr<FJsonValue>>* Prefixes = nullptr;
+            if (Natural->TryGetArrayField(TEXT("drop_prefixes"), Prefixes))
+                for (auto It = AnimationLibrary.CreateIterator(); It; ++It)
+                    for (const TSharedPtr<FJsonValue>& Prefix : *Prefixes)
+                        if (It.Key().ToString().StartsWith(Prefix->AsString())) { It.RemoveCurrent(); break; }
+            AnimationLibrary.Append(Loaded);
+            const TSharedPtr<FJsonObject>* Postures = nullptr;
+            if (Natural->TryGetObjectField(TEXT("posture"), Postures) && Postures)
+                for (const auto& Pair : (*Postures)->Values)
+                {
+                    const TSharedPtr<FJsonObject>* Row = nullptr;
+                    if (!Pair.Value->TryGetObject(Row) || !Row) continue;
+                    auto Read = [Row](const TCHAR* Key)
+                    {
+                        const TArray<TSharedPtr<FJsonValue>>* A = nullptr;
+                        return (*Row)->TryGetArrayField(Key, A) && A->Num() >= 3
+                            ? FVector4f(float((*A)[0]->AsNumber()), float((*A)[1]->AsNumber()), float((*A)[2]->AsNumber()), A->Num() > 3 ? float((*A)[3]->AsNumber()) : 0.f) : FVector4f(0, 0, 0, 0);
+                    };
+                    AnimationPostures.Add(FName(*Pair.Key), {Read(TEXT("timid")), Read(TEXT("confident"))});
+                }
+            const TSharedPtr<FJsonObject>* Cadences = nullptr;
+            if (Natural->TryGetObjectField(TEXT("slow_cadence_power"), Cadences) && Cadences)
+                for (const auto& Pair : (*Cadences)->Values) AnimationSlowCadence.Add(FName(*Pair.Key), float(Pair.Value->AsNumber()));
+            UE_LOG(LogDink, Display, TEXT("DINK ANIMATION: motion-capture locomotion (%d clips) over %d generated action clips"), Loaded.Num(), AnimationLibrary.Num() - Loaded.Num());
+        }
     }
     return AnimationLibrary;
 }
@@ -814,6 +876,27 @@ void UDinkArtSubsystem::ConfigurePlayerActions(USkeletalMeshComponent& Component
         Action->RegisterComponent();
     }
     if (!Action->Configure(&Component)) Action->DestroyComponent();
+}
+
+FVector4f UDinkArtSubsystem::GetAnimationPosture(FName Set, float Confidence)
+{
+    GetAnimationLibrary();
+    const TPair<FVector4f, FVector4f>* Row = AnimationPostures.Find(Set);
+    return Row ? FMath::Lerp(Row->Key, Row->Value, FMath::Clamp(Confidence, 0.f, 1.f)) : FVector4f(0, 0, 0, 0);
+}
+
+float UDinkArtSubsystem::GetAnimationSlowCadence(FName Set)
+{
+    GetAnimationLibrary();
+    const float* Power = AnimationSlowCadence.Find(Set);
+    return Power ? *Power : FDinkGaitBlend::SlowCadencePower;
+}
+
+bool UDinkArtSubsystem::PlayPlayerClip(AActor* Actor, FName Clip, bool bHoldLastFrame)
+{
+    if (!Actor || !CVarDinkArtEnabled.GetValueOnGameThread()) return false;
+    UDinkPlayerActionComponent* Action = Actor->FindComponentByClass<UDinkPlayerActionComponent>();
+    return Action && Action->PlayClip(Clip, bHoldLastFrame);
 }
 
 bool UDinkArtSubsystem::PlayPlayerSequence(AActor* Actor, int32 Sequence, FName Weapon)

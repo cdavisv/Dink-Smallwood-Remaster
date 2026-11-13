@@ -35,6 +35,12 @@ public:
     bool PlayPlayerSequence(AActor* Actor, int32 Sequence, FName Weapon = NAME_None);
     /** The authored clips of the animation pass (animation_pass.json); empty when not imported. */
     const TMap<FName, FDinkBodyClip>& GetAnimationLibrary();
+    /** Posture layer (chest, head, shoulders; degrees) of an animation set at a confidence. */
+    FVector4f GetAnimationPosture(FName Set, float Confidence);
+    /** How a set walks slower than its walk clip (UDinkBodyAnimInstance::SetSlowCadencePower). */
+    float GetAnimationSlowCadence(FName Set);
+    /** Cosmetic only: plays one named action clip on the player (bow draw/release, spell cast). */
+    bool PlayPlayerClip(AActor* Actor, FName Clip, bool bHoldLastFrame = false);
 	/** Present dynamically scripted actors (such as Milder) without replacing their gameplay identity. */
 	bool ApplyScriptCharacter(AActor* Actor, FName Script, float SpriteScale = 1.f);
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
@@ -58,4 +64,6 @@ private:
     void ConfigurePlayerActions(class USkeletalMeshComponent& Component);
     UPROPERTY(Transient) TMap<FName, FDinkBodyClip> AnimationLibrary;
     bool bAnimationLibraryLoaded = false;
+    TMap<FName, TPair<FVector4f, FVector4f>> AnimationPostures;
+    TMap<FName, float> AnimationSlowCadence;
 };

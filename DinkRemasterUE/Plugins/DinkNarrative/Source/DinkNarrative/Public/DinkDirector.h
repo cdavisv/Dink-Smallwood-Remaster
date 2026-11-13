@@ -67,6 +67,8 @@ struct DINKNARRATIVE_API FDinkSprite
 	int32 MoveDir = 0;
 	int32 MoveStop = 0;
 	double MoveElapsedMs = 0.0;
+	/** Human pace (UDinkGameplay::PaceScale): the share of an engine frame's movement not yet taken. */
+	double PaceCarry = 0.0;
 
 	/** sp_kill(sprite, ms): removed at this time (0 = never). */
 	double KillAtMs = 0.0;
@@ -224,6 +226,8 @@ public:
 	bool IsMoving(int32 Handle) const;
 	/** move / move_stop: walks the sprite in numpad direction Dir until x (or y for 2/8) passes Stop. */
 	void StartMove(FDinkSprite& Sprite, int32 Dir, int32 Stop, int32 NoHard = 0);
+	/** Optional scale (0..1] on a sprite's scripted move speed; set by the gameplay layer (human pace of NPCs). */
+	TFunction<double(const FDinkSprite&)> MovePaceScale;
 	/** True while a script carries Dink with a move that ignores hardness (warps must not fire then). */
 	bool IsDinkCarriedThroughHardness() const { const FDinkSprite* D = Sprites.Find(1); return D && D->bMoving && D->bMoveNoHard; }
 	/**

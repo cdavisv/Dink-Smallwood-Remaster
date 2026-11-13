@@ -19,7 +19,7 @@ struct FInputActionValue;
  * Walk-around character for the greybox: the engine's third-person template behaviour (camera
  * boom, orient to movement, Enhanced Input) with the mannequin, animation blueprint and input
  * assets copied from the engine's template content into /Game/Characters and /Game/Input
- * (Scripts/copy_template_content.sh). Runs at 6 m/s, walks at 2 m/s, with variable-height jump.
+ * (Scripts/copy_template_content.sh). Under the player's control walks at 1.7 m/s and runs at 6 m/s while the run key is held; variable-height jump.
  *
  * Carries Dink's stats (mirrored both ways with the engine-kind facts, so a script's `&gold -= 100`
  * reaches them) and inventory, so the narrative layer's add_item/count_item work in the greybox.
@@ -62,9 +62,13 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Dink|Input")
 	TSoftObjectPtr<UInputAction> MouseLookAction;
 
-	/** Running speed, cm/s (6 m/s; the layout's travel-time figures assume it). */
+	/** Running speed, cm/s (6 m/s; the layout's travel-time figures, the bot and the debug
+	 * commands assume it: it is the top speed whenever no person is steering). */
 	static constexpr float RunSpeed = 600.f;
-	static constexpr float WalkSpeed = 200.f;
+	/** Walking speed, cm/s: what the player's stick or keys give unless the run key is held. */
+	static constexpr float WalkSpeed = 170.f;
+	/** A person's last movement input counts as steering for this long, s. */
+	static constexpr float HumanSteerGraceSeconds = .25f;
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void Jump() override;
 	virtual void Landed(const FHitResult& Hit) override;
@@ -83,7 +87,15 @@ public:
 	/** 0 = scrawny, timid new-game Dink; 1 = the late-game hero (see FDinkHeroPhysicality). */
 	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
 	float GetConfidence() const { return HeroPhysicality.GetConfidence(); }
-	void SetWalking(bool bWalking);
+	/** The run key (Left Shift, left shoulder button): run while held, or walk if dink.Hero.RunByDefault is 1. */
+	void SetRunKeyHeld(bool bHeld);
+	bool IsRunKeyHeld() const { return bRunKeyHeld; }
+	/** True while movement input from the player's own controls arrived within the grace time. */
+	bool IsHumanSteering() const;
+	/** Top ground speed wanted now: WalkSpeed or RunSpeed. */
+	float DesiredTopSpeed() const;
+	/** Movement from the player's own controls (stick or keys; X right, Y forward, relative to the camera). */
+	void PlayerMoveInput(FVector2D Axis);
 	void ZoomCamera(float Steps);
 
 	/**
@@ -112,15 +124,17 @@ public:
 	static constexpr float HeadReach = 13.f, HeadLift = 5.f, ShoulderReach = 9.f, WallProbeRadius = 3.f;
 
 private:
-	void StartWalking() { SetWalking(true); }
-	void StopWalking() { SetWalking(false); }
+	void StartWalking() { SetRunKeyHeld(true); }
+	void StopWalking() { SetRunKeyHeld(false); }
+	void UpdateGait(float DeltaSeconds);
+	double LastHumanMoveSeconds = -1.e9;
 	void Zoom(const FInputActionValue& Value);
 	UPROPERTY() TObjectPtr<UInputMappingContext> ThirdPersonMapping;
 	UPROPERTY() TObjectPtr<UInputAction> WalkInputAction;
 	UPROPERTY() TObjectPtr<UInputAction> JumpInputAction;
 	UPROPERTY() TObjectPtr<UInputAction> ZoomInputAction;
 	TWeakObjectPtr<UEnhancedInputLocalPlayerSubsystem> BoundInputSubsystem;
-	bool bWalkingHeld = false;
+	bool bRunKeyHeld = false;
 	FDinkHeroPhysicality HeroPhysicality;
 	FVector PreviousBodyLocation = FVector::ZeroVector;
 	FVector AppliedBodyOffset = FVector::ZeroVector;

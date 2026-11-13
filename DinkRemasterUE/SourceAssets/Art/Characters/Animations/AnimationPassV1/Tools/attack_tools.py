@@ -118,7 +118,7 @@ def build_pose(rig, S):
         pose.basis.pop('hand_' + side, None)
         pose._w = None
         if S[k + 'a_bend']:
-            pose.rotate_local('hand_' + side, 'Z', S[k + 'a_bend'])
+            pose.rotate_local('hand_' + side, (0.0, 0.0, 1.0), S[k + 'a_bend'])
         if S[k + 'a_pron']:
             # Roll about the forearm: the hand's own X runs along it.
             b = pose.basis.get('hand_' + side, Matrix.Identity(4))

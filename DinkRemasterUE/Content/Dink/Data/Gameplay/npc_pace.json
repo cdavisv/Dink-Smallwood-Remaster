@@ -1,0 +1,8 @@
+{
+ "schema": "dink-npc-pace/1",
+ "note": "World pace of humanoid NPCs. The original moves sprites in screen pixels (sp_speed 1 = 60 px/s); the remaster lays screens out larger than their pictures (4.4 cm per pixel in Dink's house, about 10 outdoors), which turns that into 2.6 to 5.9 m/s. A sprite that matches a class moves at walk_cm_s per point of sp_speed instead, capped at max_cm_s, on every screen; it is never made faster than the original. Scripts keep their meaning: move and move_stop still end at the same pixel, only later. dink.Npc.HumanPace 0 restores the original speed; automated tests always run at the original speed unless it is 2.",
+ "classes": [
+  {"name": "milder", "scripts": ["s1-bul"], "walk_cm_s": 135, "max_cm_s": 200},
+  {"name": "townsfolk", "brains": [16], "walk_cm_s": 120, "max_cm_s": 170}
+ ]
+}

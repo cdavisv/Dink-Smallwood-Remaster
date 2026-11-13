@@ -10,32 +10,34 @@
 class UBlendSpace;
 
 /**
- * Where an NPC's body is shown relative to where the original script has it. The script moves
- * sprites in screen pixels at the original's pace, which the remaster's larger rooms turn into
- * a sprint (Mother crosses her kitchen at 2.6 m/s). The body follows the scripted position at a
- * comfortable walking pace with eased starts, stops and turns, and only hurries when it would
- * fall further behind than MaxLag. The scripted position, its timing and its collision are not
- * touched: this is presentation only. Pure maths, testable without a world.
+ * Presents a scripted NPC's movement as continuous motion. The original engine moves a sprite in
+ * whole pixels on 60 Hz frames (one pixel is 4.4 cm in Dink's house, 10 cm outdoors), so the
+ * scripted position arrives as small jumps that do not line up with rendered frames. The body is
+ * shown at a critically damped average of that position: steady scripted movement becomes steady
+ * motion, starts and stops become short ramps, and the body trails the script by speed x
+ * SmoothTime (about 20 cm at a walk). There is no catch-up logic: the body never moves faster
+ * than the script does. The scripted position, its timing and its collision are not touched.
+ * Pure maths, testable without a world.
  */
-struct DINKCORE_API FDinkVisualFollower
+struct DINKCORE_API FDinkBodySmoother
 {
-	/** Pace she walks at when nothing forces her to hurry, cm/s. */
-	float ComfortSpeed = 125.f;
-	/** Furthest the body may trail the scripted position, cm. */
-	float MaxLag = 180.f;
-	float Acceleration = 420.f, Deceleration = 380.f, TurnRateDeg = 300.f;
+	/** Averaging time, s. 0 glues the body to the scripted position. */
+	float SmoothTime = .18f;
+	float TurnRateDeg = 300.f;
+	/** A jump of the scripted position beyond this is a warp, not a walk, cm. */
+	float WarpDistance = 200.f;
 
-	void Reset(const FVector& Location, float YawDeg) { Visual = Location; Yaw = YawDeg; Speed = 0.f; bReady = true; }
-	/** Advances the body towards Target (the scripted position, moving at TargetSpeed) and returns where to show it. */
-	FVector Update(const FVector& Target, float TargetYawDeg, float TargetSpeed, float DeltaTime);
+	void Reset(const FVector& Location, float YawDeg) { Position = Location; Velocity = FVector::ZeroVector; Yaw = YawDeg; bReady = true; }
+	/** Advances towards Target (the scripted position) and returns where to show the body. */
+	FVector Update(const FVector& Target, float TargetYawDeg, float DeltaTime);
 	bool IsReady() const { return bReady; }
-	float GetSpeed() const { return Speed; }
+	float GetSpeed() const { return float(Velocity.Size2D()); }
 	float GetYaw() const { return Yaw; }
-	float GetLag(const FVector& Target) const { return float(FVector::Dist2D(Target, Visual)); }
-	const FVector& GetLocation() const { return Visual; }
+	float GetLag(const FVector& Target) const { return float(FVector::Dist2D(Target, Position)); }
+	const FVector& GetLocation() const { return Position; }
 private:
-	FVector Visual = FVector::ZeroVector;
-	float Speed = 0.f, Yaw = 0.f;
+	FVector Position = FVector::ZeroVector, Velocity = FVector::ZeroVector;
+	float Yaw = 0.f;
 	bool bReady = false;
 };
 
@@ -49,8 +51,8 @@ class DINKCORE_API UDinkHumanoidComponent : public USkeletalMeshComponent
 	GENERATED_BODY()
 public:
 	UDinkHumanoidComponent();
-	/** Library + Set select the animation pass's native body animation (stride-matched gaits and
-	 * the eased follower); without them the blend space drives the mesh as before. */
+	/** Library + Set select the native body animation (stride-matched gaits, smoothed position
+	 * and facing); without them the blend space drives the mesh as before. */
 	void Configure(USkeletalMesh* Mesh, UBlendSpace* Locomotion, const TMap<FName, FDinkBodyClip>* Library = nullptr, FName Set = NAME_None);
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	/** Speed the body is shown moving at, cm/s. */
@@ -58,11 +60,15 @@ public:
 	/** Speed of the scripted position, cm/s. */
 	float GetScriptedSpeed() const { return ScriptedSpeed; }
 	bool UsesBodyAnimation() const { return bBodyAnimation; }
-	const FDinkVisualFollower& GetFollower() const { return Follower; }
+	const FDinkBodySmoother& GetSmoother() const { return Smoother; }
+	/** Posture layer in degrees (chest, head, shoulders) shown on this body. */
+	void SetPosture(FVector4f Degrees) { Posture = Degrees; }
+	void SetSlowCadencePower(float Power);
 private:
 	FDinkMotionEstimate Motion;
 	FDinkBodyDynamics BodyDynamics;
-	FDinkVisualFollower Follower;
+	FDinkBodySmoother Smoother;
+	FVector4f Posture = FVector4f(0, 0, 0, 0);
 	FQuat AppliedBodyRotation = FQuat::Identity;
 	FQuat LastBodyRotation = FQuat::Identity;
 	FVector AppliedLag = FVector::ZeroVector, LastLocation = FVector::ZeroVector;

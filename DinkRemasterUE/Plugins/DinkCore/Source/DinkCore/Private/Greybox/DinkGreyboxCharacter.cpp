@@ -177,10 +177,46 @@ void ADinkGreyboxCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	Input->BindAction(ZoomInputAction, ETriggerEvent::Triggered, this, &ADinkGreyboxCharacter::Zoom);
 }
 
-void ADinkGreyboxCharacter::SetWalking(bool bWalking)
+namespace
 {
-	bWalkingHeld = bWalking;
-	GetCharacterMovement()->MaxWalkSpeed = bWalking ? WalkSpeed : RunSpeed;
+	TAutoConsoleVariable<int32> CVarHeroRunByDefault(TEXT("dink.Hero.RunByDefault"), 0,
+		TEXT("0: Dink walks under the player's control and runs while the run key (Left Shift, left shoulder button) is held; 1: he runs and the key walks."));
+	TAutoConsoleVariable<int32> CVarHeroGait(TEXT("dink.Hero.Gait"), 0,
+		TEXT("Review only. 0: normal; 1: every movement walks; 2: every movement runs."));
+	TAutoConsoleVariable<float> CVarHeroGaitChange(TEXT("dink.Hero.GaitChangeRate"), 900.f,
+		TEXT("How fast the player's top speed moves between walk and run when the run key changes, cm/s per second."));
+}
+
+void ADinkGreyboxCharacter::SetRunKeyHeld(bool bHeld)
+{
+	bRunKeyHeld = bHeld;
+}
+
+bool ADinkGreyboxCharacter::IsHumanSteering() const
+{
+	return GetWorld() && GetWorld()->GetTimeSeconds() - LastHumanMoveSeconds < HumanSteerGraceSeconds;
+}
+
+float ADinkGreyboxCharacter::DesiredTopSpeed() const
+{
+	const int32 Forced = CVarHeroGait.GetValueOnGameThread();
+	if (Forced == 1) return WalkSpeed;
+	if (Forced == 2) return RunSpeed;
+	// Only a person at the controls walks: the bot, scripted moves and the debug commands feed
+	// movement directly and keep the run speed their routes and timings were measured with.
+	if (!IsHumanSteering()) return RunSpeed;
+	const bool bRun = (CVarHeroRunByDefault.GetValueOnGameThread() != 0) != bRunKeyHeld;
+	return bRun ? RunSpeed : WalkSpeed;
+}
+
+void ADinkGreyboxCharacter::UpdateGait(float DeltaSeconds)
+{
+	UCharacterMovementComponent* Movement = GetCharacterMovement();
+	const float Target = DesiredTopSpeed();
+	// Without a person steering the speed is exactly what it always was; with one it eases.
+	Movement->MaxWalkSpeed = IsHumanSteering() || CVarHeroGait.GetValueOnGameThread() != 0
+		? FMath::FInterpConstantTo(Movement->MaxWalkSpeed, Target, DeltaSeconds, CVarHeroGaitChange.GetValueOnGameThread())
+		: Target;
 }
 
 void ADinkGreyboxCharacter::Jump()
@@ -201,6 +237,8 @@ void ADinkGreyboxCharacter::Landed(const FHitResult& Hit)
 void ADinkGreyboxCharacter::OnJumped_Implementation()
 {
 	Super::OnJumped_Implementation();
+	if (UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetMesh()->GetAnimInstance()))
+		Body->PlayAction(TEXT("Jump"), true, 1.f, .06f, .25f);
 }
 
 void ADinkGreyboxCharacter::UpdateConfidence(bool bSnap)
@@ -235,10 +273,11 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	{
 		// Poll held controls too: losing focus or a consumed menu key-up must never stick a gait/jump.
 		const bool Held = PC->IsInputKeyDown(EKeys::LeftShift) || PC->IsInputKeyDown(EKeys::Gamepad_LeftShoulder);
-		if (Held != bWalkingHeld) SetWalking(Held);
+		if (Held != bRunKeyHeld) SetRunKeyHeld(Held);
 		if (PC->IsMoveInputIgnored() || Stats->IsDead() ||
 			(!PC->IsInputKeyDown(EKeys::SpaceBar) && !PC->IsInputKeyDown(EKeys::Gamepad_FaceButton_Bottom))) StopJumping();
 	}
+	UpdateGait(DeltaSeconds);
 	Super::Tick(DeltaSeconds);
 	const FVector Location = GetActorLocation();
 	const bool Teleported = !bBodyLocationReady || FVector::DistSquared(Location, PreviousBodyLocation) >= FMath::Square(200.);
@@ -263,6 +302,10 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	{
 		Body->SetMotion(GetVelocity().Size2D(), !Grounded, HeroPhysicality.GetConfidence(),
 			HeroPhysicality.GetLean() * (1.f - .8f * WallLeanDamping));
+		// A light posture layer over the motion-capture clips: an unsure lad rounds his shoulders
+		// and carries his head a little low; it fades as he earns confidence.
+		if (UDinkArtSubsystem* Art = GetWorld()->GetSubsystem<UDinkArtSubsystem>())
+			Body->SetPosture(Art->GetAnimationPosture(TEXT("Hero"), HeroPhysicality.GetConfidence()) * (1.f - .8f * WallLeanDamping));
 		float Impact = 0.f;
 		if (HeroPhysicality.ConsumeLanding(Impact) && Allowed) Body->PlayAction(TEXT("Land"), false, FMath::Lerp(.45f, 1.f, Impact), .05f, .25f);
 		if (HeroPhysicality.ConsumeStumbleStart() && Allowed) Body->PlayAction(TEXT("Stumble"), false, 1.f, .08f, .25f);
@@ -365,9 +408,14 @@ float ADinkGreyboxCharacter::MeasureWallOverlap(const FTransform& MeshRelative) 
 
 void ADinkGreyboxCharacter::Move(const FInputActionValue& Value)
 {
-	const FVector2D Axis = Value.Get<FVector2D>();
+	PlayerMoveInput(Value.Get<FVector2D>());
+}
+
+void ADinkGreyboxCharacter::PlayerMoveInput(FVector2D Axis)
+{
 	if (Controller)
 	{
+		if (!Axis.IsNearlyZero() && GetWorld()) LastHumanMoveSeconds = GetWorld()->GetTimeSeconds();
 		const FRotator Yaw(0.f, Controller->GetControlRotation().Yaw, 0.f);
 		AddMovementInput(FRotationMatrix(Yaw).GetUnitAxis(EAxis::X), Axis.Y);
 		AddMovementInput(FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y), Axis.X);

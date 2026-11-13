@@ -6,44 +6,42 @@
 
 namespace
 {
-TAutoConsoleVariable<float> CVarNpcMaxLag(TEXT("dink.Npc.MaxVisualLagCm"), 180.f,
-	TEXT("Furthest an NPC body may trail its scripted position before it hurries, cm (0: no easing, the body is glued to the script)."));
-TAutoConsoleVariable<float> CVarNpcComfort(TEXT("dink.Npc.ComfortSpeedScale"), 1.f,
-	TEXT("Scale on the NPC walking pace (the authored walk clip's speed)."));
+TAutoConsoleVariable<float> CVarNpcSmoothTime(TEXT("dink.Npc.SmoothTime"), .18f,
+	TEXT("Averaging time of an NPC body's position, s: turns the script's pixel steps into continuous motion (0: the body is glued to the scripted position)."));
 TAutoConsoleVariable<float> CVarNpcTurnRate(TEXT("dink.Npc.TurnRateDeg"), 300.f,
 	TEXT("How fast an NPC body turns to a new facing, degrees per second."));
 }
 
-FVector FDinkVisualFollower::Update(const FVector& Target, float TargetYawDeg, float TargetSpeed, float DeltaTime)
+FVector FDinkBodySmoother::Update(const FVector& Target, float TargetYawDeg, float DeltaTime)
 {
-	if (!bReady || FVector::DistSquared2D(Target, Visual) > FMath::Square(FMath::Max(300.f, MaxLag * 3.f)) || MaxLag <= 0.f)
+	if (!bReady || SmoothTime <= 0.f || FVector::DistSquared2D(Target, Position) > FMath::Square(WarpDistance))
 	{
-		// First frame, a warp, or easing switched off: the body is where the script is.
+		// First frame, a warp, or smoothing switched off: the body is where the script is.
 		Reset(Target, TargetYawDeg);
-		return Visual;
+		return Position;
 	}
-	if (DeltaTime <= SMALL_NUMBER || !FMath::IsFinite(DeltaTime)) return Visual; // paused
-	FVector To = Target - Visual;
-	Visual.Z = Target.Z;
-	To.Z = 0.;
-	const float Distance = float(To.Size());
-	TargetSpeed = FMath::IsFinite(TargetSpeed) ? FMath::Max(0.f, TargetSpeed) : 0.f;
-	// Walk at her own pace; brake so that she arrives instead of stopping dead; and never let
-	// the gap grow past MaxLag: beyond it she matches the script's speed and closes the excess.
-	float Desired = Distance > .5f ? ComfortSpeed : 0.f;
-	Desired = FMath::Min(Desired, FMath::Sqrt(2.f * Deceleration * Distance));
-	// (She starts to hurry over the last 30% of the allowance, so the limit is approached, not overshot.)
-	const float Hurry = FMath::SmoothStep(MaxLag * .7f, MaxLag, Distance);
-	Desired = FMath::Max(Desired, FMath::Lerp(Desired, TargetSpeed, Hurry) + FMath::Max(0.f, Distance - MaxLag) * 3.f);
-	Speed = FMath::FInterpConstantTo(Speed, Desired, DeltaTime, Desired > Speed ? Acceleration : Deceleration);
-	const float Step = FMath::Min(Speed * DeltaTime, Distance);
-	if (Distance > KINDA_SMALL_NUMBER) Visual += To / Distance * Step;
-	if (Distance <= .5f) Speed = FMath::Min(Speed, Desired);
-	// Face where she is going while she has ground to cover, the scripted facing once there.
-	const float WantYaw = Distance > 6.f && Speed > 15.f ? float(FMath::RadiansToDegrees(FMath::Atan2(To.Y, To.X))) : TargetYawDeg;
+	if (DeltaTime <= SMALL_NUMBER || !FMath::IsFinite(DeltaTime)) return Position; // paused
+	Position.Z = Target.Z;
+	// Critically damped spring towards the scripted position, in fixed substeps so that the
+	// result does not depend on the frame rate.
+	const float Omega = 2.f / SmoothTime;
+	float Remaining = FMath::Min(DeltaTime, .25f);
+	while (Remaining > SMALL_NUMBER)
+	{
+		const float Step = FMath::Min(Remaining, 1.f / 240.f);
+		FVector To = Target - Position;
+		To.Z = 0.;
+		Velocity += (To * double(Omega * Omega) - Velocity * double(2.f * Omega)) * double(Step);
+		Velocity.Z = 0.;
+		Position += Velocity * double(Step);
+		Remaining -= Step;
+	}
+	if (FVector::DistSquared2D(Target, Position) < .0004 && Velocity.SizeSquared2D() < .01) { Position.X = Target.X; Position.Y = Target.Y; Velocity = FVector::ZeroVector; }
+	// Face along the motion while moving, the scripted facing once there.
+	const float WantYaw = Velocity.SizeSquared2D() > FMath::Square(25.) ? float(FMath::RadiansToDegrees(FMath::Atan2(Velocity.Y, Velocity.X))) : TargetYawDeg;
 	const float Turn = TurnRateDeg * DeltaTime;
 	Yaw = FRotator::NormalizeAxis(Yaw + FMath::Clamp(FMath::FindDeltaAngleDegrees(Yaw, WantYaw), -Turn, Turn));
-	return Visual;
+	return Position;
 }
 
 UDinkHumanoidComponent::UDinkHumanoidComponent()
@@ -77,14 +75,6 @@ void UDinkHumanoidComponent::Configure(USkeletalMesh* Mesh, UBlendSpace* Locomot
 		SetAnimInstanceClass(UDinkBodyAnimInstance::StaticClass());
 		UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetAnimInstance());
 		bBodyAnimation = Body && Body->Configure(*Library, Set);
-		if (bBodyAnimation)
-		{
-			// The slowest authored gait is the pace she walks at.
-			float Slowest = 0.f;
-			for (const auto& Pair : *Library)
-				if (Pair.Key.ToString().StartsWith(Set.ToString() + TEXT("_")) && Pair.Value.SpeedCm > 1.f && (Slowest <= 0.f || Pair.Value.SpeedCm < Slowest)) Slowest = Pair.Value.SpeedCm;
-			if (Slowest > 0.f) Follower.ComfortSpeed = Slowest;
-		}
 	}
 	if (!bBodyAnimation && Locomotion)
 	{
@@ -94,9 +84,7 @@ void UDinkHumanoidComponent::Configure(USkeletalMesh* Mesh, UBlendSpace* Locomot
 	}
 	Motion.Reset();
 	BodyDynamics.Reset();
-	const float Comfort = Follower.ComfortSpeed;
-	Follower = FDinkVisualFollower();
-	Follower.ComfortSpeed = Comfort;
+	Smoother = FDinkBodySmoother();
 	LocomotionSpeed = ScriptedSpeed = 0.f;
 }
 
@@ -107,14 +95,11 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	{
 		const FVector Location = Owner->GetActorLocation();
 		ScriptedSpeed = Motion.Update(Location, DeltaTime);
-		Follower.MaxLag = CVarNpcMaxLag.GetValueOnGameThread();
-		Follower.TurnRateDeg = CVarNpcTurnRate.GetValueOnGameThread();
-		const float BaseComfort = Follower.ComfortSpeed;
-		Follower.ComfortSpeed = BaseComfort * FMath::Max(.1f, CVarNpcComfort.GetValueOnGameThread());
+		Smoother.SmoothTime = CVarNpcSmoothTime.GetValueOnGameThread();
+		Smoother.TurnRateDeg = CVarNpcTurnRate.GetValueOnGameThread();
 		const float ActorYaw = float(Owner->GetActorRotation().Yaw);
-		const FVector Visual = Follower.Update(Location, ActorYaw, ScriptedSpeed, DeltaTime);
-		Follower.ComfortSpeed = BaseComfort;
-		LocomotionSpeed = Follower.GetSpeed();
+		const FVector Visual = Smoother.Update(Location, ActorYaw, DeltaTime);
+		LocomotionSpeed = Smoother.GetSpeed();
 		// The lag and the eased facing are applied on top of whatever transform art authored;
 		// if someone replaced that transform since last frame, start from theirs.
 		const FTransform Parent = GetAttachParent() ? GetAttachParent()->GetComponentTransform() : FTransform::Identity;
@@ -123,11 +108,16 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		const FQuat BaseRotation = bBodyRotationApplied && Current.Equals(LastBodyRotation, .00001f) ? AppliedBodyRotation.Inverse() * Current : Current;
 		AppliedLag = Parent.InverseTransformVector(Visual - Location);
 		LastLocation = BaseLocation + AppliedLag;
-		AppliedBodyRotation = FQuat(FVector::UpVector, FMath::DegreesToRadians(FMath::FindDeltaAngleDegrees(ActorYaw, Follower.GetYaw())));
+		AppliedBodyRotation = FQuat(FVector::UpVector, FMath::DegreesToRadians(FMath::FindDeltaAngleDegrees(ActorYaw, Smoother.GetYaw())));
 		LastBodyRotation = AppliedBodyRotation * BaseRotation;
 		SetRelativeLocationAndRotation(LastLocation, LastBodyRotation);
 		bLagApplied = bBodyRotationApplied = true;
-		if (UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetAnimInstance())) Body->SetMotion(LocomotionSpeed, false, 1.f);
+		if (UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetAnimInstance()))
+		{
+			// The clips are the mannequin's size: a smaller body covers less ground per step.
+			Body->SetMotion(LocomotionSpeed / FMath::Max(.1f, float(GetComponentScale().Z)), false, 1.f);
+			Body->SetPosture(Posture);
+		}
 	}
 	else if (Owner)
 	{
@@ -158,4 +148,9 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		}
 	}
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
+
+void UDinkHumanoidComponent::SetSlowCadencePower(float Power)
+{
+	if (UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetAnimInstance())) Body->SetSlowCadencePower(Power);
 }
