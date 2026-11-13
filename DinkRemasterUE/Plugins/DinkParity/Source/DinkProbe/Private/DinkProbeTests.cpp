@@ -1856,10 +1856,45 @@ namespace DinkProbeTest
 					if (FMath::Abs(Dx) <= 3.0 && FMath::Abs(Dy) >= 100.0 && FMath::Abs(Dy) <= 230.0) { return Dy > 0 ? 2 : 8; }
 					return 0;
 				};
+				// LineClear sees the sprites where they stand. The fireball is in the air for up to 0.75 s: item-fb.c waits 100 ms, then
+				// 6 px a frame at timing 0 (360 px/s), and missile_brain (D:14240) ends it on the first live sprite whose hardbox,
+				// inflated by its range (10), holds it. So a walker that can step into the line before the ball passes would take the
+				// ball (and its `hit` makes it hostile too: s3-gs.c). Every other live sprite that can be hit gets its walking reach then.
+				struct FFlight { double L, T, R, B, Pace; };
+				TArray<FFlight> Walkers;
+				for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
+				{
+					const FDinkSprite& O = Pair.Value;
+					int32 L, Tp, R, B;
+					if (Pair.Key == 1 || Pair.Key == Handle || !O.bActive || O.bText || O.Screen != Screen || O.GetProp(TEXT("nohit")) == 1 || O.bNoTouch
+						|| O.GetProp(TEXT("speed")) <= 0 || !G->GetHardbox(O, L, Tp, R, B))
+					{
+						continue;
+					}
+					Walkers.Add(FFlight{ L - 10.0, Tp - 10.0, R + 10.0, B + 10.0,
+						1.42 * O.GetProp(TEXT("speed"), 1) * 1000.0 / FMath::Max(O.GetProp(TEXT("timing"), 33), 17) });
+				}
+				auto FlightClear = [&](double Qx, double Qy, int32 Dir)
+				{
+					const FIntPoint Step = Dir == 6 ? FIntPoint(6, 0) : Dir == 4 ? FIntPoint(-6, 0) : Dir == 2 ? FIntPoint(0, 6) : FIntPoint(0, -6);
+					FVector2D M(Qx + (Dir == 6 ? 30 : Dir == 4 ? -30 : 0), Qy);
+					const double Reached = Dir == 6 || Dir == 4 ? FMath::Abs(Tx - Qx) : FMath::Abs(Ty - Qy);
+					for (int32 N = 0; N * 6.0 <= Reached + 6.0; ++N, M += FVector2D(Step))
+					{
+						const double Sec = 0.1 + N * 6.0 / 360.0 + 0.1; // the wait, the flight so far, a frame or so of slack
+						for (const FFlight& W : Walkers)
+						{
+							const double Away = FMath::Max(FMath::Max3(W.L - M.X, 0.0, M.X - W.R), FMath::Max3(W.T - M.Y, 0.0, M.Y - W.B));
+							if (Away <= W.Pace * Sec) { return false; }
+						}
+					}
+					return true;
+				};
 				const int32 PullGoal = Nearest([&](int32 I, const FIntPoint& C)
 				{
 					const int32 Dir = LineDir(C.X, C.Y);
-					return Dir != 0 && Open[I] >= 0.5f && OthersLate(I, C, 1.5) && LineClear(Screen, C.X, C.Y, Dir, Handle, Obstacles);
+					return Dir != 0 && Open[I] >= 0.5f && OthersLate(I, C, 1.5) && LineClear(Screen, C.X, C.Y, Dir, Handle, Obstacles)
+						&& FlightClear(C.X, C.Y, Dir);
 				}, Isolation);
 				if (PullGoal != INDEX_NONE)
 				{
@@ -1894,7 +1929,8 @@ namespace DinkProbeTest
 					if (bCharged && FMath::Abs(DkP.X - GC.X) <= 3.5 && FMath::Abs(DkP.Y - GC.Y) <= 3.5)
 					{
 						const int32 Dir = LineDir(DkP.X, DkP.Y);
-						if (Dir != 0)
+						// Checked again where he stands now, with the sprites where they are now.
+						if (Dir != 0 && LineClear(Screen, FMath::RoundToInt32(DkP.X), FMath::RoundToInt32(DkP.Y), Dir, Handle, Obstacles) && FlightClear(DkP.X, DkP.Y, Dir))
 						{
 							Face(Screen, DkP.X, DkP.Y, Dir);
 							if (G->PlayerCastMagic()) { ++P->Casts; P->HoldUntilMs = Now + 150.0; }
