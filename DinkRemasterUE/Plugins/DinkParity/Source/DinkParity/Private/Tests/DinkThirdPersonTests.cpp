@@ -74,60 +74,56 @@ bool FDinkClumsyHeroTest::RunTest(const FString&)
     TestTrue(TEXT("normal landing chance produces occasional rather than constant stumbles"),Stumbles>10 && Stumbles<50);
     TestFalse(TEXT("small steps do not cause stumbles"),A.Land(100,.4f,1));
     TestFalse(TEXT("spawn-height falls do not cause stumbles"),A.Land(300,.05f,1));
+    float Impact=-1.f;
+    TestFalse(TEXT("a spawn-height drop is not even a landing"),A.ConsumeLanding(Impact));
     TestTrue(TEXT("qualifying fall can stumble"),A.Land(300,.4f,1));
+    TestTrue(TEXT("a landing is reported once, with how hard it was"),A.ConsumeLanding(Impact) && Impact>.2f && Impact<.5f && !A.ConsumeLanding(Impact));
+    TestTrue(TEXT("the catch-step is announced once for the animation layer"),A.ConsumeStumbleStart() && !A.ConsumeStumbleStart());
     A.Update(.2f,200,true,true);
-    TestTrue(TEXT("stumble visibly pitches the torso forward"),A.GetRotation().Pitch < -4.);
-    TestTrue(TEXT("stumble includes a bounded catch-step offset"),A.GetOffset().X>1 && A.GetOffset().Size()<10);
-    const FRotator Paused=A.GetRotation(); A.Update(0,200,true,true);
-    TestTrue(TEXT("paused game time cannot advance stumble"),A.GetRotation().Equals(Paused));
+    TestTrue(TEXT("he is recovering"),A.IsStumbling());
+    A.Update(0,200,true,true);
+    TestTrue(TEXT("paused game time cannot advance the recovery"),A.IsStumbling());
     TestFalse(TEXT("bounce contacts cannot retrigger a stumble"),A.Land(300,.4f,1));
     A.Update(.8f,0,true,true); TestFalse(TEXT("Dink recovers within one second"),A.IsStumbling());
     A.Update(2,0,true,true); A.Land(300,.4f,1); A.Update(.1f,200,true,false);
     TestFalse(TEXT("cutscene freeze cancels recovery"),A.IsStumbling());
-    TestTrue(TEXT("freeze removes cosmetic offset"),A.GetOffset().IsNearlyZero());
-    double MaxWaddle=0;
-    for (int32 I=0;I<120;++I)
+    TestTrue(TEXT("freeze removes the lean"),A.GetLean().IsNearlyZero());
+    for (int32 I=0;I<240;++I)
     {
         A.Update(1.f/60.f,200,true,true);
-        MaxWaddle=FMath::Max(MaxWaddle,FMath::Abs(A.GetRotation().Roll));
-        TestTrue(TEXT("awkward gait stays bounded and finite"),!A.GetRotation().ContainsNaN() && A.GetOffset().Size()<3);
+        if (I>60) TestTrue(TEXT("a steady walk carries no procedural wobble at all: the gait is in the clips"),A.GetLean().IsNearlyZero(.02f));
     }
-    TestTrue(TEXT("walking adds a visible uneven shoulder sway"),MaxWaddle>1.);
-    A.Cancel(); TestTrue(TEXT("teleport/reset removes transient physicality"),A.GetOffset().IsNearlyZero() && A.GetRotation().IsNearlyZero());
     return true;
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkClumsierResponseTest,"Dink.Movement.ClumsyTransitions",DINK_TEST_FLAGS)
 bool FDinkClumsierResponseTest::RunTest(const FString&)
 {
-    FDinkHeroPhysicality Moving, Stopping, Left, Right;
-    double Sway = 0.;
-    for (int32 I=0; I<180; ++I)
+    FDinkHeroPhysicality Starting, Stopping, Left, Right;
+    float Forward=0.f;
+    for (int32 I=0; I<18; ++I)
     {
-        Moving.Update(1.f/60.f,200,true,true);
-        Stopping.Update(1.f/60.f,200,true,true);
-        Sway=FMath::Max(Sway,FMath::Abs(Moving.GetRotation().Roll));
+        // CharacterMovement's 2048 cm/s2: 0 to 600 in about 0.3 s.
+        Starting.Update(1.f/60.f,FMath::Min(600.f,(I+1)*34.f),true,true);
+        Forward=FMath::Max(Forward,Starting.GetLean().X);
     }
-    TestTrue(TEXT("walking has a clearly visible uneven waddle"),Sway>3.);
-    for (int32 I=0; I<6; ++I)
-    {
-        Moving.Update(1.f/60.f,200,true,true);
-        Stopping.Update(1.f/60.f,0,true,true);
-    }
-    TestTrue(TEXT("an abrupt stop adds a forward catch instead of snapping upright"),
-        Stopping.GetRotation().Pitch < FDinkHeroPhysicality::BaselinePitch-.5f);
-    TestTrue(TEXT("stopping leaves a small forward weight shift"),Stopping.GetOffset().X>.2);
-    for (int32 I=0; I<180; ++I) Stopping.Update(1.f/60.f,0,true,true);
-    TestTrue(TEXT("stop reaction settles to a timid idle without residual travel"),Stopping.GetOffset().Size()<.01);
+    TestTrue(TEXT("he leans into an acceleration, by a few degrees and no more"),Forward>1.5f && Forward<=FDinkHeroPhysicality::MaxStartLean+.5f);
+    for (int32 I=0; I<120; ++I) { Starting.Update(1.f/60.f,600,true,true); Stopping.Update(1.f/60.f,600,true,true); }
+    TestTrue(TEXT("at a steady run the lean has settled"),Starting.GetLean().IsNearlyZero(.05f));
+    float Back=0.f;
+    for (int32 I=0; I<18; ++I) { Stopping.Update(1.f/60.f,FMath::Max(0.f,600.f-(I+1)*34.f),true,true); Back=FMath::Min(Back,Stopping.GetLean().X); }
+    TestTrue(TEXT("braking rocks him back against the stop"),Back<-1.f && Back>=-FDinkHeroPhysicality::MaxStopLean*1.3f-.5f);
+    for (int32 I=0; I<120; ++I) Stopping.Update(1.f/60.f,0,true,true);
+    TestTrue(TEXT("the stop settles upright"),Stopping.GetLean().IsNearlyZero(.05f));
     for (int32 I=0; I<60; ++I)
     {
-        Left.Update(1.f/60.f,200,true,true,-300);
-        Right.Update(1.f/60.f,200,true,true,300);
+        Left.Update(1.f/60.f,600,true,true,-300);
+        Right.Update(1.f/60.f,600,true,true,300);
     }
-    TestTrue(TEXT("shoulders visibly lag the direction of a corner"),Left.GetRotation().Yaw-Right.GetRotation().Yaw>7.);
+    TestTrue(TEXT("he leans into a corner, opposite ways for opposite turns"),Left.GetLean().Y>2.f && Right.GetLean().Y<-2.f);
     Left.Land(300,.4f,1); Left.Update(.1f,200,true,true,-300);
     Left.Update(0,200,true,false);
-    TestTrue(TEXT("freeze cancels pose even if game time is paused"),Left.GetRotation().IsNearlyZero() && Left.GetOffset().IsNearlyZero());
+    TestTrue(TEXT("freeze cancels the lean even if game time is paused"),Left.GetLean().IsNearlyZero());
     FDinkHeroPhysicality Jump;
     TestTrue(TEXT("landing fixture stumbles"),Jump.Land(300,.4f,1));
     Jump.Update(.1f,200,true,true);
@@ -147,20 +143,17 @@ bool FDinkClumsyFrameRatesTest::RunTest(const FString&)
         {
             if (I%40==0) Motion.Land(300,.4f,1);
             Motion.Update(Dt,I%60<30 ? 600.f : 0.f,true,true,I%2 ? 300.f : -300.f);
-            const FRotator Pose=Motion.GetRotation();
-            TestTrue(TEXT("hitches, starts, stops, turns and catches retain a bounded finite pose"),
-                !Pose.ContainsNaN() && Pose.Pitch>=-20. && Pose.Pitch<=6. &&
-                FMath::Abs(Pose.Roll)<=9. && FMath::Abs(Pose.Yaw)<=8. &&
-                !Motion.GetOffset().ContainsNaN() && Motion.GetOffset().Size()<=12.001);
+            const FVector2f Lean=Motion.GetLean();
+            TestTrue(TEXT("hitches, starts, stops, turns and catches keep a small finite lean"),
+                FMath::IsFinite(Lean.X) && FMath::IsFinite(Lean.Y) && FMath::Abs(Lean.X)<=6.f && FMath::Abs(Lean.Y)<=6.f);
         }
         Motion.Cancel(); Motion.Update(Dt,0,true,true);
-        TestTrue(TEXT("reset discards previous speed/turn impulses"),Motion.GetOffset().IsNearlyZero(.001));
+        TestTrue(TEXT("reset discards previous speed/turn impulses"),Motion.GetLean().IsNearlyZero(.001f));
     }
     FDinkHeroPhysicality Fine, Coarse;
-    for (int32 I=0;I<240;++I) Fine.Update(1.f/120.f,200,true,true,150);
-    for (int32 I=0;I<60;++I) Coarse.Update(1.f/30.f,200,true,true,150);
-    TestTrue(TEXT("constant motion is stable across common frame rates"),
-        Fine.GetRotation().Equals(Coarse.GetRotation(),.01) && Fine.GetOffset().Equals(Coarse.GetOffset(),.01));
+    for (int32 I=0;I<240;++I) Fine.Update(1.f/120.f,600,true,true,150);
+    for (int32 I=0;I<60;++I) Coarse.Update(1.f/30.f,600,true,true,150);
+    TestTrue(TEXT("constant motion is stable across common frame rates"),Fine.GetLean().Equals(Coarse.GetLean(),.02f));
     return true;
 }
 
@@ -181,25 +174,9 @@ bool FDinkHeroGrowthTest::RunTest(const FString&)
 
     FDinkHeroPhysicality Timid, Hero;
     Hero.SetTargetConfidence(1.f,true);
-    TestTrue(TEXT("timid Dink hunches and looks down; the hero stands up"),
-        Timid.GetBaselinePitch()<-3.f && Hero.GetBaselinePitch()>0.f);
     TestTrue(TEXT("scrawny frame fills out"),Timid.GetPhysiqueScale().X<.9 && Hero.GetPhysiqueScale().Equals(FVector::OneVector));
     TestTrue(TEXT("landing stumbles become rare"),FMath::IsNearlyEqual(Hero.ScaleChance(.45f,.08f),.036f,1e-4f)
         && FMath::IsNearlyEqual(Timid.ScaleChance(.45f,.08f),.45f));
-    auto Amplitude=[](FDinkHeroPhysicality& P,float Speed)
-    {
-        double Roll=0,Yaw=0;
-        for (int32 I=0;I<240;++I)
-        {
-            P.Update(1.f/60.f,Speed,true,true);
-            if (I>60) { Roll=FMath::Max(Roll,FMath::Abs(P.GetRotation().Roll)); Yaw=FMath::Max(Yaw,FMath::Abs(P.GetRotation().Yaw)); }
-        }
-        return FVector2D(Roll,Yaw);
-    };
-    const FVector2D TimidRun=Amplitude(Timid,600), HeroRun=Amplitude(Hero,600);
-    AddInfo(FString::Printf(TEXT("run roll/yaw timid %.2f/%.2f hero %.2f/%.2f"),TimidRun.X,TimidRun.Y,HeroRun.X,HeroRun.Y));
-    TestTrue(TEXT("timid Dink runs goofy, all wobble"),TimidRun.X>5. && TimidRun.Y>3.);
-    TestTrue(TEXT("confident Dink runs with an even, coordinated stride"),HeroRun.X<TimidRun.X*.45 && HeroRun.Y<TimidRun.Y*.5);
 
     FDinkHeroPhysicality Easing;
     Easing.SetTargetConfidence(1.f);
@@ -210,64 +187,25 @@ bool FDinkHeroGrowthTest::RunTest(const FString&)
     for (int32 I=0;I<8;++I) Easing.Update(.5f,0,true,true);
     TestEqual(TEXT("confidence settles at its target"),Easing.GetConfidence(),1.f);
 
-    FDinkHeroPhysicality Flail;
-    TestTrue(TEXT("a clumsy takeoff flails"),Flail.TakeOff(1.f));
-    double AirRoll=0;
-    for (int32 I=0;I<20;++I) { Flail.Update(1.f/60.f,300,false,true); AirRoll=FMath::Max(AirRoll,FMath::Abs(Flail.GetRotation().Roll)); }
-    TestTrue(TEXT("he pinwheels in the air"),Flail.IsFlailing() && AirRoll>3.);
-    TestTrue(TEXT("a flailing hop always lands badly, even at zero chance"),Flail.Land(300,.35f,0.f));
-    TestTrue(TEXT("the bad landing is a pratfall"),Flail.IsPratfall());
-    double Lowest=0, Furthest=0;
-    for (int32 I=0;I<120 && Flail.IsStumbling();++I)
-    {
-        Flail.Update(1.f/60.f,0,true,true);
-        Lowest=FMath::Min(Lowest,Flail.GetRotation().Pitch);
-        Furthest=FMath::Max(Furthest,Flail.GetOffset().Size());
-        TestTrue(TEXT("pratfall stays finite and bounded"),!Flail.GetRotation().ContainsNaN() &&
-            Flail.GetRotation().Pitch>=-40. && Flail.GetOffset().Size()<=24.001);
-    }
-    TestTrue(TEXT("pratfall faceplants well past an ordinary stumble"),Lowest<-25.);
-    TestTrue(TEXT("pratfall has a real forward fall"),Furthest>10.);
-    TestFalse(TEXT("he gets back up within two seconds"),Flail.IsStumbling());
-    for (const bool bByJump : {true,false})
-    {
-        // Jumping (or stepping off a ledge) mid-faceplant must ease him up, never snap 30+ degrees.
-        FDinkHeroPhysicality Pop; Pop.TakeOff(1.f); Pop.Update(1.f/60.f,300,false,true);
-        Pop.Land(300,.35f,0.f);
-        for (int32 I=0;I<30;++I) Pop.Update(1.f/60.f,0,true,true);
-        TestTrue(TEXT("interrupt fixture is face-down"),Pop.IsPratfall() && Pop.GetRotation().Pitch<-25.);
-        double Prev=Pop.GetRotation().Pitch, Step=0;
-        if (bByJump) Pop.TakeOff(0.f);
-        for (int32 I=0;I<30;++I)
-        {
-            Pop.Update(1.f/60.f,300,false,true);
-            Step=FMath::Max(Step,FMath::Abs(Pop.GetRotation().Pitch-Prev)); Prev=Pop.GetRotation().Pitch;
-        }
-        AddInfo(FString::Printf(TEXT("largest per-frame pitch change leaving a pratfall (%s): %.2f"),bByJump?TEXT("jump"):TEXT("ledge"),Step));
-        TestFalse(TEXT("leaving the ground ends the pratfall"),Pop.IsStumbling());
-        TestTrue(TEXT("leaving a pratfall eases out without a one-frame pop"),Step<8.);
-        TestTrue(TEXT("the ease-out finishes quickly"),Pop.GetRotation().Pitch>-12.);
-    }
-    TestEqual(TEXT("authored slouch replaces only the timid hunch"),Timid.GetHunchPitch(),FDinkHeroPhysicality::BaselinePitch);
-    TestEqual(TEXT("a confident Dink has no hunch for a slouch to replace"),Hero.GetHunchPitch(),0.f);
-    FDinkHeroPhysicality Clean; TestFalse(TEXT("zero flail chance gives a clean takeoff"),Clean.TakeOff(0.f));
-    TestTrue(TEXT("landing a clean hop still needs its chance"),!Clean.Land(300,.35f,0.f));
-    FDinkHeroPhysicality Freeze; Freeze.TakeOff(1.f); Freeze.Update(.1f,0,false,false);
-    TestFalse(TEXT("a cutscene freeze clears the flail"),Freeze.IsFlailing());
-
     FDinkHeroPhysicality Runner, Veteran;
     Veteran.SetTargetConfidence(1.f,true);
     int32 Trips=0, VeteranTrips=0;
-    for (int32 I=0;I<3600;++I)
+    for (int32 I=0;I<7200;++I)
     {
         const bool Was=Runner.IsStumbling(), VeteranWas=Veteran.IsStumbling();
         Runner.Update(1.f/60.f,600,true,true,0,.2f); Veteran.Update(1.f/60.f,600,true,true,0,.2f);
         Trips+=!Was && Runner.IsStumbling(); VeteranTrips+=!VeteranWas && Veteran.IsStumbling();
     }
-    TestTrue(TEXT("timid Dink occasionally trips over his own feet running"),Trips>=2 && Trips<=20);
+    AddInfo(FString::Printf(TEXT("timid runner at an exaggerated test rate: %d stumbles in two minutes"),Trips));
+    TestTrue(TEXT("an untrained Dink catches a toe now and then, never in quick succession"),Trips>=2 && Trips<=10);
     TestEqual(TEXT("the hero never trips running"),VeteranTrips,0);
     FDinkHeroPhysicality Walker;
     for (int32 I=0;I<3600;++I) { Walker.Update(1.f/60.f,200,true,true,0,.2f); TestFalse(TEXT("walking never trips"),Walker.IsStumbling()); if (Walker.IsStumbling()) break; }
+    FDinkHeroPhysicality Default;
+    int32 DefaultTrips=0;
+    for (int32 I=0;I<60*600;++I) { const bool Was=Default.IsStumbling(); Default.Update(1.f/60.f,600,true,true,0,ADinkGreyboxCharacter::StaticClass()->GetDefaultObject<ADinkGreyboxCharacter>()->RunTripsPerSecond); DefaultTrips+=!Was && Default.IsStumbling(); }
+    AddInfo(FString::Printf(TEXT("default rate: %d stumbles in ten minutes of flat-out level-1 running"),DefaultTrips));
+    TestTrue(TEXT("at the shipped rate a stumble is rare"),DefaultTrips<=12);
 
     TestTrue(TEXT("earned confidence relaxes the authored slouch too"),
         FMath::IsNearlyEqual(UDinkEarlyPostureAnimInstance::TargetWeight(0,true,false,false,1.f),.15f,1e-4f));

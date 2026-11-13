@@ -183,8 +183,16 @@ static void DinkApplyEnvironmentMaterials(UStaticMeshComponent* Component)
 
 namespace
 {
+	TAutoConsoleVariable<int32> CVarDinkBodyAnimation(TEXT("dink.BodyAnimation"), 1,
+		TEXT("1: hero and humanoid NPCs use the animation pass's native body animation; 0: template blueprint and blend space."));
 	TAutoConsoleVariable<int32> CVarDinkArtEnabled(TEXT("dink.ArtEnabled"), 1,
 		TEXT("Apply authored Blender art at world startup (0: original greybox, 1: authored art)."));
+
+	FName AnimationSetOf(const TSharedPtr<FJsonObject>& Row)
+	{
+		FString Set;
+		return Row && Row->TryGetStringField(TEXT("animation_set"), Set) ? FName(*Set) : FName();
+	}
 
 	FVector VectorField(const TSharedPtr<FJsonObject>& Row, const TCHAR* Key, FVector Default = FVector::ZeroVector)
 	{
@@ -591,7 +599,7 @@ void UDinkArtSubsystem::ApplyCharacters(UWorld& World)
 		Human->SetRelativeTransform(RowTransform(Row, TEXT("offset_cm")));
 		A->AddInstanceComponent(Human);
 		Human->RegisterComponent();
-		Human->Configure(Mesh, Locomotion);
+		Human->Configure(Mesh, Locomotion, CVarDinkBodyAnimation.GetValueOnGameThread() != 0 ? &GetAnimationLibrary() : nullptr, AnimationSetOf(Row));
 		UCapsuleComponent* Body = NewObject<UCapsuleComponent>(A, TEXT("AuthoredBody"));
 		Body->SetupAttachment(A->GetRootComponent());
 		Body->SetMobility(EComponentMobility::Movable);
@@ -653,6 +661,23 @@ bool UDinkArtSubsystem::ApplyPlayer(USkeletalMeshComponent& Component)
 		}
 	}
 	Component.SetSkeletalMesh(Mesh);
+	// Animation pass: the native body instance replaces the template animation blueprint when
+	// its clips are imported and fit this skeleton; otherwise the blueprint stays.
+	if (CVarDinkBodyAnimation.GetValueOnGameThread() != 0 && !GetAnimationLibrary().IsEmpty())
+	{
+		UClass* Previous = Component.GetAnimClass();
+		Component.SetAnimInstanceClass(UDinkBodyAnimInstance::StaticClass());
+		UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(Component.GetAnimInstance());
+		if (Body && Body->Configure(GetAnimationLibrary(), TEXT("Hero")))
+		{
+			UE_LOG(LogDink, Display, TEXT("DINK PLAYER ANIMATION OK: native body animation, %d clips"), GetAnimationLibrary().Num());
+		}
+		else
+		{
+			UE_LOG(LogDink, Warning, TEXT("Player animation: hero clip set incomplete; keeping the animation blueprint"));
+			Component.SetAnimInstanceClass(Previous);
+		}
+	}
     ConfigurePlayerActions(Component);
     FString PosturePath;
     UClass* PostureClass=nullptr;
@@ -712,7 +737,7 @@ bool UDinkArtSubsystem::ApplyScriptCharacter(AActor* Actor, FName Script, float 
 	// The marker root is at world ground+60 regardless of sp_size; retain world offset.
 	Presentation.SetLocation(Presentation.GetLocation() / LogicalScale);
 	Human->SetRelativeTransform(Presentation);
-	Human->Configure(Mesh, Locomotion);
+	Human->Configure(Mesh, Locomotion, CVarDinkBodyAnimation.GetValueOnGameThread() != 0 ? &GetAnimationLibrary() : nullptr, AnimationSetOf(*Row));
 	UCapsuleComponent* Body = FindObject<UCapsuleComponent>(Actor, TEXT("ScriptHumanoidBody"));
 	if (!Body)
 	{
@@ -746,41 +771,41 @@ bool UDinkArtSubsystem::ApplyScriptCharacter(AActor* Actor, FName Script, float 
 }
 
 
-void UDinkArtSubsystem::ConfigurePlayerActions(USkeletalMeshComponent& Component)
+const TMap<FName, FDinkBodyClip>& UDinkArtSubsystem::GetAnimationLibrary()
 {
+    if (bAnimationLibraryLoaded) return AnimationLibrary;
+    bAnimationLibraryLoaded = true;
     FString Text;
     TSharedPtr<FJsonObject> Manifest;
-    if (!FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Art/hero_actions.json"))) ||
-        !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Manifest) || !Manifest) return;
+    if (!FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Art/animation_pass.json"))) ||
+        !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Manifest) || !Manifest) return AnimationLibrary;
     FString Schema;
-    const TArray<TSharedPtr<FJsonValue>>* Rows = nullptr;
-    if (!Manifest->TryGetStringField(TEXT("schema"), Schema) || Schema != TEXT("dink-hero-actions/1") ||
-        !Manifest->TryGetArrayField(TEXT("actions"), Rows)) return;
-    TMap<int32, UAnimSequence*> Approved;
-    for (const auto& Value : *Rows)
+    const TSharedPtr<FJsonObject>* Rows = nullptr;
+    if (!Manifest->TryGetStringField(TEXT("schema"), Schema) || Schema != TEXT("dink-animation-pass/1") ||
+        !Manifest->TryGetObjectField(TEXT("clips"), Rows) || !Rows) return AnimationLibrary;
+    for (const auto& Pair : (*Rows)->Values)
     {
-        const auto Row = Value->AsObject();
-        FString Path; bool Loop = true; double Duration = 0, Impact = 0;
-        const TArray<TSharedPtr<FJsonValue>>* Sequences = nullptr;
-        if (!Row || !Row->TryGetStringField(TEXT("animation"), Path) || !Row->TryGetBoolField(TEXT("loop"), Loop) || Loop ||
-            !Row->TryGetNumberField(TEXT("duration_s"), Duration) || !Row->TryGetNumberField(TEXT("impact_s"), Impact) ||
-            !FMath::IsFinite(Duration) || !FMath::IsFinite(Impact) || !FMath::IsNearlyEqual(Duration, .4, .0001) ||
-            !FMath::IsNearlyEqual(Impact, .175, .0001) ||
-            Path != TEXT("/Game/Dink/Hero/Animations/AN_Dink_Fist.AN_Dink_Fist") ||
-            !Row->TryGetArrayField(TEXT("sequences"), Sequences)) return;
-        UAnimSequence* Clip = LoadObject<UAnimSequence>(nullptr, *Path);
-        if (!Clip || !FMath::IsNearlyEqual(Clip->GetPlayLength(), Duration, .001)) return;
-        for (const auto& Sequence : *Sequences)
-        {
-            double IdValue = 0;
-            if (!Sequence->TryGetNumber(IdValue) || !FMath::IsFinite(IdValue) ||
-                (IdValue != 102 && IdValue != 104 && IdValue != 106 && IdValue != 108)) return;
-            const int32 Id = int32(IdValue);
-            if (Approved.Contains(Id)) return;
-            Approved.Add(Id, Clip);
-        }
+        const TSharedPtr<FJsonObject>* Row = nullptr;
+        FString Path;
+        if (!Pair.Value->TryGetObject(Row) || !Row || !(*Row)->TryGetStringField(TEXT("asset"), Path) || !FPackageName::DoesPackageExist(FPackageName::ObjectPathToPackageName(Path))) continue;
+        FDinkBodyClip Clip;
+        Clip.Sequence = LoadObject<UAnimSequence>(nullptr, *Path);
+        if (!Clip.Sequence || Clip.Sequence->HasRootMotion()) continue;
+        Clip.Duration = Clip.Sequence->GetPlayLength();
+        double Number = 0;
+        if ((*Row)->TryGetNumberField(TEXT("speed_cm_s"), Number)) Clip.SpeedCm = float(Number);
+        if ((*Row)->TryGetNumberField(TEXT("stride_cm"), Number)) Clip.StrideCm = float(Number);
+        if ((*Row)->TryGetNumberField(TEXT("hit_s"), Number)) Clip.HitS = float(Number);
+        if ((*Row)->TryGetNumberField(TEXT("lock_s"), Number)) Clip.LockS = float(Number);
+        (*Row)->TryGetBoolField(TEXT("loop"), Clip.bLoop);
+        if (Clip.IsValid()) AnimationLibrary.Add(FName(*Pair.Key), Clip);
     }
-    if (Approved.Num() != 4 || !Component.GetOwner()) return;
+    return AnimationLibrary;
+}
+
+void UDinkArtSubsystem::ConfigurePlayerActions(USkeletalMeshComponent& Component)
+{
+    if (!Component.GetOwner()) return;
     UDinkPlayerActionComponent* Action = Component.GetOwner()->FindComponentByClass<UDinkPlayerActionComponent>();
     if (!Action)
     {
@@ -788,14 +813,14 @@ void UDinkArtSubsystem::ConfigurePlayerActions(USkeletalMeshComponent& Component
         Component.GetOwner()->AddInstanceComponent(Action);
         Action->RegisterComponent();
     }
-    if (!Action->Configure(&Component, Approved)) Action->DestroyComponent();
+    if (!Action->Configure(&Component)) Action->DestroyComponent();
 }
 
-bool UDinkArtSubsystem::PlayPlayerSequence(AActor* Actor, int32 Sequence)
+bool UDinkArtSubsystem::PlayPlayerSequence(AActor* Actor, int32 Sequence, FName Weapon)
 {
     if (!Actor || !CVarDinkArtEnabled.GetValueOnGameThread()) return false;
     UDinkPlayerActionComponent* Action = Actor->FindComponentByClass<UDinkPlayerActionComponent>();
-    return Action && Action->PlaySequence(Sequence);
+    return Action && Action->PlaySequence(Sequence, Weapon);
 }
 
 void UDinkArtSubsystem::LoadExteriorCameraRules()

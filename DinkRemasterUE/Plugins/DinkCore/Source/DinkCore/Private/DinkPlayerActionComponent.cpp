@@ -1,28 +1,27 @@
 #include "DinkPlayerActionComponent.h"
+#include "DinkBodyAnimInstance.h"
 #include "DinkCoreModule.h"
-#include "DinkSaveGame.h"
-#include "DinkSaveSubsystem.h"
-#include "Animation/AnimInstance.h"
-#include "Animation/AnimSequence.h"
-#include "Animation/AnimSingleNodeInstance.h"
 #include "Components/SkeletalMeshComponent.h"
-#include "Dom/JsonObject.h"
-#include "Engine/GameInstance.h"
-#include "Engine/SkeletalMesh.h"
 #include "Engine/World.h"
-#include "Serialization/JsonReader.h"
-#include "Serialization/JsonSerializer.h"
+#include "HAL/IConsoleManager.h"
 
 namespace
 {
-const FName PlayerActionSaveKey(TEXT("player_action"));
+TAutoConsoleVariable<float> CVarComboWindow(TEXT("dink.Attack.ComboWindowMs"), 950.f,
+    TEXT("An attack that starts within this many ms of the previous attack's start continues the combo (cosmetic)."));
+TAutoConsoleVariable<float> CVarAttackBlendIn(TEXT("dink.Attack.BlendInMs"), 70.f,
+    TEXT("Blend from the current pose into an attack clip, ms (cosmetic)."));
+TAutoConsoleVariable<float> CVarAttackBlendOut(TEXT("dink.Attack.BlendOutMs"), 220.f,
+    TEXT("Blend from the end of an attack clip back into locomotion, ms (cosmetic)."));
 }
 
-UDinkPlayerActionComponent::UDinkPlayerActionComponent()
+int32 FDinkAttackCombo::Advance(double Now, FName Family)
 {
-    PrimaryComponentTick.bCanEverTick = true;
-    PrimaryComponentTick.bStartWithTickEnabled = false;
-    PrimaryComponentTick.bTickEvenWhenPaused = false;
+    const bool bContinues = Step >= 0 && Family == LastFamily && Now >= LastStart && Now - LastStart <= WindowSeconds;
+    Step = bContinues ? (Step + 1) % Steps : 0;
+    LastStart = Now;
+    LastFamily = Family;
+    return Step;
 }
 
 bool UDinkPlayerActionComponent::IsReviewedSequence(int32 Sequence)
@@ -30,154 +29,73 @@ bool UDinkPlayerActionComponent::IsReviewedSequence(int32 Sequence)
     return Sequence == 102 || Sequence == 104 || Sequence == 106 || Sequence == 108;
 }
 
-bool UDinkPlayerActionComponent::Configure(USkeletalMeshComponent* Mesh, const TMap<int32, UAnimSequence*>& ApprovedActions)
+FName UDinkPlayerActionComponent::FamilyFor(FName Weapon)
 {
-    if (!Mesh || !Mesh->GetSkeletalMeshAsset() || ApprovedActions.IsEmpty()) return false;
-    for (const auto& Pair : ApprovedActions)
-        if (!IsReviewedSequence(Pair.Key) || !Pair.Value || Pair.Value->GetSkeleton() != Mesh->GetSkeletalMeshAsset()->GetSkeleton() ||
-            Pair.Value->HasRootMotion() || Pair.Value->GetPlayLength() <= 0) return false;
+    const FString Name = Weapon.ToString().ToLower();
+    if (Name.StartsWith(TEXT("item-sw"))) return TEXT("Sword");
+    if (Name.StartsWith(TEXT("item-fst")) || Weapon.IsNone()) return TEXT("Fist");
+    return NAME_None; // bow, magic, thrown items: no authored clip yet, so nothing plays
+}
+
+FName UDinkPlayerActionComponent::ClipFor(FName Weapon, int32 Step)
+{
+    static const FName Fist[] = {TEXT("Fist_Jab"), TEXT("Fist_Cross"), TEXT("Fist_Swing")};
+    static const FName Sword[] = {TEXT("Sword_Slash_1"), TEXT("Sword_Slash_2"), TEXT("Sword_Chop")};
+    const FName Family = FamilyFor(Weapon);
+    Step = FMath::Clamp(Step, 0, FDinkAttackCombo::Steps - 1);
+    if (Family == TEXT("Fist")) return Fist[Step];
+    if (Family == TEXT("Sword")) return Sword[Step];
+    return NAME_None;
+}
+
+bool UDinkPlayerActionComponent::Configure(USkeletalMeshComponent* Mesh)
+{
     Cancel();
-    if (Target && Target != Mesh) Target->RemoveTickPrerequisiteComponent(this);
+    const UDinkBodyAnimInstance* Body = Mesh ? Cast<UDinkBodyAnimInstance>(Mesh->GetAnimInstance()) : nullptr;
+    if (!Body || !Body->IsConfigured() || !Body->HasClip(TEXT("Fist_Jab"))) { Target = nullptr; return false; }
     Target = Mesh;
-    Actions.Reset();
-    for (const auto& Pair : ApprovedActions) Actions.Add(Pair.Key, Pair.Value);
-    Target->AddTickPrerequisiteComponent(this);
-    BindSave();
+    Combo.Reset();
     return true;
 }
 
-void UDinkPlayerActionComponent::BindSave()
+bool UDinkPlayerActionComponent::PlaySequence(int32 Sequence, FName Weapon)
 {
-    if (Saves.IsValid() || !GetWorld() || !GetWorld()->GetGameInstance()) return;
-    UDinkSaveSubsystem* Subsystem = GetWorld()->GetGameInstance()->GetSubsystem<UDinkSaveSubsystem>();
-    if (!Subsystem) return;
-    Saves = Subsystem;
-    CaptureHandle = Subsystem->OnSnapshotCaptured.AddUObject(this, &UDinkPlayerActionComponent::CaptureSave);
-    RestoreHandle = Subsystem->OnSnapshotApplied.AddUObject(this, &UDinkPlayerActionComponent::RestoreSave);
-}
-
-bool UDinkPlayerActionComponent::PlaySequence(int32 Sequence)
-{
-    UAnimSequence* Clip = Actions.FindRef(Sequence);
-    if (!Target || !Clip)
-    {
-        Cancel();
+    UDinkBodyAnimInstance* Body = Target ? Cast<UDinkBodyAnimInstance>(Target->GetAnimInstance()) : nullptr;
+    if (!Body || !IsReviewedSequence(Sequence) || !GetWorld()) return false;
+    const FName Family = FamilyFor(Weapon);
+    if (Family.IsNone()) return false;
+    Combo.WindowSeconds = CVarComboWindow.GetValueOnGameThread() / 1000.f;
+    const int32 Before = Combo.GetStep();
+    int32 Step = Combo.Advance(GetWorld()->GetTimeSeconds(), Family);
+    FName Clip = ClipFor(Weapon, Step);
+    // A weapon whose later combo clips are not imported repeats what it has; a sword without
+    // any sword clip falls back to the punches rather than standing still.
+    if (!Body->HasClip(Clip)) Clip = ClipFor(Weapon, 0);
+    if (!Body->HasClip(Clip)) Clip = ClipFor(NAME_None, Step);
+    if (!Body->PlayAction(Clip, false, 1.f, CVarAttackBlendIn.GetValueOnGameThread() / 1000.f, CVarAttackBlendOut.GetValueOnGameThread() / 1000.f))
         return false;
-    }
-    if (IsActionActive() && (!Target->GetSingleNodeInstance() || Target->GetSingleNodeInstance()->GetAnimationAsset() != ActiveClip))
-        ResetAction(false);
-    if (!IsActionActive())
-    {
-        if (Target->GetAnimationMode() != EAnimationMode::AnimationBlueprint || !Target->GetAnimClass()) return false;
-        OriginalAnimClass = Target->GetAnimClass();
-    }
-    PlayedMesh = Target->GetSkeletalMeshAsset();
     ActiveClip = Clip;
     ActiveSequence = Sequence;
-    ElapsedSeconds = 0;
-    PreviousLocation = GetOwner()->GetActorLocation();
-    Target->PlayAnimation(Clip, false);
-    if (UAnimSingleNodeInstance* Node = Target->GetSingleNodeInstance())
-    {
-        // One game-time clock owns progress. Never emit animation notifies or double-advance.
-        Node->SetPlaying(false);
-        Node->SetPosition(0, false);
-    }
-    SetComponentTickEnabled(true);
-    UE_LOG(LogDink, Display, TEXT("Player cosmetic action seq=%d clip=%s"), Sequence, *Clip->GetPathName());
+    UE_LOG(LogDink, Verbose, TEXT("Player cosmetic action seq=%d clip=%s combo %d -> %d"), Sequence, *Clip.ToString(), Before, Step);
     return true;
-}
-
-void UDinkPlayerActionComponent::ResetAction(bool RestoreAnimation)
-{
-    const bool WasActive = IsActionActive();
-    const bool OwnsAnimation = WasActive && Target && Target->GetSingleNodeInstance() &&
-        Target->GetSingleNodeInstance()->GetAnimationAsset() == ActiveClip;
-    ActiveSequence = 0;
-    ElapsedSeconds = 0;
-    ActiveClip = nullptr;
-    PlayedMesh = nullptr;
-    SetComponentTickEnabled(false);
-    if (OwnsAnimation && RestoreAnimation && Target && OriginalAnimClass)
-        Target->SetAnimInstanceClass(OriginalAnimClass);
-    OriginalAnimClass = nullptr;
 }
 
 void UDinkPlayerActionComponent::Cancel()
 {
-    ResetAction(true);
+    if (UDinkBodyAnimInstance* Body = Target ? Cast<UDinkBodyAnimInstance>(Target->GetAnimInstance()) : nullptr)
+        if (Body->GetActionName() == ActiveClip && !ActiveClip.IsNone()) Body->StopActions();
+    ActiveClip = NAME_None;
+    ActiveSequence = 0;
 }
 
-void UDinkPlayerActionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* TickFunction)
+bool UDinkPlayerActionComponent::IsActionActive() const
 {
-    Super::TickComponent(DeltaTime, TickType, TickFunction);
-    if (!IsActionActive() || !Target || !ActiveClip) return;
-    UAnimSingleNodeInstance* Node = Target->GetSingleNodeInstance();
-    if (Target->GetAnimationMode() != EAnimationMode::AnimationSingleNode || !Node || Node->GetAnimationAsset() != ActiveClip)
-    {
-        ResetAction(false); // An external replacement owns the new animation; leave it intact.
-        return;
-    }
-    if (Target->GetSkeletalMeshAsset() != PlayedMesh)
-    {
-        const bool Compatible = Target->GetSkeletalMeshAsset() && PlayedMesh &&
-            Target->GetSkeletalMeshAsset()->GetSkeleton() == PlayedMesh->GetSkeleton();
-        ResetAction(Compatible);
-        return;
-    }
-    const FVector Location = GetOwner()->GetActorLocation();
-    if (FVector::DistSquared(Location, PreviousLocation) > FMath::Square(200.)) { Cancel(); return; }
-    PreviousLocation = Location;
-    ElapsedSeconds += FMath::Max(0.f, DeltaTime);
-    if (ElapsedSeconds >= ActiveClip->GetPlayLength()) { Cancel(); return; }
-    Node->SetPosition(float(ElapsedSeconds), false);
+    const UDinkBodyAnimInstance* Body = Target ? Cast<UDinkBodyAnimInstance>(Target->GetAnimInstance()) : nullptr;
+    return Body && !ActiveClip.IsNone() && Body->IsActionActive() && Body->GetActionName() == ActiveClip;
 }
 
-void UDinkPlayerActionComponent::CaptureSave(UDinkSaveGame* Save)
+double UDinkPlayerActionComponent::GetElapsedSeconds() const
 {
-    if (!Save) return;
-    Save->SubsystemState.Remove(PlayerActionSaveKey);
-    if (!IsActionActive() || !ActiveClip || !Target || !Target->GetSingleNodeInstance() ||
-        Target->GetSingleNodeInstance()->GetAnimationAsset() != ActiveClip) return;
-    const TSharedRef<FJsonObject> State = MakeShared<FJsonObject>();
-    State->SetStringField(TEXT("schema"), TEXT("dink-player-action/1"));
-    State->SetNumberField(TEXT("sequence"), ActiveSequence);
-    State->SetNumberField(TEXT("elapsed_s"), ElapsedSeconds);
-    State->SetStringField(TEXT("animation"), ActiveClip->GetPathName());
-    FString Json;
-    FJsonSerializer::Serialize(State, TJsonWriterFactory<>::Create(&Json));
-    Save->SubsystemState.Add(PlayerActionSaveKey, Json);
-}
-
-void UDinkPlayerActionComponent::RestoreSave(const UDinkSaveGame* Save)
-{
-    Cancel(); // Old/idle saves also cancel any action from the discarded scene.
-    const FString* Json = Save ? Save->SubsystemState.Find(PlayerActionSaveKey) : nullptr;
-    if (!Json) return;
-    TSharedPtr<FJsonObject> State;
-    if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(*Json), State) || !State) return;
-    FString Schema, Path;
-    double Sequence = 0, Elapsed = 0;
-    if (!State->TryGetStringField(TEXT("schema"), Schema) || Schema != TEXT("dink-player-action/1") ||
-        !State->TryGetStringField(TEXT("animation"), Path) || !State->TryGetNumberField(TEXT("sequence"), Sequence) ||
-        !State->TryGetNumberField(TEXT("elapsed_s"), Elapsed) || !FMath::IsFinite(Elapsed) || Elapsed < 0 ||
-        !FMath::IsFinite(Sequence) || Sequence < 0 || Sequence > MAX_int32 || Sequence != FMath::FloorToDouble(Sequence)) return;
-    UAnimSequence* Clip = Actions.FindRef(int32(Sequence));
-    if (!Clip || Clip->GetPathName() != Path || Elapsed >= Clip->GetPlayLength() || !PlaySequence(int32(Sequence))) return;
-    ElapsedSeconds = Elapsed;
-    PreviousLocation = GetOwner()->GetActorLocation();
-    if (UAnimSingleNodeInstance* Node = Target->GetSingleNodeInstance()) Node->SetPosition(float(Elapsed), false);
-}
-
-void UDinkPlayerActionComponent::OnUnregister()
-{
-    Cancel();
-    if (Target) Target->RemoveTickPrerequisiteComponent(this);
-    if (UDinkSaveSubsystem* Subsystem = Saves.Get())
-    {
-        Subsystem->OnSnapshotCaptured.Remove(CaptureHandle);
-        Subsystem->OnSnapshotApplied.Remove(RestoreHandle);
-    }
-    Saves.Reset();
-    Super::OnUnregister();
+    const UDinkBodyAnimInstance* Body = Target ? Cast<UDinkBodyAnimInstance>(Target->GetAnimInstance()) : nullptr;
+    return IsActionActive() ? Body->GetActionTime() : 0.;
 }

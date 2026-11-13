@@ -55,6 +55,7 @@
       "origin": "S001_P26",
       "mesh": "/Game/Dink/NPC/Mother/SK_Mother.SK_Mother",
       "locomotion": "/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run",
+   "animation_set": "NpcF",
       "offset_cm": [
         0,
         0,
@@ -81,6 +82,7 @@
     "s1-bul": {
       "mesh": "/Game/Dink/NPC/Milder/SK_Milder.SK_Milder",
       "locomotion": "/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run",
+   "animation_set": "NpcM",
       "offset_cm": [
         0,
         0,

@@ -1,0 +1,208 @@
+{
+ "schema": "dink-animation-pass/1",
+ "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin.SK_Mannequin",
+ "folder": "/Game/Dink/Hero/Animations/Pass1",
+ "clips": {
+  "Fall": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Fall.AN_Fall",
+   "duration_s": 1.0,
+   "loop": true,
+   "fps": 30
+  },
+  "Fist_Cross_Confident": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Fist_Cross_Confident.AN_Fist_Cross_Confident",
+   "duration_s": 0.8,
+   "loop": false,
+   "fps": 60,
+   "hit_s": 0.175,
+   "lock_s": 0.4
+  },
+  "Fist_Cross_Timid": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Fist_Cross_Timid.AN_Fist_Cross_Timid",
+   "duration_s": 0.9,
+   "loop": false,
+   "fps": 60,
+   "hit_s": 0.175,
+   "lock_s": 0.4
+  },
+  "Fist_Jab_Confident": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Fist_Jab_Confident.AN_Fist_Jab_Confident",
+   "duration_s": 0.8,
+   "loop": false,
+   "fps": 60,
+   "hit_s": 0.175,
+   "lock_s": 0.4
+  },
+  "Fist_Jab_Timid": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Fist_Jab_Timid.AN_Fist_Jab_Timid",
+   "duration_s": 0.8,
+   "loop": false,
+   "fps": 60,
+   "hit_s": 0.175,
+   "lock_s": 0.4
+  },
+  "Fist_Swing_Confident": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Fist_Swing_Confident.AN_Fist_Swing_Confident",
+   "duration_s": 0.8,
+   "loop": false,
+   "fps": 60,
+   "hit_s": 0.175,
+   "lock_s": 0.4
+  },
+  "Fist_Swing_Timid": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Fist_Swing_Timid.AN_Fist_Swing_Timid",
+   "duration_s": 0.9,
+   "loop": false,
+   "fps": 60,
+   "hit_s": 0.175,
+   "lock_s": 0.4
+  },
+  "Hurt": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Hurt.AN_Hurt",
+   "duration_s": 0.4166666666666667,
+   "loop": false,
+   "fps": 60,
+   "peak_s": 0.06
+  },
+  "Idle_Confident": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Idle_Confident.AN_Idle_Confident",
+   "duration_s": 8.0,
+   "loop": true,
+   "fps": 30
+  },
+  "Idle_Timid": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Idle_Timid.AN_Idle_Timid",
+   "duration_s": 8.0,
+   "loop": true,
+   "fps": 30
+  },
+  "Jump_Start": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Jump_Start.AN_Jump_Start",
+   "duration_s": 0.3333333333333333,
+   "loop": false,
+   "fps": 30
+  },
+  "Land": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Land.AN_Land",
+   "duration_s": 0.4666666666666667,
+   "loop": false,
+   "fps": 30
+  },
+  "NpcF_Hurry": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_NpcF_Hurry.AN_NpcF_Hurry",
+   "duration_s": 0.5333333333333333,
+   "loop": true,
+   "fps": 30,
+   "speed_cm_s": 260.0,
+   "stride_cm": 138.667
+  },
+  "NpcF_Idle": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_NpcF_Idle.AN_NpcF_Idle",
+   "duration_s": 8.0,
+   "loop": true,
+   "fps": 30
+  },
+  "NpcF_Walk": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_NpcF_Walk.AN_NpcF_Walk",
+   "duration_s": 0.8666666666666667,
+   "loop": true,
+   "fps": 30,
+   "speed_cm_s": 125.0,
+   "stride_cm": 108.333
+  },
+  "NpcM_Idle": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_NpcM_Idle.AN_NpcM_Idle",
+   "duration_s": 8.0,
+   "loop": true,
+   "fps": 30
+  },
+  "NpcM_Run": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_NpcM_Run.AN_NpcM_Run",
+   "duration_s": 0.6333333333333333,
+   "loop": true,
+   "fps": 30,
+   "speed_cm_s": 590.0,
+   "stride_cm": 373.667
+  },
+  "NpcM_Walk": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_NpcM_Walk.AN_NpcM_Walk",
+   "duration_s": 1.0,
+   "loop": true,
+   "fps": 30,
+   "speed_cm_s": 140.0,
+   "stride_cm": 140.0
+  },
+  "Run_Confident": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Run_Confident.AN_Run_Confident",
+   "duration_s": 0.6,
+   "loop": true,
+   "fps": 30,
+   "speed_cm_s": 600.0,
+   "stride_cm": 360.0
+  },
+  "Run_Timid": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Run_Timid.AN_Run_Timid",
+   "duration_s": 0.5666666666666667,
+   "loop": true,
+   "fps": 30,
+   "speed_cm_s": 600.0,
+   "stride_cm": 340.0
+  },
+  "Shuffle": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Shuffle.AN_Shuffle",
+   "duration_s": 1.0,
+   "loop": true,
+   "fps": 30,
+   "speed_cm_s": 90.0,
+   "stride_cm": 90.0
+  },
+  "Stumble": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Stumble.AN_Stumble",
+   "duration_s": 0.8,
+   "loop": false,
+   "fps": 60,
+   "catch_s": 0.23
+  },
+  "Sword_Chop": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Sword_Chop.AN_Sword_Chop",
+   "duration_s": 0.8166666666666667,
+   "loop": false,
+   "fps": 60,
+   "hit_s": 0.175,
+   "lock_s": 0.4
+  },
+  "Sword_Slash_1": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Sword_Slash_1.AN_Sword_Slash_1",
+   "duration_s": 0.8166666666666667,
+   "loop": false,
+   "fps": 60,
+   "hit_s": 0.175,
+   "lock_s": 0.4
+  },
+  "Sword_Slash_2": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Sword_Slash_2.AN_Sword_Slash_2",
+   "duration_s": 0.8166666666666667,
+   "loop": false,
+   "fps": 60,
+   "hit_s": 0.175,
+   "lock_s": 0.4
+  },
+  "Walk_Confident": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Walk_Confident.AN_Walk_Confident",
+   "duration_s": 0.8,
+   "loop": true,
+   "fps": 30,
+   "speed_cm_s": 200.0,
+   "stride_cm": 160.0
+  },
+  "Walk_Timid": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Walk_Timid.AN_Walk_Timid",
+   "duration_s": 0.7333333333333333,
+   "loop": true,
+   "fps": 30,
+   "speed_cm_s": 200.0,
+   "stride_cm": 146.667
+  }
+ },
+ "gameplay_authority": "Original sp_seq/pending-hit timing; every clip is cosmetic"
+}

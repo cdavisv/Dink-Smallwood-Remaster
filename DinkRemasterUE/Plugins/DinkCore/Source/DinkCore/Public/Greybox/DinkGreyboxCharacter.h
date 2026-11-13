@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DinkBodyDynamics.h"
 #include "DinkHeroPhysicality.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/GameModeBase.h"
@@ -71,20 +70,16 @@ public:
 	virtual void Landed(const FHitResult& Hit) override;
 	virtual void OnJumped_Implementation() override;
 	UPROPERTY(EditAnywhere, Category="Dink|Physicality", meta=(ClampMin="0", ClampMax="1"))
-	float LandingStumbleChance = .45f;
-	/** Chance that a level-1 Dink flails on takeoff and faceplants on landing (fades with confidence). */
+	float LandingStumbleChance = .2f;
+	/** Level-1 rate of catching a toe while running flat out (about once in two minutes of
+	 * running; fades with confidence). A catch-step he recovers from, never a fall. */
 	UPROPERTY(EditAnywhere, Category="Dink|Physicality", meta=(ClampMin="0", ClampMax="1"))
-	float TakeoffFlailChance = .22f;
-	/** Level-1 rate of tripping over his own feet while running flat out (fades with confidence). */
-	UPROPERTY(EditAnywhere, Category="Dink|Physicality", meta=(ClampMin="0", ClampMax="1"))
-	float RunTripsPerSecond = .035f;
+	float RunTripsPerSecond = .008f;
 	/** Launch speed and air control of a timid (level 1) and a fully confident Dink. */
 	static constexpr float TimidJumpZ = 280.f, ConfidentJumpZ = 340.f;
 	static constexpr float TimidAirControl = .2f, ConfidentAirControl = .35f;
 	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
 	bool IsStumbling() const { return HeroPhysicality.IsStumbling(); }
-	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
-	bool IsPratfall() const { return HeroPhysicality.IsPratfall(); }
 	/** 0 = scrawny, timid new-game Dink; 1 = the late-game hero (see FDinkHeroPhysicality). */
 	UFUNCTION(BlueprintPure, Category="Dink|Physicality")
 	float GetConfidence() const { return HeroPhysicality.GetConfidence(); }
@@ -126,7 +121,6 @@ private:
 	UPROPERTY() TObjectPtr<UInputAction> ZoomInputAction;
 	TWeakObjectPtr<UEnhancedInputLocalPlayerSubsystem> BoundInputSubsystem;
 	bool bWalkingHeld = false;
-	FDinkBodyDynamics BodyDynamics;
 	FDinkHeroPhysicality HeroPhysicality;
 	FVector PreviousBodyLocation = FVector::ZeroVector;
 	FVector AppliedBodyOffset = FVector::ZeroVector;
@@ -136,7 +130,7 @@ private:
     float PreviousBodyYaw = 0.f;
 	bool bBodyLocationReady = false;
 	void UpdateConfidence(bool bSnap);
-	FQuat AppliedBodyRotation = FQuat::Identity;
+	int32 PreviousLife = 0;
 	float WallPullback = 0.f;
 	float WallLeanDamping = 0.f;
 	bool ShouldClearWalls() const;

@@ -221,6 +221,7 @@ runtime = {'schema': 'dink-characters/1', 'assets': reports, 'placements': []}
 for row in SPEC.get('placements', [{'origin': 'S001_P26', 'mesh': 'SK_Mother'}] if 'SK_Mother' in meshes else []):
     runtime['placements'].append({'origin': row['origin'], 'mesh': meshes[row['mesh']],
         'locomotion': '/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run',
+        'animation_set': 'NpcF',  # animation pass clips (UDinkBodyAnimInstance); the blend space is the fallback
         'offset_cm': row.get('offset_cm', [0, 0, 0]), 'rotation_deg': row.get('rotation_deg', [0, -90, 0]),
         'scale': row.get('scale', [.9, .9, .9]), 'capsule_radius_cm': row.get('capsule_radius_cm', 25),
         'capsule_halfheight_cm': row.get('capsule_halfheight_cm', 82)})
@@ -228,6 +229,7 @@ runtime['script_profiles'] = {}
 for script, profile in SPEC.get('script_profiles', {}).items():
     runtime['script_profiles'][script.lower()] = {'mesh': meshes[profile['mesh']],
         'locomotion': '/Game/Characters/Mannequins/Anims/Unarmed/BS_Idle_Walk_Run.BS_Idle_Walk_Run',
+        'animation_set': 'NpcM',  # animation pass clips (UDinkBodyAnimInstance); the blend space is the fallback
         'offset_cm': profile.get('offset_cm',[0,0,-60]), 'rotation_deg': profile.get('rotation_deg',[0,-90,0]),
         'scale': profile.get('scale',[1,1,1]), 'capsule_radius_cm': profile.get('capsule_radius_cm',28),
         'capsule_halfheight_cm': profile.get('capsule_halfheight_cm',92)}

@@ -1,7 +1,7 @@
 #include "Greybox/DinkGreyboxCharacter.h"
 #include "DinkCoreModule.h"
 #include "DinkArtSubsystem.h"
-#include "DinkEarlyPostureAnimInstance.h"
+#include "DinkBodyAnimInstance.h"
 #include "DinkInteriorCameraComponent.h"
 #include "DinkInventoryComponent.h"
 #include "DinkStatsComponent.h"
@@ -191,7 +191,7 @@ void ADinkGreyboxCharacter::Jump()
 void ADinkGreyboxCharacter::Landed(const FHitResult& Hit)
 {
 	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
-	// Clumsy landings become rare as Dink grows into a hero; a flailing takeoff always lands badly.
+	// Clumsy landings become rare as Dink grows into a hero.
 	if (Allowed) HeroPhysicality.Land(FMath::Max(0.f, -GetVelocity().Z), AirSeconds,
 		HeroPhysicality.ScaleChance(LandingStumbleChance, .08f));
 	AirSeconds = 0.f;
@@ -201,8 +201,6 @@ void ADinkGreyboxCharacter::Landed(const FHitResult& Hit)
 void ADinkGreyboxCharacter::OnJumped_Implementation()
 {
 	Super::OnJumped_Implementation();
-	if (Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead())
-		HeroPhysicality.TakeOff(HeroPhysicality.ScaleChance(TakeoffFlailChance, 0.f));
 }
 
 void ADinkGreyboxCharacter::UpdateConfidence(bool bSnap)
@@ -258,20 +256,21 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
         RunTripsPerSecond);
     PreviousBodyYaw = GetActorRotation().Yaw;
 	PreviousBodyLocation = Location; bBodyLocationReady = true;
-	const FQuat Base = AppliedBodyRotation.Inverse() * GetMesh()->GetRelativeRotation().Quaternion();
-	AppliedBodyRotation = BodyDynamics.Update(GetActorLocation(), GetActorQuat(), DeltaSeconds,
-		Grounded).Quaternion() * HeroPhysicality.GetRotation().Quaternion();
-    if (Allowed && !Teleported && DeltaSeconds>SMALL_NUMBER &&
-        Cast<UDinkEarlyPostureAnimInstance>(GetMesh()->GetPostProcessInstance()))
-    {
-        // Bone-level authored slouch owns the timid hunch; keep shuffle/stumble and the upright
-        // lean confidence earns.
-        AppliedBodyRotation = AppliedBodyRotation * FRotator(-HeroPhysicality.GetHunchPitch(),0,0).Quaternion();
-    }
-	// A wall the clearance found last frame holds back part of the lean (eased, cosmetic).
-	if (WallLeanDamping > 0.f)
-		AppliedBodyRotation = FQuat::Slerp(AppliedBodyRotation, FQuat::Identity, .8f * WallLeanDamping);
-	GetMesh()->SetRelativeRotation(AppliedBodyRotation * Base);
+	// Body language is bone-level: the animation instance mixes timid and confident clips and
+	// leans the trunk; the mesh itself is no longer rocked. A wall the clearance found last
+	// frame holds back part of the lean (eased, cosmetic).
+	if (UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetMesh()->GetAnimInstance()))
+	{
+		Body->SetMotion(GetVelocity().Size2D(), !Grounded, HeroPhysicality.GetConfidence(),
+			HeroPhysicality.GetLean() * (1.f - .8f * WallLeanDamping));
+		float Impact = 0.f;
+		if (HeroPhysicality.ConsumeLanding(Impact) && Allowed) Body->PlayAction(TEXT("Land"), false, FMath::Lerp(.45f, 1.f, Impact), .05f, .25f);
+		if (HeroPhysicality.ConsumeStumbleStart() && Allowed) Body->PlayAction(TEXT("Stumble"), false, 1.f, .08f, .25f);
+		const int32 Life = Stats->Stats.Life;
+		if (Allowed && !Teleported && PreviousLife > 0 && Life < PreviousLife && Life > 0 && !Body->IsActionActive())
+			Body->PlayAction(TEXT("Hurt"), false, 1.f, .04f, .2f);
+		PreviousLife = Life;
+	}
 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
 	// Scrawny frame that fills out with confidence; composed on whatever scale art authored.
 	const FVector BaseScale = GetMesh()->GetRelativeScale3D() / AppliedPhysique;
@@ -279,7 +278,7 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	// Wall clearance composes with the physicality offset: measure the mesh where the body
 	// layer puts it, then pull it back along the facing (actor-local -X) by the overlap. It
 	// rises at once (nothing shows through the wall) and releases over a few tenths of a second.
-	const FVector BodyOffset = HeroPhysicality.GetOffset();
+	const FVector BodyOffset = FVector::ZeroVector;
 	const float WallNeeded = ShouldClearWalls() ? MeasureWallOverlap(FTransform(GetMesh()->GetRelativeRotation().Quaternion(),
 		BaseLocation + BodyOffset, BaseScale * AppliedPhysique)) : 0.f;
 	WallPullback = (Teleported || WallNeeded >= WallPullback) ? WallNeeded

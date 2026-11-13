@@ -386,6 +386,20 @@ int32 FDinkGameplayData::HitFrameDelayMs(int32 Seq) const
 	return INDEX_NONE;
 }
 
+int32 FDinkGameplayData::SequenceDurationMs(int32 Seq) const
+{
+	const int32* Count = FrameCounts.Find(Seq);
+	int32 Ms = 0;
+	for (int32 F = 1; Count && F <= *Count; ++F)
+	{
+		if (const FDinkFrameInfo* Info = FindFrame(Seq, F))
+		{
+			Ms += Info->DelayMs;
+		}
+	}
+	return Ms;
+}
+
 const FDinkPlacementInfo* FDinkGameplayData::FindPlacement(const FDinkOriginId& Origin) const
 {
 	return Placements.Find(Origin);
@@ -544,6 +558,7 @@ void UDinkGameplay::Reset()
 	// A new game or a load puts the bow down (dink.cpp:1324 load_game, 17693 the start of a game).
 	Bow = FDinkBowStatus();
 	bAttackHeld = false;
+	AttackGate.Reset();
 	NowMs = Story ? Story->GetNowMs() : 0.0;
 	NextStatusMs = NowMs + 100.0;
 	bPushActive = false;
@@ -704,7 +719,12 @@ void UDinkGameplay::OnSequenceSet(int32 Handle, int32 Seq)
     {
         AActor* Actor = Director() ? Director()->GetActor(Handle) : nullptr;
         if (UWorld* World = Actor ? Actor->GetWorld() : nullptr)
-            if (UDinkArtSubsystem* Art = World->GetSubsystem<UDinkArtSubsystem>()) Art->PlayPlayerSequence(Actor, Seq);
+            if (UDinkArtSubsystem* Art = World->GetSubsystem<UDinkArtSubsystem>())
+            {
+                // Cosmetic only: which clip shows the attack depends on what is armed (or on a spell being cast).
+                const FDinkScriptInstance* Weapon = Story ? Story->FindInstance(WeaponInstance) : nullptr;
+                Art->PlayPlayerSequence(Actor, Seq, bCastingMagic ? FName(TEXT("magic")) : (Weapon ? Weapon->Script : FName()));
+            }
     }
     // The original PendingHits block below remains the sole authority for damage timing.
 	if (Handle != 1 && bBrainsEnabled)
@@ -1347,6 +1367,11 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs)
 	{
 		RunThroughTouchDamageList(1);
 	}
+	// A player's remembered attack press (never set by the bot or the console: those call PlayerAttack directly).
+	if (AttackGate.TakeBuffered(NowMs))
+	{
+		StartGatedAttack();
+	}
 	if (bBrainsEnabled)
 	{
 		TickBrains(DeltaMs);
@@ -1412,7 +1437,9 @@ bool UDinkGameplay::PlayerCastMagic()
 	// (Without this the cast used whatever dir a script or the last attack had left, e.g. s2-auntp's sp_dir(1, 1).)
 	SyncDinkFacingFromActor();
 	Note(FString::Printf(TEXT("cast %s facing %d"), *Magic->Script.ToString(), Director() ? Director()->GetDink().Dir : 0));
+	bCastingMagic = true;
 	RunInstanceProc(MagicInstance, NAME_Use);
+	bCastingMagic = false;
 	return true;
 }
 
@@ -1425,6 +1452,54 @@ bool UDinkGameplay::PlayerAttackPress()
 void UDinkGameplay::PlayerAttackRelease()
 {
 	bAttackHeld = false;
+}
+
+namespace
+{
+	TAutoConsoleVariable<float> CVarAttackLockMs(TEXT("dink.Attack.LockMs"), 0.f,
+		TEXT("How long a player attack locks the attack key, ms. 0: the attack sequence's own length (the original's 400 ms for the fists)."));
+	TAutoConsoleVariable<int32> CVarAttackBuffer(TEXT("dink.Attack.BufferPress"), 1,
+		TEXT("1: a press during an attack is remembered and starts the next attack when the lock ends (combo); 0: it is dropped."));
+}
+
+bool UDinkGameplay::StartGatedAttack()
+{
+	// The key is "held" for the bow only while it really is down (a buffered press may already be up again).
+	const bool bStarted = AttackGate.IsHeld() ? PlayerAttackPress() : PlayerAttack();
+	if (!bStarted)
+	{
+		return false;
+	}
+	double LockMs = CVarAttackLockMs.GetValueOnGameThread();
+	if (LockMs <= 0.)
+	{
+		UDinkDirector* D = Director();
+		const int32 Seq = D ? D->GetDink().GetProp(P_Seq) : 0;
+		// Only the attack sequences lock (100 + direction); an item whose `use` plays nothing (the bow's draw, pig feed) does not.
+		LockMs = Seq > 100 && Seq < 110 ? Data.SequenceDurationMs(Seq) : 0;
+	}
+	AttackGate.Started(NowMs, LockMs);
+	return true;
+}
+
+bool UDinkGameplay::InputAttackPressed()
+{
+	const FDinkAttackGate::EPress Result = AttackGate.Press(NowMs);
+	if (Result == FDinkAttackGate::EPress::Buffered && CVarAttackBuffer.GetValueOnGameThread() == 0)
+	{
+		AttackGate.Started(AttackGate.GetLockUntilMs(), 0.); // forget it; the lock itself is unchanged
+	}
+	if (Result != FDinkAttackGate::EPress::Start)
+	{
+		return false;
+	}
+	return StartGatedAttack();
+}
+
+void UDinkGameplay::InputAttackReleased()
+{
+	AttackGate.Release();
+	PlayerAttackRelease();
 }
 
 // ---------------------------------------------------------------------------------------------

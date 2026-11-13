@@ -147,8 +147,14 @@ bool FDinkScriptCharacterProfileTest::RunTest(const FString&)
 			RestoredHuman->TickComponent(.1f, LEVELTICK_All, nullptr);
 			Director->Tick(100, 100);
 			RestoredHuman->TickComponent(.1f, LEVELTICK_All, nullptr);
-			TestTrue(TEXT("restored fast scripted walk uses faster animation cadence"),
-					 RestoredHuman->GetSingleNodeInstance()->GetPlayRate() > 1.f);
+			// Animation pass: the body follows the scripted position at its own pace and its
+			// gait cadence comes from the distance it covers; the blend space is the fallback.
+			if (RestoredHuman->UsesBodyAnimation())
+				TestTrue(TEXT("restored scripted walk sets the body walking after the script"),
+						 RestoredHuman->GetScriptedSpeed() > 1.f && RestoredHuman->GetLocomotionSpeed() > 1.f);
+			else
+				TestTrue(TEXT("restored fast scripted walk uses faster animation cadence"),
+						 RestoredHuman->GetSingleNodeInstance()->GetPlayRate() > 1.f);
 		}
 	}
 	Greybox->UnregisterScreen(Screen);
