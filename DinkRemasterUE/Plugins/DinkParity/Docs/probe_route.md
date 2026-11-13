@@ -763,7 +763,7 @@ All Darklands screens have `thorn` sprites (touch 15, hard, `thorn.c:3-4`; 154: 
 | Behaviour | Where it matters | Script lines / engine lines | Implemented in the remaster? (check) |
 |---|---|---|---|
 | `move_stop` / `move(sprite, dir, until, nohard)`: scripts pass 1, so the move **ignores hardness** and the script blocks until the target coordinate | every cutscene (steps 12, 13, 18, 23, 34, 35, 52, 56); cult girls, Nelson, camp scene | `D:8588-8610`, `D:13489-13491`; `s2-culg.c:38`, `s3-camp.c:44-66`, `s2-cult.c:52` | AGENTS.md: scripted moves ignore hardness ("Scripted `move`/`move_stop` stay the director's ... no hardness"): yes |
-| `move(1, dir, 410/700, 1)` carries **Dink across a screen edge** | steps 12, 23 | `s2-culg.c:38`, `s3-camp.c:66` | verified 7 Nov 2026 (Ch2 step 6 and Ch7 step 7: SCR_489 -> SCR_521) |
+| `move(1, dir, 410/700, 1)` carries **Dink across a screen edge** | steps 12, 23 | `s2-culg.c:38`, `s3-camp.c:66` | verified 7 Nov 2026 (Ch2 step 6 and Ch7 step 7, Ch8 step 3 since 13 Nov 2026: SCR_489 -> SCR_521) |
 | `screenlock(1/0)` | steps 11, 22, 24, 36, 47-49 | `s2-cult.c:187`, `s2-cslay.c:73`, `s3-mog.c:30`, `en-gmog.c:47`, `s3-camps.c:92`, `s3-dorks.c:39`, `en-drag.c:11`, `s5-end.c:9`, `s7-*.c`; `D:10083-10095`, `D:14053` | yes (AGENTS.md "Locked fights"); warps are not refused |
 | `fade_down` / `fade_up`, `fill_screen`, `load_screen(n)`, `&player_map = n`, `sp_x(1,..)` warps | steps 12, 22, 25, 39, 43, 45, 55 | `s2-culg.c:41-56`, `en-gmog.c:62-74`, `s3-mayor.c:138-146`, `s2-ca-g.c:176-186`, `s6-hole.c:21-28`, `s6-warp.c:44-56`, `s7-warp.c:44-56`, `s2-cave2.c:151-161` | **verified 8 Nov 2026** for `s2-ca-g.enter` (the castle gate, `&player_map = 102`), `s6-hole.touch` (the pit, 182) and `s6-warp.talk` (the machine, 154, 7.5 s); UNVERIFIED for the rest (the probe's `Goto` is not the same code path) |
 | `wait(n)` lengths (blocking the script, not the game) | cutscenes: Maria 2 s waits, cult about 20 s, parade about 40 s, ducks about 25 s, machine 6-7 s, Seth intro about 30 s, credits about 15 x 300 ms | e.g. `s6-warp.c:18-53`, `s4-end.c`, `s3-tc.c`, `king.c:9-98` | UNVERIFIED lengths against the original; `slomo 4` shortens them 4x |
@@ -854,20 +854,20 @@ played); the probe's current implementation of every blocked-script check named 
 | 4 chest | Ch3 steps 2-3 | SCR_005 `ch1-pap`: a punch opens it, the coins fall at Dink's feet (+200) |
 | 5 chest, 7 chest | Ch3 steps 4-7 | SCR_557 and SCR_747 the same (+400); gold 724 at the end of the chapter (the drops and fixes of later runs moved it from 731) |
 | 6 strength potions | Ch3 step 8 | SCR_681 x4 (teleported to; SCR_680's goblins untouched): strength 8 |
-| 17 Christina, 18 girl, 19 Mayor | Ch3 steps 9-11 | &mayor 1, 2, 3 |
+| 17 Christina, 18 girl, 19 Mayor | Ch3 steps 9-11 | &mayor 1, 2, 3; then (Ch3 step 12, since 13 Nov 2026) the walk to Arturous's shop, where chapter 4 starts: the bookstore's Mayor is made by a script and a load there does not make him again |
 | (grind) | Ch4 steps 1-12 | gold 724 -> 1072 without a hit: SCR_583 (Bong + Boncd feud), SCR_480 (two Bongs in a low-hardness pen, shot across the fence), SCR_632 (two Bongs), a 302 s wait at 8x in Arturous's shop, a second round (see AGENTS.md "Chapter 4, the gold") |
 | 15 the bow, 16 arm it | Ch5 steps 1-2 | menu \"Buy a Bow and some arrows for $1000\": gold 1072 -> 72, `item-b1` in slot 4; `ArmItemSlot`: `arm item-b1` |
 | 20 the gate guard | Ch5 step 3 | SCR_712 talk, \"Ask the Goblin guard to let you in\": &gobpass 1 |
-| 21 goblins | Ch6 step 2; Ch7 steps 1-5 | S680_P13 (`s3-gh`) pulled by a fireball and killed (Ch6); S680_P14 (gh), S680_P11 (gs), S680_P12 (gs) killed in melee with `DuelFight` (AGENTS.md \"`DuelFight`\"), a Terris healer visit (`s2-healp`, \"Get healed\", 1 gold per missing life) after each of the first two; the last death starts Mog (`spawn`, `s3-gs.c:71`); +150 exp each |
-| 22 Mog | Ch7 step 6 | `s3-mog` scene (`screenlock(1)`), `en-gmog` killed with `DuelFight` (50 hp, 25 s of game time, no `hit` taken that matters), his death: `fade_down`, `&gobpass 1 -> 5`, warp to SCR_489 |
-| 23 the Cast camp | Ch7 steps 7-8 | SCR_489 `s3-camp.c`: Dink frozen, scripted walk, `move(1, 2, 410, 1)` crosses the south edge to SCR_521 (the crossing code runs for a scripted mover), `fade_down`; SCR_521 `s3-camps.c`: `fade_up`, `move_stop` walks, the dialogue (skipped), 18 s of game time to the scene's start |
-| 24 the ambush | Ch7 step 8 (to the first blow), Ch8 step 1 (the fight) | `screenlock(1)`, three knights `s3-dorks` created and `unfreeze`d, `&mayor 3 -> 4`: verified (Ch7). The fight (Ch8, `SquadFight`): 40 hp each since the `sp_script` fix; 39 s, one blow of 11 taken, 43 hp dealt by 28 punches and 77 by the knights on each other; `screenlock(0)`; level-up at 900 exp; their loot (+180 gold, Ch8 step 2) |
-| 25 the Mayor, the parade | Ch8 steps 2-3 | SCR_067, "Show him the scroll with the plans": `&mayor 5`, the warp to SCR_586, `s3-tc.c`: **`&story 10`**, `&mayor 6`, Dink free (16 s of game time) |
+| 21 goblins | Ch6 step 2; Ch7 steps 1-4, Ch8 step 1 (since 13 Nov 2026; Ch7 steps 1-5 before) | S680_P13 (`s3-gh`) pulled by a fireball and killed (Ch6); S680_P14 (gh), S680_P11 (gs), S680_P12 (gs) killed in melee with `DuelFight` (AGENTS.md \"`DuelFight`\"), a Terris healer visit (`s2-healp`, \"Get healed\", 1 gold per missing life) after each of the first two; the last death starts Mog (`spawn`, `s3-gs.c:71`); +150 exp each |
+| 22 Mog | Ch8 step 2 (Ch7 step 6 before 13 Nov 2026) | `s3-mog` scene (`screenlock(1)`), `en-gmog` killed with `DuelFight` (50 hp, 25 s of game time, no `hit` taken that matters), his death: `fade_down`, `&gobpass 1 -> 5`, warp to SCR_489 |
+| 23 the Cast camp | Ch8 steps 3-4 (Ch7 steps 7-8 before 13 Nov 2026) | SCR_489 `s3-camp.c`: Dink frozen, scripted walk, `move(1, 2, 410, 1)` crosses the south edge to SCR_521 (the crossing code runs for a scripted mover), `fade_down`; SCR_521 `s3-camps.c`: `fade_up`, `move_stop` walks, the dialogue (skipped), 18 s of game time to the scene's start |
+| 24 the ambush | Ch8 step 4 (to the first blow), Ch8 step 5 (the fight); before 13 Nov 2026 Ch7 step 8 and Ch8 step 1 | `screenlock(1)`, three knights `s3-dorks` created and `unfreeze`d, `&mayor 3 -> 4`: verified (Ch7). The fight (Ch8, `SquadFight`): 40 hp each since the `sp_script` fix; 39 s, one blow of 11 taken, 43 hp dealt by 28 punches and 77 by the knights on each other; `screenlock(0)`; level-up at 900 exp; their loot (+180 gold, Ch8 step 2) |
+| 25 the Mayor, the parade | Ch8 steps 6-7 (then step 8, since 13 Nov 2026: the walk to Pete's in Windemere, where chapter 9 starts; the parade crowd is made by `s3-tc.c`) | SCR_067, "Show him the scroll with the plans": `&mayor 5`, the warp to SCR_586, `s3-tc.c`: **`&story 10`**, `&mayor 6`, Dink free (16 s of game time) |
 | 26 Windemere | Ch9 (a teleport) | `&story >= 10` holds; Dink arrives on SCR_196 for step 27 and SCR_536 for the rest |
 | 27 Pete's bomb | Ch9 step 1 | SCR_196, talk, "See what's for sale", "Bomb - $20": gold 239 -> 219, `item-bom` in the inventory |
 | 29 two all-potion chests | Ch9 steps 2-3 | SCR_536 `S536_P31`, `S536_P29`: a punch opens each (`ch1-ap`/`ch3-ap` hit: `make.apotion`), standing on the potion: magic, strength, defense +1 each (strength 9 -> 11, defense 1 -> 3, magic 5 -> 7) |
 | 30 the cracked rock | Ch9 steps 4-5 | arm `item-bom`, attack beside the rock (`dam-bom` spawned, the bomb leaves the inventory), walk 90 px away: after the 3 s fuse the explosion hits the rock (`s4-rock` `hit`, `&missle_source` `dam-bomn`): **`&s4-duck 1`**, rock and cracks removed |
-| 28 heal | Ch10 step 1 | the Windemere healer (SCR_195 `s4-healp`, "Get healed"): 14 gold, life 15 -> 29 (step 28's save was skipped) |
+| 28 heal | Ch10 step 1 (Ch9 step 7, since 13 Nov 2026, walks to the healer's house first: SCR_536 is on the legacy placement path, which does not clear an opened chest's script) | the Windemere healer (SCR_195 `s4-healp`, "Get healed"): 14 gold, life 15 -> 29 (step 28's save was skipped) |
 | 31 the 27 ducks | Ch9 step 6 | `KiteAndPunch` from 30 px on the nearest duck, 38.7 s of game time: 27 `die` (head off) and 27 `duckdie`; each `duckdie`'s `external("make", "foodduck")` runs at once (a food sprite, seq 421), the last one's `get_sprite_with_this_brain(3, ..) == 0` is true and `spawn("s4-end")` runs: **`&s4-duck 2`, `&story 11`**, Kelly, the guard, "Bye, Dink.", Dink unfrozen at 147,233 |
 | 32 optional pickups | Ch10 steps 2-4 | SCR_663 `S663_P06` `rpotion` (strength +1), SCR_603 `S603_P02` `bpotion` (defense +1), SCR_742 chest `S742_P16` `box2-sp` (a punch, its potion is `rpotion`: strength +1); strength 11 -> 13, defense 3 -> 4; the three `1gold` and the `sgold` of SCR_663 were not taken |
 | 33 Joppa | Ch10 step 5 | teleport to SCR_419 (the tunnel is not walked): `s5-jops` `&s5-jop 0 -> 1` after 900 ms ("Weird.  This town looks deserted.") |
@@ -876,18 +876,18 @@ played); the probe's current implementation of every blocked-script check named 
 | 36 the dragons | Ch12 step 3 | **played 8 Nov 2026**: strength 20 (sword armed), defense 5, magic 9, life 29, two elixirs left of three; `DuelFight` (`bCaster`), the nearer dragon first; 20 sword hits, both dead 9.4 s after the unfreeze, family alive (Gwen 10 of 50 hp); earlier attempt (7 Nov, fists, strength 13): dead after 1.4 s |
 | 36 kit | Ch11 | three Feud rounds (gold 205 -> 508, the Bongs' exp 200 -> 800), SCR_395 chest and SCR_750 potion (all-potions), Pete's "Longsword - $400", three elixirs (Terris, 25 each), `ArmItemSlot`: strength 20 |
 | 37 the epilogue | Ch12 step 3 | `s5-end` (`spawn` from the last `die`): the scene, the menu "I saved all of you, actually.", **`&story 12`**, Dink free |
-| 39 the castle guard | Ch13 step 2 | SCR_402 `s2-ca-g` talk: "Request an audience with King Daniel": `enter()`, SCR_102 |
-| 40 the King | Ch13 step 3 | SCR_070 `king.c`: greeting (`&story 13`), "Offer to help Milder": **`&story 14`**; the `bpotion` of the hall: defense +1 |
-| 41 the back rooms | Ch13 steps 5-6 | SCR_069 chest `ch1-mp` (magic +1), SCR_101 chest `ch1-gh` (lifemax +10); the eight small hearts were not taken |
+| 39 the castle guard | Ch13 step 1 (step 2 before 13 Nov 2026, when the dragons' loot was Ch13 step 1; it is Ch12 step 4 now, Ch12 step 5 the walk to the castle gate) | SCR_402 `s2-ca-g` talk: "Request an audience with King Daniel": `enter()`, SCR_102 |
+| 40 the King | Ch13 steps 2-3 | SCR_070 `king.c`: greeting (`&story 13`), "Offer to help Milder": **`&story 14`**; the `bpotion` of the hall: defense +1 |
+| 41 the back rooms | Ch13 steps 4-5 (step 6, since 13 Nov 2026: the walk to the Edge of the World, where chapter 14 starts) | SCR_069 chest `ch1-mp` (magic +1), SCR_101 chest `ch1-gh` (lifemax +10); the eight small hearts were not taken |
 | 42-43 the Edge, the pit | Ch14 steps 1-3 | SCR_243's `bpotion` (defense +1), SCR_248's `rpotion` (strength +1, on the 243>...>253 walk), the pit `s6-hole` (`&player_map 182`; pixel 472,318: AGENTS.md pitfall 70) |
 | 44 the save machine | skipped | the probe's chapter slots are the saves |
 | 45 the machine | Ch14 step 4 | SCR_253 `s6-warp`: "Press the red button": `&player_map 154`, Dink at 329,279 |
 | 46 the first Darklands screens | skipped | teleports (SCR_154 -> 156) |
 | 47 SCR_156 | Ch15 | healer first; the Darklands dragon (`s7-drag`, harm 30: 23 net, one elixir), the Slayer, the Bong: 27 s, strength 22 with the sword; exp +720 |
-| 48 SCR_157 | Ch16, Ch17 steps 1-2 | the four Slayers (`SquadFight`, 41.5 s), their loot and the gold heart (lifemax +10) |
-| 49 SCR_190 | Ch17 steps 3-5 | the three duck-bugs (`SquadFight`, 50 s) and the full heart; SCR_158 not walked |
+| 48 SCR_157 | Ch16 steps 2-3 (the fight, the loot: the loot was Ch17 step 1 before 13 Nov 2026), Ch17 step 1 (the gold heart) | the four Slayers (`SquadFight`, 41.5 s), their loot and the gold heart (lifemax +10) |
+| 49 SCR_190 | Ch17 steps 2-4 | the three duck-bugs (`SquadFight`, 50 s) and the full heart; SCR_158 not walked |
 | 50 SCR_222 barrels, SCR_254 save | skipped | |
-| 51-52 Milder | Ch18 step 2 | teleport to SCR_086 (the route walks SCR_254's hole and SCR_085), `s7-mil` talk: "Take his advice", the dialogue, the explosion, Seth appears, `s7-boss`, Dink free |
+| 51-52 Milder | Ch18 step 2 (step 3, since 13 Nov 2026: out of the Darklands to SCR_209, where chapter 19 starts) | teleport to SCR_086 (the route walks SCR_254's hole and SCR_085), `s7-mil` talk: "Take his advice", the dialogue, the explosion, Seth appears, `s7-boss`, Dink free |
 | (kit for 53) | Ch19 steps 1-31, 35-37 | out of SCR_086 (chapter 18 ended with Seth there), three elixirs; strength potions of the Edge plateau (2.3, last row): SCR_214 `rpotion`, SCR_184 chest `ch1-sp`, the pit `s1-hole3` of SCR_209 (exact pixels below its stamp) into SCR_198 (two `rpotion`), SCR_209's east chest (golems walking, not fought), the pit `s6-hole2` of SCR_180 into SCR_166 (two `en-slay`, `SquadFight`; `rpotion`, `apotion`, `ppotion`, `bpotion`, gold heart); 5 minutes at the Windemere healer (8x), the Darklands rooms again (156, 157, 190; level 6: Attack), 5 more minutes, SCR_156 a third time, then the gold target; eleven elixirs; the bow armed. Strength 26 at the bow, defense 9, magic 12, life 65 |
 | 38 bow lore | Ch19 steps 32-34 | SCR_710: a charged fireball from 230,311 east into the secret tree's hardbox (`dam-fire` `damage`: pseq 32 frame 1, `run_script_by_number(.., "DIE")`); `s3-sec1` `die` (1 s): the stump, `touch -1`; its `touch` from 338,284 (exact pixels: the tree's stamp stays, pitfall 77 in AGENTS.md): `&player_map 227`, Dink at 515,383 (inside the hut's exit: the remaster bounced him out until pitfall 75 was fixed); `s3-bowl` talk, "Learn bow lore": `&bowlore 1`, gold - 1500 (220 left after the elixirs and the healer) |
 | 52 Milder (again) | Ch20 step 2 | `s7-mil` `main` sets `&fighting 0` on every load of SCR_086: the talk makes Seth again; his first `attack` starts as the scene unfreezes Dink (a bomb: AGENTS.md pitfall 79) |
@@ -929,3 +929,27 @@ What moved in the probe (9 Nov 2026, night): chapter 1 only through Jack's line,
 DinkRemasterUE/AGENTS.md "The probe, in chapters", the hashes of 9 Nov 2026, night). The two `sp_prop` calls of the dragon fight
 (route steps 35-37, `s5-fguy.c:6`, `s5-end.c:33`) stay off (OD1: the director defines `sp_prop`, the switches stay false): the SCR_419
 door is a warp throughout, as in 1997.
+
+### 8.2 Chapter boundaries a 1997 load resumes (13 Nov 2026)
+
+On a world regenerated by the PR #82 importer, `Saves->LoadFromSlot` loads like the original's `load_game` (`dink.cpp:1308-1462`). It runs
+the armed item's DISARM and ARM, then `load_map`, which sets `&vision` to 0 (`dink.cpp:1017`). Then `BuildScreenBackground` kills every
+sprite and script and restarts the screen: the base script, `place_sprites_game`, then `init_scripts`. Nothing a scene had in flight
+survives, and neither does a sprite a script made: a scene's actors, a crowd, the gold a monster dropped.
+
+The chapters used to end in the middle of scenes. Chapter 7 ended at the ambush's first blow and chapter 8 fought the knights. That only
+resumed while the remaster's legacy load restored the whole runtime; on a regenerated world, chapter 8 began with no knights. Since
+13 Nov 2026 every chapter that another one loads ends where a 1997 load resumes it, and the probe checks this in two places:
+
+- **At the save.** The chapter fails, naming what is in flight, if a procedure is running or waiting, Dink is frozen, or a menu is
+  open. A base or placement script's `main` is allowed, and so is one of its procedures idling in a plain `wait`, because `init_scripts`
+  starts them again. One example is `s2-healp.c`'s `talk`, which ends with `goto mainloop`. The chapter first waits up to 15 s for this.
+- **After the load.** The next chapter counts the live sprites of the screen by script and brain, once the restarted screen is admitted.
+  It compares them with the census the saving chapter wrote (`Saved/Narrative/probe_ch<N>_census.txt`) and names what the load did not
+  bring back.
+
+The boundaries re-cut for this are the `Ch3`, `Ch7`/`Ch8`, `Ch9`, `Ch12`/`Ch13`, `Ch15`, `Ch16`/`Ch17` and `Ch18` rows of the table
+above. A chapter either ends on the next chapter's first screen, or takes the loot that the next chapter used to take.
+
+The original-load oracle (`DinkProbeLoadOracle.h`) no longer compares `&vision`: the restarted base script sets it again. SCR_536, after
+the bombed rock, was saved with vision 1 and its base script now sets 2.
