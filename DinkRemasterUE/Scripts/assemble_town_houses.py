@@ -32,7 +32,21 @@ The JSON also lists `footprints` per screen (run origin px, yaw, rect_cm x0,y0,x
 carpet stays out of them and wears short in front of them.
 The JSON lists per house: slant, bays (sprite origin -> kit bays), door bay, roof modules, gable ends, depth scale,
 then the flat module list the runtime instances (px = map pixel of the run's left end, offset_cm in world X east /
-Y south / Z up, yaw in Unreal degrees, scale)."""
+Y south / Z up, yaw in Unreal degrees, scale).
+Schema 3 (13 Nov 2026) adds the accounting Scripts/art_coverage.py reads. The 1997 town is drawn as BUILDINGS: groups
+of family 33 pictures that touch (walls, gable slices, roof columns up to the ridge, across screen borders). `buildings`
+lists each group with its screens and the houses assembled from its wall runs. Every screen lists `stands_for`
+(origin -> house id): a wall card names the house assembled from its own run, a roof, dormer, ridge or gable card the
+nearest house of its building (the 3D house carries its own roof; an isometric roof picture has no place of its own
+in the 3D world, it was drawn over ground the house does not stand on). A card of a building without an assembled
+house is left out of `hide` and of `stands_for`: its sprite card stays and the audit keeps it placeholder.
+`uncovered_m` lists, per screen, the hidden cards whose picture did not lie over an assembled house body (distance in
+metres from the picture's rectangle, for a wall from its ground line, to the nearest body, when over COVER_CM): the 1997 buildings are far deeper in
+the stretched world than the 8 to 15 m houses, so most roof pictures lay over what is now open ground behind the
+houses. Those cards stay hidden (the house carries a roof) but the audit keeps them placeholder until a house body
+covers that ground.
+REVIEW holds the houses that failed the look in the game (house id -> reason): they are still shown, but the audit
+keeps their cards placeholder with that reason."""
 import json, math, os, collections, zlib
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 A_WALL = {1, 2, 3, 5, 6, 11, 14, 15, 16, 17}
@@ -43,20 +57,25 @@ GABLE_A, GABLE_B = {7, 10}, {24}
 BAY, DEPTH, RIDGE_Y, RIDGE_Z = 250.0, 551.0, 275.5, 735.0
 WALL_PAST, ROOF_PAST = 29.0, 48.0      # cm past a convex corner: jetty and eaves overhang x tan(26.6 deg)
 ZS = (0.93, 1.0, 1.07, 1.13); SETBACK = (0.0, 18.0, 35.0); DSY = (0.94, 1.0, 1.08)
+REVIEW = {}    # house id -> why its cards stay placeholder (failed the in-game review)
 def H(*key): return zlib.crc32(':'.join(str(k) for k in key).encode())
 def U(*key): return (H(*key) & 0xFFFFFF) / float(0x1000000)
 placements = json.load(open(os.path.join(ROOT, 'ImportData/placements.json')))['placements']
 by_screen = collections.defaultdict(list)
 for p in placements:
     by_screen[p['screen']].append(p)
-out = {'schema': 'dink-town-houses/2', 'generated_by': 'Scripts/assemble_town_houses.py', 'note': __doc__.split('\n\n')[1].replace('\n', ' '), 'screens': {}}
+out = {'schema': 'dink-town-houses/3', 'generated_by': 'Scripts/assemble_town_houses.py', 'note': __doc__.split('\n\n')[1].replace('\n', ' '), 'screens': {}}
 total = collections.Counter()
+all_town, run_cards, run_span, bodies = [], {}, {}, []   # accounting (schema 3)
+COVER_CM = BAY       # a card counts as covered when where it stood on the ground lies within one kit bay of a house body
+def gpx(screen, x, y): return ((screen - 1) % 32 * 600 + x, (screen - 1) // 32 * 400 + y)   # town-wide map pixel
 def centre(p):
     mpp = p['m_per_px']; c = p['card']
     return (p['map_x'] + c['offset_x_m'] / mpp, p['map_y'] - c['offset_z_m'] / mpp - 32.0)
 for screen in sorted(by_screen):
     town = [p for p in by_screen[screen] if (p.get('class_id') or '').startswith('town_') and p['seq'] == 33]
     walls = [p for p in town if p['class_id'] in ('town_wall_stone_window', 'town_wall_stone_door')]
+    all_town += town
     if not walls:
         # roofs and gable slices of houses whose walls stand on the screen below: the 3D houses carry their own roofs
         if town:
@@ -68,17 +87,19 @@ for screen in sorted(by_screen):
     for slant in 'AB':
         dy = -0.5 if slant == 'A' else 0.5
         bays = sorted((p for p in walls if (p['frame'] in A_WALL) == (slant == 'A')), key=lambda p: centre(p)[0])
-        seen = set()     # the bundle lists some placements twice (a background and a live copy): one bay each
-        bays = [p for p in bays if not ((round(centre(p)[0]), round(centre(p)[1])) in seen or seen.add((round(centre(p)[0]), round(centre(p)[1]))))]
+        seen = {}        # the bundle lists some placements twice (a background and a live copy): one bay each
+        twins = collections.defaultdict(list)
+        for p in bays: twins[seen.setdefault((round(centre(p)[0]), round(centre(p)[1])), p['id'])].append(p['id'])
+        bays = [p for p in bays if twins.get(p['id'])]
         mine = []
         for p in bays:
             cx, cy = centre(p); half = 25.0 if p['frame'] in NARROW else 50.0
             for r in mine:
                 ex, ey = r['end']
                 if abs((cx - half) - ex) < 16 and abs((cy - half * dy) - ey) < 16:
-                    r['bays'].append(p); r['end'] = (cx + half, cy + half * dy); break
+                    r['bays'].append(p); r['cards'] += twins[p['id']]; r['end'] = (cx + half, cy + half * dy); break
             else:
-                mine.append({'slant': slant, 'dy': dy, 'start': (cx - half, cy - half * dy), 'end': (cx + half, cy + half * dy), 'bays': [p]})
+                mine.append({'slant': slant, 'dy': dy, 'start': (cx - half, cy - half * dy), 'end': (cx + half, cy + half * dy), 'bays': [p], 'cards': list(twins[p['id']])})
         runs += mine
     # geometry of each run in map pixels: unit direction, body normal (behind the wall), yaw
     for i, r in enumerate(runs):
@@ -227,13 +248,70 @@ for screen in sorted(by_screen):
                        'houses': [{'bays': [h['first'], h['first'] + h['size'] - 1], 'length_m': round((h['x1'] - h['x0']) / 100.0, 2), 'z_scale': h['zs'], 'setback_cm': h['setback'], 'depth_m': round(DEPTH * h['sy'] / 100.0, 2),
                                    'gable_walls': h['ends'], 'chimney': h['chimney'], 'roof_bays_front': h['roofs']} for h in plan],
                        'modules': mods, 'hide': []})
+        run_cards[houses[-1]['id']] = sorted(r['cards'])
+        run_span[houses[-1]['id']] = (gpx(screen, sx_, sy_), gpx(screen, ex, ey))
+        bodies += [(gpx(screen, sx_, sy_), c, s, r['cm'], h['rect']) for h in plan]
+        if houses[-1]['id'] in REVIEW: houses[-1]['review'] = {'state': 'placeholder', 'reason': REVIEW[houses[-1]['id']]}
         total['runs'] += 1; total['houses'] += len(plan); total['modules'] += len(mods)
     if houses:
         houses[0]['hide'] = sorted(p['id'] for p in town)   # every family 33 card of the screen (lowest roof sprite and the rest alike)
         total['hidden'] += len(town)
         out['screens'][str(screen)] = {'houses': houses, 'footprints': footprints}
+# --- accounting: which assembled house stands for which sprite card ---------------------------------------------------
+def picture(p):      # the card's picture rectangle in town-wide map pixels (offset_x_m: its centre, offset_z_m: its bottom edge)
+    mpp, c = p['m_per_px'], p['card']
+    x, y = gpx(p['screen'], p['map_x'] + c['offset_x_m'] / mpp, p['map_y'] - c['offset_z_m'] / mpp)
+    return (x - c['pixel_w'] / 2.0, y - c['pixel_h'], x + c['pixel_w'] / 2.0, y)
+rects = {p['id']: picture(p) for p in all_town}
+group = {i: i for i in rects}
+def root(i):
+    while group[i] != i: group[i] = group[group[i]]; i = group[i]
+    return i
+ids = sorted(rects); TOUCH = 4.0
+for n, a in enumerate(ids):
+    for b in ids[n + 1:]:
+        ra, rb = rects[a], rects[b]
+        if ra[0] - TOUCH <= rb[2] and rb[0] - TOUCH <= ra[2] and ra[1] - TOUCH <= rb[3] and rb[1] - TOUCH <= ra[3]: group[root(a)] = root(b)
+wall_house = {o: h for h, cards in run_cards.items() for o in cards}
+members = collections.defaultdict(list)
+for i in ids: members[root(i)].append(i)
+screen_of = {p['id']: p['screen'] for p in all_town}
+out['buildings'], stands, orphans = [], {}, []
+for n, cards in enumerate(sorted(members.values(), key=lambda c: (min(screen_of[i] for i in c), min(c))), 1):
+    runs = sorted({wall_house[i] for i in cards if i in wall_house})
+    for i in cards:
+        if i in wall_house: stands[i] = wall_house[i]
+        elif runs:
+            x, y = (rects[i][0] + rects[i][2]) / 2.0, (rects[i][1] + rects[i][3]) / 2.0
+            def reach(h):
+                (x0, y0), (x1, y1) = run_span[h]
+                return (abs(x - min(max(x, min(x0, x1)), max(x0, x1))), abs(y - (y0 + y1) / 2.0), h)
+            stands[i] = min(runs, key=reach)
+        else: orphans.append(i)
+    out['buildings'].append({'id': f'B{n}', 'screens': sorted({screen_of[i] for i in cards}), 'cards': len(cards), 'houses': runs})
+card = {p['id']: p for p in all_town}
+def gap_cm(i):       # distance to the nearest assembled house body (0 when they overlap) from where the card stood on
+    p = card[i]      # the ground: a wall's ground line, for the other pictures the picture's rectangle (9 x 9 samples)
+    if p['class_id'] in ('town_wall_stone_window', 'town_wall_stone_door'): pts = [gpx(p['screen'], *centre(p))]
+    else: pts = [(rects[i][0] + (rects[i][2] - rects[i][0]) * u / 8.0, rects[i][1] + (rects[i][3] - rects[i][1]) * v / 8.0) for u in range(9) for v in range(9)]
+    best = 1e9
+    for (ox, oy), c, s, cm, (x0, y0, x1, y1) in bodies:
+        for x, y in pts:
+            lx, ly = ((x - ox) * c + (y - oy) * s) * cm, (-(x - ox) * s + (y - oy) * c) * cm
+            best = min(best, math.hypot(max(x0 - lx, 0.0, lx - x1), max(y0 - ly, 0.0, ly - y1)))
+    return best
+uncovered = {i: round(gap_cm(i) / 100.0, 1) for i in ids if i in stands and gap_cm(i) > COVER_CM}
+for s, row in out['screens'].items():
+    here = sorted(i for i in ids if screen_of[i] == int(s))
+    row['stands_for'] = {i: stands[i] for i in here if i in stands}
+    row['uncovered_m'] = {i: uncovered[i] for i in here if i in uncovered}
+    for h in row['houses']: h['hide'] = [i for i in h['hide'] if i in stands]     # a card nothing stands for keeps its sprite
+    total['hidden'] -= sum(1 for i in here if i not in stands)
 dest = os.path.join(ROOT, 'Content/Dink/Data/Art/town_houses.json')
 json.dump(out, open(dest, 'w'), indent=1)
+print(f"accounting: {len(out['buildings'])} buildings, {len(stands)} cards stood for by a house, {len(orphans)} left as sprite cards {sorted(orphans)}, {len(REVIEW)} houses failed review")
+by_class = collections.Counter(p['class_id'] for p in all_town if p['id'] in uncovered)
+print(f"  {len(stands) - len(uncovered)} cards covered by a house body, {len(uncovered)} not (their picture lay over ground the house does not stand on): {dict(sorted(by_class.items()))}")
 print(f"town houses: {len(out['screens'])} screens, {total['runs']} runs cut into {total['houses']} houses, {total['modules']} modules, {total['hidden']} sprite cards hidden -> {dest}")
 for s in ('506', '498', '418'):
     for r in out['screens'].get(s, {}).get('houses', []):

@@ -26,6 +26,12 @@ States (one per coverage row; see Plugins/DinkImport/Docs/art_coverage.md):
                                      existing mesh and no origin or screen binding
                                      handles it; UDinkArtFamilySubsystem dresses it
                                      at screen activation (visual only).
+               A fourth grade is "final by town house":
+                 "town-house"        Data/Art/town_houses.json (Scripts/assemble_town_houses.py) hides
+                                     the card and names the assembled kit house that stands for it
+                                     (`stands_for`); UDinkEnvironmentSubsystem::ApplyTownHouses shows
+                                     that house instead (dink.TownHouses, visual only). See
+                                     town_house_cards() for the exact conditions.
   placeholder  still drawn by the greybox (card, block, volume, instance) or not
                drawn at all; no art binding. Also the conservative answer
                whenever the binding model is ambiguous.
@@ -340,6 +346,73 @@ def family_binding(rows, seq, cls, frame=None):
     return None
 
 
+TOWN_KIT = "/Game/Dink/Photoreal/TownExteriors/"
+
+
+def town_house_cards(data, resolve):
+    """town_houses.json -> {origin: (state, evidence)} for every card the file names, mirroring
+    UDinkEnvironmentSubsystem::LoadTownHouses / ApplyTownHouses.
+
+    `resolve(game_path)` -> (exists, note). A card is final when, and only when, all of these hold:
+      1. its own screen's entry hides it (a `hide` list of that screen: the runtime hides cards per screen);
+      2. `stands_for` of that screen names a house for it, the house exists in the file and has modules;
+      3. every kit mesh of that house's modules exists (a house with a missing module is drawn with a hole);
+      4. the card's screen draws something or needs nothing drawn: the runtime leaves every card of a screen alone
+         when the screen lists modules and none of their meshes loads;
+      5. the house did not fail the in-game review (`review.state` placeholder, written from REVIEW in the script);
+      6. a house body covers the ground the card's picture covered: the card is not in `uncovered_m` of its screen
+         (the assembled houses are shallower than the 1997 buildings; a roof picture that lay over what is now
+         open ground behind the houses is hidden, but nothing stands where it was).
+    Anything else the file names is placeholder, with the reason."""
+    out = {}
+    screens = data.get("screens") if isinstance(data, dict) else None
+    if not isinstance(screens, dict):
+        return out
+    houses = {}
+    for row in screens.values():
+        for h in row.get("houses") or []:
+            if isinstance(h, dict) and h.get("id"):
+                houses[h["id"]] = h
+    building = {hid: b.get("id", "") for b in data.get("buildings") or [] for hid in b.get("houses") or []}
+
+    def mesh_path(mesh):
+        return mesh if mesh.startswith("/") else TOWN_KIT + mesh
+
+    def missing(h):
+        return sorted({m.get("mesh", "") for m in h.get("modules") or [] if not resolve(mesh_path(m.get("mesh", "")))[0]})
+
+    for row in screens.values():
+        hidden = {o for h in row.get("houses") or [] for o in h.get("hide") or []}
+        stands = row.get("stands_for") or {}
+        uncovered = row.get("uncovered_m") or {}
+        mods = [m for h in row.get("houses") or [] for m in h.get("modules") or []]
+        screen_draws = (not mods) or any(resolve(mesh_path(m.get("mesh", "")))[0] for m in mods)
+        for o in sorted(hidden | set(stands)):
+            hid = stands.get(o)
+            h = houses.get(hid) if hid else None
+            if o not in hidden:
+                out[o] = ("placeholder", "town_houses.json names house %s for this card but its screen does not hide it: the sprite card stays" % hid)
+            elif h is None:
+                out[o] = ("placeholder", "town_houses.json hides this card but no assembled house stands for it (stands_for %s)" % (hid or "is empty"))
+            elif not h.get("modules"):
+                out[o] = ("placeholder", "town_houses.json hides this card but house %s has no modules" % hid)
+            elif missing(h):
+                out[o] = ("placeholder", "town house %s lacks kit mesh %s: drawn incomplete" % (hid, ", ".join(missing(h)[:3])))
+            elif not screen_draws:
+                out[o] = ("placeholder", "no kit mesh of this card's screen loads: the runtime keeps the sprite cards")
+            elif (h.get("review") or {}).get("state") == "placeholder":
+                out[o] = ("placeholder", "town house %s failed the in-game review: %s" % (hid, h["review"].get("reason", "no reason recorded")))
+            elif o in uncovered:
+                out[o] = ("placeholder", "card hidden and town house %s stands for its building, but no house body covers the ground this picture "
+                          "covered (nearest %.1f m away): open ground is shown there" % (hid, float(uncovered[o])))
+            else:
+                kit = sorted({m["mesh"] for m in h["modules"]})
+                out[o] = ("final", "town-house: town_houses.json house %s%s (%d modules of %d kit meshes under %s) stands for this card; "
+                          "card hidden by ApplyTownHouses (dink.TownHouses), collision, warps and scripts unchanged" % (
+                              hid, " of building %s" % building[hid] if building.get(hid) else "", len(h["modules"]), len(kit), TOWN_KIT.rstrip("/")))
+    return out
+
+
 def classify(args):
     notes = []
     assets = Assets()
@@ -365,6 +438,7 @@ def classify(args):
             scripted_of[r["origin"]] = bool(r["script"].strip())
     fam_rows, fam_origins, fam_screens = load_families(assets, notes)
     manifests["families"] = fam_rows
+    town_cards = town_house_cards(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Art", "town_houses.json")), assets.resolve)
 
     def family_decision(oid, screen_no, cls, detail):
         """-> family row if UDinkArtFamilySubsystem dresses this placement on its own merits, else None."""
@@ -472,6 +546,12 @@ def classify(args):
         if cut_reasons:
             # Owner decision, 9 Nov 2026: placements that can never meaningfully become final are cut, with the reason.
             return finish(r, fam, art_kind, "cut", "cut (owner decision 9 Nov 2026): " + "; ".join(cut_reasons) + "; " + base + " (%s)" % cls)
+        # --- final: town house (family 33 cards the assembled kit houses stand for) -------------------
+        town = town_cards.get(oid)
+        if town and town[0] == "final":
+            return finish(r, fam, art_kind, "final", town[1])
+        if town:
+            flags.append("town-house open: " + town[1])
         # --- final: family binding (what no origin or screen binding handles) ------------------------
         row = family_decision(oid, screen_no, cls, r["detail"])
         if row is not None and not is_actor:
@@ -579,6 +659,9 @@ def summarise(out, manifests, assets, ledger_counts, notes, cov_path, top):
     family_final = sum(1 for r in finals if r["evidence"].startswith("family-bound"))
     print("Final grades: origin-bound %d, screen-dressing %d, family-bound %d, warp rows inheriting a final host %d (%d of them family-bound)" % (
         direct, dress, family_final, warp_final, sum(1 for r in finals if r["evidence"].startswith("warp trigger") and is_family_final(r))))
+    print("Town houses (town_houses.json): %d placements final, %d named by the file but still placeholder" % (
+        sum(1 for r in finals if r["evidence"].startswith("town-house")),
+        sum(1 for r in out if r["state"] == "placeholder" and r["type"] == "placement" and "town-house open: " in r["evidence"])))
     ledger_final = collections.Counter()
     for r in (r for r in finals if r["evidence"].startswith("origin-bound")):
         m = re.search(r"ledger=(\S+?)(;|$| )", r["evidence"])
