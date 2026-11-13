@@ -1,0 +1,671 @@
+{
+ "note": "The families no stream had claimed when this folder was started (doc/remaster/ALPHA_GATE2_BACKLOG.md of 12 Nov 2026, before any of them was bound). tools/make_status.py reads this list, so a family stays in STATUS.md after its binding takes it off the backlog.",
+ "families": [
+  {
+   "rank": 24,
+   "family": "blood_splat",
+   "what": "Blood splatter",
+   "placements": 46
+  },
+  {
+   "rank": 31,
+   "family": "tree_fruit",
+   "what": "Fruit hanging in a tree",
+   "placements": 34
+  },
+  {
+   "rank": 34,
+   "family": "hand_tool_small",
+   "what": "Small hand tool",
+   "placements": 30
+  },
+  {
+   "rank": 36,
+   "family": "seashell_conch",
+   "what": "Conch shell",
+   "placements": 29
+  },
+  {
+   "rank": 38,
+   "family": "burn_hole_decal",
+   "what": "Burnt hole / scorch mark",
+   "placements": 26
+  },
+  {
+   "rank": 41,
+   "family": "bonca_gray",
+   "what": "Bonca",
+   "placements": 21
+  },
+  {
+   "rank": 43,
+   "family": "slayer",
+   "what": "Slayer",
+   "placements": 21
+  },
+  {
+   "rank": 53,
+   "family": "npc_knight_blue",
+   "what": "Knight",
+   "placements": 18
+  },
+  {
+   "rank": 62,
+   "family": "dragon",
+   "what": "Dragon",
+   "placements": 16
+  },
+  {
+   "rank": 66,
+   "family": "food_fruit",
+   "what": "Fruit",
+   "placements": 15
+  },
+  {
+   "rank": 67,
+   "family": "gold_pile",
+   "what": "Gold pile",
+   "placements": 15
+  },
+  {
+   "rank": 73,
+   "family": "arrow_prop",
+   "what": "Arrow",
+   "placements": 14
+  },
+  {
+   "rank": 77,
+   "family": "stone_giant",
+   "what": "Stone giant",
+   "placements": 14
+  },
+  {
+   "rank": 79,
+   "family": "dragon_statue",
+   "what": "Dragon statue on orb",
+   "placements": 13
+  },
+  {
+   "rank": 81,
+   "family": "bonca_brown",
+   "what": "Bonca",
+   "placements": 12
+  },
+  {
+   "rank": 90,
+   "family": "cave_hole_warp",
+   "what": "Hole into a cave",
+   "placements": 10
+  },
+  {
+   "rank": 93,
+   "family": "save_machine",
+   "what": "Save machine",
+   "placements": 10
+  },
+  {
+   "rank": 95,
+   "family": "bonca_purple",
+   "what": "Bonca",
+   "placements": 9
+  },
+  {
+   "rank": 96,
+   "family": "bookcase",
+   "what": "Bookcase",
+   "placements": 9
+  },
+  {
+   "rank": 98,
+   "family": "log_cabin_window",
+   "what": "Log cabin window",
+   "placements": 9
+  },
+  {
+   "rank": 100,
+   "family": "stairs_wood",
+   "what": "Wooden stairs",
+   "placements": 9
+  },
+  {
+   "rank": 106,
+   "family": "fish",
+   "what": "Fish",
+   "placements": 8
+  },
+  {
+   "rank": 107,
+   "family": "gold_coin",
+   "what": "Single coin",
+   "placements": 8
+  },
+  {
+   "rank": 108,
+   "family": "ground_crack",
+   "what": "Crack in the ground",
+   "placements": 8
+  },
+  {
+   "rank": 111,
+   "family": "shop_sign",
+   "what": "Hanging sign",
+   "placements": 8
+  },
+  {
+   "rank": 112,
+   "family": "small_heart",
+   "what": "Small heart",
+   "placements": 8
+  },
+  {
+   "rank": 117,
+   "family": "snake_pillar",
+   "what": "Pillar with coiled snake",
+   "placements": 7
+  },
+  {
+   "rank": 118,
+   "family": "wall_stripe_red",
+   "what": "Red wall stripe / banner",
+   "placements": 7
+  },
+  {
+   "rank": 123,
+   "family": "goblin_soldier",
+   "what": "Goblin soldier",
+   "placements": 6
+  },
+  {
+   "rank": 124,
+   "family": "golden_heart",
+   "what": "Golden heart",
+   "placements": 6
+  },
+  {
+   "rank": 125,
+   "family": "pitchfork",
+   "what": "Pitchfork",
+   "placements": 6
+  },
+  {
+   "rank": 127,
+   "family": "ground_hole_dark",
+   "what": "Dark hole in the ground",
+   "placements": 5
+  },
+  {
+   "rank": 129,
+   "family": "idol_statue_small",
+   "what": "Small demon idol",
+   "placements": 5
+  },
+  {
+   "rank": 130,
+   "family": "island_spear_pole",
+   "what": "Spear pole",
+   "placements": 5
+  },
+  {
+   "rank": 135,
+   "family": "npc_knight_silver",
+   "what": "Knight",
+   "placements": 4
+  },
+  {
+   "rank": 136,
+   "family": "boulder_flat",
+   "what": "Flat boulder",
+   "placements": 4
+  },
+  {
+   "rank": 140,
+   "family": "fish_flopping",
+   "what": "Fish flopping on land",
+   "placements": 4
+  },
+  {
+   "rank": 141,
+   "family": "goblin_hammer",
+   "what": "Goblin",
+   "placements": 4
+  },
+  {
+   "rank": 143,
+   "family": "npc_girl",
+   "what": "Girl",
+   "placements": 4
+  },
+  {
+   "rank": 144,
+   "family": "npc_knight_red",
+   "what": "Knight",
+   "placements": 4
+  },
+  {
+   "rank": 145,
+   "family": "poster_hark",
+   "what": "\"Hark!\" notice",
+   "placements": 4
+  },
+  {
+   "rank": 146,
+   "family": "teleport_shrine",
+   "what": "Shrine with stained glass",
+   "placements": 3
+  },
+  {
+   "rank": 147,
+   "family": "bomb_item",
+   "what": "Bomb",
+   "placements": 3
+  },
+  {
+   "rank": 148,
+   "family": "church",
+   "what": "Stone church",
+   "placements": 3
+  },
+  {
+   "rank": 149,
+   "family": "church_stained_glass",
+   "what": "Stained-glass window",
+   "placements": 3
+  },
+  {
+   "rank": 150,
+   "family": "dragon_corpse",
+   "what": "Dead dragon",
+   "placements": 3
+  },
+  {
+   "rank": 154,
+   "family": "rake",
+   "what": "Rake",
+   "placements": 3
+  },
+  {
+   "rank": 155,
+   "family": "teleport_machine",
+   "what": "Teleport machine",
+   "placements": 2
+  },
+  {
+   "rank": 156,
+   "family": "boulder_large",
+   "what": "Large dark boulder",
+   "placements": 2
+  },
+  {
+   "rank": 157,
+   "family": "boulder_red",
+   "what": "Reddish boulder",
+   "placements": 2
+  },
+  {
+   "rank": 158,
+   "family": "boulder_white_pair",
+   "what": "Pair of white boulders",
+   "placements": 2
+  },
+  {
+   "rank": 159,
+   "family": "burnt_floor_hole",
+   "what": "Burnt hole in floor/roof",
+   "placements": 2
+  },
+  {
+   "rank": 161,
+   "family": "cellar_hatch",
+   "what": "Cellar hatch / ladder",
+   "placements": 2
+  },
+  {
+   "rank": 164,
+   "family": "church_window_small",
+   "what": "Church small window",
+   "placements": 2
+  },
+  {
+   "rank": 165,
+   "family": "corpse_merchant",
+   "what": "Dead merchant",
+   "placements": 2
+  },
+  {
+   "rank": 168,
+   "family": "explosion_fx",
+   "what": "Explosion",
+   "placements": 2
+  },
+  {
+   "rank": 169,
+   "family": "fire_burst_fx",
+   "what": "Fire burst",
+   "placements": 2
+  },
+  {
+   "rank": 170,
+   "family": "fireball_fx",
+   "what": "Fireball",
+   "placements": 2
+  },
+  {
+   "rank": 171,
+   "family": "food_drumstick",
+   "what": "Meat drumstick",
+   "placements": 2
+  },
+  {
+   "rank": 173,
+   "family": "fountain_spray_fx",
+   "what": "Fountain water spray",
+   "placements": 2
+  },
+  {
+   "rank": 174,
+   "family": "fountain_stone",
+   "what": "Stone fountain",
+   "placements": 2
+  },
+  {
+   "rank": 175,
+   "family": "hearth_fire",
+   "what": "Fireplace fire",
+   "placements": 2
+  },
+  {
+   "rank": 176,
+   "family": "log_cabin",
+   "what": "Log cabin",
+   "placements": 2
+  },
+  {
+   "rank": 177,
+   "family": "log_cabin_door",
+   "what": "Log cabin door",
+   "placements": 2
+  },
+  {
+   "rank": 178,
+   "family": "npc_knight_red_attacking",
+   "what": "Knight",
+   "placements": 2
+  },
+  {
+   "rank": 179,
+   "family": "npc_merchant_blue",
+   "what": "Merchant",
+   "placements": 2
+  },
+  {
+   "rank": 180,
+   "family": "npc_merchant_green",
+   "what": "Merchant",
+   "placements": 2
+  },
+  {
+   "rank": 181,
+   "family": "npc_peasant",
+   "what": "Peasant",
+   "placements": 2
+  },
+  {
+   "rank": 182,
+   "family": "scythe",
+   "what": "Scythe / hook",
+   "placements": 2
+  },
+  {
+   "rank": 183,
+   "family": "sparkle_fx",
+   "what": "Sparkle",
+   "placements": 2
+  },
+  {
+   "rank": 184,
+   "family": "spinning_wheel",
+   "what": "Spinning wheel",
+   "placements": 2
+  },
+  {
+   "rank": 188,
+   "family": "axe_item",
+   "what": "Throwing axe",
+   "placements": 1
+  },
+  {
+   "rank": 189,
+   "family": "ballista",
+   "what": "Ballista",
+   "placements": 1
+  },
+  {
+   "rank": 190,
+   "family": "barrel_broken",
+   "what": "Smashed barrel",
+   "placements": 1
+  },
+  {
+   "rank": 191,
+   "family": "boulder_grey_tall",
+   "what": "Tall grey boulder",
+   "placements": 1
+  },
+  {
+   "rank": 192,
+   "family": "burn_damage_decal",
+   "what": "Burn damage / scorch with fire",
+   "placements": 1
+  },
+  {
+   "rank": 194,
+   "family": "castle_door",
+   "what": "Castle door",
+   "placements": 1
+  },
+  {
+   "rank": 195,
+   "family": "castle_drawbridge",
+   "what": "Drawbridge with chains",
+   "placements": 1
+  },
+  {
+   "rank": 197,
+   "family": "catapult",
+   "what": "Catapult",
+   "placements": 1
+  },
+  {
+   "rank": 198,
+   "family": "church_door",
+   "what": "Church door",
+   "placements": 1
+  },
+  {
+   "rank": 199,
+   "family": "corpse_girl",
+   "what": "Dead girl",
+   "placements": 1
+  },
+  {
+   "rank": 200,
+   "family": "corpse_knight",
+   "what": "Dead knight",
+   "placements": 1
+  },
+  {
+   "rank": 201,
+   "family": "corpse_maiden",
+   "what": "Dead woman",
+   "placements": 1
+  },
+  {
+   "rank": 202,
+   "family": "corpse_mom",
+   "what": "Dead mother",
+   "placements": 1
+  },
+  {
+   "rank": 203,
+   "family": "corpse_peasant",
+   "what": "Dead peasant",
+   "placements": 1
+  },
+  {
+   "rank": 204,
+   "family": "corpse_soldier",
+   "what": "Dead soldier",
+   "placements": 1
+  },
+  {
+   "rank": 205,
+   "family": "dink_dead",
+   "what": "Dink lying dead",
+   "placements": 1
+  },
+  {
+   "rank": 206,
+   "family": "dink_monument_rock",
+   "what": "\"Dink Smallwood\" carved rock",
+   "placements": 1
+  },
+  {
+   "rank": 207,
+   "family": "dungeon_arch_freestanding",
+   "what": "Freestanding stone archway",
+   "placements": 1
+  },
+  {
+   "rank": 208,
+   "family": "food_bread",
+   "what": "Bread loaf",
+   "placements": 1
+  },
+  {
+   "rank": 209,
+   "family": "food_cheese",
+   "what": "Cheese",
+   "placements": 1
+  },
+  {
+   "rank": 210,
+   "family": "food_grapes",
+   "what": "Grapes",
+   "placements": 1
+  },
+  {
+   "rank": 211,
+   "family": "food_ham",
+   "what": "Ham / steak",
+   "placements": 1
+  },
+  {
+   "rank": 212,
+   "family": "gold_coins_small",
+   "what": "Few coins",
+   "placements": 1
+  },
+  {
+   "rank": 213,
+   "family": "golden_duck_statue",
+   "what": "Golden duck statue",
+   "placements": 1
+  },
+  {
+   "rank": 214,
+   "family": "heart_pickup",
+   "what": "Heart",
+   "placements": 1
+  },
+  {
+   "rank": 215,
+   "family": "king_on_throne",
+   "what": "King Daniel on throne",
+   "placements": 1
+  },
+  {
+   "rank": 216,
+   "family": "npc_gnome_purple",
+   "what": "Gnome / wizard",
+   "placements": 1
+  },
+  {
+   "rank": 217,
+   "family": "npc_maiden_blue",
+   "what": "Woman",
+   "placements": 1
+  },
+  {
+   "rank": 218,
+   "family": "npc_maiden_brown",
+   "what": "Woman",
+   "placements": 1
+  },
+  {
+   "rank": 219,
+   "family": "npc_maiden_red",
+   "what": "Woman",
+   "placements": 1
+  },
+  {
+   "rank": 220,
+   "family": "npc_old_man",
+   "what": "Old man",
+   "placements": 1
+  },
+  {
+   "rank": 221,
+   "family": "npc_soldier",
+   "what": "Soldier",
+   "placements": 1
+  },
+  {
+   "rank": 222,
+   "family": "ore_rock_blue",
+   "what": "Blue crystal rock",
+   "placements": 1
+  },
+  {
+   "rank": 223,
+   "family": "poster_wanted",
+   "what": "\"Wanted\" poster",
+   "placements": 1
+  },
+  {
+   "rank": 224,
+   "family": "scroll_note",
+   "what": "Note / paper on floor",
+   "placements": 1
+  },
+  {
+   "rank": 225,
+   "family": "snake_carving",
+   "what": "Small stone snake carving",
+   "placements": 1
+  },
+  {
+   "rank": 226,
+   "family": "snow_house_door",
+   "what": "House door",
+   "placements": 1
+  },
+  {
+   "rank": 227,
+   "family": "snow_house_lower",
+   "what": "House lower walls",
+   "placements": 1
+  },
+  {
+   "rank": 228,
+   "family": "snow_house_roof",
+   "what": "House pyramid roof",
+   "placements": 1
+  },
+  {
+   "rank": 229,
+   "family": "snow_house_timber",
+   "what": "House timbered upper walls",
+   "placements": 1
+  }
+ ]
+}

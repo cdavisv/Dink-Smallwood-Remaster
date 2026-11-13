@@ -97,6 +97,18 @@ The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README
 6. `python3 -I Scripts/assemble_town_houses.py` (needs `ImportData/placements.json` from step 4; its output `Content/Dink/Data/Art/town_houses.json` is committed, so this is only needed after a change to the script or the placements).
 7. Check: `Scripts/test.sh Dink.Import`, `Scripts/test.sh Dink.Art`, `Scripts/test.sh Dink.Gameplay.Probe`, `python3 -m unittest discover -s Scripts/tests`, `python3 -I Scripts/art_coverage.py`, `python3 -I Scripts/art_standard_check.py`.
 
+## Unclaimed families kit (12 Nov 2026)
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| Static meshes of the unclaimed families that `families.json` binds | `python3 -I SourceAssets/Art/PhotorealPass/Unclaimed/tools/make_kit_manifest.py`, then `DINK_KIT=Unclaimed DINK_KIT_FOLDER=Unclaimed Scripts/import_town_exteriors.sh` | `Unclaimed/manifest.json` (generated: the meshes a `families.json` row names under `/Game/Dink/Photoreal/Unclaimed`; `--all` lists every importable mesh for a look before binding) | `/Game/Dink/Photoreal/Unclaimed`; report `Saved/PhotorealPass/import_unclaimed.json` |
+
+- **One object per FBX**: these files hold a single object named after the asset and no LOD objects; `import_town_exteriors.py` takes that object as LOD0.
+- **Order**: add the `families.json` row, regenerate the manifest, import, then `git add` the new packages and run `python3 -I Scripts/scrub_private_paths.py --fix Content/Dink/Photoreal/Unclaimed` (the importer writes the local project path into texture packages; the scrubber only sees tracked files).
+- **What the layer cannot place** (families left unbound, reasons in `Unclaimed/STATUS.md`): things on a table top or shelf, things hung on a wall, pits below the ground, and buildings drawn in several sprites. A family mesh always stands on its lowest point at Z 0 under the card.
+- **Pickups** (hearts, small coin scatter) use `fit: footprint`: a pickup is shown at the size the original draws it, not at the size of the modelled object.
+- **Checks and captures**: `Docs/Verification/UnclaimedFamilyBinding_12Nov2026/`.
+
 ## Turning the pass off
 
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):

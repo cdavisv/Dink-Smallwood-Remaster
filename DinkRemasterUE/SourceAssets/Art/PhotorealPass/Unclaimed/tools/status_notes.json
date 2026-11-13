@@ -8,14 +8,17 @@
   "why": "the photoreal pass built this family (one set, `PhotorealPass/Props/Decals/T_Decal_BurnHole_*`, not yet on master). The 3 per-frame sets in this folder were finished before that notice and are kept as alternates for the reviewer to keep or delete"
  },
  "food_fruit": {
-  "why": "6 meshes, one per original frame: three bell peppers, pumpkin, tomato, aubergine"
+  "why": "6 meshes, one per original frame: three bell peppers, pumpkin, tomato, aubergine",
+  "binding": "bound for the fruit lying under the trees of screen 693 (pictures 18 and 20); the four on the tables of screen 70 stay cards: the layer stands a mesh on the floor under the card (Z 0); this one sits on a table top or shelf, so it would lie on the floor"
  },
  "tree_fruit": {
   "status": "partial",
-  "why": "1 mesh (large acorn; identity guessed from a 7x12 px frame). The last review still faults the cup: its scales are a soft displaced pattern that reads as a rough cap at 1 m"
+  "why": "1 mesh (large acorn; identity guessed from a 7x12 px frame). The last review still faults the cup: its scales are a soft displaced pattern that reads as a rough cap at 1 m",
+  "binding": "the fruit hangs in the crown of a tree; on the ground a 7 cm acorn is hidden in the grass"
  },
  "hand_tool_small": {
-  "why": "3 meshes for the 8 frames: felling axe (4 frames), smith's hammer (2), tongs (2); game meshes are decimations of the swept sources"
+  "why": "3 meshes for the 8 frames: felling axe (4 frames), smith's hammer (2), tongs (2); game meshes are decimations of the swept sources",
+  "binding": "one row per picture (eight pictures, three tools)"
  },
  "seashell_conch": {
   "why": "1 mesh: knobbed spiral shell, 14 cm, lying on its aperture; a few dark bake fringes at the canal tip and lip"
@@ -57,47 +60,61 @@
   "why": "rigged creature (38-bone bespoke skeleton with wing and jaw bones, 3 LODs, bone-heat weights, pose-tested). Partial because the last review still faults it: maquette look at 1 m, flat opaque wing panels, no mouth opening, no animation clips (flight, fire, death)"
  },
  "boulder_flat": {
-  "why": "1 mesh with UCX hull: bedded flat boulder; scanned rock surface on an authored form, soft edges"
+  "why": "1 mesh with UCX hull: bedded flat boulder; scanned rock surface on an authored form, soft edges",
+  "binding": "the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
  },
  "boulder_large": {
-  "why": "1 mesh with UCX hull: large dark rounded boulder; scanned rock surface on an authored form, soft edges"
+  "why": "1 mesh with UCX hull: large dark rounded boulder; scanned rock surface on an authored form, soft edges",
+  "binding": "the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
  },
  "boulder_red": {
-  "why": "1 mesh with UCX hull: cracked reddish boulder (the bombable rock); scanned rock surface on an authored form, soft edges"
+  "why": "1 mesh with UCX hull: cracked reddish boulder (the bombable rock); scanned rock surface on an authored form, soft edges. Review of 12 Nov 2026 (PR #83 / #85) downgraded it: it reads as stitched clay, not as rock",
+  "status": "partial",
+  "binding": "the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
  },
  "boulder_white_pair": {
   "why": "1 mesh with UCX hull: pair of pale boulders; scanned rock surface on an authored form, soft edges"
  },
  "boulder_grey_tall": {
-  "why": "1 mesh with UCX hull: tall grey boulder; scanned rock surface on an authored form, soft edges"
+  "why": "1 mesh with UCX hull: tall grey boulder; scanned rock surface on an authored form, soft edges",
+  "binding": "the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
  },
  "ore_rock_blue": {
   "status": "partial",
-  "why": "1 mesh; the last review still faults the blue mineral: a glossy colour mask and seven plain prisms that read as plastic, not as crystal"
+  "why": "1 mesh; the last review still faults the blue mineral: a glossy colour mask and seven plain prisms that read as plastic, not as crystal",
+  "binding": "its only placement is scripted (s3-rock); scripted rocks keep their cards, like the other boulder classes"
  },
  "gold_coin": {
-  "why": "1 mesh, a 31 mm coin (40 triangles); too small to read at the gameplay camera without a scale-up, and its flat face mirrors the sky"
+  "why": "1 mesh, a 31 mm coin (40 triangles); too small to read at the gameplay camera without a scale-up, and its flat face mirrors the sky. Review of 12 Nov 2026 (PR #83 / #85) downgraded it: the ten-sided rim shows in the close render",
+  "status": "partial",
+  "binding": "the coin is 4 mm thick and Dink.Art.Family.ManifestMeshesExist requires every side of a bound mesh to exceed 1 cm; it needs a thicker game mesh"
  },
  "gold_coins_small": {
-  "why": "1 mesh: eleven spilled coins"
+  "why": "1 mesh: eleven spilled coins",
+  "binding": "fit footprint"
  },
  "bomb_item": {
-  "why": "1 mesh: cast-iron bomb with a rope fuse"
+  "why": "1 mesh: cast-iron bomb with a rope fuse",
+  "binding": "three bombs on the shelf of a shop. the layer stands a mesh on the floor under the card (Z 0); this one sits on a table top or shelf, so it would lie on the floor"
  },
  "arrow_prop": {
-  "why": "1 mesh: war arrow lying flat; the stuck-in-the-ground frames are a placement rotation"
+  "why": "1 mesh: war arrow lying flat; the stuck-in-the-ground frames are a placement rotation",
+  "binding": "ten of the fourteen stand on display in the bow shop of screen 97 and would drop to the floor (the layer has no wall or table placement); the four on the range of screen 663 would vanish in the grass at real size"
  },
  "gold_pile": {
   "why": "1 mesh: a heap of about 430 coins baked onto a smooth mound, eighteen stray coins as real discs"
  },
  "heart_pickup": {
-  "why": "1 mesh: ruby-red glass heart, 12 cm (opaque in the game material)"
+  "why": "1 mesh: ruby-red glass heart, 12 cm (opaque in the game material)",
+  "binding": "fit footprint: shown at the size the original draws the pickup"
  },
  "small_heart": {
-  "why": "same mesh as heart_pickup (SM_Heart_Red_PR) at half scale, set at placement"
+  "why": "same mesh as heart_pickup (SM_Heart_Red_PR) at half scale, set at placement",
+  "binding": "fit footprint: shown at the size the original draws the pickup"
  },
  "golden_heart": {
-  "why": "1 mesh: cast-gold heart, 12 cm"
+  "why": "1 mesh: cast-gold heart, 12 cm",
+  "binding": "fit footprint: shown at the size the original draws the pickup"
  },
  "dragon_statue": {
   "why": "1 mesh with UCX hull: stone dragon on an orb, 3 m, made from the dragon source re-posed and fused; flat slab wings"
@@ -115,19 +132,25 @@
   "why": "same mesh as fish (SK_Fish_PR) laid on its side; the flop itself is a clip and none is delivered"
  },
  "food_drumstick": {
-  "why": "1 mesh: cured ham leg with a cut face and shank bone (the frame the audit calls a drumstick)"
+  "why": "1 mesh: cured ham leg with a cut face and shank bone (the frame the audit calls a drumstick)",
+  "binding": "bound for the ham on the ground of screen 149 (picture 2); the one on a table of screen 70 stays a card"
  },
  "food_bread": {
-  "why": "1 mesh: braided loaf"
+  "why": "1 mesh: braided loaf",
+  "binding": "the layer stands a mesh on the floor under the card (Z 0); this one sits on a table top or shelf, so it would lie on the floor"
  },
  "food_cheese": {
-  "why": "1 mesh: small cheese wheel with a wedge cut out"
+  "why": "1 mesh: small cheese wheel with a wedge cut out",
+  "binding": "the layer stands a mesh on the floor under the card (Z 0); this one sits on a table top or shelf, so it would lie on the floor"
  },
  "food_grapes": {
-  "why": "1 mesh: bunch of dark grapes with a leaf, one skin over the bunch"
+  "why": "1 mesh: bunch of dark grapes with a leaf, one skin over the bunch",
+  "binding": "the layer stands a mesh on the floor under the card (Z 0); this one sits on a table top or shelf, so it would lie on the floor"
  },
  "food_ham": {
-  "why": "1 mesh: raw T-bone steak (the frame the audit calls ham / steak)"
+  "why": "1 mesh: raw T-bone steak (the frame the audit calls ham / steak). Review of 12 Nov 2026 (PR #83 / #85) downgraded it: the original frame is a T-bone with a fat rim and a bone; the mesh is a flat lozenge with painted marbling",
+  "status": "partial",
+  "binding": "the layer stands a mesh on the floor under the card (Z 0); this one sits on a table top or shelf, so it would lie on the floor"
  },
  "pitchfork": {
   "why": "1 mesh: three-tine hay fork, lying flat"
@@ -145,14 +168,17 @@
   "why": "1 mesh with UCX hull: oak bookcase with about a hundred books"
  },
  "shop_sign": {
-  "why": "1 mesh: healer's hanging sign with a red cross, on its own post and bracket"
+  "why": "1 mesh: healer's hanging sign with a red cross, on its own post and bracket",
+  "binding": "bound for the red cross (picture 4, three placements); the other four pictures carry other emblems"
  },
  "log_cabin_window": {
-  "why": "1 mesh: leaded cabin window; the glass is an opaque dark panel"
+  "why": "1 mesh: leaded cabin window; the glass is an opaque dark panel",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses (the class is also used on other houses)"
  },
  "stairs_wood": {
   "status": "partial",
-  "why": "1 mesh: open oak flight for the 3.5 m storey. Partial: no handrail, no trimmer frame for the floor opening of frame 2, and one convex hull instead of stepped collision"
+  "why": "1 mesh: open oak flight for the 3.5 m storey. Partial: no handrail, no trimmer frame for the floor opening of frame 2, and one convex hull instead of stepped collision",
+  "binding": "two of its four pictures are openings in the floor and the other two are closed flights against a wall; the mesh is one open flight"
  },
  "ground_crack": {
   "status": "partial",
@@ -195,16 +221,19 @@
   "why": "1 mesh with UCX hull: stone hearth ring with scrolls, spokes and grating; static, no glow or animation"
  },
  "cave_hole_warp": {
-  "why": "1 mesh: timber-shored shaft, 1.3 m deep below the pivot plane; it shows only where the terrain has a matching hole cut"
+  "why": "1 mesh: timber-shored shaft, 1.3 m deep below the pivot plane; it shows only where the terrain has a matching hole cut",
+  "binding": "a pit sunk 1.5 m into the ground; the layer stands a mesh on its lowest point, so the shaft would stand on the ground as a box, and the terrain has no hole"
  },
  "snake_pillar": {
   "why": "1 mesh with UCX hull: fluted column with a coiled snake (still frame; the scripted pillar animates)"
  },
  "snake_carving": {
-  "why": "1 mesh: small soapstone snake"
+  "why": "1 mesh: small soapstone snake. Review of 12 Nov 2026 (PR #83 / #85) downgraded it: it reads as a green worm, not as carved stone",
+  "status": "partial"
  },
  "wall_stripe_red": {
-  "why": "1 mesh: the red bar with a gold edge interpreted as a red wall hanging with a gold braid border"
+  "why": "1 mesh: the red bar with a gold edge interpreted as a red wall hanging with a gold braid border",
+  "binding": "seven pieces in a row at the top of screen 97: a stripe on the north wall. hangs on a wall in the sprite; the layer stands a mesh on the floor (Z 0), so it needs a per-screen placement"
  },
  "idol_statue_small": {
   "status": "partial",
@@ -215,7 +244,8 @@
   "why": "1 mesh with UCX hull. Partial: the duck is a fused form with a wing relief, a cast lump in the shape of a duck at 1 m"
  },
  "dungeon_arch_freestanding": {
-  "why": "1 mesh: ashlar archway of separate blocks; one convex hull that blocks the opening (needs split hulls to walk through)"
+  "why": "1 mesh: ashlar archway of separate blocks; one convex hull that blocks the opening (needs split hulls to walk through)",
+  "binding": "the class is already bound to a stand-in wall arch by an earlier row; swapping in this arch needs its own look in game"
  },
  "fountain_stone": {
   "why": "1 mesh with UCX hull: basin, pedestal and still opaque water; the spray is a separate effect family"
@@ -227,10 +257,12 @@
   "why": "1 mesh with UCX hull: sandstone alcove with an opaque stained-glass light; static, no glow"
  },
  "poster_hark": {
-  "why": "1 mesh: vellum notice with a red title; body text is a generated stroke pattern"
+  "why": "1 mesh: vellum notice with a red title; body text is a generated stroke pattern",
+  "binding": "hangs on a wall in the sprite; the layer stands a mesh on the floor (Z 0), so it needs a per-screen placement"
  },
  "poster_wanted": {
-  "why": "1 mesh: vellum poster with a silhouette woodcut block and title"
+  "why": "1 mesh: vellum poster with a silhouette woodcut block and title",
+  "binding": "hangs on a wall in the sprite; the layer stands a mesh on the floor (Z 0), so it needs a per-screen placement"
  },
  "scroll_note": {
   "why": "1 mesh: note with rolled ends"
@@ -239,34 +271,42 @@
   "why": "1 mesh with UCX hull: double-bitted throwing axe, lying flat"
  },
  "cellar_hatch": {
-  "why": "1 mesh with UCX hull: closed plank hatch with a barred light; it does not open"
+  "why": "1 mesh with UCX hull: closed plank hatch with a barred light; it does not open",
+  "binding": "could not be shown in game: its ground point lies at the foot of the north wall of screen 68 and the wall module hides the flat hatch"
  },
  "spinning_wheel": {
   "why": "1 mesh with UCX hull: twelve-spoke wheel, bench, flyer and treadle; no drive band or wool"
  },
  "barrel_broken": {
-  "why": "1 mesh with UCX hull: staves, split head and hoop pieces of a burst barrel (end state only)"
+  "why": "1 mesh with UCX hull: staves, split head and hoop pieces of a burst barrel (end state only). Review of 12 Nov 2026 (PR #83 / #85) downgraded it: a flat star of planks with no hoops visible; it does not read as a burst barrel",
+  "status": "partial"
  },
  "dink_monument_rock": {
   "why": "1 mesh with UCX hull: boulder with DINK / SMALLWOOD cut in; plain sans lettering, not the gothic of the original"
  },
  "church_door": {
-  "why": "1 door-class leaf (hinge pivot), round-headed"
+  "why": "1 door-class leaf (hinge pivot), round-headed",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "castle_door": {
-  "why": "1 door-class leaf (hinge pivot), round-headed, 3.45 m"
+  "why": "1 door-class leaf (hinge pivot), round-headed, 3.45 m",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "log_cabin_door": {
-  "why": "1 door-class leaf (hinge pivot)"
+  "why": "1 door-class leaf (hinge pivot)",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "snow_house_door": {
-  "why": "1 mesh: two leaves in their timber frame as one prop; it cannot swing until the leaves are split off"
+  "why": "1 mesh: two leaves in their timber frame as one prop; it cannot swing until the leaves are split off",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "church_window_small": {
-  "why": "1 mesh with UCX hull: round-headed leaded window in a stone surround; opaque glass"
+  "why": "1 mesh with UCX hull: round-headed leaded window in a stone surround; opaque glass",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "church_stained_glass": {
-  "why": "2 meshes: a two-light window and a lancet (one lancet stands for frames 5 and 6); figures are abstract, glass is opaque"
+  "why": "2 meshes: a two-light window and a lancet (one lancet stands for frames 5 and 6); figures are abstract, glass is opaque",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "catapult": {
   "why": "1 mesh with UCX hull: counterweight catapult of separate timbers; static, nothing fires"
@@ -290,22 +330,32 @@
   "why": "1 decal set with an emissive ember map; the glow is static (no flicker or flames)"
  },
  "log_cabin": {
-  "why": "1 building mesh with UCX hull: log walls, shingle roof slabs, fieldstone chimney; corner notches are not cut, openings are empty for the door and window assets"
+  "why": "1 building mesh with UCX hull: log walls, shingle roof slabs, fieldstone chimney; corner notches are not cut, openings are empty for the door and window assets",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "church": {
-  "why": "1 building mesh with UCX hull: buttressed nave, chancel, round apse, slate roofs, bell turret and spire; one 4096 px bake, soft at 1 m"
+  "why": "1 building mesh with UCX hull: buttressed nave, chancel, round apse, slate roofs, bell turret and spire; one 4096 px bake, soft at 1 m",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "snow_house_lower": {
-  "why": "1 building mesh with UCX hull: framed and plastered ground storey; stacks under the timbered storey and the roof"
+  "why": "1 building mesh with UCX hull: framed and plastered ground storey; stacks under the timbered storey and the roof. Review of 12 Nov 2026 (PR #83 / #85) downgraded it: a flat box with a framed skin; needs a look assembled with the other two parts before it counts",
+  "status": "partial",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "snow_house_timber": {
-  "why": "1 building mesh with UCX hull: jettied timber-framed storey; place at z = 3.0 m on the lower storey"
+  "why": "1 building mesh with UCX hull: jettied timber-framed storey; place at z = 3.0 m on the lower storey. Review of 12 Nov 2026 (PR #83 / #85) downgraded it: a flat box with a framed skin; needs a look assembled with the other two parts before it counts",
+  "status": "partial",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "snow_house_roof": {
-  "why": "1 building mesh with UCX hull: pyramid roof of stone slates; place at z = 5.8 m"
+  "why": "1 building mesh with UCX hull: pyramid roof of stone slates; place at z = 5.8 m. Review of 12 Nov 2026 (PR #83 / #85) downgraded it: needs a look assembled on the two storeys before it counts",
+  "status": "partial",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "castle_drawbridge": {
-  "why": "1 mesh with UCX hull: gate arch in a wall sample, plank bridge fixed down, two chains; nothing moves"
+  "why": "1 mesh with UCX hull: gate arch in a wall sample, plank bridge fixed down, two chains; nothing moves. Review of 12 Nov 2026 (PR #83 / #85) downgraded it: a toy-scale gate sample, not a castle gate",
+  "status": "partial",
+  "binding": "a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
  },
  "npc_maiden_blue": {
   "status": "partial",
@@ -324,18 +374,22 @@
   "why": "rigged colour variant of the photoreal pass Milder (same mesh, LODs, 89-bone skeleton and weights; new outfit base colour). Partial by construction: the same face and body as the base, no clips of its own"
  },
  "corpse_mom": {
-  "why": "1 static mesh with UCX hull: the photoreal pass Mother posed dead on her back, blood baked into her base-colour maps; use with a blood pool decal"
+  "why": "1 static mesh with UCX hull: the photoreal pass Mother posed dead on her back, blood baked into her base-colour maps; use with a blood pool decal",
+  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
  },
  "dink_dead": {
-  "why": "1 static mesh with UCX hull: the photoreal pass Dink posed dead on his back with baked blood (17,900 triangles, above the prop soft target)"
+  "why": "1 static mesh with UCX hull: the photoreal pass Dink posed dead on his back with baked blood (17,900 triangles, above the prop soft target)",
+  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
  },
  "corpse_maiden": {
   "status": "partial",
-  "why": "1 static mesh: the Mother in a crimson dress with fair hair, posed dead with baked blood. Partial: the maiden herself is only a colour variant"
+  "why": "1 static mesh: the Mother in a crimson dress with fair hair, posed dead with baked blood. Partial: the maiden herself is only a colour variant",
+  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
  },
  "corpse_soldier": {
   "status": "partial",
-  "why": "1 static mesh: Milder posed dead with baked blood. Partial: the soldier himself is only a colour variant"
+  "why": "1 static mesh: Milder posed dead with baked blood. Partial: the soldier himself is only a colour variant",
+  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
  },
  "corpse_knight": {
   "status": "partial",
@@ -375,7 +429,8 @@
  },
  "corpse_girl": {
   "status": "partial",
-  "why": "1 static mesh with UCX hull: this pass's girl posed dead on her back with baked blood, flowers still in her hand, basket left out. Partial: the girl herself is partial, decimated to a floor prop"
+  "why": "1 static mesh with UCX hull: this pass's girl posed dead on her back with baked blood, flowers still in her hand, basket left out. Partial: the girl herself is partial, decimated to a floor prop",
+  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
  },
  "npc_merchant_blue": {
   "status": "partial",
@@ -387,7 +442,8 @@
  },
  "corpse_merchant": {
   "status": "partial",
-  "why": "1 static mesh with UCX hull: this pass's merchant posed dead on his back with blood baked into skin and outfit, blue and green outfit maps for the two placements; use with a blood pool decal. Partial: the merchant himself is partial, and the mesh is decimated to a floor prop"
+  "why": "1 static mesh with UCX hull: this pass's merchant posed dead on his back with blood baked into skin and outfit, blue and green outfit maps for the two placements; use with a blood pool decal. Partial: the merchant himself is partial, and the mesh is decimated to a floor prop",
+  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
  },
  "npc_peasant": {
   "status": "partial",
@@ -395,7 +451,8 @@
  },
  "corpse_peasant": {
   "status": "partial",
-  "why": "1 static mesh with UCX hull: this pass's peasant posed dead on his back with baked blood; hat and pole left out (the sprite shows the pole beside him). Partial: the peasant himself is partial, decimated to a floor prop"
+  "why": "1 static mesh with UCX hull: this pass's peasant posed dead on his back with baked blood; hat and pole left out (the sprite shows the pole beside him). Partial: the peasant himself is partial, decimated to a floor prop",
+  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
  },
  "npc_old_man": {
   "status": "partial",
@@ -407,6 +464,7 @@
  },
  "king_on_throne": {
   "status": "partial",
-  "why": "2 assets: the static set piece SM_King_On_Throne_PR (king seated and frozen, modelled cloak wings, ermine collar, throne and footstool; UCX hull) and the rigged standing king SK_King_PR it is posed from (25 bones, 4 LODs). Partial because the last review still faults it: the cloak is modelled, not draped, and does not pass behind his back; plain throne carving; base face; no animation"
+  "why": "2 assets: the static set piece SM_King_On_Throne_PR (king seated and frozen, modelled cloak wings, ermine collar, throne and footstool; UCX hull) and the rigged standing king SK_King_PR it is posed from (25 bones, 4 LODs). Partial because the last review still faults it: the cloak is modelled, not draped, and does not pass behind his back; plain throne carving; base face; no animation",
+  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
  }
 }

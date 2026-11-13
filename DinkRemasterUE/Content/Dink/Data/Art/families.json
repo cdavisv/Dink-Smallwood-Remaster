@@ -690,6 +690,337 @@
       "fit": "none",
       "yaw_from_sprite": true,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "seashell_conch",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Seashell_Conch_PR.SM_Seashell_Conch_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 92 lands/details/beach- frame 4. A 14 cm shell at real size with a stable per-origin yaw; the sprite draws it about 37 cm."
+    },
+    {
+      "family": "447 items/tools/tool- felling axe frame 5",
+      "frame": 5,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Axe_Felling_PR.SM_Axe_Felling_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). hand_tool_small, frame 5: the felling axe lying on the floor. One row per picture because the class holds three tools."
+    },
+    {
+      "family": "447 items/tools/tool- felling axe frame 6",
+      "frame": 6,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Axe_Felling_PR.SM_Axe_Felling_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). hand_tool_small, frame 6: the felling axe lying on the floor. One row per picture because the class holds three tools."
+    },
+    {
+      "family": "447 items/tools/tool- felling axe frame 10",
+      "frame": 10,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Axe_Felling_PR.SM_Axe_Felling_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). hand_tool_small, frame 10: the felling axe lying on the floor. One row per picture because the class holds three tools."
+    },
+    {
+      "family": "447 items/tools/tool- felling axe frame 15",
+      "frame": 15,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Axe_Felling_PR.SM_Axe_Felling_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). hand_tool_small, frame 15: the felling axe lying on the floor. One row per picture because the class holds three tools."
+    },
+    {
+      "family": "447 items/tools/tool- smith hammer frame 8",
+      "frame": 8,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Hammer_Smith_PR.SM_Hammer_Smith_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). hand_tool_small, frame 8: the smith hammer lying on the floor."
+    },
+    {
+      "family": "447 items/tools/tool- smith hammer frame 16",
+      "frame": 16,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Hammer_Smith_PR.SM_Hammer_Smith_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). hand_tool_small, frame 16: the smith hammer lying on the floor."
+    },
+    {
+      "family": "447 items/tools/tool- tongs frame 7",
+      "frame": 7,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Tongs_Smith_PR.SM_Tongs_Smith_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). hand_tool_small, frame 7: the tongs lying on the floor."
+    },
+    {
+      "family": "447 items/tools/tool- tongs frame 14",
+      "frame": 14,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Tongs_Smith_PR.SM_Tongs_Smith_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). hand_tool_small, frame 14: the tongs lying on the floor."
+    },
+    {
+      "family": "421 items/food/food- red fruit",
+      "frame": 18,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Pepper_Red_PR.SM_Pepper_Red_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). food_fruit, frame 18: the ten red fruit lying under the trees of screen 693. The other food_fruit pictures (19, 21, 22, 25) stand on the tables of screen 70 and stay unbound: the layer stands a mesh on the floor (Z 0), not on a table top."
+    },
+    {
+      "family": "421 items/food/food- yellow fruit",
+      "frame": 20,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Pepper_Yellow_PR.SM_Pepper_Yellow_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). food_fruit, frame 20: the yellow fruit of screen 693."
+    },
+    {
+      "family": "421 items/food/food- ham leg on the ground",
+      "frame": 2,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Ham_Leg_PR.SM_Ham_Leg_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). food_drumstick, frame 2: the ham lying on the ground of screen 149. Frame 1 lies on a table of screen 70 and stays unbound (no table-top placement)."
+    },
+    {
+      "family": "159 struct/stone/mdink/monum- dragon statue facing left",
+      "frame": 5,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Dragon_Statue_PR.SM_Dragon_Statue_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": 30,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). dragon_statue, frame 5. 3.3 m; pale stone where the sprite is blue-grey."
+    },
+    {
+      "family": "159 struct/stone/mdink/monum- dragon statue facing right",
+      "frame": 6,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Dragon_Statue_PR.SM_Dragon_Statue_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": -30,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). dragon_statue, frame 6: the mirrored picture, turned the other way."
+    },
+    {
+      "family": "save_machine",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Save_Machine_PR.SM_Save_Machine_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 449 bonuses/save. Static: the original loops an animation (savebot.c, brain 6). Its script only talks or reacts to hits and pushes; it never changes the picture."
+    },
+    {
+      "family": "458 struct/signs healer sign",
+      "frame": 4,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Sign_Healer_PR.SM_Sign_Healer_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). shop_sign, frame 4 (the red cross). The other shop_sign pictures (2, 6, 7, 10) carry other emblems and stay unbound."
+    },
+    {
+      "family": "bookcase",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Bookcase_PR.SM_Bookcase_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 64 inside/details/inacc- frame 4. Its script only talks or reacts to hits and pushes; it never changes the picture."
+    },
+    {
+      "family": "gold_pile",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Gold_Pile_PR.SM_Gold_Pile_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 178 bonuses/coins/coin- frame 4. Coins baked onto a smooth mound: reads as a gold heap from the play camera, as a dome close up. A pickup: its script only kills it on touch, so the mesh goes with the actor; the shrink before the kill is not shown."
+    },
+    {
+      "family": "gold_coins_small",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Gold_Coins_Few_PR.SM_Gold_Coins_Few_PR",
+      "fit": "footprint",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 178 frame 2. fit footprint: the scatter is scaled to the card (about 0.7 m) so the pickup can be seen; the coins then show their ten-sided rims close up. A pickup: its script only kills it on touch, so the mesh goes with the actor; the shrink before the kill is not shown."
+    },
+    {
+      "family": "small_heart",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Heart_Red_PR.SM_Heart_Red_PR",
+      "fit": "footprint",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 54 bonuses/heart (small). fit footprint: a pickup is a game token, shown at the size the original draws it (0.4 m), not at the 11 cm of the mesh. Static: the original pulses. A pickup: its script only kills it on touch, so the mesh goes with the actor; the shrink before the kill is not shown."
+    },
+    {
+      "family": "heart_pickup",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Heart_Red_PR.SM_Heart_Red_PR",
+      "fit": "footprint",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 52 bonuses/heart. fit footprint (0.8 m), as small_heart. A pickup: its script only kills it on touch, so the mesh goes with the actor; the shrink before the kill is not shown."
+    },
+    {
+      "family": "golden_heart",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Heart_Gold_PR.SM_Heart_Gold_PR",
+      "fit": "footprint",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 53 bonuses/heart (gold). fit footprint (0.8 m), as small_heart. A pickup: its script only kills it on touch, so the mesh goes with the actor; the shrink before the kill is not shown."
+    },
+    {
+      "family": "snake_pillar",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Snake_Pillar_PR.SM_Snake_Pillar_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 82 struct/stone pillar with the coiled snake, 2.5 m."
+    },
+    {
+      "family": "pitchfork",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Pitchfork_PR.SM_Pitchfork_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 447 items/tools/tool- frames 1 and 11. The sprite leans upright; the mesh lies flat on the ground at the same spot."
+    },
+    {
+      "family": "rake",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Rake_PR.SM_Rake_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 447 frames 3 and 13. Lies flat where the sprite leans."
+    },
+    {
+      "family": "scythe",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Scythe_PR.SM_Scythe_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 447 frame 12. Lies flat where the sprite leans."
+    },
+    {
+      "family": "idol_statue_small",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Idol_Demon_PR.SM_Idol_Demon_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 80 inside/stnwalls/stonw- frame 24. A squat spiked figure, 1.1 m; the source is recorded as partial (fused blob). Its script only talks or reacts to hits and pushes; it never changes the picture."
+    },
+    {
+      "family": "island_spear_pole",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Spear_Island_PR.SM_Spear_Island_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 424 frames 13, 16 and 17: one spear planted upright, with a stable per-origin yaw; the sprites lean a little to either side."
+    },
+    {
+      "family": "dragon_corpse",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 212 and 216 foes/dragon corpse. Posed on its back and bloodied in the base colour; not torn apart as in the original (source recorded as partial)."
+    },
+    {
+      "family": "corpse_knight",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Corpse_Knight_PR.SM_Corpse_Knight_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 275 people/knight/red corpse: the red knight on his back with his halberd."
+    },
+    {
+      "family": "teleport_machine",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Teleport_Machine_PR.SM_Teleport_Machine_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 84 struct/machine: the armillary on its brick dome, 3 m. Static: s7-warp.c of the shrine beside it spins the original sprite before the warp."
+    },
+    {
+      "family": "boulder_white_pair",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_White_Pair_PR.SM_Boulder_White_Pair_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 95 lands/rocks/rock- frame 9. Unscripted placements only: a scripted rock keeps its card, like the other boulder classes."
+    },
+    {
+      "family": "fountain_stone",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Fountain_Stone_PR.SM_Fountain_Stone_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 66 frames 23 and 24. Still water; the animated spray stays the sprite card of its own placement. Its script only talks or reacts to hits and pushes; it never changes the picture."
+    },
+    {
+      "family": "spinning_wheel",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Spinning_Wheel_PR.SM_Spinning_Wheel_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 447 frame 4. Its script only talks or reacts to hits and pushes; it never changes the picture."
+    },
+    {
+      "family": "axe_item",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Axe_Throwing_PR.SM_Axe_Throwing_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 85 frame 9: the throwing axe lying on the floor."
+    },
+    {
+      "family": "ballista",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Ballista_PR.SM_Ballista_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 429 frame 4."
+    },
+    {
+      "family": "barrel_broken",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Barrel_Smashed_PR.SM_Barrel_Smashed_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 173 bonuses/barrels/barel- frame 6: the flat star of staves of a burst barrel, as the sprite draws it; the hoops are missing (source recorded as partial)."
+    },
+    {
+      "family": "golden_duck_statue",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Duck_Statue_Gold_PR.SM_Duck_Statue_Gold_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 159 frame 8: the gold duck on its rock (source recorded as partial)."
+    },
+    {
+      "family": "snake_carving",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Snake_Carving_PR.SM_Snake_Carving_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 81 frame 1: a 43 cm green snake on the ground beside the snake pillar (source recorded as partial: it reads as a snake, not as carved stone)."
+    },
+    {
+      "family": "catapult",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Catapult_PR.SM_Catapult_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 429 frame 1 (shown with &vision 1 on screen 489). Static."
+    },
+    {
+      "family": "dink_monument_rock",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Monument_Dink_PR.SM_Monument_Dink_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 159 frame 4: the rock carved \"Dink Smallwood\" (shown with &vision 2 on screen 536). Its script only talks or reacts to hits and pushes; it never changes the picture."
+    },
+    {
+      "family": "teleport_shrine",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Shrine_Glass_PR.SM_Shrine_Glass_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 159 frame 7: the stone alcove with its stained-glass light. Static, no glow. Its script (s6-warp.c, s7-warp.c) only talks and spins the machine beside it."
+    },
+    {
+      "family": "scroll_note",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Note_Floor_PR.SM_Note_Floor_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 422 frame 1: the letter on the floor of screen 6. Its script reads it out and then kills the sprite; the mesh goes with the actor."
     }
   ],
   "collision_fit": {
