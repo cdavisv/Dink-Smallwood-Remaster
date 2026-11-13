@@ -596,6 +596,18 @@ void UDinkGameplay::InitPlacementSprite(FDinkSprite& S) const
 	{
 		S.Script = P->Script;
 	}
+	// update_play_changes (dink.cpp:5773-5831) runs before place_sprites_game on every screen load: any nonzero editor_type the
+	// player's save holds for this placement also clears its script (strcpy_safe(script, ""), 5831). An opened chest (ch1-ap,
+	// ch3-ap: editor_type 4) is then a sprite without a hit, so it cannot make its potion again. The marked path does the same
+	// (UDinkGameplay::BindOriginalHardnessPlacement).
+	if (const UDinkWorldStateSubsystem* World = Story ? Story->GetWorldState() : nullptr)
+	{
+		FDinkWorldOverride Override;
+		if (World->TryGetOverride(P->Origin, Override) && Override.Type != EDinkOverrideType::None)
+		{
+			S.Script = NAME_None;
+		}
+	}
 	auto Set = [&S](const FName& Name, int32 Value) { S.Props.Add(Name, Value); };
 	Set(P_Brain, P->Brain);
 	Set(P_Speed, P->Speed);
