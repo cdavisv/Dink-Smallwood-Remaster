@@ -2,7 +2,7 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed",
  "generated_by": "Unclaimed/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "36 static meshes of the unclaimed gate 2 families that families.json binds, each with one baked opaque set (BC / N OpenGL / ORM). Every FBX holds one object named after the asset (LOD0 only) and, where collision_hulls is 1, a UCX hull that the importer drops: the family layer is visual only.",
+ "summary": "34 static meshes of the unclaimed gate 2 families that families.json binds, each with one baked opaque set (BC / N OpenGL / ORM). Every FBX holds one object named after the asset (LOD0 only) and, where collision_hulls is 1, a UCX hull that the importer drops: the family layer is visual only.",
  "assets": [
   {
    "name": "SM_Axe_Throwing_PR",
@@ -119,25 +119,6 @@
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/catapult/Catapult"
   },
   {
-   "name": "SM_Corpse_Knight_PR",
-   "class": "prop",
-   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_knight/Corpse_Knight/SM_Corpse_Knight_PR.fbx",
-   "materials": [
-    "MI_Corpse_Knight"
-   ],
-   "dimensions_m": [
-    1.99,
-    1.511,
-    0.47
-   ],
-   "collision_hulls": 1,
-   "families": [
-    "corpse_knight",
-    "275 people/knight/red/death-"
-   ],
-   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_knight/Corpse_Knight"
-  },
-  {
    "name": "SM_Monument_Dink_PR",
    "class": "prop",
    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dink_monument_rock/Monument_Dink/SM_Monument_Dink_PR.fbx",
@@ -155,26 +136,6 @@
     "159 struct/stone/mdink/monum- frame 4"
    ],
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dink_monument_rock/Monument_Dink"
-  },
-  {
-   "name": "SM_Dragon_Corpse_PR",
-   "class": "prop_large",
-   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_corpse/Dragon_Corpse/SM_Dragon_Corpse_PR.fbx",
-   "materials": [
-    "MI_Dragon_Corpse"
-   ],
-   "dimensions_m": [
-    5.204,
-    3.025,
-    2.958
-   ],
-   "collision_hulls": 1,
-   "families": [
-    "dragon_corpse",
-    "212 foes/dragon/f2-x3-",
-    "216 foes/dragon/f2-x7-"
-   ],
-   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_corpse/Dragon_Corpse"
   },
   {
    "name": "SM_Dragon_Statue_PR",
@@ -843,6 +804,11 @@
    "why": "4 material slots (hair, eyes, skin): needs masked and character materials the kit importer does not build"
   },
   {
+   "name": "SM_Corpse_Knight_PR",
+   "class": "prop",
+   "why": "no families.json row uses it: less gory than the original, so the sprite card stays (owner rule of 8 Nov 2026: keep all original gore). Picture 275 shows the knight in a pool of blood wider than his body with splashes around it; the mesh carries blood streaks on the armour only, and the pool is a separate decal that a family row cannot place. Seen in game on screen 157: a clean red harness on bare ground. Bind once the pool and splashes are part of the mesh"
+  },
+  {
    "name": "SM_Corpse_Maiden_PR",
    "class": "prop",
    "why": "5 material slots (hair, eyes, skin): needs masked and character materials the kit importer does not build"
@@ -876,6 +842,11 @@
    "name": "SK_Dragon_PR",
    "class": "creature",
    "why": "not a static mesh"
+  },
+  {
+   "name": "SM_Dragon_Corpse_PR",
+   "class": "prop_large",
+   "why": "no families.json row uses it: less gory than the original, so the sprite card stays (owner rule of 8 Nov 2026: keep all original gore). Pictures 212 and 216 are small torn-apart bloody remains; the mesh is an intact dragon on its back, about four times the size of the card in game (screen 158). Bind once the source is rebuilt as torn remains at the sprite's size"
   },
   {
    "name": "SM_Arch_Stone_PR",
@@ -1194,15 +1165,6 @@
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/catapult/Catapult/T_Catapult_PR_ORM.png"
     }
    },
-   "MI_Corpse_Knight": {
-    "baked": true,
-    "kind": "opaque",
-    "files": {
-     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/corpse_knight/Corpse_Knight/T_Corpse_Knight_Knight_BC.png",
-     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/T_Knight_PR_N.png",
-     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/npc_knight_blue/Knight/T_Knight_PR_ORM.png"
-    }
-   },
    "MI_Monument_Dink_PR": {
     "baked": true,
     "kind": "opaque",
@@ -1210,15 +1172,6 @@
      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dink_monument_rock/Monument_Dink/T_Monument_Dink_PR_BC.png",
      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dink_monument_rock/Monument_Dink/T_Monument_Dink_PR_N.png",
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dink_monument_rock/Monument_Dink/T_Monument_Dink_PR_ORM.png"
-    }
-   },
-   "MI_Dragon_Corpse": {
-    "baked": true,
-    "kind": "opaque",
-    "files": {
-     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon_corpse/Dragon_Corpse/T_Dragon_Corpse_Dragon_BC.png",
-     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/T_Dragon_PR_N.png",
-     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/dragon/Dragon/T_Dragon_PR_ORM.png"
     }
    },
    "MI_Dragon_Statue_PR": {

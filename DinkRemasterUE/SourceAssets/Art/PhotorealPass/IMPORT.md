@@ -106,6 +106,7 @@ The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README
 - **One object per FBX**: these files hold a single object named after the asset and no LOD objects; `import_town_exteriors.py` takes that object as LOD0.
 - **Order**: add the `families.json` row, regenerate the manifest, import, then `git add` the new packages and run `python3 -I Scripts/scrub_private_paths.py --fix Content/Dink/Photoreal/Unclaimed` (the importer writes the local project path into texture packages; the scrubber only sees tracked files).
 - **What the layer cannot place** (families left unbound, reasons in `Unclaimed/STATUS.md`): things on a table top or shelf, things hung on a wall, pits below the ground, and buildings drawn in several sprites. A family mesh always stands on its lowest point at Z 0 under the card.
+- **Gore**: a mesh that is less gory than its sprite is not bound (owner rule: keep all original gore). The dead dragon and the dead knight stay sprite cards for that reason; `Unclaimed/STATUS.md` says what each source lacks.
 - **Pickups** (hearts, small coin scatter) use `fit: footprint`: a pickup is shown at the size the original draws it, not at the size of the modelled object.
 - **Checks and captures**: `Docs/Verification/UnclaimedFamilyBinding_12Nov2026/`.
 

@@ -393,11 +393,13 @@
  },
  "corpse_knight": {
   "status": "partial",
-  "why": "1 static mesh: this folder's knight (red set) posed dead with baked blood. Partial: an empty harness, as the standing knight"
+  "why": "1 static mesh: this folder's knight (red set) posed dead with baked blood. Partial: an empty harness, as the standing knight",
+  "binding": "less gory than the original, so the sprite card stays (owner rule of 8 Nov 2026: keep all original gore). Picture 275 shows the knight in a pool of blood wider than his body with splashes around it; the mesh carries blood streaks on the armour only, and the pool is a separate decal that a family row cannot place. Seen in game on screen 157: a clean red harness on bare ground. Bind once the pool and splashes are part of the mesh"
  },
  "dragon_corpse": {
   "status": "partial",
-  "why": "1 static mesh: this folder's dragon posed dead and soaked in blood. Partial: the original shows a torn carcass with severed parts; nothing is cut or opened here"
+  "why": "1 static mesh: this folder's dragon posed dead and soaked in blood. Partial: the original shows a torn carcass with severed parts; nothing is cut or opened here",
+  "binding": "less gory than the original, so the sprite card stays (owner rule of 8 Nov 2026: keep all original gore). Pictures 212 and 216 are small torn-apart bloody remains; the mesh is an intact dragon on its back, about four times the size of the card in game (screen 158). Bind once the source is rebuilt as torn remains at the sprite's size"
  },
  "hearth_fire": {
   "status": "partial",

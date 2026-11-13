@@ -912,20 +912,6 @@
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 424 frames 13, 16 and 17: one spear planted upright, with a stable per-origin yaw; the sprites lean a little to either side."
     },
     {
-      "family": "dragon_corpse",
-      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
-      "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 212 and 216 foes/dragon corpse. Posed on its back and bloodied in the base colour; not torn apart as in the original (source recorded as partial)."
-    },
-    {
-      "family": "corpse_knight",
-      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Corpse_Knight_PR.SM_Corpse_Knight_PR",
-      "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 275 people/knight/red corpse: the red knight on his back with his halberd."
-    },
-    {
       "family": "teleport_machine",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Teleport_Machine_PR.SM_Teleport_Machine_PR",
       "fit": "none",

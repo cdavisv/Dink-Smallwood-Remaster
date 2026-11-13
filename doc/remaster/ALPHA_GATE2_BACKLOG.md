@@ -8,20 +8,20 @@ Alpha gate 2 (`doc/remaster/REMASTER_PLAN.md`): every origin ID is final, placeh
 
 | | open |
 |---|---:|
-| sprite families | 150 |
-| origin IDs | 2434 |
-| map placements | 1782 |
+| sprite families | 152 |
+| origin IDs | 2438 |
+| map placements | 1786 |
 | screens (ground tile layer) | 639 |
 | script warps with their own ID | 13 |
 | unclassified IDs | 0 |
 
-Claimed by the Claude photoreal pass (in progress elsewhere, not final): **70 families, 2014 origin IDs, 1369 placements**. Unclaimed: 80 families, 420 origin IDs, 413 placements.
+Claimed by the Claude photoreal pass (in progress elsewhere, not final): **70 families, 2014 origin IDs, 1369 placements**. Unclaimed: 82 families, 424 origin IDs, 417 placements.
 
-Largest family by origin IDs: `screen ground (tile layer)` (639 IDs, 0 map placements, so it sorts at #150).
+Largest family by origin IDs: `screen ground (tile layer)` (639 IDs, 0 map placements, so it sorts at #152).
 
 Largest families no stream has claimed: `blood_splat` 46, `tree_fruit` 34, `burn_hole_decal` 26, `bonca_gray` 21, `slayer` 21, `npc_knight_blue` 18, `dragon` 16, `arrow_prop` 14, `stone_giant` 14, `bonca_brown` 12.
 
-Closed for comparison (art_coverage rows): final bespoke 143, final by family 3833, cut 152, placeholder 2479 of 6607 rows.
+Closed for comparison (art_coverage rows): final bespoke 143, final by family 3829, cut 152, placeholder 2483 of 6607 rows.
 
 ## How to regenerate
 
@@ -121,72 +121,74 @@ Sorted by open map placements. Family is the class id (`tools/data/sprite_classe
 | 82 | [`cabinet_wood`](#f82-cabinet-wood) | Wooden cabinet / dresser (house_interior, 57x79 px) | seq 87 (3) | 3 | 3 | Props |
 | 83 | [`church`](#f83-church) | Stone church (church, 417x433 px) | seq 60 (3) | 3 | 3 | - |
 | 84 | [`church_stained_glass`](#f84-church-stained-glass) | Stained-glass window (church, 56x94 px) | seq 60 (3) | 3 | 3 | - |
-| 85 | [`fireplace_brick`](#f85-fireplace-brick) | Brick fireplace (house_interior, 97x114 px) | seq 64 (3) | 3 | 3 | Props |
-| 86 | [`pillbug_corpse`](#f86-pillbug-corpse) | Pillbug death splat (pillbug, 46x35 px) | seq 141 (2), seq 143 (1) | 3 | 3 | Creatures |
-| 87 | [`boulder_large`](#f87-boulder-large) | Large dark boulder (boulders, 103x95 px) | seq 95 (2) | 2 | 2 | - |
-| 88 | [`boulder_red`](#f88-boulder-red) | Reddish boulder (boulders, 100x79 px) | seq 95 (2) | 2 | 2 | - |
-| 89 | [`burnt_floor_hole`](#f89-burnt-floor-hole) | Burnt hole in floor/roof (large) (damage, 90x69 px) | seq 158 (2) | 2 | 2 | - |
-| 90 | [`castle_wall_end`](#f90-castle-wall-end) | Castle wall end (edge-on) (castle_kit, 100x340 px) | seq 67 (2) | 2 | 2 | Structures |
-| 91 | [`cellar_hatch`](#f91-cellar-hatch) | Cellar hatch / ladder (stairs, 35x57 px) | seq 428 (2) | 2 | 2 | - |
-| 92 | [`chest_large`](#f92-chest-large) | Treasure chest (large) (chests, 60x60 px) | seq 177 (2) | 2 | 2 | Props |
-| 93 | [`chest_medium`](#f93-chest-medium) | Treasure chest (chests, 44x55 px) | seq 176 (2) | 2 | 2 | Props |
-| 94 | [`church_window_small`](#f94-church-window-small) | Church small window (church, 19x27 px) | seq 60 (2) | 2 | 2 | - |
-| 95 | [`corpse_merchant`](#f95-corpse-merchant) | Dead merchant (npc_merchant, 74x53 px) | seq 385 (1), seq 345 (1) | 2 | 2 | - |
-| 96 | [`duck_corpse`](#f96-duck-corpse) | Dead duck body (duck, 20x30 px) | seq 127 (1), seq 121 (1) | 2 | 2 | Creatures |
-| 97 | [`explosion_fx`](#f97-explosion-fx) | Explosion (, 60x61 px) | seq 70 (2) | 2 | 2 | - |
-| 98 | [`fire_burst_fx`](#f98-fire-burst-fx) | Fire burst (atomic explosion frames) (, 93x141 px) | seq 161 (2) | 2 | 2 | - |
-| 99 | [`fireball_fx`](#f99-fireball-fx) | Fireball (vertical) (, 32x76 px) | seq 512 (2) | 2 | 2 | - |
-| 100 | [`food_pie`](#f100-food-pie) | Pie (food, 24x19 px) | seq 421 (2) | 2 | 2 | Props |
-| 101 | [`fountain_spray_fx`](#f101-fountain-spray-fx) | Fountain water spray (fountain, 80x84 px) | seq 94 (2) | 2 | 2 | - |
-| 102 | [`hearth_fire`](#f102-hearth-fire) | Fireplace fire (house_interior, 46x55 px) | seq 86 (2) | 2 | 2 | - |
-| 103 | [`log_cabin`](#f103-log-cabin) | Log cabin (log_cabin, 322x232 px) | seq 59 (2) | 2 | 2 | - |
-| 104 | [`log_cabin_door`](#f104-log-cabin-door) | Log cabin door (log_cabin, 34x69 px) | seq 59 (2) | 2 | 2 | - |
-| 105 | [`npc_knight_red_attacking`](#f105-npc-knight-red-attacking) | Knight (red) attack pose (npc_knight, 121x127 px) | seq 712 (2) | 2 | 2 | - |
-| 106 | [`npc_merchant_blue`](#f106-npc-merchant-blue) | Merchant (blue) (npc_merchant, 55x93 px) | seq 371 (2) | 2 | 2 | - |
-| 107 | [`npc_merchant_green`](#f107-npc-merchant-green) | Merchant (green) (npc_merchant, 55x93 px) | seq 381 (2) | 2 | 2 | - |
-| 108 | [`npc_peasant`](#f108-npc-peasant) | Peasant (npc_peasant, 73x121 px) | seq 411 (2) | 2 | 2 | - |
-| 109 | [`sparkle_fx`](#f109-sparkle-fx) | Sparkle (, 20x20 px) | seq 165 (1), seq 166 (1) | 2 | 2 | - |
-| 110 | [`table_round`](#f110-table-round) | Round table (house_interior, 65x62 px) | seq 87 (2) | 2 | 2 | Props |
-| 111 | [`tree_willow`](#f111-tree-willow) | Weeping (willow-like) tree (trees, 169x252 px) | seq 32 (2) | 2 | 2 | Vegetation |
-| 112 | [`tree_willow_large`](#f112-tree-willow-large) | Large weeping tree (trees, 249x300 px) | seq 32 (2) | 2 | 2 | Vegetation |
-| 113 | [`weed_small`](#f113-weed-small) | Small weed / seedling (ground_plants, 20x22 px) | seq 65 (2) | 2 | 2 | Vegetation |
-| 114 | [`boulder_grey_tall`](#f114-boulder-grey-tall) | Tall grey boulder (boulders, 54x77 px) | seq 95 (1) | 1 | 1 | - |
-| 115 | [`boulder_white_pair`](#f115-boulder-white-pair) | Pair of white boulders (boulders, 80x58 px) | seq 95 (1) | 1 | 1 | - |
-| 116 | [`burn_damage_decal`](#f116-burn-damage-decal) | Burn damage / scorch with fire (damage, 90x69 px) | seq 154 (1) | 1 | 1 | - |
-| 117 | [`bush_round_large`](#f117-bush-round-large) | Bush (bushes, 116x69 px) | seq 179 (1) | 1 | 1 | Vegetation |
-| 118 | [`bush_round_medium`](#f118-bush-round-medium) | Bush (bushes, 80x54 px) | seq 179 (1) | 1 | 1 | Vegetation |
-| 119 | [`bush_small`](#f119-bush-small) | Bush (bushes, 85x65 px) | seq 179 (1) | 1 | 1 | Vegetation |
-| 120 | [`castle_door`](#f120-castle-door) | Castle door (castle_kit, 63x145 px) | seq 68 (1) | 1 | 1 | - |
-| 121 | [`castle_drawbridge`](#f121-castle-drawbridge) | Drawbridge with chains (castle_kit, 149x192 px) | seq 68 (1) | 1 | 1 | - |
-| 122 | [`castle_gatehouse`](#f122-castle-gatehouse) | Castle gatehouse block (castle_kit, 335x389 px) | seq 67 (1) | 1 | 1 | Structures |
-| 123 | [`church_door`](#f123-church-door) | Church door (church, 35x82 px) | seq 60 (1) | 1 | 1 | - |
-| 124 | [`corpse_girl`](#f124-corpse-girl) | Dead girl (npc_girl, 58x37 px) | seq 335 (1) | 1 | 1 | - |
-| 125 | [`corpse_maiden`](#f125-corpse-maiden) | Dead woman (npc_maiden, 63x47 px) | seq 245 (1) | 1 | 1 | - |
-| 126 | [`corpse_mom`](#f126-corpse-mom) | Dead mother (burnt house) (npc_mom, 68x50 px) | seq 355 (1) | 1 | 1 | - |
-| 127 | [`corpse_peasant`](#f127-corpse-peasant) | Dead peasant (npc_peasant, 114x59 px) | seq 415 (1) | 1 | 1 | - |
-| 128 | [`corpse_soldier`](#f128-corpse-soldier) | Dead soldier (npc_soldier, 74x57 px) | seq 405 (1) | 1 | 1 | - |
-| 129 | [`dink_dead`](#f129-dink-dead) | Dink lying dead (cutscene pose) (dink, 104x90 px) | seq 436 (1) | 1 | 1 | - |
-| 130 | [`food_bread`](#f130-food-bread) | Bread loaf (food, 30x25 px) | seq 421 (1) | 1 | 1 | - |
-| 131 | [`food_cheese`](#f131-food-cheese) | Cheese (food, 21x19 px) | seq 421 (1) | 1 | 1 | - |
-| 132 | [`food_drumstick`](#f132-food-drumstick) | Meat drumstick (food, 28x31 px) | seq 421 (1) | 1 | 1 | - |
-| 133 | [`food_grapes`](#f133-food-grapes) | Grapes (food, 29x30 px) | seq 421 (1) | 1 | 1 | - |
-| 134 | [`food_ham`](#f134-food-ham) | Ham / steak (food, 28x28 px) | seq 421 (1) | 1 | 1 | - |
-| 135 | [`king_on_throne`](#f135-king-on-throne) | King Daniel on throne (seated) (npc_king, 124x119 px) | seq 421 (1) | 1 | 1 | - |
-| 136 | [`npc_gnome_purple`](#f136-npc-gnome-purple) | Gnome / wizard (purple) (npc_gnome, 51x74 px) | seq 561 (1) | 1 | 1 | - |
-| 137 | [`npc_maiden_blue`](#f137-npc-maiden-blue) | Woman (blue dress) (npc_maiden, 55x83 px) | seq 251 (1) | 1 | 1 | - |
-| 138 | [`npc_maiden_brown`](#f138-npc-maiden-brown) | Woman (brown dress) (npc_maiden, 55x83 px) | seq 241 (1) | 1 | 1 | - |
-| 139 | [`npc_maiden_red`](#f139-npc-maiden-red) | Woman (red dress) (npc_maiden, 55x83 px) | seq 221 (1) | 1 | 1 | - |
-| 140 | [`npc_old_man`](#f140-npc-old-man) | Old man (npc_oldman, 67x74 px) | seq 231 (1) | 1 | 1 | - |
-| 141 | [`npc_soldier`](#f141-npc-soldier) | Soldier (npc_soldier, 76x93 px) | seq 403 (1) | 1 | 1 | - |
-| 142 | [`ore_rock_blue`](#f142-ore-rock-blue) | Blue crystal rock (boulders, 44x29 px) | seq 95 (1) | 1 | 1 | - |
-| 143 | [`poster_wanted`](#f143-poster-wanted) | "Wanted" poster (signs, 43x61 px) | seq 462 (1) | 1 | 1 | - |
-| 144 | [`snow_house_door`](#f144-snow-house-door) | House door (snow_house, 43x78 px) | seq 96 (1) | 1 | 1 | - |
-| 145 | [`snow_house_lower`](#f145-snow-house-lower) | House lower walls (snow_house, 381x188 px) | seq 96 (1) | 1 | 1 | - |
-| 146 | [`snow_house_roof`](#f146-snow-house-roof) | House pyramid roof (snow_house, 404x201 px) | seq 96 (1) | 1 | 1 | - |
-| 147 | [`snow_house_timber`](#f147-snow-house-timber) | House timbered upper walls (snow_house, 400x179 px) | seq 96 (1) | 1 | 1 | - |
-| 148 | [`thorn_branch`](#f148-thorn-branch) | Thorn branch (graveyard, 28x25 px) | seq 90 (1) | 1 | 1 | Vegetation |
-| 149 | [`tree_oak_large`](#f149-tree-oak-large) | Broadleaf (oak) tree (trees, 204x270 px) | seq 32 (1) | 1 | 1 | Vegetation |
-| 150 | [`screen ground (tile layer)`](#f150-screen-ground-tile-layer) | tile-layer ground of each screen (grass, sand, water, walls painted into tilesets) · sheet_tiles.png | - | 639 | 0 | Terrain |
+| 85 | [`dragon_corpse`](#f85-dragon-corpse) | Dead dragon (dragon, 105x122 px) | seq 212 (2), seq 216 (1) | 3 | 3 | - |
+| 86 | [`fireplace_brick`](#f86-fireplace-brick) | Brick fireplace (house_interior, 97x114 px) | seq 64 (3) | 3 | 3 | Props |
+| 87 | [`pillbug_corpse`](#f87-pillbug-corpse) | Pillbug death splat (pillbug, 46x35 px) | seq 141 (2), seq 143 (1) | 3 | 3 | Creatures |
+| 88 | [`boulder_large`](#f88-boulder-large) | Large dark boulder (boulders, 103x95 px) | seq 95 (2) | 2 | 2 | - |
+| 89 | [`boulder_red`](#f89-boulder-red) | Reddish boulder (boulders, 100x79 px) | seq 95 (2) | 2 | 2 | - |
+| 90 | [`burnt_floor_hole`](#f90-burnt-floor-hole) | Burnt hole in floor/roof (large) (damage, 90x69 px) | seq 158 (2) | 2 | 2 | - |
+| 91 | [`castle_wall_end`](#f91-castle-wall-end) | Castle wall end (edge-on) (castle_kit, 100x340 px) | seq 67 (2) | 2 | 2 | Structures |
+| 92 | [`cellar_hatch`](#f92-cellar-hatch) | Cellar hatch / ladder (stairs, 35x57 px) | seq 428 (2) | 2 | 2 | - |
+| 93 | [`chest_large`](#f93-chest-large) | Treasure chest (large) (chests, 60x60 px) | seq 177 (2) | 2 | 2 | Props |
+| 94 | [`chest_medium`](#f94-chest-medium) | Treasure chest (chests, 44x55 px) | seq 176 (2) | 2 | 2 | Props |
+| 95 | [`church_window_small`](#f95-church-window-small) | Church small window (church, 19x27 px) | seq 60 (2) | 2 | 2 | - |
+| 96 | [`corpse_merchant`](#f96-corpse-merchant) | Dead merchant (npc_merchant, 74x53 px) | seq 385 (1), seq 345 (1) | 2 | 2 | - |
+| 97 | [`duck_corpse`](#f97-duck-corpse) | Dead duck body (duck, 20x30 px) | seq 127 (1), seq 121 (1) | 2 | 2 | Creatures |
+| 98 | [`explosion_fx`](#f98-explosion-fx) | Explosion (, 60x61 px) | seq 70 (2) | 2 | 2 | - |
+| 99 | [`fire_burst_fx`](#f99-fire-burst-fx) | Fire burst (atomic explosion frames) (, 93x141 px) | seq 161 (2) | 2 | 2 | - |
+| 100 | [`fireball_fx`](#f100-fireball-fx) | Fireball (vertical) (, 32x76 px) | seq 512 (2) | 2 | 2 | - |
+| 101 | [`food_pie`](#f101-food-pie) | Pie (food, 24x19 px) | seq 421 (2) | 2 | 2 | Props |
+| 102 | [`fountain_spray_fx`](#f102-fountain-spray-fx) | Fountain water spray (fountain, 80x84 px) | seq 94 (2) | 2 | 2 | - |
+| 103 | [`hearth_fire`](#f103-hearth-fire) | Fireplace fire (house_interior, 46x55 px) | seq 86 (2) | 2 | 2 | - |
+| 104 | [`log_cabin`](#f104-log-cabin) | Log cabin (log_cabin, 322x232 px) | seq 59 (2) | 2 | 2 | - |
+| 105 | [`log_cabin_door`](#f105-log-cabin-door) | Log cabin door (log_cabin, 34x69 px) | seq 59 (2) | 2 | 2 | - |
+| 106 | [`npc_knight_red_attacking`](#f106-npc-knight-red-attacking) | Knight (red) attack pose (npc_knight, 121x127 px) | seq 712 (2) | 2 | 2 | - |
+| 107 | [`npc_merchant_blue`](#f107-npc-merchant-blue) | Merchant (blue) (npc_merchant, 55x93 px) | seq 371 (2) | 2 | 2 | - |
+| 108 | [`npc_merchant_green`](#f108-npc-merchant-green) | Merchant (green) (npc_merchant, 55x93 px) | seq 381 (2) | 2 | 2 | - |
+| 109 | [`npc_peasant`](#f109-npc-peasant) | Peasant (npc_peasant, 73x121 px) | seq 411 (2) | 2 | 2 | - |
+| 110 | [`sparkle_fx`](#f110-sparkle-fx) | Sparkle (, 20x20 px) | seq 165 (1), seq 166 (1) | 2 | 2 | - |
+| 111 | [`table_round`](#f111-table-round) | Round table (house_interior, 65x62 px) | seq 87 (2) | 2 | 2 | Props |
+| 112 | [`tree_willow`](#f112-tree-willow) | Weeping (willow-like) tree (trees, 169x252 px) | seq 32 (2) | 2 | 2 | Vegetation |
+| 113 | [`tree_willow_large`](#f113-tree-willow-large) | Large weeping tree (trees, 249x300 px) | seq 32 (2) | 2 | 2 | Vegetation |
+| 114 | [`weed_small`](#f114-weed-small) | Small weed / seedling (ground_plants, 20x22 px) | seq 65 (2) | 2 | 2 | Vegetation |
+| 115 | [`boulder_grey_tall`](#f115-boulder-grey-tall) | Tall grey boulder (boulders, 54x77 px) | seq 95 (1) | 1 | 1 | - |
+| 116 | [`boulder_white_pair`](#f116-boulder-white-pair) | Pair of white boulders (boulders, 80x58 px) | seq 95 (1) | 1 | 1 | - |
+| 117 | [`burn_damage_decal`](#f117-burn-damage-decal) | Burn damage / scorch with fire (damage, 90x69 px) | seq 154 (1) | 1 | 1 | - |
+| 118 | [`bush_round_large`](#f118-bush-round-large) | Bush (bushes, 116x69 px) | seq 179 (1) | 1 | 1 | Vegetation |
+| 119 | [`bush_round_medium`](#f119-bush-round-medium) | Bush (bushes, 80x54 px) | seq 179 (1) | 1 | 1 | Vegetation |
+| 120 | [`bush_small`](#f120-bush-small) | Bush (bushes, 85x65 px) | seq 179 (1) | 1 | 1 | Vegetation |
+| 121 | [`castle_door`](#f121-castle-door) | Castle door (castle_kit, 63x145 px) | seq 68 (1) | 1 | 1 | - |
+| 122 | [`castle_drawbridge`](#f122-castle-drawbridge) | Drawbridge with chains (castle_kit, 149x192 px) | seq 68 (1) | 1 | 1 | - |
+| 123 | [`castle_gatehouse`](#f123-castle-gatehouse) | Castle gatehouse block (castle_kit, 335x389 px) | seq 67 (1) | 1 | 1 | Structures |
+| 124 | [`church_door`](#f124-church-door) | Church door (church, 35x82 px) | seq 60 (1) | 1 | 1 | - |
+| 125 | [`corpse_girl`](#f125-corpse-girl) | Dead girl (npc_girl, 58x37 px) | seq 335 (1) | 1 | 1 | - |
+| 126 | [`corpse_knight`](#f126-corpse-knight) | Dead knight (npc_knight, 81x55 px) | seq 275 (1) | 1 | 1 | - |
+| 127 | [`corpse_maiden`](#f127-corpse-maiden) | Dead woman (npc_maiden, 63x47 px) | seq 245 (1) | 1 | 1 | - |
+| 128 | [`corpse_mom`](#f128-corpse-mom) | Dead mother (burnt house) (npc_mom, 68x50 px) | seq 355 (1) | 1 | 1 | - |
+| 129 | [`corpse_peasant`](#f129-corpse-peasant) | Dead peasant (npc_peasant, 114x59 px) | seq 415 (1) | 1 | 1 | - |
+| 130 | [`corpse_soldier`](#f130-corpse-soldier) | Dead soldier (npc_soldier, 74x57 px) | seq 405 (1) | 1 | 1 | - |
+| 131 | [`dink_dead`](#f131-dink-dead) | Dink lying dead (cutscene pose) (dink, 104x90 px) | seq 436 (1) | 1 | 1 | - |
+| 132 | [`food_bread`](#f132-food-bread) | Bread loaf (food, 30x25 px) | seq 421 (1) | 1 | 1 | - |
+| 133 | [`food_cheese`](#f133-food-cheese) | Cheese (food, 21x19 px) | seq 421 (1) | 1 | 1 | - |
+| 134 | [`food_drumstick`](#f134-food-drumstick) | Meat drumstick (food, 28x31 px) | seq 421 (1) | 1 | 1 | - |
+| 135 | [`food_grapes`](#f135-food-grapes) | Grapes (food, 29x30 px) | seq 421 (1) | 1 | 1 | - |
+| 136 | [`food_ham`](#f136-food-ham) | Ham / steak (food, 28x28 px) | seq 421 (1) | 1 | 1 | - |
+| 137 | [`king_on_throne`](#f137-king-on-throne) | King Daniel on throne (seated) (npc_king, 124x119 px) | seq 421 (1) | 1 | 1 | - |
+| 138 | [`npc_gnome_purple`](#f138-npc-gnome-purple) | Gnome / wizard (purple) (npc_gnome, 51x74 px) | seq 561 (1) | 1 | 1 | - |
+| 139 | [`npc_maiden_blue`](#f139-npc-maiden-blue) | Woman (blue dress) (npc_maiden, 55x83 px) | seq 251 (1) | 1 | 1 | - |
+| 140 | [`npc_maiden_brown`](#f140-npc-maiden-brown) | Woman (brown dress) (npc_maiden, 55x83 px) | seq 241 (1) | 1 | 1 | - |
+| 141 | [`npc_maiden_red`](#f141-npc-maiden-red) | Woman (red dress) (npc_maiden, 55x83 px) | seq 221 (1) | 1 | 1 | - |
+| 142 | [`npc_old_man`](#f142-npc-old-man) | Old man (npc_oldman, 67x74 px) | seq 231 (1) | 1 | 1 | - |
+| 143 | [`npc_soldier`](#f143-npc-soldier) | Soldier (npc_soldier, 76x93 px) | seq 403 (1) | 1 | 1 | - |
+| 144 | [`ore_rock_blue`](#f144-ore-rock-blue) | Blue crystal rock (boulders, 44x29 px) | seq 95 (1) | 1 | 1 | - |
+| 145 | [`poster_wanted`](#f145-poster-wanted) | "Wanted" poster (signs, 43x61 px) | seq 462 (1) | 1 | 1 | - |
+| 146 | [`snow_house_door`](#f146-snow-house-door) | House door (snow_house, 43x78 px) | seq 96 (1) | 1 | 1 | - |
+| 147 | [`snow_house_lower`](#f147-snow-house-lower) | House lower walls (snow_house, 381x188 px) | seq 96 (1) | 1 | 1 | - |
+| 148 | [`snow_house_roof`](#f148-snow-house-roof) | House pyramid roof (snow_house, 404x201 px) | seq 96 (1) | 1 | 1 | - |
+| 149 | [`snow_house_timber`](#f149-snow-house-timber) | House timbered upper walls (snow_house, 400x179 px) | seq 96 (1) | 1 | 1 | - |
+| 150 | [`thorn_branch`](#f150-thorn-branch) | Thorn branch (graveyard, 28x25 px) | seq 90 (1) | 1 | 1 | Vegetation |
+| 151 | [`tree_oak_large`](#f151-tree-oak-large) | Broadleaf (oak) tree (trees, 204x270 px) | seq 32 (1) | 1 | 1 | Vegetation |
+| 152 | [`screen ground (tile layer)`](#f152-screen-ground-tile-layer) | tile-layer ground of each screen (grass, sand, water, walls painted into tilesets) · sheet_tiles.png | - | 639 | 0 | Terrain |
 
 ## Open origin IDs
 
@@ -528,266 +530,274 @@ S187: P02 · S188: P03 P05
 **84. `church_stained_glass`** (3 IDs)  
 S188: P07 P08 P09
 
-<a id="f85-fireplace-brick"></a>
-**85. `fireplace_brick`** (3 IDs)  
+<a id="f85-dragon-corpse"></a>
+**85. `dragon_corpse`** (3 IDs)  
+S100: P34 · S158: P07 · S238: P12
+
+<a id="f86-fireplace-brick"></a>
+**86. `fireplace_brick`** (3 IDs)  
 S038: P16 · S129: P24 · S163: P23
 
-<a id="f86-pillbug-corpse"></a>
-**86. `pillbug_corpse`** (3 IDs)  
+<a id="f87-pillbug-corpse"></a>
+**87. `pillbug_corpse`** (3 IDs)  
 S098: P04 · S100: P25 P26
 
-<a id="f87-boulder-large"></a>
-**87. `boulder_large`** (2 IDs)  
+<a id="f88-boulder-large"></a>
+**88. `boulder_large`** (2 IDs)  
 S277: P03 · S590: P01
 
-<a id="f88-boulder-red"></a>
-**88. `boulder_red`** (2 IDs)  
+<a id="f89-boulder-red"></a>
+**89. `boulder_red`** (2 IDs)  
 S536: P15 · S590: P04
 
-<a id="f89-burnt-floor-hole"></a>
-**89. `burnt_floor_hole`** (2 IDs)  
+<a id="f90-burnt-floor-hole"></a>
+**90. `burnt_floor_hole`** (2 IDs)  
 S439: P34 P38
 
-<a id="f90-castle-wall-end"></a>
-**90. `castle_wall_end`** (2 IDs)  
+<a id="f91-castle-wall-end"></a>
+**91. `castle_wall_end`** (2 IDs)  
 S016: P03 · S048: P05
 
-<a id="f91-cellar-hatch"></a>
-**91. `cellar_hatch`** (2 IDs)  
+<a id="f92-cellar-hatch"></a>
+**92. `cellar_hatch`** (2 IDs)  
 S068: P24 P25
 
-<a id="f92-chest-large"></a>
-**92. `chest_large`** (2 IDs)  
+<a id="f93-chest-large"></a>
+**93. `chest_large`** (2 IDs)  
 S098: P07 · S536: P31
 
-<a id="f93-chest-medium"></a>
-**93. `chest_medium`** (2 IDs)  
+<a id="f94-chest-medium"></a>
+**94. `chest_medium`** (2 IDs)  
 S026: P06 · S284: P04
 
-<a id="f94-church-window-small"></a>
-**94. `church_window_small`** (2 IDs)  
+<a id="f95-church-window-small"></a>
+**95. `church_window_small`** (2 IDs)  
 S187: P01 P03
 
-<a id="f95-corpse-merchant"></a>
-**95. `corpse_merchant`** (2 IDs)  
+<a id="f96-corpse-merchant"></a>
+**96. `corpse_merchant`** (2 IDs)  
 S092: P01 · S094: P01
 
-<a id="f96-duck-corpse"></a>
-**96. `duck_corpse`** (2 IDs)  
+<a id="f97-duck-corpse"></a>
+**97. `duck_corpse`** (2 IDs)  
 S100: P27 · S521: P05
 
-<a id="f97-explosion-fx"></a>
-**97. `explosion_fx`** (2 IDs)  
+<a id="f98-explosion-fx"></a>
+**98. `explosion_fx`** (2 IDs)  
 S001: P28 P29
 
-<a id="f98-fire-burst-fx"></a>
-**98. `fire_burst_fx`** (2 IDs)  
+<a id="f99-fire-burst-fx"></a>
+**99. `fire_burst_fx`** (2 IDs)  
 S001: P33 P41
 
-<a id="f99-fireball-fx"></a>
-**99. `fireball_fx`** (2 IDs)  
+<a id="f100-fireball-fx"></a>
+**100. `fireball_fx`** (2 IDs)  
 S366: P09 P14
 
-<a id="f100-food-pie"></a>
-**100. `food_pie`** (2 IDs)  
+<a id="f101-food-pie"></a>
+**101. `food_pie`** (2 IDs)  
 S070: P24 P25
 
-<a id="f101-fountain-spray-fx"></a>
-**101. `fountain_spray_fx`** (2 IDs)  
+<a id="f102-fountain-spray-fx"></a>
+**102. `fountain_spray_fx`** (2 IDs)  
 S260: P30 · S586: P14
 
-<a id="f102-hearth-fire"></a>
-**102. `hearth_fire`** (2 IDs)  
+<a id="f103-hearth-fire"></a>
+**103. `hearth_fire`** (2 IDs)  
 S001: P20 · S163: P24
 
-<a id="f103-log-cabin"></a>
-**103. `log_cabin`** (2 IDs)  
+<a id="f104-log-cabin"></a>
+**104. `log_cabin`** (2 IDs)  
 S251: P01 · S270: P07
 
-<a id="f104-log-cabin-door"></a>
-**104. `log_cabin_door`** (2 IDs)  
+<a id="f105-log-cabin-door"></a>
+**105. `log_cabin_door`** (2 IDs)  
 S251: P07 · S409: P13
 
-<a id="f105-npc-knight-red-attacking"></a>
-**105. `npc_knight_red_attacking`** (2 IDs)  
+<a id="f106-npc-knight-red-attacking"></a>
+**106. `npc_knight_red_attacking`** (2 IDs)  
 S241: P03 · S242: P03
 
-<a id="f106-npc-merchant-blue"></a>
-**106. `npc_merchant_blue`** (2 IDs)  
+<a id="f107-npc-merchant-blue"></a>
+**107. `npc_merchant_blue`** (2 IDs)  
 S290: P30 · S374: P05
 
-<a id="f107-npc-merchant-green"></a>
-**107. `npc_merchant_green`** (2 IDs)  
+<a id="f108-npc-merchant-green"></a>
+**108. `npc_merchant_green`** (2 IDs)  
 S164: P02 · S227: P02
 
-<a id="f108-npc-peasant"></a>
-**108. `npc_peasant`** (2 IDs)  
+<a id="f109-npc-peasant"></a>
+**109. `npc_peasant`** (2 IDs)  
 S003: P23 · S038: P22
 
-<a id="f109-sparkle-fx"></a>
-**109. `sparkle_fx`** (2 IDs)  
+<a id="f110-sparkle-fx"></a>
+**110. `sparkle_fx`** (2 IDs)  
 S001: P37 · S045: P01
 
-<a id="f110-table-round"></a>
-**110. `table_round`** (2 IDs)  
+<a id="f111-table-round"></a>
+**111. `table_round`** (2 IDs)  
 S004: P17 · S037: P17
 
-<a id="f111-tree-willow"></a>
-**111. `tree_willow`** (2 IDs)  
+<a id="f112-tree-willow"></a>
+**112. `tree_willow`** (2 IDs)  
 S414: P02 · S446: P02
 
-<a id="f112-tree-willow-large"></a>
-**112. `tree_willow_large`** (2 IDs)  
+<a id="f113-tree-willow-large"></a>
+**113. `tree_willow_large`** (2 IDs)  
 S149: P02 · S474: P01
 
-<a id="f113-weed-small"></a>
-**113. `weed_small`** (2 IDs)  
+<a id="f114-weed-small"></a>
+**114. `weed_small`** (2 IDs)  
 S446: P01 P03
 
-<a id="f114-boulder-grey-tall"></a>
-**114. `boulder_grey_tall`** (1 IDs)  
+<a id="f115-boulder-grey-tall"></a>
+**115. `boulder_grey_tall`** (1 IDs)  
 S601: P08
 
-<a id="f115-boulder-white-pair"></a>
-**115. `boulder_white_pair`** (1 IDs)  
+<a id="f116-boulder-white-pair"></a>
+**116. `boulder_white_pair`** (1 IDs)  
 S590: P02
 
-<a id="f116-burn-damage-decal"></a>
-**116. `burn_damage_decal`** (1 IDs)  
+<a id="f117-burn-damage-decal"></a>
+**117. `burn_damage_decal`** (1 IDs)  
 S439: P29
 
-<a id="f117-bush-round-large"></a>
-**117. `bush_round_large`** (1 IDs)  
+<a id="f118-bush-round-large"></a>
+**118. `bush_round_large`** (1 IDs)  
 S446: P05
 
-<a id="f118-bush-round-medium"></a>
-**118. `bush_round_medium`** (1 IDs)  
+<a id="f119-bush-round-medium"></a>
+**119. `bush_round_medium`** (1 IDs)  
 S446: P06
 
-<a id="f119-bush-small"></a>
-**119. `bush_small`** (1 IDs)  
+<a id="f120-bush-small"></a>
+**120. `bush_small`** (1 IDs)  
 S446: P07
 
-<a id="f120-castle-door"></a>
-**120. `castle_door`** (1 IDs)  
+<a id="f121-castle-door"></a>
+**121. `castle_door`** (1 IDs)  
 S402: P04
 
-<a id="f121-castle-drawbridge"></a>
-**121. `castle_drawbridge`** (1 IDs)  
+<a id="f122-castle-drawbridge"></a>
+**122. `castle_drawbridge`** (1 IDs)  
 S080: P05
 
-<a id="f122-castle-gatehouse"></a>
-**122. `castle_gatehouse`** (1 IDs)  
+<a id="f123-castle-gatehouse"></a>
+**123. `castle_gatehouse`** (1 IDs)  
 S080: P04
 
-<a id="f123-church-door"></a>
-**123. `church_door`** (1 IDs)  
+<a id="f124-church-door"></a>
+**124. `church_door`** (1 IDs)  
 S188: P06
 
-<a id="f124-corpse-girl"></a>
-**124. `corpse_girl`** (1 IDs)  
+<a id="f125-corpse-girl"></a>
+**125. `corpse_girl`** (1 IDs)  
 S222: P04
 
-<a id="f125-corpse-maiden"></a>
-**125. `corpse_maiden`** (1 IDs)  
+<a id="f126-corpse-knight"></a>
+**126. `corpse_knight`** (1 IDs)  
+S157: P04
+
+<a id="f127-corpse-maiden"></a>
+**127. `corpse_maiden`** (1 IDs)  
 S091: P21
 
-<a id="f126-corpse-mom"></a>
-**126. `corpse_mom`** (1 IDs)  
+<a id="f128-corpse-mom"></a>
+**128. `corpse_mom`** (1 IDs)  
 S001: P34
 
-<a id="f127-corpse-peasant"></a>
-**127. `corpse_peasant`** (1 IDs)  
+<a id="f129-corpse-peasant"></a>
+**129. `corpse_peasant`** (1 IDs)  
 S222: P05
 
-<a id="f128-corpse-soldier"></a>
-**128. `corpse_soldier`** (1 IDs)  
+<a id="f130-corpse-soldier"></a>
+**130. `corpse_soldier`** (1 IDs)  
 S086: P01
 
-<a id="f129-dink-dead"></a>
-**129. `dink_dead`** (1 IDs)  
+<a id="f131-dink-dead"></a>
+**131. `dink_dead`** (1 IDs)  
 S058: P06
 
-<a id="f130-food-bread"></a>
-**130. `food_bread`** (1 IDs)  
+<a id="f132-food-bread"></a>
+**132. `food_bread`** (1 IDs)  
 S070: P33
 
-<a id="f131-food-cheese"></a>
-**131. `food_cheese`** (1 IDs)  
+<a id="f133-food-cheese"></a>
+**133. `food_cheese`** (1 IDs)  
 S070: P26
 
-<a id="f132-food-drumstick"></a>
-**132. `food_drumstick`** (1 IDs)  
+<a id="f134-food-drumstick"></a>
+**134. `food_drumstick`** (1 IDs)  
 S070: P23
 
-<a id="f133-food-grapes"></a>
-**133. `food_grapes`** (1 IDs)  
+<a id="f135-food-grapes"></a>
+**135. `food_grapes`** (1 IDs)  
 S070: P30
 
-<a id="f134-food-ham"></a>
-**134. `food_ham`** (1 IDs)  
+<a id="f136-food-ham"></a>
+**136. `food_ham`** (1 IDs)  
 S070: P32
 
-<a id="f135-king-on-throne"></a>
-**135. `king_on_throne`** (1 IDs)  
+<a id="f137-king-on-throne"></a>
+**137. `king_on_throne`** (1 IDs)  
 S070: P03
 
-<a id="f136-npc-gnome-purple"></a>
-**136. `npc_gnome_purple`** (1 IDs)  
+<a id="f138-npc-gnome-purple"></a>
+**138. `npc_gnome_purple`** (1 IDs)  
 S006: P23
 
-<a id="f137-npc-maiden-blue"></a>
-**137. `npc_maiden_blue`** (1 IDs)  
+<a id="f139-npc-maiden-blue"></a>
+**139. `npc_maiden_blue`** (1 IDs)  
 S004: P16
 
-<a id="f138-npc-maiden-brown"></a>
-**138. `npc_maiden_brown`** (1 IDs)  
+<a id="f140-npc-maiden-brown"></a>
+**140. `npc_maiden_brown`** (1 IDs)  
 S410: P06
 
-<a id="f139-npc-maiden-red"></a>
-**139. `npc_maiden_red`** (1 IDs)  
+<a id="f141-npc-maiden-red"></a>
+**141. `npc_maiden_red`** (1 IDs)  
 S122: P09
 
-<a id="f140-npc-old-man"></a>
-**140. `npc_old_man`** (1 IDs)  
+<a id="f142-npc-old-man"></a>
+**142. `npc_old_man`** (1 IDs)  
 S002: P23
 
-<a id="f141-npc-soldier"></a>
-**141. `npc_soldier`** (1 IDs)  
+<a id="f143-npc-soldier"></a>
+**143. `npc_soldier`** (1 IDs)  
 S410: P07
 
-<a id="f142-ore-rock-blue"></a>
-**142. `ore_rock_blue`** (1 IDs)  
+<a id="f144-ore-rock-blue"></a>
+**144. `ore_rock_blue`** (1 IDs)  
 S590: P09
 
-<a id="f143-poster-wanted"></a>
-**143. `poster_wanted`** (1 IDs)  
+<a id="f145-poster-wanted"></a>
+**145. `poster_wanted`** (1 IDs)  
 S035: P27
 
-<a id="f144-snow-house-door"></a>
-**144. `snow_house_door`** (1 IDs)  
+<a id="f146-snow-house-door"></a>
+**146. `snow_house_door`** (1 IDs)  
 S149: P07
 
-<a id="f145-snow-house-lower"></a>
-**145. `snow_house_lower`** (1 IDs)  
+<a id="f147-snow-house-lower"></a>
+**147. `snow_house_lower`** (1 IDs)  
 S149: P03
 
-<a id="f146-snow-house-roof"></a>
-**146. `snow_house_roof`** (1 IDs)  
+<a id="f148-snow-house-roof"></a>
+**148. `snow_house_roof`** (1 IDs)  
 S149: P08
 
-<a id="f147-snow-house-timber"></a>
-**147. `snow_house_timber`** (1 IDs)  
+<a id="f149-snow-house-timber"></a>
+**149. `snow_house_timber`** (1 IDs)  
 S149: P06
 
-<a id="f148-thorn-branch"></a>
-**148. `thorn_branch`** (1 IDs)  
+<a id="f150-thorn-branch"></a>
+**150. `thorn_branch`** (1 IDs)  
 S192: P05
 
-<a id="f149-tree-oak-large"></a>
-**149. `tree_oak_large`** (1 IDs)  
+<a id="f151-tree-oak-large"></a>
+**151. `tree_oak_large`** (1 IDs)  
 S693: P06
 
-<a id="f150-screen-ground-tile-layer"></a>
-**150. `screen ground (tile layer)`** (639 IDs)  
+<a id="f152-screen-ground-tile-layer"></a>
+**152. `screen ground (tile layer)`** (639 IDs)  
 SCR 002 003 004 005 006 010 013 014 015 016 017 018 025 026 027 028 029 030 031 032 033 034 035 036 037 038 045 046 047 048 049 050 057 058 059 060 061 062 063 064 065 066 067 068 069 070 073 074 077 078 079 080 081 082 085 086 089 090 091 092 093 094 095 096 097 098 099 100 101 102 105 106 109 110 111 112 113 114 117 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 137 138 143 144 145 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 169 170 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 202 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 298 299 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 324 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 395 396 397 398 399 400 401 402 403 404 405 406 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630 631 632 633 634 635 636 637 638 639 640 646 647 648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666 667 668 669 670 671 672 678 679 680 681 682 683 684 685 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704 710 711 712 713 714 715 716 717 718 719 720 721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 742 743 744 745 746 747 748 749 750 751 752 753 754 755 756 757 758 759 760 761 762 763 764 765 766 767 768
