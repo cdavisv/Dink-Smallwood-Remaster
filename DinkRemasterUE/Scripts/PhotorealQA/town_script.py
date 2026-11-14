@@ -2,7 +2,8 @@
 """Capture script for the town-house screens: python3 -I Scripts/PhotorealQA/town_script.py <out dir> [--close] [--screens a,b,..]
 
 Writes <out dir>/town.txt for run_capture.sh. Per screen of Content/Dink/Data/Art/town_houses.json:
-  NNN_play    the play camera (boom 400 cm, pitch -12) from a walkable point in front of the houses, looking at them
+  NNN_play    the play camera (boom 400 cm, pitch -12) from a walkable point on the street side of the houses (never
+              inside or behind an assembled house body), looking at them
   NNN_south   a fixed camera above the screen's south edge looking north over the whole screen
   NNN_north   the same from the north edge (the backs of the houses and the ground the hidden roof cards stood on)
 --close adds, per house front, a street-level view from 7 m in front (NNN_close_<k>) and a view of its roof and back
@@ -44,6 +45,25 @@ def main():
         bot = [c['sw'][i] + (c['se'][i] - c['sw'][i]) * u for i in (0, 1)]
         return [100.0 * (top[i] + (bot[i] - top[i]) * v) for i in (0, 1)]
 
+    mpp = {}
+    for p in placements: mpp.setdefault(p['screen'], p['m_per_px'])
+    gpx = lambda screen, x, y: ((screen - 1) % 32 * 600 + x, (screen - 1) // 32 * 400 + y)   # town-wide map pixel
+    bodies = []
+    for key, row in town.items():
+        for f in row.get('footprints') or []:
+            ox, oy = gpx(int(key), *f['px']); a = math.radians(f['yaw'])
+            bodies.append((ox, oy, math.cos(a), math.sin(a), mpp[int(key)] * 100.0, f['rect_cm']))
+
+    def street(screen, x, y):
+        """False for a point inside an assembled house body or up to 30 m straight behind one: the ground behind the
+        wall line is the inside of the 1997 building. Its hardness is 0, so a capture can be teleported there, but no
+        player walks there (the wall line and the door warps close it), and a view from there shows the houses from within."""
+        gx, gy = gpx(screen, x, y)
+        for ox, oy, c, s, cm, (x0, y0, x1, y1) in bodies:
+            lx, ly = ((gx - ox) * c + (gy - oy) * s) * cm, (-(gx - ox) * s + (gy - oy) * c) * cm
+            if x0 - 100 <= lx <= x1 + 100 and y0 - 3000 <= ly <= y1 + 100: return False
+        return True
+
     lines = ['wait 22', 'dink.Goto 506 300 360', 'dink.View -90 -12', 'wait 40', 'dink.Skip', 'wait 1', 'dink.Skip', 'wait 1', 'dink.Skip', 'wait 1', 't.MaxFPS 0', 'r.VSync 0']
     index = []
     for key in sorted(town, key=int):
@@ -55,7 +75,9 @@ def main():
         hard = hardness(screen)
         free = lambda x, y: all(hard[yy][xx] == 0 for yy in range(max(0, y - 8), min(400, y + 9), 4) for xx in range(max(0, x - 8), min(600, x + 9), 4))
         target = (min(570, max(30, cx)), min(380, max(30, cy + 120)))
-        spots = [(math.hypot(x - target[0], y - target[1]), x, y) for y in range(30, 381, 10) for x in range(30, 571, 10) if free(x, y)]
+        spots = [(math.hypot(x - target[0], y - target[1]), x, y) for y in range(30, 381, 10) for x in range(30, 571, 10) if free(x, y) and street(screen, x, y)]
+        if not spots:     # nothing on the street side: any free point
+            spots = [(math.hypot(x - target[0], y - target[1]), x, y) for y in range(30, 381, 10) for x in range(30, 571, 10) if free(x, y)]
         if not spots:
             lines.append('# screen %d: no walkable point' % screen); px, py = 300, 380
         else:
