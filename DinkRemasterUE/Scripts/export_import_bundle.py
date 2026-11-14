@@ -235,7 +235,7 @@ def signed_shore_distance(water: np.ndarray, px_cm: float) -> np.ndarray:
     return out
 
 
-def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict, means: dict, fill_water=None, indoor=False, facts=None):
+def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict, means: dict, fill_water=None, indoor=False, facts=None, shore_water=None):
     """-> (layers [dict], RGBA mask Image, grass cover base64 or None), or (None, None, None) when the screen
     keeps its painted ground. Alpha is the signed distance to the waterline: 128 at the shore, 255 at 2 m or
     more on land (also the value without water), 0 at 2 m or more into the water.
@@ -324,6 +324,8 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
     stack = sum(pad[dy:dy + TERRAIN_MASK_H, dx:dx + TERRAIN_MASK_W] for dy in range(3) for dx in range(3)) / 9.0
     shore = np.full((TERRAIN_MASK_H, TERRAIN_MASK_W), 1.0)
     water_small = np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W), bool)
+    if (fill_water is None or not fill_water.any()) and shore_water is not None:
+        fill_water = shore_water      # no water fill in the collision: the drawn water's shape (natural_water_shape) gives the shore
     if fill_water is not None and fill_water.any():
         fw = np.asarray(Image.fromarray(fill_water.astype(np.uint8) * 255).resize((TERRAIN_MASK_W, TERRAIN_MASK_H), Image.BOX))
         water_small = fw > 127
@@ -415,6 +417,44 @@ def relief_points(screen: int, tiles: list, tile_classes: dict, walk_ok: np.ndar
                 points.append([x, y, clear, tier, RELIEF_CLASSES.index(terrain)])
                 break
     return points
+
+
+def natural_water_shape(tiles: list, tile_classes: dict, screen: int) -> np.ndarray:
+    """A 400 x 600 mask of where water is drawn on a screen whose water tiles have no water fill in the collision
+    (ponds and fords a player can stand in or that hardness outlines close): the tile squares rounded off and
+    their outline bent by low-frequency noise, so the surface ends on a shoreline and not on tile edges. Within
+    40 px of the screen's rim the noise fades out and the tile outline holds, so water meets the next screen's.
+    Visual only: it feeds the terrain mask's shore distance and the grass cover, never the collision."""
+    from PIL import ImageFilter
+    tile_water = np.zeros((400, 600), np.uint8)
+    for t in tiles:
+        if (tile_classes.get(t["num"]) or {}).get("terrain") == "water":
+            tile_water[t["row"] * 50:t["row"] * 50 + 50, t["col"] * 50:t["col"] * 50 + 50] = 255
+    if not tile_water.any():
+        return tile_water.astype(bool)
+    soft = np.asarray(Image.fromarray(tile_water).filter(ImageFilter.GaussianBlur(17))) / 255.0
+    core = np.asarray(Image.fromarray(tile_water).filter(ImageFilter.MinFilter(25))) > 0     # 12 px inside the tiles: a river is never cut
+    rng = random.Random(screen * 7919 + 17)
+    coarse = np.array([[rng.random() for _ in range(9)] for _ in range(7)])
+    noise = np.asarray(Image.fromarray((coarse * 255).astype(np.uint8)).resize((600, 400), Image.BICUBIC)) / 255.0
+    ys, xs = np.mgrid[0:400, 0:600]
+    rim = np.clip(np.minimum(np.minimum(xs, 599 - xs), np.minimum(ys, 399 - ys)) / 40.0, 0.0, 1.0)
+    return (soft + (noise - 0.5) * 0.8 * rim > 0.5) | core
+
+
+SEA_LAYERS = ("DrySand", "ShingleBeach")
+
+
+def mark_sea_water(ground_classes: dict) -> None:
+    """`water_sea` true on a screen with `water_tiles` that is a sea shore or touches one: its own layers or those of a
+    screen next to it (the map is 32 screens wide) that has water hold dry sand or shingle. The runtime then gives
+    the water sheet the sea's colours instead of silty pond water, as the importer does for water with a fill."""
+    for number, row in ground_classes.items():
+        if not row.get("water_tiles"):
+            continue
+        n = int(number)
+        near = [row] + [ground_classes.get(str(m)) or {} for m in (n - 1, n + 1, n - 32, n + 32)]
+        row["water_sea"] = any(r.get("classes", {}).get("water") and set(r.get("layers") or []) & set(SEA_LAYERS) for r in near)
 
 
 def water_tile_rects(tiles: list, tile_classes: dict):
@@ -875,8 +915,9 @@ def main(argv=None) -> int:
             if terrain_means is None:
                 terrain_means = terrain_class_means(tile_classes, tileset)
             ground_classes[str(n)] = {}
+            shore_water = None if fill_water.any() or scr["indoor"] else natural_water_shape(scr["tiles"], tile_classes, n)
             ground_layers, ground_mask, cover = terrain_mask(scr, ground, tile_classes, terrain_cat, terrain_means, fill_water, bool(scr["indoor"]),
-                                                             facts=ground_classes[str(n)])
+                                                             facts=ground_classes[str(n)], shore_water=shore_water)
             if ground_mask is not None:
                 if cover is not None:
                     layer_cover[str(n)] = cover
@@ -1240,6 +1281,7 @@ def main(argv=None) -> int:
         if not cover_file.exists() or cover_file.read_text() != cover_text:
             cover_file.write_text(cover_text)
         # What each screen's ground is made of (Scripts/art_coverage.py screen_ground_state reads it with ground_review.json).
+        mark_sea_water(ground_classes)
         classes_text = json.dumps({"schema": "dink-environment-ground-classes/3",
                                    "note": "Generated by Scripts/export_import_bundle.py; never hand-edit. Per screen: tile classes (tiles of 96), "
                                            "the terrain layer each class maps to, the layers the screen's mask carries (at most four), "

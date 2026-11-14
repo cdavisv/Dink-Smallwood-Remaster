@@ -1,3 +1,8 @@
+## Water banks on the screens whose water has no fill (14 November 2026)
+
+- 244, 385, 438, 465, 494, 633, 736 have water tiles the collision does not fill. The export bends the tile outline into a shoreline (`natural_water_shape`, never cutting a river), writes it into the terrain mask alpha like filled water, and flags sea shores (`water_sea`); the runtime draws one shore-material sheet per screen (`dink.WaterTiles`). Visual only, collision export byte-identical. Evidence: `Docs/Verification/WaterBanks_14Nov2026/`.
+- Good at the play camera: 465 (river with a bank), 494 (pond), 385 and 736 (sea shore). Open: at a screen rim the outline stays straight and the sheet meets the next screen's water on a colour seam (633, 244, west end of 465); the review condition `water_without_surface` stays failed. 438 is dressed and skipped.
+
 ## Voice lines play in the game (14 November 2026)
 
 - Cause of "the text shows but nobody speaks": the 2,088 approved ElevenLabs recordings (`SourceAssets/Audio/Voice/<voice>/<line id>.mp3`) had never been imported and no code played them.
