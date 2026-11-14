@@ -371,7 +371,7 @@
  },
  "corpse_mom": {
   "why": "1 static mesh with UCX hull: the photoreal pass Mother posed dead on her back, blood baked into her base-colour maps; use with a blood pool decal",
-  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
+  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only. A families.json row cannot bind it either: stonebrook.json lists screen 1 under hide_screen_visuals, so DinkArtFamily::Decide returns ScreenDressed for every placement of the screen (tried 14 Nov 2026)"
  },
  "dink_dead": {
   "why": "1 static mesh with UCX hull: the photoreal pass Dink posed dead on his back with baked blood (17,900 triangles, above the prop soft target)",
@@ -395,7 +395,7 @@
  "dragon_corpse": {
   "status": "partial",
   "why": "1 static mesh: this folder's dragon posed dead and soaked in blood. Partial: the original shows a torn carcass with severed parts; nothing is cut or opened here",
-  "binding": "less gory than the original, so the sprite card stays (owner rule of 8 Nov 2026: keep all original gore). Pictures 212 and 216 are small torn-apart bloody remains; the mesh is an intact dragon on its back, about four times the size of the card in game (screen 158). Bind once the source is rebuilt as torn remains at the sprite's size"
+  "binding": "this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Dragon_Corpse, 14 Nov 2026), which rebuilds it as torn remains lying in its pool"
  },
  "hearth_fire": {
   "status": "partial",

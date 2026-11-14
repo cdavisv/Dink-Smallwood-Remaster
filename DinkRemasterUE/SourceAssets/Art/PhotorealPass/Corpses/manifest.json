@@ -1,0 +1,57 @@
+{
+ "schema": "dink-props/1",
+ "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses",
+ "generated_by": "Corpses/tools/make_kit_manifest.py (do not edit by hand)",
+ "summary": "1 static meshes of remains, thrown blood and burn holes. Each FBX holds one object named after the asset (LOD0 only, no collision): a body atlas (opaque, or cut-out where it carries hair) and, on a second slot, the alpha-tested ground card with the pool.",
+ "assets": [
+  {
+   "name": "SM_Dragon_Corpse_PR",
+   "class": "prop_large",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/SM_Dragon_Corpse_PR.fbx",
+   "materials": [
+    "MI_Dragon_Corpse_PR",
+    "MI_Dragon_Corpse_Pool"
+   ],
+   "dimensions_m": [
+    4.9,
+    4.9,
+    1.801
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "dragon_corpse",
+    "212 foes/dragon/f2-x3-",
+    "216 foes/dragon/f2-x7-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse"
+  }
+ ],
+ "not_imported": [],
+ "integration": {
+  "contract": {
+   "textures": "BC sRGB (alpha = cut-out mask on masked materials); N linear OpenGL (flip green on import); ORM linear (R occlusion, G roughness, B metallic)",
+   "uv": "UV0, unique bake, no tiling",
+   "collision": "none imported; placements keep their hardbox"
+  },
+  "materials": {
+   "MI_Dragon_Corpse_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_ORM.png"
+    }
+   },
+   "MI_Dragon_Corpse_Pool": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_Pool_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_Pool_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_Pool_ORM.png"
+    }
+   }
+  }
+ }
+}

@@ -191,7 +191,7 @@ return lerp(0.3, 1.0, glass);''', F1, common, 'Town surface specular (glass is a
 def baked_master(defaults, name='M_Struct_Baked', emissive=False, kind='opaque'):
     """A unique bake (the contract's `baked` materials): BC / N / ORM on UV0, no vertex colour. Round 2 of the props:
     ORM.B is real metallic; `emissive` adds the E map x EmissiveNits x EmissiveScale; kind 'subsurface' (wax) and
-    'translucent' (horn panes) change the shading only."""
+    'translucent' (horn panes) change the shading only; 'masked' cuts the surface out by the alpha of BC."""
     path = FOLDER + '/' + name
     mat = LIB.load_asset(path) if LIB.does_asset_exist(path) else None
     if mat is None:
@@ -224,6 +224,12 @@ def baked_master(defaults, name='M_Struct_Baked', emissive=False, kind='opaque')
         mat.set_editor_property('two_sided', True)
         mat.set_editor_property('translucency_lighting_mode', unreal.TranslucencyLightingMode.TLM_SURFACE)
         EDIT.connect_material_property(expr(mat, unreal.MaterialExpressionScalarParameter, -300, -420, parameter_name='Opacity', default_value=0.75), '', MP.MP_OPACITY)
+    elif kind == 'masked':
+        # cut-out: the alpha of the BC map is the opacity mask (hair cards, the blood and scorch ground cards of the corpse kit)
+        mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_MASKED)
+        mat.set_editor_property('two_sided', True)
+        mat.set_editor_property('opacity_mask_clip_value', 0.4)
+        EDIT.connect_material_property(bc, 'A', MP.MP_OPACITY_MASK)
     EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_INSTANCED_STATIC_MESHES, True)
     EDIT.recompile_material(mat)
     save(mat)
@@ -338,7 +344,7 @@ for mat_name, row in integration['materials'].items():
             tex['E'] = import_texture(REPO / row['files']['E'], 'BC')
         key = (kind, 'E' in tex)
         if key not in baked_parents:
-            baked_parents[key] = baked_master(tex, 'M_Struct_Baked' + {'opaque': '', 'subsurface': '_Wax', 'translucent': '_Pane'}.get(kind, '') + ('_Glow' if 'E' in tex else ''), 'E' in tex, kind)
+            baked_parents[key] = baked_master(tex, 'M_Struct_Baked' + {'opaque': '', 'subsurface': '_Wax', 'translucent': '_Pane', 'masked': '_Cut'}.get(kind, '') + ('_Glow' if 'E' in tex else ''), 'E' in tex, kind)
         materials[mat_name] = instance(mat_name, baked_parents[key], {k: tex[k] for k in ('BC', 'N', 'ORM', 'E') if k in tex},
                                        {'EmissiveNits': row.get('emissive_nits') or 0.0} if 'E' in tex else {}, {})
         report['materials'].append(mat_name)

@@ -106,9 +106,22 @@ The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README
 - **One object per FBX**: these files hold a single object named after the asset and no LOD objects; `import_town_exteriors.py` takes that object as LOD0.
 - **Order**: add the `families.json` row, regenerate the manifest, import, then `git add` the new packages and run `python3 -I Scripts/scrub_private_paths.py --fix Content/Dink/Photoreal/Unclaimed` (the importer writes the local project path into texture packages; the scrubber only sees tracked files).
 - **What the layer cannot place** (families left unbound, reasons in `Unclaimed/STATUS.md`): things on a table top or shelf, things hung on a wall, pits below the ground, and buildings drawn in several sprites. A family mesh always stands on its lowest point at Z 0 under the card.
-- **Gore**: a mesh that is less gory than its sprite is not bound (owner rule: keep all original gore). The dead dragon and the dead knight stay sprite cards for that reason; `Unclaimed/STATUS.md` says what each source lacks.
+- **Gore**: a mesh that is less gory than its sprite is not bound (owner rule: keep all original gore). The clean dead dragon of this kit is a source only: the remains the game shows come from the corpse kit below. The dead knight and the posed bodies stay sprite cards until they are rebuilt with the 1997 gore.
 - **Pickups** (hearts, small coin scatter) use `fit: footprint`: a pickup is shown at the size the original draws it, not at the size of the modelled object.
 - **Checks and captures**: `Docs/Verification/UnclaimedFamilyBinding_12Nov2026/`.
+
+## Corpse kit (14 Nov 2026)
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| Remains with their gore (so far the torn dragon) | `python3 -I SourceAssets/Art/PhotorealPass/Corpses/tools/make_kit_manifest.py`, then `DINK_KIT=Corpses DINK_KIT_FOLDER=Corpses Scripts/import_town_exteriors.sh` | `Corpses/manifest.json` (generated: the meshes a `families.json` row names under `/Game/Dink/Photoreal/Corpses`; `--all` lists every built asset) | `/Game/Dink/Photoreal/Corpses` with its own masters `M_Struct_Baked` and `M_Struct_Baked_Cut`; report `Saved/PhotorealPass/import_corpses.json` |
+
+- **Why a kit of its own**: a family row places one mesh and nothing else, so the pool of blood a 1997 corpse lies in is part of the mesh: slot 0 is the body with its wounds on one baked atlas, slot 1 an alpha-tested card 6 mm above the ground with the pool, the thrown drops and the mist (`kind: masked`, a material kind added to `import_town_exteriors.py`: the alpha of BC is the opacity mask). `Scripts/tests/test_corpse_kit.py` fails when a body is bound without its pool.
+- **Sources**: `Corpses/tools/build_gore.py` reads the rigged dragon of `PhotorealPass/Unclaimed`, poses, cuts and bakes it again (it also holds the rejected first recipes for the knight and the posed bodies) (`Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py <name[,name]|people|sheets|all> [preview]`); `tools/gore_sheets.py` paints the pool cards (numpy, no scan). Pull the Unclaimed sources from LFS first.
+- **Rows**: bodies use `fit: none` (real size) and `yaw_from_sprite`. Importing this kit never rewrites another kit's packages.
+- **The flat card and grass**: the grass carpet hides flat meshes. The dragon of screen 238 lies on grass and shows only flecks of its pool; a pool on grass needs a deferred decal, which a family row cannot place yet.
+- **Rows that draw nothing**: screens listed under `hide_screen_visuals` by a `dink-art/1` manifest (1, 439, ...) never take family rows; unscripted `blood_splat` / `burn_hole_decal` actors are taken by the deferred decals of `environment.json` first.
+- **Checks and captures**: `Docs/Verification/CorpseGore_14Nov2026/`.
 
 ## Faceting sweep (13 Nov 2026)
 
