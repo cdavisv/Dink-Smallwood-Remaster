@@ -382,7 +382,15 @@ bool DinkArtFamily::MountPoint(uint8 Mount, const FVector2D& Picture, const TArr
 		if ((Mount == 1 && Height > 220.0) || (Mount == 2 && Height < 300.0)) continue;
 		if (!Host || H.Card.GetArea() < Host->Card.GetArea()) Host = &H;
 	}
-	if (!Host || Mount < 1 || Mount > 3) return false;
+	if (!Host || Mount < 1 || Mount > 3)
+	{
+		// Why a mounted placement keeps its card: the hosts whose card holds the point, and how tall their meshes are.
+		FString Seen;
+		for (const FMountHost& H : Hosts)
+			if (H.Card.bIsValid && H.Card.IsInside(Picture)) Seen += FString::Printf(TEXT(" [card %.0fx%.0f mesh h %.0f valid %d]"), H.Card.GetSize().X, H.Card.GetSize().Y, H.Mesh.GetSize().Z, int32(H.Mesh.IsValid));
+		UE_LOG(LogDink, Log, TEXT("Family art: mount %d at picture (%.0f, %.0f): no host among %d;%s"), int32(Mount), Picture.X, Picture.Y, Hosts.Num(), Seen.IsEmpty() ? TEXT(" no card holds the point") : *Seen);
+		return false;
+	}
 	const FVector2D CardSize = Host->Card.GetSize();
 	const double Fu = CardSize.X > 1.0 ? (Picture.X - Host->Card.Min.X) / CardSize.X : 0.5;  // 0 west .. 1 east
 	const double Fv = CardSize.Y > 1.0 ? (Picture.Y - Host->Card.Min.Y) / CardSize.Y : 0.5;  // 0 top .. 1 bottom
