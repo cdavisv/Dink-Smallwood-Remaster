@@ -542,6 +542,8 @@ HUMANS = {
 
 # card width of the 1997 picture in the world, metres (ImportData/placements.json `card.width_m`, 14 Nov 2026)
 FOOT = {'Corpse_Knight': 2.02, 'Corpse_Merchant': 1.85, 'Corpse_Merchant_Green': 1.85, 'Corpse_Girl': 1.45, 'Corpse_Maiden': 1.57, 'Corpse_Soldier': 1.85, 'Corpse_Peasant': 2.85, 'Dink_Dead': 2.60}
+# card height of the same pictures, metres, by picture number (`card.height_m`)
+FOOT_H = {'275': 1.38, '345': 1.32, '385': 1.32, '335': 0.93, '245': 1.18, '405': 1.43, '415': 1.48, '436': 2.25}
 
 
 def fit_scale(obs, foot_m, margin=0.10):
@@ -550,21 +552,26 @@ def fit_scale(obs, foot_m, margin=0.10):
     s = min(1.0, (foot_m - margin) / ext); print('FIT body extent %.2f m -> scale %.3f for a %.2f m footprint' % (ext, s, foot_m)); return s
 
 
-def person_pool(P, c, seed, pool=1.0, shift=(0.0, 0.0), reach=0.42, grow=0.11, extra_pts=None, fit_m=None):
+def person_pool(P, c, seed, pool=1.0, shift=(0.0, 0.0), reach=0.42, grow=0.11, extra_pts=None, fit_m=None, sprite=None):
     """the blood sheet under a body: it hugs the body's outline, swells under the torso and throws drops outwards"""
     low = P[P[:, 2] < 0.30]; foot = low[::9, :2]
     if extra_pts is not None:
         foot = np.vstack([foot, extra_pts])
     rng = np.random.default_rng(seed); cc = (c[0] + shift[0], c[1] + shift[1]); rot = rng.uniform(0, math.pi)
     if fit_m:
-        # the 1997 picture's footprint (card width of placements.json): the pool hugs the body and the whole of it, drops included, stays inside that width
-        half = fit_m / 2.0; grow = 0.045; reach = 0.07; r = np.hypot(foot[:, 0] - cc[0], foot[:, 1] - cc[1]); keep = r < half - grow - 0.01; foot = foot[keep]
-        a = min(0.62 * pool, half * 0.62); b = min(0.42 * pool, half * 0.42)
+        # the 1997 picture's footprint (card width of placements.json) and its blood: the red of the picture is laid on the ground at its
+        # size (owner's rule: never less blood than 1997), the pool also hugs the body, and drops are thrown round it as the picture has them
+        half = fit_m / 2.0; grow = 0.05; reach = 0.24; r = np.hypot(foot[:, 0] - cc[0], foot[:, 1] - cc[1]); foot = foot[r < half + 0.05]
+        a = min(0.62 * pool, half * 0.62); b = min(0.42 * pool, half * 0.42); stamp = None; red_m2 = 0.0; sd = 0.0
+        if sprite:
+            sim, sw, sd, sc, red_m2 = GS.sprite_red(os.path.join(L.REPO, 'DinkRemasterUE', 'ImportData', 'sprites', sprite + '.png'), fit_m, FOOT_H[sprite[:3]]); stamp = (sim, sw, sd, sc)
         pools = [(cc[0], cc[1], a, b, rot, [(rng.uniform(0, 6.3), 0.3, 0.16 * a / 0.62), (rng.uniform(0, 6.3), 0.2, 0.2 * a / 0.62)])]
-        size = round(fit_m + 0.35, 1)
-        sheet = GS.blood_sheet(2048, size, seed, pools=pools, foot=foot, grow=grow, n_drops=90, reach=reach, casts=3, mist=350, drop_r=(0.003, 0.016), centre=cc)
-        cov = sheet['cover'] > 0.5; ex = max(np.ptp(np.nonzero(cov.any(0))[0]), np.ptp(np.nonzero(cov.any(1))[0])) / 2048.0 * size
-        print('FOOTPRINT pool incl. drops %.2f m, sprite card %.2f m' % (ex, fit_m)); sheet['extent_m'] = float(ex); return sheet, size
+        size = round(max(fit_m, sd) + 2 * reach + 0.25, 1)
+        sheet = GS.blood_sheet(2048, size, seed, pools=pools, foot=foot, grow=grow, n_drops=150, reach=reach, casts=5, mist=500, drop_r=(0.004, 0.022), centre=cc, stamp=stamp)
+        pool_m2 = float((GS.blur(sheet['cover'], 1.0) > 0.5).sum()) * (size / 2048.0) ** 2
+        cov = sheet['cover'] > 0.5; ex = np.ptp(np.nonzero(cov.any(0))[0]) / 2048.0 * size
+        print('FOOTPRINT blood %.2f m wide incl. drops (sprite card %.2f m), blood area %.2f m2 (red of the picture %.2f m2)' % (ex, fit_m, pool_m2, red_m2))
+        sheet['extent_m'] = float(ex); sheet['area_m2'] = pool_m2; sheet['sprite_red_m2'] = red_m2; return sheet, size
     ext = float(np.abs(foot).max()) + grow + reach + 0.12; size = round(2 * ext + 0.049, 1)
     pools = [(cc[0], cc[1], 0.62 * pool, 0.42 * pool, rot, [(rng.uniform(0, 6.3), 0.35, 0.22 * pool), (rng.uniform(0, 6.3), 0.2, 0.3 * pool), (rng.uniform(0, 6.3), 0.25, 0.16 * pool)])]
     return GS.blood_sheet(2048, size, seed, pools=pools, foot=foot, grow=grow * pool, n_drops=170, reach=reach, casts=6, mist=700, centre=cc), size
@@ -653,27 +660,27 @@ CHAR_TEX = ('Mother', 'Milder', 'Dink')
 # open: (along the body from its middle, across, half length, half width, turn against the body axis, what shows: 'ribs', 'gut' or both)
 # sever: (bone name prefixes, side, moved along the body, moved across, turned)
 PEOPLE = {
-    'Corpse_Girl': dict(rig=('npc_girl', 'Girl', 'SK_Girl_PR'), who='girl', fams=['corpse_girl', '335 people/girl/death-'], head=150, seed=335, turn=-40, flat=(0.09, 0.3),
+    'Corpse_Girl': dict(rig=('npc_girl', 'Girl', 'SK_Girl_PR'), who='girl', fams=['corpse_girl', '335 people/girl/death-'], head=150, spr='335_01', seed=335, turn=-40, flat=(0.09, 0.3),
                         arms=(((0.95, -0.3), (0.2, 0.98)), ((0.55, -0.83), (0.85, -0.5))), legs=(((0.30, -0.95), (-0.05, -1.0)), ((0.12, -0.99), (0.3, -0.95))),
                         open=[(0.02, 0.0, 0.17, 0.085, 0.15, 'ribs gut')], sever=[(('calf', 'foot', 'ball'), 'l', -0.10, 0.16, 0.7), (('lowerarm', 'hand'), 'r', 0.05, -0.14, -0.9)],
                         dresses='the village girl torn open: belly and chest laid open over ribs and entrails, a leg and a forearm torn off beside her, in her blood'),
-    'Corpse_Maiden': dict(rig=('npc_maiden_red', 'Maiden_Red', 'SK_Maiden_Red_PR'), who='woman in the crimson dress', fams=['corpse_maiden', '245 people/maiden/red/death-'], head=205, seed=245, turn=35, skirt=0.3,
+    'Corpse_Maiden': dict(rig=('npc_maiden_red', 'Maiden_Red', 'SK_Maiden_Red_PR'), who='woman in the crimson dress', fams=['corpse_maiden', '245 people/maiden/red/death-'], head=205, spr='245_01', seed=245, turn=35, skirt=0.3,
                           arms=(((0.8, -0.6), (0.9, 0.4)), ((0.9, -0.42), (0.35, -0.93))), legs=(((0.14, -0.99), (0.0, -1.0)), ((0.26, -0.96), (-0.1, -1.0))),
                           open=[(0.10, 0.0, 0.24, 0.10, -0.1, 'ribs gut')], sever=[],
                           dresses='the woman in the crimson dress torn open from throat to belly, ribs bare, entrails pulled out onto the ground, in her blood'),
-    'Corpse_Merchant': dict(rig=('npc_merchant_blue', 'Merchant', 'SK_Merchant_PR'), who='merchant', fams=['corpse_merchant', '345 people/merchant/death-'], head=205, seed=345, turn=-30,
+    'Corpse_Merchant': dict(rig=('npc_merchant_blue', 'Merchant', 'SK_Merchant_PR'), who='merchant', fams=['corpse_merchant', '345 people/merchant/death-'], head=205, spr='345_01', seed=345, turn=-30,
                             arms=(((0.9, -0.42), (0.6, 0.8)), ((0.6, -0.8), (0.9, -0.4))), legs=(((0.2, -0.98), (0.02, -1.0)), ((0.34, -0.94), (-0.12, -1.0))),
                             open=[(0.20, 0.0, 0.20, 0.040, 0.7, 'ribs'), (-0.02, 0.02, 0.17, 0.050, -0.55, 'gut')], sever=[(('lowerarm', 'hand'), 'l', 0.12, 0.20, 1.1)],
                             dresses='the merchant (blue) hacked down: the chest split to the ribs, the belly cut open with entrails out, a forearm struck off, in his blood'),
-    'Corpse_Merchant_Green': dict(rig=('npc_merchant_blue', 'Merchant', 'SK_Merchant_PR'), who='merchant', fams=['corpse_merchant', '385 people/merchant/green/death-'], head=335, seed=385, turn=40, swap=('Outfit', 'T_Merchant_PR_Outfit_Green_BC.png'),
+    'Corpse_Merchant_Green': dict(rig=('npc_merchant_blue', 'Merchant', 'SK_Merchant_PR'), who='merchant', fams=['corpse_merchant', '385 people/merchant/green/death-'], head=335, spr='385_01', seed=385, turn=40, swap=('Outfit', 'T_Merchant_PR_Outfit_Green_BC.png'),
                                   arms=(((0.7, -0.7), (0.95, -0.3)), ((0.95, -0.3), (0.3, 0.95))), legs=(((0.36, -0.93), (-0.15, -1.0)), ((0.16, -0.99), (0.05, -1.0))),
                                   open=[(0.0, 0.0, 0.21, 0.055, 1.25, 'gut'), (0.24, -0.03, 0.15, 0.035, -0.5, 'ribs')], sever=[],
                                   dresses='the merchant in green hacked down: the belly cut across with entrails out, the shoulder and chest split to the ribs, in his blood'),
-    'Corpse_Peasant': dict(rig=('npc_peasant', 'Peasant', 'SK_Peasant_PR'), who='peasant', fams=['corpse_peasant', '415 people/peasant2/death-'], head=120, seed=415, turn=-35, pole=True, drop_tool=True,
+    'Corpse_Peasant': dict(rig=('npc_peasant', 'Peasant', 'SK_Peasant_PR'), who='peasant', fams=['corpse_peasant', '415 people/peasant2/death-'], head=120, spr='415_01', seed=415, turn=-35, pole=True, drop_tool=True,
                            arms=(((0.6, -0.8), (0.3, 0.95)), ((0.95, -0.3), (0.7, -0.7))), legs=(((0.18, -0.98), (0.0, -1.0)), ((0.30, -0.95), (-0.1, -1.0))),
                            open=[(0.18, 0.0, 0.22, 0.045, -0.75, 'ribs'), (-0.05, 0.0, 0.16, 0.05, 0.6, 'gut')], sever=[],
                            dresses='the peasant hacked down: the chest split to the ribs, the belly cut open, his long-handled sickle beside him, in his blood'),
-    'Corpse_Soldier': dict(rig=('npc_soldier', 'Soldier', 'SK_Soldier_PR'), who='soldier (Milder)', fams=['corpse_soldier', '405 people/soldier/death-'], head=215, seed=405, turn=30,
+    'Corpse_Soldier': dict(rig=('npc_soldier', 'Soldier', 'SK_Soldier_PR'), who='soldier (Milder)', fams=['corpse_soldier', '405 people/soldier/death-'], head=215, spr='405_01', seed=405, turn=30,
                            arms=(((0.9, -0.42), (0.95, 0.3)), ((0.7, -0.7), (0.5, -0.87))), legs=(((0.22, -0.97), (0.0, -1.0)), ((0.34, -0.94), (-0.14, -1.0))),
                            open=[(0.0, 0.0, 0.20, 0.055, 0.9, 'gut'), (0.22, 0.02, 0.16, 0.035, -0.4, 'ribs')], sever=[],
                            dresses='the soldier hacked through jerkin and mail: the belly cut across with entrails out, the chest split to the ribs, in his blood'),
@@ -804,7 +811,7 @@ def person2(name, prev=False):
     for m in list(body.data.materials) + [p.data.materials[0] for p in parts if p.data.materials]:
         ensure_principled(m)
         if any(n.type == 'TEX_IMAGE' and n.image and n.image.name.upper().split('.')[0].endswith('_BC') for n in m.node_tree.nodes) and not m.get('dink_bloodied') and 'Eyes' not in m.name:
-            bloody(m, wounds or [(np.array([c[0], c[1], 0.1]), 0.2)], ground=0.045 * s, amount=1.0, spatter=0.70); m['dink_bloodied'] = True
+            bloody(m, wounds or [(np.array([c[0], c[1], 0.1]), 0.2)], ground=0.07 * s, amount=1.0, spatter=0.63, drench=v.get('drench', 0.17)); m['dink_bloodied'] = True      # soaked in patches, as the pictures are red in patches
     extra_pts = None
     if v.get('pole'):
         side = perp * (1 if perp[1] < 0 else -1); p0 = c[:2] + axis * 0.80 * s + side * 0.34 * s; p1 = c[:2] - axis * 0.90 * s + side * 0.42 * s; wood = m_pole('pole_' + name)
@@ -822,12 +829,12 @@ def person2(name, prev=False):
         preview(hi, name, [dict(az=0, el=52, fill=1.0, lens=60), dict(az=-35, el=24, fill=1.6, lens=70), dict(az=150, el=30, fill=1.6, lens=70)]); return
     lo_parts = [L.dup(p_, p_.name + '_lo') for p_ in parts]; lo = body_lo(body, lo_parts + lo_x, asset + '_lo', big=('Hair', 'Eyes'))
     allp = np.vstack([L.co(body)] + [L.co(p_) for p_ in parts]); xp = np.vstack([L.co(p_)[::7, :2] for p_ in parts] + ([extra_pts] if extra_pts is not None else [])) if (parts or extra_pts is not None) else None
-    sheet, size = person_pool(allp, c, v['seed'], pool=1.0, extra_pts=xp, fit_m=foot_m); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
+    sheet, size = person_pool(allp, c, v['seed'], pool=1.0, extra_pts=xp, fit_m=foot_m, sprite=v.get('spr')); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
     weak = ('The body is the rigged %s of PhotorealPass/Unclaimed posed by rule (limbs aimed into the plane of the back and sunk to the ground, no cloth simulation: the clothes follow the skin weights), baked again onto one %d px atlas, so face, hands and hair are softer than on the living character and the hair is a hard cut-out. '
             'The openings are cut by a ragged ellipse and their inside is a displaced lump of muscle with plain rib rods and three loops of gut: no organs, no anatomy beyond that; severed ends are a lump and a rod of bone. '
             'Scaled by %.2f to keep body and pool inside the %.2f m footprint of the 1997 picture. The pool, the drops and the soaked fringe are a flat alpha-tested card 6 mm above the ground. Static.' % (v['who'], 2048, s, foot_m))
     finish(asset, 'prop', outdir, v['fams'], v['dresses'], weak, body=lo, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=True, extrude=0.005, maxdist=0.02, third_party=PEOPLE_TP,
-           extra={'derived_from': 'Unclaimed/%s/%s (%s LOD0), posed dead, opened, bloodied and baked again' % v['rig'], 'sprite_footprint_m': foot_m, 'body_scale': round(s, 3), 'pool_extent_m': round(sheet.get('extent_m', 0.0), 2),
+           extra={'derived_from': 'Unclaimed/%s/%s (%s LOD0), posed dead, opened, bloodied and baked again' % v['rig'], 'sprite_footprint_m': foot_m, 'body_scale': round(s, 3), 'pool_extent_m': round(sheet.get('extent_m', 0.0), 2), 'pool_area_m2': round(sheet.get('area_m2', 0.0), 2), 'sprite_red_area_m2': round(sheet.get('sprite_red_m2', 0.0), 2),
                   'gore_in_mesh': 'opened body with flesh rims, ribs and entrails as the picture shows, severed parts with stumps, blood round the wounds; pool card with drops and a soaked fringe (no companion decal)', 'pool_card_m': size})
 
 
@@ -895,7 +902,7 @@ def knight(prev=False):
     tgt = np.array([*(c[:2] - axis * 0.42 + side * 0.50), 0.0]); Ph = (Ph - hc) @ Rm.T; Ph += tgt - np.array([0, 0, Ph[:, 2].min() - 0.010]); L.set_co(hpart, Ph)
     # blood where it would be: welling round the wound, run down the plates from it, soaked where the harness lies in the pool, a few thrown spots
     wound = np.array([chest[0], chest[1], ctop])
-    bloody(mat, [(wound, 0.22), (np.array([c[0], c[1], 0.02]), 0.34)], ground=0.07, amount=1.0, spatter=0.69, use_link=True, runs=(wound, 0.55)); hi_g, lo_g = [], []
+    bloody(mat, [(wound, 0.22), (np.array([c[0], c[1], 0.02]), 0.34)], ground=0.09, amount=1.0, spatter=0.63, use_link=True, runs=(wound, 0.75), drench=0.07); hi_g, lo_g = [], []
     hpart.data.materials.clear(); hpart.data.materials.append(mat)
     wood = m_pole('shaft'); bloody(wood, [(np.array([chest[0], chest[1], ctop]), 0.45)], ground=0.03, amount=1.0, spatter=0.55); fl = m_flesh('entry', k=2.5); hi = [skin, hpart]; lo_x = []
     lean = np.array([0.10, -0.06, 1.0]); lean /= np.linalg.norm(lean); base = np.array([chest[0], chest[1], ctop - 0.07]); stub0 = tgt - dgo * 0.20 + np.array([0, 0, 0.022]); stub1 = tgt - dgo * 0.62 + np.array([0, 0, 0.020])
@@ -918,12 +925,12 @@ def knight(prev=False):
         preview(hi, name, [dict(az=0, el=52, fill=1.0, lens=60), dict(az=-35, el=24, fill=1.6, lens=70)]); return
     hl = L.dup(hpart, 'head_lo'); lo = body_lo(skin, [hl] + lo_x, asset + '_lo')
     foot_x = np.vstack([np.array([tgt[:2] + dgo[:2] * q for q in np.linspace(-0.6, 0.25, 12)])])
-    sheet, size = person_pool(L.co(skin), c, 275, pool=1.0, extra_pts=foot_x, fit_m=FOOT['Corpse_Knight']); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
+    sheet, size = person_pool(L.co(skin), c, 275, pool=1.0, extra_pts=foot_x, fit_m=FOOT['Corpse_Knight'], sprite='275_01'); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
     weak = ('The knight is the plate harness of Unclaimed/npc_knight_blue (silver set) with procedural wear (grime, scratches, dents as a bump): swept plates without straps or rivets and nobody inside, so there is no flesh to see at the joints; the wound is a ring of raw flesh round the shaft. '
             'The halberd head is the knight\'s own, laid flat; the shafts are plain turned poles with a tapered break, not splintered wood. The pool, drops and mist are a flat alpha-tested card 6 mm above the ground. Static.')
     finish(asset, 'prop', outdir, ['corpse_knight', '275 people/knight/red/death-'], 'the knight dead on his back in worn steel plate, lying in his blood, drops thrown round it, the snapped shaft of his halberd standing in his chest and its head lying in the blood beside him',
            weak, body=lo, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=False, third_party=('park_dirt (render ground)',),
-           extra={'derived_from': 'Unclaimed/npc_knight_blue/Knight (SK_Knight_PR LOD0, silver set), posed, worn, the halberd broken, bloodied and baked again', 'sprite_footprint_m': FOOT['Corpse_Knight'], 'gore_in_mesh': 'blood welling round the wound and run down the plates, soaked underside, entry wound, pool with thrown drops and mist (no companion decal)', 'pool_card_m': size})
+           extra={'derived_from': 'Unclaimed/npc_knight_blue/Knight (SK_Knight_PR LOD0, silver set), posed, worn, the halberd broken, bloodied and baked again', 'sprite_footprint_m': FOOT['Corpse_Knight'], 'pool_extent_m': round(sheet['extent_m'], 2), 'pool_area_m2': round(sheet['area_m2'], 2), 'sprite_red_area_m2': round(sheet['sprite_red_m2'], 2), 'gore_in_mesh': 'blood welling round the wound and run down the plates, soaked underside, entry wound, pool with thrown drops and mist (no companion decal)', 'pool_card_m': size})
 
 
 def _mask_after(mask, removed):

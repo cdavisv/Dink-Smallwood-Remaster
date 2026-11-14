@@ -100,9 +100,21 @@ def drop(cv, p, r, ang, stretch, rng, tail=True):
             q = L * rng.uniform(1.1, 1.9); cv.disc((p[0] + dx * q + rng.normal(0, r * 0.3), p[1] + dy * q + rng.normal(0, r * 0.3)), r * rng.uniform(0.18, 0.4))
 
 
+def sprite_red(path, width_m, height_m, depth=1.3):
+    """the blood of a 1997 picture as a ground stamp: (mask image, width m, depth m, centre xy m relative to the card centre, red area m2).
+    The extracted picture is stretched to a power-of-two canvas, so the scale comes from the card (width_m x height_m of placements.json),
+    not from the pixel count. Red = clearly red pixels; the picture looks down at an angle, so its height is stretched by `depth` on the ground."""
+    im = Image.open(path).convert('RGBA'); a = np.asarray(im).astype(np.int32); op = a[..., 3] > 0
+    red = op & (a[..., 0] > 105) & (a[..., 1] < 85) & (a[..., 2] < 85) & (a[..., 0] > a[..., 1] * 2)
+    ys, xs = np.nonzero(op); x0, x1, y0, y1 = xs.min(), xs.max() + 1, ys.min(), ys.max() + 1; red = red[y0:y1, x0:x1]; h, w = red.shape
+    mx = width_m / w; my = height_m / h
+    mask = Image.fromarray((red * 255).astype(np.uint8), 'L').filter(ImageFilter.MaxFilter(3))
+    return mask, width_m, height_m * depth, (0.0, 0.0), float(red.sum()) * mx * my
+
+
 def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, reach=0.55, drop_r=(0.004, 0.028), casts=5, mist=500,
                 edge_noise=0.2, thin=(60, 5, 4), mid=(40, 2, 2), deep=(17, 1, 1), dried=(44, 12, 8), smear=(54, 10, 7), damp=(40, 27, 21), soak_m=0.06,
-                centre=(0.0, 0.0), wet=0.05):
+                centre=(0.0, 0.0), wet=0.05, stamp=None):
     """pools = [(cx, cy, a, b, rot, runs)] in metres; foot = (n, 2) points the pool also spreads around (a body's outline), by `grow` metres.
     Drops are thrown out to `reach` metres beyond the pool. Returns dict BC (h, w, 4 uint8), N, ORM (h, w, 3 uint8) and `cover` (float mask)."""
     rng = np.random.default_rng(seed); cv = Canvas(px, size); k = cv.k
@@ -111,6 +123,11 @@ def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, rea
     if foot is not None:
         for p in foot:
             cv.disc(p, grow * rng.uniform(0.7, 1.25))
+    if stamp is not None:                            # the red of the 1997 picture, laid on the ground at its size: (mask image 'L', width m, depth m, centre xy)
+        sim, sw, sd, sc = stamp; w_ = max(1, int(round(sw * k))); h_ = max(1, int(round(sd * k))); big = sim.resize((w_, h_), Image.BICUBIC)
+        x0 = int(round(px / 2 + sc[0] * k - w_ / 2)); y0 = int(round(px / 2 - sc[1] * k - h_ / 2)); layer = Image.new('L', (px, px), 0); layer.paste(big, (x0, y0))
+        from PIL import ImageChops
+        cv.im = ImageChops.lighter(cv.im, layer); cv.d = ImageDraw.Draw(cv.im)
     base = blur(cv.arr(), 0.018 * k)
     nz = noise2(px, size / 0.16, rng, 4, 0.55)
     pool = sstep(-0.012, 0.012, base - 0.5 - edge_noise * (nz - 0.5))

@@ -5,18 +5,18 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green/SM_Corpse_Merchant_Green_PR.blend",
  "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Corpse_Merchant_Green_PR",
  "dimensions_m": [
-  2.2,
-  2.2,
+  2.6,
+  2.6,
   0.3878
  ],
  "bounds_min_m": [
-  -1.1,
-  -1.1,
+  -1.3,
+  -1.3,
   -0.0153
  ],
  "bounds_max_m": [
-  1.1,
-  1.1,
+  1.3,
+  1.3,
   0.3725
  ],
  "lod0_triangles": 33428,
@@ -116,13 +116,13 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 50.1,
-   "p99": 179.4
+   "mean": 46.7,
+   "p99": 174.2
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.509,
-   "p95": 0.883
+   "mean": 0.476,
+   "p95": 0.877
   },
   "metallic_mean": 0.001,
   "ao_mean": 0.528
@@ -130,7 +130,9 @@
  "derived_from": "Unclaimed/npc_merchant_blue/Merchant (SK_Merchant_PR LOD0), posed dead, opened, bloodied and baked again",
  "sprite_footprint_m": 1.85,
  "body_scale": 0.974,
- "pool_extent_m": 1.77,
+ "pool_extent_m": 2.2,
+ "pool_area_m2": 1.76,
+ "sprite_red_area_m2": 0.47,
  "gore_in_mesh": "opened body with flesh rims, ribs and entrails as the picture shows, severed parts with stumps, blood round the wounds; pool card with drops and a soaked fringe (no companion decal)",
- "pool_card_m": 2.2
+ "pool_card_m": 2.6
 }
