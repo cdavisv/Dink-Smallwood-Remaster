@@ -22,11 +22,13 @@ namespace DinkPlaytestControlsTest
 		UDinkDirector* D = nullptr;
 		UDinkGameplay* G = nullptr;
 		TSharedPtr<FDinkNarrativeInputProcessor> Input;
+		/** Every line put on screen (OnLineShown), robust against the bounded event list. */
+		TSharedPtr<TArray<FString>> Shown = MakeShared<TArray<FString>>();
 		bool IsValid() const { return Facts && World && Story && Story->IsReady() && G && G->HasData() && Input.IsValid(); }
 	};
 
 	/** Story, facts and world state outside any world, seeded; the input processor the game registers, without the click guard. */
-	FEnv Make(FAutomationTestBase& Test, bool bInstant)
+	FEnv Make(FAutomationTestBase& Test, bool bInstant, bool bListen = true)
 	{
 		FEnv E;
 		UGameInstance* GI = DinkTest::MakeOuterGameInstance();
@@ -44,6 +46,11 @@ namespace DinkPlaytestControlsTest
 		Test.TestTrue(TEXT("gameplay data loaded (Scripts/sync_gameplay_data.py)"), E.G && E.G->HasData());
 		E.Input = MakeShared<FDinkNarrativeInputProcessor>(E.Story);
 		E.Input->MouseConfirmGuardSeconds = 0.;
+		if (bListen && E.Story)
+		{
+			TSharedPtr<TArray<FString>> Shown = E.Shown;
+			E.Story->OnLineShown.AddLambda([Shown](const FDinkLineShown& L) { Shown->Add(L.Text); });
+		}
 		return E;
 	}
 
@@ -60,6 +67,32 @@ namespace DinkPlaytestControlsTest
 		{
 			E.Story->Advance(1.0 / 60.0);
 		}
+	}
+
+	/** Advances 60 Hz frames until Done() or MaxFrames; true if Done. */
+	bool FramesUntil(FEnv& E, TFunctionRef<bool()> Done, int32 MaxFrames = 600)
+	{
+		for (int32 i = 0; i < MaxFrames; ++i)
+		{
+			if (Done())
+			{
+				return true;
+			}
+			E.Story->Advance(1.0 / 60.0);
+		}
+		return Done();
+	}
+
+	bool HasBlockingText(const UDinkStorySubsystem* S)
+	{
+		for (const FDinkActiveText& T : S->GetActiveTexts())
+		{
+			if (T.bBlocking)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	int32 CountKind(const UDinkStorySubsystem* S, FName Kind, int32 From = 0)
@@ -193,19 +226,14 @@ bool FDinkControlsLeftClickTest::RunTest(const FString& Parameters)
 	From = M.Story->Events.Num();
 	TestTrue(TEXT("a click on the menu is used"), M.Input->ProcessMouseDown(EKeys::LeftMouseButton));
 	TestNull(TEXT("the menu is gone"), M.Story->GetActiveMenu());
-	TestEqual(TEXT("&result 2: the highlighted option was picked"), M.Facts->GetFact(TEXT("result")), 2);
 	TestEqual(TEXT("no attack from the menu click"), CountAttacks(M.G, AttacksFrom), 0);
 	TestFalse(TEXT("the menu click holds no attack key"), M.Input->GetAttackKeyDown().IsValid());
 	M.Input->ProcessMouseUp(EKeys::LeftMouseButton);
 
 	// The answer is a say_stop: a blocking line. The click skips it (as Enter does) instead of attacking.
-	M.Story->RunUntilIdle();
-	bool bBlocking = false;
-	for (const FDinkActiveText& T : M.Story->GetActiveTexts())
-	{
-		bBlocking |= T.bBlocking;
-	}
-	TestTrue(TEXT("Dink's question is a blocking line"), bBlocking);
+	TestTrue(TEXT("Dink's question is a blocking line"), FramesUntil(M, [&M]() { return HasBlockingText(M.Story); }));
+	TestEqual(TEXT("&result 2: the highlighted option was picked"), M.Facts->GetFact(TEXT("result")), 2);
+	TestTrue(TEXT("the line is Dink's question"), M.Shown->Contains(TEXT("What kind of a man was father?")));
 	const int32 Skips = CountKind(M.Story, TEXT("skip"));
 	AttacksFrom = M.G->Events.Num();
 	TestTrue(TEXT("a click on a blocking line is used"), M.Input->ProcessMouseDown(EKeys::LeftMouseButton));
@@ -286,16 +314,30 @@ bool FDinkControlsPigFeedingTest::RunTest(const FString& Parameters)
 	// SCR_407, in the pen, facing south: a left click throws the feed.
 	E.Story->OnScreenEntered(407);
 	Settle(E);
-	Dink.X = 300;
-	Dink.Y = 250;
-	Dink.Dir = 2;
-	Dink.bFrozen = false;
-	const int32 From = E.Story->Events.Num();
+	FDinkSprite& DinkIn407 = E.D->GetDink(); // the screen change rebuilds the sprite table: take Dink again
+	DinkIn407.X = 300;
+	DinkIn407.Y = 250;
+	DinkIn407.Dir = 2;
+	DinkIn407.bFrozen = false;
+	E.Shown->Reset();
+	const int32 AttacksFrom = E.G->Events.Num();
 	TestTrue(TEXT("left click on SCR_407"), E.Input->ProcessMouseDown(EKeys::LeftMouseButton));
 	Settle(E);
 	E.Input->ProcessMouseUp(EKeys::LeftMouseButton);
-	TestTrue(TEXT("\"Come on pigs, eat!\""), Said(E.Story, From).Contains(TEXT("Come on pigs, eat!")));
-	TestTrue(TEXT("the bully says his line"), Said(E.Story, From).Contains(TEXT("Well, lookie what we got here.")));
+	if (CountAttacks(E.G, AttacksFrom) == 0)
+	{
+		const FDinkAttackGate& Gate = E.G->GetAttackGate();
+		AddInfo(FString::Printf(TEXT("no attack: weapon instance %d, armed %s, frozen %d, bow %d, gate held %d locked %d buffered %d, inventory %d, texts %d"),
+			E.G->GetWeaponInstance(), *E.D->GetInventory()->GetArmedItem().ToString(), DinkIn407.bFrozen ? 1 : 0, E.G->IsBowActive() ? 1 : 0,
+			Gate.IsHeld() ? 1 : 0, Gate.IsLocked(E.Story->GetNowMs()) ? 1 : 0, Gate.HasBuffered() ? 1 : 0, E.Story->IsInventoryOpen() ? 1 : 0, E.Story->GetActiveTexts().Num()));
+		for (int32 i = FMath::Max(0, E.G->Events.Num() - 8); i < E.G->Events.Num(); ++i)
+		{
+			AddInfo(TEXT("game event: ") + E.G->Events[i]);
+		}
+	}
+	TestEqual(TEXT("the click is one attack with the feed"), CountAttacks(E.G, AttacksFrom), 1);
+	TestTrue(TEXT("\"Come on pigs, eat!\""), E.Shown->Contains(TEXT("Come on pigs, eat!")));
+	TestTrue(TEXT("the bully says his line"), E.Shown->Contains(TEXT("Well, lookie what we got here.")));
 	TestEqual(TEXT("the bully's scene: &pig_story 1"), E.Facts->GetFact(TEXT("pig_story")), 1);
 	return true;
 }
@@ -376,9 +418,9 @@ bool FDinkControlsInventoryRulesTest::RunTest(const FString& Parameters)
 	TestNotNull(TEXT("menu up"), M.Story->GetActiveMenu());
 	M.D->GetDink().bFrozen = false; // even if Dink could act, the menu comes first
 	TestTrue(TEXT("2 with a menu up picks option 2"), M.Input->ProcessKeyDown(EKeys::Two));
-	TestEqual(TEXT("&result 2"), M.Facts->GetFact(TEXT("result")), 2);
 	TestFalse(TEXT("no inventory from the digit"), M.Story->IsInventoryOpen());
-	M.Story->RunUntilIdle();
+	TestTrue(TEXT("Dink's question (a blocking line) is up"), FramesUntil(M, [&M]() { return HasBlockingText(M.Story); }));
+	TestEqual(TEXT("&result 2"), M.Facts->GetFact(TEXT("result")), 2);
 	M.D->GetDink().bFrozen = false;
 	const int32 Skips = CountKind(M.Story, TEXT("skip"));
 	TestTrue(TEXT("Enter on a blocking line"), M.Input->ProcessKeyDown(EKeys::Enter));
@@ -417,7 +459,7 @@ bool FDinkLineShownHookTest::RunTest(const FString& Parameters)
 {
 	auto Run = [this](bool bListen, TArray<FDinkLineShown>& Shown, TArray<int32>& Skipped, TArray<FString>& Trace)
 	{
-		FEnv E = Make(*this, /*bInstant*/ false);
+		FEnv E = Make(*this, /*bInstant*/ false, /*bListen*/ false);
 		if (!E.IsValid())
 		{
 			return;
@@ -443,7 +485,7 @@ bool FDinkLineShownHookTest::RunTest(const FString& Parameters)
 			{
 				E.Story->SkipDialogue(); // the player skips the first line half a second in
 			}
-			if (i > 60 && E.Story->GetActiveTexts().Num() == 0 && !E.Story->GetActiveMenu())
+			if (i > 60 && E.Story->GetActiveTexts().Num() == 0 && !E.Story->GetActiveMenu() && !E.D->GetDink().bFrozen)
 			{
 				break;
 			}
