@@ -192,6 +192,15 @@ Evidence: `Docs/Verification/Gate2StaticBatch1_13Nov2026/`.
 - **Checks and captures**: `Docs/Verification/TownHouses_13Nov2026/`.
 - **Private project copies**: the built modules carry a library search path relative to the shared checkout's depth, so a copy under `Saved/<name>/DinkRemasterUE` fails to start the game with `Plugin 'DinkParity' failed to load because module 'DinkProbe' could not be loaded`. Until the copy is rebuilt, export `LD_LIBRARY_PATH` with its own `Plugins/*/Binaries/Linux` and `Binaries/Linux` folders.
 
+## Interior light (round 7, 14 Nov 2026)
+
+Runtime only (`UDinkEnvironmentSubsystem::BuildIndoor`, nothing of it in headless runs), values in `environment.json` `indoor.<look>`:
+
+- `ceiling_lamp_light` false: the ceiling planes sit on lighting channel 1, which only the even fill lights. The lamps, fires and the ambient point (channel 0) no longer burn an inverse-square disc into the boards 0.85 m above a lantern. Leave the key out or set it true for the old behaviour.
+- `lamp_source_cm`: source radius of the shadowed lamps and fires (interior 14, dungeon 10; was fixed at 6): softer shadow edges.
+- Interior look: lamps 26 cd (was 18) as the warm key, the fill lower and cooler (0.2 of 0.80, 0.87, 1.0; was 0.26 of 1.0, 0.88, 0.72), ambient 0.6 (was 1.0), so corners fall off toward cool. Evidence and what is still wrong: `Docs/Verification/PhotorealRound7/`.
+- Captures: `Scripts/PhotorealQA/r7_script.py <tag> [name parts]` writes the round-7 camera script (interiors `i0`, grass `g`, foliage `f`; shots under `Saved/PhotorealPass/round7/<tag>/`).
+
 ## Turning the pass off
 
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):

@@ -207,6 +207,8 @@ void UDinkEnvironmentSubsystem::LoadConfig()
 				Number(*O, TEXT("ceiling_cm"), L.CeilingCm);
 				(*O)->TryGetStringField(TEXT("ceiling_material"), L.CeilingMaterial);
 				(*O)->TryGetStringField(TEXT("ceiling_wall_class"), L.CeilingWallClass);
+				(*O)->TryGetBoolField(TEXT("ceiling_lamp_light"), L.bCeilingLampLight);
+				Number(*O, TEXT("lamp_source_cm"), L.LampSourceCm);
 			};
 			Look(TEXT("interior"), InteriorLook);
 			Look(TEXT("dungeon"), DungeonLook);
@@ -607,7 +609,8 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 		L->SetIntensity(Intensity * Gain);
 		L->SetLightColor(Colour);
 		L->SetAttenuationRadius(Radius);
-		L->SetSourceRadius(bShadow ? 6.f : 60.f);
+		L->SetSourceRadius(bShadow ? FMath::Max(Look.LampSourceCm, 1.f) : 60.f);
+		if (bShadow) L->SetSoftSourceRadius(FMath::Max(Look.LampSourceCm, 1.f));
 		L->SetCastShadows(bShadow);
 		if (!bShadow) L->SetSpecularScale(0.f);
 		L->RegisterComponent();
@@ -642,6 +645,8 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 		L->SetSourceRadius(80.f);
 		L->SetCastShadows(false);
 		L->SetSpecularScale(0.f);
+		// the even fill is the only direct light of a ceiling that the lamps leave alone (lighting channel 1)
+		L->SetLightingChannels(true, true, false);
 		L->RegisterComponent();
 	};
 	TSet<int32> LitNumbers;
@@ -675,6 +680,9 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 			Ceiling->SetGenerateOverlapEvents(false);
 			Ceiling->SetCanEverAffectNavigation(false);
 			Ceiling->SetCastShadow(false);
+			// a lantern's cap and a torch's own body keep their light off the boards right above them: the inverse-square
+			// lamp 0.85 m under the ceiling burnt a white disc into it
+			if (!Look.bCeilingLampLight) Ceiling->SetLightingChannels(false, true, false);
 			Ceiling->RegisterComponent();
 			const double Tile = FMath::Max(double(IndoorCeilingTileCm), 50.0);
 			const int32 NX = FMath::CeilToInt32(Size.X / Tile), NY = FMath::CeilToInt32(Size.Y / Tile);

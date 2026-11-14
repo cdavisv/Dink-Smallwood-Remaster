@@ -1,3 +1,10 @@
+## Interior light: no hot disc over the lantern, cooler fill (14 November 2026)
+
+- Visual only, runtime only (`UDinkEnvironmentSubsystem::BuildIndoor`; the subsystem does nothing in headless runs). Evidence and remaining faults: `Docs/Verification/PhotorealRound7/`.
+- The white disc on the ceiling over every hanging lantern was the lamp's own inverse-square light 0.85 m under the boards. `indoor.<look>.ceiling_lamp_light` false puts the ceiling planes on lighting channel 1; lamps, fires and the ambient point stay on channel 0, the even fill lights both. Anything else added to the indoor set that should take lamp light must stay on channel 0.
+- `indoor.<look>.lamp_source_cm` is the source radius of lamps and fires (soft shadow edges). Interior values: lamp 26 cd, fill 0.2 cool, ambient 0.6.
+- Still wrong: the timber ceiling of a large room (Terris bar, screen 34) is close to black away from the walls; rooms have no window key because the interiors carry no window placements.
+
 ## Ground fixes: fourth layer, forest, yards, water sheets, relief rock, grass clearings (14 November 2026)
 
 - All visual, no collision: the world export's collision, placement and warp files are byte-identical. Evidence and what was not proven: `Docs/Verification/GroundFixes_14Nov2026/`.

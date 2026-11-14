@@ -39,6 +39,10 @@ struct FDinkIndoorLook
 	float CeilingCm = 0.f;                  // 0 = no visible ceiling
 	FString CeilingMaterial;                // tiled on one-sided planes facing down (ceiling_tile_cm each)
 	FString CeilingWallClass;               // only interiors that carry placements of this class prefix get the ceiling
+	// round 7: a lamp is a capped lantern or a torch below the ceiling. With ceiling_lamp_light false the ceiling planes
+	// sit on lighting channel 1, which only the even fill lights, so no inverse-square disc burns in over the flame
+	bool bCeilingLampLight = true;
+	float LampSourceCm = 6.f;               // source radius of the shadowed lamps and fires (larger = softer shadow edges)
 };
 
 /** A scripted placement whose look follows its DinkC sprite state (burnable pines). */
