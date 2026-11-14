@@ -415,7 +415,13 @@ if isinstance(manifest.get('decals'), dict) and manifest['decals'].get('sets'):
             orm = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -600, 300, parameter_name='ORM', texture=tex['ORM'], sampler_type=ST.SAMPLERTYPE_MASKS)
             for node in (bc, nm, orm):
                 link(uv, '', node, 'UVs')
-            for node, pin, prop in ((bc, 'RGB', MP.MP_BASE_COLOR), (bc, 'A', MP.MP_OPACITY), (nm, 'RGB', MP.MP_NORMAL), (orm, 'G', MP.MP_ROUGHNESS)):
+            # Tint (a set's `tint`, default white) multiplies the colour: blood dries darker than the scan's fresh red
+            tint = expr(mat, unreal.MaterialExpressionVectorParameter, -600, -500, parameter_name='Tint', default_value=unreal.LinearColor(1, 1, 1, 1))
+            tinted = expr(mat, unreal.MaterialExpressionMultiply, -300, -400)
+            link(bc, 'RGB', tinted, 'A')
+            link(tint, '', tinted, 'B')
+            EDIT.connect_material_property(tinted, '', MP.MP_BASE_COLOR)
+            for node, pin, prop in ((bc, 'A', MP.MP_OPACITY), (nm, 'RGB', MP.MP_NORMAL), (orm, 'G', MP.MP_ROUGHNESS)):
                 EDIT.connect_material_property(node, pin, prop)
             EDIT.recompile_material(mat)
             save(mat)
@@ -423,6 +429,8 @@ if isinstance(manifest.get('decals'), dict) and manifest['decals'].get('sets'):
         for cell in range(4):
             mi = instance(f"MI_Decal_{row['name']}_{cell}", decal_parent, tex, {}, {})
             EDIT.set_material_instance_vector_parameter_value(mi, 'Cell', unreal.LinearColor(0.5 * (cell % 2), 0.5 * (cell // 2), 0.0, 0.0))
+            t = row.get('tint', [1.0, 1.0, 1.0])
+            EDIT.set_material_instance_vector_parameter_value(mi, 'Tint', unreal.LinearColor(float(t[0]), float(t[1]), float(t[2]), 1.0))
             EDIT.update_material_instance(mi)
             save(mi)
         report['decals'].append(row['name'])
