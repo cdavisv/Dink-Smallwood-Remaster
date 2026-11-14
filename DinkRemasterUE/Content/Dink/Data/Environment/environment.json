@@ -104,7 +104,7 @@
     ]
   },
   "indoor": {
-    "note": "Indoor set (presentation only): enclosing hidden shell, inward black backdrop, lights, fixed exposure. skip_screens keep their authored lighting (screens an art manifest dresses are skipped as well). Intensities are candelas at the project's scene scale (sun 10).",
+    "note": "Indoor set (presentation only): enclosing hidden shell, inward black backdrop, lights, fixed exposure. skip_screens keep their authored lighting (screens an art manifest dresses are skipped as well). Intensities are candelas at the project's scene scale (sun 10). Round 7: <look>.ceiling_lamp_light false = lamps, fires and the ambient point do not light the ceiling planes (they sit on lighting channel 1, lit by the even fill only: no hot disc over a lantern or torch); lamp_source_cm = source radius of the shadowed lamps and fires (soft shadow edges). Interior: warm lamps as the key (26 cd), a cooler, lower fill (0.2) so corners fall off.",
     "skip_screens": [
       1
     ],
@@ -114,14 +114,14 @@
     "black_material": "/Game/Dink/Photoreal/WallKits/M_Env_IndoorBlack.M_Env_IndoorBlack",
     "interior": {
       "exposure_ev": -1.5,
-      "ambient_intensity": 1.0,
+      "ambient_intensity": 0.6,
       "ambient_colour": [
         0.86,
         0.86,
         0.9
       ],
       "lamps_per_screen": 2,
-      "lamp_intensity": 18.0,
+      "lamp_intensity": 26.0,
       "lamp_radius_cm": 1400,
       "lamp_height_cm": 215,
       "lamp_colour": [
@@ -131,12 +131,14 @@
       ],
       "lamps_at_walls": false,
       "fog_density": 0.0,
-      "fill_intensity": 0.26,
+      "fill_intensity": 0.2,
       "fill_colour": [
-        1.0,
-        0.88,
-        0.72
+        0.8,
+        0.87,
+        1.0
       ],
+      "ceiling_lamp_light": false,
+      "lamp_source_cm": 14,
       "ceiling_cm": 300,
       "ceiling_material": "/Game/Dink/Photoreal/WallKits/MI_Wall_Timber.MI_Wall_Timber",
       "ceiling_wall_class": "int_wall"
@@ -166,6 +168,8 @@
         0.86,
         1.0
       ],
+      "ceiling_lamp_light": false,
+      "lamp_source_cm": 10,
       "ceiling_cm": 356,
       "ceiling_material": "/Game/Dink/Photoreal/WallKits/MI_Wall_DungeonMasonry.MI_Wall_DungeonMasonry",
       "ceiling_wall_class": "dungeon_wall"
