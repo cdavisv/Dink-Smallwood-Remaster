@@ -5,7 +5,7 @@ import unittest
 
 PROJECT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT / 'Scripts'))
-from art_coverage import env_decal_cards, state_swap_cards  # noqa: E402
+from art_coverage import env_decal_cards  # noqa: E402
 
 
 def env():
@@ -59,25 +59,6 @@ class EnvDecalCoverageTests(unittest.TestCase):
         missing = lambda path: (False, 'missing')
         self.assertEqual(cards([row('S005_P10', 'burn_hole_decal')], actors={'S005_P10'}, resolve=missing), {})
         self.assertEqual(cards([row('S005_P10', 'burn_hole_decal')], actors={'S005_P10'}, data={}), {})
-
-
-class StateSwapCoverageTests(unittest.TestCase):
-    def swap(self):
-        return {'state_swaps': [{'screen': 439, 'vision': 2, 'from': '/Game/A.A', 'to': '/Game/A_Burnt.A_Burnt', 'hide_classes': ['burn_hole_decal']}]}
-
-    def rows(self):
-        return [dict(row('S439_P23', 'burn_hole_decal'), vision='2'), dict(row('S439_P46', 'burn_hole_decal'), vision='1'),
-                dict(row('S439_P50', 'barrel'), vision='2'), dict(row('S440_P01', 'burn_hole_decal'), vision='2')]
-
-    def test_only_the_cards_of_the_swap_screen_vision_and_classes_are_final(self):
-        out = state_swap_cards(self.swap(), self.rows(), {r['origin']: True for r in self.rows()}, all_exist)
-        self.assertEqual(list(out), ['S439_P23'])
-        self.assertIn('A_Burnt', out['S439_P23'])
-
-    def test_background_placements_and_swaps_with_a_missing_mesh_are_not_final(self):
-        self.assertEqual(state_swap_cards(self.swap(), self.rows(), {r['origin']: False for r in self.rows()}, all_exist), {})
-        missing = lambda path: (not path.endswith('A_Burnt'), 'missing')
-        self.assertEqual(state_swap_cards(self.swap(), self.rows(), {r['origin']: True for r in self.rows()}, missing), {})
 
 
 if __name__ == '__main__':

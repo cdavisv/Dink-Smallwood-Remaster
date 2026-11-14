@@ -541,25 +541,6 @@ def env_decal_cards(env, placements, is_actor, fam_screens, fam_origins, resolve
             for o, cls in out.items()}
 
 
-def state_swap_cards(env, placements, is_actor, resolve):
-    """environment.json `state_swaps` -> {origin: evidence} for the cards a state swap hides because the swapped-in mesh
-    models them (the burn holes of the burnt cottage). Mirrors UDinkEnvironmentSubsystem: an actor placement of the swap's
-    screen, gated by the swap's vision, of one of its hide_classes; both meshes of the swap must exist."""
-    out = {}
-    for s in (env or {}).get("state_swaps") or []:
-        if not isinstance(s, dict) or not all(k in s for k in ("screen", "vision", "from", "to")):
-            continue
-        if not (resolve(s["from"])[0] and resolve(s["to"])[0]):
-            continue
-        hide = set(s.get("hide_classes") or [])
-        for p in placements:
-            if (is_actor.get(p["origin"]) and int(p["screen"]) == int(s["screen"]) and int(p.get("vision") or 0) == int(s["vision"])
-                    and p["class_id"] in hide):
-                out[p["origin"]] = ("state-swap: environment.json state_swaps screen %d vision %d shows %s, which models this %s; the card is "
-                                    "hidden with the swap, collision and script unchanged" % (int(s["screen"]), int(s["vision"]), s["to"].split(".")[-1], p["class_id"]))
-    return out
-
-
 def town_house_cards(data, resolve):
     """town_houses.json -> {origin: (state, evidence)} for every card the file names, mirroring
     UDinkEnvironmentSubsystem::LoadTownHouses / ApplyTownHouses.
@@ -749,8 +730,6 @@ def classify(args):
     decal_cards = env_decal_cards(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Environment", "environment.json")), decal_rows,
                                   {r["origin_id"]: r["became"].startswith("actor") for r in cov if r["type"] == "placement"},
                                   fam_screens, fam_origins, assets.resolve)
-    swap_cards = state_swap_cards(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Environment", "environment.json")), decal_rows,
-                                  {r["origin_id"]: r["became"].startswith("actor") for r in cov if r["type"] == "placement"}, assets.resolve)
 
     def family_decision(oid, screen_no, cls, detail):
         """-> family row if UDinkArtFamilySubsystem dresses this placement on its own merits, else None."""
@@ -879,8 +858,6 @@ def classify(args):
         # --- final: ground decal (environment.json decals: blood splats, burn holes) -----------------
         if oid in decal_cards:
             return finish(r, fam, art_kind, "final", decal_cards[oid])
-        if oid in swap_cards:
-            return finish(r, fam, art_kind, "final", swap_cards[oid])
         return finish(r, fam, art_kind, "placeholder", "; ".join([base + " (%s)" % cls] + flags))
 
     # placements first (warps inherit their host)
