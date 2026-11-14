@@ -60,6 +60,17 @@ Owner after playing master `cb842dd2`: "improve the mother's stuttered walk". Pa
 - The kit houses have no collision; the 1997 hardness stops the player. `Scripts/PhotorealQA/town_walk_check.py` checks offline (collision export, 30 cm capsule) that no house core lies in the walkable ground in front of its own wall: 38 house rows, none can be walked into. The ground behind a wall line has hardness 0 and is closed off: a capture teleported there shows the houses from within (five of the first captures did; `town_script.py` now stands on the street side). Not checked in the running game.
 - Trap: a private project copy under `Saved/<name>/DinkRemasterUE` does not start the game until it is rebuilt or `LD_LIBRARY_PATH` names its own module folders (the modules' search path is relative to the shared checkout's depth).
 
+## Gold twinkle as an effect card, stumps with real roots (14 November 2026)
+
+Follow-ups to static batch 1 from the review of PR #105. Evidence: `Docs/Verification/Gate2StaticSparkleStumps_14Nov2026/README.md`. Visual only.
+
+- **`families.json` rows may carry `effect` instead of `mesh`**: the object path of a material that `UDinkArtFamilySubsystem::DressScriptSprite` draws on a camera-facing card (`UMaterialBillboardComponent`, tags `DinkFamilyArt` and `DinkScriptFamilyEffect`, no collision, no shadow) of `effect_size_cm` (default 50). For pictures that are light, not things. Used for sprites that scripts create; placed sprites of such a row keep their card. The audit skips effect rows (they have no mesh), so the two placed sparkles stay placeholder.
+- **The gold twinkle is drawn again**: row `sparkle_fx` -> `MI_FX_Sparkle` (the 8 x 8 flipbook of `Unclaimed/sparkle_fx`, played by the material, unlit and additive). The twinkle a gold heap's script creates (sequence 165, brain 15) shows it; batch 1 only hid its grey marker.
+- **Flipbook import**: a kit manifest may list `flipbooks` (name, file, grid, fps, glow); `Scripts/import_town_exteriors.py` builds one master `M_FX_Flipbook` and one `MI_FX_<name>` per row. `Unclaimed/tools/make_kit_manifest.py` lists a flipbook when a `families.json` row names its material as `effect`.
+- **A script sprite frame that no placement of the world uses takes the class of its sequence** (`ClassOfPicture(Sequence, 0)`): an animation's other frames were unbound before, which is why the twinkle would not have resolved.
+- **Stumps**: `Vegetation/src/veg_deadwood.py` `build_stump` builds the roots as separate thick, tapering limbs with a shoulder on the bole, running half buried and diving under the soil, some forked. Before, the roots were ridges of the bole surface: flat, straight fins.
+- Not done: dropped pickups are still small in tall grass. The grass clearings (`grass.clear_max_height_cm`) are gathered when a grass cell is built; a pickup a script drops later needs the cell rebuilt or a runtime clearing, which belongs to the grass builder.
+
 ## Gate 2 static batch 1: props at sprite size, script-created sprites, thorn hedges, signposts, shells, potions (13 November 2026)
 
 Evidence, sheets and the list of what was left unbound: `Docs/Verification/Gate2StaticBatch1_13Nov2026/README.md`. Visual only; the parity probe is unchanged.

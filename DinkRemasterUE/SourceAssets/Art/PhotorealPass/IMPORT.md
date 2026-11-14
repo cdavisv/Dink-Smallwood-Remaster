@@ -139,6 +139,15 @@ Owner feedback of 13 Nov 2026: "fix blocky and polygon looking art". What was fo
 - **Shading of generated meshes**: the wall kits are smooth shaded with hard edges where faces meet at more than 28 degrees (`shade()` in `wallkit_build.py`); flat shading showed every triangle of the uneven plaster and of the jittered stone faces. Round forms: lathe at least 24 sides for a pickup shown large, 40 to 48 for a pot, and run the profile through a curve (`_smooth_prof` in `Props/tools/props_gen_pots.py`): a profile of straight runs shows as corners in the outline whatever the normals are.
 - **A capture of a freshly imported mesh shows the default material until its shaders are compiled.** Spawn the meshes once off camera and wait before the shots.
 
+## Gold twinkle and stumps (14 Nov 2026)
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| Effect flipbooks of the unclaimed kit (the gold twinkle) | `python3 -I SourceAssets/Art/PhotorealPass/Unclaimed/tools/make_kit_manifest.py`, then `DINK_KIT=Unclaimed DINK_KIT_FOLDER=Unclaimed Scripts/import_town_exteriors.sh` | `Unclaimed/manifest.json` `flipbooks` | `/Game/Dink/Photoreal/Unclaimed/M_FX_Flipbook`, `MI_FX_Sparkle`, `Textures/T_FX_Sparkle_Flipbook` |
+| Stumps after a re-export (`blender -b -t 4 --python Vegetation/src/export_all.py -- deadwood`; put back the FBX of the log, branch and twigs, which the export rewrites unchanged) | `DINK_PHOTOREAL_ONLY=vegetation Scripts/import_photoreal_art.sh` | `Vegetation/manifest.json` | `SM_Veg_Stump_01/02` |
+
+- **What binds at runtime**: a `families.json` row with `effect` (a material) and `effect_size_cm` instead of `mesh` is drawn on a camera-facing card for sprites that scripts create.
+
 ## Gate 2 static batch 1 (13 Nov 2026)
 
 Evidence: `Docs/Verification/Gate2StaticBatch1_13Nov2026/`.
