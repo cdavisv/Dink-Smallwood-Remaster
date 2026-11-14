@@ -72,6 +72,7 @@ struct DINKCORE_API FDinkFamilyBinding
 	 */
 	FString Effect;
 	double EffectSizeCm = 50.0;
+	/**
 	 * JSON "mount": where the mesh stands when the sprite does not stand on the ground. "on" (1): on top of the dressed
 	 * placement whose card it is drawn over (food on a counter, bombs on a shelf); "crown" (2): in the crown of the dressed
 	 * tree it is drawn over (fruit); "wall" (3): flat against the south face of the dressed wall it is drawn over (a
