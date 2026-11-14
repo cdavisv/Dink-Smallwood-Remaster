@@ -169,7 +169,7 @@ namespace DinkArtFamily
 	/**
 	 * Where a mounted placement stands (world cm; the mesh's bottom centre goes there). Picture is the centre of its own
 	 * card in the picture plane. The host is the smallest card that contains that point and whose mesh suits the mount
-	 * ("on": no taller than 2.2 m; "crown": at least 3 m tall; "wall": any). The point keeps its relative place: its
+	 * ("on": lower than a wall module, under 2.98 m, and on a host taller than 1.5 m the picture's height picks the shelf board; "crown": at least 3 m tall; "wall": any). The point keeps its relative place: its
 	 * share of the host card's width becomes the same share of the host mesh's width, since the layout-scaled card is
 	 * several times wider than the real-size mesh that replaced it. false: no host, the placement keeps its card.
 	 */

@@ -379,7 +379,8 @@ bool DinkArtFamily::MountPoint(uint8 Mount, const FVector2D& Picture, const TArr
 	{
 		if (!H.Card.bIsValid || !H.Mesh.IsValid || !H.Card.IsInside(Picture)) continue;
 		const double Height = H.Mesh.GetSize().Z;
-		if ((Mount == 1 && Height > 220.0) || (Mount == 2 && Height < 300.0)) continue;
+		// "on": furniture, not a wall (the wall modules are 3 m); "crown": a tree
+		if ((Mount == 1 && Height > 298.0) || (Mount == 2 && Height < 300.0)) continue;
 		if (!Host || H.Card.GetArea() < Host->Card.GetArea()) Host = &H;
 	}
 	if (!Host || Mount < 1 || Mount > 3)
@@ -400,8 +401,17 @@ bool DinkArtFamily::MountPoint(uint8 Mount, const FVector2D& Picture, const TArr
 	{
 		// The top surface is drawn in the upper half of the card (the lower half is the front face); keep off the edges.
 		OutGround.X = FMath::Lerp(M.Min.X + Size.X * 0.12, M.Max.X - Size.X * 0.12, FMath::Clamp(Fu, 0.0, 1.0));
-		OutGround.Y = FMath::Lerp(M.Min.Y + Size.Y * 0.25, M.Max.Y - Size.Y * 0.25, FMath::Clamp(Fv * 2.0, 0.0, 1.0));
-		OutGround.Z = M.Max.Z;
+		if (Size.Z > 150.0)
+		{
+			// A shelf: the picture's height on the card is the board the thing stands on, at the front of the shelf.
+			OutGround.Y = M.Max.Y - Size.Y * 0.3;
+			OutGround.Z = FMath::Lerp(M.Max.Z, M.Min.Z, FMath::Clamp(Fv, 0.05, 0.9));
+		}
+		else
+		{
+			OutGround.Y = FMath::Lerp(M.Min.Y + Size.Y * 0.25, M.Max.Y - Size.Y * 0.25, FMath::Clamp(Fv * 2.0, 0.0, 1.0));
+			OutGround.Z = M.Max.Z;
+		}
 	}
 	else if (Mount == 2)
 	{
@@ -757,11 +767,11 @@ int32 UDinkArtFamilySubsystem::ApplyScreen(int32 ScreenNumber)
 	return Count;
 }
 
-/** The card of a placement in the picture plane (see FMountHost): world centre and size in cm. */
-static FBox2D PictureCard(const FVector& WorldCentre, double WidthCm, double HeightCm)
+/** The card of a placement in the picture plane (see FMountHost). The greybox card's pivot is the middle of its bottom edge. */
+static FBox2D PictureCard(const FVector& WorldBottom, double WidthCm, double HeightCm)
 {
-	const FVector2D C(WorldCentre.X, WorldCentre.Y - WorldCentre.Z);
-	return FBox2D(C - FVector2D(WidthCm, HeightCm) * 0.5, C + FVector2D(WidthCm, HeightCm) * 0.5);
+	const FVector2D C(WorldBottom.X, WorldBottom.Y - WorldBottom.Z);
+	return FBox2D(FVector2D(C.X - WidthCm * 0.5, C.Y - HeightCm), FVector2D(C.X + WidthCm * 0.5, C.Y));
 }
 
 bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor, TArray<DinkArtFamily::FMountHost>& Hosts, bool bMounted)
