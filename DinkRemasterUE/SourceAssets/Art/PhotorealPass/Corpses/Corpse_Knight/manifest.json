@@ -5,18 +5,18 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/SM_Corpse_Knight_PR.blend",
  "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Corpse_Knight_PR",
  "dimensions_m": [
-  2.4,
-  2.4,
+  2.8,
+  2.8,
   1.3456
  ],
  "bounds_min_m": [
-  -1.2,
-  -1.2,
+  -1.4,
+  -1.4,
   0.0
  ],
  "bounds_max_m": [
-  1.2,
-  1.2,
+  1.4,
+  1.4,
   1.3456
  ],
  "lod0_triangles": 15538,
@@ -115,19 +115,22 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 58.6,
-   "p99": 138.3
+   "mean": 54.1,
+   "p99": 136.4
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.438,
-   "p95": 0.688
+   "mean": 0.411,
+   "p95": 0.675
   },
-  "metallic_mean": 0.431,
+  "metallic_mean": 0.385,
   "ao_mean": 0.53
  },
  "derived_from": "Unclaimed/npc_knight_blue/Knight (SK_Knight_PR LOD0, silver set), posed, worn, the halberd broken, bloodied and baked again",
  "sprite_footprint_m": 2.02,
+ "pool_extent_m": 2.4,
+ "pool_area_m2": 2.01,
+ "sprite_red_area_m2": 0.4,
  "gore_in_mesh": "blood welling round the wound and run down the plates, soaked underside, entry wound, pool with thrown drops and mist (no companion decal)",
- "pool_card_m": 2.4
+ "pool_card_m": 2.8
 }
