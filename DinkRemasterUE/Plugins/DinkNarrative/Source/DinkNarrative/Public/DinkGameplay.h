@@ -455,9 +455,9 @@ public:
 	const FDinkBowStatus& GetBowStatus() const { return Bow; }
 	/** Magic key: the armed spell's `use` when &magic_level >= &magic_cost (D:14941). */
 	bool PlayerCastMagic();
-	/** Inventory screen stand-in: arm item slot N (1-based, &cur_weapon) as arm_weapon does. */
+	/** The inventory screen's arm (UDinkStorySubsystem::ArmInventorySelection, quick-arm keys) and dink.Arm: item slot N (1-based, &cur_weapon) as arm_weapon does. */
 	bool ArmItemSlot(int32 Slot);
-	/** Inventory screen stand-in: arm spell slot N (1-based, &cur_magic) as arm_magic does. */
+	/** The inventory screen's arm and dink.ArmMagic: spell slot N (1-based, &cur_magic) as arm_magic does. */
 	bool ArmMagicSlot(int32 Slot);
 	/** Per frame from the player controller: Dink walks into hardness (not low hardness) in a numpad direction. */
 	void UpdatePush(bool bBlockedByHardness, int32 Dir, double NowMs);

@@ -260,7 +260,7 @@ namespace
 
 static FAutoConsoleCommandWithWorldAndArgs GDinkArmCommand(
 	TEXT("dink.Arm"),
-	TEXT("dink.Arm <slot 1-16 | item script>: what choosing an item on the inventory screen does (&cur_weapon, disarm/arm)."),
+	TEXT("dink.Arm <slot 1-16 | item script>: what choosing an item on the inventory screen does (&cur_weapon, disarm/arm; the same ArmItemSlot call)."),
 	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
 	{
 		if (UDinkStorySubsystem* S = GetStory(World); S && Args.Num() > 0)
@@ -284,7 +284,7 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkArmMagicCommand(
 
 static FAutoConsoleCommandWithWorld GDinkInventoryCommand(
 	TEXT("dink.Inventory"),
-	TEXT("dink.Inventory: lists items and spells (the inventory screen is not built yet), the armed ones and Dink's stats."),
+	TEXT("dink.Inventory: lists items and spells, the armed ones and Dink's stats (the in-game inventory screen opens with Enter or I)."),
 	FConsoleCommandWithWorldDelegate::CreateLambda([](UWorld* World)
 	{
 		if (UDinkStorySubsystem* S = GetStory(World))

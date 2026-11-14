@@ -17,12 +17,21 @@ class UDinkStorySubsystem;
  *                    was not flagged as one (X11 sends release+press pairs) and counts as still held. A fast second click
  *                    arrives from Slate as a double-click: it is a press like any other.
  *   Q                cast the armed spell when charged (the original's Shift)
+ *   Enter / I        open the inventory (the original's Enter, button 4: dink.cpp:14946-14960)
+ *   1-9, 0           quick-arm item slot 1-10 (what choosing it on the inventory screen does) when no menu is open
  *
  * Precedence, first match wins (the console is never touched: nothing acts while it is open):
- *   1. Menu (choice):    Up/Down, W/S or the mouse wheel move the highlight; Enter, Space, E or left click pick it;
+ *   1. Inventory open:   arrows / WASD / the wheel move the cursor; F, Left Ctrl, Space or left click arm the slot under it
+ *                        (the original arms with the attack button, dink.cpp:16473); 1-9, 0 arm that item slot;
+ *                        Enter, I or Escape close it (the original closes with Enter, dink.cpp:16630). The game is paused.
+ *   2. Menu (choice):    Up/Down, W/S or the mouse wheel move the highlight; Enter, Space, E or left click pick it;
  *                        1-9 pick directly.
- *   2. Blocking text or wait_for_button: Enter, Space, E or left click skip it (the original's skip).
- *   3. Otherwise:        E talks; F / Ctrl / left click attack; Q casts.
+ *   3. Blocking text or wait_for_button: Enter, Space, E or left click skip it (the original's skip).
+ *   4. Otherwise:        Enter / I open the inventory when Dink may act (UDinkStorySubsystem::CanOpenInventory: not frozen,
+ *                        no bow drawn, not locked in an attack; the original opens it from Dink's brain only); E talks;
+ *                        F / Ctrl / left click attack; Q casts; digits quick-arm.
+ * So Enter always does the most immediate thing: close the inventory, pick the option, skip the line, and only then open
+ * the inventory. While Dink is frozen in a cutscene with nothing to skip, Enter does nothing (as in the original).
  * Mouse buttons are never consumed: the click still reaches the viewport, which needs it for focus and mouse capture
  * (the camera's mouse look). A left click on a menu or a skippable line within MouseConfirmGuardSeconds of it appearing
  * is ignored, so a player hammering the attack button does not pick the first option by accident.

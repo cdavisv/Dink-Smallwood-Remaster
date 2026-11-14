@@ -1309,7 +1309,7 @@ void UDinkGameplay::StatusTick()
 	{
 		return;
 	}
-	// Spell charge (D:5935): never while the inventory is open; there is no inventory screen yet.
+	// Spell charge (D:5935): never while the inventory is open, which holds the whole story clock (UDinkStorySubsystem::Advance).
 	const int32 Level = GetFact(TEXT("magic_level"));
 	const int32 Cost = GetFact(TEXT("magic_cost"));
 	if (Level < Cost)

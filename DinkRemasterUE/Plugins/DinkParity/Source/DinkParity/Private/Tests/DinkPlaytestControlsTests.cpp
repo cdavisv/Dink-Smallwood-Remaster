@@ -7,6 +7,7 @@
 #include "DinkGameplay.h"
 #include "DinkInventoryComponent.h"
 #include "DinkNarrativeInput.h"
+#include "DinkPresentationData.h"
 #include "DinkStorySubsystem.h"
 #include "InputCoreTypes.h"
 #include "HAL/PlatformTime.h"
@@ -211,5 +212,270 @@ bool FDinkControlsLeftClickTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("the line was skipped"), CountKind(M.Story, TEXT("skip")), Skips + 1);
 	TestEqual(TEXT("no attack from the skip click"), CountAttacks(M.G, AttacksFrom), 0);
 	M.Input->ProcessMouseUp(EKeys::LeftMouseButton);
+	return true;
+}
+
+// The owner's playtest: "it has you do the pig feeding, but there doesn't seem to be a way to actually push a button to spread
+// the feed". The whole first quest by the player's own input: touch the sack (s1-sack touch: add_item item-pig), Enter opens the
+// inventory (the game stops), the cursor moves to the feed and the attack key arms it (the same ArmItemSlot as the console's
+// dink.Arm), Enter closes it, and on SCR_407 a left click throws the feed (item-pig use: inside_box 200,180-400,306), which starts
+// the bully's scene (s1-bul) and sets &pig_story 1.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkControlsPigFeedingTest, "Dink.Gameplay.Controls.PigFeedingByInput", DINK_TEST_FLAGS)
+bool FDinkControlsPigFeedingTest::RunTest(const FString& Parameters)
+{
+	FEnv E = Make(*this, /*bInstant*/ true);
+	if (!E.IsValid())
+	{
+		return false;
+	}
+	E.G->StartNewGame();
+	Settle(E);
+	E.Story->OnScreenEntered(1);
+	Settle(E);
+	const int32 Sack = E.D->HandleForPlacement(1, 52);
+	const FDinkSprite* SackSprite = E.D->FindSprite(Sack);
+	if (!TestNotNull(TEXT("the sack S001_P52"), SackSprite))
+	{
+		return false;
+	}
+	FDinkSprite& Dink = E.D->GetDink();
+	Dink.Screen = SackSprite->Screen;
+	Dink.X = SackSprite->X;
+	Dink.Y = SackSprite->Y;
+	E.Story->Advance(0.016);
+	Settle(E);
+	Frames(E, 30);
+	TestEqual(TEXT("touch the sack: item-pig in slot 2"), E.D->GetInventory()->GetItemAt(1), FName(TEXT("item-pig")));
+	TestEqual(TEXT("still the fists armed"), E.D->GetInventory()->GetArmedItem(), FName(TEXT("item-fst")));
+	TestFalse(TEXT("Dink may act"), Dink.bFrozen);
+
+	// Enter opens the inventory and the game stops.
+	TestTrue(TEXT("Enter opens the inventory"), E.Input->ProcessKeyDown(EKeys::Enter));
+	TestTrue(TEXT("the inventory is open"), E.Story->IsInventoryOpen());
+	const double Paused = E.Story->GetNowMs();
+	const int32 MagicLevel = E.Facts->GetFact(TEXT("magic_level"));
+	Frames(E, 60);
+	TestEqual(TEXT("no game time passes while it is open"), E.Story->GetNowMs(), Paused);
+	TestEqual(TEXT("no status update while it is open"), E.Facts->GetFact(TEXT("magic_level")), MagicLevel);
+	TestEqual(TEXT("the cursor starts on item slot 1"), E.Story->GetInventoryScreen().Cursor, 1);
+	TestFalse(TEXT("on the item panel"), E.Story->GetInventoryScreen().bMagic);
+	TestTrue(TEXT("E does nothing while it is open"), E.Input->ProcessKeyDown(EKeys::E));
+	TestEqual(TEXT("no attack from the inventory's keys"), CountAttacks(E.G), 0);
+
+	// Right twice: slot 3 is empty; arming it does nothing ("can't arm nothing", dink.cpp:16500).
+	E.Input->ProcessKeyDown(EKeys::Right);
+	E.Input->ProcessKeyDown(EKeys::Right);
+	TestEqual(TEXT("cursor on slot 3"), E.Story->GetInventoryScreen().Cursor, 3);
+	E.Input->ProcessKeyDown(EKeys::F);
+	TestEqual(TEXT("an empty slot arms nothing"), E.D->GetInventory()->GetArmedItem(), FName(TEXT("item-fst")));
+	// Left to slot 2 and the attack key arms the feed.
+	E.Input->ProcessKeyDown(EKeys::Left);
+	TestEqual(TEXT("cursor on slot 2"), E.Story->GetInventoryScreen().Cursor, 2);
+	const int32 Cues = E.D->Audio.Cues.Num();
+	TestTrue(TEXT("F on the item screen is used"), E.Input->ProcessKeyDown(EKeys::F));
+	TestEqual(TEXT("the feed is armed"), E.D->GetInventory()->GetArmedItem(), FName(TEXT("item-pig")));
+	TestEqual(TEXT("&cur_weapon 2"), E.Facts->GetFact(TEXT("cur_weapon")), 2);
+	TestTrue(TEXT("the arm sound (18 at 42050, dink.cpp:16479)"), E.D->Audio.Cues.Num() > Cues && E.D->Audio.Cues.Last().StartsWith(TEXT("sound:18 speed=42050")));
+	TestTrue(TEXT("still open after arming"), E.Story->IsInventoryOpen());
+	E.Input->ProcessKeyUp(EKeys::F);
+	TestTrue(TEXT("Enter closes it"), E.Input->ProcessKeyDown(EKeys::Enter));
+	TestFalse(TEXT("closed"), E.Story->IsInventoryOpen());
+	Frames(E, 6);
+	TestTrue(TEXT("game time runs again"), E.Story->GetNowMs() > Paused);
+
+	// SCR_407, in the pen, facing south: a left click throws the feed.
+	E.Story->OnScreenEntered(407);
+	Settle(E);
+	Dink.X = 300;
+	Dink.Y = 250;
+	Dink.Dir = 2;
+	Dink.bFrozen = false;
+	const int32 From = E.Story->Events.Num();
+	TestTrue(TEXT("left click on SCR_407"), E.Input->ProcessMouseDown(EKeys::LeftMouseButton));
+	Settle(E);
+	E.Input->ProcessMouseUp(EKeys::LeftMouseButton);
+	TestTrue(TEXT("\"Come on pigs, eat!\""), Said(E.Story, From).Contains(TEXT("Come on pigs, eat!")));
+	TestTrue(TEXT("the bully says his line"), Said(E.Story, From).Contains(TEXT("Well, lookie what we got here.")));
+	TestEqual(TEXT("the bully's scene: &pig_story 1"), E.Facts->GetFact(TEXT("pig_story")), 1);
+	return true;
+}
+
+// The item screen's cursor (dink.cpp:16483-16620): 4 x 4 items, 2 x 4 spells to their left; left from the first item column goes to
+// the magic panel's right column on the same row, right from there comes back; the edges hold. Digits quick-arm item slots
+// outside menus, and pick options inside them. Enter's precedence: menu, then skip, then the inventory; never while frozen.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkControlsInventoryRulesTest, "Dink.Gameplay.Controls.InventoryRules", DINK_TEST_FLAGS)
+bool FDinkControlsInventoryRulesTest::RunTest(const FString& Parameters)
+{
+	FEnv E = Make(*this, /*bInstant*/ true);
+	if (!E.IsValid())
+	{
+		return false;
+	}
+	E.G->StartNewGame();
+	Settle(E);
+	E.Story->OnScreenEntered(1);
+	Settle(E);
+	FDinkSprite& Dink = E.D->GetDink();
+	Dink.bFrozen = true;
+	TestFalse(TEXT("frozen: Enter does not open the inventory"), E.Input->ProcessKeyDown(EKeys::Enter));
+	TestFalse(TEXT("frozen: closed"), E.Story->IsInventoryOpen());
+	TestFalse(TEXT("frozen: no quick-arm"), E.Story->QuickArmItemSlot(1));
+	Dink.bFrozen = false;
+
+	TestTrue(TEXT("I opens the inventory"), E.Input->ProcessKeyDown(EKeys::I));
+	const FDinkInventoryScreen& Inv = E.Story->GetInventoryScreen();
+	E.Input->ProcessKeyDown(EKeys::Down);
+	TestEqual(TEXT("down: slot 5"), Inv.Cursor, 5);
+	E.Input->ProcessKeyDown(EKeys::Left);
+	TestTrue(TEXT("left from column 1: the magic panel"), Inv.bMagic);
+	TestEqual(TEXT("its right column, same row (curitem = virt * 2 + 2)"), Inv.Cursor, 4);
+	E.Input->ProcessKeyDown(EKeys::Left);
+	E.Input->ProcessKeyDown(EKeys::Left);
+	TestEqual(TEXT("the magic panel's left edge holds"), Inv.Cursor, 3);
+	TestTrue(TEXT("still on magic"), Inv.bMagic);
+	E.Input->ProcessKeyDown(EKeys::Right);
+	E.Input->ProcessKeyDown(EKeys::Right);
+	TestFalse(TEXT("right from the magic panel's right column: the items"), Inv.bMagic);
+	TestEqual(TEXT("their first column, same row (curitem = virt * 4 + 1)"), Inv.Cursor, 5);
+	for (int32 i = 0; i < 5; ++i)
+	{
+		E.Input->ProcessKeyDown(EKeys::S);
+		E.Input->ProcessKeyDown(EKeys::D);
+	}
+	TestEqual(TEXT("the bottom-right edge holds: slot 16"), Inv.Cursor, 16);
+	E.Input->ProcessKeyDown(EKeys::SpaceBar);
+	TestEqual(TEXT("an empty slot: the fists stay armed"), E.D->GetInventory()->GetArmedItem(), FName(TEXT("item-fst")));
+	TestTrue(TEXT("Escape closes it"), E.Input->ProcessKeyDown(EKeys::Escape));
+	TestFalse(TEXT("closed"), E.Story->IsInventoryOpen());
+	TestTrue(TEXT("I again: the cursor kept its place"), E.Input->ProcessKeyDown(EKeys::I) && Inv.Cursor == 16);
+	E.Input->ProcessKeyDown(EKeys::I);
+	TestFalse(TEXT("I closes it too"), E.Story->IsInventoryOpen());
+
+	// Quick-arm outside menus: the same arming as the screen's (dink.Arm's ArmItemSlot).
+	E.D->GetInventory()->AddItem(TEXT("item-pig")); // slot 2, without its pickup script
+	TestTrue(TEXT("2 quick-arms slot 2"), E.Input->ProcessKeyDown(EKeys::Two));
+	TestEqual(TEXT("the feed is armed"), E.D->GetInventory()->GetArmedItem(), FName(TEXT("item-pig")));
+	TestFalse(TEXT("3: an empty slot"), E.Input->ProcessKeyDown(EKeys::Three));
+	TestEqual(TEXT("still the feed"), E.D->GetInventory()->GetArmedItem(), FName(TEXT("item-pig")));
+	TestTrue(TEXT("1 quick-arms the fists"), E.Input->ProcessKeyDown(EKeys::One));
+	TestEqual(TEXT("the fists are armed"), E.D->GetInventory()->GetArmedItem(), FName(TEXT("item-fst")));
+
+	// A menu keeps Enter and the digits.
+	FEnv M = Make(*this, /*bInstant*/ false);
+	if (!M.IsValid())
+	{
+		return false;
+	}
+	M.G->StartNewGame();
+	M.Story->bInstantMode = true;
+	Settle(M);
+	M.Story->bInstantMode = false;
+	const int32 Mom = M.D->CreateVirtualSprite(1, 300, 200);
+	M.Story->StartProcedure(TEXT("s1-h1-m"), TEXT("talk"), Mom);
+	M.Story->RunUntilIdle();
+	TestNotNull(TEXT("menu up"), M.Story->GetActiveMenu());
+	M.D->GetDink().bFrozen = false; // even if Dink could act, the menu comes first
+	TestTrue(TEXT("2 with a menu up picks option 2"), M.Input->ProcessKeyDown(EKeys::Two));
+	TestEqual(TEXT("&result 2"), M.Facts->GetFact(TEXT("result")), 2);
+	TestFalse(TEXT("no inventory from the digit"), M.Story->IsInventoryOpen());
+	M.Story->RunUntilIdle();
+	M.D->GetDink().bFrozen = false;
+	const int32 Skips = CountKind(M.Story, TEXT("skip"));
+	TestTrue(TEXT("Enter on a blocking line"), M.Input->ProcessKeyDown(EKeys::Enter));
+	TestEqual(TEXT("Enter skipped the line"), CountKind(M.Story, TEXT("skip")), Skips + 1);
+	TestFalse(TEXT("and did not open the inventory"), M.Story->IsInventoryOpen());
+	return true;
+}
+
+// Presentation data (Content/Dink/Data/Presentation): readable item names for the inventory screen and speaker names for the
+// dialogue box's name plate, by Ink line id (speakers.csv, Scripts/export_presentation_data.py from the voice ledger).
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkPresentationDataTest, "Dink.Narrative.Presentation.NamesTables", DINK_TEST_FLAGS)
+bool FDinkPresentationDataTest::RunTest(const FString& Parameters)
+{
+	const FDinkPresentationData& Data = FDinkPresentationData::Get();
+	TestTrue(TEXT("items.csv loaded"), Data.NumItems() >= 17);
+	TestTrue(TEXT("speakers.csv loaded"), Data.NumSpeakers() > 1500);
+	TestEqual(TEXT("item-pig"), Data.ItemName(TEXT("item-pig")), FString(TEXT("Pig Feed")));
+	TestEqual(TEXT("item-sw1"), Data.ItemName(TEXT("item-sw1")), FString(TEXT("Longsword")));
+	TestEqual(TEXT("item-fb (a spell)"), Data.ItemName(TEXT("item-fb")), FString(TEXT("Fireball")));
+	TestEqual(TEXT("a D-Mod's unknown item: derived"), Data.ItemName(TEXT("item-golden-key")), FString(TEXT("Golden key")));
+	TestFalse(TEXT("no icon yet (art follow-up)"), Data.ItemIcon(TEXT("item-pig")).IsValid());
+	TestEqual(TEXT("mother's line"), Data.SpeakerName(TEXT("s1-h1-m.talk.005"), 7), FString(TEXT("Mother")));
+	TestEqual(TEXT("Dink by line id"), Data.SpeakerName(TEXT("s1-h1-m.talk.004"), 1), FString(TEXT("Dink")));
+	TestEqual(TEXT("Dink without a line id"), Data.SpeakerName(FString(), 1), FString(TEXT("Dink")));
+	TestEqual(TEXT("someone unknown: no name plate"), Data.SpeakerName(TEXT("no-such.line.001"), 9), FString());
+	FDinkPresentationData Local;
+	TestTrue(TEXT("quoted names with commas parse"), Local.LoadSpeakers(TEXT("line_id,name\nx.talk.001,\"Guard, the Second\"\n")));
+	TestEqual(TEXT("quoted name"), Local.SpeakerName(TEXT("x.talk.001"), 3), FString(TEXT("Guard, the Second")));
+	return true;
+}
+
+// The voice playback hook: every spoken line put on screen is broadcast with its line id, speaker and name; a skip is broadcast
+// too. Listening changes nothing: the same lines, in the same order, at the same times as without a listener.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkLineShownHookTest, "Dink.Narrative.Presentation.LineShownHook", DINK_TEST_FLAGS)
+bool FDinkLineShownHookTest::RunTest(const FString& Parameters)
+{
+	auto Run = [this](bool bListen, TArray<FDinkLineShown>& Shown, TArray<int32>& Skipped, TArray<FString>& Trace)
+	{
+		FEnv E = Make(*this, /*bInstant*/ false);
+		if (!E.IsValid())
+		{
+			return;
+		}
+		E.G->StartNewGame();
+		E.Story->bInstantMode = true;
+		Settle(E);
+		E.Story->bInstantMode = false;
+		if (bListen)
+		{
+			E.Story->OnLineShown.AddLambda([&Shown](const FDinkLineShown& L) { Shown.Add(L); });
+			E.Story->OnLineSkipped.AddLambda([&Skipped](int32 Handle) { Skipped.Add(Handle); });
+		}
+		const int32 From = E.Story->Events.Num();
+		const int32 Mom = E.D->CreateVirtualSprite(1, 300, 200);
+		E.Story->StartProcedure(TEXT("s1-h1-m"), TEXT("talk"), Mom);
+		E.Story->RunUntilIdle();
+		E.Story->Choose(1); // "Ask about your father"
+		for (int32 i = 0; i < 1800; ++i)
+		{
+			Frames(E, 1);
+			if (i == 30)
+			{
+				E.Story->SkipDialogue(); // the player skips the first line half a second in
+			}
+			if (i > 60 && E.Story->GetActiveTexts().Num() == 0 && !E.Story->GetActiveMenu())
+			{
+				break;
+			}
+		}
+		for (int32 i = From; i < E.Story->Events.Num(); ++i)
+		{
+			const FDinkNarrativeEvent& Ev = E.Story->Events[i];
+			Trace.Add(FString::Printf(TEXT("%.0f %s %s %s"), Ev.TimeMs, *Ev.Kind.ToString(), *Ev.Text, *Ev.Detail));
+		}
+	};
+	TArray<FDinkLineShown> Shown, Unused;
+	TArray<int32> Skipped, UnusedSkips;
+	TArray<FString> WithListener, Without;
+	Run(true, Shown, Skipped, WithListener);
+	Run(false, Unused, UnusedSkips, Without);
+	TestEqual(TEXT("listening changes nothing in the story's events and times"), WithListener, Without);
+	TestEqual(TEXT("four lines shown"), Shown.Num(), 4);
+	if (Shown.Num() == 4)
+	{
+		TestEqual(TEXT("first: Dink's question, by id"), Shown[0].LineId, FString(TEXT("s1-h1-m.talk.004")));
+		TestEqual(TEXT("Dink speaks"), Shown[0].Speaker, 1);
+		TestEqual(TEXT("name plate Dink"), Shown[0].SpeakerName, FString(TEXT("Dink")));
+		TestTrue(TEXT("say_stop: blocking"), Shown[0].bBlocking);
+		TestEqual(TEXT("second: mother's answer"), Shown[1].LineId, FString(TEXT("s1-h1-m.talk.005")));
+		TestEqual(TEXT("name plate Mother"), Shown[1].SpeakerName, FString(TEXT("Mother")));
+		TestEqual(TEXT("the text"), Shown[1].Text, FString(TEXT("He was a peasant like us.")));
+		TestTrue(TEXT("expiry is the engine's (at least 2.7 s)"), Shown[1].ExpireMs - Shown[1].ShownMs >= 2700.0);
+	}
+	TestEqual(TEXT("one skip broadcast"), Skipped.Num(), 1);
+	if (Skipped.Num() == 1 && Shown.Num() > 0)
+	{
+		TestEqual(TEXT("the skipped line is the first"), Skipped[0], Shown[0].TextHandle);
+	}
 	return true;
 }

@@ -208,6 +208,48 @@ bool FDinkNarrativeInputProcessor::ProcessKeyDown(const FKey& Key, bool bRepeat)
 		return false;
 	}
 	const bool bConfirm = IsConfirmKey(Key);
+	const int32 Digit = DigitIndex(Key);
+
+	if (S->IsInventoryOpen())
+	{
+		// The item screen (dink.cpp:16409-16636): cursor keys, the attack button arms, Enter closes.
+		if (Key == EKeys::Enter || Key == EKeys::I || Key == EKeys::Escape)
+		{
+			S->CloseInventory();
+			return true;
+		}
+		if (Key == EKeys::Left || Key == EKeys::A)
+		{
+			S->MoveInventoryCursor(-1, 0);
+			return true;
+		}
+		if (Key == EKeys::Right || Key == EKeys::D)
+		{
+			S->MoveInventoryCursor(1, 0);
+			return true;
+		}
+		if (Key == EKeys::Up || Key == EKeys::W)
+		{
+			S->MoveInventoryCursor(0, -1);
+			return true;
+		}
+		if (Key == EKeys::Down || Key == EKeys::S)
+		{
+			S->MoveInventoryCursor(0, 1);
+			return true;
+		}
+		if (IsAttackKey(Key) || Key == EKeys::SpaceBar)
+		{
+			S->ArmInventorySelection();
+			return true;
+		}
+		if (Digit != INDEX_NONE)
+		{
+			S->QuickArmItemSlot(Digit + 1);
+			return true;
+		}
+		return Key == EKeys::E || Key == EKeys::Q; // nothing else acts while the game is paused
+	}
 
 	if (S->GetActiveMenu())
 	{
@@ -226,7 +268,6 @@ bool FDinkNarrativeInputProcessor::ProcessKeyDown(const FKey& Key, bool bRepeat)
 			S->ChooseSelected();
 			return true;
 		}
-		const int32 Digit = DigitIndex(Key);
 		if (Digit != INDEX_NONE && Digit < 9)
 		{
 			S->Choose(Digit);
@@ -237,6 +278,15 @@ bool FDinkNarrativeInputProcessor::ProcessKeyDown(const FKey& Key, bool bRepeat)
 	if (bConfirm && S->SkipDialogue())
 	{
 		return true;
+	}
+	if (Key == EKeys::Enter || Key == EKeys::I)
+	{
+		// The original's Enter (button 4) opens the item screen from Dink's brain (dink.cpp:14946-14960).
+		return S->OpenInventory();
+	}
+	if (Digit != INDEX_NONE)
+	{
+		return S->QuickArmItemSlot(Digit + 1);
 	}
 	if (Key == EKeys::E)
 	{
@@ -264,7 +314,12 @@ bool FDinkNarrativeInputProcessor::ProcessMouseDown(const FKey& Button)
 		return false;
 	}
 	ObserveScreen(FPlatformTime::Seconds());
-	// A left click confirms what is on screen exactly as Enter does; only when nothing waits for it is it the attack.
+	if (S->IsInventoryOpen())
+	{
+		S->ArmInventorySelection(); // the item screen's attack button
+		return true;
+	}
+	// A left click confirms what is on screen as Enter does; only when nothing waits for it is it the attack.
 	if (S->GetActiveMenu())
 	{
 		return !ClickGuarded(MenuSeenAt) && S->ChooseSelected();
@@ -295,6 +350,11 @@ bool FDinkNarrativeInputProcessor::ProcessWheel(float Delta)
 	if (!S || !S->IsReady() || FMath::IsNearlyZero(Delta))
 	{
 		return false;
+	}
+	if (S->IsInventoryOpen())
+	{
+		S->MoveInventoryCursor(0, Delta > 0.f ? -1 : 1);
+		return true;
 	}
 	if (S->GetActiveMenu())
 	{

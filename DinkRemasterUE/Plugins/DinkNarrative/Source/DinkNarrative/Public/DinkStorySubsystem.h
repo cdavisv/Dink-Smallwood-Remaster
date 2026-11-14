@@ -15,6 +15,8 @@ class APawn;
 class FDinkNarrativeInputProcessor;
 class AHUD;
 class UCanvas;
+class SWidget;
+class UGameViewportClient;
 
 /** Life cycle of one script instance. */
 enum class EDinkInstanceState : uint8
@@ -123,6 +125,44 @@ struct DINKNARRATIVE_API FDinkMenu
 	TArray<FDinkStoryChoice> Choices;
 	int32 Selected = 0;
 };
+
+/**
+ * The inventory screen (the original's item screen, process_item, dink.cpp:16409-16636): the magic panel (2 x 4) left of the item
+ * panel (4 x 4), a cursor that keeps its place between openings (g_playerInfo.curitem / item_magic), and the whole game paused
+ * while it is open (the main loop draws only the item screen, dink.cpp:17361).
+ */
+struct DINKNARRATIVE_API FDinkInventoryScreen
+{
+	bool bOpen = false;
+	/** The cursor is on the magic panel (item_magic). */
+	bool bMagic = false;
+	/** 1-based slot under the cursor (curitem): 1-16 items (4 per row), 1-8 spells (2 per row). */
+	int32 Cursor = 1;
+	/** Real time (FPlatformTime::Seconds) of the last open/close, for the presentation's fade. */
+	double ChangedAt = 0.0;
+};
+
+/** A line shown on screen, for voice playback and other presentation listeners (UDinkStorySubsystem::OnLineShown). */
+struct DINKNARRATIVE_API FDinkLineShown
+{
+	/** Text sprite handle; the text stays in GetActiveTexts() until it times out, is replaced, killed or skipped. */
+	int32 TextHandle = 0;
+	/** Speaker sprite handle (1 = Dink, 1000 = an _xy text). */
+	int32 Speaker = 0;
+	/** Ink line id ("s1-h1-m.talk.005"), empty for engine-made lines. */
+	FString LineId;
+	/** Display name from Content/Dink/Data/Presentation/speakers.csv ("Mother"), empty when unknown. */
+	FString SpeakerName;
+	FString Text;
+	bool bBlocking = false;
+	bool bXY = false;
+	/** Story time (GetNowMs) the text appeared and will time out (strlen x 77 ms, at least 2.7 s). */
+	double ShownMs = 0.0;
+	double ExpireMs = 0.0;
+};
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnDinkLineShown, const FDinkLineShown&);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnDinkLineSkipped, int32 /*TextHandle*/);
 
 /** One thing that happened, in order (tests, the smoke run, dink.Story). */
 struct DINKNARRATIVE_API FDinkNarrativeEvent
@@ -270,6 +310,36 @@ public:
 
 	/** Black-screen amount 0..1 (fade_down/fade_up). */
 	float GetFadeAlpha() const;
+
+	/**
+	 * Voice playback hook (and any other presentation listener): broadcast after a spoken or _xy line has been put on screen,
+	 * with its line id and speaker. Listening changes nothing in the story: timing, skips and blocking stay the 1997 engine's.
+	 * A recording should follow its text: GetActiveTexts() stays the source of truth for what is still on screen.
+	 */
+	FOnDinkLineShown OnLineShown;
+	/** The player skipped this blocking line (SkipDialogue). */
+	FOnDinkLineSkipped OnLineSkipped;
+
+	// ---- Inventory screen (DinkInventoryScreen.cpp) ----
+
+	const FDinkInventoryScreen& GetInventoryScreen() const { return InventoryScreen; }
+	bool IsInventoryOpen() const { return InventoryScreen.bOpen; }
+	/**
+	 * The original opens the item screen from Dink's brain (dink.cpp:14946-14960), which does not read keys while Dink is frozen,
+	 * talking (a menu), held by sp_nocontrol (here: locked in an attack) or drawing the bow. Also false before a game has started
+	 * and while a screen's hardness is loading.
+	 */
+	bool CanOpenInventory() const;
+	/** Opens the screen and pauses the game (the world, and this subsystem's clock). False when Dink may not act. */
+	bool OpenInventory();
+	/** Closes the screen and unpauses what OpenInventory paused (the original's Enter, sound 17 unless bSound is false). */
+	void CloseInventory(bool bSound = true);
+	/** The original's cursor keys (dink.cpp:16488-16620): left from the first item column goes to the magic panel's right column, right from it back. */
+	void MoveInventoryCursor(int32 DX, int32 DY);
+	/** The attack button on the item screen (dink.cpp:16473-16502, 16547-16567): arms the slot under the cursor; an empty slot does nothing. */
+	bool ArmInventorySelection();
+	/** Arm item slot N (1-based) as choosing it on the inventory screen does; false if it is empty or Dink may not act. */
+	bool QuickArmItemSlot(int32 Slot);
 
 	// ---- Facts ----
 
@@ -420,6 +490,16 @@ private:
 	TArray<TUniquePtr<FDinkScriptInstance>> Instances;
 	TArray<FDinkActiveText> ActiveTexts;
 	FDinkMenu Menu;
+	FDinkInventoryScreen InventoryScreen;
+	/** The inventory paused the world (and unpauses it on close); false when it was paused already. */
+	bool bInventoryPausedWorld = false;
+	void PlayInterfaceSound(int32 Sound, int32 Speed);
+	/** The Slate overlay that draws the inventory screen (DinkNarrativeOverlay.cpp), added to the game viewport of the current world. */
+	TSharedPtr<SWidget> Overlay;
+	TWeakObjectPtr<UGameViewportClient> OverlayViewport;
+	TWeakObjectPtr<UWorld> OverlayWorld;
+	void EnsureOverlay();
+	void RemoveOverlay();
 	/** Travel is asynchronous; never run startup scripts on the dying world. */
 	bool HandlePendingRestart();
 	bool bRestartRequested = false;

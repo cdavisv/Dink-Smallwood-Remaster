@@ -4,8 +4,10 @@
 #include "DinkGameplay.h"
 #include "Hardness/DinkHardnessActivation.h"
 #include "DinkNarrativeInput.h"
+#include "DinkNarrativeOverlay.h"
 #include "DinkFactSubsystem.h"
 #include "DinkOriginComponent.h"
+#include "DinkPresentationData.h"
 #include "DinkSaveGame.h"
 #include "DinkSaveSubsystem.h"
 #include "DinkWorldStateSubsystem.h"
@@ -14,6 +16,7 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "Dom/JsonObject.h"
 #include "Engine/GameInstance.h"
+#include "Engine/GameViewportClient.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "Framework/Application/SlateApplication.h"
@@ -76,6 +79,7 @@ void UDinkStorySubsystem::Deinitialize()
 	if (Gameplay) Gameplay->ShutdownRuntimeHardness();
 	bAutoTick = false;
 	AHUD::OnHUDPostRender.Remove(HudHandle);
+	RemoveOverlay();
 	if (InputProcessor.IsValid() && FSlateApplication::IsInitialized())
 	{
 		FSlateApplication::Get().UnregisterInputPreProcessor(InputProcessor);
@@ -678,6 +682,20 @@ int32 UDinkStorySubsystem::ShowText(const FDinkStoryLine& Line, int32 Speaker, i
 	T.ExpireMs = NowMs + DinkNarrative::TextDurationMs(Length);
     if(Gameplay)Gameplay->RecordOriginalHardnessBirth(T.Handle);
 	ActiveTexts.Add(T);
+	if (OnLineShown.IsBound())
+	{
+		FDinkLineShown Shown;
+		Shown.TextHandle = T.Handle;
+		Shown.Speaker = Speaker;
+		Shown.LineId = T.LineId;
+		Shown.SpeakerName = T.bXY ? FString() : FDinkPresentationData::Get().SpeakerName(T.LineId, Speaker);
+		Shown.Text = T.Text;
+		Shown.bBlocking = T.bBlocking;
+		Shown.bXY = T.bXY;
+		Shown.ShownMs = NowMs;
+		Shown.ExpireMs = T.ExpireMs;
+		OnLineShown.Broadcast(Shown);
+	}
 	return T.Handle;
 }
 
@@ -775,6 +793,7 @@ bool UDinkStorySubsystem::SkipDialogue()
 		{
 			bSkipped = true;
 			RemoveTextSprite(T.Handle);
+			OnLineSkipped.Broadcast(T.Handle);
 			return true;
 		}
 		return false;
@@ -850,7 +869,39 @@ bool UDinkStorySubsystem::UpdateBlocks()
 
 void UDinkStorySubsystem::Tick(float DeltaTime)
 {
+	EnsureOverlay();
 	Advance(DeltaTime);
+}
+
+void UDinkStorySubsystem::EnsureOverlay()
+{
+	UWorld* World = GetWorld();
+	UGameViewportClient* Viewport = World && World->IsGameWorld() ? World->GetGameViewport() : nullptr;
+	if (!Viewport || !FSlateApplication::IsInitialized())
+	{
+		return;
+	}
+	// A level change removes every viewport widget (UGameEngine::LoadMap): add it again to the new world's viewport.
+	if (Overlay.IsValid() && OverlayViewport.Get() == Viewport && OverlayWorld.Get() == World && Overlay->GetParentWidget().IsValid())
+	{
+		return;
+	}
+	RemoveOverlay();
+	Overlay = SNew(SDinkNarrativeOverlay, this);
+	Viewport->AddViewportWidgetContent(Overlay.ToSharedRef(), 50);
+	OverlayViewport = Viewport;
+	OverlayWorld = World;
+}
+
+void UDinkStorySubsystem::RemoveOverlay()
+{
+	if (Overlay.IsValid() && OverlayViewport.IsValid())
+	{
+		OverlayViewport->RemoveViewportWidgetContent(Overlay.ToSharedRef());
+	}
+	Overlay.Reset();
+	OverlayViewport.Reset();
+	OverlayWorld.Reset();
 }
 
 TStatId UDinkStorySubsystem::GetStatId() const
@@ -862,6 +913,12 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 {
 	if (HandlePendingRestart()) return;
 	if (!IsReady())
+	{
+		return;
+	}
+	// The inventory screen stops the game (dink.cpp:17361: the main loop only runs process_item): no time passes for scripts,
+	// brains, texts, the status update or the world-state clock until it closes.
+	if (InventoryScreen.bOpen)
 	{
 		return;
 	}
@@ -1465,6 +1522,7 @@ bool UDinkStorySubsystem::HandlePendingRestart()
 
 void UDinkStorySubsystem::ResetRuntime()
 {
+	CloseInventory(/*bSound*/ false);
 	Instances.Reset();
 	ActiveTexts.Reset();
 	Menu = FDinkMenu();
