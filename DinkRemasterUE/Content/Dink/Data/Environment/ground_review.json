@@ -2,7 +2,7 @@
  "schema": "dink-environment-ground-review/1",
  "note": "Kept by hand. The verdicts of the in-game review of the screen grounds: one per tile class, outdoors and indoors, from captures of the running game at the play camera, 1.1 m above the ground and from above (Scripts/PhotorealQA/ground_script.py; sheets in Docs/Verification/GroundReview_13Nov2026 and GroundFixes_14Nov2026). Scripts/art_coverage.py screen_ground_state() counts a screen ground final only when every tile class on it has verdict \"pass\" here. A class that is absent was not looked at and does not pass.",
  "date": "14 Nov 2026",
- "world": "ground-fixes branch on master 8905d4f8 (four-layer terrain mask, forest on canopy tiles, yards behind house fronts, structured layers, water sheets, relief rock tier 1, feathered grass edge)",
+ "world": "master d2754903 + snow exposure compensation",
  "rule": {
   "count_reviewed_grounds_final": true,
   "note": "The one switch. false: no screen ground counts final by this rule, whatever the verdicts (every ground stays placeholder unless an art manifest dresses its screen). Whether grounds may count final by rule is the owner's decision; art_coverage.py --ground-rule on|off overrides this value for one run."
@@ -127,9 +127,10 @@
      80,
      120,
      149,
-     153
+     153,
+     16
     ],
-    "reason": "white in sunlight (80, 149) but grey-beige with dark scribbled ripples under the overcast sky of 120 and 153: reads as rippled sand. The auto exposure meters the white ground down to grey: +0.8 EV makes it read as snow (review capture), not implemented"
+    "reason": "brighter since the exposure compensation of 14 Nov, no longer grey, but still not snow: a dead-flat plane with streaky crack lines that reads as a pale salt flat or dried mud. No drifts, no softness, no blue in the shadows, no sparkle (coordinator review of Docs/Verification/SnowExposure_14Nov2026). Needs a real snow material"
    }
   },
   "ice": {
@@ -137,10 +138,9 @@
     "verdict": "fail",
     "seen": [
      13,
-     82,
      109
     ],
-    "reason": "drawn as grey trampled mud, nothing reads as ice or snow (pale trampled snow at +0.8 EV, not implemented)"
+    "reason": "pale trodden ground since the exposure compensation of 14 Nov, but not ice at all: no smooth translucent sheet, no depth cracks, no frost, no sky reflection. Needs a real ice material"
    }
   },
   "lava": {

@@ -135,6 +135,11 @@ private:
 	TObjectPtr<AActor> Holder;
 	UPROPERTY(Transient)
 	TObjectPtr<UPostProcessComponent> InteriorExposure;
+	/** Exposure compensation on outdoor screens of snow and ice (environment.json `snow_exposure`, dink.SnowExposure). Visual only. */
+	UPROPERTY(Transient)
+	TObjectPtr<UPostProcessComponent> SnowExposure;
+	TMap<int32, float> SnowShare;           // outdoor screen -> share of its 96 tiles that are snow or ice (ground_classes.json), from min_share up
+	float SnowBiasEV = 0.8f, SnowFullShare = 0.6f, SnowMinShare = 0.25f;
 	UPROPERTY(Transient)
 	TArray<TObjectPtr<UStaticMesh>> GrassMeshes;
 	UPROPERTY(Transient)

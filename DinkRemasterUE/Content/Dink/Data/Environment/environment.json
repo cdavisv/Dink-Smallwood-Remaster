@@ -306,6 +306,13 @@
     "sink": 0.12,
     "cull_cm": 26000
   },
+  "snow_exposure": {
+    "note": "Exposure compensation on outdoor screens of snow and ice. The automatic exposure meters a screen full of white ground down to middle grey (snow read as grey rippled sand, ice as mud); bias_ev is added on a screen whose share of snow and ice tiles (ground_classes.json `classes`) reaches full_share, proportionally less from min_share up, eased over about a second when the hero changes screen. Visual only; dink.SnowExposure multiplies it (0 = off).",
+    "classes": ["snow", "ice"],
+    "bias_ev": 0.8,
+    "full_share": 0.6,
+    "min_share": 0.25
+  },
   "water_tiles": {
     "note": "Water surface over the water tiles of screens whose collision has no water fill (ground_classes.json `water_tiles`). Visual only, no collision; dink.WaterTiles 0 turns it off.",
     "material": "/Game/Dink/Materials/Environment/M_Env_Water.M_Env_Water",
