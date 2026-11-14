@@ -2,7 +2,7 @@
  "schema": "dink-environment-ground-review/1",
  "note": "Kept by hand. The verdicts of the in-game review of the screen grounds: one per tile class, outdoors and indoors, from captures of the running game at the play camera, 1.1 m above the ground and from above (Scripts/PhotorealQA/ground_script.py; sheets in Docs/Verification/GroundReview_13Nov2026 and GroundFixes_14Nov2026). Scripts/art_coverage.py screen_ground_state() counts a screen ground final only when every tile class on it has verdict \"pass\" here. A class that is absent was not looked at and does not pass.",
  "date": "14 Nov 2026",
- "world": "master d2754903 + snow exposure compensation",
+ "world": "master 42587b4f + water banks",
  "rule": {
   "count_reviewed_grounds_final": true,
   "note": "The one switch. false: no screen ground counts final by this rule, whatever the verdicts (every ground stays placeholder unless an art manifest dresses its screen). Whether grounds may count final by rule is the owner's decision; art_coverage.py --ground-rule on|off overrides this value for one run."
@@ -255,10 +255,13 @@
    "verdict": "fail",
    "seen": [
     465,
-    244,
-    438
+    494,
+    385,
+    736,
+    633,
+    244
    ],
-   "reason": "since 14 Nov a shallow translucent water sheet lies over these tiles (465: murky green shallows the hero wades through), but it is a rectangle with straight edges and no bank, 438 is a dressed screen and keeps its dry pit"
+   "reason": "since 14 Nov these screens draw shore water with a bank (465 reads as a river, 494 as a pond, 385 and 736 as sea shore), but where the water reaches the screen rim it keeps the straight tile outline and meets the next screen on a colour seam (633, 244, west end of 465). 438 is a dressed screen and keeps its dry pit"
   }
  },
  "screens": {},

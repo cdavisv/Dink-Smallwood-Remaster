@@ -1338,6 +1338,8 @@ void UDinkEnvironmentSubsystem::LoadForest()
 		const TArray<TSharedPtr<FJsonValue>>* Rects = nullptr;
 		if (WaterTileMaterial && (*Row)->TryGetArrayField(TEXT("water_tiles"), Rects) && Rects)
 		{
+			bool bSea = false;
+			if ((*Row)->TryGetBoolField(TEXT("water_sea"), bSea) && bSea) WaterTileSea.Add(ScreenNumber);
 			TArray<FBox2D>& OutRects = WaterTileRects.Add(ScreenNumber);
 			for (const TSharedPtr<FJsonValue>& V : *Rects)
 			{
@@ -1425,16 +1427,29 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 	}
 	if (bWater)
 	{
+		// One sheet over the whole screen. The shore material reads the screen's terrain mask (alpha = signed distance to
+		// the drawn waterline, written by the world export from natural_water_shape): clear at the waterline, deeper and
+		// darker away from it, nothing on land. So the water ends on a shoreline, not on the tile rectangles.
 		UStaticMesh* Plane = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Plane.Plane"));
-		for (const FBox2D& R : *Water)
+		const FString MaskPath = FString::Printf(TEXT("/Game/Dink/_Generated/Screens/SCR_%03d/T_GroundMask_SCR_%03d.T_GroundMask_SCR_%03d"), ScreenNumber, ScreenNumber, ScreenNumber);
+		UTexture* Mask = FPackageName::DoesPackageExist(MaskPath.Left(MaskPath.Find(TEXT(".")))) ? LoadObject<UTexture>(nullptr, *MaskPath, nullptr, LOAD_NoWarn | LOAD_Quiet) : nullptr;
+		if (Plane && Mask)
 		{
-			if (!Plane) break;
-			const FVector A = DinkLayout::MapPixelToUnreal(Corners, R.Min.X, R.Min.Y), B = DinkLayout::MapPixelToUnreal(Corners, R.Max.X, R.Min.Y);
-			const FVector C = DinkLayout::MapPixelToUnreal(Corners, R.Min.X, R.Max.Y), D = DinkLayout::MapPixelToUnreal(Corners, R.Max.X, R.Max.Y);
+			const FVector A = DinkLayout::MapPixelToUnreal(Corners, 0.0, 0.0), B = DinkLayout::MapPixelToUnreal(Corners, 600.0, 0.0);
+			const FVector C = DinkLayout::MapPixelToUnreal(Corners, 0.0, 400.0), D = DinkLayout::MapPixelToUnreal(Corners, 600.0, 400.0);
 			UStaticMeshComponent* Sheet = NewObject<UStaticMeshComponent>(Actor);
 			Quiet(Sheet);
 			Sheet->SetStaticMesh(Plane);
-			Sheet->SetMaterial(0, WaterTileMaterial);
+			UMaterialInstanceDynamic* MID = UMaterialInstanceDynamic::Create(WaterTileMaterial, Sheet);
+			MID->SetTextureParameterValue(TEXT("ShoreMask"), Mask);
+			if (WaterTileSea.Contains(ScreenNumber))
+			{
+				// a sea shore: the blue-green body the importer gives sea water (DinkGreyboxAssets.cpp), not silty pond water
+				MID->SetVectorParameterValue(TEXT("Absorption"), FLinearColor(0.42f, 0.17f, 0.15f));
+				MID->SetVectorParameterValue(TEXT("Scattering"), FLinearColor(0.016f, 0.034f, 0.034f));
+				MID->SetScalarParameterValue(TEXT("ScumAmount"), 0.f);
+			}
+			Sheet->SetMaterial(0, MID);
 			Sheet->SetCastShadow(false);
 			const FVector Mid = (A + B + C + D) * 0.25 + FVector(0.0, 0.0, WaterTileHeightCm);
 			const FVector AxisX = (B - A), AxisY = (C - A);
