@@ -1378,7 +1378,7 @@
   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/Decals",
   "sets": [
    {
-    "name": "BloodSplat",
+    "name": "BloodSplat", "tint": [0.42, 0.30, 0.30],
     "class": "blood_splat (46 placements)",
     "files": {
      "BC": "T_Decal_BloodSplat_BC.png",
