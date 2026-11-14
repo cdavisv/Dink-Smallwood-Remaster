@@ -126,6 +126,21 @@ Owner feedback of 13 Nov 2026: "fix blocky and polygon looking art". What was fo
 - **Shading of generated meshes**: the wall kits are smooth shaded with hard edges where faces meet at more than 28 degrees (`shade()` in `wallkit_build.py`); flat shading showed every triangle of the uneven plaster and of the jittered stone faces. Round forms: lathe at least 24 sides for a pickup shown large, 40 to 48 for a pot, and run the profile through a curve (`_smooth_prof` in `Props/tools/props_gen_pots.py`): a profile of straight runs shows as corners in the outline whatever the normals are.
 - **A capture of a freshly imported mesh shows the default material until its shaders are compiled.** Spawn the meshes once off camera and wait before the shots.
 
+## Gate 2 static batch 1 (13 Nov 2026)
+
+Evidence: `Docs/Verification/Gate2StaticBatch1_13Nov2026/`.
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| Unclaimed boulders after a rebuild (`Unclaimed/tools/bl.sh build_props.py <names> final`, the five boulder names from the script's table) | `python3 -I SourceAssets/Art/PhotorealPass/Unclaimed/tools/make_kit_manifest.py`, then `DINK_KIT=Unclaimed DINK_KIT_FOLDER=Unclaimed Scripts/import_town_exteriors.sh` | `Unclaimed/manifest.json` | `/Game/Dink/Photoreal/Unclaimed` (meshes, textures, `M_Struct_Baked`) |
+| Stumps and thorn bushes after a re-export (`blender -b -t 4 --python Vegetation/src/export_all.py -- deadwood under`) | `DINK_PHOTOREAL_ONLY=vegetation Scripts/import_photoreal_art.sh` | `Vegetation/manifest.json` | `SM_Veg_Stump_01/02`, `SM_Veg_ThornBush_01/02` |
+| Shell clusters and large starfish (`blender -b -t 4 --python Terrain/tools/scatter_clusters.py`) | `DINK_PHOTOREAL_ONLY=scatter Scripts/import_photoreal_art.sh` | `Terrain/manifest.json` | `/Game/Dink/Photoreal/Scatter/SM_ClamShell_Cluster_A/B/C`, `SM_Starfish_Large_A/B`, `MI_Scatter_Clam`, `MI_Scatter_Starfish` |
+| Field boulders after an occlusion rebake (`blender -b -t 4 --python Structures/tools/boulder_bake.py`) | `DINK_KIT=Structures/Stonebrook DINK_KIT_FOLDER=Structures Scripts/import_town_exteriors.sh` | `Structures/Stonebrook/manifest.json` | the kit's packages; only `Textures/T_Boulder_Field_A/B/C_PR_ORM` were committed |
+| Signposts | same Structures kit import | same | `SM_SignPost_Single/Double/Triple_PR`, `MI_Struct_OakDark` |
+
+- **The kit importer stops when an FBX is newer than the kit's `manifest.json`** ("N FBX files are newer than the manifest ... export in progress, nothing imported"). A bake that re-exports FBX it did not change trips it: put the unchanged FBX back (or finish the export) and touch nothing else. In a chained import the editor still exits 0; read the step lines of the log.
+- **Bake occlusion with the mesh alone.** Other objects at the origin (the high-poly source, other LODs, earlier bakes) shadow the mesh and leave black patches on every face out of the sun. `boulder_bake.py` hides them for the pass.
+- **What binds at runtime**: `families.json` rows may carry `scale` (after `fit`) and are also used for sprites that scripts create (`create_sprite`): the mesh of the picture's family stands in for the grey marker, without collision.
 ## Screen grounds in the audit (13 Nov 2026)
 
 | What | Command | Reads | Writes |
