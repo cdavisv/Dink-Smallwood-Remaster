@@ -13,8 +13,6 @@ class UDinkWorldStateSubsystem;
 class UDinkSaveGame;
 class APawn;
 class FDinkNarrativeInputProcessor;
-class AHUD;
-class UCanvas;
 class SWidget;
 class UGameViewportClient;
 
@@ -208,7 +206,7 @@ struct DINKNARRATIVE_API FDinkSmokeReport
  *  - Each instance runs in its own Ink flow (ink 1.1 multi-flow), so an NPC's idle loop, a cutscene
  *    and the player's conversation are alive at the same time. One story = one set of globals, as in
  *    DinkC; script locals are swapped in and out per instance (DESIGN.md 5).
- *  - Every output line is classified: spoken lines go to the presentation (floating text), command
+ *  - Every output line is classified: spoken lines go to the presentation (dialogue box), command
  *    lines to UDinkDirector, menus become choices. Blocking commands suspend only their instance.
  *  - Ink VARs and UDinkFactSubsystem are one source of truth: fact changes are pushed into the story,
  *    story assignments are written into the facts (and from there into the player's stats).
@@ -430,8 +428,6 @@ public:
 	 */
 	virtual UWorld* GetTickableGameObjectWorld() const override { return GetWorld(); }
 
-	/** Draws texts, menu and fade (bound to AHUD::OnHUDPostRender). */
-	void DrawHUD(AHUD* HUD, UCanvas* Canvas);
 
 private:
     friend class FDinkHardnessAdapterTransitions;
@@ -483,7 +479,6 @@ private:
 	FDelegateHandle FactsResetHandle;
 	FDelegateHandle SaveCapturedHandle;
 	FDelegateHandle SaveAppliedHandle;
-	FDelegateHandle HudHandle;
 	TSharedPtr<FDinkNarrativeInputProcessor> InputProcessor;
 
 	/** Stable addresses: instances are only removed between steps (RemoveFinishedInstances). */
@@ -494,7 +489,7 @@ private:
 	/** The inventory paused the world (and unpauses it on close); false when it was paused already. */
 	bool bInventoryPausedWorld = false;
 	void PlayInterfaceSound(int32 Sound, int32 Speed);
-	/** The Slate overlay that draws the inventory screen (DinkNarrativeOverlay.cpp), added to the game viewport of the current world. */
+	/** The Slate overlay that draws texts, menus, the fade and the inventory screen (DinkNarrativeOverlay.cpp), on the current world's game viewport. */
 	TSharedPtr<SWidget> Overlay;
 	TWeakObjectPtr<UGameViewportClient> OverlayViewport;
 	TWeakObjectPtr<UWorld> OverlayWorld;

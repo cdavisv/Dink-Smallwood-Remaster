@@ -1,4 +1,5 @@
-// The narrative layer's Slate overlay: the inventory screen. See DinkNarrativeOverlay.h.
+// The narrative layer's Slate overlay: dialogue box, bubbles, captions, choice menu, fade and the inventory screen.
+// See DinkNarrativeOverlay.h.
 
 #include "DinkNarrativeOverlay.h"
 #include "DinkCombat.h"
@@ -9,7 +10,12 @@
 #include "DinkPresentationData.h"
 #include "DinkStorySubsystem.h"
 #include "Brushes/SlateRoundedBoxBrush.h"
+#include "Engine/GameViewportClient.h"
 #include "Engine/Texture2D.h"
+#include "Engine/World.h"
+#include "GameFramework/Actor.h"
+#include "GameFramework/PlayerController.h"
+#include "Kismet/GameplayStatics.h"
 #include "Fonts/FontMeasure.h"
 #include "Framework/Application/SlateApplication.h"
 #include "HAL/PlatformTime.h"
@@ -462,6 +468,386 @@ namespace DinkOverlay
 	};
 }
 
+double SDinkNarrativeOverlay::SeenAt(int32 Handle, const FString& Text, double Now) const
+{
+	TPair<FString, double>& Seen = SeenTexts.FindOrAdd(Handle, TPair<FString, double>(Text, Now));
+	if (Seen.Key != Text)
+	{
+		Seen = TPair<FString, double>(Text, Now);
+	}
+	return Seen.Value;
+}
+
+namespace DinkOverlay
+{
+	constexpr double AppearSeconds = 0.18;
+	constexpr double BoxFadeOutSeconds = 0.16;
+
+	/** The "continue" chevron, bobbing. */
+	void Chevron(FPainter& P, FVector2f Centre, float Size, double Now, const FLinearColor& Color)
+	{
+		const float Bob = 2.5f * FMath::Sin(static_cast<float>(Now) * 5.f);
+		const FVector2f C = Centre + FVector2f(0.f, Bob);
+		P.Lines({ C + FVector2f(-Size, -Size * 0.5f), C + FVector2f(0.f, Size * 0.5f), C + FVector2f(Size, -Size * 0.5f) }, Color, 2.2f);
+	}
+
+	struct FDialoguePainter
+	{
+		FPainter& P;
+		const UDinkStorySubsystem& S;
+		double Now;
+		/** Top of the dialogue box when it is drawn this frame (menus and captions keep above it). */
+		float BoxTop = -1.f;
+
+		FVector2f View() const { return P.Size(); }
+
+		float BoxWidth() const { return FMath::Min(1080.f, View().X - 96.f); }
+
+		/** The dialogue box: name plate, wrapped text, continue hint. */
+		void PaintBox(const SDinkNarrativeOverlay::FBoxContent& C, float PanelAlpha, float PanelSlide)
+		{
+			const float BaseAlpha = P.Alpha;
+			const FSlateFontInfo Body = Font(TEXT("Regular"), 21.f);
+			const float W = BoxWidth();
+			const float PadX = 34.f;
+			const float PadTop = C.Name.IsEmpty() ? 24.f : 30.f;
+			const float PadBottom = C.bBlocking ? 34.f : 24.f;
+			const float LineH = FPainter::LineHeight(Body) * 1.12f;
+			const TArray<FString> Lines = Wrap(C.Text, Body, W - 2.f * PadX);
+			const float H = PadTop + FMath::Max(2, Lines.Num()) * LineH + PadBottom;
+			const FVector2f Pos((View().X - W) * 0.5f, View().Y - 40.f - H + PanelSlide);
+			BoxTop = Pos.Y;
+
+			P.Alpha = BaseAlpha * PanelAlpha;
+			P.Shadow(Pos, FVector2f(W, H), 20.f);
+			P.Box(Pos, FVector2f(W, H), PanelFill, 20.f, PanelEdge, 1.f);
+			const float TextAlpha = EaseOut(static_cast<float>((Now - C.TextSince) / AppearSeconds));
+			if (!C.Name.IsEmpty())
+			{
+				const FSlateFontInfo NameFont = Font(TEXT("Bold"), 14.f);
+				const FVector2f NameSize = FPainter::Measure(C.Name, NameFont);
+				const FVector2f Pill(NameSize.X + 32.f, NameSize.Y + 12.f);
+				const FVector2f PillPos(Pos.X + 26.f, Pos.Y - Pill.Y * 0.5f);
+				P.Box(PillPos, Pill, Accent, Pill.Y * 0.5f, FLinearColor(0.f, 0.f, 0.f, 0.25f), 1.f);
+				P.TextCentered(PillPos + Pill * 0.5f, C.Name, NameFont, TextDark);
+			}
+			P.Alpha = BaseAlpha * PanelAlpha * TextAlpha;
+			float Y = Pos.Y + PadTop + (1.f - TextAlpha) * 6.f;
+			for (const FString& L : Lines)
+			{
+				P.Text(FVector2f(Pos.X + PadX, Y), L, Body, TextMain, true);
+				Y += LineH;
+			}
+			if (C.bBlocking)
+			{
+				const FSlateFontInfo HintFont = Font(TEXT("Regular"), 12.f);
+				const FString Hint = TEXT("Space / Enter / Click");
+				const FVector2f HintSize = FPainter::Measure(Hint, HintFont);
+				const FVector2f ChevronCentre(Pos.X + W - 30.f, Pos.Y + H - 18.f);
+				P.Text(FVector2f(ChevronCentre.X - 16.f - HintSize.X, ChevronCentre.Y - HintSize.Y * 0.5f), Hint, HintFont, TextDim);
+				Chevron(P, ChevronCentre, 6.f, Now, Accent);
+			}
+			P.Alpha = BaseAlpha;
+		}
+
+		/** A compact bubble over a speaker's head (ScreenTop: the head's projection in local units). */
+		void PaintBubble(FVector2f ScreenTop, const FString& Name, const FString& Text, float Alpha)
+		{
+			const float BaseAlpha = P.Alpha;
+			P.Alpha = BaseAlpha * Alpha;
+			const FSlateFontInfo Body = Font(TEXT("Regular"), 15.f);
+			const FSlateFontInfo NameFont = Font(TEXT("Bold"), 11.f);
+			const TArray<FString> Lines = Wrap(Text, Body, 340.f);
+			float TextW = 0.f;
+			for (const FString& L : Lines)
+			{
+				TextW = FMath::Max(TextW, FPainter::Measure(L, Body).X);
+			}
+			const float NameH = Name.IsEmpty() ? 0.f : FPainter::LineHeight(NameFont) + 2.f;
+			TextW = FMath::Max(TextW, Name.IsEmpty() ? 0.f : FPainter::Measure(Name, NameFont).X);
+			const float LineH = FPainter::LineHeight(Body) * 1.08f;
+			const FVector2f Size(TextW + 28.f, NameH + Lines.Num() * LineH + 18.f);
+			FVector2f Pos(ScreenTop.X - Size.X * 0.5f, ScreenTop.Y - Size.Y - 14.f + (1.f - Alpha) * 8.f);
+			Pos.X = FMath::Clamp(Pos.X, 16.f, View().X - 16.f - Size.X);
+			Pos.Y = FMath::Clamp(Pos.Y, 16.f, View().Y - 16.f - Size.Y);
+			P.Shadow(Pos, Size, 14.f, 0.6f);
+			// Tail: a small rotated square under the bubble, towards the head.
+			const float TailX = FMath::Clamp(ScreenTop.X, Pos.X + 18.f, Pos.X + Size.X - 18.f);
+			const float Tail = 12.f;
+			const FSlateRoundedBoxBrush TailBrush(WithAlpha(PanelFill, P.Alpha), 2.f);
+			FSlateDrawElement::MakeBox(P.Out, ++P.Layer,
+				P.Geometry.ToPaintGeometry(FVector2f(Tail, Tail), FSlateLayoutTransform(FVector2f(TailX - Tail * 0.5f, Pos.Y + Size.Y - Tail * 0.5f - 1.f)), FSlateRenderTransform(FQuat2f(FMath::DegreesToRadians(45.f))), FVector2f(0.5f, 0.5f)),
+				&TailBrush);
+			P.Box(Pos, Size, PanelFill, 14.f, PanelEdge, 1.f);
+			float Y = Pos.Y + 9.f;
+			if (!Name.IsEmpty())
+			{
+				P.Text(FVector2f(Pos.X + 14.f, Y), Name, NameFont, Accent);
+				Y += NameH;
+			}
+			for (const FString& L : Lines)
+			{
+				P.Text(FVector2f(Pos.X + 14.f, Y), L, Body, TextMain);
+				Y += LineH;
+			}
+			P.Alpha = BaseAlpha;
+		}
+
+		/** An _xy text: a centred card at the original's height (x and y on the 640x480 screen). */
+		float PaintCaption(const FDinkActiveText& T, float Alpha, float AvoidBottom)
+		{
+			const float BaseAlpha = P.Alpha;
+			P.Alpha = BaseAlpha * Alpha;
+			const FSlateFontInfo Body = Font(TEXT("Light"), 24.f);
+			const float MaxW = FMath::Min(1100.f, View().X - 96.f);
+			const TArray<FString> Lines = Wrap(T.Text, Body, MaxW - 64.f);
+			float TextW = 0.f;
+			for (const FString& L : Lines)
+			{
+				TextW = FMath::Max(TextW, FPainter::Measure(L, Body).X);
+			}
+			const float LineH = FPainter::LineHeight(Body) * 1.1f;
+			const FVector2f Size(TextW + 64.f, Lines.Num() * LineH + (T.bBlocking ? 46.f : 32.f));
+			// The original centres an _xy text in a box that starts at x and is about 620 px wide.
+			const float CentreX = FMath::Clamp((T.X + 310.f) / 640.f * View().X, Size.X * 0.5f + 24.f, View().X - Size.X * 0.5f - 24.f);
+			float Top = T.Y / 480.f * View().Y - Size.Y * 0.5f;
+			Top = FMath::Clamp(Top, 24.f, View().Y - 24.f - Size.Y);
+			if (AvoidBottom > 0.f && Top + Size.Y > AvoidBottom - 16.f)
+			{
+				Top = AvoidBottom - 16.f - Size.Y;
+			}
+			const FVector2f Pos(CentreX - Size.X * 0.5f, Top + (1.f - Alpha) * 8.f);
+			P.Shadow(Pos, Size, 18.f, 0.8f);
+			P.Box(Pos, Size, FLinearColor(0.02f, 0.022f, 0.03f, 0.80f), 18.f, PanelEdge, 1.f);
+			P.Box(FVector2f(Pos.X + Size.X * 0.5f - 24.f, Pos.Y + 10.f), FVector2f(48.f, 2.f), WithAlpha(Accent, 0.8f), 1.f);
+			float Y = Pos.Y + 18.f;
+			for (const FString& L : Lines)
+			{
+				P.TextCentered(FVector2f(CentreX, Y + LineH * 0.5f), L, Body, TextMain, true);
+				Y += LineH;
+			}
+			if (T.bBlocking)
+			{
+				Chevron(P, FVector2f(CentreX, Pos.Y + Size.Y - 14.f), 5.f, Now, Accent);
+			}
+			P.Alpha = BaseAlpha;
+			return Pos.Y;
+		}
+
+		/** The choice menu: title, rows with number badges, the highlighted row, key hints. */
+		void PaintMenu(const FDinkMenu& M, float Alpha)
+		{
+			const float BaseAlpha = P.Alpha;
+			P.Alpha = BaseAlpha * Alpha;
+			const float W = FMath::Min(780.f, View().X - 96.f);
+			const float PadX = 30.f;
+			const FSlateFontInfo TitleFont = Font(TEXT("Regular"), 19.f);
+			const FSlateFontInfo RowFont = Font(TEXT("Regular"), 18.f);
+			const FSlateFontInfo BadgeFont = Font(TEXT("Bold"), 12.f);
+			TArray<FString> Title;
+			for (const FString& L : M.TitleLines)
+			{
+				if (!L.TrimStartAndEnd().IsEmpty())
+				{
+					Title.Append(Wrap(L, TitleFont, W - 2.f * PadX));
+				}
+			}
+			const float TitleLineH = FPainter::LineHeight(TitleFont) * 1.1f;
+			const float RowH = 46.f;
+			TArray<TArray<FString>> Rows;
+			float RowsH = 0.f;
+			for (const FDinkStoryChoice& C : M.Choices)
+			{
+				Rows.Add(Wrap(C.Text, RowFont, W - 2.f * PadX - 64.f));
+				RowsH += FMath::Max(RowH, Rows.Last().Num() * FPainter::LineHeight(RowFont) + 18.f) + 6.f;
+			}
+			const float TitleH = Title.Num() > 0 ? Title.Num() * TitleLineH + 18.f : 0.f;
+			const float H = 24.f + TitleH + RowsH + 8.f + 44.f;
+			const float Bottom = BoxTop > 0.f ? BoxTop - 26.f : View().Y - 40.f;
+			const FVector2f Pos((View().X - W) * 0.5f, FMath::Max(16.f, Bottom - H) + (1.f - Alpha) * 12.f);
+			P.Shadow(Pos, FVector2f(W, H), 20.f);
+			P.Box(Pos, FVector2f(W, H), PanelFill, 20.f, PanelEdge, 1.f);
+			float Y = Pos.Y + 22.f;
+			for (const FString& L : Title)
+			{
+				P.Text(FVector2f(Pos.X + PadX, Y), L, TitleFont, TextMain, true);
+				Y += TitleLineH;
+			}
+			if (Title.Num() > 0)
+			{
+				Y += 6.f;
+				P.Box(FVector2f(Pos.X + PadX, Y), FVector2f(W - 2.f * PadX, 1.f), FLinearColor(1.f, 1.f, 1.f, 0.08f), 0.f);
+				Y += 12.f;
+			}
+			for (int32 i = 0; i < Rows.Num(); ++i)
+			{
+				const bool bSel = i == M.Selected;
+				const float ThisH = FMath::Max(RowH, Rows[i].Num() * FPainter::LineHeight(RowFont) + 18.f);
+				const FVector2f RowPos(Pos.X + 16.f, Y);
+				const FVector2f RowSize(W - 32.f, ThisH);
+				if (bSel)
+				{
+					P.Box(RowPos, RowSize, WithAlpha(Accent, 0.16f), 12.f, WithAlpha(Accent, 0.85f), 1.5f);
+				}
+				const FVector2f Badge(28.f, 28.f);
+				const FVector2f BadgePos(RowPos.X + 14.f, RowPos.Y + (ThisH - Badge.Y) * 0.5f);
+				if (i < 9)
+				{
+					P.Box(BadgePos, Badge, bSel ? Accent : FLinearColor(1.f, 1.f, 1.f, 0.09f), 8.f);
+					P.TextCentered(BadgePos + Badge * 0.5f, FString::FromInt(i + 1), BadgeFont, bSel ? TextDark : TextDim);
+				}
+				float TY = RowPos.Y + (ThisH - Rows[i].Num() * FPainter::LineHeight(RowFont)) * 0.5f;
+				for (const FString& L : Rows[i])
+				{
+					P.Text(FVector2f(BadgePos.X + Badge.X + 16.f, TY), L, RowFont, bSel ? TextMain : FLinearColor(0.82f, 0.83f, 0.85f, 1.f));
+					TY += FPainter::LineHeight(RowFont);
+				}
+				Y += ThisH + 6.f;
+			}
+			Y += 8.f;
+			P.Box(FVector2f(Pos.X + PadX, Y), FVector2f(W - 2.f * PadX, 1.f), FLinearColor(1.f, 1.f, 1.f, 0.08f), 0.f);
+			float X = Pos.X + PadX;
+			X += P.KeyHint(FVector2f(X, Y + 10.f), { TEXT("W"), TEXT("S") }, TEXT("Move")) + 22.f;
+			X += P.KeyHint(FVector2f(X, Y + 10.f), { TEXT("1-9") }, TEXT("Pick")) + 22.f;
+			P.KeyHint(FVector2f(X, Y + 10.f), { TEXT("Enter"), TEXT("Space"), TEXT("Click") }, TEXT("Choose"));
+			P.Alpha = BaseAlpha;
+		}
+	};
+}
+
+void SDinkNarrativeOverlay::PaintNarrative(FPainterRef PRef, const UDinkStorySubsystem& S, double Now) const
+{
+	FPainter& P = *static_cast<FPainter*>(PRef);
+	// Fade (fade_down / fade_up) under the texts, as in the original.
+	if (const float Fade = S.GetFadeAlpha(); Fade > 0.f)
+	{
+		P.Box(FVector2f::ZeroVector, P.Size(), FLinearColor(0.f, 0.f, 0.f, Fade), 0.f);
+	}
+
+	const TArray<FDinkActiveText>& Texts = S.GetActiveTexts();
+	// Forget texts that are gone (their handles get reused).
+	for (auto It = SeenTexts.CreateIterator(); It; ++It)
+	{
+		if (!Texts.ContainsByPredicate([&](const FDinkActiveText& T) { return T.Handle == It.Key(); }))
+		{
+			It.RemoveCurrent();
+		}
+	}
+
+	// The box: the newest blocking line; with none, the newest spoken line.
+	int32 BoxIdx = INDEX_NONE;
+	for (int32 i = Texts.Num() - 1; i >= 0 && BoxIdx == INDEX_NONE; --i)
+	{
+		BoxIdx = !Texts[i].bXY && Texts[i].bBlocking ? i : INDEX_NONE;
+	}
+	for (int32 i = Texts.Num() - 1; i >= 0 && BoxIdx == INDEX_NONE; --i)
+	{
+		BoxIdx = !Texts[i].bXY ? i : INDEX_NONE;
+	}
+
+	FDialoguePainter D{ P, S, Now };
+	if (BoxIdx != INDEX_NONE)
+	{
+		const FDinkActiveText& T = Texts[BoxIdx];
+		const double Since = SeenAt(T.Handle, T.Text, Now);
+		if (BoxGoneAt >= 0.0 && Now - BoxGoneAt > BoxFadeOutSeconds)
+		{
+			BoxSince = Now; // the panel was hidden: it slides in again
+		}
+		else if (Box.Handle == 0)
+		{
+			BoxSince = Now;
+		}
+		BoxGoneAt = -1.0;
+		Box.Handle = T.Handle;
+		Box.Name = FDinkPresentationData::Get().SpeakerName(T.LineId, T.Owner);
+		Box.Text = T.Text;
+		Box.bBlocking = T.bBlocking;
+		Box.TextSince = Since;
+		const float In = EaseOut(static_cast<float>((Now - BoxSince) / AppearSeconds));
+		D.PaintBox(Box, In, (1.f - In) * 16.f);
+	}
+	else if (Box.Handle != 0)
+	{
+		if (BoxGoneAt < 0.0)
+		{
+			BoxGoneAt = Now;
+		}
+		const float Out = 1.f - EaseOut(static_cast<float>((Now - BoxGoneAt) / BoxFadeOutSeconds));
+		if (Out > 0.f)
+		{
+			SDinkNarrativeOverlay::FBoxContent Fading = Box;
+			Fading.bBlocking = false;
+			Fading.TextSince = 0.0;
+			D.PaintBox(Fading, Out, 0.f);
+		}
+		else
+		{
+			Box = FBoxContent();
+		}
+	}
+
+	// Bubbles: the other spoken lines, over their speakers' heads.
+	const UWorld* World = S.GetWorld();
+	APlayerController* PC = World ? World->GetFirstPlayerController() : nullptr;
+	FVector2D ViewportPx(0.0, 0.0);
+	if (World && World->GetGameViewport())
+	{
+		World->GetGameViewport()->GetViewportSize(ViewportPx);
+	}
+	UDinkDirector* Director = S.GetDirector();
+	for (int32 i = 0; i < Texts.Num(); ++i)
+	{
+		const FDinkActiveText& T = Texts[i];
+		if (i == BoxIdx || T.bXY || !PC || !Director || ViewportPx.X <= 0.0)
+		{
+			continue;
+		}
+		AActor* Speaker = Director->GetActor(T.Owner);
+		if (!Speaker)
+		{
+			continue;
+		}
+		FVector Origin, Extent;
+		Speaker->GetActorBounds(/*bOnlyCollidingComponents*/ false, Origin, Extent);
+		FVector2D ScreenPx;
+		if (!UGameplayStatics::ProjectWorldToScreen(PC, Origin + FVector(0, 0, Extent.Z + 20.0), ScreenPx, false))
+		{
+			continue; // behind the camera
+		}
+		const FVector2f Local(ScreenPx.X / ViewportPx.X * P.Size().X, ScreenPx.Y / ViewportPx.Y * P.Size().Y);
+		const float In = EaseOut(static_cast<float>((Now - SeenAt(T.Handle, T.Text, Now)) / AppearSeconds));
+		D.PaintBubble(Local, FDinkPresentationData::Get().SpeakerName(T.LineId, T.Owner), T.Text, In);
+	}
+
+	// Captions (_xy texts).
+	float AvoidBottom = D.BoxTop;
+	for (const FDinkActiveText& T : Texts)
+	{
+		if (T.bXY)
+		{
+			const float In = EaseOut(static_cast<float>((Now - SeenAt(T.Handle, T.Text, Now)) / AppearSeconds));
+			const float Top = D.PaintCaption(T, In, AvoidBottom);
+			AvoidBottom = AvoidBottom > 0.f ? FMath::Min(AvoidBottom, Top) : -1.f;
+		}
+	}
+
+	// The choice menu.
+	if (const FDinkMenu* M = S.GetActiveMenu())
+	{
+		if (M->InstanceId != SeenMenu)
+		{
+			SeenMenu = M->InstanceId;
+			MenuSince = Now;
+		}
+		D.PaintMenu(*M, EaseOut(static_cast<float>((Now - MenuSince) / AppearSeconds)));
+	}
+	else
+	{
+		SeenMenu = 0;
+	}
+}
+
 int32 SDinkNarrativeOverlay::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements,
 	int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const
 {
@@ -473,12 +859,14 @@ int32 SDinkNarrativeOverlay::OnPaint(const FPaintArgs& Args, const FGeometry& Al
 	FPainter P(AllottedGeometry, OutDrawElements, LayerId);
 	const double Now = FPlatformTime::Seconds();
 	const FDinkInventoryScreen& Inv = S->GetInventoryScreen();
+	// The original draws no text while the item screen is up (dink.cpp:17364, bRenderDinkText = false).
+	if (!Inv.bOpen)
+	{
+		PaintNarrative(&P, *S, Now);
+	}
 	if (Inv.bOpen || Now - Inv.ChangedAt < 0.16)
 	{
-		if (!Inv.bOpen)
-		{
-			P.Alpha = 1.f - EaseOut(static_cast<float>((Now - Inv.ChangedAt) / 0.16));
-		}
+		P.Alpha = Inv.bOpen ? 1.f : 1.f - EaseOut(static_cast<float>((Now - Inv.ChangedAt) / 0.16));
 		FInventoryPainter{ P, *this, *S, Inv.bOpen ? Now : Inv.ChangedAt + 0.16 }.Paint();
 	}
 	return P.Layer;

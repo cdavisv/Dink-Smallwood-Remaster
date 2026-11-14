@@ -2224,8 +2224,8 @@ FString UDinkDirector::BuildStatusTable(const FString& VocabularyCsv, int32* Out
 		{
 			Form = TEXT("spoken line");
 			Status = TEXT("implemented");
-			Note = Command.Contains(TEXT("stop")) ? TEXT("floating text over the speaker in its colour; blocks until timed out (strlen x 77 ms, min 2700) or skipped")
-				: TEXT("floating text over the speaker in its colour; does not block");
+			Note = Command.Contains(TEXT("stop")) ? TEXT("shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); blocks until timed out (strlen x 77 ms, min 2700) or skipped")
+				: TEXT("shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); does not block");
 		}
 		else if (Command.StartsWith(TEXT("=")))
 		{

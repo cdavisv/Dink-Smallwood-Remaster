@@ -20,7 +20,6 @@
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "Framework/Application/SlateApplication.h"
-#include "GameFramework/HUD.h"
 #include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
 #include "Kismet/GameplayStatics.h"
@@ -65,7 +64,6 @@ void UDinkStorySubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	if (!IsRunningCommandlet())
 	{
 		bAutoTick = true;
-		HudHandle = AHUD::OnHUDPostRender.AddUObject(this, &UDinkStorySubsystem::DrawHUD);
 		if (FSlateApplication::IsInitialized())
 		{
 			InputProcessor = MakeShared<FDinkNarrativeInputProcessor>(this);
@@ -78,7 +76,6 @@ void UDinkStorySubsystem::Deinitialize()
 {
 	if (Gameplay) Gameplay->ShutdownRuntimeHardness();
 	bAutoTick = false;
-	AHUD::OnHUDPostRender.Remove(HudHandle);
 	RemoveOverlay();
 	if (InputProcessor.IsValid() && FSlateApplication::IsInitialized())
 	{
