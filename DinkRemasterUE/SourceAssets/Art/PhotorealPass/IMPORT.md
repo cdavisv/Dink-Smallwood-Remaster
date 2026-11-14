@@ -126,6 +126,19 @@ Owner feedback of 13 Nov 2026: "fix blocky and polygon looking art". What was fo
 - **Shading of generated meshes**: the wall kits are smooth shaded with hard edges where faces meet at more than 28 degrees (`shade()` in `wallkit_build.py`); flat shading showed every triangle of the uneven plaster and of the jittered stone faces. Round forms: lathe at least 24 sides for a pickup shown large, 40 to 48 for a pot, and run the profile through a curve (`_smooth_prof` in `Props/tools/props_gen_pots.py`): a profile of straight runs shows as corners in the outline whatever the normals are.
 - **A capture of a freshly imported mesh shows the default material until its shaders are compiled.** Spawn the meshes once off camera and wait before the shots.
 
+## Screen grounds in the audit (13 Nov 2026)
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| What each screen's ground is made of | part of the world export (`Scripts/export_import_bundle.py`, run by `Scripts/import_greybox.sh --export`) | `tools/data/tile_classes.csv`, `terrain_layers.json` | `Content/Dink/Data/Environment/ground_classes.json` (per screen: tile classes, the layer of each, the layers the mask carries, the layers it dropped, water surface) |
+| Captures for the review (play camera, 1.1 m above the ground, from above) | `python3 -I Scripts/PhotorealQA/ground_script.py <out dir> [--screens=a,b]`, then `Scripts/PhotorealQA/run_capture.sh <out dir>/ground_<k>.txt` | screens, tile classes, hardness | `NNN_play/close/above.png`, `ground_index.json` |
+| Review sheets | `python3 -I Scripts/PhotorealQA/ground_sheet.py <capture dir> <out dir> [--by-class]` | the captures | one JPEG per pair of screens, or per reason a screen was chosen |
+| The verdicts and the result as tables | `python3 -I Scripts/PhotorealQA/ground_review_table.py` | `ground_classes.json`, `ground_review.json` | Markdown on stdout |
+
+- **The verdicts are hand-kept data**: `Content/Dink/Data/Environment/ground_review.json`, one verdict per tile class outdoors and indoors, with the screens that were looked at and the reason. After a change to the terrain material, a layer's textures, the grass carpet or the mask, capture the classes it touches again and update the verdicts; never flip a verdict without a capture.
+- **One switch**: `rule.count_reviewed_grounds_final` in that file (or `art_coverage.py --ground-rule on|off`). Off, no screen ground counts final by review.
+- `ground_classes.json` is generated; a world export that changes it must be committed with it, or the audit judges the old ground.
+
 ## Town houses in the audit (13 Nov 2026)
 
 | What | Command | Reads | Writes |
