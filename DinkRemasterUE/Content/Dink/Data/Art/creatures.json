@@ -859,11 +859,12 @@
             143
           ],
           "mesh": "/Game/Dink/Photoreal/Creatures/Pillbug/SM_Pillbug_Corpse_PR.SM_Pillbug_Corpse_PR",
+          "scale": 0.55,
           "decal": {
             "material": "/Game/Dink/Photoreal/Creatures/Pillbug/M_Pillbug_BloodPool_Decal.M_Pillbug_BloodPool_Decal",
             "size_cm": [
-              440,
-              440
+              620,
+              620
             ],
             "depth_cm": 45
           }
