@@ -1140,6 +1140,14 @@
       "yaw_from_sprite": true,
       "yaw_offset": 180,
       "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). dragon_corpse, picture 216 frame 1 (screen 158): the same remains turned half round, as the second picture is."
+    },
+    {
+      "family": "sparkle_fx",
+      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Sparkle.MI_FX_Sparkle",
+      "effect_size_cm": 70,
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "165 effects/shiny/shiny- and 166 effects/sparks/spark-: the twinkle a gold heap's script creates over the heap (create_sprite, brain 15). An effect row: a camera-facing card with the sparkle flipbook (8 x 8 frames, additive), 70 cm. Script-created sprites only; the two placed sparkles keep their cards."
     }
   ],
   "collision_fit": {
