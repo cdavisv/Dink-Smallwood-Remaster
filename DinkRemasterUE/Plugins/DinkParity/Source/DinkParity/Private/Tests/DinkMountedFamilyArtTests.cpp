@@ -79,7 +79,7 @@ namespace
 					++Dressed;
 					Test->TestTrue(FString::Printf(TEXT("%s: its card is hidden"), *P.Origin), It->Card && It->Card->bHiddenInGame);
 					Test->TestTrue(FString::Printf(TEXT("%s: the mesh is above the ground"), *P.Origin), Shown->Bounds.GetBox().Min.Z > 20.0);
-					Test->TestEqual(FString::Printf(TEXT("%s: the mesh has no collision"), *P.Origin), Shown->GetCollisionEnabled(), ECollisionEnabled::NoCollision);
+					Test->TestTrue(FString::Printf(TEXT("%s: the mesh has no collision"), *P.Origin), Shown->GetCollisionEnabled() == ECollisionEnabled::NoCollision);
 					Test->TestFalse(FString::Printf(TEXT("%s: not authored art (gameplay keeps the pixel rules)"), *P.Origin), It->ActorHasTag(TEXT("DinkAuthoredArt")));
 				}
 				// background placements: the decor component of each is hidden and a family component stands in for it
@@ -111,7 +111,7 @@ namespace
 							Decor && Decor->bHiddenInGame && Shown && Shown->GetInstanceCount() > 0)) continue;
 						++Dressed;
 						Test->TestTrue(FString::Printf(TEXT("%s: the mesh is above the ground"), *P.Origin), Shown->Bounds.GetBox().Min.Z > 20.0);
-						Test->TestEqual(FString::Printf(TEXT("%s: the mesh has no collision"), *P.Origin), Shown->GetCollisionEnabled(), ECollisionEnabled::NoCollision);
+						Test->TestTrue(FString::Printf(TEXT("%s: the mesh has no collision"), *P.Origin), Shown->GetCollisionEnabled() == ECollisionEnabled::NoCollision);
 					}
 				}
 			}
