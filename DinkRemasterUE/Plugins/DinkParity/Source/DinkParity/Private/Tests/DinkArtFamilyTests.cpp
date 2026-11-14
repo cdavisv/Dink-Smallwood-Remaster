@@ -1,6 +1,7 @@
 // Sprite-family art binding (UDinkArtFamilySubsystem, Content/Dink/Data/Art/families.json): the resolver's precedence,
 // the fit maths, the shipped manifest, and a PIE check that a bound placement gets its mesh with its collision unchanged.
 #include "DinkTestHelpers.h"
+#include "Materials/MaterialInterface.h"
 #include "DinkArtFamilySubsystem.h"
 #include "DinkOriginComponent.h"
 #include "DinkStorySubsystem.h"
@@ -258,6 +259,13 @@ bool FDinkArtFamilyManifestTest::RunTest(const FString&)
 	TestTrue(TEXT("families.json binds at least one family"), Bindings.Num() > 0);
 	for (const FDinkFamilyBinding& B : Bindings)
 	{
+		if (!B.Effect.IsEmpty())
+		{
+			// an effect row: a material on a camera-facing card instead of a mesh
+			TestTrue(FString::Printf(TEXT("%s: effect is project art under /Game/Dink"), *B.Family), B.Effect.StartsWith(TEXT("/Game/Dink/")) && B.Mesh.IsEmpty());
+			TestNotNull(FString::Printf(TEXT("%s: %s loads as a material"), *B.Family, *B.Effect), LoadObject<UMaterialInterface>(nullptr, *B.Effect));
+			continue;
+		}
 		TestTrue(FString::Printf(TEXT("%s: mesh is project art under /Game/Dink"), *B.Family), B.Mesh.StartsWith(TEXT("/Game/Dink/")) && !B.Mesh.StartsWith(TEXT("/Game/Dink/_Generated/")));
 		const FString Package = B.Mesh.Left(B.Mesh.Find(TEXT(".")));
 		const FString File = FPackageName::LongPackageNameToFilename(Package, FPackageName::GetAssetPackageExtension());
