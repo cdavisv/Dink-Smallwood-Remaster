@@ -10,7 +10,7 @@
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 34392 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "LOD0 has 34174 triangles, target for character_humanoid is 20000 (hard max 35000)"
   ],
   [
    "warning",
@@ -20,7 +20,7 @@
   [
    "warning",
    "NON_MANIFOLD",
-   "11314 non-manifold edges (11304 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "11050 non-manifold edges (11040 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
@@ -30,7 +30,7 @@
   [
    "warning",
    "NON_MANIFOLD",
-   "11170 non-manifold edges (11160 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "10910 non-manifold edges (10900 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
@@ -50,12 +50,12 @@
   [
    "warning",
    "NON_MANIFOLD",
-   "3181 non-manifold edges (3171 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "3175 non-manifold edges (3165 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (397.1 % of UV area, 2661 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (416.1 % of UV area, 2948 triangles); class character_humanoid needs unique UVs"
   ],
   [
    "warning",
@@ -174,15 +174,15 @@
  "lods": [
   {
    "mesh": "SK_Mother_Photoreal_LOD0",
-   "triangles": 34392,
-   "vertices": 23525,
+   "triangles": 34174,
+   "vertices": 23261,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Mother_Photoreal_LOD1",
-   "triangles": 18914,
-   "vertices": 15714,
+   "triangles": 18794,
+   "vertices": 15501,
    "max_influences": 4,
    "unweighted": 0
   },
@@ -196,7 +196,7 @@
   {
    "mesh": "SK_Mother_Photoreal_LOD3",
    "triangles": 5041,
-   "vertices": 4302,
+   "vertices": 4300,
    "max_influences": 4,
    "unweighted": 0
   }
@@ -296,7 +296,7 @@
  "dimensions_m": [
   1.1079223155975342,
   0.7885163426399231,
-  1.7979018688201904
+  1.797210931777954
  ],
  "materials": [
   "MI_Mother_PR_Skin",
@@ -321,10 +321,10 @@
    "outside_0_1": 0
   },
   "MI_Mother_PR_Hair": {
-   "uv_area": 8.0857,
-   "texels_used_1k": 569496,
-   "texels_overlapping_1k": 256697,
-   "overlap_fraction": 0.4507,
+   "uv_area": 7.8243,
+   "texels_used_1k": 549194,
+   "texels_overlapping_1k": 237020,
+   "overlap_fraction": 0.4316,
    "outside_0_1": 0
   },
   "MI_Mother_PR_Outfit": {

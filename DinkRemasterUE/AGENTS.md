@@ -1,3 +1,12 @@
+## Character builds and skin relief (14 November 2026)
+
+Evidence and what is still wrong: `Docs/Verification/CharacterFacesBuilds_14Nov2026/`.
+- **Builds.** `Characters/Tools/physique.py` holds displacement fields in rest space: the hero's `Scrawny` and `Brawny` (shape keys) and, new, `Burly` (Milder) and `Matron` (Mother). `char_07_build.py` bakes one into an assembled non-hero character (every layer, every LOD); `run_char.sh` runs it after the assembly when `cfg/tex.env` has `BUILD="<name> <strength>"`. Assembling rebuilds the meshes, so the build is baked in on every run; a character with shape keys is refused. Do not give a build a shoulder-cap or neck offset on a character whose garment has a seam or an open neckline there (the Mother's yoke lifted off the sleeve heads).
+- **Skin relief is judged in the game.** Relief that is right in the Cycles review renders was orange peel under the game's lights: the importer sets `NormalStrength 0.6` on skin instances and the NPC `cfg/skin.json` files carry lower `micro` and `nrm_k`.
+- **Hair cards in the game**: `AlphaCut` (coverage below 0.3 is no hair: sparse-strand cards otherwise dither into ghost sheets and halos at small mips), `CapShade` (the cap under a crop must be darker than its cards), `CardShadow` 0 (only the cap casts shadows). `SKIN_LOOK` holds a skin tint per character.
+- **Hero build**: `physique.KEY_STRENGTH['Brawny'] = 0.55`; the owner wants him "a little stronger, not He-Man".
+- **A loose sheet bakes from itself** (`char_05_bake.py` `SELF_HI`, the mail skirt), like the hero's pack flap.
+
 ## Ground fixes: fourth layer, forest, yards, water sheets, relief rock, grass clearings (14 November 2026)
 
 - All visual, no collision: the world export's collision, placement and warp files are byte-identical. Evidence and what was not proven: `Docs/Verification/GroundFixes_14Nov2026/`.

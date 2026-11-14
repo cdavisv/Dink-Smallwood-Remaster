@@ -37,14 +37,16 @@ STYLES = {
               fringe_var=.5, fringe_scale=30, cap_tip=(.3, .72),   # the opaque cap stops well short of the tips: the fringe and the outline are free strands on cards
               tile=dict(frizz=.012, wave=.03, clump=1.0, stray=.03, tip_gain=.5, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0, rag_k=1.7),
               shells=narrow_short(1.0, 1.0, lv=(.34, .42), taper=.55, fly=44, wisp=190, over=170)),
+ # Milder's cards: many, fine, close to the head (the wide lifted ones read as dark dashes on a pale scalp in the game)
  'Milder': dict(kind='short', seed=9, hairline=(.47, .16, -.5), fade=.78, edge_short=.6, guides=900, density=700000, interp=4,
                 L_top=.042, L_side=.020, L_nape=.014, L_fringe=.022, el_top=30, el_side=14, sweep=-.5, tousle=.3, jit=.08, gravity=.3, lift_tip=.002, wander=.03,
                 clump=.35, clump_d=.006, noise_d=.0015, frizz_d=.0008, trim_rand=.006,
                 strand=dict(melanin=.58, redness=.8, rough=.3, radial=.4, rand_col=.10),
                 albedo=(.105, .042, .017), col_var=.2, cap_h=.45, brow=dict(th=.0054, n=600), brow_dark=.85, brow_px=2.3, brow_melanin=.2, card_mat=dict(spec=.005, spec2=20.0, transl=.8), brow_rgb='70,40,26', lash_rgb='46,28,20',
-                tile=dict(frizz=.008, wave=.012, clump=.5, stray=.015, tip_gain=.2, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0), shells=narrow_short(.9, .8, 0, 1.25), edge_narrow=.3, cap_rings=17, cap_segs=38),
+                tile=dict(frizz=.008, wave=.012, clump=.5, stray=.015, tip_gain=.2, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0), shells=narrow_short(1.35, .62, 0, .8, fly=4), edge_narrow=.3, cap_rings=17, cap_segs=38),
  'Mother': dict(kind='bun', seed=21, hairline=(.46, .12, -.5), part_split=.06, guides=1100, density=700000, interp=4, K=16, resample=24,
-                bun_dir=(0, .93, -.28), bun_r=(.040, .036, .030), bun_bundles=7, lift_tip=.005, jit=.04, wander=.008, wisps=8, wisps_nape=6,
+                bun_dir=(0, .93, -.28), bun_r=(.040, .036, .030), bun_bundles=7, lift_tip=.005, jit=.04, wander=.008, wisps=3, wisps_nape=5, card_wisps=5, card_wisps_nape=8,   # in the game a loose strand across the temple or cheek is a thin dark line on the face: few, and mostly at the nape
+               
                 clump=.35, clump_d=.007, noise_d=.0012, noise_s=10.0, frizz_d=.0009, trim_rand=.01, streak_scale=45.0,
                 strand=dict(melanin=.42, redness=.30, rough=.34, radial=.4, rand_col=.12, grey=.16),
                 albedo=(.20, .115, .046), col_var=.08, grey=.05, cap_tip=(.92, 1.0), cap_h=.15, cap_hmax=.002, bun_strips=6, bun_nseg=28, grey_col=(.33, .27, .19), brow=dict(th=.0034, n=420), brow_rgb='122,102,74', lash_rgb='60,44,30', brow_melanin=.2, brow_dark=.75,

@@ -22,9 +22,7 @@ WALL_ALLOW = {'SM_Wall_Dungeon_Straight_A', 'SM_Wall_Dungeon_Straight_B', 'SM_Wa
               'SM_Wall_Plaster_Straight_A', 'SM_Wall_Plaster_Straight_B', 'SM_Wall_Plaster_CornerPost_L', 'SM_Wall_Plaster_CornerPost_R',
               'SM_Wall_Plaster_End_L', 'SM_Wall_Plaster_End_R', 'SM_Wall_Plaster_DoorJamb_L', 'SM_Wall_Plaster_DoorJamb_R', 'SM_Wall_Plaster_DoorHeader'}
 SCATTER_ALLOW = {'SM_BeachPebbles_A', 'SM_BeachPebbles_B', 'SM_BeachPebbles_C', 'SM_BeachPebbles_D',
-                 'SM_Pebbles_A', 'SM_Pebbles_B', 'SM_Pebbles_C',
-                 # beach shells at a size the play camera reads (Terrain/tools/scatter_clusters.py, 13 Nov 2026)
-                 'SM_ClamShell_Cluster_A', 'SM_ClamShell_Cluster_B', 'SM_ClamShell_Cluster_C', 'SM_Starfish_Large_A', 'SM_Starfish_Large_B'}
+                 'SM_Pebbles_A', 'SM_Pebbles_B', 'SM_Pebbles_C'}
 LIB = unreal.EditorAssetLibrary
 EDIT = unreal.MaterialEditingLibrary
 TOOLS = unreal.AssetToolsHelpers.get_asset_tools()
@@ -428,9 +426,13 @@ HAIR_MODEL = os.environ.get('DINK_HAIR_MODEL', 'hair')   # 'lit' builds the prev
 # her pulled-back hair as a separate shingle, so she has none.
 HAIR_LOOK = {
     'Dink': {'tint': (2.4, 1.5, 1.1), 'scalars': {'Scatter': 0.8}},
-    'Mother': {'tint': (0.8, 0.76, 0.7), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.5, 'StrandVariation': 0.12}},
+    'Mother': {'tint': (0.8, 0.76, 0.7), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.5, 'StrandVariation': 0.12, 'DepthShade': 0.45, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12}},
 }
+
+
+# Skin tint per character (multiplies the base colour). The Mother's fair skin was chalk in the window light of her house.
+SKIN_LOOK = {'Mother': (0.78, 0.72, 0.69)}
 
 
 def hair_material(folder, name, defaults, morph=False):
@@ -465,8 +467,12 @@ c *= lerp(RootShade, 1.0, smoothstep(0.0, 0.5, t));              // darker at th
 c *= lerp(1.0, TipLight, smoothstep(0.45, 1.0, t));              // lighter, sun-bleached tips
 c *= 1.0 + Variation * (strand * 2.0 - 1.0);                     // strand to strand
 c *= lerp(DepthShade, 1.0, depth);                               // strands deep in the lock are in its shade
-return c;''', F3, ['C', 'T', 'M', 'RootShade', 'TipLight', 'Variation', 'DepthShade'], 'Hair colour: root to tip, strand to strand, depth')
+c *= lerp(CapShade, 1.0, saturate(Card));                        // the opaque cap under the cards is the hair's dark depth
+return c;''', F3, ['C', 'T', 'M', 'RootShade', 'TipLight', 'Variation', 'DepthShade', 'CapShade', 'Card'], 'Hair colour: root to tip, strand to strand, depth')
     link(bc, 'RGB', colour, 'C'); link(tint, '', colour, 'T'); link(msk, 'RGB', colour, 'M')
+    # CapShade: under a crop the cap was lit paler than the cards standing on it and showed between them as scalp
+    # (Milder, 14 Nov 2026); where the cap IS the visible hair (the Mother's drawn-back hair) the instance sets 1
+    link(param('CapShade', 0.6), '', colour, 'CapShade'); link(flow, 'B', colour, 'Card')
     link(param('RootShade', 0.85), '', colour, 'RootShade'); link(param('TipLight', 1.1), '', colour, 'TipLight')
     link(param('StrandVariation', 0.18), '', colour, 'Variation'); link(param('DepthShade', 0.8), '', colour, 'DepthShade')
     out(colour, '', MP.MP_BASE_COLOR)
@@ -492,10 +498,20 @@ return c;''', F3, ['C', 'T', 'M', 'RootShade', 'TipLight', 'Variation', 'DepthSh
     mask = custom(mat, -600, -150, '''
 float on = step(0.004, M.r + M.g + M.b);
 float t = lerp(0.5, saturate(M.b), on);
-return saturate(A * Gain * lerp(1.0, TipFade, smoothstep(0.7, 1.0, t)) + Bias);''', F1, ['A', 'M', 'Gain', 'TipFade', 'Bias'], 'Hair coverage')
-    link(bc, 'A', mask, 'A'); link(msk, 'RGB', mask, 'M')
-    link(param('AlphaGain', 1.15), '', mask, 'Gain'); link(param('TipFade', 0.7), '', mask, 'TipFade'); link(param('AlphaBias', 0.0), '', mask, 'Bias')
-    out(mask, '', MP.MP_OPACITY_MASK)
+// Coverage below Cut is no hair at all. A card of sparse strands averages to a few per cent of coverage in the
+// smaller mips, and the dithered mask drew that haze as a ghost sheet over the head and a stipple halo round it.
+float c = A * Gain * lerp(1.0, TipFade, smoothstep(0.7, 1.0, t)) + Bias;
+return saturate((c - Cut) / max(1.0 - Cut, 0.01));''', F1, ['A', 'M', 'Gain', 'TipFade', 'Bias', 'Cut'], 'Hair coverage')
+    link(bc, 'A', mask, 'A'); link(msk, 'RGB', mask, 'M'); link(param('AlphaCut', 0.3), '', mask, 'Cut')
+    link(param('AlphaGain', 1.5), '', mask, 'Gain'); link(param('TipFade', 0.7), '', mask, 'TipFade'); link(param('AlphaBias', 0.0), '', mask, 'Bias')
+    # Shadows: only the opaque cap casts one (FLOW.b is 0 on the cap, 1 on the cards). A card lifted a few millimetres
+    # off the head shadowed its own visible side and the cap under it, and a short crop in full sun was dark dashes on
+    # a pale cap (Milder, 14 Nov 2026). CardShadow 1 lets the cards cast again.
+    shadow_mask = custom(mat, -350, -150, 'return A * lerp(1.0 - saturate(B), 1.0, saturate(K));', F1, ['A', 'B', 'K'], 'Hair coverage in the shadow pass')
+    link(mask, '', shadow_mask, 'A'); link(flow, 'B', shadow_mask, 'B'); link(param('CardShadow', 0.0), '', shadow_mask, 'K')
+    in_pass = expr(mat, unreal.MaterialExpressionShadowReplace, -150, -150)
+    link(mask, '', in_pass, 'Default'); link(shadow_mask, '', in_pass, 'Shadow')
+    out(in_pass, '', MP.MP_OPACITY_MASK)
     mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_MASKED)
     mat.set_editor_property('opacity_mask_clip_value', 0.5)
     mat.set_editor_property('dither_opacity_mask', True)
@@ -886,10 +902,12 @@ for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', '
         else:
             parent = surface_material(folder, 'M_' + mat_name[3:], tex, skeletal=True, shading=kind, masked=masked, two_sided=masked,
                                       profile=profile if kind == 'skin' else None, morph=has_shapes)
-        materials[mat_name] = instance(folder, mat_name, parent, tex, {'ScatterAmount': 0.35} if kind == 'skin' else None)
+        # NormalStrength 0.6 on skin (14 Nov 2026): at full strength the pore and crease relief, right in the Blender
+        # renders, read as orange peel and goose flesh under the game's sun and window light
+        materials[mat_name] = instance(folder, mat_name, parent, tex, {'ScatterAmount': 0.35, 'NormalStrength': 0.6} if kind == 'skin' else None)
         # Calibrated 12 Nov 2026 against Characters/contact_sheet.png (face close-up in sun, dink.CalCam): at the full
         # scatter strength the face blew out pale and flat (freckles, lids and nose shading gone); the hair read brown.
-        look = {'skin': (0.86, 0.82, 0.80), 'hair': (1.4, 1.2, 1.05)}.get(kind)
+        look = {'skin': SKIN_LOOK.get(CHAR, (0.86, 0.82, 0.80)), 'hair': (1.4, 1.2, 1.05)}.get(kind)
         if kind == 'hair' and HAIR_MODEL == 'hair':
             # The Hair model scatters light through the strands, so the atlas colour needs no brightening; the tint
             # only trims the hue per character (calibrated in the running game, see HAIR_LOOK). DINK_HAIR_TINT_<Name>
