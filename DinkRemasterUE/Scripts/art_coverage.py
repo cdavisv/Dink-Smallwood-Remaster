@@ -32,6 +32,11 @@ States (one per coverage row; see Plugins/DinkImport/Docs/art_coverage.md):
                                      (`stands_for`); UDinkEnvironmentSubsystem::ApplyTownHouses shows
                                      that house instead (dink.TownHouses, visual only). See
                                      town_house_cards() for the exact conditions.
+               A fifth grade is the screen ground:
+                 "ground-layers"     the screen's tile layer is drawn by the photoreal terrain
+                                     material and every tile class on it passed the in-game review
+                                     (Data/Environment/ground_classes.json and ground_review.json;
+                                     see screen_ground_state()).
   placeholder  still drawn by the greybox (card, block, volume, instance) or not
                drawn at all; no art binding. Also the conservative answer
                whenever the binding model is ambiguous.
@@ -413,6 +418,92 @@ def town_house_cards(data, resolve):
     return out
 
 
+ENV_TEXTURES = "/Game/Dink/Textures/Environment/"
+ENV_TERRAIN = "/Game/Dink/Materials/Environment/M_Env_Terrain"
+
+
+def screen_ground_state(facts, review, resolve):
+    """One screen's ground -> (state, evidence).
+
+    `facts` is the screen's row of Content/Dink/Data/Environment/ground_classes.json (written by the world export:
+    tile classes, the terrain layer of each, the layers the mask carries, the layers it could not carry, water);
+    `review` is Content/Dink/Data/Environment/ground_review.json (the verdicts of the in-game review, kept by hand);
+    `resolve(game_path)` -> (exists, note). The ground is final when, and only when:
+      1. the screen instances the photoreal terrain material (not the 1997 painted ground) and every tile on it
+         belongs to a class that has a terrain layer;
+      2. the master material and the BC, N, ORM and H textures of every layer the mask carries exist (the importer
+         falls back to the painted ground when one is missing);
+      3. no layer was dropped for want of a mask channel (`dropped`: those tiles are drawn as an unrelated layer;
+         `merged`, a layer drawn as one of its own family, is allowed);
+      4. every tile class on the screen passed the review, indoors or outdoors as the screen is (`classes`);
+         a class nobody looked at is not passed;
+      5. water tiles have a water surface, unless the review passed the condition `water_without_surface`;
+      6. the review holds no finding against this one screen (`screens`).
+    Anything else is placeholder, with every reason found."""
+    if not isinstance(facts, dict) or not facts.get("classes"):
+        return "placeholder", "no ground facts for this screen in ground_classes.json (run the world export)"
+    if not ground_rule_enabled(review):
+        return "placeholder", "photoreal terrain layers %s, not final: the rule that counts reviewed screen grounds final is switched off (%s)" % (
+            ", ".join(facts.get("layers") or []) or "none", "ground_review.json rule.count_reviewed_grounds_final, or --ground-rule off")
+    where = "indoor" if facts.get("indoor") else "outdoor"
+    classes = {c: n for c, n in facts["classes"].items() if n}
+    layers = list(facts.get("layers") or [])
+    drawn = "photoreal terrain layers %s%s" % (", ".join(layers) or "none", " and a water surface" if facts.get("water_surface") else "")
+    reasons = []
+    if facts.get("painted_ground") or not layers:
+        reasons.append("keeps the 1997 painted ground picture as its texture")
+    if facts.get("unmapped_tiles"):
+        reasons.append("%d tiles of a class without a terrain layer" % facts["unmapped_tiles"])
+    if layers and not resolve(ENV_TERRAIN)[0]:
+        reasons.append("the terrain master material is not imported")
+    for layer in layers:
+        missing = [k for k in ("BC", "N", "ORM", "H") if not resolve("%sT_Env_%s_%s" % (ENV_TEXTURES, layer, k))[0]]
+        if missing:
+            reasons.append("layer %s lacks its %s texture: the importer falls back to the painted ground" % (layer, "/".join(missing)))
+    for layer, lost in sorted((facts.get("dropped") or {}).items()):
+        tiles = lost.get("tiles") if isinstance(lost, dict) else lost
+        reasons.append("layer %s (%.1f tiles) is not drawn, the mask carries %d layers: shown as %s" % (
+            layer, float(tiles), len(layers), lost.get("drawn_as", "another layer") if isinstance(lost, dict) else layers[0] if layers else "nothing"))
+    verdicts = (review or {}).get("classes") or {}
+    for cls in sorted(classes):
+        v = (verdicts.get(cls) or {}).get(where) or {}
+        if v.get("verdict") == "pass":
+            continue
+        reasons.append("tile class %s (%d tiles, %s): %s" % (cls, classes[cls], where, v.get("reason") or "not reviewed in the game"))
+    if classes.get("water") and not facts.get("water_surface"):
+        v = ((review or {}).get("conditions") or {}).get("water_without_surface") or {}
+        if v.get("verdict") != "pass":
+            reasons.append("%d water tiles without a water surface: %s" % (classes["water"], v.get("reason") or "not reviewed in the game"))
+    return ("placeholder", "%s, not final: %s" % (drawn, "; ".join(reasons))) if reasons else ("final", (
+        "ground-layers: tile classes %s -> %s (M_Env_Terrain, textures exist)%s; every class passed the in-game review of %s "
+        "(ground_review.json); nothing greybox is drawn (hardness prisms are hidden unless dink.GreyboxBlockers 1)" % (
+            ", ".join("%s %d" % (c, classes[c]) for c in sorted(classes, key=lambda c: (-classes[c], c))), drawn,
+            "; %s drawn as a layer of its family" % ", ".join(sorted(facts["merged"])) if facts.get("merged") else "",
+            (review or {}).get("date", "an unrecorded date"))))
+
+
+def ground_rule_enabled(review):
+    """The one switch of the screen-ground rule: ground_review.json `rule.count_reviewed_grounds_final` (absent = off;
+    `--ground-rule on|off` overrides it for one run). Off, no ground counts final by review, whatever the verdicts."""
+    return bool(((review or {}).get("rule") or {}).get("count_reviewed_grounds_final"))
+
+
+def load_ground(notes, override=None):
+    env = os.path.join(PROJECT, "Content", "Dink", "Data", "Environment")
+    facts = read_json(os.path.join(env, "ground_classes.json"))
+    review = read_json(os.path.join(env, "ground_review.json"))
+    if not isinstance(facts, dict) or not isinstance(facts.get("screens"), dict):
+        notes.append("ground_classes.json not found: every screen ground stays placeholder (run the world export)")
+        facts = {"screens": {}}
+    if not isinstance(review, dict):
+        notes.append("ground_review.json not found: no tile class counts as reviewed")
+        review = {}
+    if override in ("on", "off"):
+        review = dict(review, rule=dict(review.get("rule") or {}, count_reviewed_grounds_final=(override == "on")))
+        notes.append("screen-ground rule forced %s by --ground-rule" % override)
+    return facts["screens"], review
+
+
 def classify(args):
     notes = []
     assets = Assets()
@@ -438,6 +529,7 @@ def classify(args):
             scripted_of[r["origin"]] = bool(r["script"].strip())
     fam_rows, fam_origins, fam_screens = load_families(assets, notes)
     manifests["families"] = fam_rows
+    ground_facts, ground_review = load_ground(notes, getattr(args, "ground_rule", None))
     town_cards = town_house_cards(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Art", "town_houses.json")), assets.resolve)
 
     def family_decision(oid, screen_no, cls, detail):
@@ -582,7 +674,11 @@ def classify(args):
                     if lab.startswith("unpublished draft"):
                         extra = "; source candidate: " + lab
                         break
-                finish(r, "screen ground (tile layer)", "terrain/screen", "placeholder", "greybox ground mesh, hardness prisms and volumes" + extra)
+                state, evidence = screen_ground_state(ground_facts.get(str(no)), ground_review, assets.resolve)
+                finding = (ground_review.get("screens") or {}).get(str(no))
+                if state == "final" and isinstance(finding, dict) and finding.get("verdict") != "pass":
+                    state, evidence = "placeholder", "photoreal terrain layers drawn, not final: this screen in the review: %s" % finding.get("reason", "no reason recorded")
+                finish(r, "screen ground (tile layer)", "terrain/screen", state, evidence + (extra if state == "placeholder" else ""))
         elif t == "warp":
             if r["became"].startswith("inactive"):
                 finish(r, "script warp", "warp", "cut", "cut: %s - %s" % (r["became"], r["detail"]))
@@ -659,6 +755,18 @@ def summarise(out, manifests, assets, ledger_counts, notes, cov_path, top):
     family_final = sum(1 for r in finals if r["evidence"].startswith("family-bound"))
     print("Final grades: origin-bound %d, screen-dressing %d, family-bound %d, warp rows inheriting a final host %d (%d of them family-bound)" % (
         direct, dress, family_final, warp_final, sum(1 for r in finals if r["evidence"].startswith("warp trigger") and is_family_final(r))))
+    grounds = [r for r in out if r["type"] == "screen"]
+    print("Screen grounds: %d final by screen-dressing, %d final by reviewed terrain layers, %d placeholder" % (
+        sum(1 for r in grounds if r["state"] == "final" and r["evidence"].startswith("screen-dressing")),
+        sum(1 for r in grounds if r["state"] == "final" and r["evidence"].startswith("ground-layers")),
+        sum(1 for r in grounds if r["state"] == "placeholder")))
+    why = collections.Counter()
+    for r in grounds:
+        if r["state"] == "placeholder" and ", not final: " in r["evidence"]:
+            for reason in r["evidence"].split(", not final: ", 1)[1].split("; "):
+                why[re.sub(r" \(\d+ tiles, (indoor|outdoor)\)", r" (\1)", re.sub(r" \(\d+\.\d tiles\)|^\d+ ", "", reason)).split(":")[0].strip()] += 1
+    for reason, n in why.most_common(30):
+        print("  %4d screens: %s" % (n, reason))
     print("Town houses (town_houses.json): %d placements final, %d named by the file but still placeholder" % (
         sum(1 for r in finals if r["evidence"].startswith("town-house")),
         sum(1 for r in out if r["state"] == "placeholder" and r["type"] == "placement" and "town-house open: " in r["evidence"])))
@@ -725,6 +833,8 @@ def main():
     ap.add_argument("--coverage", default=os.path.join("Saved", "Import", "coverage.csv"), help="importer coverage report (project relative)")
     ap.add_argument("--out", default=os.path.join("Saved", "Import", "art_coverage.csv"), help="CSV to write (project relative)")
     ap.add_argument("--top", type=int, default=40, help="backlog families to print")
+    ap.add_argument("--ground-rule", choices=("on", "off"), default=None,
+                    help="override ground_review.json rule.count_reviewed_grounds_final for this run (the rule that counts a reviewed screen ground final)")
     args = ap.parse_args()
     out, manifests, assets, ledger_counts, notes, cov_path = classify(args)
     out_path = os.path.join(PROJECT, args.out)
