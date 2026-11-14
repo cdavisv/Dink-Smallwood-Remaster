@@ -241,6 +241,18 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 			if ((*Row)->TryGetStringField(TEXT("span_end"), End)) B.SpanEnd = End == TEXT("left") ? -1 : End == TEXT("right") ? 1 : 0;
 		}
 		B.AnchorFront = FMath::Clamp(B.AnchorFront, 0.0, 1.0);
+		{
+			FString Mount;
+			if ((*Row)->TryGetStringField(TEXT("mount"), Mount))
+			{
+				B.Mount = Mount == TEXT("on") ? 1 : Mount == TEXT("crown") ? 2 : Mount == TEXT("wall") ? 3 : 0;
+				if (B.Mount == 0 || B.Span != 0)
+				{
+					Errors.Add(FString::Printf(TEXT("%s: mount must be on, crown or wall, and cannot be combined with span"), *B.Family));
+					continue;
+				}
+			}
+		}
 		(*Row)->TryGetStringField(TEXT("note"), B.Note);
 		double FrameNumber = 0.0;
 		const bool bHasFrame = (*Row)->TryGetNumberField(TEXT("frame"), FrameNumber);
@@ -343,6 +355,50 @@ FTransform DinkArtFamily::MeshTransform(const FBox& MeshBounds, const FVector& G
 	const FQuat Rotation = FRotator(0.0, YawDegrees, 0.0).Quaternion();
 	const FVector Anchor(MeshBounds.GetCenter().X, MeshBounds.GetCenter().Y, MeshBounds.Min.Z);
 	return FTransform(Rotation, Ground - Rotation.RotateVector(Anchor * double(Scale)), FVector(Scale));
+}
+
+bool DinkArtFamily::MountPoint(uint8 Mount, const FVector2D& Picture, const TArray<FMountHost>& Hosts, FVector& OutGround)
+{
+	const FMountHost* Host = nullptr;
+	for (const FMountHost& H : Hosts)
+	{
+		if (!H.Card.bIsValid || !H.Mesh.IsValid || !H.Card.IsInside(Picture)) continue;
+		const double Height = H.Mesh.GetSize().Z;
+		if ((Mount == 1 && Height > 220.0) || (Mount == 2 && Height < 300.0)) continue;
+		if (!Host || H.Card.GetArea() < Host->Card.GetArea()) Host = &H;
+	}
+	if (!Host || Mount < 1 || Mount > 3) return false;
+	const FVector2D CardSize = Host->Card.GetSize();
+	const double Fu = CardSize.X > 1.0 ? (Picture.X - Host->Card.Min.X) / CardSize.X : 0.5;  // 0 west .. 1 east
+	const double Fv = CardSize.Y > 1.0 ? (Picture.Y - Host->Card.Min.Y) / CardSize.Y : 0.5;  // 0 top .. 1 bottom
+	const FBox& M = Host->Mesh;
+	const FVector Size = M.GetSize();
+	if (Mount == 1)
+	{
+		// The top surface is drawn in the upper half of the card (the lower half is the front face); keep off the edges.
+		OutGround.X = FMath::Lerp(M.Min.X + Size.X * 0.12, M.Max.X - Size.X * 0.12, FMath::Clamp(Fu, 0.0, 1.0));
+		OutGround.Y = FMath::Lerp(M.Min.Y + Size.Y * 0.25, M.Max.Y - Size.Y * 0.25, FMath::Clamp(Fv * 2.0, 0.0, 1.0));
+		OutGround.Z = M.Max.Z;
+	}
+	else if (Mount == 2)
+	{
+		// The crown as an ellipsoid over the upper part of the tree; the point lies on its south face, towards the camera,
+		// a little inside the leaves. The upper three quarters of the card are crown.
+		double X = FMath::Clamp(Fu * 2.0 - 1.0, -0.8, 0.8);
+		double Z = FMath::Clamp(1.0 - 2.0 * Fv / 0.75, -0.8, 0.8);
+		const double R2 = X * X + Z * Z;
+		if (R2 > 0.72) { const double K = FMath::Sqrt(0.72 / R2); X *= K; Z *= K; }
+		const double Y = FMath::Sqrt(FMath::Max(0.0, 1.0 - X * X - Z * Z)) * 0.9;
+		const FVector Centre(M.GetCenter().X, M.GetCenter().Y, M.Min.Z + Size.Z * 0.62);
+		OutGround = Centre + FVector(X * Size.X * 0.42, Y * Size.Y * 0.42, Z * Size.Z * 0.34);
+	}
+	else
+	{
+		OutGround.X = FMath::Clamp(Picture.X, M.Min.X, M.Max.X);
+		OutGround.Y = M.Max.Y + 1.0;
+		OutGround.Z = FMath::Lerp(M.Max.Z, M.Min.Z, FMath::Clamp(Fv, 0.1, 0.9));
+	}
+	return true;
 }
 
 void DinkArtFamily::SpanPieces(const FDinkFamilyBinding& Binding, double SpanCm, double ModuleCm, TArray<FSpanPiece>& Out)
@@ -611,18 +667,23 @@ int32 UDinkArtFamilySubsystem::ApplyScreen(int32 ScreenNumber)
 	AppliedScreens.Add(ScreenNumber);
 	if (!bIndexed) BuildIndex(*World);
 	int32 Count = 0;
-	if (const TArray<TWeakObjectPtr<ADinkPlaceholderActor>>* Actors = ActorsByScreen.Find(ScreenNumber))
+	// What stands on the ground first; then what is mounted on it (rows with `mount`), which needs those as hosts.
+	TArray<DinkArtFamily::FMountHost> Hosts;
+	for (const bool bMounted : {false, true})
 	{
-		for (const TWeakObjectPtr<ADinkPlaceholderActor>& Actor : *Actors)
+		if (const TArray<TWeakObjectPtr<ADinkPlaceholderActor>>* Actors = ActorsByScreen.Find(ScreenNumber))
 		{
-			if (Actor.IsValid() && DressActor(*Actor.Get())) ++Count;
+			for (const TWeakObjectPtr<ADinkPlaceholderActor>& Actor : *Actors)
+			{
+				if (Actor.IsValid() && DressActor(*Actor.Get(), Hosts, bMounted)) ++Count;
+			}
 		}
-	}
-	if (const TArray<TWeakObjectPtr<ADinkGreyboxScreen>>* Screens = GreyboxByScreen.Find(ScreenNumber))
-	{
-		for (const TWeakObjectPtr<ADinkGreyboxScreen>& Screen : *Screens)
+		if (const TArray<TWeakObjectPtr<ADinkGreyboxScreen>>* Screens = GreyboxByScreen.Find(ScreenNumber))
 		{
-			if (Screen.IsValid()) Count += DressInstances(*Screen.Get());
+			for (const TWeakObjectPtr<ADinkGreyboxScreen>& Screen : *Screens)
+			{
+				if (Screen.IsValid()) Count += DressInstances(*Screen.Get(), Hosts, bMounted);
+			}
 		}
 	}
 	Dressed += Count;
@@ -630,7 +691,14 @@ int32 UDinkArtFamilySubsystem::ApplyScreen(int32 ScreenNumber)
 	return Count;
 }
 
-bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
+/** The card of a placement in the picture plane (see FMountHost): world centre and size in cm. */
+static FBox2D PictureCard(const FVector& WorldCentre, double WidthCm, double HeightCm)
+{
+	const FVector2D C(WorldCentre.X, WorldCentre.Y - WorldCentre.Z);
+	return FBox2D(C - FVector2D(WidthCm, HeightCm) * 0.5, C + FVector2D(WidthCm, HeightCm) * 0.5);
+}
+
+bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor, TArray<DinkArtFamily::FMountHost>& Hosts, bool bMounted)
 {
 	UStaticMeshComponent* Card = Actor.Card;
 	if (!Actor.Origin || !Card || !Card->GetStaticMesh() || !Actor.GetRootComponent()) return false;
@@ -650,18 +718,28 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	P.bHardnessOnly = Actor.PlacementKind == TEXT("hardness_only");
 	const FDinkFamilyBinding* B = nullptr;
 	const EDinkFamilyDecision Decision = DinkArtFamily::Decide(P, Precedence, Bindings, B);
-	DecisionCounts.FindOrAdd(Decision)++;
+	if (!bMounted) DecisionCounts.FindOrAdd(Decision)++;
 	UStaticMesh* Mesh = B ? MeshFor(*B, P.Origin) : nullptr;
-	if (!Mesh) return false;
+	if (!Mesh || (B->Mount != 0) != bMounted) return false;
 
 	// The card is the sprite at its imported size: relative scale (width, 1, height) in metres of a 1 m unit card.
 	const FVector CardLocation = Card->GetRelativeLocation();
 	const FVector CardScale = Card->GetRelativeScale3D();
 	const float Scale = float(B->Scale) * DinkArtFamily::FitScale(B->Fit, CardScale.X * 100.0, CardScale.Z * 100.0, Mesh->GetBoundingBox().GetSize(), B->bYawFromSprite);
-	const double Yaw = (B->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(P.Origin)) + B->YawOffset;
+	const double Yaw = (B->bYawFromSprite || B->Mount == 3 ? 0.0 : DinkArtFamily::StableYaw(P.Origin)) + B->YawOffset;
 
 	// +Y is south, towards the original camera: a front-anchored mesh moves back by half its depth
 	const double Back = B->AnchorFront * 0.5 * DinkArtFamily::DepthAfterYaw(Mesh->GetBoundingBox().GetSize(), Yaw, Scale);
+	FVector Ground(CardLocation.X, CardLocation.Y - Back, 0.0);
+	const FBox2D OwnCard = PictureCard(Card->GetComponentLocation(), CardScale.X * 100.0, CardScale.Z * 100.0);
+	if (bMounted)
+	{
+		FVector World;
+		if (!DinkArtFamily::MountPoint(B->Mount, OwnCard.GetCenter(), Hosts, World)) return false;
+		// against a wall: the mesh's back, not its middle, touches the wall face
+		if (B->Mount == 3) World.Y += 0.5 * DinkArtFamily::DepthAfterYaw(Mesh->GetBoundingBox().GetSize(), Yaw, Scale);
+		Ground = Actor.GetRootComponent()->GetComponentTransform().InverseTransformPosition(World);
+	}
 	// a spanning module (interior wall runs) is repeated along its run until it fills the layout-scaled card
 	TArray<DinkArtFamily::FSpanPiece> Pieces;
 	DinkArtFamily::SpanPieces(*B, (B->Span == 2 ? CardScale.Z : CardScale.X) * 100.0, Mesh->GetBoundingBox().GetSize().X * Scale, Pieces);
@@ -679,10 +757,15 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		Part->SetGenerateOverlapEvents(false);
 		Part->ComponentTags.Add(FamilyTag);
 		Part->SetStaticMesh(PieceMesh);
-		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), FVector(CardLocation.X, CardLocation.Y - Back, 0.0), Yaw, Scale, Pieces[Index]));
+		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), Ground, Yaw, Scale, Pieces[Index]));
 		Actor.AddInstanceComponent(Part);
 		Part->RegisterComponent();
 		if (!Component) Component = Part;
+		if (!bMounted)
+		{
+			if (Index == 0) Hosts.Add({OwnCard, FBox(ForceInit)});
+			Hosts.Last().Mesh += PieceMesh->GetBoundingBox().TransformBy(Part->GetComponentTransform());
+		}
 	}
 	// Trunk feet blend toward the soil under them (bark materials read custom primitive data 0-2; rendering only).
 	if (UDinkEnvironmentSubsystem* Env = Actor.GetWorld() ? Actor.GetWorld()->GetSubsystem<UDinkEnvironmentSubsystem>() : nullptr)
@@ -695,7 +778,7 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	return true;
 }
 
-int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
+int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen, TArray<DinkArtFamily::FMountHost>& Hosts, bool bMounted)
 {
 	if (!Screen.InstanceOrigins || Screen.ActorHasTag(TEXT("DinkAuthoredArt")) || !Screen.GetRootComponent()) return 0;
 	TMap<FName, TArray<const FDinkInstanceOrigin*>> ByComponent;
@@ -722,11 +805,30 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 			P.bScripted = !O->ScriptName.IsNone();
 			const FDinkFamilyBinding* B = nullptr;
 			const EDinkFamilyDecision Decision = DinkArtFamily::Decide(P, Precedence, Bindings, B);
-			DecisionCounts.FindOrAdd(Decision)++;
+			if (!bMounted) DecisionCounts.FindOrAdd(Decision)++;
 			if (!B || (Shared && B != Shared)) bAll = false;
 			Shared = B;
 		}
-		if (!bAll || !Shared || !MeshFor(*Shared)) continue;
+		if (!bAll || !Shared || !MeshFor(*Shared) || (Shared->Mount != 0) != bMounted) continue;
+		// Mounted: every instance needs its host, or the whole component keeps its cards.
+		TMap<int32, FVector> MountedAt;
+		if (bMounted)
+		{
+			bool bHosted = true;
+			for (const FDinkInstanceOrigin* O : Pair.Value)
+			{
+				FTransform CardWorld;
+				FVector World;
+				if (!Decor->GetInstanceTransform(O->InstanceIndex, CardWorld, /*bWorldSpace*/ true) ||
+					!DinkArtFamily::MountPoint(Shared->Mount, PictureCard(CardWorld.GetLocation(), CardWorld.GetScale3D().X * 100.0, CardWorld.GetScale3D().Z * 100.0).GetCenter(), Hosts, World))
+				{
+					bHosted = false;
+					break;
+				}
+				MountedAt.Add(O->InstanceIndex, Screen.GetRootComponent()->GetComponentTransform().InverseTransformPosition(World));
+			}
+			if (!bHosted) continue;
+		}
 		// One instanced component per variant mesh; each instance goes to the variant its origin ID selects.
 		TMap<UStaticMesh*, UInstancedStaticMeshComponent*> ByMesh;
 		for (const FDinkInstanceOrigin* O : Pair.Value)
@@ -763,11 +865,23 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 			// Instance = card relative to the screen root: placement yaw, card centre, scale (width, 1, height) in metres.
 			const FVector At = Card.GetLocation();
 			const float Scale = float(Shared->Scale) * DinkArtFamily::FitScale(Shared->Fit, Card.GetScale3D().X * 100.0, Card.GetScale3D().Z * 100.0, Bounds.GetSize(), Shared->bYawFromSprite);
-			const double Yaw = Card.Rotator().Yaw + (Shared->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(O->OriginId.ToString())) + Shared->YawOffset;
+			const double Yaw = Card.Rotator().Yaw + (Shared->bYawFromSprite || Shared->Mount == 3 ? 0.0 : DinkArtFamily::StableYaw(O->OriginId.ToString())) + Shared->YawOffset;
 			// The greybox ground is world Z 0; the screen root sits on it.
 			const double Back = Shared->AnchorFront * 0.5 * DinkArtFamily::DepthAfterYaw(Bounds.GetSize(), Yaw - Card.Rotator().Yaw, Scale);
-			const FVector Ground = FVector(At.X, At.Y, -Screen.GetActorLocation().Z) - FRotator(0.0, Card.Rotator().Yaw, 0.0).RotateVector(FVector(0.0, Back, 0.0));
-			Family->AddInstance(DinkArtFamily::SpanTransform(Bounds, Ground, Yaw, Scale, Pieces[PieceIndex]), /*bWorldSpace*/ false);
+			const FVector Ground = bMounted ? MountedAt[O->InstanceIndex] :
+				FVector(At.X, At.Y, -Screen.GetActorLocation().Z) - FRotator(0.0, Card.Rotator().Yaw, 0.0).RotateVector(FVector(0.0, Back, 0.0));
+			const FTransform Placed = DinkArtFamily::SpanTransform(Bounds, Ground, Yaw, Scale, Pieces[PieceIndex]);
+			Family->AddInstance(Placed, /*bWorldSpace*/ false);
+			if (!bMounted)
+			{
+				FTransform CardWorld;
+				if (PieceIndex == 0)
+				{
+					Decor->GetInstanceTransform(O->InstanceIndex, CardWorld, /*bWorldSpace*/ true);
+					Hosts.Add({PictureCard(CardWorld.GetLocation(), CardWorld.GetScale3D().X * 100.0, CardWorld.GetScale3D().Z * 100.0), FBox(ForceInit)});
+				}
+				Hosts.Last().Mesh += Bounds.TransformBy(Placed * Family->GetComponentTransform());
+			}
 			}
 			++Count;
 		}

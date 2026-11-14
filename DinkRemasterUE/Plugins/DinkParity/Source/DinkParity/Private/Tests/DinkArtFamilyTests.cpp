@@ -100,6 +100,43 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 		{"family":"flask","mesh":"/Game/A/SM_Flask","scale":0},{"family":"urn","mesh":"/Game/A/SM_Urn","scale":50}]})"), Sized, SizedErrors);
 	TestTrue(TEXT("scale is read and defaults to 1"), Sized.Num() == 2 && Sized[0].Scale == 2.5 && Sized[1].Scale == 1.0);
 	TestEqual(TEXT("a scale outside 0.05..20 is refused"), SizedErrors.Num(), 2);
+
+	// mount: on, crown, wall; anything else, or a span with it, is refused
+	TArray<FDinkFamilyBinding> Mounted;
+	TArray<FString> MountedErrors;
+	ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
+		{"family":"bread","mesh":"/Game/A/SM_Bread","mount":"on"},{"family":"fruit","mesh":"/Game/A/SM_Fruit","mount":"crown"},
+		{"family":"notice","mesh":"/Game/A/SM_Notice","mount":"wall"},{"family":"clam","mesh":"/Game/A/SM_Clam"},
+		{"family":"flag","mesh":"/Game/A/SM_Flag","mount":"ceiling"},{"family":"rail","mesh":"/Game/A/SM_Rail","mount":"on","span":"width"}]})"), Mounted, MountedErrors);
+	TestTrue(TEXT("mount is read and defaults to the ground"), Mounted.Num() == 4 && Mounted[0].Mount == 1 && Mounted[1].Mount == 2 && Mounted[2].Mount == 3 && Mounted[3].Mount == 0);
+	TestEqual(TEXT("an unknown mount and a mount with a span are refused"), MountedErrors.Num(), 2);
+	{
+		// A counter: card 680 x 340 cm in the picture plane, mesh 200 x 80 x 95 cm standing in its middle. A wall behind it,
+		// a tree beside it.
+		DinkArtFamily::FMountHost Counter, Wall, Tree;
+		Counter.Card = FBox2D(FVector2D(1000, 2000), FVector2D(1680, 2340));
+		Counter.Mesh = FBox(FVector(1240, 2260, 0), FVector(1440, 2340, 95));
+		Wall.Card = FBox2D(FVector2D(900, 1500), FVector2D(1900, 2400));
+		Wall.Mesh = FBox(FVector(900, 1900, 0), FVector(1900, 1930, 300));
+		Tree.Card = FBox2D(FVector2D(3000, 0), FVector2D(5000, 3000));
+		Tree.Mesh = FBox(FVector(3600, 2600, 0), FVector(4400, 3400, 1000));
+		const TArray<DinkArtFamily::FMountHost> Hosts = {Wall, Counter, Tree};
+		FVector At;
+		TestTrue(TEXT("on: the smallest low host under the point"), DinkArtFamily::MountPoint(1, FVector2D(1340, 2080), Hosts, At));
+		TestEqual(TEXT("on: stands on the host's top"), At.Z, 95.0, 1e-6);
+		TestTrue(TEXT("on: inside the host's top face"), At.X > 1240 && At.X < 1440 && At.Y > 2260 && At.Y < 2340);
+		TestEqual(TEXT("on: the middle of the card is the middle of the mesh"), At.X, 1340.0, 1e-6);
+		FVector West;
+		DinkArtFamily::MountPoint(1, FVector2D(1010, 2080), Hosts, West);
+		TestTrue(TEXT("on: the west end of the card is the west end of the mesh, off its edge"), West.X < At.X && West.X >= 1240 + 200 * 0.12 - 1e-6);
+		TestFalse(TEXT("on: a wall or a tree is not a table"), DinkArtFamily::MountPoint(1, FVector2D(1800, 1600), Hosts, At));
+		TestTrue(TEXT("crown: a tall host"), DinkArtFamily::MountPoint(2, FVector2D(4000, 900), Hosts, At));
+		TestTrue(TEXT("crown: in the upper part of the tree, on its south side"), At.Z > 450 && At.Z < 1000 && At.Y > 3000 && At.Y < 3400 && At.X > 3600 && At.X < 4400);
+		TestFalse(TEXT("crown: a counter has none"), DinkArtFamily::MountPoint(2, FVector2D(1340, 2080), Hosts, At));
+		TestTrue(TEXT("wall: on the wall behind"), DinkArtFamily::MountPoint(3, FVector2D(1800, 1700), Hosts, At));
+		TestTrue(TEXT("wall: on its south face, between floor and top"), At.Y > 1930 && At.Y < 1932 && At.Z > 0 && At.Z < 300);
+		TestFalse(TEXT("no host under the point: the card stays"), DinkArtFamily::MountPoint(1, FVector2D(100, 100), Hosts, At));
+	}
 	TArray<FString> SchemaErrors;
 	TestFalse(TEXT("a wrong schema is refused"), DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art/1","families":[]})"), Bad, SchemaErrors));
 
