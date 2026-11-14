@@ -43,8 +43,10 @@ Seen and **not** changed here, with the reason:
 - **Tree stumps** (`SM_Veg_Stump_01/02`, 47 placements): the root flares are flat fins that end in points (each root
   ridge is three samples wide in the generator). The fix is written (a blunt, finely sampled root in `bl_tree.py`
   `root_base`) and comes with the next change, which needs its own import and captures.
-- **The cabbage** (`SM_Veg_Cabbage_01`, 4 placements): a few large bent leaf cards that read as crumpled green
-  sheets. Next change.
+- **The cabbage** (`SM_Veg_Cabbage_01`, 4 placements): corrected on 13 Nov 2026 (gate 2 batch 1). It is not faceted:
+  looked at again at full size in the game it is a head of veined leaf cards and reads as a cabbage plant, at the play
+  camera and close up (`Docs/Verification/Gate2StaticBatch1_13Nov2026/`). The remark made here before ("crumpled green
+  sheets") came from a small tile of a contact sheet. Nothing to fix.
 - **Sprites that scripts create** (`create_sprite`: the pickups of screen 352, for one) are drawn as grey cylinders. That
   is the placeholder of `ADinkScriptSpriteActor` (`DinkScriptSpriteComponent.cpp`), not a mesh of a family; it has no
   origin ID and is outside this work. Reported to the coordinator.

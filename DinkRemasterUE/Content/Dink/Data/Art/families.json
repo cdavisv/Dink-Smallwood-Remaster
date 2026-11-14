@@ -55,10 +55,7 @@
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Flat_PR.SM_Boulder_Flat_PR",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frames 4, 5: the bedded flat boulder built for this class, or the low field boulder C.",
-      "variants": [
-        "/Game/Dink/Photoreal/Structures/SM_Boulder_Field_C_PR.SM_Boulder_Field_C_PR"
-      ]
+      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frames 4, 5: the bedded flat boulder built for this class, or the low field boulder C. Gate 2 batch 1, 13 Nov 2026: field boulder C dropped as a variant (1.2 m against a 2 m picture, half hidden in the grass)."
     },
     {
       "family": "boulder_red",
@@ -76,10 +73,10 @@
     },
     {
       "family": "rock_mound_small",
-      "mesh": "/Game/Dink/Photoreal/Structures/SM_Boulder_Field_C_PR.SM_Boulder_Field_C_PR",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Large_PR.SM_Boulder_Large_PR",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 97 lands/rocks/rocks- frames 17, 18: the low field boulder C (1.2 m)."
+      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 97 lands/rocks/rocks- frames 17, 18. Gate 2 batch 1, 14 Nov 2026: the large boulder (2.5 m wide, 1.6 m tall) instead of the low field boulder C: the sprite is a dark mound as tall as the hero, and the 0.5 m stone was lost in the grass of screen 671."
     },
     {
       "family": "fence_rail_ew",
@@ -132,17 +129,19 @@
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Weed_Small_01.SM_Veg_Weed_Small_01",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "65 lands/grass/grass- frames 4-6. Photoreal pass weeds.",
+      "note": "65 lands/grass/grass- frames 4-6. Photoreal pass weeds. Gate 2 batch 1, 13 Nov 2026: scripted placements included (seen in the game: the mesh goes with its actor when a script removes the sprite).",
       "variants": [
         "/Game/Dink/Photoreal/Vegetation/SM_Veg_Weed_Small_02.SM_Veg_Weed_Small_02"
-      ]
+      ],
+      "scripted": true
     },
     {
       "family": "weed_sprig",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Weed_Sprig_01.SM_Veg_Weed_Sprig_01",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "65 lands/grass/grass- frame 2. Photoreal pass sprig."
+      "note": "65 lands/grass/grass- frame 2. Photoreal pass sprig. Gate 2 batch 1, 13 Nov 2026: scripted placements included (seen in the game: the mesh goes with its actor when a script removes the sprite).",
+      "scripted": true
     },
     {
       "family": "flower_small",
@@ -271,21 +270,24 @@
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Small_01.SM_Veg_Bush_Small_01",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "Photoreal pass bush."
+      "note": "Photoreal pass bush. Gate 2 batch 1, 13 Nov 2026: scripted placements included (seen in the game: the mesh goes with its actor when a script removes the sprite).",
+      "scripted": true
     },
     {
       "family": "bush_round_medium",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Round_Medium_01.SM_Veg_Bush_Round_Medium_01",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "Photoreal pass bush."
+      "note": "Photoreal pass bush. Gate 2 batch 1, 13 Nov 2026: scripted placements included (seen in the game: the mesh goes with its actor when a script removes the sprite).",
+      "scripted": true
     },
     {
       "family": "bush_round_large",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Round_Large_01.SM_Veg_Bush_Round_Large_01",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "Photoreal pass bush."
+      "note": "Photoreal pass bush. Gate 2 batch 1, 13 Nov 2026: scripted placements included (seen in the game: the mesh goes with its actor when a script removes the sprite).",
+      "scripted": true
     },
     {
       "family": "bush_wide",
@@ -298,11 +300,13 @@
       "family": "thorn_bush",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBush_01.SM_Veg_ThornBush_01",
       "fit": "none",
-      "yaw_from_sprite": false,
-      "note": "Photoreal pass thorn bushes.",
+      "yaw_from_sprite": true,
+      "note": "Photoreal pass thorn bushes. Gate 2 batch 1, 13 Nov 2026: the dense bush (46 canes) repeated along the card width so the hedge covers the hardbox that hurts; scripted (touch damage) placements included.",
       "variants": [
         "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBush_02.SM_Veg_ThornBush_02"
-      ]
+      ],
+      "scripted": true,
+      "span": "width"
     },
     {
       "family": "thorn_branch",
@@ -577,7 +581,8 @@
       "mesh": "/Game/Dink/Photoreal/Props/SM_Table_Oak_Round_PR.SM_Table_Oak_Round_PR",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card. Gate 2 batch 1, 13 Nov 2026: scripted placements included (seen in the game: the mesh goes with its actor when a script removes the sprite).",
+      "scripted": true
     },
     {
       "family": "bench_long",
@@ -1013,6 +1018,113 @@
       "yaw_from_sprite": false,
       "scripted": true,
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 422 frame 1: the letter on the floor of screen 6. Its script reads it out and then kills the sprite; the mesh goes with the actor."
+    },
+    {
+      "family": "90 lands/details/grave- thorn open coil",
+      "frame": 9,
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBush_02.SM_Veg_ThornBush_02",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Thorn bramble, sprite frame 9 (the open coil): the sparse bush. Same rules as the thorn_bush row.",
+      "span": "width"
+    },
+    {
+      "family": "90 lands/details/grave- thorn small open coil",
+      "frame": 10,
+      "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBush_02.SM_Veg_ThornBush_02",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Thorn bramble, sprite frame 10 (the small open coil): the sparse bush. Same rules as the thorn_bush row.",
+      "span": "width"
+    },
+    {
+      "family": "186 struct/landmark/landm- signpost single",
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_SignPost_Single_PR.SM_SignPost_Single_PR",
+      "frame": 7,
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "186 struct/landmark/landm- frame 7: one arrow board on a post; the boards carry no lettering (the game shows the text). scripted: the sign scripts only talk."
+    },
+    {
+      "family": "186 struct/landmark/landm- signpost double",
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_SignPost_Double_PR.SM_SignPost_Double_PR",
+      "frame": 8,
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "186 struct/landmark/landm- frame 8: two boards on a post; the boards carry no lettering (the game shows the text). scripted: the sign scripts only talk."
+    },
+    {
+      "family": "186 struct/landmark/landm- signpost triple a",
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_SignPost_Triple_PR.SM_SignPost_Triple_PR",
+      "frame": 9,
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "186 struct/landmark/landm- frame 9: three boards on a post; the boards carry no lettering (the game shows the text). scripted: the sign scripts only talk."
+    },
+    {
+      "family": "186 struct/landmark/landm- signpost triple b",
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_SignPost_Triple_PR.SM_SignPost_Triple_PR",
+      "frame": 10,
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "186 struct/landmark/landm- frame 10: three boards on a post; the boards carry no lettering (the game shows the text). scripted: the sign scripts only talk."
+    },
+    {
+      "family": "seashell_clam",
+      "mesh": "/Game/Dink/Photoreal/Scatter/SM_ClamShell_Cluster_A.SM_ClamShell_Cluster_A",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "92 lands/details/beach- frames 2, 3. Three or four surf clams of 10 to 14 cm, bedded in the sand, where the sprite draws one clam about 1.3 m wide on the card: a single real shell is a few pixels from the play camera (Terrain/tools/scatter_clusters.py). Gate 2 batch 1, 13 Nov 2026: scale 1.5 (shells of 15 to 21 cm in a 50 cm patch): at real size it could not be seen from the play camera, at the size of the 1997 picture it would be absurd close up.",
+      "variants": [
+        "/Game/Dink/Photoreal/Scatter/SM_ClamShell_Cluster_B.SM_ClamShell_Cluster_B",
+        "/Game/Dink/Photoreal/Scatter/SM_ClamShell_Cluster_C.SM_ClamShell_Cluster_C"
+      ],
+      "scale": 1.5
+    },
+    {
+      "family": "starfish",
+      "mesh": "/Game/Dink/Photoreal/Scatter/SM_Starfish_Large_A.SM_Starfish_Large_A",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "92 lands/details/beach- frame 1. The starfish at 29 cm (2.1 x the 13.7 cm source: a large common starfish), so the play camera can read it. scripted: the one of the secret (s5-sec1) is removed by a bomb with sp_active 0, which hides the actor and the mesh with it. Gate 2 batch 1, 13 Nov 2026: scale 1.6 (a 46 cm sea star): at real size it could not be seen from the play camera, at the size of the 1997 picture it would be absurd close up.",
+      "variants": [
+        "/Game/Dink/Photoreal/Scatter/SM_Starfish_Large_B.SM_Starfish_Large_B"
+      ],
+      "scale": 1.6
+    },
+    {
+      "family": "potion_red",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Potion_Flask_PR.SM_Potion_Flask_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "56 bonuses/bottles (red, strength). A pickup: the script (touch) adds the stat, shrinks the sprite and kills it, so the mesh goes with the actor; the shrink and the idle shimmer of the sprite are not shown. Real size (a 36 cm flask), not the card size. Gate 2 batch 1, 13 Nov 2026: scale 1.3 (a 47 cm flask): at real size it could not be seen from the play camera, at the size of the 1997 picture it would be absurd close up.",
+      "scale": 1.3
+    },
+    {
+      "family": "potion_purple",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Potion_Flask_Purple_PR.SM_Potion_Flask_Purple_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "57 bonuses/bottles (purple, magic): the flask with the purple glass tint. A pickup: the script (touch) adds the stat, shrinks the sprite and kills it, so the mesh goes with the actor; the shrink and the idle shimmer of the sprite are not shown. Real size (a 36 cm flask), not the card size. Gate 2 batch 1, 13 Nov 2026: scale 1.3 (a 47 cm flask): at real size it could not be seen from the play camera, at the size of the 1997 picture it would be absurd close up.",
+      "scale": 1.3
+    },
+    {
+      "family": "potion_blue",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Potion_Flask_Blue_PR.SM_Potion_Flask_Blue_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "scripted": true,
+      "note": "55 bonuses/bottles (blue, defense) and the megapotion that starts on the blue picture: the flask with the blue glass tint. A pickup: the script (touch) adds the stat, shrinks the sprite and kills it, so the mesh goes with the actor; the shrink and the idle shimmer of the sprite are not shown. Real size (a 36 cm flask), not the card size. Gate 2 batch 1, 13 Nov 2026: scale 1.3 (a 47 cm flask): at real size it could not be seen from the play camera, at the size of the 1997 picture it would be absurd close up.",
+      "scale": 1.3
     }
   ],
   "collision_fit": {

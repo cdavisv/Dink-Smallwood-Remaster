@@ -99,19 +99,19 @@
       ]
     },
     {
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Candle_Iron_01.SM_Candle_Iron_01",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Candle_Iron_PR.SM_Candle_Iron_PR",
       "expected_size_cm": [
-        20.000000298023224,
-        20.000000298023224,
-        45.04999816417694
+        20.1,
+        19.8,
+        45.0
       ]
     },
     {
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Pie_Rustic_01.SM_Pie_Rustic_01",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Pie_Rustic_PR.SM_Pie_Rustic_PR",
       "expected_size_cm": [
-        49.000000953674316,
-        49.000000953674316,
-        11.900001019239426
+        50.2,
+        50.2,
+        12.4
       ]
     }
   ],
@@ -119,7 +119,7 @@
   "replacements": [
     {
       "origin": "S001_P51",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Pie_Rustic_01.SM_Pie_Rustic_01",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Pie_Rustic_PR.SM_Pie_Rustic_PR",
       "offset_cm": [
         0.0,
         70.00499999994645,
@@ -2064,7 +2064,7 @@
     },
     {
       "name": "Candle1",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Candle_Iron_01.SM_Candle_Iron_01",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Candle_Iron_PR.SM_Candle_Iron_PR",
       "world_cm": [
         -183821.41,
         392856.60500000004,
@@ -2084,7 +2084,7 @@
     },
     {
       "name": "Candle2",
-      "mesh": "/Game/Dink/Kits/Stonebrook/SM_Candle_Iron_01.SM_Candle_Iron_01",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Candle_Iron_PR.SM_Candle_Iron_PR",
       "world_cm": [
         -183913.285,
         392353.4799999999,
