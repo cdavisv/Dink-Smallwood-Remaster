@@ -395,7 +395,7 @@ def creature_class_rows(manifest, resolve, notes):
         if row_set and not locomotion(r["locomotion"], needed):
             problems.append("locomotion needs a /Game/ idle and gaits with rising speed_cm_s")
             row_set = False
-        seen, has_locomotion, role_names = set(), False, []
+        seen, has_locomotion, role_names, needs_drop = set(), False, [], False
         roles = r.get("roles") if isinstance(r.get("roles"), dict) else {}
         for name in sorted(roles):
             role = roles[name]
@@ -421,6 +421,17 @@ def creature_class_rows(manifest, resolve, notes):
                 needed.append(role["clip"])
             if role.get("mesh"):
                 needed.append(role["mesh"])
+            gore = role.get("gore")
+            if isinstance(gore, dict):
+                # mirrors DinkCreatureClass.cpp: a bone, /Game/ paths, a landed mesh for a flying one
+                trail = gore.get("trail") if isinstance(gore.get("trail"), dict) else {}
+                severed = gore.get("severed") if isinstance(gore.get("severed"), dict) else {}
+                paths = [trail.get("material"), severed.get("flying"), severed.get("landed"), severed.get("decal")]
+                if not gore.get("bone") or any(v and not game(v) for v in paths) or (severed.get("flying") and not severed.get("landed")):
+                    problems.append("role %s gore needs a bone, /Game/ paths and a landed mesh for a flying one" % name)
+                    continue
+                needed += [v for v in paths if v]
+                needs_drop = needs_drop or gore.get("drops_per_second", 0) > 0 or severed.get("drops", 0) > 0
             if seen & set(seqs):
                 problems.append("a sequence is in two roles")
             seen |= set(seqs)
@@ -444,6 +455,21 @@ def creature_class_rows(manifest, resolve, notes):
                     continue
                 needed.append(decal["material"])
             corpses.append({"sequences": seqs, "mesh": c["mesh"], "decal": decal["material"] if decal else None})
+        for burst in r.get("bursts") or []:
+            if sequences(burst) is None:
+                problems.append("a burst without sequences")
+                continue
+            decal = burst.get("decal")
+            if decal is not None:
+                if not isinstance(decal, dict) or not game(decal.get("material")) or not decal.get("size_cm", 150) > 0:
+                    problems.append("a burst decal without a /Game/ material or a positive size_cm")
+                    continue
+                needed.append(decal["material"])
+            needs_drop = True
+        if needs_drop and not game(r.get("blood_drop")):
+            problems.append("gore or bursts but no /Game/ blood_drop mesh")
+        elif r.get("blood_drop"):
+            needed.append(r["blood_drop"])
         for slot, path in (r.get("materials") or {}).items():
             if not game(path):
                 problems.append("material %s is not a /Game/ path" % slot)

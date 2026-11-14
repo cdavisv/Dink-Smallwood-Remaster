@@ -1,3 +1,14 @@
+## Creature classes: duck with its gore, slimes, pig (14 November 2026)
+
+Gate 2, creatures, second batch, on top of the pillbug section below.
+- `creatures.json` `classes` has rows for `duck`, `slime_blue`, `slime_green`, `slime_red` and `pig`. Assets under `/Game/Dink/Photoreal/Creatures/{Duck,Slime,Pig,Gore}`; import with `DINK_PHOTOREAL_ONLY=duck,slime,pig Scripts/import_photoreal_art.sh` (shared helpers `creature_mesh`, `creature_clips`).
+- **Gore is drawn by the presentation layer, never by the simulation.** The port's duck keeps a headless flag and draws none of what the 1997 frames paint. A role's `gore` (fountain from a bone, trail decal, a `severed` part thrown when the role begins) and a row's `bursts` (blood when the brain removes a sprite without a corpse) are in `DinkCreatureGore.cpp`; they use their own random numbers and are cleared with the corpses. Never make them less bloody (owner, 13 Nov 2026: "have it spray a fountain from the neck").
+- World scale and gaits: a sprite of speed 1 covers 4 to 8 m/s here. A small animal needs a gait made for that speed or its feet slide; the duck has `Duck_Scurry` / `Duck_HeadlessScurry` (`Tools/duck_scurry.py`), declared for 800 cm/s (a duck moves 6 to 8.5 m/s here).
+- The slime gel is opaque (the see-through material of its source notes is not built). A killed slime leaves a splatter mesh and a decal of its colour, as sequences 661-703 show.
+- The pig's body was calmed after the review "lumpy" (`pig.py`); the Stonebrook pigs with origin rows get the photoreal mesh through `dink.PhotorealPig`. A killed class-bound pig bursts (sequence 164), as pig_brain does.
+- Review tools: `dink.Hurt <origin> <damage>`, `Scripts/CreatureQA/make_scripts.py --hurt`. Evidence: `Docs/Verification/CreatureGore_14Nov2026/`.
+- Traps: `Tools/bl.sh` must be started from inside `Tools/`. A checkout with `GIT_LFS_SKIP_SMUDGE=1` turns every LFS file that differs between the branches into a pointer; pull the creature sources again before Blender reads them. Run `art_coverage.py` and `gate2_backlog.py` in a private project copy, not in a bare worktree (the worktree lacks ignored content and counts one row less).
+
 ## Creature class binding: every pillbug is the animated creature (13 November 2026)
 
 Gate 2, creatures. Before this, creatures were bound per origin ID only (11 placements in Stonebrook); every other creature placement showed its sprite card.
