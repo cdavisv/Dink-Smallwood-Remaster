@@ -541,9 +541,9 @@ HUMANS = {
 
 
 # card width of the 1997 picture in the world, metres (ImportData/placements.json `card.width_m`, 14 Nov 2026)
-FOOT = {'Corpse_Knight': 2.02, 'Corpse_Merchant': 1.85, 'Corpse_Merchant_Green': 1.85, 'Corpse_Girl': 1.45, 'Corpse_Maiden': 1.57, 'Corpse_Soldier': 1.85, 'Corpse_Peasant': 2.85, 'Dink_Dead': 2.60}
+FOOT = {'Corpse_Mother': 1.70, 'Corpse_Knight': 2.02, 'Corpse_Merchant': 1.85, 'Corpse_Merchant_Green': 1.85, 'Corpse_Girl': 1.45, 'Corpse_Maiden': 1.57, 'Corpse_Soldier': 1.85, 'Corpse_Peasant': 2.85, 'Dink_Dead': 2.60}
 # card height of the same pictures, metres, by picture number (`card.height_m`)
-FOOT_H = {'275': 1.38, '345': 1.32, '385': 1.32, '335': 0.93, '245': 1.18, '405': 1.43, '415': 1.48, '436': 2.25}
+FOOT_H = {'275': 1.38, '345': 1.32, '385': 1.32, '335': 0.93, '245': 1.18, '405': 1.43, '415': 1.48, '436': 2.25, '355': 1.25}
 
 
 def fit_scale(obs, foot_m, margin=0.10):
@@ -668,6 +668,10 @@ PEOPLE = {
                           arms=(((0.8, -0.6), (0.9, 0.4)), ((0.9, -0.42), (0.35, -0.93))), legs=(((0.14, -0.99), (0.0, -1.0)), ((0.26, -0.96), (-0.1, -1.0))),
                           open=[(0.10, 0.0, 0.24, 0.10, -0.1, 'ribs gut')], sever=[],
                           dresses='the woman in the crimson dress torn open from throat to belly, ribs bare, entrails pulled out onto the ground, in her blood'),
+    'Corpse_Mother': dict(rig=('..', 'Characters/Mother', 'SK_Mother_Photoreal'), who='mother', fams=['corpse_mom', '355 people/mom/death-'], spr='355_01', head=200, seed=355, turn=-35, skirt=0.3,
+                          arms=(((0.9, -0.42), (0.5, 0.87)), ((0.75, -0.66), (0.95, -0.3))), legs=(((0.16, -0.99), (0.0, -1.0)), ((0.30, -0.95), (-0.12, -1.0))),
+                          open=[(0.16, 0.0, 0.20, 0.045, 0.6, 'ribs'), (-0.04, 0.0, 0.18, 0.055, -0.7, 'gut')], sever=[],
+                          dresses='the mother of the burning house hacked down on her floor: the chest split to the ribs, the belly cut open with entrails out, in her blood'),
     'Corpse_Merchant': dict(rig=('npc_merchant_blue', 'Merchant', 'SK_Merchant_PR'), who='merchant', fams=['corpse_merchant', '345 people/merchant/death-'], head=205, spr='345_01', seed=345, turn=-30,
                             arms=(((0.9, -0.42), (0.6, 0.8)), ((0.6, -0.8), (0.9, -0.4))), legs=(((0.2, -0.98), (0.02, -1.0)), ((0.34, -0.94), (-0.12, -1.0))),
                             open=[(0.20, 0.0, 0.20, 0.040, 0.7, 'ribs'), (-0.02, 0.02, 0.17, 0.050, -0.55, 'gut')], sever=[(('lowerarm', 'hand'), 'l', 0.12, 0.20, 1.1)],
@@ -888,6 +892,21 @@ def knight(prev=False):
     ensure_principled(mat); worn_steel(mat, os.path.join(kd, 'T_Knight_PR_Silver_BC.png'))      # sprite 275: grey-brown steel, not a red harness
     lay_down(skin, 0.0); P = L.co(skin); headw = W['head'] > 0.5; c0 = P[~hal].mean(0); hd = P[headw].mean(0) - c0
     spin_z([skin], mesh_dir(204) - math.atan2(hd[1], hd[0]), pivot=c0[:2]); P = L.co(skin); off = np.array([*(P[~hal][:, :2].min(0) + P[~hal][:, :2].max(0)) / 2, P[~hal][:, 2].min()]); P -= off
+    # an adult man in plate, not a doll (review of PR #111): the source harness has a ball of a helmet and short limbs. The helmet shrinks
+    # towards the neck, legs and arms are drawn out along their own length and slimmed a little.
+    ax0 = np.array([math.cos(mesh_dir(204)), math.sin(mesh_dir(204)), 0.0]); body = ~hal
+    hw_ = np.clip(W['head'], 0, 1) * body; neck = P[(W['head'] > 0.1) & (W['head'] < 0.6) & body]; nk = neck.mean(0) if len(neck) else P[hw_ > 0.5].mean(0) - ax0 * 0.12
+    P = P + hw_[:, None] * (nk + (P - nk) * 0.80 - P)
+    for keys, grow, slim in ((LEG_KEYS, 0.17, 0.97), (ARM_KEYS, 0.32, 0.92)):
+        for side in 'lr':
+            m = limb_weight(W, keys, side) * body; sel = m > 0.5
+            if sel.sum() < 10:
+                continue
+            tc_ = P[body & (limb_weight(W, LEG_KEYS, 'l') + limb_weight(W, LEG_KEYS, 'r') + limb_weight(W, ARM_KEYS, 'l') + limb_weight(W, ARM_KEYS, 'r') + W['head'] < 0.2)].mean(0)
+            far = P[sel][np.argmax(np.linalg.norm(P[sel] - tc_, axis=1))]; near = P[sel][np.argmin(np.linalg.norm(P[sel] - tc_, axis=1))]; d_ = far - near; ln = np.linalg.norm(d_); d_ = d_ / max(ln, 1e-6)
+            t_ = np.clip(((P - near) @ d_) / max(ln, 1e-6), 0, 1); along = ((P - near) @ d_)[:, None] * d_[None, :]; across = (P - near) - along
+            P = P + m[:, None] * (d_[None, :] * (t_ * ln * grow)[:, None] + across * (slim - 1.0))
+    P[:, 2] -= P[body][:, 2].min()
     ext = float(max(np.ptp(P[~hal][:, 0]), np.ptp(P[~hal][:, 1]))); s = min(1.0, (FOOT['Corpse_Knight'] - 0.10) / ext); print('FIT knight extent %.2f m -> scale %.3f' % (ext, s)); P *= s; L.set_co(skin, P)
     chest = P[(W['spine_03'] > 0.5) & ~hal].mean(0); ctop = P[(W['spine_03'] > 0.5) & ~hal][:, 2].max(); c = P[~hal].mean(0); a = mesh_dir(204); axis = np.array([math.cos(a), math.sin(a)])
     # take the halberd apart: the shaft is replaced by a snapped one standing in the chest; the head is laid flat in the blood
