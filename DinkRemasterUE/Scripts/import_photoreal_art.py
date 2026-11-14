@@ -476,8 +476,18 @@ return c;''', F3, ['C', 'T', 'M', 'RootShade', 'TipLight', 'Variation', 'DepthSh
     link(param('RootShade', 0.85), '', colour, 'RootShade'); link(param('TipLight', 1.1), '', colour, 'TipLight')
     link(param('StrandVariation', 0.18), '', colour, 'Variation'); link(param('DepthShade', 0.8), '', colour, 'DepthShade')
     out(colour, '', MP.MP_BASE_COLOR)
-    out(param('Scatter', 0.7), '', MP.MP_METALLIC)
-    out(param('Specular', 0.5), '', MP.MP_SPECULAR)
+    # ...and no light through them: the scatter and back-light lobes lit the inner end of a brow orange in the sun
+    band = custom(mat, -900, 150, 'return 1.0 - step(0.75, UV.y);', F1, ['UV'], 'Scalp hair (1) or brow and lash band (0)')
+    link(expr(mat, unreal.MaterialExpressionTextureCoordinate, -1100, 150, coordinate_index=0), '', band, 'UV')
+    scat = custom(mat, -600, 150, 'return S * lerp(0.15, 1.0, B);', F1, ['S', 'B'], 'Hair scatter, damped on brows and lashes')
+    link(param('Scatter', 0.7), '', scat, 'S'); link(band, '', scat, 'B')
+    out(scat, '', MP.MP_METALLIC)
+    # brows and lashes (the band, see 'Hair coverage') lie on the face in full sun: with the scalp hair's highlight a brow
+    # flashed copper at its inner end
+    spec = custom(mat, -600, 220, 'return S * lerp(1.0, saturate(BandSpec), step(0.75, UV.y));', F1, ['S', 'BandSpec', 'UV'], 'Hair specular, damped on brows and lashes')
+    uv_s = expr(mat, unreal.MaterialExpressionTextureCoordinate, -1100, 220, coordinate_index=0)
+    link(param('Specular', 0.5), '', spec, 'S'); link(param('BrowSpecular', 0.15), '', spec, 'BandSpec'); link(uv_s, '', spec, 'UV')
+    out(spec, '', MP.MP_SPECULAR)
     rough = custom(mat, -600, 300, 'return clamp(R * S, 0.3, 1.0);', F1, ['R', 'S'], 'Hair roughness')
     link(orm, 'G', rough, 'R'); link(param('RoughnessScale', 1.0), '', rough, 'S')
     out(rough, '', MP.MP_ROUGHNESS)
@@ -489,8 +499,8 @@ return c;''', F3, ['C', 'T', 'M', 'RootShade', 'TipLight', 'Variation', 'DepthSh
     along = custom(mat, -600, 600, 'float2 d = F.rg * 2.0 - 1.0; d.y *= -Flip; return normalize(float3(d, 0.0) + float3(0.0, 1e-4, 0.0));', F3, ['F', 'Flip'], 'Strand direction')
     link(flow, 'RGB', along, 'F'); link(param('FlowFlip', 1.0), '', along, 'Flip')
     out(along, '', MP.MP_NORMAL)
-    back = custom(mat, -600, 760, 'return saturate(B * Amount);', F1, ['B', 'Amount'], 'Light through the hair')
-    link(flow, 'B', back, 'B'); link(param('Backlit', 1.0), '', back, 'Amount')
+    back = custom(mat, -600, 760, 'return saturate(B * Amount) * Band;', F1, ['B', 'Amount', 'Band'], 'Light through the hair')
+    link(flow, 'B', back, 'B'); link(param('Backlit', 1.0), '', back, 'Amount'); link(band, '', back, 'Band')
     mat.set_editor_property('shading_model', unreal.MaterialShadingModel.MSM_HAIR)
     if not unreal.DinkCharacterArtLibrary.connect_material_custom_data(mat, back, '', 0):
         raise RuntimeError(f'{name}: cannot connect the Backlit pin of the Hair shading model')
@@ -501,8 +511,12 @@ float t = lerp(0.5, saturate(M.b), on);
 // Coverage below Cut is no hair at all. A card of sparse strands averages to a few per cent of coverage in the
 // smaller mips, and the dithered mask drew that haze as a ghost sheet over the head and a stipple halo round it.
 float c = A * Gain * lerp(1.0, TipFade, smoothstep(0.7, 1.0, t)) + Bias;
-return saturate((c - Cut) / max(1.0 - Cut, 0.01));''', F1, ['A', 'M', 'Gain', 'TipFade', 'Bias', 'Cut'], 'Hair coverage')
-    link(bc, 'A', mask, 'A'); link(msk, 'RGB', mask, 'M'); link(param('AlphaCut', 0.3), '', mask, 'Cut')
+// the bottom quarter of the atlas is the brow and lash band: single fine hairs seen from close, which the cut removed
+// (lashes only at the inner corner of the eye, brows thinned to a line)
+float cut = lerp(Cut, Cut * 0.2, step(0.75, UV.y));
+return saturate((c - cut) / max(1.0 - cut, 0.01));''', F1, ['A', 'M', 'Gain', 'TipFade', 'Bias', 'Cut', 'UV'], 'Hair coverage')
+    uv0 = expr(mat, unreal.MaterialExpressionTextureCoordinate, -1100, -150, coordinate_index=0)
+    link(bc, 'A', mask, 'A'); link(msk, 'RGB', mask, 'M'); link(param('AlphaCut', 0.3), '', mask, 'Cut'); link(uv0, '', mask, 'UV')
     link(param('AlphaGain', 1.5), '', mask, 'Gain'); link(param('TipFade', 0.7), '', mask, 'TipFade'); link(param('AlphaBias', 0.0), '', mask, 'Bias')
     # Shadows: only the opaque cap casts one (FLOW.b is 0 on the cap, 1 on the cards). A card lifted a few millimetres
     # off the head shadowed its own visible side and the cap under it, and a short crop in full sun was dark dashes on
@@ -636,21 +650,6 @@ def import_scatter(fbx, folder, name):
     LIB.set_metadata_tag(mesh, 'DinkSource', key)
     LIB.delete_directory(temp)
     return mesh, True
-
-
-def decal_material(folder, name, texture, roughness=0.12):
-    """A deferred decal that lays the texture's colour on whatever is under it (ground and grass), alpha as opacity."""
-    mat = new_material(folder, name)
-    mat.set_editor_property('material_domain', unreal.MaterialDomain.MD_DEFERRED_DECAL)
-    mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_TRANSLUCENT)
-    bc = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -500, 0, parameter_name='BC', texture=texture, sampler_type=ST.SAMPLERTYPE_COLOR)
-    rough = expr(mat, unreal.MaterialExpressionConstant, -300, 220, r=roughness)
-    out(bc, 'RGB', MP.MP_BASE_COLOR)
-    out(bc, 'A', MP.MP_OPACITY)
-    out(rough, '', MP.MP_ROUGHNESS)
-    EDIT.recompile_material(mat)
-    save(mat)
-    return mat
 
 
 def assign_slots(mesh, materials, name):
@@ -1041,11 +1040,6 @@ if 'pillbug' in ONLY:
         materials = {n: instance(folder, n + '_PR', parent, atlas) for n in ('MI_Pillbug_Carapace', 'MI_Pillbug_Ochre', 'MI_Pillbug_Joints', 'MI_Pillbug_Eyes')}
         materials['MI_Pillbug_Gore'] = instance(folder, 'MI_Pillbug_Gore_PR', parent, gore)
         materials['MI_Pillbug_Gore_Procedural'] = materials['MI_Pillbug_Gore']   # the corpse FBX names its gore slot so; the manifest says MI_Pillbug_Gore
-        # the carcass body: the same atlas with blood across the plates (sprites 141/143), and the pool as a ground decal
-        bloody = dict(atlas, BC=import_texture(PB / 'Textures/T_Pillbug_Corpse_BC.png', tex_folder, 'BC'), ORM=import_texture(PB / 'Textures/T_Pillbug_Corpse_ORM.png', tex_folder, 'ORM'))
-        for n in ('MI_Pillbug_Carapace', 'MI_Pillbug_Ochre', 'MI_Pillbug_Joints', 'MI_Pillbug_Eyes'):
-            materials[n + '_Bloody'] = instance(folder, n + '_Bloody_PR', parent, bloody)
-        pool = decal_material(folder, 'M_Pillbug_BloodPool_Decal', import_texture(PB / 'Textures/T_Pillbug_BloodPool_BC.png', tex_folder, 'BCA', wrap=False))
         name = 'SK_Pillbug_Photoreal'
         target = folder + '/' + name
         fbx = [PB / f'Export/SK_Pillbug_LOD{i}.fbx' for i in range(3)]
@@ -1108,7 +1102,7 @@ if 'pillbug' in ONLY:
         assign_slots(corpse, materials, 'SM_Pillbug_Corpse_PR')
         save(corpse)
         box = corpse.get_bounding_box()
-        report['pillbug']['corpse'] = {'mesh': folder + '/SM_Pillbug_Corpse_PR', 'lods': MESHES.get_lod_count(corpse), 'reimported': changed, 'pool_decal': pool.get_path_name(),
+        report['pillbug']['corpse'] = {'mesh': folder + '/SM_Pillbug_Corpse_PR', 'lods': MESHES.get_lod_count(corpse), 'reimported': changed,
                                        'size_cm': [round(box.max.x - box.min.x, 1), round(box.max.y - box.min.y, 1), round(box.max.z - box.min.z, 1)]}
     except Exception as error:
         report['pillbug']['error'] = str(error)
