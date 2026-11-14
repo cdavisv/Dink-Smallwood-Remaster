@@ -81,8 +81,10 @@ done
 # Busy = a headless editor/test/cook, UBT or UAT anywhere, or an editor/game of THIS project (another agent's visible
 # playtest game of a different project directory, e.g. ~/Work/DinkPlaytestStage, does not use our Content/Saved/DDC).
 if [[ -z "${DINK_ALLOW_CONCURRENT:-}" ]]; then
-	busy="$(pgrep -af 'UnrealEditor-Cmd|UnrealBuildTool|RunUAT|AutomationTool' || true)"
-	busy_here="$(pgrep -af 'Binaries/Linux/UnrealEditor' | grep -F "$UPROJECT" || true)"
+	# By process NAME (as the shared machine's gate does): a command line that only mentions the editor (another session's
+	# waiting loop, a shell whose arguments name it) is not a running editor.
+	busy="$(ps -eo pid=,comm=,args= | awk '$2=="UnrealEditor-Cmd" || $2=="UnrealEditor-Cm" || ($2=="dotnet" && ($3 ~ /UnrealBuildTool\.dll$/ || $4 ~ /UnrealBuildTool\.dll$/)) || ($2=="dotnet" && $0 ~ /AutomationTool\.dll/) || ($2 ~ /^(bash|sh)$/ && $4 ~ /RunUAT\.sh$/)' || true)"
+	busy_here="$(ps -eo pid=,comm=,args= | awk '$2=="UnrealEditor" || $2=="UnrealEditor-Cm"' | grep -F "$UPROJECT" || true)"
 	if [[ -n "$busy$busy_here" ]]; then
 		fail "an editor, UnrealBuildTool or AutomationTool process is already running; the machine cannot hold two (DINK_ALLOW_CONCURRENT=1 to override): $(echo "$busy$busy_here" | head -1 | cut -c1-160)"
 	fi
