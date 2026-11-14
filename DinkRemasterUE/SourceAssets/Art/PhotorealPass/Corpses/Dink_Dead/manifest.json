@@ -1,0 +1,133 @@
+{
+ "name": "SM_Dink_Dead_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/SM_Dink_Dead_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/SM_Dink_Dead_PR.blend",
+ "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Dink_Dead_PR",
+ "dimensions_m": [
+  2.9,
+  2.9,
+  0.5552
+ ],
+ "bounds_min_m": [
+  -1.45,
+  -1.45,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.45,
+  1.45,
+  0.5552
+ ],
+ "lod0_triangles": 18049,
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dink_Dead_PR",
+   "channels": "base colour sRGB + alpha (cut-out)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dink_Dead_PR",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dink_Dead_PR",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_Pool_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dink_Dead_Pool",
+   "channels": "base colour sRGB + alpha (cut-out)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_Pool_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dink_Dead_Pool",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_Pool_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dink_Dead_Pool",
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Dink_Dead_PR",
+  "MI_Dink_Dead_Pool"
+ ],
+ "kit_materials": [
+  {
+   "name": "MI_Dink_Dead_PR",
+   "kind": "masked",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_PR_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_PR_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_PR_ORM.png"
+   }
+  },
+  {
+   "name": "MI_Dink_Dead_Pool",
+   "kind": "masked",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_Pool_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_Pool_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_Pool_ORM.png"
+   }
+  }
+ ],
+ "collision_hulls": 0,
+ "material_exception": "unique BC/N/ORM bakes private to this asset (not a row of ART_STANDARD.md section 2): remains are one-off set pieces",
+ "pivot": "bbox centre in X/Y, lowest point at z = 0; in Blender +X is screen right and +Y screen up (north) for a yaw_from_sprite row",
+ "families": [
+  "dink_dead",
+  "436 dink/die/ds-x3-"
+ ],
+ "dresses": "Dink lying dead on his back (the cutscene picture), blood over chest and face, the pool spreading from under him",
+ "third_party": [
+  "MakeHuman CC0 base mesh, skin, eyes and hair (Art/Characters/ThirdParty/MakeHuman), through the source character",
+  "park_dirt (render ground)"
+ ],
+ "known_weaknesses": "The body is the posed, frozen Dink of PhotorealPass/Unclaimed (no ragdoll, clothes not draped by simulation, eyes open), baked again onto one 2048 px atlas together with the new blood and the gashes, so face, hands and hair are softer than on the living character and the hair is a hard cut-out. The gashes are relief on the surface (swollen lips, a groove of muscle), not cuts into the body: no bone, no organs. The pool, the drops and the mist are a flat alpha-tested card 6 mm above the ground: a hard-edged cut-out without soaking into the ground, and it does not follow uneven ground. Static.",
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 1.1,
+   "p99": 30.6
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.014,
+   "p95": 0.0
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.257
+ },
+ "derived_from": "Unclaimed/dink_dead/Dink_Dead (SM_Dink_Dead_PR), turned to the sprite, soaked, gashed and baked again",
+ "gore_in_mesh": "blood over the whole body (wet), slashes, pool with thrown drops and mist (no companion decal)",
+ "pool_card_m": 2.9
+}

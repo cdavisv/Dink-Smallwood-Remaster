@@ -1013,6 +1013,79 @@
       "yaw_from_sprite": false,
       "scripted": true,
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 422 frame 1: the letter on the floor of screen 6. Its script reads it out and then kills the sprite; the mesh goes with the actor."
+    },
+    {
+      "family": "corpse_knight",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Knight_PR.SM_Corpse_Knight_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). 275 people/knight/red/death-, screen 157: the red knight on his back, the snapped halberd shaft standing in his chest, its head in the blood. The pool, the thrown drops and the mist are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
+    },
+    {
+      "family": "dragon_corpse",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). 212 foes/dragon/f2-x3- (screens 100, 238): the dragon torn open, at the size of the sprite. The pool, the thrown drops and the mist are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
+    },
+    {
+      "family": "216 foes/dragon/f2-x7- torn dragon, turned",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": 180,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). dragon_corpse, picture 216 frame 1 (screen 158): the same remains turned half round, as the second picture is."
+    },
+    {
+      "family": "345 people/merchant/death-",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Merchant_PR.SM_Corpse_Merchant_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). corpse_merchant, the blue merchant of screen 94. The pool, the thrown drops and the mist are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
+    },
+    {
+      "family": "385 people/merchant/green/death-",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Merchant_Green_PR.SM_Corpse_Merchant_Green_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). corpse_merchant, the green merchant of screen 92. The pool, the thrown drops and the mist are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
+    },
+    {
+      "family": "corpse_girl",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Girl_PR.SM_Corpse_Girl_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). 335 people/girl/death-, screen 222. The pool, the thrown drops and the mist are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
+    },
+    {
+      "family": "corpse_maiden",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Maiden_PR.SM_Corpse_Maiden_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). 245 people/maiden/red/death-, screen 91. The pool, the thrown drops and the mist are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
+    },
+    {
+      "family": "corpse_peasant",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Peasant_PR.SM_Corpse_Peasant_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). 415 people/peasant2/death-, screen 222: with his long-handled sickle beside him. The pool, the thrown drops and the mist are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
+    },
+    {
+      "family": "corpse_soldier",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Soldier_PR.SM_Corpse_Soldier_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). 405 people/soldier/death-, screen 86 (Milder). Scripted (s7-mil): the script only talks, and removes the sprite once the story has passed; the mesh goes with the actor. The pool, the thrown drops and the mist are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
+    },
+    {
+      "family": "dink_dead",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dink_Dead_PR.SM_Dink_Dead_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). 436 dink/die/ds-x3- frame 16, screen 58. Scripted (s7-dink): talking to it shrinks and removes the sprite; the mesh goes with the actor, the shrink is not shown. The pool, the thrown drops and the mist are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
     }
   ],
   "collision_fit": {

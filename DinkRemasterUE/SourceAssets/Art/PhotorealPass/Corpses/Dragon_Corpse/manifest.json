@@ -1,0 +1,133 @@
+{
+ "name": "SM_Dragon_Corpse_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/SM_Dragon_Corpse_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/SM_Dragon_Corpse_PR.blend",
+ "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Dragon_Corpse_PR",
+ "dimensions_m": [
+  4.9,
+  4.9,
+  1.8013
+ ],
+ "bounds_min_m": [
+  -2.45,
+  -2.45,
+  0.0
+ ],
+ "bounds_max_m": [
+  2.45,
+  2.45,
+  1.8013
+ ],
+ "lod0_triangles": 15293,
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dragon_Corpse_PR",
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dragon_Corpse_PR",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dragon_Corpse_PR",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_Pool_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dragon_Corpse_Pool",
+   "channels": "base colour sRGB + alpha (cut-out)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_Pool_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dragon_Corpse_Pool",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_Pool_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Dragon_Corpse_Pool",
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Dragon_Corpse_PR",
+  "MI_Dragon_Corpse_Pool"
+ ],
+ "kit_materials": [
+  {
+   "name": "MI_Dragon_Corpse_PR",
+   "kind": "opaque",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_ORM.png"
+   }
+  },
+  {
+   "name": "MI_Dragon_Corpse_Pool",
+   "kind": "masked",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_Pool_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_Pool_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_Pool_ORM.png"
+   }
+  }
+ ],
+ "collision_hulls": 0,
+ "material_exception": "unique BC/N/ORM bakes private to this asset (not a row of ART_STANDARD.md section 2): remains are one-off set pieces",
+ "pivot": "bbox centre in X/Y, lowest point at z = 0; in Blender +X is screen right and +Y screen up (north) for a yaw_from_sprite row",
+ "families": [
+  "dragon_corpse",
+  "212 foes/dragon/f2-x3-",
+  "216 foes/dragon/f2-x7-"
+ ],
+ "dresses": "the dragon torn open on its belly: the back and one flank gone, ribs, backbone and raw muscle laid bare, entrails run out on the ground, one wing torn off beside it, the other still raised, the tail arched over, flesh thrown around, all of it in a pool of its own blood with drops thrown round it",
+ "third_party": [
+  "park_dirt (render ground)"
+ ],
+ "known_weaknesses": "The hide is the rigged dragon of Unclaimed/dragon (its baked LOD1) posed, pressed onto the ground and cut by rule, so the torn edges follow its triangles and the flesh behind them is one procedural muscle material: no anatomy beyond a rib cage, a backbone and three loops of gut; the raw mass is a displaced union of lumps, not modelled muscle groups. The wing panels are the flat opaque panels of the source. The pool, the drops and the mist are a flat alpha-tested card 6 mm above the ground. Built to the size of the sprite card (about 2.6 m), far smaller than the living dragon of the source (6.7 m). Static, as the sprite.",
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 49.4,
+   "p99": 140.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.359,
+   "p95": 0.555
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.573
+ },
+ "derived_from": "Unclaimed/dragon/Dragon (SK_Dragon_PR, LOD1), posed, cut and baked again with the gore",
+ "gore_in_mesh": "torn hide with flesh rims, carcass core, raw muscle mass, ribs, backbone, entrails, severed wing, thrown chunks; pool card with drops and mist (no companion decal)",
+ "pool_card_m": 4.9
+}

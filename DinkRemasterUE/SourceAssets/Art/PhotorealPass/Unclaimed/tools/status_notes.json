@@ -371,31 +371,31 @@
  },
  "corpse_mom": {
   "why": "1 static mesh with UCX hull: the photoreal pass Mother posed dead on her back, blood baked into her base-colour maps; use with a blood pool decal",
-  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
+  "binding": "not bound: a families.json row has no effect on S001_P34 (screen 1 is a dressed screen, vision 1), tried on 14 Nov 2026 with the corpse kit; the card stays"
  },
  "dink_dead": {
   "why": "1 static mesh with UCX hull: the photoreal pass Dink posed dead on his back with baked blood (17,900 triangles, above the prop soft target)",
-  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
+  "binding": "this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Dink_Dead, 14 Nov 2026), which rebuilds it with the 1997 gore (soaked, gashed, lying in its pool) on one atlas"
  },
  "corpse_maiden": {
   "status": "partial",
   "why": "1 static mesh: the Mother in a crimson dress with fair hair, posed dead with baked blood. Partial: the maiden herself is only a colour variant",
-  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
+  "binding": "this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Corpse_Maiden, 14 Nov 2026), which rebuilds it with the 1997 gore (soaked, gashed, lying in its pool) on one atlas"
  },
  "corpse_soldier": {
   "status": "partial",
   "why": "1 static mesh: Milder posed dead with baked blood. Partial: the soldier himself is only a colour variant",
-  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
+  "binding": "this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Corpse_Soldier, 14 Nov 2026), which rebuilds it with the 1997 gore (soaked, gashed, lying in its pool) on one atlas"
  },
  "corpse_knight": {
   "status": "partial",
   "why": "1 static mesh: this folder's knight (red set) posed dead with baked blood. Partial: an empty harness, as the standing knight",
-  "binding": "less gory than the original, so the sprite card stays (owner rule of 8 Nov 2026: keep all original gore). Picture 275 shows the knight in a pool of blood wider than his body with splashes around it; the mesh carries blood streaks on the armour only, and the pool is a separate decal that a family row cannot place. Seen in game on screen 157: a clean red harness on bare ground. Bind once the pool and splashes are part of the mesh"
+  "binding": "this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Corpse_Knight, 14 Nov 2026), which rebuilds it with the 1997 gore (soaked, gashed, lying in its pool) on one atlas"
  },
  "dragon_corpse": {
   "status": "partial",
   "why": "1 static mesh: this folder's dragon posed dead and soaked in blood. Partial: the original shows a torn carcass with severed parts; nothing is cut or opened here",
-  "binding": "less gory than the original, so the sprite card stays (owner rule of 8 Nov 2026: keep all original gore). Pictures 212 and 216 are small torn-apart bloody remains; the mesh is an intact dragon on its back, about four times the size of the card in game (screen 158). Bind once the source is rebuilt as torn remains at the sprite's size"
+  "binding": "this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Dragon_Corpse, 14 Nov 2026), which rebuilds it with the 1997 gore (soaked, gashed, lying in its pool) on one atlas"
  },
  "hearth_fire": {
   "status": "partial",
@@ -428,7 +428,7 @@
  "corpse_girl": {
   "status": "partial",
   "why": "1 static mesh with UCX hull: this pass's girl posed dead on her back with baked blood, flowers still in her hand, basket left out. Partial: the girl herself is partial, decimated to a floor prop",
-  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
+  "binding": "this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Corpse_Girl, 14 Nov 2026), which rebuilds it with the 1997 gore (soaked, gashed, lying in its pool) on one atlas"
  },
  "npc_merchant_blue": {
   "status": "partial",
@@ -441,7 +441,7 @@
  "corpse_merchant": {
   "status": "partial",
   "why": "1 static mesh with UCX hull: this pass's merchant posed dead on his back with blood baked into skin and outfit, blue and green outfit maps for the two placements; use with a blood pool decal. Partial: the merchant himself is partial, and the mesh is decimated to a floor prop",
-  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
+  "binding": "this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Corpse_Merchant and Corpse_Merchant_Green, 14 Nov 2026), which rebuilds it with the 1997 gore (soaked, gashed, lying in its pool) on one atlas"
  },
  "npc_peasant": {
   "status": "partial",
@@ -450,7 +450,7 @@
  "corpse_peasant": {
   "status": "partial",
   "why": "1 static mesh with UCX hull: this pass's peasant posed dead on his back with baked blood; hat and pole left out (the sprite shows the pole beside him). Partial: the peasant himself is partial, decimated to a floor prop",
-  "binding": "four or five material slots (alpha-tested hair, skin, eyes): the kit importer builds opaque, subsurface and translucent baked materials only"
+  "binding": "this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Corpse_Peasant, 14 Nov 2026), which rebuilds it with the 1997 gore (soaked, gashed, lying in its pool) on one atlas"
  },
  "npc_old_man": {
   "status": "partial",
