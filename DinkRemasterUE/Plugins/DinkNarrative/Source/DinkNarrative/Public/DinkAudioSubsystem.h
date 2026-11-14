@@ -3,8 +3,10 @@
 #include "Subsystems/WorldSubsystem.h"
 #include "DinkAudioSubsystem.generated.h"
 class UAudioComponent;
+class USoundAttenuation;
 class ADinkScreenVolume;
 class UDinkDirector;
+struct FDinkActiveText;
 struct DINKNARRATIVE_API FDinkApprovedSound
 {
  FString Asset;
@@ -20,6 +22,51 @@ struct DINKNARRATIVE_API FDinkAudioSelection
  const FDinkApprovedSound* ResolveMusic(const FString& Raw) const;
  static int32 SpatialSpriteHandle(int32 Handle, bool bHasBoundActor = false);
  static float Pitch(int32 OriginalSpeed) { return OriginalSpeed > 0 ? FMath::Clamp(OriginalSpeed / 22050.f, .125f, 4.f) : 1.f; }
+};
+/** One spoken line's recording (Content/Dink/Data/Audio/voice.json, written by Scripts/import_voice.py). */
+struct DINKNARRATIVE_API FDinkVoiceLine
+{
+ FString Asset;
+ float DurationS = 0.f;
+};
+/** Ink line id (#id tag, "s1-h1-m.main.001") -> recording. */
+struct DINKNARRATIVE_API FDinkVoiceTable
+{
+ TMap<FString, FDinkVoiceLine> Lines;
+ float Volume = 1.f;
+ bool Load(const FString& Filename);
+ const FDinkVoiceLine* Find(const FString& LineId) const { return Lines.Find(LineId); }
+};
+/**
+ * Which voice recordings start and stop, decided from the story's text list alone (no audio device, so it is testable).
+ * The story's timing is the 1997 engine's and is never changed for a voice: a recording follows its text.
+ *  - A new text whose line has a recording starts it; it first stops the speaker's earlier recording (a say kills the
+ *    speaker's text, D:7756) and any leftover tail of a text that has already timed out.
+ *  - A text removed before its time (say/say_stop killing it, the player skipping, a load) stops its recording.
+ *  - A text that times out lets its recording finish (400 of the 2,088 recordings run a little past their text).
+ */
+struct DINKNARRATIVE_API FDinkVoiceTracker
+{
+ struct FVoice
+ {
+  int32 Text = 0;
+  int32 Owner = 0;
+  FString LineId;
+  double ExpireMs = 0.0;
+  bool bTail = false;
+ };
+ struct FChanges
+ {
+  TArray<FVoice> Started;
+  TArray<int32> Stopped; // text handles
+ };
+ TArray<FVoice> Playing;
+ FChanges Update(const TArray<FDinkActiveText>& Texts, double NowMs, const FDinkVoiceTable& Table);
+ /** The recording of this text ended or could not play. */
+ void Forget(int32 Text);
+ void Reset() { Playing.Reset(); Known.Reset(); }
+private:
+ TMap<int32, double> Known; // text handle -> ExpireMs of every text already seen
 };
 /** Local audio playback; the classic director's cue journal remains authoritative. */
 UCLASS()
@@ -37,15 +84,25 @@ public:
  const FDinkAudioSelection& GetSelection() const { return Selection; }
  const FString& GetPlayingMusicAsset() const { return PlayingMusic; }
  int32 GetEffectCount() const { return Effects.Num(); }
+ const FDinkVoiceTable& GetVoices() const { return Voices; }
+ int32 GetVoiceCount() const { return VoiceComponents.Num(); }
+ const FString& GetLastVoiceLine() const { return LastVoiceLine; }
 private:
  FDinkAudioSelection Selection;
+ FDinkVoiceTable Voices;
+ FDinkVoiceTracker VoiceTracker;
+ FString LastVoiceLine;
+ TMap<int32, TWeakObjectPtr<UAudioComponent>> VoiceComponents; // text handle -> recording
  FString PlayingMusic;
  TWeakObjectPtr<UDinkDirector> BoundDirector;
  TMap<TWeakObjectPtr<UAudioComponent>, int32> EffectSprites;
  TMap<int32, TPair<int32, TWeakObjectPtr<UAudioComponent>>> Ambient;
  UPROPERTY(Transient) TObjectPtr<UAudioComponent> Music;
  UPROPERTY(Transient) TArray<TObjectPtr<UAudioComponent>> Effects;
+ UPROPERTY(Transient) TObjectPtr<USoundAttenuation> VoiceAttenuation;
  void EnterScreen(ADinkScreenVolume* Screen);
  void PlayMusic(const FDinkApprovedSound& Entry);
  bool CanPlay() const;
+ void UpdateVoices(UDinkDirector* Director);
+ void StopVoice(int32 Text);
 };

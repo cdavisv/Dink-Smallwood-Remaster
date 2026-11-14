@@ -1,6 +1,7 @@
 #include "DinkTestHelpers.h"
 #include "DinkAudioSubsystem.h"
 #include "DinkDirector.h"
+#include "DinkStorySubsystem.h"
 #include "Misc/Paths.h"
 #include "Misc/FileHelper.h"
 #include "HAL/FileManager.h"
@@ -48,5 +49,59 @@ bool FDinkApprovedAudioLookup::RunTest(const FString&)
  TestTrue(TEXT("save audio restore does not add classic script cues"), Director->Audio.Cues.IsEmpty());
  Journal.Playback = nullptr; Journal.Cue(TEXT("music:stop"));
  TestEqual(TEXT("worldless/headless recording still works"), Journal.Cues.Num(), 2);
+ return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkVoicePlayback, "Dink.Audio.VoiceLinesFollowTheirTexts", DINK_TEST_FLAGS)
+bool FDinkVoicePlayback::RunTest(const FString&)
+{
+ // The published table: every approved recording, keyed by the Ink #id tag, Mother's opening lines among them.
+ FDinkVoiceTable Published;
+ TestTrue(TEXT("published voice table loads"), Published.Load(FPaths::ProjectContentDir() / TEXT("Dink/Data/Audio/voice.json")));
+ TestEqual(TEXT("all 2,088 approved recordings are published"), Published.Lines.Num(), 2088);
+ const FDinkVoiceLine* Mother = Published.Find(TEXT("s1-h1-m.main.001"));
+ TestNotNull(TEXT("Mother's first line has a recording"), Mother);
+ if (Mother) TestTrue(TEXT("recording lives under Dink/Audio/Voice/mother"), Mother->Asset.StartsWith(TEXT("/Game/Dink/Audio/Voice/mother/")));
+ TestNull(TEXT("system lines are never voiced"), Published.Find(TEXT("1gold.touch.001")));
+
+ FDinkVoiceTable Table;
+ for (const TCHAR* Id : {TEXT("a"), TEXT("b"), TEXT("c"), TEXT("d"), TEXT("x1"), TEXT("x2")}) Table.Lines.Add(Id, FDinkVoiceLine{FString(TEXT("/Game/Dink/Audio/Voice/t/")) + Id, 1.f});
+ auto Text = [](int32 Handle, int32 Owner, const TCHAR* Id, double ExpireMs) { FDinkActiveText T; T.Handle = Handle; T.Owner = Owner; T.LineId = Id; T.ExpireMs = ExpireMs; return T; };
+ FDinkVoiceTracker Tracker;
+ TArray<FDinkActiveText> Texts = {Text(50, 7, TEXT("a"), 3000)};
+ FDinkVoiceTracker::FChanges C = Tracker.Update(Texts, 0, Table);
+ TestTrue(TEXT("a new voiced text starts its recording"), C.Started.Num() == 1 && C.Started[0].LineId == TEXT("a") && C.Stopped.IsEmpty());
+ C = Tracker.Update(Texts, 16, Table);
+ TestTrue(TEXT("a text already seen does not restart"), C.Started.IsEmpty() && C.Stopped.IsEmpty());
+ Texts.Reset();
+ C = Tracker.Update(Texts, 3000, Table);
+ TestTrue(TEXT("a timed-out text lets its recording finish"), C.Stopped.IsEmpty() && Tracker.Playing.Num() == 1 && Tracker.Playing[0].bTail);
+ Texts = {Text(51, 1, TEXT("b"), 6000)};
+ C = Tracker.Update(Texts, 3100, Table);
+ TestTrue(TEXT("the next speaker cuts the tail"), C.Stopped == TArray<int32>{50} && C.Started.Num() == 1 && C.Started[0].Owner == 1);
+ Texts.Reset();
+ C = Tracker.Update(Texts, 4000, Table);
+ TestTrue(TEXT("a text removed early (skip, kill) stops its recording"), C.Stopped == TArray<int32>{51} && Tracker.Playing.IsEmpty());
+ Texts = {Text(52, 7, TEXT("c"), 9000)};
+ Tracker.Update(Texts, 4100, Table);
+ Texts = {Text(53, 7, TEXT("d"), 9500)}; // say killed the speaker's earlier text
+ C = Tracker.Update(Texts, 4200, Table);
+ TestTrue(TEXT("a speaker's new line replaces the earlier one"), C.Stopped == TArray<int32>{52} && C.Started.Num() == 1 && C.Started[0].LineId == TEXT("d"));
+ Texts.Add(Text(54, UDinkDirector::HandleNoSprite, TEXT("x1"), 9600));
+ Texts.Add(Text(55, UDinkDirector::HandleNoSprite, TEXT("x2"), 9600));
+ C = Tracker.Update(Texts, 4300, Table);
+ TestTrue(TEXT("say_xy recordings do not cut each other or another speaker"), C.Started.Num() == 2 && C.Stopped.IsEmpty() && Tracker.Playing.Num() == 3);
+ Texts.Add(Text(56, 9, TEXT("no-recording"), 9700));
+ C = Tracker.Update(Texts, 4400, Table);
+ TestTrue(TEXT("a line without a recording changes nothing"), C.Started.IsEmpty() && C.Stopped.IsEmpty());
+ Texts = {Text(53, 7, TEXT("d"), 9500), Text(54, UDinkDirector::HandleNoSprite, TEXT("x1"), 9600)};
+ Tracker.Forget(55);
+ Texts.Add(Text(55, 3, TEXT("a"), 12000)); // handle reused by a new text
+ C = Tracker.Update(Texts, 4500, Table);
+ TestTrue(TEXT("a reused text handle is a new line"), C.Started.Num() == 1 && C.Started[0].Text == 55 && C.Started[0].Owner == 3);
+ Texts = {Text(60, 4, TEXT("a"), 20000), Text(61, 4, TEXT("b"), 20000)};
+ Tracker.Reset();
+ C = Tracker.Update(Texts, 5000, Table);
+ TestTrue(TEXT("two lines of one speaker in one frame: only the later plays"), C.Started.Num() == 1 && C.Started[0].Text == 61);
  return true;
 }

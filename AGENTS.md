@@ -781,8 +781,8 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
   Audio quality has not been listened through; the takes are review candidates.
   `SourceAssets/Audio/REDISTRIBUTION.md` (7 Nov 2026) records the owner's
   confirmation of redistribution rights for the generated audio. Import into
-  the game is the audio pipeline's job (Codex's `import_approved_audio.py`);
-  nothing is wired to play the lines yet.
+  the game: `DinkRemasterUE/Scripts/import_voice.sh` imports them since 14 Nov 2026 and
+  `UDinkAudioSubsystem` plays each line with its text (Voice README, UE AGENTS.md).
 - Probe route (written 7 Nov 2026, script-verified):
   `DinkRemasterUE/Plugins/DinkParity/Docs/probe_route.md`, 56 steps from
   &story 7 to 16 with `file.c:line` for every fact (the &story setters:

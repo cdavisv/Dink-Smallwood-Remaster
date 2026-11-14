@@ -105,6 +105,13 @@ for a voice file carries status `candidate` until then.
   on-screen text still shows) unless a vocalisation is decided later.
 - `<voice>/<line id>.mp3`: generated lines, one folder per voice, named by the
   Ink line id so the runtime can look a line up by id.
-- Import into the game is the audio import pipeline's job
-  (`Scripts/import_approved_audio.py`, `UDinkAudioSubsystem`); this folder only
-  holds sources and provenance.
+- In the game (14 Nov 2026): `Scripts/import_voice.sh` imports every ledger row
+  of kind `voice line` with status `approved` straight from its MP3 (UE 5.8 reads
+  MP3; sha256 and duration are checked against the ledger first) as
+  `/Game/Dink/Audio/Voice/<voice>/VO_<line id with . and - as _>` and publishes
+  `Content/Dink/Data/Audio/voice.json` (line id -> SoundWave). Re-runs skip
+  unchanged lines; `DINK_VOICE_ONLY=<voice>` limits a run, `DINK_VOICE_FORCE=1`
+  re-imports. After a redo: regenerate the MP3, update its ledger row, re-run the
+  import. `UDinkAudioSubsystem` plays a line's recording when its text appears
+  (rules in `FDinkVoiceTracker`, `DinkAudioSubsystem.h`); the story's text timing
+  stays the 1997 engine's.
