@@ -110,6 +110,22 @@ The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README
 - **Pickups** (hearts, small coin scatter) use `fit: footprint`: a pickup is shown at the size the original draws it, not at the size of the modelled object.
 - **Checks and captures**: `Docs/Verification/UnclaimedFamilyBinding_12Nov2026/`.
 
+## Faceting sweep (13 Nov 2026)
+
+Owner feedback of 13 Nov 2026: "fix blocky and polygon looking art". What was found and changed is in `Docs/Verification/FacetingSweep_13Nov2026/`.
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| Wall kits after a rebuild (`blender -b -t 4 --python WallKits/tools/wallkit_build.py`) | `DINK_PHOTOREAL_ONLY=walls Scripts/import_photoreal_art.sh` | `WallKits/manifest.json` | the 13 modules of `/Game/Dink/Photoreal/WallKits` |
+| Thorn brambles after a re-export (`blender -b -t 4 --python Vegetation/src/export_all.py -- under`) | `DINK_PHOTOREAL_ONLY=vegetation Scripts/import_photoreal_art.sh` | `Vegetation/manifest.json` | `SM_Veg_ThornBush_01/02`, `SM_Veg_ThornBranch_01` (every mesh whose FBX size or time changed is re-imported: restore the files you did not mean to change first) |
+| Jars after a rebake (`Props/tools/props_bake.py -- SM_Jar_...`, `props_merge.py`, `props_publish.py`) | `DINK_KIT=Props DINK_KIT_FOLDER=Props Scripts/import_town_exteriors.sh` | `Props/manifest.json` | `/Game/Dink/Photoreal/Props` |
+| Unclaimed kit (gold heap, coins, the four boulders) | `python3 -I SourceAssets/Art/PhotorealPass/Unclaimed/tools/make_kit_manifest.py`, then `DINK_KIT=Unclaimed DINK_KIT_FOLDER=Unclaimed Scripts/import_town_exteriors.sh` | `Unclaimed/manifest.json` | `/Game/Dink/Photoreal/Unclaimed`, **including its master material `M_Struct_Baked`** |
+
+- **A kit's master material takes its default textures from the kit's first asset.** Remove that asset's textures without importing again and the master no longer compiles: the game log says `Failed to compile Material ... Default Material will be used in game` and every mesh of the kit is drawn grey, without colour or normal map. That was the state of the unclaimed kit on master after PR #90 (all 34 props). After removing assets from a kit, run its import again and commit the rebuilt master. `Scripts/tests/test_photoreal_material_references.py` fails when a material under `Content/Dink/Photoreal` names a package that is not in the repository.
+- **A material drawn on background placements needs the usage flag "Used with Instanced Static Meshes"** on its base material (the kit importers set it). `MI_Stonebrook_Fieldstone` does not have it, so background boulders bound to `SM_Boulder_Fieldstone_01` were grey; the boulder rows now bind photoreal boulders.
+- **Shading of generated meshes**: the wall kits are smooth shaded with hard edges where faces meet at more than 28 degrees (`shade()` in `wallkit_build.py`); flat shading showed every triangle of the uneven plaster and of the jittered stone faces. Round forms: lathe at least 24 sides for a pickup shown large, 40 to 48 for a pot, and run the profile through a curve (`_smooth_prof` in `Props/tools/props_gen_pots.py`): a profile of straight runs shows as corners in the outline whatever the normals are.
+- **A capture of a freshly imported mesh shows the default material until its shaders are compiled.** Spawn the meshes once off camera and wait before the shots.
+
 ## Turning the pass off
 
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):

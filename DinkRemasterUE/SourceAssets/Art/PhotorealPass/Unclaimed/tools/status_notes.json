@@ -60,24 +60,20 @@
   "why": "rigged creature (38-bone bespoke skeleton with wing and jaw bones, 3 LODs, bone-heat weights, pose-tested). Partial because the last review still faults it: maquette look at 1 m, flat opaque wing panels, no mouth opening, no animation clips (flight, fire, death)"
  },
  "boulder_flat": {
-  "why": "1 mesh with UCX hull: bedded flat boulder; scanned rock surface on an authored form, soft edges",
-  "binding": "the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
+  "why": "1 mesh with UCX hull: bedded flat boulder; scanned rock surface on an authored form, soft edges"
  },
  "boulder_large": {
-  "why": "1 mesh with UCX hull: large dark rounded boulder; scanned rock surface on an authored form, soft edges",
-  "binding": "the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
+  "why": "1 mesh with UCX hull: large dark rounded boulder; scanned rock surface on an authored form, soft edges"
  },
  "boulder_red": {
   "why": "1 mesh with UCX hull: cracked reddish boulder (the bombable rock); scanned rock surface on an authored form, soft edges. Review of 12 Nov 2026 (PR #83 / #85) downgraded it: it reads as stitched clay, not as rock",
-  "status": "partial",
-  "binding": "the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
+  "status": "partial"
  },
  "boulder_white_pair": {
   "why": "1 mesh with UCX hull: pair of pale boulders; scanned rock surface on an authored form, soft edges"
  },
  "boulder_grey_tall": {
-  "why": "1 mesh with UCX hull: tall grey boulder; scanned rock surface on an authored form, soft edges",
-  "binding": "the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
+  "why": "1 mesh with UCX hull: tall grey boulder; scanned rock surface on an authored form, soft edges"
  },
  "ore_rock_blue": {
   "status": "partial",

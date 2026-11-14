@@ -14,24 +14,24 @@
   "ORM": "T_Jar_Bowl_PR_ORM.png"
  },
  "lod_triangles": [
-  728,
-  364,
-  160
+  2304,
+  1152,
+  506
  ],
- "hi_triangles": 13320,
+ "hi_triangles": 35820,
  "bounds_min_m": [
   -0.208,
-  -0.209,
+  -0.211,
   0.0
  ],
  "bounds_max_m": [
   0.211,
-  0.209,
+  0.211,
   0.168
  ],
  "dimensions_m": [
   0.419,
-  0.419,
+  0.422,
   0.168
  ],
  "emissive_nits": null,
@@ -39,13 +39,13 @@
  "stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 50.1,
-   "p99": 167.4
+   "mean": 51.2,
+   "p99": 167.2
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.11,
-   "p95": 0.852
+   "mean": 0.115,
+   "p95": 0.853
   },
   "metallic_mean": 0.0
  },

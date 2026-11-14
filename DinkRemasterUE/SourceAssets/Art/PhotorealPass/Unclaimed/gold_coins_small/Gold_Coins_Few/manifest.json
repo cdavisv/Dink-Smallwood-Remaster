@@ -5,25 +5,25 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_coins_small/Gold_Coins_Few/SM_Gold_Coins_Few_PR.blend",
  "build": "Unclaimed/tools/bl.sh build_props.py Gold_Coins_Few final",
  "dimensions_m": [
-  0.1841,
-  0.1626,
-  0.0113
+  0.1844,
+  0.1631,
+  0.011
  ],
  "bounds_min_m": [
-  -0.092,
-  -0.0813,
-  -0.0008
+  -0.0922,
+  -0.0816,
+  0.0
  ],
  "bounds_max_m": [
-  0.092,
-  0.0813,
-  0.0105
+  0.0922,
+  0.0816,
+  0.011
  ],
- "lod0_triangles": 440,
+ "lod0_triangles": 2112,
  "triangle_budget": {
   "soft": 1500,
   "hard": 5000,
-  "within_soft": true
+  "within_soft": false
  },
  "textures": [
   {
@@ -63,24 +63,24 @@
   "zero_area_faces": 0,
   "signed_volume_positive": true,
   "uv_range": [
-   0.0102,
-   0.9898
+   0.0099,
+   0.9901
   ],
   "transforms_applied": true
  },
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 177.6,
-   "p99": 202.1
+   "mean": 171.8,
+   "p99": 201.9
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.287,
-   "p95": 0.341
+   "mean": 0.279,
+   "p95": 0.339
   },
-  "metallic_mean": 0.897,
-  "ao_mean": 0.856
+  "metallic_mean": 0.871,
+  "ao_mean": 0.821
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [

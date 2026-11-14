@@ -6,22 +6,22 @@
   "MI_Jar_Storage"
  ],
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Jar_Storage_PR.blend",
- "lod0_triangles": 1344,
- "lod1_triangles": 672,
- "lod2_triangles": 294,
+ "lod0_triangles": 4992,
+ "lod1_triangles": 2496,
+ "lod2_triangles": 1098,
  "dimensions_m": [
-  0.499,
-  0.491,
+  0.503,
+  0.496,
   0.742
  ],
  "bounds_min_m": [
-  -0.247,
-  -0.245,
+  -0.249,
+  -0.248,
   0.0
  ],
  "bounds_max_m": [
-  0.251,
-  0.245,
+  0.254,
+  0.248,
   0.742
  ],
  "open_edges": 0,
@@ -56,17 +56,17 @@
   "stats": {
    "albedo_luma_srgb": {
     "p1": 0.0,
-    "mean": 79.9,
-    "p99": 114.1
+    "mean": 81.2,
+    "p99": 114.2
    },
    "roughness": {
     "p5": 0.0,
-    "mean": 0.211,
-    "p95": 0.863
+    "mean": 0.219,
+    "p95": 0.864
    },
    "metallic_mean": 0.0
   },
-  "hi_triangles": 23808,
+  "hi_triangles": 91008,
   "third_party": [],
   "source_blend": "_build/bake/SM_Jar_Storage_PR.blend",
   "extra": null,

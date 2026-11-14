@@ -86,6 +86,15 @@ for r in mods:
         iassets[r['name']].update(r['baked']['extra'])
     if r.get('baked'):
         iassets[r['name']]['baked'] = {'slots': r['baked']['slots'], 'textures': rec['textures'], 'resolution_px': r['baked']['px'], 'emissive_nits': r['baked'].get('emissive_nits'), 'params': r['baked'].get('params')}
+# colour variants (notes.json "slot_variants"): the same FBX under a further asset name with other slot materials, so that a sprite
+# family can bind it (families.json binds a mesh, not a mesh and a material): the potion flask in its three glass tints
+for base, variants in (notes.get('slot_variants') or {}).items():
+    src = next(a for a in assets if a['name'] == base)
+    for vname, v in variants.items():
+        rec = dict(src, name=vname, materials=[v['slots'].get(m, m) for m in src['materials']], families=v['families'], slot_override=v['slots'], variant_of=base,
+                   supersedes=v.get('supersedes', src.get('supersedes')))
+        assets.append(rec)
+        iassets[vname] = dict(iassets[base], material_slots=rec['materials'], slot_override=v['slots'], variant_of=base)
 built = {}
 for a in assets:
     for f in a['families']:

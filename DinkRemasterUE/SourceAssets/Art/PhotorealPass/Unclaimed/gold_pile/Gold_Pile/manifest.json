@@ -5,21 +5,21 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/gold_pile/Gold_Pile/SM_Gold_Pile_PR.blend",
  "build": "Unclaimed/tools/bl.sh build_props.py Gold_Pile final",
  "dimensions_m": [
-  0.4251,
-  0.3696,
-  0.1205
+  0.4378,
+  0.3581,
+  0.1268
  ],
  "bounds_min_m": [
-  -0.2126,
-  -0.1848,
-  -0.0011
+  -0.2189,
+  -0.1791,
+  0.0
  ],
  "bounds_max_m": [
-  0.2126,
-  0.1848,
-  0.1194
+  0.2189,
+  0.1791,
+  0.1268
  ],
- "lod0_triangles": 2176,
+ "lod0_triangles": 4960,
  "triangle_budget": {
   "soft": 1500,
   "hard": 5000,
@@ -63,24 +63,24 @@
   "zero_area_faces": 0,
   "signed_volume_positive": true,
   "uv_range": [
-   0.0079,
-   0.9921
+   0.0116,
+   0.9884
   ],
   "transforms_applied": true
  },
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 146.4,
-   "p99": 201.9
+   "mean": 133.1,
+   "p99": 201.7
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.338,
+   "mean": 0.265,
    "p95": 0.5
   },
-  "metallic_mean": 0.879,
-  "ao_mean": 0.638
+  "metallic_mean": 0.752,
+  "ao_mean": 0.404
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [
@@ -107,8 +107,8 @@
   ]
  },
  "supersedes": "none (placeholder greybox cards)",
- "dresses": "heap of about 430 gold coins, 36 cm across and 11 cm high, with strays round the foot",
+ "dresses": "heap of about 950 gold coins, 36 cm across and 11 cm high, with strays round the foot",
  "third_party": [],
  "status": "source delivered; not imported into Unreal, not bound in families.json",
- "known_weaknesses": "Coins are placed on a mound by rule, not settled by simulation, so some float a little or cut into their neighbours. The game mesh is a smooth mound with the coins baked onto it as colour and normal (only the eighteen strays are real discs), so the heap has a clean dome silhouette and no parallax between coins at 1 m. No gems, bag or chest."
+ "known_weaknesses": "Coins are placed on a mound by rule, not settled by simulation, so some float a little or cut into their neighbours. The game mesh is a smooth mound with the heap baked onto it, the 55 coins that stand proudest as real twelve-sided discs (they break the outline; the first version was a clean dome) and the eighteen strays; between the discs there is no parallax at 1 m. A voxel skin over all the coins was tried and read as crumpled foil. Over the soft triangle target of a small prop for the discs. No gems, bag or chest."
 }

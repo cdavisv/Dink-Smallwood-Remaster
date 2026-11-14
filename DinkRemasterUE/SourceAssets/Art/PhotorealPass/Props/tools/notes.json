@@ -283,5 +283,30 @@
   "status": "round 2: unique bake, reviewed; not claimed photoreal where known_weaknesses lists faults",
   "material_exception": "unique bake (T_<Asset>_BC/_N/_ORM and _E where listed), private to this prop, not a row of ART_STANDARD.md section 2: the coordinator asked for sculpted or displaced high-detail sources baked to the game mesh with AO and curvature edge wear, true metal in ORM.B and emissive masks, which the shared tiling library cannot carry. Non-overlapping UV0; no vertex colour."
  },
- "sheet_skip": []
+ "sheet_skip": [],
+ "slot_variants": {
+  "SM_Potion_Flask_PR": {
+   "SM_Potion_Flask_Purple_PR": {
+    "slots": {
+     "MI_Prop_PotionGlass_Red": "MI_Prop_PotionGlass_Purple"
+    },
+    "families": [
+     "57 bonuses/bottles/botl-p",
+     "potion_purple"
+    ],
+    "supersedes": "none (potion_purple placeholder, 11 placements)"
+   },
+   "SM_Potion_Flask_Blue_PR": {
+    "slots": {
+     "MI_Prop_PotionGlass_Red": "MI_Prop_PotionGlass_Blue"
+    },
+    "families": [
+     "55 bonuses/bottles/botl-b",
+     "75 (megapotion)",
+     "potion_blue"
+    ],
+    "supersedes": "none (potion_blue placeholder, 9 placements)"
+   }
+  }
+ }
 }

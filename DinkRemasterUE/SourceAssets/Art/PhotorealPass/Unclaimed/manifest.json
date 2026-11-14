@@ -2,7 +2,7 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed",
  "generated_by": "Unclaimed/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "34 static meshes of the unclaimed gate 2 families that families.json binds, each with one baked opaque set (BC / N OpenGL / ORM). Every FBX holds one object named after the asset (LOD0 only) and, where collision_hulls is 1, a UCX hull that the importer drops: the family layer is visual only.",
+ "summary": "38 static meshes of the unclaimed gate 2 families that families.json binds, each with one baked opaque set (BC / N OpenGL / ORM). Every FBX holds one object named after the asset (LOD0 only) and, where collision_hulls is 1, a UCX hull that the importer drops: the family layer is visual only.",
  "assets": [
   {
    "name": "SM_Axe_Throwing_PR",
@@ -79,6 +79,82 @@
     "64 inside/details/inacc- frame 4"
    ],
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bookcase/Bookcase"
+  },
+  {
+   "name": "SM_Boulder_Flat_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/SM_Boulder_Flat_PR.fbx",
+   "materials": [
+    "MI_Boulder_Flat_PR"
+   ],
+   "dimensions_m": [
+    1.199,
+    0.955,
+    0.532
+   ],
+   "collision_hulls": 1,
+   "families": [
+    "boulder_flat",
+    "95 lands/rocks/rock- frames 4, 5"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat"
+  },
+  {
+   "name": "SM_Boulder_Grey_Tall_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall/SM_Boulder_Grey_Tall_PR.fbx",
+   "materials": [
+    "MI_Boulder_Grey_Tall_PR"
+   ],
+   "dimensions_m": [
+    0.794,
+    0.813,
+    1.196
+   ],
+   "collision_hulls": 1,
+   "families": [
+    "boulder_grey_tall",
+    "95 lands/rocks/rock- frames 1, 2"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall"
+  },
+  {
+   "name": "SM_Boulder_Large_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_large/Boulder_Large/SM_Boulder_Large_PR.fbx",
+   "materials": [
+    "MI_Boulder_Large_PR"
+   ],
+   "dimensions_m": [
+    1.492,
+    1.275,
+    0.941
+   ],
+   "collision_hulls": 1,
+   "families": [
+    "boulder_large",
+    "95 lands/rocks/rock- frame 10"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_large/Boulder_Large"
+  },
+  {
+   "name": "SM_Boulder_Red_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/SM_Boulder_Red_PR.fbx",
+   "materials": [
+    "MI_Boulder_Red_PR"
+   ],
+   "dimensions_m": [
+    1.368,
+    1.019,
+    0.624
+   ],
+   "collision_hulls": 1,
+   "families": [
+    "boulder_red",
+    "95 lands/rocks/rock- frame 3"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red"
   },
   {
    "name": "SM_Boulder_White_Pair_PR",
@@ -259,9 +335,9 @@
     "MI_Gold_Pile_PR"
    ],
    "dimensions_m": [
-    0.425,
-    0.37,
-    0.12
+    0.438,
+    0.358,
+    0.127
    ],
    "collision_hulls": 0,
    "families": [
@@ -709,26 +785,6 @@
    "why": "not a static mesh"
   },
   {
-   "name": "SM_Boulder_Flat_PR",
-   "class": "prop",
-   "why": "no families.json row uses it: the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
-  },
-  {
-   "name": "SM_Boulder_Grey_Tall_PR",
-   "class": "prop",
-   "why": "no families.json row uses it: the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
-  },
-  {
-   "name": "SM_Boulder_Large_PR",
-   "class": "prop",
-   "why": "no families.json row uses it: the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
-  },
-  {
-   "name": "SM_Boulder_Red_PR",
-   "class": "prop",
-   "why": "no families.json row uses it: the class is already bound to SM_Boulder_Fieldstone_01 by an earlier row; not changed here"
-  },
-  {
    "name": "Decal_Burn_Damage_Embers_01",
    "class": "decal",
    "why": "not a static mesh"
@@ -1145,6 +1201,42 @@
      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bookcase/Bookcase/T_Bookcase_PR_BC.png",
      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bookcase/Bookcase/T_Bookcase_PR_N.png",
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/bookcase/Bookcase/T_Bookcase_PR_ORM.png"
+    }
+   },
+   "MI_Boulder_Flat_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/T_Boulder_Flat_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/T_Boulder_Flat_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/T_Boulder_Flat_PR_ORM.png"
+    }
+   },
+   "MI_Boulder_Grey_Tall_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall/T_Boulder_Grey_Tall_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall/T_Boulder_Grey_Tall_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_grey_tall/Boulder_Grey_Tall/T_Boulder_Grey_Tall_PR_ORM.png"
+    }
+   },
+   "MI_Boulder_Large_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_large/Boulder_Large/T_Boulder_Large_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_large/Boulder_Large/T_Boulder_Large_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_large/Boulder_Large/T_Boulder_Large_PR_ORM.png"
+    }
+   },
+   "MI_Boulder_Red_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/T_Boulder_Red_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/T_Boulder_Red_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/T_Boulder_Red_PR_ORM.png"
     }
    },
    "MI_Boulder_White_Pair_PR": {

@@ -119,23 +119,35 @@ def gold_mat(seed=0.0):
     t.set(base=base, rough=t.mixf(n2, 0.22, 0.42), metal=1.0, normal=t.bump(n, 0.15, 0.0003)); return t.mat
 
 
-def coin(name, c, hi, r=0.013, th=0.0019, seed=0):
+def coin(name, c, hi, r=0.013, th=0.0019, seed=0, lo_seg=24):
     """one hammered coin, lying flat on z = 0: raised rim, device relief on both faces (dense source only), slightly out of round"""
-    rng = np.random.default_rng(seed); seg = 48 if hi else 10
-    if not hi:
-        return L.lathe(name, [(0, 0), (r, 0), (r, th), (0, th)], seg=seg, c=c)
+    rng = np.random.default_rng(seed); seg = 48 if hi else lo_seg
+    if not hi:                                    # game mesh: a round rim (ten sides showed in game at pickup size) with a small chamfer, so no razor edge
+        b = th * 0.22
+        if seg < 16:                              # a coin among many on the heap: a plain disc
+            return L.lathe(name, [(0, 0), (r, 0), (r, th), (0, th)], seg=seg, c=c)
+        return L.lathe(name, [(0, 0), (r - b, 0), (r, b), (r, th - b), (r - b, th), (0, th)], seg=seg, c=c)
     prof = [(0, th * 0.25)] + [(r * k / 14, th * 0.25) for k in range(1, 12)] + [(r * 0.86, th * 0.05), (r * 0.93, 0.0), (r, th * 0.12), (r, th * 0.88), (r * 0.93, th), (r * 0.86, th * 0.95)] + [(r * k / 14, th * 0.75) for k in range(11, 0, -1)] + [(0, th * 0.75)]
     ob = L.lathe(name, prof, seg=seg, c=c); P = L.co(ob); rad = np.hypot(P[:, 0], P[:, 1]); ang = np.arctan2(P[:, 1], P[:, 0]); inner = smoothstep(r * 0.84, r * 0.78, rad)
     dev = (0.5 + 0.5 * np.cos(rad / r * 26)) * 0.35 + (fbm(np.stack([P[:, 0] * 260 + seed, P[:, 1] * 260, np.zeros(len(P))], 1), seed, 1.0, 3) > 0.05) * 0.65 + 0.3 * (np.cos(ang * 14) > 0.2) * smoothstep(r * 0.55, r * 0.7, rad)
     P[:, 2] += np.where(P[:, 2] > th / 2, 1, -1) * inner * dev * th * 0.16; P[:, 0] *= 1 + 0.03 * rng.normal(); L.set_co(ob, P); return ob
 
 
-def scatter_coins(c, hi, n, spread, seed, heap=None):
+def heap_lobe(a):
+    """outline of the coin heap: not a circle, it slumps in three lobes"""
+    return 1 + 0.11 * np.sin(3 * a + 0.8) + 0.06 * np.sin(5 * a + 2.1)
+
+
+def lobed(ob, k=1.0):
+    P = L.co(ob); f = 1 + (heap_lobe(np.arctan2(P[:, 1], P[:, 0])) - 1) * k; P[:, 0] *= f; P[:, 1] *= f; L.set_co(ob, P); return ob
+
+
+def scatter_coins(c, hi, n, spread, seed, heap=None, lo_seg=24):
     rng = np.random.default_rng(seed); obs = []
     for k in range(n):
-        o = coin('coin%d' % k, c, hi, r=0.013 * rng.uniform(0.92, 1.08), seed=seed * 100 + k)
+        o = coin('coin%d' % k, c, hi, r=0.013 * rng.uniform(0.92, 1.08), seed=seed * 100 + k, lo_seg=lo_seg)
         if heap:                                  # on a mound: lie on its slope, tilted at random, a few standing on edge
-            a = rng.uniform(0, 6.28); q = rng.uniform(0, 1) ** 0.55; rr = heap[0] * q; z = heap[1] * (1 - q ** 1.7) + rng.uniform(-0.004, 0.006); slope = math.atan(heap[1] * 1.7 * q ** 0.7 / heap[0])
+            a = rng.uniform(0, 6.28); q = rng.uniform(0, 1) ** 0.55; rr = heap[0] * q * heap_lobe(a); z = heap[1] * (1 - q ** 1.7) + rng.uniform(-0.004, 0.006); slope = math.atan(heap[1] * 1.7 * q ** 0.7 / heap[0])
             tilt = slope + rng.normal(0, 0.45); M = Matrix.Translation((rr * math.cos(a), rr * math.sin(a), max(0.0, z))) @ Matrix.Rotation(a + rng.normal(0, 0.5), 4, 'Z') @ Matrix.Rotation(tilt, 4, 'Y') @ Matrix.Rotation(rng.uniform(0, 6.28), 4, 'Z')
         else:
             a = rng.uniform(0, 6.28); rr = spread * rng.uniform(0.1, 1) ** 0.7; lean = rng.random() < 0.25
@@ -160,10 +172,28 @@ def g_few(hi, c):
 
 
 def g_pile(hi, c):
-    if not hi:                                    # game mesh: a smooth envelope just over the heap (the coins are baked onto it) plus the stray coins as real discs
-        env = L.lathe('heap', [(0, 0), (0.186, 0), (0.19, 0.008), (0.172, 0.034), (0.136, 0.07), (0.09, 0.1), (0.04, 0.116), (0, 0.12)], seg=28, c=c); L.subsurf(env, 1)
-        return [env] + scatter_coins(c, False, 18, 0.26, 23)
-    dome = L.lathe('dome', [(0, 0), (0.155, 0), (0.15, 0.008), (0.118, 0.04), (0.072, 0.074), (0.027, 0.089), (0, 0.092)], seg=40, c=c); obs = [dome] + scatter_coins(c, hi, 420, 0, 21, heap=(0.172, 0.105)) + scatter_coins(c, hi, 18, 0.26, 23)
+    if not hi:
+        # game mesh: a smooth mound just under the tops of the coins (the heap is baked onto it), the 55 coins that stand proudest of it
+        # as real discs so the outline is coins and not a dome, and the stray coins. The discs are the source coins' own transforms.
+        R, H = 0.172, 0.105
+        env = L.lathe('heap', [(0, 0), (R + 0.006, 0), (R + 0.008, 0.006)] + [(R * q + 0.004, H * (1 - q ** 1.7) + 0.004) for q in (0.9, 0.72, 0.5, 0.26)] + [(0, H + 0.004)], seg=28, c=c); L.subsurf(env, 1); lobed(env)
+        coins = scatter_coins(c, False, 520, 0, 21, heap=(R, H), lo_seg=12); rank = []
+        for o in coins:
+            P = L.co(o); q = np.hypot(P[:, 0], P[:, 1]) / (R * heap_lobe(np.arctan2(P[:, 1], P[:, 0])))
+            rank.append((float((P[:, 2] - np.where(q < 1, H * (1 - np.minimum(q, 1) ** 1.7) + 0.004, 0.0)).max()), o))
+        rank.sort(key=lambda t: -t[0]); keep = []
+        for _, o in rank:
+            cen = L.co(o).mean(0)
+            if len(keep) < 55 and all(np.linalg.norm(cen - k) > 0.03 for _, k in keep):
+                keep.append((o, cen))
+        kept = [o for o, _ in keep]
+        for o in coins:
+            if o not in kept:
+                bpy.data.objects.remove(o)
+        return [env] + kept + scatter_coins(c, False, 18, 0.26, 23, lo_seg=12)
+    # the body under the coins, then two layers of coins (the inner one closes the gaps of the outer: no bare mound shows), then the strays
+    dome = lobed(L.lathe('dome', [(0, 0), (0.155, 0), (0.15, 0.008), (0.118, 0.04), (0.072, 0.074), (0.027, 0.089), (0, 0.092)], seg=40, c=c))
+    obs = [dome] + scatter_coins(c, hi, 520, 0, 21, heap=(0.172, 0.105)) + scatter_coins(c, hi, 420, 0, 22, heap=(0.165, 0.099)) + scatter_coins(c, hi, 18, 0.26, 23)
     m = gold_mat(2.0); dm = NT('under'); dm.set(base=(0.30, 0.15, 0.03), rough=0.5, metal=1.0)
     for o in obs:
         o.data.materials.append(dm.mat if o is dome else m)
@@ -262,14 +292,14 @@ SPECS = {
                           weak=W_ROCK + ' The blue mineral is a glossy colour mask on the rock plus nine plain prisms; it is not a modelled crystal druse and has no transmission or internal colour.',
                           dresses='dark angular rock, 0.75 x 0.6 x 0.45 m, crusted with blue-green mineral and a cluster of small blue crystal prisms on top'),
     'Gold_Coin': dict(fn=g_coin, fam='gold_coin', seq='178 bonuses/coins/coin- frame 1', cls='prop_small', px=256, tris=96, lo='param', ground='weathered_brown_planks', third=[], extrude=0.0006, maxdist=0.002,
-                      weak='A 3.1 cm coin: at the gameplay camera it is a few pixels, so it will need a scale-up or a glint effect to read as a pickup. The device on its faces is a noise relief, not a designed coin. 36 triangles of flat disc; the relief is in the normal map only.',
+                      weak='A 3.1 cm coin: at the gameplay camera it is a few pixels, so it will need a scale-up or a glint effect to read as a pickup. The device on its faces is a noise relief, not a designed coin. A 24-sided disc with a chamfered rim; the relief is in the normal map only.',
                       dresses='one hammered gold coin, 31 mm, lying flat'),
     'Gold_Coins_Few': dict(fn=g_few, fam='gold_coins_small', seq='178 bonuses/coins/coin- frame 2', cls='prop_small', px=512, tris=500, lo='param', ground='weathered_brown_planks', third=[], extrude=0.0006, maxdist=0.002,
                            weak='Eleven identical-profile coins laid by rule (three leaning); they do not overlap or stack as spilled coins would. Relief is in the normal map only.',
                            dresses='eleven gold coins spilled over 25 cm'),
-    'Gold_Pile': dict(fn=g_pile, fam='gold_pile', seq='178 bonuses/coins/coin- frame 4', cls='prop_small', px=1024, tris=2600, lo='param', ground='weathered_brown_planks', third=[], extrude=0.016, maxdist=0.06,
-                      weak='Coins are placed on a mound by rule, not settled by simulation, so some float a little or cut into their neighbours. The game mesh is a smooth mound with the coins baked onto it as colour and normal (only the eighteen strays are real discs), so the heap has a clean dome silhouette and no parallax between coins at 1 m. No gems, bag or chest.',
-                      dresses='heap of about 430 gold coins, 36 cm across and 11 cm high, with strays round the foot'),
+    'Gold_Pile': dict(fn=g_pile, fam='gold_pile', seq='178 bonuses/coins/coin- frame 4', cls='prop_small', px=1024, tris=5000, lo='param', ground='weathered_brown_planks', third=[], extrude=0.012, maxdist=0.05,
+                      weak='Coins are placed on a mound by rule, not settled by simulation, so some float a little or cut into their neighbours. The game mesh is a smooth mound with the heap baked onto it, the 55 coins that stand proudest as real twelve-sided discs (they break the outline; the first version was a clean dome) and the eighteen strays; between the discs there is no parallax at 1 m. A voxel skin over all the coins was tried and read as crumpled foil. Over the soft triangle target of a small prop for the discs. No gems, bag or chest.',
+                      dresses='heap of about 950 gold coins, 36 cm across and 11 cm high, with strays round the foot'),
     'Heart_Red': dict(fn=lambda hi, c: heart(hi, c, ruby_mat), fam='heart_pickup', fams=['heart_pickup', 'small_heart'], seq='52 bonuses/heart/heart, 54 bonuses/heart/smhrt', cls='prop_small', px=512, tris=900, ground='weathered_brown_planks', third=[],
                       weak='A game pickup has no real-world object behind it: built as a ruby-red glass heart, 12 cm. The game material is opaque (no transmission or subsurface), so it reads as glazed ceramic rather than glass. The small heart is this mesh at half scale, set at placement. In game it should float and glow; neither is authored here.',
                       dresses='heart pickup as a ruby-red glass heart, 12 cm; the small heart is the same mesh at half scale'),

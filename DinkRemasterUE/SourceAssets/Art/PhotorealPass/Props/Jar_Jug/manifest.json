@@ -6,22 +6,22 @@
   "MI_Jar_Jug"
  ],
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Props/_build/bake/SM_Jar_Jug_PR.blend",
- "lod0_triangles": 1584,
- "lod1_triangles": 792,
- "lod2_triangles": 348,
+ "lod0_triangles": 5128,
+ "lod1_triangles": 2564,
+ "lod2_triangles": 1128,
  "dimensions_m": [
   0.53,
-  0.441,
+  0.446,
   0.584
  ],
  "bounds_min_m": [
   -0.263,
-  -0.22,
+  -0.224,
   0.0
  ],
  "bounds_max_m": [
   0.267,
-  0.22,
+  0.222,
   0.584
  ],
  "open_edges": 0,
@@ -56,17 +56,17 @@
   "stats": {
    "albedo_luma_srgb": {
     "p1": 0.0,
-    "mean": 52.7,
-    "p99": 135.3
+    "mean": 54.3,
+    "p99": 135.0
    },
    "roughness": {
     "p5": 0.0,
-    "mean": 0.076,
-    "p95": 0.175
+    "mean": 0.077,
+    "p95": 0.288
    },
    "metallic_mean": 0.0
   },
-  "hi_triangles": 23032,
+  "hi_triangles": 71032,
   "third_party": [],
   "source_blend": "_build/bake/SM_Jar_Jug_PR.blend",
   "extra": null,
