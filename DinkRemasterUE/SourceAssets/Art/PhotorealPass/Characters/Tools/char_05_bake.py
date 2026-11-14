@@ -7,6 +7,10 @@ A_ = args(); N = A_[0]; n_ = N.lower(); only = A_[1] if len(A_) > 1 else 'all'
 bpy.ops.wm.open_mainfile(filepath=str(OUT / N / ('Work/%s_garments_b.blend' % n_)))
 D = bpy.data.objects; sc = bpy.context.scene
 BK = OUT / N / 'Work/bake'; BK.mkdir(parents=True, exist_ok=True)
+# Loose hanging sheets whose game mesh (a few rings) cuts across the folds of the detailed one bake from a subdivided
+# copy of themselves, 3 mm proud: their rays missed the detailed sheet in bands at any ray length (two smeared stripes
+# on the seat of Milder's mail skirt, a pale torn patch in the game). The ring pattern comes from the material.
+SELF_HI = ('Mail',)
 lows = [o for o in D if o.type == 'MESH' and 'fabric' in o and not o.name.endswith('_HI')]
 def hi_of(o): return D.get(o.name + '_HI')
 BIG = 1.0
@@ -42,6 +46,9 @@ try: sc.render.bake.margin_type = 'EXTEND'
 except Exception: pass
 for i, o in enumerate(lows):
     h = hi_of(o)
+    if h is not None and o.name in SELF_HI:
+        bpy.data.objects.remove(h, do_unlink=True); h = dup(o, o.name + '_HI'); subdivide(h, 1)
+        hc = co_np(h.data); hn = np.empty(len(hc) * 3, np.float32); h.data.vertices.foreach_get('normal', hn); set_co(h.data, hc + hn.reshape(-1, 3) * .003)
     if h is None:
         h = dup(o, o.name + '_HI'); subdivide(h, 1)
     seams(h)

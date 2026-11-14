@@ -15,6 +15,9 @@ numpy only; used by dink_07_physique.py (shape keys) and render_physique.py (rev
 import numpy as np
 
 BUILDS = ('Scrawny', 'Brawny')
+# How much of a build's field the shape key carries. The owner's brief (14 Nov 2026): the hero grows "a little
+# stronger, not He-Man". The full Brawny field puts 9 cm on the upper arm and 12 cm on the chest over the clothes.
+KEY_STRENGTH = {'Scrawny': 1.0, 'Brawny': 0.55}
 KEY = 'Physique_%s'
 
 def _n(v):
@@ -61,6 +64,42 @@ SHOULDER = {'Brawny': {'out': .023, 'radius': .125, 'drop': .003}, 'Scrawny': {'
 TRAPS = {'Brawny': {'up': .014, 'x': .075, 'w': .06}, 'Scrawny': {'up': -.006, 'x': .09, 'w': .06}}
 # Neck: radius offset at the base and under the skull.
 NECK = {'Brawny': (.010, .005), 'Scrawny': (-.006, -.004)}
+
+# ---- builds of the other characters (char_07_build.py bakes one into the exported mesh; no shape key).
+# Burly: Milder Flatstomp, the village braggart who became a knight. Heavier than the hero's Brawny everywhere and
+# thick through the waist: a big man who eats well, not an athlete.
+LIMBS['Burly'] = {
+    'upperarm': {'prof': [(0, .011), (.18, .016), (.45, .019), (.8, .012), (1, .008)], 'ang': (1.25, 1.2, .55, 1.0)},
+    'lowerarm': {'prof': [(0, .008), (.25, .011), (.7, .005), (1, .002), (1.1, 0)], 'ang': (1.0, 1.0, 1.0, 1.15)},
+    'thigh':    {'prof': [(-.1, .006), (.1, .012), (.35, .017), (.8, .009), (1, .005)], 'ang': (1.3, 1.0, .45, 1.0)},
+    'calf':     {'prof': [(0, .005), (.3, .010), (.65, .004), (.9, 0)], 'ang': (.4, 1.4, .8, 1.0)},
+}
+TRUNK['Burly'] = {
+    'side':  [(.80, 0), (.86, .008), (.93, .012), (1.00, .013), (1.10, .014), (1.22, .019), (1.33, .026), (1.42, .019), (1.48, .009), (1.56, .004)],
+    'front': [(.80, 0), (.86, .004), (.95, .014), (1.05, .020), (1.14, .018), (1.25, .020), (1.34, .026), (1.42, .015), (1.48, .006), (1.56, 0)],
+    'back':  [(.80, 0), (.86, .006), (.93, .009), (1.02, .006), (1.15, .009), (1.30, .016), (1.42, .019), (1.50, .012), (1.56, .005)],
+}
+SHOULDER['Burly'] = {'out': .027, 'radius': .13, 'drop': .004}
+TRAPS['Burly'] = {'up': .017, 'x': .075, 'w': .065}
+NECK['Burly'] = (.014, .008)
+# Matron: Dink's mother, a village woman in her forties. Soft and a little heavy at the waist, belly and seat, rounded
+# sloping shoulders, fuller upper arms; nothing athletic. The skirt below the hips is left alone (profiles end at 0).
+LIMBS['Matron'] = {
+    'upperarm': {'prof': [(0, .004), (.18, .007), (.45, .008), (.8, .005), (1, .003)], 'ang': (1.0, 1.3, .7, 1.0)},
+    'lowerarm': {'prof': [(0, .003), (.25, .003), (.7, .001), (1, 0), (1.1, 0)], 'ang': (1.0, 1.0, 1.0, 1.0)},
+    'thigh':    {'prof': [(-.1, 0), (1, 0)], 'ang': (1.0, 1.0, 1.0, 1.0)},
+    'calf':     {'prof': [(0, 0), (.9, 0)], 'ang': (1.0, 1.0, 1.0, 1.0)},
+}
+TRUNK['Matron'] = {
+    'side':  [(.74, 0), (.82, .008), (.90, .014), (.98, .013), (1.06, .012), (1.14, .009), (1.24, .005), (1.32, 0), (1.56, 0)],
+    'front': [(.74, 0), (.84, .006), (.94, .014), (1.03, .018), (1.12, .012), (1.20, .004), (1.30, 0), (1.56, 0)],
+    'back':  [(.74, 0), (.82, .008), (.90, .014), (.98, .008), (1.08, .004), (1.20, .004), (1.30, 0), (1.56, 0)],
+}
+# shoulders, slope and neck stay as modelled: the bodice's shoulder seam and open neckline sit on them, and a cap or
+# neck offset opened a gap at the neckline and lifted the shoulder yoke off the sleeve heads (review c1)
+SHOULDER['Matron'] = {'out': 0.0, 'radius': .125, 'drop': 0.0}
+TRAPS['Matron'] = {'up': 0.0, 'x': .08, 'w': .06}
+NECK['Matron'] = (0.0, 0.0)
 
 ARM = ('upperarm', 'lowerarm'); LEG = ('thigh', 'calf')
 CHAIN = {'upperarm': ('upperarm_%s', 'upperarm_twist_01_%s', 'upperarm_twist_02_%s'),

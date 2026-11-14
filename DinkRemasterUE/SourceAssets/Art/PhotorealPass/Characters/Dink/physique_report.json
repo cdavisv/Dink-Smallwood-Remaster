@@ -14,9 +14,9 @@
     "mean_mm": 7.12
    },
    "Brawny": {
-    "moved_vertices": 16968,
-    "max_mm": 33.67,
-    "mean_mm": 8.94
+    "moved_vertices": 16876,
+    "max_mm": 18.52,
+    "mean_mm": 4.94
    }
   },
   {
@@ -28,9 +28,9 @@
     "mean_mm": 7.26
    },
    "Brawny": {
-    "moved_vertices": 7762,
-    "max_mm": 33.32,
-    "mean_mm": 8.92
+    "moved_vertices": 7717,
+    "max_mm": 18.33,
+    "mean_mm": 4.93
    }
   },
   {
@@ -42,9 +42,9 @@
     "mean_mm": 7.32
    },
    "Brawny": {
-    "moved_vertices": 3402,
-    "max_mm": 33.41,
-    "mean_mm": 9.12
+    "moved_vertices": 3387,
+    "max_mm": 18.37,
+    "mean_mm": 5.04
    }
   },
   {
@@ -56,9 +56,9 @@
     "mean_mm": 7.35
    },
    "Brawny": {
-    "moved_vertices": 1700,
-    "max_mm": 33.01,
-    "mean_mm": 9.24
+    "moved_vertices": 1689,
+    "max_mm": 18.15,
+    "mean_mm": 5.12
    }
   }
  ],
@@ -86,14 +86,14 @@
    "height": 182.0
   },
   "Brawny": {
-   "shoulder_width": 58.6,
-   "chest_girth": 115.3,
-   "waist_girth": 79.6,
-   "neck_girth": 36.4,
-   "upper_arm_girth": 40.4,
-   "forearm_girth": 37.2,
-   "thigh_girth": 67.6,
-   "calf_girth": 45.4,
+   "shoulder_width": 57.1,
+   "chest_girth": 109.9,
+   "waist_girth": 78.9,
+   "neck_girth": 35.8,
+   "upper_arm_girth": 36.4,
+   "forearm_girth": 34.6,
+   "thigh_girth": 64.0,
+   "calf_girth": 43.2,
    "height": 182.0
   }
  },

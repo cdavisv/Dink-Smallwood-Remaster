@@ -10,15 +10,15 @@
   0.018
  ],
  "freckles": 0.08,
- "redness": 0.8,
- "age": 0.12,
+ "redness": 1.0,
+ "age": 0.2,
  "tan": [
   0.93,
   0.8,
   0.7
  ],
  "grime": 0.25,
- "stubble": 0.26,
+ "stubble": 0.34,
  "seed": 23,
  "hairline": [
   0.47,
@@ -33,8 +33,9 @@
   0.082,
   0.08
  ],
- "micro": 1.6,
- "nrm_k": 0.24,
+ "micro": 1.05,
+ "nrm_k": 0.17,
  "rough_micro": 0.1,
- "rough_meso": 0.05
+ "rough_meso": 0.05,
+ "brow_paint": 0.35
 }
