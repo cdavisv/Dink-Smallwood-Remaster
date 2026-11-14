@@ -1,8 +1,8 @@
 {
  "schema": "dink-environment-ground-review/1",
- "note": "Kept by hand. The verdicts of the in-game review of the screen grounds: one per tile class, outdoors and indoors, from captures of the running game at the play camera, 1.1 m above the ground and from above (Scripts/PhotorealQA/ground_script.py; sheets in Docs/Verification/GroundReview_13Nov2026). Scripts/art_coverage.py screen_ground_state() counts a screen ground final only when every tile class on it has verdict \"pass\" here. A class that is absent was not looked at and does not pass.",
- "date": "13 Nov 2026",
- "world": "master 8ba0e903 (three-layer terrain mask, grass carpet with hard edges)",
+ "note": "Kept by hand. The verdicts of the in-game review of the screen grounds: one per tile class, outdoors and indoors, from captures of the running game at the play camera, 1.1 m above the ground and from above (Scripts/PhotorealQA/ground_script.py; sheets in Docs/Verification/GroundReview_13Nov2026 and GroundFixes_14Nov2026). Scripts/art_coverage.py screen_ground_state() counts a screen ground final only when every tile class on it has verdict \"pass\" here. A class that is absent was not looked at and does not pass.",
+ "date": "14 Nov 2026",
+ "world": "ground-fixes branch on master 8905d4f8 (four-layer terrain mask, forest on canopy tiles, yards behind house fronts, structured layers, water sheets, relief rock tier 1, feathered grass edge)",
  "rule": {
   "count_reviewed_grounds_final": true,
   "note": "The one switch. false: no screen ground counts final by this rule, whatever the verdicts (every ground stays placeholder unless an art manifest dresses its screen). Whether grounds may count final by rule is the owner's decision; art_coverage.py --ground-rule on|off overrides this value for one run."
@@ -36,7 +36,7 @@
      510,
      624
     ],
-    "note": "short stony turf between the tall grass, the carpet edge beside it is a hard line (feathering is in the ground-fixes work)"
+    "note": "short stony turf between the tall grass"
    }
   },
   "path": {
@@ -47,7 +47,7 @@
      536,
      586
     ],
-    "note": "trodden earth with stones, holds at the play camera. Known defects: the grass carpet ends on a hard saw-tooth line, and the detail warp smears the texture in places at 1.1 m (536)"
+    "note": "trodden earth with stones, holds at the play camera. Known defects: the grass carpet still ends on a fairly sharp line beside it (thinner and lower since 14 Nov), and the detail warp smears the texture in places at 1.1 m (536)"
    }
   },
   "stone_floor": {
@@ -129,7 +129,7 @@
      149,
      153
     ],
-    "reason": "white in sunlight (80, 149) but grey-beige with dark scribbled ripples under the overcast sky of 120 and 153: reads as rippled sand"
+    "reason": "white in sunlight (80, 149) but grey-beige with dark scribbled ripples under the overcast sky of 120 and 153: reads as rippled sand. The auto exposure meters the white ground down to grey: +0.8 EV makes it read as snow (review capture), not implemented"
    }
   },
   "ice": {
@@ -140,7 +140,7 @@
      82,
      109
     ],
-    "reason": "drawn as grey trampled mud, nothing reads as ice or snow"
+    "reason": "drawn as grey trampled mud, nothing reads as ice or snow (pale trampled snow at +0.8 EV, not implemented)"
    }
   },
   "lava": {
@@ -155,14 +155,12 @@
   },
   "wood_floor": {
    "indoor": {
-    "verdict": "fail",
+    "verdict": "pass",
     "seen": [
      4,
-     33,
-     34,
-     67
+     34
     ],
-    "reason": "wood grain metres wide instead of boards (plank scale, with the interior work of the photoreal-pass session)"
+    "note": "straight boards about 18 cm wide with joints and wear under the lantern light. Before 14 Nov: warped grain metres wide"
    }
   },
   "cliff_face": {
@@ -173,7 +171,7 @@
      278,
      285
     ],
-    "reason": "a cliff painted in the 1997 tiles is drawn as a flat brown rock floor"
+    "reason": "a cliff painted in the 1997 tiles is drawn as a flat brown rock floor (244, 278, 285, relief rock stands only where the 1997 hardness blocks a whole disc, 1 rock on 244)"
    }
   },
   "rock_mass": {
@@ -184,19 +182,19 @@
      510,
      596
     ],
-    "reason": "rock outcrops drawn as flat, tile-shaped slabs of rock texture"
+    "reason": "rock outcrops drawn as flat, tile-shaped slabs of rock texture (445, 510, 596 unchanged, boulders stand on the blocked ones of 184 and 251 only)"
    }
   },
   "forest_canopy": {
    "outdoor": {
-    "verdict": "fail",
+    "verdict": "pass",
     "seen": [
      218,
      240,
      272,
      312
     ],
-    "reason": "closed forest in the 1997 tiles is bare leaf litter with no trees"
+    "note": "closed pine forest stands on the canopy tiles (trunks, boughs, dappled litter from inside, a tree line on the horizon of 438, 465, 505). Before 14 Nov: bare leaf litter"
    }
   },
   "chasm": {
@@ -213,13 +211,13 @@
   },
   "structure_facade": {
    "outdoor": {
-    "verdict": "fail",
+    "verdict": "pass",
     "seen": [
      465,
      505,
      586
     ],
-    "reason": "ground under the 1997 building pictures is drawn as wall masonry laid flat (a yellow yard of giant blocks behind the houses)"
+    "note": "ground behind the house fronts is the surrounding ground (turf behind a village green, setts in a paved square). Before 14 Nov: wall masonry laid flat. 419 was captured from inside a house shell and not used"
    }
   },
   "cave_wall": {
@@ -256,12 +254,13 @@
   "water_without_surface": {
    "verdict": "fail",
    "seen": [
-    438,
-    465
+    465,
+    244,
+    438
    ],
-   "reason": "the pond of 438 is an empty pit with a green floor and the river of 465 a dry sand bed: water tiles without a water surface"
+   "reason": "since 14 Nov a shallow translucent water sheet lies over these tiles (465: murky green shallows the hero wades through), but it is a rectangle with straight edges and no bank, 438 is a dressed screen and keeps its dry pit"
   }
  },
  "screens": {},
- "not_reviewed": "Classes with no capture yet: dirt (3 screens), cliff_face indoors (1). 28 of the 82 chosen screens were not captured (the run crashed; list in the verification README): the sea and shore screens, the dropped-layer screens and the town yards among them."
+ "not_reviewed": "Classes with no capture yet: dirt (3 screens), cliff_face indoors (1). Not captured: the open sea screens 353-355, 424, 721, 757, 762, the TransitionDirt screens 407, 694, 713 and others listed in Docs/Verification/GroundReview_13Nov2026/README.md."
 }

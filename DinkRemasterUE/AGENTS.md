@@ -1,3 +1,10 @@
+## Ground fixes: fourth layer, forest, yards, water sheets, relief rock, grass clearings (14 November 2026)
+
+- All visual, no collision: the world export's collision, placement and warp files are byte-identical. Evidence and what was not proven: `Docs/Verification/GroundFixes_14Nov2026/`.
+- `M_Env_Terrain` carries four layers (D = remainder of the mask's RGB); structured layers stay straight; `structure_facade` tiles take the surrounding ground; 2,954 pines stand on the unwalkable forest-canopy tiles (`dink.Forest`); boulders stand where the 1997 hardness blocks a whole disc (`dink.Relief`, 149 points at tier 1); a shallow water sheet lies over water tiles without a water fill (`dink.WaterTiles`); the grass carpet opens round low props and decals and thins toward its edge.
+- Audit with the rule on: final 4,335 -> 4,429 (336 grounds). Still failing in `ground_review.json`: cliff_face, rock_mass, chasm, cave_wall, void, snow, ice, lava, indoor grass, water tiles without a proper surface.
+- Open, with the cause known: snow and ice read grey because the automatic exposure meters a white screen down to middle grey (+0.8 EV fixes it in a review capture; needs a per-screen compensation). Raised cliffs need collision that follows the rock: owner decision.
+- Pitfalls: (1) `Scripts/import_greybox.sh --region stonebrook` overwrites `Saved/Import/coverage.csv` with the region's rows: `art_coverage.py` then reports about 1,200 finals. Use `coverage_all.csv` or re-run region all. (2) Two gate waiters of one session can both see the gate free and start two editors: chain a session's Unreal steps in one script. (3) `ground_script.py` stands on the hardness-0 point nearest the centre, which on a forest screen is between trees a player cannot reach, and on screen 438 inside the pond pit.
 ## Character hair: Hair shading model on cards, calibrated in the game (14 November 2026)
 
 Owner: "improve hair". Evidence and the remaining faults: `Docs/Verification/CharacterHair_14Nov2026/`.
