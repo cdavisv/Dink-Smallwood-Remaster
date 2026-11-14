@@ -64,6 +64,45 @@ def smooth_w(o, it=2):
         bpy.ops.object.mode_set(mode='OBJECT'); log('smooth fail', o.name, ex)
 for o in parts:
     if o.name in CFG.get('smooth', ('Shirt', 'Jerkin', 'Trousers')): smooth_w(o, CFG.get('smooth_it', 3))
+# A sleeveless garment hangs from the shoulders: what the weight transfer gave its armhole rim of the upper arm (and
+# its twist bones) goes to the collar bone of that side instead, so the rim rises with the shoulder and does not
+# swing out with the arm. 'arm_to_clavicle': {part: share moved}.
+# 'under': {part: [rim, deep]} for a garment worn under a sleeveless one (attribute cover_f, written by tuck_under: the
+# cover's cut field, negative where covered). Where it is covered it takes the same share, fading out over `rim` metres
+# outside the cover's edge, so the two layers ride together and the hidden shirt cannot swing out through the leather
+# when the arm is raised; faces deeper than `deep` under the cover are never seen and go.
+for nm_, share_ in CFG.get('arm_to_clavicle', {}).items():
+    o_ = D.get(nm_)
+    if o_ is None: log('arm_to_clavicle: no part', nm_); continue
+    moved_ = 0; fade_ = None
+    if nm_ in CFG.get('under', {}):
+        ca_ = o_.data.attributes.get('cover_f')
+        if ca_ is None: log('arm_to_clavicle: no cover_f on', nm_); continue
+        cf_ = np.empty(len(o_.data.vertices), np.float32); ca_.data.foreach_get('value', cf_); rim_, deep_ = CFG['under'][nm_]
+        fade_ = sstep(rim_, -.004, cf_)
+        bm_ = bmesh.new(); bm_.from_mesh(o_.data); bm_.verts.ensure_lookup_table()
+        dead_ = [f_ for f_ in bm_.faces if all(cf_[v_.index] < -deep_ for v_ in f_.verts)]; nd_ = sum(len(f_.verts) - 2 for f_ in dead_)
+        # which vertices survive, by their index before the delete (deleting faces takes their unshared vertices along)
+        deadset_ = set(dead_); keep_ = np.zeros(len(cf_), bool)
+        for f_ in bm_.faces:
+            if f_ not in deadset_:
+                for v_ in f_.verts: keep_[v_.index] = True
+        bmesh.ops.delete(bm_, geom=dead_, context='FACES'); bmesh.ops.delete(bm_, geom=[v_ for v_ in bm_.verts if not v_.link_faces], context='VERTS')
+        bm_.to_mesh(o_.data); bm_.free(); o_.data.update(); fade_ = fade_[keep_]
+        if len(fade_) != len(o_.data.vertices): raise RuntimeError('under: %s has %d vertices, %d cover values' % (nm_, len(o_.data.vertices), len(fade_)))
+        log('under its cover:', nm_, 'tris removed', nd_, 'vertices that share the cover weights', int((fade_ > 0).sum()))
+    for sd_ in ('l', 'r'):
+        cl_ = o_.vertex_groups.get('clavicle_' + sd_) or o_.vertex_groups.new(name='clavicle_' + sd_)
+        for bn_ in ('upperarm_' + sd_, 'upperarm_twist_01_' + sd_, 'upperarm_twist_02_' + sd_, 'lowerarm_' + sd_):
+            g_ = o_.vertex_groups.get(bn_)
+            if g_ is None: continue
+            for v_ in o_.data.vertices:
+                for ge_ in v_.groups:
+                    if ge_.group == g_.index and ge_.weight > 0:
+                        k_ = share_ * (float(fade_[v_.index]) if fade_ is not None else 1.0)
+                        if k_ <= 0: break
+                        w_ = ge_.weight; g_.add([v_.index], w_ * (1 - k_), 'REPLACE'); cl_.add([v_.index], w_ * k_, 'ADD'); moved_ += 1; break
+    log('arm weight moved to the collar bones', nm_, 'share', share_, 'vertex weights', moved_)
 # the hair and eyes ride the head bone; skin keeps its shipped weights
 rigid(hair, 'head'); rigid(eyes, 'head')
 for o in (skin,):
@@ -82,7 +121,7 @@ def prep(o, slot):
     for l in list(o.data.uv_layers):
         if l.name != 'UVMap': o.data.uv_layers.remove(l)
     for a in list(o.data.attributes):
-        if a.name in ('chart', 'lat', 'd_stitch', 'd_seam'): o.data.attributes.remove(a)
+        if a.name in ('chart', 'lat', 'd_stitch', 'd_seam', 'cover_f'): o.data.attributes.remove(a)
     if o.data.color_attributes.get('Col') is None:
         ca = o.data.color_attributes.new('Col', 'FLOAT_COLOR', 'POINT'); ca.data.foreach_set('color', np.ones(len(o.data.vertices) * 4, np.float32))
     o['slot'] = slot

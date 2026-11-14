@@ -4,43 +4,43 @@
   "assets": 1,
   "assets_passed": 0,
   "errors": 1,
-  "warnings": 24
+  "warnings": 23
  },
  "findings": [
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 60238 triangles, target for character_hero is 40000 (hard max 70000)"
+   "LOD0 has 58572 triangles, target for character_hero is 40000 (hard max 70000)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "10514 non-manifold edges (10514 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "10647 non-manifold edges (10646 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "10269 non-manifold edges (10269 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "10299 non-manifold edges (10298 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "8991 non-manifold edges (8991 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "9023 non-manifold edges (9022 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "5088 non-manifold edges (5088 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "5115 non-manifold edges (5114 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (80.9 % of UV area, 3970 triangles); class character_hero needs unique UVs"
+   "UV0 islands overlap (160.2 % of UV area, 4077 triangles); class character_hero needs unique UVs"
   ],
   [
    "warning",
    "UV_DEGENERATE",
-   "3516 triangles are collapsed in UV space"
+   "3960 triangles are collapsed in UV space"
   ],
   [
    "info",
@@ -131,37 +131,32 @@
    "warning",
    "NAME_TEXTURE",
    "image 'T_Dink_PR_Gear_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-  ],
-  [
-   "warning",
-   "SKIN_INFLUENCES",
-   "1 vertices have more than 4 influences (limit weights to 4 for the Deck)"
   ]
  ],
  "normals": [
   {
    "mesh": "SK_Dink_Photoreal_LOD0",
-   "flat_faces_for_cancelled_normals": 8
+   "flat_faces_for_cancelled_normals": 2
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD1",
-   "flat_faces_for_cancelled_normals": 0
+   "flat_faces_for_cancelled_normals": 2
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD2",
-   "flat_faces_for_cancelled_normals": 4
+   "flat_faces_for_cancelled_normals": 6
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD3",
-   "flat_faces_for_cancelled_normals": 4
+   "flat_faces_for_cancelled_normals": 10
   }
  ],
  "lods": [
   {
    "mesh": "SK_Dink_Photoreal_LOD0",
-   "triangles": 60238,
-   "vertices": 36482,
-   "max_influences": 5,
+   "triangles": 58572,
+   "vertices": 35713,
+   "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
     "Physique_Scrawny",
@@ -170,8 +165,8 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD1",
-   "triangles": 30119,
-   "vertices": 21300,
+   "triangles": 29286,
+   "vertices": 20896,
    "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
@@ -181,8 +176,8 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD2",
-   "triangles": 17873,
-   "vertices": 14378,
+   "triangles": 17372,
+   "vertices": 14141,
    "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
@@ -192,8 +187,8 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD3",
-   "triangles": 10784,
-   "vertices": 8413,
+   "triangles": 10468,
+   "vertices": 8266,
    "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
@@ -296,7 +291,7 @@
  "bone_count": 89,
  "dimensions_m": [
   1.1003458499908447,
-  0.554804801940918,
+  0.5392696261405945,
   1.81858491897583
  ],
  "materials": [
@@ -329,17 +324,17 @@
    "outside_0_1": 0
   },
   "MI_Dink_PR_Outfit": {
-   "uv_area": 0.5473,
-   "texels_used_1k": 496283,
-   "texels_overlapping_1k": 7768,
-   "overlap_fraction": 0.0157,
+   "uv_area": 0.5441,
+   "texels_used_1k": 502846,
+   "texels_overlapping_1k": 1138,
+   "overlap_fraction": 0.0023,
    "outside_0_1": 0
   },
   "MI_Dink_PR_Gear": {
-   "uv_area": 0.6778,
-   "texels_used_1k": 626483,
-   "texels_overlapping_1k": 5542,
-   "overlap_fraction": 0.0088,
+   "uv_area": 0.71,
+   "texels_used_1k": 654191,
+   "texels_overlapping_1k": 5576,
+   "overlap_fraction": 0.0085,
    "outside_0_1": 0
   }
  }

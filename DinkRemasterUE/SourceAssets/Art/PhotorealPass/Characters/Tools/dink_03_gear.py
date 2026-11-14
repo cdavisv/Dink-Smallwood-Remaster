@@ -296,14 +296,19 @@ def pack_surface(nz, nu, fine, seed=51):
         endr = min(1, (np.sin(np.pi * min(t, 1 - t) / .22) if min(t, 1 - t) < .11 else 1) ** .55 + .0)   # rounded top and bottom
         endr = max(endr, .12)
         hw = (.118 - .012 * t + .006 * math.sin(t * 3.1)) * (.55 + .45 * endr)
-        hd = (.058 - .012 * t) * (.45 + .55 * endr) + .008 * math.exp(-((t - .3) / .25) ** 2)   # sags and bulges low
+        hd = (.050 - .012 * t) * (.45 + .55 * endr) + .008 * math.exp(-((t - .3) / .25) ** 2)   # sags and bulges low (a slimmer satchel: 10 cm deep, was 11.6)
         yb = max(back_y(0, z), back_y(.07, z), back_y(-.07, z)) + .006
         cy = yb + hd
         ring = []
         for p in phi:
             cx, sy = math.cos(p), math.sin(p); ex = 3.2
             r = 1.0 / (abs(cx / hw) ** ex + abs(sy / hd) ** ex) ** (1 / ex)
-            ring.append((r * cx, cy + r * sy, z))
+            y = cy + r * sy
+            if sy < 0:
+                # the side that lies on the back follows the back across its width. It was flat, level with the
+                # shoulder blades, so from the side the pack stood off the ribs by up to 4 cm.
+                y += (back_y(r * cx, z) + .005 - y) * min(1.0, (-sy) ** .5 * 1.2)
+            ring.append((r * cx, y, z))
         rings.append(ring)
     P = np.array(rings).reshape(-1, 3)
     cen = np.repeat(np.array([[0, np.mean([q[1] for q in r]), r[0][2]] for r in rings]), nu, axis=0)
@@ -356,21 +361,44 @@ for hi in (False, True):
     if not hi: add_lips(o, .003, .008)
     made.append(o)
 fbvh = bvh_of([pack_hi, D['PackFlap_HI']])
-def strap_on(name, guide_pts, bvh, n, width, thick, off, chart, fabric):
+def on_outer(bvh, q, off, reach=.04):
+    """on_surface, on the outermost layer: the nearest surface to a point under the leather is the shirt beneath it, so
+    look outwards from the point found and take the last layer within reach."""
+    p, nrm = on_surface(bvh, q, 0.0)
+    for _ in range(4):
+        hit = bvh.ray_cast(Vector(p + nrm * .0008), Vector(nrm), reach)
+        if hit[0] is None: break
+        hn = np.array(hit[1]); hn = hn if float(np.dot(hn, nrm)) > 0 else -hn
+        p = np.array(hit[0]); nrm = hn
+    return p + nrm * off, nrm
+def strap_on(name, guide_pts, bvh, n, width, thick, off, chart, fabric, outer=False):
     G = catmull(guide_pts, n); Q = []; N = []
+    on_surface_ = on_outer if outer else on_surface
     for g in G:
-        q, nrm = on_surface(bvh, g, off); Q.append(q); N.append(nrm)
+        q, nrm = on_surface_(bvh, g, off); Q.append(q); N.append(nrm)
     Q = np.array(Q); N = np.array(N)
     for _ in range(2):
         Q[1:-1] = (Q[:-2] + 2 * Q[1:-1] + Q[2:]) / 4; N[1:-1] = (N[:-2] + 2 * N[1:-1] + N[2:]) / 4
     N /= np.linalg.norm(N, axis=1)[:, None]
-    rings = []
+    # the smoothing cuts the corner where the surface curves along the strap (over the top of a shoulder), which put the
+    # strap level with the leather or under it there: a point that has sunk below its offset goes back onto the surface
+    sunk = 0
     for i in range(n):
-        t = Q[min(i + 1, n - 1)] - Q[max(i - 1, 0)]; t /= np.linalg.norm(t)
-        w = np.cross(N[i], t); w /= np.linalg.norm(w); hw = width / 2
+        q, nrm = on_surface_(bvh, Q[i], off)
+        if float(np.dot(Q[i] - q, nrm)) < 0: Q[i] = q; sunk += 1
+    if sunk: log(name, 'guide points lifted back onto the surface', sunk, 'of', n)
+    rings = []
+    w_prev = None; hw = width / 2
+    for i in range(n):
+        t = Q[min(i + 1, n - 1)] - Q[max(i - 1, 0)]; w = np.cross(N[i], t)
+        # two guide points that land on the same spot of the surface give no direction: keep the last cross axis
+        if np.linalg.norm(w) < 1e-7:
+            if w_prev is None: continue
+            w = w_prev
+        w = w / np.linalg.norm(w); w_prev = w
         rings.append([tuple(Q[i] + w * a_ + N[i] * b_) for a_, b_ in ((-hw, 0), (-hw, thick * .8), (-hw * .7, thick), (hw * .7, thick), (hw, thick * .8), (hw, 0))])
     o = loft(name, rings, cap_end=True, cap_start=True); set_chart(o, chart); tag(o, fabric)
-    put_lat(o, [-hw, -hw, -hw * .7, hw * .7, hw, hw] * n, hw - .0045)
+    put_lat(o, [-hw, -hw, -hw * .7, hw * .7, hw, hw] * len(rings), hw - .0045)
     return o
 ci = 63
 for sx in (-1, 1):
@@ -394,7 +422,7 @@ for sx in (-1, 1):
     yp = ymid - .02
     g = [(sx * .070, yp + .01, ZT - .03), (sx * .088, yp - .07, 1.50), (sx * .100, -.01, 1.53), (sx * .112, -.085, 1.47), (sx * .128, -.12, 1.39), (sx * .150, -.10, 1.31),
          (sx * .180, -.03, 1.255), (sx * .165, .06, 1.235), (sx * .115, yp - .02, 1.215), (sx * .09, yp + .01, 1.20)]
-    o = strap_on('ShoulderStrap_%s' % ('l' if sx > 0 else 'r'), g, tb, 44, .030, .0034, .0012, 80 + (sx > 0), 'leather_belt'); made.append(o)
+    o = strap_on('ShoulderStrap_%s' % ('l' if sx > 0 else 'r'), g, tb, 44, .030, .0034, .0012, 80 + (sx > 0), 'leather_belt', outer=True); made.append(o)
     h = dup(o, o.name + '_HI'); subdivide(h, 2, simple=True); made.append(h)
 
 for o in made:

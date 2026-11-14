@@ -35,14 +35,18 @@ def displace(o, fn, fine):
     co = co_np(o.data); o.data.update(); nr = normals_np(o.data)
     set_co(o.data, co + nr * fn(co, fine)[:, None])
 
-def finish(base, fn, target_tris, classify, charts, fabric, name, lipsel=None, lip=(.0025, .012), mat='outfit', seams=None, hi_levels=1):
-    """base (cut, undisplaced) -> name_HI (subdivided, all folds, seam attributes) and the game mesh (decimated, lips)."""
+def finish(base, fn, target_tris, classify, charts, fabric, name, lipsel=None, lip=(.0025, .012), mat='outfit', seams=None, hi_levels=1, recut=()):
+    """base (cut, undisplaced) -> name_HI (subdivided, all folds, seam attributes) and the game mesh (decimated, lips).
+    recut: the garment's own cut functions moved a few millimetres into the cloth; the decimated mesh is cut again
+    along them so that every opening has a clean rim (decimation leaves a torn one: see dink_02_garments.finish)."""
     hi = dup(base, name + '_HI'); subdivide(hi, hi_levels)
     if seams:
         sm, st = seams(co_np(hi.data)); put(hi, 'd_seam', sm); put(hi, 'd_stitch', st)
     displace(hi, fn, True); smooth_shade(hi)
     lo = dup(base, name); displace(lo, fn, True)
     t = tri_count(lo); d = lo.modifiers.new('dec', 'DECIMATE'); d.ratio = min(1, target_tris / t); apply_mods(lo)
+    for f_ in recut: implicit_cut(lo, f_)
+    if recut: tidy_rim(lo); log(name, 'rims re-cut after decimation, tris', tri_count(lo))
     smooth_shade(lo)
     for o in (hi, lo):
         chart_uv(o, classify, charts); o['fabric'] = fabric; o['mat'] = mat
