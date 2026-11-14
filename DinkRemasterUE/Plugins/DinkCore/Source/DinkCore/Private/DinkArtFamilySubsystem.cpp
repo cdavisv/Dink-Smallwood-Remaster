@@ -21,6 +21,7 @@
 #include "Serialization/JsonSerializer.h"
 
 const FName UDinkArtFamilySubsystem::FamilyTag(TEXT("DinkFamilyArt"));
+const FName UDinkArtFamilySubsystem::ScriptSpriteTag(TEXT("DinkScriptFamilyArt"));
 
 namespace
 {
@@ -227,6 +228,11 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 		(*Row)->TryGetBoolField(TEXT("yaw_from_sprite"), B.bYawFromSprite);
 		(*Row)->TryGetBoolField(TEXT("scripted"), B.bScripted);
 		(*Row)->TryGetNumberField(TEXT("yaw_offset"), B.YawOffset);
+		if ((*Row)->TryGetNumberField(TEXT("scale"), B.Scale) && (B.Scale < DinkArtFamily::MinScale || B.Scale > DinkArtFamily::MaxScale))
+		{
+			Errors.Add(FString::Printf(TEXT("%s: scale %g is outside %g..%g"), *B.Family, B.Scale, double(DinkArtFamily::MinScale), double(DinkArtFamily::MaxScale)));
+			continue;
+		}
 		(*Row)->TryGetNumberField(TEXT("anchor_front"), B.AnchorFront);
 		{
 			FString Span, End;
@@ -488,6 +494,85 @@ void UDinkArtFamilySubsystem::BuildIndex(UWorld& World)
 	bIndexed = true;
 	for (TActorIterator<ADinkPlaceholderActor> It(&World); It; ++It) ActorsByScreen.FindOrAdd(It->ScreenNumber).Add(*It);
 	for (TActorIterator<ADinkGreyboxScreen> It(&World); It; ++It) GreyboxByScreen.FindOrAdd(It->ScreenNumber).Add(*It);
+	// Which class each sprite picture belongs to: sprites that scripts create name only a sequence and a frame.
+	auto Learn = [this](int32 Sequence, int32 Frame, FName ClassId)
+	{
+		if (Sequence <= 0 || Frame <= 0 || Frame > 0xffff || ClassId.IsNone()) return;
+		ClassByPicture.Add(Sequence << 16 | Frame, ClassId);
+		FName& Whole = ClassByPicture.FindOrAdd(Sequence << 16, ClassId);
+		if (Whole != ClassId) Whole = NAME_None;
+	};
+	for (TActorIterator<ADinkPlaceholderActor> It(&World); It; ++It)
+		if (It->Origin) Learn(It->Origin->Sequence, It->Origin->Frame, It->Origin->ClassId);
+	for (TActorIterator<ADinkGreyboxScreen> It(&World); It; ++It)
+		if (It->InstanceOrigins)
+			for (const FDinkInstanceOrigin& Origin : It->InstanceOrigins->Origins) Learn(Origin.Sequence, Origin.Frame, Origin.ClassId);
+}
+
+FName UDinkArtFamilySubsystem::ClassOfPicture(int32 Sequence, int32 Frame) const
+{
+	if (Sequence <= 0 || Frame < 0 || Frame > 0xffff) return NAME_None;
+	const FName* Found = ClassByPicture.Find(Sequence << 16 | Frame);
+	return Found ? *Found : NAME_None;
+}
+
+bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, int32 Frame, const FVector& GroundOffset, float Size)
+{
+	UWorld* World = GetWorld();
+	if (!Actor || !World || !Actor->GetRootComponent()) return false;
+	UStaticMeshComponent* Shown = Actor->FindComponentByTag<UStaticMeshComponent>(ScriptSpriteTag);
+	// Script characters, creatures and food are presented by their own layers.
+	const bool bOtherLayer = Actor->ActorHasTag(TEXT("DinkAuthoredArt")) || Actor->ActorHasTag(TEXT("DinkHumanoid")) ||
+		Actor->ActorHasTag(TEXT("DinkScriptHumanoid")) || Actor->ActorHasTag(TEXT("DinkCreature")) ||
+		Actor->FindComponentByTag<UStaticMeshComponent>(TEXT("DinkAuthoredFood")) != nullptr;
+	const FDinkFamilyBinding* B = nullptr;
+	UStaticMesh* Mesh = nullptr;
+	const FVector Ground = Actor->GetActorLocation() + GroundOffset;
+	// No origin ID: the spot stands in for it, so heaps dropped side by side differ in variant and yaw, the same every run.
+	const FString Key = FString::Printf(TEXT("script:%d:%d:%d:%d"), Sequence, Frame, FMath::RoundToInt(Ground.X), FMath::RoundToInt(Ground.Y));
+	if (bReady && !bOtherLayer && Sequence > 0)
+	{
+		if (!bIndexed) BuildIndex(*World);
+		B = DinkArtFamily::Resolve(Bindings, Sequence, ClassOfPicture(Sequence, Frame), Frame);
+		Mesh = B ? MeshFor(*B, Key) : nullptr;
+	}
+	UStaticMeshComponent* Marker = Cast<UStaticMeshComponent>(Actor->GetRootComponent());
+	if (!Mesh)
+	{
+		if (Shown)
+		{
+			Shown->DestroyComponent();
+			if (Marker && !bOtherLayer) Marker->SetHiddenInGame(false);
+		}
+		return false;
+	}
+	if (Shown && Shown->GetStaticMesh() != Mesh)
+	{
+		Shown->DestroyComponent();
+		Shown = nullptr;
+	}
+	if (!Shown)
+	{
+		Shown = NewObject<UStaticMeshComponent>(Actor, TEXT("ScriptFamilyArt"));
+		Shown->SetMobility(EComponentMobility::Movable);
+		Shown->SetupAttachment(Actor->GetRootComponent());
+		// The marker root is scaled (0.3, 0.3, 0.6, or sp_size): the mesh keeps its own size and turn.
+		Shown->SetUsingAbsoluteRotation(true);
+		Shown->SetUsingAbsoluteScale(true);
+		Shown->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
+		Shown->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Shown->SetCanEverAffectNavigation(false);
+		Shown->SetGenerateOverlapEvents(false);
+		Shown->ComponentTags.Add(FamilyTag);
+		Shown->ComponentTags.Add(ScriptSpriteTag);
+		Shown->SetStaticMesh(Mesh);
+		Actor->AddInstanceComponent(Shown);
+		Shown->RegisterComponent();
+	}
+	const double Yaw = (B->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(Key)) + B->YawOffset;
+	Shown->SetWorldTransform(DinkArtFamily::MeshTransform(Mesh->GetBoundingBox(), Ground, Yaw, FMath::Max(Size * float(B->Scale), DinkArtFamily::MinScale)));
+	if (Marker) Marker->SetHiddenInGame(true);
+	return true;
 }
 
 UStaticMesh* UDinkArtFamilySubsystem::LoadFamilyMesh(const FString& Path, const FString& Family)
@@ -572,7 +657,7 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	// The card is the sprite at its imported size: relative scale (width, 1, height) in metres of a 1 m unit card.
 	const FVector CardLocation = Card->GetRelativeLocation();
 	const FVector CardScale = Card->GetRelativeScale3D();
-	const float Scale = DinkArtFamily::FitScale(B->Fit, CardScale.X * 100.0, CardScale.Z * 100.0, Mesh->GetBoundingBox().GetSize(), B->bYawFromSprite);
+	const float Scale = float(B->Scale) * DinkArtFamily::FitScale(B->Fit, CardScale.X * 100.0, CardScale.Z * 100.0, Mesh->GetBoundingBox().GetSize(), B->bYawFromSprite);
 	const double Yaw = (B->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(P.Origin)) + B->YawOffset;
 
 	// +Y is south, towards the original camera: a front-anchored mesh moves back by half its depth
@@ -652,7 +737,7 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 			if (!MainMesh) continue;
 			TArray<DinkArtFamily::FSpanPiece> Pieces;
 			{
-				const float MainScale = DinkArtFamily::FitScale(Shared->Fit, Card.GetScale3D().X * 100.0, Card.GetScale3D().Z * 100.0, MainMesh->GetBoundingBox().GetSize(), Shared->bYawFromSprite);
+				const float MainScale = float(Shared->Scale) * DinkArtFamily::FitScale(Shared->Fit, Card.GetScale3D().X * 100.0, Card.GetScale3D().Z * 100.0, MainMesh->GetBoundingBox().GetSize(), Shared->bYawFromSprite);
 				DinkArtFamily::SpanPieces(*Shared, (Shared->Span == 2 ? Card.GetScale3D().Z : Card.GetScale3D().X) * 100.0, MainMesh->GetBoundingBox().GetSize().X * MainScale, Pieces);
 			}
 			for (int32 PieceIndex = 0; PieceIndex < Pieces.Num(); ++PieceIndex)
@@ -677,7 +762,7 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 			const FBox Bounds = Mesh->GetBoundingBox();
 			// Instance = card relative to the screen root: placement yaw, card centre, scale (width, 1, height) in metres.
 			const FVector At = Card.GetLocation();
-			const float Scale = DinkArtFamily::FitScale(Shared->Fit, Card.GetScale3D().X * 100.0, Card.GetScale3D().Z * 100.0, Bounds.GetSize(), Shared->bYawFromSprite);
+			const float Scale = float(Shared->Scale) * DinkArtFamily::FitScale(Shared->Fit, Card.GetScale3D().X * 100.0, Card.GetScale3D().Z * 100.0, Bounds.GetSize(), Shared->bYawFromSprite);
 			const double Yaw = Card.Rotator().Yaw + (Shared->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(O->OriginId.ToString())) + Shared->YawOffset;
 			// The greybox ground is world Z 0; the screen root sits on it.
 			const double Back = Shared->AnchorFront * 0.5 * DinkArtFamily::DepthAfterYaw(Bounds.GetSize(), Yaw - Card.Rotator().Yaw, Scale);

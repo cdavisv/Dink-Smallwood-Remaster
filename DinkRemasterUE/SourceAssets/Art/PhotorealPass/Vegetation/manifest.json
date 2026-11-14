@@ -4130,23 +4130,23 @@
    "name": "SM_Veg_Stump_01",
    "class": "prop",
    "dimensions_m": [
-    2.796,
-    2.197,
-    0.739
+    2.199,
+    1.937,
+    0.747
    ],
-   "lod0_triangles": 1338,
+   "lod0_triangles": 2166,
    "lods": [
     {
      "lod": 0,
-     "triangles": 1338,
-     "vertices": 833,
+     "triangles": 2166,
+     "vertices": 1337,
      "fbx": "Export/SM_Veg_Stump_01_LOD0.fbx",
      "issues": []
     },
     {
      "lod": 1,
-     "triangles": 513,
-     "vertices": 347,
+     "triangles": 1023,
+     "vertices": 677,
      "fbx": "Export/SM_Veg_Stump_01_LOD1.fbx",
      "issues": []
     },
@@ -4247,23 +4247,23 @@
    "name": "SM_Veg_Stump_02",
    "class": "prop",
    "dimensions_m": [
-    1.871,
-    1.424,
+    1.508,
+    1.177,
     0.589
    ],
-   "lod0_triangles": 1136,
+   "lod0_triangles": 1918,
    "lods": [
     {
      "lod": 0,
-     "triangles": 1136,
-     "vertices": 709,
+     "triangles": 1918,
+     "vertices": 1185,
      "fbx": "Export/SM_Veg_Stump_02_LOD0.fbx",
      "issues": []
     },
     {
      "lod": 1,
-     "triangles": 417,
-     "vertices": 285,
+     "triangles": 893,
+     "vertices": 593,
      "fbx": "Export/SM_Veg_Stump_02_LOD1.fbx",
      "issues": []
     },
@@ -4699,30 +4699,30 @@
    "name": "SM_Veg_ThornBush_01",
    "class": "foliage",
    "dimensions_m": [
-    3.848,
-    2.044,
-    1.165
+    3.944,
+    2.05,
+    1.629
    ],
-   "lod0_triangles": 8652,
+   "lod0_triangles": 19056,
    "lods": [
     {
      "lod": 0,
-     "triangles": 8652,
-     "vertices": 5264,
+     "triangles": 19056,
+     "vertices": 11590,
      "fbx": "Export/SM_Veg_ThornBush_01_LOD0.fbx",
      "issues": []
     },
     {
      "lod": 1,
-     "triangles": 1736,
-     "vertices": 928,
+     "triangles": 3856,
+     "vertices": 2066,
      "fbx": "Export/SM_Veg_ThornBush_01_LOD1.fbx",
      "issues": []
     },
     {
      "lod": 2,
-     "triangles": 264,
-     "vertices": 157,
+     "triangles": 597,
+     "vertices": 356,
      "fbx": "Export/SM_Veg_ThornBush_01_LOD2.fbx",
      "issues": []
     }
@@ -4789,30 +4789,30 @@
    "name": "SM_Veg_ThornBush_02",
    "class": "foliage",
    "dimensions_m": [
-    2.797,
-    0.969,
-    0.875
+    2.675,
+    1.384,
+    1.068
    ],
-   "lod0_triangles": 4038,
+   "lod0_triangles": 5160,
    "lods": [
     {
      "lod": 0,
-     "triangles": 4038,
-     "vertices": 2459,
+     "triangles": 5160,
+     "vertices": 3146,
      "fbx": "Export/SM_Veg_ThornBush_02_LOD0.fbx",
      "issues": []
     },
     {
      "lod": 1,
-     "triangles": 812,
-     "vertices": 439,
+     "triangles": 1040,
+     "vertices": 562,
      "fbx": "Export/SM_Veg_ThornBush_02_LOD1.fbx",
      "issues": []
     },
     {
      "lod": 2,
-     "triangles": 132,
-     "vertices": 81,
+     "triangles": 153,
+     "vertices": 94,
      "fbx": "Export/SM_Veg_ThornBush_02_LOD2.fbx",
      "issues": []
     }

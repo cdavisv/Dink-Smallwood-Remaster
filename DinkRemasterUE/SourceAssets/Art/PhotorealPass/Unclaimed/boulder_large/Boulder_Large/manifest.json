@@ -5,19 +5,19 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_large/Boulder_Large/SM_Boulder_Large_PR.blend",
  "build": "Unclaimed/tools/bl.sh build_props.py Boulder_Large final",
  "dimensions_m": [
-  1.4924,
-  1.2747,
-  0.9414
+  2.537,
+  2.1669,
+  1.6003
  ],
  "bounds_min_m": [
-  -0.7462,
-  -0.6373,
-  -0.0018
+  -1.2685,
+  -1.0835,
+  -0.0031
  ],
  "bounds_max_m": [
-  0.7462,
-  0.6373,
-  0.9395
+  1.2685,
+  1.0835,
+  1.5972
  ],
  "lod0_triangles": 1800,
  "triangle_budget": {
@@ -29,24 +29,24 @@
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_large/Boulder_Large/T_Boulder_Large_PR_BC.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "base colour sRGB"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_large/Boulder_Large/T_Boulder_Large_PR_N.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "tangent normal, OpenGL (green up; flip green on import)"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_large/Boulder_Large/T_Boulder_Large_PR_ORM.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "R occlusion, G roughness, B metallic"
   }
@@ -63,7 +63,7 @@
   "zero_area_faces": 0,
   "signed_volume_positive": true,
   "uv_range": [
-   0.0058,
+   0.006,
    0.9942
   ],
   "transforms_applied": true
@@ -71,16 +71,16 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 112.6,
-   "p99": 141.0
+   "mean": 98.3,
+   "p99": 140.7
   },
   "roughness": {
-   "p5": 0.556,
-   "mean": 0.664,
-   "p95": 0.862
+   "p5": 0.0,
+   "mean": 0.586,
+   "p95": 0.861
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.93
+  "ao_mean": 0.823
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [
@@ -94,7 +94,7 @@
   ]
  },
  "supersedes": "none (placeholder greybox cards)",
- "dresses": "large dark rounded boulder with fissures, 1.65 x 1.35 x 1.0 m",
+ "dresses": "large dark rounded boulder with fissures, 2.8 x 2.3 x 1.7 m",
  "third_party": [
   "rock_boulder_dry"
  ],

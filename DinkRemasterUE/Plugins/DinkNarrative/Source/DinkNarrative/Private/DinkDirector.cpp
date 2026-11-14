@@ -3,6 +3,7 @@
 #include "DinkAudioSubsystem.h"
 #include "DinkCreatureSubsystem.h"
 #include "DinkArtSubsystem.h"
+#include "DinkArtFamilySubsystem.h"
 #include "DinkStorySubsystem.h"
 #include "DinkScriptSpriteComponent.h"
 #include "DinkFactSubsystem.h"
@@ -1439,6 +1440,40 @@ void UDinkDirector::ResetSprites()
 	bDinkInputBlocked = false;
 }
 
+namespace
+{
+	/** How far above its ground point SpawnSpriteActor puts a create_sprite marker. */
+	const double ScriptSpriteLiftCm = 60.0;
+
+	/**
+	 * Presentation only: a sprite made by create_sprite shows the family mesh of its picture when families.json has
+	 * one (dropped gold, hearts, potions), instead of the grey marker. The playing sequence when one is set, else the
+	 * still picture (pseq, pframe), as the original draws it.
+	 *
+	 * Followed: the sprite this one rides on (brain 15, brain_parm: the twinkle a gold heap creates over itself), or null.
+	 * A rider whose own picture has no art hides its marker when the sprite under it shows a family mesh: a grey marker
+	 * floating over a finished mesh is worse than no twinkle. The rider keeps its script and is removed as before.
+	 */
+	void PresentScriptSprite(AActor* Actor, const FDinkSprite& Sprite, const FDinkSprite* Followed)
+	{
+		ADinkScriptSpriteActor* ScriptActor = Cast<ADinkScriptSpriteActor>(Actor);
+		if (!ScriptActor || !Actor->GetWorld()) return;
+		UDinkArtFamilySubsystem* Family = Actor->GetWorld()->GetSubsystem<UDinkArtFamilySubsystem>();
+		if (!Family) return;
+		const int32 Seq = Sprite.GetProp(TEXT("seq")), Still = Sprite.GetProp(TEXT("pseq"));
+		const int32 Sequence = Seq > 0 ? Seq : Still;
+		const int32 Frame = Sequence == Still ? FMath::Max(0, Sprite.GetProp(TEXT("pframe"))) : 0;
+		const int32 Size = Sprite.GetProp(TEXT("size"), 100);
+		if (Family->DressScriptSprite(Actor, Sequence, Frame, FVector(0.0, 0.0, -ScriptSpriteLiftCm), Size > 0 ? Size / 100.f : 1.f)) return;
+		const AActor* Host = Followed && Sprite.GetProp(TEXT("brain")) == 15 ? Followed->Actor.Get() : nullptr;
+		if (Host && ScriptActor->Marker && !ScriptActor->Marker->bHiddenInGame &&
+			(Host->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag) || Host->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag)))
+		{
+			ScriptActor->Marker->SetHiddenInGame(true);
+		}
+	}
+}
+
 int32 UDinkDirector::SpriteProperty(FDinkScriptInstance* Instance, FName Prop, int32 Handle, int32 Value)
 {
 	static const FName X(TEXT("x")), Y(TEXT("y")), Dir(TEXT("dir")), EditorNum(TEXT("editor_num")), Hitpoints(TEXT("hitpoints")),
@@ -1551,6 +1586,9 @@ int32 UDinkDirector::SpriteProperty(FDinkScriptInstance* Instance, FName Prop, i
 			Comp->Props = Sprite->Props;
 			Comp->Dir = Sprite->Dir;
 		}
+		static const FName PSeq(TEXT("pseq")), PFrame(TEXT("pframe")), Brain(TEXT("brain")), BrainParm(TEXT("brain_parm"));
+		if (Sprite->bSpawned && (Prop == Seq || Prop == PSeq || Prop == PFrame || Prop == Size || Prop == Brain || Prop == BrainParm))
+			PresentScriptSprite(Actor, *Sprite, FindSprite(Sprite->GetProp(TEXT("brain_parm"))));
 	}
 	if (Prop == X)
 	{
@@ -1905,7 +1943,7 @@ AActor* UDinkDirector::SpawnSpriteActor(FDinkSprite& Sprite)
 	}
 	FActorSpawnParameters Params;
 	Params.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-	ADinkScriptSpriteActor* Actor = World->SpawnActor<ADinkScriptSpriteActor>(Location + FVector(0, 0, 60), FRotator::ZeroRotator, Params);
+	ADinkScriptSpriteActor* Actor = World->SpawnActor<ADinkScriptSpriteActor>(Location + FVector(0, 0, ScriptSpriteLiftCm), FRotator::ZeroRotator, Params);
 	if (Actor)
 	{
 		Sprite.Actor = Actor;
@@ -1918,6 +1956,7 @@ AActor* UDinkDirector::SpawnSpriteActor(FDinkSprite& Sprite)
 			Art->ApplyScriptCharacter(Actor, Sprite.Script, Sprite.GetProp(TEXT("size"), 100) > 0 ? Sprite.GetProp(TEXT("size"), 100) / 100.f : 1.f);
 		if (Actor->ActorHasTag(TEXT("DinkHumanoid"))) ApplyDir(Sprite);
 		if (UDinkCreatureSubsystem* Creatures=World->GetSubsystem<UDinkCreatureSubsystem>()) Creatures->NotifyScriptSprite(Actor,Sprite.GetProp(TEXT("seq")) > 0 ? Sprite.GetProp(TEXT("seq")) : Sprite.GetProp(TEXT("pseq")));
+		PresentScriptSprite(Actor, Sprite, FindSprite(Sprite.GetProp(TEXT("brain_parm"))));
 	}
 	return Actor;
 }

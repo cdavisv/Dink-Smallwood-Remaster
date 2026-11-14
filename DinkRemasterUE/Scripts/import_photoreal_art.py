@@ -22,7 +22,9 @@ WALL_ALLOW = {'SM_Wall_Dungeon_Straight_A', 'SM_Wall_Dungeon_Straight_B', 'SM_Wa
               'SM_Wall_Plaster_Straight_A', 'SM_Wall_Plaster_Straight_B', 'SM_Wall_Plaster_CornerPost_L', 'SM_Wall_Plaster_CornerPost_R',
               'SM_Wall_Plaster_End_L', 'SM_Wall_Plaster_End_R', 'SM_Wall_Plaster_DoorJamb_L', 'SM_Wall_Plaster_DoorJamb_R', 'SM_Wall_Plaster_DoorHeader'}
 SCATTER_ALLOW = {'SM_BeachPebbles_A', 'SM_BeachPebbles_B', 'SM_BeachPebbles_C', 'SM_BeachPebbles_D',
-                 'SM_Pebbles_A', 'SM_Pebbles_B', 'SM_Pebbles_C'}
+                 'SM_Pebbles_A', 'SM_Pebbles_B', 'SM_Pebbles_C',
+                 # beach shells at a size the play camera reads (Terrain/tools/scatter_clusters.py, 13 Nov 2026)
+                 'SM_ClamShell_Cluster_A', 'SM_ClamShell_Cluster_B', 'SM_ClamShell_Cluster_C', 'SM_Starfish_Large_A', 'SM_Starfish_Large_B'}
 LIB = unreal.EditorAssetLibrary
 EDIT = unreal.MaterialEditingLibrary
 TOOLS = unreal.AssetToolsHelpers.get_asset_tools()

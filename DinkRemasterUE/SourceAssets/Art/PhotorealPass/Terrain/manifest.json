@@ -2124,6 +2124,195 @@
    "gameplay_note": "one starfish placement is bombable (s5-sec1 secret): keep the family binding visual-only so the hardbox and script stay",
    "known_weaknesses": "third pass: round knob rows on a millimetre lattice, madreporite, mottled terracotta skin, blunt tips; still reads as a model up close (even knob rows, flat-topped arms). Passes the validator",
    "review": "Cycles, sun 25 degrees, on the WetSand / EarthPath sets; LOD0 re-imported from the FBX; LOD1 seen only at 1.2 m"
+  },
+  {
+   "name": "SM_ClamShell_Cluster_A",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_ClamShell_Cluster_A.fbx",
+   "dimensions_m": [
+    0.3465,
+    0.2868,
+    0.0307
+   ],
+   "lod0_triangles": 3617,
+   "lod1_triangles": 1776,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Clam_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Clam_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Clam_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Clam",
+   "families": [
+    "seashell_clam"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "note": "open at the sand line (bedded shells are cut at z = 0); UVs are those of the single shells"
+   },
+   "source_blend": "Scatter/Scatter_Clusters.blend",
+   "supersedes": "none",
+   "sprite_frames": "92 beach-02, beach-03",
+   "third_party": [],
+   "status": "interim",
+   "known_weaknesses": "Three or four copies of the two delivered shells at 1.1 to 1.9 x (10 to 14 cm), set by hand and cut at the sand line: no sand piled against them, and the same two shells repeat. A cluster replaces what the 1997 sprite draws as one clam, so that the play camera can read it.",
+   "review": "not rendered in Cycles: judged in the game, Docs/Verification of the PR that binds it",
+   "derived_from": [
+    "SM_ClamShell_Closed",
+    "SM_ClamShell_Open"
+   ]
+  },
+  {
+   "name": "SM_ClamShell_Cluster_B",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_ClamShell_Cluster_B.fbx",
+   "dimensions_m": [
+    0.3316,
+    0.3373,
+    0.0339
+   ],
+   "lod0_triangles": 3658,
+   "lod1_triangles": 1799,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Clam_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Clam_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Clam_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Clam",
+   "families": [
+    "seashell_clam"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "note": "open at the sand line (bedded shells are cut at z = 0); UVs are those of the single shells"
+   },
+   "source_blend": "Scatter/Scatter_Clusters.blend",
+   "supersedes": "none",
+   "sprite_frames": "92 beach-02, beach-03",
+   "third_party": [],
+   "status": "interim",
+   "known_weaknesses": "Three or four copies of the two delivered shells at 1.1 to 1.9 x (10 to 14 cm), set by hand and cut at the sand line: no sand piled against them, and the same two shells repeat. A cluster replaces what the 1997 sprite draws as one clam, so that the play camera can read it.",
+   "review": "not rendered in Cycles: judged in the game, Docs/Verification of the PR that binds it",
+   "derived_from": [
+    "SM_ClamShell_Closed",
+    "SM_ClamShell_Open"
+   ]
+  },
+  {
+   "name": "SM_ClamShell_Cluster_C",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_ClamShell_Cluster_C.fbx",
+   "dimensions_m": [
+    0.2472,
+    0.2755,
+    0.0318
+   ],
+   "lod0_triangles": 2832,
+   "lod1_triangles": 1346,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Clam_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Clam_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Clam_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Clam",
+   "families": [
+    "seashell_clam"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "note": "open at the sand line (bedded shells are cut at z = 0); UVs are those of the single shells"
+   },
+   "source_blend": "Scatter/Scatter_Clusters.blend",
+   "supersedes": "none",
+   "sprite_frames": "92 beach-02, beach-03",
+   "third_party": [],
+   "status": "interim",
+   "known_weaknesses": "Three or four copies of the two delivered shells at 1.1 to 1.9 x (10 to 14 cm), set by hand and cut at the sand line: no sand piled against them, and the same two shells repeat. A cluster replaces what the 1997 sprite draws as one clam, so that the play camera can read it.",
+   "review": "not rendered in Cycles: judged in the game, Docs/Verification of the PR that binds it",
+   "derived_from": [
+    "SM_ClamShell_Closed",
+    "SM_ClamShell_Open"
+   ]
+  },
+  {
+   "name": "SM_Starfish_Large_A",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_Starfish_Large_A.fbx",
+   "dimensions_m": [
+    0.2873,
+    0.2107,
+    0.0357
+   ],
+   "lod0_triangles": 1440,
+   "lod1_triangles": 604,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Starfish_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Starfish_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Starfish_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Starfish",
+   "families": [
+    "starfish"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.0553,
+    "uv_max": 0.9501
+   },
+   "source_blend": "Scatter/Scatter_Clusters.blend",
+   "supersedes": "none",
+   "sprite_frames": "92 beach-01",
+   "third_party": [],
+   "status": "interim",
+   "gameplay_note": "one starfish placement is bombable (s5-sec1 secret): keep the family binding visual-only so the hardbox and script stay",
+   "known_weaknesses": "third pass: round knob rows on a millimetre lattice, madreporite, mottled terracotta skin, blunt tips; still reads as a model up close (even knob rows, flat-topped arms). Passes the validator This is the same mesh at 2.1 x (29 cm, a large common starfish) so that the play camera can read it; the knob rows scale with it.",
+   "review": "not rendered in Cycles: judged in the game, Docs/Verification of the PR that binds it",
+   "derived_from": [
+    "SM_Starfish_A"
+   ]
+  },
+  {
+   "name": "SM_Starfish_Large_B",
+   "class": "prop_small",
+   "fbx": "Scatter/SM_Starfish_Large_B.fbx",
+   "dimensions_m": [
+    0.2878,
+    0.2844,
+    0.0357
+   ],
+   "lod0_triangles": 1440,
+   "lod1_triangles": 604,
+   "textures": {
+    "BC": "Scatter/Textures/T_Scatter_Starfish_BC.png",
+    "N": "Scatter/Textures/T_Scatter_Starfish_N.png",
+    "ORM": "Scatter/Textures/T_Scatter_Starfish_ORM.png"
+   },
+   "texture_px": 1024,
+   "material": "MI_Scatter_Starfish",
+   "families": [
+    "starfish"
+   ],
+   "pivot": "base_center",
+   "checks": {
+    "non_manifold_edges": 0,
+    "uv_min": 0.0257,
+    "uv_max": 0.9788
+   },
+   "source_blend": "Scatter/Scatter_Clusters.blend",
+   "supersedes": "none",
+   "sprite_frames": "92 beach-01",
+   "third_party": [],
+   "status": "interim",
+   "gameplay_note": "one starfish placement is bombable (s5-sec1 secret): keep the family binding visual-only so the hardbox and script stay",
+   "known_weaknesses": "third pass: round knob rows on a millimetre lattice, madreporite, mottled terracotta skin, blunt tips; still reads as a model up close (even knob rows, flat-topped arms). Passes the validator This is the same mesh at 2.1 x (29 cm, a large common starfish) so that the play camera can read it; the knob rows scale with it.",
+   "review": "not rendered in Cycles: judged in the game, Docs/Verification of the PR that binds it",
+   "derived_from": [
+    "SM_Starfish_B"
+   ]
   }
  ]
 }

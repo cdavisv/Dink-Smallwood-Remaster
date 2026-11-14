@@ -92,6 +92,14 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 	TArray<FString> BadFrameErrors;
 	DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[{"family":"barrel","frame":2,"mesh":"/Game/A/SM_A"}]})"), BadFrame, BadFrameErrors);
 	TestTrue(TEXT("a frame on a class row is refused"), BadFrame.IsEmpty() && BadFrameErrors.Num() == 1);
+	// The optional size multiplier of small things (shells, flasks): read, 1 by default, refused outside 0.05..20.
+	TArray<FDinkFamilyBinding> Sized;
+	TArray<FString> SizedErrors;
+	DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
+		{"family":"starfish","mesh":"/Game/A/SM_Star","scale":2.5},{"family":"clam","mesh":"/Game/A/SM_Clam"},
+		{"family":"flask","mesh":"/Game/A/SM_Flask","scale":0},{"family":"urn","mesh":"/Game/A/SM_Urn","scale":50}]})"), Sized, SizedErrors);
+	TestTrue(TEXT("scale is read and defaults to 1"), Sized.Num() == 2 && Sized[0].Scale == 2.5 && Sized[1].Scale == 1.0);
+	TestEqual(TEXT("a scale outside 0.05..20 is refused"), SizedErrors.Num(), 2);
 	TArray<FString> SchemaErrors;
 	TestFalse(TEXT("a wrong schema is refused"), DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art/1","families":[]})"), Bad, SchemaErrors));
 

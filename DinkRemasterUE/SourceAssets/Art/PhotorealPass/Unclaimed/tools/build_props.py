@@ -57,36 +57,42 @@ def boulder(name, dims, seed, c, hi, rough_amp=0.16, strata=0.0, cracks=0.0, sin
     ob.data.polygons.foreach_set('use_smooth', [True] * len(ob.data.polygons)); return ob
 
 
+# Size: the sprite's width at the art standard's 0.025 m per original pixel, the scale the hero is built at (a 103 px boulder is 2.6 m).
+# The first build stood at 0.016 m per pixel: boulders half as high as the hero where the 1997 pictures show them taller than him.
+ROCK = 1.7
+def rk(*dims): return tuple(round(d * ROCK, 3) for d in dims)
+
+
 def b_flat(hi, c):
-    o = boulder('rock', (1.35, 1.05, 0.62), 3, c, hi, strata=0.05, rough_amp=0.13, round_=0.7, sink=0.1)
+    o = boulder('rock', rk(1.35, 1.05, 0.62), 3, c, hi, strata=0.05, rough_amp=0.13, round_=0.7, sink=0.1)
     if hi:
         o.data.materials.append(rock_mat('rock', 'rock_face_03', tint=(1.0, 0.90, 0.86), value=1.0, sat=0.7, moss=0.3, seed=1.0))
     return [o]
 
 
 def b_large(hi, c):
-    o = boulder('rock', (1.65, 1.35, 1.15), 5, c, hi, rough_amp=0.2, round_=1.0, cracks=0.03, sink=0.14)
+    o = boulder('rock', rk(1.65, 1.35, 1.15), 5, c, hi, rough_amp=0.2, round_=1.0, cracks=0.03 * ROCK, sink=0.14)
     if hi:
         o.data.materials.append(rock_mat('rock', 'rock_boulder_dry', tint=(0.62, 0.63, 0.66), value=0.8, sat=0.6, moss=0.45, seed=2.0))
     return [o]
 
 
 def b_red(hi, c):
-    o = boulder('rock', (1.5, 1.1, 0.78), 8, c, hi, rough_amp=0.17, round_=0.6, cracks=0.045, sink=0.1)
+    o = boulder('rock', rk(1.5, 1.1, 0.78), 8, c, hi, rough_amp=0.17, round_=0.6, cracks=0.045 * ROCK, sink=0.1)
     if hi:
         o.data.materials.append(rock_mat('rock', 'rock_boulder_dry', tint=(0.86, 0.46, 0.36), value=0.8, sat=0.9, moss=0.15, lichen=0.2, seed=3.0))
     return [o]
 
 
 def b_white(hi, c):
-    a = boulder('rock_a', (0.78, 0.72, 0.66), 11, c, hi, rough_amp=0.14, round_=1.0, sink=0.12, offset=(-0.33, 0.04, 0)); b = boulder('rock_b', (0.72, 0.66, 0.74), 12, c, hi, rough_amp=0.15, round_=0.9, sink=0.1, offset=(0.36, -0.03, 0), yaw=1.1)
+    a = boulder('rock_a', (1.13, 1.04, 0.96), 11, c, hi, rough_amp=0.14, round_=1.0, sink=0.12, offset=(-0.48, 0.06, 0)); b = boulder('rock_b', (1.04, 0.96, 1.07), 12, c, hi, rough_amp=0.15, round_=0.9, sink=0.1, offset=(0.52, -0.04, 0), yaw=1.1)
     if hi:
         m = rock_mat('rock', 'rock_face_03', tint=(1.0, 0.99, 0.96), value=1.45, sat=0.3, moss=0.25, lichen=0.35, seed=4.0); a.data.materials.append(m); b.data.materials.append(m)
     return [a, b]
 
 
 def b_tall(hi, c):
-    o = boulder('rock', (0.88, 0.82, 1.32), 14, c, hi, rough_amp=0.18, round_=0.8, cracks=0.02, sink=0.08)
+    o = boulder('rock', rk(0.88, 0.82, 1.42), 14, c, hi, rough_amp=0.18, round_=0.8, cracks=0.02 * ROCK, sink=0.2)       # sunk a fifth: at 0.08 it balanced on a point
     if hi:
         o.data.materials.append(rock_mat('rock', 'rock_face_03', tint=(0.82, 0.84, 0.88), value=0.9, sat=0.5, moss=0.35, seed=5.0))
     return [o]
@@ -277,16 +283,16 @@ def arrow(hi, c):
 W_ROCK = ('A sphere cut by random break planes and gently displaced: edges are soft, with no undercuts, overhangs or split-off slabs, and the base is a flat clip rather than a buried foot with soil piled against it. '
           'One rock scan, box projected and tinted, carries all surface detail; its features do not follow the displaced form. Moss and lichen are procedural masks.')
 SPECS = {
-    'Boulder_Flat': dict(fn=b_flat, fam='boulder_flat', seq='95 lands/rocks/rock- frames 4, 5', cls='prop', px=1024, tris=1600, ground='forrest_ground_01', third=['rock_face_03'], weak=W_ROCK,
-                         dresses='flat-topped bedded boulder, 1.35 x 1.05 x 0.55 m, pinkish grey with stepped ledges'),
-    'Boulder_Large': dict(fn=b_large, fam='boulder_large', seq='95 lands/rocks/rock- frame 10', cls='prop', px=1024, tris=1800, ground='forrest_ground_01', third=['rock_boulder_dry'], weak=W_ROCK,
-                          dresses='large dark rounded boulder with fissures, 1.65 x 1.35 x 1.0 m'),
-    'Boulder_Red': dict(fn=b_red, fam='boulder_red', seq='95 lands/rocks/rock- frame 3', cls='prop', px=1024, tris=1800, ground='forrest_ground_01', third=['rock_boulder_dry'],
+    'Boulder_Flat': dict(fn=b_flat, fam='boulder_flat', seq='95 lands/rocks/rock- frames 4, 5', cls='prop', px=2048, tris=1600, ground='forrest_ground_01', third=['rock_face_03'], weak=W_ROCK,
+                         dresses='flat-topped bedded boulder, 2.3 x 1.8 x 0.95 m, pinkish grey with stepped ledges'),
+    'Boulder_Large': dict(fn=b_large, fam='boulder_large', seq='95 lands/rocks/rock- frame 10', cls='prop', px=2048, tris=1800, ground='forrest_ground_01', third=['rock_boulder_dry'], weak=W_ROCK,
+                          dresses='large dark rounded boulder with fissures, 2.8 x 2.3 x 1.7 m'),
+    'Boulder_Red': dict(fn=b_red, fam='boulder_red', seq='95 lands/rocks/rock- frame 3', cls='prop', px=2048, tris=1800, ground='forrest_ground_01', third=['rock_boulder_dry'],
                         weak=W_ROCK + ' Deep cracks are modelled because the scripted (bombable) red rocks must look cracked; the main crack reads a little like a seam, and an intact variant is not built.',
-                        dresses='angular reddish-brown boulder, 1.5 x 1.1 x 0.7 m, visibly cracked (the bombable rock of the game)'),
-    'Boulder_White_Pair': dict(fn=b_white, fam='boulder_white_pair', seq='95 lands/rocks/rock- frame 9', cls='prop', px=1024, tris=2200, ground='forrest_ground_01', third=['rock_face_03'], weak=W_ROCK,
+                        dresses='angular reddish-brown boulder, 2.55 x 1.85 x 1.2 m, visibly cracked (the bombable rock of the game)'),
+    'Boulder_White_Pair': dict(fn=b_white, fam='boulder_white_pair', seq='95 lands/rocks/rock- frame 9', cls='prop', px=2048, tris=2200, ground='forrest_ground_01', third=['rock_face_03'], weak=W_ROCK,
                                dresses='two pale rounded boulders leaning together, 1.5 m across the pair, 0.7 m tall'),
-    'Boulder_Grey_Tall': dict(fn=b_tall, fam='boulder_grey_tall', seq='95 lands/rocks/rock- frames 1, 2', cls='prop', px=1024, tris=1800, ground='forrest_ground_01', third=['rock_face_03'], weak=W_ROCK,
+    'Boulder_Grey_Tall': dict(fn=b_tall, fam='boulder_grey_tall', seq='95 lands/rocks/rock- frames 1, 2', cls='prop', px=2048, tris=1800, ground='forrest_ground_01', third=['rock_face_03'], weak=W_ROCK,
                               dresses='tall grey standing boulder, 0.9 x 0.8 x 1.25 m'),
     'Ore_Rock_Blue': dict(fn=b_ore, fam='ore_rock_blue', seq='95 lands/rocks/rock- frame 8', cls='prop', px=1024, tris=1800, ground='forrest_ground_01', third=['rock_boulder_dry'],
                           weak=W_ROCK + ' The blue mineral is a glossy colour mask on the rock plus nine plain prisms; it is not a modelled crystal druse and has no transmission or internal colour.',

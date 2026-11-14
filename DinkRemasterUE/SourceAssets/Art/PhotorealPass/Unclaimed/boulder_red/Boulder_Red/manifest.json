@@ -5,19 +5,19 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/SM_Boulder_Red_PR.blend",
  "build": "Unclaimed/tools/bl.sh build_props.py Boulder_Red final",
  "dimensions_m": [
-  1.3676,
-  1.0193,
-  0.6243
+  2.3249,
+  1.7329,
+  1.0613
  ],
  "bounds_min_m": [
-  -0.6838,
-  -0.5097,
-  -0.0002
+  -1.1624,
+  -0.8664,
+  -0.0003
  ],
  "bounds_max_m": [
-  0.6838,
-  0.5097,
-  0.6241
+  1.1624,
+  0.8664,
+  1.061
  ],
  "lod0_triangles": 1800,
  "triangle_budget": {
@@ -29,24 +29,24 @@
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/T_Boulder_Red_PR_BC.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "base colour sRGB"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/T_Boulder_Red_PR_N.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "tangent normal, OpenGL (green up; flip green on import)"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_red/Boulder_Red/T_Boulder_Red_PR_ORM.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "R occlusion, G roughness, B metallic"
   }
@@ -63,7 +63,7 @@
   "zero_area_faces": 0,
   "signed_volume_positive": true,
   "uv_range": [
-   0.0056,
+   0.0055,
    0.9945
   ],
   "transforms_applied": true
@@ -71,16 +71,16 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 92.8,
-   "p99": 128.0
+   "mean": 81.3,
+   "p99": 127.3
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.629,
-   "p95": 0.86
+   "mean": 0.543,
+   "p95": 0.858
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.826
+  "ao_mean": 0.724
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [
@@ -94,7 +94,7 @@
   ]
  },
  "supersedes": "none (placeholder greybox cards)",
- "dresses": "angular reddish-brown boulder, 1.5 x 1.1 x 0.7 m, visibly cracked (the bombable rock of the game)",
+ "dresses": "angular reddish-brown boulder, 2.55 x 1.85 x 1.2 m, visibly cracked (the bombable rock of the game)",
  "third_party": [
   "rock_boulder_dry"
  ],

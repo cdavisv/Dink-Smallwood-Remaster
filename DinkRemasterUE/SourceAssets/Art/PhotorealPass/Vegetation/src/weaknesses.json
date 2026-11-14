@@ -123,7 +123,7 @@
   "snapped ends are bundles of thin 3-sided splinters"
  ],
  "SM_Veg_Stump_01": [
-  "root buttresses are now one surface with the bole and dive below ground, but they are smooth lobes",
+  "root buttresses are one surface with the bole and dive below ground; since 13 Nov 2026 each is a blunt lobe sampled at eleven angles (before: three, so a root was a knife-edged fin ending in a point). They are still smooth lobes without bark ridges of their own, and LOD2 keeps the coarse six-sided base",
   "bark rim round the cut is a low uneven lip with a few peeled sections, not loose bark sheets",
   "bracket fungi reuse the end-grain texture for their zoning",
   "cut face is a planar scan projection, greyed, with extra procedural drying checks"

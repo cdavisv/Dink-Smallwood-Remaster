@@ -102,10 +102,12 @@ class MeshB:
                 s.faces.append((l + j, l + (j + 1) % sides, c))
                 s.uv.append(((0.1, lo + 0.01), (0.14, lo + 0.01), (0.12, lo + 0.03))); s.mat.append(mat)
 
-    def root_base(s, axis, rfun, seed, lod, top=0.7, urep=1, nroots=None, strength=1.0, mat=0, tubes=True, depth=BELOW_GROUND):
+    def root_base(s, axis, rfun, seed, lod, top=0.7, urep=1, nroots=None, strength=1.0, mat=0, tubes=True, depth=BELOW_GROUND, soft=False):
         """Buttressed trunk base as ONE surface from z=-depth to z=top: root ridges grow out of the bole toward the ground and dive under it;
         thinner root ends continue as tapered tubes that start inside the ridge tips. axis(z)->xyz, rfun(z)->trunk radius without flare.
-        UVs use the 'base' band (v 0..0.25 over the height). Returns the top ring radius."""
+        UVs use the 'base' band (v 0..0.25 over the height). Returns the top ring radius.
+        soft: a root seen from above and close (a stump). Each ridge is sampled at up to eleven angles instead of three and its
+        profile is blunt, so a root ends round instead of in a knife-edged point; trees keep the lighter base (soft=False)."""
         rng = np.random.default_rng(seed)
         nroots = nroots or int(rng.integers(4, 7))
         raz = np.sort((np.arange(nroots) + rng.uniform(-0.3, 0.3, nroots)) * 2 * math.pi / nroots + rng.uniform(0, 6.28)) % (2 * math.pi)
@@ -116,13 +118,14 @@ class MeshB:
         angs = list(np.arange(nuni) * 2 * math.pi / nuni)
         if lod < 2:
             for k in range(nroots):
-                angs += [raz[k]] + ([raz[k] - rsig[k] * 0.8, raz[k] + rsig[k] * 0.8] if lod == 0 else [])
+                offs = ((0.35, 0.7, 1.0, 1.3, 1.7) if lod == 0 else (0.6, 1.1, 1.6)) if soft else ((0.8,) if lod == 0 else ())
+                angs += [raz[k]] + [raz[k] + sg * o * rsig[k] for o in offs for sg in (-1, 1)]
         angs = np.sort(np.array(angs) % (2 * math.pi)); angs = angs[np.concatenate([[True], np.diff(angs) > 0.04])]
         S = len(angs); R = len(zl); P = np.zeros((R, S, 3))
         def lobes(a, z):
             g = math.exp(-max(z, 0.0) / 0.17) * (1.0 + 0.9 * max(-z, 0.0) / depth); t = 0.0
             for k in range(nroots):
-                d = (a - raz[k] + math.pi) % (2 * math.pi) - math.pi; t += ramp[k] * math.exp(-(d / rsig[k]) ** 2)
+                d = (a - raz[k] + math.pi) % (2 * math.pi) - math.pi; t += ramp[k] * math.exp(-abs(d / rsig[k]) ** (3.2 if soft else 2))
             return g * t
         for i, z in enumerate(zl):
             c = np.asarray(axis(max(z, 0.0)), float); c = np.array([c[0], c[1], z]); r = rfun(max(z, 0.0)) * (1 + 0.22 * math.exp(-max(z, 0) / 0.4))

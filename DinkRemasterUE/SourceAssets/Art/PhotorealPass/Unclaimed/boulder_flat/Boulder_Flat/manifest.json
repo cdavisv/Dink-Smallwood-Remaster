@@ -5,19 +5,19 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/SM_Boulder_Flat_PR.blend",
  "build": "Unclaimed/tools/bl.sh build_props.py Boulder_Flat final",
  "dimensions_m": [
-  1.1988,
-  0.9548,
-  0.532
+  2.0365,
+  1.6145,
+  0.9043
  ],
  "bounds_min_m": [
-  -0.5994,
-  -0.4774,
+  -1.0182,
+  -0.8072,
   -0.0
  ],
  "bounds_max_m": [
-  0.5994,
-  0.4774,
-  0.532
+  1.0182,
+  0.8072,
+  0.9043
  ],
  "lod0_triangles": 1600,
  "triangle_budget": {
@@ -29,24 +29,24 @@
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/T_Boulder_Flat_PR_BC.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "base colour sRGB"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/T_Boulder_Flat_PR_N.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "tangent normal, OpenGL (green up; flip green on import)"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_flat/Boulder_Flat/T_Boulder_Flat_PR_ORM.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "R occlusion, G roughness, B metallic"
   }
@@ -63,24 +63,24 @@
   "zero_area_faces": 0,
   "signed_volume_positive": true,
   "uv_range": [
-   0.0053,
-   0.9947
+   0.0046,
+   0.9955
   ],
   "transforms_applied": true
  },
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 93.9,
-   "p99": 136.7
+   "mean": 74.6,
+   "p99": 136.1
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.729,
-   "p95": 0.907
+   "mean": 0.567,
+   "p95": 0.903
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.76
+  "ao_mean": 0.612
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [
@@ -96,7 +96,7 @@
   ]
  },
  "supersedes": "none (placeholder greybox cards)",
- "dresses": "flat-topped bedded boulder, 1.35 x 1.05 x 0.55 m, pinkish grey with stepped ledges",
+ "dresses": "flat-topped bedded boulder, 2.3 x 1.8 x 0.95 m, pinkish grey with stepped ledges",
  "third_party": [
   "rock_face_03"
  ],

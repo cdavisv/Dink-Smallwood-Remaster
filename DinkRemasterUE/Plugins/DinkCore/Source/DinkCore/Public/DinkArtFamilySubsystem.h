@@ -45,6 +45,12 @@ struct DINKCORE_API FDinkFamilyBinding
 	bool bYawFromSprite = false;
 	/** Added to the chosen yaw (degrees; JSON "yaw_offset"): for modules whose sprite shows them edge-on. */
 	double YawOffset = 0.0;
+	/**
+	 * Multiplies the mesh's size after `fit` (JSON "scale", default 1, 0.05..20). For small things that the layout-scaled
+	 * 1997 picture shows several times their real size (a shell, a starfish, a flask): at real size they cannot be seen
+	 * from the play camera, at the card's size they are absurd close up; a row picks the largest size that is still believable.
+	 */
+	double Scale = 1.0;
 	/** 0..1 (JSON "anchor_front"): moves the mesh back (north) by this share of half its depth, so at 1 its front edge, not its centre, stands on the sprite's bottom edge. For deep modules such as the curved wall. */
 	double AnchorFront = 0.0;
 	/** true: also dress placements that carry a DinkC script (default: scripted placements keep their card). */
@@ -169,6 +175,26 @@ public:
 	virtual void OnWorldBeginPlay(UWorld& InWorld) override;
 	virtual void Deinitialize() override;
 
+	/** Tag on the family mesh that stands for a sprite a script created (create_sprite). */
+	static const FName ScriptSpriteTag;
+
+	/**
+	 * Presentation of a sprite a script created (create_sprite: pickups, dropped gold and hearts). Such a sprite has no
+	 * origin ID and no card; it is a small marker actor. When the picture it shows (sequence and frame) belongs to a
+	 * family with a mesh in families.json, the actor gets that mesh as a child without collision, standing at
+	 * Actor location + GroundOffset at Size times its real size, and the marker (the actor's root mesh) is hidden.
+	 * Call again when the picture or the size changes: the mesh follows, and a picture without a family row gets the
+	 * marker back. Actors that another layer presents (script characters, creatures, food) are left alone.
+	 * Visual only: touch, hit and talk keep the sprite's pixel box. Returns true when a family mesh is shown.
+	 */
+	bool DressScriptSprite(AActor* Actor, int32 Sequence, int32 Frame, const FVector& GroundOffset, float Size = 1.f);
+
+	/**
+	 * Class id of a sprite picture, learnt from the placements of the loaded world (sprite_classes.csv is import-time
+	 * data). Frame 0 asks for the sequence as a whole: the class when every placed frame of it has the same one.
+	 */
+	FName ClassOfPicture(int32 Sequence, int32 Frame) const;
+
 	/** Dresses one screen (idempotent; called on screen activation). Returns the placements dressed by this call. */
 	int32 ApplyScreen(int32 ScreenNumber);
 	bool IsScreenApplied(int32 ScreenNumber) const { return AppliedScreens.Contains(ScreenNumber); }
@@ -222,6 +248,8 @@ private:
 	TSet<FString> MissingMeshes;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkPlaceholderActor>>> ActorsByScreen;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkGreyboxScreen>>> GreyboxByScreen;
+	/** (sequence << 16 | frame) -> class id, from every placement; frame 0 holds the sequence's class when it is unique (None otherwise). */
+	TMap<int32, FName> ClassByPicture;
 	TSet<int32> AppliedScreens;
 	TMap<EDinkFamilyDecision, int32> DecisionCounts;
 	FDelegateHandle ScreenHandle;
