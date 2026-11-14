@@ -49,8 +49,12 @@ class CorpseKitTests(unittest.TestCase):
             self.assertEqual(len(pools), 1, '%s has no pool card: a family row cannot place a companion decal' % asset['name'])
             self.assertEqual(self.materials[pools[0]]['kind'], 'masked', pools[0])
             self.assertEqual(len(asset['materials']), 2, asset['name'])
-            # the card reaches past the body on every side: the pool and the thrown drops lie round it
-            self.assertGreaterEqual(min(asset['dimensions_m'][:2]), 2.0, asset['name'])
+            # size is measured, not judged by eye: a body built against its picture's footprint (the card width of
+            # placements.json) keeps its pool, drops included, inside it
+            own = json.loads((PROJECT.parent / asset['folder'] / 'manifest.json').read_text())
+            if 'sprite_footprint_m' in own and 'pool_extent_m' in own:
+                self.assertLessEqual(own['pool_extent_m'], own['sprite_footprint_m'] + 0.02, asset['name'])
+                self.assertGreater(own['pool_extent_m'], 0.6 * own['sprite_footprint_m'], asset['name'])
 
     def test_bodies_keep_their_real_size_and_lie_as_the_sprite_does(self):
         for row in kit_rows():

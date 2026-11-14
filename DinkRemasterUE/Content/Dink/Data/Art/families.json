@@ -1127,6 +1127,48 @@
       "scale": 1.3
     },
     {
+      "family": "corpse_knight",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Knight_PR.SM_Corpse_Knight_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). 275 people/knight/red/death-, screen 157: the knight on his back in worn steel plate, the snapped halberd shaft standing in his chest, its head in the blood. Body and pool stay inside the picture's footprint (2.02 m). The pool, the drops and the soaked fringe are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the 1997 picture shows it."
+    },
+    {
+      "family": "345 people/merchant/death-",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Merchant_PR.SM_Corpse_Merchant_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). corpse_merchant, the blue merchant of screen 94: hacked down, chest split to the ribs, belly open, a forearm struck off. Posed from the rig as dead weight, opened as the 1997 picture shows, body and pool inside the picture's footprint; the pool, the drops and the soaked fringe are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the picture shows it."
+    },
+    {
+      "family": "385 people/merchant/green/death-",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Merchant_Green_PR.SM_Corpse_Merchant_Green_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). corpse_merchant, the green merchant of screen 92: belly cut across with entrails out, shoulder split. Posed from the rig as dead weight, opened as the 1997 picture shows, body and pool inside the picture's footprint; the pool, the drops and the soaked fringe are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the picture shows it."
+    },
+    {
+      "family": "corpse_girl",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Girl_PR.SM_Corpse_Girl_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). 335 people/girl/death-, screen 222: torn open over ribs and entrails, a leg and a forearm torn off. Posed from the rig as dead weight, opened as the 1997 picture shows, body and pool inside the picture's footprint; the pool, the drops and the soaked fringe are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the picture shows it."
+    },
+    {
+      "family": "corpse_maiden",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Maiden_PR.SM_Corpse_Maiden_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). 245 people/maiden/red/death-, screen 91: torn open from throat to belly, entrails out. Posed from the rig as dead weight, opened as the 1997 picture shows, body and pool inside the picture's footprint; the pool, the drops and the soaked fringe are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the picture shows it."
+    },
+    {
+      "family": "corpse_peasant",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Peasant_PR.SM_Corpse_Peasant_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). 415 people/peasant2/death-, screen 222: hacked down, his long-handled sickle beside him. Posed from the rig as dead weight, opened as the 1997 picture shows, body and pool inside the picture's footprint; the pool, the drops and the soaked fringe are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the picture shows it."
+    },
+    {
       "family": "216 foes/dragon/f2-x7- torn dragon, turned",
       "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
       "fit": "none",

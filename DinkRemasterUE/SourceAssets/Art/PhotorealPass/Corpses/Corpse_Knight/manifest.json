@@ -1,0 +1,133 @@
+{
+ "name": "SM_Corpse_Knight_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/SM_Corpse_Knight_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/SM_Corpse_Knight_PR.blend",
+ "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Corpse_Knight_PR",
+ "dimensions_m": [
+  2.4,
+  2.4,
+  1.3456
+ ],
+ "bounds_min_m": [
+  -1.2,
+  -1.2,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.2,
+  1.2,
+  1.3456
+ ],
+ "lod0_triangles": 15538,
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Knight_PR",
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Knight_PR",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Knight_PR",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Knight_Pool",
+   "channels": "base colour sRGB + alpha (cut-out)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Knight_Pool",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Knight_Pool",
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Corpse_Knight_PR",
+  "MI_Corpse_Knight_Pool"
+ ],
+ "kit_materials": [
+  {
+   "name": "MI_Corpse_Knight_PR",
+   "kind": "opaque",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_PR_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_PR_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_PR_ORM.png"
+   }
+  },
+  {
+   "name": "MI_Corpse_Knight_Pool",
+   "kind": "masked",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_ORM.png"
+   }
+  }
+ ],
+ "collision_hulls": 0,
+ "material_exception": "unique BC/N/ORM bakes private to this asset (not a row of ART_STANDARD.md section 2): remains are one-off set pieces",
+ "pivot": "bbox centre in X/Y, lowest point at z = 0; in Blender +X is screen right and +Y screen up (north) for a yaw_from_sprite row",
+ "families": [
+  "corpse_knight",
+  "275 people/knight/red/death-"
+ ],
+ "dresses": "the knight dead on his back in worn steel plate, lying in his blood, drops thrown round it, the snapped shaft of his halberd standing in his chest and its head lying in the blood beside him",
+ "third_party": [
+  "park_dirt (render ground)"
+ ],
+ "known_weaknesses": "The knight is the plate harness of Unclaimed/npc_knight_blue (silver set) with procedural wear (grime, scratches, dents as a bump): swept plates without straps or rivets and nobody inside, so there is no flesh to see at the joints; the wound is a ring of raw flesh round the shaft. The halberd head is the knight's own, laid flat; the shafts are plain turned poles with a tapered break, not splintered wood. The pool, drops and mist are a flat alpha-tested card 6 mm above the ground. Static.",
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 58.6,
+   "p99": 138.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.438,
+   "p95": 0.688
+  },
+  "metallic_mean": 0.431,
+  "ao_mean": 0.53
+ },
+ "derived_from": "Unclaimed/npc_knight_blue/Knight (SK_Knight_PR LOD0, silver set), posed, worn, the halberd broken, bloodied and baked again",
+ "sprite_footprint_m": 2.02,
+ "gore_in_mesh": "blood welling round the wound and run down the plates, soaked underside, entry wound, pool with thrown drops and mist (no companion decal)",
+ "pool_card_m": 2.4
+}
