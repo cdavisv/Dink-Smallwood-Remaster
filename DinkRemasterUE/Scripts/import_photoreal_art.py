@@ -278,10 +278,10 @@ return lerp(c, g, saturate(Match));''', F3, ['C', 'Big', 'Match', 'Dry'], 'Groun
         # one shell with a modelled cornea. The clear-coat pins are hidden from the scripting API, so the wet
         # highlight comes from a glossy default-lit surface (roughness capped at 0.1, raised specular).
         out(orm, 'R', MP.MP_AMBIENT_OCCLUSION)
-        eye_rough = custom(mat, -400, 300, 'return min(R, 0.1);', F1, ['R'], 'Eye roughness')
+        eye_rough = custom(mat, -400, 300, 'return min(R, 0.045);', F1, ['R'], 'Eye roughness')   # 0.1 spread the sun's reflection into a dull sheen: no wet highlight (14 Nov 2026)
         link(orm, 'G', eye_rough, 'R')
         out(eye_rough, '', MP.MP_ROUGHNESS)
-        out(expr(mat, unreal.MaterialExpressionConstant, -400, 380, r=0.7), '', MP.MP_SPECULAR)
+        out(expr(mat, unreal.MaterialExpressionConstant, -400, 380, r=0.9), '', MP.MP_SPECULAR)
     elif foliage:
         # Leaves and needles. Calibrated against the Cycles review renders (Saved/PhotorealPass/lighting/tools/cal.sh):
         # specular well under the 0.5 default, roughness from ORM G never glossy, and the crown interior darkened by
@@ -426,7 +426,7 @@ HAIR_MODEL = os.environ.get('DINK_HAIR_MODEL', 'hair')   # 'lit' builds the prev
 # her pulled-back hair as a separate shingle, so she has none.
 HAIR_LOOK = {
     'Dink': {'tint': (2.4, 1.5, 1.1), 'scalars': {'Scatter': 0.8}},
-    'Mother': {'tint': (0.8, 0.76, 0.7), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.5, 'StrandVariation': 0.12, 'DepthShade': 0.45, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
+    'Mother': {'tint': (0.72, 0.67, 0.6), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.3, 'StrandVariation': 0.12, 'DepthShade': 0.45, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12}},
 }
 

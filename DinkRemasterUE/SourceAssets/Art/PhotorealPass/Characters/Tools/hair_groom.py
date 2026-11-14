@@ -111,11 +111,11 @@ if S['kind'] == 'bun':
                                           ('Set Hair Curve Profile', {'Replace Radius': True, 'Radius': S.get('radius', 4.5e-5) * .9, 'Shape': .35})], material=smat, resample=16)
     extra.append(wobj)
 # ------------------------------------------------------------------ brows: a short strand groom per brow, baked into the atlas band
-BR = dict(z0=.0185, arch=.0055, th=.0048, x0=-.021, span=.054, n=600, len=(.0095, .006), r=4.0e-5); BR.update(S.get('brow', {}))
+BR = dict(z0=.0185, arch=.0055, th=.0048, x0=-.021, span=.054, n=600, len=(.0095, .006), r=4.0e-5, inner_up=0.0); BR.update(S.get('brow', {}))   # inner_up: the inner third of the brow raised (a harmless, slightly puzzled look instead of a scowl)
 KE = abs(H.eyes[1][0][0]) / .031
-for k_ in ('z0', 'arch', 'th', 'x0', 'span'): BR[k_] *= KE
+for k_ in ('z0', 'arch', 'th', 'x0', 'span', 'inner_up'): BR[k_] *= KE
 def brow_zc(sgn, s_):
-    e_ = H.eyes[sgn][0]; return e_[2] + BR['z0'] + BR['arch'] * math.sin(math.pi * min(max(s_, 0), 1.15) * .72) - .0035 * float(sstep(.7, 1.1, s_))
+    e_ = H.eyes[sgn][0]; return e_[2] + BR['z0'] + BR['arch'] * math.sin(math.pi * min(max(s_, 0), 1.15) * .72) - .0035 * float(sstep(.7, 1.1, s_)) + BR['inner_up'] * (1 - float(sstep(0, .4, s_)))
 def brow_th(s_): return BR['th'] * (1 - .72 * float(sstep(.4, 1.0, s_))) * (.55 + .45 * float(sstep(0, .12, s_)))
 def brow_pt(sgn, s_, dz):
     e_ = H.eyes[sgn][0]; x = sgn * (abs(e_[0]) + BR['x0'] + s_ * BR['span']); z = brow_zc(sgn, s_) + dz
@@ -212,14 +212,17 @@ for sh in S['shells']: shell(**sh)
 if S['kind'] == 'bun':
     for q, pts in enumerate(BUNP):
         CB.wound(pts, S.get('bun_bundle_r', .0075) * 1.05, TI['n_dense'] + TI['n_mid'], 2, cr, strips=S.get('bun_strips', 5), nseg=S.get('bun_nseg', 14))
-        off = cr.normal(0, .002, 3); CB.ribbon(pts[2:-2] + off, cr.uniform(.007, .010), int(cr.choice(TI['n_thin'])), 3, cr, nseg=10, across=1, lift_scale=1.0, lift_off=0.0, roll=.6, bow=.1, nblend=.0)
+        off = cr.normal(0, .002, 3)
+        if S.get('bun_ribbons', True): CB.ribbon(pts[2:-2] + off, cr.uniform(.007, .010), int(cr.choice(TI['n_thin'])), 3, cr, nseg=10, across=1, lift_scale=1.0, lift_off=0.0, roll=.6, bow=.1, nblend=.0)
     # core: an opaque ellipsoid of wound hair under the ribbons (wide dense tile, strands run round the azimuth)
-    Rc = np.array(S['bun_r']) * S.get('bun_core', .96); NS, NR = 24, 8; base = len(CB.v); u0, v0, u1, v1 = hl.tile_rect(TI['dense'][0])
+    Rc = np.array(S['bun_r']) * S.get('bun_core', .96); NS, NR = S.get('bun_core_res', (24, 8)); CA = S.get('bun_coil', 0.0)   # bun_coil: the core itself is modelled as a wound coil (two spiral ridges), so the bun has volume without the ribbons
+    base = len(CB.v); u0, v0, u1, v1 = hl.tile_rect(TI['dense'][0])
     for i in range(NR + 1):
         la = math.pi * (.5 - .92 * i / NR)
         for j in range(NS + 1):
             az = 2 * math.pi * j / NS - math.pi / 2; nn = bun['bn'] * math.sin(la) + (bun['bx'] * math.cos(az) + bun['by'] * math.sin(az)) * math.cos(la)
-            CB.v.append(bun['c'] + bun['bn'] * Rc[2] * math.sin(la) + (bun['bx'] * Rc[0] * math.cos(az) + bun['by'] * Rc[1] * math.sin(az)) * math.cos(la))
+            kc = 1.0 + CA * math.cos(2 * az + 9.0 * (math.pi / 2 - la)) * min(1.0, (math.pi / 2 - la) / .5)
+            CB.v.append(bun['c'] + (bun['bn'] * Rc[2] * math.sin(la) + (bun['bx'] * Rc[0] * math.cos(az) + bun['by'] * Rc[1] * math.sin(az)) * math.cos(la)) * kc)
             CB.uv.append((u0 + (.12 + .76 * i / NR) * (u1 - u0), v0 + (.5 + .4 * j / NS) * (v1 - v0))); CB.hl.append(1); CB.hn.append(nn)
     for i in range(NR):
         for j in range(NS):

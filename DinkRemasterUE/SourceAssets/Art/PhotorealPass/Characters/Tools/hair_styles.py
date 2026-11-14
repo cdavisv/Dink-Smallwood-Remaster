@@ -33,7 +33,7 @@ STYLES = {
               L_top=.075, L_side=.05, L_nape=.036, L_fringe=.066, el_top=18, el_side=6, el_jit=6, sweep=.95, tousle=.6, jit=.12, gravity=1.2, lift_tip=.003, wander=.05,
               clump=.7, clump_d=.010, noise_d=.0012, frizz_d=.0006, trim_rand=.012, tip_spread=.001,
               strand=dict(melanin=.70, redness=.92, rough=.32, radial=.4, rand_col=.14),
-              albedo=(.064, .029, .016), col_var=.25, brow_melanin=.25, brow=dict(th=.0056, n=800), card_mat=dict(spec=.005, transl=.8, spec2=20.0), brow_rgb='86,44,24', lash_rgb='46,26,18',
+              albedo=(.064, .029, .016), col_var=.25, brow_melanin=.12, brow=dict(th=.0046, n=640, inner_up=.0022, z0=.0200), brow_dark=.8, card_mat=dict(spec=.005, transl=.8, spec2=20.0), brow_rgb='86,44,24', lash_rgb='46,26,18',
               fringe_var=.5, fringe_scale=30, cap_tip=(.3, .72),   # the opaque cap stops well short of the tips: the fringe and the outline are free strands on cards
               tile=dict(frizz=.012, wave=.03, clump=1.0, stray=.03, tip_gain=.5, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0, rag_k=1.7),
               shells=narrow_short(1.0, 1.0, lv=(.34, .42), taper=.55, fly=44, wisp=190, over=170)),
@@ -49,7 +49,8 @@ STYLES = {
                
                 clump=.35, clump_d=.007, noise_d=.0012, noise_s=10.0, frizz_d=.0009, trim_rand=.01, streak_scale=45.0,
                 strand=dict(melanin=.42, redness=.30, rough=.34, radial=.4, rand_col=.12, grey=.16),
-                albedo=(.20, .115, .046), col_var=.08, grey=.05, cap_tip=(.92, 1.0), cap_h=.15, cap_hmax=.002, bun_strips=6, bun_nseg=28, grey_col=(.33, .27, .19), brow=dict(th=.0034, n=420), brow_rgb='122,102,74', lash_rgb='60,44,30', brow_melanin=.2, brow_dark=.75,
+                albedo=(.20, .115, .046), col_var=.08, grey=.05, cap_tip=(.92, 1.0), cap_h=.15, cap_hmax=.002, bun_strips=0, bun_ribbons=False, bun_core=1.06, bun_core_res=(48, 22), bun_coil=.085,   # ribbons wound round a coil are polygons with bright edges at any affordable segment count: the bun is the modelled core alone
+                grey_col=(.33, .27, .19), brow=dict(th=.0044, n=640, arch=.0070), brow_rgb='122,102,74', lash_rgb='60,44,30', brow_melanin=.5, brow_dark=.42,
                 card_mat=dict(transl=.9, shadow=.2, spec=.006, spec2=10.0, ao=.45),
                 tile=dict(frizz=.004, wave=.006, clump=.3, stray=.008, smooth=.5, narrow_k=1.5, nn_dense=85, nn_mid=55, nn_thin=30, n_dense=750, n_mid=300, n_thin=100, n_wisp=30, n_fly=8, strand_px=2.0),
                 shells=[

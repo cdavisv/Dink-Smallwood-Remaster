@@ -157,7 +157,7 @@ for e in (eyeL, eyeR):
     # ...and hairs painted into the skin itself: in the game the brow cards alone thin out to a drawn line, so the
     # brow's mass is fine strokes in the albedo (cfg 'brow_paint': 0 none .. 1 solid) and the cards give it relief
     bp = np.clip(bx * 1.6, 0, 1) * (.45 + .55 * sstep(.35, .7, n3(1500, 97, 2))) * CFG.get('brow_paint', .55)
-    k_ = np.maximum(bx * .32, bp)
+    k_ = np.maximum(bx * CFG.get('brow_shadow', .32), bp)   # brow_shadow 0 for fair brows: the dark band under fair cards WAS the brow in the game, a thin drawn line
     col = col * (1 - k_[..., None]) + hc[None, None, :] * k_[..., None]
 # lips: a real colour break against the skin; stubble shadow on a young man's lip, chin and jaw
 ratio = base3[..., 0] / np.maximum(base3[..., 1], 1e-4)
@@ -269,7 +269,7 @@ k = CFG.get('nrm_k', .18)
 gx = (np.roll(height, -1, 1) - np.roll(height, 1, 1)) * k; gy = (np.roll(height, -1, 0) - np.roll(height, 1, 0)) * k
 nrm = np.dstack([-gx, -gy, np.ones_like(gx)]); nrm /= np.linalg.norm(nrm, axis=2)[..., None]
 gloveF = up(glove, S)
-rough = .50 + .14 * gloveF - .15 * tzF - .16 * lipF + .07 * handF + .16 * scalpF - micro * CFG.get('rough_micro', .05) + meso * RM * (.7 + .6 * tzF) + tex2 * .03 + up(gr.astype(np.float32), S) * .2 + .05 * ageF - .28 * rimF - .25 * carF + up(blotch, S) * .06
+rough = .50 + .14 * gloveF - .15 * tzF - .16 * lipF + .07 * handF + .16 * scalpF - micro * CFG.get('rough_micro', .05) + meso * RM * (.7 + .6 * tzF) + tex2 * .03 + up(gr.astype(np.float32), S) * .2 + .05 * ageF - .28 * rimF * CFG.get('rim_wet', 1.0) - .25 * carF * CFG.get('rim_wet', 1.0) + up(blotch, S) * .06
 aoF = up(np.repeat(np.repeat(fill(ao[..., 0], cover[::2, ::2], it=3), 2, 0), 2, 1), S)
 aoF = np.clip(aoF * 1.15, 0, 1) * (1 - up(cav.astype(np.float32), S) * .25) * (1 + np.clip(pore_dip, -2, 0) * .04)
 thin = np.clip(up((ears + nosem * .6).astype(np.float32), S) + handF * .45, 0, 1)

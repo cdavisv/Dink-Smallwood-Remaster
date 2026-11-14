@@ -7,28 +7,28 @@
  "lods": [
   {
    "mesh": "SK_Dink_Photoreal_LOD0",
-   "vertices": 37920,
+   "vertices": 37925,
    "Scrawny": {
-    "moved_vertices": 17030,
-    "max_mm": 29.53,
-    "mean_mm": 7.11
+    "moved_vertices": 17037,
+    "max_mm": 39.88,
+    "mean_mm": 7.66
    },
    "Brawny": {
-    "moved_vertices": 16876,
+    "moved_vertices": 16877,
     "max_mm": 18.52,
     "mean_mm": 4.94
    }
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD1",
-   "vertices": 22665,
+   "vertices": 22666,
    "Scrawny": {
-    "moved_vertices": 7768,
-    "max_mm": 29.4,
-    "mean_mm": 7.26
+    "moved_vertices": 7762,
+    "max_mm": 39.9,
+    "mean_mm": 7.72
    },
    "Brawny": {
-    "moved_vertices": 7727,
+    "moved_vertices": 7717,
     "max_mm": 18.33,
     "mean_mm": 4.93
    }
@@ -37,26 +37,26 @@
    "mesh": "SK_Dink_Photoreal_LOD2",
    "vertices": 15345,
    "Scrawny": {
-    "moved_vertices": 3405,
-    "max_mm": 29.08,
-    "mean_mm": 7.31
+    "moved_vertices": 3402,
+    "max_mm": 39.85,
+    "mean_mm": 7.79
    },
    "Brawny": {
-    "moved_vertices": 3391,
+    "moved_vertices": 3388,
     "max_mm": 18.37,
-    "mean_mm": 5.03
+    "mean_mm": 5.02
    }
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD3",
    "vertices": 9376,
    "Scrawny": {
-    "moved_vertices": 1695,
-    "max_mm": 29.14,
-    "mean_mm": 7.35
+    "moved_vertices": 1691,
+    "max_mm": 39.88,
+    "mean_mm": 7.84
    },
    "Brawny": {
-    "moved_vertices": 1691,
+    "moved_vertices": 1684,
     "max_mm": 18.15,
     "mean_mm": 5.11
    }
@@ -67,7 +67,7 @@
    "shoulder_width": 55.4,
    "chest_girth": 103.3,
    "waist_girth": 78.0,
-   "neck_girth": 34.9,
+   "neck_girth": 34.7,
    "upper_arm_girth": 31.6,
    "forearm_girth": 31.5,
    "thigh_girth": 59.6,
@@ -75,10 +75,10 @@
    "height": 182.0
   },
   "Scrawny": {
-   "shoulder_width": 52.9,
+   "shoulder_width": 52.7,
    "chest_girth": 95.4,
    "waist_girth": 73.9,
-   "neck_girth": 34.4,
+   "neck_girth": 34.3,
    "upper_arm_girth": 25.8,
    "forearm_girth": 26.5,
    "thigh_girth": 52.8,
@@ -89,7 +89,7 @@
    "shoulder_width": 57.1,
    "chest_girth": 109.9,
    "waist_girth": 78.9,
-   "neck_girth": 35.6,
+   "neck_girth": 35.5,
    "upper_arm_girth": 36.4,
    "forearm_girth": 34.6,
    "thigh_girth": 64.0,

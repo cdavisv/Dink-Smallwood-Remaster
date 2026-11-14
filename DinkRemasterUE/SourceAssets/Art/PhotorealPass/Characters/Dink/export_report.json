@@ -10,32 +10,32 @@
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 60294 triangles, target for character_hero is 40000 (hard max 70000)"
+   "LOD0 has 60306 triangles, target for character_hero is 40000 (hard max 70000)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "12853 non-manifold edges (12852 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "12851 non-manifold edges (12850 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "12490 non-manifold edges (12489 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "12487 non-manifold edges (12486 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "10685 non-manifold edges (10684 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "10682 non-manifold edges (10681 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "6740 non-manifold edges (6739 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "6738 non-manifold edges (6737 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (141.7 % of UV area, 4060 triangles); class character_hero needs unique UVs"
+   "UV0 islands overlap (141.9 % of UV area, 4059 triangles); class character_hero needs unique UVs"
   ],
   [
    "warning",
@@ -154,8 +154,8 @@
  "lods": [
   {
    "mesh": "SK_Dink_Photoreal_LOD0",
-   "triangles": 60294,
-   "vertices": 37920,
+   "triangles": 60306,
+   "vertices": 37925,
    "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
@@ -165,8 +165,8 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD1",
-   "triangles": 30147,
-   "vertices": 22665,
+   "triangles": 30152,
+   "vertices": 22666,
    "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
@@ -176,7 +176,7 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD2",
-   "triangles": 17780,
+   "triangles": 17783,
    "vertices": 15345,
    "max_influences": 4,
    "unweighted": 0,
@@ -187,7 +187,7 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD3",
-   "triangles": 10725,
+   "triangles": 10727,
    "vertices": 9376,
    "max_influences": 4,
    "unweighted": 0,
@@ -292,7 +292,7 @@
  "dimensions_m": [
   1.1003458499908447,
   0.5392696261405945,
-  1.8181172609329224
+  1.8181192874908447
  ],
  "materials": [
   "MI_Dink_PR_Skin",
@@ -304,7 +304,7 @@
  "uv_per_slot": {
   "MI_Dink_PR_Skin": {
    "uv_area": 0.4978,
-   "texels_used_1k": 461532,
+   "texels_used_1k": 461578,
    "texels_overlapping_1k": 0,
    "overlap_fraction": 0.0,
    "outside_0_1": 0
@@ -317,10 +317,10 @@
    "outside_0_1": 0
   },
   "MI_Dink_PR_Hair": {
-   "uv_area": 15.1922,
-   "texels_used_1k": 624941,
+   "uv_area": 15.1945,
+   "texels_used_1k": 627120,
    "texels_overlapping_1k": 358770,
-   "overlap_fraction": 0.5741,
+   "overlap_fraction": 0.5721,
    "outside_0_1": 0
   },
   "MI_Dink_PR_Outfit": {

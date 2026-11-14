@@ -4,58 +4,58 @@
   "assets": 1,
   "assets_passed": 0,
   "errors": 1,
-  "warnings": 27
+  "warnings": 28
  },
  "findings": [
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 34174 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "LOD0 has 33382 triangles, target for character_humanoid is 20000 (hard max 35000)"
   ],
   [
    "warning",
    "DUPLICATE_VERTS",
-   "8 vertices coincide with another vertex (within 0.01 mm); merge by distance"
+   "22 vertices coincide with another vertex (within 0.01 mm); merge by distance"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "11050 non-manifold edges (11040 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "8510 non-manifold edges (8500 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "DUPLICATE_VERTS",
-   "8 vertices coincide with another vertex (within 0.01 mm); merge by distance"
+   "22 vertices coincide with another vertex (within 0.01 mm); merge by distance"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "10910 non-manifold edges (10900 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "8381 non-manifold edges (8371 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "DUPLICATE_VERTS",
-   "8 vertices coincide with another vertex (within 0.01 mm); merge by distance"
+   "22 vertices coincide with another vertex (within 0.01 mm); merge by distance"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "9424 non-manifold edges (9414 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "6991 non-manifold edges (6981 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "DUPLICATE_VERTS",
-   "8 vertices coincide with another vertex (within 0.01 mm); merge by distance"
+   "22 vertices coincide with another vertex (within 0.01 mm); merge by distance"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "3175 non-manifold edges (3165 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "2943 non-manifold edges (2933 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (416.1 % of UV area, 2948 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (428.3 % of UV area, 2839 triangles); class character_humanoid needs unique UVs"
   ],
   [
    "warning",
@@ -151,6 +151,11 @@
    "warning",
    "NAME_TEXTURE",
    "image 'T_Mother_PR_Gear_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "LOD_BOUNDS",
+   "LOD3 bounds differ from LOD0 by 40 cm (decimation shrank it?)"
   ]
  ],
  "normals": [
@@ -174,29 +179,29 @@
  "lods": [
   {
    "mesh": "SK_Mother_Photoreal_LOD0",
-   "triangles": 34174,
-   "vertices": 23261,
+   "triangles": 33382,
+   "vertices": 21547,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Mother_Photoreal_LOD1",
-   "triangles": 18794,
-   "vertices": 15501,
+   "triangles": 18359,
+   "vertices": 13971,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Mother_Photoreal_LOD2",
-   "triangles": 10732,
-   "vertices": 10605,
+   "triangles": 10479,
+   "vertices": 9210,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Mother_Photoreal_LOD3",
-   "triangles": 5041,
-   "vertices": 4300,
+   "triangles": 6285,
+   "vertices": 4805,
    "max_influences": 4,
    "unweighted": 0
   }
@@ -296,7 +301,7 @@
  "dimensions_m": [
   1.1079223155975342,
   0.7885163426399231,
-  1.797210931777954
+  1.7972133159637451
  ],
  "materials": [
   "MI_Mother_PR_Skin",
@@ -314,17 +319,17 @@
    "outside_0_1": 0
   },
   "MI_Mother_PR_Eyes": {
-   "uv_area": 1.4623,
-   "texels_used_1k": 695413,
-   "texels_overlapping_1k": 658215,
-   "overlap_fraction": 0.9465,
+   "uv_area": 1.4612,
+   "texels_used_1k": 691558,
+   "texels_overlapping_1k": 661037,
+   "overlap_fraction": 0.9559,
    "outside_0_1": 0
   },
   "MI_Mother_PR_Hair": {
-   "uv_area": 7.8243,
-   "texels_used_1k": 549194,
-   "texels_overlapping_1k": 237020,
-   "overlap_fraction": 0.4316,
+   "uv_area": 7.3337,
+   "texels_used_1k": 410569,
+   "texels_overlapping_1k": 147598,
+   "overlap_fraction": 0.3595,
    "outside_0_1": 0
   },
   "MI_Mother_PR_Outfit": {
