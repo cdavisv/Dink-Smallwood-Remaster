@@ -12,7 +12,7 @@
  "dimensions_m": [
   1.1003458499908447,
   0.5392696261405945,
-  1.81858491897583
+  1.8181172609329224
  ],
  "bone_count": 89,
  "root_bone": "root",
@@ -20,8 +20,8 @@
  "lods": [
   {
    "mesh": "SK_Dink_Photoreal_LOD0",
-   "triangles": 58572,
-   "vertices": 35713,
+   "triangles": 60292,
+   "vertices": 37919,
    "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
@@ -31,8 +31,8 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD1",
-   "triangles": 29286,
-   "vertices": 20896,
+   "triangles": 30146,
+   "vertices": 22664,
    "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
@@ -42,8 +42,8 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD2",
-   "triangles": 17372,
-   "vertices": 14141,
+   "triangles": 17780,
+   "vertices": 15345,
    "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
@@ -53,8 +53,8 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD3",
-   "triangles": 10468,
-   "vertices": 8266,
+   "triangles": 10725,
+   "vertices": 9376,
    "max_influences": 4,
    "unweighted": 0,
    "shape_keys": [
@@ -63,7 +63,7 @@
    ]
   }
  ],
- "lod0_triangles": 58572,
+ "lod0_triangles": 60292,
  "material_slots": [
   "MI_Dink_PR_Skin",
   "MI_Dink_PR_Eyes",
@@ -277,32 +277,32 @@
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 58572 triangles, target for character_hero is 40000 (hard max 70000)"
+   "LOD0 has 60292 triangles, target for character_hero is 40000 (hard max 70000)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "10647 non-manifold edges (10646 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "12853 non-manifold edges (12852 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "10299 non-manifold edges (10298 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "12489 non-manifold edges (12488 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "9023 non-manifold edges (9022 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "10685 non-manifold edges (10684 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "5115 non-manifold edges (5114 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "6740 non-manifold edges (6739 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (81.1 % of UV area, 4060 triangles); class character_hero needs unique UVs"
+   "UV0 islands overlap (68.9 % of UV area, 4060 triangles); class character_hero needs unique UVs"
   ],
   [
    "warning",

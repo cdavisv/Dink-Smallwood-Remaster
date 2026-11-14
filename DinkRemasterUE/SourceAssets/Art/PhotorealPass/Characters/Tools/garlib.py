@@ -82,7 +82,7 @@ def tidy_rim(o, sharp=75.0, passes=3):
     bmesh.ops.delete(bm, geom=[f for f in bm.faces if f.calc_area() < 1e-10], context='FACES')
     bm.to_mesh(o.data); bm.free(); o.data.update()
 
-def clear_of_skin(o, skin_bvh, clear=.004, reach=.03, mask=None, spread=4):
+def clear_of_skin(o, skin_bvh, clear=.004, reach=.03, mask=None, spread=4, edge=.004):
     """Cloth never lies in or under the skin: every vertex nearer than `clear` to the skin's outer side (or inside it,
     up to `reach`) is pushed out along the skin normal. The push is shared with the neighbours before it is applied
     (a vertex moved alone leaves a tooth). mask(co) -> bool array limits it to a region."""
@@ -91,7 +91,12 @@ def clear_of_skin(o, skin_bvh, clear=.004, reach=.03, mask=None, spread=4):
     for i in idx:
         loc, nrm, _, dist = skin_bvh.find_nearest(Vector(c[i]), reach)
         if loc is None: continue
-        sd = float((Vector(c[i]) - loc).dot(nrm))
+        off = Vector(c[i]) - loc; sd = float(off.dot(nrm))
+        # Only skin that lies under the vertex counts. Where the skin has been cut away under the clothes its nearest
+        # point is on the cut edge, off to the side, and the plane of that last triangle says nothing about the body:
+        # vertices measured against it were thrown up to 3 cm (the Mother's shoulder yoke stood up as two flaps and
+        # her neckline gaped, 13 Nov 2026).
+        if (off - nrm * sd).length > edge: continue
         if sd < clear: push[i] = np.array(nrm) * (clear - sd); n_moved += 1; worst = max(worst, clear - sd)
     if n_moved:
         bm_ = bmesh.new(); bm_.from_mesh(o.data); bm_.verts.ensure_lookup_table()

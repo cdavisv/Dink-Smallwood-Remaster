@@ -46,6 +46,9 @@ def guide_short(root, r, kind='hair'):
     top_w = float(sstep(.80, .30, e)); back = max(0.0, d0[1]); fringe = float(sstep(.45, .70, e)) * float(sstep(1.1, .7, abs(az)))
     L = S['L_side'] + (S['L_top'] - S['L_side']) * top_w; L = L + (S['L_nape'] - L) * float(sstep(.75, 1.0, e)) * float(sstep(.2, .7, back)); L = L + (S['L_fringe'] - L) * fringe
     L *= (.8 + .4 * hl.f1(loc, 60, 91)) * r.uniform(.9, 1.08) * (1 - S.get('edge_short', 0.0) * float(sstep(.8, 1.0, e)) * (1 - fringe))
+    # the fringe falls in locks of unequal length (fringe_var: the share by which a lock may be shorter or longer);
+    # without it every strand over the forehead ends on one line, a bowl cut
+    if S.get('fringe_var'): L *= 1 + S['fringe_var'] * fringe * (2 * hl.f1(loc, S.get('fringe_scale', 34), 123) - 1) * 1.6
     el = math.radians(S['el_side'] + (S['el_top'] - S['el_side']) * top_w + r.normal(0, S.get('el_jit', 8)))
     ml = (.0006, S['lift_tip'] * (1 + 1.2 * fringe))
     if kind == 'wisp': L *= r.uniform(.25, .5); el *= .6; ml = (.0004, .002)
@@ -211,7 +214,7 @@ if S['kind'] == 'bun':
         CB.wound(pts, S.get('bun_bundle_r', .0075) * 1.05, TI['n_dense'] + TI['n_mid'], 2, cr, strips=S.get('bun_strips', 5), nseg=S.get('bun_nseg', 14))
         off = cr.normal(0, .002, 3); CB.ribbon(pts[2:-2] + off, cr.uniform(.007, .010), int(cr.choice(TI['n_thin'])), 3, cr, nseg=10, across=1, lift_scale=1.0, lift_off=0.0, roll=.6, bow=.1, nblend=.0)
     # core: an opaque ellipsoid of wound hair under the ribbons (wide dense tile, strands run round the azimuth)
-    Rc = np.array(S['bun_r']) * S.get('bun_core', .96); NS, NR = 14, 6; base = len(CB.v); u0, v0, u1, v1 = hl.tile_rect(TI['dense'][0])
+    Rc = np.array(S['bun_r']) * S.get('bun_core', .96); NS, NR = 24, 8; base = len(CB.v); u0, v0, u1, v1 = hl.tile_rect(TI['dense'][0])
     for i in range(NR + 1):
         la = math.pi * (.5 - .92 * i / NR)
         for j in range(NS + 1):

@@ -276,6 +276,7 @@ def tile_strands(rng, kind, sty, K=14):
     }
     nk = sty.get('narrow_k', 2.2) if kind.startswith('n_') else 1.0
     n, hw, nl, rag, along, rs = kinds[kind]
+    rag = min(.92, rag * sty.get('rag_k', 1.0))       # rag_k > 1: strands end at more varied lengths, so a card's tip is feathered, not cut
     lc = rng.uniform(-hw * .85, hw * .85, nl); lt = lc * rng.uniform(.55, 1.0, nl) + rng.normal(0, .03, nl)   # lock centre at root / tip
     if kind == 'dense': lt = lc + rng.normal(0, .02, nl)
     lw = rng.uniform(.5, 1.0, nl); wave_a = nk * sty.get('wave', .02) * rng.uniform(.4, 1.5, nl); wave_f = rng.uniform(.6, 1.8, nl) * sty.get('wave_f', 1.0); wave_p = rng.uniform(0, 6.28, nl)
