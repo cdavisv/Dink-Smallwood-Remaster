@@ -29,10 +29,11 @@ Offscreen game (`Scripts/PhotorealQA/run_capture.sh`) with the scripts `Scripts/
   animated pillbug with plates, legs and antennae, lit and shadowed by the scene.
 - `walk_strip_close.jpg`: six shots 0.25 s apart at the close camera. The legs are in a different phase of the gait in
   every shot and the bodies turn towards their path. Bugs pass through the hero, as the sprites do.
-- `before_after_2_kill.jpg`: a kill on SCR_527. Before: the greybox cylinder of the script-made carcass sprite. After:
-  the burst carcass with its blood pool; the pool is a decal, so it also stains the grass blades.
-- `before_after_3_carcass_crowd.jpg`: six kills on SCR_030 (bare ground: the pool with thrown streaks), the crowd on
-  SCR_715, and crops of the carcass and of a live bug.
+- `before_after_2_kill.jpg`: kills on SCR_527. Before: the greybox cylinder of the script-made carcass sprite. After:
+  the burst carcass with its blood pool; the pool is a decal, so it also stains the grass blades. One carcass is one bug:
+  the live bug at the left of the upper right picture gives the size.
+- `before_after_3_carcass_crowd.jpg`: kills on SCR_030 (bare ground: the pool with thrown streaks), the crowd on
+  SCR_715, and a crop of a live bug.
 - `overview_screens.jpg`: a fixed camera above SCR_527, 030, 648 and 715: every bug of the screen is the creature
   wherever its brain has taken it.
 
@@ -43,6 +44,14 @@ Offscreen game (`Scripts/PhotorealQA/run_capture.sh`) with the scripts `Scripts/
 - Shown speed of the bugs: 0 to 15.2 m/s, leg cadence up to 10.1 cycles per second. The original moves a sprite 60
   pixels per second per speed point, which is 4.1 m/s per point at this world scale; the fastest bugs (`en-pill2`,
   speed 3, diagonal) are a blur of legs. This is the 1997 speed, not a defect of the binding.
+
+## Carcass size (review of 14 Nov 2026)
+
+The first version drew the carcass at the size the mesh was modelled: 4.0 m across with its pool, the shell heap about
+3 m, against a live bug of 1.78 m. It read as several bugs piled up. The 1997 carcass sprite (sequences 141/143) is
+46x35 pixels and the walking sprite 49x40, so the remains are the size of the bug. The corpse row now has `scale` 0.55
+(shell heap about 1.6 m) and its decal 620 cm, so the pool keeps a reach of 3.4 m; the amount of blood is unchanged.
+The kill sheets above are from the corrected row.
 
 ## Left as it is, and not checked
 
