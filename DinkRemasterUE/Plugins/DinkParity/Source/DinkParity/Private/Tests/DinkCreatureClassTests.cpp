@@ -517,6 +517,16 @@ bool FDinkCreatureClassFollowTest::RunTest(const FString&)
 	TestEqual(TEXT("one script-made pillbug"), Made, 1);
 	TestEqual(TEXT("one effect sprite"), Effects, 1);
 
+	// a save restored on the same screen: the director drops its sprites and makes them again under the same handles, the
+	// screen number does not change. The carcass of the bug that is alive again goes, and nothing is remembered by handle.
+	TestEqual(TEXT("a carcass lies there before the restore"), Scene.Creatures->GetCorpseCount(), 1);
+	TestTrue(TEXT("sprites are followed before the restore"), Scene.Presenter->GetFollowedCount() > 0);
+	Scene.D->ResetSprites();
+	Scene.Presenter->Present();
+	TestEqual(TEXT("same-screen restore: the old carcass goes"), Scene.Creatures->GetCorpseCount(), 0);
+	TestEqual(TEXT("same-screen restore: and its blood"), Scene.Creatures->GetCorpseDecalCount(), 0);
+	TestEqual(TEXT("same-screen restore: nothing is remembered by handle"), Scene.Presenter->GetFollowedCount(), 0);
+
 	// leaving the screen drops the carcasses, as the original drops its corpse sprites
 	Scene.Story->GetFacts()->SetFact(TEXT("player_map"), 998);
 	Scene.Presenter->Present();

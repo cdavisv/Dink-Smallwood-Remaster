@@ -63,4 +63,6 @@ private:
 	TMap<int32, FSeen> Seen;
 	TMap<int32, float> Durations;
 	int32 SeenScreen = 0;
+	/** UDinkDirector::GetSpriteResetSerial as of the last step. */
+	int32 SeenResetSerial = 0;
 };

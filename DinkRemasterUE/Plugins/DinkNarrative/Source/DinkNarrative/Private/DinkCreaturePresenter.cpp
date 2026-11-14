@@ -64,10 +64,15 @@ void UDinkCreaturePresenter::Present()
 	if (!Creatures || !Director || !Game || Creatures->GetClassBindings().IsEmpty()) return;
 
 	const int32 Screen = Director->GetCurrentScreen();
-	if (Screen != SeenScreen)
+	const int32 ResetSerial = Director->GetSpriteResetSerial();
+	if (Screen != SeenScreen || ResetSerial != SeenResetSerial)
 	{
-		// The original redraws the screen: its corpse sprites go, and the sprites of the old screen did not die.
+		// The original redraws the screen: its corpse sprites go, and the sprites of the old screen did not die. A save
+		// restored on the same screen does the same without a change of number: the director drops its sprites and makes
+		// them again under the handles they had, so everything remembered by handle is stale (the carcass of a pillbug that
+		// is alive again; a recreated script sprite's body that still needs this step as its tick prerequisite).
 		SeenScreen = Screen;
+		SeenResetSerial = ResetSerial;
 		Seen.Reset();
 		Creatures->ClearCorpses();
 	}
