@@ -728,6 +728,22 @@
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass"
   }
  ],
+ "flipbooks": [
+  {
+   "name": "Sparkle",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/sparkle_fx/Sparkle/T_FX_Sparkle_Flipbook.png",
+   "grid": [
+    8,
+    8
+   ],
+   "fps": 24,
+   "glow": 6,
+   "families": [
+    "sparkle_fx",
+    "165 effects/shiny/shiny-, 166 effects/sparks/spark-"
+   ]
+  }
+ ],
  "not_imported": [
   {
    "name": "SM_Arrow_PR",
@@ -902,7 +918,7 @@
   {
    "name": "SM_Dragon_Corpse_PR",
    "class": "prop_large",
-   "why": "no families.json row uses it: less gory than the original, so the sprite card stays (owner rule of 8 Nov 2026: keep all original gore). Pictures 212 and 216 are small torn-apart bloody remains; the mesh is an intact dragon on its back, about four times the size of the card in game (screen 158). Bind once the source is rebuilt as torn remains at the sprite's size"
+   "why": "no families.json row uses it: this source is not what the game shows: the family is bound to the corpse kit (PhotorealPass/Corpses/Dragon_Corpse, 14 Nov 2026), which rebuilds it as torn remains lying in its pool"
   },
   {
    "name": "SM_Arch_Stone_PR",
@@ -1133,11 +1149,6 @@
    "name": "SM_Snow_House_Timber_PR",
    "class": "building",
    "why": "no families.json row uses it: a building drawn in several sprites (walls, door, windows) laid out at the settlement scale; a real-size mesh leaves the door and window cards floating beside it, so it needs a per-screen assembly like the town houses"
-  },
-  {
-   "name": "FX_Sparkle",
-   "class": "effect flipbook",
-   "why": "not a static mesh"
   },
   {
    "name": "SM_Stairs_Wood_PR",
