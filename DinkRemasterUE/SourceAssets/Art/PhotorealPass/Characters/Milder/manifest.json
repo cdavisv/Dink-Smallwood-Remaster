@@ -11,8 +11,8 @@
  ],
  "dimensions_m": [
   1.1510167121887207,
-  0.5068691968917847,
-  1.8619554042816162
+  0.5159661769866943,
+  1.8523708581924438
  ],
  "bone_count": 89,
  "root_bone": "root",
@@ -20,34 +20,34 @@
  "lods": [
   {
    "mesh": "SK_Milder_Photoreal_LOD0",
-   "triangles": 32562,
-   "vertices": 21825,
+   "triangles": 34836,
+   "vertices": 25043,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD1",
-   "triangles": 17908,
-   "vertices": 14392,
+   "triangles": 19158,
+   "vertices": 17075,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD2",
-   "triangles": 10228,
-   "vertices": 9688,
+   "triangles": 10878,
+   "vertices": 11669,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD3",
-   "triangles": 5450,
-   "vertices": 5216,
+   "triangles": 5663,
+   "vertices": 6098,
    "max_influences": 4,
    "unweighted": 0
   }
  ],
- "lod0_triangles": 32562,
+ "lod0_triangles": 34836,
  "material_slots": [
   "MI_Milder_PR_Skin",
   "MI_Milder_PR_Eyes",
@@ -261,32 +261,32 @@
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 32562 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "LOD0 has 34836 triangles, target for character_humanoid is 20000 (hard max 35000)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "9240 non-manifold edges (9230 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "12458 non-manifold edges (12448 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "9028 non-manifold edges (9018 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "12194 non-manifold edges (12184 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "7558 non-manifold edges (7548 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "10026 non-manifold edges (10016 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "4198 non-manifold edges (4188 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "5313 non-manifold edges (5303 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (5.3 % of UV area, 5654 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (3.8 % of UV area, 5654 triangles); class character_humanoid needs unique UVs"
   ],
   [
    "warning",

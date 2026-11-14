@@ -125,9 +125,10 @@ def torn_rim(ob, depth, slot, seed=3):
     for e in edges:
         a, b = e.verts; f0 = e.link_faces[0]; la = next(l for l in f0.loops if l.vert is a); order = (b, a) if la.link_loop_next.vert is b else (a, b)
         f = bm.faces.new((order[0], order[1], inner[order[1]], inner[order[0]])); f.material_index = slot; f.smooth = True
-        if uvl:
-            for l in f.loops:
-                l[uvl].uv = (0.0, 0.0)
+        if uvl:                                      # its own small rectangle at true proportions (packed with the rest later)
+            w = max((order[0].co - order[1].co).length, 1e-4); h = max(depth, 1e-4)
+            for l, uvq in zip(f.loops, ((0.0, 0.0), (w, 0.0), (w, h), (0.0, h))):
+                l[uvl].uv = uvq
     bm.to_mesh(ob.data); bm.free(); ob.data.update(); return ob
 
 
@@ -150,9 +151,9 @@ def m_flesh(name='flesh', k=1.0):
     """raw muscle: fibre bundles in deep red, pale fat and sinew between them, wet"""
     t = L.NT(name); fib = t.mapping(t.obj, scale=(22 * k, 22 * k, 6 * k), rot=(0.4, 0.3, 0.0)); v = t.voronoi(1.0, vec=fib, feature='F1'); edge = t.voronoi(1.0, vec=fib, feature='DISTANCE_TO_EDGE')
     big = t.noise(4.5 * k, 5, 0.6); fine = t.noise(70 * k, 4, 0.6)
-    col = t.ramp(t.math('ADD', t.math('MULTIPLY', big, 0.75), t.math('MULTIPLY', v, 0.35)), [(0.25, (0.018, 0.0014, 0.0014)), (0.45, (0.06, 0.003, 0.0025)), (0.62, (0.12, 0.008, 0.006)), (0.85, (0.19, 0.022, 0.016))])
+    col = t.ramp(t.math('ADD', t.math('MULTIPLY', big, 0.75), t.math('MULTIPLY', v, 0.35)), [(0.25, (0.018, 0.0014, 0.0014)), (0.45, (0.04, 0.002, 0.002)), (0.62, (0.075, 0.005, 0.004)), (0.85, (0.12, 0.014, 0.010))])
     fat = t.ramp(t.math('ADD', t.math('MULTIPLY', edge, 6.0), t.math('MULTIPLY', t.noise(9 * k, 4, 0.6), 1.2)), [(0.42, 1.0), (0.58, 0.0)])            # pale seams between the bundles, in patches
-    col = t.mix(t.math('MULTIPLY', fat, 0.38), col, (0.30, 0.15, 0.09)); clot = t.ramp(t.noise(11 * k, 5, 0.65), [(0.60, 0.0), (0.70, 1.0)]); col = t.mix(t.math('MULTIPLY', clot, 0.85), col, BLOOD_DARK)
+    col = t.mix(t.math('MULTIPLY', fat, 0.38), col, (0.22, 0.11, 0.07)); clot = t.ramp(t.noise(11 * k, 5, 0.65), [(0.60, 0.0), (0.70, 1.0)]); col = t.mix(t.math('MULTIPLY', clot, 0.85), col, BLOOD_DARK)
     h = t.math('ADD', t.math('MULTIPLY', t.math('SUBTRACT', 1.0, edge), -0.5), t.math('ADD', t.math('MULTIPLY', big, 1.2), t.math('MULTIPLY', fine, 0.12)))
     t.set(base=col, rough=t.mixf(clot, t.maprange(fine, 0.3, 0.7, 0.42, 0.60), 0.38), normal=t.bump(h, 0.35, 0.008 / k), spec=0.3); return t.mat
 
@@ -167,7 +168,7 @@ def m_bone(name='bone'):
 def m_gut(name='gut'):
     """entrails: grey-pink, veined, slick"""
     t = L.NT(name); n = t.noise(14, 4, 0.55); vein = t.ramp(t.voronoi(40, feature='DISTANCE_TO_EDGE'), [(0.0, 1.0), (0.06, 0.0)]); bl = t.ramp(t.noise(5, 4, 0.6), [(0.45, 1.0), (0.66, 0.0)])
-    col = t.mix(n, (0.30, 0.14, 0.12), (0.45, 0.25, 0.21)); col = t.mix(t.math('MULTIPLY', vein, 0.6), col, (0.20, 0.02, 0.05)); col = t.mix(t.math('MULTIPLY', bl, 0.8), col, BLOOD_MID)
+    col = t.mix(n, (0.22, 0.10, 0.09), (0.34, 0.19, 0.16)); col = t.mix(t.math('MULTIPLY', vein, 0.6), col, (0.20, 0.02, 0.05)); col = t.mix(t.math('MULTIPLY', bl, 0.8), col, BLOOD_MID)
     t.set(base=col, rough=0.26, normal=t.bump(t.math('ADD', n, t.math('MULTIPLY', vein, -0.3)), 0.3, 0.004), spec=0.5); return t.mat
 
 
@@ -178,11 +179,62 @@ def m_blood(name='blood', k=1.0):
     t.set(base=col, rough=t.mixf(clot, t.maprange(deep, 0, 1, 0.44, 0.27), 0.50), normal=t.bump(t.math('ADD', t.math('MULTIPLY', n, 0.4), clot), 0.14, 0.0015), spec=0.38); return t.mat
 
 
-def bloody(mat, centres, ground=0.10, amount=1.0, spatter=0.62, keep_metal=False, drench=0.0):
+def worn_steel(mat, bc_path):
+    """turn a clean plate-armour material into worn steel: the silver base colour map, grime in patches, scratches, dull and uneven
+    roughness, dents. Rewires base colour, roughness and normal of its Principled BSDF."""
+    nt = mat.node_tree; Lk = nt.links; b = next(n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED')
+    bc = next(n for n in nt.nodes if n.type == 'TEX_IMAGE' and n.image and n.image.name.upper().split('.')[0].endswith('_BC')); im = bpy.data.images.load(bc_path); im.colorspace_settings.name = 'sRGB'; bc.image = im
+
+    def node(typ, **kw):
+        n = nt.nodes.new(typ)
+        for k_, v in kw.items():
+            setattr(n, k_, v)
+        return n
+
+    def noise(scale, detail, vec=None, rough=0.6):
+        n = node('ShaderNodeTexNoise'); n.inputs['Scale'].default_value = scale; n.inputs['Detail'].default_value = detail; n.inputs['Roughness'].default_value = rough; Lk.new(vec or geo.outputs['Position'], n.inputs['Vector']); return n.outputs['Fac']
+
+    def ramp(src, lo, hi):
+        n = node('ShaderNodeMapRange'); n.inputs['From Min'].default_value = lo; n.inputs['From Max'].default_value = hi; Lk.new(src, n.inputs['Value']); return n.outputs['Result']
+
+    def mixc(fac, a, bcol):
+        n = node('ShaderNodeMix', data_type='RGBA'); Lk.new(fac, n.inputs[0])
+        if isinstance(a, tuple):
+            n.inputs[6].default_value = a + (1,)
+        else:
+            Lk.new(a, n.inputs[6])
+        n.inputs[7].default_value = bcol + (1,); return n.outputs[2]
+    geo = node('ShaderNodeNewGeometry')
+    grime = ramp(noise(7.0, 6, rough=0.7), 0.40, 0.62); fine = noise(140.0, 3)
+    mp = node('ShaderNodeMapping'); mp.inputs['Scale'].default_value = (260.0, 9.0, 9.0); mp.inputs['Rotation'].default_value = (0.3, 0.5, 0.9); Lk.new(geo.outputs['Position'], mp.inputs['Vector'])
+    mp2 = node('ShaderNodeMapping'); mp2.inputs['Scale'].default_value = (8.0, 240.0, 11.0); mp2.inputs['Rotation'].default_value = (0.8, 0.1, 0.4); Lk.new(geo.outputs['Position'], mp2.inputs['Vector'])
+    s1 = ramp(noise(1.0, 2, mp.outputs[0]), 0.70, 0.76); s2 = ramp(noise(1.0, 2, mp2.outputs[0]), 0.71, 0.77)
+    mx = node('ShaderNodeMath', operation='MAXIMUM'); Lk.new(s1, mx.inputs[0]); Lk.new(s2, mx.inputs[1]); scr = mx.outputs[0]
+    g2 = node('ShaderNodeMath', operation='MULTIPLY'); Lk.new(grime, g2.inputs[0]); g2.inputs[1].default_value = 0.86
+    col = mixc(g2.outputs[0], bc.outputs[0], (0.030, 0.026, 0.022))          # old oil, dirt and rust-brown in patches
+    tar = mixc(ramp(noise(3.0, 5), 0.44, 0.70), col, (0.085, 0.052, 0.034)); sc2 = node('ShaderNodeMath', operation='MULTIPLY'); Lk.new(scr, sc2.inputs[0]); sc2.inputs[1].default_value = 0.55
+    col = mixc(sc2.outputs[0], tar, (0.52, 0.52, 0.53))                      # bright scratches through to clean steel
+    Lk.new(col, b.inputs['Base Color'])
+    r = b.inputs['Roughness']; old = r.links[0].from_socket if r.links else None
+    rr = node('ShaderNodeMix', data_type='FLOAT'); Lk.new(grime, rr.inputs[0]); rr.inputs[2].default_value = 0.42; rr.inputs[3].default_value = 0.70
+    r2 = node('ShaderNodeMix', data_type='FLOAT'); Lk.new(scr, r2.inputs[0]); Lk.new(rr.outputs[0], r2.inputs[2]); r2.inputs[3].default_value = 0.28
+    r3 = node('ShaderNodeMath', operation='ADD'); Lk.new(r2.outputs[0], r3.inputs[0]); f2 = node('ShaderNodeMath', operation='MULTIPLY'); Lk.new(fine, f2.inputs[0]); f2.inputs[1].default_value = 0.10; Lk.new(f2.outputs[0], r3.inputs[1])
+    Lk.new(r3.outputs[0], r)
+    nrm = b.inputs['Normal']; oldn = nrm.links[0].from_socket if nrm.links else None
+    vo = node('ShaderNodeTexVoronoi'); vo.inputs['Scale'].default_value = 11.0; Lk.new(geo.outputs['Position'], vo.inputs['Vector'])
+    dent = ramp(vo.outputs['Distance'], 0.0, 0.22); hh = node('ShaderNodeMath', operation='ADD'); Lk.new(dent, hh.inputs[0]); s3 = node('ShaderNodeMath', operation='MULTIPLY'); Lk.new(scr, s3.inputs[0]); s3.inputs[1].default_value = -0.25; Lk.new(s3.outputs[0], hh.inputs[1])
+    bp = node('ShaderNodeBump'); bp.inputs['Strength'].default_value = 0.7; bp.inputs['Distance'].default_value = 0.006; Lk.new(hh.outputs[0], bp.inputs['Height'])
+    if oldn is not None:
+        Lk.new(oldn, bp.inputs['Normal'])
+    Lk.new(bp.outputs['Normal'], nrm)
+    return mat
+
+
+def bloody(mat, centres, ground=0.10, amount=1.0, spatter=0.62, keep_metal=False, drench=0.0, use_link=False, runs=None):
     """soak a baked material in blood: around each (xyz, radius) centre, wherever it comes near the ground, and in spatters elsewhere.
     Rewires base colour, roughness and metallic of its Principled BSDF; the base colour is taken straight from the BC map (no AO multiply)."""
     nt = mat.node_tree; Lk = nt.links; b = next(n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED'); bc = next((n for n in nt.nodes if n.type == 'TEX_IMAGE' and n.image and n.image.name.upper().split('.')[0].endswith('_BC')), None)
-    base_src = bc.outputs[0] if bc else (b.inputs['Base Color'].links[0].from_socket if b.inputs['Base Color'].links else None); base_def = tuple(b.inputs['Base Color'].default_value)
+    base_src = bc.outputs[0] if (bc and not use_link) else (b.inputs['Base Color'].links[0].from_socket if b.inputs['Base Color'].links else None); base_def = tuple(b.inputs['Base Color'].default_value)
 
     def node(typ, **kw):
         n = nt.nodes.new(typ)
@@ -208,6 +260,14 @@ def bloody(mat, centres, ground=0.10, amount=1.0, spatter=0.62, keep_metal=False
     spk = node('ShaderNodeTexNoise'); spk.inputs['Scale'].default_value = 130.0; spk.inputs['Detail'].default_value = 2.0; Lk.new(geo.outputs['Position'], spk.inputs['Vector'])
     low = mth('SUBTRACT', 1.0, mth('DIVIDE', sep.outputs[2], ground), clamp=True)
     field = mth('ADD', mth('ADD', mth('MULTIPLY', near if near is not None else 0.0, 1.25), mth('MULTIPLY', low, 0.9)), mth('MULTIPLY', mth('SUBTRACT', noi.outputs['Fac'], 0.5), 1.2))
+    if runs:                                        # blood run down from a wound: streaks drawn out along Z, under and round (xyz, radius)
+        rc, rr = runs; flat = node('ShaderNodeVectorMath', operation='MULTIPLY'); Lk.new(geo.outputs['Position'], flat.inputs[0]); flat.inputs[1].default_value = (1.0, 1.0, 0.0)
+        dd = node('ShaderNodeVectorMath', operation='DISTANCE'); Lk.new(flat.outputs[0], dd.inputs[0]); dd.inputs[1].default_value = (float(rc[0]), float(rc[1]), 0.0)
+        reach = mth('SUBTRACT', 1.0, mth('DIVIDE', dd.outputs['Value'], float(rr)), clamp=True); below = mth('MULTIPLY', mth('SUBTRACT', float(rc[2]) + 0.02, sep.outputs[2]), 40.0, clamp=True)
+        mp = node('ShaderNodeMapping'); mp.inputs['Scale'].default_value = (34.0, 34.0, 2.2); Lk.new(geo.outputs['Position'], mp.inputs['Vector'])
+        sn = node('ShaderNodeTexNoise'); sn.inputs['Scale'].default_value = 1.0; sn.inputs['Detail'].default_value = 3.0; Lk.new(mp.outputs[0], sn.inputs['Vector'])
+        streak = mth('MULTIPLY', mth('SUBTRACT', sn.outputs['Fac'], 0.50), 7.0, clamp=True)
+        field = mth('ADD', field, mth('MULTIPLY', mth('MULTIPLY', mth('MULTIPLY', reach, below), streak), 1.9))
     if drench:                                      # sprites 245, 335, 355, 405, 415: red from head to foot, whatever the height above the ground
         field = mth('ADD', field, float(drench))
     soak = mth('MULTIPLY', mth('SUBTRACT', field, 0.30), 5.0, clamp=True); spat = mth('MULTIPLY', mth('SUBTRACT', spk.outputs['Fac'], spatter), 14.0, clamp=True)
@@ -480,13 +540,32 @@ HUMANS = {
 }
 
 
-def person_pool(P, c, seed, pool=1.0, shift=(0.0, 0.0), reach=0.42, grow=0.11, extra_pts=None):
+# card width of the 1997 picture in the world, metres (ImportData/placements.json `card.width_m`, 14 Nov 2026)
+FOOT = {'Corpse_Knight': 2.02, 'Corpse_Merchant': 1.85, 'Corpse_Merchant_Green': 1.85, 'Corpse_Girl': 1.45, 'Corpse_Maiden': 1.57, 'Corpse_Soldier': 1.85, 'Corpse_Peasant': 2.85, 'Dink_Dead': 2.60}
+
+
+def fit_scale(obs, foot_m, margin=0.10):
+    """uniform scale (never above 1) that brings the bodies' ground extent inside the sprite footprint, leaving `margin` for the pool's edge"""
+    P = np.vstack([L.co(o) for o in obs]); ext = float(max(np.ptp(P[:, 0]), np.ptp(P[:, 1])))
+    s = min(1.0, (foot_m - margin) / ext); print('FIT body extent %.2f m -> scale %.3f for a %.2f m footprint' % (ext, s, foot_m)); return s
+
+
+def person_pool(P, c, seed, pool=1.0, shift=(0.0, 0.0), reach=0.42, grow=0.11, extra_pts=None, fit_m=None):
     """the blood sheet under a body: it hugs the body's outline, swells under the torso and throws drops outwards"""
     low = P[P[:, 2] < 0.30]; foot = low[::9, :2]
     if extra_pts is not None:
         foot = np.vstack([foot, extra_pts])
-    ext = float(np.abs(foot).max()) + grow + reach + 0.12; size = round(2 * ext + 0.049, 1); rng = np.random.default_rng(seed)
-    cc = (c[0] + shift[0], c[1] + shift[1]); rot = rng.uniform(0, math.pi)
+    rng = np.random.default_rng(seed); cc = (c[0] + shift[0], c[1] + shift[1]); rot = rng.uniform(0, math.pi)
+    if fit_m:
+        # the 1997 picture's footprint (card width of placements.json): the pool hugs the body and the whole of it, drops included, stays inside that width
+        half = fit_m / 2.0; grow = 0.045; reach = 0.07; r = np.hypot(foot[:, 0] - cc[0], foot[:, 1] - cc[1]); keep = r < half - grow - 0.01; foot = foot[keep]
+        a = min(0.62 * pool, half * 0.62); b = min(0.42 * pool, half * 0.42)
+        pools = [(cc[0], cc[1], a, b, rot, [(rng.uniform(0, 6.3), 0.3, 0.16 * a / 0.62), (rng.uniform(0, 6.3), 0.2, 0.2 * a / 0.62)])]
+        size = round(fit_m + 0.35, 1)
+        sheet = GS.blood_sheet(2048, size, seed, pools=pools, foot=foot, grow=grow, n_drops=90, reach=reach, casts=3, mist=350, drop_r=(0.003, 0.016), centre=cc)
+        cov = sheet['cover'] > 0.5; ex = max(np.ptp(np.nonzero(cov.any(0))[0]), np.ptp(np.nonzero(cov.any(1))[0])) / 2048.0 * size
+        print('FOOTPRINT pool incl. drops %.2f m, sprite card %.2f m' % (ex, fit_m)); sheet['extent_m'] = float(ex); return sheet, size
+    ext = float(np.abs(foot).max()) + grow + reach + 0.12; size = round(2 * ext + 0.049, 1)
     pools = [(cc[0], cc[1], 0.62 * pool, 0.42 * pool, rot, [(rng.uniform(0, 6.3), 0.35, 0.22 * pool), (rng.uniform(0, 6.3), 0.2, 0.3 * pool), (rng.uniform(0, 6.3), 0.25, 0.16 * pool)])]
     return GS.blood_sheet(2048, size, seed, pools=pools, foot=foot, grow=grow * pool, n_drops=170, reach=reach, casts=6, mist=700, centre=cc), size
 
@@ -565,6 +644,194 @@ def person(name, prev=False):
                   'pool_card_m': size})
 
 
+# ------------------------------------------------------------------------------------------------ people, second version (review of PR #103)
+# Posed from the rigged characters as dead weight, opened as the 1997 pictures show them, bloodied round the wounds only (the
+# clothes keep their colours), and scaled so body and pool stay inside the picture's footprint (FOOT).
+ARM_KEYS = ('upperarm', 'lowerarm', 'hand', 'index', 'middle', 'thumb', 'pinky', 'ring'); LEG_KEYS = ('thigh', 'calf', 'foot', 'ball')
+CHAR_TEX = ('Mother', 'Milder', 'Dink')
+# arms / legs: ((upper x, upper z), (lower x, lower z)) for the left and the right limb in the standing rig, x = away from the body, z = up
+# open: (along the body from its middle, across, half length, half width, turn against the body axis, what shows: 'ribs', 'gut' or both)
+# sever: (bone name prefixes, side, moved along the body, moved across, turned)
+PEOPLE = {
+    'Corpse_Girl': dict(rig=('npc_girl', 'Girl', 'SK_Girl_PR'), who='girl', fams=['corpse_girl', '335 people/girl/death-'], head=150, seed=335, turn=-40, flat=(0.09, 0.3),
+                        arms=(((0.95, -0.3), (0.2, 0.98)), ((0.55, -0.83), (0.85, -0.5))), legs=(((0.30, -0.95), (-0.05, -1.0)), ((0.12, -0.99), (0.3, -0.95))),
+                        open=[(0.02, 0.0, 0.17, 0.085, 0.15, 'ribs gut')], sever=[(('calf', 'foot', 'ball'), 'l', -0.10, 0.16, 0.7), (('lowerarm', 'hand'), 'r', 0.05, -0.14, -0.9)],
+                        dresses='the village girl torn open: belly and chest laid open over ribs and entrails, a leg and a forearm torn off beside her, in her blood'),
+    'Corpse_Maiden': dict(rig=('npc_maiden_red', 'Maiden_Red', 'SK_Maiden_Red_PR'), who='woman in the crimson dress', fams=['corpse_maiden', '245 people/maiden/red/death-'], head=205, seed=245, turn=35, skirt=0.3,
+                          arms=(((0.8, -0.6), (0.9, 0.4)), ((0.9, -0.42), (0.35, -0.93))), legs=(((0.14, -0.99), (0.0, -1.0)), ((0.26, -0.96), (-0.1, -1.0))),
+                          open=[(0.10, 0.0, 0.24, 0.10, -0.1, 'ribs gut')], sever=[],
+                          dresses='the woman in the crimson dress torn open from throat to belly, ribs bare, entrails pulled out onto the ground, in her blood'),
+    'Corpse_Merchant': dict(rig=('npc_merchant_blue', 'Merchant', 'SK_Merchant_PR'), who='merchant', fams=['corpse_merchant', '345 people/merchant/death-'], head=205, seed=345, turn=-30,
+                            arms=(((0.9, -0.42), (0.6, 0.8)), ((0.6, -0.8), (0.9, -0.4))), legs=(((0.2, -0.98), (0.02, -1.0)), ((0.34, -0.94), (-0.12, -1.0))),
+                            open=[(0.20, 0.0, 0.20, 0.040, 0.7, 'ribs'), (-0.02, 0.02, 0.17, 0.050, -0.55, 'gut')], sever=[(('lowerarm', 'hand'), 'l', 0.12, 0.20, 1.1)],
+                            dresses='the merchant (blue) hacked down: the chest split to the ribs, the belly cut open with entrails out, a forearm struck off, in his blood'),
+    'Corpse_Merchant_Green': dict(rig=('npc_merchant_blue', 'Merchant', 'SK_Merchant_PR'), who='merchant', fams=['corpse_merchant', '385 people/merchant/green/death-'], head=335, seed=385, turn=40, swap=('Outfit', 'T_Merchant_PR_Outfit_Green_BC.png'),
+                                  arms=(((0.7, -0.7), (0.95, -0.3)), ((0.95, -0.3), (0.3, 0.95))), legs=(((0.36, -0.93), (-0.15, -1.0)), ((0.16, -0.99), (0.05, -1.0))),
+                                  open=[(0.0, 0.0, 0.21, 0.055, 1.25, 'gut'), (0.24, -0.03, 0.15, 0.035, -0.5, 'ribs')], sever=[],
+                                  dresses='the merchant in green hacked down: the belly cut across with entrails out, the shoulder and chest split to the ribs, in his blood'),
+    'Corpse_Peasant': dict(rig=('npc_peasant', 'Peasant', 'SK_Peasant_PR'), who='peasant', fams=['corpse_peasant', '415 people/peasant2/death-'], head=120, seed=415, turn=-35, pole=True, drop_tool=True,
+                           arms=(((0.6, -0.8), (0.3, 0.95)), ((0.95, -0.3), (0.7, -0.7))), legs=(((0.18, -0.98), (0.0, -1.0)), ((0.30, -0.95), (-0.1, -1.0))),
+                           open=[(0.18, 0.0, 0.22, 0.045, -0.75, 'ribs'), (-0.05, 0.0, 0.16, 0.05, 0.6, 'gut')], sever=[],
+                           dresses='the peasant hacked down: the chest split to the ribs, the belly cut open, his long-handled sickle beside him, in his blood'),
+    'Corpse_Soldier': dict(rig=('npc_soldier', 'Soldier', 'SK_Soldier_PR'), who='soldier (Milder)', fams=['corpse_soldier', '405 people/soldier/death-'], head=215, seed=405, turn=30,
+                           arms=(((0.9, -0.42), (0.95, 0.3)), ((0.7, -0.7), (0.5, -0.87))), legs=(((0.22, -0.97), (0.0, -1.0)), ((0.34, -0.94), (-0.14, -1.0))),
+                           open=[(0.0, 0.0, 0.20, 0.055, 0.9, 'gut'), (0.22, 0.02, 0.16, 0.035, -0.4, 'ribs')], sever=[],
+                           dresses='the soldier hacked through jerkin and mail: the belly cut across with entrails out, the chest split to the ribs, in his blood'),
+}
+
+
+def limb_weight(W, keys, side):
+    m = np.zeros(len(next(iter(W.values()))))
+    for n, w in W.items():
+        if n.endswith('_' + side) and any(n.startswith(k) for k in keys):
+            m += w
+    return np.clip(m, 0, 1)
+
+
+def boundary_centre(ob):
+    bm = bmesh.new(); bm.from_mesh(ob.data); pts = [v.co[:] for e in bm.edges if e.is_boundary for v in e.verts]; bm.free()
+    return np.array(pts).mean(0) if pts else None
+
+
+def person2(name, prev=False):
+    v = PEOPLE[name]; asset = 'SM_%s_PR' % name; outdir = os.path.join(CORP, name); foot_m = FOOT[name]
+    arm, d = open_src(v['rig'][:2], v['rig'][2] + '.blend'); relink([d] + [os.path.join(L.PP, 'Characters', b, 'Textures') for b in CHAR_TEX]); src = bpy.data.objects[v['rig'][2] + '_LOD0']
+    if v.get('drop_tool'):                           # a long tool skinned to a hand (the peasant's scythe) would stand in the air: his sickle is laid beside him instead
+        lab, k = islands(src); P0 = L.co(src); names = [g.name for g in src.vertex_groups]; hands = [names.index(n) for n in ('hand_l', 'hand_r') if n in names]
+        hw = np.array([max([g.weight for g in vx.groups if g.group in hands] or [0.0]) for vx in src.data.vertices]); tool = np.zeros(len(P0), bool)
+        for i in range(k):
+            m = lab == i
+            if hw[m].mean() > 0.5 and np.ptp(P0[m], axis=0).max() > 0.6:
+                tool |= m
+        if tool.any():
+            bpy.data.objects.remove(split_verts(src, tool, 'tool_junk'))
+    # ---- dead weight: arms and legs in the plane of the back so they lie on the ground, bent at elbow and knee, the head rolled over
+    for side, (au, al), (lu, ll) in (('l', v['arms'][0], v['legs'][0]), ('r', v['arms'][1], v['legs'][1])):
+        sx = 1.0 if bone_pos(arm, 'upperarm_' + side)[0] > 0 else -1.0
+        for b, (x, z) in (('upperarm_', au), ('lowerarm_', al), ('thigh_', lu), ('calf_', ll)):
+            aim(arm, b + side, (sx * x, 0.0, z))
+    world_rot(arm, 'head', 'Z', v.get('turn', 30)); world_rot(arm, 'neck_01', 'Y', v.get('turn', 30) * 0.3)
+    body, W = posed_copy(src, name.lower()); drop_everything_but([body]); body.hide_render = False; body.hide_viewport = False
+    for w in list(bpy.data.worlds):
+        bpy.data.worlds.remove(w)
+    if v.get('swap'):
+        m = next(m for m in body.data.materials if v['swap'][0] in m.name); n = next(n for n in m.node_tree.nodes if n.type == 'TEX_IMAGE' and n.image and n.image.name.upper().split('.')[0].endswith('_BC'))
+        im = bpy.data.images.load(os.path.join(d, v['swap'][1])); im.colorspace_settings.name = 'sRGB'; n.image = im
+    lay_down(body, 0.0); P = L.co(body); c0 = P.mean(0); hd = P[W['head'] > 0.5].mean(0) - c0
+    spin_z([body], mesh_dir(v['head']) - math.atan2(hd[1], hd[0]), pivot=c0[:2]); P = L.co(body); P[:, :2] -= (P[:, :2].min(0) + P[:, :2].max(0)) / 2; P[:, 2] -= P[:, 2].min()
+    torso = (W['spine_02'] + W['spine_03'] + W['pelvis']) > 0.5; tc = P[torso].mean(0)
+    if v.get('skirt'):                               # a wide skirt would hold the body off the ground: fold it towards the plane of the body, then rest the back on the ground
+        k_ = v['skirt']; lg = np.clip(limb_weight(W, LEG_KEYS, 'l') + limb_weight(W, LEG_KEYS, 'r') + W['pelvis'], 0, 1); zm = float(np.median(P[torso][:, 2])); P[:, 2] = P[:, 2] - lg * (P[:, 2] - zm) * (1 - k_)
+        P[:, 2] -= np.percentile(P[torso][:, 2], 2); tc = P[torso].mean(0)
+    for keys in (ARM_KEYS, LEG_KEYS):                # each limb sinks to the ground towards its end
+        for side in 'lr':
+            m = limb_weight(W, keys, side); sel = m > 0.5
+            if sel.sum() < 10:
+                continue
+            dist = np.linalg.norm(P[:, :2] - tc[:2], axis=1); d0 = dist[sel].min(); t_ = np.clip((dist - d0) / max(dist[sel].max() - d0, 1e-6), 0, 1)
+            drop = P[sel & (t_ > 0.7)][:, 2].min() - 0.004; P[:, 2] -= m * t_ * drop
+    if v.get('flat'):                                # a skirt standing out round the legs settles flat
+        zc, k_ = v['flat']; lg = np.clip(limb_weight(W, LEG_KEYS, 'l') + limb_weight(W, LEG_KEYS, 'r') + W['pelvis'], 0, 1); z = P[:, 2]; P[:, 2] = np.where(z > zc, z - lg * (z - zc) * (1 - k_), z)
+    P[:, 2] = np.maximum(P[:, 2], 0.002)
+    ext = float(max(np.ptp(P[:, 0]), np.ptp(P[:, 1]))); s = min(1.0, (foot_m - 0.10) / ext); print('FIT %s body extent %.2f m -> scale %.3f for a %.2f m footprint' % (name, ext, s, foot_m)); P *= s; L.set_co(body, P)
+    c = P[torso].mean(0); a = mesh_dir(v['head']); axis = np.array([math.cos(a), math.sin(a)]); perp = np.array([-axis[1], axis[0]]); rng = np.random.default_rng(v['seed'])
+    flesh = m_flesh('flesh_' + name, k=3.0); bone = m_bone('bone_' + name); gut = m_gut('gut_' + name); hi = [body]; lo_x = []; wounds = []
+
+    def both(fn, mat_):
+        h = fn(True); l_ = fn(False)
+        for o in (h if isinstance(h, list) else [h]):
+            L.assign(o, mat_); hi.append(o)
+        for o in (l_ if isinstance(l_, list) else [l_]):
+            unwrap(o); lo_x.append(o)
+    # ---- severed parts: struck off, thrown a little way, a stump of raw flesh and bone at both ends
+    parts = []; lab = np.zeros(len(P), np.int32)
+    for k_, (keys, side, da, dp, yaw) in enumerate(v.get('sever', ())):
+        lab[limb_weight(W, keys, side) > 0.5] = k_ + 1
+    at = body.data.attributes.new('dink_sever', 'INT', 'POINT'); at.data.foreach_set('value', lab)       # the label rides through the splits (vertex order changes)
+    for k_, (keys, side, da, dp, yaw) in enumerate(v.get('sever', ())):
+        cur = np.zeros(len(body.data.vertices), np.int32); body.data.attributes['dink_sever'].data.foreach_get('value', cur)
+        part = split_verts(body, cur == k_ + 1, 'part_%s_%s' % (keys[0], side))
+        cut = boundary_centre(part)
+        if cut is None:
+            continue
+        Pp = L.co(part); pc = Pp.mean(0); cy, sy = math.cos(yaw), math.sin(yaw); R = np.array([[cy, -sy, 0], [sy, cy, 0], [0, 0, 1]]); mv = np.array([*(axis * da + perp * dp), 0.0])
+        Pp = (Pp - pc) @ R.T + pc + mv; Pp[:, 2] -= Pp[:, 2].min() - 0.003; L.set_co(part, Pp); cut2 = (cut - pc) @ R.T + pc + mv; cut2[2] = max(cut2[2] - (cut[2] - 0.03), 0.02)
+        parts.append(part); hi.append(part)
+        for j, q in enumerate((cut, cut2)):
+            r = 0.034 * s; q = np.array([q[0], q[1], max(q[2], r * 0.7)]); wounds.append((q, 0.16))
+            both(lambda dense, q=q, r=r, j=j: lump('stump_%d_%d_%s' % (len(parts), j, dense), q, (r * 1.2, r * 1.2, r), v['seed'] + j, 4 if dense else 2, amp=0.4, freq=3.0, flat=0.003), flesh)
+            dq = (q - (pc if j == 0 else pc + mv)); dq[2] = 0; dq = dq / max(np.linalg.norm(dq), 1e-6) * (-1 if j == 0 else 1)       # out of the stump
+            both(lambda dense, q=q, dq=dq, j=j: L.tube('stumpbone_%d_%d_%s' % (len(parts), j, dense), np.array([q - dq * 0.02, q + dq * 0.035]), 0.010 * s, sides=10 if dense else 5), bone)
+    # ---- the body opened: the front cut away over a ragged patch, the edge turned in as raw flesh, and what lies inside
+    bvh = bvh_of(body); body.data.materials.append(flesh); slot = len(body.data.materials) - 1
+    for i, (ta, tp, ha, hb, turn, inside) in enumerate(v.get('open', ())):
+        ha *= s; hb *= s; q = c[:2] + axis * ta * s + perp * tp * s; ang = a + turn; ca, sa_ = math.cos(ang), math.sin(ang); top = drop_on(bvh, q[0], q[1])
+        if top is None:
+            continue
+        ztop = float(top[0][2]); zin = max(ztop * 0.38, 0.03 * s); seedi = v['seed'] + 10 * i
+
+        def inside_patch(C, q=q, ca=ca, sa_=sa_, ha=ha, hb=hb, ztop=ztop, seedi=seedi):
+            dx = C[:, 0] - q[0]; dy = C[:, 1] - q[1]; u = (dx * ca + dy * sa_) / ha; w_ = (-dx * sa_ + dy * ca) / hb
+            rag = 1.0 + 0.28 * L.fbm(C * 38.0, seedi, 1.0, 3)
+            return (u * u + w_ * w_ < rag * rag) & (C[:, 2] > ztop * 0.45)
+        delete_faces(body, inside_patch); wounds.append((np.array([q[0], q[1], ztop]), max(ha, hb) + 0.10))
+        both(lambda dense, q=q, ha=ha, hb=hb, ang=ang, zin=zin, seedi=seedi: lump('cavity_%d_%s' % (i, dense), (q[0], q[1], zin * 0.6), (ha * 1.15, hb * 1.25, zin * 0.9), seedi, 4 if dense else 2, amp=0.30, freq=2.6, rot=ang, flat=0.004), flesh)
+        d_ = np.array([ca, sa_]); p_ = np.array([-sa_, ca])
+        if 'ribs' in inside:                          # ribs across the opening, some snapped and standing up
+            def ribs(dense, q=q, ha=ha, hb=hb, d_=d_, p_=p_, ztop=ztop, seedi=seedi):
+                out = []; n = max(3, int(ha * 2 / (0.045 * s)))
+                for r_ in range(n):
+                    u = -0.8 + 1.6 * r_ / max(n - 1, 1); snapped = L._hash(r_, seedi, 1, 7) > 0.55; m_ = 12 if dense else 5; half = hb * (1.25 if not snapped else 0.75)
+                    ws = np.linspace(-half, half * (1.0 if not snapped else 0.25), m_); base = q + d_ * u * ha
+                    pts = np.array([[*(base + p_ * w_ + d_ * 0.012 * math.sin(w_ * 30 + r_)), ztop - 0.018 * s - 0.03 * s * (w_ / max(half, 1e-6)) ** 2 + (0.035 * s * (w_ + half) / (2 * half) if snapped else 0.0)] for w_ in ws])
+                    out.append(L.tube('rib_%d_%d_%s' % (i, r_, dense), pts, np.linspace(0.0075, 0.0055, m_) * s, sides=8 if dense else 4))
+                return out
+            both(ribs, bone)
+        if 'gut' in inside:                           # entrails pulled out over the side onto the ground
+            def guts(dense, q=q, ha=ha, hb=hb, d_=d_, p_=p_, zin=zin, ztop=ztop, seedi=seedi):
+                out = []; side_ = p_ if p_[1] < 0 else -p_                                   # towards the camera
+                for j in range(4):
+                    m_ = 70 if dense else 16; u = np.linspace(0, 1, m_); ph = seedi * 0.7 + j * 2.1; reach = (0.26 + 0.07 * j) * s + hb
+                    st = q + d_ * (j - 1) * ha * 0.45; path = st[None, :] + np.outer(u * reach, side_) + np.outer(np.sin(u * 13.0 + ph) * 0.045 * s * u ** 0.5 + (j - 1) * 0.05 * s * u, d_)
+                    rr = 0.0115 * s * (1 + 0.18 * np.sin(u * 50 + ph)); zz = np.maximum(ztop * 0.85 * (1 - np.clip(u * 2.4, 0, 1)) ** 2, 0.0) + rr + 0.004 * np.sin(u * 37 + ph)
+                    for k_ in range(m_):                # ride over the body where it is still under the path
+                        hsurf = drop_on(bvh, path[k_, 0], path[k_, 1]); zz[k_] = max(zz[k_], (float(hsurf[0][2]) + rr[k_] * 0.8) if (hsurf is not None and u[k_] > 0.12) else 0.0)
+                    out.append(L.tube('gut_%d_%d_%s' % (i, j, dense), np.column_stack([path, zz]), rr, sides=12 if dense else 6))
+                return out
+            both(guts, gut)
+    torn_rim(body, 0.016 * s, slot, seed=v['seed'])
+    # ---- blood round the wounds, soaked in where the body lies in the pool, a few thrown spots: the clothes keep their colour
+    for m in list(body.data.materials) + [p.data.materials[0] for p in parts if p.data.materials]:
+        ensure_principled(m)
+        if any(n.type == 'TEX_IMAGE' and n.image and n.image.name.upper().split('.')[0].endswith('_BC') for n in m.node_tree.nodes) and not m.get('dink_bloodied') and 'Eyes' not in m.name:
+            bloody(m, wounds or [(np.array([c[0], c[1], 0.1]), 0.2)], ground=0.045 * s, amount=1.0, spatter=0.70); m['dink_bloodied'] = True
+    extra_pts = None
+    if v.get('pole'):
+        side = perp * (1 if perp[1] < 0 else -1); p0 = c[:2] + axis * 0.80 * s + side * 0.34 * s; p1 = c[:2] - axis * 0.90 * s + side * 0.42 * s; wood = m_pole('pole_' + name)
+
+        def pole(dense):
+            n = 40 if dense else 6; pts = np.array([[*(p0 + (p1 - p0) * t_), 0.020 + 0.003 * math.sin(t_ * 9)] for t_ in np.linspace(0, 1, n)]); return L.tube('pole_%s' % dense, pts, 0.015 * s, sides=14 if dense else 6)
+
+        def blade(dense):
+            m2 = 24 if dense else 7; r = 0.21 * s; cen = p0 + axis * 0.02 - side * r; bl = np.array([[*(cen + r * (math.cos(t_) * side + math.sin(t_) * axis)), 0.012] for t_ in np.linspace(0, 2.3, m2)]); return L.tube('sickle_%s' % dense, bl, np.linspace(0.014, 0.003, m2) * s, sides=8 if dense else 4)
+        both(pole, wood); both(blade, m_iron('iron_' + name)); extra_pts = np.array([p0 + (p1 - p0) * t_ for t_ in np.linspace(0, 1, 30)])
+        bloody(wood, [(np.array([c[0], c[1], 0.0]), 0.6 * s)], ground=0.03, amount=0.9, spatter=0.5)
+    if prev:
+        for o in lo_x:
+            o.hide_render = True
+        preview(hi, name, [dict(az=0, el=52, fill=1.0, lens=60), dict(az=-35, el=24, fill=1.6, lens=70), dict(az=150, el=30, fill=1.6, lens=70)]); return
+    lo_parts = [L.dup(p_, p_.name + '_lo') for p_ in parts]; lo = body_lo(body, lo_parts + lo_x, asset + '_lo', big=('Hair', 'Eyes'))
+    allp = np.vstack([L.co(body)] + [L.co(p_) for p_ in parts]); xp = np.vstack([L.co(p_)[::7, :2] for p_ in parts] + ([extra_pts] if extra_pts is not None else [])) if (parts or extra_pts is not None) else None
+    sheet, size = person_pool(allp, c, v['seed'], pool=1.0, extra_pts=xp, fit_m=foot_m); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
+    weak = ('The body is the rigged %s of PhotorealPass/Unclaimed posed by rule (limbs aimed into the plane of the back and sunk to the ground, no cloth simulation: the clothes follow the skin weights), baked again onto one %d px atlas, so face, hands and hair are softer than on the living character and the hair is a hard cut-out. '
+            'The openings are cut by a ragged ellipse and their inside is a displaced lump of muscle with plain rib rods and three loops of gut: no organs, no anatomy beyond that; severed ends are a lump and a rod of bone. '
+            'Scaled by %.2f to keep body and pool inside the %.2f m footprint of the 1997 picture. The pool, the drops and the soaked fringe are a flat alpha-tested card 6 mm above the ground. Static.' % (v['who'], 2048, s, foot_m))
+    finish(asset, 'prop', outdir, v['fams'], v['dresses'], weak, body=lo, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=True, extrude=0.005, maxdist=0.02, third_party=PEOPLE_TP,
+           extra={'derived_from': 'Unclaimed/%s/%s (%s LOD0), posed dead, opened, bloodied and baked again' % v['rig'], 'sprite_footprint_m': foot_m, 'body_scale': round(s, 3), 'pool_extent_m': round(sheet.get('extent_m', 0.0), 2),
+                  'gore_in_mesh': 'opened body with flesh rims, ribs and entrails as the picture shows, severed parts with stumps, blood round the wounds; pool card with drops and a soaked fringe (no companion decal)', 'pool_card_m': size})
+
+
+
 def m_pole(name='pole'):
     t = L.NT(name); g = t.mapping(t.obj, scale=(3, 60, 60)); n = t.noise(8, 5, 0.6, vec=g); col = t.mix(n, (0.16, 0.085, 0.04), (0.34, 0.20, 0.10))
     t.set(base=col, rough=0.62, normal=t.bump(n, 0.3, 0.001)); return t.mat
@@ -611,9 +878,10 @@ def knight(prev=False):
     for b, ax, deg in [('upperarm_l', 'Y', 62), ('lowerarm_l', 'Y', 25), ('upperarm_r', 'Y', -58), ('lowerarm_r', 'Y', -30), ('thigh_l', 'Y', 16), ('thigh_r', 'Y', -14), ('calf_r', 'X', 22), ('head', 'Z', 30)]:
         world_rot(arm, b, ax, deg)
     skin, W = posed_copy(src, 'knight'); drop_everything_but([skin]); mat = skin.data.materials[0]
-    n = next(n for n in mat.node_tree.nodes if n.type == 'TEX_IMAGE' and n.image and n.image.name.upper().split('.')[0].endswith('_BC')); im = bpy.data.images.load(os.path.join(kd, 'T_Knight_PR_Red_BC.png')); im.colorspace_settings.name = 'sRGB'; n.image = im
+    ensure_principled(mat); worn_steel(mat, os.path.join(kd, 'T_Knight_PR_Silver_BC.png'))      # sprite 275: grey-brown steel, not a red harness
     lay_down(skin, 0.0); P = L.co(skin); headw = W['head'] > 0.5; c0 = P[~hal].mean(0); hd = P[headw].mean(0) - c0
-    spin_z([skin], mesh_dir(204) - math.atan2(hd[1], hd[0]), pivot=c0[:2]); P = L.co(skin); off = np.array([*(P[~hal][:, :2].min(0) + P[~hal][:, :2].max(0)) / 2, P[~hal][:, 2].min()]); P -= off; L.set_co(skin, P)
+    spin_z([skin], mesh_dir(204) - math.atan2(hd[1], hd[0]), pivot=c0[:2]); P = L.co(skin); off = np.array([*(P[~hal][:, :2].min(0) + P[~hal][:, :2].max(0)) / 2, P[~hal][:, 2].min()]); P -= off
+    ext = float(max(np.ptp(P[~hal][:, 0]), np.ptp(P[~hal][:, 1]))); s = min(1.0, (FOOT['Corpse_Knight'] - 0.10) / ext); print('FIT knight extent %.2f m -> scale %.3f' % (ext, s)); P *= s; L.set_co(skin, P)
     chest = P[(W['spine_03'] > 0.5) & ~hal].mean(0); ctop = P[(W['spine_03'] > 0.5) & ~hal][:, 2].max(); c = P[~hal].mean(0); a = mesh_dir(204); axis = np.array([math.cos(a), math.sin(a)])
     # take the halberd apart: the shaft is replaced by a snapped one standing in the chest; the head is laid flat in the blood
     head_m = hal & ~is_shaft; shaft_ax = P[is_shaft]; u, s_, vt = np.linalg.svd(shaft_ax - shaft_ax.mean(0), full_matrices=False); sa = vt[0]
@@ -625,7 +893,9 @@ def knight(prev=False):
     side = np.array([-axis[1], axis[0]]); side = side if side[1] < 0 else -side                                               # towards the camera
     dgo = np.array([*(axis * -0.25 + side * 0.97), 0.0]); dgo /= np.linalg.norm(dgo); dst_f = np.stack([dgo, np.cross([0, 0, 1.0], dgo), [0, 0, 1.0]], 1); Rm = dst_f @ src_f.T
     tgt = np.array([*(c[:2] - axis * 0.42 + side * 0.50), 0.0]); Ph = (Ph - hc) @ Rm.T; Ph += tgt - np.array([0, 0, Ph[:, 2].min() - 0.010]); L.set_co(hpart, Ph)
-    hi_g, lo_g = soak_and_gash(skin, c, axis, 275, amount=1.0, n_gash=0)
+    # blood where it would be: welling round the wound, run down the plates from it, soaked where the harness lies in the pool, a few thrown spots
+    wound = np.array([chest[0], chest[1], ctop])
+    bloody(mat, [(wound, 0.22), (np.array([c[0], c[1], 0.02]), 0.34)], ground=0.07, amount=1.0, spatter=0.69, use_link=True, runs=(wound, 0.55)); hi_g, lo_g = [], []
     hpart.data.materials.clear(); hpart.data.materials.append(mat)
     wood = m_pole('shaft'); bloody(wood, [(np.array([chest[0], chest[1], ctop]), 0.45)], ground=0.03, amount=1.0, spatter=0.55); fl = m_flesh('entry', k=2.5); hi = [skin, hpart]; lo_x = []
     lean = np.array([0.10, -0.06, 1.0]); lean /= np.linalg.norm(lean); base = np.array([chest[0], chest[1], ctop - 0.07]); stub0 = tgt - dgo * 0.20 + np.array([0, 0, 0.022]); stub1 = tgt - dgo * 0.62 + np.array([0, 0, 0.020])
@@ -648,12 +918,12 @@ def knight(prev=False):
         preview(hi, name, [dict(az=0, el=52, fill=1.0, lens=60), dict(az=-35, el=24, fill=1.6, lens=70)]); return
     hl = L.dup(hpart, 'head_lo'); lo = body_lo(skin, [hl] + lo_x, asset + '_lo')
     foot_x = np.vstack([np.array([tgt[:2] + dgo[:2] * q for q in np.linspace(-0.6, 0.25, 12)])])
-    sheet, size = person_pool(L.co(skin), c, 275, pool=1.25, reach=0.45, grow=0.16, extra_pts=foot_x); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
-    weak = ('The knight is the plate harness of Unclaimed/npc_knight_blue (red set): clean swept plates without straps or rivets and nobody inside, so there is no flesh to see at the joints; the wound is a ring of raw flesh round the shaft. '
+    sheet, size = person_pool(L.co(skin), c, 275, pool=1.0, extra_pts=foot_x, fit_m=FOOT['Corpse_Knight']); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
+    weak = ('The knight is the plate harness of Unclaimed/npc_knight_blue (silver set) with procedural wear (grime, scratches, dents as a bump): swept plates without straps or rivets and nobody inside, so there is no flesh to see at the joints; the wound is a ring of raw flesh round the shaft. '
             'The halberd head is the knight\'s own, laid flat; the shafts are plain turned poles with a tapered break, not splintered wood. The pool, drops and mist are a flat alpha-tested card 6 mm above the ground. Static.')
-    finish(asset, 'prop', outdir, ['corpse_knight', '275 people/knight/red/death-'], 'the red knight dead on his back in a pool of blood wider than he is, drops thrown round it, the snapped shaft of his halberd standing in his chest and its head lying in the blood beside him',
+    finish(asset, 'prop', outdir, ['corpse_knight', '275 people/knight/red/death-'], 'the knight dead on his back in worn steel plate, lying in his blood, drops thrown round it, the snapped shaft of his halberd standing in his chest and its head lying in the blood beside him',
            weak, body=lo, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=False, third_party=('park_dirt (render ground)',),
-           extra={'derived_from': 'Unclaimed/npc_knight_blue/Knight (SK_Knight_PR LOD0, red set), posed, the halberd broken, soaked and baked again', 'gore_in_mesh': 'blood over the armour (wet), entry wound, pool with thrown drops and mist (no companion decal)', 'pool_card_m': size})
+           extra={'derived_from': 'Unclaimed/npc_knight_blue/Knight (SK_Knight_PR LOD0, silver set), posed, worn, the halberd broken, bloodied and baked again', 'sprite_footprint_m': FOOT['Corpse_Knight'], 'gore_in_mesh': 'blood welling round the wound and run down the plates, soaked underside, entry wound, pool with thrown drops and mist (no companion decal)', 'pool_card_m': size})
 
 
 def _mask_after(mask, removed):
@@ -820,7 +1090,7 @@ def dragon(prev=False):
 
 
 if __name__ == '__main__':
-    a = L.args(); groups = {'people': list(HUMANS), 'sheets': list(SHEETS), 'all': ['Dragon_Corpse', 'Corpse_Knight'] + list(HUMANS) + list(SHEETS)}
+    a = L.args(); groups = {'people': list(PEOPLE), 'sheets': list(SHEETS), 'all': ['Dragon_Corpse', 'Corpse_Knight'] + list(HUMANS) + list(SHEETS)}
     names = groups.get(a[0]) or a[0].split(','); prev = 'preview' in a[1:]
     for n in names:
         print('=== BUILD', n); sys.stdout.flush()
@@ -828,6 +1098,8 @@ if __name__ == '__main__':
             dragon(prev)
         elif n == 'Corpse_Knight':
             knight(prev)
+        elif n in PEOPLE:
+            person2(n, prev)
         elif n in HUMANS:
             person(n, prev)
         else:

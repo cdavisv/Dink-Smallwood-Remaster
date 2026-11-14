@@ -12,6 +12,7 @@ run 5 blender -b -t 4 --python hair_groom.py -- $N ${HAIR_STEPS:-atlas,save} $ta
 run 6 blender -b -t 4 --python char_05_bake.py -- $N
 run 7 python3 -I post_tex.py "$O/$N" T_${N}_PR
 run 8 blender -b -t 4 --python dink_06_assemble.py -- "$O/$N/cfg/assemble.json"
+if [ -n "$BUILD" ]; then run 8 blender -b -t 4 --python char_07_build.py -- $N $BUILD; fi   # the body build (cfg/tex.env BUILD="<name> <strength>"); assembling rebuilds the meshes, so it is baked in every time
 run 9 blender -b -t 4 --python render_review.py -- $N/SK_${N}_Photoreal.blend $N/Review $tag $sets $smp
 run 10 blender -b -t 4 "$O/$N/SK_${N}_Photoreal.blend" --python export_char.py -- "$O/$N/Export" "$O/$N/export_report.json" character_humanoid
 run 10 python3 -I write_manifest.py "$O/$N" $N "$O/$N/manifest_extra.json"

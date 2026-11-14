@@ -2,20 +2,21 @@
  "lods": [
   {
    "name": "SM_Pillbug_Corpse_LOD0",
-   "triangles": 21456
+   "triangles": 33480
   },
   {
    "name": "SM_Pillbug_Corpse_LOD1",
-   "triangles": 10728
+   "triangles": 16740
   },
   {
    "name": "SM_Pillbug_Corpse_LOD2",
-   "triangles": 5363
+   "triangles": 8370
   }
  ],
  "dimensions_m": [
-  2.557528257369995,
-  2.1733245849609375,
-  0.47241321206092834
- ]
+  4.02000093460083,
+  3.5815162658691406,
+  0.4727352261543274
+ ],
+ "pool_decal_m": 4.4
 }

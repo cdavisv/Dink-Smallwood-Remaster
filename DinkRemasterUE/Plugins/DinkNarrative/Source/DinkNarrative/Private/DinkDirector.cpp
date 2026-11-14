@@ -1421,6 +1421,7 @@ void UDinkDirector::ReleaseScreenSprites(int32 KeepScreen, const TSet<int32>& Ke
 
 void UDinkDirector::ResetSprites()
 {
+	++SpriteResetSerial;
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
 	{
         if(auto* G=Story->GetGameplay())G->RecordOriginalHardnessRelease(Pair.Key);

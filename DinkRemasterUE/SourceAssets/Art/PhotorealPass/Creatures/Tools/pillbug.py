@@ -375,16 +375,112 @@ def gore_mat(mat):
     """Blood pool, clots and spilled viscera for the death state (sprite sequences 141/143)."""
     t = NT(mat); tc = t.node('ShaderNodeTexCoord'); P = tc.outputs['Object']; ma = t.attr('msk'); mR, mG, mB = t.sep(ma.outputs['Color'])[:3]
     n1, _ = t.noise(P, 7, 4, .65, dist=.6); n2, _ = t.noise(P, 40, 3, .6); n3, _ = t.noise(P, 180, 2, .5)
-    blood = t.mix(n1, (.075, .002, .002), (.022, .0, .001)); blood = t.mix(t.math('MULTIPLY', t.smooth(n2, .55, .75), .7), blood, (.018, .0, .001))      # clots
-    blood = t.mix(t.math('MULTIPLY', mG, .6), blood, (.10, .03, .015))                                                                                       # thin drying edge soaking into soil
+    blood = t.mix(n1, (.20, .004, .004), (.075, .001, .002)); blood = t.mix(t.math('MULTIPLY', t.smooth(n2, .5, .72), .8), blood, (.03, .0, .001))        # fresh pool (the sprite's bright red), clots
+    blood = t.mix(t.math('MULTIPLY', mG, .45), blood, (.13, .02, .012))                                                                                     # thin drying edge soaking into soil
     gut = t.mix(n2, (.50, .23, .18), (.62, .40, .30)); vd, _ = t.voronoi(P, 90, 'F1'); gut = t.mix(t.math('MULTIPLY', t.math('SUBTRACT', 1.0, t.smooth(vd, .1, .3)), .5), gut, (.30, .04, .05))
-    gut = t.mix(t.math('MULTIPLY', t.smooth(n1, .45, .65), .65), gut, (.14, .004, .004))                                                                     # blood running over the viscera
+    gut = t.mix(t.math('MULTIPLY', t.smooth(n1, .32, .6), .85), gut, (.24, .005, .005))                                                                     # blood running over the viscera
     c = t.mix(mR, blood, gut)
-    r = t.math('ADD', .05, t.math('MULTIPLY', n2, .16)); r = t.mixf(t.math('MULTIPLY', mG, t.smooth(n2, .3, .6)), r, .7); r = t.mixf(mR, r, t.math('ADD', .16, t.math('MULTIPLY', n2, .2)))
+    r = t.math('ADD', .03, t.math('MULTIPLY', n2, .08)); r = t.mixf(t.math('MULTIPLY', mG, t.smooth(n2, .3, .6)), r, .7); r = t.mixf(mR, r, t.math('ADD', .16, t.math('MULTIPLY', n2, .2)))
     h = t.math('ADD', t.math('MULTIPLY', t.smooth(n2, .55, .75), .0025), t.math('ADD', t.math('MULTIPLY', n1, .003), t.math('MULTIPLY', n3, .0003)))
     h = t.math('ADD', h, t.math('MULTIPLY', t.math('MULTIPLY', t.smooth(vd, 0, .5), mR), .003))
     t.finish(c, r, t.bump(h, 1.0, 1.0), sss=t.math('MULTIPLY', mR, .4), sss_radius=(.01, .003, .002))
     BAKE[mat.name] = t.bake; return mat
+
+
+POOL_DECAL_M = 4.4   # side of the square the blood decal covers, metres (creatures.json corpses[].decal.size_cm)
+
+
+def pool_decal(gore, bc_path, out_path):
+    """T_Pillbug_BloodPool_BC (RGBA): the gore seen straight from above, unlit. The game projects it onto the ground and the
+    grass under the carcass (a flat pool is hidden by the grass carpet). Image right = +X (the head end), image up = +Y."""
+    sc = bpy.context.scene; sc.render.engine = 'CYCLES'; use_hip_gpu(sc)
+    tm = bpy.data.materials.new('PR_PoolDecal'); tm.use_nodes = True; nt = tm.node_tree; nt.nodes.clear()
+    img = nt.nodes.new('ShaderNodeTexImage'); img.image = bpy.data.images.load(str(bc_path), check_existing=True); em = nt.nodes.new('ShaderNodeEmission'); o = nt.nodes.new('ShaderNodeOutputMaterial')
+    nt.links.new(img.outputs[0], em.inputs[0]); nt.links.new(em.outputs[0], o.inputs[0])
+    keep = gore.material_slots[0].material; gore.material_slots[0].material = tm
+    hidden = {x.name: x.hide_render for x in sc.objects}
+    for x in sc.objects: x.hide_render = x is not gore
+    cd = bpy.data.cameras.new('PR_PoolCam'); cd.type = 'ORTHO'; cd.ortho_scale = POOL_DECAL_M; cam = bpy.data.objects.new('PR_PoolCam', cd); sc.collection.objects.link(cam)
+    cam.location = (0, 0, 5); cam.rotation_euler = (0, 0, 0); old = (sc.camera, sc.render.film_transparent, sc.view_settings.view_transform, sc.view_settings.look, sc.render.resolution_x, sc.render.resolution_y, sc.cycles.samples, sc.render.image_settings.color_mode)
+    sc.camera = cam; sc.render.film_transparent = True; sc.view_settings.view_transform = 'Standard'; sc.view_settings.look = 'None'; sc.view_settings.exposure = 0
+    sc.render.resolution_x = sc.render.resolution_y = 1024; sc.render.resolution_percentage = 100; sc.cycles.samples = 16; sc.render.image_settings.file_format = 'PNG'; sc.render.image_settings.color_mode = 'RGBA'
+    sc.render.filepath = str(out_path); bpy.ops.render.render(write_still=True)
+    sc.camera, sc.render.film_transparent, sc.view_settings.view_transform, sc.view_settings.look, sc.render.resolution_x, sc.render.resolution_y, sc.cycles.samples, sc.render.image_settings.color_mode = old
+    gore.material_slots[0].material = keep; bpy.data.objects.remove(cam); bpy.data.cameras.remove(cd); bpy.data.materials.remove(tm)
+    for x in sc.objects: x.hide_render = hidden.get(x.name, x.hide_render)
+    # colour bled into the transparent margin, so a filtered edge is red, not black
+    im = bpy.data.images.load(str(out_path), check_existing=False); a = np.empty(1024 * 1024 * 4, np.float32); im.pixels.foreach_get(a); a = a.reshape(1024, 1024, 4)
+    cover = float((a[..., 3] > .5).mean()); mean = a[a[..., 3] > .5][:, :3].mean(0)
+    a[..., :3] = np.where(a[..., 3:4] > .02, a[..., :3], mean); im.pixels.foreach_set(a.ravel()); im.save(); bpy.data.images.remove(im)
+    log('pool decal %s: %.0f %% of the %.1f m square covered' % (out_path.name, 100 * cover, POOL_DECAL_M)); return out_path
+
+
+def bloody_atlas(ob):
+    """T_Pillbug_Corpse_BC/_ORM: the body atlas with blood composited in texture space from the posed corpse's world positions.
+    Heavy round the burst middle, runs down the plates across the body, soaked where the shell lies in the pool, spatter everywhere."""
+    import crlib
+    res = 2048; sc = bpy.context.scene; sc.render.engine = 'CYCLES'; use_hip_gpu(sc); sc.cycles.samples = 1; sc.cycles.use_denoising = False
+    tm = bpy.data.materials.new('PR_PosBake'); tm.use_nodes = True; nt = tm.node_tree; nt.nodes.clear()
+    geo = nt.nodes.new('ShaderNodeNewGeometry'); em = nt.nodes.new('ShaderNodeEmission'); out = nt.nodes.new('ShaderNodeOutputMaterial'); img = nt.nodes.new('ShaderNodeTexImage')
+    nt.links.new(em.outputs[0], out.inputs[0]); nt.nodes.active = img; img.select = True
+    keep = [s.material for s in ob.material_slots]
+    for s_ in ob.material_slots: s_.material = tm
+    hidden = {o.name: o.hide_render for o in sc.objects}
+    for o in sc.objects: o.hide_render = o is not ob
+    activate(ob); maps = {}
+    for key, sock in (('pos', 'Position'), ('nrm', 'True Normal')):
+        im = crlib._img('pr_' + key, res, True, True); img.image = im
+        for l in list(em.inputs[0].links): nt.links.remove(l)
+        nt.links.new(geo.outputs[sock], em.inputs[0])
+        bpy.ops.object.bake(type='EMIT', margin=8, use_clear=True); maps[key] = crlib._px(im)[..., :3].copy(); bpy.data.images.remove(im)
+    for s_, m in zip(ob.material_slots, keep): s_.material = m
+    for o in sc.objects: o.hide_render = hidden.get(o.name, o.hide_render)
+    bpy.data.materials.remove(tm)
+    P_ = maps['pos'].astype(np.float64); N_ = maps['nrm']; x, y, z = P_[..., 0], P_[..., 1], P_[..., 2]
+    def vnoise(q, seed):
+        """Value noise on the unit lattice, trilinear with smooth weights; q (...,3)."""
+        i = np.floor(q).astype(np.int64); f = q - i; f = f * f * (3 - 2 * f)
+        def h(a, b, c):
+            n = (a * 374761393 + b * 668265263 + c * 2147483647 + seed * 974711) & 0xFFFFFFFF; n = ((n ^ (n >> 13)) * 1274126177) & 0xFFFFFFFF; return ((n ^ (n >> 16)) & 0xFFFF) / 65535.0
+        r_ = 0
+        for dx in (0, 1):
+            for dy in (0, 1):
+                for dz in (0, 1):
+                    w = (f[..., 0] if dx else 1 - f[..., 0]) * (f[..., 1] if dy else 1 - f[..., 1]) * (f[..., 2] if dz else 1 - f[..., 2])
+                    r_ = r_ + w * h(i[..., 0] + dx, i[..., 1] + dy, i[..., 2] + dz)
+        return r_
+    def fbm(q, seed, octaves=4):
+        a, tot, r_ = 1.0, 0.0, 0
+        for o_ in range(octaves): r_ = r_ + a * vnoise(q * 2 ** o_, seed + o_); tot += a; a *= .5
+        return r_ / tot
+    def ss(a, b, v): t_ = np.clip((v - a) / (b - a), 0, 1); return t_ * t_ * (3 - 2 * t_)
+    blotch = fbm(P_ * 4.0, 11); broad = fbm(P_ * 1.8, 23); fine = fbm(P_ * 26.0, 37, 3)
+    burst = ss(.58, .12, np.sqrt((x - .02) ** 2 * .45 + y ** 2)) * ss(.36, .58, blotch)                         # thrown out of the opened middle
+    warp = (fbm(P_ * 3.0, 51) - .5) * .9
+    runs = ss(.53, .63, fbm(np.stack([x * 21 + warp, np.zeros_like(x) + .37, (y * .35 + z * .35) * 6], -1), 61, 3)) * ss(.30, .55, broad)   # runs across the body, down each plate
+    soak = ss(.085, .02, z + (fine - .5) * .03)                                                                 # the rim that lies in the pool
+    spat = ss(.70, .78, vnoise(P_ * 55.0, 71)) * ss(.35, .6, fbm(P_ * 5.0, 83))                                # spatter
+    m = np.clip(np.maximum.reduce([burst * .95, runs * .9, soak, spat * .9]), 0, 1); m = np.clip(m * (.8 + .5 * fine), 0, 1)
+    valid = np.abs(N_).sum(-1) > .01
+    log('blood coverage of the carapace atlas: %.0f %% of baked texels (%.0f %% of the up-facing ones)' % (100 * m[valid].mean(), 100 * m[valid & (N_[..., 2] > .3)].mean()))
+    def load(path, linear):
+        im = bpy.data.images.load(str(path), check_existing=False); im.colorspace_settings.name = 'Non-Color' if linear else 'sRGB'; a = crlib._px(im).copy()
+        if im.size[0] != res: raise RuntimeError('atlas is not %d px: %s' % (res, path))
+        bpy.data.images.remove(im); return a
+    def save(arr, name, linear):
+        im = bpy.data.images.new(name + '_o', res, res, alpha=False); im.colorspace_settings.name = 'Non-Color' if linear else 'sRGB'
+        im.pixels.foreach_set(np.ascontiguousarray(arr, np.float32).ravel()); p_ = DST / 'Textures' / (name + '.png'); im.filepath_raw = str(p_); im.file_format = 'PNG'; im.save(); bpy.data.images.remove(im); return p_
+    to_lin = lambda c: np.where(c <= .04045, c / 12.92, ((c + .055) / 1.055) ** 2.4)
+    to_srgb = lambda c: np.where(c <= .0031308, c * 12.92, 1.055 * np.clip(c, 0, None) ** (1 / 2.4) - .055)
+    bc = load(DST / 'Textures/T_Pillbug_Atlas_BC.png', False); orm = load(DST / 'Textures/T_Pillbug_Atlas_ORM.png', True)
+    lin = to_lin(bc[..., :3].astype(np.float64)); age = fbm(P_ * 9.0, 91)[..., None]
+    red = (1 - age) * np.array((.21, .004, .004)) + age * np.array((.07, .001, .002))                           # fresh to clotting
+    thin = np.clip(m * 2, 0, 1)[..., None]; thick = np.clip(m * 2 - 1, 0, 1)[..., None]
+    lin = lin * (1 - thin * (1 - np.array((.55, .10, .09)))); lin = lin * (1 - thick) + red * thick             # a thin film stains, a thick coat covers
+    bc[..., :3] = np.clip(to_srgb(lin), 0, 1); bc[..., 3] = 1
+    orm[..., 1] = orm[..., 1] * (1 - m) + (.07 + .10 * fine) * m; orm[..., 3] = 1                              # wet
+    return {'BC': save(bc, 'T_Pillbug_Corpse_BC', False), 'ORM': save(orm, 'T_Pillbug_Corpse_ORM', True),
+            'N': DST / 'Textures/T_Pillbug_Atlas_N.png', 'SSS': DST / 'Textures/T_Pillbug_Atlas_SSS.png'}
 
 
 if STAGE == 'corpse':
@@ -412,23 +508,35 @@ if STAGE == 'corpse':
     co = co_np(me); co[:, 2] = np.maximum(co[:, 2], .002 + .01 * (np.sin(co[:, 0] * 37) * np.sin(co[:, 1] * 41) * .5 + .5)); set_co(me, co)       # nothing below the ground
     ob.vertex_groups.clear(); set_action(arm, None, 1)
     decimate_to(ob, 15000); clean_mesh(ob)
+    # blood across the carapace, as sprites 141/143 show it: the corpse body gets its own colour and roughness maps
+    bloody = bloody_atlas(ob)
+    for slot in ob.material_slots:
+        slot.material = game_material(slot.material.name.split('.')[0] + '_Bloody', bloody, sss=True)
     # gore: pool, clots, spilled viscera
     gm = gore_mat(bpy.data.materials.new('MI_Pillbug_Gore')); mbg = MB()
-    NR, NA_ = 14, 96; vs = [V((0, 0, .012))]; msk = [(0, 0, 0, 0)]
+    NR, NA_ = 16, 192; vs = [V((0, 0, .014))]; msk = [(0, 0, 0, 0)]
+    arms = [(R.uniform(0, math.tau), R.uniform(.10, .27), R.uniform(.09, .19)) for _ in range(11)]                    # rounded lobes: the sprite's ragged rim
     for i in range(1, NR + 1):
         for j in range(NA_):
-            th = math.tau * j / NA_; rr = (.66 + .13 * math.sin(3 * th + .7) + .09 * math.sin(5 * th + 2.1) + .05 * math.sin(8 * th + 1.0) + .03 * math.sin(13 * th)) * (1.0 + .22 * math.cos(th) ** 2)
+            th = math.tau * j / NA_; rr = (.86 + .15 * math.sin(3 * th + .7) + .10 * math.sin(5 * th + 2.1) + .06 * math.sin(8 * th + 1.0) + .04 * math.sin(13 * th) + .02 * math.sin(29 * th + .4)) * (1.0 + .22 * math.cos(th) ** 2)
+            rr += sum(a_ * math.exp(-(math.remainder(th - t0, math.tau) / w_) ** 2) for t0, a_, w_ in arms)
             a = i / NR; x = math.cos(th) * rr * a * 1.15; y = math.sin(th) * rr * a
-            vs.append(V((x - .05, y, .006 * (1 - a ** 4) + .0008))); msk.append((0, a ** 3, 0, 0))
+            vs.append(V((x - .05, y, .008 * (1 - a ** 4) + .0008))); msk.append((0, a ** 5, 0, 0))
     fs = [(0, 1 + j, 1 + (j + 1) % NA_) for j in range(NA_)]
     for i in range(NR - 1):
         for j in range(NA_):
             a = 1 + i * NA_ + j; b = 1 + i * NA_ + (j + 1) % NA_; fs.append((a, a + NA_, b + NA_, b))
     mbg.add(vs, fs, 'x', msk)
-    for k in range(26):                                                                                   # satellite drops and splashes
-        th = R.uniform(0, math.tau); d = R.uniform(.8, 1.2); rr = R.uniform(.008, .035)
+    for k in range(84):                                                                                   # satellite drops and splashes
+        th = R.uniform(0, math.tau); d = R.uniform(.95, 1.25) + R.random() ** 3 * .85; rr = R.uniform(.008, .04)
         vs, fs, dd = ellipsoid((math.cos(th) * d * 1.1, math.sin(th) * d, .001), (rr * R.uniform(1, 3.0), rr, .0025), 10, 4); q = Quaternion((0, 0, 1), th); vs = [q @ (p - V((math.cos(th) * d * 1.1, math.sin(th) * d, 0))) + V((math.cos(th) * d * 1.1, math.sin(th) * d, 0)) for p in vs]
         mbg.add(vs, fs, 'x', (0, .5, 0, 0))
+    for k in range(18):                                                                                   # thrown streaks beyond the rim, each tapering into drops
+        th = R.uniform(0, math.tau); d0 = R.uniform(.92, 1.12); ln = R.uniform(.22, .75); wd = R.uniform(.022, .055); bend = R.uniform(-.25, .25)
+        for q in range(4):
+            f_ = q / 3.0; d = d0 + ln * f_; a2 = th + bend * f_ * f_; c = (math.cos(a2) * d * 1.1, math.sin(a2) * d, .001)
+            vs, fs, dd = ellipsoid(c, (ln * .22 * (1 - .45 * f_), wd * (1 - .6 * f_), .003), 12, 4); qr = Quaternion((0, 0, 1), a2); vs = [qr @ (p - V(c)) + V(c) for p in vs]
+            mbg.add(vs, fs, 'x', (0, .35 + .3 * f_, 0, 0))
     for k in range(9):                                                                                    # viscera coils and lumps
         sy = R.choice((-1, 1)); c = V((R.uniform(-.14, .16), R.uniform(-.08, .08), .215)); pts = [c]
         for q in range(8): pts.append(pts[-1] + V((R.uniform(-.07, .07), sy * R.uniform(.02, .09), 0)))
@@ -441,6 +549,7 @@ if STAGE == 'corpse':
     uv_unwrap(gore, angle=66, hidden_scale=1.0)
     gt = bake_set(gore, DST / 'Textures', 'T_Pillbug_Gore', res=1024, extra=('sss',))
     gore.material_slots[0].material = game_material('MI_Pillbug_Gore', gt, sss=True); gm.name = 'MI_Pillbug_Gore_Procedural'
+    pool_decal(gore, gt['BC'], DST / 'Textures/T_Pillbug_BloodPool_BC.png')
     ob = join([ob, gore], 'SM_Pillbug_Corpse_LOD0')
     for a in list(ob.data.color_attributes): ob.data.color_attributes.remove(a)
     from dinkasset import common, make_lods
@@ -448,11 +557,11 @@ if STAGE == 'corpse':
     for m in asset.renders: clean_mesh(m); m.hide_render = m.name != ob.name
     for o in bpy.data.objects:
         if o.name.startswith('SK_Pillbug'): o.hide_render = True
-    info = {'lods': [{'name': m.name, 'triangles': tri_count(m)} for m in asset.renders], 'dimensions_m': list(ob.dimensions)}
+    info = {'lods': [{'name': m.name, 'triangles': tri_count(m)} for m in asset.renders], 'dimensions_m': list(ob.dimensions), 'pool_decal_m': POOL_DECAL_M}
     (DST / 'pillbug_corpse_build.json').write_text(json.dumps(info, indent=1))
     bpy.ops.wm.save_as_mainfile(filepath=str(DST / 'SM_Pillbug_Corpse.blend'), relative_remap=False)
     setup_review(samples=64)
-    shoot(DST / 'Review/corpse_game.png', game_cam((0, 0, .1), 6.0, -52, 45), (0, 0, .1), 95, (1200, 900), 64)
+    shoot(DST / 'Review/corpse_game.png', game_cam((0, 0, .1), 6.0, -52, 45), (0, 0, .1), 68, (1200, 900), 64)
     shoot(DST / 'Review/corpse_close.png', (1.5, -1.0, .7), (.0, 0, .1), 40, (1200, 900), 64)
     # export (static, cm)
     (DST / 'Export').mkdir(exist_ok=True)

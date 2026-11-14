@@ -7,30 +7,30 @@
  "lods": [
   {
    "mesh": "SK_Dink_Photoreal_LOD0",
-   "vertices": 37919,
+   "vertices": 37920,
    "Scrawny": {
-    "moved_vertices": 17043,
+    "moved_vertices": 17030,
     "max_mm": 29.53,
-    "mean_mm": 7.12
+    "mean_mm": 7.11
    },
    "Brawny": {
-    "moved_vertices": 16968,
-    "max_mm": 33.67,
-    "mean_mm": 8.94
+    "moved_vertices": 16876,
+    "max_mm": 18.52,
+    "mean_mm": 4.94
    }
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD1",
-   "vertices": 22664,
+   "vertices": 22665,
    "Scrawny": {
-    "moved_vertices": 7763,
+    "moved_vertices": 7768,
     "max_mm": 29.4,
     "mean_mm": 7.26
    },
    "Brawny": {
-    "moved_vertices": 7762,
-    "max_mm": 33.32,
-    "mean_mm": 8.92
+    "moved_vertices": 7727,
+    "max_mm": 18.33,
+    "mean_mm": 4.93
    }
   },
   {
@@ -39,26 +39,26 @@
    "Scrawny": {
     "moved_vertices": 3405,
     "max_mm": 29.08,
-    "mean_mm": 7.32
+    "mean_mm": 7.31
    },
    "Brawny": {
-    "moved_vertices": 3402,
-    "max_mm": 33.41,
-    "mean_mm": 9.12
+    "moved_vertices": 3391,
+    "max_mm": 18.37,
+    "mean_mm": 5.03
    }
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD3",
    "vertices": 9376,
    "Scrawny": {
-    "moved_vertices": 1698,
+    "moved_vertices": 1695,
     "max_mm": 29.14,
     "mean_mm": 7.35
    },
    "Brawny": {
-    "moved_vertices": 1700,
-    "max_mm": 33.01,
-    "mean_mm": 9.24
+    "moved_vertices": 1691,
+    "max_mm": 18.15,
+    "mean_mm": 5.11
    }
   }
  ],
@@ -67,7 +67,7 @@
    "shoulder_width": 55.4,
    "chest_girth": 103.3,
    "waist_girth": 78.0,
-   "neck_girth": 35.0,
+   "neck_girth": 34.9,
    "upper_arm_girth": 31.6,
    "forearm_girth": 31.5,
    "thigh_girth": 59.6,
@@ -78,7 +78,7 @@
    "shoulder_width": 52.9,
    "chest_girth": 95.4,
    "waist_girth": 73.9,
-   "neck_girth": 34.1,
+   "neck_girth": 34.4,
    "upper_arm_girth": 25.8,
    "forearm_girth": 26.5,
    "thigh_girth": 52.8,
@@ -86,14 +86,14 @@
    "height": 182.0
   },
   "Brawny": {
-   "shoulder_width": 58.6,
-   "chest_girth": 115.3,
-   "waist_girth": 79.6,
-   "neck_girth": 36.4,
-   "upper_arm_girth": 40.4,
-   "forearm_girth": 37.2,
-   "thigh_girth": 67.6,
-   "calf_girth": 45.4,
+   "shoulder_width": 57.1,
+   "chest_girth": 109.9,
+   "waist_girth": 78.9,
+   "neck_girth": 35.6,
+   "upper_arm_girth": 36.4,
+   "forearm_girth": 34.6,
+   "thigh_girth": 64.0,
+   "calf_girth": 43.2,
    "height": 182.0
   }
  },

@@ -15,7 +15,7 @@ for lod in range(4):
         for k in list(me.shape_keys.key_blocks)[::-1]: ob.shape_key_remove(k)
     co = co_np(me); W = PH.weights_of(ob); ob.shape_key_add(name='Basis', from_mix=False); row = {'mesh': ob.name, 'vertices': len(co)}
     for b in PH.BUILDS:
-        d = PH.field(co, W, heads, b); k = ob.shape_key_add(name=PH.KEY % b, from_mix=False)
+        d = PH.field(co, W, heads, b) * PH.KEY_STRENGTH.get(b, 1.0); k = ob.shape_key_add(name=PH.KEY % b, from_mix=False)
         k.data.foreach_set('co', np.asarray(co + d, np.float32).ravel()); k.value = 0.0; k.slider_min = 0.0; k.slider_max = 1.0
         mag = np.linalg.norm(d, axis=1)
         row[b] = {'moved_vertices': int((mag > 1e-5).sum()), 'max_mm': round(float(mag.max()) * 1000, 2), 'mean_mm': round(float(mag[mag > 1e-5].mean()) * 1000, 2)}

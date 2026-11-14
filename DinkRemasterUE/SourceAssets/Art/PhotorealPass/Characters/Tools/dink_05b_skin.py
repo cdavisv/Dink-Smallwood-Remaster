@@ -154,7 +154,11 @@ dbg('col_scalp', col)
 # brows: soft shadow under the cards
 for e in (eyeL, eyeR):
     bx = np.exp(-((x - e[0] * 1.02) / .024) ** 2 - ((z - (e[2] + .0215 - .004 * np.abs(x - e[0]) / .02)) / .0058) ** 2) * (y < e[1] + .02)
-    col = col * (1 - bx[..., None] * .32) + hc[None, None, :] * (bx * .32)[..., None]
+    # ...and hairs painted into the skin itself: in the game the brow cards alone thin out to a drawn line, so the
+    # brow's mass is fine strokes in the albedo (cfg 'brow_paint': 0 none .. 1 solid) and the cards give it relief
+    bp = np.clip(bx * 1.6, 0, 1) * (.45 + .55 * sstep(.35, .7, n3(1500, 97, 2))) * CFG.get('brow_paint', .55)
+    k_ = np.maximum(bx * .32, bp)
+    col = col * (1 - k_[..., None]) + hc[None, None, :] * k_[..., None]
 # lips: a real colour break against the skin; stubble shadow on a young man's lip, chin and jaw
 ratio = base3[..., 0] / np.maximum(base3[..., 1], 1e-4)
 lipm = sstep(float(np.percentile(ratio[lips_zone & headm], 55)) if (lips_zone & headm).any() else 1.5, float(np.percentile(ratio[lips_zone & headm], 92)) if (lips_zone & headm).any() else 1.8, ratio) * (lips_zone & headm)

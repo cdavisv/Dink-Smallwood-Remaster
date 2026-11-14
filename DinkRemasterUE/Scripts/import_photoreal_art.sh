@@ -13,7 +13,8 @@ env -u DISPLAY -u WAYLAND_DISPLAY "$UE_ROOT/Engine/Binaries/Linux/UnrealEditor-C
 rc=$?
 if [[ $rc -eq 0 ]] && grep -q 'DINK PHOTOREAL IMPORT OK:' "$LOG"; then
   grep 'DINK PHOTOREAL IMPORT OK:' "$LOG" | tail -1 | sed 's/^.*DINK PHOTOREAL/DINK PHOTOREAL/'
-  grep 'DINK PHOTOREAL: ' "$LOG" | sed 's/^.*DINK PHOTOREAL: /  warning: /' | sort -u | head -20
+  # no warning is not a failure (pipefail would otherwise return grep's 1)
+  grep 'DINK PHOTOREAL: ' "$LOG" | sed 's/^.*DINK PHOTOREAL: /  warning: /' | sort -u | head -20 || true
 else
   echo "PHOTOREAL IMPORT FAILED (exit $rc): $LOG"
   grep 'LogPython: Error' "$LOG" | head -14
