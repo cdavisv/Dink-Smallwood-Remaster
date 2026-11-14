@@ -4,12 +4,14 @@ from pathlib import Path
 import sys
 import unittest
 
-import numpy as np
-
 PROJECT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT / 'Scripts'))
-from export_import_bundle import (RELIEF_MAX_CLEAR_PX, RELIEF_MIN_CLEAR_PX, fold_terrain_layers, forest_points,  # noqa: E402
-                                  relief_points, water_tile_rects)
+try:
+    import numpy as np
+    from export_import_bundle import (RELIEF_MAX_CLEAR_PX, RELIEF_MIN_CLEAR_PX, fold_terrain_layers, forest_points,  # noqa: E402
+                                      relief_points, water_tile_rects)
+except ImportError as error:    # the world export needs numpy and Pillow; a machine without them cannot run it either
+    raise unittest.SkipTest('world export helpers need numpy and Pillow: %s' % error)
 
 CLASSES = {1: {'terrain': 'grass'}, 2: {'terrain': 'cliff_face'}, 3: {'terrain': 'rock_mass'}, 4: {'terrain': 'forest_canopy'},
            5: {'terrain': 'water'}, 6: {'terrain': 'cave_wall'}}
