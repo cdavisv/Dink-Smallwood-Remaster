@@ -600,12 +600,14 @@ void UDinkGameplay::InitPlacementSprite(FDinkSprite& S) const
 	// player's save holds for this placement also clears its script (strcpy_safe(script, ""), 5831). An opened chest (ch1-ap,
 	// ch3-ap: editor_type 4) is then a sprite without a hit, so it cannot make its potion again. The marked path does the same
 	// (UDinkGameplay::BindOriginalHardnessPlacement).
+	bool bRewritten = false;
 	if (const UDinkWorldStateSubsystem* World = Story ? Story->GetWorldState() : nullptr)
 	{
 		FDinkWorldOverride Override;
 		if (World->TryGetOverride(P->Origin, Override) && Override.Type != EDinkOverrideType::None)
 		{
 			S.Script = NAME_None;
+			bRewritten = true;
 		}
 	}
 	auto Set = [&S](const FName& Name, int32 Value) { S.Props.Add(Name, Value); };
@@ -629,6 +631,20 @@ void UDinkGameplay::InitPlacementSprite(FDinkSprite& S) const
 	Set(P_PSeq, P->Seq);
 	Set(P_PFrame, P->Frame);
 	Set(P_Size, P->Size);
+	if (bRewritten)
+	{
+		// The rest of update_play_changes (D:5786-5811, 5829-5830): the save's editor_type 2/4 set the hard flag the sprite is born with
+		// (place_sprites_game copies it, D:6083-6097), and its editor_seq / editor_frame are the picture add_sprite_dumb gives it (pseq,
+		// pframe). The marked path does the same in BindOriginalHardnessPlacement.
+		bool bActive = false;
+		int32 Type = 0, Hard = P->Hard, Seq = P->Seq, Frame = P->Frame;
+		if (MapPlacement(*P, bActive, Type, Hard, Seq, Frame))
+		{
+			Set(TEXT("hard"), Hard);
+			Set(P_PSeq, Seq);
+			Set(P_PFrame, Frame);
+		}
+	}
 }
 
 bool UDinkGameplay::GetHardbox(const FDinkSprite& S, int32& L, int32& T, int32& R, int32& B) const
@@ -2170,17 +2186,10 @@ bool UDinkGameplay::MapPlacement(const FDinkPlacementInfo& P, bool& bActive, int
 	case EDinkOverrideType::BackgroundHard: Type = 0; Hard = 0; break;        // D:5807-5811
 	default: break;
 	}
-	// D:5829-5830. The remaster keeps only the last of editor_seq / editor_frame (the override's Variant, "seq173" or "frame6"); the other
-	// part stays map.dat's.
-	const FString Variant = Override.Variant.ToString();
-	if (Variant.StartsWith(TEXT("seq")))
-	{
-		Seq = FCString::Atoi(*Variant.Mid(3));
-	}
-	else if (Variant.StartsWith(TEXT("frame")))
-	{
-		Frame = FCString::Atoi(*Variant.Mid(5));
-	}
+	// D:5829-5830: both seq and frame come from the save (0 when a script never wrote them), as the screen load stamped them
+	// (BuildLoadedCodes) and the tagged path binds them: the numeric pictures editor_seq / editor_frame recorded, not the override's
+	// single Variant (which holds only the last one written).
+	EffectiveHardnessPicture(P, Seq, Frame);
 	return true;
 }
 
