@@ -342,11 +342,19 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
 
 
 
+FOREST_CLEAR_PX = 40       # about 2.8 m in the wilderness layout: the reach of a large pine's lower boughs
+FOREST_CAMERA_PX = 110     # about 7.5 m: the camera boom (4 m) plus a crown
+
+
 def forest_points(screen: int, tiles: list, tile_classes: dict, walk_ok: np.ndarray):
     """Where trees stand on a screen's forest-canopy tiles (the 1997 tiles paint a closed pine forest there):
-    one [map_x, map_y, edge] per tile, edge 1 when a neighbouring tile of the screen is not canopy. A point is
-    only kept when nobody can walk within 8 px of it (the trees have no collision), so a transition tile gets
-    its tree on the forest side or none. Positions are jittered by a stable hash of screen and tile."""
+    one [map_x, map_y, edge] per tile, edge 1 when a neighbouring tile of the screen is not canopy. The trees have
+    no collision and their boughs reach metres from the trunk, so a point is only kept when
+      - nobody can walk within FOREST_CLEAR_PX of it (no bough over ground a player stands on), and
+      - no walkable ground lies up to FOREST_CAMERA_PX north of it within FOREST_CLEAR_PX to either side: the play
+        camera hangs about 4 m south of the hero, and a tree there would stand between the two.
+    A transition tile gets its tree on the forest side or none. Positions are jittered by a stable hash of screen
+    and tile."""
     canopy = {(t["row"], t["col"]) for t in tiles if (tile_classes.get(t["num"]) or {}).get("terrain") == "forest_canopy"}
     points = []
     for row, col in sorted(canopy):
@@ -356,7 +364,9 @@ def forest_points(screen: int, tiles: list, tile_classes: dict, walk_ok: np.ndar
             h = hashlib.md5(f"{screen}:{row}:{col}:{attempt}".encode()).digest()
             x = col * 50 + 25 + int((int.from_bytes(h[0:2], "little") / 65535.0 - 0.5) * 38)
             y = row * 50 + 25 + int((int.from_bytes(h[2:4], "little") / 65535.0 - 0.5) * 38)
-            if not walk_ok[max(0, y - 8):min(400, y + 9), max(0, x - 8):min(600, x + 9)].any():
+            c = FOREST_CLEAR_PX
+            if not walk_ok[max(0, y - c):min(400, y + c + 1), max(0, x - c):min(600, x + c + 1)].any() \
+                    and not walk_ok[max(0, y - FOREST_CAMERA_PX):y + 1, max(0, x - c):min(600, x + c + 1)].any():
                 points.append([x, y, edge])
                 break
     return points

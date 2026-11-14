@@ -9,7 +9,7 @@ Captures are from the running game in a private copy (rebuilt C++, terrain mater
 | Change | Switch | Sheets | Verdict after looking |
 |---|---|---|---|
 | Fourth terrain layer (mask RGB + remainder); a fifth folds into a layer of its own family | none (material) | 352, 385, 531, 320 | Works: 115 screens no longer lose a layer. 352 shows wet sand, dry sand, turf and stony turf together. On 531 the layer that returns is 3 tiles of flat rock (class `rock_mass`): correct to the data, still a flat slab. |
-| Trees on the unwalkable forest-canopy tiles (2,954 points on 73 screens; every edge tree, 55% of the interior) | `dink.Forest 0/1` | 240, 272, 218; horizons of 438, 465, 505, 586 | Good. From inside: trunks, boughs, dappled litter. From the meadows a closed tree line where there was an empty horizon. The capture camera stands between the trees on 240, 272, 218 (boughs across the lens): a player cannot get there. |
+| Trees on the unwalkable forest-canopy tiles (2,590 points on 73 screens; every edge tree, 55% of the interior) | `dink.Forest 0/1` | 240, 272, 218; horizons of 438, 465, 505, 586 | Good. From inside: trunks, boughs, dappled litter. From the meadows a closed tree line where there was an empty horizon. The capture camera stands between the trees on 240, 272, 218 (boughs across the lens): a player cannot get there. |
 | Tiles behind house fronts take the surrounding ground layer | none (export) | 505, 465, 586 | Good: turf behind the Windemere houses instead of a yard of giant yellow blocks. 419's capture stands inside a house shell and proves nothing. |
 | Structured layers (boards, flagstones, cobbles, masonry) stay straight and at one scale; plank boards 18 cm | none (material) | 004, 034, 016, 385 | Good: the house floors read as boards. Cobbles unchanged in character, straight courses. |
 | Water sheet over water tiles that have no water fill in the collision (7 screens) | `dink.WaterTiles 0/1` | `water_465_before_flat_translucent.jpg`, 244 | Partly. First try (opaque `M_Env_WaterFlat`, middle picture): a teal slab the hero walks on. Now `M_Env_Water` 9 cm above the bed (right picture): murky green shallows he wades through. Still a rectangle with straight edges and no bank. The condition stays **failed** in the review. |
@@ -17,6 +17,10 @@ Captures are from the running game in a private copy (rebuilt C++, terrain mater
 | Grass clearings round low props and decals | `grass.clear_max_height_cm` 0 = off | none | Runs (the game log reports 118 to 458 clearings as screens come into view). **Not proven by a capture**: the low props I aimed at (pitchforks on 274 and 440) are still sprite cards, so nothing shows a small mesh uncovered. |
 | Feathered carpet edge | `grass.edge_feather` 0..1 | 278, 531 | Modest: the carpet thins and steps down toward paths; the line is still readable at 1.1 m. |
 | No field-scale dry drift on snow | none (material) | 080, 120, 016 | The beige patches are gone from above. Snow still reads grey under the play camera. |
+
+## Forest and the play camera (review finding, fixed)
+
+`forest_play_camera_before_after.jpg`: screens 144, 239, 269, 282 and 218 at the play camera, the hero on open ground beside the forest. Upper row: the first version kept a tree only 8 px (about 55 cm) clear of walkable ground, so boughs hung across the camera (144, 239, 269). Lower row: the export now keeps every tree 40 px (about 2.8 m) from walkable ground and out of a 110 px corridor south of it, where the camera boom hangs (`FOREST_CLEAR_PX`, `FOREST_CAMERA_PX` in `Scripts/export_import_bundle.py`; 2,954 -> 2,590 trees; unit test). The hero is clear on all four and the forest is still closed behind him. 218 (right) and the sheets of 240, 272, 176, 208 are taken from spots inside the forest that the collision closes off: a capture can be teleported there, a player cannot walk there. Not handled: a tree on the screen to the south of walkable ground at a screen's southern edge (the rule looks at one screen).
 
 ## Snow and ice: cause found, not fixed
 
@@ -32,9 +36,9 @@ In the top-down panes the meadow shows short black dashes. They are the grass ca
 
 | `art_coverage.py` | final | placeholder | cut |
 |---|---:|---:|---:|
-| rule off | 4,093 | 2,362 | 152 |
-| master `8905d4f8`, rule on | 4,335 | 2,120 | 152 |
-| this PR, rule on | 4,429 | 2,026 | 152 |
+| master `80ff12f1`, rule off | 4,421 | 2,034 | 152 |
+| master `80ff12f1`, rule on | 4,663 | 1,792 | 152 |
+| this PR, rule on | 4,757 | 1,698 | 152 |
 
     Screen grounds: 5 final by screen-dressing, 336 final by reviewed terrain layers, 303 placeholder
        173 screens: tile class cliff_face (outdoor)

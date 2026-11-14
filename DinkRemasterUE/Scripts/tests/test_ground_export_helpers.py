@@ -65,7 +65,17 @@ class ForestPointsTests(unittest.TestCase):
         points = forest_points(7, tiles(4), CLASSES, walk)
         self.assertTrue(points)
         for x, y, _edge in points:
-            self.assertFalse(walk[max(0, y - 8):y + 9, max(0, x - 8):x + 9].any())
+            self.assertFalse(walk[max(0, y - 40):y + 41, max(0, x - 40):x + 41].any())
+
+    def test_no_tree_between_the_play_camera_and_ground_to_its_north(self):
+        walk = np.zeros((400, 600), bool)
+        walk[100:150, :] = True                                 # a path across the screen, forest on both sides
+        points = forest_points(7, tiles(4), CLASSES, walk)
+        self.assertTrue(points)
+        south = [y for _x, y, _edge in points if y > 150]
+        self.assertTrue(south and min(south) > 150 + 110)       # nothing in the camera's corridor south of the path
+        north = [y for _x, y, _edge in points if y < 100]
+        self.assertTrue(north and max(north) < 100 - 40)        # north of it only the boughs' reach is kept clear
 
     def test_a_walkable_forest_gets_no_tree(self):
         self.assertEqual(forest_points(7, tiles(4), CLASSES, np.ones((400, 600), bool)), [])
