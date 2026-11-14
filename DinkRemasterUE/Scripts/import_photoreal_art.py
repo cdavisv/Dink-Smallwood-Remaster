@@ -736,7 +736,7 @@ if 'vegetation' in ONLY:
     # Calibrated 12 Nov 2026 against the Cycles review renders with Saved/PhotorealPass/lighting/tools/cal.sh and
     # cal_compare.py (same framing and sun, foliage mean / percentile RGB): tint, specular, crown shade, crown AO, light through.
     # round 6 (cal v6 against the 12 Nov re-export): pine median luminance 27 against 56 in Cycles -> tint x1.3; oak 95th percentile 143 against 81 -> specular halved
-    FOLIAGE_LOOK = {'PineNeedles': ((0.78, 0.80, 0.52), 0.25, 0.35, 0.20, 0.10), 'OakLeaves': ((0.45, 0.50, 0.26), 0.06, 0.22, 0.08, 0.10),
+    FOLIAGE_LOOK = {'PineNeedles': ((0.78, 0.80, 0.52), 0.25, 0.80, 0.70, 0.35), 'OakLeaves': ((0.33, 0.37, 0.17), 0.03, 0.70, 0.60, 0.08),
                     'WillowLeaves': ((0.60, 0.62, 0.42), 0.20, 0.35, 0.20, 0.10), 'Understory': ((0.42, 0.48, 0.26), 0.10, 1.0, 0.5, 0.10),
                     'GroundCover': ((0.60, 0.62, 0.36), 0.10, 1.0, 1.0, 0.10), 'Shrub': ((0.38, 0.46, 0.22), 0.10, 1.0, 0.5, 0.10)}
     foliage_tints = {}
@@ -751,7 +751,9 @@ if 'vegetation' in ONLY:
                 scalars['BackShade'] = 0.35
                 scalars['DepthShade'] = 0.3  # bushes and ferns: every card carries the same branch weight, so shade by depth in the bounds
             if 'Leaves' in mat_name or 'Needles' in mat_name:
-                scalars['BackShade'] = 0.6
+                # round 7 (cal r7x2): the inner faces of needle cards are lit like the outer ones (the pine's median was half
+                # the Cycles reference: crown shade, crown occlusion and back shade stacked); leaf cards keep 0.6
+                scalars['BackShade'] = 1.0 if 'Needles' in mat_name else 0.6
         if 'Deadwood' in mat_name:
             scalars['WindScale'] = 0.0
         if not masked and 'Bark' in mat_name:
