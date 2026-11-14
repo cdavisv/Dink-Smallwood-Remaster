@@ -251,6 +251,11 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 		}
 		B.AnchorFront = FMath::Clamp(B.AnchorFront, 0.0, 1.0);
 		{
+			const TArray<TSharedPtr<FJsonValue>>* ScreenRows = nullptr;
+			if ((*Row)->TryGetArrayField(TEXT("screens"), ScreenRows) && ScreenRows)
+				for (const TSharedPtr<FJsonValue>& V : *ScreenRows) { double N = 0; if (V.IsValid() && V->TryGetNumber(N) && N >= 1) B.Screens.Add(int32(N)); }
+		}
+		{
 			FString Mount;
 			if ((*Row)->TryGetStringField(TEXT("mount"), Mount))
 			{
@@ -328,6 +333,7 @@ EDinkFamilyDecision DinkArtFamily::Decide(const FDinkFamilyPlacement& P, const F
 	if (Precedence.Origins.Contains(P.Origin)) return EDinkFamilyDecision::OriginHandled;
 	const FDinkFamilyBinding* B = Resolve(Bindings, P.Sequence, P.ClassId, P.Frame);
 	if (!B) return EDinkFamilyDecision::NoBinding;
+	if (!B->Screens.IsEmpty() && !B->Screens.Contains(P.Screen)) return EDinkFamilyDecision::NoBinding;
 	if (P.bScripted && !B->bScripted) return EDinkFamilyDecision::Scripted;
 	OutBinding = B;
 	return EDinkFamilyDecision::Bound;

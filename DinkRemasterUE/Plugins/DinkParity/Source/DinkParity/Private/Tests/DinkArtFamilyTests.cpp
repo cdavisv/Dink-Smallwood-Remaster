@@ -112,6 +112,18 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 	TestTrue(TEXT("mount is read and defaults to the ground"), Mounted.Num() == 4 && Mounted[0].Mount == 1 && Mounted[1].Mount == 2 && Mounted[2].Mount == 3 && Mounted[3].Mount == 0);
 	TestEqual(TEXT("an unknown mount and a mount with a span are refused"), MountedErrors.Num(), 2);
 	{
+		// screens: the row binds only there
+		TArray<FDinkFamilyBinding> Local;
+		TArray<FString> LocalErrors;
+		ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[{"family":"arrow","mesh":"/Game/A/SM_Arrow","mount":"on","screens":[97]}]})"), Local, LocalErrors);
+		FDinkFamilyPlacement Shop, Range;
+		Shop.Origin = TEXT("S097_P25"); Shop.Screen = 97; Shop.ClassId = TEXT("arrow");
+		Range.Origin = TEXT("S663_P20"); Range.Screen = 663; Range.ClassId = TEXT("arrow");
+		const FDinkFamilyBinding* Found = nullptr;
+		TestTrue(TEXT("screens: bound on a named screen"), Local.Num() == 1 && Decide(Shop, FDinkFamilyPrecedence(), Local, Found) == EDinkFamilyDecision::Bound);
+		TestTrue(TEXT("screens: no binding elsewhere"), Decide(Range, FDinkFamilyPrecedence(), Local, Found) == EDinkFamilyDecision::NoBinding && Found == nullptr);
+	}
+	{
 		// A counter: card 680 x 340 cm in the picture plane, mesh 200 x 80 x 95 cm standing in its middle. A wall behind it,
 		// a tree beside it.
 		DinkArtFamily::FMountHost Counter, Wall, Tree;

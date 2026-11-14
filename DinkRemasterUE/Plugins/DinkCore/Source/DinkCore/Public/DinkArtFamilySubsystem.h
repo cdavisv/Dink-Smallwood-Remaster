@@ -79,6 +79,8 @@ struct DINKCORE_API FDinkFamilyBinding
 	 * same screen; a placement that finds none keeps its card. 0 (default): on the ground at the card's ground point.
 	 */
 	uint8 Mount = 0;
+	/** Optional JSON "screens": the row binds placements of these screens only (a mounted row names the screens where its hosts stand, so the audit can count exactly what the game dresses). Empty: every screen. */
+	TSet<int32> Screens;
 	FString Note;
 };
 
