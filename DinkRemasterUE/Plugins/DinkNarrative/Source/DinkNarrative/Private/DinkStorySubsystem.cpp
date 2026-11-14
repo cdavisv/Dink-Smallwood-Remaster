@@ -1225,7 +1225,7 @@ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
 		}
 		return;
 	}
-	// place_sprites_game (D:6040-6140): every active live placement (type 1) of the current vision becomes
+	// place_sprites_game (D:6040-6140): every active live placement (type 1 after update_play_changes) of the current vision becomes
 	// a sprite with map.dat's fields, and its script is loaded; then every script's main runs.
 	// Placements without an actor in this world (headless tests, other maps) become virtual sprites.
     // Only migrated layered sources enter the original mixed-placement phase.
@@ -1243,7 +1243,9 @@ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
 	TArray<int32> Mains;
 	for (const FDinkPlacementInfo* P : Placements)
 	{
-        const int32 Type=Projected?Gameplay->EffectiveHardnessPlacementType(*P):P->Type;
+		// update_play_changes (D:5974, 5786-5811) rewrites the type before place_sprites_game reads it (D:6036, 6083): a saved editor_type 2 or
+		// 4 makes a background placement a live sprite, 3 or 5 draws a live one into the background. Tagged and legacy screens alike.
+		const int32 Type = Gameplay->EffectiveHardnessPlacementType(*P);
 		if (Type != 1 || (P->Vision != 0 && P->Vision != Vision) || (Projected&&!OriginalOrder.Contains(P->Origin.Placement)))
 		{
 			continue;

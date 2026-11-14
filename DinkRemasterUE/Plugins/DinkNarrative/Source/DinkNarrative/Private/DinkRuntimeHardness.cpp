@@ -359,7 +359,7 @@ void UDinkGameplay::PrepareLegacyOriginalIdentity(int32 Screen)
     std::vector<DinkHardness::InitialPlacement> Rows;
     // Mirror eligible legacy births, not a different callback execution policy.
     for(const auto* P:Data.GetPlacementsOnScreen(Screen))
-        if(!World||!World->IsPlacementRemoved(P->Origin))Rows.push_back({P->Origin.Placement,P->Type,P->Y,P->Que,P->Vision});
+        if(!World||!World->IsPlacementRemoved(P->Origin))Rows.push_back({P->Origin.Placement,EffectiveHardnessPlacementType(*P),P->Y,P->Que,P->Vision}); // type after update_play_changes (D:5974), as EnterScreenPlacements births them
     auto Ordered=DinkHardness::MixedInitialOrder(std::move(Rows),Vision);
     if(!Ordered){OriginalSlotHistory->Slots.Refuse();return;}
     for(const auto& P:*Ordered)
