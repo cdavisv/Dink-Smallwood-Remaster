@@ -241,3 +241,15 @@ bool FDinkPlayerArtAnimationTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("authored player never changes the movement capsule height"), Player->GetCapsuleComponent()->GetScaledCapsuleHalfHeight(), HalfHeight);
 	return true;
 }
+
+// Alpha bug A9 (14 Nov 2026): a rendered editor game crashed once entering SCR_064 inside the cloth check of the Mother's body
+// (USkeletalMeshComponent::UpdateClothTickRegisteredState -> USkeletalMesh::HasActiveClothingAssets, which in an editor build walks the mesh's
+// render data every tick). No NPC body has cloth: the check is switched off at the source.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkHumanoidNoClothTest, "Dink.Art.HumanoidPresentation.NoClothSimulation", DINK_TEST_FLAGS)
+bool FDinkHumanoidNoClothTest::RunTest(const FString& Parameters)
+{
+	UDinkHumanoidComponent* Body = NewObject<UDinkHumanoidComponent>(GetTransientPackage());
+	TestFalse(TEXT("an NPC body allows no cloth actors"), Body->GetAllowClothActors());
+	TestFalse(TEXT("so it never asks its mesh for clothing (CanSimulateClothing)"), Body->CanSimulateClothing());
+	return true;
+}

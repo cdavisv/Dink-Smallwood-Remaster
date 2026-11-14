@@ -460,6 +460,8 @@ public:
 	/** Inventory screen stand-in: arm spell slot N (1-based, &cur_magic) as arm_magic does. */
 	bool ArmMagicSlot(int32 Slot);
 	/** Per frame from the player controller: Dink walks into hardness (not low hardness) in a numpad direction. */
+	/** The first hardness code within Dink's capsule radius + 4 px ahead of him in cardinal Dir (0: none, or not cardinal). */
+	int32 BlockingHardnessAhead(int32 Dir) const;
 	void UpdatePush(bool bBlockedByHardness, int32 Dir, double NowMs);
 	/** New game: runs newgame.c `main` (fists added and armed, as the start button's start-1.c does). */
 	void StartNewGame();

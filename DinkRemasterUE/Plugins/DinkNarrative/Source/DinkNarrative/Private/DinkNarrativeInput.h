@@ -6,7 +6,8 @@
 class UDinkStorySubsystem;
 
 /**
- * Keyboard for the narrative layer, as a Slate input pre-processor so it needs no input assets:
+ * Keyboard and gamepad for the narrative layer, as a Slate input pre-processor so it needs no input assets (the bindings,
+ * with the gamepad buttons, are DinkInput::Bindings() in DinkInputBindings.h):
  *   E                talk to the nearest scripted placement in front of the player (DinkC `talk`)
  *   Space/Enter/E    skip the say_stop text being waited on (the original's skip)
  *   Up/Down, W/S     move the menu highlight;  Enter/Space/E pick;  1-9 pick directly
