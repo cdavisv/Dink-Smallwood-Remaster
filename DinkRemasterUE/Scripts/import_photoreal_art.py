@@ -10,6 +10,7 @@ agents are picked up by file size and time):
 DINK_PHOTOREAL_ONLY=vegetation,scatter,hero limits the run. Report: Saved/PhotorealPass/import_photoreal.json.
 """
 import json
+import math
 import os
 from pathlib import Path
 import unreal
@@ -151,7 +152,7 @@ def instance(folder, name, parent, textures=None, scalars=None):
 
 
 def surface_material(folder, name, defaults, foliage=False, wind=None, skeletal=False, shading='lit', two_sided=False, masked=False, profile=None,
-                     scatter=False, blend=None, blend_channel='r', ground_blend=False, timber=False, morph=False):
+                     scatter=False, blend=None, blend_channel='r', ground_blend=False, timber=False, morph=False, vertex_tint=False):
     """One parent material: BC/N/ORM (+SSS) texture parameters, optional alpha mask, optional wind offset."""
     mat = new_material(folder, name)
     bc = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -700, -300, parameter_name='BC', texture=defaults['BC'], sampler_type=ST.SAMPLERTYPE_COLOR)
@@ -161,6 +162,12 @@ def surface_material(folder, name, defaults, foliage=False, wind=None, skeletal=
     base = expr(mat, unreal.MaterialExpressionMultiply, -550, -300)
     link(bc, 'RGB', base, 'A'); link(tint_param, '', base, 'B')
     base_pin = ''
+    if vertex_tint:
+        # per-card tint painted into the mesh (the duck's feather cards: cream staining, belly soil, value jitter)
+        vtint = expr(mat, unreal.MaterialExpressionVertexColor, -700, -1250)
+        tinted = expr(mat, unreal.MaterialExpressionMultiply, -500, -450)
+        link(base, '', tinted, 'A'); link(vtint, '', tinted, 'B')
+        base = tinted
     bc_rgb = base
     if ground_blend:
         # UVMask (second UV channel): U = 1 at the ground, 0 from 0.9 m up. Soil and moss darken the foot of the
@@ -1021,6 +1028,110 @@ for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', '
                            'slots': [str(s.get_editor_property('material_slot_name')) for s in slots],
                            'skin_shading': 'subsurface profile' if profile is not None else 'subsurface'})
 
+def creature_skeletal_options(skeleton):
+    options = unreal.FbxImportUI()
+    for k, v in {'automated_import_should_detect_type': False, 'mesh_type_to_import': unreal.FBXImportType.FBXIT_SKELETAL_MESH,
+                 'import_as_skeletal': True, 'import_mesh': True, 'import_materials': False, 'import_textures': False,
+                 'import_animations': False, 'create_physics_asset': False}.items():
+        options.set_editor_property(k, v)
+    options.set_editor_property('skeleton', skeleton)
+    data = options.skeletal_mesh_import_data
+    for k, v in {'convert_scene': True, 'convert_scene_unit': True, 'import_uniform_scale': 1.0, 'update_skeleton_reference_pose': False,
+                 'use_t0_as_ref_pose': False, 'import_mesh_lods': False, 'import_meshes_in_bone_hierarchy': True,
+                 'vertex_color_import_option': unreal.VertexColorImportOption.REPLACE,
+                 'normal_import_method': unreal.FBXNormalImportMethod.FBXNIM_IMPORT_NORMALS}.items():
+        data.set_editor_property(k, v)
+    return options
+
+
+def creature_mesh(source_dir, source, folder, name, skeleton, materials):
+    """A photoreal creature's skeletal mesh from Export/<source>_LOD0..2.fbx -> (mesh, rig, slot names).
+    `skeleton` None: the mesh brings its own; else the import targets it."""
+    target = folder + '/' + name
+    fbx = [source_dir / f'Export/{source}_LOD{i}.fbx' for i in range(3)]
+    key = '|'.join(stamp_of(f) for f in fbx)
+    mesh = LIB.load_asset(target) if LIB.does_asset_exist(target) else None
+    if mesh is None or LIB.get_metadata_tag(mesh, 'DinkSource') != key:
+        if mesh is not None and skeleton is not None:
+            LIB.delete_asset(target)
+        task = unreal.AssetImportTask()
+        task.filename = str(fbx[0].resolve())
+        task.destination_path = folder
+        task.destination_name = name
+        task.automated = True
+        task.replace_existing = True
+        task.save = False
+        task.options = creature_skeletal_options(skeleton if skeleton is not None else (mesh.get_editor_property('skeleton') if mesh is not None else None))
+        task.factory = unreal.FbxFactory()
+        TOOLS.import_asset_tasks([task])
+        mesh = LIB.load_asset(target)
+        if mesh is None:
+            raise RuntimeError(f'{name}: import failed')
+        for index, f in enumerate(fbx[1:], 1):
+            if unreal.SkeletalMeshEditorSubsystem.import_lod(mesh, index, str(f.resolve())) != index:
+                raise RuntimeError(f'{name}: LOD{index} import failed')
+        LIB.set_metadata_tag(mesh, 'DinkSource', key)
+    slots = list(mesh.get_editor_property('materials'))
+    for slot in slots:
+        slot_key = str(slot.get_editor_property('material_slot_name')).split('.')[0]
+        if slot_key not in materials:
+            raise RuntimeError(f'{name}: unknown material slot {slot_key}')
+        slot.set_editor_property('material_interface', materials[slot_key])
+    mesh.set_editor_property('materials', slots)
+    rig = json.loads(unreal.DinkCharacterArtLibrary.inspect_rig(mesh))
+    if any(math.dist(b['scale'], [1, 1, 1]) > 0.001 for b in rig['bones']):
+        raise RuntimeError(f'{name}: non-unit reference bone scale')
+    return mesh, rig, [str(s.get_editor_property('material_slot_name')) for s in slots]
+
+
+def creature_clips(source_dir, source_prefix, folder, asset_prefix, skeleton, actions):
+    """In-place clips Export/<source_prefix>_<Action>.fbx -> <folder>/Animations/<asset_prefix>_<Action>. actions: (name, loops)."""
+    clips = {}
+    for action, loop in actions:
+        fbx = source_dir / f'Export/{source_prefix}_{action}.fbx'
+        if not fbx.exists():
+            continue
+        name = f'{asset_prefix}_{action}'
+        target = folder + '/Animations/' + name
+        anim = LIB.load_asset(target) if LIB.does_asset_exist(target) else None
+        if anim is None or LIB.get_metadata_tag(anim, 'DinkSource') != stamp_of(fbx):
+            if anim is not None:
+                LIB.delete_asset(target)
+            options = unreal.FbxImportUI()
+            for k, v in {'automated_import_should_detect_type': False, 'mesh_type_to_import': unreal.FBXImportType.FBXIT_ANIMATION,
+                         'import_as_skeletal': True, 'import_mesh': False, 'import_materials': False, 'import_textures': False,
+                         'import_animations': True, 'create_physics_asset': False, 'skeleton': skeleton}.items():
+                options.set_editor_property(k, v)
+            for k, v in {'convert_scene': True, 'convert_scene_unit': True, 'import_uniform_scale': 1.0, 'import_bone_tracks': True,
+                         'use_default_sample_rate': False, 'custom_sample_rate': 30,
+                         'animation_length': unreal.FBXAnimationLengthImportType.FBXALIT_EXPORTED_TIME}.items():
+                options.anim_sequence_import_data.set_editor_property(k, v)
+            task = unreal.AssetImportTask()
+            task.filename = str(fbx.resolve())
+            task.destination_path = folder + '/Animations'
+            task.destination_name = name
+            task.automated = True
+            task.replace_existing = True
+            task.save = False
+            task.options = options
+            task.factory = unreal.FbxFactory()
+            TOOLS.import_asset_tasks([task])
+            anim = LIB.load_asset(target)
+            if anim is None:
+                raise RuntimeError(f'{name}: import failed')
+            LIB.set_metadata_tag(anim, 'DinkSource', stamp_of(fbx))
+        inspection = json.loads(unreal.DinkCharacterArtLibrary.inspect_creature_animation(anim))
+        if inspection.get('skeleton') != skeleton.get_path_name() or inspection.get('duration_s', 0) <= 0 or not inspection.get('finite_poses'):
+            raise RuntimeError(f'{name}: invalid imported animation')
+        if inspection['root_motion_cm'] > 0.1 or inspection['max_scale_error'] > 0.001:
+            raise RuntimeError(f'{name}: root motion or bone scaling in an in-place clip')
+        if loop and (inspection['loop_seam_rotation_rad'] > 0.05 or inspection['loop_seam_translation_cm'] > 0.2):
+            raise RuntimeError(f'{name}: loop seam does not close')
+        save(anim)
+        clips[action] = {'clip': target, 'duration_s': round(inspection['duration_s'], 4), 'loop': loop}
+    return clips
+
+
 # ------------------------------------------------------------------------------------------- pillbug (round 6)
 # DINK_PHOTOREAL_ONLY=pillbug: Creatures/Pillbug -> /Game/Dink/Photoreal/Creatures/Pillbug (SK_Pillbug_Photoreal on the
 # existing 43-bone pillbug skeleton, behind dink.PhotorealPillbug; SM_Pillbug_Corpse_PR, the burst carcass). A rig that
@@ -1113,6 +1224,175 @@ if 'pillbug' in ONLY:
     except Exception as error:
         report['pillbug']['error'] = str(error)
         warn(f'pillbug not imported: {error}')
+
+# ------------------------------------------------------------------------------------------- pig (gate 2 creatures)
+# DINK_PHOTOREAL_ONLY=pig: Creatures/Pig -> /Game/Dink/Photoreal/Creatures/Pig/SK_Pig_Photoreal on the existing 26-bone pig
+# skeleton (the clips of /Game/Dink/Creatures/Pig apply as they are). A rig that differs is reported, never forced.
+if 'pig' in ONLY:
+    PG = PASS / 'Creatures/Pig'
+    folder = BASE + '/Creatures/Pig'
+    tex_folder = folder + '/Textures'
+    report['pig'] = {}
+    try:
+        reference_mesh = LIB.load_asset('/Game/Dink/Creatures/Pig/SK_Pig')
+        if reference_mesh is None:
+            raise RuntimeError('reference pig mesh missing')
+        skeleton = reference_mesh.get_editor_property('skeleton')
+        atlas = {r: import_texture(PG / f'Textures/T_Pig_Atlas_{r}.png', tex_folder, r) for r in ('BC', 'N', 'ORM')}
+        cards = {r: import_texture(PG / f'Textures/T_Pig_BristleCards_{r}.png', tex_folder, 'BCA' if r == 'BC' else r) for r in ('BC', 'N', 'ORM')}
+        parent = surface_material(folder, 'M_Pig_PR', atlas, skeletal=True)
+        card_parent = surface_material(folder, 'M_Pig_BristleCards_PR', cards, skeletal=True, masked=True, two_sided=True)
+        materials = {n: instance(folder, n + '_PR', parent, atlas) for n in ('MI_Pig_Skin', 'MI_Pig_Muzzle', 'MI_Pig_Eye')}
+        materials['MI_Pig_HornBristle'] = instance(folder, 'MI_Pig_HornBristle_PR', card_parent, cards)
+        mesh, rig, slots = creature_mesh(PG, 'SK_Pig', folder, 'SK_Pig_Photoreal', skeleton, materials)
+        reference = json.loads(unreal.DinkCharacterArtLibrary.inspect_rig(reference_mesh))
+        mine, theirs = {b['name'] for b in rig['bones']}, {b['name'] for b in reference['bones']}
+        if mine != theirs:
+            raise RuntimeError('pig bones differ from the existing rig: ' + json.dumps({'only_new': sorted(mine - theirs), 'only_reference': sorted(theirs - mine)}))
+        if mesh.get_editor_property('skeleton') != skeleton and not unreal.DinkCharacterArtLibrary.assign_matching_skeleton(mesh, reference_mesh):
+            raise RuntimeError('pig bind pose does not match the existing skeleton (native gate refused it)')
+        save(mesh)
+        report['pig'].update({'mesh': folder + '/SK_Pig_Photoreal', 'skeleton': mesh.get_editor_property('skeleton').get_path_name(), 'bones': len(mine),
+                              'bounds_size_cm': rig.get('bounds_size_cm'), 'reference_bounds_size_cm': reference.get('bounds_size_cm'),
+                              'lods': unreal.SkeletalMeshEditorSubsystem.get_lod_count(mesh), 'slots': slots})
+    except Exception as error:
+        report['pig']['error'] = str(error)
+        warn(f'pig not imported: {error}')
+
+# ------------------------------------------------------------------------------------------- slime (gate 2 creatures)
+# DINK_PHOTOREAL_ONLY=slime: Creatures/Slime -> /Game/Dink/Photoreal/Creatures/Slime. SK_Slime_PR (its own 10-bone rig), four
+# clips, one material set per colour (blue, green, red) and, per colour, what a killed slime leaves: SM_Slime_Splat_<Colour>
+# and its ground decal (sequences 661/663, 681/683, 701/703). The gel is opaque here: the see-through material of the
+# source notes is not built.
+if 'slime' in ONLY:
+    SL = PASS / 'Creatures/Slime'
+    folder = BASE + '/Creatures/Slime'
+    tex_folder = folder + '/Textures'
+    report['slime'] = {}
+    try:
+        shared = {r: import_texture(SL / f'Textures/T_Slime_Blue_{r}.png', tex_folder, r) for r in ('N', 'ORM')}
+        core_shared = {r: import_texture(SL / f'Textures/T_Slime_Core_Blue_{r}.png', tex_folder, r) for r in ('N', 'ORM')}
+        wet = {r: import_texture(SL / f'Textures/T_Slime_Wet_{r}.png', tex_folder, r) for r in ('BC', 'N', 'ORM')}
+        sets = {}
+        for colour in ('Blue', 'Green', 'Red'):
+            sets[colour] = (dict(shared, BC=import_texture(SL / f'Textures/T_Slime_{colour}_BC.png', tex_folder, 'BC')),
+                            dict(core_shared, BC=import_texture(SL / f'Textures/T_Slime_Core_{colour}_BC.png', tex_folder, 'BC')))
+        parent = surface_material(folder, 'M_Slime_PR', sets['Blue'][0], skeletal=True)
+        materials = {'MI_Slime': instance(folder, 'MI_Slime_Blue_PR', parent, sets['Blue'][0]),
+                     'MI_Slime_Core': instance(folder, 'MI_Slime_Core_Blue_PR', parent, sets['Blue'][1]),
+                     'MI_Slime_Wet': instance(folder, 'MI_Slime_Wet_PR', parent, wet)}
+        variants = {'Blue': {'MI_Slime': materials['MI_Slime'].get_path_name(), 'MI_Slime_Core': materials['MI_Slime_Core'].get_path_name()}}
+        for colour in ('Green', 'Red'):
+            shell = instance(folder, f'MI_Slime_{colour}_PR', parent, sets[colour][0])
+            core = instance(folder, f'MI_Slime_Core_{colour}_PR', parent, sets[colour][1])
+            variants[colour] = {'MI_Slime': shell.get_path_name(), 'MI_Slime_Core': core.get_path_name()}
+        slime, rig, slots = creature_mesh(SL, 'SK_Slime', folder, 'SK_Slime_PR', None, materials)
+        skeleton = slime.get_editor_property('skeleton')
+        save(skeleton); save(slime)
+        report['slime'].update({'mesh': folder + '/SK_Slime_PR', 'skeleton': skeleton.get_path_name(), 'bones': len(rig['bones']),
+                                'bounds_size_cm': rig.get('bounds_size_cm'), 'lods': unreal.SkeletalMeshEditorSubsystem.get_lod_count(slime),
+                                'slots': slots, 'variants': variants})
+        report['slime']['clips'] = creature_clips(SL, 'A_Slime', folder, 'AN_Slime', skeleton, (('Idle', True), ('Walk', True), ('Attack', False), ('Death', False)))
+        splats = {}
+        for colour in ('Blue', 'Green', 'Red'):
+            mesh, changed = import_static([SL / 'Export/SM_Slime_Splat.fbx'], folder, f'SM_Slime_Splat_{colour}', True)
+            # thrown gel: one wet colour (the atlas of the living slime does not map onto these blobs)
+            gel = new_material(folder, f'M_SlimeGel_{colour}')
+            tint = {'Blue': (0.10, 0.17, 0.50), 'Green': (0.36, 0.35, 0.06), 'Red': (0.42, 0.13, 0.09)}[colour]
+            out(expr(gel, unreal.MaterialExpressionConstant3Vector, -400, 0, constant=unreal.LinearColor(tint[0], tint[1], tint[2], 1.0)), '', MP.MP_BASE_COLOR)
+            out(expr(gel, unreal.MaterialExpressionConstant, -400, 200, r=0.12), '', MP.MP_ROUGHNESS)
+            out(expr(gel, unreal.MaterialExpressionConstant, -400, 300, r=0.6), '', MP.MP_SPECULAR)
+            EDIT.recompile_material(gel)
+            save(gel)
+            assign_slots(mesh, {'MI_Slime': gel}, f'SM_Slime_Splat_{colour}')
+            save(mesh)
+            decal = decal_material(folder, f'M_SlimeSplat_{colour}_Decal', import_texture(SL / f'Textures/T_SlimeSplat_{colour}_BC.png', tex_folder, 'BCA', wrap=False), roughness=0.5)
+            splats[colour] = {'mesh': folder + f'/SM_Slime_Splat_{colour}', 'decal': decal.get_path_name()}
+        report['slime']['splats'] = splats
+    except Exception as error:
+        report['slime']['error'] = str(error)
+        warn(f'slime not imported: {error}')
+
+# ------------------------------------------------------------------------------------------- duck (gate 2 creatures)
+# DINK_PHOTOREAL_ONLY=duck: Creatures/Duck -> /Game/Dink/Photoreal/Creatures/Duck. A first import: SK_Duck_PR brings its own
+# 23-bone skeleton, SK_Duck_Headless_PR (the body that runs on after the first hit, dink.cpp duck_brain 12745-12775) is
+# gated onto it, the nine clips are imported against it, SM_Duck_Head_PR is the severed head with its pool.
+if 'duck' in ONLY:
+    DK = PASS / 'Creatures/Duck'
+    folder = BASE + '/Creatures/Duck'
+    tex_folder = folder + '/Textures'
+    report['duck'] = {}
+    try:
+        def dtex(stem, roles=('BC', 'N', 'ORM'), alpha=False):
+            return {r: import_texture(DK / f'Textures/T_Duck_{stem}_{r}.png', tex_folder, 'BCA' if (alpha and r == 'BC') else r) for r in roles}
+        atlas = dtex('Atlas')
+        atlas_bloody = dict(atlas, **dtex('Atlas_Bloody', ('BC', 'ORM')))
+        cards = dtex('FeatherCards', alpha=True)
+        cards_bloody = dtex('FeatherCards_Bloody', alpha=True)
+        gore = dtex('Gore')
+        body_parent = surface_material(folder, 'M_Duck_PR', atlas, skeletal=True)
+        card_parent = surface_material(folder, 'M_Duck_FeatherCards_PR', cards, skeletal=True, masked=True, two_sided=True, vertex_tint=True)
+        gore_parent = surface_material(folder, 'M_Duck_Gore_PR', gore, skeletal=True, two_sided=True)
+        materials = {n: instance(folder, n + '_PR', body_parent, atlas) for n in ('MI_Duck_Feather', 'MI_Duck_Bill', 'MI_Duck_Feet', 'MI_Duck_Eye')}
+        materials['MI_Duck_Feather_Bloody'] = instance(folder, 'MI_Duck_Feather_Bloody_PR', body_parent, atlas_bloody)
+        materials['MI_Duck_FeatherCards'] = instance(folder, 'MI_Duck_FeatherCards_PR', card_parent, cards)
+        materials['MI_Duck_FeatherCards_Bloody'] = instance(folder, 'MI_Duck_FeatherCards_Bloody_PR', card_parent, cards_bloody)
+        materials['MI_Duck_Gore'] = instance(folder, 'MI_Duck_Gore_PR', gore_parent, gore)
+
+        duck, rig, slots = creature_mesh(DK, 'SK_Duck', folder, 'SK_Duck_PR', None, materials)
+        skeleton = duck.get_editor_property('skeleton')
+        bones = [b['name'] for b in rig['bones']]
+        expected = ['root', 'pelvis', 'spine_01', 'spine_02', 'neck_01', 'neck_02', 'neck_03', 'head', 'jaw', 'wing_l', 'wingtip_l', 'wing_r', 'wingtip_r',
+                    'tail_01', 'tail_02', 'thigh_l', 'calf_l', 'foot_l', 'toes_l', 'thigh_r', 'calf_r', 'foot_r', 'toes_r']
+        if sorted(bones) != sorted(expected):
+            raise RuntimeError('duck bones differ from the source rig: ' + json.dumps(sorted(set(bones) ^ set(expected))))
+        size = rig.get('bounds_size_cm') or [0, 0, 0]
+        save(skeleton); save(duck)
+        report['duck'].update({'mesh': folder + '/SK_Duck_PR', 'skeleton': skeleton.get_path_name(), 'bones': len(bones), 'bounds_size_cm': size,
+                               'lods': unreal.SkeletalMeshEditorSubsystem.get_lod_count(duck), 'slots': slots})
+        headless, hrig, hslots = creature_mesh(DK, 'SK_Duck_Headless', folder, 'SK_Duck_Headless_PR', skeleton, materials)
+        if headless.get_editor_property('skeleton') != skeleton:
+            if not unreal.DinkCharacterArtLibrary.assign_matching_skeleton(headless, duck):
+                raise RuntimeError('headless duck bind pose does not match the duck skeleton (native gate refused it)')
+        save(headless)
+        report['duck']['headless'] = {'mesh': folder + '/SK_Duck_Headless_PR', 'skeleton': headless.get_editor_property('skeleton').get_path_name(),
+                                      'lods': unreal.SkeletalMeshEditorSubsystem.get_lod_count(headless), 'slots': hslots}
+        clips = creature_clips(DK, 'A_Duck', folder, 'AN_Duck', skeleton, (('Idle', True), ('Walk', True), ('Run', True), ('Peck', False), ('Quack', False), ('Hit', False),
+                               ('Death', False), ('HeadlessRun', True), ('HeadlessDeath', False), ('Scurry', True), ('HeadlessScurry', True)))
+        report['duck']['clips'] = clips
+        head, changed = import_static([DK / f'Export/SM_Duck_Head_LOD{i}.fbx' for i in range(3)], folder, 'SM_Duck_Head_PR', True)
+        assign_slots(head, materials, 'SM_Duck_Head_PR')
+        save(head)
+        box = head.get_bounding_box()
+        report['duck']['head'] = {'mesh': folder + '/SM_Duck_Head_PR', 'lods': MESHES.get_lod_count(head), 'reimported': changed,
+                                  'size_cm': [round(box.max.x - box.min.x, 1), round(box.max.y - box.min.y, 1), round(box.max.z - box.min.z, 1)],
+                                  'min_cm': [round(box.min.x, 1), round(box.min.y, 1), round(box.min.z, 1)]}
+        # the head in flight: the same head without the pool it comes to lie in (sequences 121-129)
+        flying, changed = import_static([DK / 'Export/SM_Duck_HeadFlying.fbx'], folder, 'SM_Duck_HeadFlying_PR', True)
+        assign_slots(flying, materials, 'SM_Duck_HeadFlying_PR')
+        save(flying)
+        report['duck']['head_flying'] = {'mesh': folder + '/SM_Duck_HeadFlying_PR', 'reimported': changed}
+        # shared gore: one drop of blood (instanced in flight) and two stains seen from above (deferred decals)
+        GR = PASS / 'Creatures/Gore'
+        gore_folder = BASE + '/Creatures/Gore'
+        drop_mat = new_material(gore_folder, 'M_BloodDrop')
+        drop_mat.set_editor_property('used_with_instanced_static_meshes', True)
+        colour = expr(drop_mat, unreal.MaterialExpressionConstant3Vector, -400, 0, constant=unreal.LinearColor(0.11, 0.002, 0.002, 1.0))
+        rough = expr(drop_mat, unreal.MaterialExpressionConstant, -400, 200, r=0.07)
+        spec = expr(drop_mat, unreal.MaterialExpressionConstant, -400, 300, r=0.6)
+        out(colour, '', MP.MP_BASE_COLOR); out(rough, '', MP.MP_ROUGHNESS); out(spec, '', MP.MP_SPECULAR)
+        EDIT.recompile_material(drop_mat)
+        save(drop_mat)
+        drop, changed = import_static([GR / 'Export/SM_BloodDrop.fbx'], gore_folder, 'SM_BloodDrop', True)
+        assign_slots(drop, {'MI_BloodDrop': drop_mat}, 'SM_BloodDrop')
+        save(drop)
+        # roughness 0.5: a glossier stain mirrors the sky on grass blades and reads grey instead of red
+        decals = {n: decal_material(gore_folder, f'M_{n}_Decal', import_texture(GR / f'Textures/T_{n}_BC.png', gore_folder + '/Textures', 'BCA', wrap=False), roughness=0.5)
+                  for n in ('BloodBurst', 'BloodPuddle')}
+        report['duck']['gore'] = {'drop': gore_folder + '/SM_BloodDrop', 'decals': sorted(d.get_path_name() for d in decals.values())}
+    except Exception as error:
+        report['duck']['error'] = str(error)
+        warn(f'duck not imported: {error}')
 
 dest = ROOT / 'Saved/PhotorealPass/import_photoreal.json'
 dest.parent.mkdir(parents=True, exist_ok=True)
