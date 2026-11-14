@@ -7,6 +7,8 @@
 #include "AssetCompilingManager.h"
 #include "Dom/JsonObject.h"
 #include "Engine/SkeletalMesh.h"
+#include "Materials/Material.h"
+#include "Materials/MaterialExpression.h"
 #include "Serialization/JsonSerializer.h"
 #include "Serialization/JsonWriter.h"
 
@@ -179,4 +181,21 @@ FString UDinkCharacterArtLibrary::InspectCreatureAnimation(UAnimSequence* Animat
 	FString Json;
 	FJsonSerializer::Serialize(Report, TJsonWriterFactory<>::Create(&Json));
 	return Json;
+}
+
+bool UDinkCharacterArtLibrary::ConnectMaterialCustomData(UMaterial* Material, UMaterialExpression* Expression, const FString& OutputName, int32 Slot)
+{
+	if (!Material || !Expression || Slot < 0 || Slot > 1) return false;
+	int32 OutputIndex = INDEX_NONE;
+	TArray<FExpressionOutput>& Outputs = Expression->GetOutputs();
+	if (OutputName.IsEmpty()) OutputIndex = Outputs.Num() > 0 ? 0 : INDEX_NONE;
+	else
+		for (int32 Index = 0; Index < Outputs.Num(); ++Index)
+			if (Outputs[Index].OutputName.ToString().Equals(OutputName, ESearchCase::IgnoreCase)) { OutputIndex = Index; break; }
+	FExpressionInput* Input = Material->GetExpressionInputForProperty(Slot == 0 ? MP_CustomData0 : MP_CustomData1);
+	if (OutputIndex == INDEX_NONE || !Input) return false;
+	Material->Modify();
+	Input->Connect(OutputIndex, Expression);
+	Material->PostEditChange();
+	return true;
 }

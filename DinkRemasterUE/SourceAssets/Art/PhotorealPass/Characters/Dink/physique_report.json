@@ -7,7 +7,7 @@
  "lods": [
   {
    "mesh": "SK_Dink_Photoreal_LOD0",
-   "vertices": 35713,
+   "vertices": 37919,
    "Scrawny": {
     "moved_vertices": 17043,
     "max_mm": 29.53,
@@ -21,44 +21,44 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD1",
-   "vertices": 20896,
+   "vertices": 22664,
    "Scrawny": {
-    "moved_vertices": 8099,
+    "moved_vertices": 7763,
     "max_mm": 29.4,
-    "mean_mm": 7.25
+    "mean_mm": 7.26
    },
    "Brawny": {
-    "moved_vertices": 8098,
+    "moved_vertices": 7762,
     "max_mm": 33.32,
-    "mean_mm": 8.89
+    "mean_mm": 8.92
    }
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD2",
-   "vertices": 14141,
+   "vertices": 15345,
    "Scrawny": {
-    "moved_vertices": 3780,
+    "moved_vertices": 3405,
     "max_mm": 29.08,
-    "mean_mm": 7.31
+    "mean_mm": 7.32
    },
    "Brawny": {
-    "moved_vertices": 3776,
+    "moved_vertices": 3402,
     "max_mm": 33.41,
-    "mean_mm": 9.1
+    "mean_mm": 9.12
    }
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD3",
-   "vertices": 8266,
+   "vertices": 9376,
    "Scrawny": {
-    "moved_vertices": 2148,
+    "moved_vertices": 1698,
     "max_mm": 29.14,
-    "mean_mm": 7.32
+    "mean_mm": 7.35
    },
    "Brawny": {
-    "moved_vertices": 2151,
+    "moved_vertices": 1700,
     "max_mm": 33.01,
-    "mean_mm": 9.2
+    "mean_mm": 9.24
    }
   }
  ],

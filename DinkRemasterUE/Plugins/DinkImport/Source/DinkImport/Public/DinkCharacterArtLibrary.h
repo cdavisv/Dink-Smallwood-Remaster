@@ -5,6 +5,8 @@
 #include "DinkCharacterArtLibrary.generated.h"
 
 class USkeletalMesh;
+class UMaterial;
+class UMaterialExpression;
 class UBlendSpace;
 class UAnimSequence;
 
@@ -26,4 +28,10 @@ public:
 	/** Actual raw pose motion, root displacement and loop seam measurements. */
 	UFUNCTION(BlueprintCallable, Category = "Dink|Art")
 	static FString InspectCreatureAnimation(UAnimSequence* Animation);
+	/** Connects an expression output to one of the two custom-data pins of a material. The Hair shading
+	 * model reads its back-light amount from the first; both are hidden from Python's property enum, so
+	 * the importer cannot reach them through the material editing library. Slot 0 or 1; an empty output
+	 * name takes the first output. False when the material, expression, slot or output is not valid. */
+	UFUNCTION(BlueprintCallable, Category = "Dink|Art")
+	static bool ConnectMaterialCustomData(UMaterial* Material, UMaterialExpression* Expression, const FString& OutputName, int32 Slot);
 };

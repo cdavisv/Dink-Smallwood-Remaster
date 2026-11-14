@@ -417,6 +417,95 @@ return offset * s + (Obj - WP) * (1.0 - s);''', F3,
     return mat
 
 
+HAIR_MODEL = os.environ.get('DINK_HAIR_MODEL', 'hair')   # 'lit' builds the previous default-lit anisotropic card material (comparison)
+# Per-character trim of the hair material instance: 'tint' multiplies the atlas colour, 'scalars' are instance values
+# of the parameters hair_material() declares.
+# Calibrated in the running game on 14 Nov 2026 (Docs/Verification/CharacterHair_14Nov2026): with the first values
+# (root 0.55, depth 0.6) the hero's hair was near black outdoors and Milder's crop was full of dark dashes; the
+# Mother's fair hair blew out to straw-white in window light, and any root-to-tip shading drew every painted strand of
+# her pulled-back hair as a separate shingle, so she has none.
+HAIR_LOOK = {
+    'Dink': {'tint': (2.4, 1.5, 1.1), 'scalars': {'Scatter': 0.8}},
+    'Mother': {'tint': (0.8, 0.76, 0.7), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.5, 'StrandVariation': 0.12}},
+    'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12}},
+}
+
+
+def hair_material(folder, name, defaults, morph=False):
+    """Hair cards with the engine's Hair shading model (two highlight lobes and light through the hair), masked,
+    two-sided, dithered. Inputs of that model, as the engine names its pins: Base Color, Scatter (the metallic pin),
+    Specular, Roughness, Tangent (the normal pin: the strand direction in tangent space) and Backlit (the first custom
+    data pin, reached through UDinkCharacterArtLibrary because Python's enum hides it).
+    The atlas maps (Characters/Tools/hairlib.py compose_atlas) drive it: BC rgb + alpha; FLOW rg the strand direction
+    in the atlas plane, b 0 on the opaque cap and 1 on the cards; MSK r nearness within the lock, g a number per
+    strand, b root (0) to tip (1); ORM r occlusion, g roughness."""
+    mat = new_material(folder, name)
+    bc = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -1100, -300, parameter_name='BC', texture=defaults['BC'], sampler_type=ST.SAMPLERTYPE_COLOR)
+    orm = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -1100, 300, parameter_name='ORM', texture=defaults['ORM'], sampler_type=ST.SAMPLERTYPE_MASKS)
+    flow = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -1100, 600, parameter_name='FLOW', texture=defaults['FLOW'], sampler_type=ST.SAMPLERTYPE_LINEAR_COLOR)
+    msk = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -1100, 900, parameter_name='MSK', texture=defaults['MSK'], sampler_type=ST.SAMPLERTYPE_LINEAR_COLOR)
+    # the normal map is not read by the Hair model (its normal pin is the tangent); the parameter stays so that the
+    # instance can carry the texture of the manifest
+    expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -1100, 0, parameter_name='N', texture=defaults['N'], sampler_type=ST.SAMPLERTYPE_NORMAL)
+    tint = expr(mat, unreal.MaterialExpressionVectorParameter, -1100, -700, parameter_name='Tint', default_value=unreal.LinearColor(1, 1, 1, 1))
+    row = [0]
+    def param(pname, value):
+        row[0] += 80
+        return expr(mat, unreal.MaterialExpressionScalarParameter, -1500, -900 + row[0], parameter_name=pname, default_value=value)
+    colour = custom(mat, -600, -500, '''
+// off the strands the mask is empty: take middle values there so that the texels the alpha edge blends in stay neutral
+float on = step(0.004, M.r + M.g + M.b);
+float t = lerp(0.5, saturate(M.b), on);
+float strand = lerp(0.5, M.g, on);
+float depth = lerp(0.7, saturate(M.r), on);
+float3 c = C * T;
+c *= lerp(RootShade, 1.0, smoothstep(0.0, 0.5, t));              // darker at the root, where hair lies on hair
+c *= lerp(1.0, TipLight, smoothstep(0.45, 1.0, t));              // lighter, sun-bleached tips
+c *= 1.0 + Variation * (strand * 2.0 - 1.0);                     // strand to strand
+c *= lerp(DepthShade, 1.0, depth);                               // strands deep in the lock are in its shade
+return c;''', F3, ['C', 'T', 'M', 'RootShade', 'TipLight', 'Variation', 'DepthShade'], 'Hair colour: root to tip, strand to strand, depth')
+    link(bc, 'RGB', colour, 'C'); link(tint, '', colour, 'T'); link(msk, 'RGB', colour, 'M')
+    link(param('RootShade', 0.85), '', colour, 'RootShade'); link(param('TipLight', 1.1), '', colour, 'TipLight')
+    link(param('StrandVariation', 0.18), '', colour, 'Variation'); link(param('DepthShade', 0.8), '', colour, 'DepthShade')
+    out(colour, '', MP.MP_BASE_COLOR)
+    out(param('Scatter', 0.7), '', MP.MP_METALLIC)
+    out(param('Specular', 0.5), '', MP.MP_SPECULAR)
+    rough = custom(mat, -600, 300, 'return clamp(R * S, 0.3, 1.0);', F1, ['R', 'S'], 'Hair roughness')
+    link(orm, 'G', rough, 'R'); link(param('RoughnessScale', 1.0), '', rough, 'S')
+    out(rough, '', MP.MP_ROUGHNESS)
+    ao = custom(mat, -600, 420, 'return lerp(1.0, A, saturate(S));', F1, ['A', 'S'], 'Hair occlusion')
+    link(orm, 'R', ao, 'A'); link(param('AOStrength', 1.0), '', ao, 'S')
+    out(ao, '', MP.MP_AMBIENT_OCCLUSION)
+    # strand direction: FLOW.rg is in the atlas plane with v up (a Blender image); the engine's tangent space has
+    # its second axis down the texture, so the second component changes sign (FlowFlip -1 restores the old reading)
+    along = custom(mat, -600, 600, 'float2 d = F.rg * 2.0 - 1.0; d.y *= -Flip; return normalize(float3(d, 0.0) + float3(0.0, 1e-4, 0.0));', F3, ['F', 'Flip'], 'Strand direction')
+    link(flow, 'RGB', along, 'F'); link(param('FlowFlip', 1.0), '', along, 'Flip')
+    out(along, '', MP.MP_NORMAL)
+    back = custom(mat, -600, 760, 'return saturate(B * Amount);', F1, ['B', 'Amount'], 'Light through the hair')
+    link(flow, 'B', back, 'B'); link(param('Backlit', 1.0), '', back, 'Amount')
+    mat.set_editor_property('shading_model', unreal.MaterialShadingModel.MSM_HAIR)
+    if not unreal.DinkCharacterArtLibrary.connect_material_custom_data(mat, back, '', 0):
+        raise RuntimeError(f'{name}: cannot connect the Backlit pin of the Hair shading model')
+    # coverage: the strand alpha itself, thinned towards the tips; dithered, so the anti-aliasing resolves it to soft hair
+    mask = custom(mat, -600, -150, '''
+float on = step(0.004, M.r + M.g + M.b);
+float t = lerp(0.5, saturate(M.b), on);
+return saturate(A * Gain * lerp(1.0, TipFade, smoothstep(0.7, 1.0, t)) + Bias);''', F1, ['A', 'M', 'Gain', 'TipFade', 'Bias'], 'Hair coverage')
+    link(bc, 'A', mask, 'A'); link(msk, 'RGB', mask, 'M')
+    link(param('AlphaGain', 1.15), '', mask, 'Gain'); link(param('TipFade', 0.7), '', mask, 'TipFade'); link(param('AlphaBias', 0.0), '', mask, 'Bias')
+    out(mask, '', MP.MP_OPACITY_MASK)
+    mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_MASKED)
+    mat.set_editor_property('opacity_mask_clip_value', 0.5)
+    mat.set_editor_property('dither_opacity_mask', True)
+    mat.set_editor_property('two_sided', True)
+    EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_SKELETAL_MESH, True)
+    if morph:
+        EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_MORPH_TARGETS, True)
+    EDIT.recompile_material(mat)
+    save(mat)
+    return mat
+
+
 def import_static(fbx_lods, folder, name, import_normals, lods_in_file=False):
     target = folder + '/' + name
     key = '|'.join(stamp_of(f) for f in fbx_lods)
@@ -790,12 +879,28 @@ for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', '
         for role, rel in row['textures'].items():
             tex[role] = import_texture(HERO / rel, tex_folder, 'BCA' if (role == 'BC' and masked) else role)
         kind = 'skin' if 'SSS' in tex else 'hair' if 'Hair' in mat_name else 'eye' if 'Eyes' in mat_name else 'lit'
-        parent = surface_material(folder, 'M_' + mat_name[3:], tex, skeletal=True, shading=kind, masked=masked, two_sided=masked,
-                                  profile=profile if kind == 'skin' else None, morph=has_shapes)
+        if kind == 'hair' and HAIR_MODEL == 'hair' and 'FLOW' in tex and 'MSK' in tex:
+            parent = hair_material(folder, 'M_' + mat_name[3:], tex, morph=has_shapes)
+        else:
+            parent = surface_material(folder, 'M_' + mat_name[3:], tex, skeletal=True, shading=kind, masked=masked, two_sided=masked,
+                                      profile=profile if kind == 'skin' else None, morph=has_shapes)
         materials[mat_name] = instance(folder, mat_name, parent, tex, {'ScatterAmount': 0.35} if kind == 'skin' else None)
         # Calibrated 12 Nov 2026 against Characters/contact_sheet.png (face close-up in sun, dink.CalCam): at the full
         # scatter strength the face blew out pale and flat (freckles, lids and nose shading gone); the hair read brown.
         look = {'skin': (0.86, 0.82, 0.80), 'hair': (1.4, 1.2, 1.05)}.get(kind)
+        if kind == 'hair' and HAIR_MODEL == 'hair':
+            # The Hair model scatters light through the strands, so the atlas colour needs no brightening; the tint
+            # only trims the hue per character (calibrated in the running game, see HAIR_LOOK). DINK_HAIR_TINT_<Name>
+            # ("r,g,b") and DINK_HAIR_PARAMS ("Scatter=0.6,Backlit=0.8") override it for a calibration run.
+            look = HAIR_LOOK.get(CHAR, {}).get('tint', (1.0, 1.0, 1.0))
+            env = os.environ.get('DINK_HAIR_TINT_' + CHAR)
+            if env:
+                look = tuple(float(x) for x in env.split(','))
+            scal = dict(HAIR_LOOK.get(CHAR, {}).get('scalars', {}))
+            for item in filter(None, os.environ.get('DINK_HAIR_PARAMS', '').split(',')):
+                scal[item.split('=')[0]] = float(item.split('=')[1])
+            for k, v in scal.items():
+                EDIT.set_material_instance_scalar_parameter_value(materials[mat_name], k, float(v))
         if look:
             EDIT.set_material_instance_vector_parameter_value(materials[mat_name], 'Tint', unreal.LinearColor(look[0], look[1], look[2], 1.0))
             EDIT.update_material_instance(materials[mat_name])

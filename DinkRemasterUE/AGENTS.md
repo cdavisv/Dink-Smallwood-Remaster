@@ -1,3 +1,11 @@
+## Character hair: Hair shading model on cards, calibrated in the game (14 November 2026)
+
+Owner: "improve hair". Evidence and the remaining faults: `Docs/Verification/CharacterHair_14Nov2026/`.
+- `Scripts/import_photoreal_art.py` `hair_material` builds the hair-card material with the engine's Hair shading model (masked, two-sided, dithered; FLOW map = strand direction, MSK map = root-to-tip / strand / depth). Its back-light input is a custom-data pin that Python cannot reach: `UDinkCharacterArtLibrary::ConnectMaterialCustomData` (DinkImport, editor only) connects it, so **the editor must be built before the character import**. `DINK_HAIR_MODEL=lit` builds the old default-lit material; `DINK_HAIR_TINT_<Name>` and `DINK_HAIR_PARAMS` override `HAIR_LOOK` for a calibration run.
+- `HAIR_LOOK` holds the per-character tint and scalars. They were set from captures, not from the Blender renders: the Hair model absorbs far more than Cycles' card material, and root-to-tip shading on hair that is painted on an opaque cap draws shingles (the Mother has none).
+- Over a painted cap, cards must be thin and wisp tiles: dense tiles read as planks. A coil needs about 28 segments.
+- `garlib.clear_of_skin` skips vertices whose nearest skin point is on the cut edge of culled skin (they were thrown up to 3 cm). `DINK_PHOTOREAL_ONLY=hero` imports only the hero; the three characters are `hero,mother,milder`.
+
 ## Hero garments: rims re-cut after decimation, charts that do not fold (14 November 2026)
 
 Owner: "dinks arms look odd around the arm pit". Evidence: `Docs/Verification/HeroGarments_14Nov2026/`. Rules that came out of it, for anyone who builds a garment with `Characters/Tools`:

@@ -58,7 +58,10 @@ def neck_q(P):   # open round neckline: an ellipsoid scoop (deeper in front) joi
     return np.sqrt((P[:, 0] / .086) ** 2 + ((P[:, 1] + .030) / .093) ** 2 + ((P[:, 2] - 1.525) / .096) ** 2)      # 12 Nov: smaller scoop, it stays inside the chest skin patch
 def neck_f(P):
     r = np.sqrt(P[:, 0] ** 2 + (P[:, 1] - .008) ** 2)
-    return np.maximum(1 - neck_q(P), np.minimum(.080 - r, P[:, 2] - 1.44))
+    # the scoop and the neck column join in a rounded corner (a smooth maximum over 8 mm; the scoop's field is brought
+    # to metres first). The hard maximum left a notch with a folded tab at each side of the front neckline.
+    a = (1 - neck_q(P)) * .09; b = np.minimum(.080 - r, P[:, 2] - 1.44); k = .008
+    return k * np.logaddexp(a / k, b / k)
 implicit_cut(bd, neck_f)
 def bod_class(C, Nn):
     s = folds.arm_h(C)
@@ -78,7 +81,14 @@ def bod_seams(p):
     nk = np.abs((neck_q(p) - 1) * .105 - .006) + (z < 1.36) * BIG                 # top-stitched neckline binding
     st = np.minimum.reduce([np.abs(seam - .0045), nk, np.abs(h + .010), np.abs(cfront - .011)])
     return seam, st
-bod, bod_hi = G.finish(bd, bodice_fold, 3000, bod_class, bod_charts, 'linen_red', 'Bodice', lip=None, seams=bod_seams, hi_levels=1)
+RIM = .0045      # the second cut sits this far inside the first, clear of every vertex the decimation moved
+# Which openings are cut again after the decimation (PR_BOD_RECUT, letters a n w; default: none). Review b2 of 13 Nov
+# 2026: with all three re-cut the shoulder seam stood over the sleeve heads as a ledge and the neckline opened wider
+# than the skin kept under it (a dark gap at the collarbone); the master build had neither.
+_rc = os.environ.get('PR_BOD_RECUT', '')
+BOD_RECUT = tuple(f for k_, f in (('a', lambda P: folds.arm_h(P) - .006 + RIM), ('w', lambda P: (ZW - .030) - P[:, 2] + RIM), ('n', lambda P: neck_f(P) + RIM)) if k_ in _rc)
+bod, bod_hi = G.finish(bd, bodice_fold, 3000, bod_class, bod_charts, 'linen_red', 'Bodice', lip=None, seams=bod_seams, hi_levels=1,
+                       recut=BOD_RECUT)
 _skin_bvh = bvh_of(D['Skin'])
 def hug_neck(o, off=.0060):
     """The neckline lies on the skin: cloth within about 2 cm of the opening is drawn down to the chest (no dark slit under the hem)."""
@@ -89,6 +99,8 @@ def hug_neck(o, off=.0060):
         c[i] = c[i] * (1 - w[i]) + (np.array(loc) + np.array(nrm) * off) * w[i]; n_ += 1
     set_co(o.data, c); log('neckline hugged to skin', o.name, n_)
 hug_neck(bod); hug_neck(bod_hi)
+# the skin of the shoulders rises above the dress volume beside the neck and showed through the bodice in patches
+clear_of_skin(bod, _skin_bvh, .0045, mask=lambda c: c[:, 2] > 1.30); clear_of_skin(bod_hi, _skin_bvh, .0045, mask=lambda c: c[:, 2] > 1.30)
 smooth_boundary(bod, it=8)       # an even hem line before it gets its thickness
 add_lips(bod, .0028, .011, select=lambda c: c.z > 1.38 and (c.x ** 2 + c.y ** 2) ** .5 < .16)
 made += [bod, bod_hi]
@@ -131,6 +143,8 @@ for sg, sd in ((1, 'l'), (-1, 'r')):
     under = np.minimum(t_, 2 * np.pi - t_) * r_
     G.put(hi, 'd_seam', np.minimum(under, np.abs(s_ - (SL - .020)))); G.put(hi, 'd_stitch', np.minimum.reduce([np.abs(under - .0045), np.abs(s_ - (SL - .006)), np.abs(s_ - (SL - .016))]))
     for o in (lo, hi): G.set_chart(o, 1 if sg > 0 else 2); G.tag(o, 'linen_red', 'outfit'); smooth_shade(o)
+    # the cuff sat 3 mm off a scanned arm radius and the arm skin came through it in a ragged line
+    for o in (lo, hi): clear_of_skin(o, _skin_bvh, .0045)
     add_lips(lo, .0022, .010, select=lambda c: abs(c.x) > .22)
     made += [lo, hi]
 

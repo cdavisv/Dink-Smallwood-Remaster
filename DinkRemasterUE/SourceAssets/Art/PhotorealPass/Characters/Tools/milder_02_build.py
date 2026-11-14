@@ -55,7 +55,7 @@ def tab_fold(p, fine):
 def tab_class(C, Nn):
     front = (C[:, 1] + .02) < 0
     return np.where(C[:, 2] > 1.40, np.where(C[:, 1] < 0, 13, 14), np.where(front, np.where(C[:, 0] > 0, 11, 15), 12))
-tab_charts = {13: ('planar', (0, 0, 1.3), (1, 0, 0), (0, -.6, .8)), 14: ('planar', (0, 0, 1.3), (-1, 0, 0), (0, .6, .8)),
+tab_charts = {13: ('planar', (0, 0, 1.3), (1, 0, 0), (0, .6, .8)), 14: ('planar', (0, 0, 1.3), (-1, 0, 0), (0, -.6, .8)),
               11: ('cyl', TA, (0, -1, 0), .16), 15: ('cyl', TA, (0, -1, 0), .16), 12: ('cyl', TA, (0, 1, 0), .16)}
 def tab_seams(p):
     BIG = 1.0; z = p[:, 2]; x = np.abs(p[:, 0]); y = p[:, 1]
@@ -63,7 +63,9 @@ def tab_seams(p):
     seam = np.minimum(side, shoulder); ah = folds.arm_h(p)
     st = np.minimum.reduce([np.abs(seam - .0045), np.abs(ah + .003), np.abs(ah + .008), np.abs(neck_r(p) - .124) + (z < 1.39) * 1.0, np.abs(z - hemz(p) - .008), np.abs(z - hemz(p) - .013)])
     return seam, st
-tab, tab_hi = G.finish(jk, tab_fold, 1900, tab_class, tab_charts, 'leather_tabard', 'Tabard', lip=(.003, .014), seams=tab_seams)
+RIM = .0045      # the second cut sits this far inside the first, clear of every vertex the decimation moved
+tab, tab_hi = G.finish(jk, tab_fold, 1900, tab_class, tab_charts, 'leather_tabard', 'Tabard', lip=(.003, .014), seams=tab_seams,
+                       recut=(lambda P: folds.arm_h(P) - .036 + RIM, lambda P: np.minimum(.116 - neck_r(P), P[:, 2] - 1.40) + RIM, lambda P: hemz(P) - P[:, 2] + RIM))
 made += [tab, tab_hi]
 
 # ------------------------------------------------------------------ BLUE PADDED COLLAR
@@ -101,6 +103,8 @@ def cowl(nu, nr, name, fine):
 col, _, _ = cowl(36, 12, 'Collar', False); col_hi, sm_, st_ = cowl(288, 96, 'Collar_HI', True)
 G.put(col_hi, 'd_seam', sm_); G.put(col_hi, 'd_stitch', st_)
 for o in (col, col_hi): G.set_chart(o, 1); G.tag(o, 'wool_blue', 'outfit'); smooth_shade(o)
+# the skin of the shoulders rises through the padded collar behind the neck (a hole with torn edges in the game)
+for o in (col, col_hi): clear_of_skin(o, sbvh, .005)
 add_lips(col, .004, .010, select=lambda c: c.z < 1.47)
 made += [col, col_hi]
 
