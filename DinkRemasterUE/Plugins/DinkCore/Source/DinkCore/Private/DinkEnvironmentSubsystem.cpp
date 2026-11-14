@@ -1224,6 +1224,54 @@ void UDinkEnvironmentSubsystem::ApplyDecals(int32 ScreenNumber)
 		It->Card->SetHiddenInGame(true);
 		++Count;
 	}
+	// Background placements (the original's type 0, baked into the screen as instances): one decor component draws one
+	// sprite frame. It is replaced only when every instance in it may be (hiding single instances would mean editing the
+	// greybox's instance data), the same rule the family layer follows.
+	for (TActorIterator<ADinkGreyboxScreen> It(GetWorld()); It; ++It)
+	{
+		if (It->ScreenNumber != ScreenNumber || !It->InstanceOrigins || !It->GetRootComponent() || It->ActorHasTag(TEXT("DinkAuthoredArt"))) continue;
+		TMap<FName, TArray<const FDinkInstanceOrigin*>> ByComponent;
+		for (const FDinkInstanceOrigin& O : It->InstanceOrigins->Origins) ByComponent.FindOrAdd(O.ComponentName).Add(&O);
+		TInlineComponentArray<UInstancedStaticMeshComponent*> Components(*It);
+		for (const auto& Pair : ByComponent)
+		{
+			UInstancedStaticMeshComponent* Decor = nullptr;
+			for (UInstancedStaticMeshComponent* C : Components) if (C->GetFName() == Pair.Key) Decor = C;
+			if (!Decor || Decor->bHiddenInGame) continue;
+			const FDinkDecalClass* Decal = nullptr;
+			bool bAll = true;
+			for (const FDinkInstanceOrigin* O : Pair.Value)
+			{
+				const FDinkDecalClass* D = DecalClasses.Find(O->ClassId);
+				if (!D || (Decal && D != Decal) || !O->ScriptName.IsNone() || (Families && Families->GetPrecedence().Origins.Contains(O->OriginId.ToString()))
+					|| StateSwaps.ContainsByPredicate([&](const FDinkStateSwap& S) { return S.Screen == ScreenNumber && S.HideClasses.Contains(O->ClassId); }))
+				{
+					bAll = false;
+					break;
+				}
+				Decal = D;
+			}
+			if (!bAll || !Decal) continue;
+			int32 Made = 0;
+			for (const FDinkInstanceOrigin* O : Pair.Value)
+			{
+				FTransform Card;
+				if (!Decor->GetInstanceTransform(O->InstanceIndex, Card, /*bWorldSpace*/ true)) continue;
+				const FString Origin = O->OriginId.ToString();
+				UDecalComponent* C = NewObject<UDecalComponent>(*It, FName(*FString::Printf(TEXT("EnvDecal_%s"), *Origin)));
+				C->SetupAttachment(It->GetRootComponent());
+				C->SetDecalMaterial(Decal->Materials[int32(FCrc::StrCrc32(*Origin) % uint32(Decal->Materials.Num()))]);
+				C->DecalSize = FVector(40.0, Decal->SizeCm * 0.5, Decal->SizeCm * 0.5);
+				// the greybox ground is world Z 0 (the family layer stands its instances on the same plane)
+				C->SetWorldLocationAndRotation(FVector(Card.GetLocation().X, Card.GetLocation().Y, 0.0), FRotator(-90.0, DinkArtFamily::StableYaw(Origin), 0.0));
+				It->AddInstanceComponent(C);
+				C->RegisterComponent();
+				++Made;
+			}
+			if (Made > 0) Decor->SetHiddenInGame(true);
+			Count += Made;
+		}
+	}
 	if (Count > 0) UE_LOG(LogDink, Display, TEXT("DINK ENV: %d ground decals on screen %d"), Count, ScreenNumber);
 }
 
