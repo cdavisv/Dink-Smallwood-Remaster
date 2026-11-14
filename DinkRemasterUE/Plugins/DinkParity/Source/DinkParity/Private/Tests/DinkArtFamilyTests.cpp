@@ -130,7 +130,7 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 		Counter.Card = FBox2D(FVector2D(1000, 2000), FVector2D(1680, 2340));
 		Counter.Mesh = FBox(FVector(1240, 2260, 0), FVector(1440, 2340, 95));
 		Wall.Card = FBox2D(FVector2D(900, 1500), FVector2D(1900, 2400));
-		Wall.Mesh = FBox(FVector(900, 1900, 0), FVector(1900, 1930, 280));
+		Wall.Mesh = FBox(FVector(900, 1900, 0), FVector(1900, 1930, 299));
 		Tree.Card = FBox2D(FVector2D(3000, 0), FVector2D(5000, 3000));
 		Tree.Mesh = FBox(FVector(3600, 2600, 0), FVector(4400, 3400, 1000));
 		const TArray<DinkArtFamily::FMountHost> Hosts = {Wall, Counter, Tree};
@@ -147,7 +147,7 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 		TestTrue(TEXT("crown: in the upper part of the tree, on its south side"), At.Z > 450 && At.Z < 1000 && At.Y > 3000 && At.Y < 3400 && At.X > 3600 && At.X < 4400);
 		TestFalse(TEXT("crown: a counter has none"), DinkArtFamily::MountPoint(2, FVector2D(1340, 2080), Hosts, At));
 		TestTrue(TEXT("wall: on the wall behind"), DinkArtFamily::MountPoint(3, FVector2D(1800, 1700), Hosts, At));
-		TestTrue(TEXT("wall: on its south face, between floor and top"), At.Y > 1930 && At.Y < 1932 && At.Z > 0 && At.Z < 280);
+		TestTrue(TEXT("wall: on its south face, between floor and top"), At.Y > 1930 && At.Y < 1932 && At.Z > 0 && At.Z < 299);
 		TestFalse(TEXT("no host under the point: the card stays"), DinkArtFamily::MountPoint(1, FVector2D(100, 100), Hosts, At));
 	}
 	TArray<FString> SchemaErrors;
