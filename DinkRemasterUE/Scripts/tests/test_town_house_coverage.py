@@ -116,5 +116,33 @@ class TownHouseCoverageTests(unittest.TestCase):
         self.assertEqual(sum(b['cards'] for b in data['buildings']), 218)
 
 
+class StructureSetCoverageTests(unittest.TestCase):
+    """structure_sets.json (Scripts/assemble_structures.py) goes through the same rule with its own name in the evidence."""
+
+    def sets(self):
+        fence = '/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR.SM_Fence_SplitRail_4m_PR'
+        return {'schema': 'dink-town-houses/3',
+                'screens': {'441': {'houses': [{'id': 'S441_fence1', 'kind': 'fence', 'modules': [module(fence), module(fence)], 'hide': ['S441_P03', 'S441_P04']},
+                                               {'id': 'S441_well1', 'kind': 'well', 'modules': [], 'hide': ['S441_P09']}],
+                                    'stands_for': {'S441_P03': 'S441_fence1', 'S441_P04': 'S441_fence1', 'S441_P09': 'S441_well1'}}}}
+
+    def cards(self, resolve=all_exist):
+        return town_house_cards(self.sets(), resolve, source='structure_sets.json', label='structure-set', what='structure set')
+
+    def test_a_card_a_run_stands_for_is_final_and_says_which_file(self):
+        cards = self.cards()
+        self.assertEqual(cards['S441_P03'][0], 'final')
+        self.assertTrue(cards['S441_P03'][1].startswith('structure-set: structure_sets.json house S441_fence1 (2 modules of 1 kit meshes) stands for this card'))
+
+    def test_a_set_without_modules_or_with_a_missing_mesh_is_not_final(self):
+        self.assertEqual(self.cards()['S441_P09'][0], 'placeholder')
+        missing = lambda path: (False, 'missing')
+        cards = self.cards(missing)
+        self.assertEqual(cards['S441_P03'][0], 'placeholder')
+
+    def test_no_file_means_no_cards(self):
+        self.assertEqual(town_house_cards(None, all_exist, source='structure_sets.json'), {})
+
+
 if __name__ == '__main__':
     unittest.main()

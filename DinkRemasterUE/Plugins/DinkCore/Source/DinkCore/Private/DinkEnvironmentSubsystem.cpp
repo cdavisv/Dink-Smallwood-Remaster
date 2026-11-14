@@ -1049,9 +1049,16 @@ void UDinkEnvironmentSubsystem::UpdateStateSwaps()
 
 void UDinkEnvironmentSubsystem::LoadTownHouses()
 {
+	// Two files, one schema: the town houses (Scripts/assemble_town_houses.py) and the structures drawn in several sprites
+	// (Scripts/assemble_structures.py: fence runs, bridges, wells). A screen may be in both.
+	for (const TCHAR* File : { TEXT("Dink/Data/Art/town_houses.json"), TEXT("Dink/Data/Art/structure_sets.json") }) LoadTownHouseFile(File);
+}
+
+void UDinkEnvironmentSubsystem::LoadTownHouseFile(const TCHAR* ContentRelativePath)
+{
 	FString Text;
 	TSharedPtr<FJsonObject> Root;
-	if (!FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Art/town_houses.json")))
+	if (!FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / ContentRelativePath))
 		|| !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) || !Root.IsValid()) return;
 	const TSharedPtr<FJsonObject>* ScreensObject = nullptr;
 	if (!Root->TryGetObjectField(TEXT("screens"), ScreensObject) || !ScreensObject) return;
@@ -1059,7 +1066,7 @@ void UDinkEnvironmentSubsystem::LoadTownHouses()
 	{
 		const TSharedPtr<FJsonObject>* Row = nullptr;
 		if (!Pair.Value->TryGetObject(Row) || !Row) continue;
-		FDinkTownScreen& Screen = TownScreens.Add(FCString::Atoi(*FString(Pair.Key.ToView())));
+		FDinkTownScreen& Screen = TownScreens.FindOrAdd(FCString::Atoi(*FString(Pair.Key.ToView())));
 		const TArray<TSharedPtr<FJsonValue>>* Prints = nullptr;
 		if ((*Row)->TryGetArrayField(TEXT("footprints"), Prints) && Prints)
 		{
