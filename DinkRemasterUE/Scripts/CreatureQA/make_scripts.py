@@ -2,7 +2,7 @@
 """Write capture scripts (Scripts/PhotorealQA/run_capture.sh format) for a class-bound creature.
 
     python3 -I Scripts/CreatureQA/make_scripts.py --out Saved/PhotorealPass/creatures/pillbug --name pillbug \\
-        --play 527:300:250 --play 106:300:200 --close 527:300:250 --kill 527:300:250 --crowd 715:300:200
+        --play 527:300:250 --over 30:300:250 --over-low 106:300:200 --close 527:300:250 --kill 527:300:250 --crowd 715:300:200
 
 Each <screen>:<mapx>:<mapy> is where the player stands. For every script a twin is written whose shots go to
 <out>/before: run that one with the extra argument -dpcvars=dink.CreatureClassArt=0 (sprite cards). The scripts use
@@ -60,6 +60,16 @@ def kill(tag, screen, x, y, blows):
     return lines
 
 
+def over(tag, screen, x, y, shots, gap, camera):
+    """A fixed camera above and south of the player's spot, as the 1997 screen was seen: every creature of the screen in
+    one picture wherever its brain has taken it. `camera` = x y z tx ty tz hfov (cm from the spot, world axes)."""
+    lines = ["dink.Goto %d %d %d" % (screen, x, y), "wait 4", "dink.CalAnchor", "dink.CalCam %s 1" % camera, "wait 0.5", "dink.CreatureClasses"]
+    for i in range(shots):
+        lines += ["shot <OUT>/%s_s%d_over_%02d.png" % (tag, screen, i), "wait %s" % gap]
+    lines += ["dink.CalCam off"]
+    return lines
+
+
 def crowd(tag, screen, x, y):
     lines = ["dink.Goto %d %d %d" % (screen, x, y), "wait 6", "fps %s_s%d_settle" % (tag, screen), "wait 10",
              "fps %s_s%d_crowd" % (tag, screen), "shot <OUT>/%s_s%d_crowd.png" % (tag, screen), "wait 1", "dink.CreatureClasses"]
@@ -74,6 +84,11 @@ def main():
     ap.add_argument("--close", action="append", default=[], type=spot)
     ap.add_argument("--kill", action="append", default=[], type=spot)
     ap.add_argument("--crowd", action="append", default=[], type=spot)
+    ap.add_argument("--over", action="append", default=[], type=spot, help="fixed camera above the spot (whole screen)")
+    ap.add_argument("--over-low", action="append", default=[], type=spot, help="the same under a ceiling (interiors)")
+    ap.add_argument("--over-camera", default="0 1700 1250 0 -350 0 75")
+    ap.add_argument("--over-low-camera", default="0 900 330 0 -500 40 85")
+    ap.add_argument("--over-shots", type=int, default=3)
     ap.add_argument("--shots", type=int, default=6)
     ap.add_argument("--gap", default="0.25")
     ap.add_argument("--close-distance", type=int, default=170)
@@ -85,6 +100,10 @@ def main():
     body = []
     for s in args.play:
         body += play(args.name, *s, args.shots, args.gap)
+    for s in args.over:
+        body += over(args.name, *s, args.over_shots, "0.5", args.over_camera)
+    for s in args.over_low:
+        body += over(args.name, *s, args.over_shots, "0.5", args.over_low_camera)
     for s in args.close:
         body += close(args.name, *s, args.shots, args.gap, args.close_distance)
     for s in args.kill:
