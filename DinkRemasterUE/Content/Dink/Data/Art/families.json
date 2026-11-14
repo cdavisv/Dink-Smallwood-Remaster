@@ -1125,6 +1125,131 @@
       "scripted": true,
       "note": "55 bonuses/bottles (blue, defense) and the megapotion that starts on the blue picture: the flask with the blue glass tint. A pickup: the script (touch) adds the stat, shrinks the sprite and kills it, so the mesh goes with the actor; the shrink and the idle shimmer of the sprite are not shown. Real size (a 36 cm flask), not the card size. Gate 2 batch 1, 13 Nov 2026: scale 1.3 (a 47 cm flask): at real size it could not be seen from the play camera, at the size of the 1997 picture it would be absurd close up.",
       "scale": 1.3
+    },
+    {
+      "family": "421 items/food/food- drumstick on a table",
+      "frame": 1,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Ham_Leg_PR.SM_Ham_Leg_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [70],
+      "mount": "on",
+      "note": "421 frame 1: the cured ham leg, as for frame 2. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "421 items/food/food- green fruit",
+      "frame": 19,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Pepper_Green_PR.SM_Pepper_Green_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [70],
+      "mount": "on",
+      "note": "421 frame 19: green pepper. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "421 items/food/food- pumpkin",
+      "frame": 21,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Pumpkin_PR.SM_Pumpkin_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [70],
+      "mount": "on",
+      "note": "421 frame 21: small pumpkin. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "421 items/food/food- tomato",
+      "frame": 22,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Tomato_PR.SM_Tomato_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [70],
+      "mount": "on",
+      "note": "421 frame 22: tomato. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "421 items/food/food- aubergine",
+      "frame": 25,
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Aubergine_PR.SM_Aubergine_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [70],
+      "mount": "on",
+      "note": "421 frame 25: aubergine. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "food_cheese",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Cheese_Wheel_PR.SM_Cheese_Wheel_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [70],
+      "mount": "on",
+      "note": "421 frame 9: small cheese wheel. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "food_grapes",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Grapes_PR.SM_Grapes_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [70],
+      "mount": "on",
+      "note": "421 frame 14: bunch of dark grapes. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "food_bread",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Bread_Braided_PR.SM_Bread_Braided_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [70],
+      "mount": "on",
+      "note": "421 frame 7: braided loaf. The scripted loaf of screen 99 keeps its card. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "bomb_item",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Bomb_PR.SM_Bomb_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [228],
+      "mount": "on",
+      "note": "420 frame 1: the three bombs on the shelf of the shop of screen 228. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "arrow_prop",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Arrow_PR.SM_Arrow_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [97],
+      "mount": "on",
+      "note": "25: the arrows on display on the counter of the bow shop (screen 97) lie on it. The four on the range of screen 663 have nothing under them and keep their cards. Gate 2 placement modes, 13 Nov 2026: mount on: the sprite is drawn on a counter, table or shelf; the mesh stands on the top of the dressed placement under it (a placement that finds none keeps its card)."
+    },
+    {
+      "family": "poster_hark",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Notice_Hark_PR.SM_Notice_Hark_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "screens": [33, 195, 225, 226],
+      "mount": "wall",
+      "note": "462 frame 3. Gate 2 placement modes, 13 Nov 2026: mount wall: flat against the south face of the dressed wall the sprite is drawn over, facing the room. scripted: the notice's script only talks."
+    },
+    {
+      "family": "poster_wanted",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Notice_Wanted_PR.SM_Notice_Wanted_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "screens": [35],
+      "mount": "wall",
+      "note": "462 frame 2. Gate 2 placement modes, 13 Nov 2026: mount wall, as poster_hark. scripted: the poster's script only talks."
+    },
+    {
+      "family": "tree_fruit",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Acorn_Hanging_PR.SM_Acorn_Hanging_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "screens": [442],
+      "mount": "crown",
+      "scale": 3.0,
+      "note": "421 frame 23: the nuts of the AlkTree (screens 442 and 474). Gate 2 placement modes, 13 Nov 2026: mount crown: in the crown of the dressed tree the sprite is drawn over, on the side that faces the camera. scale 3 (a 21 cm nut): at its 7 cm it cannot be seen in a crown from the play camera. The nut a script drops (s1-ntree) shows the same mesh."
     }
   ],
   "collision_fit": {
