@@ -442,3 +442,37 @@ bool FDinkBowInitPoseTest::RunTest(const FString& Parameters)
 	CheckOriginal(*this, TEXT("s7-mil"), { TEXT("pose 580 75 41 129 -30 -16 31 10") });
 	return true;
 }
+
+// The keyboard path the game uses (FDinkNarrativeInputProcessor: F / Left Ctrl down -> InputAttackPressed, up -> InputAttackReleased, through the
+// attack gate), not the PlayerAttackPress API: holding the key draws the bow, letting go shoots (process_bow, dink.cpp:14600-14620). The alpha
+// review had the bow's input binding reported missing; this pins that the game's own key path reaches it.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkBowKeyboardTest, "Dink.Gameplay.Bow.AttackKeyDrawsAndShoots", DINK_TEST_FLAGS)
+bool FDinkBowKeyboardTest::RunTest(const FString& Parameters)
+{
+	FEnv E = Make(*this);
+	if (!E.IsValid())
+	{
+		return false;
+	}
+	TestTrue(TEXT("the key going down starts item-b1 use"), E.G->InputAttackPressed());
+	TestTrue(TEXT("the bow is drawn"), E.G->IsBowActive());
+	E.G->InputAttackPressed(); // an OS auto-repeat while held: ignored by the gate
+	Frame(E, 90);
+	TestTrue(TEXT("still drawn while the key is held"), E.G->IsBowActive());
+	TestEqual(TEXT("full power after 1.5 s"), E.G->GetBowPower(), UDinkGameplay::BowMaxPower);
+	TestEqual(TEXT("no arrow yet"), FindByScript(E, TEXT("dam-a1")), 0);
+	E.G->InputAttackReleased();
+	Frame(E);
+	TestFalse(TEXT("the key up puts the bow down"), E.G->IsBowActive());
+	TestEqual(TEXT("at power 500"), E.G->GetLastBowPower(), UDinkGameplay::BowMaxPower);
+	TestTrue(TEXT("and shoots an arrow"), FindByScript(E, TEXT("dam-a1")) != 0);
+	// A quick tap through the same path: power 0, no second arrow (item-b1.c: nothing below 100).
+	Frame(E, 200);
+	TestTrue(TEXT("a tap draws"), E.G->InputAttackPressed());
+	E.G->InputAttackReleased();
+	Frame(E);
+	TestFalse(TEXT("and lets go"), E.G->IsBowActive());
+	TestEqual(TEXT("power 0"), E.G->GetLastBowPower(), 0);
+	TestEqual(TEXT("no arrow"), FindByScript(E, TEXT("dam-a1")), 0);
+	return true;
+}
