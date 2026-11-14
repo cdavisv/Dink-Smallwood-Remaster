@@ -1,4 +1,6 @@
 #include "DinkArtFamilySubsystem.h"
+#include "Components/MaterialBillboardComponent.h"
+#include "Materials/MaterialInterface.h"
 #include "DinkCoreModule.h"
 #include "DinkEnvironmentSubsystem.h"
 #include "DinkInstanceOriginsComponent.h"
@@ -22,6 +24,7 @@
 
 const FName UDinkArtFamilySubsystem::FamilyTag(TEXT("DinkFamilyArt"));
 const FName UDinkArtFamilySubsystem::ScriptSpriteTag(TEXT("DinkScriptFamilyArt"));
+const FName UDinkArtFamilySubsystem::ScriptEffectTag(TEXT("DinkScriptFamilyEffect"));
 
 namespace
 {
@@ -192,12 +195,18 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 			continue;
 		}
 		B.Family = B.Family.TrimStartAndEnd();
-		if (!(*Row)->TryGetStringField(TEXT("mesh"), B.Mesh) || !B.Mesh.StartsWith(TEXT("/Game/")))
+		if ((*Row)->TryGetStringField(TEXT("effect"), B.Effect) && B.Effect.StartsWith(TEXT("/Game/")) && !(*Row)->HasField(TEXT("mesh")))
+		{
+			B.Effect = NormaliseObjectPath(B.Effect);
+			(*Row)->TryGetNumberField(TEXT("effect_size_cm"), B.EffectSizeCm);
+			B.EffectSizeCm = FMath::Clamp(B.EffectSizeCm, 1.0, 1000.0);
+		}
+		else if (!(*Row)->TryGetStringField(TEXT("mesh"), B.Mesh) || !B.Mesh.StartsWith(TEXT("/Game/")))
 		{
 			Errors.Add(FString::Printf(TEXT("%s: mesh must be a /Game/ object path"), *B.Family));
 			continue;
 		}
-		B.Mesh = NormaliseObjectPath(B.Mesh);
+		if (B.Effect.IsEmpty()) B.Mesh = NormaliseObjectPath(B.Mesh);
 		{
 			const TArray<TSharedPtr<FJsonValue>>* VariantRows = nullptr;
 			bool bBadVariant = false;
@@ -462,6 +471,12 @@ void UDinkArtFamilySubsystem::OnWorldBeginPlay(UWorld& World)
 	// Load every bound mesh once, now, so a screen change never waits on a package load.
 	for (const FDinkFamilyBinding& B : Bindings)
 	{
+		if (!B.Effect.IsEmpty())
+		{
+			if (UMaterialInterface* M = LoadObject<UMaterialInterface>(nullptr, *B.Effect, nullptr, LOAD_NoWarn | LOAD_Quiet)) Effects.Add(B.Effect, M);
+			else UE_LOG(LogDink, Warning, TEXT("Family art: missing effect material %s for %s"), *B.Effect, *B.Family);
+			continue;
+		}
 		MeshFor(B);
 		for (const FString& Variant : B.Variants) LoadFamilyMesh(Variant, B.Family);
 		if (!B.SpanFill.IsEmpty()) LoadFamilyMesh(B.SpanFill, B.Family);
@@ -533,10 +548,46 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 	if (bReady && !bOtherLayer && Sequence > 0)
 	{
 		if (!bIndexed) BuildIndex(*World);
-		B = DinkArtFamily::Resolve(Bindings, Sequence, ClassOfPicture(Sequence, Frame), Frame);
+		// A frame no placement of the world uses (an animation's other frames) takes the class of its sequence.
+		FName Class = ClassOfPicture(Sequence, Frame);
+		if (Class.IsNone()) Class = ClassOfPicture(Sequence, 0);
+		B = DinkArtFamily::Resolve(Bindings, Sequence, Class, Frame);
 		Mesh = B ? MeshFor(*B, Key) : nullptr;
 	}
 	UStaticMeshComponent* Marker = Cast<UStaticMeshComponent>(Actor->GetRootComponent());
+	// A picture that is light, not a thing (the twinkle on gold): a camera-facing card with the row's effect material.
+	UMaterialBillboardComponent* Card = Actor->FindComponentByClass<UMaterialBillboardComponent>();
+	const TObjectPtr<UMaterialInterface>* Effect = B && !B->Effect.IsEmpty() ? Effects.Find(B->Effect) : nullptr;
+	if (Effect && *Effect)
+	{
+		if (Shown) Shown->DestroyComponent();
+		if (!Card)
+		{
+			Card = NewObject<UMaterialBillboardComponent>(Actor, TEXT("ScriptFamilyEffect"));
+			Card->SetMobility(EComponentMobility::Movable);
+			Card->SetupAttachment(Actor->GetRootComponent());
+			Card->SetUsingAbsoluteScale(true);
+			Card->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			Card->SetCanEverAffectNavigation(false);
+			Card->SetGenerateOverlapEvents(false);
+			Card->SetCastShadow(false);
+			Card->ComponentTags.Add(FamilyTag);
+			Card->ComponentTags.Add(ScriptEffectTag);
+			Actor->AddInstanceComponent(Card);
+			Card->RegisterComponent();
+		}
+		const float Half = float(B->EffectSizeCm * 0.5 * FMath::Max(double(Size) * B->Scale, double(DinkArtFamily::MinScale)));
+		Card->SetElements({});
+		Card->AddElement(*Effect, nullptr, false, Half, Half, nullptr);
+		Card->SetWorldLocation(Ground + FVector(0.0, 0.0, Half * 0.9));
+		if (Marker) Marker->SetHiddenInGame(true);
+		return true;
+	}
+	if (Card && Card->ComponentHasTag(ScriptEffectTag))
+	{
+		Card->DestroyComponent();
+		if (Marker && !bOtherLayer) Marker->SetHiddenInGame(false);
+	}
 	if (!Mesh)
 	{
 		if (Shown)
@@ -592,6 +643,7 @@ UStaticMesh* UDinkArtFamilySubsystem::LoadFamilyMesh(const FString& Path, const 
 
 UStaticMesh* UDinkArtFamilySubsystem::MeshFor(const FDinkFamilyBinding& Binding)
 {
+	if (Binding.Mesh.IsEmpty()) return nullptr;  // an effect row
 	return LoadFamilyMesh(Binding.Mesh, Binding.Family);
 }
 

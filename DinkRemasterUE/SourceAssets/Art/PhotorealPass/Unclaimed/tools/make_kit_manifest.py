@@ -44,13 +44,25 @@ def bound_meshes():
     return {p.rsplit('.', 1)[1] for p in paths if p.startswith('/Game/Dink/Photoreal/Unclaimed/')}
 
 
+def bound_effects():
+    """Material names (MI_FX_<name>) that a families.json row draws as an effect card."""
+    rows = json.load(open(os.path.join(REPO, 'DinkRemasterUE', 'Content', 'Dink', 'Data', 'Art', 'families.json')))['families']
+    return {r['effect'].rsplit('.', 1)[1] for r in rows if str(r.get('effect', '')).startswith('/Game/Dink/Photoreal/Unclaimed/')}
+
+
 def build(everything=False):
-    assets, materials, skipped = [], {}, []
+    assets, materials, skipped, flipbooks = [], {}, [], []
     bound = bound_meshes()
+    effects = bound_effects()
     notes = json.load(open(os.path.join(HERE, 'status_notes.json')))
     for path in sorted(glob.glob(os.path.join(UNC, '*', '*', 'manifest.json'))):
         m = json.load(open(path))
         folder = os.path.dirname(path)
+        if m.get('flipbook') and ('MI_' + m['name']) in effects:
+            fb = m['flipbook']
+            flipbooks.append({'name': m['name'][len('FX_'):] if m['name'].startswith('FX_') else m['name'], 'file': m['textures'][0]['file'],
+                              'grid': fb['grid'], 'fps': fb['fps'], 'glow': 6, 'families': m['families']})
+            continue
         if m['class'] not in STATIC:
             skipped.append({'name': m['name'], 'class': m['class'].split(' (')[0], 'why': 'not a static mesh'})
             continue
@@ -91,6 +103,7 @@ def build(everything=False):
                    'Every FBX holds one object named after the asset (LOD0 only) and, where collision_hulls is 1, a UCX hull '
                    'that the importer drops: the family layer is visual only.' % len(assets),
         'assets': assets,
+        'flipbooks': flipbooks,
         'not_imported': skipped,
         'integration': {
             'contract': {'textures': 'BC sRGB; N linear OpenGL (flip green on import); ORM linear (R occlusion, G roughness, B metallic)',
