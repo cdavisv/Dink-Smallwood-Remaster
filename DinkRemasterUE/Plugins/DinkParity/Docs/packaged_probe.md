@@ -1,5 +1,15 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
+> **Re-baselined 14 Nov 2026 (alpha QA: master 8ba0e903 + PR #102 + the alpha-qa parity fixes; world regenerated).** `Scripts/test.sh` 263/263 in 895 s,
+> `Scripts/package.sh` (752 s; content check 655/655), `Scripts/run_packaged_tests.sh`: twenty chapters, every one `PARITY OK`. Ch1-Ch10 unchanged;
+> Ch11 0d70cebfcd, Ch12 79c8ce55f9, Ch13 98a2e17ba0, Ch14 f1ddbaab7b, Ch15 7e3dbbd0b1, Ch16 48e797069a, Ch17 4277c65c35, Ch18 d33886b797,
+> Ch19 45b399bac8, Ch20 84f33687af. Why, by experiment on Ch11 alone (one change at a time): (1) sprites cross a map.dat warp's hardbox as get_hard
+> reads it (`dink.cpp:569-575`): the bow-shop keeper (s3-st2p, brain 16) who wanders SCR_097 for 300 s may enter the exit door's box instead of
+> bouncing, so the random sequence differs from the second visit to SCR_583 on (master 46604e11ea, this change alone 9f785b8f88); (2) the save's
+> editor_type hardness applies when a screen loads (update_play_changes, `5974`, `5801-5805`, `5829-5830`): the tree dam-fire burnt on SCR_632
+> (editor_type 4, editor_seq 20 / frame 29) stamps the stump's hardbox on the next visit instead of the tree's (this change alone f0d106b0e6).
+> Both are the original's behaviour; the probe still completes `&story` 16.
+
 > **Re-verified 13 Nov 2026 (master 5d12e469 + the load re-arm fix + the probe re-cut; the world regenerated with the PR #82 importer).**
 > `Scripts/build.sh`, `Scripts/import_greybox.sh --region all` and `--region stonebrook`, `Scripts/test.sh` (259/259 in 913 s),
 > `Scripts/package.sh` (543 s) and `Scripts/run_packaged_tests.sh` (twenty processes): every chapter `PARITY OK`. Every hash moved:
