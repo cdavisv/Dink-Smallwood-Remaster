@@ -1,0 +1,45 @@
+building B1 (screens 186, 187, 218, 219, 251), capsule radius 3 px
+  house S218_B1: core 203 m2; its street is 233 m2 of walkable ground (20 of 20 front points); 0.0 m2 of the core lies in it -> closed
+  house S219_A1: core 266 m2; its street is 8168 m2 of walkable ground (27 of 28 front points); 0.0 m2 of the core lies in it -> closed; note: 1 front points in another walkable component of 8678 m2 (ground behind or inside the building)
+  house S219_B2: core 78 m2; its street is 234 m2 of walkable ground (2 of 2 front points); 0.0 m2 of the core lies in it -> closed
+  house S251_A1: core 78 m2; its street is 8591 m2 of walkable ground (1 of 1 front points); 0.0 m2 of the core lies in it -> closed
+  house S251_B2: core 78 m2; its street is 231 m2 of walkable ground (2 of 3 front points); 0.0 m2 of the core lies in it -> closed; note: 1 front points in another walkable component of 8591 m2 (ground behind or inside the building)
+building B2 (screens 385, 386, 387, 388, 417, 418, 419, 420), capsule radius 3 px
+  house S387_A1: core 66 m2; its street is 9485 m2 of walkable ground (11 of 11 front points); 0.0 m2 of the core lies in it -> closed
+  house S388_A1: core 114 m2; its street is 9485 m2 of walkable ground (19 of 19 front points); 0.0 m2 of the core lies in it -> closed
+  house S417_A1: core 79 m2; its street is 9485 m2 of walkable ground (12 of 12 front points); 0.0 m2 of the core lies in it -> closed
+  house S417_B2: core 253 m2; its street is 9485 m2 of walkable ground (21 of 38 front points); 0.0 m2 of the core lies in it -> closed; note: 17 front points in another walkable component of 11193 m2 (ground behind or inside the building)
+  house S418_A1: core 325 m2; its street is 9485 m2 of walkable ground (39 of 39 front points); 0.0 m2 of the core lies in it -> closed
+  house S418_B2: core 250 m2; its street is 9485 m2 of walkable ground (28 of 28 front points); 0.0 m2 of the core lies in it -> closed
+  house S419_A1: core 358 m2; its street is 9485 m2 of walkable ground (52 of 52 front points); 0.4 m2 of the core lies in it -> closed
+  house S419_B2: core 145 m2; its street is 9485 m2 of walkable ground (15 of 15 front points); 0.0 m2 of the core lies in it -> closed
+  house S420_A1: core 248 m2; its street is 9485 m2 of walkable ground (35 of 35 front points); 0.0 m2 of the core lies in it -> closed
+building B3 (screens 465, 466, 467, 497, 498, 499), capsule radius 3 px
+  house S465_B1: core 111 m2; its street is 29524 m2 of walkable ground (10 of 10 front points); 0.0 m2 of the core lies in it -> closed
+  house S466_B1: core 140 m2; its street is 29344 m2 of walkable ground (21 of 21 front points); 0.0 m2 of the core lies in it -> closed
+  house S497_B1: core 252 m2; its street is 29464 m2 of walkable ground (25 of 25 front points); 0.0 m2 of the core lies in it -> closed
+  house S498_A1: core 145 m2; its street is 29284 m2 of walkable ground (22 of 22 front points); 0.1 m2 of the core lies in it -> closed
+  house S498_B2: core 344 m2; its street is 29284 m2 of walkable ground (56 of 56 front points); 0.0 m2 of the core lies in it -> closed
+  house S499_A1: core 183 m2; its street is 29165 m2 of walkable ground (28 of 28 front points); 0.0 m2 of the core lies in it -> closed
+building B4 (screens 472, 473, 474, 504, 505, 506, 507, 537, 538, 539, 570), capsule radius 3 px
+  house S504_B1: core 179 m2; its street is 23766 m2 of walkable ground (16 of 16 front points); 0.0 m2 of the core lies in it -> closed
+  house S505_A1: core 77 m2; its street is 23912 m2 of walkable ground (12 of 12 front points); 0.0 m2 of the core lies in it -> closed
+  house S505_B2: core 350 m2; its street is 23912 m2 of walkable ground (58 of 58 front points); 0.0 m2 of the core lies in it -> closed
+  house S506_A1: core 266 m2; its street is 23718 m2 of walkable ground (33 of 33 front points); 0.0 m2 of the core lies in it -> closed
+  house S537_A1: core 77 m2; its street is 23815 m2 of walkable ground (12 of 12 front points); 0.0 m2 of the core lies in it -> closed
+  house S537_B2: core 146 m2; its street is 23815 m2 of walkable ground (24 of 24 front points); 0.0 m2 of the core lies in it -> closed
+  house S538_A1: core 65 m2; its street is 23961 m2 of walkable ground (5 of 5 front points); 0.0 m2 of the core lies in it -> closed
+  house S538_A2: core 140 m2; its street is 23961 m2 of walkable ground (14 of 14 front points); 0.0 m2 of the core lies in it -> closed
+  house S538_B3: core 185 m2; its street is 23961 m2 of walkable ground (21 of 21 front points); 0.0 m2 of the core lies in it -> closed
+  house S539_A1: core 83 m2; its street is 14077 m2 of walkable ground (13 of 13 front points); 0.0 m2 of the core lies in it -> closed
+  house S570_A1: core 76 m2; its street is 23236 m2 of walkable ground (4 of 4 front points); 0.0 m2 of the core lies in it -> closed
+  house S570_B2: core 77 m2; its street is 23236 m2 of walkable ground (8 of 8 front points); 0.0 m2 of the core lies in it -> closed
+building B5 (screens 553, 554, 585, 586), capsule radius 3 px
+  house S585_A1: core 143 m2; its street is 28677 m2 of walkable ground (24 of 24 front points); 0.2 m2 of the core lies in it -> closed
+  house S585_B2: core 184 m2; its street is 28677 m2 of walkable ground (29 of 29 front points); 0.0 m2 of the core lies in it -> closed
+  house S586_A1: core 121 m2; its street is 28619 m2 of walkable ground (18 of 18 front points); 0.0 m2 of the core lies in it -> closed
+building B6 (screens 554, 555, 586, 587), capsule radius 3 px
+  house S586_B2: core 121 m2; its street is 27059 m2 of walkable ground (18 of 18 front points); 0.0 m2 of the core lies in it -> closed
+  house S587_A1: core 188 m2; its street is 26895 m2 of walkable ground (28 of 28 front points); 0.0 m2 of the core lies in it -> closed
+  house S587_B2: core 77 m2; its street is 26895 m2 of walkable ground (12 of 12 front points); 0.0 m2 of the core lies in it -> closed
+38 houses checked: none can be walked into

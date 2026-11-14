@@ -1,0 +1,219 @@
+origin,screen,class,frame,greybox,card_hidden_on_its_screen,house,building,house_body_covers_it,audit_state
+S186_P23,186,town_roof_slope,27,actor card,yes,S218_B1,B1,"no, nearest 15.5 m",placeholder
+S186_P51,186,town_roof_ridge_cap,25,actor card,yes,S218_B1,B1,"no, nearest 20.4 m",placeholder
+S187_P07,187,town_roof_dormer,31,actor card,yes,S218_B1,B1,"no, nearest 14.6 m",placeholder
+S187_P08,187,town_roof_flat,12,actor card,yes,S219_A1,B1,"no, nearest 15.3 m",placeholder
+S187_P09,187,town_roof_dormer,13,actor card,yes,S219_A1,B1,"no, nearest 15.5 m",placeholder
+S187_P10,187,town_roof_slope,9,actor card,yes,S219_A1,B1,"no, nearest 17.1 m",placeholder
+S187_P11,187,town_wall_gable_end,7,actor card,yes,S219_A1,B1,yes,final
+S187_P12,187,town_roof_ridge_cap,8,actor card,yes,S219_A1,B1,"no, nearest 21.9 m",placeholder
+S218_P01,218,town_wall_stone_window,43,decor instance,yes,S218_B1,B1,yes,final
+S218_P07,218,town_wall_gable_end,24,actor card,yes,S218_B1,B1,yes,final
+S218_P13,218,town_wall_stone_window,19,actor card,yes,S218_B1,B1,yes,final
+S218_P20,218,town_roof_slope,27,actor card,yes,S218_B1,B1,"no, nearest 15.5 m",placeholder
+S218_P21,218,town_roof_dormer,31,actor card,yes,S218_B1,B1,"no, nearest 14.6 m",placeholder
+S218_P22,218,town_wall_stone_window,40,decor instance,yes,S218_B1,B1,yes,final
+S219_P01,219,town_roof_dormer,31,actor card,yes,S218_B1,B1,"no, nearest 14.6 m",placeholder
+S219_P02,219,town_roof_flat,12,actor card,yes,S219_A1,B1,"no, nearest 15.3 m",placeholder
+S219_P03,219,town_roof_dormer,13,actor card,yes,S219_A1,B1,"no, nearest 15.5 m",placeholder
+S219_P04,219,town_wall_gable_end,7,actor card,yes,S219_A1,B1,yes,final
+S219_P05,219,town_wall_stone_window,2,actor card,yes,S219_A1,B1,yes,final
+S219_P06,219,town_wall_stone_window,14,decor instance,yes,S219_A1,B1,yes,final
+S219_P07,219,town_wall_stone_door,3,decor instance,yes,S219_A1,B1,yes,final
+S219_P08,219,town_wall_stone_window,1,decor instance,yes,S219_A1,B1,yes,final
+S219_P09,219,town_wall_stone_window,40,decor instance,yes,S219_B2,B1,yes,final
+S251_P04,251,town_wall_stone_window,1,decor instance,yes,S251_A1,B1,yes,final
+S251_P12,251,town_wall_stone_window,40,decor instance,yes,S251_B2,B1,yes,final
+S385_P13,385,town_roof_flat,12,decor instance,yes,S418_A1,B2,"no, nearest 15.8 m",placeholder
+S385_P14,385,town_roof_flat,29,decor instance,yes,S417_B2,B2,"no, nearest 15.0 m",placeholder
+S385_P15,385,town_wall_gable_end,24,decor instance,yes,S417_B2,B2,yes,final
+S385_P16,385,town_roof_slope,27,decor instance,yes,S417_B2,B2,"no, nearest 16.2 m",placeholder
+S385_P17,385,town_roof_flat,29,decor instance,yes,S417_B2,B2,"no, nearest 14.4 m",placeholder
+S385_P18,385,town_roof_ridge_cap,25,decor instance,yes,S417_B2,B2,"no, nearest 21.1 m",placeholder
+S386_P07,386,town_roof_flat,12,actor card,yes,S418_A1,B2,"no, nearest 15.8 m",placeholder
+S386_P08,386,town_roof_flat,12,actor card,yes,S418_A1,B2,"no, nearest 15.4 m",placeholder
+S386_P09,386,town_roof_flat,12,actor card,yes,S418_A1,B2,"no, nearest 16.2 m",placeholder
+S386_P10,386,town_roof_flat,12,actor card,yes,S418_A1,B2,"no, nearest 18.1 m",placeholder
+S386_P11,386,town_roof_flat,29,actor card,yes,S418_B2,B2,"no, nearest 18.1 m",placeholder
+S386_P12,386,town_roof_flat,29,actor card,yes,S418_B2,B2,"no, nearest 16.2 m",placeholder
+S386_P13,386,town_roof_flat,29,actor card,yes,S418_B2,B2,"no, nearest 16.0 m",placeholder
+S387_P07,387,town_wall_stone_window,17,decor instance,yes,S387_A1,B2,yes,final
+S387_P08,387,town_roof_flat,29,actor card,yes,S418_B2,B2,"no, nearest 16.0 m",placeholder
+S387_P09,387,town_roof_flat,29,actor card,yes,S419_B2,B2,"no, nearest 15.5 m",placeholder
+S387_P10,387,town_roof_flat,12,actor card,yes,S419_A1,B2,"no, nearest 15.5 m",placeholder
+S387_P11,387,town_roof_flat,12,actor card,yes,S419_A1,B2,"no, nearest 15.6 m",placeholder
+S387_P12,387,town_roof_flat,12,actor card,yes,S419_A1,B2,"no, nearest 16.2 m",placeholder
+S387_P13,387,town_roof_flat,12,actor card,yes,S419_A1,B2,"no, nearest 16.2 m",placeholder
+S387_P14,387,town_roof_flat,12,actor card,yes,S420_A1,B2,"no, nearest 16.2 m",placeholder
+S388_P12,388,town_roof_flat,12,actor card,yes,S420_A1,B2,"no, nearest 16.2 m",placeholder
+S388_P13,388,town_roof_flat,12,actor card,yes,S420_A1,B2,"no, nearest 15.2 m",placeholder
+S388_P14,388,town_roof_slope,9,actor card,yes,S388_A1,B2,"no, nearest 16.2 m",placeholder
+S388_P15,388,town_wall_gable_end,7,actor card,yes,S388_A1,B2,yes,final
+S388_P16,388,town_wall_stone_window,17,decor instance,yes,S388_A1,B2,yes,final
+S388_P17,388,town_wall_stone_window,11,actor card,yes,S388_A1,B2,yes,final
+S388_P18,388,town_roof_ridge_cap,8,actor card,yes,S388_A1,B2,"no, nearest 21.1 m",placeholder
+S417_P05,417,town_roof_flat,12,decor instance,yes,S418_A1,B2,"no, nearest 15.8 m",placeholder
+S417_P10,417,town_wall_stone_window,17,decor instance,yes,S417_A1,B2,yes,final
+S417_P11,417,town_wall_stone_window,42,decor instance,yes,S417_B2,B2,yes,final
+S417_P12,417,town_wall_gable_end,24,decor instance,yes,S417_B2,B2,yes,final
+S417_P13,417,town_roof_flat,29,decor instance,yes,S417_B2,B2,"no, nearest 15.0 m",placeholder
+S417_P14,417,town_wall_stone_window,46,decor instance,yes,S417_B2,B2,yes,final
+S417_P15,417,town_wall_stone_window,46,decor instance,yes,S417_B2,B2,yes,final
+S417_P17,417,town_wall_stone_window,18,decor instance,yes,S417_B2,B2,yes,final
+S418_P02,418,town_wall_stone_window,37,decor instance,yes,S418_B2,B2,yes,final
+S418_P03,418,town_wall_stone_window,36,decor instance,yes,S418_B2,B2,yes,final
+S418_P04,418,town_wall_stone_window,36,decor instance,yes,S418_B2,B2,yes,final
+S418_P05,418,town_wall_stone_window,15,decor instance,yes,S418_A1,B2,yes,final
+S418_P06,418,town_wall_stone_door,6,decor instance,yes,S418_A1,B2,yes,final
+S418_P07,418,town_roof_flat,12,decor instance,yes,S418_A1,B2,"no, nearest 15.8 m",placeholder
+S418_P08,418,town_wall_stone_window,17,decor instance,yes,S418_A1,B2,yes,final
+S418_P09,418,town_wall_stone_window,17,decor instance,yes,S418_A1,B2,yes,final
+S418_P10,418,town_wall_stone_window,17,decor instance,yes,S418_A1,B2,yes,final
+S418_P11,418,town_roof_flat,12,decor instance,yes,S418_A1,B2,"no, nearest 15.8 m",placeholder
+S418_P12,418,town_roof_flat,29,actor card,yes,S419_B2,B2,"no, nearest 15.5 m",placeholder
+S419_P01,419,town_roof_flat,12,actor card,yes,S419_A1,B2,"no, nearest 15.5 m",placeholder
+S419_P03,419,town_wall_stone_window,17,decor instance,yes,S419_A1,B2,yes,final
+S419_P04,419,town_wall_stone_window,44,decor instance,yes,S419_B2,B2,yes,final
+S419_P05,419,town_wall_stone_window,17,decor instance,yes,S419_A1,B2,yes,final
+S419_P06,419,town_wall_stone_window,15,decor instance,yes,S419_A1,B2,yes,final
+S419_P07,419,town_wall_stone_door,3,decor instance,yes,S419_A1,B2,yes,final
+S419_P08,419,town_wall_stone_window,1,decor instance,yes,S419_A1,B2,yes,final
+S419_P09,419,town_wall_stone_window,37,decor instance,yes,S419_B2,B2,yes,final
+S419_P10,419,town_roof_flat,29,actor card,yes,S419_B2,B2,"no, nearest 15.5 m",placeholder
+S420_P09,420,town_wall_stone_window,17,decor instance,yes,S420_A1,B2,yes,final
+S420_P10,420,town_wall_stone_window,17,decor instance,yes,S420_A1,B2,yes,final
+S420_P11,420,town_wall_stone_window,17,decor instance,yes,S420_A1,B2,yes,final
+S420_P12,420,town_wall_stone_window,11,decor instance,yes,S420_A1,B2,yes,final
+S465_P01,465,town_roof_flat,29,actor card,yes,S497_B1,B3,"no, nearest 15.0 m",placeholder
+S465_P02,465,town_wall_stone_window,45,actor card,yes,S465_B1,B3,yes,final
+S465_P03,465,town_roof_dormer,32,actor card,yes,S497_B1,B3,"no, nearest 15.0 m",placeholder
+S465_P04,465,town_roof_ridge_cap,25,actor card,yes,S465_B1,B3,"no, nearest 20.8 m",placeholder
+S465_P05,465,town_wall_gable_end,24,actor card,yes,S465_B1,B3,yes,final
+S465_P07,465,town_roof_slope,27,actor card,yes,S465_B1,B3,"no, nearest 15.8 m",placeholder
+S465_P08,465,town_wall_stone_window,19,actor card,yes,S465_B1,B3,yes,final
+S466_P01,466,town_roof_flat,12,actor card,yes,S499_A1,B3,"no, nearest 15.0 m",placeholder
+S466_P02,466,town_wall_stone_window,46,actor card,yes,S466_B1,B3,yes,final
+S466_P03,466,town_wall_stone_window,44,actor card,yes,S466_B1,B3,yes,final
+S466_P04,466,town_roof_dormer,13,actor card,yes,S498_A1,B3,"no, nearest 14.7 m",placeholder
+S466_P05,466,town_roof_flat,29,actor card,yes,S498_B2,B3,"no, nearest 15.6 m",placeholder
+S466_P06,466,town_roof_flat,30,actor card,yes,S498_B2,B3,"no, nearest 15.0 m",placeholder
+S466_P07,466,town_roof_flat,29,actor card,yes,S498_B2,B3,"no, nearest 15.0 m",placeholder
+S466_P08,466,town_roof_flat,29,actor card,yes,S466_B1,B3,"no, nearest 14.3 m",placeholder
+S466_P09,466,town_roof_flat,29,actor card,yes,S497_B1,B3,"no, nearest 15.0 m",placeholder
+S466_P10,466,town_wall_stone_window,44,actor card,yes,S466_B1,B3,yes,final
+S467_P03,467,town_roof_slope,9,actor card,yes,S499_A1,B3,"no, nearest 16.0 m",placeholder
+S467_P04,467,town_roof_ridge_cap,8,actor card,yes,S499_A1,B3,"no, nearest 20.7 m",placeholder
+S467_P05,467,town_wall_gable_end,10,actor card,yes,S499_A1,B3,yes,final
+S467_P06,467,town_roof_flat,12,actor card,yes,S499_A1,B3,"no, nearest 15.0 m",placeholder
+S472_P02,472,town_roof_ridge_cap,25,actor card,yes,S504_B1,B4,"no, nearest 21.0 m",placeholder
+S472_P04,472,town_wall_gable_end,24,actor card,yes,S504_B1,B4,yes,final
+S472_P06,472,town_roof_slope,27,actor card,yes,S504_B1,B4,"no, nearest 16.1 m",placeholder
+S472_P10,472,town_roof_dormer,32,actor card,yes,S504_B1,B4,"no, nearest 15.1 m",placeholder
+S473_P02,473,town_roof_flat,29,actor card,yes,S505_B2,B4,"no, nearest 15.4 m",placeholder
+S473_P04,473,town_roof_flat,30,actor card,yes,S505_B2,B4,"no, nearest 14.7 m",placeholder
+S473_P05,473,town_roof_dormer,32,actor card,yes,S505_B2,B4,"no, nearest 15.5 m",placeholder
+S473_P06,473,town_roof_flat,29,actor card,yes,S505_B2,B4,"no, nearest 14.9 m",placeholder
+S473_P07,473,town_roof_flat,12,actor card,yes,S505_A1,B4,"no, nearest 15.2 m",placeholder
+S473_P08,473,town_roof_dormer,32,actor card,yes,S505_B2,B4,"no, nearest 14.8 m",placeholder
+S474_P18,474,town_wall_gable_end,7,actor card,yes,S506_A1,B4,yes,final
+S474_P19,474,town_wall_gable_end,7,actor card,yes,S506_A1,B4,yes,final
+S474_P20,474,town_roof_flat,12,actor card,yes,S506_A1,B4,"no, nearest 15.4 m",placeholder
+S474_P21,474,town_roof_dormer,13,actor card,yes,S506_A1,B4,"no, nearest 15.6 m",placeholder
+S474_P22,474,town_roof_slope,9,actor card,yes,S506_A1,B4,"no, nearest 16.4 m",placeholder
+S474_P23,474,town_roof_ridge_cap,8,actor card,yes,S506_A1,B4,"no, nearest 21.2 m",placeholder
+S497_P01,497,town_wall_stone_window,44,decor instance,yes,S497_B1,B3,yes,final
+S497_P02,497,town_wall_stone_door,23,decor instance,yes,S497_B1,B3,yes,final
+S497_P03,497,town_wall_stone_window,45,decor instance,yes,S497_B1,B3,yes,final
+S497_P04,497,town_wall_stone_window,19,decor instance,yes,S497_B1,B3,yes,final
+S498_P01,498,town_wall_stone_window,17,decor instance,yes,S498_A1,B3,yes,final
+S498_P02,498,town_wall_stone_door,5,decor instance,yes,S498_A1,B3,yes,final
+S498_P03,498,town_wall_stone_window,41,decor instance,yes,S498_B2,B3,yes,final
+S498_P04,498,town_wall_stone_door,33,decor instance,yes,S498_B2,B3,yes,final
+S498_P05,498,town_wall_stone_window,46,decor instance,yes,S498_B2,B3,yes,final
+S498_P06,498,town_wall_stone_window,46,decor instance,yes,S498_B2,B3,yes,final
+S498_P07,498,town_wall_stone_window,44,decor instance,yes,S498_B2,B3,yes,final
+S498_P08,498,town_roof_dormer,13,actor card,yes,S498_A1,B3,"no, nearest 14.6 m",placeholder
+S498_P09,498,town_roof_flat,30,actor card,yes,S498_B2,B3,"no, nearest 15.0 m",placeholder
+S499_P01,499,town_wall_stone_door,6,decor instance,yes,S499_A1,B3,yes,final
+S499_P04,499,town_wall_gable_end,10,actor card,yes,S499_A1,B3,yes,final
+S499_P05,499,town_wall_stone_window,2,decor instance,yes,S499_A1,B3,yes,final
+S499_P06,499,town_wall_stone_window,17,decor instance,yes,S499_A1,B3,yes,final
+S504_P01,504,town_wall_stone_window,43,decor instance,yes,S504_B1,B4,yes,final
+S504_P02,504,town_wall_stone_door,39,decor instance,yes,S504_B1,B4,yes,final
+S504_P10,504,town_wall_stone_window,19,actor card,yes,S504_B1,B4,yes,final
+S505_P02,505,town_wall_stone_window,37,decor instance,yes,S505_B2,B4,yes,final
+S505_P03,505,town_wall_stone_window,36,decor instance,yes,S505_B2,B4,yes,final
+S505_P04,505,town_wall_stone_window,44,decor instance,yes,S505_B2,B4,yes,final
+S505_P05,505,town_wall_stone_window,40,decor instance,yes,S505_B2,B4,yes,final
+S505_P06,505,town_roof_flat,29,decor instance,yes,S505_B2,B4,"no, nearest 15.6 m",placeholder
+S505_P07,505,town_roof_dormer,32,decor instance,yes,S505_B2,B4,"no, nearest 15.6 m",placeholder
+S505_P08,505,town_wall_stone_window,17,decor instance,yes,S505_A1,B4,yes,final
+S505_P09,505,town_roof_flat,30,decor instance,yes,S505_B2,B4,"no, nearest 15.0 m",placeholder
+S505_P10,505,town_roof_flat,12,decor instance,yes,S505_A1,B4,"no, nearest 15.0 m",placeholder
+S505_P16,505,town_wall_stone_door,34,decor instance,yes,S505_B2,B4,yes,final
+S506_P02,506,town_wall_stone_window,16,decor instance,yes,S506_A1,B4,yes,final
+S506_P03,506,town_wall_stone_door,6,decor instance,yes,S506_A1,B4,yes,final
+S506_P04,506,town_wall_stone_window,14,decor instance,yes,S506_A1,B4,yes,final
+S506_P05,506,town_wall_stone_window,2,actor card,yes,S506_A1,B4,yes,final
+S506_P06,506,town_wall_gable_end,7,actor card,yes,S506_A1,B4,yes,final
+S506_P07,506,town_roof_flat,12,actor card,yes,S506_A1,B4,"no, nearest 15.3 m",placeholder
+S506_P08,506,town_roof_dormer,13,actor card,yes,S506_A1,B4,"no, nearest 15.4 m",placeholder
+S506_P23,506,town_roof_ridge_cap,25,actor card,yes,S506_A1,B4,yes,final
+S506_P24,506,town_roof_flat,30,actor card,yes,S506_A1,B4,yes,final
+S506_P25,506,town_roof_dormer,13,actor card,yes,S538_A2,B4,"no, nearest 10.2 m",placeholder
+S506_P26,506,town_roof_slope,27,actor card,yes,S506_A1,B4,yes,final
+S506_P30,506,town_roof_flat,12,actor card,yes,S538_A2,B4,"no, nearest 6.7 m",placeholder
+S507_P05,507,town_wall_gable_end,7,actor card,yes,S539_A1,B4,yes,final
+S507_P07,507,town_roof_slope,9,actor card,yes,S539_A1,B4,"no, nearest 11.0 m",placeholder
+S507_P08,507,town_roof_ridge_cap,8,actor card,yes,S539_A1,B4,"no, nearest 14.7 m",placeholder
+S537_P01,537,town_wall_stone_window,37,decor instance,yes,S537_B2,B4,yes,final
+S537_P02,537,town_wall_stone_window,40,decor instance,yes,S537_B2,B4,yes,final
+S537_P03,537,town_wall_stone_window,17,decor instance,yes,S537_A1,B4,yes,final
+S538_P01,538,town_wall_stone_window,16,actor card,yes,S538_A1,B4,yes,final
+S538_P02,538,town_roof_flat,30,actor card,yes,S506_A1,B4,yes,final
+S538_P03,538,town_wall_gable_end,24,actor card,yes,S506_A1,B4,yes,final
+S538_P04,538,town_roof_slope,27,actor card,yes,S506_A1,B4,yes,final
+S538_P05,538,town_roof_flat,12,actor card,yes,S538_A2,B4,"no, nearest 6.7 m",placeholder
+S538_P06,538,town_roof_dormer,13,actor card,yes,S538_A2,B4,"no, nearest 10.2 m",placeholder
+S538_P07,538,town_wall_stone_window,19,actor card,yes,S538_B3,B4,yes,final
+S538_P08,538,town_wall_stone_door,21,decor instance,yes,S538_B3,B4,yes,final
+S538_P09,538,town_wall_stone_window,41,decor instance,yes,S538_B3,B4,yes,final
+S538_P10,538,town_wall_stone_window,17,decor instance,yes,S538_A2,B4,yes,final
+S538_P11,538,town_wall_stone_window,1,decor instance,yes,S538_A2,B4,yes,final
+S539_P01,539,town_wall_stone_door,3,decor instance,yes,S539_A1,B4,yes,final
+S539_P02,539,town_wall_stone_window,2,actor card,yes,S539_A1,B4,yes,final
+S539_P03,539,town_wall_gable_end,7,actor card,yes,S539_A1,B4,yes,final
+S553_P01,553,town_wall_gable_end,7,actor card,yes,S586_A1,B5,yes,final
+S553_P02,553,town_roof_slope,9,actor card,yes,S586_A1,B5,"no, nearest 15.6 m",placeholder
+S553_P03,553,town_roof_ridge_cap,8,actor card,yes,S586_A1,B5,"no, nearest 20.4 m",placeholder
+S553_P04,553,town_wall_gable_end,24,actor card,yes,S585_B2,B5,yes,final
+S553_P05,553,town_roof_slope,27,actor card,yes,S585_B2,B5,"no, nearest 16.1 m",placeholder
+S553_P06,553,town_roof_flat,30,actor card,yes,S585_B2,B5,"no, nearest 14.2 m",placeholder
+S553_P07,553,town_roof_ridge_cap,25,actor card,yes,S585_B2,B5,"no, nearest 21.0 m",placeholder
+S553_P08,553,town_roof_flat,12,actor card,yes,S585_A1,B5,"no, nearest 14.6 m",placeholder
+S554_P01,554,town_wall_gable_end,24,actor card,yes,S586_B2,B6,yes,final
+S554_P02,554,town_roof_ridge_cap,25,actor card,yes,S586_B2,B6,"no, nearest 20.1 m",placeholder
+S554_P03,554,town_roof_slope,26,actor card,yes,S586_B2,B6,"no, nearest 15.2 m",placeholder
+S554_P04,554,town_wall_gable_end,7,actor card,yes,S586_A1,B5,yes,final
+S554_P05,554,town_roof_ridge_cap,8,actor card,yes,S586_A1,B5,"no, nearest 20.4 m",placeholder
+S554_P06,554,town_roof_slope,9,actor card,yes,S586_A1,B5,"no, nearest 15.6 m",placeholder
+S555_P01,555,town_wall_gable_end,7,actor card,yes,S587_A1,B6,yes,final
+S555_P02,555,town_roof_slope,9,actor card,yes,S587_A1,B6,"no, nearest 16.8 m",placeholder
+S555_P03,555,town_roof_flat,12,actor card,yes,S587_A1,B6,"no, nearest 15.7 m",placeholder
+S555_P04,555,town_roof_flat,29,actor card,yes,S587_B2,B6,"no, nearest 14.3 m",placeholder
+S555_P05,555,town_roof_ridge_cap,8,actor card,yes,S587_A1,B6,"no, nearest 21.6 m",placeholder
+S570_P07,570,town_wall_stone_window,41,decor instance,yes,S570_B2,B4,yes,final
+S570_P08,570,town_wall_stone_window,17,decor instance,yes,S570_A1,B4,yes,final
+S585_P01,585,town_wall_stone_window,15,decor instance,yes,S585_A1,B5,yes,final
+S585_P02,585,town_wall_stone_door,6,decor instance,yes,S585_A1,B5,yes,final
+S585_P03,585,town_wall_stone_window,35,decor instance,yes,S585_B2,B5,yes,final
+S585_P04,585,town_wall_stone_door,38,decor instance,yes,S585_B2,B5,yes,final
+S585_P05,585,town_wall_stone_window,18,actor card,yes,S585_B2,B5,yes,final
+S586_P01,586,town_wall_stone_window,37,decor instance,yes,S586_B2,B6,yes,final
+S586_P02,586,town_wall_stone_window,18,actor card,yes,S586_B2,B6,yes,final
+S586_P12,586,town_wall_stone_window,11,actor card,yes,S586_A1,B5,yes,final
+S586_P13,586,town_wall_stone_window,15,actor card,yes,S586_A1,B5,yes,final
+S587_P01,587,town_wall_stone_door,5,decor instance,yes,S587_A1,B6,yes,final
+S587_P02,587,town_wall_stone_window,11,actor card,yes,S587_A1,B6,yes,final
+S587_P03,587,town_wall_stone_window,17,decor instance,yes,S587_A1,B6,yes,final
+S587_P04,587,town_wall_stone_window,44,decor instance,yes,S587_B2,B6,yes,final
