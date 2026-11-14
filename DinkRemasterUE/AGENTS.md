@@ -1,3 +1,13 @@
+## NPC walk: the body is re-anchored after the scripts have moved it (13 November 2026)
+
+Owner after playing master `cb842dd2`: "improve the mother's stuttered walk". Pass 2 below smoothed the scripted position and its maths test passed, yet she stuttered in the game. Numbers, charts and frames: `Docs/Verification/MotherWalk_13Nov2026/`. Short form:
+- **Cause: tick order.** `UDinkHumanoidComponent` worked out the body's offset from its actor (smoothed position and eased facing) in its own tick, in the first tick group. The scripts and brains move and turn the actor later in the same frame (`UDinkStorySubsystem` is an `FTickableGameObject`; the engine ticks those after the actor tick groups). Each frame was drawn as this frame's scripted position plus last frame's offset: the body jumped forward with every scripted pixel and back on the next frame (32% of steady walking frames moved backwards at 60 fps) and flipped to a new facing for one frame at every turn.
+- **Fix, presentation only.** The component has a second tick function in `TG_PostUpdateWork` (`FDinkHumanoidPresentTickFunction` -> `PresentBody`), which re-anchors the body on its smoothed position and facing against the actor's final transform. `dink.Npc.LatePresent 0` turns it off for comparison. Anything else that offsets a visual from a script-moved actor must do the same: work in the actor's tick groups sees the scripted position of the previous frame.
+- **How to measure.** `dink.Npc.Trace <seconds> [file] [frame folder]` writes one CSV row per rendered frame for every humanoid NPC on Dink's screen (script state next to what is drawn; with a folder, a picture of every frame: run with `-benchmark -fps=60`). `Scripts/AnimationQA/npc_trace_report.py` and `npc_trace_plot.py` turn traces into numbers and charts.
+- **Test.** `Dink.Animation.NpcShownMotion` reads the drawn transform at the end of every frame of a PIE session and also proves that it sees the defect with the fix switched off. A test of smoothing maths alone cannot see an ordering fault.
+- **Still glued (not changed here):** picture-card townsfolk and creature bodies (`UDinkCreatureComponent`) follow the scripted position pixel by pixel.
+- Review commands added with this work: `dink.CalAnchorNpc [n]` (capture camera on a humanoid NPC, offsets in its own frame), `dink.Npc.Hold 0|1` (brains stand still for portraits), `dink.Hero.Play <clip> [hold]` / `jump` / `stop`.
+
 ## Faceting sweep: grey unclaimed props, grey boulders, faceted thorns, coins, jars, walls (13 November 2026)
 
 Owner feedback of 13 Nov 2026 on master `cb842dd2`: "fix blocky and polygon looking art". Evidence and the full list: `Docs/Verification/FacetingSweep_13Nov2026/README.md`.
