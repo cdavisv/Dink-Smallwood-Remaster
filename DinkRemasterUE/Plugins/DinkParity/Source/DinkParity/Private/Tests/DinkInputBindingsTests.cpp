@@ -82,9 +82,9 @@ bool FDinkInputButtonScriptsTest::RunTest(const FString& Parameters)
 	}
 	Story->ResetRuntime();
 	Story->bInstantMode = true;
-	Story->GetDirector()->SetFrozen(1, true);
+	Story->GetDirector()->GetDink().bFrozen = true;
 	TestFalse(TEXT("frozen: Esc does nothing"), Story->RunPlayerButton(5));
-	Story->GetDirector()->SetFrozen(1, false);
+	Story->GetDirector()->GetDink().bFrozen = false;
 	TestTrue(TEXT("Esc runs escape.c main"), Story->RunPlayerButton(5));
 	Story->RunUntilIdle();
 	const FDinkMenu* Menu = Story->GetActiveMenu();
