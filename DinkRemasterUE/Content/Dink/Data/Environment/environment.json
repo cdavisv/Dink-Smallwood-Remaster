@@ -59,7 +59,16 @@
     "field_scale": 0.6,
     "rank_edge_share": 0.3,
     "short_reach_cm": 150,
-    "field_footprint": 0.85
+    "field_footprint": 0.85,
+    "clear_max_height_cm": 110,
+    "clear_max_span_cm": 320,
+    "clear_reach_cm": 30,
+    "edge_feather": 1.0,
+    "ground_tint": [
+      0.55,
+      0.62,
+      0.42
+    ]
   },
   "mesh_swaps": {
     "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01": [
@@ -110,14 +119,14 @@
     "black_material": "/Game/Dink/Photoreal/WallKits/M_Env_IndoorBlack.M_Env_IndoorBlack",
     "interior": {
       "exposure_ev": -1.5,
-      "ambient_intensity": 1.0,
+      "ambient_intensity": 0.6,
       "ambient_colour": [
         0.86,
         0.86,
         0.9
       ],
       "lamps_per_screen": 2,
-      "lamp_intensity": 18.0,
+      "lamp_intensity": 26.0,
       "lamp_radius_cm": 1400,
       "lamp_height_cm": 215,
       "lamp_colour": [
@@ -127,12 +136,14 @@
       ],
       "lamps_at_walls": false,
       "fog_density": 0.0,
-      "fill_intensity": 0.26,
+      "fill_intensity": 0.2,
       "fill_colour": [
-        1.0,
-        0.88,
-        0.72
+        0.8,
+        0.87,
+        1.0
       ],
+      "ceiling_lamp_light": false,
+      "lamp_source_cm": 14,
       "ceiling_cm": 300,
       "ceiling_material": "/Game/Dink/Photoreal/WallKits/MI_Wall_Timber.MI_Wall_Timber",
       "ceiling_wall_class": "int_wall"
@@ -162,6 +173,8 @@
         0.86,
         1.0
       ],
+      "ceiling_lamp_light": false,
+      "lamp_source_cm": 10,
       "ceiling_cm": 356,
       "ceiling_material": "/Game/Dink/Photoreal/WallKits/MI_Wall_DungeonMasonry.MI_Wall_DungeonMasonry",
       "ceiling_wall_class": "dungeon_wall"
@@ -238,7 +251,10 @@
         ]
       }
     },
-    "ceiling_tile_cm": 250
+    "ceiling_tile_cm": 250,
+    "floor_tile_scale": {
+      "PlankFloor": 1.5
+    }
   },
   "burnable": {
     "note": "Scripted pines the fireball burns (die -> sp_seq 20, then sp_pseq 89, the secret stairs picture): the dry pine before, the burnt pine from the burn on. show_card false: the placement card stays hidden, because it keeps the green pine picture whatever the script sets (placement cards are not redrawn from script state); set it true once they are, and the fire card plays over the burnt pine and the stairs picture stands alone. Read-only on the script state.",

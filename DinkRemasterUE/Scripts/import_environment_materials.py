@@ -227,6 +227,10 @@ for i, L in enumerate('ABC'):
         'H': tex_param(mat, f'H{L}', t['H'], ST.SAMPLERTYPE_LINEAR_GRAYSCALE, uv, -1600, y + 720),
         'Macro': tex_param(mat, f'Macro{L}', t['Macro'], ST.SAMPLERTYPE_MASKS, uv_macro, -1600, y + 900),
         'NS': scalar_param(mat, f'NormalStrength{L}', default['normal_strength'], -1600, y - 80, group='Layers'),
+        # per-layer colour multiplier: the presentation layer darkens the meadow layer under the grass carpet
+        # (environment.json grass.ground_tint), so the ground between the patches does not read as pale flagstones
+        'Tint': expr(mat, unreal.MaterialExpressionVectorParameter, -1600, y - 400, parameter_name=f'Tint{L}',
+                     default_value=unreal.LinearColor(1.0, 1.0, 1.0, 1.0), group='Layers'),
     }
 fine_uv = expr(mat, unreal.MaterialExpressionMultiply, -2450, -1000, const_b=1.0 / 700.0)
 link(xy, '', fine_uv, 'A')
@@ -293,8 +297,9 @@ link(big_uv, '', big_tex, 'UVs')
 big_strength = scalar_param(mat, 'FieldVariation', 0.3, -2300, -900)
 dry_amount = scalar_param(mat, 'FieldDryness', 0.3, -2300, -820)
 color = custom(mat, -900, 0, '''
-float vmix = smoothstep(0.35, 0.65, Fine.r);
+float vmix = smoothstep(0.35, 0.65, Fine.r) * saturate(VarBlend);
 float3 ca = lerp(lerp(BCA, VA, vmix), FA, Far), cb = lerp(lerp(BCB, VB, vmix), FB, Far), cc = lerp(lerp(BCC, VC, vmix), FC, Far);
+ca *= TA; cb *= TB; cc *= TC;
 float3 k = float3(0.5, 0.32, 0.18);
 float3 m = float3(dot(MA, k), dot(MB, k), dot(MC, k)) * 2.0 - 1.0;
 // value drift plus a slight warm/cool drift, strongest in the largest octave
@@ -311,7 +316,12 @@ c *= Tint;
 if (HRange > 0.0) c = lerp(c, c * HTint, saturate(Z / HRange));
 return c;''', F3,
                ['BCA', 'BCB', 'BCC', 'FA', 'FB', 'FC', 'MA', 'MB', 'MC', 'W', 'Far', 'Strength', 'Big', 'BigStrength', 'Dry',
-                'VA', 'VB', 'VC', 'Fine', 'BL', 'Wet', 'Tint', 'HTint', 'HRange', 'Z'], 'Layer colour')
+                'VA', 'VB', 'VC', 'Fine', 'BL', 'Wet', 'Tint', 'HTint', 'HRange', 'Z', 'VarBlend', 'TA', 'TB', 'TC'], 'Layer colour')
+for L in 'ABC':
+    link(S[L]['Tint'], '', color, 'T' + L)
+# VariantBlend 0 turns the quarter-turned second lookup off: a laid floor (boards, flagstones) must not change direction
+# in patches. The indoor set (UDinkEnvironmentSubsystem::BuildIndoor) sets it to 0 on the floors of indoor screens.
+link(scalar_param(mat, 'VariantBlend', 1.0, -1300, -1400), '', color, 'VarBlend')
 link(fine_tex, 'RGB', color, 'Fine'); link(backlight, '', color, 'BL'); link(wet, '', color, 'Wet'); link(wz, '', color, 'Z')
 link(vector_param(mat, 'Tint', (1.0, 1.0, 1.0), -1300, -1160, group='Terrain'), '', color, 'Tint')
 link(vector_param(mat, 'HeightTint', (1.0, 1.0, 1.0), -1300, -1320, group='Terrain'), '', color, 'HTint')

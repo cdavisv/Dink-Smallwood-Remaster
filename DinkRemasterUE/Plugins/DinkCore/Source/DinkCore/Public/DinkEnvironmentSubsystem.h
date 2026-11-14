@@ -39,6 +39,10 @@ struct FDinkIndoorLook
 	float CeilingCm = 0.f;                  // 0 = no visible ceiling
 	FString CeilingMaterial;                // tiled on one-sided planes facing down (ceiling_tile_cm each)
 	FString CeilingWallClass;               // only interiors that carry placements of this class prefix get the ceiling
+	// round 7: a lamp is a capped lantern or a torch below the ceiling: its light (and the ambient point) stays off the
+	// ceiling planes (lighting channel 1 carries the ceiling, lit by the even fill only), so no hot spot over the flame
+	bool bCeilingLampLight = true;
+	float LampSourceCm = 6.f;               // source radius of the shadowed lamps and fires (larger = softer shadow edges)
 };
 
 /** A scripted placement whose look follows its DinkC sprite state (burnable pines). */
@@ -230,6 +234,34 @@ public:
 	/** Live sky light colour (review; dink.SkyTint r g b). */
 	void SetSkyTint(const FLinearColor& Colour);
 private:
+	// --- round 7: clearings round low family props, authored props and ground decals; feathered carpet edge ---
+	struct FGrassClear
+	{
+		FTransform WorldToLocal = FTransform::Identity;
+		FBox LocalBox = FBox(ForceInit);
+		FBox2D WorldBounds = FBox2D(ForceInit);   // already grown by the reach
+		float ReachCm = 40.f;
+	};
+	TArray<FGrassClear> GrassClears;
+	TSet<uint64> GrassClearKeys;
+	float ClearMaxHeightCm = 110.f;         // grass.clear_max_height_cm: things taller than this stand in the grass (0 = no clearings)
+	float ClearMaxSpanCm = 320.f;           // grass.clear_max_span_cm: longer things (fence runs, walls) are not props
+	float ClearReachCm = 40.f;              // grass.clear_reach_cm: soft rim round the footprint of the lowest things
+	float EdgeFeather = 1.f;                // grass.edge_feather 0..1: the carpet thins and shortens toward the end of the meadow mask
+	// --- round 7: the floor of an indoor screen is a laid pattern (boards, flagstones): its terrain material instance is
+	// replaced by a dynamic one without the meso UV warp, the far lookup, the turned variant lookup and the field drift ---
+	TArray<TPair<TWeakObjectPtr<UStaticMeshComponent>, TWeakObjectPtr<class UMaterialInterface>>> IndoorFloorRestore;   // slot 0 only
+	TMap<FString, float> IndoorFloorTileScale;   // indoor.floor_tile_scale: terrain set name -> tile size multiplier
+	void StraightenIndoorFloors(const TSet<int32>& ScreenNumbers);
+	// --- round 7: the meadow layer under the carpet is multiplied toward the grass colour (grass.ground_tint), on the
+	// greybox grounds and on authored meadow meshes, through dynamic instances (Tint<slot> of M_Env_Terrain) ---
+	FLinearColor GroundTint = FLinearColor::White;
+	bool bGroundTint = false, bGroundTinted = false;
+	FString GrassLayer = TEXT("MeadowTurf");
+	void TintMeadowGround();
+	void GatherGrassClears();
+	float GrassClearAt(const FVector2D& At, const TArray<int32>& Candidates) const;
+	float CoverAt(const TArray<uint8>& Mask, double MapX, double MapY) const;
 	float RankEdgeShare = 0.35f;            // share of the taller rank growth kept along walls and fences (grass.rank_edge_share); trunks and pond rims keep all
 	float ShortReachCm = 150.f;             // short turf within this of walls, fences, paths and doors (grass.short_reach_cm)
 	void GatherGrassSources();

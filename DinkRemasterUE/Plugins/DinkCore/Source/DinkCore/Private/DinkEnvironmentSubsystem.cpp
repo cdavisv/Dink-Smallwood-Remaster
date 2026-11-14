@@ -60,6 +60,10 @@ static TAutoConsoleVariable<int32> CVarDinkIndoorLitCards(TEXT("dink.IndoorLitCa
 	TEXT("1 = sprite cards on indoor screens are lit by the scene lights instead of glowing unlit (read when the indoor set is built)."));
 static TAutoConsoleVariable<int32> CVarDinkStateSwaps(TEXT("dink.StateSwaps"), 1,
 	TEXT("1 = swapped-in meshes follow their screen's &vision (the burnt cottage). Read-only on the game state."));
+static TAutoConsoleVariable<int32> CVarDinkIndoorFloor(TEXT("dink.IndoorFloor"), 1,
+	TEXT("1 = floors of indoor screens are drawn straight and at one scale (no UV warp, far or variant lookup; read when the indoor set is built)."));
+static TAutoConsoleVariable<int32> CVarDinkGroundTint(TEXT("dink.GroundTint"), 1,
+	TEXT("1 = the meadow terrain layer is tinted toward the grass carpet's colour (environment.json grass.ground_tint; read once, a few seconds after the start)."));
 static TAutoConsoleVariable<int32> CVarDinkBackdrop(TEXT("dink.Backdrop"), 1,
 	TEXT("1 = the far terrain skirt and hill ring follow the camera."));
 
@@ -149,6 +153,17 @@ void UDinkEnvironmentSubsystem::LoadConfig()
 				if ((*Grass)->TryGetNumberField(TEXT("field_footprint"), Number)) GrassFieldFootprint = float(Number);
 				if ((*Grass)->TryGetNumberField(TEXT("rank_edge_share"), Number)) RankEdgeShare = float(Number);
 				if ((*Grass)->TryGetNumberField(TEXT("short_reach_cm"), Number)) ShortReachCm = float(Number);
+				if ((*Grass)->TryGetNumberField(TEXT("clear_max_height_cm"), Number)) ClearMaxHeightCm = float(Number);
+				if ((*Grass)->TryGetNumberField(TEXT("clear_max_span_cm"), Number)) ClearMaxSpanCm = float(Number);
+				if ((*Grass)->TryGetNumberField(TEXT("clear_reach_cm"), Number)) ClearReachCm = float(Number);
+				if ((*Grass)->TryGetNumberField(TEXT("edge_feather"), Number)) EdgeFeather = FMath::Clamp(float(Number), 0.f, 1.f);
+				(*Grass)->TryGetStringField(TEXT("layer"), GrassLayer);
+				const TArray<TSharedPtr<FJsonValue>>* TintValues = nullptr;
+				if ((*Grass)->TryGetArrayField(TEXT("ground_tint"), TintValues) && TintValues && TintValues->Num() == 3)
+				{
+					GroundTint = FLinearColor(float((*TintValues)[0]->AsNumber()), float((*TintValues)[1]->AsNumber()), float((*TintValues)[2]->AsNumber()));
+					bGroundTint = !GroundTint.Equals(FLinearColor::White);
+				}
 			LoadMeshes(*Grass, TEXT("accent_meshes"), AccentMeshes);
 		}
 	}
@@ -172,6 +187,11 @@ void UDinkEnvironmentSubsystem::LoadConfig()
 			Number(*Indoor, TEXT("margin_cm"), IndoorMarginCm);
 			Number(*Indoor, TEXT("backdrop_height_cm"), IndoorBackdropCm);
 			Number(*Indoor, TEXT("ceiling_tile_cm"), IndoorCeilingTileCm);
+			const TSharedPtr<FJsonObject>* TileScale = nullptr;
+			if ((*Indoor)->TryGetObjectField(TEXT("floor_tile_scale"), TileScale) && TileScale)
+			{
+				for (const auto& Pair : (*TileScale)->Values) IndoorFloorTileScale.Add(FString(Pair.Key.ToView()), float(Pair.Value->AsNumber()));
+			}
 			const TArray<TSharedPtr<FJsonValue>>* Skip = nullptr;
 			if ((*Indoor)->TryGetArrayField(TEXT("skip_screens"), Skip) && Skip) for (const auto& V : *Skip) IndoorSkipScreens.Add(int32(V->AsNumber()));
 			FString BlackPath;
@@ -197,6 +217,8 @@ void UDinkEnvironmentSubsystem::LoadConfig()
 				Number(*O, TEXT("ceiling_cm"), L.CeilingCm);
 				(*O)->TryGetStringField(TEXT("ceiling_material"), L.CeilingMaterial);
 				(*O)->TryGetStringField(TEXT("ceiling_wall_class"), L.CeilingWallClass);
+				(*O)->TryGetBoolField(TEXT("ceiling_lamp_light"), L.bCeilingLampLight);
+				Number(*O, TEXT("lamp_source_cm"), L.LampSourceCm);
 			};
 			Look(TEXT("interior"), InteriorLook);
 			Look(TEXT("dungeon"), DungeonLook);
@@ -485,6 +507,11 @@ void UDinkEnvironmentSubsystem::ClearIndoor()
 			Pair.Key->SetMaterial(0, Pair.Value.Get());
 	}
 	IndoorCardRestore.Reset();
+	for (const auto& Pair : IndoorFloorRestore)
+	{
+		if (Pair.Key.IsValid() && Pair.Value.IsValid()) Pair.Key->SetMaterial(0, Pair.Value.Get());
+	}
+	IndoorFloorRestore.Reset();
 	for (const TWeakObjectPtr<UMeshComponent>& Card : IndoorFollowed)
 	{
 		UMeshComponent* C = Card.Get();
@@ -596,7 +623,8 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 		L->SetIntensity(Intensity * Gain);
 		L->SetLightColor(Colour);
 		L->SetAttenuationRadius(Radius);
-		L->SetSourceRadius(bShadow ? 6.f : 60.f);
+		L->SetSourceRadius(bShadow ? FMath::Max(Look.LampSourceCm, 1.f) : 60.f);
+		if (bShadow) L->SetSoftSourceRadius(FMath::Max(Look.LampSourceCm, 1.f));
 		L->SetCastShadows(bShadow);
 		if (!bShadow) L->SetSpecularScale(0.f);
 		L->RegisterComponent();
@@ -631,6 +659,8 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 		L->SetSourceRadius(80.f);
 		L->SetCastShadows(false);
 		L->SetSpecularScale(0.f);
+		// the even fill is the only direct light of a ceiling that the lamps leave alone (channel 1)
+		L->SetLightingChannels(true, true, false);
 		L->RegisterComponent();
 	};
 	TSet<int32> LitNumbers;
@@ -664,6 +694,9 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 			Ceiling->SetGenerateOverlapEvents(false);
 			Ceiling->SetCanEverAffectNavigation(false);
 			Ceiling->SetCastShadow(false);
+			// a lantern's cap and a torch's own body keep their light off the boards right above them: without this
+			// the inverse-square lamp 0.85 m under the ceiling burnt a white disc into it
+			if (!Look.bCeilingLampLight) Ceiling->SetLightingChannels(false, true, false);
 			Ceiling->RegisterComponent();
 			const double Tile = FMath::Max(double(IndoorCeilingTileCm), 50.0);
 			const int32 NX = FMath::CeilToInt32(Size.X / Tile), NY = FMath::CeilToInt32(Size.Y / Tile);
@@ -747,6 +780,7 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 		}
 	}
 	RelightIndoorCards(LitNumbers);
+	StraightenIndoorFloors(LitNumbers);
 	if (Look.FogDensity > 0.f)
 	{
 		ULocalFogVolumeComponent* Fog = NewObject<ULocalFogVolumeComponent>(IndoorSet);
@@ -763,6 +797,41 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 	}
 	UE_LOG(LogDink, Display, TEXT("DINK ENV: indoor set for screen %d (%s, interior %s): %.0f x %.0f m, %d fire and lamp lights, %d screens lit"),
 		Current.ScreenNumber, bIndoorDungeon ? TEXT("dungeon") : TEXT("interior"), *Current.InteriorId.ToString(), Size.X / 100.0, Size.Y / 100.0, IndoorFireLights.Num(), Lit.Num());
+}
+
+void UDinkEnvironmentSubsystem::StraightenIndoorFloors(const TSet<int32>& ScreenNumbers)
+{
+	// The master terrain material breaks up open ground: a slow UV warp, a quarter-turned second lookup blended in by
+	// noise, a 5.8 x larger lookup beyond 9 m and field-scale colour drift. On a board or flagstone floor that reads as
+	// giant swirling grain. Indoors the screen's ground takes a dynamic instance with all four off; a set named in
+	// indoor.floor_tile_scale is enlarged as well (PlankFloor: its 12 cm boards become 18 cm). Visual only.
+	if (CVarDinkIndoorFloor.GetValueOnGameThread() == 0 || !IndoorSet) return;
+	for (TActorIterator<ADinkGreyboxScreen> It(GetWorld()); It; ++It)
+	{
+		UStaticMeshComponent* Ground = It->Visual;
+		if (!ScreenNumbers.Contains(It->ScreenNumber) || !Ground || Ground->bHiddenInGame || Ground->GetNumMaterials() < 1) continue;
+		UMaterialInterface* Source = Ground->GetMaterial(0);
+		const UMaterial* Base = Source ? Source->GetMaterial() : nullptr;
+		if (!Base || Base->GetName() != TEXT("M_Env_Terrain") || Cast<UMaterialInstanceDynamic>(Source)) continue;
+		UMaterialInstanceDynamic* Floor = UMaterialInstanceDynamic::Create(Source, IndoorSet);
+		if (!Floor) continue;
+		for (const TCHAR* Name : {TEXT("UVWarpCm"), TEXT("FarBlendMax"), TEXT("VariantBlend"), TEXT("FieldVariation"), TEXT("FieldDryness")})
+			Floor->SetScalarParameterValue(Name, 0.f);
+		for (const TCHAR* Slot : {TEXT("A"), TEXT("B"), TEXT("C")})
+		{
+			UTexture* Texture = nullptr;
+			float TileCm = 0.f;
+			if (!Source->GetTextureParameterValue(FHashedMaterialParameterInfo(FName(*(FString(TEXT("BC")) + Slot))), Texture) || !Texture) continue;
+			const FName TileName(*(FString(TEXT("Tile")) + Slot + TEXT("Cm")));
+			if (!Source->GetScalarParameterValue(FHashedMaterialParameterInfo(TileName), TileCm) || TileCm <= 0.f) continue;
+			for (const auto& Pair : IndoorFloorTileScale)
+			{
+				if (Texture->GetName().Contains(Pair.Key)) Floor->SetScalarParameterValue(TileName, TileCm * Pair.Value);
+			}
+		}
+		Ground->SetMaterial(0, Floor);
+		IndoorFloorRestore.Emplace(Ground, Source);
+	}
 }
 
 void UDinkEnvironmentSubsystem::UpdateIndoor(const ADinkScreenVolume* Current, float DeltaTime)
@@ -1340,11 +1409,9 @@ bool UDinkEnvironmentSubsystem::GroundAt(const FVector2D& WorldXY, uint32 Hash, 
 		}
 		const TArray<uint8>* Mask = Cover.Find(Screen.Number);
 		if (!Mask) return false;
-		const int32 CX = FMath::Clamp(int32(MapX / 600.0 * CoverW), 0, CoverW - 1);
-		const int32 CY = FMath::Clamp(int32(MapY / 400.0 * CoverH), 0, CoverH - 1);
 		// noisy edge: the threshold wanders per point, so the carpet ends in a ragged line, not on the mask grid
 		OutZ = 0.f;
-		LastCover = (*Mask)[CY * CoverW + CX] / 255.f;
+		LastCover = CoverAt(*Mask, MapX, MapY);
 		return LastCover > GrassMinCover + (Unit(Hash3(Hash, 77u, 5u)) - 0.5f) * 0.5f;
 	}
 	return false;
@@ -1363,11 +1430,188 @@ float UDinkEnvironmentSubsystem::MaskCoverAt(const FVector2D& WorldXY) const
 		if (Screen.bIndoor || IsScreenDressed(Screen.Number)) return -1.f;
 		const TArray<uint8>* Mask = Cover.Find(Screen.Number);
 		if (!Mask) return -1.f;
-		const int32 CX = FMath::Clamp(int32(MapX / 600.0 * CoverW), 0, CoverW - 1);
-		const int32 CY = FMath::Clamp(int32(MapY / 400.0 * CoverH), 0, CoverH - 1);
-		return (*Mask)[CY * CoverW + CX] / 255.f;
+		return CoverAt(*Mask, MapX, MapY);
 	}
 	return -1.f;
+}
+
+float UDinkEnvironmentSubsystem::CoverAt(const TArray<uint8>& Mask, double MapX, double MapY) const
+{
+	// bilinear between the cell centres of the cover grid (clamped at the screen's rim): the carpet's edge follows the
+	// terrain mask's soft edge instead of stepping along grid cells (round 7: the steps read as a hard card line)
+	const double X = FMath::Clamp(MapX / 600.0 * CoverW - 0.5, 0.0, double(CoverW - 1));
+	const double Y = FMath::Clamp(MapY / 400.0 * CoverH - 0.5, 0.0, double(CoverH - 1));
+	const int32 X0 = FMath::FloorToInt32(X), Y0 = FMath::FloorToInt32(Y);
+	const int32 X1 = FMath::Min(X0 + 1, CoverW - 1), Y1 = FMath::Min(Y0 + 1, CoverH - 1);
+	const float FX = float(X - X0), FY = float(Y - Y0);
+	auto At = [&](int32 CX, int32 CY) { return Mask[CY * CoverW + CX] / 255.f; };
+	return FMath::Lerp(FMath::Lerp(At(X0, Y0), At(X1, Y0), FX), FMath::Lerp(At(X0, Y1), At(X1, Y1), FX), FY);
+}
+
+void UDinkEnvironmentSubsystem::TintMeadowGround()
+{
+	// The meadow scan is paler and yellower than the grass that stands on it; seen from above, the ground between the
+	// patches (and in the clearings round props) read as pale flagstones. Every slot of a terrain instance that carries
+	// the grass layer is multiplied by grass.ground_tint. Indoor screens are left to StraightenIndoorFloors. Visual only.
+	if (bGroundTinted || !bGroundTint || !Holder || CVarDinkGroundTint.GetValueOnGameThread() == 0) return;
+	bGroundTinted = true;
+	TSet<int32> IndoorNumbers;
+	for (const FScreenInfo& S : Screens) if (S.bIndoor) IndoorNumbers.Add(S.Number);
+	int32 Count = 0;
+	auto Tint = [&](UStaticMeshComponent* Component)
+	{
+		for (int32 Slot = 0; Component && Slot < Component->GetNumMaterials(); ++Slot)
+		{
+			UMaterialInterface* Source = Component->GetMaterial(Slot);
+			const UMaterial* Base = Source ? Source->GetMaterial() : nullptr;
+			if (!Base || Base->GetName() != TEXT("M_Env_Terrain") || Cast<UMaterialInstanceDynamic>(Source)) continue;
+			UMaterialInstanceDynamic* Tinted = nullptr;
+			for (const TCHAR* Layer : {TEXT("A"), TEXT("B"), TEXT("C")})
+			{
+				UTexture* Texture = nullptr;
+				if (!Source->GetTextureParameterValue(FHashedMaterialParameterInfo(FName(*(FString(TEXT("BC")) + Layer))), Texture) || !Texture || !Texture->GetName().Contains(GrassLayer)) continue;
+				if (!Tinted) Tinted = UMaterialInstanceDynamic::Create(Source, Holder);
+				if (Tinted) Tinted->SetVectorParameterValue(FName(*(FString(TEXT("Tint")) + Layer)), GroundTint);
+			}
+			if (Tinted) { Component->SetMaterial(Slot, Tinted); ++Count; }
+		}
+	};
+	for (TActorIterator<ADinkGreyboxScreen> It(GetWorld()); It; ++It)
+	{
+		if (!IndoorNumbers.Contains(It->ScreenNumber)) Tint(It->Visual);
+	}
+	for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+	{
+		if (!It->ActorHasTag(TEXT("DinkAuthoredArt")) && !It->ActorHasTag(TEXT("DinkKey=Env:Backdrop")) && !It->ActorHasTag(TEXT("DinkEnvBackdrop"))) continue;
+		TInlineComponentArray<UStaticMeshComponent*> Meshes(*It);
+		for (UStaticMeshComponent* M : Meshes) Tint(M);
+	}
+	UE_LOG(LogDink, Display, TEXT("DINK ENV: meadow ground tinted on %d terrain instances"), Count);
+}
+
+void UDinkEnvironmentSubsystem::GatherGrassClears()
+{
+	// Low things the carpet would bury: family props (tools, pebbles, mushrooms, bones, corpses), small authored props and
+	// ground decals. Each gets a clearing over its footprint with a soft rim; the lower the thing, the wider the rim.
+	// Tall or long things (trees, barrels above the grass, fence runs, walls) stand in the grass as before.
+	UWorld* World = GetWorld();
+	if (!World) return;
+	TArray<FGrassClear> Found;
+	TSet<uint64> Keys;
+	TArray<FBox2D> Fresh;
+	auto Add = [&](const FTransform& LocalToWorld, const FBox& LocalBox, float ReachCm)
+	{
+		FGrassClear C;
+		C.WorldToLocal = LocalToWorld.Inverse();
+		C.LocalBox = LocalBox;
+		C.ReachCm = ReachCm;
+		for (const double X : {LocalBox.Min.X, LocalBox.Max.X}) for (const double Y : {LocalBox.Min.Y, LocalBox.Max.Y})
+			C.WorldBounds += FVector2D(LocalToWorld.TransformPosition(FVector(X, Y, 0.0)));
+		C.WorldBounds = C.WorldBounds.ExpandBy(ReachCm);
+		const FVector2D Mid = C.WorldBounds.GetCenter(), Size = C.WorldBounds.GetSize();
+		const uint64 Key = (uint64(Hash3(uint32(FMath::RoundToInt32(Mid.X)), uint32(FMath::RoundToInt32(Mid.Y)), 11u)) << 32)
+			| uint64(Hash3(uint32(FMath::RoundToInt32(Size.X)), uint32(FMath::RoundToInt32(Size.Y)), 13u));
+		Keys.Add(Key);
+		if (!GrassClearKeys.Contains(Key)) Fresh.Add(C.WorldBounds);
+		Found.Add(MoveTemp(C));
+	};
+	auto FromMesh = [&](const FTransform& LocalToWorld, const FBox& LocalBox)
+	{
+		const FVector Scale = LocalToWorld.GetScale3D().GetAbs();
+		const FVector Size = LocalBox.GetSize() * Scale;
+		if (Size.Z > ClearMaxHeightCm || FMath::Max(Size.X, Size.Y) > ClearMaxSpanCm || FMath::Max(Size.X, Size.Y) < 1.0) return;
+		// 25 cm and lower: the full rim; toward the height limit the rim closes to a third (grass stands against a crate)
+		const float Low = 1.f - FMath::Clamp((float(Size.Z) - 25.f) / FMath::Max(ClearMaxHeightCm - 25.f, 1.f), 0.f, 1.f);
+		Add(LocalToWorld, LocalBox, ClearReachCm * FMath::Lerp(0.35f, 1.f, Low));
+	};
+	if (ClearMaxHeightCm > 0.f)
+	{
+		for (TActorIterator<AActor> It(World); It; ++It)
+		{
+			const bool bFamily = It->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag);
+			const bool bAuthored = !bFamily && It->ActorHasTag(TEXT("DinkAuthoredArt"));
+			if ((!bFamily && !bAuthored) || It->IsHidden()) continue;
+			TInlineComponentArray<UStaticMeshComponent*> Meshes(*It);
+			for (UStaticMeshComponent* M : Meshes)
+			{
+				if (!M->GetStaticMesh() || !M->IsVisible()) continue;
+				if (bFamily && !M->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)) continue;
+				const FBox Box = M->GetStaticMesh()->GetBoundingBox();
+				{
+					// props only: never the ground, the water or vegetation (weeds, ferns, flowers and bushes are family meshes too
+					// and grow in the grass)
+					const UMaterialInterface* Material = M->GetNumMaterials() > 0 ? M->GetMaterial(0) : nullptr;
+					const FString MaterialName = Material ? Material->GetName() : FString();
+					const FString Name = M->GetStaticMesh()->GetName();
+					if (M->GetFName() == TEXT("EnvSwapVisual") || MaterialName.Contains(TEXT("Terrain")) || MaterialName.Contains(TEXT("Meadow")) || MaterialName.Contains(TEXT("Earth"))
+						|| MaterialName.Contains(TEXT("Water")) || MaterialName.Contains(TEXT("Veg")) || Name.Contains(TEXT("Grass")) || Name.Contains(TEXT("Veg_"))
+						|| Name.Contains(TEXT("Weed")) || Name.Contains(TEXT("Fern")) || Name.Contains(TEXT("Flower")) || Name.Contains(TEXT("Reed")) || Name.Contains(TEXT("Bush"))
+						|| Name.Contains(TEXT("Thorn")) || Name.Contains(TEXT("Vine")) || Name.Contains(TEXT("Stump")) || Name.Contains(TEXT("Tree"))) continue;
+				}
+				if (const UInstancedStaticMeshComponent* Instanced = Cast<UInstancedStaticMeshComponent>(M))
+				{
+					for (int32 Index = 0; Index < Instanced->GetInstanceCount(); ++Index)
+					{
+						FTransform T;
+						if (Instanced->GetInstanceTransform(Index, T, /*bWorldSpace*/ true)) FromMesh(T, Box);
+					}
+				}
+				else FromMesh(M->GetComponentTransform(), Box);
+			}
+			// a ground decal (blood splat, burn hole) lies flat: the carpet opens over the middle of its sheet
+			TInlineComponentArray<UDecalComponent*> Decals(*It);
+			for (const UDecalComponent* D : Decals)
+			{
+				if (D->GetFName() != TEXT("EnvDecal")) continue;
+				const double Half = FMath::Max(D->DecalSize.Y, D->DecalSize.Z) * 0.7;
+				Add(FTransform(D->GetComponentLocation()), FBox(FVector(-Half, -Half, -1.0), FVector(Half, Half, 1.0)), ClearReachCm);
+			}
+		}
+		for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
+		{
+			if (It->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag) || It->ActorHasTag(TEXT("DinkAuthoredArt"))) continue;   // seen above
+			TInlineComponentArray<UDecalComponent*> Decals(*It);
+			for (const UDecalComponent* D : Decals)
+			{
+				if (D->GetFName() != TEXT("EnvDecal")) continue;
+				const double Half = FMath::Max(D->DecalSize.Y, D->DecalSize.Z) * 0.7;
+				Add(FTransform(D->GetComponentLocation()), FBox(FVector(-Half, -Half, -1.0), FVector(Half, Half, 1.0)), ClearReachCm);
+			}
+		}
+	}
+	// cells that were built before a clearing arrived (a screen dressed while its neighbour is in view) grow again without it
+	if (!Fresh.IsEmpty())
+	{
+		for (auto It = GrassCells.CreateIterator(); It; ++It)
+		{
+			const FVector2D Origin(It.Key().X * GrassCellCm, It.Key().Y * GrassCellCm);
+			const FBox2D CellBox(Origin, Origin + FVector2D(GrassCellCm));
+			if (!Fresh.ContainsByPredicate([&](const FBox2D& B) { return B.Intersect(CellBox); })) continue;
+			for (UInstancedStaticMeshComponent* C : It.Value().Components) if (C) C->DestroyComponent();
+			It.RemoveCurrent();
+		}
+	}
+	const int32 Before = GrassClears.Num();
+	GrassClears = MoveTemp(Found);
+	GrassClearKeys = MoveTemp(Keys);
+	if (GrassClears.Num() != Before) UE_LOG(LogDink, Display, TEXT("DINK ENV: %d grass clearings (low props and decals), %d new"), GrassClears.Num(), Fresh.Num());
+}
+
+float UDinkEnvironmentSubsystem::GrassClearAt(const FVector2D& At, const TArray<int32>& Candidates) const
+{
+	// 1 over the footprint, falling to 0 across the rim
+	float Clear = 0.f;
+	for (const int32 Index : Candidates)
+	{
+		const FGrassClear& C = GrassClears[Index];
+		if (!C.WorldBounds.IsInside(At)) continue;
+		const FVector L = C.WorldToLocal.TransformPosition(FVector(At, 0.0));
+		const FVector Scale = C.WorldToLocal.GetScale3D().GetAbs();
+		const double DX = FMath::Max3(C.LocalBox.Min.X - L.X, 0.0, L.X - C.LocalBox.Max.X) / FMath::Max(Scale.X, 1e-4);
+		const double DY = FMath::Max3(C.LocalBox.Min.Y - L.Y, 0.0, L.Y - C.LocalBox.Max.Y) / FMath::Max(Scale.Y, 1e-4);
+		Clear = FMath::Max(Clear, FMath::Clamp(1.f - float(FMath::Sqrt(DX * DX + DY * DY)) / FMath::Max(C.ReachCm, 1.f), 0.f, 1.f));
+	}
+	return Clear;
 }
 
 void UDinkEnvironmentSubsystem::GatherGrassSources()
@@ -1511,6 +1755,11 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 		Near.Add(Index);
 		bAnyRank |= !GrassSources[Index].bWear;
 	}
+	TArray<int32> NearClears;
+	for (int32 Index = 0; Index < GrassClears.Num(); ++Index)
+	{
+		if (GrassClears[Index].WorldBounds.Intersect(CellBox)) NearClears.Add(Index);
+	}
 	auto Value = [](const FVector2D& P, double Cm, uint32 Seed)
 	{
 		const double X = P.X / Cm, Y = P.Y / Cm;
@@ -1548,6 +1797,15 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 	{
 		float Rank = 0.f, Wear = 0.f, Short = 0.f;
 		GrassInfluence(At, Near, Rank, Wear, Short);
+		// a clearing over a low prop or a decal: nothing on the footprint, a ragged thinning rim, shorter blades toward it
+		const float Clear = NearClears.IsEmpty() ? 0.f : GrassClearAt(At, NearClears);
+		if (Clear > 0.f && Clear + (Unit(Hash3(H, 67u, 41u)) - 0.5f) * 0.4f > 0.5f) return;
+		// the end of the meadow (path, bare earth, shore): over the mask's soft edge the carpet thins out and steps down in
+		// height with noise, so it does not end as a wall of full-height cards
+		const float EdgeT = FMath::SmoothStep(GrassMinCover - 0.1f, GrassMinCover + 0.4f, LastCover);
+		if (Unit(Hash3(H, 71u, 43u)) < (1.f - EdgeT) * 0.55f * EdgeFeather) return;
+		const float Taper = FMath::Lerp(1.f, FMath::Lerp(0.4f, 1.f, EdgeT * (0.75f + 0.25f * Unit(Hash3(H, 73u, 47u)))), EdgeFeather)
+			* (1.f - 0.55f * FMath::SmoothStep(0.f, 0.5f, Clear)) * FMath::Lerp(1.f, 1.f - 0.45f * Wear, EdgeFeather);
 		const float Noise = 0.65f * Value(At, 1100.0, 91u) + 0.35f * Value(At, 300.0, 57u);
 		const float EdgeWear = 1.f - FMath::SmoothStep(GrassMinCover, 0.98f, LastCover);     // the tile mask's path rims
 		// the carpet's own edge: where the meadow mask ends within 0.8 m, the grass steps down to short, thin turf before bare ground
@@ -1573,14 +1831,14 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 		if (bShort && !GrassShortMeshes.IsEmpty() && Wear > 0.3f)
 		{
 			// trodden: lower still toward the door
-			Place(FirstShort + int32(Hash3(H, 41u, 13u) % uint32(GrassShortMeshes.Num())), H, At, Z, Footprint * 1.2f, Footprint * FMath::Lerp(0.6f, 0.9f, Pick), Lean * 0.4);
+			Place(FirstShort + int32(Hash3(H, 41u, 13u) % uint32(GrassShortMeshes.Num())), H, At, Z, Footprint * 1.2f, Footprint * FMath::Lerp(0.6f, 0.9f, Pick) * FMath::Max(Taper, 0.6f), Lean * 0.4);
 			return;
 		}
 		if (bShort)
 		{
 			if (!GrassShortMeshes.IsEmpty())
 			{
-				Place(FirstShort + int32(Hash3(H, 41u, 13u) % uint32(GrassShortMeshes.Num())), H, At, Z, Footprint * 1.3f, Footprint * FMath::Lerp(1.0f, 1.3f, Pick), Lean * 0.6);   // wider than the tall patch: turf closes
+				Place(FirstShort + int32(Hash3(H, 41u, 13u) % uint32(GrassShortMeshes.Num())), H, At, Z, Footprint * 1.3f, Footprint * FMath::Lerp(1.0f, 1.3f, Pick) * FMath::Max(Taper, 0.6f), Lean * 0.6);   // wider than the tall patch: turf closes
 			}
 			else
 			{
@@ -1593,7 +1851,7 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 		const float DryNoise = 0.7f * Value(At, 900.0, 133u) + 0.3f * Value(At, 240.0, 71u);
 		// the general field is a uniformly scaled patch (field_scale caps its height); it stands taller only where rank growth is left
 		Footprint *= GrassFieldFootprint;
-		const float Tall = GrassFieldScale * FMath::Lerp(GrassHeightMin, GrassHeightMax, Pick) * FMath::Lerp(1.f, FMath::Lerp(0.85f, 1.15f, FMath::SmoothStep(0.3f, 0.8f, Noise)), V) * (1.f + 0.6f * Rank);
+		const float Tall = Taper * GrassFieldScale * FMath::Lerp(GrassHeightMin, GrassHeightMax, Pick) * FMath::Lerp(1.f, FMath::Lerp(0.85f, 1.15f, FMath::SmoothStep(0.3f, 0.8f, Noise)), V) * (1.f + 0.6f * Rank);
 		if (!GrassDryMeshes.IsEmpty() && DryNoise > 0.78f - DryShare && Unit(Hash3(H, 53u, 29u)) < 0.8f)
 		{
 			Place(FirstDry + int32(Hash3(H, 41u, 13u) % uint32(GrassDryMeshes.Num())), H, At, Z, Footprint, Tall, Lean);
@@ -1611,6 +1869,7 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 			// right against a wall or under a fence rail a few tufts escape the scythe: a thin fringe, not a hedge
 			if (Short > 0.8f && Unit(Hash3(H, 61u, 37u)) < RankEdgeShare) Rank = FMath::Max(Rank, Short);
 			if (Rank <= 0.f || Wear > 0.35f || Unit(Hash3(H, 59u, 31u)) > Rank * Rank * 1.2f) return;
+			if (!NearClears.IsEmpty() && GrassClearAt(At, NearClears) > 0.1f) return;
 			const float Footprint = FMath::Lerp(0.85f, 1.25f, Unit(Hash3(H, 5u, 11u)));
 			Place(FirstRank + int32(Hash3(H, 41u, 13u) % uint32(GrassRankMeshes.Num())), H, At, Z, Footprint, Footprint * FMath::Lerp(1.05f, 1.5f, Unit(Hash3(H, 37u, 21u))), Lean * 1.3);
 		});
@@ -1627,6 +1886,7 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 			float Rank = 0.f, Wear = 0.f, Short = 0.f;
 			GrassInfluence(At, Near, Rank, Wear, Short);
 			if (Wear > 0.5f || Short > 0.5f) return;
+			if (!NearClears.IsEmpty() && GrassClearAt(At, NearClears) > 0.1f) return;
 			const float Scale = FMath::Lerp(0.8f, 1.2f, Unit(Hash3(H, 5u, 11u)));
 			Place(FirstAccent + Kind, H, At, Z, Scale, Scale * FMath::Lerp(0.9f, 1.15f, Unit(Hash3(H, 37u, 21u))), Lean);
 		});
@@ -1795,6 +2055,7 @@ void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 		LastFamilyScreen = ScreenNumber;
 		ApplyNeighbourFamilies(DinkLayout::MapPixelToUnreal(Current->Corners, 300.0, 200.0));
 		FindBurnables();
+		if (!bGrassSourcesStale) GatherGrassClears();   // the screens dressed just now bring their low props
 	}
 	if (Now >= NextBurnCheck)
 	{
@@ -1811,7 +2072,9 @@ void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 	{
 		// after the art layers have run (authored meshes, swaps): what the carpet grows along and wears around
 		bGrassSourcesStale = false;
+		TintMeadowGround();
 		GatherGrassSources();
+		GatherGrassClears();
 		ClearGrass();
 	}
 	const float Density = Current && Current->bIndoor ? 0.f : GrassDensityPerM2 * FMath::Max(CVarDinkGrassDensity.GetValueOnGameThread(), 0.f);
