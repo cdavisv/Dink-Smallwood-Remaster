@@ -68,6 +68,8 @@ static TAutoConsoleVariable<int32> CVarDinkIndoorLitCards(TEXT("dink.IndoorLitCa
 	TEXT("1 = sprite cards on indoor screens are lit by the scene lights instead of glowing unlit (read when the indoor set is built)."));
 static TAutoConsoleVariable<int32> CVarDinkStateSwaps(TEXT("dink.StateSwaps"), 1,
 	TEXT("1 = swapped-in meshes follow their screen's &vision (the burnt cottage). Read-only on the game state."));
+static TAutoConsoleVariable<int32> CVarDinkGroundTint(TEXT("dink.GroundTint"), 1,
+	TEXT("1 = the meadow terrain layer is tinted toward the grass carpet's colour (environment.json grass.ground_tint; read once, a few seconds after the start)."));
 static TAutoConsoleVariable<int32> CVarDinkBackdrop(TEXT("dink.Backdrop"), 1,
 	TEXT("1 = the far terrain skirt and hill ring follow the camera."));
 
@@ -161,6 +163,13 @@ void UDinkEnvironmentSubsystem::LoadConfig()
 				if ((*Grass)->TryGetNumberField(TEXT("clear_max_span_cm"), Number)) ClearMaxSpanCm = float(Number);
 				if ((*Grass)->TryGetNumberField(TEXT("clear_reach_cm"), Number)) ClearReachCm = float(Number);
 				if ((*Grass)->TryGetNumberField(TEXT("edge_feather"), Number)) EdgeFeather = FMath::Clamp(float(Number), 0.f, 1.f);
+				(*Grass)->TryGetStringField(TEXT("layer"), GrassLayer);
+				const TArray<TSharedPtr<FJsonValue>>* TintValues = nullptr;
+				if ((*Grass)->TryGetArrayField(TEXT("ground_tint"), TintValues) && TintValues && TintValues->Num() == 3)
+				{
+					GroundTint = FLinearColor(float((*TintValues)[0]->AsNumber()), float((*TintValues)[1]->AsNumber()), float((*TintValues)[2]->AsNumber()));
+					bGroundTint = !GroundTint.Equals(FLinearColor::White);
+				}
 			LoadMeshes(*Grass, TEXT("accent_meshes"), AccentMeshes);
 		}
 	}
@@ -1680,6 +1689,47 @@ float UDinkEnvironmentSubsystem::CoverAt(const TArray<uint8>& Mask, double MapX,
 	return FMath::Lerp(FMath::Lerp(At(X0, Y0), At(X1, Y0), FX), FMath::Lerp(At(X0, Y1), At(X1, Y1), FX), FY);
 }
 
+void UDinkEnvironmentSubsystem::TintMeadowGround()
+{
+	// The meadow scan is paler and yellower than the grass that stands on it; seen from above, the ground between the
+	// patches and in the clearings round props read as pale flagstones. Every slot of a terrain instance that carries the
+	// grass layer is multiplied by grass.ground_tint. Indoor screens are left alone. Visual only, once per world.
+	if (bGroundTinted || !bGroundTint || !Holder || CVarDinkGroundTint.GetValueOnGameThread() == 0) return;
+	bGroundTinted = true;
+	TSet<int32> IndoorNumbers;
+	for (const FScreenInfo& S : Screens) if (S.bIndoor) IndoorNumbers.Add(S.Number);
+	int32 Count = 0;
+	auto Tint = [&](UStaticMeshComponent* Component)
+	{
+		for (int32 Slot = 0; Component && Slot < Component->GetNumMaterials(); ++Slot)
+		{
+			UMaterialInterface* Source = Component->GetMaterial(Slot);
+			const UMaterial* Base = Source ? Source->GetMaterial() : nullptr;
+			if (!Base || Base->GetName() != TEXT("M_Env_Terrain") || Cast<UMaterialInstanceDynamic>(Source)) continue;
+			UMaterialInstanceDynamic* Tinted = nullptr;
+			for (const TCHAR* Layer : {TEXT("A"), TEXT("B"), TEXT("C"), TEXT("D")})
+			{
+				UTexture* Texture = nullptr;
+				if (!Source->GetTextureParameterValue(FHashedMaterialParameterInfo(FName(*(FString(TEXT("BC")) + Layer))), Texture) || !Texture || !Texture->GetName().Contains(GrassLayer)) continue;
+				if (!Tinted) Tinted = UMaterialInstanceDynamic::Create(Source, Holder);
+				if (Tinted) Tinted->SetVectorParameterValue(FName(*(FString(TEXT("Tint")) + Layer)), GroundTint);
+			}
+			if (Tinted) { Component->SetMaterial(Slot, Tinted); ++Count; }
+		}
+	};
+	for (TActorIterator<ADinkGreyboxScreen> It(GetWorld()); It; ++It)
+	{
+		if (!IndoorNumbers.Contains(It->ScreenNumber)) Tint(It->Visual);
+	}
+	for (TActorIterator<AActor> It(GetWorld()); It; ++It)
+	{
+		if (!It->ActorHasTag(TEXT("DinkAuthoredArt")) && !It->ActorHasTag(TEXT("DinkKey=Env:Backdrop")) && !It->ActorHasTag(TEXT("DinkEnvBackdrop"))) continue;
+		TInlineComponentArray<UStaticMeshComponent*> Meshes(*It);
+		for (UStaticMeshComponent* M : Meshes) Tint(M);
+	}
+	UE_LOG(LogDink, Display, TEXT("DINK ENV: meadow ground tinted on %d terrain instances"), Count);
+}
+
 void UDinkEnvironmentSubsystem::GatherGrassClears()
 {
 	// Low things the carpet would bury: family props (tools, pebbles, mushrooms, bones, corpses), small authored props and
@@ -2274,6 +2324,7 @@ void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 	{
 		// after the art layers have run (authored meshes, swaps): what the carpet grows along and wears around
 		bGrassSourcesStale = false;
+		TintMeadowGround();
 		GatherGrassSources();
 		GatherGrassClears();
 		ClearGrass();

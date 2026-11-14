@@ -31,6 +31,12 @@ Evidence and what is still wrong: `Docs/Verification/CharacterFacesBuilds_14Nov2
 - **Hero build**: `physique.KEY_STRENGTH['Brawny'] = 0.55`; the owner wants him "a little stronger, not He-Man".
 - **A loose sheet bakes from itself** (`char_05_bake.py` `SELF_HI`, the mail skirt), like the hero's pack flap.
 
+## Meadow ground tinted toward the grass carpet (14 November 2026)
+
+- Visual only, runtime only (`UDinkEnvironmentSubsystem::TintMeadowGround`). The meadow scan is paler and yellower than the grass cards on it, so the ground in the clearings round props and between patches read as pale stone from above. `environment.json` `grass.ground_tint` (0.55, 0.62, 0.42 linear) multiplies the slots of every `M_Env_Terrain` instance that carry `grass.layer`, through dynamic instances; `M_Env_Terrain` has `TintA..TintD` for it. Measured from above on screen 440 (sRGB): clearing 188, 188, 126 before, 174, 179, 106 after, grass field 123, 138, 63.
+- What it does not fix: the pale wedge shapes all over a field seen from above are the sunlit tops of the grass patches themselves (asset and grass material), not the ground. A component whose material is already a dynamic instance is skipped.
+- Evidence: `Docs/Verification/PhotorealRound7/README_ground_tint.md` (`ground_tint_*`).
+
 ## Ground fixes: fourth layer, forest, yards, water sheets, relief rock, grass clearings (14 November 2026)
 
 - All visual, no collision: the world export's collision, placement and warp files are byte-identical. Evidence and what was not proven: `Docs/Verification/GroundFixes_14Nov2026/`.

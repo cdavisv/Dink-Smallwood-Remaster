@@ -250,6 +250,12 @@ private:
 	float ClearMaxSpanCm = 320.f;           // grass.clear_max_span_cm: longer things (fence runs, walls) are not props
 	float ClearReachCm = 40.f;              // grass.clear_reach_cm: soft rim round the footprint of the lowest things
 	float EdgeFeather = 1.f;                // grass.edge_feather 0..1: the carpet thins and shortens toward the end of the meadow mask
+	// --- round 7: the meadow layer under the carpet is multiplied toward the grass colour (grass.ground_tint), on the
+	// greybox grounds, authored meadow meshes and the backdrop, through dynamic instances (Tint<slot> of M_Env_Terrain) ---
+	FLinearColor GroundTint = FLinearColor::White;
+	bool bGroundTint = false, bGroundTinted = false;
+	FString GrassLayer = TEXT("MeadowTurf");
+	void TintMeadowGround();
 	void GatherGrassClears();
 	float GrassClearAt(const FVector2D& At, const TArray<int32>& Candidates) const;
 	float CoverAt(const TArray<uint8>& Mask, double MapX, double MapY) const;

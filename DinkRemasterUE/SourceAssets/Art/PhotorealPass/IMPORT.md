@@ -176,6 +176,12 @@ Evidence: `Docs/Verification/Gate2StaticBatch1_13Nov2026/`.
 - **Snow and ice exposure** (`environment.json` `snow_exposure`, `dink.SnowExposure`): outdoor screens whose tiles are mostly snow or ice get an exposure compensation (0.8 EV at a 60% share, eased), because the automatic exposure meters white ground down to grey. No import step; the shares come from `ground_classes.json`.
 - Proof that nothing gameplay moved: the export's `collision.json`, `placements.json` and `warps.json` are byte-identical before and after; unit tests `Scripts/tests/test_ground_export_helpers.py`. Before/after sheets: `python3 -I Scripts/PhotorealQA/ground_compare_sheet.py <before dir> <after dir> <out dir>`.
 
+## Meadow ground under the grass carpet (round 7, 14 Nov 2026)
+
+- `environment.json` `grass.ground_tint` (linear r, g, b) multiplies the meadow layer (`grass.layer`) of every terrain instance toward the colour of the grass that stands on it: greybox grounds, authored meadow meshes and the backdrop get a dynamic instance with `Tint<A|B|C|D>` set for the slots that carry that layer (`UDinkEnvironmentSubsystem::TintMeadowGround`, once, a few seconds after the start; nothing in headless runs). Other layers of the same screen (RockyGrass, earth, sand) keep their colour.
+- `M_Env_Terrain` gained the vector parameters `TintA` to `TintD` (white = unchanged). After a material rebuild (`DINK_ENV_MATERIALS_ONLY=1 Scripts/import_environment_materials.sh`) keep `M_Env_Terrain.uasset` and restore the other re-saved packages unless they changed too.
+- `-dpcvars=dink.GroundTint=0` keeps the scan's own colour. Evidence: `Docs/Verification/PhotorealRound7/README_ground_tint.md` (`ground_tint_*`).
+
 ## Town houses in the audit (13 Nov 2026)
 
 | What | Command | Reads | Writes |
@@ -213,4 +219,4 @@ Evidence: `Docs/Verification/Gate2StaticBatch1_13Nov2026/`.
 ## Turning the pass off
 
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):
-`dink.PhotorealHero=0`, `dink.PhotorealPillbug=0`, `dink.CreatureClassArt=0` (class-bound creatures), `dink.PhotorealNPCs=0` (Mother and Milder), `dink.TownHouses=0`, `dink.FamilyArt=0` (all family meshes, the old ones included), `dink.EnvMaterials=0`, `dink.IndoorEnv=0`, `dink.IndoorLitCards=0`, `dink.StateSwaps=0`, `dink.GrassDensity=0`, `dink.Wind=0`, `dink.Backdrop=0`, `dink.InteriorExposure=0`. `dink.EnvMeshSwaps=0` is meant to restore the old Stonebrook vegetation and structures but crashed at start in round 6 (segmentation fault): do not rely on it until that is fixed. The sky light tint has no cvar: set `environment.json` `sky.tint` to 1, 1, 1.
+`dink.PhotorealHero=0`, `dink.PhotorealPillbug=0`, `dink.CreatureClassArt=0` (class-bound creatures), `dink.PhotorealNPCs=0` (Mother and Milder), `dink.TownHouses=0`, `dink.FamilyArt=0` (all family meshes, the old ones included), `dink.EnvMaterials=0`, `dink.IndoorEnv=0`, `dink.IndoorLitCards=0`, `dink.StateSwaps=0`, `dink.GrassDensity=0`, `dink.GroundTint=0`, `dink.Wind=0`, `dink.Backdrop=0`, `dink.InteriorExposure=0`. `dink.EnvMeshSwaps=0` is meant to restore the old Stonebrook vegetation and structures but crashed at start in round 6 (segmentation fault): do not rely on it until that is fixed. The sky light tint has no cvar: set `environment.json` `sky.tint` to 1, 1, 1.
