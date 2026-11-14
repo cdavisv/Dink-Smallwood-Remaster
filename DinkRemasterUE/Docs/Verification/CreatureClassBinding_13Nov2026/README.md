@@ -9,8 +9,8 @@ Presentation only: collision, hardness, scripts, hits, touch and the random stre
 
 | `art_coverage.py --coverage <whole-world report>` | before | after |
 |---|---:|---:|
-| final | 4,335 | 4,489 |
-| placeholder | 2,120 | 1,966 |
+| final | 4,663 | 4,817 |
+| placeholder | 1,792 | 1,638 |
 | cut | 152 | 152 |
 
 154 rows turned from placeholder to final: the pillbug placements that no other manifest names. The running game
