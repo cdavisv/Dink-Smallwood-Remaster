@@ -56,8 +56,10 @@ def focus(w):
 
 
 def console(command):
+    # The console's typing line closes itself on Return. No Escape after it: since 14 Nov 2026 Esc opens the game's main menu
+    # (escape.c, as in the original), which a stray Escape would leave open over the next capture.
     run('wtype', '-k', 'grave', '-s', '350', '-d', '20', command,
-        '-k', 'Return', '-s', '200', '-k', 'Escape')
+        '-k', 'Return', '-s', '200')
     time.sleep(.2)
 
 

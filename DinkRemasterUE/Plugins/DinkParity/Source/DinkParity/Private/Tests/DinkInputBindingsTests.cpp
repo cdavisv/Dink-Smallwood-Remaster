@@ -81,7 +81,7 @@ bool FDinkInputButtonScriptsTest::RunTest(const FString& Parameters)
 		return false;
 	}
 	Story->ResetRuntime();
-	Story->bInstantMode = true;
+	Story->bInstantMode = false; // instant mode answers menus by itself
 	Story->GetDirector()->GetDink().bFrozen = true;
 	TestFalse(TEXT("frozen: Esc does nothing"), Story->RunPlayerButton(5));
 	Story->GetDirector()->GetDink().bFrozen = false;
