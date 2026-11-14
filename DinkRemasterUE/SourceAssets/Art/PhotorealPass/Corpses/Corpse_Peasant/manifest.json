@@ -1,0 +1,136 @@
+{
+ "name": "SM_Corpse_Peasant_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/SM_Corpse_Peasant_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/SM_Corpse_Peasant_PR.blend",
+ "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Corpse_Peasant_PR",
+ "dimensions_m": [
+  3.2,
+  3.2,
+  0.4889
+ ],
+ "bounds_min_m": [
+  -1.6,
+  -1.6,
+  -0.0039
+ ],
+ "bounds_max_m": [
+  1.6,
+  1.6,
+  0.485
+ ],
+ "lod0_triangles": 30006,
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Peasant_PR",
+   "channels": "base colour sRGB + alpha (cut-out)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Peasant_PR",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Peasant_PR",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Peasant_Pool",
+   "channels": "base colour sRGB + alpha (cut-out)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Peasant_Pool",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Peasant_Pool",
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Corpse_Peasant_PR",
+  "MI_Corpse_Peasant_Pool"
+ ],
+ "kit_materials": [
+  {
+   "name": "MI_Corpse_Peasant_PR",
+   "kind": "masked",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_PR_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_PR_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_PR_ORM.png"
+   }
+  },
+  {
+   "name": "MI_Corpse_Peasant_Pool",
+   "kind": "masked",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_ORM.png"
+   }
+  }
+ ],
+ "collision_hulls": 0,
+ "material_exception": "unique BC/N/ORM bakes private to this asset (not a row of ART_STANDARD.md section 2): remains are one-off set pieces",
+ "pivot": "bbox centre in X/Y, lowest point at z = 0; in Blender +X is screen right and +Y screen up (north) for a yaw_from_sprite row",
+ "families": [
+  "corpse_peasant",
+  "415 people/peasant2/death-"
+ ],
+ "dresses": "the peasant hacked down: the chest split to the ribs, the belly cut open, his long-handled sickle beside him, in his blood",
+ "third_party": [
+  "MakeHuman CC0 base mesh, skin, eyes and hair (Art/Characters/ThirdParty/MakeHuman), through the source character",
+  "park_dirt (render ground)"
+ ],
+ "known_weaknesses": "The body is the rigged peasant of PhotorealPass/Unclaimed posed by rule (limbs aimed into the plane of the back and sunk to the ground, no cloth simulation: the clothes follow the skin weights), baked again onto one 2048 px atlas, so face, hands and hair are softer than on the living character and the hair is a hard cut-out. The openings are cut by a ragged ellipse and their inside is a displaced lump of muscle with plain rib rods and three loops of gut: no organs, no anatomy beyond that; severed ends are a lump and a rod of bone. Scaled by 1.00 to keep body and pool inside the 2.85 m footprint of the 1997 picture. The pool, the drops and the soaked fringe are a flat alpha-tested card 6 mm above the ground. Static.",
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 78.4,
+   "p99": 184.6
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.479,
+   "p95": 0.871
+  },
+  "metallic_mean": 0.011,
+  "ao_mean": 0.566
+ },
+ "derived_from": "Unclaimed/npc_peasant/Peasant (SK_Peasant_PR LOD0), posed dead, opened, bloodied and baked again",
+ "sprite_footprint_m": 2.85,
+ "body_scale": 1.0,
+ "pool_extent_m": 1.89,
+ "gore_in_mesh": "opened body with flesh rims, ribs and entrails as the picture shows, severed parts with stumps, blood round the wounds; pool card with drops and a soaked fringe (no companion decal)",
+ "pool_card_m": 3.2
+}

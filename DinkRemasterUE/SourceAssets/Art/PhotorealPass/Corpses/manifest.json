@@ -2,8 +2,28 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses",
  "generated_by": "Corpses/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "2 static meshes of remains, thrown blood and burn holes. Each FBX holds one object named after the asset (LOD0 only, no collision): a body atlas (opaque, or cut-out where it carries hair) and, on a second slot, the alpha-tested ground card with the pool.",
+ "summary": "7 static meshes of remains, thrown blood and burn holes. Each FBX holds one object named after the asset (LOD0 only, no collision): a body atlas (opaque, or cut-out where it carries hair) and, on a second slot, the alpha-tested ground card with the pool.",
  "assets": [
+  {
+   "name": "SM_Corpse_Girl_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/SM_Corpse_Girl_PR.fbx",
+   "materials": [
+    "MI_Corpse_Girl_PR",
+    "MI_Corpse_Girl_Pool"
+   ],
+   "dimensions_m": [
+    1.8,
+    1.8,
+    0.304
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "corpse_girl",
+    "335 people/girl/death-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl"
+  },
   {
    "name": "SM_Corpse_Knight_PR",
    "class": "prop",
@@ -23,6 +43,86 @@
     "275 people/knight/red/death-"
    ],
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight"
+  },
+  {
+   "name": "SM_Corpse_Maiden_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Maiden/SM_Corpse_Maiden_PR.fbx",
+   "materials": [
+    "MI_Corpse_Maiden_PR",
+    "MI_Corpse_Maiden_Pool"
+   ],
+   "dimensions_m": [
+    1.9,
+    1.9,
+    0.227
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "corpse_maiden",
+    "245 people/maiden/red/death-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Maiden"
+  },
+  {
+   "name": "SM_Corpse_Merchant_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant/SM_Corpse_Merchant_PR.fbx",
+   "materials": [
+    "MI_Corpse_Merchant_PR",
+    "MI_Corpse_Merchant_Pool"
+   ],
+   "dimensions_m": [
+    2.2,
+    2.2,
+    0.385
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "corpse_merchant",
+    "345 people/merchant/death-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant"
+  },
+  {
+   "name": "SM_Corpse_Merchant_Green_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green/SM_Corpse_Merchant_Green_PR.fbx",
+   "materials": [
+    "MI_Corpse_Merchant_Green_PR",
+    "MI_Corpse_Merchant_Green_Pool"
+   ],
+   "dimensions_m": [
+    2.2,
+    2.2,
+    0.388
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "corpse_merchant",
+    "385 people/merchant/green/death-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green"
+  },
+  {
+   "name": "SM_Corpse_Peasant_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/SM_Corpse_Peasant_PR.fbx",
+   "materials": [
+    "MI_Corpse_Peasant_PR",
+    "MI_Corpse_Peasant_Pool"
+   ],
+   "dimensions_m": [
+    3.2,
+    3.2,
+    0.489
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "corpse_peasant",
+    "415 people/peasant2/death-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant"
   },
   {
    "name": "SM_Dragon_Corpse_PR",
@@ -54,6 +154,24 @@
    "collision": "none imported; placements keep their hardbox"
   },
   "materials": {
+   "MI_Corpse_Girl_PR": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_PR_ORM.png"
+    }
+   },
+   "MI_Corpse_Girl_Pool": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_Pool_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_Pool_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_Pool_ORM.png"
+    }
+   },
    "MI_Corpse_Knight_PR": {
     "baked": true,
     "kind": "opaque",
@@ -70,6 +188,78 @@
      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_BC.png",
      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_N.png",
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_ORM.png"
+    }
+   },
+   "MI_Corpse_Maiden_PR": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Maiden/T_Corpse_Maiden_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Maiden/T_Corpse_Maiden_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Maiden/T_Corpse_Maiden_PR_ORM.png"
+    }
+   },
+   "MI_Corpse_Maiden_Pool": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Maiden/T_Corpse_Maiden_Pool_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Maiden/T_Corpse_Maiden_Pool_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Maiden/T_Corpse_Maiden_Pool_ORM.png"
+    }
+   },
+   "MI_Corpse_Merchant_PR": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant/T_Corpse_Merchant_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant/T_Corpse_Merchant_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant/T_Corpse_Merchant_PR_ORM.png"
+    }
+   },
+   "MI_Corpse_Merchant_Pool": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant/T_Corpse_Merchant_Pool_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant/T_Corpse_Merchant_Pool_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant/T_Corpse_Merchant_Pool_ORM.png"
+    }
+   },
+   "MI_Corpse_Merchant_Green_PR": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green/T_Corpse_Merchant_Green_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green/T_Corpse_Merchant_Green_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green/T_Corpse_Merchant_Green_PR_ORM.png"
+    }
+   },
+   "MI_Corpse_Merchant_Green_Pool": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green/T_Corpse_Merchant_Green_Pool_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green/T_Corpse_Merchant_Green_Pool_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green/T_Corpse_Merchant_Green_Pool_ORM.png"
+    }
+   },
+   "MI_Corpse_Peasant_PR": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_PR_ORM.png"
+    }
+   },
+   "MI_Corpse_Peasant_Pool": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_ORM.png"
     }
    },
    "MI_Dragon_Corpse_PR": {
