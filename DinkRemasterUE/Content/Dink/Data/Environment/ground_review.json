@@ -1,0 +1,267 @@
+{
+ "schema": "dink-environment-ground-review/1",
+ "note": "Kept by hand. The verdicts of the in-game review of the screen grounds: one per tile class, outdoors and indoors, from captures of the running game at the play camera, 1.1 m above the ground and from above (Scripts/PhotorealQA/ground_script.py; sheets in Docs/Verification/GroundReview_13Nov2026). Scripts/art_coverage.py screen_ground_state() counts a screen ground final only when every tile class on it has verdict \"pass\" here. A class that is absent was not looked at and does not pass.",
+ "date": "13 Nov 2026",
+ "world": "master 8ba0e903 (three-layer terrain mask, grass carpet with hard edges)",
+ "rule": {
+  "count_reviewed_grounds_final": true,
+  "note": "The one switch. false: no screen ground counts final by this rule, whatever the verdicts (every ground stays placeholder unless an art manifest dresses its screen). Whether grounds may count final by rule is the owner's decision; art_coverage.py --ground-rule on|off overrides this value for one run."
+ },
+ "classes": {
+  "grass": {
+   "outdoor": {
+    "verdict": "pass",
+    "seen": [
+     10,
+     299,
+     438,
+     510,
+     624
+    ],
+    "note": "bladed turf carpet over the meadow layer, reads as a real meadow at the play camera and at 1.1 m"
+   },
+   "indoor": {
+    "verdict": "fail",
+    "seen": [
+     86
+    ],
+    "reason": "a flat lawn photograph without blades, lit by the cave light"
+   }
+  },
+  "grass_rocky": {
+   "outdoor": {
+    "verdict": "pass",
+    "seen": [
+     445,
+     510,
+     624
+    ],
+    "note": "short stony turf between the tall grass, the carpet edge beside it is a hard line (feathering is in the ground-fixes work)"
+   }
+  },
+  "path": {
+   "outdoor": {
+    "verdict": "pass",
+    "seen": [
+     531,
+     536,
+     586
+    ],
+    "note": "trodden earth with stones, holds at the play camera. Known defects: the grass carpet ends on a hard saw-tooth line, and the detail warp smears the texture in places at 1.1 m (536)"
+   }
+  },
+  "stone_floor": {
+   "outdoor": {
+    "verdict": "pass",
+    "seen": [
+     16,
+     48
+    ],
+    "note": "worn cobbles with relief and dirt in the joints"
+   },
+   "indoor": {
+    "verdict": "pass",
+    "seen": [
+     70,
+     73,
+     514
+    ],
+    "note": "dark flagstones under the lantern light"
+   }
+  },
+  "sand": {
+   "outdoor": {
+    "verdict": "pass",
+    "seen": [
+     519
+    ],
+    "note": "wind-marked dry sand, wet band at the waterline"
+   }
+  },
+  "water": {
+   "outdoor": {
+    "verdict": "pass",
+    "seen": [
+     489,
+     510,
+     519
+    ],
+    "note": "where a water surface is drawn: rippled translucent water with a shallow band (the condition water_without_surface covers the rest)"
+   }
+  },
+  "gravel": {
+   "outdoor": {
+    "verdict": "pass",
+    "seen": [
+     489
+    ],
+    "note": "river shingle with relief"
+   }
+  },
+  "wasteland": {
+   "outdoor": {
+    "verdict": "pass",
+    "seen": [
+     91,
+     191,
+     223
+    ],
+    "note": "cracked scorched soil, holds at the play camera. Known defect: the detail warp swirls the cracks at 1.1 m"
+   }
+  },
+  "cave_floor": {
+   "indoor": {
+    "verdict": "pass",
+    "seen": [
+     69,
+     98,
+     257
+    ],
+    "note": "wet dark rock floor under the cave light"
+   }
+  },
+  "snow": {
+   "outdoor": {
+    "verdict": "fail",
+    "seen": [
+     80,
+     120,
+     149,
+     153
+    ],
+    "reason": "white in sunlight (80, 149) but grey-beige with dark scribbled ripples under the overcast sky of 120 and 153: reads as rippled sand"
+   }
+  },
+  "ice": {
+   "outdoor": {
+    "verdict": "fail",
+    "seen": [
+     13,
+     82,
+     109
+    ],
+    "reason": "drawn as grey trampled mud, nothing reads as ice or snow"
+   }
+  },
+  "lava": {
+   "indoor": {
+    "verdict": "fail",
+    "seen": [
+     85,
+     86
+    ],
+    "reason": "a glowing line pattern on flat black that repeats visibly, no relief, no molten body"
+   }
+  },
+  "wood_floor": {
+   "indoor": {
+    "verdict": "fail",
+    "seen": [
+     4,
+     33,
+     34,
+     67
+    ],
+    "reason": "wood grain metres wide instead of boards (plank scale, with the interior work of the photoreal-pass session)"
+   }
+  },
+  "cliff_face": {
+   "outdoor": {
+    "verdict": "fail",
+    "seen": [
+     244,
+     278,
+     285
+    ],
+    "reason": "a cliff painted in the 1997 tiles is drawn as a flat brown rock floor"
+   }
+  },
+  "rock_mass": {
+   "outdoor": {
+    "verdict": "fail",
+    "seen": [
+     445,
+     510,
+     596
+    ],
+    "reason": "rock outcrops drawn as flat, tile-shaped slabs of rock texture"
+   }
+  },
+  "forest_canopy": {
+   "outdoor": {
+    "verdict": "fail",
+    "seen": [
+     218,
+     240,
+     272,
+     312
+    ],
+    "reason": "closed forest in the 1997 tiles is bare leaf litter with no trees"
+   }
+  },
+  "chasm": {
+   "outdoor": {
+    "verdict": "fail",
+    "seen": [
+     57,
+     89,
+     121,
+     256
+    ],
+    "reason": "the chasm is a flat rock floor one can see across"
+   }
+  },
+  "structure_facade": {
+   "outdoor": {
+    "verdict": "fail",
+    "seen": [
+     465,
+     505,
+     586
+    ],
+    "reason": "ground under the 1997 building pictures is drawn as wall masonry laid flat (a yellow yard of giant blocks behind the houses)"
+   }
+  },
+  "cave_wall": {
+   "indoor": {
+    "verdict": "fail",
+    "seen": [
+     99,
+     132,
+     258
+    ],
+    "reason": "cave walls are the same flat floor, the room ends at a plain grey box"
+   }
+  },
+  "void": {
+   "indoor": {
+    "verdict": "fail",
+    "seen": [
+     33,
+     133
+    ],
+    "reason": "the black outside of a room is drawn as warped masonry floor"
+   },
+   "outdoor": {
+    "verdict": "fail",
+    "seen": [
+     145,
+     256
+    ],
+    "reason": "warped masonry floor where the 1997 screen is black"
+   }
+  }
+ },
+ "conditions": {
+  "water_without_surface": {
+   "verdict": "fail",
+   "seen": [
+    438,
+    465
+   ],
+   "reason": "the pond of 438 is an empty pit with a green floor and the river of 465 a dry sand bed: water tiles without a water surface"
+  }
+ },
+ "screens": {},
+ "not_reviewed": "Classes with no capture yet: dirt (3 screens), cliff_face indoors (1). 28 of the 82 chosen screens were not captured (the run crashed; list in the verification README): the sea and shore screens, the dropped-layer screens and the town yards among them."
+}
