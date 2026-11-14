@@ -61,7 +61,7 @@ def build(everything=False):
         if m.get('flipbook') and ('MI_' + m['name']) in effects:
             fb = m['flipbook']
             flipbooks.append({'name': m['name'][len('FX_'):] if m['name'].startswith('FX_') else m['name'], 'file': m['textures'][0]['file'],
-                              'grid': fb['grid'], 'fps': fb['fps'], 'glow': 3, 'families': m['families']})
+                              'grid': fb['grid'], 'fps': fb['fps'], 'glow': 6, 'families': m['families']})
             continue
         if m['class'] not in STATIC:
             skipped.append({'name': m['name'], 'class': m['class'].split(' (')[0], 'why': 'not a static mesh'})
