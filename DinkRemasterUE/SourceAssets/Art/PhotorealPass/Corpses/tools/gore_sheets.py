@@ -101,7 +101,8 @@ def drop(cv, p, r, ang, stretch, rng, tail=True):
 
 
 def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, reach=0.55, drop_r=(0.004, 0.028), casts=5, mist=500,
-                edge_noise=0.2, thin=(120, 7, 6), mid=(74, 4, 4), deep=(40, 2, 2), dried=(58, 11, 8), centre=(0.0, 0.0), wet=0.10):
+                edge_noise=0.2, thin=(60, 5, 4), mid=(40, 2, 2), deep=(17, 1, 1), dried=(44, 12, 8), smear=(54, 10, 7), damp=(40, 27, 21), soak_m=0.06,
+                centre=(0.0, 0.0), wet=0.05):
     """pools = [(cx, cy, a, b, rot, runs)] in metres; foot = (n, 2) points the pool also spreads around (a body's outline), by `grow` metres.
     Drops are thrown out to `reach` metres beyond the pool. Returns dict BC (h, w, 4 uint8), N, ORM (h, w, 3 uint8) and `cover` (float mask)."""
     rng = np.random.default_rng(seed); cv = Canvas(px, size); k = cv.k
@@ -147,20 +148,33 @@ def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, rea
     fine = noise2(px, size / 0.012, rng, 3, 0.6); clotn = noise2(px, size / 0.05, rng, 4, 0.6)
     clot = sstep(0.64, 0.72, clotn) * sstep(0.2, 0.7, deepf)                     # half-dried skin floating on the deep parts
     rim = cover * (1 - sstep(0.55, 0.80, e2))                                     # the thin edge dries first
-    col = _srgb(thin)[None, None, :] * (1 - deepf[..., None]) + _srgb(deep)[None, None, :] * deepf[..., None]
-    m = sstep(0.15, 0.6, e2) * (1 - deepf); col = col * (1 - 0.55 * m[..., None]) + _srgb(mid)[None, None, :] * 0.55 * m[..., None]
-    col = col * (1 - 0.6 * rim[..., None]) + _srgb(dried)[None, None, :] * 0.6 * rim[..., None]
-    col = col * (1 - 0.7 * clot[..., None]) + _srgb((30, 2, 2))[None, None, :] * 0.7 * clot[..., None]
-    col *= (0.86 + 0.28 * fine)[..., None]
-    rough = wet + 0.06 * fine + 0.34 * rim + 0.22 * clot + 0.10 * (1 - sstep(0.2, 0.8, e2))
-    # height in metres: a meniscus at every edge, a swell over the deep parts, clot skin and fine ripple
-    h = 0.0012 * np.sqrt(np.clip((e1 - 0.5) * 2, 0, 1)) + 0.0016 * sstep(0.5, 1.0, e2) + 0.0010 * deepf + 0.0005 * clot + 0.00015 * fine
+    # Look, judged in the game (review of PR #103): the middle nearly black, no bright line at the rim (the edge dries
+    # brown-red), thrown drops and smears brown-red, and round the pool a fringe of earth the blood has soaked into.
+    shallow = pool * (1 - deepf)
+    col = _srgb(mid)[None, None, :] * (1 - deepf[..., None]) + _srgb(deep)[None, None, :] * deepf[..., None]
+    edgef = shallow * (1 - sstep(0.35, 0.9, e2)); col = col * (1 - 0.5 * edgef[..., None]) + _srgb(thin)[None, None, :] * 0.5 * edgef[..., None]
+    col = col * (1 - 0.75 * rim[..., None]) + _srgb(dried)[None, None, :] * 0.75 * rim[..., None]
+    col = col * (1 - 0.7 * clot[..., None]) + _srgb((14, 1, 1))[None, None, :] * 0.7 * clot[..., None]
+    thrown = cover * (1 - pool)                                                   # drops, cast-off lines, mist: thin, drying
+    col = col * (1 - thrown[..., None]) + _srgb(smear)[None, None, :] * thrown[..., None]
+    col *= (0.88 + 0.24 * fine)[..., None]
+    rough = wet + 0.03 * fine + 0.32 * rim + 0.22 * clot + 0.30 * thrown + 0.06 * (1 - sstep(0.2, 0.8, e2))
+    # the soaked fringe: damp earth, darker than the dry ground, ragged, reddish next to the pool
+    fz = noise2(px, size / 0.035, rng, 4, 0.6); soak = blur(pool, soak_m * 0.5 * k)
+    fringe = sstep(0.06, 0.22, soak + 0.16 * (fz - 0.5)) * (1 - cover)
+    near = sstep(0.25, 0.5, soak)
+    fcol = _srgb(damp)[None, None, :] * (1 - 0.6 * near[..., None]) + _srgb(dried)[None, None, :] * 0.6 * near[..., None]
+    fcol = fcol * (0.8 + 0.4 * fz)[..., None]
+    col = col * (1 - fringe[..., None]) + fcol * fringe[..., None]
+    rough = rough * (1 - fringe) + (0.50 + 0.25 * (1 - near)) * fringe
+    # height in metres: a meniscus at every edge, a swell over the deep parts, clot skin; the open surface is smooth so it mirrors the sky
+    h = 0.0012 * np.sqrt(np.clip((e1 - 0.5) * 2, 0, 1)) + 0.0016 * sstep(0.5, 1.0, e2) + 0.0010 * deepf + 0.0005 * clot + 0.00005 * fine
     gy, gx = np.gradient(h * k)                       # slope per metre along rows (down) and columns (right)
     n = np.dstack([-gx, gy, np.ones_like(h)]); n /= np.linalg.norm(n, axis=2, keepdims=True)
-    alpha = sstep(0.30, 0.60, cover)
+    alpha = np.maximum(sstep(0.30, 0.60, cover), sstep(0.35, 0.65, fringe))
     bc = np.dstack([_to_srgb(col), alpha])
-    hole = alpha < 0.02                              # colour under the cut-out: thin blood, so mip levels do not fringe dark
-    bc[hole, :3] = np.asarray(thin, np.float32) / 255.0 * 0.8
+    hole = alpha < 0.02                              # colour under the cut-out: damp earth, so mip levels do not fringe red
+    bc[hole, :3] = np.asarray(damp, np.float32) / 255.0
     orm = np.dstack([np.ones_like(h), np.clip(rough, 0.04, 1), np.zeros_like(h)])
     u8 = lambda a: (np.clip(a, 0, 1) * 255 + 0.5).astype(np.uint8)
     return {'BC': u8(bc), 'N': u8(n * 0.5 + 0.5), 'ORM': u8(orm), 'cover': cover}
