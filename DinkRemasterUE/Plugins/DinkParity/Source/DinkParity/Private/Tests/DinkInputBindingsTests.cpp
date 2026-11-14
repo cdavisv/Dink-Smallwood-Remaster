@@ -5,6 +5,7 @@
 #include "DinkInputBindings.h"
 #include "DinkDirector.h"
 #include "DinkStorySubsystem.h"
+#include "DinkNarrativeTypes.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkInputGamepadTest, "Dink.Input.GamepadAndKeyboardBindings", DINK_TEST_FLAGS)
 bool FDinkInputGamepadTest::RunTest(const FString& Parameters)
@@ -103,5 +104,31 @@ bool FDinkInputButtonScriptsTest::RunTest(const FString& Parameters)
 		bSaid |= E.Kind == TEXT("say") && E.Text.Contains(TEXT("I don't own a map yet."));
 	}
 	TestTrue(TEXT("without a map: \"I don't own a map yet.\""), bSaid);
+	return true;
+}
+
+// "Quit to Windows" in the death menu (dinfo.c) and in escape.c runs kill_game, which quits the original. Recorded only, it left a frozen Dink
+// with no menu (alpha bug A12, the 14 Nov 2026 soak died to pillbugs and chose it). The command now quits; tests intercept it.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkKillGameTest, "Dink.Input.KillGameQuits", DINK_TEST_FLAGS)
+bool FDinkKillGameTest::RunTest(const FString& Parameters)
+{
+	UGameInstance* GI = DinkTest::MakeOuterGameInstance();
+	UDinkFactSubsystem* Facts = NewObject<UDinkFactSubsystem>(GI);
+	FString Error;
+	TestTrue(TEXT("facts table loads"), Facts->LoadInitialFactsFromFile(UDinkFactSubsystem::GetDefaultInitialFactsPath(), &Error));
+	UDinkWorldStateSubsystem* World = NewObject<UDinkWorldStateSubsystem>(GI);
+	UDinkStorySubsystem* Story = NewObject<UDinkStorySubsystem>(GI);
+	if (!TestTrue(TEXT("story loads"), Story->SetupStandalone(Facts, World, &Error)))
+	{
+		return false;
+	}
+	Story->ResetRuntime();
+	int32 Quits = 0;
+	Story->GetDirector()->OnKillGame = [&Quits]() { ++Quits; };
+	FDinkScriptInstance Instance;
+	Instance.Sprite = UDinkDirector::HandleNoSprite;
+	const FDinkCommandResult R = Story->GetDirector()->Execute(Instance, FDinkStoryLine::Parse(TEXT(">> kill_game"), { TEXT("cmd"), TEXT("src:1") }));
+	TestEqual(TEXT("kill_game asks to quit the application"), Quits, 1);
+	TestTrue(TEXT("and ends the script"), R.bEndScript);
 	return true;
 }

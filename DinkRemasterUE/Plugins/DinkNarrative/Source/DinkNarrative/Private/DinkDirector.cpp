@@ -21,6 +21,7 @@
 #include "Dom/JsonObject.h"
 #include "Engine/GameInstance.h"
 #include "Engine/World.h"
+#include "GameFramework/PlayerController.h"
 #include "Components/MeshComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "EngineUtils.h"
@@ -764,9 +765,22 @@ void UDinkDirector::RegisterCommands()
 		}
 		return R;
 	});
-	Register(TEXT("kill_game"), S::Recorded, TEXT("quits the game in the original; logged and the script ends (not wired to quitting)"), [](FDinkCommandContext&)
+	Register(TEXT("kill_game"), S::Implemented, TEXT("quits the game (the original's finiObjects and exit); in automation and the probe only logged; the script ends"), [this](FDinkCommandContext&)
 	{
-		UE_LOG(LogDinkDirector, Log, TEXT("kill_game: the original quits here"));
+		// The death menu's and escape.c's "Quit to Windows" (dinfo.c, escape.c). Unwired, the choice left a frozen Dink and no menu: a softlock
+		// (alpha bug A12, 14 Nov 2026 soak).
+		UE_LOG(LogDinkDirector, Log, TEXT("kill_game: quitting the game"));
+		if (OnKillGame)
+		{
+			OnKillGame();
+		}
+		else if (UWorld* World = GetWorld(); World && World->IsGameWorld() && !GIsAutomationTesting)
+		{
+			if (APlayerController* PC = World->GetFirstPlayerController())
+			{
+				PC->ConsoleCommand(TEXT("quit"));
+			}
+		}
 		FDinkCommandResult R;
 		R.bEndScript = true;
 		return R;
