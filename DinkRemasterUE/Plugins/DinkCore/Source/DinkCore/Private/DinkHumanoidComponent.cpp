@@ -10,6 +10,8 @@ TAutoConsoleVariable<float> CVarNpcSmoothTime(TEXT("dink.Npc.SmoothTime"), .18f,
 	TEXT("Averaging time of an NPC body's position, s: turns the script's pixel steps into continuous motion (0: the body is glued to the scripted position)."));
 TAutoConsoleVariable<float> CVarNpcTurnRate(TEXT("dink.Npc.TurnRateDeg"), 300.f,
 	TEXT("How fast an NPC body turns to a new facing, degrees per second."));
+TAutoConsoleVariable<int32> CVarNpcLatePresent(TEXT("dink.Npc.LatePresent"), 1,
+	TEXT("1: an NPC body is put on its smoothed position and facing again at the end of the frame, after the scripts have moved its actor. 0: only in the component's own tick, before the scripts run (the stutter of the 13 Nov 2026 build: the body steps forward with each scripted pixel and back on the next frame). For comparison only."));
 }
 
 FVector FDinkBodySmoother::Update(const FVector& Target, float TargetYawDeg, float DeltaTime)
@@ -52,6 +54,68 @@ UDinkHumanoidComponent::UDinkHumanoidComponent()
 	SetGenerateOverlapEvents(false);
 	SetCanEverAffectNavigation(false);
 	VisibilityBasedAnimTickOption = EVisibilityBasedAnimTickOption::AlwaysTickPoseAndRefreshBones;
+	// After the tickable objects (the story moves script actors there) and before the frame is drawn.
+	PresentTick.TickGroup = TG_PostUpdateWork;
+	PresentTick.bCanEverTick = true;
+	PresentTick.bStartWithTickEnabled = true;
+}
+
+void FDinkHumanoidPresentTickFunction::ExecuteTick(float DeltaTime, ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent)
+{
+	if (IsValid(Target) && Target->IsRegistered() && TickType != LEVELTICK_ViewportsOnly && CVarNpcLatePresent.GetValueOnGameThread() != 0) Target->PresentBody();
+}
+
+void UDinkHumanoidComponent::RegisterComponentTickFunctions(bool bRegister)
+{
+	Super::RegisterComponentTickFunctions(bRegister);
+	if (bRegister)
+	{
+		if (!PresentTick.IsTickFunctionRegistered() && SetupActorComponentTickFunction(&PresentTick))
+		{
+			PresentTick.Target = this;
+			PresentTick.AddPrerequisite(this, PrimaryComponentTick);
+		}
+	}
+	else if (PresentTick.IsTickFunctionRegistered())
+	{
+		PresentTick.UnRegisterTickFunction();
+	}
+}
+
+FVector UDinkHumanoidComponent::GetShownLocation() const
+{
+	const AActor* Owner = GetOwner();
+	return bBodyAnimation && Smoother.IsReady() ? Smoother.GetLocation() : Owner ? Owner->GetActorLocation() : GetComponentLocation();
+}
+
+float UDinkHumanoidComponent::GetShownYaw() const
+{
+	const AActor* Owner = GetOwner();
+	return bBodyAnimation && Smoother.IsReady() ? Smoother.GetYaw() : Owner ? float(Owner->GetActorRotation().Yaw) : 0.f;
+}
+
+void UDinkHumanoidComponent::PresentBody()
+{
+	AActor* Owner = GetOwner();
+	if (!Owner || !bBodyAnimation || !Smoother.IsReady()) return;
+	const FVector Location = Owner->GetActorLocation();
+	const float ActorYaw = float(Owner->GetActorRotation().Yaw);
+	// A warp since the component ticked (a screen change, sp_x): the body goes with the actor at once.
+	if (FVector::DistSquared2D(Location, Smoother.GetLocation()) > FMath::Square(Smoother.WarpDistance)) Smoother.Reset(Location, ActorYaw);
+	FVector Visual = Smoother.GetLocation();
+	Visual.Z = Location.Z;
+	// The lag and the eased facing are applied on top of whatever transform art authored;
+	// if someone replaced that transform since it was last applied, start from theirs.
+	const FTransform Parent = GetAttachParent() ? GetAttachParent()->GetComponentTransform() : FTransform::Identity;
+	const FVector BaseLocation = bLagApplied && GetRelativeLocation().Equals(LastLocation, .001) ? GetRelativeLocation() - AppliedLag : GetRelativeLocation();
+	const FQuat Current = GetRelativeRotation().Quaternion();
+	const FQuat BaseRotation = bBodyRotationApplied && Current.Equals(LastBodyRotation, .00001f) ? AppliedBodyRotation.Inverse() * Current : Current;
+	AppliedLag = Parent.InverseTransformVector(Visual - Location);
+	LastLocation = BaseLocation + AppliedLag;
+	AppliedBodyRotation = FQuat(FVector::UpVector, FMath::DegreesToRadians(FMath::FindDeltaAngleDegrees(ActorYaw, Smoother.GetYaw())));
+	LastBodyRotation = AppliedBodyRotation * BaseRotation;
+	SetRelativeLocationAndRotation(LastLocation, LastBodyRotation);
+	bLagApplied = bBodyRotationApplied = true;
 }
 
 void UDinkHumanoidComponent::Configure(USkeletalMesh* Mesh, UBlendSpace* Locomotion, const TMap<FName, FDinkBodyClip>* Library, FName Set)
@@ -98,20 +162,11 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		Smoother.SmoothTime = CVarNpcSmoothTime.GetValueOnGameThread();
 		Smoother.TurnRateDeg = CVarNpcTurnRate.GetValueOnGameThread();
 		const float ActorYaw = float(Owner->GetActorRotation().Yaw);
-		const FVector Visual = Smoother.Update(Location, ActorYaw, DeltaTime);
+		Smoother.Update(Location, ActorYaw, DeltaTime);
 		LocomotionSpeed = Smoother.GetSpeed();
-		// The lag and the eased facing are applied on top of whatever transform art authored;
-		// if someone replaced that transform since last frame, start from theirs.
-		const FTransform Parent = GetAttachParent() ? GetAttachParent()->GetComponentTransform() : FTransform::Identity;
-		const FVector BaseLocation = bLagApplied && GetRelativeLocation().Equals(LastLocation, .001) ? GetRelativeLocation() - AppliedLag : GetRelativeLocation();
-		const FQuat Current = GetRelativeRotation().Quaternion();
-		const FQuat BaseRotation = bBodyRotationApplied && Current.Equals(LastBodyRotation, .00001f) ? AppliedBodyRotation.Inverse() * Current : Current;
-		AppliedLag = Parent.InverseTransformVector(Visual - Location);
-		LastLocation = BaseLocation + AppliedLag;
-		AppliedBodyRotation = FQuat(FVector::UpVector, FMath::DegreesToRadians(FMath::FindDeltaAngleDegrees(ActorYaw, Smoother.GetYaw())));
-		LastBodyRotation = AppliedBodyRotation * BaseRotation;
-		SetRelativeLocationAndRotation(LastLocation, LastBodyRotation);
-		bLagApplied = bBodyRotationApplied = true;
+		// Shown now for anything that reads the body during this frame, and again at the end of the
+		// frame (PresentTick), once the scripts have moved and turned the actor.
+		PresentBody();
 		if (UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetAnimInstance()))
 		{
 			// The clips are the mannequin's size: a smaller body covers less ground per step.

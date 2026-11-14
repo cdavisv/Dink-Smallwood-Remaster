@@ -277,3 +277,30 @@ Review of these strips:
 - The probe with the pace forced on.
 - A gamepad stick threshold for running (the left shoulder button is the run key).
 - Sword cuts are unchanged placeholders.
+
+# Pass 3 (13 Nov 2026, after the owner played master cb842dd2)
+
+Owner: "improve the mother's stuttered walk."
+
+## P3.1 Root cause
+
+Pass 2's smoother was correct and was still shown wrong. The body's offset from its actor was computed in the component's tick; the scripts move the actor afterwards in the same frame (the story subsystem is a tickable object, ticked after the actor tick groups). The drawn body was therefore the new scripted position plus the previous frame's offset: forward with every scripted pixel, back on the next frame, and a one-frame flip to the new facing at every turn. P2.3's table measured the smoother's own output, not what was drawn, so it showed a deviation of 2.9 cm/s for a walk that was drawn with 297.
+
+## P3.2 What changed
+
+`UDinkHumanoidComponent::PresentBody`, run again from a tick function in `TG_PostUpdateWork`. Nothing else: script, brain, pace and collision are as they were.
+
+## P3.3 Numbers (running game, her own wandering; `Docs/Verification/MotherWalk_13Nov2026/`)
+
+| Rendered at | Before: deviation of the shown speed, frames moving backwards, one-frame facing flips | After |
+|---|---|---|
+| 60 fps, 45 s | 297.0 cm/s, 32.2%, 12 | 3.3 cm/s, 0.0%, 0 |
+| 83 fps, 30 s | 348.6 cm/s, 22.8%, 16 | 4.0 cm/s, 0.0%, 0 |
+
+## P3.4 Test
+
+`Dink.Animation.NpcShownMotion`: the drawn transform at the end of every frame of a PIE session; with `dink.Npc.LatePresent 0` it must find the defect, with the fix it must not.
+
+## P3.5 Not done
+
+Picture-card townsfolk and creature bodies are still glued to the scripted position. The late start of an about-turn (P2.2's rule that the body faces its travel direction above 25 cm/s) is unchanged.

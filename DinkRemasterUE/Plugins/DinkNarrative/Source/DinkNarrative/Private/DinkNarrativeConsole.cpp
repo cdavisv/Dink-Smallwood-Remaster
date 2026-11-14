@@ -443,3 +443,97 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkSmokeCommand(
 				Report.EntryPoints, Report.Completed, Report.HitStepCap, Report.Stalled, Report.WithErrors, *Path);
 		}
 	}));
+
+// dink.Npc.Trace <seconds> [file] [frame folder]: one CSV row per rendered frame and per humanoid NPC body on Dink's
+// screen: what the script says (sprite pixel, direction, brain action, sequence) next to what is shown
+// (the body's position, facing, speed and gait phase). With a frame folder every traced frame is also
+// saved as <folder>/f_<frame>.png (run the game with -benchmark -fps=60 so that each rendered frame is
+// one sixtieth of a second however long the picture takes to save). Diagnostic only; nothing is changed.
+#include "DinkHumanoidComponent.h"
+#include "Containers/Ticker.h"
+#include "UnrealClient.h"
+
+namespace
+{
+	struct FDinkNpcTrace
+	{
+		TWeakObjectPtr<UWorld> World;
+		FString Path, FrameFolder;
+		TArray<FString> Rows;
+		double EndTime = 0.0;
+		uint64 Frame = 0;
+	};
+
+	bool TickNpcTrace(TSharedRef<FDinkNpcTrace> T, float RealDelta)
+	{
+		UWorld* World = T->World.Get();
+		UGameInstance* GI = World ? World->GetGameInstance() : nullptr;
+		UDinkStorySubsystem* S = GI ? GI->GetSubsystem<UDinkStorySubsystem>() : nullptr;
+		UDinkDirector* D = S ? S->GetDirector() : nullptr;
+		const double Now = World ? World->GetTimeSeconds() : 0.0;
+		if (!D || Now >= T->EndTime)
+		{
+			FFileHelper::SaveStringToFile(FString::Join(T->Rows, TEXT("\n")) + TEXT("\n"), *T->Path);
+			UE_LOG(LogDinkNarrative, Display, TEXT("DINK NPC TRACE: %d rows -> %s"), T->Rows.Num() - 1, *T->Path);
+			return false;
+		}
+		++T->Frame;
+		if (!T->FrameFolder.IsEmpty())
+		{
+			FScreenshotRequest::RequestScreenshot(T->FrameFolder / FString::Printf(TEXT("f_%05llu.png"), T->Frame), false, false);
+		}
+		const int32 Screen = D->GetDink().Screen;
+		for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
+		{
+			const FDinkSprite& Sp = Pair.Value;
+			AActor* A = Sp.Actor.Get();
+			if (!A || !Sp.bActive || Pair.Key == 1 || Sp.Screen != Screen || !A->ActorHasTag(TEXT("DinkHumanoid")))
+			{
+				continue;
+			}
+			const UDinkHumanoidComponent* H = A->FindComponentByClass<UDinkHumanoidComponent>();
+			const UDinkBodyAnimInstance* B = H ? Cast<UDinkBodyAnimInstance>(H->GetAnimInstance()) : nullptr;
+			const FVector AL = A->GetActorLocation();
+			const FVector BL = H ? H->GetComponentLocation() : AL;
+			T->Rows.Add(FString::Printf(TEXT("%llu,%.4f,%.5f,%.5f,%d,%s,%.2f,%.2f,%d,%d,%d,%d,%d,%d,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.4f,%.3f,%.2f,%.2f,%s"),
+				T->Frame, Now, World->GetDeltaSeconds(), RealDelta, Pair.Key, *Sp.Script.ToString(), Sp.X, Sp.Y, Sp.Dir, Sp.Action,
+				Sp.GetProp(TEXT("seq")), Sp.GetProp(TEXT("pframe")), Sp.bMoving ? 1 : 0, Sp.bFrozen ? 1 : 0,
+				AL.X, AL.Y, A->GetActorRotation().Yaw, BL.X, BL.Y, H ? H->GetComponentRotation().Yaw : 0.,
+				H ? H->GetLocomotionSpeed() : 0.f, H ? H->GetScriptedSpeed() : 0.f,
+				B ? B->GetPhase() : 0.f, B ? B->GetCyclesPerSecond() : 0.f, B ? B->GetBlendedStrideCm() : 0.f, B ? B->GetSpeed() : 0.f,
+				H && H->GetSkeletalMeshAsset() ? *H->GetSkeletalMeshAsset()->GetName() : TEXT("-")));
+		}
+		return true;
+	}
+}
+
+static FAutoConsoleCommandWithWorldAndArgs GDinkNpcTraceCommand(
+	TEXT("dink.Npc.Trace"),
+	TEXT("dink.Npc.Trace <seconds> [file] [frame folder]: per rendered frame, the scripted and the shown state of every humanoid NPC on Dink's screen, as CSV (default Saved/Narrative/npc_trace.csv); with a folder, a picture of every traced frame too."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		if (!World || !GetStory(World))
+		{
+			return;
+		}
+		TSharedRef<FDinkNpcTrace> T = MakeShared<FDinkNpcTrace>();
+		T->World = World;
+		T->EndTime = World->GetTimeSeconds() + (Args.Num() > 0 ? FMath::Max(.1f, FCString::Atof(*Args[0])) : 10.f);
+		T->Path = Args.Num() > 1 ? Args[1] : FPaths::ProjectSavedDir() / TEXT("Narrative/npc_trace.csv");
+		if (Args.Num() > 2) T->FrameFolder = Args[2];
+		T->Rows.Add(TEXT("frame,time,dt,real_dt,handle,script,sprite_x,sprite_y,dir,action,seq,pframe,moving,frozen,actor_x,actor_y,actor_yaw,body_x,body_y,body_yaw,body_speed,script_speed,phase,cycles_per_s,stride_cm,anim_speed,mesh"));
+		FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([T](float Delta) { return TickNpcTrace(T, Delta); }));
+	}));
+
+static FAutoConsoleCommandWithWorldAndArgs GDinkNpcHoldCommand(
+	TEXT("dink.Npc.Hold"),
+	TEXT("dink.Npc.Hold 0|1: review only. 1 stops every sprite brain (townsfolk stand where they are, for portraits); 0 lets them think again."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		UDinkStorySubsystem* S = GetStory(World);
+		if (S && S->GetGameplay() && Args.Num() > 0)
+		{
+			S->GetGameplay()->bBrainsEnabled = FCString::Atoi(*Args[0]) == 0;
+			UE_LOG(LogDinkNarrative, Display, TEXT("dink.Npc.Hold %d"), S->GetGameplay()->bBrainsEnabled ? 0 : 1);
+		}
+	}));

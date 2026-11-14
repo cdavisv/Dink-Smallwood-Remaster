@@ -284,6 +284,8 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkTimeDilationCommand(
 namespace
 {
 	FVector GDinkCalAnchor = FVector::ZeroVector;
+	/** Yaw the dink.CalCam offsets are turned by: 0 after dink.CalAnchor (world axes, as before), the body's facing after dink.CalAnchorNpc. */
+	double GDinkCalYaw = 0.0;
 	TWeakObjectPtr<ACameraActor> GDinkCalCamera;
 	TArray<TWeakObjectPtr<AActor>> GDinkCalActors;
 }
@@ -297,6 +299,7 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkCalAnchorCommand(
 		if (!Pawn) return;
 		const UCapsuleComponent* Capsule = Pawn->FindComponentByClass<UCapsuleComponent>();
 		GDinkCalAnchor = Pawn->GetActorLocation() - FVector(0, 0, Capsule ? Capsule->GetScaledCapsuleHalfHeight() : 0.f);
+		GDinkCalYaw = 0.0;
 		if (Args.Num() >= 2) GDinkCalAnchor += FVector(FCString::Atod(*Args[0]), FCString::Atod(*Args[1]), 0.0);
 		for (const TWeakObjectPtr<AActor>& A : GDinkCalActors) if (A.IsValid()) A->Destroy();
 		GDinkCalActors.Reset();
@@ -337,8 +340,9 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkCalCamCommand(
 		}
 		double V[7];
 		for (int32 I = 0; I < 7; ++I) V[I] = FCString::Atod(*Args[I]);
-		const FVector From = GDinkCalAnchor + FVector(V[0], V[1], V[2]);
-		const FVector To = GDinkCalAnchor + FVector(V[3], V[4], V[5]);
+		const FRotator Frame(0.0, GDinkCalYaw, 0.0);
+		const FVector From = GDinkCalAnchor + Frame.RotateVector(FVector(V[0], V[1], V[2]));
+		const FVector To = GDinkCalAnchor + Frame.RotateVector(FVector(V[3], V[4], V[5]));
 		ACameraActor* Camera = GDinkCalCamera.Get();
 		if (!Camera)
 		{
@@ -353,6 +357,48 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkCalCamCommand(
 		Camera->SetActorLocationAndRotation(From, (To - From).Rotation());
 		PC->SetViewTarget(Camera);
 		Pawn->SetActorHiddenInGame(Args.Num() != 8 || Args[7] != TEXT("1"));
+	}));
+
+// Review captures of the humanoid NPCs and of the hero's clips (photoreal pass: hair, shoulders).
+#include "DinkHumanoidComponent.h"
+#include "DinkBodyAnimInstance.h"
+#include "GameFramework/Character.h"
+
+static FAutoConsoleCommandWithWorldAndArgs GDinkCalAnchorNpcCommand(
+	TEXT("dink.CalAnchorNpc"), TEXT("dink.CalAnchorNpc [n]: calibration origin = the feet of the n-th nearest humanoid NPC body (0 = nearest), and dink.CalCam offsets are then in that body's own frame (x forward, y to its right)."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		APlayerController* PC = World ? World->GetFirstPlayerController() : nullptr;
+		APawn* Pawn = PC ? PC->GetPawn() : nullptr;
+		if (!Pawn) return;
+		TArray<UDinkHumanoidComponent*> Bodies;
+		for (TObjectIterator<UDinkHumanoidComponent> It; It; ++It)
+			if (It->GetWorld() == World && It->IsRegistered() && It->GetSkeletalMeshAsset() && It->GetOwner() && !It->GetOwner()->IsHidden()) Bodies.Add(*It);
+		const FVector Here = Pawn->GetActorLocation();
+		Bodies.Sort([&Here](const UDinkHumanoidComponent& A, const UDinkHumanoidComponent& B) { return FVector::DistSquared(A.GetComponentLocation(), Here) < FVector::DistSquared(B.GetComponentLocation(), Here); });
+		const int32 Index = Args.Num() > 0 ? FCString::Atoi(*Args[0]) : 0;
+		if (!Bodies.IsValidIndex(Index)) { UE_LOG(LogDink, Display, TEXT("DINK CAL: no humanoid NPC body %d (%d in the world)"), Index, Bodies.Num()); return; }
+		const UDinkHumanoidComponent* Body = Bodies[Index];
+		GDinkCalAnchor = Body->GetComponentLocation();
+		// The mesh faces +Y in its own space: the body's forward is the component's right-hand axis.
+		GDinkCalYaw = Body->GetComponentRotation().Yaw + 90.0;
+		UE_LOG(LogDink, Display, TEXT("DINK CAL: anchor %s on %s (%s), facing %.1f, %.0f cm from the player"), *GDinkCalAnchor.ToString(), *GetNameSafe(Body->GetOwner()),
+			*GetNameSafe(Body->GetSkeletalMeshAsset()), GDinkCalYaw, FVector::Dist(GDinkCalAnchor, Here));
+	}));
+
+static FAutoConsoleCommandWithWorldAndArgs GDinkHeroPlayCommand(
+	TEXT("dink.Hero.Play"), TEXT("dink.Hero.Play <clip> [hold]: plays a clip of the animation pass on the hero's whole body (Sword_Slash_1, Bow_Draw, Cast, Fist_Cross ...), cosmetic only; with hold it stays on the last frame. dink.Hero.Play jump makes him jump; dink.Hero.Play stop ends the clip."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		APlayerController* PC = World ? World->GetFirstPlayerController() : nullptr;
+		ACharacter* Hero = PC ? Cast<ACharacter>(PC->GetPawn()) : nullptr;
+		UDinkBodyAnimInstance* Body = Hero && Hero->GetMesh() ? Cast<UDinkBodyAnimInstance>(Hero->GetMesh()->GetAnimInstance()) : nullptr;
+		if (!Hero || Args.Num() < 1) return;
+		if (Args[0] == TEXT("jump")) { Hero->Jump(); return; }
+		if (!Body) { UE_LOG(LogDink, Display, TEXT("DINK HERO PLAY: the hero does not run the native body animation")); return; }
+		if (Args[0] == TEXT("stop")) { Body->StopActions(); return; }
+		const bool bPlayed = Body->PlayAction(FName(*Args[0]), true, 1.f, .07f, .2f, Args.Num() > 1 && Args[1] == TEXT("hold"));
+		UE_LOG(LogDink, Display, TEXT("DINK HERO PLAY: %s %s"), *Args[0], bPlayed ? TEXT("playing") : TEXT("not found"));
 	}));
 
 static FAutoConsoleCommandWithWorldAndArgs GDinkMatParamCommand(
