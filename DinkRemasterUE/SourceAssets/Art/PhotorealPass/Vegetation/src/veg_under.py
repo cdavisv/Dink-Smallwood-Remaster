@@ -6,7 +6,7 @@ UP = np.array([0, 0, 1.0])
 def und(): return game_mat('MI_Veg_Understory', 'T_Veg_Understory', alpha=True, translucency=0.25)
 def dark(): return game_mat('MI_Veg_DarkBark', 'T_Veg_DarkBark')
 
-def _cane(mb, rng, start, yaw, L, h, r0, lod, loop=False, emit=True):
+def _cane(mb, rng, start, yaw, L, h, r0, lod, loop=False, emit=True, depth=1.0):
     """one arching bramble cane with thorns; generated at full resolution so every LOD is the same cane"""
     n = max(8, int(L / 0.09)); d = np.array([math.cos(yaw), math.sin(yaw), 0]); side = np.array([-d[1], d[0], 0])
     ph = rng.uniform(0, 6.28, 3); wig = rng.uniform(0.08, 0.22) * L; pts = []
@@ -18,9 +18,11 @@ def _cane(mb, rng, start, yaw, L, h, r0, lod, loop=False, emit=True):
         pts.append(p + rng.normal(0, 0.012, 3))
     pts = np.array(pts); pts[1:-1] = 0.25 * pts[:-2] + 0.5 * pts[1:-1] + 0.25 * pts[2:]; pts[:, 2] = np.maximum(pts[:, 2], 0.012)
     rad = np.linspace(r0, r0 * 0.45, n + 1)
-    sel = np.unique(np.round(np.linspace(0, n, max(3, int(n / (2, 4, 7)[lod]) + 1))).astype(int))
+    pts[:, 1] *= depth                              # the cane's path, not the cane, is drawn in toward the hedge line: round canes in a bush twice as wide as deep
+    # every 9 cm point and six sides at LOD0 (13 Nov 2026: at every other point and four sides the canes were bent sticks of square section)
+    sel = np.unique(np.round(np.linspace(0, n, max(3, int(n / (1, 2, 5)[lod]) + 1))).astype(int))
     tg = mb if emit else MeshB()
-    tg.tube(pts[sel], rad[sel], (4, 3, 3)[lod], 'limb', 1, 0.3, wind=(0, rng.random(), 0, 0), cap=True)
+    tg.tube(pts[sel], rad[sel], (6, 4, 3)[lod], 'limb', 1, 0.3, wind=(0, rng.random(), 0, 0), cap=True)
     for i in range(1, n, 3):          # thorns: stout, hooked back along the cane
         for q in range(2):
             a = rng.uniform(0, 6.28); dd = nrm(pts[i + 1] - pts[i - 1]); u = nrm(np.cross(dd, UP) + 1e-6); w = np.cross(dd, u)
@@ -29,15 +31,16 @@ def _cane(mb, rng, start, yaw, L, h, r0, lod, loop=False, emit=True):
             (tg if ok else MeshB()).tube(np.array([p + o * rad[i] * 0.6, p + o * (rad[i] + ln * 0.6) - dd * ln * 0.15, p + o * (rad[i] + ln) - dd * ln * 0.5]),
                                          [rad[i] * 0.6, rad[i] * 0.28, 0.001], 3, 'limb', 1, 0.2, cap=False)
 
-THORN = {'SM_Veg_ThornBush_01': dict(seed=5, canes=16, R=0.95, L=(1.3, 2.4), h=(0.45, 1.15), r=(0.02, 0.034), loops=6),
-         'SM_Veg_ThornBush_02': dict(seed=9, canes=8, R=0.8, L=(1.1, 2.1), h=(0.35, 0.9), r=(0.018, 0.03), loops=4),
+# depth: the bushes are hedges, half as deep (Y) as wide: the sprite is a wall of coils on a 7 x 2 m hardbox (13 Nov 2026: were round, 16 and 8 canes)
+THORN = {'SM_Veg_ThornBush_01': dict(seed=5, canes=20, R=0.95, L=(1.3, 2.4), h=(0.45, 1.15), r=(0.02, 0.034), loops=8, depth=0.5),
+         'SM_Veg_ThornBush_02': dict(seed=9, canes=11, R=0.8, L=(1.1, 2.1), h=(0.35, 0.9), r=(0.018, 0.03), loops=5, depth=0.5),
          'SM_Veg_ThornBranch_01': dict(seed=14, canes=2, R=0.1, L=(0.5, 0.75), h=(0.05, 0.14), r=(0.012, 0.016), loops=0)}
 def build_thorn(name, lod):
     P = THORN[name]; rng = np.random.default_rng(P['seed']); mb = MeshB()
     for k in range(P['canes']):
         a = rng.uniform(0, 6.28); rr = P['R'] * math.sqrt(rng.random()); st = np.array([math.cos(a) * rr, math.sin(a) * rr, 0])
         yaw = a + math.pi + rng.normal(0, 0.9); L = rng.uniform(*P['L']); h = rng.uniform(*P['h']); r0 = rng.uniform(*P['r'])
-        _cane(mb, rng, st, yaw, L, h, r0, lod, loop=k < P['loops'], emit=not (lod == 2 and k % 2 == 1 and P['canes'] > 3))
+        _cane(mb, rng, st, yaw, L, h, r0, lod, loop=k < P['loops'], emit=not (lod == 2 and k % 2 == 1 and P['canes'] > 3), depth=P.get('depth', 1.0))
     V = np.asarray(mb.v); V[:, 2] = np.maximum(V[:, 2], 0.0); mb.v = list(V); recenter(mb)
     return mb.build(f'{name}_LOD{lod}', [dark()])
 

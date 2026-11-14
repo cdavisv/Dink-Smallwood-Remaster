@@ -367,6 +367,8 @@ for row in (manifest.get('modules') or manifest['assets']):
         slot_name = str(slot.get_editor_property('material_slot_name')).split('.')[0]
         listed = row.get('materials') or (integration.get('assets', {}).get(row['name'], {}).get('material_slots') or [])
         wanted = slot_name if slot_name in materials else (listed[index] if index < len(listed) else None)
+        # a colour variant: the same FBX under another asset name, with some slot materials exchanged (the potion flask's three glass tints)
+        wanted = (row.get('slot_override') or {}).get(wanted, wanted)
         if wanted not in materials:
             raise RuntimeError(f"{row['name']}: slot {index} ({slot_name}) has no contract material")
         slot.set_editor_property('material_interface', materials[wanted])

@@ -21,6 +21,13 @@ def rng_for(name):
     return np.random.default_rng(sum(ord(c) * (i + 1) for i, c in enumerate(name)) % (2 ** 31))
 
 
+def shade(me, deg=28.0):
+    """smooth shading with hard edges only where faces meet at more than `deg` degrees: chamfers, timber arrises and stone
+    edges stay crisp, the shallow relief of plaster sheets, bent sheets and jittered block faces no longer shows its triangles"""
+    me.polygons.foreach_set('use_smooth', [True] * len(me.polygons))
+    me.set_sharp_from_angle(angle=math.radians(deg)); me.update()
+
+
 def vnoise(p, seed, scale):
     """cheap smooth value noise from summed sines, range about -1..1, for vertex-level variation"""
     r = np.random.default_rng(seed)
@@ -212,7 +219,7 @@ class Module:
         ca = me.color_attributes.new('Grime', 'FLOAT_COLOR', 'POINT')
         ca.data.foreach_set('color', np.clip(col, 0, 1).astype(np.float32).ravel())
         me.polygons.foreach_set('material_index', self.FM)
-        me.polygons.foreach_set('use_smooth', [False] * len(me.polygons))
+        # shading is set after the weld (shade below): flat faces showed every triangle of the uneven plaster and of the jittered stone faces
         ob = bpy.data.objects.new(self.name + '_LOD0', me)
         coll = bpy.data.collections.new(self.name); coll_parent.children.link(coll)
         coll['dink_class'] = self.cls; coll['dink_path'] = 'WallKits'; coll['dink_tex_px'] = 2048
@@ -222,14 +229,14 @@ class Module:
         bmesh.ops.remove_doubles(bm, verts=bm.verts[:], dist=2e-5)          # sheets, strips and end faces share their border verts: weld them into closed shells
         bmesh.ops.dissolve_degenerate(bm, edges=bm.edges[:], dist=1e-6)
         nonman = sum(1 for e in bm.edges if not e.is_manifold)
-        bm.to_mesh(me); bm.free(); me.update()
+        bm.to_mesh(me); bm.free(); me.update(); shade(me)
         # LOD1
         me1 = me.copy(); me1.name = self.name + '_LOD1'
         l1 = bpy.data.objects.new(self.name + '_LOD1', me1); coll.objects.link(l1)
         m = l1.modifiers.new('d', 'DECIMATE'); m.ratio = 0.45; m.use_collapse_triangulate = True; m.delimit = {'MATERIAL'}
         bpy.context.view_layer.update()
         dg = bpy.context.evaluated_depsgraph_get()
-        me1b = bpy.data.meshes.new_from_object(l1.evaluated_get(dg)); l1.modifiers.clear(); l1.data = me1b; me1b.name = self.name + '_LOD1'
+        me1b = bpy.data.meshes.new_from_object(l1.evaluated_get(dg)); l1.modifiers.clear(); l1.data = me1b; me1b.name = self.name + '_LOD1'; shade(me1b)
         # collision
         ucx = []
         for i, (lo, hi) in enumerate(self.ucx):
@@ -926,7 +933,7 @@ def main():
         bpy.context.view_layer.objects.active = m.ob
         fbx = os.path.join(OUT, m.name + '.fbx')
         bpy.ops.export_scene.fbx(filepath=fbx, use_selection=True, apply_unit_scale=True, global_scale=1.0, apply_scale_options='FBX_SCALE_ALL',
-                                 axis_forward='Y', axis_up='Z', bake_space_transform=False, use_triangles=True, mesh_smooth_type='FACE',
+                                 axis_forward='Y', axis_up='Z', bake_space_transform=False, use_triangles=True, mesh_smooth_type='EDGE',
                                  use_tspace=False, add_leaf_bones=False, bake_anim=False, path_mode='STRIP', object_types={'MESH', 'EMPTY'}, colors_type='LINEAR')
         for o in m.ucx_obs:
             o.hide_render = True

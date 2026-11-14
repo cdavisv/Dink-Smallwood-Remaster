@@ -4699,30 +4699,30 @@
    "name": "SM_Veg_ThornBush_01",
    "class": "foliage",
    "dimensions_m": [
-    3.847,
-    3.564,
-    1.173
+    3.848,
+    2.044,
+    1.165
    ],
-   "lod0_triangles": 4104,
+   "lod0_triangles": 8652,
    "lods": [
     {
      "lod": 0,
-     "triangles": 4104,
-     "vertices": 2784,
+     "triangles": 8652,
+     "vertices": 5264,
      "fbx": "Export/SM_Veg_ThornBush_01_LOD0.fbx",
      "issues": []
     },
     {
      "lod": 1,
-     "triangles": 516,
-     "vertices": 298,
+     "triangles": 1736,
+     "vertices": 928,
      "fbx": "Export/SM_Veg_ThornBush_01_LOD1.fbx",
      "issues": []
     },
     {
      "lod": 2,
-     "triangles": 150,
-     "vertices": 95,
+     "triangles": 264,
+     "vertices": 157,
      "fbx": "Export/SM_Veg_ThornBush_01_LOD2.fbx",
      "issues": []
     }
@@ -4772,7 +4772,7 @@
    ],
    "material_exception": "new foliage library materials MI_Veg_* (per-species bark bands and rendered leaf/needle atlases); the shared library had only MI_Stonebrook_OakLeaf / Oak timber, which is what made every tree read as the same stylised oak",
    "known_weaknesses": [
-    "canes are 4-sided tubes with 3-sided thorn spikes: up close the canes are visibly faceted and all the same dark bark, with no dead leaves or berries",
+    "canes are six-sided tubes bent every 9 cm with 3-sided thorn spikes (13 Nov 2026: were four-sided and bent every 18 cm, which showed as square sticks with kinks): all the same dark bark, with no dead leaves or berries",
     "the tangle is arcs and loops from a formula, less knotted than the sprite",
     "v3 (12 Nov): 10-16 stems from a common stool, branches and twigs; every spray is a group of four small cards (0.15-0.3 m) at different depths, dark tiles inside and underneath, bare dead stems, gaps, long shoots; 3.5k-6.8k triangles at LOD0. The outline is ragged and sprawling rather than the sprite's round clipped bush",
     "cards seen end-on still show as thin slivers or streaks in places; a few sunlit cards read as flat discs from the game camera",
@@ -4781,37 +4781,38 @@
     "stems are 4-sided, branches 3-sided tubes with the dark bark set; no leaf litter or grass at the foot",
     "two leaf types: ovate (LeafSet022) on Small and Round_Large, three-lobed (LeafSet029) on Round_Medium and Wide",
     "new material MI_Veg_Shrub (T_Veg_Shrub_*) replaces MI_Veg_Understory on the four bushes and has to exist engine-side",
-    "wind colours and custom normals untested in Unreal"
+    "wind colours and custom normals untested in Unreal",
+    "13 Nov 2026: a hedge, twice as wide as deep (the paths of 20 and 11 canes are drawn in toward the long axis), because the game scales it to the 7 m wide thorn sprite of the Darklands; scaled about two times the canes are 5 to 12 cm thick, as the sprite's coils are, and the bark texture is then coarse"
    ]
   },
   {
    "name": "SM_Veg_ThornBush_02",
    "class": "foliage",
    "dimensions_m": [
-    2.225,
-    2.711,
-    0.854
+    2.797,
+    0.969,
+    0.875
    ],
-   "lod0_triangles": 1704,
+   "lod0_triangles": 4038,
    "lods": [
     {
      "lod": 0,
-     "triangles": 1704,
-     "vertices": 1158,
+     "triangles": 4038,
+     "vertices": 2459,
      "fbx": "Export/SM_Veg_ThornBush_02_LOD0.fbx",
      "issues": []
     },
     {
      "lod": 1,
-     "triangles": 216,
-     "vertices": 128,
+     "triangles": 812,
+     "vertices": 439,
      "fbx": "Export/SM_Veg_ThornBush_02_LOD1.fbx",
      "issues": []
     },
     {
      "lod": 2,
-     "triangles": 60,
-     "vertices": 40,
+     "triangles": 132,
+     "vertices": 81,
      "fbx": "Export/SM_Veg_ThornBush_02_LOD2.fbx",
      "issues": []
     }
@@ -4869,7 +4870,8 @@
     "stems are 4-sided, branches 3-sided tubes with the dark bark set; no leaf litter or grass at the foot",
     "two leaf types: ovate (LeafSet022) on Small and Round_Large, three-lobed (LeafSet029) on Round_Medium and Wide",
     "new material MI_Veg_Shrub (T_Veg_Shrub_*) replaces MI_Veg_Understory on the four bushes and has to exist engine-side",
-    "wind colours and custom normals untested in Unreal"
+    "wind colours and custom normals untested in Unreal",
+    "13 Nov 2026: a hedge, twice as wide as deep (the paths of 20 and 11 canes are drawn in toward the long axis), because the game scales it to the 7 m wide thorn sprite of the Darklands; scaled about two times the canes are 5 to 12 cm thick, as the sprite's coils are, and the bark texture is then coarse"
    ]
   },
   {
@@ -4877,22 +4879,22 @@
    "class": "foliage",
    "dimensions_m": [
     0.856,
-    0.771,
+    0.772,
     0.167
    ],
-   "lod0_triangles": 216,
+   "lod0_triangles": 348,
    "lods": [
     {
      "lod": 0,
-     "triangles": 216,
-     "vertices": 150,
+     "triangles": 348,
+     "vertices": 218,
      "fbx": "Export/SM_Veg_ThornBranch_01_LOD0.fbx",
      "issues": []
     },
     {
      "lod": 1,
-     "triangles": 30,
-     "vertices": 20,
+     "triangles": 72,
+     "vertices": 42,
      "fbx": "Export/SM_Veg_ThornBranch_01_LOD1.fbx",
      "issues": []
     },

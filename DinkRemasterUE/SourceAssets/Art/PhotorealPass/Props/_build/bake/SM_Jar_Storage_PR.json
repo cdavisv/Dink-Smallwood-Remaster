@@ -14,24 +14,24 @@
   "ORM": "T_Jar_Storage_PR_ORM.png"
  },
  "lod_triangles": [
-  1344,
-  672,
-  294
+  4992,
+  2496,
+  1098
  ],
- "hi_triangles": 23808,
+ "hi_triangles": 91008,
  "bounds_min_m": [
-  -0.247,
-  -0.245,
+  -0.249,
+  -0.248,
   0.0
  ],
  "bounds_max_m": [
-  0.251,
-  0.245,
+  0.254,
+  0.248,
   0.742
  ],
  "dimensions_m": [
-  0.499,
-  0.491,
+  0.503,
+  0.496,
   0.742
  ],
  "emissive_nits": null,
@@ -39,13 +39,13 @@
  "stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 79.9,
-   "p99": 114.1
+   "mean": 81.2,
+   "p99": 114.2
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.211,
-   "p95": 0.863
+   "mean": 0.219,
+   "p95": 0.864
   },
   "metallic_mean": 0.0
  },

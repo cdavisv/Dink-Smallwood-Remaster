@@ -35,45 +35,51 @@
     },
     {
       "family": "boulder_grey_tall",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Grey_Tall_PR.SM_Boulder_Grey_Tall_PR",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "95 lands/rocks/rock-. Scripted (bombable) rocks keep their cards so they can get a visibly cracked rock (plan section 3)."
+      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frames 1, 2: the standing grey boulder built for this class. Scripted (pushable, bombable) rocks keep their cards."
     },
     {
       "family": "boulder_large",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Large_PR.SM_Boulder_Large_PR",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "95 lands/rocks/rock-."
+      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frame 10: the large dark boulder built for this class, or the field boulder A.",
+      "variants": [
+        "/Game/Dink/Photoreal/Structures/SM_Boulder_Field_A_PR.SM_Boulder_Field_A_PR"
+      ]
     },
     {
       "family": "boulder_flat",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Flat_PR.SM_Boulder_Flat_PR",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "95 lands/rocks/rock-."
+      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frames 4, 5: the bedded flat boulder built for this class, or the low field boulder C.",
+      "variants": [
+        "/Game/Dink/Photoreal/Structures/SM_Boulder_Field_C_PR.SM_Boulder_Field_C_PR"
+      ]
     },
     {
       "family": "boulder_red",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Red_PR.SM_Boulder_Red_PR",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "95 lands/rocks/rock-. Grey fieldstone for a reddish boulder: shape right, colour not; rebind when a red-stone material exists in the library."
+      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frame 3: the reddish boulder built for this class (the grey fieldstone had the wrong colour). Its crack is a weak point of the source. Scripted (bombable) red rocks keep their cards."
     },
     {
       "family": "boulder_white",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Boulder_Field_B_PR.SM_Boulder_Field_B_PR",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "95 lands/rocks/rock-. The pair of white boulders and the blue ore rock stay unbound."
+      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frame 7, one placement: a pale grey field boulder. The pair of white boulders has its own row; the blue ore rock stays unbound."
     },
     {
       "family": "rock_mound_small",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Boulder_Fieldstone_01.SM_Boulder_Fieldstone_01",
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Boulder_Field_C_PR.SM_Boulder_Field_C_PR",
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "97 lands/rocks/rocks-. Pebbles (214) stay unbound: a boulder where the sprite is walk-over scatter would read as an obstacle that does not block."
+      "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 97 lands/rocks/rocks- frames 17, 18: the low field boulder C (1.2 m)."
     },
     {
       "family": "fence_rail_ew",

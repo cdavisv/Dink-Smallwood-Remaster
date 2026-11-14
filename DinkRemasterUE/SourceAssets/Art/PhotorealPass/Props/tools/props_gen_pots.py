@@ -43,12 +43,24 @@ def _wob(sd, amp=0.012):
     return f
 
 
-def pot(b, prof, sd, n=(28, 96), handles=None):
-    b.lathe(prof, n=b.d(*n), mat='glaze', sub=b.d(1, 5), deform=_wob(sd))
+def _smooth_prof(prof, per):
+    """Catmull-Rom through the profile points, `per` segments on every span longer than 3 cm that does not touch the axis: the belly
+    and the shoulder were straight runs that met in corners (the outline of a thrown pot is a curve); lips and foot rings keep their points"""
+    P = np.array(prof, float); out = []
+    for i in range(len(P) - 1):
+        p0, p1, p2, p3 = P[max(i - 1, 0)], P[i], P[i + 1], P[min(i + 2, len(P) - 1)]
+        k = per if (np.linalg.norm(p2 - p1) > 0.03 and p1[0] > 1e-6 and p2[0] > 1e-6) else 1
+        for t in np.linspace(0, 1, k + 1)[:-1]:
+            out.append(0.5 * (2 * p1 + (p2 - p0) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t + (3 * p1 - p0 - 3 * p2 + p3) * t ** 3))
+    out.append(P[-1]); return [(max(float(x[0]), 0.0), float(x[1])) for x in out]
+
+
+def pot(b, prof, sd, n=(48, 96), handles=None):      # 28 sides showed as a polygon in the rim and the shoulder outline (13 Nov 2026)
+    b.lathe(_smooth_prof(prof, b.d(3, 6)), n=b.d(*n), mat='glaze', sub=b.d(1, 5), deform=_wob(sd))
     for (sgn, top, out, bot) in (handles or []):                # pulled strap handles, thumbed on at both ends
         ctrl = [[sgn * (top[0] - 0.012), 0, top[1]], [sgn * (top[0] + 0.02), 0, top[1] + 0.012], [sgn * out[0], 0, out[1]], [sgn * (bot[0] + 0.02), 0, bot[1] + 0.03], [sgn * (bot[0] - 0.012), 0, bot[1]]]
-        pts = resamp(ctrl, b.d(3, 8)); n_ = len(pts); rw = np.interp(np.linspace(0, 1, n_), [0, 0.12, 0.5, 0.88, 1], [1.5, 1.0, 0.9, 1.05, 1.6])
-        n0 = b.tube(pts, rw, sides=b.d(8, 16), mat='glaze', shape=ell(0.021, 0.0095, b.d(8, 16)), up=[0, 1, 0], ups=[(0, 1, 0)] * n_)
+        pts = resamp(ctrl, b.d(6, 8)); n_ = len(pts); rw = np.interp(np.linspace(0, 1, n_), [0, 0.12, 0.5, 0.88, 1], [1.5, 1.0, 0.9, 1.05, 1.6])
+        n0 = b.tube(pts, rw, sides=b.d(12, 16), mat='glaze', shape=ell(0.021, 0.0095, b.d(12, 16)), up=[0, 1, 0], ups=[(0, 1, 0)] * n_)
         b.deform_since(n0, _wob(sd))
     return {}
 
@@ -68,8 +80,8 @@ ASSETS['SM_Jar_Storage_PR'] = dict(_PT, fn=lambda b: pot(b, _JAR, 1.0), mats=lam
 ASSETS['SM_Jar_Jug_PR'] = dict(_PT, fn=lambda b: pot(b, _JUG, 2.3, handles=[(1, (0.158, 0.535), (0.25, 0.47), (0.222, 0.3)), (-1, (0.158, 0.535), (0.25, 0.47), (0.222, 0.3))]),
                                mats=lambda: {'glaze': m_glaze('H_glaze', (0.05, 0.065, 0.08), (0.24, 0.29, 0.32), foot=0.06)},
                                slots=[('MI_Jar_Jug', 'opaque', None)], views=_PV(0.58, 0.25, 150), int_light=(0.7, -0.6, 0.9))
-ASSETS['SM_Jar_Vase_PR'] = dict(_PT, fn=lambda b: pot(b, _VASE, 4.1, n=(22, 80)), mats=lambda: {'glaze': m_glaze('H_glaze', (0.07, 0.01, 0.008), (0.25, 0.045, 0.028), foot=0.045)},
+ASSETS['SM_Jar_Vase_PR'] = dict(_PT, fn=lambda b: pot(b, _VASE, 4.1, n=(40, 80)), mats=lambda: {'glaze': m_glaze('H_glaze', (0.07, 0.01, 0.008), (0.25, 0.045, 0.028), foot=0.045)},
                                 slots=[('MI_Jar_Vase', 'opaque', None)], views=_PV(0.68, 0.12, 200), int_light=(0.5, -0.5, 0.9))
-ASSETS['SM_Jar_Bowl_PR'] = dict(_PT, cls='prop_small', fn=lambda b: pot(b, _BOWL, 5.2, n=(26, 90)),
+ASSETS['SM_Jar_Bowl_PR'] = dict(_PT, cls='prop_small', fn=lambda b: pot(b, _BOWL, 5.2, n=(48, 90)),
                                 mats=lambda: {'glaze': m_glaze('H_glaze', (0.1, 0.06, 0.025), (0.3, 0.2, 0.09), foot=0.035, inside=(0.52, 0.42, 0.24), zin=None)},
                                 slots=[('MI_Jar_Bowl', 'opaque', None)], views=_PV(0.17, 0.2, 230), int_light=(0.45, -0.4, 0.5), int_watts=10.0)

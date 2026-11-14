@@ -991,7 +991,15 @@ def finish_static(asset, cls, lo, hi_obs, outdir, px, families, origin, dresses,
         man['render_hint'] = {'subsurface': sss}
     if extra:
         man.update(extra)
-    json.dump(man, open(os.path.join(outdir, 'manifest.json'), 'w'), indent=1); print('MANIFEST', os.path.join(outdir, 'manifest.json'))
+    mpath = os.path.join(outdir, 'manifest.json')
+    if os.path.isfile(mpath):                      # a rebuild keeps what later steps recorded: a bound family has left the backlog (no origin IDs there any more), and its status was updated
+        prev = json.load(open(mpath))
+        for fam, ids in man['origin_ids'].items():
+            if not ids and (prev.get('origin_ids') or {}).get(fam):
+                man['origin_ids'][fam] = prev['origin_ids'][fam]
+        if prev.get('status') and prev['status'] != man['status']:
+            man['status'] = prev['status']
+    json.dump(man, open(mpath, 'w'), indent=1); print('MANIFEST', os.path.join(outdir, 'manifest.json'))
     return man
 
 

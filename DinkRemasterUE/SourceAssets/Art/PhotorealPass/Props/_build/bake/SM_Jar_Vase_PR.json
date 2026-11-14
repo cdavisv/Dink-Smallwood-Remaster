@@ -14,24 +14,24 @@
   "ORM": "T_Jar_Vase_PR_ORM.png"
  },
  "lod_triangles": [
-  924,
-  462,
-  202
+  3920,
+  1960,
+  862
  ],
- "hi_triangles": 17440,
+ "hi_triangles": 73440,
  "bounds_min_m": [
   -0.119,
-  -0.121,
+  -0.122,
   0.0
  ],
  "bounds_max_m": [
   0.121,
-  0.121,
+  0.122,
   0.688
  ],
  "dimensions_m": [
   0.24,
-  0.242,
+  0.244,
   0.688
  ],
  "emissive_nits": null,
@@ -39,13 +39,13 @@
  "stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 35.8,
-   "p99": 103.1
+   "mean": 35.9,
+   "p99": 104.0
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.098,
-   "p95": 0.839
+   "mean": 0.099,
+   "p95": 0.84
   },
   "metallic_mean": 0.0
  },
