@@ -72,6 +72,13 @@ struct DINKCORE_API FDinkFamilyBinding
 	 */
 	FString Effect;
 	double EffectSizeCm = 50.0;
+	 * JSON "mount": where the mesh stands when the sprite does not stand on the ground. "on" (1): on top of the dressed
+	 * placement whose card it is drawn over (food on a counter, bombs on a shelf); "crown" (2): in the crown of the dressed
+	 * tree it is drawn over (fruit); "wall" (3): flat against the south face of the dressed wall it is drawn over (a
+	 * notice), facing the room. The host is found at screen activation among the placements this layer has dressed on the
+	 * same screen; a placement that finds none keeps its card. 0 (default): on the ground at the card's ground point.
+	 */
+	uint8 Mount = 0;
 	FString Note;
 };
 
@@ -145,6 +152,25 @@ namespace DinkArtFamily
 	DINKCORE_API void SpanPieces(const FDinkFamilyBinding& Binding, double SpanCm, double ModuleCm, TArray<FSpanPiece>& Out);
 	/** MeshTransform for one span piece: moved along the yawed X axis and scaled along X only. */
 	DINKCORE_API FTransform SpanTransform(const FBox& MeshBounds, const FVector& Ground, double YawDegrees, float Scale, const FSpanPiece& Piece);
+
+	/**
+	 * A dressed placement that can carry mounted ones. Card: the placement's sprite card in the picture plane of the 1997
+	 * screen, in world cm: X is world X, Y is world Y minus the height above the ground (an upright card at ground row Y
+	 * shows a point Z cm up where the old screen had it Z cm further north). Mesh: the world box of what stands there now.
+	 */
+	struct FMountHost
+	{
+		FBox2D Card = FBox2D(ForceInit);
+		FBox Mesh = FBox(ForceInit);
+	};
+	/**
+	 * Where a mounted placement stands (world cm; the mesh's bottom centre goes there). Picture is the centre of its own
+	 * card in the picture plane. The host is the smallest card that contains that point and whose mesh suits the mount
+	 * ("on": no taller than 2.2 m; "crown": at least 3 m tall; "wall": any). The point keeps its relative place: its
+	 * share of the host card's width becomes the same share of the host mesh's width, since the layout-scaled card is
+	 * several times wider than the real-size mesh that replaced it. false: no host, the placement keeps its card.
+	 */
+	DINKCORE_API bool MountPoint(uint8 Mount, const FVector2D& Picture, const TArray<FMountHost>& Hosts, FVector& OutGround);
 
 	/** Places a mesh whose local bounds are MeshBounds so that its horizontal centre and its bottom land on Ground. */
 	DINKCORE_API FTransform MeshTransform(const FBox& MeshBounds, const FVector& Ground, double YawDegrees, float Scale);
@@ -244,8 +270,9 @@ private:
 	/** The binding's mesh or one of its variants for this origin; falls back to the main mesh when a variant is missing. */
 	UStaticMesh* MeshFor(const FDinkFamilyBinding& Binding, const FString& Origin);
 	UStaticMesh* LoadFamilyMesh(const FString& Path, const FString& Family);
-	bool DressActor(ADinkPlaceholderActor& Actor);
-	int32 DressInstances(ADinkGreyboxScreen& Screen);
+	/** bMounted false: the placements that stand on the ground (they are added to Hosts); true: the mounted ones, which read Hosts. */
+	bool DressActor(ADinkPlaceholderActor& Actor, TArray<DinkArtFamily::FMountHost>& Hosts, bool bMounted);
+	int32 DressInstances(ADinkGreyboxScreen& Screen, TArray<DinkArtFamily::FMountHost>& Hosts, bool bMounted);
 
 	TArray<FDinkFamilyBinding> Bindings;
     TArray<FDinkFamilyCollisionFitRule> CollisionFitRules;
