@@ -215,6 +215,8 @@ public:
     bool CarryOriginalLiveSprites(int32 Screen,FString& Error);
 	const TMap<int32, FDinkSprite>& GetSprites() const { return Sprites; }
 	void ResetSprites();
+	/** Counts ResetSprites calls: presentation layers that remember sprites by handle (a restored save reuses the handles on the same screen) drop what they hold when it moves. Not simulation state. */
+	int32 GetSpriteResetSerial() const { return SpriteResetSerial; }
 
 	/** Generic sp_<prop>(sprite, value): value -1 reads only. Returns the current value. */
 	int32 SpriteProperty(FDinkScriptInstance* Instance, FName Prop, int32 Handle, int32 Value);
@@ -324,4 +326,8 @@ private:
 	bool bDinkInputBlocked = false;
 	/** The pawn's gravity scale before a freeze took it away (see SetFrozen). */
 	float DinkGravityScale = 1.f;
+
+public:
+	/** See GetSpriteResetSerial. */
+	int32 SpriteResetSerial = 0;
 };

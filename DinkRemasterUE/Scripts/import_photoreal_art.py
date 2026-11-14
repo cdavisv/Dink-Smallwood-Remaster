@@ -638,6 +638,21 @@ def import_scatter(fbx, folder, name):
     return mesh, True
 
 
+def decal_material(folder, name, texture, roughness=0.12):
+    """A deferred decal that lays the texture's colour on whatever is under it (ground and grass), alpha as opacity."""
+    mat = new_material(folder, name)
+    mat.set_editor_property('material_domain', unreal.MaterialDomain.MD_DEFERRED_DECAL)
+    mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_TRANSLUCENT)
+    bc = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -500, 0, parameter_name='BC', texture=texture, sampler_type=ST.SAMPLERTYPE_COLOR)
+    rough = expr(mat, unreal.MaterialExpressionConstant, -300, 220, r=roughness)
+    out(bc, 'RGB', MP.MP_BASE_COLOR)
+    out(bc, 'A', MP.MP_OPACITY)
+    out(rough, '', MP.MP_ROUGHNESS)
+    EDIT.recompile_material(mat)
+    save(mat)
+    return mat
+
+
 def assign_slots(mesh, materials, name):
     slots = list(mesh.get_editor_property('static_materials'))
     for slot in slots:
@@ -1026,6 +1041,11 @@ if 'pillbug' in ONLY:
         materials = {n: instance(folder, n + '_PR', parent, atlas) for n in ('MI_Pillbug_Carapace', 'MI_Pillbug_Ochre', 'MI_Pillbug_Joints', 'MI_Pillbug_Eyes')}
         materials['MI_Pillbug_Gore'] = instance(folder, 'MI_Pillbug_Gore_PR', parent, gore)
         materials['MI_Pillbug_Gore_Procedural'] = materials['MI_Pillbug_Gore']   # the corpse FBX names its gore slot so; the manifest says MI_Pillbug_Gore
+        # the carcass body: the same atlas with blood across the plates (sprites 141/143), and the pool as a ground decal
+        bloody = dict(atlas, BC=import_texture(PB / 'Textures/T_Pillbug_Corpse_BC.png', tex_folder, 'BC'), ORM=import_texture(PB / 'Textures/T_Pillbug_Corpse_ORM.png', tex_folder, 'ORM'))
+        for n in ('MI_Pillbug_Carapace', 'MI_Pillbug_Ochre', 'MI_Pillbug_Joints', 'MI_Pillbug_Eyes'):
+            materials[n + '_Bloody'] = instance(folder, n + '_Bloody_PR', parent, bloody)
+        pool = decal_material(folder, 'M_Pillbug_BloodPool_Decal', import_texture(PB / 'Textures/T_Pillbug_BloodPool_BC.png', tex_folder, 'BCA', wrap=False))
         name = 'SK_Pillbug_Photoreal'
         target = folder + '/' + name
         fbx = [PB / f'Export/SK_Pillbug_LOD{i}.fbx' for i in range(3)]
@@ -1088,7 +1108,7 @@ if 'pillbug' in ONLY:
         assign_slots(corpse, materials, 'SM_Pillbug_Corpse_PR')
         save(corpse)
         box = corpse.get_bounding_box()
-        report['pillbug']['corpse'] = {'mesh': folder + '/SM_Pillbug_Corpse_PR', 'lods': MESHES.get_lod_count(corpse), 'reimported': changed,
+        report['pillbug']['corpse'] = {'mesh': folder + '/SM_Pillbug_Corpse_PR', 'lods': MESHES.get_lod_count(corpse), 'reimported': changed, 'pool_decal': pool.get_path_name(),
                                        'size_cm': [round(box.max.x - box.min.x, 1), round(box.max.y - box.min.y, 1), round(box.max.z - box.min.z, 1)]}
     except Exception as error:
         report['pillbug']['error'] = str(error)
