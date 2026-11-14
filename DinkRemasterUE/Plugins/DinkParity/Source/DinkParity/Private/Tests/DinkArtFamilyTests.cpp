@@ -105,7 +105,7 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 	// mount: on, crown, wall; anything else, or a span with it, is refused
 	TArray<FDinkFamilyBinding> Mounted;
 	TArray<FString> MountedErrors;
-	ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
+	DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
 		{"family":"bread","mesh":"/Game/A/SM_Bread","mount":"on"},{"family":"fruit","mesh":"/Game/A/SM_Fruit","mount":"crown"},
 		{"family":"notice","mesh":"/Game/A/SM_Notice","mount":"wall"},{"family":"clam","mesh":"/Game/A/SM_Clam"},
 		{"family":"flag","mesh":"/Game/A/SM_Flag","mount":"ceiling"},{"family":"rail","mesh":"/Game/A/SM_Rail","mount":"on","span":"width"}]})"), Mounted, MountedErrors);
@@ -115,13 +115,13 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 		// screens: the row binds only there
 		TArray<FDinkFamilyBinding> Local;
 		TArray<FString> LocalErrors;
-		ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[{"family":"arrow","mesh":"/Game/A/SM_Arrow","mount":"on","screens":[97]}]})"), Local, LocalErrors);
+		DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[{"family":"arrow","mesh":"/Game/A/SM_Arrow","mount":"on","screens":[97]}]})"), Local, LocalErrors);
 		FDinkFamilyPlacement Shop, Range;
 		Shop.Origin = TEXT("S097_P25"); Shop.Screen = 97; Shop.ClassId = TEXT("arrow");
 		Range.Origin = TEXT("S663_P20"); Range.Screen = 663; Range.ClassId = TEXT("arrow");
 		const FDinkFamilyBinding* Found = nullptr;
-		TestTrue(TEXT("screens: bound on a named screen"), Local.Num() == 1 && Decide(Shop, FDinkFamilyPrecedence(), Local, Found) == EDinkFamilyDecision::Bound);
-		TestTrue(TEXT("screens: no binding elsewhere"), Decide(Range, FDinkFamilyPrecedence(), Local, Found) == EDinkFamilyDecision::NoBinding && Found == nullptr);
+		TestTrue(TEXT("screens: bound on a named screen"), Local.Num() == 1 && DinkArtFamily::Decide(Shop, FDinkFamilyPrecedence(), Local, Found) == EDinkFamilyDecision::Bound);
+		TestTrue(TEXT("screens: no binding elsewhere"), DinkArtFamily::Decide(Range, FDinkFamilyPrecedence(), Local, Found) == EDinkFamilyDecision::NoBinding && Found == nullptr);
 	}
 	{
 		// A counter: card 680 x 340 cm in the picture plane, mesh 200 x 80 x 95 cm standing in its middle. A wall behind it,
