@@ -9,8 +9,8 @@ Presentation only: collision, hardness, scripts, hits, touch and the random stre
 
 | `art_coverage.py --coverage <whole-world report>` | before | after |
 |---|---:|---:|
-| final | 4,663 | 4,817 |
-| placeholder | 1,792 | 1,638 |
+| final | 4,760 | 4,914 |
+| placeholder | 1,695 | 1,541 |
 | cut | 152 | 152 |
 
 154 rows turned from placeholder to final: the pillbug placements that no other manifest names. The running game
@@ -64,9 +64,16 @@ The kill sheets above are from the corrected row.
   little flat where sunlight hits it.
 - A packaged build was not made (`Scripts/package.sh` default cook dirs may lack `Content/Dink/Photoreal`).
 
-## Tests (private project copy, this branch before its rebase onto `8905d4f8`)
+## Tests (private project copy)
 
-- `Scripts/test.sh Dink.Art.CreatureClass`: 4/4. `Scripts/test.sh Dink.Art`: 62/62. `Scripts/test.sh Dink.Animation`: 6/6.
+- 14 Nov 2026, this branch on master `80ff12f1` (with the next creature batch on top of it in the same build):
+  `Scripts/test.sh Dink.Gameplay.Probe` 29/29, and all twenty trace hashes equal the table re-baselined by PR #107
+  (`Plugins/DinkParity/Docs/packaged_probe.md`): Ch1 b4ad88c02c, Ch2 bc267a0dfc, Ch3 bbd401167c, Ch4 8740518c57,
+  Ch5 d987c043f6, Ch6 2df37e4a27, Ch7 a16d1d23b8, Ch8 764e9d330f, Ch9 dd1e2662fa, Ch10 23fd57dfdc, Ch11 0d70cebfcd,
+  Ch12 79c8ce55f9, Ch13 98a2e17ba0, Ch14 f1ddbaab7b, Ch15 7e3dbbd0b1, Ch16 48e797069a, Ch17 4277c65c35,
+  Ch18 d33886b797, Ch19 45b399bac8, Ch20 84f33687af. `Dink.Art` 64/64, `Dink.Animation` 6/6.
+  Master has since taken PR #103 and #106 (corpse kit, ground); the probe was not run again on top of them.
+- The same-screen restore fix (review of 14 Nov) was built on master `d2754903`; its test lines in `Dink.Art.CreatureClass` are reported in the PR.
 - `python3 -m unittest discover -s Scripts/tests`: OK. `verify_sources.py --metadata-only`: passed.
   `Scripts/check_public_paths.py`: 0 files flagged.
 - The layer is off in headless runs, so the probe cannot see it; `Dink.Art.CreatureClass.SimulationIdenticalWithAndWithoutTheLayer`
