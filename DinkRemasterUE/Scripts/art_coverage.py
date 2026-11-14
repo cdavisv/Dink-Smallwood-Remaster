@@ -318,7 +318,8 @@ def load_families(assets, notes):
             if not ok:
                 notes.append("families.json: %s -> %s not bound at runtime (%s)" % (name, r["mesh"], why))
                 continue
-            rows.append({"family": name, "key": key, "mesh": r["mesh"], "scripted": bool(r.get("scripted", False))})
+            rows.append({"family": name, "key": key, "mesh": r["mesh"], "scripted": bool(r.get("scripted", False)),
+                         "screens": {int(n) for n in r.get("screens") or [] if isinstance(n, (int, float)) and n >= 1}})
     for fn in sorted(os.listdir(art_dir)):
         if not fn.lower().endswith(".json") or fn.lower() == "families.json":
             continue
@@ -680,7 +681,7 @@ def classify(args):
         if screen_no in fam_screens or oid in fam_origins:
             return None
         row = family_binding(fam_rows, seq_of.get(oid), cls, frame_of.get(oid))
-        if row is None or (scripted_of.get(oid) and not row["scripted"]):
+        if row is None or (row["screens"] and screen_no not in row["screens"]) or (scripted_of.get(oid) and not row["scripted"]):
             return None
         return row
 
