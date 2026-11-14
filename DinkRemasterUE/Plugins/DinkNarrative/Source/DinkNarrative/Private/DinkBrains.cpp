@@ -454,6 +454,13 @@ int32 UDinkGameplay::CheckIfMoveIsLegal(FDinkSprite& S)
 	for (int32 i = 1; i < MovePath.Num(); ++i)
 	{
 		int32 Hard = GetHard(S.Screen, MovePath[i].X, MovePath[i].Y);
+		// get_hard (D:569-575) reads a stamped hardbox whose placement's prop is not 0 as 0 for every caller: monsters, people and missiles
+		// cross a map.dat warp's hardbox (a door), and only Dink (brain 1, never moved here) warps there (special_block, D:16907-16911).
+		// GetHard keeps the stamped code of a map.dat warp because the pawn's greybox approximates the warp as a solid box with a trigger.
+		if (Hard > 100 && GetPlacementProp(FDinkOriginId(S.Screen, Hard - 100)) != 0)
+		{
+			Hard = 0;
+		}
 		if (Hard == 0 && AuthoredActorMoveBlocked(S, MovePath[i - 1], MovePath[i])) { Hard = 1; }
 		if (Hard == 2 && bFlying)
 		{

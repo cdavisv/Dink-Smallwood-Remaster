@@ -117,7 +117,10 @@ namespace DinkAITest
 
 	bool OnHardness(const FEnv& E, const FDinkSprite& S)
 	{
-		return E.G->GetHard(S.Screen, FMath::RoundToInt32(S.X), FMath::RoundToInt32(S.Y)) != 0;
+		const int32 Code = E.G->GetHard(S.Screen, FMath::RoundToInt32(S.X), FMath::RoundToInt32(S.Y));
+		// get_hard (D:569-575) reads a stamped hardbox of a placement with prop != 0 (a map.dat warp: SCR_003's door S003_P14) as 0 for every
+		// sprite, so a villager may stand in the doorway's box; only Dink warps there.
+		return Code != 0 && !(Code > 100 && E.G->GetPlacementProp(FDinkOriginId(S.Screen, Code - 100)) != 0);
 	}
 
 	/**

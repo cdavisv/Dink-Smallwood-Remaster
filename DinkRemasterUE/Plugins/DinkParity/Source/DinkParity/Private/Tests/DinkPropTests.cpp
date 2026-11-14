@@ -365,3 +365,68 @@ bool FDinkPropDoorTest::RunTest(const FString& Parameters)
 	ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());
 	return true;
 }
+
+namespace DinkPropTest
+{
+	/** A brain-0 sprite at engine (X, FromY) follows Dink at (X, DinkY) for 200 engine frames (move_legal on every step). Its final y. */
+	int32 FollowWalk(FEnv& E, int32 X, int32 FromY, int32 DinkY)
+	{
+		FDinkSprite& Dink = E.D->GetDink();
+		Dink.Screen = Screen;
+		Dink.X = X;
+		Dink.Y = DinkY;
+		const int32 H = E.D->CreateVirtualSprite(Screen, X, FromY);
+		FDinkSprite& W = *E.D->FindSprite(H);
+		UDinkDirector::InitCreatedSprite(W);
+		W.Props.Add(TEXT("brain"), 0);
+		W.Props.Add(TEXT("follow"), 1);
+		W.Props.Add(TEXT("speed"), 1);
+		W.Props.Add(TEXT("timing"), 0);
+		W.Props.Add(TEXT("base_walk"), -1);
+		for (int32 Frame = 0; Frame < 200; ++Frame)
+		{
+			E.G->ThinkSprite(H, Frame * UDinkGameplay::EngineFrameMs);
+		}
+		const int32 Y = FMath::RoundToInt32(E.D->FindSprite(H)->Y);
+		E.D->DeactivateSprite(H, 0);
+		return Y;
+	}
+}
+
+// get_hard (dink.cpp:569-575) reads a stamped hardbox of a placement whose prop is not 0 as 0, for every sprite that moves: monsters, people and
+// missiles walk and fly through a map.dat warp's hardbox (a door). Only Dink warps there (special_block from the walk code, D:16906-16911).
+// The remaster used to stop every sprite at a door's hardbox (alpha bug list: "monsters and missiles treat a warp's hardbox as solid").
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkPropSpritesCrossWarpTest, "Dink.Gameplay.Prop.SpritesCrossMapWarpHardbox", DINK_TEST_FLAGS)
+bool FDinkPropSpritesCrossWarpTest::RunTest(const FString& Parameters)
+{
+	using namespace DinkPropTest;
+	FEnv E = Make(*this);
+	if (!E.IsValid())
+	{
+		return false;
+	}
+	const FDinkOriginId Door(Screen, DoorIndex);
+	// Engine x 415 crosses the door's hardbox (code 102); south of it the column is free down to y 275.
+	TestEqual(TEXT("the door's hardbox reads 102 in the map (GetHard keeps it for the pawn's warp box and the probe)"), E.G->GetHard(Screen, 415, 240), 102);
+	int32 Edge = 275;
+	while (Edge > 200 && E.G->GetHard(Screen, 415, Edge - 1) == 0)
+	{
+		--Edge;
+	}
+	if (!TestEqual(TEXT("precondition: going north from engine 415,275 the first hard pixel is the door's (102)"), E.G->GetHard(Screen, 415, Edge - 1), 102) ||
+		!TestTrue(TEXT("precondition: at least 20 free pixels south of it"), Edge <= 255))
+	{
+		return false;
+	}
+	const int32 Through = FollowWalk(E, 415, 275, 200);
+	TestTrue(FString::Printf(TEXT("a walker from the south walks into the door's hardbox (prop 1: get_hard reads 0), past its edge at y %d (got %d)"), Edge, Through), Through < Edge - 1);
+
+	// With sp_prop(door, 0) (owner decision OD1) the flag is 0: the stamped hardbox is solid for sprites, as for any prop-0 placement.
+	const int32 DoorHandle = E.D->HandleForPlacement(Screen, DoorIndex);
+	Run(E, DoorHandle, { FString::Printf(TEXT("sp_prop %d 0"), DoorHandle) });
+	TestEqual(TEXT("sp_prop(door, 0)"), E.G->GetPlacementProp(Door), 0);
+	TestEqual(TEXT("then the walker stops at the hardbox's south edge"), FollowWalk(E, 415, 275, 200), Edge);
+	Run(E, DoorHandle, { FString::Printf(TEXT("sp_prop %d 1"), DoorHandle) });
+	TestTrue(TEXT("map.dat's prop 1 again: walk-through again"), FollowWalk(E, 415, 275, 200) < Edge - 1);
+	return true;
+}
