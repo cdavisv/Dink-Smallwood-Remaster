@@ -301,6 +301,7 @@ private:
 		TArray<FFootprint> Footprints;
 	};
 	void LoadTownHouses();
+	void LoadTownHouseFile(const TCHAR* ContentRelativePath);
 	void ApplyTownHouses(int32 ScreenNumber, const FDinkScreenCorners& Corners);
 
 	// --- pillbug carcass (round 6, visual only): where a photoreal pillbug of the current screen is killed (its actor is

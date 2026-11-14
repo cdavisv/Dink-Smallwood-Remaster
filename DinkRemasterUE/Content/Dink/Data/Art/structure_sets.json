@@ -1,0 +1,9909 @@
+{
+ "schema": "dink-town-houses/3",
+ "generated_by": "Scripts/assemble_structures.py",
+ "note": "Structures the 1997 game draws in several sprites, laid along their ground lines: split-rail and island fences, wooden bridges, wells. Reads ImportData/placements.json and tools/dinkex/out/sequences.json; shown by UDinkEnvironmentSubsystem beside town_houses.json (dink.TownHouses). Visual only: hardness, warps and scripts are untouched.",
+ "screens": {
+  "274": {
+   "houses": [
+    {
+     "id": "S274_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_small frame 8: SM_Cottage_Thatched_Small_PR, front x 1.60, 0.0 m east of its hardbox middle, door at S274_P07",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Small_PR",
+       "px": [
+        267.0,
+        243.0
+       ],
+       "offset_cm": [
+        0.0,
+        -118.5,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        267.0,
+        243.0
+       ],
+       "offset_cm": [
+        -54.0,
+        162.5,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S274_P02",
+      "S274_P03"
+     ],
+     "door": "S274_P07"
+    },
+    {
+     "id": "S274_cottage_parts2",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S274_P07",
+      "S274_P15",
+      "S274_P16"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      267.0,
+      243.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -620.0,
+      -453.5,
+      620.0,
+      316.5
+     ]
+    }
+   ],
+   "stands_for": {
+    "S274_P02": "S274_cottage1",
+    "S274_P03": "S274_cottage1",
+    "S274_P07": "S274_cottage_parts2",
+    "S274_P15": "S274_cottage_parts2",
+    "S274_P16": "S274_cottage_parts2"
+   }
+  },
+  "318": {
+   "houses": [
+    {
+     "id": "S318_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_l_shape frame 10: SM_Cottage_Thatched_LShape_PR, front x 1.17, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_LShape_PR",
+       "px": [
+        350.0,
+        553.0
+       ],
+       "offset_cm": [
+        0.0,
+        -54.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1735,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S318_P01"
+     ],
+     "door": null
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      350.0,
+      553.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -605.7,
+      -414.8,
+      605.7,
+      405.2
+     ]
+    }
+   ],
+   "stands_for": {
+    "S318_P01": "S318_cottage1"
+   }
+  },
+  "349": {
+   "houses": [
+    {
+     "id": "S349_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_l_shape frame 10: SM_Cottage_Thatched_LShape_PR, front x 1.21, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_LShape_PR",
+       "px": [
+        950.0,
+        153.0
+       ],
+       "offset_cm": [
+        0.0,
+        -47.4,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.2095,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S349_P04"
+     ],
+     "door": null
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      950.0,
+      153.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -622.4,
+      -407.4,
+      622.4,
+      412.6
+     ]
+    }
+   ],
+   "stands_for": {
+    "S349_P04": "S349_cottage1"
+   }
+  },
+  "350": {
+   "houses": [
+    {
+     "id": "S350_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_l_shape frame 10: SM_Cottage_Thatched_LShape_PR, front x 1.16, 0.0 m east of its hardbox middle, door at S350_P09",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_LShape_PR",
+       "px": [
+        350.0,
+        153.0
+       ],
+       "offset_cm": [
+        0.0,
+        -49.7,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1572,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        350.0,
+        153.0
+       ],
+       "offset_cm": [
+        -114.0,
+        116.3,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S350_P01",
+      "S350_P02"
+     ],
+     "door": "S350_P09"
+    },
+    {
+     "id": "S350_cottage_parts2",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S350_P08",
+      "S350_P09"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      350.0,
+      153.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -598.1,
+      -409.7,
+      598.1,
+      410.3
+     ]
+    }
+   ],
+   "stands_for": {
+    "S350_P01": "S350_cottage1",
+    "S350_P02": "S350_cottage1",
+    "S350_P08": "S350_cottage_parts2",
+    "S350_P09": "S350_cottage_parts2"
+   }
+  },
+  "375": {
+   "houses": [
+    {
+     "id": "S375_fence1",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.9 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        136.5,
+        558.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.108,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        136.5,
+        602.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.108,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S375_P02"
+     ],
+     "length_m": 8.86
+    },
+    {
+     "id": "S375_fence2",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.9 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        473.5,
+        559.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.108,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        473.5,
+        603.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.108,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S375_P03"
+     ],
+     "length_m": 8.86
+    }
+   ],
+   "footprints": [],
+   "stands_for": {
+    "S375_P02": "S375_fence1",
+    "S375_P03": "S375_fence2"
+   }
+  },
+  "404": {
+   "houses": [
+    {
+     "id": "S404_bridge1",
+     "kind": "bridge",
+     "note": "east-west wooden bridge: 29.0 m long, 5.3 m between the rail lines, 12 deck and 24 rail modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        179.33,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        204.0,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        228.67,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        253.33,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        278.0,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        302.67,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        327.33,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        352.0,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        376.67,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        401.33,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        426.0,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        450.67,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        3.0344,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        179.33,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        204.0,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        228.67,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        253.33,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        278.0,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        302.67,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        327.33,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        352.0,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        376.67,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        401.33,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        426.0,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        450.67,
+        232.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        179.33,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        204.0,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        228.67,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        253.33,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        278.0,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        302.67,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        327.33,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        352.0,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        376.67,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        401.33,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        426.0,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        450.67,
+        286.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        0.9669,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S404_P01",
+      "S404_P03",
+      "S404_P04",
+      "S404_P05"
+     ],
+     "length_m": 29.01,
+     "width_m": 5.34
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      315.0,
+      259.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -1480.4,
+      -327.0,
+      1480.4,
+      327.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S404_P01": "S404_bridge1",
+    "S404_P03": "S404_bridge1",
+    "S404_P04": "S404_bridge1",
+    "S404_P05": "S404_bridge1"
+   }
+  },
+  "408": {
+   "houses": [
+    {
+     "id": "S408_fence1",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        -68.12,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        -24.38,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        19.38,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        63.12,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P02"
+     ],
+     "length_m": 17.2
+    },
+    {
+     "id": "S408_fence2",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        655.88,
+        112.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        699.62,
+        112.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        743.38,
+        112.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        787.12,
+        112.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P03"
+     ],
+     "length_m": 17.2
+    },
+    {
+     "id": "S408_fence3",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        79.88,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        123.62,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        167.38,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        211.12,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P09"
+     ],
+     "length_m": 17.2
+    },
+    {
+     "id": "S408_fence4",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        507.88,
+        110.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        551.62,
+        110.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        595.38,
+        110.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        639.12,
+        110.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P11"
+     ],
+     "length_m": 17.2
+    },
+    {
+     "id": "S408_fence5",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        227.88,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        271.62,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        315.38,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        359.12,
+        111.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0752,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P12"
+     ],
+     "length_m": 17.2
+    },
+    {
+     "id": "S408_fence6",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.8 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        366.5,
+        33.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.1036,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        366.5,
+        77.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.1036,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P21"
+     ],
+     "length_m": 8.83
+    },
+    {
+     "id": "S408_fence7",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.8 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        499.5,
+        34.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.1036,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        499.5,
+        78.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.1036,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P22"
+     ],
+     "length_m": 8.83
+    },
+    {
+     "id": "S408_fence8",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.8 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        366.5,
+        -21.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.1036,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        366.5,
+        22.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.1036,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P23"
+     ],
+     "length_m": 8.83
+    },
+    {
+     "id": "S408_fence9",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.8 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        499.5,
+        -19.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.1036,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        499.5,
+        24.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.1036,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P24"
+     ],
+     "length_m": 8.83
+    },
+    {
+     "id": "S408_well10",
+     "kind": "well",
+     "note": "well_stone frame 1 at the middle of its hardbox, with the shaft cap",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_Stone_PR",
+       "px": [
+        143.5,
+        311.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_ShaftCap_PR",
+       "px": [
+        143.5,
+        311.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S408_P07"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      143.5,
+      311.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -150.0,
+      -110.0,
+      150.0,
+      110.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S408_P02": "S408_fence1",
+    "S408_P03": "S408_fence2",
+    "S408_P09": "S408_fence3",
+    "S408_P11": "S408_fence4",
+    "S408_P12": "S408_fence5",
+    "S408_P21": "S408_fence6",
+    "S408_P22": "S408_fence7",
+    "S408_P23": "S408_fence8",
+    "S408_P24": "S408_fence9",
+    "S408_P07": "S408_well10"
+   }
+  },
+  "409": {
+   "houses": [
+    {
+     "id": "S409_fence1",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        55.88,
+        113.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        99.62,
+        113.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        143.38,
+        113.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        187.12,
+        113.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P01"
+     ],
+     "length_m": 17.22
+    },
+    {
+     "id": "S409_fence2",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        203.88,
+        113.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        247.62,
+        113.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        291.38,
+        113.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        335.12,
+        113.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P03"
+     ],
+     "length_m": 17.22
+    },
+    {
+     "id": "S409_fence3",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.0 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        561.75,
+        382.88
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 89.3,
+       "scale": [
+        1.0056,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        562.25,
+        423.62
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 89.3,
+       "scale": [
+        1.0056,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P08"
+     ],
+     "length_m": 8.04
+    },
+    {
+     "id": "S409_fence4",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 6: 7.2 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        511.06,
+        196.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 20.16,
+       "scale": [
+        0.8951,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        545.19,
+        208.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 20.16,
+       "scale": [
+        0.8951,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P19"
+     ],
+     "length_m": 7.16
+    },
+    {
+     "id": "S409_fence5",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 3: 8.1 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        458.0,
+        169.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 22.23,
+       "scale": [
+        1.0109,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        496.0,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 22.23,
+       "scale": [
+        1.0109,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P20"
+     ],
+     "length_m": 8.09
+    },
+    {
+     "id": "S409_fence6",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 6: 7.8 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        406.5,
+        144.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 21.48,
+       "scale": [
+        0.9781,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        443.5,
+        158.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 21.48,
+       "scale": [
+        0.9781,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P21"
+     ],
+     "length_m": 7.83
+    },
+    {
+     "id": "S409_fence7",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.0 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        560.75,
+        301.38
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 89.3,
+       "scale": [
+        1.0056,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        561.25,
+        342.12
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 89.3,
+       "scale": [
+        1.0056,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P41"
+     ],
+     "length_m": 8.04
+    },
+    {
+     "id": "S409_fence8",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 3: 8.1 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        352.0,
+        117.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 22.27,
+       "scale": [
+        1.0102,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        390.0,
+        133.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 22.27,
+       "scale": [
+        1.0102,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P42"
+     ],
+     "length_m": 8.08
+    },
+    {
+     "id": "S409_fence9",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        -92.12,
+        112.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        -48.38,
+        112.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        -4.62,
+        112.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        39.12,
+        112.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P47"
+     ],
+     "length_m": 17.22
+    },
+    {
+     "id": "S409_fence10",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.4 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        560.81,
+        236.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 93.86,
+       "scale": [
+        1.0511,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        557.94,
+        278.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 93.86,
+       "scale": [
+        1.0511,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P52"
+     ],
+     "length_m": 8.41
+    },
+    {
+     "id": "S409_cottage11",
+     "kind": "cottage",
+     "note": "cottage_thatched_large frame 6: SM_Cottage_Thatched_Large_PR, front x 1.60, 0.0 m east of its hardbox middle, door at S409_P16",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Large_PR",
+       "px": [
+        347.0,
+        268.0
+       ],
+       "offset_cm": [
+        0.0,
+        -68.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        347.0,
+        268.0
+       ],
+       "offset_cm": [
+        223.5,
+        263.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S409_P12",
+      "S409_P14"
+     ],
+     "door": "S409_P16"
+    },
+    {
+     "id": "S409_cottage_parts12",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S409_P11",
+      "S409_P16"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      347.0,
+      268.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -860.0,
+      -453.0,
+      860.0,
+      417.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S409_P01": "S409_fence1",
+    "S409_P03": "S409_fence2",
+    "S409_P08": "S409_fence3",
+    "S409_P19": "S409_fence4",
+    "S409_P20": "S409_fence5",
+    "S409_P21": "S409_fence6",
+    "S409_P41": "S409_fence7",
+    "S409_P42": "S409_fence8",
+    "S409_P47": "S409_fence9",
+    "S409_P52": "S409_fence10",
+    "S409_P12": "S409_cottage11",
+    "S409_P14": "S409_cottage11",
+    "S409_P11": "S409_cottage_parts12",
+    "S409_P16": "S409_cottage_parts12"
+   }
+  },
+  "416": {
+   "houses": [
+    {
+     "id": "S416_deck1",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 1: 6.8 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        199.5,
+        299.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9105,
+        2.182,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        199.5,
+        329.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9105,
+        2.182,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        199.5,
+        358.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9105,
+        2.182,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S416_P01"
+     ],
+     "length_m": 6.83,
+     "width_m": 3.84
+    },
+    {
+     "id": "S416_deck2",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 3: 4.4 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        199.0,
+        387.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8846,
+        2.1453,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        199.0,
+        415.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8846,
+        2.1453,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S416_P02"
+     ],
+     "length_m": 4.42,
+     "width_m": 3.78
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      199.5,
+      329.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -222.0,
+      -371.4,
+      222.0,
+      371.4
+     ]
+    },
+    {
+     "px": [
+      199.0,
+      401.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -218.8,
+      -251.2,
+      218.8,
+      251.2
+     ]
+    }
+   ],
+   "stands_for": {
+    "S416_P01": "S416_deck1",
+    "S416_P02": "S416_deck2"
+   }
+  },
+  "432": {
+   "houses": [
+    {
+     "id": "S432_well1",
+     "kind": "well",
+     "note": "well_stone frame 1 at the middle of its hardbox, with the shaft cap",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_Stone_PR",
+       "px": [
+        303.5,
+        118.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_ShaftCap_PR",
+       "px": [
+        303.5,
+        118.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S432_P03"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      303.5,
+      118.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -150.0,
+      -110.0,
+      150.0,
+      110.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S432_P03": "S432_well1"
+   }
+  },
+  "437": {
+   "houses": [
+    {
+     "id": "S437_fence1",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 3: 5.6 m of ground, 1 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        334.0,
+        64.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 28.17,
+       "scale": [
+        1.3923,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S437_P08"
+     ],
+     "length_m": 5.57
+    },
+    {
+     "id": "S437_fence2",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 6: 5.5 m of ground, 1 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        388.0,
+        88.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 27.57,
+       "scale": [
+        1.3628,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S437_P09"
+     ],
+     "length_m": 5.45
+    },
+    {
+     "id": "S437_fence3",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 6: 5.8 m of ground, 1 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        561.0,
+        200.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 28.53,
+       "scale": [
+        1.4572,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S437_P10"
+     ],
+     "length_m": 5.83
+    },
+    {
+     "id": "S437_fence4",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 3: 6.0 m of ground, 1 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        507.0,
+        176.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 29.2,
+       "scale": [
+        1.4887,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S437_P11"
+     ],
+     "length_m": 5.95
+    },
+    {
+     "id": "S437_fence5",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 3: 6.2 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        219.0,
+        321.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 23.71,
+       "scale": [
+        0.7709,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        257.0,
+        337.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 23.71,
+       "scale": [
+        0.7709,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S437_P13"
+     ],
+     "length_m": 6.17
+    },
+    {
+     "id": "S437_fence6",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 6: 6.1 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        273.5,
+        348.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 23.16,
+       "scale": [
+        0.7576,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        310.5,
+        362.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 23.16,
+       "scale": [
+        0.7576,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S437_P14"
+     ],
+     "length_m": 6.06
+    },
+    {
+     "id": "S437_fence7",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 6: 5.8 m of ground, 1 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        99.0,
+        290.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 21.48,
+       "scale": [
+        1.4433,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S437_P15"
+     ],
+     "length_m": 5.77
+    },
+    {
+     "id": "S437_fence8",
+     "kind": "fence",
+     "note": "fence_rail_diag_nw frame 3: 5.9 m of ground, 1 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        45.0,
+        264.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 21.97,
+       "scale": [
+        1.4689,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S437_P34"
+     ],
+     "length_m": 5.88
+    },
+    {
+     "id": "S437_cottage9",
+     "kind": "cottage",
+     "note": "cottage_thatched_large frame 6: SM_Cottage_Thatched_Large_PR, front x 1.55, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Large_PR",
+       "px": [
+        547.0,
+        760.0
+       ],
+       "offset_cm": [
+        0.0,
+        -79.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.5488,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S437_P12",
+      "S437_P21"
+     ],
+     "door": null
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      547.0,
+      760.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -834.4,
+      -464.0,
+      834.4,
+      406.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S437_P08": "S437_fence1",
+    "S437_P09": "S437_fence2",
+    "S437_P10": "S437_fence3",
+    "S437_P11": "S437_fence4",
+    "S437_P13": "S437_fence5",
+    "S437_P14": "S437_fence6",
+    "S437_P15": "S437_fence7",
+    "S437_P34": "S437_fence8",
+    "S437_P12": "S437_cottage9",
+    "S437_P21": "S437_cottage9"
+   }
+  },
+  "440": {
+   "houses": [
+    {
+     "id": "S440_fence1",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        -69.12,
+        370.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        -25.38,
+        370.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        18.38,
+        370.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        62.12,
+        370.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S440_P01"
+     ],
+     "length_m": 17.22
+    },
+    {
+     "id": "S440_fence2",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        528.88,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        572.62,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        616.38,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        660.12,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S440_P16"
+     ],
+     "length_m": 17.22
+    },
+    {
+     "id": "S440_fence3",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        80.88,
+        368.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        124.62,
+        368.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        168.38,
+        368.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        212.12,
+        368.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S440_P18"
+     ],
+     "length_m": 17.22
+    },
+    {
+     "id": "S440_fence4",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        230.88,
+        368.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        274.62,
+        368.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        318.38,
+        368.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        362.12,
+        368.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S440_P19"
+     ],
+     "length_m": 17.22
+    },
+    {
+     "id": "S440_fence5",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        379.88,
+        367.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        423.62,
+        367.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        467.38,
+        367.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        511.12,
+        367.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0762,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S440_P20"
+     ],
+     "length_m": 17.22
+    },
+    {
+     "id": "S440_cottage6",
+     "kind": "cottage",
+     "note": "cottage_thatched_two_storey frame 4: SM_Cottage_Thatched_TwoStorey_PR, front x 1.60, 0.6 m west of its hardbox middle, door at S440_P06",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_TwoStorey_PR",
+       "px": [
+        376.0,
+        175.0
+       ],
+       "offset_cm": [
+        -64.6,
+        17.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        376.0,
+        175.0
+       ],
+       "offset_cm": [
+        -574.6,
+        323.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S440_P03",
+      "S440_P11"
+     ],
+     "door": "S440_P06"
+    },
+    {
+     "id": "S440_cottage_parts7",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S440_P04",
+      "S440_P06",
+      "S440_P08",
+      "S440_P09"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      376.0,
+      175.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -652.6,
+      -342.2,
+      523.4,
+      477.8
+     ]
+    }
+   ],
+   "stands_for": {
+    "S440_P01": "S440_fence1",
+    "S440_P16": "S440_fence2",
+    "S440_P18": "S440_fence3",
+    "S440_P19": "S440_fence4",
+    "S440_P20": "S440_fence5",
+    "S440_P03": "S440_cottage6",
+    "S440_P11": "S440_cottage6",
+    "S440_P04": "S440_cottage_parts7",
+    "S440_P06": "S440_cottage_parts7",
+    "S440_P08": "S440_cottage_parts7",
+    "S440_P09": "S440_cottage_parts7"
+   }
+  },
+  "441": {
+   "houses": [
+    {
+     "id": "S441_fence1",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        -71.12,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        -27.38,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        16.38,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        60.12,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P01"
+     ],
+     "length_m": 17.24
+    },
+    {
+     "id": "S441_fence2",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        76.88,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        120.62,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        164.38,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        208.12,
+        366.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P02"
+     ],
+     "length_m": 17.24
+    },
+    {
+     "id": "S441_fence3",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 17.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        225.88,
+        367.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        269.62,
+        367.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        313.38,
+        367.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        357.12,
+        367.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0773,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P03"
+     ],
+     "length_m": 17.24
+    },
+    {
+     "id": "S441_fence4",
+     "kind": "fence",
+     "note": "fence_rail_diag_ne frame 2: 7.7 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        372.25,
+        359.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.08,
+       "scale": [
+        0.9633,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        408.75,
+        345.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.08,
+       "scale": [
+        0.9633,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P05"
+     ],
+     "length_m": 7.71
+    },
+    {
+     "id": "S441_fence5",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.7 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        471.69,
+        253.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 86.92,
+       "scale": [
+        1.0906,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        474.06,
+        297.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 86.92,
+       "scale": [
+        1.0906,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P06"
+     ],
+     "length_m": 8.72
+    },
+    {
+     "id": "S441_fence6",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.1 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        571.81,
+        131.88
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 86.33,
+       "scale": [
+        1.0096,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        574.44,
+        172.62
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 86.33,
+       "scale": [
+        1.0096,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P07"
+     ],
+     "length_m": 8.08
+    },
+    {
+     "id": "S441_fence7",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 7.6 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        570.5,
+        54.12
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9457,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        570.5,
+        92.38
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9457,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P08"
+     ],
+     "length_m": 7.57
+    },
+    {
+     "id": "S441_fence8",
+     "kind": "fence",
+     "note": "fence_rail_diag_ne frame 5: 6.8 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        427.06,
+        337.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.34,
+       "scale": [
+        0.8502,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        459.19,
+        325.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.34,
+       "scale": [
+        0.8502,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P12"
+     ],
+     "length_m": 6.8
+    },
+    {
+     "id": "S441_fence9",
+     "kind": "fence",
+     "note": "fence_rail_diag_ne frame 2: 7.7 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        473.25,
+        234.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.06,
+       "scale": [
+        0.9641,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        509.75,
+        220.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.06,
+       "scale": [
+        0.9641,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P13"
+     ],
+     "length_m": 7.71
+    },
+    {
+     "id": "S441_fence10",
+     "kind": "fence",
+     "note": "fence_rail_diag_ne frame 5: 6.8 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        527.94,
+        212.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -22.25,
+       "scale": [
+        0.8489,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        559.81,
+        199.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -22.25,
+       "scale": [
+        0.8489,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P14"
+     ],
+     "length_m": 6.79
+    },
+    {
+     "id": "S441_fence11",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 8.3 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        570.5,
+        -28.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.0385,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        570.5,
+        14.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.0385,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S441_P31"
+     ],
+     "length_m": 8.31
+    }
+   ],
+   "footprints": [],
+   "stands_for": {
+    "S441_P01": "S441_fence1",
+    "S441_P02": "S441_fence2",
+    "S441_P03": "S441_fence3",
+    "S441_P05": "S441_fence4",
+    "S441_P06": "S441_fence5",
+    "S441_P07": "S441_fence6",
+    "S441_P08": "S441_fence7",
+    "S441_P12": "S441_fence8",
+    "S441_P13": "S441_fence9",
+    "S441_P14": "S441_fence10",
+    "S441_P31": "S441_fence11"
+   }
+  },
+  "448": {
+   "houses": [
+    {
+     "id": "S448_deck1",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 3: 4.5 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        199.0,
+        -12.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8938,
+        2.1453,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        199.0,
+        15.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8938,
+        2.1453,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S448_P01"
+     ],
+     "length_m": 4.47,
+     "width_m": 3.78
+    },
+    {
+     "id": "S448_deck2",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 3: 4.5 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        199.0,
+        44.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8938,
+        2.1453,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        199.0,
+        72.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8938,
+        2.1453,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S448_P02"
+     ],
+     "length_m": 4.47,
+     "width_m": 3.78
+    },
+    {
+     "id": "S448_deck3",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 2: 7.4 m long, 3.9 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.0,
+        102.83
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9931,
+        2.2123,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.0,
+        134.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9931,
+        2.2123,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.0,
+        166.17
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9931,
+        2.2123,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S448_P03"
+     ],
+     "length_m": 7.45,
+     "width_m": 3.89
+    },
+    {
+     "id": "S448_deck4",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 1: 6.9 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.5,
+        203.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9199,
+        2.1788,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.5,
+        233.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9199,
+        2.1788,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.5,
+        262.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9199,
+        2.1788,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S448_P04"
+     ],
+     "length_m": 6.9,
+     "width_m": 3.83
+    },
+    {
+     "id": "S448_deck5",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 3: 4.5 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.0,
+        291.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8938,
+        2.1422,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.0,
+        319.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8938,
+        2.1422,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S448_P05"
+     ],
+     "length_m": 4.47,
+     "width_m": 3.77
+    },
+    {
+     "id": "S448_deck6",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 3: 4.5 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.0,
+        348.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8938,
+        2.1422,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        200.0,
+        376.75
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8938,
+        2.1422,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S448_P06"
+     ],
+     "length_m": 4.47,
+     "width_m": 3.77
+    },
+    {
+     "id": "S448_deck7",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 2: 7.4 m long, 3.9 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        201.0,
+        406.83
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9931,
+        2.2091,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        201.0,
+        438.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9931,
+        2.2091,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        201.0,
+        470.17
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9931,
+        2.2091,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S448_P07"
+     ],
+     "length_m": 7.45,
+     "width_m": 3.89
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      199.0,
+      1.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -218.8,
+      -253.4,
+      218.8,
+      253.4
+     ]
+    },
+    {
+     "px": [
+      199.0,
+      58.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -218.8,
+      -253.4,
+      218.8,
+      253.4
+     ]
+    },
+    {
+     "px": [
+      200.0,
+      134.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -224.7,
+      -402.4,
+      224.7,
+      402.4
+     ]
+    },
+    {
+     "px": [
+      200.5,
+      233.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -221.7,
+      -375.0,
+      221.7,
+      375.0
+     ]
+    },
+    {
+     "px": [
+      200.0,
+      305.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -218.5,
+      -253.4,
+      218.5,
+      253.4
+     ]
+    },
+    {
+     "px": [
+      200.0,
+      362.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -218.5,
+      -253.4,
+      218.5,
+      253.4
+     ]
+    },
+    {
+     "px": [
+      201.0,
+      438.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -224.4,
+      -402.4,
+      224.4,
+      402.4
+     ]
+    }
+   ],
+   "stands_for": {
+    "S448_P01": "S448_deck1",
+    "S448_P02": "S448_deck2",
+    "S448_P03": "S448_deck3",
+    "S448_P04": "S448_deck4",
+    "S448_P05": "S448_deck5",
+    "S448_P06": "S448_deck6",
+    "S448_P07": "S448_deck7"
+   }
+  },
+  "468": {
+   "houses": [
+    {
+     "id": "S468_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_large frame 6: SM_Cottage_Thatched_Large_PR, front x 1.60, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Large_PR",
+       "px": [
+        1147.0,
+        360.0
+       ],
+       "offset_cm": [
+        0.0,
+        -79.5,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S468_P04",
+      "S468_P05"
+     ],
+     "door": null
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      1147.0,
+      360.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -860.0,
+      -464.5,
+      860.0,
+      405.5
+     ]
+    }
+   ],
+   "stands_for": {
+    "S468_P04": "S468_cottage1",
+    "S468_P05": "S468_cottage1"
+   }
+  },
+  "469": {
+   "houses": [
+    {
+     "id": "S469_fence1",
+     "kind": "fence",
+     "note": "fence_rail_diag_ne frame 2: 7.0 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        27.25,
+        294.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.89,
+       "scale": [
+        0.8713,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        63.75,
+        280.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.89,
+       "scale": [
+        0.8713,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S469_P07"
+     ],
+     "length_m": 6.97
+    },
+    {
+     "id": "S469_fence2",
+     "kind": "fence",
+     "note": "fence_rail_diag_ne frame 5: 6.5 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        83.25,
+        272.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.42,
+       "scale": [
+        0.8079,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        117.75,
+        259.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -21.42,
+       "scale": [
+        0.8079,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S469_P08"
+     ],
+     "length_m": 6.46
+    },
+    {
+     "id": "S469_fence3",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 7.8 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        22.5,
+        311.38
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9709,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        22.5,
+        352.12
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9709,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S469_P09"
+     ],
+     "length_m": 7.77
+    },
+    {
+     "id": "S469_fence4",
+     "kind": "fence",
+     "note": "fence_rail_ns frame 4: 7.8 m of ground, 2 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        22.5,
+        392.88
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9709,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        22.5,
+        433.62
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9709,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S469_P10"
+     ],
+     "length_m": 7.77
+    },
+    {
+     "id": "S469_cottage5",
+     "kind": "cottage",
+     "note": "cottage_thatched_small frame 8: SM_Cottage_Thatched_Small_PR, front x 1.60, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Small_PR",
+       "px": [
+        140.0,
+        514.0
+       ],
+       "offset_cm": [
+        0.0,
+        -67.9,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S469_P01"
+     ],
+     "door": null
+    },
+    {
+     "id": "S469_cottage6",
+     "kind": "cottage",
+     "note": "cottage_thatched_large frame 6: SM_Cottage_Thatched_Large_PR, front x 1.52, 4.8 m west of its hardbox middle, door at S469_P06",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Large_PR",
+       "px": [
+        547.0,
+        360.0
+       ],
+       "offset_cm": [
+        -483.0,
+        -132.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.5172,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        547.0,
+        360.0
+       ],
+       "offset_cm": [
+        -1223.6,
+        199.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S469_P02",
+      "S469_P05"
+     ],
+     "door": "S469_P06"
+    },
+    {
+     "id": "S469_cottage_parts7",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S469_P03",
+      "S469_P04",
+      "S469_P06",
+      "S469_P20"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      140.0,
+      514.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -620.0,
+      -402.9,
+      620.0,
+      367.1
+     ]
+    },
+    {
+     "px": [
+      547.0,
+      360.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -1301.6,
+      -517.0,
+      335.6,
+      353.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S469_P07": "S469_fence1",
+    "S469_P08": "S469_fence2",
+    "S469_P09": "S469_fence3",
+    "S469_P10": "S469_fence4",
+    "S469_P01": "S469_cottage5",
+    "S469_P02": "S469_cottage6",
+    "S469_P05": "S469_cottage6",
+    "S469_P03": "S469_cottage_parts7",
+    "S469_P04": "S469_cottage_parts7",
+    "S469_P06": "S469_cottage_parts7",
+    "S469_P20": "S469_cottage_parts7"
+   }
+  },
+  "470": {
+   "houses": [
+    {
+     "id": "S470_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_large frame 6: SM_Cottage_Thatched_Large_PR, front x 1.59, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Large_PR",
+       "px": [
+        -53.0,
+        360.0
+       ],
+       "offset_cm": [
+        0.0,
+        -135.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.5886,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S470_P01",
+      "S470_P03"
+     ],
+     "door": null
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      -53.0,
+      360.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -854.3,
+      -520.0,
+      854.3,
+      350.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S470_P01": "S470_cottage1",
+    "S470_P03": "S470_cottage1"
+   }
+  },
+  "480": {
+   "houses": [
+    {
+     "id": "S480_deck1",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 2: 7.5 m long, 3.9 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        201.0,
+        6.83
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9969,
+        2.2091,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        201.0,
+        38.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9969,
+        2.2091,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        201.0,
+        70.17
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9969,
+        2.2091,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S480_P01"
+     ],
+     "length_m": 7.48,
+     "width_m": 3.89
+    },
+    {
+     "id": "S480_deck2",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 2: 7.5 m long, 3.9 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        491.0,
+        386.83
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9956,
+        2.2059,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        491.0,
+        418.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9956,
+        2.2059,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        491.0,
+        450.17
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9956,
+        2.2059,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S480_P02"
+     ],
+     "length_m": 7.47,
+     "width_m": 3.88
+    },
+    {
+     "id": "S480_deck3",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 1: 6.9 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        490.5,
+        297.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9222,
+        2.1725,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        490.5,
+        327.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9222,
+        2.1725,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        490.5,
+        356.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9222,
+        2.1725,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S480_P03"
+     ],
+     "length_m": 6.92,
+     "width_m": 3.82
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      201.0,
+      38.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -224.4,
+      -403.8,
+      224.4,
+      403.8
+     ]
+    },
+    {
+     "px": [
+      491.0,
+      418.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -224.1,
+      -403.4,
+      224.1,
+      403.4
+     ]
+    },
+    {
+     "px": [
+      490.5,
+      327.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -221.2,
+      -375.8,
+      221.2,
+      375.8
+     ]
+    }
+   ],
+   "stands_for": {
+    "S480_P01": "S480_deck1",
+    "S480_P02": "S480_deck2",
+    "S480_P03": "S480_deck3"
+   }
+  },
+  "497": {
+   "houses": [
+    {
+     "id": "S497_well1",
+     "kind": "well",
+     "note": "well_stone frame 1 at the middle of its hardbox, with the shaft cap",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_Stone_PR",
+       "px": [
+        482.5,
+        295.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_ShaftCap_PR",
+       "px": [
+        482.5,
+        295.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S497_P09"
+     ]
+    },
+    {
+     "id": "S497_cottage2",
+     "kind": "cottage",
+     "note": "cottage_thatched_small frame 7: SM_Cottage_Thatched_Small_PR, front x 1.60, 0.0 m east of its hardbox middle, door at S497_P12",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Small_PR",
+       "px": [
+        218.0,
+        299.0
+       ],
+       "offset_cm": [
+        0.0,
+        -46.5,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        218.0,
+        299.0
+       ],
+       "offset_cm": [
+        267.1,
+        234.5,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S497_P05",
+      "S497_P06"
+     ],
+     "door": "S497_P12"
+    },
+    {
+     "id": "S497_cottage_parts3",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S497_P07",
+      "S497_P12"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      482.5,
+      295.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -150.0,
+      -110.0,
+      150.0,
+      110.0
+     ]
+    },
+    {
+     "px": [
+      218.0,
+      299.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -620.0,
+      -381.5,
+      620.0,
+      388.5
+     ]
+    }
+   ],
+   "stands_for": {
+    "S497_P09": "S497_well1",
+    "S497_P05": "S497_cottage2",
+    "S497_P06": "S497_cottage2",
+    "S497_P07": "S497_cottage_parts3",
+    "S497_P12": "S497_cottage_parts3"
+   }
+  },
+  "500": {
+   "houses": [
+    {
+     "id": "S500_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_two_storey frame 5: SM_Cottage_Thatched_TwoStorey_PR, front x 1.60, 0.0 m east of its hardbox middle, door at S500_P06",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_TwoStorey_PR",
+       "px": [
+        215.0,
+        292.0
+       ],
+       "offset_cm": [
+        0.0,
+        17.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        215.0,
+        292.0
+       ],
+       "offset_cm": [
+        176.6,
+        323.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S500_P01",
+      "S500_P02"
+     ],
+     "door": "S500_P06"
+    },
+    {
+     "id": "S500_cottage2",
+     "kind": "cottage",
+     "note": "cottage_thatched_small frame 8: SM_Cottage_Thatched_Small_PR, front x 1.60, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Small_PR",
+       "px": [
+        740.0,
+        114.0
+       ],
+       "offset_cm": [
+        0.0,
+        -46.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S500_P12"
+     ],
+     "door": null
+    },
+    {
+     "id": "S500_cottage_parts3",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S500_P03",
+      "S500_P04",
+      "S500_P05",
+      "S500_P06"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      215.0,
+      292.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -588.0,
+      -342.2,
+      588.0,
+      477.8
+     ]
+    },
+    {
+     "px": [
+      740.0,
+      114.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -620.0,
+      -381.8,
+      620.0,
+      388.2
+     ]
+    }
+   ],
+   "stands_for": {
+    "S500_P01": "S500_cottage1",
+    "S500_P02": "S500_cottage1",
+    "S500_P12": "S500_cottage2",
+    "S500_P03": "S500_cottage_parts3",
+    "S500_P04": "S500_cottage_parts3",
+    "S500_P05": "S500_cottage_parts3",
+    "S500_P06": "S500_cottage_parts3"
+   }
+  },
+  "501": {
+   "houses": [
+    {
+     "id": "S501_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_small frame 8: SM_Cottage_Thatched_Small_PR, front x 1.60, 0.0 m east of its hardbox middle, door at S501_P11",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Small_PR",
+       "px": [
+        140.0,
+        114.0
+       ],
+       "offset_cm": [
+        0.0,
+        -46.5,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        140.0,
+        114.0
+       ],
+       "offset_cm": [
+        -25.1,
+        234.5,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S501_P01",
+      "S501_P05"
+     ],
+     "door": "S501_P11"
+    },
+    {
+     "id": "S501_cottage2",
+     "kind": "cottage",
+     "note": "cottage_thatched_large frame 6: SM_Cottage_Thatched_Large_PR, front x 1.54, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Large_PR",
+       "px": [
+        547.0,
+        -40.0
+       ],
+       "offset_cm": [
+        0.0,
+        -66.2,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.5438,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S501_P02"
+     ],
+     "door": null
+    },
+    {
+     "id": "S501_cottage3",
+     "kind": "cottage",
+     "note": "cottage_thatched_small frame 7: SM_Cottage_Thatched_Small_PR, front x 1.60, 1.9 m west of its hardbox middle, door at S501_P12",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Small_PR",
+       "px": [
+        491.0,
+        182.0
+       ],
+       "offset_cm": [
+        -192.3,
+        -46.1,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        491.0,
+        182.0
+       ],
+       "offset_cm": [
+        -734.3,
+        234.9,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S501_P03",
+      "S501_P09"
+     ],
+     "door": "S501_P12"
+    },
+    {
+     "id": "S501_cottage_parts4",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S501_P06",
+      "S501_P07",
+      "S501_P08",
+      "S501_P10",
+      "S501_P11",
+      "S501_P12"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      140.0,
+      114.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -620.0,
+      -381.5,
+      620.0,
+      388.5
+     ]
+    },
+    {
+     "px": [
+      547.0,
+      -40.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -831.9,
+      -451.2,
+      831.9,
+      418.8
+     ]
+    },
+    {
+     "px": [
+      491.0,
+      182.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -812.3,
+      -381.1,
+      427.7,
+      388.9
+     ]
+    }
+   ],
+   "stands_for": {
+    "S501_P01": "S501_cottage1",
+    "S501_P05": "S501_cottage1",
+    "S501_P02": "S501_cottage2",
+    "S501_P03": "S501_cottage3",
+    "S501_P09": "S501_cottage3",
+    "S501_P06": "S501_cottage_parts4",
+    "S501_P07": "S501_cottage_parts4",
+    "S501_P08": "S501_cottage_parts4",
+    "S501_P10": "S501_cottage_parts4",
+    "S501_P11": "S501_cottage_parts4",
+    "S501_P12": "S501_cottage_parts4"
+   }
+  },
+  "512": {
+   "houses": [
+    {
+     "id": "S512_deck1",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 2: 7.4 m long, 3.9 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        491.0,
+        -13.17
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9931,
+        2.2059,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        491.0,
+        18.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9931,
+        2.2059,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        491.0,
+        50.17
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9931,
+        2.2059,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S512_P01"
+     ],
+     "length_m": 7.45,
+     "width_m": 3.88
+    },
+    {
+     "id": "S512_deck2",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 1: 6.9 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        298.5,
+        405.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9211,
+        2.1725,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        298.5,
+        435.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9211,
+        2.1725,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        298.5,
+        464.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9211,
+        2.1725,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S512_P02"
+     ],
+     "length_m": 6.91,
+     "width_m": 3.82
+    },
+    {
+     "id": "S512_bridge3",
+     "kind": "bridge",
+     "note": "east-west wooden bridge: 26.1 m long, 2.2 m between the rail lines, 10 deck and 20 rail modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        95.05,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        133.15,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        171.25,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        209.35,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        247.45,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        285.55,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        323.65,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        361.75,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        399.85,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        437.95,
+        77.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.2637,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        95.05,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        133.15,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        171.25,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        209.35,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        247.45,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        285.55,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        323.65,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        361.75,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        399.85,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        437.95,
+        63.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        95.05,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        133.15,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        171.25,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        209.35,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        247.45,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        285.55,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        323.65,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        361.75,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        399.85,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        437.95,
+        91.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0424,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S512_P03",
+      "S512_P04",
+      "S512_P05",
+      "S512_P06",
+      "S512_P07",
+      "S512_P08"
+     ],
+     "length_m": 26.06,
+     "width_m": 2.22
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      491.0,
+      18.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -224.1,
+      -402.4,
+      224.1,
+      402.4
+     ]
+    },
+    {
+     "px": [
+      298.5,
+      435.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -221.2,
+      -375.4,
+      221.2,
+      375.4
+     ]
+    },
+    {
+     "px": [
+      266.5,
+      77.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -1333.0,
+      -171.2,
+      1333.0,
+      171.2
+     ]
+    }
+   ],
+   "stands_for": {
+    "S512_P01": "S512_deck1",
+    "S512_P02": "S512_deck2",
+    "S512_P03": "S512_bridge3",
+    "S512_P04": "S512_bridge3",
+    "S512_P05": "S512_bridge3",
+    "S512_P06": "S512_bridge3",
+    "S512_P07": "S512_bridge3",
+    "S512_P08": "S512_bridge3"
+   }
+  },
+  "530": {
+   "houses": [
+    {
+     "id": "S530_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_long frame 1: SM_Cottage_Stonebrook_PR, front x 1.00, 3.8 m west of its hardbox middle, door at S530_P11",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Stonebrook_PR",
+       "px": [
+        210.5,
+        131.0
+       ],
+       "offset_cm": [
+        -381.0,
+        -20.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        210.5,
+        131.0
+       ],
+       "offset_cm": [
+        77.0,
+        410.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S530_P01",
+      "S530_P03"
+     ],
+     "door": "S530_P11"
+    },
+    {
+     "id": "S530_cottage_parts2",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S530_P04",
+      "S530_P05",
+      "S530_P10",
+      "S530_P11"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      210.5,
+      131.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -1341.0,
+      -530.0,
+      579.0,
+      590.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S530_P01": "S530_cottage1",
+    "S530_P03": "S530_cottage1",
+    "S530_P04": "S530_cottage_parts2",
+    "S530_P05": "S530_cottage_parts2",
+    "S530_P10": "S530_cottage_parts2",
+    "S530_P11": "S530_cottage_parts2"
+   }
+  },
+  "532": {
+   "houses": [
+    {
+     "id": "S532_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_small frame 8: SM_Cottage_Thatched_Small_PR, front x 1.60, 5.1 m west of its hardbox middle, door at S532_P09",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Small_PR",
+       "px": [
+        504.0,
+        205.0
+       ],
+       "offset_cm": [
+        -512.8,
+        -46.3,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        504.0,
+        205.0
+       ],
+       "offset_cm": [
+        -1054.8,
+        234.7,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S532_P01",
+      "S532_P10"
+     ],
+     "door": "S532_P09"
+    },
+    {
+     "id": "S532_cottage_parts2",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S532_P09",
+      "S532_P11"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      504.0,
+      205.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -1132.8,
+      -381.3,
+      107.2,
+      388.7
+     ]
+    }
+   ],
+   "stands_for": {
+    "S532_P01": "S532_cottage1",
+    "S532_P10": "S532_cottage1",
+    "S532_P09": "S532_cottage_parts2",
+    "S532_P11": "S532_cottage_parts2"
+   }
+  },
+  "537": {
+   "houses": [
+    {
+     "id": "S537_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_small frame 7: SM_Cottage_Thatched_Small_PR, front x 1.60, 4.6 m west of its hardbox middle, door at S537_P05",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Small_PR",
+       "px": [
+        508.0,
+        246.0
+       ],
+       "offset_cm": [
+        -455.3,
+        -47.9,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        508.0,
+        246.0
+       ],
+       "offset_cm": [
+        -997.3,
+        233.1,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S537_P04",
+      "S537_P23"
+     ],
+     "door": "S537_P05"
+    },
+    {
+     "id": "S537_cottage_parts2",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S537_P05",
+      "S537_P24"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      508.0,
+      246.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -1075.3,
+      -382.9,
+      164.7,
+      387.1
+     ]
+    }
+   ],
+   "stands_for": {
+    "S537_P04": "S537_cottage1",
+    "S537_P23": "S537_cottage1",
+    "S537_P05": "S537_cottage_parts2",
+    "S537_P24": "S537_cottage_parts2"
+   }
+  },
+  "544": {
+   "houses": [
+    {
+     "id": "S544_deck1",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 1: 6.8 m long, 3.8 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        298.5,
+        5.67
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9129,
+        2.1725,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        298.5,
+        35.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9129,
+        2.1725,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        298.5,
+        64.33
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9129,
+        2.1725,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S544_P01"
+     ],
+     "length_m": 6.85,
+     "width_m": 3.82
+    },
+    {
+     "id": "S544_deck2",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 2: 7.4 m long, 3.9 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        299.0,
+        94.83
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9855,
+        2.2059,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        299.0,
+        126.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9855,
+        2.2059,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        299.0,
+        158.17
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.9855,
+        2.2059,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S544_P02"
+     ],
+     "length_m": 7.39,
+     "width_m": 3.88
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      298.5,
+      35.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -221.2,
+      -372.3,
+      221.2,
+      372.3
+     ]
+    },
+    {
+     "px": [
+      299.0,
+      126.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -224.1,
+      -399.5,
+      224.1,
+      399.5
+     ]
+    }
+   ],
+   "stands_for": {
+    "S544_P01": "S544_deck1",
+    "S544_P02": "S544_deck2"
+   }
+  },
+  "586": {
+   "houses": [
+    {
+     "id": "S586_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_two_storey frame 4: SM_Cottage_Thatched_TwoStorey_PR, front x 1.60, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_TwoStorey_PR",
+       "px": [
+        147.0,
+        480.0
+       ],
+       "offset_cm": [
+        0.0,
+        16.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S586_P04"
+     ],
+     "door": null
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      147.0,
+      480.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -588.0,
+      -344.0,
+      588.0,
+      476.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S586_P04": "S586_cottage1"
+   }
+  },
+  "587": {
+   "houses": [
+    {
+     "id": "S587_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_large frame 6: SM_Cottage_Thatched_Large_PR, front x 1.60, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Large_PR",
+       "px": [
+        12.0,
+        648.0
+       ],
+       "offset_cm": [
+        0.0,
+        -66.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S587_P05"
+     ],
+     "door": null
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      12.0,
+      648.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -860.0,
+      -451.8,
+      860.0,
+      418.2
+     ]
+    }
+   ],
+   "stands_for": {
+    "S587_P05": "S587_cottage1"
+   }
+  },
+  "600": {
+   "houses": [
+    {
+     "id": "S600_well1",
+     "kind": "well",
+     "note": "well_stone frame 2 at the middle of its hardbox, with the shaft cap",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_Stone_PR",
+       "px": [
+        203.0,
+        203.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_ShaftCap_PR",
+       "px": [
+        203.0,
+        203.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S600_P01"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      203.0,
+      203.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -150.0,
+      -110.0,
+      150.0,
+      110.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S600_P01": "S600_well1"
+   }
+  },
+  "617": {
+   "houses": [
+    {
+     "id": "S617_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_long frame 1: SM_Cottage_Stonebrook_PR, front x 1.00, 1.6 m east of its hardbox middle, door at S617_P15",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Stonebrook_PR",
+       "px": [
+        250.5,
+        146.0
+       ],
+       "offset_cm": [
+        158.1,
+        -29.2,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        250.5,
+        146.0
+       ],
+       "offset_cm": [
+        616.1,
+        400.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S617_P01",
+      "S617_P13"
+     ],
+     "door": "S617_P15"
+    },
+    {
+     "id": "S617_cottage_parts2",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S617_P14",
+      "S617_P15"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      250.5,
+      146.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -801.9,
+      -539.2,
+      1118.1,
+      580.8
+     ]
+    }
+   ],
+   "stands_for": {
+    "S617_P01": "S617_cottage1",
+    "S617_P13": "S617_cottage1",
+    "S617_P14": "S617_cottage_parts2",
+    "S617_P15": "S617_cottage_parts2"
+   }
+  },
+  "618": {
+   "houses": [
+    {
+     "id": "S618_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_large frame 6: SM_Cottage_Thatched_Large_PR, front x 1.60, 0.0 m east of its hardbox middle, no door sprite in reach",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Large_PR",
+       "px": [
+        612.0,
+        248.0
+       ],
+       "offset_cm": [
+        0.0,
+        -65.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S618_P01",
+      "S618_P12"
+     ],
+     "door": null
+    },
+    {
+     "id": "S618_cottage2",
+     "kind": "cottage",
+     "note": "cottage_thatched_two_storey frame 4: SM_Cottage_Thatched_TwoStorey_PR, front x 1.60, 0.0 m east of its hardbox middle, door at S618_P11",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_TwoStorey_PR",
+       "px": [
+        147.0,
+        80.0
+       ],
+       "offset_cm": [
+        0.0,
+        16.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        147.0,
+        80.0
+       ],
+       "offset_cm": [
+        -510.0,
+        322.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S618_P02",
+      "S618_P10"
+     ],
+     "door": "S618_P11"
+    },
+    {
+     "id": "S618_cottage_parts3",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S618_P09",
+      "S618_P11"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      612.0,
+      248.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -860.0,
+      -450.0,
+      860.0,
+      420.0
+     ]
+    },
+    {
+     "px": [
+      147.0,
+      80.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -588.0,
+      -344.0,
+      588.0,
+      476.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S618_P01": "S618_cottage1",
+    "S618_P12": "S618_cottage1",
+    "S618_P02": "S618_cottage2",
+    "S618_P10": "S618_cottage2",
+    "S618_P09": "S618_cottage_parts3",
+    "S618_P11": "S618_cottage_parts3"
+   }
+  },
+  "619": {
+   "houses": [
+    {
+     "id": "S619_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_small frame 7: SM_Cottage_Thatched_Small_PR, front x 1.60, 1.0 m west of its hardbox middle, door at S619_P12",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Small_PR",
+       "px": [
+        402.0,
+        215.0
+       ],
+       "offset_cm": [
+        -95.7,
+        -45.2,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        402.0,
+        215.0
+       ],
+       "offset_cm": [
+        -637.7,
+        235.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S619_P02",
+      "S619_P11"
+     ],
+     "door": "S619_P12"
+    },
+    {
+     "id": "S619_cottage2",
+     "kind": "cottage",
+     "note": "cottage_thatched_large frame 6: SM_Cottage_Thatched_Large_PR, front x 1.60, 0.0 m east of its hardbox middle, door at S619_P09",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_Large_PR",
+       "px": [
+        12.0,
+        248.0
+       ],
+       "offset_cm": [
+        0.0,
+        -65.2,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.6,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        12.0,
+        248.0
+       ],
+       "offset_cm": [
+        501.5,
+        265.8,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S619_P03",
+      "S619_P07"
+     ],
+     "door": "S619_P09"
+    },
+    {
+     "id": "S619_cottage_parts3",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S619_P08",
+      "S619_P09",
+      "S619_P10",
+      "S619_P12"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      402.0,
+      215.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -715.7,
+      -380.2,
+      524.3,
+      389.8
+     ]
+    },
+    {
+     "px": [
+      12.0,
+      248.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -860.0,
+      -450.2,
+      860.0,
+      419.8
+     ]
+    }
+   ],
+   "stands_for": {
+    "S619_P02": "S619_cottage1",
+    "S619_P11": "S619_cottage1",
+    "S619_P03": "S619_cottage2",
+    "S619_P07": "S619_cottage2",
+    "S619_P08": "S619_cottage_parts3",
+    "S619_P09": "S619_cottage_parts3",
+    "S619_P10": "S619_cottage_parts3",
+    "S619_P12": "S619_cottage_parts3"
+   }
+  },
+  "663": {
+   "houses": [
+    {
+     "id": "S663_fence1",
+     "kind": "fence",
+     "note": "fence_rail_ew frame 1: 15.6 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        247.88,
+        109.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9745,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        291.62,
+        109.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9745,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        335.38,
+        109.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9745,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR",
+       "px": [
+        379.12,
+        109.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9745,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S663_P05"
+     ],
+     "length_m": 15.59
+    }
+   ],
+   "footprints": [],
+   "stands_for": {
+    "S663_P05": "S663_fence1"
+   }
+  },
+  "680": {
+   "houses": [
+    {
+     "id": "S680_hut1",
+     "kind": "hut",
+     "note": "island_hut_two_storey frame 6, doorway yaw -35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_TwoStorey_PR",
+       "px": [
+        201.0,
+        165.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S680_P09"
+     ]
+    },
+    {
+     "id": "S680_hut2",
+     "kind": "hut",
+     "note": "island_hut_round frame 2, doorway yaw 0",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        550.0,
+        219.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S680_P10"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      201.0,
+      165.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    },
+    {
+     "px": [
+      550.0,
+      219.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S680_P09": "S680_hut1",
+    "S680_P10": "S680_hut2"
+   }
+  },
+  "681": {
+   "houses": [
+    {
+     "id": "S681_hut1",
+     "kind": "hut",
+     "note": "island_hut_round frame 2, doorway yaw 0",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        -50.0,
+        219.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S681_P12"
+     ]
+    },
+    {
+     "id": "S681_hut2",
+     "kind": "hut",
+     "note": "island_hut_two_storey frame 4, doorway yaw 35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_TwoStorey_PR",
+       "px": [
+        308.0,
+        221.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S681_P13"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      -50.0,
+      219.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    },
+    {
+     "px": [
+      308.0,
+      221.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S681_P12": "S681_hut1",
+    "S681_P13": "S681_hut2"
+   }
+  },
+  "693": {
+   "houses": [
+    {
+     "id": "S693_bridge1",
+     "kind": "bridge",
+     "note": "east-west wooden bridge: 25.9 m long, 3.3 m between the rail lines, 10 deck and 20 rail modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        314.8,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        344.4,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        374.0,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        403.6,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        433.2,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        462.8,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        492.4,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        522.0,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        551.6,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        581.2,
+        185.25
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.8536,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        314.8,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        344.4,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        374.0,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        403.6,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        433.2,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        462.8,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        492.4,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        522.0,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        551.6,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Plank_PR",
+       "px": [
+        581.2,
+        162.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        314.8,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        344.4,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        374.0,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        403.6,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        433.2,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        462.8,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        492.4,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        522.0,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        551.6,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Rail_Rope_PR",
+       "px": [
+        581.2,
+        208.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 180.0,
+       "scale": [
+        1.0348,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S693_P28",
+      "S693_P29",
+      "S693_P30",
+      "S693_P31"
+     ],
+     "length_m": 25.87,
+     "width_m": 3.26
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      448.0,
+      185.25
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -1323.5,
+      -223.1,
+      1323.5,
+      223.1
+     ]
+    }
+   ],
+   "stands_for": {
+    "S693_P28": "S693_bridge1",
+    "S693_P29": "S693_bridge1",
+    "S693_P30": "S693_bridge1",
+    "S693_P31": "S693_bridge1"
+   }
+  },
+  "701": {
+   "houses": [
+    {
+     "id": "S701_deck1",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 1: 6.2 m long, 4.1 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        505.5,
+        120.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.2373,
+        2.3059,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        505.5,
+        164.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        1.2373,
+        2.3059,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S701_P01"
+     ],
+     "length_m": 6.19,
+     "width_m": 4.06
+    },
+    {
+     "id": "S701_deck2",
+     "kind": "deck",
+     "note": "bridge_wood_deck frame 2: 6.7 m long, 4.1 m wide",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        504.0,
+        201.83
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8905,
+        2.3478,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        504.0,
+        233.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8905,
+        2.3478,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_Deck_PR",
+       "px": [
+        504.0,
+        265.17
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 90.0,
+       "scale": [
+        0.8905,
+        2.3478,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S701_P02"
+     ],
+     "length_m": 6.68,
+     "width_m": 4.13
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      505.5,
+      142.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -232.9,
+      -339.3,
+      232.9,
+      339.3
+     ]
+    },
+    {
+     "px": [
+      504.0,
+      233.5
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -236.6,
+      -363.9,
+      236.6,
+      363.9
+     ]
+    }
+   ],
+   "stands_for": {
+    "S701_P01": "S701_deck1",
+    "S701_P02": "S701_deck2"
+   }
+  },
+  "711": {
+   "houses": [
+    {
+     "id": "S711_lattice1",
+     "kind": "lattice",
+     "note": "island_fence_lattice frame 7: 25.4 m of ground, 6 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        825.17,
+        309.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9621,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        867.5,
+        309.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9621,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        909.83,
+        309.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9621,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        952.17,
+        309.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9621,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        994.5,
+        309.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9621,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        1036.83,
+        309.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9621,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S711_P07"
+     ],
+     "length_m": 25.4
+    }
+   ],
+   "footprints": [],
+   "stands_for": {
+    "S711_P07": "S711_lattice1"
+   }
+  },
+  "712": {
+   "houses": [
+    {
+     "id": "S712_lattice1",
+     "kind": "lattice",
+     "note": "island_fence_lattice frame 7: 25.5 m of ground, 6 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        257.17,
+        308.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.965,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        299.5,
+        308.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.965,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        341.83,
+        308.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.965,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        384.17,
+        308.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.965,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        426.5,
+        308.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.965,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        468.83,
+        308.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.965,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S712_P03"
+     ],
+     "length_m": 25.48
+    },
+    {
+     "id": "S712_hut2",
+     "kind": "hut",
+     "note": "island_hut_round frame 3, doorway yaw -35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        194.0,
+        157.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S712_P13"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      194.0,
+      157.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S712_P03": "S712_lattice1",
+    "S712_P13": "S712_hut2"
+   }
+  },
+  "732": {
+   "houses": [
+    {
+     "id": "S732_lattice1",
+     "kind": "lattice",
+     "note": "island_fence_lattice frame 7: 19.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        -24.25,
+        495.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0896,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        39.25,
+        495.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0896,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        102.75,
+        495.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0896,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        166.25,
+        495.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0896,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S732_P02"
+     ],
+     "length_m": 19.18
+    },
+    {
+     "id": "S732_hut2",
+     "kind": "hut",
+     "note": "island_hut_round frame 3, doorway yaw -35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        265.0,
+        459.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S732_P01"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      265.0,
+      459.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S732_P02": "S732_lattice1",
+    "S732_P01": "S732_hut2"
+   }
+  },
+  "734": {
+   "houses": [
+    {
+     "id": "S734_cottage1",
+     "kind": "cottage",
+     "note": "cottage_thatched_l_shape frame 10: SM_Cottage_Thatched_LShape_PR, front x 1.17, 0.0 m east of its hardbox middle, door at S734_P31",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Thatched_LShape_PR",
+       "px": [
+        262.0,
+        244.0
+       ],
+       "offset_cm": [
+        0.0,
+        152.9,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1735,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Cottage_Door_PR",
+       "px": [
+        262.0,
+        244.0
+       ],
+       "offset_cm": [
+        383.7,
+        728.9,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S734_P01",
+      "S734_P02"
+     ],
+     "door": "S734_P31"
+    },
+    {
+     "id": "S734_cottage_parts2",
+     "kind": "cottage_parts",
+     "note": "door, chimney and window sprites of the cottages on this screen: the houses carry their own",
+     "modules": [],
+     "hide": [
+      "S734_P03",
+      "S734_P04",
+      "S734_P31"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      262.0,
+      244.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -605.7,
+      -207.1,
+      605.7,
+      612.9
+     ]
+    }
+   ],
+   "stands_for": {
+    "S734_P01": "S734_cottage1",
+    "S734_P02": "S734_cottage1",
+    "S734_P03": "S734_cottage_parts2",
+    "S734_P04": "S734_cottage_parts2",
+    "S734_P31": "S734_cottage_parts2"
+   }
+  },
+  "748": {
+   "houses": [
+    {
+     "id": "S748_hut1",
+     "kind": "hut",
+     "note": "island_hut_round frame 1, doorway yaw 35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        489.0,
+        126.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S748_P01"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      489.0,
+      126.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S748_P01": "S748_hut1"
+   }
+  },
+  "762": {
+   "houses": [
+    {
+     "id": "S762_lattice1",
+     "kind": "lattice",
+     "note": "island_fence_lattice frame 7: 20.3 m of ground, 5 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        315.4,
+        94.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        366.2,
+        94.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        417.0,
+        94.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        467.8,
+        94.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        518.6,
+        94.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S762_P08"
+     ],
+     "length_m": 20.29
+    },
+    {
+     "id": "S762_lattice2",
+     "kind": "lattice",
+     "note": "island_fence_lattice frame 7: 20.3 m of ground, 5 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        346.4,
+        171.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        397.2,
+        171.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        448.0,
+        171.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        498.8,
+        171.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        549.6,
+        171.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        0.9225,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S762_P09"
+     ],
+     "length_m": 20.29
+    },
+    {
+     "id": "S762_hut3",
+     "kind": "hut",
+     "note": "island_hut_round frame 3, doorway yaw -35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        151.0,
+        209.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S762_P01"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      151.0,
+      209.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S762_P08": "S762_lattice1",
+    "S762_P09": "S762_lattice2",
+    "S762_P01": "S762_hut3"
+   }
+  },
+  "763": {
+   "houses": [
+    {
+     "id": "S763_lattice1",
+     "kind": "lattice",
+     "note": "island_fence_lattice frame 7: 19.7 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        575.75,
+        95.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1199,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        639.25,
+        95.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1199,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        702.75,
+        95.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1199,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        766.25,
+        95.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1199,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S763_P07"
+     ],
+     "length_m": 19.71
+    },
+    {
+     "id": "S763_lattice2",
+     "kind": "lattice",
+     "note": "island_fence_lattice frame 7: 19.7 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        134.75,
+        325.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1214,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        198.25,
+        325.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1214,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        261.75,
+        325.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1214,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        325.25,
+        325.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.1214,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S763_P20"
+     ],
+     "length_m": 19.74
+    },
+    {
+     "id": "S763_hut3",
+     "kind": "hut",
+     "note": "island_hut_round frame 3, doorway yaw -35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        154.0,
+        237.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S763_P02"
+     ]
+    },
+    {
+     "id": "S763_hut4",
+     "kind": "hut",
+     "note": "island_hut_round frame 3, doorway yaw -35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        246.0,
+        162.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S763_P03"
+     ]
+    },
+    {
+     "id": "S763_hut5",
+     "kind": "hut",
+     "note": "island_hut_two_storey frame 4, doorway yaw 35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_TwoStorey_PR",
+       "px": [
+        595.0,
+        200.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S763_P04"
+     ]
+    },
+    {
+     "id": "S763_hut6",
+     "kind": "hut",
+     "note": "island_hut_round frame 3, doorway yaw -35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        865.0,
+        59.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S763_P05"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      154.0,
+      237.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    },
+    {
+     "px": [
+      246.0,
+      162.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    },
+    {
+     "px": [
+      595.0,
+      200.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    },
+    {
+     "px": [
+      865.0,
+      59.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S763_P07": "S763_lattice1",
+    "S763_P20": "S763_lattice2",
+    "S763_P02": "S763_hut3",
+    "S763_P03": "S763_hut4",
+    "S763_P04": "S763_hut5",
+    "S763_P05": "S763_hut6"
+   }
+  },
+  "764": {
+   "houses": [
+    {
+     "id": "S764_lattice1",
+     "kind": "lattice",
+     "note": "island_fence_lattice frame 7: 19.2 m of ground, 4 modules",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        -24.25,
+        95.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0896,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        39.25,
+        95.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0896,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        102.75,
+        95.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0896,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Fence_Lattice_PR",
+       "px": [
+        166.25,
+        95.5
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0896,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S764_P09"
+     ],
+     "length_m": 19.18
+    },
+    {
+     "id": "S764_hut2",
+     "kind": "hut",
+     "note": "island_hut_two_storey frame 4, doorway yaw 35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_TwoStorey_PR",
+       "px": [
+        -5.0,
+        200.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S764_P01"
+     ]
+    },
+    {
+     "id": "S764_hut3",
+     "kind": "hut",
+     "note": "island_hut_round frame 3, doorway yaw -35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        265.0,
+        59.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": -35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S764_P02"
+     ]
+    },
+    {
+     "id": "S764_hut4",
+     "kind": "hut",
+     "note": "island_hut_round frame 1, doorway yaw 35",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_Hut_Round_PR",
+       "px": [
+        473.0,
+        236.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 35.0,
+       "scale": [
+        1.25,
+        1.25,
+        1.25
+       ]
+      }
+     ],
+     "hide": [
+      "S764_P03"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      -5.0,
+      200.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    },
+    {
+     "px": [
+      265.0,
+      59.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    },
+    {
+     "px": [
+      473.0,
+      236.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -420.0,
+      -420.0,
+      420.0,
+      520.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S764_P09": "S764_lattice1",
+    "S764_P01": "S764_hut2",
+    "S764_P02": "S764_hut3",
+    "S764_P03": "S764_hut4"
+   }
+  },
+  "766": {
+   "houses": [
+    {
+     "id": "S766_well1",
+     "kind": "well",
+     "note": "well_stone frame 2 at the middle of its hardbox, with the shaft cap",
+     "modules": [
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_Stone_PR",
+       "px": [
+        250.0,
+        222.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      },
+      {
+       "mesh": "/Game/Dink/Photoreal/Structures/SM_Well_ShaftCap_PR",
+       "px": [
+        250.0,
+        222.0
+       ],
+       "offset_cm": [
+        0.0,
+        0.0,
+        0.0
+       ],
+       "yaw": 0.0,
+       "scale": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      }
+     ],
+     "hide": [
+      "S766_P04"
+     ]
+    }
+   ],
+   "footprints": [
+    {
+     "px": [
+      250.0,
+      222.0
+     ],
+     "yaw": 0.0,
+     "rect_cm": [
+      -150.0,
+      -110.0,
+      150.0,
+      110.0
+     ]
+    }
+   ],
+   "stands_for": {
+    "S766_P04": "S766_well1"
+   }
+  }
+ }
+}
