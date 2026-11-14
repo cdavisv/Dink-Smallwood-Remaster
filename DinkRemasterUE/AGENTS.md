@@ -1,3 +1,9 @@
+## Brow and lash band of the hair material; front face captures (14 November 2026)
+
+Evidence: `Docs/Verification/HeroFace_14Nov2026/`.
+- The bottom quarter of every character hair atlas (texture v above 0.75) is the brow and lash band. `hair_material` gives it a fifth of `AlphaCut` (single fine hairs must survive) and damps specular (`BrowSpecular`), scatter and back-light there. Painting brow hairs into the skin albedo shows nothing in the game; density comes from the brow strand groom (`hair_styles.py` `brow=dict(th=, n=)`).
+- Front close-ups: after `dink.CalAnchor 0 0` the hero faces **-x** (`dink.CalCam -88 0 152 0 0 150 28 1`); after `dink.CalAnchorNpc 0` an NPC faces **+x** (`dink.CalCam 88 0 149 0 0 147 28 0` for the Mother, z 162 for Milder).
+
 ## Creature class binding: every pillbug is the animated creature (13 November 2026)
 
 Gate 2, creatures. Before this, creatures were bound per origin ID only (11 placements in Stonebrook); every other creature placement showed its sprite card.

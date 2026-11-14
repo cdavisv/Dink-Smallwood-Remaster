@@ -63,7 +63,7 @@ SHOULDER = {'Brawny': {'out': .023, 'radius': .125, 'drop': .003}, 'Scrawny': {'
 # Trapezius: the slope from neck to shoulder, lifted (+) or let fall (-); peak at 'x' from the centre line.
 TRAPS = {'Brawny': {'up': .014, 'x': .075, 'w': .06}, 'Scrawny': {'up': -.006, 'x': .09, 'w': .06}}
 # Neck: radius offset at the base and under the skull.
-NECK = {'Brawny': (.010, .005), 'Scrawny': (-.006, -.004)}
+NECK = {'Brawny': (.010, .005), 'Scrawny': (-.001, 0.0)}   # the scrawny neck was pencil-thin under a full-size head (14 Nov 2026)
 
 # ---- builds of the other characters (char_07_build.py bakes one into the exported mesh; no shape key).
 # Burly: Milder Flatstomp, the village braggart who became a knight. Heavier than the hero's Brawny everywhere and

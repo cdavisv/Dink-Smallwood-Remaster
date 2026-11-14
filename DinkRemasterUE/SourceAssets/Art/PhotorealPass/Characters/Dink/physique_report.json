@@ -7,11 +7,11 @@
  "lods": [
   {
    "mesh": "SK_Dink_Photoreal_LOD0",
-   "vertices": 37919,
+   "vertices": 37920,
    "Scrawny": {
-    "moved_vertices": 17043,
+    "moved_vertices": 17030,
     "max_mm": 29.53,
-    "mean_mm": 7.12
+    "mean_mm": 7.11
    },
    "Brawny": {
     "moved_vertices": 16876,
@@ -21,14 +21,14 @@
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD1",
-   "vertices": 22664,
+   "vertices": 22665,
    "Scrawny": {
-    "moved_vertices": 7763,
+    "moved_vertices": 7768,
     "max_mm": 29.4,
     "mean_mm": 7.26
    },
    "Brawny": {
-    "moved_vertices": 7717,
+    "moved_vertices": 7727,
     "max_mm": 18.33,
     "mean_mm": 4.93
    }
@@ -39,26 +39,26 @@
    "Scrawny": {
     "moved_vertices": 3405,
     "max_mm": 29.08,
-    "mean_mm": 7.32
+    "mean_mm": 7.31
    },
    "Brawny": {
-    "moved_vertices": 3387,
+    "moved_vertices": 3391,
     "max_mm": 18.37,
-    "mean_mm": 5.04
+    "mean_mm": 5.03
    }
   },
   {
    "mesh": "SK_Dink_Photoreal_LOD3",
    "vertices": 9376,
    "Scrawny": {
-    "moved_vertices": 1698,
+    "moved_vertices": 1695,
     "max_mm": 29.14,
     "mean_mm": 7.35
    },
    "Brawny": {
-    "moved_vertices": 1689,
+    "moved_vertices": 1691,
     "max_mm": 18.15,
-    "mean_mm": 5.12
+    "mean_mm": 5.11
    }
   }
  ],
@@ -67,7 +67,7 @@
    "shoulder_width": 55.4,
    "chest_girth": 103.3,
    "waist_girth": 78.0,
-   "neck_girth": 35.0,
+   "neck_girth": 34.9,
    "upper_arm_girth": 31.6,
    "forearm_girth": 31.5,
    "thigh_girth": 59.6,
@@ -78,7 +78,7 @@
    "shoulder_width": 52.9,
    "chest_girth": 95.4,
    "waist_girth": 73.9,
-   "neck_girth": 34.1,
+   "neck_girth": 34.4,
    "upper_arm_girth": 25.8,
    "forearm_girth": 26.5,
    "thigh_girth": 52.8,
@@ -89,7 +89,7 @@
    "shoulder_width": 57.1,
    "chest_girth": 109.9,
    "waist_girth": 78.9,
-   "neck_girth": 35.8,
+   "neck_girth": 35.6,
    "upper_arm_girth": 36.4,
    "forearm_girth": 34.6,
    "thigh_girth": 64.0,
