@@ -56,6 +56,8 @@ static TAutoConsoleVariable<float> CVarDinkIndoorEV(TEXT("dink.IndoorEV"), 0.f,
 	TEXT("Added to the configured fixed indoor exposure (EV, review)."));
 static TAutoConsoleVariable<int32> CVarDinkTownHouses(TEXT("dink.TownHouses"), 1,
 	TEXT("1 = town screens show the assembled house kit of town_houses.json instead of their sprite cards (visual only; read when a screen comes into range)."));
+static TAutoConsoleVariable<float> CVarDinkSnowExposure(TEXT("dink.SnowExposure"), 1.f,
+	TEXT("Multiplier of the exposure compensation on screens of snow and ice (environment.json `snow_exposure`; 0 = off). The automatic exposure meters a white screen down to middle grey; the compensation keeps snow white."));
 static TAutoConsoleVariable<int32> CVarDinkForest(TEXT("dink.Forest"), 1,
 	TEXT("1 = trees stand on the unwalkable forest-canopy tiles (ground_classes.json `trees`; visual only; read when a screen comes into range)."));
 static TAutoConsoleVariable<int32> CVarDinkRelief(TEXT("dink.Relief"), 1,
@@ -393,6 +395,16 @@ void UDinkEnvironmentSubsystem::OnWorldBeginPlay(UWorld& World)
 	S.bOverride_LumenSkylightLeaking = true;
 	S.LumenSkylightLeaking = 0.03f;
 	InteriorExposure->RegisterComponent();
+	// snow and ice: a screen of white ground is metered down to grey; this adds the compensation a photographer dials in
+	SnowExposure = NewObject<UPostProcessComponent>(Holder, TEXT("EnvSnowExposure"));
+	SnowExposure->SetupAttachment(Root);
+	SnowExposure->bUnbound = true;
+	SnowExposure->bEnabled = false;
+	SnowExposure->Priority = 15.f; // above the authored ArtExposure volumes (10), below the interior set (20)
+	SnowExposure->BlendWeight = 1.f;
+	SnowExposure->Settings.bOverride_AutoExposureBias = true;
+	SnowExposure->Settings.AutoExposureBias = 0.f;
+	SnowExposure->RegisterComponent();
 	bActive = true;
 }
 
@@ -1253,7 +1265,16 @@ void UDinkEnvironmentSubsystem::LoadForest()
 			WaterTileMaterial = LoadObject<UMaterialInterface>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet);
 		if ((*WaterTiles)->TryGetNumberField(TEXT("height_cm"), Number)) WaterTileHeightCm = float(Number);
 	}
-	if (ForestMeshes.IsEmpty() && ReliefMeshes.IsEmpty() && !WaterTileMaterial) return;
+	const TSharedPtr<FJsonObject>* Snow = nullptr;
+	TArray<FString> SnowClasses;
+	if (Root->TryGetObjectField(TEXT("snow_exposure"), Snow) && Snow)
+	{
+		if ((*Snow)->TryGetNumberField(TEXT("bias_ev"), Number)) SnowBiasEV = float(Number);
+		if ((*Snow)->TryGetNumberField(TEXT("full_share"), Number)) SnowFullShare = FMath::Max(float(Number), 0.01f);
+		if ((*Snow)->TryGetNumberField(TEXT("min_share"), Number)) SnowMinShare = float(Number);
+		(*Snow)->TryGetStringArrayField(TEXT("classes"), SnowClasses);
+	}
+	if (ForestMeshes.IsEmpty() && ReliefMeshes.IsEmpty() && !WaterTileMaterial && SnowClasses.IsEmpty()) return;
 	Root.Reset();
 	if (!FFileHelper::LoadFileToString(Text, *(Dir + TEXT("ground_classes.json")))
 		|| !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) || !Root.IsValid()) return;
@@ -1266,6 +1287,21 @@ void UDinkEnvironmentSubsystem::LoadForest()
 		const TArray<TSharedPtr<FJsonValue>>* Trees = nullptr;
 		if (!Pair.Value->TryGetObject(Row) || !Row) continue;
 		const int32 ScreenNumber = FCString::Atoi(*FString(Pair.Key.ToView()));
+		const TSharedPtr<FJsonObject>* Classes = nullptr;
+		bool bRowIndoor = false;
+		(*Row)->TryGetBoolField(TEXT("indoor"), bRowIndoor);
+		if (!SnowClasses.IsEmpty() && !bRowIndoor && (*Row)->TryGetObjectField(TEXT("classes"), Classes) && Classes)
+		{
+			double White = 0.0, All = 0.0;
+			for (const auto& Class : (*Classes)->Values)
+			{
+				const double Tiles = Class.Value->AsNumber();
+				All += Tiles;
+				if (SnowClasses.Contains(FString(Class.Key.ToView()))) White += Tiles;
+			}
+			const float Share = All > 0.0 ? float(White / All) : 0.f;
+			if (Share >= SnowMinShare) SnowShare.Add(ScreenNumber, Share);
+		}
 		const TArray<TSharedPtr<FJsonValue>>* Rocks = nullptr;
 		if (!ReliefMeshes.IsEmpty() && (*Row)->TryGetArrayField(TEXT("relief"), Rocks) && Rocks)
 		{
@@ -2176,6 +2212,15 @@ void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 		InteriorExposure->bEnabled = Current && Current->bIndoor && CVarDinkInteriorExposure.GetValueOnGameThread() != 0;
 	}
 	UpdateIndoor(Current, DeltaTime);
+	if (SnowExposure)
+	{
+		// eased, so walking from a meadow screen onto the snow does not pop
+		const float* Share = Current && !Current->bIndoor ? SnowShare.Find(Current->ScreenNumber) : nullptr;
+		const float Target = Share ? SnowBiasEV * FMath::Clamp(*Share / SnowFullShare, 0.f, 1.f) * CVarDinkSnowExposure.GetValueOnGameThread() : 0.f;
+		float& Bias = SnowExposure->Settings.AutoExposureBias;
+		Bias = FMath::FInterpConstantTo(Bias, Target, DeltaTime, 0.8f);
+		SnowExposure->bEnabled = !FMath::IsNearlyZero(Bias, 0.005f);
+	}
 
 	// Authored screens hide their greybox ground: the carpet asks the meadow meshes there instead of the tile mask.
 	const double Now = World->GetTimeSeconds();

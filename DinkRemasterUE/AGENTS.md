@@ -1,3 +1,8 @@
+## Snow and ice no longer grey: exposure compensation on snow screens (14 November 2026)
+
+- Cause of "snow looks like grey sand": not the textures (albedo 0.86 to 0.9) but the automatic exposure, which meters a screen of white ground down to middle grey. `UDinkEnvironmentSubsystem` adds 0.8 EV on outdoor screens with 60% or more snow and ice tiles (less from 25% up; `environment.json` `snow_exposure`; `dink.SnowExposure` 0 = off) through its own unbound post-process component `EnvSnowExposure` (priority 15), eased at 0.8 EV/s. 31 screens. Visual only.
+- `ground_review.json`: `snow` and `ice` stay **failed**. The compensation removes the grey, but the ground still reads as a pale cracked salt flat (flat plane, streaky cracks, no drifts, no blue shadows, no sparkle) and the ice is not ice. Evidence `Docs/Verification/SnowExposure_14Nov2026/`. Follow-up: real snow and ice materials. The audit counts do not move.
+- The same trick applies to any screen whose ground is far from middle grey (lava caves are the dark counterpart); `dink.EnvPost bias <ev>` tries a value live.
 ## Character builds and skin relief (14 November 2026)
 
 Evidence and what is still wrong: `Docs/Verification/CharacterFacesBuilds_14Nov2026/`.
