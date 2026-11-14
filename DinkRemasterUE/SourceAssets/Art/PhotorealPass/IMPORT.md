@@ -46,6 +46,15 @@ The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README
 
 `Scripts/PhotorealQA/round.sh <name> [--extra]` renders the fixed review cameras offscreen (no display, no input) into `Saved/PhotorealPass/lighting/<name>/`; `--extra` adds the in-game art cameras. Set `DINK_CAPTURE_DIR` to redirect the output folder.
 
+## Pine and oak shading values (round 7, 14 Nov 2026)
+
+`FOLIAGE_LOOK` in `Scripts/import_photoreal_art.py` (tint, specular, crown shade, crown occlusion, translucency), set from `Scripts/PhotorealQA/cal.sh` against the Cycles review renders:
+
+- **PineNeedles** (also the dry pine): crown shade 0.35 -> 0.80, crown occlusion 0.20 -> 0.70, translucency 0.10 -> 0.35, back shade 0.6 -> 1.0 (needle cards only; leaf cards keep 0.6). The three darkening terms stacked: the pine's median luminance was 25 against 56 in the reference; it is 50 now.
+- **OakLeaves**: tint 0.45, 0.50, 0.26 -> 0.33, 0.37, 0.17, specular 0.06 -> 0.03, crown shade 0.22 -> 0.70, crown occlusion 0.08 -> 0.60, translucency 0.10 -> 0.08: a darker leaf with a lighter crown interior, so the sunlit 95th percentile falls from 144 to 109 (reference 81) while the median stays at 17 (22).
+- Bushes are unchanged: their numbers already sit near the reference; what reads as heaps of large leaf cards is in the meshes (the Cycles render shows it too).
+- Applied with `DINK_PHOTOREAL_ONLY=vegetation DINK_PHOTOREAL_FROZEN=1 Scripts/import_photoreal_art.sh` (materials only); it re-saves every vegetation material and re-imports meshes whose export is newer: commit only `MI_Veg_PineNeedles`, `MI_Veg_PineNeedlesDry`, `MI_Veg_OakLeaves` and restore the rest.
+
 ## Round 5 additions (12 Nov 2026)
 
 | What | Command | Reads | Writes |

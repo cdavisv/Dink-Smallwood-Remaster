@@ -45,6 +45,12 @@ Evidence and what is still wrong: `Docs/Verification/CharacterFacesBuilds_14Nov2
 - Audit with the rule on: final 4,666 -> 4,760 on master 4cbb990c (336 grounds, was 242). Still failing in `ground_review.json`: cliff_face, rock_mass, chasm, cave_wall, void, snow, ice, lava, indoor grass, water tiles without a proper surface.
 - Open, with the cause known: snow and ice read grey because the automatic exposure meters a white screen down to middle grey (+0.8 EV fixes it in a review capture; needs a per-screen compensation). Raised cliffs need collision that follows the rock: owner decision.
 - Pitfalls: (1) `Scripts/import_greybox.sh --region stonebrook` overwrites `Saved/Import/coverage.csv` with the region's rows: `art_coverage.py` then reports about 1,200 finals. Use `coverage_all.csv` or re-run region all. (2) Two gate waiters of one session can both see the gate free and start two editors: chain a session's Unreal steps in one script. (3) `ground_script.py` stands on the hardness-0 point nearest the centre, which on a forest screen is between trees a player cannot reach, and on screen 438 inside the pond pit.
+## Pine and oak shading recalibrated against the Cycles renders (14 November 2026)
+
+- Material values only (`FOLIAGE_LOOK` in `Scripts/import_photoreal_art.py`, three `MI_Veg_*` packages). Pines were dark because crown shade, crown occlusion and the back-face shade of two-sided needle cards multiplied; oaks were blown in the sun because a pale leaf tint sat over a nearly black crown interior. Numbers (`cal_compare.py`, luminance percentiles 5/25/50/75/95): pine reference 13/33/56/82/108, before 5/13/25/70/118, after 24/36/50/91/141; oak reference 5/13/22/36/81, before 2/8/17/34/144, after 3/8/17/32/109.
+- Still off: pine and oak highlights remain above the reference (141 against 108, 109 against 81), the pines read flatter than the Cycles render (less depth between boughs), bushes untouched. Evidence: `Docs/Verification/PhotorealRound7/README_foliage.md` (`foliage_*`).
+- The calibration statistic counts green-dominant pixels, so a greener ground (the meadow tint) shifts it slightly; compare variants only within one session.
+
 ## Character hair: Hair shading model on cards, calibrated in the game (14 November 2026)
 
 Owner: "improve hair". Evidence and the remaining faults: `Docs/Verification/CharacterHair_14Nov2026/`.
