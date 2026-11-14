@@ -9,8 +9,8 @@ Presentation only: collision, hardness, scripts, hits, touch and the random stre
 
 | `art_coverage.py --coverage <whole-world report>` | before | after |
 |---|---:|---:|
-| final | 4,093 | 4,247 |
-| placeholder | 2,362 | 2,208 |
+| final | 4,335 | 4,489 |
+| placeholder | 2,120 | 1,966 |
 | cut | 152 | 152 |
 
 154 rows turned from placeholder to final: the pillbug placements that no other manifest names. The running game
@@ -55,7 +55,7 @@ Offscreen game (`Scripts/PhotorealQA/run_capture.sh`) with the scripts `Scripts/
   little flat where sunlight hits it.
 - A packaged build was not made (`Scripts/package.sh` default cook dirs may lack `Content/Dink/Photoreal`).
 
-## Tests (private project copy, this branch on master `8ba0e903`)
+## Tests (private project copy, this branch before its rebase onto `8905d4f8`)
 
 - `Scripts/test.sh Dink.Art.CreatureClass`: 4/4. `Scripts/test.sh Dink.Art`: 62/62. `Scripts/test.sh Dink.Animation`: 6/6.
 - `python3 -m unittest discover -s Scripts/tests`: OK. `verify_sources.py --metadata-only`: passed.
