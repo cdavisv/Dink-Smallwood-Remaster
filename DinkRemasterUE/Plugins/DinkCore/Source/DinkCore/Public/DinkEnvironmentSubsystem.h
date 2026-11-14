@@ -319,6 +319,7 @@ private:
 		TArray<FFootprint> Footprints;
 	};
 	void LoadTownHouses();
+	void LoadTownHouseFile(const TCHAR* ContentRelativePath);
 	void ApplyTownHouses(int32 ScreenNumber, const FDinkScreenCorners& Corners);
 
 	// --- forest (13 Nov 2026, visual only): the 1997 tiles paint a closed pine forest where nobody can walk and the
