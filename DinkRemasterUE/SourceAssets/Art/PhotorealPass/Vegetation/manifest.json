@@ -4130,33 +4130,33 @@
    "name": "SM_Veg_Stump_01",
    "class": "prop",
    "dimensions_m": [
-    2.199,
-    1.937,
+    2.299,
+    2.618,
     0.747
    ],
-   "lod0_triangles": 2166,
+   "lod0_triangles": 3725,
    "lods": [
     {
      "lod": 0,
-     "triangles": 2166,
-     "vertices": 1337,
+     "triangles": 3725,
+     "vertices": 2151,
      "fbx": "Export/SM_Veg_Stump_01_LOD0.fbx",
      "issues": []
     },
     {
      "lod": 1,
-     "triangles": 1023,
-     "vertices": 677,
+     "triangles": 1738,
+     "vertices": 1064,
      "fbx": "Export/SM_Veg_Stump_01_LOD1.fbx",
      "issues": []
     },
     {
      "lod": 2,
-     "triangles": 54,
-     "vertices": 37,
+     "triangles": 314,
+     "vertices": 181,
      "fbx": "Export/SM_Veg_Stump_01_LOD2.fbx",
      "issues": [
-      "uv range 0.001..1.083"
+      "uv range 0.000..1.083"
      ]
     }
    ],
@@ -4247,33 +4247,33 @@
    "name": "SM_Veg_Stump_02",
    "class": "prop",
    "dimensions_m": [
-    1.508,
-    1.177,
+    1.368,
+    1.666,
     0.589
    ],
-   "lod0_triangles": 1918,
+   "lod0_triangles": 3111,
    "lods": [
     {
      "lod": 0,
-     "triangles": 1918,
-     "vertices": 1185,
+     "triangles": 3111,
+     "vertices": 1805,
      "fbx": "Export/SM_Veg_Stump_02_LOD0.fbx",
      "issues": []
     },
     {
      "lod": 1,
-     "triangles": 893,
-     "vertices": 593,
+     "triangles": 1497,
+     "vertices": 922,
      "fbx": "Export/SM_Veg_Stump_02_LOD1.fbx",
      "issues": []
     },
     {
      "lod": 2,
-     "triangles": 54,
-     "vertices": 37,
+     "triangles": 249,
+     "vertices": 145,
      "fbx": "Export/SM_Veg_Stump_02_LOD2.fbx",
      "issues": [
-      "uv range 0.001..1.083"
+      "uv range 0.000..1.083"
      ]
     }
    ],

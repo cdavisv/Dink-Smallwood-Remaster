@@ -67,8 +67,34 @@ def build_stump(name, lod):
     big = name.endswith('01'); r0 = 0.27 if big else 0.21; hc = 0.52 if big else 0.38
     tilt = np.array([rng.normal(0, 0.05), rng.normal(0, 0.05)])
     axis = lambda z: np.array([tilt[0] * z, tilt[1] * z, z]); rfun = lambda z: r0 * (1.0 - 0.06 * z / hc)
-    mb.root_base(axis, rfun, seed, lod, top=hc, strength=0.9, nroots=6 if big else 5, soft=True)       # one surface: bole, blunt buttress ridges, roots diving under the soil
+    # The bole with a gentle swelling at its foot (one surface), then the buttress roots as their own thick, tapering, wandering
+    # limbs: they leave the bole a hand above the soil, run out over it and dive under. (The first build drew the roots as
+    # ridges of the bole surface: flat, straight fins.)
+    mb.root_base(axis, rfun, seed, lod, top=hc, strength=0.28, nroots=6 if big else 5, soft=True, tubes=False)
     base, R, S, angs = mb.last_base
+    rr = np.random.default_rng(seed + 11); nroot = 6 if big else 5
+    az = np.sort((np.arange(nroot) + rr.uniform(-0.38, 0.38, nroot)) * 2 * math.pi / nroot + rr.uniform(0, 6.28))
+
+    def root(o, start, thick, L, bend, wob, n, sides, h_up):
+        """One root: a shoulder high on the bole, sweeping down to the soil, running along it and sinking under."""
+        side = np.array([-o[1], o[0], 0.0]); t = np.linspace(0, 1, n + 1)
+        rad = thick * (1 - 0.86 * t ** 1.25) * (1 + 0.25 * np.exp(-t / 0.12)) * (1 + 0.13 * np.sin(t * 17 + wob) + 0.07 * np.sin(t * 31 + 2 * wob))
+        z = h_up * np.exp(-t / 0.16) + rad * 0.3 - (0.10 + thick) * np.clip(t - 0.35, 0, 1) ** 2 * 3.0      # half buried along its run
+        lat = bend * L * t ** 1.7 + 0.05 * L * np.sin(t * 7 + wob) * t
+        pp = np.array([start + o * (L * t[i]) + side * lat[i] + np.array([0, 0, z[i]]) for i in range(n + 1)])
+        pp[:, 2] = np.maximum(pp[:, 2], -BELOW_GROUND + rad * 0.4)
+        mb.tube(pp, rad, sides, 'body', 1, 0.6, cap=True, level_base=False)
+        return pp, rad
+
+    for k in range(nroot):
+        thick = r0 * rr.uniform(0.36, 0.56); L = r0 * rr.uniform(2.2, 5.6); bend = rr.uniform(-0.45, 0.45); wob = rr.uniform(0, 6.28)
+        if lod == 2 and thick < r0 * 0.44: continue
+        o = np.array([math.cos(az[k]), math.sin(az[k]), 0.0]); n = (12, 7, 6)[lod]
+        pp, rad = root(o, axis(0.0) * [1, 1, 0] + o * r0 * 0.25, thick, L, bend, wob, n, (10, 7, 5)[lod], rr.uniform(0.16, 0.30))
+        if lod < 2 and thick > r0 * 0.42:              # a thinner root forks off where the main one meets the soil
+            jx = int(n * 0.38); d = nrm(pp[jx + 1] - pp[jx]); d[2] = 0; sg = -1.0 if bend > 0 else 1.0
+            o2 = nrm(d + np.array([-d[1], d[0], 0.0]) * sg * 0.8)
+            root(o2, pp[jx] * [1, 1, 0], rad[jx] * 0.6, L * 0.5, sg * 0.25, wob + 2, (6, 4)[lod], (7, 5)[lod], 0.0)
     c = axis(hc); nrmcut = nrm(np.array([rng.normal(0, 0.07), rng.normal(0, 0.07), 1]))
     top = [mb.v[base + (R - 1) * S + j] for j in range(S)]
     top = [p + nrmcut * (-np.dot(p - c, nrmcut)) for p in top]                               # planar, slightly tilted saw cut
