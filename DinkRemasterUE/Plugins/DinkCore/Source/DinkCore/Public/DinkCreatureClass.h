@@ -36,6 +36,52 @@ struct DINKCORE_API FDinkCreatureLocomotion
 	bool IsSet() const { return !Idle.IsEmpty() && Gaits.Num() > 0; }
 };
 
+/**
+ * Blood of a role (JSON `gore` inside a role): what the 1997 frames paint into the sprite and the remaster's simulation
+ * does not draw. Presentation only: nothing here reads or advances the simulation's random stream.
+ *   {"bone": "neck_02", "drops_per_second": 80, "drop_speed_cm_s": 280, "spread_deg": 18, "drop_size_cm": 1.6,
+ *    "trail": {"material": decal, "every_cm": 80, "size_cm": 34},
+ *    "severed": {"flying": static mesh, "landed": static mesh, "decal": decal, "decal_size_cm": 60, "speed_cm_s": 320, "drops": 30}}
+ */
+struct DINKCORE_API FDinkCreatureGore
+{
+	/** Bone the blood leaves from (the neck stump); the part thrown at the start of the role leaves from there too. */
+	FName Bone;
+	/** The fountain while the sprite is in the role (the headless duck, sequences 111-119: blood sprays from the neck in every frame). */
+	float DropsPerSecond = 0.f, DropSpeedCmS = 280.f, SpreadDeg = 18.f, DropSizeCm = 1.6f;
+	/** A stain left on the ground along the way. */
+	FString TrailDecal;
+	float TrailEveryCm = 80.f, TrailSizeCm = 34.f;
+	/**
+	 * Thrown once when the sprite enters the role from another one (duck_brain, dink.cpp:12745-12775: the head sprite of
+	 * sequences 121-129 flies off along the duck's direction, lands in its pool and stays until the screen is left).
+	 */
+	FString FlyingMesh, LandedMesh, LandedDecal;
+	float LandedDecalSizeCm = 60.f, ThrowSpeedCmS = 320.f;
+	/** Drops thrown with the part. */
+	int32 SeveredDrops = 0;
+	bool HasFountain() const { return DropsPerSecond > 0.f; }
+	bool HasSevered() const { return !FlyingMesh.IsEmpty(); }
+};
+
+/**
+ * Blood left when a sprite of the class is removed by its brain's kill path without a corpse (JSON `bursts`): the dead
+ * duck's sequence 164 (dink.cpp:12728-12740).
+ *   {"sequences": [111, 113, 117, 119], "brain": 3, "drops": 140, "drop_speed_cm_s": 420, "drop_size_cm": 2.0,
+ *    "decal": {"material": decal, "size_cm": 150}}
+ */
+struct DINKCORE_API FDinkCreatureBurst
+{
+	/** Picture sequences the sprite showed when it was removed. */
+	TArray<int32> Sequences;
+	/** Brain the sprite had (duck_brain is 3); 0 = any. */
+	int32 Brain = 0;
+	int32 Drops = 120;
+	float DropSpeedCmS = 420.f, DropSizeCm = 2.f;
+	FString Decal;
+	float DecalSizeCm = 150.f;
+};
+
 /** How one group of sprite sequences is shown (JSON `roles`, keyed by a free name). */
 struct DINKCORE_API FDinkCreatureRole
 {
@@ -52,6 +98,8 @@ struct DINKCORE_API FDinkCreatureRole
 	FString Mesh;
 	/** The role's own locomotion set (with bLocomotion); unset = the row's. */
 	FDinkCreatureLocomotion Locomotion;
+	/** Blood of the role (JSON `gore`); unset for most roles. */
+	FDinkCreatureGore Gore;
 };
 
 /** What the original leaves where a sprite of the class is killed (add_kill_sprite, dink.cpp:12359). */
@@ -84,6 +132,9 @@ struct DINKCORE_API FDinkCreatureClassBinding
 	/** sequence -> index into Roles. */
 	TMap<int32, int32> RoleBySequence;
 	TArray<FDinkCreatureCorpse> Corpses;
+	TArray<FDinkCreatureBurst> Bursts;
+	/** Static mesh of one drop of blood (JSON `blood_drop`), 1 cm long along +X; needed by `gore` and `bursts`. */
+	FString BloodDrop;
 	/** Material overrides by slot name (one mesh, several colours: the slimes). */
 	TMap<FName, FString> Materials;
 	FVector OffsetCm = FVector::ZeroVector;
@@ -105,6 +156,11 @@ struct DINKCORE_API FDinkCreatureClassBinding
 	{
 		const int32* Index = RoleBySequence.Find(Sequence);
 		return Index ? &Roles[*Index] : nullptr;
+	}
+	/** Burst for a sprite removed while it showed Sequence with Brain; nullptr when the row has none. */
+	const FDinkCreatureBurst* BurstFor(int32 Sequence, int32 Brain) const
+	{
+		return Bursts.FindByPredicate([Sequence, Brain](const FDinkCreatureBurst& B) { return (B.Brain == 0 || B.Brain == Brain) && B.Sequences.Contains(Sequence); });
 	}
 	/** Corpse for a kill: the sprite's death sequence with the engine's mirrored-facing fallback (dink.cpp:12392-12404). */
 	const FDinkCreatureCorpse* CorpseFor(int32 BaseDeath, int32 Dir) const;

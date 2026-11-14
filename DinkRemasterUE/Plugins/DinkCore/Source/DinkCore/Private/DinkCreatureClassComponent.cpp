@@ -1,4 +1,6 @@
 #include "DinkCreatureClassComponent.h"
+#include "DinkCreatureSubsystem.h"
+#include "Engine/World.h"
 #include "Animation/AnimSequence.h"
 #include "Animation/AnimationPoseData.h"
 #include "Animation/AttributesRuntime.h"
@@ -142,9 +144,71 @@ void UDinkCreatureClassComponent::StartRole(int32 Role, bool bRestart)
 		// A one-shot spans the sprite sequence it stands for: the attack lands when the original's hit frame does.
 		Track.Rate = FMath::Clamp(Loaded.Clip->GetPlayLength() / Sprite.SequenceDurationS, 0.25f, 4.f);
 	}
+	// The sprite came into this role from another one: what the original throws at that moment (the duck's head). The
+	// bones are still where the last role left them.
+	const bool bFromAnotherRole = Tracks.Num() > 0 && Tracks.Last().Role != Role;
+	if (bFromAnotherRole && Row.Gore.HasSevered() && Loaded.FlyingMesh && Loaded.LandedMesh && bPlaced)
+	{
+		if (UDinkCreatureSubsystem* Creatures = GetWorld() ? GetWorld()->GetSubsystem<UDinkCreatureSubsystem>() : nullptr)
+		{
+			const FVector From = GetBoneIndex(Row.Gore.Bone) != INDEX_NONE ? GetSocketLocation(Row.Gore.Bone) : Shown + FVector(0.0, 0.0, 30.0);
+			const FVector Forward = FRotator(0.0, Smoother.GetYaw(), 0.0).Vector();
+			const double Scale = Class->Binding.Scale * SizePercent / 100.0;
+			const FVector Velocity = (Forward * FMath::FRandRange(0.45f, 0.8f) + FVector(0.0, 0.0, 1.0)) * Row.Gore.ThrowSpeedCmS + Forward * Smoother.GetSpeed();
+			Creatures->ThrowPart(Loaded.FlyingMesh, Loaded.LandedMesh, Loaded.LandedDecal, Row.Gore.LandedDecalSizeCm * Scale, From, Velocity, Shown.Z, Scale);
+			if (Row.Gore.SeveredDrops > 0 && Class->BloodDrop)
+			{
+				Creatures->EmitBlood(Class->BloodDrop, From, FVector(0.0, 0.0, 1.0), Row.Gore.DropSpeedCmS * 1.3f, 55.f, Row.Gore.SeveredDrops, Row.Gore.DropSizeCm * Scale, Shown.Z);
+			}
+		}
+	}
+	if (bFromAnotherRole)
+	{
+		DropDebt = GoreTime = TrailDistance = 0.f;
+		bHasGorePoint = false;
+	}
 	if (Tracks.Num() >= 4) Tracks.RemoveAt(0);
 	Tracks.Add(Track);
 	ShowMesh(Loaded.Mesh ? Loaded.Mesh : Class->Mesh);
+}
+
+void UDinkCreatureClassComponent::PresentGore(float DeltaTime)
+{
+	if (Tracks.Num() == 0 || !Class->Roles.IsValidIndex(Tracks.Last().Role) || DeltaTime <= 0.f) return;
+	const FDinkCreatureGore& Gore = Class->Binding.Roles[Tracks.Last().Role].Gore;
+	const FDinkCreatureLoadedRole& Loaded = Class->Roles[Tracks.Last().Role];
+	if (!Gore.HasFountain() && !Loaded.TrailDecal) return;
+	UDinkCreatureSubsystem* Creatures = GetWorld() ? GetWorld()->GetSubsystem<UDinkCreatureSubsystem>() : nullptr;
+	if (!Creatures) return;
+	const double Scale = Class->Binding.Scale * SizePercent / 100.0;
+	GoreTime += DeltaTime;
+	if (Gore.HasFountain() && Class->BloodDrop)
+	{
+		// A cut artery spurts with the heart: about four beats a second in a running bird, never quite dry between them.
+		const float Beat = 0.35f + 0.65f * FMath::Square(FMath::Max(0.f, FMath::Sin(GoreTime * 2.f * PI * 4.f)));
+		DropDebt += Gore.DropsPerSecond * Beat * 1.5f * DeltaTime;
+		const int32 Count = FMath::Min(24, FMath::FloorToInt32(DropDebt));
+		if (Count > 0)
+		{
+			DropDebt -= Count;
+			const FVector From = GetBoneIndex(Gore.Bone) != INDEX_NONE ? GetSocketLocation(Gore.Bone) : Shown + FVector(0.0, 0.0, 30.0 * Scale);
+			// Up and a little ahead: the stump points forward and up, and the body runs on under the falling drops.
+			const FVector Direction = (FVector(0.0, 0.0, 1.0) + FRotator(0.0, Smoother.GetYaw(), 0.0).Vector() * 0.25).GetSafeNormal();
+			Creatures->EmitBlood(Class->BloodDrop, From, Direction, Gore.DropSpeedCmS * (0.55f + 0.45f * Beat) * FMath::Sqrt(float(Scale)), Gore.SpreadDeg, Count,
+				Gore.DropSizeCm * Scale, Shown.Z, FRotator(0.0, Smoother.GetYaw(), 0.0).Vector() * Smoother.GetSpeed()); // the drops leave a running body with its speed
+		}
+	}
+	if (Loaded.TrailDecal)
+	{
+		if (bHasGorePoint) TrailDistance += float(FVector::Dist2D(Shown, LastGorePoint));
+		LastGorePoint = Shown;
+		if (!bHasGorePoint || TrailDistance >= Gore.TrailEveryCm)
+		{
+			TrailDistance = 0.f;
+			Creatures->AddBloodDecal(Loaded.TrailDecal, Shown, FMath::FRandRange(0.f, 360.f), Gore.TrailSizeCm * Scale * FMath::FRandRange(0.7f, 1.2f));
+		}
+		bHasGorePoint = true;
+	}
 }
 
 void UDinkCreatureClassComponent::ApplySpriteState(const FDinkCreatureSpriteState& State)
@@ -281,6 +345,7 @@ void UDinkCreatureClassComponent::Present(float DeltaTime)
 	SetWorldLocationAndRotation(Location, FRotator(Binding.RotationDeg.X, Yaw + Binding.RotationDeg.Y, Binding.RotationDeg.Z));
 	SetWorldScale3D(FVector(Scale));
 	BuildLayers(DeltaTime);
+	PresentGore(DeltaTime);
 }
 
 void UDinkCreatureClassComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)

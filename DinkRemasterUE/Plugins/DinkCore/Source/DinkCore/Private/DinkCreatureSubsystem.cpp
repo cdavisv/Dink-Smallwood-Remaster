@@ -26,6 +26,8 @@
 // Photoreal pass (round 6): visual only, same skeleton or refused; headless runs keep validating the manifest's mesh.
 static TAutoConsoleVariable<int32> CVarDinkPhotorealPillbug(TEXT("dink.PhotorealPillbug"), 1,
 	TEXT("1 = SK_Pillbug_Photoreal replaces the pillbug mesh of creatures.json while the process renders (same skeleton, clips, body boxes); read at begin play."));
+static TAutoConsoleVariable<int32> CVarDinkPhotorealPig(TEXT("dink.PhotorealPig"), 1,
+	TEXT("1 = SK_Pig_Photoreal replaces the pig mesh of creatures.json while the process renders (same skeleton, clips, body boxes); read at begin play."));
 static TAutoConsoleVariable<int32> CVarDinkCreatureClassArt(TEXT("dink.CreatureClassArt"), 1,
 	TEXT("Class rows of creatures.json (every placement of a bound sprite class, and script-made sprites of its sequences, shown by the animated creature; presentation only). 0 = off, 1 = while the process renders, 2 = also headless (tests). Read at begin play."));
 namespace
@@ -82,12 +84,15 @@ void UDinkCreatureSubsystem::AttachOriginRows(UWorld& World, const FJsonObject& 
 		if (!Actor || Actor->FindComponentByClass<UDinkCreatureComponent>())
 			continue;
 		USkeletalMesh* Mesh = LoadObject<USkeletalMesh>(nullptr, *Row->GetStringField(TEXT("mesh")));
-		if (Mesh && Mesh->GetName() == TEXT("SK_Pillbug") && CVarDinkPhotorealPillbug.GetValueOnGameThread() != 0 && FApp::CanEverRender())
+		if (Mesh && FApp::CanEverRender())
 		{
-			static const TCHAR* PhotorealPillbug = TEXT("/Game/Dink/Photoreal/Creatures/Pillbug/SK_Pillbug_Photoreal");
-			USkeletalMesh* Photoreal = FPackageName::DoesPackageExist(PhotorealPillbug)
-				? LoadObject<USkeletalMesh>(nullptr, *(FString(PhotorealPillbug) + TEXT(".SK_Pillbug_Photoreal")), nullptr, LOAD_NoWarn | LOAD_Quiet) : nullptr;
-			if (Photoreal && Photoreal->GetSkeleton() == Mesh->GetSkeleton()) Mesh = Photoreal;
+			// The photoreal mesh of the same creature, when it is imported and sits on the same skeleton.
+			const TCHAR* Photoreal = nullptr;
+			if (Mesh->GetName() == TEXT("SK_Pillbug") && CVarDinkPhotorealPillbug.GetValueOnGameThread() != 0) Photoreal = TEXT("/Game/Dink/Photoreal/Creatures/Pillbug/SK_Pillbug_Photoreal");
+			else if (Mesh->GetName() == TEXT("SK_Pig") && CVarDinkPhotorealPig.GetValueOnGameThread() != 0) Photoreal = TEXT("/Game/Dink/Photoreal/Creatures/Pig/SK_Pig_Photoreal");
+			USkeletalMesh* Replacement = Photoreal && FPackageName::DoesPackageExist(Photoreal)
+				? LoadObject<USkeletalMesh>(nullptr, *(FString(Photoreal) + TEXT(".") + FPackageName::GetShortName(Photoreal)), nullptr, LOAD_NoWarn | LOAD_Quiet) : nullptr;
+			if (Replacement && Replacement->GetSkeleton() == Mesh->GetSkeleton()) Mesh = Replacement;
 		}
 		UBlendSpace* Locomotion = LoadObject<UBlendSpace>(nullptr, *Row->GetStringField(TEXT("locomotion")));
 		FString FeedPath;
@@ -316,6 +321,22 @@ TSharedPtr<const FDinkCreatureLoadedClass> UDinkCreatureSubsystem::LoadClass(con
 			if (!Out.Mesh || Out.Mesh->GetSkeleton() != Skeleton) return Refuse(TEXT("role mesh missing or on another skeleton"), Role.Mesh);
 			Assets.Add(Out.Mesh);
 		}
+		if (!Role.Gore.FlyingMesh.IsEmpty())
+		{
+			Out.FlyingMesh = LoadClassAsset<UStaticMesh>(Role.Gore.FlyingMesh);
+			Out.LandedMesh = LoadClassAsset<UStaticMesh>(Role.Gore.LandedMesh);
+			if (!Out.FlyingMesh || !Out.LandedMesh) return Refuse(TEXT("severed part mesh missing"), Role.Gore.FlyingMesh);
+			Assets.Add(Out.FlyingMesh);
+			Assets.Add(Out.LandedMesh);
+		}
+		for (const TPair<const FString*, UMaterialInterface**>& Decal : { TPair<const FString*, UMaterialInterface**>(&Role.Gore.LandedDecal, &Out.LandedDecal),
+			TPair<const FString*, UMaterialInterface**>(&Role.Gore.TrailDecal, &Out.TrailDecal) })
+		{
+			if (Decal.Key->IsEmpty()) continue;
+			*Decal.Value = LoadClassAsset<UMaterialInterface>(*Decal.Key);
+			if (!*Decal.Value) return Refuse(TEXT("gore decal material missing"), *Decal.Key);
+			Assets.Add(*Decal.Value);
+		}
 		if (Role.bLocomotion)
 		{
 			if (Role.Locomotion.IsSet()) LoadSet(Role.Locomotion, Out.Locomotion);
@@ -345,6 +366,23 @@ TSharedPtr<const FDinkCreatureLoadedClass> UDinkCreatureSubsystem::LoadClass(con
 			Assets.Add(Decal);
 		}
 		Loaded->CorpseDecals.Add(Decal);
+	}
+	if (!Binding.BloodDrop.IsEmpty())
+	{
+		Loaded->BloodDrop = LoadClassAsset<UStaticMesh>(Binding.BloodDrop);
+		if (!Loaded->BloodDrop) return Refuse(TEXT("blood drop mesh missing"), Binding.BloodDrop);
+		Assets.Add(Loaded->BloodDrop);
+	}
+	for (const FDinkCreatureBurst& Burst : Binding.Bursts)
+	{
+		UMaterialInterface* Decal = nullptr;
+		if (!Burst.Decal.IsEmpty())
+		{
+			Decal = LoadClassAsset<UMaterialInterface>(Burst.Decal);
+			if (!Decal) return Refuse(TEXT("burst decal material missing"), Burst.Decal);
+			Assets.Add(Decal);
+		}
+		Loaded->BurstDecals.Add(Decal);
 	}
 	for (const auto& Pair : Binding.Materials)
 	{
@@ -490,7 +528,7 @@ bool UDinkCreatureSubsystem::LeaveCorpse(FName ClassId, int32 BaseDeath, int32 D
 		Decal->SetFadeScreenSize(0.f);
 		Decal->ComponentTags.Add(TEXT("DinkCreatureCorpse"));
 		Decal->RegisterComponent();
-		Decal->SetWorldLocationAndRotation(Ground, FRotator(-90.0, YawDeg + Corpse->YawOffset, 0.0));
+		Decal->SetWorldLocationAndRotation(Ground - FVector(0.0, 0.0, DecalSinkCm), FRotator(-90.0, YawDeg + Corpse->YawOffset, 0.0)); // sunk: the grass tips and soles, not the legs of whoever stands in it
 		CorpseDecals.Add(Decal);
 	}
 	UE_LOG(LogDink, Display, TEXT("DINK CREATURE CLASS: %s corpse at %s (death sequence base %d, dir %d)"), *ClassId.ToString(), *Ground.ToCompactString(), BaseDeath, Dir);
@@ -503,6 +541,7 @@ void UDinkCreatureSubsystem::ClearCorpses()
 	Corpses.Reset();
 	for (UDecalComponent* Decal : CorpseDecals) if (Decal) Decal->DestroyComponent();
 	CorpseDecals.Reset();
+	ClearGore();
 }
 
 namespace

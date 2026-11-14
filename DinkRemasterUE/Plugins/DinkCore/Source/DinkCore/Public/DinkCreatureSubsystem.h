@@ -5,6 +5,8 @@
 #include "DinkCreatureSubsystem.generated.h"
 class ADinkPlaceholderActor;
 class UDinkCreatureClassComponent;
+class UMaterialInterface;
+class UStaticMesh;
 class UStaticMeshComponent;
 struct FDinkCreatureLoadedClass;
 /**
@@ -55,6 +57,27 @@ class DINKCORE_API UDinkCreatureSubsystem : public UWorldSubsystem
 	/** Blood decals lying under the corpses. */
 	int32 GetCorpseDecalCount() const { return CorpseDecals.Num(); }
 
+	/**
+	 * Gore of the class layer (DinkCreatureGore.cpp): drops of blood in flight, stains on the ground and thrown parts.
+	 * Presentation only: no collision, no simulation state, its own random numbers. Everything goes with ClearCorpses.
+	 */
+	void EmitBlood(UStaticMesh* DropMesh, const FVector& From, const FVector& Direction, float SpeedCmS, float SpreadDeg, int32 Count, float SizeCm, float GroundZ,
+		const FVector& Carry = FVector::ZeroVector);
+	void AddBloodDecal(UMaterialInterface* Material, const FVector& Ground, float YawDeg, float SizeCm);
+	/** A part that flies, spins and lands: Flying is shown in the air, Landed (with its decal) where it comes down. */
+	void ThrowPart(UStaticMesh* Flying, UStaticMesh* Landed, UMaterialInterface* LandedDecal, float DecalSizeCm, const FVector& From, const FVector& Velocity, float GroundZ, double Scale);
+	/** The class's burst for a sprite removed while it showed Sequence with Brain (the dead duck's sequence 164). False when the row has none. */
+	bool Burst(FName ClassId, int32 Sequence, int32 Brain, const FVector& Ground, int32 SizePercent);
+	/** Moves the drops and the flying parts; the presenter calls it once a frame. */
+	void StepGore(float DeltaTime);
+	int32 GetBloodDropCount() const { return BloodDrops.Num(); }
+	int32 GetFlyingPartCount() const { return FlyingParts.Num(); }
+	int32 GetBloodDecalCount() const { return BloodDecals.Num(); }
+	static constexpr int32 MaxBloodDrops = 600;
+	static constexpr int32 MaxBloodDecals = 96;
+	/** Ground decals are projected from this far below the ground point: with a 45 cm half depth they reach 20 cm above it. */
+	static constexpr double DecalSinkCm = 25.0;
+
   private:
 	TArray<TWeakObjectPtr<AActor>> FoodActors;
 	TSet<int32> FoodSequences;
@@ -73,4 +96,29 @@ class DINKCORE_API UDinkCreatureSubsystem : public UWorldSubsystem
 	UPROPERTY(Transient) TArray<TObjectPtr<UStaticMeshComponent>> Corpses;
 	UPROPERTY(Transient) TArray<TObjectPtr<class UDecalComponent>> CorpseDecals;
 	int32 ClassPlacements = 0;
+
+	struct FBloodDrop
+	{
+		FVector Location = FVector::ZeroVector, Velocity = FVector::ZeroVector;
+		float SizeCm = 1.f, GroundZ = 0.f;
+	};
+	struct FFlyingPart
+	{
+		FVector Velocity = FVector::ZeroVector;
+		FRotator Spin = FRotator::ZeroRotator;
+		float GroundZ = 0.f, DecalSizeCm = 0.f;
+		double Scale = 1.0;
+		/** Kept alive by ClassAssets. */
+		UStaticMesh* Landed = nullptr;
+		UMaterialInterface* LandedDecal = nullptr;
+	};
+	class USceneComponent* GoreRoot();
+	class UStaticMeshComponent* AddGoreMesh(UStaticMesh* Mesh, const FTransform& Transform);
+	void ClearGore();
+	TArray<FBloodDrop> BloodDrops;
+	TArray<FFlyingPart> FlyingParts;
+	/** Parallel to FlyingParts. */
+	UPROPERTY(Transient) TArray<TObjectPtr<UStaticMeshComponent>> FlyingMeshes;
+	UPROPERTY(Transient) TObjectPtr<class UInstancedStaticMeshComponent> DropInstances;
+	UPROPERTY(Transient) TArray<TObjectPtr<class UDecalComponent>> BloodDecals;
 };

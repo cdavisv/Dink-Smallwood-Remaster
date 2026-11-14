@@ -60,6 +60,11 @@ struct DINKCORE_API FDinkCreatureLoadedRole
 	USkeletalMesh* Mesh = nullptr;
 	const UAnimSequence* Clip = nullptr;
 	FDinkCreatureLoadedLocomotion Locomotion;
+	/** The role's gore assets; nullptr where the row names none. */
+	UStaticMesh* FlyingMesh = nullptr;
+	UStaticMesh* LandedMesh = nullptr;
+	UMaterialInterface* LandedDecal = nullptr;
+	UMaterialInterface* TrailDecal = nullptr;
 };
 
 /** A class row with every asset it names loaded and checked against the mesh's skeleton. Owned by UDinkCreatureSubsystem, which keeps the assets alive. */
@@ -72,6 +77,9 @@ struct DINKCORE_API FDinkCreatureLoadedClass
 	/** One per corpse row, nullptr where the row has no decal. */
 	TArray<UMaterialInterface*> CorpseDecals;
 	TMap<FName, UMaterialInterface*> Materials;
+	/** One per burst row, nullptr where the row has no decal. */
+	TArray<UMaterialInterface*> BurstDecals;
+	UStaticMesh* BloodDrop = nullptr;
 	int32 DefaultRole = INDEX_NONE;
 };
 
@@ -145,6 +153,8 @@ private:
 	void StartRole(int32 Role, bool bRestart);
 	void ShowMesh(USkeletalMesh* Mesh);
 	void BuildLayers(float DeltaTime);
+	/** The role's blood this frame: the fountain from its bone and the stains along the way. */
+	void PresentGore(float DeltaTime);
 
 	TSharedPtr<const FDinkCreatureLoadedClass> Class;
 	/** Keeps the clips and meshes of the row alive for as long as this component shows them. */
@@ -157,4 +167,8 @@ private:
 	float GroundOffset = 0.f, TargetYaw = 0.f, Phase = 0.f, IdleTime = 0.f, CyclesPerSecond = 0.f;
 	int32 SizePercent = 100, FirstDir = 0, LastSeq = 0, LastFrame = 0;
 	bool bHasSprite = false, bFollowDir = false, bPlaced = false;
+	/** Fountain bookkeeping: fraction of a drop owed, seconds in the role (the spurts), ground covered since the last stain. */
+	float DropDebt = 0.f, GoreTime = 0.f, TrailDistance = 0.f;
+	FVector LastGorePoint = FVector::ZeroVector;
+	bool bHasGorePoint = false;
 };

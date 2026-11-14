@@ -306,6 +306,24 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkCalAnchorCommand(
 		UE_LOG(LogDink, Display, TEXT("DINK CAL: anchor %s"), *GDinkCalAnchor.ToString());
 	}));
 
+static FAutoConsoleCommandWithWorldAndArgs GDinkCalAnchorOriginCommand(
+	TEXT("dink.CalAnchorOrigin"), TEXT("dink.CalAnchorOrigin <S001_P26> [dx dy]: calibration origin = where that placement's actor is now (a walking creature), plus an offset in cm; world axes."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		FDinkOriginId Id;
+		if (!World || Args.Num() < 1 || !FDinkOriginId::Parse(Args[0], Id)) return;
+		for (TActorIterator<AActor> It(World); It; ++It)
+		{
+			const UDinkOriginComponent* Origin = UDinkOriginComponent::FindOnActor(*It);
+			if (!Origin || !(Origin->OriginId == Id)) continue;
+			GDinkCalAnchor = It->GetActorLocation();
+			GDinkCalYaw = 0.0;
+			if (Args.Num() >= 3) GDinkCalAnchor += FVector(FCString::Atod(*Args[1]), FCString::Atod(*Args[2]), 0.0);
+			return;
+		}
+		UE_LOG(LogDink, Display, TEXT("DINK CAL: no actor of %s"), *Args[0]);
+	}));
+
 static FAutoConsoleCommandWithWorldAndArgs GDinkCalSpawnCommand(
 	TEXT("dink.CalSpawn"), TEXT("dink.CalSpawn <mesh object path> <x> <y> <z> <yaw> <scale>: a mesh without collision at anchor + offset (cm)."),
 	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
