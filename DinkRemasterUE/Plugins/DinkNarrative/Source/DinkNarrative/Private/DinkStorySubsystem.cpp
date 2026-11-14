@@ -878,16 +878,21 @@ void UDinkStorySubsystem::EnsureOverlay()
 	{
 		return;
 	}
-	// A level change removes every viewport widget (UGameEngine::LoadMap): add it again to the new world's viewport.
-	if (Overlay.IsValid() && OverlayViewport.Get() == Viewport && OverlayWorld.Get() == World && Overlay->GetParentWidget().IsValid())
+	// A level change removes every viewport widget (UGameEngine::LoadMap): add it again for each new world. One attempt per
+	// world and viewport: a viewport without a window (headless runs) has no overlay to add to.
+	if (OverlayViewport.Get() == Viewport && OverlayWorld.Get() == World)
 	{
 		return;
 	}
 	RemoveOverlay();
-	Overlay = SNew(SDinkNarrativeOverlay, this);
-	Viewport->AddViewportWidgetContent(Overlay.ToSharedRef(), 50);
 	OverlayViewport = Viewport;
 	OverlayWorld = World;
+	if (!Viewport->GetWindow().IsValid())
+	{
+		return;
+	}
+	Overlay = SNew(SDinkNarrativeOverlay, this);
+	Viewport->AddViewportWidgetContent(Overlay.ToSharedRef(), 50);
 }
 
 void UDinkStorySubsystem::RemoveOverlay()
