@@ -1,3 +1,11 @@
+## Hero garments: rims re-cut after decimation, charts that do not fold (14 November 2026)
+
+Owner: "dinks arms look odd around the arm pit". Evidence: `Docs/Verification/HeroGarments_14Nov2026/`. Rules that came out of it, for anyone who builds a garment with `Characters/Tools`:
+- **Cut every opening again after the decimation** (`finish(recut=...)` in `dink_02_garments.py`): decimation moves border vertices unevenly and leaves tabs, notches and lips that fold over each other. Not everywhere, though: on the Mother's bodice the re-cut neckline opened wider than the skin kept under it (see the hair PR).
+- **A planar UV chart must lean with the surface it covers.** Charts 3/4 and 13/14 leaned against the shoulder slope and folded over at the shoulder line; chest and shoulder top shared texels and the bake left dark triangles beside the armholes. `export_char.py` prints `UV PER SLOT`: read the overlap of the Outfit slot after changing a chart.
+- **A thin open sheet bakes from a subdivided copy of itself** (`dink_05_bake.py` `SELF_HI`): a separately sampled detailed sheet lies millimetres off the game mesh and whole triangles miss it.
+- Blender renders did not show the triangles (the review camera never looked down on the shoulder from behind); the game did. Capture script for the armholes: the `arm_*` shots listed in the README.
+
 ## Screen grounds in the gate 2 audit (13 November 2026)
 
 - The 644 "screen ground (tile layer)" rows were all placeholder ("greybox ground mesh") except the 5 dressed screens, although every screen draws the photoreal terrain material. `Scripts/art_coverage.py` `screen_ground_state()` now counts a ground final (grade `ground-layers`) when the terrain material and every layer texture exist, the three-layer mask dropped no layer, **every tile class on the screen passed the in-game review**, water tiles have a water surface and the review has no finding against the screen. Result with the rule on: final 4,093 -> 4,335 (242 grounds), 397 grounds placeholder with their reasons.

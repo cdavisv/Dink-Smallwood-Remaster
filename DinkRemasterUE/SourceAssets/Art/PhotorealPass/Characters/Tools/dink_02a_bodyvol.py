@@ -21,8 +21,11 @@ import folds
 folds.setup({n: list(B[n].head_local) for n in ('upperarm_l', 'lowerarm_l', 'hand_l', 'thigh_l', 'calf_l', 'foot_l')})
 
 old_bvh = bvh_of([bpy.data.objects['OldShirtTopo'], bpy.data.objects['OldTrousersTopo']])
-def scan_tube(name, pts, ref, s0, s1, nr, nu, rmax, rdef, shrink=.006):
-    """Loft a closed tube by scanning the old garment wall with inside-out rays around a polyline axis."""
+def scan_tube(name, pts, ref, s0, s1, nr, nu, rmax, rdef, shrink=.006, fill=False):
+    """Loft a closed tube by scanning the old garment wall with inside-out rays around a polyline axis.
+    fill: a ray that finds no wall (it left through an opening of the old garment, such as the neck) takes the
+    radius of its neighbours that did, not rdef. With rdef the torso tube grew a thin blade out of the open collar
+    (15 cm against the 10 cm around it), which every garment cut from the volume inherited as a spike."""
     poly = Poly(pts, ref=ref); rings = []; R = np.zeros((nr, nu)); C = []; FR = []
     for i in range(nr):
         s = s0 + (s1 - s0) * i / (nr - 1); c, d = poly.point(min(max(s, 0), poly.cum[-1])); c = c + d * (s - min(max(s, 0), poly.cum[-1]))
@@ -31,7 +34,18 @@ def scan_tube(name, pts, ref, s0, s1, nr, nu, rmax, rdef, shrink=.006):
             a = 2 * math.pi * j / nu; dr = x * math.cos(a) + y * math.sin(a)
             lim = rmax(s, a) if callable(rmax) else rmax
             hit = old_bvh.ray_cast(c, dr, lim)
-            R[i, j] = (hit[0] - c).length if hit[0] is not None else (rdef(s, a) if callable(rdef) else rdef)
+            R[i, j] = (hit[0] - c).length if hit[0] is not None else (np.nan if fill else (rdef(s, a) if callable(rdef) else rdef))
+    if fill:
+        missed = int(np.isnan(R).sum())
+        for _ in range(nr + nu):
+            bad = np.isnan(R)
+            if not bad.any(): break
+            pad = np.pad(R, ((1, 1), (0, 0)), constant_values=np.nan)
+            nb = np.stack([np.roll(R, 1, 1), np.roll(R, -1, 1), pad[:-2], pad[2:]])
+            got = ~np.isnan(nb); cnt = got.sum(0); mean = np.where(cnt > 0, np.nansum(nb, 0) / np.maximum(cnt, 1), np.nan)
+            R = np.where(bad, mean, R)
+        R = np.where(np.isnan(R), rdef if not callable(rdef) else .1, R)
+        log(name, 'rays that found no wall, filled from their neighbours', missed)
     for _ in range(2):
         R = (np.roll(R, 1, 1) + 2 * R + np.roll(R, -1, 1)) / 4
         R[1:-1] = (R[:-2] + 2 * R[1:-1] + R[2:]) / 4
@@ -45,7 +59,7 @@ def torso_rmax(s, a):
     z = .86 + s
     lat = abs(math.sin(a))
     return .30 if z < 1.30 else (.30 - (.30 - .19) * lat * min(1, (z - 1.30) / .08))
-parts.append(scan_tube('bv_torso', [(0, -.02, .86), (0, -.02, 1.53)], (0, -1, 0), 0, .612, 62, 72, torso_rmax, lambda s, a: .15))
+parts.append(scan_tube('bv_torso', [(0, -.02, .86), (0, -.02, 1.53)], (0, -1, 0), 0, .612, 62, 72, torso_rmax, lambda s, a: .15, fill=True))
 for sg in (1, -1):
     M = np.array([sg, 1, 1.0])
     parts.append(scan_tube('bv_arm%d' % sg, [S * M, E_ * M, Wr * M], (0, 0, -1), -.02, np.linalg.norm(E_ - S) + np.linalg.norm(Wr - E_) - .006, 60, 40, .085, .036))
@@ -53,7 +67,35 @@ for sg in (1, -1):
     parts.append(scan_tube('bv_leg%d' % sg, [T * M, K * M, A * M], (0, -1, 0), -.06, np.linalg.norm(K - T) + .355, 80, 48, .13, .07))
 bv = join(parts, 'BodyVol')
 m = bv.modifiers.new('rm', 'REMESH'); m.mode = 'VOXEL'; m.voxel_size = .005; m.adaptivity = 0
-apply_mods(bv); laplacian_smooth(bv, it=8, lam=.6); smooth_shade(bv)
+apply_mods(bv)
+def offset(o, d):
+    o.data.update(); set_co(o.data, co_np(o.data) + normals_np(o.data) * d)
+def close_volume(o, r=.010):
+    """Fill what is narrower than 2 r: grow the surface by r, take the union, shrink it by r. The tubes meet behind
+    each shoulder in a crease 3 cm deep and a few millimetres wide, and in a pit at each collarbone; cloth cut from
+    the volume folded into them (the wedge-shaped hole on the jerkin's shoulder)."""
+    for d in (r, -r):
+        offset(o, d); m_ = o.modifiers.new('rm', 'REMESH'); m_.mode = 'VOXEL'; m_.voxel_size = .005; m_.adaptivity = 0; apply_mods(o)
+close_volume(bv)
+def wrap_skin(o, clear=.005, reach=.05):
+    """The volume comes from the old shirt; the photoreal skin of the shoulders (the yoke the head mesh carries down
+    to the collarbones) rises up to 2 cm above it behind each shoulder and showed through shirt and jerkin there as
+    a pale wedge. Wherever the skin lies outside the volume the volume is lifted to clear it. The neck column inside
+    the collar (within 8.5 cm of the neck axis) is left alone: it is meant to come out of the clothes."""
+    sk_bvh = bvh_of(bpy.data.objects['Skin']); o.data.update(); c = co_np(o.data); n = normals_np(o.data); lift = np.zeros(len(c))
+    for i in np.nonzero((c[:, 2] > 1.30) & (np.sqrt(c[:, 0] ** 2 + (c[:, 1] - .008) ** 2) > .085))[0]:
+        hit = sk_bvh.ray_cast(Vector(c[i]) - Vector(n[i]) * .002, Vector(n[i]), reach)
+        if hit[0] is not None and Vector(n[i]).dot(hit[1]) > .2: lift[i] = (hit[0] - Vector(c[i])).length + clear
+    # spread the lift a little so the raised patch has no step at its edge
+    bm = bmesh.new(); bm.from_mesh(o.data); bm.verts.ensure_lookup_table()
+    nbr = [[e.other_vert(v).index for e in v.link_edges] for v in bm.verts]; bm.free()
+    raw = lift.copy()
+    for _ in range(6):
+        lift = np.maximum(raw, np.array([(lift[i] + sum(lift[j] for j in nb)) / (1 + len(nb)) if nb else lift[i] for i, nb in enumerate(nbr)]))
+    set_co(o.data, c + n * lift[:, None])
+    log('volume lifted over the skin: vertices', int((raw > 0).sum()), 'largest lift mm', round(float(raw.max()) * 1000, 1))
+wrap_skin(bv)
+laplacian_smooth(bv, it=8, lam=.6); wrap_skin(bv, clear=.004); smooth_shade(bv)
 for l in list(bv.data.uv_layers): bv.data.uv_layers.remove(l)
 log('BodyVol', len(bv.data.vertices), co_np(bv.data).min(0), co_np(bv.data).max(0))
 save_blend(filepath=str(OUT / 'Dink/Work/dink_bodyvol.blend'))

@@ -1,1 +1,1 @@
-{"skin_cull_r": 0.066, "skin_tuck": 0.004, "smooth_it": 8, "clean_degenerate": true}
+{"skin_cull_r": 0.066, "skin_tuck": 0.004, "smooth_it": 8, "clean_degenerate": true, "arm_to_clavicle": {"Jerkin": 0.75, "Shirt": 0.75}, "under": {"Shirt": [0.03, 0.06]}}

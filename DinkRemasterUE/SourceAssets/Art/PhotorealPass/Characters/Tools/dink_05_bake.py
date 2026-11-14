@@ -13,6 +13,11 @@ BK = OUT / 'Dink/Work/bake'; BK.mkdir(parents=True, exist_ok=True)
 lows = [o for o in D if o.type == 'MESH' and 'fabric' in o and not o.name.endswith('_HI')]
 def hi_of(o): return D.get(o.name + '_HI')
 BIG = 1.0
+# Thin open sheets bake from a subdivided copy of the game mesh itself. Their separate detailed sheet is sampled from
+# the same guide at another resolution and lies up to 6 mm off the game mesh at the fold and along the free edge:
+# the rays of whole game triangles missed it or met its underside (pale triangles and a comb of streaks on the flap
+# of the hero's pack, 13 Nov 2026).
+SELF_HI = ('PackFlap',)
 def put(o, name, arr):
     a = o.data.attributes.get(name) or o.data.attributes.new(name, 'FLOAT', 'POINT'); a.data.foreach_set('value', np.asarray(arr, np.float32))
 def mir(p):
@@ -74,6 +79,7 @@ try: sc.render.bake.margin_type = 'EXTEND'
 except Exception: pass
 for i, o in enumerate(lows):
     h = hi_of(o)
+    if h is not None and o.name in SELF_HI: bpy.data.objects.remove(h, do_unlink=True); h = None
     if h is None:
         h = dup(o, o.name + '_HI'); subdivide(h, 1)
     seams(h)

@@ -49,6 +49,60 @@ def boundary_loops(bm):
         loops.append(loop)
     return loops
 
+def tidy_rim(o, sharp=75.0, passes=3):
+    """After a cut: drop the slivers it leaves on an open border. A border triangle whose other two edges are
+    both open (an ear) is a tab that sticks out of the rim; a border vertex where the rim turns back on itself
+    by more than `sharp` degrees is the tip of one. Both go, and loose pieces smaller than 40 faces with them."""
+    bm = bmesh.new(); bm.from_mesh(o.data)
+    for _ in range(passes):
+        dead = [f for f in bm.faces if sum(e.is_boundary for e in f.edges) >= 2]
+        for v in bm.verts:
+            be = [e for e in v.link_edges if e.is_boundary]
+            if len(be) != 2: continue
+            a = be[0].other_vert(v).co - v.co; b = be[1].other_vert(v).co - v.co
+            if a.length < 1e-9 or b.length < 1e-9: continue
+            if math.degrees(a.angle(b)) < 180 - sharp and len(v.link_faces) <= 2: dead.extend(v.link_faces)
+        if not dead: break
+        bmesh.ops.delete(bm, geom=list(set(dead)), context='FACES')
+        bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS')
+    seen = set()
+    for f0 in list(bm.faces):
+        if f0 in seen: continue
+        isl = [f0]; seen.add(f0); st = [f0]
+        while st:
+            g_ = st.pop()
+            for e in g_.edges:
+                for h in e.link_faces:
+                    if h not in seen: seen.add(h); isl.append(h); st.append(h)
+        if len(isl) < 40: bmesh.ops.delete(bm, geom=isl, context='FACES')
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS')
+    # a cut that passes within a hair of an old vertex leaves two rim vertices almost on one spot; their lip faces
+    # would coincide (two faces on one edge after the assembly merges them)
+    bmesh.ops.remove_doubles(bm, verts=[v for v in bm.verts if v.is_boundary], dist=.0005)
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if f.calc_area() < 1e-10], context='FACES')
+    bm.to_mesh(o.data); bm.free(); o.data.update()
+
+def clear_of_skin(o, skin_bvh, clear=.004, reach=.03, mask=None, spread=4):
+    """Cloth never lies in or under the skin: every vertex nearer than `clear` to the skin's outer side (or inside it,
+    up to `reach`) is pushed out along the skin normal. The push is shared with the neighbours before it is applied
+    (a vertex moved alone leaves a tooth). mask(co) -> bool array limits it to a region."""
+    c = co_np(o.data); push = np.zeros((len(c), 3)); n_moved = 0; worst = 0.0
+    idx = np.nonzero(mask(c))[0] if mask is not None else range(len(c))
+    for i in idx:
+        loc, nrm, _, dist = skin_bvh.find_nearest(Vector(c[i]), reach)
+        if loc is None: continue
+        sd = float((Vector(c[i]) - loc).dot(nrm))
+        if sd < clear: push[i] = np.array(nrm) * (clear - sd); n_moved += 1; worst = max(worst, clear - sd)
+    if n_moved:
+        bm_ = bmesh.new(); bm_.from_mesh(o.data); bm_.verts.ensure_lookup_table()
+        nbr = [[e.other_vert(v).index for e in v.link_edges] for v in bm_.verts]; bm_.free()
+        raw = push.copy(); need = np.linalg.norm(raw, axis=1)
+        for _ in range(spread):
+            avg = np.array([(push[i] + push[nb].sum(0)) / (1 + len(nb)) if nb else push[i] for i, nb in enumerate(nbr)])
+            push = np.where((np.linalg.norm(avg, axis=1) > need)[:, None], avg, raw)
+        set_co(o.data, c + push)
+    log('cleared of the skin', o.name, 'vertices', n_moved, 'largest push mm', round(worst * 1000, 1))
+
 def smooth_boundary(o, it=4, lam=.5):
     bm = bmesh.new(); bm.from_mesh(o.data)
     for loop in boundary_loops(bm):
@@ -76,10 +130,21 @@ def add_lips(o, thickness=.003, lip=.012, select=None, uv_layers=True):
             if t.length < 1e-9: t = Vector((1, 0, 0))
             t.normalize(); nrm = v.normal
             inw = nrm.cross(t); 
-            # orient inward using an adjacent face centre
-            fc = v.link_faces[0].calc_center_median() - v.co
+            # orient inward using the adjacent faces (all of them: the first alone may be a sliver lying along the rim)
+            fc = sum((lf.calc_center_median() for lf in v.link_faces), Vector()) / len(v.link_faces) - v.co
             if inw.dot(fc) < 0: inw = -inw
-            a = bm.verts.new(v.co - nrm * thickness); b = bm.verts.new(v.co - nrm * thickness + inw * lip - nrm * .0005)
+            r1.append((v, nrm, inw))
+        # the turned-in strip runs along the rim's own smoothed direction, and is shorter where the rim bends back on
+        # itself (the point of a V neckline): strips that cross there came out of the leather as pale spikes
+        INW = [q[2].copy() for q in r1]
+        for _ in range(3): INW = [(INW[i - 1] + INW[i] * 2 + INW[(i + 1) % n]).normalized() if (INW[i - 1] + INW[i] * 2 + INW[(i + 1) % n]).length > 1e-9 else INW[i] for i in range(n)]
+        rr = r1; r1 = []; r2 = []
+        for i, (v, nrm, inw0) in enumerate(rr):
+            a_ = loop[i - 1].co - v.co; b_ = loop[(i + 1) % n].co - v.co
+            bend = a_.angle(b_) if a_.length > 1e-9 and b_.length > 1e-9 else math.pi      # pi on a straight rim
+            concave = (a_ + b_).dot(INW[i]) > 0                                            # the rim closes in on its own strip
+            k = max(.25, min(1.0, bend / math.pi)) if concave else 1.0
+            a = bm.verts.new(v.co - nrm * thickness); b = bm.verts.new(v.co - nrm * thickness + INW[i] * lip * k - nrm * .0005)
             r1.append(a); r2.append(b)
         for i in range(n):
             j = (i + 1) % n
@@ -329,6 +394,11 @@ def pack_charts(objs, size, margin_px=12, layer_src='UVMetric', layer_dst='UVMap
             if try_pack(mid, mode): lo = mid
             else: hi = mid
         if lo > best[0]: best = (lo, mode)
+    if best[1] is None or try_pack(best[0], best[1]) is None:
+        bad = [(it['o'].name, it['cid']) for it in items if not (np.isfinite(it['w']) and np.isfinite(it['h']))]
+        if bad: raise RuntimeError('pack_charts: charts with non-finite UVs: ' + str(bad))
+        big = sorted(items, key=lambda it: -max(it['w'], it['h']))[:6]
+        raise RuntimeError('pack_charts: the charts do not fit at any density; largest (object, chart, w m, h m): ' + str([(it['o'].name, it['cid'], round(it['w'], 3), round(it['h'], 3)) for it in big]))
     ppm = best[0]; res = try_pack(ppm, best[1])
     for it, x, y, rot in res:
         o = it['o']; uv, lc = cache[o.name]; b = it['b']; k = ppm * it['scale'] / size
