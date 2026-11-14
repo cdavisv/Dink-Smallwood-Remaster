@@ -1,0 +1,136 @@
+{
+ "name": "SM_Corpse_Girl_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/SM_Corpse_Girl_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/SM_Corpse_Girl_PR.blend",
+ "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Corpse_Girl_PR",
+ "dimensions_m": [
+  1.8,
+  1.8,
+  0.3043
+ ],
+ "bounds_min_m": [
+  -0.9,
+  -0.9,
+  -0.004
+ ],
+ "bounds_max_m": [
+  0.9,
+  0.9,
+  0.3004
+ ],
+ "lod0_triangles": 37310,
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Girl_PR",
+   "channels": "base colour sRGB + alpha (cut-out)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Girl_PR",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Girl_PR",
+   "channels": "R occlusion, G roughness, B metallic"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_Pool_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Girl_Pool",
+   "channels": "base colour sRGB + alpha (cut-out)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_Pool_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Girl_Pool",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_Pool_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Corpse_Girl_Pool",
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Corpse_Girl_PR",
+  "MI_Corpse_Girl_Pool"
+ ],
+ "kit_materials": [
+  {
+   "name": "MI_Corpse_Girl_PR",
+   "kind": "masked",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_PR_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_PR_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_PR_ORM.png"
+   }
+  },
+  {
+   "name": "MI_Corpse_Girl_Pool",
+   "kind": "masked",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_Pool_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_Pool_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Girl/T_Corpse_Girl_Pool_ORM.png"
+   }
+  }
+ ],
+ "collision_hulls": 0,
+ "material_exception": "unique BC/N/ORM bakes private to this asset (not a row of ART_STANDARD.md section 2): remains are one-off set pieces",
+ "pivot": "bbox centre in X/Y, lowest point at z = 0; in Blender +X is screen right and +Y screen up (north) for a yaw_from_sprite row",
+ "families": [
+  "corpse_girl",
+  "335 people/girl/death-"
+ ],
+ "dresses": "the village girl torn open: belly and chest laid open over ribs and entrails, a leg and a forearm torn off beside her, in her blood",
+ "third_party": [
+  "MakeHuman CC0 base mesh, skin, eyes and hair (Art/Characters/ThirdParty/MakeHuman), through the source character",
+  "park_dirt (render ground)"
+ ],
+ "known_weaknesses": "The body is the rigged girl of PhotorealPass/Unclaimed posed by rule (limbs aimed into the plane of the back and sunk to the ground, no cloth simulation: the clothes follow the skin weights), baked again onto one 2048 px atlas, so face, hands and hair are softer than on the living character and the hair is a hard cut-out. The openings are cut by a ragged ellipse and their inside is a displaced lump of muscle with plain rib rods and three loops of gut: no organs, no anatomy beyond that; severed ends are a lump and a rod of bone. Scaled by 1.00 to keep body and pool inside the 1.45 m footprint of the 1997 picture. The pool, the drops and the soaked fringe are a flat alpha-tested card 6 mm above the ground. Static.",
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 50.7,
+   "p99": 193.4
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.42,
+   "p95": 0.62
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.457
+ },
+ "derived_from": "Unclaimed/npc_girl/Girl (SK_Girl_PR LOD0), posed dead, opened, bloodied and baked again",
+ "sprite_footprint_m": 1.45,
+ "body_scale": 1.0,
+ "pool_extent_m": 1.27,
+ "gore_in_mesh": "opened body with flesh rims, ribs and entrails as the picture shows, severed parts with stumps, blood round the wounds; pool card with drops and a soaked fringe (no companion decal)",
+ "pool_card_m": 1.8
+}
