@@ -240,12 +240,28 @@ bool FDinkHardnessSoftSpriteTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("the tree's and the thorn's hardboxes are stamped again"), Count(*Live, 101) + Count(*Live, 102), 1378 + 4080);
 	TestEqual(TEXT("the walker now walks through where the barrel was, to 40 px from Dink"), Walk(E, 320, 260, 345), 345 - 39);
 
-	// A screen load builds the hardness anew (load_map). The remaster does not apply editor_type 2/3 hardness at load (see pitfall 77): the
-	// loaded map has the barrel again.
+	// A screen load builds the hardness anew (load_map), and place_sprites_game runs update_play_changes first (D:5974, 5792-5798): the save's
+	// editor_type 3 clears the barrel's hard flag, so its box is not stamped on the next visit either (pitfall 77, fixed 14 Nov 2026).
 	E.Story->OnScreenEntered(Screen + 1);
 	E.Story->OnScreenEntered(Screen);
 	E.Story->RunUntilIdle();
-	TestNull(TEXT("a screen load drops the redrawn map"), E.G->GetLiveHardness(Screen));
+	const FDinkHardnessMap* Reloaded = E.G->GetLiveHardness(Screen);
+	TestTrue(TEXT("the reloaded map has no pixel of the barrel's hardbox"), !Reloaded || Count(*Reloaded, 103) == 0);
+	TestEqual(TEXT("the barrel made flat for good stays walk-through on the next visit"), E.G->GetHard(Screen, 320, 316), 0);
+	TestEqual(TEXT("the tree's and the thorn's hardboxes are still there"), Reloaded ? Count(*Reloaded, 101) + Count(*Reloaded, 102) : -1, 1378 + 4080);
+	TestEqual(TEXT("the walker walks through where the barrel was"), Walk(E, 320, 260, 345), 345 - 39);
+	// editor_type 5 (background, hard) stamps it again on the next load, with the picture the save holds (here the intact barrel's again).
+	const FDinkPlacementInfo* BarrelInfo = E.G->GetData().FindPlacement(FDinkOriginId(Screen, BarrelIndex));
+	E.World->SetOverride(FDinkOriginId(Screen, BarrelIndex), EDinkOverrideType::BackgroundHard);
+	if (BarrelInfo)
+	{
+		Run(E, E.D->HandleForPlacement(Screen, BarrelIndex), { FString::Printf(TEXT("editor_seq %d %d"), BarrelIndex, BarrelInfo->Seq),
+			FString::Printf(TEXT("editor_frame %d %d"), BarrelIndex, BarrelInfo->Frame) });
+	}
+	E.Story->OnScreenEntered(Screen + 1);
+	E.Story->OnScreenEntered(Screen);
+	E.Story->RunUntilIdle();
+	TestTrue(TEXT("editor_type 5: the barrel's box is stamped on load (100 + its index)"), E.G->GetHard(Screen, 320, 316) == 103);
 	return true;
 }
 
@@ -388,6 +404,26 @@ bool FDinkHardnessGreyboxCollisionTest::RunTest(const FString& Parameters)
 	TestNull(TEXT("a screen load removes the runtime collision"), Greybox->GetRuntimeSolidCollision(Screen));
 	TestTrue(TEXT("and gives the baked one back"), Blocked(BarrelWest, BarrelEast));
 	TestFalse(TEXT("the pig is soft again"), Blocked(PigWest, PigEast));
+
+	// Back on the screen: bar-gh saved editor_type 3 for the barrel, so place_sprites_game does not stamp it (update_play_changes, D:5974,
+	// 5792-5798) and the pawn walks through where it stood, as in the original (pitfall 77, fixed 14 Nov 2026).
+	E.Story->OnScreenEntered(Screen);
+	E.Story->RunUntilIdle();
+	TestFalse(TEXT("the next visit: the flattened barrel does not block the pawn"), Blocked(BarrelWest, BarrelEast));
+	TestNotNull(TEXT("through a runtime collision built from the loaded map"), Greybox->GetRuntimeSolidCollision(Screen));
+	TestFalse(TEXT("the pig (map.dat hard 1) stays soft"), Blocked(PigWest, PigEast));
+	// A placement removed for good (editor_type 1) is never stamped (D:5784, 5974): its baked box leaves the pawn's collision on load too.
+	E.World->SetOverride(FDinkOriginId(Screen, BarrelIndex), EDinkOverrideType::RemovedForever);
+	E.Story->OnScreenEntered(Screen + 1);
+	E.Story->OnScreenEntered(Screen);
+	E.Story->RunUntilIdle();
+	TestFalse(TEXT("a removed barrel does not block the pawn"), Blocked(BarrelWest, BarrelEast));
+	E.World->SetOverride(FDinkOriginId(Screen, BarrelIndex), EDinkOverrideType::None);
+	E.Story->OnScreenEntered(Screen + 1);
+	E.Story->OnScreenEntered(Screen);
+	E.Story->RunUntilIdle();
+	TestTrue(TEXT("without play changes the baked collision is back"), Blocked(BarrelWest, BarrelEast));
+	TestNull(TEXT("and no runtime collision is built"), Greybox->GetRuntimeSolidCollision(Screen));
 
 	Greybox->UnregisterScreen(Volume);
 	GI->Shutdown();

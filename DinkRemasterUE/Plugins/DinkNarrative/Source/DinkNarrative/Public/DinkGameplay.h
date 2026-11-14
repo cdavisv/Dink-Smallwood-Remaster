@@ -555,6 +555,13 @@ public:
 	const FDinkHardnessMap* GetLiveHardness(int32 Screen) const;
 	/** A screen load (load_map + place_sprites_game build g_hitmap anew, D:5966): drops the redrawn maps and the visit's sp_hard and sp_prop flags. */
 	void OnScreenLoaded();
+	/**
+	 * place_sprites_game (D:5966-6140) after the base script's main: it runs update_play_changes first (D:5974), so the save's editor_type of
+	 * each placement decides whether its hardbox is stamped (removed: no; 2/3: no; 4/5: yes) and with which picture. Where that differs from
+	 * map.dat's loaded map, the screen gets that map for GetHard (as a live map whose Base is the baked map) and the greybox's solid collision
+	 * follows. Legacy (untagged) screens only; the original-hardness path of tagged screens applies its own editor flags. (Pitfall 77.)
+	 */
+	void ApplyLoadedPlayChanges(int32 Screen);
 
 	// ---- The placement's prop flag (sp_prop, owner decision OD1 of 9 Nov 2026) ----
 
@@ -641,7 +648,7 @@ private:
 	{
 		/** g_hitmap of the screen after the draws so far. */
 		TSharedPtr<FDinkHardnessMap> Map;
-		/** The map before the first draw (the loaded map, removed placements' boxes as tile hardness): what the greybox's baked collision shows. */
+		/** What the greybox's baked collision shows: map.dat's loaded map as the importer baked it (no play changes). */
 		TArray<uint8> Base;
 	};
 	FDinkHardnessMap& EnsureLiveHardness(int32 Screen);
@@ -661,7 +668,10 @@ private:
 	TMap<FDinkOriginId, int32> VisitPlacementProp;
 	/** A stamped hardbox code (100 + n) of Screen that an sp_prop of this visit made walk-through (prop != 0 where map.dat has 0, D:569). */
 	bool IsWalkThroughByProp(int32 Screen, int32 Code) const;
-	/** The loaded map of Screen as the engine holds it (removed placements' boxes show the tile layer); false without data. */
+	/** map.dat's loaded map of Screen for the current &vision, as the importer baked it into the greybox; false without data. */
+	bool BuildBakedCodes(int32 Screen, TArray<uint8>& OutCodes) const;
+	/** The loaded map of Screen as the engine holds it after update_play_changes (removed and editor_type 2/3 placements' boxes show the tile
+	 * layer, editor_type 4/5 ones are stamped with their saved picture); false without data. */
 	bool BuildLoadedCodes(int32 Screen, TArray<uint8>& OutCodes, int32& OutVision) const;
 
 	void SetFact(const TCHAR* Name, int32 Value);

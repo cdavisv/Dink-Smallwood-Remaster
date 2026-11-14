@@ -2024,16 +2024,109 @@ bool UDinkGameplay::BuildLoadedCodes(int32 Screen, TArray<uint8>& OutCodes, int3
 	// skips it after update_play_changes, D:5974, 5784), so its pixels show the tile layer. (GetHard reads them as 0 until a redraw.)
 	if (const UDinkWorldStateSubsystem* World = Story ? Story->GetWorldState() : nullptr)
 	{
+		// update_play_changes (D:5786-5811): editor_type 2/3 clear a placement's hard flag (its box is not stamped), 4/5 set it (stamped), and the
+		// saved editor_seq / editor_frame is its picture (D:5829-5830). place_sprites_game then stamps every active, hard placement of the
+		// current vision with 100 + its index (D:6050-6054, 6129-6132).
+		TSet<int32> Unstamp;
+		struct FStamp { const FDinkPlacementInfo* P; int32 Seq; int32 Frame; };
+		TArray<FStamp> Stamp;
+		for (const FDinkPlacementInfo* P : Data.GetPlacementsOnScreen(Screen))
+		{
+			FDinkWorldOverride Override;
+			if (!P || P->Origin.Placement < 1 || P->Origin.Placement > 99 || !World->TryGetOverride(P->Origin, Override) ||
+				Override.Type == EDinkOverrideType::None || World->IsPlacementRemoved(P->Origin))
+			{
+				continue;
+			}
+			bool bActive = false;
+			int32 Type = 0, Hard = 1, Seq = 0, Frame = 0;
+			if (!MapPlacement(*P, bActive, Type, Hard, Seq, Frame) || !bActive)
+			{
+				continue;
+			}
+			// update_play_changes sets both seq and frame from the save (D:5829-5830, 0 when a script never wrote them); the numeric pictures
+			// the editor_seq / editor_frame commands recorded (and saves keep) give both, unlike the override's single Variant.
+			EffectiveHardnessPicture(*P, Seq, Frame);
+			const bool bVision = P->Vision == 0 || P->Vision == OutVision;
+			const bool bWas = bVision && P->Hard == 0;
+			const bool bNow = bVision && Hard == 0;
+			const bool bNewPicture = Seq != P->Seq || Frame != P->Frame;
+			if (bWas && (!bNow || bNewPicture))
+			{
+				Unstamp.Add(100 + P->Origin.Placement);
+			}
+			if (bNow && (!bWas || bNewPicture))
+			{
+				Stamp.Add({ P, Seq, Frame });
+			}
+		}
 		for (int32 i = 0; i < OutCodes.Num(); ++i)
 		{
 			const int32 Code = OutCodes[i];
-			if (Code > 100 && World->IsPlacementRemoved(FDinkOriginId(Screen, Code - 100)))
+			if (Code > 100 && (Unstamp.Contains(Code) || World->IsPlacementRemoved(FDinkOriginId(Screen, Code - 100))))
 			{
 				OutCodes[i] = Tiles && Tiles->Codes.IsValidIndex(i) ? Tiles->Codes[i] : 0;
 			}
 		}
+		if (Stamp.Num() > 0)
+		{
+			// In the rank order of place_sprites_game (que, else y; the lower index first on a tie, D:5980-6003).
+			Algo::StableSortBy(Stamp, [](const FStamp& S) { return S.P->Que != 0 ? S.P->Que : S.P->Y; });
+			FDinkHardnessMap Map;
+			Map.Screen = Screen;
+			Map.Codes = MoveTemp(OutCodes);
+			for (const FStamp& S : Stamp)
+			{
+				const FDinkFrameInfo* Box = S.Seq > 0 ? Data.FindFrame(S.Seq, FMath::Max(1, S.Frame)) : nullptr;
+				if (!Box && S.Seq > 0)
+				{
+					Box = Data.FindInitSequence(S.Seq);
+				}
+				if (Box)
+				{
+					AddHardness(Map, S.P->X + Box->Left, S.P->Y + Box->Top, S.P->X + Box->Right, S.P->Y + Box->Bottom, static_cast<uint8>(100 + S.P->Origin.Placement));
+				}
+			}
+			OutCodes = MoveTemp(Map.Codes);
+		}
 	}
 	return bLoaded;
+}
+
+bool UDinkGameplay::BuildBakedCodes(int32 Screen, TArray<uint8>& OutCodes) const
+{
+	OutCodes.Reset();
+	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
+	const FDinkHardnessMap* Loaded = Data.GetHardness(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0);
+	if (!Loaded || Loaded->Codes.Num() != FDinkHardnessMap::Width * FDinkHardnessMap::Height)
+	{
+		OutCodes.SetNumZeroed(FDinkHardnessMap::Width * FDinkHardnessMap::Height);
+		return false;
+	}
+	OutCodes = Loaded->Codes;
+	return true;
+}
+
+void UDinkGameplay::ApplyLoadedPlayChanges(int32 Screen)
+{
+	if (Screen <= 0 || RequiresOriginalHardnessScreen(Screen) || LiveHardness.Contains(Screen))
+	{
+		return;
+	}
+	TArray<uint8> Baked, Loaded;
+	int32 Vision = 0;
+	if (!BuildBakedCodes(Screen, Baked) || !BuildLoadedCodes(Screen, Loaded, Vision) || Baked == Loaded)
+	{
+		return;
+	}
+	FLiveHardness& Live = LiveHardness.Add(Screen);
+	Live.Map = MakeShared<FDinkHardnessMap>();
+	Live.Map->Screen = Screen;
+	Live.Map->Vision = Vision;
+	Live.Map->Codes = MoveTemp(Loaded);
+	Live.Base = MoveTemp(Baked);
+	Note(FString::Printf(TEXT("play changes stamped on SCR_%03d"), Screen));
+	SyncGreyboxHardness(Screen);
 }
 
 FDinkHardnessMap& UDinkGameplay::EnsureLiveHardness(int32 Screen)
@@ -2046,7 +2139,9 @@ FDinkHardnessMap& UDinkGameplay::EnsureLiveHardness(int32 Screen)
 	Live.Map = MakeShared<FDinkHardnessMap>();
 	Live.Map->Screen = Screen;
 	BuildLoadedCodes(Screen, Live.Map->Codes, Live.Map->Vision);
-	Live.Base = Live.Map->Codes;
+	// The greybox's collision is the importer's bake of map.dat's map: the first draw's changes are measured against that, so a placement removed
+	// before this visit (its box baked solid) comes out of the collision too.
+	BuildBakedCodes(Screen, Live.Base);
 	return *Live.Map;
 }
 
@@ -2289,16 +2384,16 @@ void UDinkGameplay::SyncGreyboxHardness(int32 Screen)
 	// The greybox's solid collision was baked from the loaded map: pass on only what the draws changed and what sp_prop made walk-through
 	// (1 now solid, 2 no longer solid).
 	const FLiveHardness* Live = LiveHardness.Find(Screen);
-	TArray<uint8> Loaded;
+	TArray<uint8> Loaded, Baked;
 	if (!Live)
 	{
 		int32 Vision = 0;
-		if (!BuildLoadedCodes(Screen, Loaded, Vision))
+		if (!BuildLoadedCodes(Screen, Loaded, Vision) || !BuildBakedCodes(Screen, Baked))
 		{
 			return;
 		}
 	}
-	const TArray<uint8>& Base = Live ? Live->Base : Loaded;
+	const TArray<uint8>& Base = Live ? Live->Base : Baked;
 	const TArray<uint8>& Now = Live ? Live->Map->Codes : Loaded;
 	if (Base.Num() != Now.Num())
 	{

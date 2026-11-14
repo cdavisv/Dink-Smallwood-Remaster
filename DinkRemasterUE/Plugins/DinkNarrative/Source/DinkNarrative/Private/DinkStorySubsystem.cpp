@@ -1092,6 +1092,11 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,
 	}
 	if (!bRunScreenScripts)
 	{
+		// No scripts (tests): place_sprites_game's hardness still follows the save's editor_types (D:5974).
+		if (Gameplay && Gameplay->HasData())
+		{
+			Gameplay->ApplyLoadedPlayChanges(Screen);
+		}
 		return;
 	}
 
@@ -1168,6 +1173,12 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,
 void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
 {
     if(Gameplay&&Gameplay->IsHardnessLoading())return;
+	// place_sprites_game (D:5966) runs after the base script's main (D:6805-6820, so with its &vision) and starts with update_play_changes
+	// (D:5974): the hardness of the save's editor_type 1-5 placements (pitfall 77). Tagged screens do this in their own admission.
+	if (Gameplay && Gameplay->HasData())
+	{
+		Gameplay->ApplyLoadedPlayChanges(Screen);
+	}
 	const int32 Vision = Facts.IsValid() ? Facts->GetFact(NAME_Vision) : 0;
 	UWorld* World = GetWorld();
 	TMap<int32, AActor*> Actors;
