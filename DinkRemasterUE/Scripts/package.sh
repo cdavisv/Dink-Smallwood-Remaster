@@ -22,14 +22,15 @@
 #   DINK_PACKAGE_MAPS       '+'-separated maps to cook (default /Game/Dink/_Generated/Maps/L_Greybox_World;
 #                           its streaming sublevels are cooked by reference)
 #   DINK_COOK_DIRS          '+'-separated extra content dirs (absolute) to cook. Default: every existing one
-#                           of Dink/{Kits,Props,Foliage,Camera,Refinements,Audio,Creatures,NPC,Hero,Materials,Textures,_Generated/Sprites}, Characters and Input:
+#                           of Dink/{Kits,Props,Foliage,Camera,Refinements,Audio,Creatures,NPC,Hero,Materials,Textures,Photoreal,_Generated/Sprites}, Characters and Input:
 #                           the runtime loads these by string path from Data/Art and Data/Audio JSON,
 #                           which the cook cannot see (including runtime-selected sprite frames). Set to "none" to disable.
 #   DINK_COMPILE_EDITOR=1   let UAT build the editor target too (default: -nocompileeditor)
 #   DINK_ALLOW_CONCURRENT=1 run even though an editor / UBT / UAT process is already running
 #
 # Log: Saved/Logs/package.log. Prints one PACKAGE OK / PACKAGE FAILED line. Exit code is UAT's
-# (2 = preflight failed, 3 = UAT succeeded but the binary is missing).
+# (2 = preflight failed, 3 = UAT succeeded but the binary is missing, 4 = string-path content missing from the package:
+# Scripts/check_package_content.py).
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -80,8 +81,10 @@ done
 # Busy = a headless editor/test/cook, UBT or UAT anywhere, or an editor/game of THIS project (another agent's visible
 # playtest game of a different project directory, e.g. ~/Work/DinkPlaytestStage, does not use our Content/Saved/DDC).
 if [[ -z "${DINK_ALLOW_CONCURRENT:-}" ]]; then
-	busy="$(pgrep -af 'UnrealEditor-Cmd|UnrealBuildTool|RunUAT|AutomationTool' || true)"
-	busy_here="$(pgrep -af 'Binaries/Linux/UnrealEditor' | grep -F "$UPROJECT" || true)"
+	# By process NAME (as the shared machine's gate does): a command line that only mentions the editor (another session's
+	# waiting loop, a shell whose arguments name it) is not a running editor.
+	busy="$(ps -eo pid=,comm=,args= | awk '$2=="UnrealEditor-Cmd" || $2=="UnrealEditor-Cm" || ($2=="dotnet" && ($3 ~ /UnrealBuildTool\.dll$/ || $4 ~ /UnrealBuildTool\.dll$/)) || ($2=="dotnet" && $0 ~ /AutomationTool\.dll/) || ($2 ~ /^(bash|sh)$/ && $4 ~ /RunUAT\.sh$/)' || true)"
+	busy_here="$(ps -eo pid=,comm=,args= | awk '$2=="UnrealEditor" || $2=="UnrealEditor-Cm"' | grep -F "$UPROJECT" || true)"
 	if [[ -n "$busy$busy_here" ]]; then
 		fail "an editor, UnrealBuildTool or AutomationTool process is already running; the machine cannot hold two (DINK_ALLOW_CONCURRENT=1 to override): $(echo "$busy$busy_here" | head -1 | cut -c1-160)"
 	fi
@@ -101,7 +104,7 @@ if [[ "${DINK_COOK_DIRS:-}" != "none" ]]; then
 	if [[ -n "${DINK_COOK_DIRS:-}" ]]; then
 		IFS='+' read -r -a COOK_DIRS <<<"$DINK_COOK_DIRS"
 	else
-		for d in Dink/Kits Dink/Props Dink/Foliage Dink/Camera Dink/Refinements Dink/Audio Dink/Creatures Dink/NPC Dink/Hero Dink/Materials Dink/Textures Dink/_Generated/Sprites Characters Input; do
+		for d in Dink/Kits Dink/Props Dink/Foliage Dink/Camera Dink/Refinements Dink/Audio Dink/Creatures Dink/NPC Dink/Hero Dink/Materials Dink/Textures Dink/Photoreal Dink/_Generated/Sprites Characters Input; do
 			if [[ -d "$PROJECT_DIR/Content/$d" ]]; then COOK_DIRS+=("$PROJECT_DIR/Content/$d"); fi
 		done
 	fi
@@ -179,7 +182,20 @@ if [[ $rc -eq 0 ]]; then
 			fi
 		done
 	fi
-	echo "PACKAGE OK: $TARGET Linux $CONFIG in ${secs}s (${uat_result:-no result line}; ${warnings} warnings; $staged_note) binary: $BIN log: $LOG"
+	# Every asset the runtime loads by string path (Data JSON, C++ literals) must be in the package; the cook cannot
+	# see those references (13 Nov 2026: no /Game/Dink/Photoreal package was cooked). DINK_SKIP_CONTENT_CHECK=1 skips.
+	content_note="string-path content not checked"
+	if [[ -x "$UNREAL_PAK" && "${DINK_SKIP_CONTENT_CHECK:-0}" != "1" ]]; then
+		content_rc=0
+		content_note="$(python3 -I "$PROJECT_DIR/Scripts/check_package_content.py" --project "$PROJECT_DIR" --stage "$STAGE" --unreal-pak "$UNREAL_PAK" 2>&1)" || content_rc=$?
+		if [[ $content_rc -ne 0 ]]; then
+			echo "PACKAGE FAILED (exit 4) in ${secs}s: the package lacks runtime-bound content."
+			echo "$content_note"
+			exit 4
+		fi
+		content_note="$(head -1 <<<"$content_note")"
+	fi
+	echo "PACKAGE OK: $TARGET Linux $CONFIG in ${secs}s (${uat_result:-no result line}; ${warnings} warnings; $staged_note; $content_note) binary: $BIN log: $LOG"
 else
 	echo "PACKAGE FAILED (exit $rc) in ${secs}s: ${errors} errors, ${warnings} warnings (${uat_result:-no result line}). First errors:"
 	grep -E "$ERR_RE" "$LOG" | head -20 || true
