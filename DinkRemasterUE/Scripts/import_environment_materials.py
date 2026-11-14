@@ -1,7 +1,7 @@
 """Run inside UnrealEditor's Python commandlet via import_environment_materials.sh.
 
 Photoreal pass environment materials (11 Nov 2026):
-  /Game/Dink/Materials/Environment/M_Env_Terrain        master ground: three height-blended, world-aligned layers
+  /Game/Dink/Materials/Environment/M_Env_Terrain        master ground: four height-blended, world-aligned layers (mask RGB + remainder)
   /Game/Dink/Materials/Environment/MI_Env_Terrain_<L>   single-layer instances (dressed screens' meadow and earth)
   /Game/Dink/Materials/Environment/M_Env_Water          single-layer water (fitted ponds; needs depth behind it)
   /Game/Dink/Materials/Environment/M_Env_WaterFlat      opaque deep water for the 3 cm greybox water slabs
@@ -82,7 +82,7 @@ def layer_sources(name, row):
         if s is None:
             return None
         files = {k: TERRAIN / v for k, v in s['files'].items() if k in ('BC', 'N', 'ORM', 'H', 'Macro', 'E')}
-        return files, float(s['tile_size_m'])
+        return files, float(s['tile_size_m']) * float(row.get('tile_scale', 1.0))
     files = {k: SHARED / f"T_Shared_{row['set']}_{k}.png" for k in ('BC', 'N', 'ORM', 'H')}
     return files, float(row['tile_m'])
 
@@ -149,6 +149,8 @@ def new_material(name):
 F1 = unreal.CustomMaterialOutputType.CMOT_FLOAT1
 F2 = unreal.CustomMaterialOutputType.CMOT_FLOAT2
 F3 = unreal.CustomMaterialOutputType.CMOT_FLOAT3
+F4 = unreal.CustomMaterialOutputType.CMOT_FLOAT4
+LAYERS = 'ABCD'   # the mask's RGB weigh A, B, C; D takes what they leave
 
 # ---------------------------------------------------------------------------------------------- textures
 support = {
@@ -167,7 +169,9 @@ for name, row in CATALOGUE['layers'].items():
     textures = {k: import_texture(p, f'T_Env_{name}_{k}', k) for k, p in files.items()}
     textures.setdefault('Macro', support['MacroDefault'])
     layers[name] = {'textures': textures, 'tile_cm': tile_m * 100.0, 'normal_strength': float(row.get('normal_strength', 1.0)),
-                    'backlight': float(row.get('backlight', 0.0)), 'emissive': float(row.get('emissive', 0.0))}
+                    'backlight': float(row.get('backlight', 0.0)), 'emissive': float(row.get('emissive', 0.0)),
+                    'structured': 1.0 if row.get('structured') else 0.0,
+                    'drift': 0.0 if row.get('structured') or row.get('drift') is False else 1.0}
 if 'MeadowTurf' not in layers:
     raise RuntimeError('MeadowTurf layer is required as the default of M_Env_Terrain')
 
@@ -199,11 +203,18 @@ warp = custom(mat, -2100, 320, 'return XY + (Noise.rg - 0.5) * 2.0 * Amount;', F
 link(xy, '', warp, 'XY'); link(warp_tex, 'RGB', warp, 'Noise'); link(warp_amount, '', warp, 'Amount')
 
 S = {}
-for i, L in enumerate('ABC'):
+for i, L in enumerate(LAYERS):
     y = 700 + i * 1100
     tile = scalar_param(mat, f'Tile{L}Cm', default['tile_cm'], -2100, y, group='Layers')
+    # Structured layers (boards, flagstones, cobbles, masonry, plaster): a laid pattern must stay straight and at one
+    # scale, so the meso warp, the quarter-turned variant lookup and the far (5.8 x larger) lookup are off for them.
+    structured = scalar_param(mat, f'Structured{L}', 0.0, -2100, y - 320, group='Layers')
+    # Drift 0: the field-scale value drift and the dry, yellowed patches leave this layer alone (floors, snow, ice).
+    drift = scalar_param(mat, f'Drift{L}', 1.0, -2100, y - 400, group='Layers')
+    uv_src = custom(mat, -2050, y - 80, 'return lerp(W, XY, saturate(S));', F2, ['W', 'XY', 'S'], 'Warped or straight XY')
+    link(warp, '', uv_src, 'W'); link(xy, '', uv_src, 'XY'); link(structured, '', uv_src, 'S')
     uv = expr(mat, unreal.MaterialExpressionDivide, -1950, y)
-    link(warp, '', uv, 'A'); link(tile, '', uv, 'B')
+    link(uv_src, '', uv, 'A'); link(tile, '', uv, 'B')
     uv_plain = expr(mat, unreal.MaterialExpressionDivide, -1950, y + 80)
     link(xy, '', uv_plain, 'A'); link(tile, '', uv_plain, 'B')
     uv_far = expr(mat, unreal.MaterialExpressionMultiply, -1800, y + 80)
@@ -227,7 +238,12 @@ for i, L in enumerate('ABC'):
         'H': tex_param(mat, f'H{L}', t['H'], ST.SAMPLERTYPE_LINEAR_GRAYSCALE, uv, -1600, y + 720),
         'Macro': tex_param(mat, f'Macro{L}', t['Macro'], ST.SAMPLERTYPE_MASKS, uv_macro, -1600, y + 900),
         'NS': scalar_param(mat, f'NormalStrength{L}', default['normal_strength'], -1600, y - 80, group='Layers'),
+        'St': structured, 'Dr': drift,
     }
+structured4 = custom(mat, -1300, -1500, 'return saturate(float4(A, B, C, D));', F4, ['A', 'B', 'C', 'D'], 'Structured layers')
+drift4 = custom(mat, -1300, -1600, 'return saturate(float4(A, B, C, D));', F4, ['A', 'B', 'C', 'D'], 'Drifting layers')
+for L in LAYERS:
+    link(S[L]['St'], '', structured4, L); link(S[L]['Dr'], '', drift4, L)
 fine_uv = expr(mat, unreal.MaterialExpressionMultiply, -2450, -1000, const_b=1.0 / 700.0)
 link(xy, '', fine_uv, 'A')
 fine_tex = expr(mat, unreal.MaterialExpressionTextureSample, -2300, -1000, texture=support['MacroDefault'],
@@ -245,7 +261,10 @@ mask = tex_param(mat, 'LayerMask', support['MaskLayerA'], ST.SAMPLERTYPE_MASKS, 
 blend_k = scalar_param(mat, 'HeightBlend', 0.55, -1300, -420)
 blend_depth = scalar_param(mat, 'HeightBlendDepth', 0.12, -1300, -340)
 weights = custom(mat, -1100, -500, '''
-float3 w = max(Mask, 0.0);
+float4 w = float4(max(Mask, 0.0), 0.0);
+// the fourth layer takes what the three mask channels leave (0 on a mask of up to three layers; the small
+// rounding remainder of an 8-bit mask falls under the height blend's depth and never shows)
+w.w = saturate(1.0 - (w.x + w.y + w.z));
 if (Patch > 0.0)
 {
     // procedural worn-ground mask (authored earth meshes): layer B grows in patches on level ground
@@ -253,17 +272,17 @@ if (Patch > 0.0)
     float p = saturate((n - (1.0 - Patch)) * 5.0) * saturate((Z + 14.0) / 10.0);
     // layer C (pond mud) takes over below the rim, with a noisy upper edge
     float mud = saturate((-Z - 6.0 - n * 14.0) / 12.0);
-    w = float3((1.0 - p) * (1.0 - mud), p * (1.0 - mud), mud);
+    w = float4((1.0 - p) * (1.0 - mud), p * (1.0 - mud), mud, 0.0);
 }
-w /= max(w.x + w.y + w.z, 1e-3);
-float3 h = float3(HA, HB, HC);
-float3 v = saturate(w * 3.0) * (w + h * K);
-float m = max(v.x, max(v.y, v.z)) - Depth;
-float3 r = max(v - m, 0.0);
-return r / max(r.x + r.y + r.z, 1e-4);''', F3, ['Mask', 'HA', 'HB', 'HC', 'K', 'Depth', 'Patch', 'Fine', 'Z'], 'Height-blended layer weights')
+w /= max(w.x + w.y + w.z + w.w, 1e-3);
+float4 h = float4(HA, HB, HC, HD);
+float4 v = saturate(w * 3.0) * (w + h * K);
+float m = max(max(v.x, v.y), max(v.z, v.w)) - Depth;
+float4 r = max(v - m, 0.0);
+return r / max(r.x + r.y + r.z + r.w, 1e-4);''', F4, ['Mask', 'HA', 'HB', 'HC', 'HD', 'K', 'Depth', 'Patch', 'Fine', 'Z'], 'Height-blended layer weights')
 link(scalar_param(mat, 'ProcPatch', 0.0, -1300, -580), '', weights, 'Patch'); link(fine_tex, 'RGB', weights, 'Fine'); link(wz, '', weights, 'Z')
 link(mask, 'RGB', weights, 'Mask')
-for L in 'ABC':
+for L in LAYERS:
     link(S[L]['H'], 'R', weights, 'H' + L)
 link(blend_k, '', weights, 'K'); link(blend_depth, '', weights, 'Depth')
 
@@ -278,10 +297,10 @@ link(scalar_param(mat, 'ShoreWet', 1.0, -1300, -680), '', wet, 'Shore'); link(ma
 # Foliage transmission: looking towards the sun, grass lights up instead of turning into a dark matte sheet.
 cam = expr(mat, unreal.MaterialExpressionCameraVectorWS, -1300, -1000)
 sun = expr(mat, unreal.MaterialExpressionSkyAtmosphereLightDirection, -1300, -920)
-backlight = custom(mat, -1100, -960, 'return pow(saturate(dot(-normalize(Cam), normalize(Sun))), 3.0) * dot(float3(BA, BB, BC), W);', F1,
-                   ['Cam', 'Sun', 'BA', 'BB', 'BC', 'W'], 'Backlight')
+backlight = custom(mat, -1100, -960, 'return pow(saturate(dot(-normalize(Cam), normalize(Sun))), 3.0) * dot(float4(BA, BB, BC, BD), W);', F1,
+                   ['Cam', 'Sun', 'BA', 'BB', 'BC', 'BD', 'W'], 'Backlight')
 link(cam, '', backlight, 'Cam'); link(sun, '', backlight, 'Sun'); link(weights, '', backlight, 'W')
-for L in 'ABC':
+for L in LAYERS:
     link(S[L]['BL'], '', backlight, 'B' + L)
 macro_strength = scalar_param(mat, 'MacroStrength', 0.4, -1300, -200)
 # Field-scale variation (one repeat per 110 m): value drift and patches of drier, yellower ground.
@@ -294,32 +313,36 @@ big_strength = scalar_param(mat, 'FieldVariation', 0.3, -2300, -900)
 dry_amount = scalar_param(mat, 'FieldDryness', 0.3, -2300, -820)
 color = custom(mat, -900, 0, '''
 float vmix = smoothstep(0.35, 0.65, Fine.r);
-float3 ca = lerp(lerp(BCA, VA, vmix), FA, Far), cb = lerp(lerp(BCB, VB, vmix), FB, Far), cc = lerp(lerp(BCC, VC, vmix), FC, Far);
+float4 fr = 1.0 - St;   // 0 for a structured layer: one lookup, straight and at one scale
+float3 ca = lerp(lerp(BCA, VA, vmix * fr.x), FA, Far * fr.x), cb = lerp(lerp(BCB, VB, vmix * fr.y), FB, Far * fr.y), cc = lerp(lerp(BCC, VC, vmix * fr.z), FC, Far * fr.z);
+float3 cd = lerp(lerp(BCD, VD, vmix * fr.w), FD, Far * fr.w);
+float loose = dot(W, Dr);   // field-scale drift and dry patches belong to open ground, not to a floor or to snow
 float3 k = float3(0.5, 0.32, 0.18);
-float3 m = float3(dot(MA, k), dot(MB, k), dot(MC, k)) * 2.0 - 1.0;
+float4 m = float4(dot(MA, k), dot(MB, k), dot(MC, k), dot(MD, k)) * 2.0 - 1.0;
 // value drift plus a slight warm/cool drift, strongest in the largest octave
 float3 warm = float3(1.0, 0.9, 0.72);
-ca *= 1.0 + Strength * m.x * warm; cb *= 1.0 + Strength * m.y * warm; cc *= 1.0 + Strength * m.z * warm;
-float3 c = max(ca * W.x + cb * W.y + cc * W.z, 0.0);
-c *= 1.0 + BigStrength * (Big.r * 2.0 - 1.0);
+ca *= 1.0 + Strength * m.x * warm; cb *= 1.0 + Strength * m.y * warm; cc *= 1.0 + Strength * m.z * warm; cd *= 1.0 + Strength * m.w * warm;
+float3 c = max(ca * W.x + cb * W.y + cc * W.z + cd * W.w, 0.0);
+c *= 1.0 + BigStrength * loose * (Big.r * 2.0 - 1.0);
 float lum = dot(c, float3(0.3, 0.59, 0.11));
-float dry = Dry * smoothstep(0.45, 0.8, Big.g * 0.7 + Big.b * 0.3);
+float dry = Dry * loose * smoothstep(0.45, 0.8, Big.g * 0.7 + Big.b * 0.3);
 c = lerp(c, lum * float3(1.16, 1.04, 0.74), dry);
 c *= 1.0 + BL * float3(0.85, 1.0, 0.4);
 c *= lerp(1.0, 0.68, Wet);
 c *= Tint;
 if (HRange > 0.0) c = lerp(c, c * HTint, saturate(Z / HRange));
 return c;''', F3,
-               ['BCA', 'BCB', 'BCC', 'FA', 'FB', 'FC', 'MA', 'MB', 'MC', 'W', 'Far', 'Strength', 'Big', 'BigStrength', 'Dry',
-                'VA', 'VB', 'VC', 'Fine', 'BL', 'Wet', 'Tint', 'HTint', 'HRange', 'Z'], 'Layer colour')
+               ['BCA', 'BCB', 'BCC', 'BCD', 'FA', 'FB', 'FC', 'FD', 'MA', 'MB', 'MC', 'MD', 'W', 'Far', 'Strength', 'Big', 'BigStrength', 'Dry',
+                'VA', 'VB', 'VC', 'VD', 'Fine', 'BL', 'Wet', 'Tint', 'HTint', 'HRange', 'Z', 'St', 'Dr'], 'Layer colour')
+link(structured4, '', color, 'St'); link(drift4, '', color, 'Dr')
 link(fine_tex, 'RGB', color, 'Fine'); link(backlight, '', color, 'BL'); link(wet, '', color, 'Wet'); link(wz, '', color, 'Z')
 link(vector_param(mat, 'Tint', (1.0, 1.0, 1.0), -1300, -1160, group='Terrain'), '', color, 'Tint')
 link(vector_param(mat, 'HeightTint', (1.0, 1.0, 1.0), -1300, -1320, group='Terrain'), '', color, 'HTint')
 link(scalar_param(mat, 'HeightTintRangeCm', 0.0, -1300, -1080), '', color, 'HRange')
-for L in 'ABC':
+for L in LAYERS:
     link(S[L]['Var'], 'RGB', color, 'V' + L)
 link(big_tex, 'RGB', color, 'Big'); link(big_strength, '', color, 'BigStrength'); link(dry_amount, '', color, 'Dry')
-for L in 'ABC':
+for L in LAYERS:
     link(S[L]['BC'], 'RGB', color, 'BC' + L); link(S[L]['Far'], 'RGB', color, 'F' + L); link(S[L]['Macro'], 'RGB', color, 'M' + L)
 link(weights, '', color, 'W'); link(far, '', color, 'Far'); link(macro_strength, '', color, 'Strength')
 out(color, '', MP.MP_BASE_COLOR)
@@ -328,8 +351,8 @@ vnormal = expr(mat, unreal.MaterialExpressionVertexNormalWS, -1300, 400)
 wp_rel = expr(mat, unreal.MaterialExpressionWorldPosition, -1300, 480,
               world_position_shader_offset=unreal.WorldPositionIncludedOffsets.WPT_CAMERA_RELATIVE)
 normal = custom(mat, -900, 400, '''
-float3 n = NA * float3(SA, SA, 1.0) * W.x + NB * float3(SB, SB, 1.0) * W.y + NC * float3(SC, SC, 1.0) * W.z;
-n.xy += ND.xy * DS * (1.0 - saturate(Depth / 450.0));
+float3 n = NA * float3(SA, SA, 1.0) * W.x + NB * float3(SB, SB, 1.0) * W.y + NC * float3(SC, SC, 1.0) * W.z + N4 * float3(S4, S4, 1.0) * W.w;
+n.xy += ND.xy * DS * (1.0 - saturate(Depth / 450.0)) * (1.0 - dot(W, St));
 n.xy *= (1.0 - Far * 0.55) * (1.0 - 0.5 * Wet);
 n = normalize(n);
 // Geometric normal from the surface itself: the authored pond banks carry unusable shading
@@ -343,7 +366,8 @@ float3 t = float3(1.0, 0.0, 0.0) - nv * nv.x;
 t = dot(t, t) > 1e-4 ? normalize(t) : float3(0.0, 1.0, 0.0);
 float3 b = cross(nv, t);
 // world-aligned UVs: U = +X, V = +Y; green of the (DirectX-convention) sample points towards -V
-return normalize(t * n.x - b * n.y + nv * n.z);''', F3, ['NA', 'NB', 'NC', 'SA', 'SB', 'SC', 'W', 'Far', 'VN', 'WP', 'ND', 'DS', 'Depth', 'Wet'], 'World normal')
+return normalize(t * n.x - b * n.y + nv * n.z);''', F3, ['NA', 'NB', 'NC', 'N4', 'SA', 'SB', 'SC', 'S4', 'W', 'Far', 'VN', 'WP', 'ND', 'DS', 'Depth', 'Wet', 'St'], 'World normal')
+link(structured4, '', normal, 'St')
 # close-range detail normal: layer A's own normal map at 6.4x, faded out by 4.5 m
 uv_detail = expr(mat, unreal.MaterialExpressionMultiply, -1800, 560, const_b=6.37)
 link(S['A']['UV'], '', uv_detail, 'A')
@@ -351,23 +375,24 @@ detail = tex_param(mat, 'NA', default['textures']['N'], ST.SAMPLERTYPE_NORMAL, u
 link(detail, 'RGB', normal, 'ND'); link(scalar_param(mat, 'DetailNormal', 0.55, -1300, 560), '', normal, 'DS')
 link(depth, '', normal, 'Depth'); link(wet, '', normal, 'Wet')
 link(wp_rel, '', normal, 'WP')
-for L in 'ABC':
-    link(S[L]['N'], 'RGB', normal, 'N' + L); link(S[L]['NS'], '', normal, 'S' + L)
+for L in LAYERS:
+    pin = '4' if L == 'D' else L
+    link(S[L]['N'], 'RGB', normal, 'N' + pin); link(S[L]['NS'], '', normal, 'S' + pin)
 link(weights, '', normal, 'W'); link(far, '', normal, 'Far'); link(vnormal, '', normal, 'VN')
 out(normal, '', MP.MP_NORMAL)
 
 orm = custom(mat, -900, 800, '''
-float3 o = OA * W.x + OB * W.y + OC * W.z;
-float m = dot(MA * W.x + MB * W.y + MC * W.z, float3(0.2, 0.4, 0.4)) * 2.0 - 1.0;
+float3 o = OA * W.x + OB * W.y + OC * W.z + OD * W.w;
+float m = dot(MA * W.x + MB * W.y + MC * W.z + MD * W.w, float3(0.2, 0.4, 0.4)) * 2.0 - 1.0;
 // A flat plane has no blade-scale self shadowing: keep a floor on roughness so low-sun glare
 // does not sheet across a field, and let it rise with distance (lost normal detail).
 o.g = saturate(max(o.g, RoughMin) + m * RoughVar + Far * 0.08 - BL * 0.14);
 o.g = lerp(o.g, 0.42, Wet * 0.85);
-return o;''', F3, ['OA', 'OB', 'OC', 'MA', 'MB', 'MC', 'W', 'Far', 'RoughVar', 'RoughMin', 'BL', 'Wet'], 'AO / roughness')
+return o;''', F3, ['OA', 'OB', 'OC', 'OD', 'MA', 'MB', 'MC', 'MD', 'W', 'Far', 'RoughVar', 'RoughMin', 'BL', 'Wet'], 'AO / roughness')
 link(backlight, '', orm, 'BL'); link(wet, '', orm, 'Wet')
 link(scalar_param(mat, 'RoughnessFloor', 0.7, -1300, 980), '', orm, 'RoughMin')
 rough_var = scalar_param(mat, 'MacroRoughness', 0.12, -1300, 900)
-for L in 'ABC':
+for L in LAYERS:
     link(S[L]['ORM'], 'RGB', orm, 'O' + L); link(S[L]['Macro'], 'RGB', orm, 'M' + L)
 link(weights, '', orm, 'W'); link(far, '', orm, 'Far'); link(rough_var, '', orm, 'RoughVar')
 ao = expr(mat, unreal.MaterialExpressionComponentMask, -650, 760, r=True, g=False, b=False, a=False)
@@ -380,9 +405,9 @@ link(ao, '', spec, 'AO'); link(wet, '', spec, 'Wet')
 out(spec, '', MP.MP_SPECULAR)
 # Emissive layers (lava crust): the set's E mask glows in the catalogue's lava colour.
 lava = CATALOGUE.get('lava_colour', [1.0, 0.33, 0.07])
-emissive = custom(mat, -900, 1200, f'return (EA.r * SA * W.x + EB.r * SB * W.y + EC.r * SC * W.z) * float3({lava[0]}, {lava[1]}, {lava[2]});', F3,
-                  ['EA', 'EB', 'EC', 'SA', 'SB', 'SC', 'W'], 'Emissive')
-for L in 'ABC':
+emissive = custom(mat, -900, 1200, f'return (EA.r * SA * W.x + EB.r * SB * W.y + EC.r * SC * W.z + ED.r * SD * W.w) * float3({lava[0]}, {lava[1]}, {lava[2]});', F3,
+                  ['EA', 'EB', 'EC', 'ED', 'SA', 'SB', 'SC', 'SD', 'W'], 'Emissive')
+for L in LAYERS:
     link(S[L]['E'], 'RGB', emissive, 'E' + L); link(S[L]['ES'], '', emissive, 'S' + L)
 link(weights, '', emissive, 'W')
 out(emissive, '', MP.MP_EMISSIVE_COLOR)
@@ -407,6 +432,8 @@ for name, data in layers.items():
     EDIT.set_material_instance_scalar_parameter_value(mi, 'TileACm', data['tile_cm'])
     EDIT.set_material_instance_scalar_parameter_value(mi, 'NormalStrengthA', data['normal_strength'])
     EDIT.set_material_instance_scalar_parameter_value(mi, 'BacklightA', data['backlight'])
+    EDIT.set_material_instance_scalar_parameter_value(mi, 'StructuredA', data['structured'])
+    EDIT.set_material_instance_scalar_parameter_value(mi, 'DriftA', data['drift'])
     if 'E' in data['textures']:
         EDIT.set_material_instance_texture_parameter_value(mi, 'EA', data['textures']['E'])
         EDIT.set_material_instance_scalar_parameter_value(mi, 'EmissiveStrengthA', data['emissive'])
@@ -422,13 +449,15 @@ def terrain_instance(mi_name, layer_names, scalars=None, vectors=None):
         mi = TOOLS.create_asset(mi_name, MATS, unreal.MaterialInstanceConstant, unreal.MaterialInstanceConstantFactoryNew())
     EDIT.clear_all_material_instance_parameters(mi)
     EDIT.set_material_instance_parent(mi, terrain)
-    for L, name in zip('ABC', layer_names):
+    for L, name in zip(LAYERS, layer_names):
         data = layers[name]
         for k in ('BC', 'N', 'ORM', 'H', 'Macro'):
             EDIT.set_material_instance_texture_parameter_value(mi, k + L, data['textures'][k])
         EDIT.set_material_instance_scalar_parameter_value(mi, f'Tile{L}Cm', data['tile_cm'])
         EDIT.set_material_instance_scalar_parameter_value(mi, 'NormalStrength' + L, data['normal_strength'])
         EDIT.set_material_instance_scalar_parameter_value(mi, 'Backlight' + L, data['backlight'])
+        EDIT.set_material_instance_scalar_parameter_value(mi, 'Structured' + L, data['structured'])
+        EDIT.set_material_instance_scalar_parameter_value(mi, 'Drift' + L, data['drift'])
     for k, v in (scalars or {}).items():
         EDIT.set_material_instance_scalar_parameter_value(mi, k, float(v))
     for k, v in (vectors or {}).items():

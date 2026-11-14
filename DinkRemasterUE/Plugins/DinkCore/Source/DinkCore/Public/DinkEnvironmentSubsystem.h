@@ -78,6 +78,7 @@ struct FDinkBurnable
  *    placement's own card stays hidden (it would still show the green pine: placement cards are not redrawn from
  *    the script state); `burnable.show_card` true shows it again from the burn on. Read-only on the script state.
  *  - Ground colour: the mean terrain colour under a point (ground_colour.json), for trunk feet.
+ *  - Forest: trees on the unwalkable forest-canopy tiles of the screens in view (ground_classes.json `trees`).
  *
  * Console variables: dink.GrassDensity (multiplier, 0 = off), dink.InteriorExposure (0/1),
  * dink.InteriorExposureBias, dink.Backdrop (0/1), dink.Wind (foliage wind strength).
@@ -230,6 +231,23 @@ public:
 	/** Live sky light colour (review; dink.SkyTint r g b). */
 	void SetSkyTint(const FLinearColor& Colour);
 private:
+	// --- round 7: clearings round low family props, authored props and ground decals; feathered carpet edge ---
+	struct FGrassClear
+	{
+		FTransform WorldToLocal = FTransform::Identity;
+		FBox LocalBox = FBox(ForceInit);
+		FBox2D WorldBounds = FBox2D(ForceInit);   // already grown by the reach
+		float ReachCm = 40.f;
+	};
+	TArray<FGrassClear> GrassClears;
+	TSet<uint64> GrassClearKeys;
+	float ClearMaxHeightCm = 110.f;         // grass.clear_max_height_cm: things taller than this stand in the grass (0 = no clearings)
+	float ClearMaxSpanCm = 320.f;           // grass.clear_max_span_cm: longer things (fence runs, walls) are not props
+	float ClearReachCm = 40.f;              // grass.clear_reach_cm: soft rim round the footprint of the lowest things
+	float EdgeFeather = 1.f;                // grass.edge_feather 0..1: the carpet thins and shortens toward the end of the meadow mask
+	void GatherGrassClears();
+	float GrassClearAt(const FVector2D& At, const TArray<int32>& Candidates) const;
+	float CoverAt(const TArray<uint8>& Mask, double MapX, double MapY) const;
 	float RankEdgeShare = 0.35f;            // share of the taller rank growth kept along walls and fences (grass.rank_edge_share); trunks and pond rims keep all
 	float ShortReachCm = 150.f;             // short turf within this of walls, fences, paths and doors (grass.short_reach_cm)
 	void GatherGrassSources();
@@ -302,6 +320,38 @@ private:
 	};
 	void LoadTownHouses();
 	void ApplyTownHouses(int32 ScreenNumber, const FDinkScreenCorners& Corners);
+
+	// --- forest (13 Nov 2026, visual only): the 1997 tiles paint a closed pine forest where nobody can walk and the
+	// terrain layer under it is bare leaf litter. Trees of environment.json `forest` stand on the points
+	// ground_classes.json lists per screen (`trees`: map x, map y, 1 on the forest's edge; written by the world
+	// export, never on ground a player can reach). No collision; `dink.Forest 0` turns it off. ---
+	struct FDinkForestTree { FVector2D Px = FVector2D::ZeroVector; bool bEdge = false; };
+	void LoadForest();
+	void ApplyForest(int32 ScreenNumber, const FDinkScreenCorners& Corners);
+	TMap<int32, TArray<FDinkForestTree>> ForestTrees;
+	UPROPERTY(Transient)
+	TArray<TObjectPtr<UStaticMesh>> ForestMeshes;
+	UPROPERTY(Transient)
+	TArray<TObjectPtr<UStaticMesh>> ForestUnderMeshes;
+	float ForestInteriorFill = 0.55f, ForestScaleMin = 0.85f, ForestScaleMax = 1.2f, ForestUnderShare = 0.4f, ForestCullCm = 26000.f;
+	TSet<int32> ForestApplied;
+	UPROPERTY(Transient)
+	TArray<TObjectPtr<AActor>> ForestActors;
+
+	// --- relief and water tiles (13 Nov 2026, visual only, no collision): rock of environment.json `relief` on the
+	// cliff-face, rock-mass and cave-wall points of ground_classes.json `relief` where nobody can stand (dink.Relief:
+	// 0 off, 1 tier 1 = the 1997 hardness blocks the disc, 2 also enclosed pockets), and a water sheet over the
+	// `water_tiles` of screens whose collision has no water fill (dink.WaterTiles). ---
+	struct FDinkReliefRock { FVector2D Px = FVector2D::ZeroVector; float ClearPx = 0.f; int32 Tier = 1; };
+	void ApplyRelief(int32 ScreenNumber, const FDinkScreenCorners& Corners);
+	TMap<int32, TArray<FDinkReliefRock>> ReliefRocks;
+	TMap<int32, TArray<FBox2D>> WaterTileRects;
+	UPROPERTY(Transient)
+	TArray<TObjectPtr<UStaticMesh>> ReliefMeshes;
+	UPROPERTY(Transient)
+	TObjectPtr<UMaterialInterface> WaterTileMaterial;
+	float ReliefFill = 0.95f, ReliefSink = 0.12f, ReliefCullCm = 26000.f, WaterTileHeightCm = 3.f;
+	TSet<int32> ReliefApplied;
 
 	// --- pillbug carcass (round 6, visual only): where a photoreal pillbug of the current screen is killed (its actor is
 	// hidden), SM_Pillbug_Corpse_PR lies until the player leaves the screen. Reads actor visibility; writes nothing.

@@ -232,6 +232,8 @@ bool FDinkBundle::Load(const FString& InDir, FString& OutError)
 						Layer.NormalStrength = Num(LayerObject, TEXT("normal_strength"), 1.0);
 						Layer.Backlight = Num(LayerObject, TEXT("backlight"), 0.0);
 						Layer.Emissive = Num(LayerObject, TEXT("emissive"), 0.0);
+						Layer.Structured = Num(LayerObject, TEXT("structured"), 0.0);
+						Layer.Drift = Num(LayerObject, TEXT("drift"), 1.0);
 						S.GroundLayers.Add(Layer);
 					}
 				}

@@ -15,6 +15,8 @@ struct FDinkBundleGroundLayer
 	double NormalStrength = 1.0;
 	double Backlight = 0.0;   // foliage transmission when viewed against the sun
 	double Emissive = 0.0;    // strength of the layer's emissive mask (T_Env_<Name>_E), 0 = none
+	double Structured = 0.0;  // 1 = a laid pattern (boards, flagstones): no UV warp, no variant or far lookup
+	double Drift = 1.0;       // 0 = no field-scale value drift or dry patches on this layer (floors, snow)
 };
 
 struct FDinkBundleScreen

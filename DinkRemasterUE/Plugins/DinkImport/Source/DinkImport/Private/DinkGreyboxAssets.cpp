@@ -833,8 +833,8 @@ namespace DinkGreybox
 		}
 		FString LayerKey;
 		for (const FDinkBundleGroundLayer& L : Screen.GroundLayers)
-			LayerKey += FString::Printf(TEXT("%s:%.3f:%.3f:%.3f:%.3f;"), *L.Name, L.TileCm, L.NormalStrength, L.Backlight, L.Emissive);
-		const FString MiHash = Terrain ? HashStrings({TEXT("ground-mi-terrain/3"), MaskPkg, Screen.GroundMaskHash, LayerKey})
+			LayerKey += FString::Printf(TEXT("%s:%.3f:%.3f:%.3f:%.3f:%.1f:%.1f;"), *L.Name, L.TileCm, L.NormalStrength, L.Backlight, L.Emissive, L.Structured, L.Drift);
+		const FString MiHash = Terrain ? HashStrings({TEXT("ground-mi-terrain/4"), MaskPkg, Screen.GroundMaskHash, LayerKey})
 			: HashStrings({TEXT("ground-mi"), TexPkg});
 		if (IsUpToDate(MiPkg, MiHash))
 		{
@@ -845,8 +845,9 @@ namespace DinkGreybox
 			bool bExisted = false;
 			UMaterialInstanceConstant* MI = BuildMaterialInstance(MiPkg, Terrain, bExisted);
 			MI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("LayerMask")), Cast<UTexture>(LoadGenerated(MaskPkg)));
-			const TCHAR* Suffix[] = {TEXT("A"), TEXT("B"), TEXT("C")};
-			for (int32 I = 0; I < LayerTextures.Num() && I < 3; ++I)
+			// the mask's RGB weigh layers A, B and C; a fourth layer D takes what they leave (M_Env_Terrain)
+			const TCHAR* Suffix[] = {TEXT("A"), TEXT("B"), TEXT("C"), TEXT("D")};
+			for (int32 I = 0; I < LayerTextures.Num() && I < 4; ++I)
 			{
 				auto P = [&](const TCHAR* Name) { return FMaterialParameterInfo(FName(*(FString(Name) + Suffix[I]))); };
 				MI->SetTextureParameterValueEditorOnly(P(TEXT("BC")), LayerTextures[I].BC);
@@ -857,6 +858,8 @@ namespace DinkGreybox
 				MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(FName(*(FString(TEXT("Tile")) + Suffix[I] + TEXT("Cm")))), float(Screen.GroundLayers[I].TileCm));
 				MI->SetScalarParameterValueEditorOnly(P(TEXT("NormalStrength")), float(Screen.GroundLayers[I].NormalStrength));
 				MI->SetScalarParameterValueEditorOnly(P(TEXT("Backlight")), float(Screen.GroundLayers[I].Backlight));
+				MI->SetScalarParameterValueEditorOnly(P(TEXT("Structured")), float(Screen.GroundLayers[I].Structured));
+				MI->SetScalarParameterValueEditorOnly(P(TEXT("Drift")), float(Screen.GroundLayers[I].Drift));
 				if (LayerTextures[I].E)
 				{
 					MI->SetTextureParameterValueEditorOnly(P(TEXT("E")), LayerTextures[I].E);
