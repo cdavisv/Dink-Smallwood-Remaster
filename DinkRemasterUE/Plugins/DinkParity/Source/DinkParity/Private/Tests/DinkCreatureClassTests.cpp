@@ -248,7 +248,7 @@ bool FDinkCreatureClassDressTest::RunTest(const FString&)
 		ADinkPlaceholderActor* OriginBound = SpawnPlacement(World, 438, 3, TEXT("pillbug"), 131, TEXT("en-pill"), Plane);
 		ADinkPlaceholderActor* Proxy = SpawnPlacement(World, 527, 5, TEXT("pillbug"), 131, NAME_None, Plane);
 		Proxy->PlacementKind = TEXT("hardness_only");
-		ADinkPlaceholderActor* Other = SpawnPlacement(World, 527, 6, TEXT("slime_blue"), 651, TEXT("en-slimb"), Plane);
+		ADinkPlaceholderActor* Other = SpawnPlacement(World, 527, 6, TEXT("bonca_gray"), 601, TEXT("en-bonc"), Plane);
 		First->SetActorLocation(FVector(1000, 0, 0));
 		Second->SetActorLocation(FVector(90000, 0, 0));
 		const TArray<FName> TagsBefore = First->Tags;
@@ -578,5 +578,46 @@ bool FDinkCreatureClassParityTest::RunTest(const FString&)
 	}
 	TestEqual(TEXT("frames that differ"), Different, 0);
 	TestTrue(TEXT("the trace is not empty and the sprites moved"), Traces[0].Num() == 240 && Traces[0][0] != Traces[0][239]);
+	return true;
+}
+
+// The duck's gore rows: the fountain of the headless run, the head that flies off, the burst of the second hit.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkCreatureClassGoreRowsTest, "Dink.Art.CreatureClass.GoreRowsParseAndRefuse", DINK_TEST_FLAGS)
+bool FDinkCreatureClassGoreRowsTest::RunTest(const FString&)
+{
+	const TCHAR* Json = TEXT(R"({"schema":"dink-creatures/1","classes":[
+		{"class":"duck","mesh":"/Game/A/SK_Duck.SK_Duck","blood_drop":"/Game/A/SM_Drop.SM_Drop",
+		 "locomotion":{"idle":"/Game/A/I.I","gaits":[{"clip":"/Game/A/W.W","speed_cm_s":60}]},
+		 "roles":{"walk":{"sequences":[21,23],"locomotion":true},
+		          "headless":{"sequences":[111,113],"locomotion":true,"mesh":"/Game/A/SK_Headless.SK_Headless",
+		            "gore":{"bone":"neck_02","drops_per_second":90,"drop_speed_cm_s":300,"spread_deg":16,"drop_size_cm":1.5,
+		                    "trail":{"material":"/Game/A/M_Puddle.M_Puddle","every_cm":90,"size_cm":30},
+		                    "severed":{"flying":"/Game/A/SM_Fly.SM_Fly","landed":"/Game/A/SM_Head.SM_Head","decal":"/Game/A/M_Puddle.M_Puddle","decal_size_cm":70,"speed_cm_s":330,"drops":40}}}},
+		 "bursts":[{"sequences":[111,113],"brain":3,"drops":160,"decal":{"material":"/Game/A/M_Burst.M_Burst","size_cm":170}}]},
+		{"class":"nodrop","mesh":"/Game/A/SK_X.SK_X","locomotion":{"idle":"/Game/A/I.I","gaits":[{"clip":"/Game/A/W.W","speed_cm_s":60}]},
+		 "roles":{"walk":{"sequences":[300],"locomotion":true,"gore":{"bone":"neck","drops_per_second":10}}}},
+		{"class":"nobone","mesh":"/Game/A/SK_X.SK_X","blood_drop":"/Game/A/SM_Drop.SM_Drop","locomotion":{"idle":"/Game/A/I.I","gaits":[{"clip":"/Game/A/W.W","speed_cm_s":60}]},
+		 "roles":{"walk":{"sequences":[400],"locomotion":true,"gore":{"drops_per_second":10}}}},
+		{"class":"nolanding","mesh":"/Game/A/SK_X.SK_X","blood_drop":"/Game/A/SM_Drop.SM_Drop","locomotion":{"idle":"/Game/A/I.I","gaits":[{"clip":"/Game/A/W.W","speed_cm_s":60}]},
+		 "roles":{"walk":{"sequences":[500],"locomotion":true,"gore":{"bone":"neck","severed":{"flying":"/Game/A/SM_Fly.SM_Fly"}}}}}]})");
+	const TSharedPtr<FJsonObject> Manifest = ParseJson(Json);
+	TArray<FDinkCreatureClassBinding> Bindings;
+	TArray<FString> Problems;
+	TestEqual(TEXT("only the complete row is kept"), DinkCreatureClass::ParseBindings(*Manifest, Bindings, &Problems), 1);
+	TestEqual(TEXT("three rows refused, one reason each"), Problems.Num(), 3);
+	if (Bindings.Num() != 1) return false;
+	const FDinkCreatureClassBinding& Duck = Bindings[0];
+	const FDinkCreatureRole* Headless = Duck.RoleFor(113);
+	TestNotNull(TEXT("headless role"), Headless);
+	if (!Headless) return false;
+	TestTrue(TEXT("fountain"), Headless->Gore.HasFountain() && Headless->Gore.Bone == FName(TEXT("neck_02")) && FMath::IsNearlyEqual(Headless->Gore.DropsPerSecond, 90.f));
+	TestTrue(TEXT("trail"), Headless->Gore.TrailDecal == TEXT("/Game/A/M_Puddle.M_Puddle") && FMath::IsNearlyEqual(Headless->Gore.TrailEveryCm, 90.f));
+	TestTrue(TEXT("severed head"), Headless->Gore.HasSevered() && Headless->Gore.LandedMesh == TEXT("/Game/A/SM_Head.SM_Head") && Headless->Gore.SeveredDrops == 40);
+	const FDinkCreatureRole* Walk = Duck.RoleFor(21);
+	TestTrue(TEXT("the walk role has no gore"), Walk && !Walk->Gore.HasFountain() && !Walk->Gore.HasSevered());
+	TestNotNull(TEXT("the headless duck with duck_brain bursts"), Duck.BurstFor(111, 3));
+	TestNull(TEXT("a whole duck does not burst"), Duck.BurstFor(21, 3));
+	TestNull(TEXT("another brain does not burst"), Duck.BurstFor(111, 9));
+	TestEqual(TEXT("blood drop mesh"), Duck.BloodDrop, FString(TEXT("/Game/A/SM_Drop.SM_Drop")));
 	return true;
 }

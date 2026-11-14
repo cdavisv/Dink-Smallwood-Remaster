@@ -55,6 +55,24 @@ class CreatureClassRows(unittest.TestCase):
         self.assertEqual(rows, {})
         self.assertIn('M_Pool', notes[0])
 
+    def test_gore_rows_need_their_assets_a_bone_and_the_blood_drop(self):
+        gore = {'bone': 'neck_02', 'drops_per_second': 90, 'trail': {'material': G + 'M_Puddle.M_Puddle'},
+                'severed': {'flying': G + 'SM_Fly.SM_Fly', 'landed': G + 'SM_Head.SM_Head', 'decal': G + 'M_Puddle.M_Puddle', 'drops': 40}}
+        roles = {'walk': {'sequences': [21, 23], 'locomotion': True}, 'headless': {'sequences': [111, 113], 'locomotion': True, 'gore': gore}}
+        bursts = [{'sequences': [111, 113], 'brain': 3, 'decal': {'material': G + 'M_Burst.M_Burst', 'size_cm': 170}}]
+        duck = row(**{'class': 'duck', 'roles': roles, 'bursts': bursts, 'blood_drop': G + 'SM_Drop.SM_Drop', 'corpses': []})
+        rows, notes = self.rows(manifest(duck))
+        self.assertEqual(notes, [])
+        self.assertEqual(rows['duck']['roles'], ['headless', 'walk'])
+        for missing in ('SM_Fly.SM_Fly', 'SM_Head.SM_Head', 'M_Puddle.M_Puddle', 'M_Burst.M_Burst', 'SM_Drop.SM_Drop'):
+            rows, notes = self.rows(manifest(duck), lambda path, missing=missing: (not path.endswith(missing), 'file not found'))
+            self.assertEqual(rows, {}, missing)
+        for broken in (dict(duck, blood_drop=''), dict(duck, roles=dict(roles, headless=dict(roles['headless'], gore=dict(gore, bone='')))),
+                       dict(duck, roles=dict(roles, headless=dict(roles['headless'], gore=dict(gore, severed={'flying': G + 'SM_Fly.SM_Fly'}))))):
+            rows, notes = self.rows(manifest(broken))
+            self.assertEqual(rows, {})
+            self.assertEqual(len(notes), 1)
+
     def test_missing_asset_leaves_the_class_unbound(self):
         def resolve(path):
             return (not path.endswith('AN_Run.AN_Run')), 'file not found'

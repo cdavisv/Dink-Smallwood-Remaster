@@ -60,6 +60,23 @@ def kill(tag, screen, x, y, blows):
     return lines
 
 
+def hurt(tag, screen, x, y, origins, camera):
+    """Review blows on named placements (dink.Hurt) in slow motion, the camera re-aimed at the creature before every shot
+    (dink.CalAnchorOrigin), because a duck covers eight metres a second. `origins` = id[,id...]; each is hurt twice (the
+    duck: the head flies off and the body runs on; then the burst). Ten shots after each blow, about 0.06 s of game time apart."""
+    lines = ["dink.Goto %d %d %d" % (screen, x, y), "wait 4", "dink.CreatureClasses", "dink.TimeDilation 0.1"]
+    for n, origin in enumerate(origins.split(",")):
+        for blow in (1, 2):
+            lines += ["dink.CalAnchorOrigin %s" % origin, "dink.CalCam %s 1" % camera, "wait 0.3", "dink.Hurt %s 50" % origin]
+            for i in range(10):
+                lines += ["wait 0.6", "dink.CalAnchorOrigin %s" % origin, "dink.CalCam %s 1" % camera, "shot <OUT>/%s_s%d_hurt_%d_blow%d_%02d.png" % (tag, screen, n, blow, i)]
+            lines += ["dink.CreatureClasses"]
+        # where it happened, at normal speed a moment later: what is left on the ground
+        lines += ["dink.TimeDilation 1", "wait 1.5", "shot <OUT>/%s_s%d_hurt_%d_left.png" % (tag, screen, n), "dink.TimeDilation 0.1"]
+    lines += ["dink.TimeDilation 1", "dink.CalCam off"]
+    return lines
+
+
 def over(tag, screen, x, y, shots, gap, camera):
     """A fixed camera above and south of the player's spot, as the 1997 screen was seen: every creature of the screen in
     one picture wherever its brain has taken it. `camera` = x y z tx ty tz hfov (cm from the spot, world axes)."""
@@ -84,6 +101,8 @@ def main():
     ap.add_argument("--close", action="append", default=[], type=spot)
     ap.add_argument("--kill", action="append", default=[], type=spot)
     ap.add_argument("--crowd", action="append", default=[], type=spot)
+    ap.add_argument("--hurt", action="append", default=[], help="<screen>:<mapx>:<mapy>:<origin>[,<origin>...]: review blows (dink.Hurt) on placements")
+    ap.add_argument("--hurt-camera", default="0 330 190 0 0 25 55")
     ap.add_argument("--over", action="append", default=[], type=spot, help="fixed camera above the spot (whole screen)")
     ap.add_argument("--over-low", action="append", default=[], type=spot, help="the same under a ceiling (interiors)")
     ap.add_argument("--over-camera", default="0 1700 1250 0 -350 0 75")
@@ -104,6 +123,9 @@ def main():
         body += over(args.name, *s, args.over_shots, "0.5", args.over_camera)
     for s in args.over_low:
         body += over(args.name, *s, args.over_shots, "0.5", args.over_low_camera)
+    for s in args.hurt:
+        screen, x, y, origins = s.split(":")
+        body += hurt(args.name, int(screen), int(x), int(y), origins, args.hurt_camera)
     for s in args.close:
         body += close(args.name, *s, args.shots, args.gap, args.close_distance)
     for s in args.kill:

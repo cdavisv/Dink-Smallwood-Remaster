@@ -2,7 +2,7 @@
   "tool": "validate",
   "schema_version": 1,
   "blender": "5.2.2 LTS",
-  "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Pig/SK_Pig.blend",
+  "file": "~/Work/DinkGate2Creatures/DinkRemasterUE/SourceAssets/Art/PhotorealPass/Creatures/Pig/SK_Pig.blend",
   "strict": false,
   "passed": false,
   "summary": {
@@ -24,29 +24,29 @@
       },
       "bounds": {
         "blender_min_cm": [
-          -78.395,
-          -39.65,
+          -78.398,
+          -38.983,
           -0.0
         ],
         "blender_max_cm": [
-          101.071,
-          39.606,
-          99.214
+          101.208,
+          39.334,
+          99.43
         ],
         "size_cm": [
-          179.467,
-          79.256,
-          99.214
+          179.605,
+          78.317,
+          99.43
         ],
         "unreal_min_cm": [
-          -78.395,
-          -39.606,
+          -78.398,
+          -39.334,
           -0.0
         ],
         "unreal_max_cm": [
-          101.071,
-          39.65,
-          99.214
+          101.208,
+          38.983,
+          99.43
         ]
       },
       "errors": 1,
@@ -112,10 +112,10 @@
           "code": "NON_MANIFOLD",
           "severity": "warning",
           "asset": "SK_Pig",
-          "message": "8188 non-manifold edges (8188 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
+          "message": "8212 non-manifold edges (8212 open boundary, 0 >2 faces, 0 wire); acceptable for creature_quadruped only if intentional (cards)",
           "object": "SK_Pig_LOD2",
           "data": {
-            "boundary": 8188,
+            "boundary": 8212,
             "multi_face": 0,
             "wire": 0
           }
@@ -124,10 +124,10 @@
           "code": "UV_OVERLAP",
           "severity": "error",
           "asset": "SK_Pig",
-          "message": "UV0 islands overlap (3277.8 % of UV area, 1047 triangles); class creature_quadruped needs unique UVs",
+          "message": "UV0 islands overlap (3246.9 % of UV area, 1106 triangles); class creature_quadruped needs unique UVs",
           "object": "SK_Pig_LOD0",
           "data": {
-            "overlap_ratio": 32.77801
+            "overlap_ratio": 32.46892
           }
         },
         {
@@ -141,10 +141,10 @@
           "code": "TEXEL_DENSITY",
           "severity": "warning",
           "asset": "SK_Pig",
-          "message": "texel density 12699 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
+          "message": "texel density 12683 px/m at the declared 2048 px texture; target 512 px/m (accepted 256-1024)",
           "object": "SK_Pig_LOD0",
           "data": {
-            "density_px_per_m": 12699.4,
+            "density_px_per_m": 12682.6,
             "target": 512
           }
         },

@@ -159,6 +159,43 @@ namespace
 				(*RoleRow)->TryGetStringField(TEXT("clip"), Role.Clip);
 				(*RoleRow)->TryGetBoolField(TEXT("loop"), Role.bLoop);
 				(*RoleRow)->TryGetStringField(TEXT("mesh"), Role.Mesh);
+				const TSharedPtr<FJsonObject>* Gore = nullptr;
+				if ((*RoleRow)->TryGetObjectField(TEXT("gore"), Gore) && Gore)
+				{
+					FDinkCreatureGore& G = Role.Gore;
+					FString Bone;
+					(*Gore)->TryGetStringField(TEXT("bone"), Bone);
+					G.Bone = FName(*Bone);
+					G.DropsPerSecond = float(ClassNumber(**Gore, TEXT("drops_per_second"), 0.0));
+					G.DropSpeedCmS = float(ClassNumber(**Gore, TEXT("drop_speed_cm_s"), 280.0));
+					G.SpreadDeg = float(ClassNumber(**Gore, TEXT("spread_deg"), 18.0));
+					G.DropSizeCm = float(ClassNumber(**Gore, TEXT("drop_size_cm"), 1.6));
+					const TSharedPtr<FJsonObject>* Trail = nullptr;
+					if ((*Gore)->TryGetObjectField(TEXT("trail"), Trail) && Trail)
+					{
+						(*Trail)->TryGetStringField(TEXT("material"), G.TrailDecal);
+						G.TrailEveryCm = float(FMath::Max(10.0, ClassNumber(**Trail, TEXT("every_cm"), 80.0)));
+						G.TrailSizeCm = float(ClassNumber(**Trail, TEXT("size_cm"), 34.0));
+					}
+					const TSharedPtr<FJsonObject>* Severed = nullptr;
+					if ((*Gore)->TryGetObjectField(TEXT("severed"), Severed) && Severed)
+					{
+						(*Severed)->TryGetStringField(TEXT("flying"), G.FlyingMesh);
+						(*Severed)->TryGetStringField(TEXT("landed"), G.LandedMesh);
+						(*Severed)->TryGetStringField(TEXT("decal"), G.LandedDecal);
+						G.LandedDecalSizeCm = float(ClassNumber(**Severed, TEXT("decal_size_cm"), 60.0));
+						G.ThrowSpeedCmS = float(ClassNumber(**Severed, TEXT("speed_cm_s"), 320.0));
+						G.SeveredDrops = int32(ClassNumber(**Severed, TEXT("drops"), 0.0));
+					}
+					auto Bad = [](const FString& Path) { return !Path.IsEmpty() && !Path.StartsWith(TEXT("/Game/")); };
+					if (G.Bone.IsNone() || G.DropsPerSecond < 0.f || G.DropSizeCm <= 0.f || Bad(G.TrailDecal) || Bad(G.FlyingMesh) || Bad(G.LandedMesh) || Bad(G.LandedDecal) ||
+						(G.HasSevered() && G.LandedMesh.IsEmpty()))
+					{
+						Problem(FString::Printf(TEXT("classes: %s role %s gore needs a bone, /Game/ paths and a landed mesh for a flying one"), *ClassId, *Name));
+						bValid = false;
+						continue;
+					}
+				}
 				if (!Role.bLocomotion && !Role.Clip.StartsWith(TEXT("/Game/")))
 				{
 					Problem(FString::Printf(TEXT("classes: %s role %s is neither locomotion nor a /Game/ clip"), *ClassId, *Name));
@@ -225,6 +262,45 @@ namespace
 				}
 				B.Corpses.Add(MoveTemp(Corpse));
 			}
+		}
+		const TArray<TSharedPtr<FJsonValue>>* Bursts = nullptr;
+		if (Row->TryGetArrayField(TEXT("bursts"), Bursts))
+		{
+			for (const TSharedPtr<FJsonValue>& BurstValue : *Bursts)
+			{
+				const TSharedPtr<FJsonObject> BurstRow = BurstValue.IsValid() ? BurstValue->AsObject() : nullptr;
+				FDinkCreatureBurst Burst;
+				if (!BurstRow || !ClassSequences(*BurstRow, Burst.Sequences))
+				{
+					Problem(FString::Printf(TEXT("classes: %s has a burst without sequences"), *ClassId));
+					bValid = false;
+					continue;
+				}
+				Burst.Brain = int32(ClassNumber(*BurstRow, TEXT("brain"), 0.0));
+				Burst.Drops = FMath::Clamp(int32(ClassNumber(*BurstRow, TEXT("drops"), 120.0)), 0, 400);
+				Burst.DropSpeedCmS = float(ClassNumber(*BurstRow, TEXT("drop_speed_cm_s"), 420.0));
+				Burst.DropSizeCm = float(ClassNumber(*BurstRow, TEXT("drop_size_cm"), 2.0));
+				const TSharedPtr<FJsonObject>* Decal = nullptr;
+				if (BurstRow->TryGetObjectField(TEXT("decal"), Decal) && Decal)
+				{
+					(*Decal)->TryGetStringField(TEXT("material"), Burst.Decal);
+					Burst.DecalSizeCm = float(ClassNumber(**Decal, TEXT("size_cm"), 150.0));
+					if (!Burst.Decal.StartsWith(TEXT("/Game/")) || Burst.DecalSizeCm <= 0.f)
+					{
+						Problem(FString::Printf(TEXT("classes: %s has a burst decal without a /Game/ material or a positive size_cm"), *ClassId));
+						bValid = false;
+						continue;
+					}
+				}
+				B.Bursts.Add(MoveTemp(Burst));
+			}
+		}
+		Row->TryGetStringField(TEXT("blood_drop"), B.BloodDrop);
+		const bool bNeedsDrop = B.Bursts.Num() > 0 || B.Roles.ContainsByPredicate([](const FDinkCreatureRole& R) { return R.Gore.HasFountain() || R.Gore.SeveredDrops > 0; });
+		if (bNeedsDrop && !B.BloodDrop.StartsWith(TEXT("/Game/")))
+		{
+			Problem(FString::Printf(TEXT("classes: %s has gore or bursts but no /Game/ blood_drop mesh"), *ClassId));
+			bValid = false;
 		}
 		const TSharedPtr<FJsonObject>* Materials = nullptr;
 		if (Row->TryGetObjectField(TEXT("materials"), Materials) && Materials)

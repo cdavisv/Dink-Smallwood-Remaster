@@ -57,7 +57,8 @@ def build_high(arm):
     add(*loft([((x, 0, zc), (0, hw, 0), (0, 0, hu), (0, 0, hd), e) for x, zc, hu, hd, hw, e in T], 44))
     # shoulder, ham, jowl, cheek, brow/ear root, withers, belly sag, brisket
     for c, r in (((.20, .21, .60), (.20, .135, .25)), ((-.46, .20, .58), (.25, .165, .28)), ((.60, .095, .50), (.13, .09, .10)), ((.69, .105, .60), (.095, .065, .10)),
-                 ((.26, 0, .87), (.18, .15, .07)), ((-.12, .02, .40), (.40, .29, .15)), ((.40, 0, .47), (.15, .16, .11))):
+                 ((.26, 0, .87), (.18, .15, .07)), ((-.12, .02, .40), (.40, .29, .15)), ((.40, 0, .47), (.15, .16, .11)),
+                 ((-.50, 0, .62), (.265, .235, .285))):                                                    # the rump between the hams: one rounded mass, no crease
         for s in ((1, -1) if c[1] > .05 else (1,)):
             vs, fs, d = ellipsoid((c[0], c[1] * s, c[2]), r, 24, 14); add(vs, fs)
     def limb(pts, y):
@@ -86,24 +87,24 @@ def build_high(arm):
     co[:, 1] *= (1 - .17 * ss(.70, .95, z) * (1 - ss(.5, .66, x)))
     co[:, 2] -= .018 * gauss(x - .82, .07) * ss(.66, .72, z) * (1 - ss(.05, .12, ay))                                       # dish between brow and snout
     # asymmetry: belly hangs a little to one side, one ham fuller, general organic lumpiness
-    co[:, 1] += .012 * gauss(z - .36, .12) * gauss(x + .1, .35)
-    co += n * (N1 * .010 + N2 * .005 + N3 * .0015)[:, None]
+    co[:, 1] += .006 * gauss(z - .36, .12) * gauss(x + .1, .35)
+    co += n * (N1 * .0035 + N2 * .0018 + N3 * .0012)[:, None]                     # was .010/.005: read as lumps, not as flesh
     # spine ridge, hip bones, shoulder blades
     co += n * (.010 * gauss(y, .028) * ss(.8, .9, z) * ss(-.66, -.5, x) * (1 - ss(.3, .5, x)))[:, None]
     for s in (1, -1):
-        push((.22, s * .31, .60), .13, .015); push((-.50, s * .31, .56), .17, .012); push((.06, s * .335, .62), .055, -.011); push((-.30, s * .335, .62), .06, -.013); push((-.46, s * .17, .93), .05, .010); push((.36, s * .25, .62), .05, -.008)
-        push((-.47, s * .16, .925), .07, .013); push((.2, s * .17, .91), .09, .008); push((-.27, s * .33, .55), .10, -.012); push((.03, s * .33, .58), .09, -.007)
+        push((.22, s * .31, .60), .15, .012); push((-.50, s * .31, .56), .19, .012); push((.06, s * .335, .62), .09, -.005); push((-.30, s * .335, .62), .10, -.006); push((-.46, s * .17, .93), .07, .006); push((.36, s * .25, .62), .08, -.004)
+        push((-.47, s * .16, .925), .09, .007); push((.2, s * .17, .91), .11, .006); push((-.27, s * .33, .55), .14, -.006); push((.03, s * .33, .58), .12, -.004)
         push((.66, s * .17, .53), .06, .010)                                                              # jowl
     # neck rolls and jowl folds: deep, irregular
     m = ss(.31, .38, x) * (1 - ss(.60, .68, x)) * (1 - ss(.80, .9, z))
     ph = (x - .33) * math.tau / .075 + ay * 4.5 + N2 * 2.2 + (z - .6) * 3
-    co += n * (.0075 * np.sin(ph) * m * (.55 + .45 * N1) * (1 - .5 * ss(.7, .88, z)))[:, None]
+    co += n * (.0038 * np.sin(ph) * m * (.35 + .65 * N1) * (1 - .7 * ss(.62, .84, z)))[:, None]     # folds, not ribs
     m2 = ss(.56, .62, x) * (1 - ss(.74, .8, x)) * (1 - ss(.50, .58, z))                                   # under-jaw dewlap folds
     co += n * (.005 * np.sin((x - .56) * math.tau / .05 + N2 * 2) * m2)[:, None]
     # flank folds at elbow and stifle, belly skin ripples
     for cx_, cz_, dp in ((.075, .48, .011), (-.2, .47, .012)):
         m = gauss(z - cz_, .10) * ss(.2, .29, ay)
-        co -= n * (dp * gauss(x - cx_ - (z - cz_) * .45 + N2 * .012, .016) * m)[:, None]
+        co -= n * (dp * .6 * gauss(x - cx_ - (z - cz_) * .45 + N2 * .012, .022) * m)[:, None]
     co += n * (.003 * np.sin(x * math.tau / .06 + N2 * 3) * (n[:, 2] < -.4) * ss(.44, .34, z) * (ay < .25))[:, None]
     # leg joint wrinkles (carpus, hock, pastern)
     legd = np.full(len(co), 1e9)

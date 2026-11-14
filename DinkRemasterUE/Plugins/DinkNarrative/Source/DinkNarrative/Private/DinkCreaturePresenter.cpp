@@ -21,7 +21,10 @@ bool UDinkCreaturePresenter::DoesSupportWorldType(const EWorldType::Type WorldTy
 
 void FDinkCreaturePresentTickFunction::ExecuteTick(float DeltaTime, ELevelTick TickType, ENamedThreads::Type CurrentThread, const FGraphEventRef& MyCompletionGraphEvent)
 {
-	if (IsValid(Target) && TickType != LEVELTICK_ViewportsOnly) Target->Present();
+	if (!IsValid(Target) || TickType == LEVELTICK_ViewportsOnly) return;
+	Target->Present();
+	// The drops and thrown parts of the last frame move on (their own time, nothing of the simulation's).
+	if (UDinkCreatureSubsystem* Creatures = Target->GetWorld() ? Target->GetWorld()->GetSubsystem<UDinkCreatureSubsystem>() : nullptr) Creatures->StepGore(DeltaTime);
 }
 
 void UDinkCreaturePresenter::OnWorldBeginPlay(UWorld& InWorld)
@@ -116,6 +119,7 @@ void UDinkCreaturePresenter::Present()
 		Entry.Yaw = Body->GetShownYaw();
 		Entry.Hitpoints = Sprite.GetProp(C_Hitpoints);
 		Entry.Brain = Sprite.GetProp(C_Brain);
+		Entry.Sequence = Seq > 0 ? Seq : PSeq;
 		Entry.SizePercent = State.SizePercent;
 		Alive.Add(Pair.Key);
 	}
@@ -137,6 +141,13 @@ void UDinkCreaturePresenter::Present()
 			const UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(Sprite->Actor.Get());
 			Creatures->LeaveCorpse(Last.ClassId, Sprite->GetProp(C_BaseDeath, -1), DinkCreatureClass::KillDir(Last.Brain, Sprite->Dir),
 				Body ? Body->GetShownLocation() : Last.Ground, Body ? Body->GetShownYaw() : Last.Yaw, Last.SizePercent);
+		}
+		else if (Sprite && !Sprite->bActive)
+		{
+			// duck_brain's second hit (dink.cpp:12728-12740): the headless duck goes in the blood burst of sequence 164. The
+			// row decides by the picture and the brain the sprite had; a row without `bursts` leaves nothing.
+			const UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(Sprite->Actor.Get());
+			Creatures->Burst(Last.ClassId, Last.Sequence, Last.Brain, Body ? Body->GetShownLocation() : Last.Ground, Last.SizePercent);
 		}
 		It.RemoveCurrent();
 	}

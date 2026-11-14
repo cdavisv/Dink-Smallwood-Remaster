@@ -225,6 +225,32 @@ static FAutoConsoleCommandWithWorld GDinkAttackCommand(
 		}
 	}));
 
+static FAutoConsoleCommandWithWorldAndArgs GDinkHurtCommand(
+	TEXT("dink.Hurt"),
+	TEXT("dink.Hurt <S001_P26> <damage>: review only: hurt_thing on a placement's sprite of the current screen, as a player's blow would (its brain applies it next tick). For captures of deaths and what they leave."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		UDinkStorySubsystem* S = GetStory(World);
+		FDinkOriginId Origin;
+		if (!S || Args.Num() < 2 || !FDinkOriginId::Parse(Args[0], Origin))
+		{
+			UE_LOG(LogDinkNarrative, Display, TEXT("usage: dink.Hurt <origin id> <damage>"));
+			return;
+		}
+		int32 Handle = S->GetDirector()->HandleForPlacement(Origin.Screen, Origin.Placement);
+		if (Handle <= 0)
+		{
+			// A placement its `die` script has marked killed (editor_type) is no longer found by number: its actor still carries the sprite.
+			for (TActorIterator<AActor> It(World); It && Handle <= 0; ++It)
+			{
+				const UDinkOriginComponent* O = UDinkOriginComponent::FindOnActor(*It);
+				if (O && O->OriginId == Origin) Handle = S->GetDirector()->HandleForActor(*It);
+			}
+		}
+		const int32 Dealt = Handle > 0 ? S->GetGameplay()->HurtThing(Handle, FCString::Atoi(*Args[1])) : 0;
+		UE_LOG(LogDinkNarrative, Display, TEXT("dink.Hurt: %s handle %d, %d dealt"), *Args[0], Handle, Dealt);
+	}));
+
 static FAutoConsoleCommandWithWorld GDinkMagicCommand(
 	TEXT("dink.Magic"),
 	TEXT("dink.Magic: the magic key (Q): casts the armed spell if &magic_level >= &magic_cost."),

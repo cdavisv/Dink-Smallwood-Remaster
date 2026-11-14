@@ -871,6 +871,289 @@
         }
       ],
       "note": "Every pillbug placement and every script-made sprite of sequences 131/133 (foes/pill/f1-w1-, f1-w3-). The photoreal mesh on the existing 43-bone rig with its Idle, Walk and Run clips; gait speeds are the clips' nominal speeds. The original has no attack, hit or death animation for the pillbug: a kill swaps the sprite for the splat 141/143 at once (en-pill.c sp_base_death 140, add_kill_sprite dink.cpp:12359), shown by the burst carcass (shell split, blood across the plates, viscera) and its blood pool until the screen changes; the pool is also projected as a decal so that it stains the grass that hides a flat mesh. A pillbug without base_death (s1-fmons.c, one placement) leaves no carcass: the original plays the blood burst 164 there (dink.cpp:12384-12389, 12412), which no layer draws yet."
+    },
+    {
+      "class": "duck",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Duck/SK_Duck_PR.SK_Duck_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_Idle.AN_Duck_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_Walk.AN_Duck_Walk",
+            "speed_cm_s": 35.0
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_Run.AN_Duck_Run",
+            "speed_cm_s": 120.0
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_Scurry.AN_Duck_Scurry",
+            "speed_cm_s": 800.0
+          }
+        ]
+      },
+      "blood_drop": "/Game/Dink/Photoreal/Creatures/Gore/SM_BloodDrop.SM_BloodDrop",
+      "roles": {
+        "walk": {
+          "sequences": [
+            21,
+            22,
+            23,
+            24,
+            26,
+            27,
+            28,
+            29
+          ],
+          "locomotion": true
+        },
+        "headless": {
+          "sequences": [
+            111,
+            112,
+            113,
+            114,
+            116,
+            117,
+            118,
+            119
+          ],
+          "locomotion": {
+            "idle": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_HeadlessRun.AN_Duck_HeadlessRun",
+            "gaits": [
+              {
+                "clip": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_HeadlessRun.AN_Duck_HeadlessRun",
+                "speed_cm_s": 120.0
+              },
+              {
+                "clip": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_HeadlessScurry.AN_Duck_HeadlessScurry",
+                "speed_cm_s": 800.0
+              }
+            ]
+          },
+          "mesh": "/Game/Dink/Photoreal/Creatures/Duck/SK_Duck_Headless_PR.SK_Duck_Headless_PR",
+          "gore": {
+            "bone": "neck_02",
+            "drops_per_second": 220,
+            "drop_speed_cm_s": 360,
+            "spread_deg": 14,
+            "drop_size_cm": 2.0,
+            "trail": {
+              "material": "/Game/Dink/Photoreal/Creatures/Gore/M_BloodPuddle_Decal.M_BloodPuddle_Decal",
+              "every_cm": 90,
+              "size_cm": 30
+            },
+            "severed": {
+              "flying": "/Game/Dink/Photoreal/Creatures/Duck/SM_Duck_HeadFlying_PR.SM_Duck_HeadFlying_PR",
+              "landed": "/Game/Dink/Photoreal/Creatures/Duck/SM_Duck_Head_PR.SM_Duck_Head_PR",
+              "decal": "/Game/Dink/Photoreal/Creatures/Gore/M_BloodPuddle_Decal.M_BloodPuddle_Decal",
+              "decal_size_cm": 70,
+              "speed_cm_s": 330,
+              "drops": 40
+            }
+          }
+        }
+      },
+      "bursts": [
+        {
+          "sequences": [
+            111,
+            112,
+            113,
+            114,
+            116,
+            117,
+            118,
+            119
+          ],
+          "brain": 3,
+          "drops": 160,
+          "drop_speed_cm_s": 430,
+          "drop_size_cm": 2.0,
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Gore/M_BloodBurst_Decal.M_BloodBurst_Decal",
+            "size_cm": 170
+          }
+        }
+      ],
+      "scale": 1.5,
+      "note": "White domestic duck. First hit: the head flies off and lies in its pool, the body runs on with blood spraying from the neck (dink.cpp duck_brain 12745-12775, sequences 111-129); second hit: the burst of sequence 164 (12728-12740). Keep all of it. Scale 1.5: the 1997 duck is 31 px long beside a hero of about 65 px, so 0.77 m beside the 1.8 m hero; at its modelled 0.51 m it is a speck at the play camera."
+    },
+    {
+      "class": "slime_blue",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Slime/SK_Slime_PR.SK_Slime_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Idle.AN_Slime_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Walk.AN_Slime_Walk",
+            "speed_cm_s": 250.0
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            651,
+            653
+          ],
+          "locomotion": true
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            661,
+            663
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/Slime/SM_Slime_Splat_Blue.SM_Slime_Splat_Blue",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Slime/M_SlimeSplat_Blue_Decal.M_SlimeSplat_Blue_Decal",
+            "size_cm": [
+              230,
+              230
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "note": "Blue slime (foes/puddle). Brain 9 with base_death 660: a kill leaves the splatter of sequences 661/663. The gel is opaque; the see-through material is not built."
+    },
+    {
+      "class": "slime_green",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Slime/SK_Slime_PR.SK_Slime_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Idle.AN_Slime_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Walk.AN_Slime_Walk",
+            "speed_cm_s": 250.0
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            671,
+            673
+          ],
+          "locomotion": true
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            681,
+            683
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/Slime/SM_Slime_Splat_Green.SM_Slime_Splat_Green",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Slime/M_SlimeSplat_Green_Decal.M_SlimeSplat_Green_Decal",
+            "size_cm": [
+              230,
+              230
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "note": "Green slime (foes/puddle). Brain 9 with base_death 680: a kill leaves the splatter of sequences 681/683. The gel is opaque; the see-through material is not built.",
+      "materials": {
+        "MI_Slime": "/Game/Dink/Photoreal/Creatures/Slime/MI_Slime_Green_PR.MI_Slime_Green_PR",
+        "MI_Slime_Core": "/Game/Dink/Photoreal/Creatures/Slime/MI_Slime_Core_Green_PR.MI_Slime_Core_Green_PR"
+      }
+    },
+    {
+      "class": "slime_red",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Slime/SK_Slime_PR.SK_Slime_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Idle.AN_Slime_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Walk.AN_Slime_Walk",
+            "speed_cm_s": 250.0
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            691,
+            693
+          ],
+          "locomotion": true
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            701,
+            703
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/Slime/SM_Slime_Splat_Red.SM_Slime_Splat_Red",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Slime/M_SlimeSplat_Red_Decal.M_SlimeSplat_Red_Decal",
+            "size_cm": [
+              230,
+              230
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "note": "Red slime (foes/puddle). Brain 9 with base_death 700: a kill leaves the splatter of sequences 701/703. The gel is opaque; the see-through material is not built.",
+      "materials": {
+        "MI_Slime": "/Game/Dink/Photoreal/Creatures/Slime/MI_Slime_Red_PR.MI_Slime_Red_PR",
+        "MI_Slime_Core": "/Game/Dink/Photoreal/Creatures/Slime/MI_Slime_Core_Red_PR.MI_Slime_Core_Red_PR"
+      }
+    },
+    {
+      "class": "pig",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Pig/SK_Pig_Photoreal.SK_Pig_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Idle.AN_Pig_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Walk.AN_Pig_Walk",
+            "speed_cm_s": 90.0
+          },
+          {
+            "clip": "/Game/Dink/Creatures/Pig/Animations/AN_Pig_Run.AN_Pig_Run",
+            "speed_cm_s": 400.0
+          }
+        ]
+      },
+      "blood_drop": "/Game/Dink/Photoreal/Creatures/Gore/SM_BloodDrop.SM_BloodDrop",
+      "roles": {
+        "walk": {
+          "sequences": [
+            41,
+            43,
+            47,
+            49
+          ],
+          "locomotion": true
+        }
+      },
+      "bursts": [
+        {
+          "sequences": [
+            41,
+            43,
+            47,
+            49
+          ],
+          "brain": 4,
+          "drops": 260,
+          "drop_speed_cm_s": 520,
+          "drop_size_cm": 2.6,
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Gore/M_BloodBurst_Decal.M_BloodBurst_Decal",
+            "size_cm": 330
+          }
+        }
+      ],
+      "note": "Farm pig. Killed, the original turns it into the blood burst of sequence 164 and it is gone (pig_brain, dink.cpp:13367-13382); the burst and its stain stand for that. The five Stonebrook pigs keep their origin rows (feeding, body boxes) and get the same mesh through dink.PhotorealPig."
     }
   ]
 }
