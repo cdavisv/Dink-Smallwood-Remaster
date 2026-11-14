@@ -12,12 +12,14 @@
  *   Y                    magic
  *   A                    pick in a menu, skip the waited-on text; otherwise it stays the jump (the character's own mapping)
  *   D-pad / left stick   up and down move a menu's highlight (outside a menu the d-pad zooms the camera, the stick walks)
- * Movement, camera, run (left shoulder) and jump (A) are the character's Enhanced Input mappings. There is no item screen and no
- * escape menu in the remaster yet, so Enter / Start / Esc have nothing to open.
+ *   Start (Menu)         the original's main menu, escape.c (keyboard Esc): load, restart, quit, continue
+ *   Back (View)          the original's map button, button6.c (keyboard M)
+ * Movement, camera, run (left shoulder) and jump (A) are the character's Enhanced Input mappings.  There is no item screen and no
+ * gamepad-button screen yet (escape.c's "View/change gamepad buttons" is the original's own text), so Enter has nothing to open.
  */
 namespace DinkInput
 {
-	enum class EAction : uint8 { Confirm, MenuUp, MenuDown, Talk, Attack, Magic };
+	enum class EAction : uint8 { Confirm, MenuUp, MenuDown, Talk, Attack, Magic, MainMenu, Map };
 
 	/** Every (key, action) pair, keyboard and gamepad. */
 	DINKNARRATIVE_API const TArray<TPair<FKey, EAction>>& Bindings();

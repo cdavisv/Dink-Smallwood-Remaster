@@ -1297,6 +1297,21 @@ void UDinkStorySubsystem::UpdatePlayerPush()
 	Gameplay->UpdatePush(bWalking && bStuck, Dir, NowMs);
 }
 
+bool UDinkStorySubsystem::RunPlayerButton(int32 Button)
+{
+	if ((Button != 5 && Button != 6) || !Director || Menu.InstanceId != 0 || Director->GetDink().bFrozen || (Gameplay && Gameplay->IsBowActive()))
+	{
+		return false;
+	}
+	const FName Script = Button == 5 ? FName(TEXT("escape")) : FName(TEXT("button6"));
+	if (!HasProcedure(Script, NAME_Main))
+	{
+		return false;
+	}
+	const int32 Sprite = Button == 5 ? UDinkDirector::HandleNoSprite : 1;
+	return StartProcedure(Script, NAME_Main, Sprite, {}, Director->GetDink().Screen, /*bNewInstance*/ true) != 0;
+}
+
 bool UDinkStorySubsystem::TryTalk(APawn* Pawn)
 {
 	if (!Pawn || !Director || Menu.InstanceId != 0)

@@ -251,5 +251,13 @@ bool FDinkNarrativeInputProcessor::HandleKeyDownEvent(FSlateApplication& SlateAp
 	{
 		return S->GetGameplay()->PlayerCastMagic();
 	}
+	if (DinkInput::IsBound(Key, EAction::MainMenu))
+	{
+		return S->RunPlayerButton(5);
+	}
+	if (DinkInput::IsBound(Key, EAction::Map))
+	{
+		return S->RunPlayerButton(6);
+	}
 	return false;
 }
