@@ -1,6 +1,6 @@
 {
-  "schema": "dink-environment-terrain-layers/2",
-  "note": "Layer catalogue of the master terrain material M_Env_Terrain. Every layer is a set of ../Terrain/manifest.json, wired by name: a re-run of Scripts/import_environment_materials.sh picks up revised files (texture imports are keyed on file size and time). Read by that script and by Scripts/export_import_bundle.py. 'classes' maps tools/data/tile_classes.csv terrain classes; 'classes_indoor' overrides it on indoor screens.",
+  "schema": "dink-environment-terrain-layers/3",
+  "note": "Layer catalogue of the master terrain material M_Env_Terrain. Every layer is a set of ../Terrain/manifest.json, wired by name: a re-run of Scripts/import_environment_materials.sh picks up revised files (texture imports are keyed on file size and time). Per layer, optional: 'structured' true = a laid pattern (boards, flagstones, cobbles, masonry, plaster): the material keeps it straight and at one scale (no UV warp, no quarter-turned variant lookup, no far lookup, no close detail normal) and it takes no field-scale drift; 'drift' false = no field-scale value drift and no dry, yellowed patches (snow: they turned it beige); 'tile_scale' multiplies the set's tile size (PlankFloor 1.5: its 12 cm boards become 18 cm). Read by that script and by Scripts/export_import_bundle.py. 'classes' maps tools/data/tile_classes.csv terrain classes; 'classes_indoor' overrides it on indoor screens. Outdoors 'structure_facade' (the upper storeys and roofs the 1997 tiles paint behind a house front) is '@surroundings': each such tile takes the layer of the nearest tile of ordinary ground on its screen (grass behind the houses of a village green, setts behind those of a paved square; 'surroundings_fallback' when a screen has none), because the assembled houses stand on the front line and the picture of their upper storeys lies over open ground.",
   "layers": {
     "MeadowTurf": {
       "source": "terrain",
@@ -69,37 +69,45 @@
     "CobbleStreet": {
       "source": "terrain",
       "set": "CobbleStreet",
-      "normal_strength": 1.0
+      "normal_strength": 1.0,
+      "structured": true
     },
     "DungeonFlagstone": {
       "source": "terrain",
       "set": "DungeonFlagstone",
-      "normal_strength": 1.0
+      "normal_strength": 1.0,
+      "structured": true
     },
     "DungeonMasonry": {
       "source": "terrain",
       "set": "DungeonMasonry",
-      "normal_strength": 1.0
+      "normal_strength": 1.0,
+      "structured": true
     },
     "PlasterWall": {
       "source": "terrain",
       "set": "PlasterWall",
-      "normal_strength": 1.0
+      "normal_strength": 1.0,
+      "structured": true
     },
     "PlankFloor": {
       "source": "terrain",
       "set": "PlankFloor",
-      "normal_strength": 1.0
+      "normal_strength": 1.0,
+      "structured": true,
+      "tile_scale": 1.5
     },
     "Snow": {
       "source": "terrain",
       "set": "Snow",
-      "normal_strength": 1.0
+      "normal_strength": 1.0,
+      "drift": false
     },
     "SnowTrampled": {
       "source": "terrain",
       "set": "SnowTrampled",
-      "normal_strength": 1.0
+      "normal_strength": 1.0,
+      "drift": false
     },
     "ScorchedSoil": {
       "source": "terrain",
@@ -139,7 +147,7 @@
     "cave_floor": "CaveFloor",
     "stone_floor": "CobbleStreet",
     "wood_floor": "PlankFloor",
-    "structure_facade": "DungeonMasonry",
+    "structure_facade": "@surroundings",
     "void": "DungeonMasonry"
   },
   "classes_indoor": {
@@ -148,6 +156,7 @@
     "void": "DungeonMasonry",
     "grass": "MeadowTurf"
   },
+  "surroundings_fallback": "CobbleStreet",
   "class_secondary": {},
   "unmapped_keep_original": [],
   "grass_layer": "MeadowTurf",

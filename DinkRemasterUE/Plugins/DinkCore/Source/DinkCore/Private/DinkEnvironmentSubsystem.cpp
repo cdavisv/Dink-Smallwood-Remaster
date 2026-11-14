@@ -56,6 +56,12 @@ static TAutoConsoleVariable<float> CVarDinkIndoorEV(TEXT("dink.IndoorEV"), 0.f,
 	TEXT("Added to the configured fixed indoor exposure (EV, review)."));
 static TAutoConsoleVariable<int32> CVarDinkTownHouses(TEXT("dink.TownHouses"), 1,
 	TEXT("1 = town screens show the assembled house kit of town_houses.json instead of their sprite cards (visual only; read when a screen comes into range)."));
+static TAutoConsoleVariable<int32> CVarDinkForest(TEXT("dink.Forest"), 1,
+	TEXT("1 = trees stand on the unwalkable forest-canopy tiles (ground_classes.json `trees`; visual only; read when a screen comes into range)."));
+static TAutoConsoleVariable<int32> CVarDinkRelief(TEXT("dink.Relief"), 1,
+	TEXT("Rock standing on cliff, rock-mass and cave-wall tiles (ground_classes.json `relief`; visual only, no collision): 0 = off, 1 = only where the 1997 hardness blocks the ground (default), 2 = also in enclosed pockets no walking player can enter. Read when a screen comes into range."));
+static TAutoConsoleVariable<int32> CVarDinkWaterTiles(TEXT("dink.WaterTiles"), 1,
+	TEXT("1 = a water surface lies over the water tiles of screens whose collision has no water fill (ground_classes.json `water_tiles`; visual only; read when a screen comes into range)."));
 static TAutoConsoleVariable<int32> CVarDinkIndoorLitCards(TEXT("dink.IndoorLitCards"), 1,
 	TEXT("1 = sprite cards on indoor screens are lit by the scene lights instead of glowing unlit (read when the indoor set is built)."));
 static TAutoConsoleVariable<int32> CVarDinkStateSwaps(TEXT("dink.StateSwaps"), 1,
@@ -149,6 +155,10 @@ void UDinkEnvironmentSubsystem::LoadConfig()
 				if ((*Grass)->TryGetNumberField(TEXT("field_footprint"), Number)) GrassFieldFootprint = float(Number);
 				if ((*Grass)->TryGetNumberField(TEXT("rank_edge_share"), Number)) RankEdgeShare = float(Number);
 				if ((*Grass)->TryGetNumberField(TEXT("short_reach_cm"), Number)) ShortReachCm = float(Number);
+				if ((*Grass)->TryGetNumberField(TEXT("clear_max_height_cm"), Number)) ClearMaxHeightCm = float(Number);
+				if ((*Grass)->TryGetNumberField(TEXT("clear_max_span_cm"), Number)) ClearMaxSpanCm = float(Number);
+				if ((*Grass)->TryGetNumberField(TEXT("clear_reach_cm"), Number)) ClearReachCm = float(Number);
+				if ((*Grass)->TryGetNumberField(TEXT("edge_feather"), Number)) EdgeFeather = FMath::Clamp(float(Number), 0.f, 1.f);
 			LoadMeshes(*Grass, TEXT("accent_meshes"), AccentMeshes);
 		}
 	}
@@ -335,6 +345,7 @@ void UDinkEnvironmentSubsystem::LoadConfig()
 		}
 	}
 	LoadTownHouses();
+	LoadForest();
 	UE_LOG(LogDink, Display, TEXT("DINK ENV: grass roles: %d short, %d dry, %d rank meshes; indoor: lit cards %s, flame %s, %d light props (%d meshes); %d state swaps; town houses on %d screens"),
 		GrassShortMeshes.Num(), GrassDryMeshes.Num(), GrassRankMeshes.Num(), LitCardMaterial ? TEXT("yes") : TEXT("no"), FlameMaterial ? TEXT("yes") : TEXT("no"),
 		LightProps.Num(), LightPropMeshes.Num(), StateSwaps.Num(), TownScreens.Num());
@@ -1185,6 +1196,260 @@ void UDinkEnvironmentSubsystem::ApplyTownHouses(int32 ScreenNumber, const FDinkS
 	UE_LOG(LogDink, Display, TEXT("DINK ENV: town houses on screen %d: %d modules placed (%d of unknown mesh), %d sprite cards hidden"), ScreenNumber, Placed, Missing, Hidden);
 }
 
+// ---------------------------------------------------------------------------------------------------------------------
+// Forest (environment.json `forest`, ground_classes.json `trees`)
+
+void UDinkEnvironmentSubsystem::LoadForest()
+{
+	const FString Dir = FPaths::ProjectContentDir() / TEXT("Dink/Data/Environment/");
+	FString Text;
+	TSharedPtr<FJsonObject> Root;
+	if (!FFileHelper::LoadFileToString(Text, *(Dir + TEXT("environment.json")))
+		|| !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) || !Root.IsValid()) return;
+	const TSharedPtr<FJsonObject>* Forest = nullptr;
+	if (!Root->TryGetObjectField(TEXT("forest"), Forest) || !Forest) return;
+	auto LoadMeshes = [&](const TCHAR* Key, TArray<TObjectPtr<UStaticMesh>>& Out)
+	{
+		const TArray<TSharedPtr<FJsonValue>>* Rows = nullptr;
+		if (!(*Forest)->TryGetArrayField(Key, Rows) || !Rows) return;
+		for (const TSharedPtr<FJsonValue>& V : *Rows)
+		{
+			const FString Path = V->AsString();
+			if (!FPackageName::DoesPackageExist(Path.Left(Path.Find(TEXT("."))))) continue; // wired by name: used when it exists
+			if (UStaticMesh* M = LoadObject<UStaticMesh>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet)) Out.Add(M);
+		}
+	};
+	LoadMeshes(TEXT("meshes"), ForestMeshes);
+	LoadMeshes(TEXT("understory_meshes"), ForestUnderMeshes);
+	double Number = 0.0;
+	if ((*Forest)->TryGetNumberField(TEXT("interior_fill"), Number)) ForestInteriorFill = float(Number);
+	if ((*Forest)->TryGetNumberField(TEXT("scale_min"), Number)) ForestScaleMin = float(Number);
+	if ((*Forest)->TryGetNumberField(TEXT("scale_max"), Number)) ForestScaleMax = float(Number);
+	if ((*Forest)->TryGetNumberField(TEXT("understory_share"), Number)) ForestUnderShare = float(Number);
+	if ((*Forest)->TryGetNumberField(TEXT("cull_cm"), Number)) ForestCullCm = float(Number);
+	// relief and water tiles (same data file, same life cycle as the forest)
+	const TSharedPtr<FJsonObject>* Relief = nullptr;
+	if (Root->TryGetObjectField(TEXT("relief"), Relief) && Relief)
+	{
+		const TArray<TSharedPtr<FJsonValue>>* Paths = nullptr;
+		if ((*Relief)->TryGetArrayField(TEXT("meshes"), Paths) && Paths)
+		{
+			for (const TSharedPtr<FJsonValue>& V : *Paths)
+			{
+				const FString Path = V->AsString();
+				if (!FPackageName::DoesPackageExist(Path.Left(Path.Find(TEXT("."))))) continue;
+				if (UStaticMesh* M = LoadObject<UStaticMesh>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet)) ReliefMeshes.Add(M);
+			}
+		}
+		if ((*Relief)->TryGetNumberField(TEXT("fill"), Number)) ReliefFill = float(Number);
+		if ((*Relief)->TryGetNumberField(TEXT("sink"), Number)) ReliefSink = float(Number);
+		if ((*Relief)->TryGetNumberField(TEXT("cull_cm"), Number)) ReliefCullCm = float(Number);
+	}
+	const TSharedPtr<FJsonObject>* WaterTiles = nullptr;
+	if (Root->TryGetObjectField(TEXT("water_tiles"), WaterTiles) && WaterTiles)
+	{
+		FString Path;
+		if ((*WaterTiles)->TryGetStringField(TEXT("material"), Path) && FPackageName::DoesPackageExist(Path.Left(Path.Find(TEXT(".")))))
+			WaterTileMaterial = LoadObject<UMaterialInterface>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet);
+		if ((*WaterTiles)->TryGetNumberField(TEXT("height_cm"), Number)) WaterTileHeightCm = float(Number);
+	}
+	if (ForestMeshes.IsEmpty() && ReliefMeshes.IsEmpty() && !WaterTileMaterial) return;
+	Root.Reset();
+	if (!FFileHelper::LoadFileToString(Text, *(Dir + TEXT("ground_classes.json")))
+		|| !FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) || !Root.IsValid()) return;
+	const TSharedPtr<FJsonObject>* Rows = nullptr;
+	if (!Root->TryGetObjectField(TEXT("screens"), Rows) || !Rows) return;
+	int32 Count = 0, ReliefCount = 0;
+	for (const auto& Pair : (*Rows)->Values)
+	{
+		const TSharedPtr<FJsonObject>* Row = nullptr;
+		const TArray<TSharedPtr<FJsonValue>>* Trees = nullptr;
+		if (!Pair.Value->TryGetObject(Row) || !Row) continue;
+		const int32 ScreenNumber = FCString::Atoi(*FString(Pair.Key.ToView()));
+		const TArray<TSharedPtr<FJsonValue>>* Rocks = nullptr;
+		if (!ReliefMeshes.IsEmpty() && (*Row)->TryGetArrayField(TEXT("relief"), Rocks) && Rocks)
+		{
+			TArray<FDinkReliefRock>& OutRocks = ReliefRocks.Add(ScreenNumber);
+			for (const TSharedPtr<FJsonValue>& V : *Rocks)
+			{
+				const TArray<TSharedPtr<FJsonValue>>* P = nullptr;
+				if (!V->TryGetArray(P) || !P || P->Num() < 4) continue;
+				FDinkReliefRock Rock;
+				Rock.Px = FVector2D((*P)[0]->AsNumber(), (*P)[1]->AsNumber());
+				Rock.ClearPx = float((*P)[2]->AsNumber());
+				Rock.Tier = int32((*P)[3]->AsNumber());
+				OutRocks.Add(Rock);
+				++ReliefCount;
+			}
+		}
+		const TArray<TSharedPtr<FJsonValue>>* Rects = nullptr;
+		if (WaterTileMaterial && (*Row)->TryGetArrayField(TEXT("water_tiles"), Rects) && Rects)
+		{
+			TArray<FBox2D>& OutRects = WaterTileRects.Add(ScreenNumber);
+			for (const TSharedPtr<FJsonValue>& V : *Rects)
+			{
+				const TArray<TSharedPtr<FJsonValue>>* P = nullptr;
+				if (!V->TryGetArray(P) || !P || P->Num() < 4) continue;
+				OutRects.Add(FBox2D(FVector2D((*P)[0]->AsNumber(), (*P)[1]->AsNumber()), FVector2D((*P)[2]->AsNumber(), (*P)[3]->AsNumber())));
+			}
+		}
+		if (ForestMeshes.IsEmpty() || !(*Row)->TryGetArrayField(TEXT("trees"), Trees) || !Trees) continue;
+		TArray<FDinkForestTree>& Out = ForestTrees.Add(ScreenNumber);
+		for (const TSharedPtr<FJsonValue>& V : *Trees)
+		{
+			const TArray<TSharedPtr<FJsonValue>>* P = nullptr;
+			if (!V->TryGetArray(P) || !P || P->Num() < 2) continue;
+			FDinkForestTree Tree;
+			Tree.Px = FVector2D((*P)[0]->AsNumber(), (*P)[1]->AsNumber());
+			Tree.bEdge = P->Num() > 2 && (*P)[2]->AsNumber() > 0.5;
+			Out.Add(Tree);
+			++Count;
+		}
+	}
+	UE_LOG(LogDink, Display, TEXT("DINK ENV: forest: %d tree points on %d screens, %d tree meshes, %d understory meshes"), Count, ForestTrees.Num(), ForestMeshes.Num(), ForestUnderMeshes.Num());
+	UE_LOG(LogDink, Display, TEXT("DINK ENV: relief: %d rock points on %d screens, %d rock meshes; water tiles on %d screens"), ReliefCount, ReliefRocks.Num(), ReliefMeshes.Num(), WaterTileRects.Num());
+}
+
+void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScreenCorners& Corners)
+{
+	const TArray<FDinkReliefRock>* Rocks = ReliefRocks.Find(ScreenNumber);
+	const TArray<FBox2D>* Water = WaterTileRects.Find(ScreenNumber);
+	if ((!Rocks && !Water) || ReliefApplied.Contains(ScreenNumber)) return;
+	ReliefApplied.Add(ScreenNumber);
+	const int32 MaxTier = CVarDinkRelief.GetValueOnGameThread();
+	const bool bWater = Water && WaterTileMaterial && CVarDinkWaterTiles.GetValueOnGameThread() != 0;
+	const bool bRocks = Rocks && !ReliefMeshes.IsEmpty() && MaxTier > 0;
+	if (!bWater && !bRocks) return;
+	// a screen an art manifest dresses keeps its own ground
+	const UDinkArtFamilySubsystem* Families = GetWorld()->GetSubsystem<UDinkArtFamilySubsystem>();
+	if (Families && Families->GetPrecedence().Screens.Contains(ScreenNumber)) return;
+	FActorSpawnParameters SP;
+	SP.ObjectFlags |= RF_Transient;
+	AActor* Actor = GetWorld()->SpawnActor<AActor>(AActor::StaticClass(), FTransform::Identity, SP);
+	if (!Actor) return;
+	USceneComponent* Root = NewObject<USceneComponent>(Actor, TEXT("ReliefRoot"));
+	Actor->SetRootComponent(Root);
+	Root->RegisterComponent();
+	ForestActors.Add(Actor);
+	auto Quiet = [&](UStaticMeshComponent* C)
+	{
+		C->SetMobility(EComponentMobility::Movable);
+		C->SetupAttachment(Root);
+		C->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		C->SetGenerateOverlapEvents(false);
+		C->SetCanEverAffectNavigation(false);
+	};
+	int32 Placed = 0, Sheets = 0;
+	if (bRocks)
+	{
+		// centimetres per map pixel on this screen (the settlement layout stretches screens: measure, do not assume)
+		const double CmPerPx = FVector::Dist2D(DinkLayout::MapPixelToUnreal(Corners, 250.0, 200.0), DinkLayout::MapPixelToUnreal(Corners, 350.0, 200.0)) / 100.0;
+		TMap<UStaticMesh*, UInstancedStaticMeshComponent*> ByMesh;
+		for (int32 I = 0; I < Rocks->Num(); ++I)
+		{
+			const FDinkReliefRock& Rock = (*Rocks)[I];
+			if (Rock.Tier > MaxTier) continue;
+			const uint32 H = Hash3(uint32(ScreenNumber), uint32(I), 0x20C4u);
+			UStaticMesh* Mesh = ReliefMeshes[int32(H % uint32(ReliefMeshes.Num()))];
+			const FBox Box = Mesh->GetBoundingBox();
+			const double Half = FMath::Max(FVector2D(Box.GetExtent()).Size(), 1.0);       // the footprint's corner: no yaw can push it past the disc
+			const float Scale = float(ReliefFill * Rock.ClearPx * CmPerPx / Half);
+			UInstancedStaticMeshComponent*& Component = ByMesh.FindOrAdd(Mesh);
+			if (!Component)
+			{
+				Component = NewObject<UInstancedStaticMeshComponent>(Actor);
+				Quiet(Component);
+				Component->SetStaticMesh(Mesh);
+				Component->SetCullDistances(0, int32(ReliefCullCm));
+				Component->RegisterComponent();
+			}
+			FVector At = DinkLayout::MapPixelToUnreal(Corners, Rock.Px.X, Rock.Px.Y);
+			// the mesh's pivot may sit anywhere: stand its base on the ground, sunk a little so no edge floats
+			At.Z += -Box.Min.Z * Scale - ReliefSink * Box.GetSize().Z * Scale;
+			Component->AddInstance(FTransform(FRotator(0.0, Unit(Hash3(H, 3u, 4u)) * 360.f, 0.0), At, FVector(Scale)), /*bWorldSpace*/ true);
+			++Placed;
+		}
+	}
+	if (bWater)
+	{
+		UStaticMesh* Plane = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Plane.Plane"));
+		for (const FBox2D& R : *Water)
+		{
+			if (!Plane) break;
+			const FVector A = DinkLayout::MapPixelToUnreal(Corners, R.Min.X, R.Min.Y), B = DinkLayout::MapPixelToUnreal(Corners, R.Max.X, R.Min.Y);
+			const FVector C = DinkLayout::MapPixelToUnreal(Corners, R.Min.X, R.Max.Y), D = DinkLayout::MapPixelToUnreal(Corners, R.Max.X, R.Max.Y);
+			UStaticMeshComponent* Sheet = NewObject<UStaticMeshComponent>(Actor);
+			Quiet(Sheet);
+			Sheet->SetStaticMesh(Plane);
+			Sheet->SetMaterial(0, WaterTileMaterial);
+			Sheet->SetCastShadow(false);
+			const FVector Mid = (A + B + C + D) * 0.25 + FVector(0.0, 0.0, WaterTileHeightCm);
+			const FVector AxisX = (B - A), AxisY = (C - A);
+			Sheet->SetWorldTransform(FTransform(FRotationMatrix::MakeFromXY(AxisX, AxisY).Rotator(), Mid, FVector(AxisX.Size() / 100.0, AxisY.Size() / 100.0, 1.0)));
+			Sheet->RegisterComponent();
+			++Sheets;
+		}
+	}
+	UE_LOG(LogDink, Display, TEXT("DINK ENV: relief on screen %d: %d rocks of %d points (tier <= %d), %d water sheets"), ScreenNumber, Placed, Rocks ? Rocks->Num() : 0, MaxTier, Sheets);
+}
+
+void UDinkEnvironmentSubsystem::ApplyForest(int32 ScreenNumber, const FDinkScreenCorners& Corners)
+{
+	const TArray<FDinkForestTree>* Trees = ForestTrees.Find(ScreenNumber);
+	if (!Trees || ForestMeshes.IsEmpty() || ForestApplied.Contains(ScreenNumber) || CVarDinkForest.GetValueOnGameThread() == 0) return;
+	ForestApplied.Add(ScreenNumber);
+	// a screen an art manifest dresses keeps its own vegetation
+	const UDinkArtFamilySubsystem* Families = GetWorld()->GetSubsystem<UDinkArtFamilySubsystem>();
+	if (Families && Families->GetPrecedence().Screens.Contains(ScreenNumber)) return;
+	FActorSpawnParameters SP;
+	SP.ObjectFlags |= RF_Transient;
+	AActor* Actor = GetWorld()->SpawnActor<AActor>(AActor::StaticClass(), FTransform::Identity, SP);
+	if (!Actor) return;
+	USceneComponent* Root = NewObject<USceneComponent>(Actor, TEXT("ForestRoot"));
+	Actor->SetRootComponent(Root);
+	Root->RegisterComponent();
+	ForestActors.Add(Actor);
+	TMap<UStaticMesh*, UInstancedStaticMeshComponent*> ByMesh;
+	auto Place = [&](UStaticMesh* Mesh, const FVector& At, float Yaw, float Scale)
+	{
+		UInstancedStaticMeshComponent*& Component = ByMesh.FindOrAdd(Mesh);
+		if (!Component)
+		{
+			Component = NewObject<UInstancedStaticMeshComponent>(Actor);
+			Component->SetMobility(EComponentMobility::Movable);
+			Component->SetupAttachment(Root);
+			Component->SetStaticMesh(Mesh);
+			Component->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			Component->SetGenerateOverlapEvents(false);
+			Component->SetCanEverAffectNavigation(false);
+			Component->SetCullDistances(0, int32(ForestCullCm));
+			Component->RegisterComponent();
+		}
+		Component->AddInstance(FTransform(FRotator(0.0, Yaw, 0.0), At, FVector(Scale)), /*bWorldSpace*/ true);
+	};
+	int32 Placed = 0, Under = 0;
+	for (int32 I = 0; I < Trees->Num(); ++I)
+	{
+		const FDinkForestTree& Tree = (*Trees)[I];
+		const uint32 H = Hash3(uint32(ScreenNumber), uint32(I), 0x7F0E57u);
+		// the rows a player can see carry every tree; deeper in, where only a camera above the crowns would look, fewer
+		if (!Tree.bEdge && Unit(Hash3(H, 1u, 2u)) > ForestInteriorFill) continue;
+		const FVector At = DinkLayout::MapPixelToUnreal(Corners, Tree.Px.X, Tree.Px.Y);
+		Place(ForestMeshes[int32(H % uint32(ForestMeshes.Num()))], At, Unit(Hash3(H, 3u, 4u)) * 360.f,
+			FMath::Lerp(ForestScaleMin, ForestScaleMax, Unit(Hash3(H, 5u, 6u))));
+		++Placed;
+		if (Tree.bEdge && !ForestUnderMeshes.IsEmpty() && Unit(Hash3(H, 7u, 8u)) < ForestUnderShare)
+		{
+			// ferns and bushes at the feet of the edge trees, within the tree's own unwalkable 8 px
+			const float Angle = Unit(Hash3(H, 9u, 10u)) * 2.f * PI;
+			const float Reach = 25.f + 35.f * Unit(Hash3(H, 11u, 12u));
+			Place(ForestUnderMeshes[int32(Hash3(H, 13u, 14u) % uint32(ForestUnderMeshes.Num()))], At + FVector(FMath::Cos(Angle), FMath::Sin(Angle), 0.f) * Reach,
+				Unit(Hash3(H, 15u, 16u)) * 360.f, FMath::Lerp(0.8f, 1.25f, Unit(Hash3(H, 17u, 18u))));
+			++Under;
+		}
+	}
+	UE_LOG(LogDink, Display, TEXT("DINK ENV: forest on screen %d: %d trees of %d points, %d understory plants"), ScreenNumber, Placed, Trees->Num(), Under);
+}
 
 static FAutoConsoleCommandWithWorldAndArgs GDinkPillbugCarcassCommand(
 	TEXT("dink.PillbugCarcass"), TEXT("Review only: lays a carcass beside every photoreal pillbug of the current screen (nothing is killed)."),
@@ -1340,11 +1605,9 @@ bool UDinkEnvironmentSubsystem::GroundAt(const FVector2D& WorldXY, uint32 Hash, 
 		}
 		const TArray<uint8>* Mask = Cover.Find(Screen.Number);
 		if (!Mask) return false;
-		const int32 CX = FMath::Clamp(int32(MapX / 600.0 * CoverW), 0, CoverW - 1);
-		const int32 CY = FMath::Clamp(int32(MapY / 400.0 * CoverH), 0, CoverH - 1);
 		// noisy edge: the threshold wanders per point, so the carpet ends in a ragged line, not on the mask grid
 		OutZ = 0.f;
-		LastCover = (*Mask)[CY * CoverW + CX] / 255.f;
+		LastCover = CoverAt(*Mask, MapX, MapY);
 		return LastCover > GrassMinCover + (Unit(Hash3(Hash, 77u, 5u)) - 0.5f) * 0.5f;
 	}
 	return false;
@@ -1363,11 +1626,147 @@ float UDinkEnvironmentSubsystem::MaskCoverAt(const FVector2D& WorldXY) const
 		if (Screen.bIndoor || IsScreenDressed(Screen.Number)) return -1.f;
 		const TArray<uint8>* Mask = Cover.Find(Screen.Number);
 		if (!Mask) return -1.f;
-		const int32 CX = FMath::Clamp(int32(MapX / 600.0 * CoverW), 0, CoverW - 1);
-		const int32 CY = FMath::Clamp(int32(MapY / 400.0 * CoverH), 0, CoverH - 1);
-		return (*Mask)[CY * CoverW + CX] / 255.f;
+		return CoverAt(*Mask, MapX, MapY);
 	}
 	return -1.f;
+}
+
+float UDinkEnvironmentSubsystem::CoverAt(const TArray<uint8>& Mask, double MapX, double MapY) const
+{
+	// bilinear between the cell centres of the cover grid (clamped at the screen's rim): the carpet's edge follows the
+	// terrain mask's soft edge instead of stepping along grid cells (round 7: the steps read as a hard card line)
+	const double X = FMath::Clamp(MapX / 600.0 * CoverW - 0.5, 0.0, double(CoverW - 1));
+	const double Y = FMath::Clamp(MapY / 400.0 * CoverH - 0.5, 0.0, double(CoverH - 1));
+	const int32 X0 = FMath::FloorToInt32(X), Y0 = FMath::FloorToInt32(Y);
+	const int32 X1 = FMath::Min(X0 + 1, CoverW - 1), Y1 = FMath::Min(Y0 + 1, CoverH - 1);
+	const float FX = float(X - X0), FY = float(Y - Y0);
+	auto At = [&](int32 CX, int32 CY) { return Mask[CY * CoverW + CX] / 255.f; };
+	return FMath::Lerp(FMath::Lerp(At(X0, Y0), At(X1, Y0), FX), FMath::Lerp(At(X0, Y1), At(X1, Y1), FX), FY);
+}
+
+void UDinkEnvironmentSubsystem::GatherGrassClears()
+{
+	// Low things the carpet would bury: family props (tools, pebbles, mushrooms, bones, corpses), small authored props and
+	// ground decals. Each gets a clearing over its footprint with a soft rim; the lower the thing, the wider the rim.
+	// Tall or long things (trees, barrels above the grass, fence runs, walls) stand in the grass as before.
+	UWorld* World = GetWorld();
+	if (!World) return;
+	TArray<FGrassClear> Found;
+	TSet<uint64> Keys;
+	TArray<FBox2D> Fresh;
+	auto Add = [&](const FTransform& LocalToWorld, const FBox& LocalBox, float ReachCm)
+	{
+		FGrassClear C;
+		C.WorldToLocal = LocalToWorld.Inverse();
+		C.LocalBox = LocalBox;
+		C.ReachCm = ReachCm;
+		for (const double X : {LocalBox.Min.X, LocalBox.Max.X}) for (const double Y : {LocalBox.Min.Y, LocalBox.Max.Y})
+			C.WorldBounds += FVector2D(LocalToWorld.TransformPosition(FVector(X, Y, 0.0)));
+		C.WorldBounds = C.WorldBounds.ExpandBy(ReachCm);
+		const FVector2D Mid = C.WorldBounds.GetCenter(), Size = C.WorldBounds.GetSize();
+		const uint64 Key = (uint64(Hash3(uint32(FMath::RoundToInt32(Mid.X)), uint32(FMath::RoundToInt32(Mid.Y)), 11u)) << 32)
+			| uint64(Hash3(uint32(FMath::RoundToInt32(Size.X)), uint32(FMath::RoundToInt32(Size.Y)), 13u));
+		Keys.Add(Key);
+		if (!GrassClearKeys.Contains(Key)) Fresh.Add(C.WorldBounds);
+		Found.Add(MoveTemp(C));
+	};
+	auto FromMesh = [&](const FTransform& LocalToWorld, const FBox& LocalBox)
+	{
+		const FVector Scale = LocalToWorld.GetScale3D().GetAbs();
+		const FVector Size = LocalBox.GetSize() * Scale;
+		if (Size.Z > ClearMaxHeightCm || FMath::Max(Size.X, Size.Y) > ClearMaxSpanCm || FMath::Max(Size.X, Size.Y) < 1.0) return;
+		// 25 cm and lower: the full rim; toward the height limit the rim closes to a third (grass stands against a crate)
+		const float Low = 1.f - FMath::Clamp((float(Size.Z) - 25.f) / FMath::Max(ClearMaxHeightCm - 25.f, 1.f), 0.f, 1.f);
+		Add(LocalToWorld, LocalBox, ClearReachCm * FMath::Lerp(0.35f, 1.f, Low));
+	};
+	if (ClearMaxHeightCm > 0.f)
+	{
+		for (TActorIterator<AActor> It(World); It; ++It)
+		{
+			const bool bFamily = It->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag);
+			const bool bAuthored = !bFamily && It->ActorHasTag(TEXT("DinkAuthoredArt"));
+			if ((!bFamily && !bAuthored) || It->IsHidden()) continue;
+			TInlineComponentArray<UStaticMeshComponent*> Meshes(*It);
+			for (UStaticMeshComponent* M : Meshes)
+			{
+				if (!M->GetStaticMesh() || !M->IsVisible()) continue;
+				if (bFamily && !M->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)) continue;
+				const FBox Box = M->GetStaticMesh()->GetBoundingBox();
+				{
+					// props only: never the ground, the water or vegetation (weeds, ferns, flowers and bushes are family meshes too
+					// and grow in the grass)
+					const UMaterialInterface* Material = M->GetNumMaterials() > 0 ? M->GetMaterial(0) : nullptr;
+					const FString MaterialName = Material ? Material->GetName() : FString();
+					const FString Name = M->GetStaticMesh()->GetName();
+					if (M->GetFName() == TEXT("EnvSwapVisual") || MaterialName.Contains(TEXT("Terrain")) || MaterialName.Contains(TEXT("Meadow")) || MaterialName.Contains(TEXT("Earth"))
+						|| MaterialName.Contains(TEXT("Water")) || MaterialName.Contains(TEXT("Veg")) || Name.Contains(TEXT("Grass")) || Name.Contains(TEXT("Veg_"))
+						|| Name.Contains(TEXT("Weed")) || Name.Contains(TEXT("Fern")) || Name.Contains(TEXT("Flower")) || Name.Contains(TEXT("Reed")) || Name.Contains(TEXT("Bush"))
+						|| Name.Contains(TEXT("Thorn")) || Name.Contains(TEXT("Vine")) || Name.Contains(TEXT("Stump")) || Name.Contains(TEXT("Tree"))) continue;
+				}
+				if (const UInstancedStaticMeshComponent* Instanced = Cast<UInstancedStaticMeshComponent>(M))
+				{
+					for (int32 Index = 0; Index < Instanced->GetInstanceCount(); ++Index)
+					{
+						FTransform T;
+						if (Instanced->GetInstanceTransform(Index, T, /*bWorldSpace*/ true)) FromMesh(T, Box);
+					}
+				}
+				else FromMesh(M->GetComponentTransform(), Box);
+			}
+			// a ground decal (blood splat, burn hole) lies flat: the carpet opens over the middle of its sheet
+			TInlineComponentArray<UDecalComponent*> Decals(*It);
+			for (const UDecalComponent* D : Decals)
+			{
+				if (D->GetFName() != TEXT("EnvDecal")) continue;
+				const double Half = FMath::Max(D->DecalSize.Y, D->DecalSize.Z) * 0.7;
+				Add(FTransform(D->GetComponentLocation()), FBox(FVector(-Half, -Half, -1.0), FVector(Half, Half, 1.0)), ClearReachCm);
+			}
+		}
+		for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
+		{
+			if (It->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag) || It->ActorHasTag(TEXT("DinkAuthoredArt"))) continue;   // seen above
+			TInlineComponentArray<UDecalComponent*> Decals(*It);
+			for (const UDecalComponent* D : Decals)
+			{
+				if (D->GetFName() != TEXT("EnvDecal")) continue;
+				const double Half = FMath::Max(D->DecalSize.Y, D->DecalSize.Z) * 0.7;
+				Add(FTransform(D->GetComponentLocation()), FBox(FVector(-Half, -Half, -1.0), FVector(Half, Half, 1.0)), ClearReachCm);
+			}
+		}
+	}
+	// cells that were built before a clearing arrived (a screen dressed while its neighbour is in view) grow again without it
+	if (!Fresh.IsEmpty())
+	{
+		for (auto It = GrassCells.CreateIterator(); It; ++It)
+		{
+			const FVector2D Origin(It.Key().X * GrassCellCm, It.Key().Y * GrassCellCm);
+			const FBox2D CellBox(Origin, Origin + FVector2D(GrassCellCm));
+			if (!Fresh.ContainsByPredicate([&](const FBox2D& B) { return B.Intersect(CellBox); })) continue;
+			for (UInstancedStaticMeshComponent* C : It.Value().Components) if (C) C->DestroyComponent();
+			It.RemoveCurrent();
+		}
+	}
+	const int32 Before = GrassClears.Num();
+	GrassClears = MoveTemp(Found);
+	GrassClearKeys = MoveTemp(Keys);
+	if (GrassClears.Num() != Before) UE_LOG(LogDink, Display, TEXT("DINK ENV: %d grass clearings (low props and decals), %d new"), GrassClears.Num(), Fresh.Num());
+}
+
+float UDinkEnvironmentSubsystem::GrassClearAt(const FVector2D& At, const TArray<int32>& Candidates) const
+{
+	// 1 over the footprint, falling to 0 across the rim
+	float Clear = 0.f;
+	for (const int32 Index : Candidates)
+	{
+		const FGrassClear& C = GrassClears[Index];
+		if (!C.WorldBounds.IsInside(At)) continue;
+		const FVector L = C.WorldToLocal.TransformPosition(FVector(At, 0.0));
+		const FVector Scale = C.WorldToLocal.GetScale3D().GetAbs();
+		const double DX = FMath::Max3(C.LocalBox.Min.X - L.X, 0.0, L.X - C.LocalBox.Max.X) / FMath::Max(Scale.X, 1e-4);
+		const double DY = FMath::Max3(C.LocalBox.Min.Y - L.Y, 0.0, L.Y - C.LocalBox.Max.Y) / FMath::Max(Scale.Y, 1e-4);
+		Clear = FMath::Max(Clear, FMath::Clamp(1.f - float(FMath::Sqrt(DX * DX + DY * DY)) / FMath::Max(C.ReachCm, 1.f), 0.f, 1.f));
+	}
+	return Clear;
 }
 
 void UDinkEnvironmentSubsystem::GatherGrassSources()
@@ -1511,6 +1910,11 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 		Near.Add(Index);
 		bAnyRank |= !GrassSources[Index].bWear;
 	}
+	TArray<int32> NearClears;
+	for (int32 Index = 0; Index < GrassClears.Num(); ++Index)
+	{
+		if (GrassClears[Index].WorldBounds.Intersect(CellBox)) NearClears.Add(Index);
+	}
 	auto Value = [](const FVector2D& P, double Cm, uint32 Seed)
 	{
 		const double X = P.X / Cm, Y = P.Y / Cm;
@@ -1548,6 +1952,15 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 	{
 		float Rank = 0.f, Wear = 0.f, Short = 0.f;
 		GrassInfluence(At, Near, Rank, Wear, Short);
+		// a clearing over a low prop or a decal: nothing on the footprint, a ragged thinning rim, shorter blades toward it
+		const float Clear = NearClears.IsEmpty() ? 0.f : GrassClearAt(At, NearClears);
+		if (Clear > 0.f && Clear + (Unit(Hash3(H, 67u, 41u)) - 0.5f) * 0.4f > 0.5f) return;
+		// the end of the meadow (path, bare earth, shore): over the mask's soft edge the carpet thins out and steps down in
+		// height with noise, so it does not end as a wall of full-height cards
+		const float EdgeT = FMath::SmoothStep(GrassMinCover - 0.1f, GrassMinCover + 0.4f, LastCover);
+		if (Unit(Hash3(H, 71u, 43u)) < (1.f - EdgeT) * 0.55f * EdgeFeather) return;
+		const float Taper = FMath::Lerp(1.f, FMath::Lerp(0.4f, 1.f, EdgeT * (0.75f + 0.25f * Unit(Hash3(H, 73u, 47u)))), EdgeFeather)
+			* (1.f - 0.55f * FMath::SmoothStep(0.f, 0.5f, Clear)) * FMath::Lerp(1.f, 1.f - 0.45f * Wear, EdgeFeather);
 		const float Noise = 0.65f * Value(At, 1100.0, 91u) + 0.35f * Value(At, 300.0, 57u);
 		const float EdgeWear = 1.f - FMath::SmoothStep(GrassMinCover, 0.98f, LastCover);     // the tile mask's path rims
 		// the carpet's own edge: where the meadow mask ends within 0.8 m, the grass steps down to short, thin turf before bare ground
@@ -1573,14 +1986,14 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 		if (bShort && !GrassShortMeshes.IsEmpty() && Wear > 0.3f)
 		{
 			// trodden: lower still toward the door
-			Place(FirstShort + int32(Hash3(H, 41u, 13u) % uint32(GrassShortMeshes.Num())), H, At, Z, Footprint * 1.2f, Footprint * FMath::Lerp(0.6f, 0.9f, Pick), Lean * 0.4);
+			Place(FirstShort + int32(Hash3(H, 41u, 13u) % uint32(GrassShortMeshes.Num())), H, At, Z, Footprint * 1.2f, Footprint * FMath::Lerp(0.6f, 0.9f, Pick) * FMath::Max(Taper, 0.6f), Lean * 0.4);
 			return;
 		}
 		if (bShort)
 		{
 			if (!GrassShortMeshes.IsEmpty())
 			{
-				Place(FirstShort + int32(Hash3(H, 41u, 13u) % uint32(GrassShortMeshes.Num())), H, At, Z, Footprint * 1.3f, Footprint * FMath::Lerp(1.0f, 1.3f, Pick), Lean * 0.6);   // wider than the tall patch: turf closes
+				Place(FirstShort + int32(Hash3(H, 41u, 13u) % uint32(GrassShortMeshes.Num())), H, At, Z, Footprint * 1.3f, Footprint * FMath::Lerp(1.0f, 1.3f, Pick) * FMath::Max(Taper, 0.6f), Lean * 0.6);   // wider than the tall patch: turf closes
 			}
 			else
 			{
@@ -1593,7 +2006,7 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 		const float DryNoise = 0.7f * Value(At, 900.0, 133u) + 0.3f * Value(At, 240.0, 71u);
 		// the general field is a uniformly scaled patch (field_scale caps its height); it stands taller only where rank growth is left
 		Footprint *= GrassFieldFootprint;
-		const float Tall = GrassFieldScale * FMath::Lerp(GrassHeightMin, GrassHeightMax, Pick) * FMath::Lerp(1.f, FMath::Lerp(0.85f, 1.15f, FMath::SmoothStep(0.3f, 0.8f, Noise)), V) * (1.f + 0.6f * Rank);
+		const float Tall = Taper * GrassFieldScale * FMath::Lerp(GrassHeightMin, GrassHeightMax, Pick) * FMath::Lerp(1.f, FMath::Lerp(0.85f, 1.15f, FMath::SmoothStep(0.3f, 0.8f, Noise)), V) * (1.f + 0.6f * Rank);
 		if (!GrassDryMeshes.IsEmpty() && DryNoise > 0.78f - DryShare && Unit(Hash3(H, 53u, 29u)) < 0.8f)
 		{
 			Place(FirstDry + int32(Hash3(H, 41u, 13u) % uint32(GrassDryMeshes.Num())), H, At, Z, Footprint, Tall, Lean);
@@ -1611,6 +2024,7 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 			// right against a wall or under a fence rail a few tufts escape the scythe: a thin fringe, not a hedge
 			if (Short > 0.8f && Unit(Hash3(H, 61u, 37u)) < RankEdgeShare) Rank = FMath::Max(Rank, Short);
 			if (Rank <= 0.f || Wear > 0.35f || Unit(Hash3(H, 59u, 31u)) > Rank * Rank * 1.2f) return;
+			if (!NearClears.IsEmpty() && GrassClearAt(At, NearClears) > 0.1f) return;
 			const float Footprint = FMath::Lerp(0.85f, 1.25f, Unit(Hash3(H, 5u, 11u)));
 			Place(FirstRank + int32(Hash3(H, 41u, 13u) % uint32(GrassRankMeshes.Num())), H, At, Z, Footprint, Footprint * FMath::Lerp(1.05f, 1.5f, Unit(Hash3(H, 37u, 21u))), Lean * 1.3);
 		});
@@ -1627,6 +2041,7 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 			float Rank = 0.f, Wear = 0.f, Short = 0.f;
 			GrassInfluence(At, Near, Rank, Wear, Short);
 			if (Wear > 0.5f || Short > 0.5f) return;
+			if (!NearClears.IsEmpty() && GrassClearAt(At, NearClears) > 0.1f) return;
 			const float Scale = FMath::Lerp(0.8f, 1.2f, Unit(Hash3(H, 5u, 11u)));
 			Place(FirstAccent + Kind, H, At, Z, Scale, Scale * FMath::Lerp(0.9f, 1.15f, Unit(Hash3(H, 37u, 21u))), Lean);
 		});
@@ -1714,6 +2129,8 @@ void UDinkEnvironmentSubsystem::ApplyNeighbourFamilies(const FVector& Around)
 	for (const FScreenInfo& Screen : Screens)
 	{
 		if (!TownScreens.IsEmpty() && FVector::DistSquared2D(Screen.Centre, Around) < FMath::Square(16000.0)) ApplyTownHouses(Screen.Number, Screen.Corners);
+		if (!ForestTrees.IsEmpty() && FVector::DistSquared2D(Screen.Centre, Around) < FMath::Square(22000.0)) ApplyForest(Screen.Number, Screen.Corners);
+		if ((!ReliefRocks.IsEmpty() || !WaterTileRects.IsEmpty()) && FVector::DistSquared2D(Screen.Centre, Around) < FMath::Square(22000.0)) ApplyRelief(Screen.Number, Screen.Corners);
 		if (!DecalClasses.IsEmpty() && FVector::DistSquared2D(Screen.Centre, Around) < FMath::Square(16000.0)) ApplyDecals(Screen.Number);
 	}
 	UDinkArtFamilySubsystem* Families = GetWorld()->GetSubsystem<UDinkArtFamilySubsystem>();
@@ -1795,6 +2212,7 @@ void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 		LastFamilyScreen = ScreenNumber;
 		ApplyNeighbourFamilies(DinkLayout::MapPixelToUnreal(Current->Corners, 300.0, 200.0));
 		FindBurnables();
+		if (!bGrassSourcesStale) GatherGrassClears();   // the screens dressed just now bring their low props
 	}
 	if (Now >= NextBurnCheck)
 	{
@@ -1812,6 +2230,7 @@ void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 		// after the art layers have run (authored meshes, swaps): what the carpet grows along and wears around
 		bGrassSourcesStale = false;
 		GatherGrassSources();
+		GatherGrassClears();
 		ClearGrass();
 	}
 	const float Density = Current && Current->bIndoor ? 0.f : GrassDensityPerM2 * FMath::Max(CVarDinkGrassDensity.GetValueOnGameThread(), 0.f);

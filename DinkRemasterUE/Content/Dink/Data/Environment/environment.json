@@ -59,7 +59,11 @@
     "field_scale": 0.6,
     "rank_edge_share": 0.3,
     "short_reach_cm": 150,
-    "field_footprint": 0.85
+    "field_footprint": 0.85,
+    "clear_max_height_cm": 110,
+    "clear_max_span_cm": 320,
+    "clear_reach_cm": 40,
+    "edge_feather": 1.0
   },
   "mesh_swaps": {
     "/Game/Dink/Kits/StonebrookExterior/SM_Oak_Stonebrook_01": [
@@ -269,6 +273,44 @@
       ]
     }
   ],
+  "forest": {
+    "note": "Trees on the unwalkable forest-canopy tiles (the 1997 tiles paint a closed pine forest there; the terrain layer under it is leaf litter). The world export lists the points per screen in ground_classes.json `trees` (map x, map y, 1 on the forest's edge), never on ground a player can reach. Visual only, no collision; dink.Forest 0 turns it off. meshes: one per point, by a stable hash; interior_fill: share of the points behind the edge rows that carry a tree (nobody at the play camera sees past the edge rows); understory_meshes: at the feet of the edge trees (understory_share of them).",
+    "meshes": [
+      "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Large_01.SM_Veg_Pine_Large_01",
+      "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Medium_01.SM_Veg_Pine_Medium_01",
+      "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Large_01.SM_Veg_Pine_Large_01",
+      "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Medium_01.SM_Veg_Pine_Medium_01",
+      "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Storm_01.SM_Veg_Pine_Storm_01"
+    ],
+    "understory_meshes": [
+      "/Game/Dink/Photoreal/Vegetation/SM_Veg_Fern_01.SM_Veg_Fern_01",
+      "/Game/Dink/Photoreal/Vegetation/SM_Veg_Fern_02.SM_Veg_Fern_02",
+      "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Small_01.SM_Veg_Bush_Small_01"
+    ],
+    "interior_fill": 0.55,
+    "scale_min": 0.85,
+    "scale_max": 1.2,
+    "understory_share": 0.4,
+    "cull_cm": 26000
+  },
+  "relief": {
+    "note": "Rock standing on cliff-face, rock-mass and cave-wall tiles (the 1997 tiles paint rock that stands up; the terrain layer under it is flat). The world export lists the points per screen in ground_classes.json `relief` (map x, map y, clear radius in px, tier, class): tier 1 = the 1997 hardness blocks the whole disc, tier 2 = the only walkable ground in the disc is an enclosed pocket no walking player can enter. Visual only, no collision. dink.Relief: 0 off, 1 tier 1 only (default), 2 both tiers. Each rock is scaled so its footprint stays inside the clear radius (fill x radius).",
+    "meshes": [
+      "/Game/Dink/Photoreal/Structures/SM_Boulder_Field_A_PR.SM_Boulder_Field_A_PR",
+      "/Game/Dink/Photoreal/Structures/SM_Boulder_Field_B_PR.SM_Boulder_Field_B_PR",
+      "/Game/Dink/Photoreal/Structures/SM_Boulder_Field_C_PR.SM_Boulder_Field_C_PR",
+      "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Large_PR.SM_Boulder_Large_PR",
+      "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Grey_Tall_PR.SM_Boulder_Grey_Tall_PR"
+    ],
+    "fill": 0.95,
+    "sink": 0.12,
+    "cull_cm": 26000
+  },
+  "water_tiles": {
+    "note": "Water surface over the water tiles of screens whose collision has no water fill (ground_classes.json `water_tiles`). Visual only, no collision; dink.WaterTiles 0 turns it off.",
+    "material": "/Game/Dink/Materials/Environment/M_Env_Water.M_Env_Water",
+    "height_cm": 9.0
+  },
   "sky": {
     "note": "Colour of the sky light (multiplies the captured sky). Round 6: shaded cream plaster read teal; set from the cal2 comparison with the Cycles review frames. cal2 s6 (House_street, plaster in the eaves shadow, sRGB): Cycles 46,38,27 (R/B 1.70); engine at tint 1,1,1: 54,56,52 (R/B 1.04); at 1,0.9,0.74: 58,55,45 (1.29). 1,0.88,0.66 is a compromise: warmer would yellow all foliage shade.",
     "tint": [

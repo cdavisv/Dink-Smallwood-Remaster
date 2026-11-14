@@ -128,6 +128,48 @@ def write_png_if_changed(path: Path, img: Image.Image) -> None:
 # tile), RGB = weights of layers A, B, C. Screens dominated by unmapped classes (wood floors,
 # building facades, void) keep the original painted ground.
 TERRAIN_MASK_W, TERRAIN_MASK_H = 96, 64
+COVER_DIV = 2   # the grass cover grid is the mask at half resolution (48 x 32 per screen, sampled bilinearly; 24 x 16 before)
+# The master material blends four layers: the mask's RGB carry the first three weights, the fourth takes what
+# they leave (1 - R - G - B). A screen with more layers folds the smallest into a layer of the same family
+# (the look is close; the audit lists it as merged) or, failing that, into the nearest other layer (listed as dropped).
+TERRAIN_MAX_LAYERS = 4
+TERRAIN_FAMILIES = (("MeadowTurf", "RockyGrass", "WildGrass"), ("Snow", "SnowTrampled"), ("EarthPath", "TransitionDirt"),
+                    ("DrySand", "WetSand"), ("CliffRock", "CaveRock"), ("CobbleStreet", "DungeonFlagstone"))
+TERRAIN_NEAREST = {
+    "CliffRock": ("RockyGrass", "ScorchedSoil", "EarthPath"), "CaveRock": ("CaveFloor", "ScorchedSoil"), "CaveFloor": ("CaveRock",),
+    "EarthPath": ("DrySand", "ForestFloor", "ScorchedSoil"), "TransitionDirt": ("DrySand", "ForestFloor"),
+    "ForestFloor": ("EarthPath", "MeadowTurf"), "DrySand": ("ShingleBeach", "EarthPath"), "WetSand": ("PondMud", "ShingleBeach", "EarthPath"),
+    "ShingleBeach": ("DrySand", "WetSand"), "MeadowTurf": ("ForestFloor",), "RockyGrass": ("ForestFloor",),
+    "DungeonMasonry": ("CobbleStreet", "DungeonFlagstone"), "CobbleStreet": ("DungeonMasonry", "EarthPath"),
+    "Snow": ("CliffRock",), "SnowTrampled": ("CliffRock",), "ScorchedSoil": ("CaveRock", "CliffRock"), "LavaCrust": ("ScorchedSoil", "CaveRock"),
+}
+
+
+def fold_terrain_layers(weights: dict, limit: int = TERRAIN_MAX_LAYERS):
+    """Fold the smallest layers of `weights` (name -> weight array) into others until at most `limit` are left.
+    -> (weights, merged {layer: the same-family layer that draws it}, dropped {layer: the other layer that draws it}).
+    Pure bookkeeping: a screen with `limit` layers or fewer comes back untouched."""
+    weights = dict(weights)
+    merged, dropped = {}, {}
+    size = lambda k: (float(weights[k].sum()), k)
+    while len(weights) > limit:
+        victim = target = None
+        for name in sorted(weights, key=size):        # the smallest layer that has a relative on the screen goes first
+            family = next((f for f in TERRAIN_FAMILIES if name in f), ())
+            relatives = [k for k in family if k in weights and k != name]
+            if relatives:
+                victim, target = name, max(relatives, key=size)
+                merged[victim] = target
+                break
+        if victim is None:
+            victim = min(weights, key=size)
+            target = next((k for k in TERRAIN_NEAREST.get(victim, ()) if k in weights), None) or max((k for k in weights if k != victim), key=size)
+            dropped[victim] = target
+        weights[target] = weights[target] + weights.pop(victim)
+        for book in (merged, dropped):                 # a layer folded earlier follows its target
+            for k, v in list(book.items()):
+                if v == victim: book[k] = target
+    return weights, merged, dropped
 
 
 def load_terrain_catalogue(project: Path):
@@ -145,8 +187,14 @@ def load_terrain_catalogue(project: Path):
             tile_m = float(sets[row["set"]]["tile_size_m"])
         else:
             tile_m = float(row["tile_m"])
+        tile_m *= float(row.get("tile_scale", 1.0))
         layers[name] = {"name": name, "tile_cm": round(tile_m * 100.0, 3), "normal_strength": float(row.get("normal_strength", 1.0)),
                         "backlight": float(row.get("backlight", 0.0)), "emissive": float(row.get("emissive", 0.0))}
+        # only written when set, so the rows of other layers stay as they were
+        if row.get("structured"):
+            layers[name]["structured"] = 1.0
+        if row.get("structured") or row.get("drift") is False:
+            layers[name]["drift"] = 0.0
     cat["resolved_layers"] = layers
     return cat
 
@@ -192,7 +240,7 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
     keeps its painted ground. Alpha is the signed distance to the waterline: 128 at the shore, 255 at 2 m or
     more on land (also the value without water), 0 at 2 m or more into the water.
     `facts` (a dict) is filled with what the art audit needs to know about the screen's ground: the tile classes
-    on it, the layer each maps to, the layers the mask carries and the layers the three-layer limit dropped."""
+    on it, the layer each maps to, the layers the mask carries and the layers folded into others (merged, dropped)."""
     layers = cat["resolved_layers"]
     class_map = dict(cat["classes"])
     if indoor:
@@ -208,10 +256,24 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
         a = weights.setdefault(layer, np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W)))
         a[r * px:(r + 1) * px, c * px:(c + 1) * px] += w
 
+    # '@surroundings' classes (the picture of a building's upper storeys, drawn over open ground behind the assembled
+    # houses): each tile takes the layer of the nearest tile of ordinary ground on the screen
+    surround = {c for c, l in class_map.items() if l == "@surroundings"}
+    ordinary = [(t["row"], t["col"], class_layer[(tile_classes.get(t["num"]) or {}).get("terrain", "")]) for t in scr["tiles"]
+                if (tile_classes.get(t["num"]) or {}).get("terrain", "") in class_layer
+                and (tile_classes.get(t["num"]) or {}).get("terrain") not in ("water", "void", "chasm")]
+    fallback = cat.get("surroundings_fallback")
+    surrounded = {}
     for t in scr["tiles"]:
         row = tile_classes.get(t["num"])
         terrain = row["terrain"] if row else ""
         r, c = t["row"], t["col"]
+        if terrain in surround:
+            near = min(ordinary, key=lambda o: ((o[0] - r) ** 2 + (o[1] - c) ** 2, o[2]))[2] if ordinary else fallback
+            if near in layers:
+                add(near, r, c, 1.0)
+                surrounded[near] = surrounded.get(near, 0) + 1
+                continue
         if terrain not in class_layer:
             unmapped += 1
             continue
@@ -230,7 +292,9 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
         else:
             add(class_layer[terrain], r, c, 1.0)
     painted = not weights or unmapped > 0.10 * len(scr["tiles"])
-    names = [] if painted else sorted(weights, key=lambda k: (-weights[k].sum(), k))[:3]
+    tiles_of = {k: round(float(v.sum()) / (px * px), 2) for k, v in weights.items()}
+    weights, merged, dropped = fold_terrain_layers(weights)
+    names = [] if painted else sorted(weights, key=lambda k: (-weights[k].sum(), k))
     if facts is not None:
         classes = {}
         for t in scr["tiles"]:
@@ -239,18 +303,22 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
             classes[terrain] = classes.get(terrain, 0) + 1
         facts.update({
             "indoor": bool(indoor), "classes": dict(sorted(classes.items())),
-            "layer_of": {c: class_layer[c] for c in sorted(classes) if c in class_layer},
+            "layer_of": {c: class_layer[c] if c in class_layer else "@surroundings" for c in sorted(classes) if c in class_layer or c in surround},
+            "surroundings": dict(sorted(surrounded.items())),      # tiles of '@surroundings' classes per layer they took
             "layers": list(names), "painted_ground": bool(painted), "unmapped_tiles": int(unmapped),
-            # tiles' worth of mask weight that belongs to a layer the mask does not carry (drawn as another layer)
-            "dropped": {k: round(float(weights[k].sum()) / (px * px), 2) for k in sorted(weights) if k not in names} if not painted else {},
+            # layers the mask does not carry (more than TERRAIN_MAX_LAYERS on the screen): tiles' worth of weight and
+            # the layer that draws them instead; `merged` into a layer of the same family, `dropped` into another one
+            "merged": {k: {"tiles": tiles_of[k], "drawn_as": merged[k]} for k in sorted(merged)} if not painted else {},
+            "dropped": {k: {"tiles": tiles_of[k], "drawn_as": dropped[k]} for k in sorted(dropped)} if not painted else {},
             "water_surface": bool(fill_water is not None and fill_water.any())})
     if painted:
         return None, None, None
-    stack = np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W, 3))
+    stack = np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W, max(3, len(names))))
     for i, name in enumerate(names):
         stack[:, :, i] = weights[name]
     total = stack.sum(axis=2, keepdims=True)
-    stack = np.where(total > 1e-6, stack / np.maximum(total, 1e-6), np.array([1.0, 0.0, 0.0]))
+    first = np.zeros(stack.shape[2]); first[0] = 1.0
+    stack = np.where(total > 1e-6, stack / np.maximum(total, 1e-6), first)
     # 3x3 box blur with edge clamp: one-texel soft edges, then the material's height blend shapes them
     pad = np.pad(stack, ((1, 1), (1, 1), (0, 0)), mode="edge")
     stack = sum(pad[dy:dy + TERRAIN_MASK_H, dx:dx + TERRAIN_MASK_W] for dy in range(3) for dx in range(3)) / 9.0
@@ -261,17 +329,104 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
         water_small = fw > 127
         px_cm = 600.0 / TERRAIN_MASK_W * 4.38  # about 4.4 cm per map pixel
         shore = np.clip(0.5 + signed_shore_distance(water_small, px_cm) / 400.0, 0.0, 1.0)
-    rgba = np.dstack([np.clip(stack, 0.0, 1.0), shore])
+    rgba = np.dstack([np.clip(stack[:, :, :3], 0.0, 1.0), shore])   # a fourth layer is what R + G + B leave
     img = Image.fromarray((rgba * 255.0 + 0.5).astype(np.uint8), "RGBA")
     cover = None
     grass = cat.get("grass_layer", "MeadowTurf")
     if grass in names:
         g = stack[:, :, names.index(grass)] * (~water_small)
-        g = g.reshape(TERRAIN_MASK_H // 4, 4, TERRAIN_MASK_W // 4, 4).mean(axis=(1, 3))
+        g = g.reshape(TERRAIN_MASK_H // COVER_DIV, COVER_DIV, TERRAIN_MASK_W // COVER_DIV, COVER_DIV).mean(axis=(1, 3))
         import base64
         cover = base64.b64encode((np.clip(g, 0.0, 1.0) * 255.0 + 0.5).astype(np.uint8).tobytes()).decode("ascii")
     return [layers[n] for n in names], img, cover
 
+
+
+FOREST_CLEAR_PX = 40       # about 2.8 m in the wilderness layout: the reach of a large pine's lower boughs
+FOREST_CAMERA_PX = 110     # about 7.5 m: the camera boom (4 m) plus a crown
+
+
+def forest_points(screen: int, tiles: list, tile_classes: dict, walk_ok: np.ndarray):
+    """Where trees stand on a screen's forest-canopy tiles (the 1997 tiles paint a closed pine forest there):
+    one [map_x, map_y, edge] per tile, edge 1 when a neighbouring tile of the screen is not canopy. The trees have
+    no collision and their boughs reach metres from the trunk, so a point is only kept when
+      - nobody can walk within FOREST_CLEAR_PX of it (no bough over ground a player stands on), and
+      - no walkable ground lies up to FOREST_CAMERA_PX north of it within FOREST_CLEAR_PX to either side: the play
+        camera hangs about 4 m south of the hero, and a tree there would stand between the two.
+    A transition tile gets its tree on the forest side or none. Positions are jittered by a stable hash of screen
+    and tile."""
+    canopy = {(t["row"], t["col"]) for t in tiles if (tile_classes.get(t["num"]) or {}).get("terrain") == "forest_canopy"}
+    points = []
+    for row, col in sorted(canopy):
+        edge = int(any((row + dr, col + dc) not in canopy for dr in (-1, 0, 1) for dc in (-1, 0, 1)
+                       if 0 <= row + dr < 8 and 0 <= col + dc < 12))
+        for attempt in range(8):
+            h = hashlib.md5(f"{screen}:{row}:{col}:{attempt}".encode()).digest()
+            x = col * 50 + 25 + int((int.from_bytes(h[0:2], "little") / 65535.0 - 0.5) * 38)
+            y = row * 50 + 25 + int((int.from_bytes(h[2:4], "little") / 65535.0 - 0.5) * 38)
+            c = FOREST_CLEAR_PX
+            if not walk_ok[max(0, y - c):min(400, y + c + 1), max(0, x - c):min(600, x + c + 1)].any() \
+                    and not walk_ok[max(0, y - FOREST_CAMERA_PX):y + 1, max(0, x - c):min(600, x + c + 1)].any():
+                points.append([x, y, edge])
+                break
+    return points
+
+
+RELIEF_CLASSES = ("cliff_face", "rock_mass", "cave_wall")
+RELIEF_MIN_CLEAR_PX = 10      # about 45 cm: a smaller stone is not worth standing up
+RELIEF_MAX_CLEAR_PX = 40
+
+
+def relief_points(screen: int, tiles: list, tile_classes: dict, walk_ok: np.ndarray, warp: np.ndarray, entries=(), indoor=False):
+    """Where rock may stand on a screen's cliff-face, rock-mass and cave-wall tiles without anybody ever meeting
+    it: one [map_x, map_y, clear_px, tier, class index] per tile, clear_px = the radius round the point in which
+    nobody can stand (RELIEF_MIN_CLEAR_PX..RELIEF_MAX_CLEAR_PX; tiles with less get no point).
+    tier 1: no walkable pixel at all within clear_px (the 1997 hardness blocks the whole disc).
+    tier 2 (outdoor screens only): the only walkable pixels within clear_px lie in a pocket: a walkable component
+    of this screen that touches no screen edge, holds no warp pixel, no placement and no point of `entries` (map
+    pixels: centroids of the components the route analysis reaches), so a walking player cannot enter it and
+    nothing was put there for him.
+    The rock is visual only (no collision); the runtime shows tier 1 by default (dink.Relief)."""
+    labels, _ = label_components(walk_ok)
+    open_labels = set(labels[0, :].tolist()) | set(labels[-1, :].tolist()) | set(labels[:, 0].tolist()) | set(labels[:, -1].tolist())
+    open_labels |= set(labels[warp].tolist())
+    for ex, ey in entries:
+        if 0 <= int(ey) < 400 and 0 <= int(ex) < 600:
+            open_labels.add(int(labels[int(ey), int(ex)]))
+    open_labels.discard(0)
+    reachable = np.isin(labels, sorted(open_labels)) if open_labels else np.zeros_like(walk_ok)
+    points = []
+    for t in sorted(tiles, key=lambda t: (t["row"], t["col"])):
+        terrain = (tile_classes.get(t["num"]) or {}).get("terrain")
+        if terrain not in RELIEF_CLASSES:
+            continue
+        h = hashlib.md5(f"relief:{screen}:{t['row']}:{t['col']}".encode()).digest()
+        x = t["col"] * 50 + 25 + int((h[0] / 255.0 - 0.5) * 16)
+        y = t["row"] * 50 + 25 + int((h[1] / 255.0 - 0.5) * 16)
+        for tier, mask in ((1, walk_ok),) if indoor else ((1, walk_ok), (2, reachable)):
+            clear = 0
+            for r in range(RELIEF_MAX_CLEAR_PX, RELIEF_MIN_CLEAR_PX - 1, -2):
+                y0, y1, x0, x1 = max(0, y - r), min(400, y + r + 1), max(0, x - r), min(600, x + r + 1)
+                yy, xx = np.ogrid[y0:y1, x0:x1]
+                if not (mask[y0:y1, x0:x1] & ((yy - y) ** 2 + (xx - x) ** 2 <= r * r)).any():
+                    clear = r
+                    break
+            if clear:
+                points.append([x, y, clear, tier, RELIEF_CLASSES.index(terrain)])
+                break
+    return points
+
+
+def water_tile_rects(tiles: list, tile_classes: dict):
+    """Map-pixel rectangles [x0, y0, x1, y1] of a screen's water tiles, row runs merged."""
+    water = sorted((t["row"], t["col"]) for t in tiles if (tile_classes.get(t["num"]) or {}).get("terrain") == "water")
+    rects = []
+    for row, col in water:
+        if rects and rects[-1][1] == row * 50 and rects[-1][2] == col * 50:
+            rects[-1][2] = col * 50 + 50
+        else:
+            rects.append([col * 50, row * 50, col * 50 + 50, row * 50 + 50])
+    return rects
 
 
 def next_pow2(n: int) -> int:
@@ -734,6 +889,18 @@ def main(argv=None) -> int:
         # --- samples for the parity tests (deterministic)
         rng = random.Random(n * 7919)
         walk_ok = walk & ~fill_water & ~fill_solid
+        if str(n) in ground_classes:
+            trees = forest_points(n, scr["tiles"], tile_classes, walk_ok)
+            if trees:
+                ground_classes[str(n)]["trees"] = trees
+            entries = [c["centroid"] for c in reached_centroids.get(sid, [])] + [(p.get("x", -1), p.get("y", -1)) for p in scr.get("placements") or []]
+            relief = relief_points(n, scr["tiles"], tile_classes, walk_ok, hard == 200, entries, bool(scr["indoor"]))
+            if relief:
+                ground_classes[str(n)]["relief"] = relief
+            # water tiles the collision gives no water fill (their hardness blocks them, or the riverbed is ground a
+            # player walks): the runtime lays a water surface over them (visual only, dink.WaterTiles)
+            if ground_classes[str(n)].get("classes", {}).get("water") and not ground_classes[str(n)].get("water_surface"):
+                ground_classes[str(n)]["water_tiles"] = water_tile_rects(scr["tiles"], tile_classes)
         ys, xs = np.nonzero(walk_ok)
         wsamp = []
         if len(xs):
@@ -1064,19 +1231,23 @@ def main(argv=None) -> int:
 
     write_json(out / "screens.json", {"schema": EXPORTER_VERSION + "/screens", "screens": screens_out})
     if terrain_cat is not None:
-        # Runtime grass scatter hook (UDinkEnvironmentSubsystem): 24x16 meadow coverage per screen.
+        # Runtime grass scatter hook (UDinkEnvironmentSubsystem): meadow coverage per screen (w x h, sampled bilinearly).
         cover_dir = here / "Content/Dink/Data/Environment"
         cover_dir.mkdir(parents=True, exist_ok=True)
         cover_text = json.dumps({"schema": "dink-environment-layer-cover/1", "layer": terrain_cat.get("grass_layer", "MeadowTurf"),
-                                 "w": TERRAIN_MASK_W // 4, "h": TERRAIN_MASK_H // 4, "screens": layer_cover}, sort_keys=True)
+                                 "w": TERRAIN_MASK_W // COVER_DIV, "h": TERRAIN_MASK_H // COVER_DIV, "screens": layer_cover}, sort_keys=True)
         cover_file = cover_dir / "layer_cover.json"
         if not cover_file.exists() or cover_file.read_text() != cover_text:
             cover_file.write_text(cover_text)
         # What each screen's ground is made of (Scripts/art_coverage.py screen_ground_state reads it with ground_review.json).
-        classes_text = json.dumps({"schema": "dink-environment-ground-classes/1",
+        classes_text = json.dumps({"schema": "dink-environment-ground-classes/3",
                                    "note": "Generated by Scripts/export_import_bundle.py; never hand-edit. Per screen: tile classes (tiles of 96), "
-                                           "the terrain layer each class maps to, the layers the screen's mask carries (at most three), "
-                                           "the layers that limit dropped (tiles' worth of weight), whether a water surface is drawn.",
+                                           "the terrain layer each class maps to, the layers the screen's mask carries (at most four), "
+                                           "the layers folded into another one (merged: same family, dropped: another layer), "
+                                           "where trees stand on its forest-canopy tiles (map x, y, 1 on the forest's edge), where rock may stand on its cliff, "
+                                           "rock-mass and cave-wall tiles (`relief`: map x, y, clear radius px, tier 1 = hardness blocks the disc / 2 = only an "
+                                           "enclosed pocket is walkable there, class 0 cliff_face 1 rock_mass 2 cave_wall), whether the importer draws a water "
+                                           "surface, and the water tiles the runtime covers when it does not (`water_tiles`: map-pixel rects).",
                                    "screens": ground_classes}, sort_keys=True, indent=0) + "\n"
         classes_file = cover_dir / "ground_classes.json"
         if not classes_file.exists() or classes_file.read_text() != classes_text:
