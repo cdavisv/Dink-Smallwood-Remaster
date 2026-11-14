@@ -20,7 +20,12 @@ States (one per coverage row; see Plugins/DinkImport/Docs/art_coverage.md):
                                      replace that screen's sprites (hide_origins,
                                      or an instance under hide_screen_visuals) -
                                      the mapping is per screen, not per ID.
-               Both are "final bespoke". A third grade is "final by family":
+                 "class-bound"       Data/Art/creatures.json `classes` binds the
+                                     placement's sprite class to an animated
+                                     creature that follows the sprite on every
+                                     screen (UDinkCreatureSubsystem, presentation
+                                     only); origin rows keep precedence.
+               These are "final bespoke". A further grade is "final by family":
                  "family-bound"      Data/Art/families.json binds the placement's
                                      sprite family (class id, else sequence) to an
                                      existing mesh and no origin or screen binding
@@ -337,6 +342,140 @@ def load_families(assets, notes):
     return rows, origins, screens
 
 
+def creature_class_rows(manifest, resolve, notes):
+    """creatures.json `classes` -> {class_id: row}: the class rows that bind at runtime.
+
+    Mirrors DinkCreatureClass::ParseBindings and UDinkCreatureSubsystem::LoadClass: a row counts when it has a class, a
+    /Game/ mesh, at least one locomotion role with a locomotion set, no sequence in two roles, and every asset it names
+    exists (`resolve(path) -> (ok, why)`). Skeleton compatibility needs the engine. A class listed twice keeps its first row."""
+    rows = {}
+
+    def game(path):
+        return isinstance(path, str) and path.startswith("/Game/")
+
+    def sequences(row):
+        seqs = row.get("sequences") if isinstance(row, dict) else None
+        if not isinstance(seqs, list) or not seqs or not all(isinstance(q, (int, float)) and q >= 1 for q in seqs):
+            return None
+        return sorted({int(q) for q in seqs})
+
+    def locomotion(row, needed):
+        gaits = row.get("gaits") if isinstance(row, dict) else None
+        if not isinstance(row, dict) or not game(row.get("idle")) or not isinstance(gaits, list) or not gaits:
+            return False
+        last = 0.0
+        for g in gaits:
+            speed = g.get("speed_cm_s", 0) if isinstance(g, dict) else 0
+            if not isinstance(g, dict) or not game(g.get("clip")) or not isinstance(speed, (int, float)) or speed <= last \
+                    or g.get("cycles", 1) <= 0:
+                return False
+            last = speed
+            needed.append(g["clip"])
+        needed.append(row["idle"])
+        return True
+
+    if not isinstance(manifest, dict) or manifest.get("schema") != "dink-creatures/1":
+        return rows
+    for r in manifest.get("classes") or []:
+        cls = r.get("class") if isinstance(r, dict) else None
+        if not isinstance(cls, str) or not cls:
+            notes.append("creatures.json classes: row without class skipped")
+            continue
+        if cls in rows:
+            notes.append("creatures.json classes: %s bound twice, second row skipped" % cls)
+            continue
+        problems, needed = [], []
+        if not game(r.get("mesh")):
+            problems.append("no /Game/ mesh")
+        else:
+            needed.append(r["mesh"])
+        if isinstance(r.get("scale", 1.0), (int, float)) and r.get("scale", 1.0) <= 0:
+            problems.append("scale is not positive")
+        row_set = "locomotion" in r and isinstance(r["locomotion"], dict)
+        if row_set and not locomotion(r["locomotion"], needed):
+            problems.append("locomotion needs a /Game/ idle and gaits with rising speed_cm_s")
+            row_set = False
+        seen, has_locomotion, role_names = set(), False, []
+        roles = r.get("roles") if isinstance(r.get("roles"), dict) else {}
+        for name in sorted(roles):
+            role = roles[name]
+            seqs = sequences(role)
+            if seqs is None:
+                problems.append("role %s has no sequences" % name)
+                continue
+            own = role.get("locomotion")
+            if isinstance(own, dict):
+                if not locomotion(own, needed):
+                    problems.append("role %s locomotion is incomplete" % name)
+                    continue
+                is_locomotion = True
+            else:
+                is_locomotion = own is True
+                if is_locomotion and not row_set:
+                    problems.append("role %s is locomotion but the row has no locomotion set" % name)
+                    continue
+            if not is_locomotion:
+                if not game(role.get("clip")):
+                    problems.append("role %s is neither locomotion nor a /Game/ clip" % name)
+                    continue
+                needed.append(role["clip"])
+            if role.get("mesh"):
+                needed.append(role["mesh"])
+            if seen & set(seqs):
+                problems.append("a sequence is in two roles")
+            seen |= set(seqs)
+            has_locomotion |= is_locomotion
+            role_names.append(name)
+        if not has_locomotion:
+            problems.append("no locomotion role")
+        corpses = []
+        for c in r.get("corpses") or []:
+            seqs = sequences(c)
+            if seqs is None or not game(c.get("mesh")):
+                problems.append("a corpse without sequences or a /Game/ mesh")
+                continue
+            needed.append(c["mesh"])
+            decal = c.get("decal")
+            if decal is not None:
+                size = decal.get("size_cm") if isinstance(decal, dict) else None
+                if not isinstance(decal, dict) or not game(decal.get("material")) or not isinstance(size, list) or len(size) != 2 \
+                        or not all(isinstance(v, (int, float)) and v > 0 for v in size):
+                    problems.append("a corpse decal without a /Game/ material or a positive size_cm pair")
+                    continue
+                needed.append(decal["material"])
+            corpses.append({"sequences": seqs, "mesh": c["mesh"], "decal": decal["material"] if decal else None})
+        for slot, path in (r.get("materials") or {}).items():
+            if not game(path):
+                problems.append("material %s is not a /Game/ path" % slot)
+            else:
+                needed.append(path)
+        for path in needed:
+            if not game(path):
+                problems.append("%r is not a /Game/ path" % (path,))
+                continue
+            ok, why = resolve(path)
+            if not ok:
+                problems.append("%s missing (%s)" % (path, why))
+        if problems:
+            notes.append("creatures.json classes: %s not bound at runtime: %s" % (cls, "; ".join(problems)))
+            continue
+        rows[cls] = {"class": cls, "mesh": r["mesh"], "roles": role_names, "sequences": sorted(seen), "corpses": corpses}
+    return rows
+
+
+def creature_class_binding(rows, cls, oid, precedence_origins, is_actor, detail):
+    """Class row that shows this placement, or None (DinkCreatureClass::Decide as UDinkCreatureSubsystem::BindClasses calls it).
+
+    Only actor placements: a background instance has no sprite to follow (a static family row dresses those). Origins that
+    any Data/Art manifest names keep their binding; hardness proxies and placements without a picture have no card to replace."""
+    row = rows.get(cls) if cls else None
+    if row is None or not is_actor or oid in precedence_origins:
+        return None
+    if detail.startswith("hardness_only") or "no picture" in detail:
+        return None
+    return row
+
+
 def family_binding(rows, seq, cls, frame=None):
     """Sequence-and-frame row first, then class row, then plain sequence row (DinkArtFamily::Resolve)."""
     for r in rows:
@@ -531,6 +670,8 @@ def classify(args):
     manifests["families"] = fam_rows
     ground_facts, ground_review = load_ground(notes, getattr(args, "ground_rule", None))
     town_cards = town_house_cards(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Art", "town_houses.json")), assets.resolve)
+    class_rows = creature_class_rows(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Art", "creatures.json")), assets.resolve, notes)
+    manifests["creature_classes"] = class_rows
 
     def family_decision(oid, screen_no, cls, detail):
         """-> family row if UDinkArtFamilySubsystem dresses this placement on its own merits, else None."""
@@ -644,6 +785,11 @@ def classify(args):
             return finish(r, fam, art_kind, "final", town[1])
         if town:
             flags.append("town-house open: " + town[1])
+        # --- final: creature class binding (creatures.json `classes`; origin rows above keep precedence) ---
+        crow = creature_class_binding(class_rows, cls, oid, fam_origins, is_actor, r["detail"])
+        if crow is not None:
+            return finish(r, fam, art_kind, "final", "class-bound: creatures.json classes %s -> %s (roles %s%s); the creature follows the sprite, card hidden at begin play, collision, script and brain unchanged; %s; assets exist, skeleton compatibility needs the engine" % (
+                crow["class"], crow["mesh"], ", ".join(crow["roles"]), "; corpse" if crow["corpses"] else "", ledger_tag(crow["mesh"])))
         # --- final: family binding (what no origin or screen binding handles) ------------------------
         row = family_decision(oid, screen_no, cls, r["detail"])
         if row is not None and not is_actor:
@@ -789,6 +935,9 @@ def summarise(out, manifests, assets, ledger_counts, notes, cov_path, top):
     for r in out:
         if r["type"] == "placement" and r["evidence"].startswith("family-bound"):
             fams[r["evidence"][len("family-bound: "):].split(" -> ")[0]] += 1
+    cls_bound = collections.Counter(r["evidence"].split(" ")[3] for r in out if r["type"] == "placement" and r["evidence"].startswith("class-bound: "))
+    print("Creature class bindings (creatures.json classes): %d rows with existing assets; placements turned final: %s" % (
+        len(manifests.get("creature_classes") or {}), ", ".join("%s %d" % kv for kv in sorted(cls_bound.items(), key=lambda kv: (-kv[1], kv[0]))) or "none"))
     print("Family bindings (families.json): %d rows with an existing mesh; placements turned final: %s" % (
         len(manifests.get("families") or []), ", ".join("%s %d" % kv for kv in sorted(fams.items(), key=lambda kv: (-kv[1], kv[0]))) or "none"))
     for name, why in manifests["invalid"]:

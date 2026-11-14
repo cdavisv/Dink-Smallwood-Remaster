@@ -825,5 +825,51 @@
       "nominal_walk_speed_cm_s": 80.0,
       "nominal_run_speed_cm_s": 400.0
     }
+  ],
+  "classes": [
+    {
+      "class": "pillbug",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Pillbug/SK_Pillbug_Photoreal.SK_Pillbug_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Dink/Creatures/Pillbug/Animations/AN_Pillbug_Idle.AN_Pillbug_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Creatures/Pillbug/Animations/AN_Pillbug_Walk.AN_Pillbug_Walk",
+            "speed_cm_s": 80.0
+          },
+          {
+            "clip": "/Game/Dink/Creatures/Pillbug/Animations/AN_Pillbug_Run.AN_Pillbug_Run",
+            "speed_cm_s": 400.0
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            131,
+            133
+          ],
+          "locomotion": true
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            141,
+            143
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/Pillbug/SM_Pillbug_Corpse_PR.SM_Pillbug_Corpse_PR",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Pillbug/M_Pillbug_BloodPool_Decal.M_Pillbug_BloodPool_Decal",
+            "size_cm": [
+              440,
+              440
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "note": "Every pillbug placement and every script-made sprite of sequences 131/133 (foes/pill/f1-w1-, f1-w3-). The photoreal mesh on the existing 43-bone rig with its Idle, Walk and Run clips; gait speeds are the clips' nominal speeds. The original has no attack, hit or death animation for the pillbug: a kill swaps the sprite for the splat 141/143 at once (en-pill.c sp_base_death 140, add_kill_sprite dink.cpp:12359), shown by the burst carcass (shell split, blood across the plates, viscera) and its blood pool until the screen changes; the pool is also projected as a decal so that it stains the grass that hides a flat mesh. A pillbug without base_death (s1-fmons.c, one placement) leaves no carcass: the original plays the blood burst 164 there (dink.cpp:12384-12389, 12412), which no layer draws yet."
+    }
   ]
 }
