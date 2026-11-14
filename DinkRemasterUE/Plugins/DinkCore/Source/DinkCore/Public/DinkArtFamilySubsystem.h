@@ -73,6 +73,13 @@ struct DINKCORE_API FDinkFamilyBinding
 	 * same screen; a placement that finds none keeps its card. 0 (default): on the ground at the card's ground point.
 	 */
 	uint8 Mount = 0;
+	/**
+	 * JSON "effect" instead of "mesh": object path of a material drawn on a camera-facing card of "effect_size_cm"
+	 * (default 50) for pictures that are light, not things: the twinkle over a gold heap. Used for sprites that scripts
+	 * create (DressScriptSprite); placed sprites of such a row keep their card.
+	 */
+	FString Effect;
+	double EffectSizeCm = 50.0;
 	/** Optional JSON "screens": the row binds placements of these screens only (a mounted row names the screens where its hosts stand, so the audit can count exactly what the game dresses). Empty: every screen. */
 	TSet<int32> Screens;
 	FString Note;
@@ -206,6 +213,8 @@ public:
 
 	/** Tag on the family mesh that stands for a sprite a script created (create_sprite). */
 	static const FName ScriptSpriteTag;
+	/** Tag on the camera-facing effect card of a script-created sprite (rows with "effect"). */
+	static const FName ScriptEffectTag;
 
 	/**
 	 * Presentation of a sprite a script created (create_sprite: pickups, dropped gold and hearts). Such a sprite has no
@@ -276,6 +285,8 @@ private:
 	UPROPERTY(Transient)
 	TMap<FString, TObjectPtr<UStaticMesh>> Meshes;
 	TSet<FString> MissingMeshes;
+	UPROPERTY(Transient)
+	TMap<FString, TObjectPtr<class UMaterialInterface>> Effects;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkPlaceholderActor>>> ActorsByScreen;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkGreyboxScreen>>> GreyboxByScreen;
 	/** (sequence << 16 | frame) -> class id, from every placement; frame 0 holds the sequence's class when it is unique (None otherwise). */

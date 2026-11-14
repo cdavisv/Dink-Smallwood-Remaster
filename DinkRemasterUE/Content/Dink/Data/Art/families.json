@@ -1250,6 +1250,14 @@
       "mount": "crown",
       "scale": 3.0,
       "note": "421 frame 23: the nuts of the AlkTree (screens 442 and 474). Gate 2 placement modes, 13 Nov 2026: mount crown: in the crown of the dressed tree the sprite is drawn over, on the side that faces the camera. scale 3 (a 21 cm nut): at its 7 cm it cannot be seen in a crown from the play camera. The nut a script drops (s1-ntree) shows the same mesh."
+    },
+    {
+      "family": "sparkle_fx",
+      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Sparkle.MI_FX_Sparkle",
+      "effect_size_cm": 70,
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "165 effects/shiny/shiny- and 166 effects/sparks/spark-: the twinkle a gold heap's script creates over the heap (create_sprite, brain 15). An effect row: a camera-facing card with the sparkle flipbook (8 x 8 frames, additive), 70 cm. Script-created sprites only; the two placed sparkles keep their cards."
     }
   ],
   "collision_fit": {

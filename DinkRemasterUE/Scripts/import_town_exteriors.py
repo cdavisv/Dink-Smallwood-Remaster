@@ -421,6 +421,52 @@ if isinstance(manifest.get('decals'), dict) and manifest['decals'].get('sets'):
             save(mi)
         report['decals'].append(row['name'])
 
+# Effect flipbooks of a kit (manifest `flipbooks`): an atlas of frames played by the material itself, unlit and additive, for
+# pictures that are light rather than things (the twinkle on gold). One master M_FX_Flipbook, one MI_FX_<name> per row.
+# UDinkArtFamilySubsystem draws it on a camera-facing card for families.json rows with `effect`.
+if isinstance(manifest.get('flipbooks'), list) and manifest['flipbooks']:
+    report['flipbooks'] = []
+    fx_parent = None
+    for row in manifest['flipbooks']:
+        tex = import_texture(REPO / row['file'], 'BC')
+        if fx_parent is None:
+            path = FOLDER + '/M_FX_Flipbook'
+            mat = LIB.load_asset(path) if LIB.does_asset_exist(path) else None
+            if mat is None:
+                mat = TOOLS.create_asset('M_FX_Flipbook', FOLDER, unreal.Material, unreal.MaterialFactoryNew())
+            for _ in range(64):
+                if EDIT.get_num_material_expressions(mat) == 0:
+                    break
+                EDIT.delete_all_material_expressions(mat)
+            mat.set_editor_property('shading_model', unreal.MaterialShadingModel.MSM_UNLIT)
+            mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_ADDITIVE)
+            mat.set_editor_property('two_sided', True)
+            # Grid = (columns, rows, frames per second, glow); frames run row by row from the top left
+            uv = custom(mat, -900, 0, 'float n = Grid.x * Grid.y; float f = floor(frac(T * Grid.z / n) * n); return (UV + float2(fmod(f, Grid.x), floor(f / Grid.x))) / Grid.xy;',
+                        unreal.CustomMaterialOutputType.CMOT_FLOAT2, ['UV', 'T', 'Grid'], 'Flipbook frame')
+            link(expr(mat, unreal.MaterialExpressionTextureCoordinate, -1100, -100), '', uv, 'UV')
+            link(expr(mat, unreal.MaterialExpressionTime, -1100, 0), '', uv, 'T')
+            grid = expr(mat, unreal.MaterialExpressionVectorParameter, -1100, 100, parameter_name='Grid', default_value=unreal.LinearColor(8, 8, 24, 3))
+            link(grid, '', uv, 'Grid')
+            frames = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -600, 0, parameter_name='Flipbook', texture=tex, sampler_type=ST.SAMPLERTYPE_COLOR)
+            link(uv, '', frames, 'UVs')
+            lit = expr(mat, unreal.MaterialExpressionMultiply, -300, 0)
+            link(frames, 'RGB', lit, 'A')
+            link(frames, 'A', lit, 'B')
+            glow = expr(mat, unreal.MaterialExpressionMultiply, -100, 0)
+            link(lit, '', glow, 'A')
+            link(grid, 'A', glow, 'B')
+            EDIT.connect_material_property(glow, '', MP.MP_EMISSIVE_COLOR)
+            EDIT.recompile_material(mat)
+            save(mat)
+            fx_parent = mat
+        mi = instance('MI_FX_' + row['name'], fx_parent, {'Flipbook': tex}, {}, {})
+        g = row.get('grid', [8, 8])
+        EDIT.set_material_instance_vector_parameter_value(mi, 'Grid', unreal.LinearColor(float(g[0]), float(g[1]), float(row.get('fps', 24)), float(row.get('glow', 3))))
+        EDIT.update_material_instance(mi)
+        save(mi)
+        report['flipbooks'].append(row['name'])
+
 dest = ROOT / ('Saved/PhotorealPass/import_' + os.environ.get('DINK_KIT_FOLDER', 'town').lower().replace('townexteriors', 'town') + '.json')
 dest.parent.mkdir(parents=True, exist_ok=True)
 dest.write_text(json.dumps(report, indent=2))
