@@ -67,7 +67,7 @@ def build_stump(name, lod):
     big = name.endswith('01'); r0 = 0.27 if big else 0.21; hc = 0.52 if big else 0.38
     tilt = np.array([rng.normal(0, 0.05), rng.normal(0, 0.05)])
     axis = lambda z: np.array([tilt[0] * z, tilt[1] * z, z]); rfun = lambda z: r0 * (1.0 - 0.06 * z / hc)
-    mb.root_base(axis, rfun, seed, lod, top=hc, strength=1.25, nroots=6 if big else 5)       # one surface: bole, buttress ridges, roots diving under the soil
+    mb.root_base(axis, rfun, seed, lod, top=hc, strength=0.9, nroots=6 if big else 5, soft=True)       # one surface: bole, blunt buttress ridges, roots diving under the soil
     base, R, S, angs = mb.last_base
     c = axis(hc); nrmcut = nrm(np.array([rng.normal(0, 0.07), rng.normal(0, 0.07), 1]))
     top = [mb.v[base + (R - 1) * S + j] for j in range(S)]

@@ -5,19 +5,19 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_white_pair/Boulder_White_Pair/SM_Boulder_White_Pair_PR.blend",
  "build": "Unclaimed/tools/bl.sh build_props.py Boulder_White_Pair final",
  "dimensions_m": [
-  1.3694,
-  0.7091,
-  0.6366
+  1.9857,
+  1.0238,
+  0.9205
  ],
  "bounds_min_m": [
-  -0.6847,
-  -0.3545,
+  -0.9928,
+  -0.5119,
   0.0
  ],
  "bounds_max_m": [
-  0.6847,
-  0.3545,
-  0.6366
+  0.9928,
+  0.5119,
+  0.9205
  ],
  "lod0_triangles": 2200,
  "triangle_budget": {
@@ -29,24 +29,24 @@
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_white_pair/Boulder_White_Pair/T_Boulder_White_Pair_PR_BC.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "base colour sRGB"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_white_pair/Boulder_White_Pair/T_Boulder_White_Pair_PR_N.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "tangent normal, OpenGL (green up; flip green on import)"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/boulder_white_pair/Boulder_White_Pair/T_Boulder_White_Pair_PR_ORM.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "channels": "R occlusion, G roughness, B metallic"
   }
@@ -63,7 +63,7 @@
   "zero_area_faces": 0,
   "signed_volume_positive": true,
   "uv_range": [
-   0.0026,
+   0.003,
    0.9974
   ],
   "transforms_applied": true
@@ -71,16 +71,16 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 99.3,
-   "p99": 178.2
+   "mean": 91.5,
+   "p99": 180.3
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.587,
-   "p95": 0.9
+   "mean": 0.537,
+   "p95": 0.898
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.639
+  "ao_mean": 0.585
  },
  "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
  "families": [
@@ -89,7 +89,6 @@
  ],
  "origin_ids": {
   "boulder_white_pair": [
-   "S165_P23",
    "S590_P02"
   ]
  },

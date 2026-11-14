@@ -161,10 +161,25 @@ def bake_one(key, sp):
     for o in bpy.context.view_layer.objects:
         o.select_set(False)
     hi.select_set(True); lo.select_set(True); bpy.context.view_layer.objects.active = lo
-    for k_, typ, kw, spp in (('BC', 'DIFFUSE', dict(pass_filter={'COLOR'}), 6), ('N', 'NORMAL', dict(normal_space='TANGENT'), 6), ('R', 'ROUGHNESS', {}, 4), ('AO', 'AO', {}, 48)):
+    for k_, typ, kw, spp in (('BC', 'DIFFUSE', dict(pass_filter={'COLOR'}), 6), ('N', 'NORMAL', dict(normal_space='TANGENT'), 6), ('R', 'ROUGHNESS', {}, 4)):
         tn.image = imgs[k_]; sc.cycles.samples = spp
         bpy.ops.object.bake(type=typ, use_selected_to_active=True, cage_extrusion=0.05, max_ray_distance=0.12, margin=10, **kw)
         print('BAKED', name, k_)
+    # Ambient occlusion is baked on LOD0 alone, with every other mesh of the scene hidden: the high stone and the other LODs are shells in the
+    # same place, and the boulders baked earlier in this run stand at the origin too (B and C lie inside A). Wherever another surface lay
+    # outside LOD0 it shadowed it completely, so 41 % of boulder A and 85 % of B and C came out with occlusion 0 and were black wherever the
+    # sun did not reach (found in the game, 13 Nov 2026). The fine crevices are in the base colour and the normal map; this pass only needs
+    # the large forms.
+    others = [(o, o.hide_render) for o in sc.objects if o is not lo and o.type == 'MESH']
+    for o, _ in others:
+        o.hide_render = True; o.select_set(False)
+    tn.image = imgs['AO']; sc.cycles.samples = 64
+    bpy.ops.object.bake(type='AO', use_selected_to_active=False, margin=10)
+    for o, was in others:
+        o.hide_render = was
+    print('BAKED', name, 'AO')
+    ao_ = np.empty(px * px * 4, np.float32); imgs['AO'].pixels.foreach_get(ao_); ao_ = ao_.reshape(px, px, 4)[..., 0]; lit_ = ao_[ao_ > 0]
+    print('AO CHECK', name, 'percentiles 5/50/95 of the baked texels:', [round(float(x), 2) for x in np.percentile(lit_, [5, 50, 95])] if len(lit_) else None)
     def arr(im):
         a = np.empty(px * px * 4, np.float32); im.pixels.foreach_get(a); return a.reshape(px, px, 4)
     from_lin = lambda a: a

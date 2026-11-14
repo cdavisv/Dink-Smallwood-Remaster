@@ -32,8 +32,10 @@ def _cane(mb, rng, start, yaw, L, h, r0, lod, loop=False, emit=True, depth=1.0):
                                          [rad[i] * 0.6, rad[i] * 0.28, 0.001], 3, 'limb', 1, 0.2, cap=False)
 
 # depth: the bushes are hedges, half as deep (Y) as wide: the sprite is a wall of coils on a 7 x 2 m hardbox (13 Nov 2026: were round, 16 and 8 canes)
-THORN = {'SM_Veg_ThornBush_01': dict(seed=5, canes=20, R=0.95, L=(1.3, 2.4), h=(0.45, 1.15), r=(0.02, 0.034), loops=8, depth=0.5),
-         'SM_Veg_ThornBush_02': dict(seed=9, canes=11, R=0.8, L=(1.1, 2.1), h=(0.35, 0.9), r=(0.018, 0.03), loops=5, depth=0.5),
+# 01 is the dense tangle of sprite frames 7 and 8 (a dark mass of coils as high as it is deep), 02 the open coil of frames 9 and 10.
+# 13 Nov 2026, second pass: 01 had 20 canes up to 1.15 m; bound to the sprite it was a few thin hoops where the 1997 picture is a thicket.
+THORN = {'SM_Veg_ThornBush_01': dict(seed=5, canes=46, R=1.05, L=(1.3, 2.6), h=(0.5, 1.6), r=(0.024, 0.042), loops=22, depth=0.5),
+         'SM_Veg_ThornBush_02': dict(seed=9, canes=14, R=0.8, L=(1.2, 2.2), h=(0.4, 1.05), r=(0.022, 0.036), loops=9, depth=0.5),
          'SM_Veg_ThornBranch_01': dict(seed=14, canes=2, R=0.1, L=(0.5, 0.75), h=(0.05, 0.14), r=(0.012, 0.016), loops=0)}
 def build_thorn(name, lod):
     P = THORN[name]; rng = np.random.default_rng(P['seed']); mb = MeshB()
