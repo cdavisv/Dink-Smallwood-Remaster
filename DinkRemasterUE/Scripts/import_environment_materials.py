@@ -239,6 +239,10 @@ for i, L in enumerate(LAYERS):
         'Macro': tex_param(mat, f'Macro{L}', t['Macro'], ST.SAMPLERTYPE_MASKS, uv_macro, -1600, y + 900),
         'NS': scalar_param(mat, f'NormalStrength{L}', default['normal_strength'], -1600, y - 80, group='Layers'),
         'St': structured, 'Dr': drift,
+        # per-layer colour multiplier (white = unchanged): the presentation layer multiplies the meadow layer under the
+        # grass carpet toward the grass colour (environment.json grass.ground_tint, UDinkEnvironmentSubsystem)
+        'Tint': expr(mat, unreal.MaterialExpressionVectorParameter, -1600, y - 480, parameter_name=f'Tint{L}',
+                     default_value=unreal.LinearColor(1.0, 1.0, 1.0, 1.0), group='Layers'),
     }
 structured4 = custom(mat, -1300, -1500, 'return saturate(float4(A, B, C, D));', F4, ['A', 'B', 'C', 'D'], 'Structured layers')
 drift4 = custom(mat, -1300, -1600, 'return saturate(float4(A, B, C, D));', F4, ['A', 'B', 'C', 'D'], 'Drifting layers')
@@ -316,6 +320,7 @@ float vmix = smoothstep(0.35, 0.65, Fine.r);
 float4 fr = 1.0 - St;   // 0 for a structured layer: one lookup, straight and at one scale
 float3 ca = lerp(lerp(BCA, VA, vmix * fr.x), FA, Far * fr.x), cb = lerp(lerp(BCB, VB, vmix * fr.y), FB, Far * fr.y), cc = lerp(lerp(BCC, VC, vmix * fr.z), FC, Far * fr.z);
 float3 cd = lerp(lerp(BCD, VD, vmix * fr.w), FD, Far * fr.w);
+ca *= TA; cb *= TB; cc *= TC; cd *= TD;
 float loose = dot(W, Dr);   // field-scale drift and dry patches belong to open ground, not to a floor or to snow
 float3 k = float3(0.5, 0.32, 0.18);
 float4 m = float4(dot(MA, k), dot(MB, k), dot(MC, k), dot(MD, k)) * 2.0 - 1.0;
@@ -333,7 +338,9 @@ c *= Tint;
 if (HRange > 0.0) c = lerp(c, c * HTint, saturate(Z / HRange));
 return c;''', F3,
                ['BCA', 'BCB', 'BCC', 'BCD', 'FA', 'FB', 'FC', 'FD', 'MA', 'MB', 'MC', 'MD', 'W', 'Far', 'Strength', 'Big', 'BigStrength', 'Dry',
-                'VA', 'VB', 'VC', 'VD', 'Fine', 'BL', 'Wet', 'Tint', 'HTint', 'HRange', 'Z', 'St', 'Dr'], 'Layer colour')
+                'VA', 'VB', 'VC', 'VD', 'Fine', 'BL', 'Wet', 'Tint', 'HTint', 'HRange', 'Z', 'St', 'Dr', 'TA', 'TB', 'TC', 'TD'], 'Layer colour')
+for L in LAYERS:
+    link(S[L]['Tint'], '', color, 'T' + L)
 link(structured4, '', color, 'St'); link(drift4, '', color, 'Dr')
 link(fine_tex, 'RGB', color, 'Fine'); link(backlight, '', color, 'BL'); link(wet, '', color, 'Wet'); link(wz, '', color, 'Z')
 link(vector_param(mat, 'Tint', (1.0, 1.0, 1.0), -1300, -1160, group='Terrain'), '', color, 'Tint')
