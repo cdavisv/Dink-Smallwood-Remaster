@@ -1,6 +1,7 @@
 #include "DinkGameplay.h"
 #include "DinkDirector.h"
 #include "Greybox/DinkPlaceholderActor.h"
+#include "DinkCollision.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/BoxComponent.h"
 #include "Components/ShapeComponent.h"
@@ -161,6 +162,9 @@ bool UDinkGameplay::AuthoredActorMoveBlocked(const FDinkSprite& Sprite, const FI
     const bool Turning = Wanted.AngularDistance(Current) > 1.e-4;
     TInlineComponentArray<UShapeComponent*> Bodies(Actor);
     FCollisionQueryParams Params(TEXT("DinkAuthoredActorMovement"), true, Actor);
+    // NPC and creature bodies: everything the default query blocks on, but not the player-only blockers (a drawn boulder's
+    // outline stops Dink, never a pillbug or a villager: their 1997 hardness is unchanged).
+    const FCollisionResponseParams BodyResponses = DinkCollision::IgnorePlayerBlockers();
     auto ShapeFor = [](UShapeComponent* Body, FCollisionShape& Shape)
     {
         if (!Body->IsRegistered() || !Body->ComponentHasTag(TEXT("DinkAuthoredInteraction")) || Body->GetCollisionEnabled() == ECollisionEnabled::NoCollision) return false;
@@ -188,15 +192,15 @@ bool UDinkGameplay::AuthoredActorMoveBlocked(const FDinkSprite& Sprite, const FI
             const FQuat Rotation = Turn * Body->GetComponentQuat();
             const auto AlreadyOverlapping = [&]()
             {
-                return Actor->GetWorld()->OverlapBlockingTestByChannel(Body->GetComponentLocation(), Body->GetComponentQuat(), ECC_Pawn, Shape, Params);
+                return Actor->GetWorld()->OverlapBlockingTestByChannel(Body->GetComponentLocation(), Body->GetComponentQuat(), ECC_Pawn, Shape, Params, BodyResponses);
             };
             if (Start.Equals(End))
             {
-                if (Actor->GetWorld()->OverlapBlockingTestByChannel(End, Rotation, ECC_Pawn, Shape, Params) && !AlreadyOverlapping()) return true;
+                if (Actor->GetWorld()->OverlapBlockingTestByChannel(End, Rotation, ECC_Pawn, Shape, Params, BodyResponses) && !AlreadyOverlapping()) return true;
                 continue;
             }
             FHitResult Hit;
-            if (!Actor->GetWorld()->SweepSingleByChannel(Hit, Start, End, Rotation, ECC_Pawn, Shape, Params)) continue;
+            if (!Actor->GetWorld()->SweepSingleByChannel(Hit, Start, End, Rotation, ECC_Pawn, Shape, Params, BodyResponses)) continue;
             // A turn cannot introduce a penetration and call that first movement an old-save escape.
             if (Hit.bStartPenetrating && RejectNewTurnOverlap && !AlreadyOverlapping()) return true;
             // Preserve the separate old-save escape rule: motion must point out of an existing overlap.
@@ -218,7 +222,7 @@ bool UDinkGameplay::AuthoredActorMoveBlocked(const FDinkSprite& Sprite, const FI
         if (!ShapeFor(Body, Shape)) continue;
         FVector End = B + Turn.RotateVector(Body->GetComponentLocation() - Actor->GetActorLocation());
         End.Z = Body->GetComponentLocation().Z;
-        if (Actor->GetWorld()->OverlapBlockingTestByChannel(End, Turn * Body->GetComponentQuat(), ECC_Pawn, Shape, Params))
+        if (Actor->GetWorld()->OverlapBlockingTestByChannel(End, Turn * Body->GetComponentQuat(), ECC_Pawn, Shape, Params, BodyResponses))
         { WantedEndClear = false; break; }
     }
     if (OutFacing) *OutFacing = WantedEndClear ? Wanted : Current;

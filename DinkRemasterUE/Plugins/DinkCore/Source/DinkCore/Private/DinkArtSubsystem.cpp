@@ -18,6 +18,7 @@
 #include "Greybox/DinkWarpComponent.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Components/InstancedStaticMeshComponent.h"
+#include "DinkPlayerBlockers.h"
 #include "Components/PointLightComponent.h"
 #include "Components/RectLightComponent.h"
 #include "Components/PostProcessComponent.h"
@@ -107,6 +108,9 @@ static int32 DinkApplyEnvironmentMeshSwap(UStaticMeshComponent* Component)
 	Visual->SetRelativeLocation(FVector::ZeroVector);
 	Component->GetOwner()->AddInstanceComponent(Visual);
 	Visual->RegisterComponent();
+	// the photoreal mesh is larger than the old one whose collision stays: it stops the player at its own body (player
+	// only; Data/Art/player_blockers.json; the 14 Nov 2026 walk audit walked into the Stonebrook boulders)
+	DinkPlayerBlockers::Add(*Component->GetOwner(), *Visual, FTransform::Identity, Mesh);
 	// the authored component keeps its collision and is no longer drawn or lit
 	Component->SetHiddenInGame(true);
 	Component->SetCastShadow(false);
@@ -486,6 +490,10 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 			if (Navigation.IsValid() && !bDisableNavigation) Component->SetCanEverAffectNavigation(true);
 			RegisterExteriorCameraRule(ManifestFile,Row,TargetScreen,Component);
 			MeshSwaps += DinkApplyEnvironmentMeshSwap(Component);
+			// A solid-looking element (a boulder, a trunk) stops the player even when it has no collision, or when its mesh
+			// carries none to block with (the Stonebrook boulders: the 14 Nov 2026 walk audit walked into them). Player only;
+			// Data/Art/player_blockers.json lists the meshes; after the photoreal swap, which may change the mesh.
+			DinkPlayerBlockers::Add(*A, *Component, FTransform::Identity, Component->GetStaticMesh());
 			Added++;
 		}
 	}

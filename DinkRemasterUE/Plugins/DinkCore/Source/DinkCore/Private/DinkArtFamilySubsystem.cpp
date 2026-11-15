@@ -9,6 +9,7 @@
 #include "Greybox/DinkPlaceholderActor.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Components/InstancedStaticMeshComponent.h"
+#include "DinkPlayerBlockers.h"
 #include "Components/StaticMeshComponent.h"
 #include "Dom/JsonObject.h"
 #include "Engine/StaticMesh.h"
@@ -734,6 +735,10 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), FVector(CardLocation.X, CardLocation.Y - Back, 0.0), Yaw, Scale, Pieces[Index]));
 		Actor.AddInstanceComponent(Part);
 		Part->RegisterComponent();
+		// A drawn solid body larger than the placement's 1997 hardbox stops the player (player only; unscripted placements,
+		// whose scripts never move or remove them; scripted barrels keep the fitted barrel lifecycle of DinkFamilyCollisionFit,
+		// which checks the barrel actor's components, untouched).
+		if (!P.bScripted) DinkPlayerBlockers::Add(Actor, *Part, FTransform::Identity, PieceMesh, P.Origin);
 		if (!Component) Component = Part;
 	}
 	// Trunk feet blend toward the soil under them (bark materials read custom primitive data 0-2; rendering only).
@@ -819,7 +824,10 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 			// The greybox ground is world Z 0; the screen root sits on it.
 			const double Back = Shared->AnchorFront * 0.5 * DinkArtFamily::DepthAfterYaw(Bounds.GetSize(), Yaw - Card.Rotator().Yaw, Scale);
 			const FVector Ground = FVector(At.X, At.Y, -Screen.GetActorLocation().Z) - FRotator(0.0, Card.Rotator().Yaw, 0.0).RotateVector(FVector(0.0, Back, 0.0));
-			Family->AddInstance(DinkArtFamily::SpanTransform(Bounds, Ground, Yaw, Scale, Pieces[PieceIndex]), /*bWorldSpace*/ false);
+			const FTransform InstanceTransform = DinkArtFamily::SpanTransform(Bounds, Ground, Yaw, Scale, Pieces[PieceIndex]);
+			Family->AddInstance(InstanceTransform, /*bWorldSpace*/ false);
+			// instance transforms are relative to the screen root, as the family component is (player-only blocker, see above)
+			if (O->ScriptName.IsNone()) DinkPlayerBlockers::Add(Screen, *Family, InstanceTransform, Mesh, O->OriginId.ToString());
 			}
 			++Count;
 		}
