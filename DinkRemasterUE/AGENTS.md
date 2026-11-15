@@ -22,6 +22,7 @@
 - `Scripts/PhotorealQA/visual_sweep.py <out>` + `DINK_CAPTURE_TIMEOUT=5400 Scripts/PhotorealQA/run_capture.sh <out>/sweep.txt` captures all 644 screens (play camera + overview) in one run of about 76 min; `visual_sweep_report.py <out> --log=<log>` runs the detectors and makes the contact sheets. `dink.SceneAudit <file>` (DinkCore, review only) appends a JSON line with every visible primitive and light of the player's screen. Results, grades and the 20 worst: `Docs/Verification/VisualSweep_15Nov2026/`; art work queued in `doc/remaster/FABLE_ART_QUEUE.md`.
 - Pitfall: `dink.Goto` to a point in filled water is refused silently (the teleport overlaps the water's low blocker; the hardness files do not show water fill) and the player stays where he was; the sweep script tries up to four points per screen and the report marks a screen "not captured" when its audit line names another screen.
 - Pitfall: the scene audit's downward trace hits the greybox screen's hardness prisms (3 m tall) before the ground plane; the report treats only the lowest greybox hit as ground.
+- Screenlock slabs (`ADinkScreenVolume::SetLockBarriers`) block but are hidden since 15 Nov 2026: the original draws a red frame, no wall (`dink.cpp:16769-16787`). A `create_sprite` sprite with no picture (sequence 0) hides its grey marker (`getpic`/`draw_sprite_game`, `dink.cpp:443-445, 5498`); markers that remain stand in for script people without art (Fable row VS-16).
 
 ## Playtest controls and UI: left-click attack, inventory screen, modern dialogue box (14 November 2026)
 
