@@ -38,6 +38,10 @@
 #include "Greybox/DinkWarpComponent.h"
 #include "Materials/Material.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "Engine/Texture2D.h"
+#if WITH_EDITOR
+#include "TextureCompiler.h"
+#endif
 #include "Engine/Texture.h"
 
 static TAutoConsoleVariable<float> CVarDinkGrassDensity(TEXT("dink.GrassDensity"), 1.f,
@@ -1281,6 +1285,9 @@ void UDinkEnvironmentSubsystem::LoadForest()
 		if ((*WaterTiles)->TryGetStringField(TEXT("material"), Path) && FPackageName::DoesPackageExist(Path.Left(Path.Find(TEXT(".")))))
 			WaterTileMaterial = LoadObject<UMaterialInterface>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet);
 		if ((*WaterTiles)->TryGetNumberField(TEXT("height_cm"), Number)) WaterTileHeightCm = float(Number);
+		if ((*WaterTiles)->TryGetStringField(TEXT("fallback_material"), Path) && FPackageName::DoesPackageExist(Path.Left(Path.Find(TEXT(".")))))
+			WaterTileFallbackMaterial = LoadObject<UMaterialInterface>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet);
+		if ((*WaterTiles)->TryGetNumberField(TEXT("fallback_height_cm"), Number)) WaterTileFallbackHeightCm = float(Number);
 	}
 	const TSharedPtr<FJsonObject>* Snow = nullptr;
 	TArray<FString> SnowClasses;
@@ -1339,7 +1346,9 @@ void UDinkEnvironmentSubsystem::LoadForest()
 		if (WaterTileMaterial && (*Row)->TryGetArrayField(TEXT("water_tiles"), Rects) && Rects)
 		{
 			bool bSea = false;
-			if ((*Row)->TryGetBoolField(TEXT("water_sea"), bSea) && bSea) WaterTileSea.Add(ScreenNumber);
+			double Sea = 0.0;
+			if ((*Row)->TryGetNumberField(TEXT("water_sea"), Sea) && Sea > 0.0) WaterTileSea.Add(ScreenNumber, float(FMath::Min(Sea, 1.0)));
+			else if ((*Row)->TryGetBoolField(TEXT("water_sea"), bSea) && bSea) WaterTileSea.Add(ScreenNumber, 1.f);
 			TArray<FBox2D>& OutRects = WaterTileRects.Add(ScreenNumber);
 			for (const TSharedPtr<FJsonValue>& V : *Rects)
 			{
@@ -1432,8 +1441,42 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 		// darker away from it, nothing on land. So the water ends on a shoreline, not on the tile rectangles.
 		UStaticMesh* Plane = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Plane.Plane"));
 		const FString MaskPath = FString::Printf(TEXT("/Game/Dink/_Generated/Screens/SCR_%03d/T_GroundMask_SCR_%03d.T_GroundMask_SCR_%03d"), ScreenNumber, ScreenNumber, ScreenNumber);
-		UTexture* Mask = FPackageName::DoesPackageExist(MaskPath.Left(MaskPath.Find(TEXT(".")))) ? LoadObject<UTexture>(nullptr, *MaskPath, nullptr, LOAD_NoWarn | LOAD_Quiet) : nullptr;
-		if (Plane && Mask)
+		UTexture2D* Mask = FPackageName::DoesPackageExist(MaskPath.Left(MaskPath.Find(TEXT(".")))) ? LoadObject<UTexture2D>(nullptr, *MaskPath, nullptr, LOAD_NoWarn | LOAD_Quiet) : nullptr;
+		// The shoreline lives in the mask's alpha. A world generated before the water banks (or without a mask) has none:
+		// its mask alpha is opaque everywhere, which the texture build stores without an alpha channel (BC1), and the
+		// shore material would draw no water at all. Say so once per screen and lay the old rectangle sheets instead.
+		bool bShoreline = false;
+		if (Mask)
+		{
+#if WITH_EDITOR
+			UTexture* const Pending[] = {Mask};
+			FTextureCompilingManager::Get().FinishCompilation(Pending);    // PIE: the platform data may still be building
+#endif
+			bShoreline = Mask->HasAlphaChannel();
+		}
+		if (Plane && !bShoreline)
+		{
+			UE_LOG(LogDink, Warning, TEXT("DINK ENV: water tiles on screen %d: %s, so the shore water cannot be drawn; %s. Regenerate the world (Scripts/import_greybox.sh --region all)."),
+				ScreenNumber, Mask ? TEXT("its terrain mask has no shoreline alpha (generated before the water banks)") : TEXT("no terrain mask"),
+				WaterTileFallbackMaterial ? TEXT("drawing the old rectangle sheets") : TEXT("no fallback material, drawing nothing"));
+			for (const FBox2D& R : *Water)
+			{
+				if (!WaterTileFallbackMaterial) break;
+				const FVector A = DinkLayout::MapPixelToUnreal(Corners, R.Min.X, R.Min.Y), B = DinkLayout::MapPixelToUnreal(Corners, R.Max.X, R.Min.Y);
+				const FVector C = DinkLayout::MapPixelToUnreal(Corners, R.Min.X, R.Max.Y), D = DinkLayout::MapPixelToUnreal(Corners, R.Max.X, R.Max.Y);
+				UStaticMeshComponent* Sheet = NewObject<UStaticMeshComponent>(Actor);
+				Quiet(Sheet);
+				Sheet->SetStaticMesh(Plane);
+				Sheet->SetMaterial(0, WaterTileFallbackMaterial);
+				Sheet->SetCastShadow(false);
+				const FVector Mid = (A + B + C + D) * 0.25 + FVector(0.0, 0.0, WaterTileFallbackHeightCm);
+				const FVector AxisX = (B - A), AxisY = (C - A);
+				Sheet->SetWorldTransform(FTransform(FRotationMatrix::MakeFromXY(AxisX, AxisY).Rotator(), Mid, FVector(AxisX.Size() / 100.0, AxisY.Size() / 100.0, 1.0)));
+				Sheet->RegisterComponent();
+				++Sheets;
+			}
+		}
+		if (Plane && bShoreline)
 		{
 			const FVector A = DinkLayout::MapPixelToUnreal(Corners, 0.0, 0.0), B = DinkLayout::MapPixelToUnreal(Corners, 600.0, 0.0);
 			const FVector C = DinkLayout::MapPixelToUnreal(Corners, 0.0, 400.0), D = DinkLayout::MapPixelToUnreal(Corners, 600.0, 400.0);
@@ -1442,12 +1485,13 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 			Sheet->SetStaticMesh(Plane);
 			UMaterialInstanceDynamic* MID = UMaterialInstanceDynamic::Create(WaterTileMaterial, Sheet);
 			MID->SetTextureParameterValue(TEXT("ShoreMask"), Mask);
-			if (WaterTileSea.Contains(ScreenNumber))
+			if (const float* Sea = WaterTileSea.Find(ScreenNumber))
 			{
-				// a sea shore: the blue-green body the importer gives sea water (DinkGreyboxAssets.cpp), not silty pond water
-				MID->SetVectorParameterValue(TEXT("Absorption"), FLinearColor(0.42f, 0.17f, 0.15f));
-				MID->SetVectorParameterValue(TEXT("Scattering"), FLinearColor(0.016f, 0.034f, 0.034f));
-				MID->SetScalarParameterValue(TEXT("ScumAmount"), 0.f);
+				// toward the sea: the blend the importer gives a water fill (DinkGreyboxAssets.cpp), from silty pond water
+				// (M_Env_WaterShore's defaults) to the sea's blue-green body
+				MID->SetVectorParameterValue(TEXT("Absorption"), FMath::Lerp(FLinearColor(0.50f, 0.33f, 0.55f), FLinearColor(0.42f, 0.17f, 0.15f), *Sea));
+				MID->SetVectorParameterValue(TEXT("Scattering"), FMath::Lerp(FLinearColor(0.110f, 0.120f, 0.055f), FLinearColor(0.016f, 0.034f, 0.034f), *Sea));
+				MID->SetScalarParameterValue(TEXT("ScumAmount"), FMath::Lerp(0.8f, 0.f, *Sea));
 			}
 			Sheet->SetMaterial(0, MID);
 			Sheet->SetCastShadow(false);
