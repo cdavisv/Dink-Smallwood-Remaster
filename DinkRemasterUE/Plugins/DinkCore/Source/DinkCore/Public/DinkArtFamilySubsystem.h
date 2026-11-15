@@ -65,6 +65,13 @@ struct DINKCORE_API FDinkFamilyBinding
 	/** Optional JSON "span_fill": mesh of the further modules of a span; the main mesh then stands at JSON "span_end" ("left" -1, "right" +1). */
 	FString SpanFill;
 	int8 SpanEnd = 0;
+	/**
+	 * JSON "effect" instead of "mesh": object path of a material drawn on a camera-facing card of "effect_size_cm"
+	 * (default 50) for pictures that are light, not things: the twinkle over a gold heap. Used for sprites that scripts
+	 * create (DressScriptSprite); placed sprites of such a row keep their card.
+	 */
+	FString Effect;
+	double EffectSizeCm = 50.0;
 	FString Note;
 };
 
@@ -177,6 +184,8 @@ public:
 
 	/** Tag on the family mesh that stands for a sprite a script created (create_sprite). */
 	static const FName ScriptSpriteTag;
+	/** Tag on the camera-facing effect card of a script-created sprite (rows with "effect"). */
+	static const FName ScriptEffectTag;
 
 	/**
 	 * Presentation of a sprite a script created (create_sprite: pickups, dropped gold and hearts). Such a sprite has no
@@ -246,6 +255,8 @@ private:
 	UPROPERTY(Transient)
 	TMap<FString, TObjectPtr<UStaticMesh>> Meshes;
 	TSet<FString> MissingMeshes;
+	UPROPERTY(Transient)
+	TMap<FString, TObjectPtr<class UMaterialInterface>> Effects;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkPlaceholderActor>>> ActorsByScreen;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkGreyboxScreen>>> GreyboxByScreen;
 	/** (sequence << 16 | frame) -> class id, from every placement; frame 0 holds the sequence's class when it is unique (None otherwise). */
