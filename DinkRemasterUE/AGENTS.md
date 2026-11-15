@@ -133,6 +133,16 @@ Owner after playing master `cb842dd2`: "improve the mother's stuttered walk". Pa
 - The kit houses have no collision; the 1997 hardness stops the player. `Scripts/PhotorealQA/town_walk_check.py` checks offline (collision export, 30 cm capsule) that no house core lies in the walkable ground in front of its own wall: 38 house rows, none can be walked into. The ground behind a wall line has hardness 0 and is closed off: a capture teleported there shows the houses from within (five of the first captures did; `town_script.py` now stands on the street side). Not checked in the running game.
 - Trap: a private project copy under `Saved/<name>/DinkRemasterUE` does not start the game until it is rebuilt or `LD_LIBRARY_PATH` names its own module folders (the modules' search path is relative to the shared checkout's depth).
 
+## Ground decals on background placements; decals counted by the audit (14 November 2026)
+
+Evidence: `Docs/Verification/Gate2StaticDecals_14Nov2026/README.md`. Visual only.
+
+- `UDinkEnvironmentSubsystem::ApplyDecals` (environment.json `decals`: `blood_splat`, `burn_hole_decal`) replaced actor placements only. All 46 blood splats of the map are background placements (editor type 0, instanced), so none of them showed a decal, and their small cards were hardly visible. It now also replaces a background decor component (one sprite frame of one screen) when every instance in it is an unscripted placement of the same decal class that no art manifest and no state swap handles: the component is hidden and one deferred decal per instance lies at its ground point (world Z 0), attached to the screen actor as `EnvDecal_<origin>`. The same all-or-nothing rule as the family layer.
+- The decal sheet material has a `Tint` (a set's `tint` in `Props/manifest.json` `decals`, default white). Blood is tinted 0.42 / 0.30 / 0.30: the untinted scan is a bright glossy red in sunlight.
+- `Scripts/art_coverage.py` `env_decal_cards` mirrors the rule and counts those placements final (evidence `env-decal: ...`): 46 blood splats and 8 burn holes. Burn holes with a script, the ones of the starting house (a dressed screen) and the ones of screen 439 (the burnt cottage's state swap) stay as they were. Unit test `Scripts/tests/test_env_decal_coverage.py`.
+- The environment layer does not run headless, so no automation test sees the decals; the proof is the capture.
+- For other streams: a pool or stain on the ground under a bound family mesh can be a decal class row in `environment.json` `decals`; the grass clearings of the ground fixes already count ground decals.
+
 ## Gold twinkle as an effect card, stumps with real roots (14 November 2026)
 
 Follow-ups to static batch 1 from the review of PR #105. Evidence: `Docs/Verification/Gate2StaticSparkleStumps_14Nov2026/README.md`. Visual only.
