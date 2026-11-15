@@ -9,7 +9,7 @@ sys.path.insert(0, str(PROJECT / 'Scripts'))
 try:
     import numpy as np
     from export_import_bundle import (RELIEF_MAX_CLEAR_PX, RELIEF_MIN_CLEAR_PX, fold_terrain_layers, forest_points,  # noqa: E402
-                                      relief_points, water_tile_rects)
+                                      mark_sea_water, natural_water_shape, relief_points, water_tile_rects)
 except ImportError as error:    # the world export needs numpy and Pillow; a machine without them cannot run it either
     raise unittest.SkipTest('world export helpers need numpy and Pillow: %s' % error)
 
@@ -121,6 +121,41 @@ class ReliefPointsTests(unittest.TestCase):
         pocket = np.zeros((400, 600), bool)
         pocket[150:200, 150:200] = True
         self.assertEqual(relief_points(9, rows, CLASSES, pocket, self.no_warp, indoor=True), [])
+
+
+class NaturalWaterShapeTests(unittest.TestCase):
+    def test_a_pond_is_rounded_and_stays_near_its_tiles(self):
+        shape = natural_water_shape(tiles(1, **{'3_5': 5, '3_6': 5, '4_5': 5, '4_6': 5}), CLASSES, 438)
+        self.assertEqual(shape.shape, (400, 600))
+        self.assertTrue(shape[200, 300])                                    # the middle of the pond is water
+        self.assertFalse(shape[:100].any() or shape[300:].any() or shape[:, :200].any() or shape[:, 400:].any())
+        squares = np.zeros((400, 600), bool); squares[150:250, 250:350] = True
+        self.assertTrue((shape != squares).any(), 'the outline is the tile squares')
+        self.assertTrue(0.5 < shape.sum() / squares.sum() < 1.5)
+
+    def test_same_screen_same_shape_and_no_water_no_shape(self):
+        a = natural_water_shape(tiles(1, **{'3_5': 5}), CLASSES, 465)
+        self.assertTrue((a == natural_water_shape(tiles(1, **{'3_5': 5}), CLASSES, 465)).all())
+        self.assertFalse(natural_water_shape(tiles(1), CLASSES, 465).any())
+
+    def test_at_the_screen_rim_the_tile_outline_holds(self):
+        shape = natural_water_shape(tiles(1, **{'3_0': 5, '4_0': 5}), CLASSES, 7)
+        self.assertTrue(shape[160:240, 0].all())                            # water reaches the west rim over the tiles' span
+        self.assertFalse(shape[:120, 0].any() or shape[280:, 0].any())
+
+
+class SeaWaterTests(unittest.TestCase):
+    def test_a_shore_or_a_screen_beside_one_is_sea_and_an_inland_pond_is_not(self):
+        rows = {'100': {'water_tiles': [[0, 0, 50, 50]], 'classes': {'water': 1}, 'layers': ['MeadowTurf', 'WetSand']},
+                '132': {'classes': {'water': 40}, 'layers': ['WetSand', 'DrySand']},
+                '200': {'water_tiles': [[0, 0, 50, 50]], 'classes': {'water': 1}, 'layers': ['MeadowTurf', 'DrySand']},
+                '300': {'water_tiles': [[0, 0, 50, 50]], 'classes': {'water': 1}, 'layers': ['MeadowTurf', 'WetSand']},
+                '301': {'classes': {'grass': 96}, 'layers': ['MeadowTurf', 'DrySand']}}
+        mark_sea_water(rows)
+        self.assertTrue(rows['100']['water_sea'])       # the screen south of it is a sea shore
+        self.assertTrue(rows['200']['water_sea'])       # its own beach
+        self.assertFalse(rows['300']['water_sea'])      # dry sand next door without water is not a shore
+        self.assertNotIn('water_sea', rows['132'])
 
 
 class WaterTileRectsTests(unittest.TestCase):

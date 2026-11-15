@@ -172,9 +172,12 @@ static void DinkApplyEnvironmentMaterials(UStaticMeshComponent* Component)
 			}
 			else if (Cached.IsValid())
 			{
+				// Single-layer water is not a Nanite shading model; draw the pond surface as a regular mesh. The flag is set
+				// BEFORE the material: SetMaterial audits the component's Nanite materials at once (PSO precache), and with
+				// the flag still clear every water sheet logged "Invalid material [M_Env_Water] used on Nanite static mesh".
+				if (FCString::Strstr(Row.Value, TEXT("M_Env_Water"))) Component->bDisallowNanite = true;
 				Component->SetMaterial(Slot, Cached.Get());
-				// Single-layer water is not a Nanite shading model; draw the pond surface as a regular mesh.
-				if (FCString::Strstr(Row.Value, TEXT("M_Env_Water"))) { Component->bDisallowNanite = true; Component->MarkRenderStateDirty(); }
+				Component->MarkRenderStateDirty();
 			}
 			break;
 		}

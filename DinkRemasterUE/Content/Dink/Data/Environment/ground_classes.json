@@ -6752,6 +6752,7 @@
 ],
 "surroundings": {},
 "unmapped_tiles": 0,
+"water_sea": false,
 "water_surface": false,
 "water_tiles": [
 [
@@ -18729,6 +18730,7 @@
 "CobbleStreet": 2
 },
 "unmapped_tiles": 0,
+"water_sea": true,
 "water_surface": false,
 "water_tiles": [
 [
@@ -20305,6 +20307,7 @@
 "painted_ground": false,
 "surroundings": {},
 "unmapped_tiles": 0,
+"water_sea": false,
 "water_surface": false,
 "water_tiles": [
 [
@@ -21217,6 +21220,7 @@
 "MeadowTurf": 19
 },
 "unmapped_tiles": 0,
+"water_sea": false,
 "water_surface": false,
 "water_tiles": [
 [
@@ -22097,6 +22101,7 @@
 ],
 "surroundings": {},
 "unmapped_tiles": 0,
+"water_sea": false,
 "water_surface": false,
 "water_tiles": [
 [
@@ -26622,6 +26627,7 @@
 "painted_ground": false,
 "surroundings": {},
 "unmapped_tiles": 0,
+"water_sea": false,
 "water_surface": false,
 "water_tiles": [
 [
@@ -29520,6 +29526,7 @@
 ]
 ],
 "unmapped_tiles": 0,
+"water_sea": true,
 "water_surface": false,
 "water_tiles": [
 [
