@@ -1,3 +1,9 @@
+## Mother's bun and brows; hero face pass 2 (14 November 2026)
+
+Evidence: `Docs/Verification/MotherFaceBun_14Nov2026/`.
+- **Do not wind hair from ribbons round a tight coil**: at an affordable segment count they are polygons with bright edges. The Mother's bun is the modelled core alone (`hair_styles.py` `bun_strips=0`, `bun_ribbons=False`, `bun_coil`).
+- **A fair character's brow must not have a dark shadow painted under it** (`skin.json` `brow_shadow`): under bleached fair cards the shadow is all the game shows, a thin drawn line. `rim_wet` scales the wet lid margin; `hair_groom.py` `brow=dict(inner_up=)` raises the inner third of a brow.
+- Eye material: roughness capped at 0.045, specular 0.9.
 ## Interior light: no hot disc over the lantern, cooler fill (14 November 2026)
 
 - Visual only, runtime only (`UDinkEnvironmentSubsystem::BuildIndoor`; the subsystem does nothing in headless runs). Evidence and remaining faults: `Docs/Verification/PhotorealRound7/`.

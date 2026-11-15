@@ -59,9 +59,9 @@ TRUNK = {
     },
 }
 # Shoulder cap (deltoid): outward bump around the shoulder joint; 'drop' lowers (-) or raises the shoulder point.
-SHOULDER = {'Brawny': {'out': .023, 'radius': .125, 'drop': .003}, 'Scrawny': {'out': -.016, 'radius': .125, 'drop': -.010}}
+SHOULDER = {'Brawny': {'out': .023, 'radius': .125, 'drop': .003}, 'Scrawny': {'out': -.021, 'radius': .125, 'drop': -.017}}   # narrower, sloping: the lad of the new game
 # Trapezius: the slope from neck to shoulder, lifted (+) or let fall (-); peak at 'x' from the centre line.
-TRAPS = {'Brawny': {'up': .014, 'x': .075, 'w': .06}, 'Scrawny': {'up': -.006, 'x': .09, 'w': .06}}
+TRAPS = {'Brawny': {'up': .014, 'x': .075, 'w': .06}, 'Scrawny': {'up': -.010, 'x': .09, 'w': .06}}
 # Neck: radius offset at the base and under the skull.
 NECK = {'Brawny': (.010, .005), 'Scrawny': (-.001, 0.0)}   # the scrawny neck was pencil-thin under a full-size head (14 Nov 2026)
 
