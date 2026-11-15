@@ -212,6 +212,12 @@ public:
 	 * as run_script does), otherwise creates one. Args become &arg1..&arg9. Returns the instance ID, 0 if
 	 * the story has no such entry (logged).
 	 */
+	/**
+	 * The original's script buttons of Dink's brain (human_brain, dink.cpp:14871-14875, 14985-14993): 5 runs escape.c main (the main menu:
+	 * load, restart, quit, continue) attached to 1000, 6 runs button6.c main (the map) attached to Dink. Not while Dink is frozen, a menu
+	 * is open or the bow is drawn (14740-14766). False when nothing ran.
+	 */
+	bool RunPlayerButton(int32 Button);
 	int32 StartProcedure(FName Script, FName Procedure, int32 Sprite, const TArray<int32>& Args = {}, int32 Screen = INDEX_NONE, bool bNewInstance = false);
 
 	/** Runs Procedure of the script on the actor's origin component, for that actor's handle. */

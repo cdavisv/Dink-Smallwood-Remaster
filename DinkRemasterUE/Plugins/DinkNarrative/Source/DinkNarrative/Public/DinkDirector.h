@@ -230,6 +230,8 @@ public:
 	void StartMove(FDinkSprite& Sprite, int32 Dir, int32 Stop, int32 NoHard = 0);
 	/** Optional scale (0..1] on a sprite's scripted move speed; set by the gameplay layer (human pace of NPCs). */
 	TFunction<double(const FDinkSprite&)> MovePaceScale;
+	/** kill_game: when set, called instead of quitting the application (tests). */
+	TFunction<void()> OnKillGame;
 	/** True while a script carries Dink with a move that ignores hardness (warps must not fire then). */
 	bool IsDinkCarriedThroughHardness() const { const FDinkSprite* D = Sprites.Find(1); return D && D->bMoving && D->bMoveNoHard; }
 	/**

@@ -54,6 +54,10 @@ UDinkHumanoidComponent::UDinkHumanoidComponent()
 	SetGenerateOverlapEvents(false);
 	SetCanEverAffectNavigation(false);
 	VisibilityBasedAnimTickOption = EVisibilityBasedAnimTickOption::AlwaysTickPoseAndRefreshBones;
+	// No NPC body carries cloth. With cloth allowed, every tick of USkeletalMeshComponent asks the mesh whether it has active clothing,
+	// which in an editor build walks the mesh's render data (USkeletalMesh::ComputeActiveClothingAssets) for every NPC, on and off screen;
+	// that walk is where the 14 Nov 2026 crash on entering SCR_064 read freed memory (the Mother's SK_Mother_Photoreal, alpha bug A9).
+	bAllowClothActors = false;
 	// After the tickable objects (the story moves script actors there) and before the frame is drawn.
 	PresentTick.TickGroup = TG_PostUpdateWork;
 	PresentTick.bCanEverTick = true;

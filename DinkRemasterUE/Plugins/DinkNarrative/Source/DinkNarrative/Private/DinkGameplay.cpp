@@ -1098,6 +1098,28 @@ int32 UDinkGameplay::CapsuleMarginPixels(const FDinkSprite& Dink) const
 	return CmPerPixel > KINDA_SMALL_NUMBER ? FMath::CeilToInt32(Actor->GetSimpleCollisionRadius() / CmPerPixel) : 0;
 }
 
+int32 UDinkGameplay::BlockingHardnessAhead(int32 Dir) const
+{
+	const UDinkDirector* D = const_cast<UDinkGameplay*>(this)->Director();
+	if (!D || (Dir != 2 && Dir != 4 && Dir != 6 && Dir != 8))
+	{
+		return 0;
+	}
+	const FDinkSprite& Dink = const_cast<UDinkDirector*>(D)->GetDink();
+	const int32 Dx = Dir == 6 ? 1 : Dir == 4 ? -1 : 0;
+	const int32 Dy = Dir == 2 ? 1 : Dir == 8 ? -1 : 0;
+	const int32 X = FMath::RoundToInt32(Dink.X), Y = FMath::RoundToInt32(Dink.Y);
+	const int32 Reach = CapsuleMarginPixels(Dink) + 4;
+	for (int32 Step = 1; Step <= Reach; ++Step)
+	{
+		if (const int32 Code = GetHard(Dink.Screen, X + Dx * Step, Y + Dy * Step))
+		{
+			return Code;
+		}
+	}
+	return 0;
+}
+
 void UDinkGameplay::UpdatePush(bool bBlockedByHardness, int32 Dir, double InNowMs)
 {
 	if (!bBlockedByHardness || IsFrozenDink())
@@ -1108,6 +1130,14 @@ void UDinkGameplay::UpdatePush(bool bBlockedByHardness, int32 Dir, double InNowM
 	if (Dir != 0)
 	{
 		Director()->GetDink().Dir = Dir; // the walking direction is Dink's dir; push scripts read sp_dir(1, -1)
+	}
+	// The original starts a push only when Dink's move is stopped by hardness other than 2 (low: water edges, fences; D:13525-13537).
+	// The pawn is stopped by the 3D collision: the first hardness ahead of him in the walking direction (within his capsule's radius
+	// and a few pixels) says what stopped him. Nothing in the map there (an authored body or prop): as before.
+	if (BlockingHardnessAhead(Dir) == 2)
+	{
+		bPushActive = false;
+		return;
 	}
 	if (!bPushActive)
 	{

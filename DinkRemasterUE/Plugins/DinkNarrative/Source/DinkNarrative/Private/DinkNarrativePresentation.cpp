@@ -2,6 +2,7 @@
 // drawn on the HUD canvas from C++ (no widget assets), plus the keyboard pre-processor.
 
 #include "DinkNarrativeInput.h"
+#include "DinkInputBindings.h"
 #include "DinkDirector.h"
 #include "DinkStorySubsystem.h"
 #include "DinkGameplay.h"
@@ -188,16 +189,17 @@ bool FDinkNarrativeInputProcessor::HandleKeyDownEvent(FSlateApplication& SlateAp
 		}
 	}
 	const FKey Key = InKeyEvent.GetKey();
-	const bool bConfirm = Key == EKeys::Enter || Key == EKeys::SpaceBar || Key == EKeys::E;
+	using DinkInput::EAction;
+	const bool bConfirm = DinkInput::IsBound(Key, EAction::Confirm);
 
 	if (S->GetActiveMenu())
 	{
-		if (Key == EKeys::Up || Key == EKeys::W)
+		if (DinkInput::IsBound(Key, EAction::MenuUp))
 		{
 			S->MoveMenuSelection(-1);
 			return true;
 		}
-		if (Key == EKeys::Down || Key == EKeys::S)
+		if (DinkInput::IsBound(Key, EAction::MenuDown))
 		{
 			S->MoveMenuSelection(1);
 			return true;
@@ -222,13 +224,13 @@ bool FDinkNarrativeInputProcessor::HandleKeyDownEvent(FSlateApplication& SlateAp
 	{
 		return true;
 	}
-	if (Key == EKeys::E)
+	if (DinkInput::IsBound(Key, EAction::Talk))
 	{
 		APlayerController* PC = World->GetFirstPlayerController();
 		return S->TryTalk(PC ? PC->GetPawn() : nullptr);
 	}
 	// Shift now holds the third-person walk gait; Q remains the spell control.
-	if (Key == EKeys::F || Key == EKeys::LeftControl)
+	if (DinkInput::IsBound(Key, EAction::Attack))
 	{
 		if (AttackKeyDown == Key)
 		{
@@ -245,9 +247,17 @@ bool FDinkNarrativeInputProcessor::HandleKeyDownEvent(FSlateApplication& SlateAp
 		S->GetGameplay()->InputAttackPressed();
 		return true;
 	}
-	if (Key == EKeys::Q)
+	if (DinkInput::IsBound(Key, EAction::Magic))
 	{
 		return S->GetGameplay()->PlayerCastMagic();
+	}
+	if (DinkInput::IsBound(Key, EAction::MainMenu))
+	{
+		return S->RunPlayerButton(5);
+	}
+	if (DinkInput::IsBound(Key, EAction::Map))
+	{
+		return S->RunPlayerButton(6);
 	}
 	return false;
 }

@@ -97,7 +97,7 @@ kill_this_item,inventory,6,command,implemented,"removes that item: `holdingdrop`
 =magic,fact-write,4,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
 =magic_level,fact-write,4,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
 compare_weapon,other,4,external,implemented,EXTERNAL function bound with lookaheadSafe = false
-kill_game,system,4,command,recorded,quits the game in the original; logged and the script ends (not wired to quitting)
+kill_game,system,4,command,implemented,quits the game (the original's finiObjects and exit); in automation and the probe only logged; the script ends
 sp_attack_hit_sound_speed,sprites,4,command,recorded,"speed of that sound, recorded for the audio layer"
 sp_follow,sprites,4,command,implemented,"sprite to walk after until within 40 px (process_follow, D:12560)"
 =defense,fact-write,3,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)

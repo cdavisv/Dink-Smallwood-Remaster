@@ -919,6 +919,67 @@ bool FDinkGameplayPushTest::RunTest(const FString& Parameters)
 	return true;
 }
 
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayPushLowTest, "Dink.Gameplay.Push.NotAgainstLowHardness", DINK_TEST_FLAGS)
+bool FDinkGameplayPushLowTest::RunTest(const FString& Parameters)
+{
+	// The original starts a push only when hardness other than 2 stops Dink (move, D:13525-13537: `if (hardness != 2)`): walking into low
+	// hardness (a water edge, a fence) never pushes, even with a pushable rock's hardbox + 2 px around him. A copy of s1-roc's rock (S277_P03's
+	// picture) on SCR_010, whose hardness is replaced by a test map.
+	FEnv E = Make(*this);
+	if (!E.IsValid())
+	{
+		return false;
+	}
+	NewGame(E);
+	constexpr int32 TestScreen = 10;
+	const FDinkPlacementInfo* RockInfo = E.G->GetData().FindPlacement(FDinkOriginId(277, 3));
+	if (!TestNotNull(TEXT("S277_P03 in placements.csv"), RockInfo))
+	{
+		return false;
+	}
+	auto Run = [&](uint8 WallCode)
+	{
+		TSharedPtr<FDinkHardnessMap> Map = MakeShared<FDinkHardnessMap>();
+		Map->Screen = TestScreen;
+		Map->Set(0, 0, 0);
+		const_cast<FDinkGameplayData&>(E.G->GetData()).SetHardnessOverride(TestScreen, Map);
+		Enter(E, TestScreen);
+		const int32 Rock = E.D->CreateVirtualSprite(TestScreen, 300, 200);
+		FDinkSprite& R = *E.D->FindSprite(Rock);
+		UDinkDirector::InitCreatedSprite(R);
+		R.Script = TEXT("s1-roc");
+		R.Props.Add(TEXT("pseq"), RockInfo->Seq);
+		R.Props.Add(TEXT("pframe"), RockInfo->Frame);
+		int32 L = 0, T = 0, Rt = 0, B = 0;
+		TestTrue(TEXT("the rock copy has a hardbox"), E.G->GetHardbox(R, L, T, Rt, B));
+		FDinkSprite& Dink = E.D->GetDink();
+		Dink.Screen = TestScreen;
+		Dink.X = L - 1;
+		Dink.Y = (T + B) / 2;
+		// The hardness right in front of him (east) is WallCode, as the rock's stamp would be.
+		for (int32 Y = T; Y < B; ++Y)
+		{
+			for (int32 X = L; X < L + 6; ++X)
+			{
+				Map->Set(X - 20, Y, WallCode);
+			}
+		}
+		const int32 From = E.Story->Events.Num();
+		E.G->UpdatePush(false, 0, 900.0);
+		E.G->UpdatePush(true, 6, 1000.0);
+		E.G->UpdatePush(true, 6, 1700.0);
+		Settle(E);
+		const bool bPushed = Said(E.Story, From).Contains(TEXT("It's too heavy for me.  If I was a little stronger..."));
+		E.D->DeactivateSprite(Rock, 0);
+		Enter(E, TestScreen + 1);
+		return bPushed;
+	};
+	TestEqual(TEXT("blocked by hardness 1 for 700 ms: the push runs (s1-roc: too heavy at strength 3)"), Run(1), true);
+	TestEqual(TEXT("blocked by low hardness 2: no push (D:13527)"), Run(2), false);
+	TestEqual(TEXT("blocked by a sprite's hardbox (100 + n): the push runs"), Run(103), true);
+	return true;
+}
+
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayNutTest, "Dink.Gameplay.Items.EatNutKillCurItem", DINK_TEST_FLAGS)
 bool FDinkGameplayNutTest::RunTest(const FString& Parameters)
 {
