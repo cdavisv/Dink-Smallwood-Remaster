@@ -2,7 +2,8 @@
 
 Work that needs Blender or new art, found by Opus streams while Fable 5.2 was at its weekly limit (owner rule: art design
 and every Blender step only on Fable 5.2). One row per item. Streams add rows with their own id prefix; the Fable
-streams take them from here. Evidence paths are relative to the repository root unless they name a private copy.
+streams take them from here. Work packets for every row (1997 frames, sizes, placements, sources and unpushed branches to start from,
+import, binding, capture, gore bar, stream split): `doc/remaster/fable_packets/`, start with `FABLE_START_HERE.md`. Evidence paths are relative to the repository root unless they name a private copy.
 
 
 Priorities: GP rows say high / medium / low; VS rows (visual sweep of 15 Nov 2026) say 1 = seen by every player on the story path and clearly wrong, 2 = on the story path, smaller or rarer, 3 = off the path or minor. VS evidence paths are relative to `DinkRemasterUE/Docs/Verification/VisualSweep_15Nov2026/`. Remove a row when its PR merges.
