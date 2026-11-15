@@ -364,6 +364,7 @@ bool FDinkBundle::Load(const FString& InDir, FString& OutError)
 			S.Height = (int32)Num(O, TEXT("height"));
 			S.TexWidth = (int32)Num(O, TEXT("tex_width"));
 			S.TexHeight = (int32)Num(O, TEXT("tex_height"));
+			O->TryGetBoolField(TEXT("saved"), S.bSaved);
 			Sprites.Add(S.Key, MoveTemp(S));
 		}
 	}

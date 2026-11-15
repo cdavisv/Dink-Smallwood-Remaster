@@ -1202,6 +1202,11 @@ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
 			Pair.Value->SetActorEnableCollision(false);
 		}
 	}
+	// Presentation: the placements update_play_changes rewrote show the save's picture (live or drawn into the background).
+	if (Gameplay && Gameplay->HasData())
+	{
+		Gameplay->PresentPlacementPictures(Screen);
+	}
 	if (!Gameplay->HasData())
 	{
 		// No map.dat table (Scripts/sync_gameplay_data.py not run): the actors' scripts only.

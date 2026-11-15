@@ -195,6 +195,16 @@ public:
 	 */
 	FName ClassOfPicture(int32 Sequence, int32 Frame) const;
 
+	/**
+	 * The picture a placement shows instead of its imported one: the save's editor_seq / editor_frame, which update_play_changes
+	 * (dink.cpp:5773-5832) gives a placement with a saved editor_type 2-5 on every screen load, its script cleared (5831). The
+	 * family row is then looked up from that picture (a row with its sequence and frame, else its class, else its sequence; a
+	 * scripted-only restriction reads bScripted) and a placement this layer dressed already is dressed again from it. Sequence <= 0
+	 * forgets the picture: the imported one again. Placements with a fitted collision body are left to that layer. Visual only.
+	 * Returns true when a family mesh shows for the placement.
+	 */
+	bool SetPlacementPicture(ADinkPlaceholderActor& Actor, int32 Sequence, int32 Frame, bool bScripted);
+
 	/** Dresses one screen (idempotent; called on screen activation). Returns the placements dressed by this call. */
 	int32 ApplyScreen(int32 ScreenNumber);
 	bool IsScreenApplied(int32 ScreenNumber) const { return AppliedScreens.Contains(ScreenNumber); }
@@ -248,6 +258,9 @@ private:
 	TSet<FString> MissingMeshes;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkPlaceholderActor>>> ActorsByScreen;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkGreyboxScreen>>> GreyboxByScreen;
+	/** SetPlacementPicture: the picture DressActor looks the family row up from, per placement (the imported one when absent). */
+	struct FPlacementPicture { int32 Sequence = 0; int32 Frame = 0; bool bScripted = false; };
+	TMap<TWeakObjectPtr<ADinkPlaceholderActor>, FPlacementPicture> PlacementPictures;
 	/** (sequence << 16 | frame) -> class id, from every placement; frame 0 holds the sequence's class when it is unique (None otherwise). */
 	TMap<int32, FName> ClassByPicture;
 	TSet<int32> AppliedScreens;

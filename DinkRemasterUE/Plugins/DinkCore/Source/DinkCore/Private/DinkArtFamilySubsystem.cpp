@@ -604,6 +604,41 @@ UStaticMesh* UDinkArtFamilySubsystem::MeshFor(const FDinkFamilyBinding& Binding,
 	return Variant ? Variant : Main;
 }
 
+bool UDinkArtFamilySubsystem::SetPlacementPicture(ADinkPlaceholderActor& Actor, int32 Sequence, int32 Frame, bool bScripted)
+{
+	UWorld* World = GetWorld();
+	if (!World || !Actor.Origin || IsCollisionFitRequested(Actor.Origin->OriginId)) return false;
+	const FPlacementPicture* Known = PlacementPictures.Find(&Actor);
+	const bool bImported = Sequence <= 0 || (Sequence == Actor.Origin->Sequence && Frame == Actor.Origin->Frame && bScripted == !Actor.Origin->ScriptName.IsNone());
+	if (bImported ? !Known : (Known && Known->Sequence == Sequence && Known->Frame == Frame && Known->bScripted == bScripted))
+	{
+		return Actor.ActorHasTag(FamilyTag);
+	}
+	if (bImported) PlacementPictures.Remove(&Actor);
+	else PlacementPictures.Add(&Actor, FPlacementPicture{Sequence, Frame, bScripted});
+	if (!bReady) return false;
+	if (!bIndexed) BuildIndex(*World);
+	// Undo what DressActor did for the old picture (its FamilyArt parts and the hidden card), then dress from the new one.
+	TInlineComponentArray<UStaticMeshComponent*> Parts(&Actor);
+	bool bUndressed = false;
+	for (UStaticMeshComponent* Part : Parts)
+	{
+		if (Part && Part != Actor.Card && Part->ComponentHasTag(FamilyTag) && !Part->ComponentHasTag(ScriptSpriteTag) && Part->GetName().StartsWith(TEXT("FamilyArt")))
+		{
+			Actor.RemoveInstanceComponent(Part);
+			Part->DestroyComponent();
+			bUndressed = true;
+		}
+	}
+	if (bUndressed)
+	{
+		Actor.Tags.Remove(FamilyTag);
+		if (Actor.Card) Actor.Card->SetHiddenInGame(false);
+	}
+	// A screen not yet activated is dressed by ApplyScreen, from the picture registered above.
+	return AppliedScreens.Contains(Actor.ScreenNumber) && DressActor(Actor);
+}
+
 int32 UDinkArtFamilySubsystem::ApplyScreen(int32 ScreenNumber)
 {
 	UWorld* World = GetWorld();
@@ -648,6 +683,14 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	P.ClassId = Actor.Origin->ClassId;
 	P.bScripted = !Actor.Origin->ScriptName.IsNone();
 	P.bHardnessOnly = Actor.PlacementKind == TEXT("hardness_only");
+	// The picture the save gave this placement (SetPlacementPicture), and with it its class and its (cleared) script.
+	if (const FPlacementPicture* Saved = PlacementPictures.Find(&Actor))
+	{
+		P.Sequence = Saved->Sequence;
+		P.Frame = Saved->Frame;
+		P.ClassId = ClassOfPicture(Saved->Sequence, Saved->Frame);
+		P.bScripted = Saved->bScripted;
+	}
 	const FDinkFamilyBinding* B = nullptr;
 	const EDinkFamilyDecision Decision = DinkArtFamily::Decide(P, Precedence, Bindings, B);
 	DecisionCounts.FindOrAdd(Decision)++;

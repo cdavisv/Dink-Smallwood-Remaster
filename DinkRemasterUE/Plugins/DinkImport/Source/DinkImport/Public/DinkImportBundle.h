@@ -86,6 +86,8 @@ struct FDinkBundleSprite
 {
 	FString Key, File, Hash;
 	int32 Width = 0, Height = 0, TexWidth = 0, TexHeight = 0;
+	/** A picture a script saves for a placement (editor_seq / editor_frame), shown on later visits: imported with every region. */
+	bool bSaved = false;
 };
 
 /** Merged hardness rectangles of one screen, per collision class (solid, low, sprite, warp, fill_water, fill_solid). */
