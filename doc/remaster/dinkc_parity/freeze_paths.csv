@@ -1,0 +1,44 @@
+script,procedure,freeze_line,exit_line,exit,handover_on_path,probe_runs_script,probe_runs_proc
+dinfo,die,3,25,kill_this_task,,no,no
+dinfo,die,3,,end of procedure,kill_game;restart_game,no,no
+dinfo,die,3,,end of procedure,restart_game,no,no
+en-gmog,die,48,75,kill_this_task,draw_screen;load_screen;script_attach,yes,yes
+escape,main,7,130,goto (not followed),,no,no
+escape,main,7,145,goto (not followed),,no,no
+escape,main,7,151,goto (not followed),,no,no
+escape,main,7,166,goto (not followed),,no,no
+escape,main,7,214,goto (not followed),,no,no
+escape,main,7,217,goto (not followed),,no,no
+escape,main,7,35,goto (not followed),,no,no
+item-pig,use,83,,end of procedure,sp_script,yes,yes
+s1-h1-s,main,5,23,return,,yes,yes
+s1-hole,touch,11,,end of procedure,draw_screen;load_screen,no,no
+s1-hole3,touch,11,29,kill_this_task,draw_screen;load_screen;script_attach,yes,no
+s1-lg,talk,22,117,goto (not followed),,no,no
+s1-lg,talk,22,130,goto (not followed),,no,no
+s1-lg,talk,22,143,goto (not followed),,no,no
+s1-lg,talk,22,87,goto (not followed),,no,no
+s1-lg,talk,22,97,goto (not followed),,no,no
+s2-cult,main,49,142,goto (not followed),sp_script,yes,yes
+s2-healp,talk,87,139,goto (not followed),,yes,yes
+s2-mdoor,talk,45,89,kill_this_task,draw_screen;load_screen;script_attach,no,no
+s2-mdoor,talk,97,113,kill_this_task,draw_screen;load_screen;script_attach,no,no
+s2-out,talk,251,265,goto (not followed),,no,no
+s2-out,talk,251,270,goto (not followed),,no,no
+s2-ryan2,main,16,,end of procedure,,no,no
+s2-wand,talk,15,45,goto (not followed),,no,no
+s2-wand,talk,15,49,goto (not followed),,no,no
+s3-camp,main,17,,end of procedure,,yes,yes
+s3-mayor,talk,104,147,kill_this_task,draw_screen;load_screen;script_attach,yes,yes
+s3-st2p,talk,72,123,goto (not followed),,yes,yes
+s4-healp,talk,88,140,goto (not followed),,yes,yes
+s4-st1p,talk,36,95,goto (not followed),,no,no
+s4-st3p,talk,176,226,goto (not followed),,yes,yes
+s6-hole,touch,11,29,kill_this_task,draw_screen;load_screen;script_attach,yes,no
+s6-hole2,touch,11,29,kill_this_task,draw_screen;load_screen;script_attach,yes,no
+s8-da,main,27,126,goto (not followed),sp_script,no,no
+s8-da,main,27,140,goto (not followed),sp_script,no,no
+s8-da,main,27,165,goto (not followed),sp_script,no,no
+s8-da,main,27,67,goto (not followed),sp_script,no,no
+s8-da,main,27,83,goto (not followed),sp_script,no,no
+s8-duck2,talk,10,66,kill_this_task,draw_screen;load_screen;script_attach,no,no
