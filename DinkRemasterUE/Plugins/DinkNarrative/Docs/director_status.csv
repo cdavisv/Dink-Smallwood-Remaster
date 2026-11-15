@@ -1,9 +1,9 @@
 command,category,uses,form,status,note
-(line) say_stop,dialogue,1702,spoken line,implemented,"floating text over the speaker in its colour; blocks until timed out (strlen x 77 ms, min 2700) or skipped"
+(line) say_stop,dialogue,1702,spoken line,implemented,"shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); blocks until timed out (strlen x 77 ms, min 2700) or skipped"
 wait,timing,1550,command,implemented,suspends this script instance for ms of game time (others keep running)
 unfreeze,control,378,command,implemented,undoes freeze
 create_sprite,sprites,342,external,implemented,EXTERNAL function bound with lookaheadSafe = false
-(line) say,dialogue,339,spoken line,implemented,floating text over the speaker in its colour; does not block
+(line) say,dialogue,339,spoken line,implemented,shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); does not block
 playsound,audio,298,command,implemented,"audio stub: logs the sound cue (number, speed, sprite, repeat)"
 init,animation,289,command,recorded,dink.ini line: recorded for the animation layer; a sequence dink.ini lacks gets the line's hardbox (dink.cpp:2335-2344)
 freeze,control,270,command,implemented,sprite frozen; for Dink (1) player movement input is ignored
@@ -35,12 +35,12 @@ savegameinfo,other,50,external,implemented,EXTERNAL function bound with lookahea
 sp_brain_parm,sprites,50,command,implemented,"brain parameter: target size of brain 12 (pickup vanish), the sprite a missile must not hit; other uses recorded for the AI layer"
 sp_exp,sprites,43,command,implemented,"experience the player gets when he dealt the killing blow (add_exp in add_kill_sprite, D:12359)"
 sp_strength,sprites,42,command,implemented,strength of the actor's UDinkStatsComponent (recorded when it has none)
-(line) say_stop_npc,dialogue,42,spoken line,implemented,"floating text over the speaker in its colour; blocks until timed out (strlen x 77 ms, min 2700) or skipped"
+(line) say_stop_npc,dialogue,42,spoken line,implemented,"shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); blocks until timed out (strlen x 77 ms, min 2700) or skipped"
 =gold,fact-write,40,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
 sp,sprites,39,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 sp_frame,sprites,38,command,implemented,animation frame of the frame stepper (0 restarts the sequence)
 sp_frame_delay,sprites,37,command,implemented,fixed delay per frame for the frame stepper instead of dink.ini's
-(line) say_stop_xy,dialogue,37,spoken line,implemented,"floating text over the speaker in its colour; blocks until timed out (strlen x 77 ms, min 2700) or skipped"
+(line) say_stop_xy,dialogue,37,spoken line,implemented,"shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); blocks until timed out (strlen x 77 ms, min 2700) or skipped"
 get_sprite_with_this_brain,other,36,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 sp_distance,sprites,36,command,implemented,a monster attacks (and stops closing in) when its target is nearer than this on the larger axis (5 if 0)
 sp_base_attack,sprites,35,command,implemented,attack sequence base: a brain-9 monster attacks with base_attack+dir; -1 = never melees; also decides whether a hit makes it target the attacker
@@ -92,7 +92,7 @@ spawn,scripts,7,command,implemented,starts another script's main in a new instan
 draw_hard_map,world,6,command,implemented,"rebuilds the screen's hardness as dink.cpp:8224-8232 does (tile layer, then the hardboxes of active sprites and background placements whose flag is 0); the greybox's solid collision follows"
 fill_screen,screen,6,command,recorded,palette fill of the 2D back buffer; the 3D view has nothing to fill
 kill_this_item,inventory,6,command,implemented,"removes that item: `holdingdrop` and `disarm` if armed, then `drop` (kill_cur_item_script, D:1505)"
-(line) say_xy,dialogue,5,spoken line,implemented,floating text over the speaker in its colour; does not block
+(line) say_xy,dialogue,5,spoken line,implemented,shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); does not block
 =exp,fact-write,4,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
 =magic,fact-write,4,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
 =magic_level,fact-write,4,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)

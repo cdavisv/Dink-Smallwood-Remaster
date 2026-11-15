@@ -76,9 +76,13 @@ bool FDinkVoicePlayback::RunTest(const FString&)
  Texts.Reset();
  C = Tracker.Update(Texts, 3000, Table);
  TestTrue(TEXT("a timed-out text lets its recording finish"), C.Stopped.IsEmpty() && Tracker.Playing.Num() == 1 && Tracker.Playing[0].bTail);
+ TestTrue(TEXT("the dialogue box keeps a timed-out line up while its recording finishes"), Tracker.IsTail(50, TEXT("a")));
+ TestFalse(TEXT("only for that line"), Tracker.IsTail(50, TEXT("b")) || Tracker.IsTail(51, TEXT("a")));
  Texts = {Text(51, 1, TEXT("b"), 6000)};
  C = Tracker.Update(Texts, 3100, Table);
  TestTrue(TEXT("the next speaker cuts the tail"), C.Stopped == TArray<int32>{50} && C.Started.Num() == 1 && C.Started[0].Owner == 1);
+ TestFalse(TEXT("the next line takes the box from the cut tail"), Tracker.IsTail(50, TEXT("a")));
+ TestFalse(TEXT("a line still on screen is not a tail"), Tracker.IsTail(51, TEXT("b")));
  Texts.Reset();
  C = Tracker.Update(Texts, 4000, Table);
  TestTrue(TEXT("a text removed early (skip, kill) stops its recording"), C.Stopped == TArray<int32>{51} && Tracker.Playing.IsEmpty());
