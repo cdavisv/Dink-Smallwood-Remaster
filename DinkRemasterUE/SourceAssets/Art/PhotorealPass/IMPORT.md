@@ -177,7 +177,7 @@ Evidence: `Docs/Verification/Gate2StaticBatch1_13Nov2026/`.
 
 | What | Command | Reads | Writes |
 |---|---|---|---|
-| What each screen's ground is made of | part of the world export (`Scripts/export_import_bundle.py`, run by `Scripts/import_greybox.sh --export`) | `tools/data/tile_classes.csv`, `terrain_layers.json` | `Content/Dink/Data/Environment/ground_classes.json` (per screen: tile classes, the layer of each, the layers the mask carries, the layers it dropped, water surface) |
+| What each screen's ground is made of | part of the world export (`Scripts/export_import_bundle.py`, run by `Scripts/import_greybox.sh --export`) | `tools/data/tile_classes.csv`, `terrain_layers.json` | `Content/Dink/Data/Environment/ground_classes.json` (per screen: tile classes, the layer of each, the layers the mask carries, the layers it dropped, water surface, `water_sea` 0 pond .. 1 sea, which `screens.json` also carries for the importer's water instances) |
 | Captures for the review (play camera, 1.1 m above the ground, from above) | `python3 -I Scripts/PhotorealQA/ground_script.py <out dir> [--screens=a,b]`, then `Scripts/PhotorealQA/run_capture.sh <out dir>/ground_<k>.txt` | screens, tile classes, hardness | `NNN_play/close/above.png`, `ground_index.json` |
 | Review sheets | `python3 -I Scripts/PhotorealQA/ground_sheet.py <capture dir> <out dir> [--by-class]` | the captures | one JPEG per pair of screens, or per reason a screen was chosen |
 | The verdicts and the result as tables | `python3 -I Scripts/PhotorealQA/ground_review_table.py` | `ground_classes.json`, `ground_review.json` | Markdown on stdout |

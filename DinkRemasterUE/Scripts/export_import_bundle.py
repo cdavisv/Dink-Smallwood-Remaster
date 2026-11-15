@@ -443,18 +443,103 @@ def natural_water_shape(tiles: list, tile_classes: dict, screen: int) -> np.ndar
 
 
 SEA_LAYERS = ("DrySand", "ShingleBeach")
+MAP_COLUMNS = 32          # screen n sits at column (n - 1) % 32, row (n - 1) // 32 of the 1997 map
 
 
-def mark_sea_water(ground_classes: dict) -> None:
-    """`water_sea` true on a screen with `water_tiles` that is a sea shore or touches one: its own layers or those of a
-    screen next to it (the map is 32 screens wide) that has water hold dry sand or shingle. The runtime then gives
-    the water sheet the sea's colours instead of silty pond water, as the importer does for water with a fill."""
+def water_is_sea(kind: str, layers) -> bool:
+    """The importer's own rule for the colour of a screen's water (DinkGreyboxAssets.cpp, the shore water instance):
+    a screen of kind "sea", or one whose mask carries dry sand or shingle, has the sea's blue-green body; anything
+    else is silty pond water. WetSand is every water bed, pond or sea, so it does not count."""
+    return kind == "sea" or bool(set(layers or []) & set(SEA_LAYERS))
+
+
+def map_neighbours(n: int) -> list:
+    """Screen numbers west, east, north and south of screen n on the 1997 map, without wrapping across a row end
+    (screen 385 is the west end of its row: 384 is the east end of the row above, not its neighbour)."""
+    col = (n - 1) % MAP_COLUMNS
+    return ([n - 1] if col > 0 else []) + ([n + 1] if col < MAP_COLUMNS - 1 else []) + [n - MAP_COLUMNS, n + MAP_COLUMNS]
+
+
+SEA_OPEN_WATER_TILES = 90  # of a screen's 96 tiles: a screen that is (nearly) all water is open sea, whatever its tiles
+
+
+def water_meets(a_rects, b_rects, side: str) -> bool:
+    """Whether the water fills of two screens meet across their shared edge: `side` "E" (b is east of a) or "S"
+    (b is south of a); rects are [x0, y0, x1, y1) map pixels. More than 5 px of shared water edge counts."""
+    if side == "E":
+        a = [(r[1], r[3]) for r in a_rects if r[2] >= 600]; b = [(r[1], r[3]) for r in b_rects if r[0] <= 0]
+    else:
+        a = [(r[0], r[2]) for r in a_rects if r[3] >= 400]; b = [(r[0], r[2]) for r in b_rects if r[1] <= 0]
+    return any(min(p[1], q[1]) - max(p[0], q[0]) > 5 for p in a for q in b)
+
+
+def water_sea_weights(water: dict) -> dict:
+    """How much of the sea's colour each screen's water takes, 0 (silty pond water) to 1 (the sea's blue-green).
+    `water`: screen number -> {"kind", "layers" (the mask's), "tiles" (water tiles of 96), "fill" (fill_water rects),
+    "sheet" (True when the runtime draws the water: `water_tiles`)}.
+
+    Rivers in the 1997 map run into the sea as one body of water, and the importer used to colour each screen on its
+    own (`water_is_sea`), so open sea with only wet sand (the south coast, the water round Koka Isle) was pond-olive
+    and straight seams ran along screen edges. Now: open water (SEA_OPEN_WATER_TILES) and the importer's sea screens
+    are the sea; water one screen away from them is sea too, two screens away half and half, further away pond. A
+    screen whose water joins two or more sea screens is sea (a strip of coast between two sea screens, the corner of
+    an estuary). Between two joined screens the colour never steps by more than half. Screens join when their fills
+    meet across the shared edge (`water_meets`); a sheet joins any neighbour with water.
+    Neighbours never wrap across a row end (`map_neighbours`)."""
+    links = {n: set() for n in water}
+    for n, w in water.items():
+        for m in map_neighbours(n):
+            o = water.get(m)
+            if o is None or m in links[n]:
+                continue
+            if w["sheet"] or o["sheet"]:
+                joined = True
+            elif m == n + 1:
+                joined = water_meets(w["fill"], o["fill"], "E")
+            elif m == n - 1:
+                joined = water_meets(o["fill"], w["fill"], "E")
+            elif m == n + MAP_COLUMNS:
+                joined = water_meets(w["fill"], o["fill"], "S")
+            else:
+                joined = water_meets(o["fill"], w["fill"], "S")
+            if joined:
+                links[n].add(m)
+                links[m].add(n)
+    dist = {n: 0 for n in sorted(water) if water_is_sea(water[n]["kind"], water[n]["layers"]) or water[n]["tiles"] >= SEA_OPEN_WATER_TILES}
+    queue = sorted(dist)
+    while queue:
+        n = queue.pop(0)
+        for m in sorted(links[n]):
+            if m not in dist:
+                dist[m] = dist[n] + 1
+                queue.append(m)
+    base = {n: 1.0 if dist.get(n, 99) <= 1 else 0.5 if dist.get(n) == 2 else 0.0 for n in water}
+    weight = {n: 1.0 if base[n] < 1.0 and sum(base[m] == 1.0 for m in links[n]) >= 2 else base[n] for n in water}
+    changed = True
+    while changed:                      # no step bigger than half between joined screens: raise the lower side
+        changed = False
+        for n in sorted(weight):
+            top = max([weight[m] for m in links[n]] + [0.0]) - 0.5
+            if top > weight[n]:
+                weight[n] = top
+                changed = True
+    return weight
+
+
+def mark_sea_water(ground_classes: dict, kinds: dict, fills: dict) -> dict:
+    """`water_sea` (0..1, `water_sea_weights`) on every screen whose tiles hold water; returns screen -> weight.
+    `kinds`: screen -> kind; `fills`: screen -> fill_water rects. The importer colours a water fill with it and the
+    runtime colours a water sheet (`water_tiles`) with it."""
+    water = {}
     for number, row in ground_classes.items():
-        if not row.get("water_tiles"):
-            continue
-        n = int(number)
-        near = [row] + [ground_classes.get(str(m)) or {} for m in (n - 1, n + 1, n - 32, n + 32)]
-        row["water_sea"] = any(r.get("classes", {}).get("water") and set(r.get("layers") or []) & set(SEA_LAYERS) for r in near)
+        if row.get("classes", {}).get("water"):
+            n = int(number)
+            water[n] = {"kind": kinds.get(n, ""), "layers": row.get("layers") or [], "tiles": row["classes"]["water"],
+                        "fill": fills.get(n) or [], "sheet": bool(row.get("water_tiles"))}
+    weights = water_sea_weights(water)
+    for n, weight in weights.items():
+        ground_classes[str(n)]["water_sea"] = weight
+    return weights
 
 
 def water_tile_rects(tiles: list, tile_classes: dict):
@@ -1270,6 +1355,13 @@ def main(argv=None) -> int:
              [classes / "sprite_classes.csv", classes / "tile_classes.csv", dinkc / "script_kinds.csv"]:
         inputs[str(p.relative_to(data))] = sha1_file(p)
 
+    if terrain_cat is not None:
+        # the colour of each screen's water, sea to pond (visual only; the importer reads `water_sea` for water fills)
+        sea = mark_sea_water(ground_classes, {s["screen"]: s["kind"] for s in screens_out},
+                             {s["screen"]: collision_out.get(s["id"], {}).get("fill_water") or [] for s in screens_out})
+        for s in screens_out:
+            if s["screen"] in sea and (collision_out.get(s["id"], {}).get("fill_water")):
+                s["water_sea"] = sea[s["screen"]]
     write_json(out / "screens.json", {"schema": EXPORTER_VERSION + "/screens", "screens": screens_out})
     if terrain_cat is not None:
         # Runtime grass scatter hook (UDinkEnvironmentSubsystem): meadow coverage per screen (w x h, sampled bilinearly).
@@ -1281,7 +1373,6 @@ def main(argv=None) -> int:
         if not cover_file.exists() or cover_file.read_text() != cover_text:
             cover_file.write_text(cover_text)
         # What each screen's ground is made of (Scripts/art_coverage.py screen_ground_state reads it with ground_review.json).
-        mark_sea_water(ground_classes)
         classes_text = json.dumps({"schema": "dink-environment-ground-classes/3",
                                    "note": "Generated by Scripts/export_import_bundle.py; never hand-edit. Per screen: tile classes (tiles of 96), "
                                            "the terrain layer each class maps to, the layers the screen's mask carries (at most four), "
@@ -1289,7 +1380,8 @@ def main(argv=None) -> int:
                                            "where trees stand on its forest-canopy tiles (map x, y, 1 on the forest's edge), where rock may stand on its cliff, "
                                            "rock-mass and cave-wall tiles (`relief`: map x, y, clear radius px, tier 1 = hardness blocks the disc / 2 = only an "
                                            "enclosed pocket is walkable there, class 0 cliff_face 1 rock_mass 2 cave_wall), whether the importer draws a water "
-                                           "surface, and the water tiles the runtime covers when it does not (`water_tiles`: map-pixel rects).",
+                                           "surface, the water tiles the runtime covers when it does not (`water_tiles`: map-pixel rects), and how much "
+                                           "of the sea's colour the screen's water takes (`water_sea`, 0 pond .. 1 sea, water_sea_weights).",
                                    "screens": ground_classes}, sort_keys=True, indent=0) + "\n"
         classes_file = cover_dir / "ground_classes.json"
         if not classes_file.exists() or classes_file.read_text() != classes_text:

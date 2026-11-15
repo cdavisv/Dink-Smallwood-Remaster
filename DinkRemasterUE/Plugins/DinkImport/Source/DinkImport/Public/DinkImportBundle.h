@@ -40,6 +40,8 @@ struct FDinkBundleScreen
 	/** Terrain layers A, B, C and their RGB weight mask; empty when the screen keeps its painted ground. */
 	TArray<FDinkBundleGroundLayer> GroundLayers;
 	FString GroundMask, GroundMaskHash;
+	/** How much of the sea's colour the screen's water fill takes, 0 (pond) .. 1 (sea); -1 when the bundle predates `water_sea`. */
+	double WaterSea = -1.0;
 	/** Non-empty when the exporter left the screen out (reason), e.g. a layout overlap. */
 	FString Excluded;
 };

@@ -918,12 +918,20 @@ namespace DinkGreybox
 		const bool bShoreWater = Terrain && !Rects(TEXT("fill_water")).IsEmpty() && FPackageName::DoesPackageExist(EnvWaterShore);
 		if (bShoreWater)
 		{
-			// Sea screens (the sea sheets and any shore with a dry sand or shingle layer) keep a blue-green body;
-			// everything else is silty pond water (the material's defaults).
-			bool bSea = Screen.Kind == TEXT("sea");
-			for (const FDinkBundleGroundLayer& L : Screen.GroundLayers)
-				bSea |= L.Name == TEXT("DrySand") || L.Name == TEXT("ShingleBeach"); // WetSand is every water bed, pond or sea
-			const FString WaterHash = HashStrings({TEXT("water-mi/4"), MaskPkg, Screen.GroundMaskHash, bSea ? TEXT("sea") : TEXT("pond")});
+			// How much of the sea's blue-green the water takes, 0 (silty pond water, the material's defaults) .. 1: the
+			// world export's `water_sea` (water_sea_weights: open water and sandy shores are sea, rivers fade to pond
+			// over two screens, no hard step between joined screens). An older bundle without it: the screen's own
+			// rule (the sea sheets and any shore with a dry sand or shingle layer; WetSand is every water bed).
+			float Sea = float(Screen.WaterSea);
+			if (Sea < 0.f)
+			{
+				bool bSea = Screen.Kind == TEXT("sea");
+				for (const FDinkBundleGroundLayer& L : Screen.GroundLayers)
+					bSea |= L.Name == TEXT("DrySand") || L.Name == TEXT("ShingleBeach");
+				Sea = bSea ? 1.f : 0.f;
+			}
+			Sea = FMath::Clamp(Sea, 0.f, 1.f);
+			const FString WaterHash = HashStrings({TEXT("water-mi/5"), MaskPkg, Screen.GroundMaskHash, FString::Printf(TEXT("sea=%.3f"), Sea)});
 			if (IsUpToDate(WaterMiPkg, WaterHash)) MarkUnchanged(WaterMiPkg, WaterHash);
 			else
 			{
@@ -931,11 +939,13 @@ namespace DinkGreybox
 				UMaterialInstanceConstant* MI = BuildMaterialInstance(WaterMiPkg,
 					LoadObject<UMaterialInterface>(nullptr, *(FString(EnvWaterShore) + TEXT(".M_Env_WaterShore"))), bExisted);
 				MI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("ShoreMask")), Cast<UTexture>(LoadGenerated(MaskPkg)));
-				if (bSea)
+				if (Sea > 0.f)
 				{
-					MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Absorption")), FLinearColor(0.42f, 0.17f, 0.15f));
-					MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Scattering")), FLinearColor(0.016f, 0.034f, 0.034f));
-					MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(TEXT("ScumAmount")), 0.f);
+					// pond = M_Env_WaterShore's defaults (Scripts/import_environment_materials.py), sea = the old sea body;
+					// UDinkEnvironmentSubsystem::ApplyRelief blends a water sheet the same way
+					MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Absorption")), FMath::Lerp(FLinearColor(0.50f, 0.33f, 0.55f), FLinearColor(0.42f, 0.17f, 0.15f), Sea));
+					MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Scattering")), FMath::Lerp(FLinearColor(0.110f, 0.120f, 0.055f), FLinearColor(0.016f, 0.034f, 0.034f), Sea));
+					MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(TEXT("ScumAmount")), FMath::Lerp(0.8f, 0.f, Sea));
 				}
 				MI->PostEditChange();
 				MI->MarkPackageDirty();

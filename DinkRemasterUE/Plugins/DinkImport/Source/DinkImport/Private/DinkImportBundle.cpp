@@ -219,6 +219,7 @@ bool FDinkBundle::Load(const FString& InDir, FString& OutError)
 			S.CollisionHash = Str(O, TEXT("collision_hash"));
 			S.GroundMask = Str(O, TEXT("ground_mask"));
 			S.GroundMaskHash = Str(O, TEXT("ground_mask_hash"));
+			S.WaterSea = Num(O, TEXT("water_sea"), -1.0);
 			{
 				const TArray<TSharedPtr<FJsonValue>>* GroundLayerRows = nullptr;
 				if (O->TryGetArrayField(TEXT("ground_layers"), GroundLayerRows) && GroundLayerRows)

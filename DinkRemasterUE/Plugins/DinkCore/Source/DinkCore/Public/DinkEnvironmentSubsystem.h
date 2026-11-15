@@ -361,12 +361,16 @@ private:
 	void ApplyRelief(int32 ScreenNumber, const FDinkScreenCorners& Corners);
 	TMap<int32, TArray<FDinkReliefRock>> ReliefRocks;
 	TMap<int32, TArray<FBox2D>> WaterTileRects;
-	TSet<int32> WaterTileSea;               // ground_classes.json `water_sea`: the sheet takes the sea's colours
+	TMap<int32, float> WaterTileSea;        // ground_classes.json `water_sea` (0 pond .. 1 sea; true = 1): how much of the sea's colours the sheet takes
 	UPROPERTY(Transient)
 	TArray<TObjectPtr<UStaticMesh>> ReliefMeshes;
 	UPROPERTY(Transient)
 	TObjectPtr<UMaterialInterface> WaterTileMaterial;
-	float ReliefFill = 0.95f, ReliefSink = 0.12f, ReliefCullCm = 26000.f, WaterTileHeightCm = 3.f;
+	// environment.json `water_tiles.fallback_material`: the pre-water-banks rectangle sheets, drawn (with a warning) when a
+	// screen's terrain mask is missing or carries no shoreline alpha (a world generated before the water banks)
+	UPROPERTY(Transient)
+	TObjectPtr<UMaterialInterface> WaterTileFallbackMaterial;
+	float ReliefFill = 0.95f, ReliefSink = 0.12f, ReliefCullCm = 26000.f, WaterTileHeightCm = 3.f, WaterTileFallbackHeightCm = 9.f;
 	TSet<int32> ReliefApplied;
 
 	// --- pillbug carcass (round 6, visual only): where a photoreal pillbug of the current screen is killed (its actor is
