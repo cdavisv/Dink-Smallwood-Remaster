@@ -24,7 +24,7 @@ GROUND_WORDS = ('terrain', 'meadow', 'ground', 'floor', 'earth', 'sand', 'snow',
 
 
 def font(size):
-    for f in ('/usr/share/fonts/TTF/DejaVuSans.ttf', '/usr/share/fonts/dejavu/DejaVuSans.ttf'):
+    for f in ('/usr/share/fonts/TTF/DejaVuSans.ttf', '/usr/share/fonts/dejavu/DejaVuSans.ttf', '/usr/share/fonts/noto/NotoSans-Regular.ttf'):
         if os.path.exists(f): return ImageFont.truetype(f, size)
     return ImageFont.load_default()
 
