@@ -1,6 +1,13 @@
 {
   "schema": "dink-environment-terrain-layers/3",
   "note": "Layer catalogue of the master terrain material M_Env_Terrain. Every layer is a set of ../Terrain/manifest.json, wired by name: a re-run of Scripts/import_environment_materials.sh picks up revised files (texture imports are keyed on file size and time). Per layer, optional: 'structured' true = a laid pattern (boards, flagstones, cobbles, masonry, plaster): the material keeps it straight and at one scale (no UV warp, no quarter-turned variant lookup, no far lookup, no close detail normal) and it takes no field-scale drift; 'drift' false = no field-scale value drift and no dry, yellowed patches (snow: they turned it beige); 'tile_scale' multiplies the set's tile size (PlankFloor 1.5: its 12 cm boards become 18 cm). Read by that script and by Scripts/export_import_bundle.py. 'classes' maps tools/data/tile_classes.csv terrain classes; 'classes_indoor' overrides it on indoor screens. Outdoors 'structure_facade' (the upper storeys and roofs the 1997 tiles paint behind a house front) is '@surroundings': each such tile takes the layer of the nearest tile of ordinary ground on its screen (grass behind the houses of a village green, setts behind those of a paved square; 'surroundings_fallback' when a screen has none), because the assembled houses stand on the front line and the picture of their upper storeys lies over open ground.",
+  "relief": {
+    "note": "Parallax relief of M_Env_Terrain (the ground is a flat sheet; the material marches the view ray through the layers' height maps). A layer's depth in cm is its own 'relief_cm' when set, else the set's height_range_m (../Terrain/manifest.json) times 'exaggeration' ('structured_exaggeration' for laid patterns), capped at 'max_cm'. Depths were tuned by eye in the game at the play camera: evidence Docs/Verification/GroundRelief_14Nov2026.",
+    "exaggeration": 1.5,
+    "structured_exaggeration": 1.0,
+    "max_cm": 12.0,
+    "default_cm": 3.0
+  },
   "layers": {
     "MeadowTurf": {
       "source": "terrain",

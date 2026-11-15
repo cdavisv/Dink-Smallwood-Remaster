@@ -190,6 +190,16 @@ def load_terrain_catalogue(project: Path):
         tile_m *= float(row.get("tile_scale", 1.0))
         layers[name] = {"name": name, "tile_cm": round(tile_m * 100.0, 3), "normal_strength": float(row.get("normal_strength", 1.0)),
                         "backlight": float(row.get("backlight", 0.0)), "emissive": float(row.get("emissive", 0.0))}
+        # parallax relief depth (same rule as Scripts/import_environment_materials.py relief_cm)
+        rule = cat.get("relief", {})
+        if "relief_cm" in row:
+            relief = float(row["relief_cm"])
+        elif row["source"] == "terrain" and "height_range_m" in sets[row["set"]]:
+            k = float(rule.get("structured_exaggeration" if row.get("structured") else "exaggeration", 1.0))
+            relief = min(float(sets[row["set"]]["height_range_m"]) * 100.0 * k, float(rule.get("max_cm", 12.0)))
+        else:
+            relief = float(rule.get("default_cm", 3.0))
+        layers[name]["relief_cm"] = round(relief, 2)
         # only written when set, so the rows of other layers stay as they were
         if row.get("structured"):
             layers[name]["structured"] = 1.0

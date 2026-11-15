@@ -234,6 +234,7 @@ bool FDinkBundle::Load(const FString& InDir, FString& OutError)
 						Layer.Emissive = Num(LayerObject, TEXT("emissive"), 0.0);
 						Layer.Structured = Num(LayerObject, TEXT("structured"), 0.0);
 						Layer.Drift = Num(LayerObject, TEXT("drift"), 1.0);
+						Layer.ReliefCm = Num(LayerObject, TEXT("relief_cm"), 0.0);
 						S.GroundLayers.Add(Layer);
 					}
 				}

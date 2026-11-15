@@ -833,8 +833,9 @@ namespace DinkGreybox
 		}
 		FString LayerKey;
 		for (const FDinkBundleGroundLayer& L : Screen.GroundLayers)
-			LayerKey += FString::Printf(TEXT("%s:%.3f:%.3f:%.3f:%.3f:%.1f:%.1f;"), *L.Name, L.TileCm, L.NormalStrength, L.Backlight, L.Emissive, L.Structured, L.Drift);
-		const FString MiHash = Terrain ? HashStrings({TEXT("ground-mi-terrain/4"), MaskPkg, Screen.GroundMaskHash, LayerKey})
+			LayerKey += FString::Printf(TEXT("%s:%.3f:%.3f:%.3f:%.3f:%.1f:%.1f:%.2f;"), *L.Name, L.TileCm, L.NormalStrength, L.Backlight, L.Emissive, L.Structured, L.Drift, L.ReliefCm);
+		if (Screen.bIndoor) LayerKey += TEXT("indoor;");
+		const FString MiHash = Terrain ? HashStrings({TEXT("ground-mi-terrain/5"), MaskPkg, Screen.GroundMaskHash, LayerKey})
 			: HashStrings({TEXT("ground-mi"), TexPkg});
 		if (IsUpToDate(MiPkg, MiHash))
 		{
@@ -845,6 +846,8 @@ namespace DinkGreybox
 			bool bExisted = false;
 			UMaterialInstanceConstant* MI = BuildMaterialInstance(MiPkg, Terrain, bExisted);
 			MI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("LayerMask")), Cast<UTexture>(LoadGenerated(MaskPkg)));
+			// the relief's self shadow follows the sun: none under a roof
+			if (Screen.bIndoor) MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(TEXT("ReliefShadow")), 0.f);
 			// the mask's RGB weigh layers A, B and C; a fourth layer D takes what they leave (M_Env_Terrain)
 			const TCHAR* Suffix[] = {TEXT("A"), TEXT("B"), TEXT("C"), TEXT("D")};
 			for (int32 I = 0; I < LayerTextures.Num() && I < 4; ++I)
@@ -860,6 +863,8 @@ namespace DinkGreybox
 				MI->SetScalarParameterValueEditorOnly(P(TEXT("Backlight")), float(Screen.GroundLayers[I].Backlight));
 				MI->SetScalarParameterValueEditorOnly(P(TEXT("Structured")), float(Screen.GroundLayers[I].Structured));
 				MI->SetScalarParameterValueEditorOnly(P(TEXT("Drift")), float(Screen.GroundLayers[I].Drift));
+				// depth of the layer's parallax relief (M_Env_Terrain marches the view ray through the height maps)
+				MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(FName(*(FString(TEXT("Relief")) + Suffix[I] + TEXT("Cm")))), float(Screen.GroundLayers[I].ReliefCm));
 				if (LayerTextures[I].E)
 				{
 					MI->SetTextureParameterValueEditorOnly(P(TEXT("E")), LayerTextures[I].E);

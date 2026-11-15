@@ -87,6 +87,19 @@ def layer_sources(name, row):
     return files, float(row['tile_m'])
 
 
+def relief_cm(row):
+    """Depth of a layer's parallax relief in cm (same rule as Scripts/export_import_bundle.py): the row's own
+    'relief_cm', else the set's measured height range times the catalogue's exaggeration."""
+    if 'relief_cm' in row:
+        return float(row['relief_cm'])
+    rule = CATALOGUE.get('relief', {})
+    s = TERRAIN_SETS.get(row.get('set')) if row.get('source') == 'terrain' else None
+    if s is None or 'height_range_m' not in s:
+        return float(rule.get('default_cm', 3.0))
+    k = float(rule.get('structured_exaggeration' if row.get('structured') else 'exaggeration', 1.0))
+    return round(min(float(s['height_range_m']) * 100.0 * k, float(rule.get('max_cm', 12.0))), 2)
+
+
 def expr(mat, cls, x=0, y=0, **props):
     node = EDIT.create_material_expression(mat, cls, x, y)
     for key, value in props.items():
@@ -170,7 +183,7 @@ for name, row in CATALOGUE['layers'].items():
     textures.setdefault('Macro', support['MacroDefault'])
     layers[name] = {'textures': textures, 'tile_cm': tile_m * 100.0, 'normal_strength': float(row.get('normal_strength', 1.0)),
                     'backlight': float(row.get('backlight', 0.0)), 'emissive': float(row.get('emissive', 0.0)),
-                    'structured': 1.0 if row.get('structured') else 0.0,
+                    'structured': 1.0 if row.get('structured') else 0.0, 'relief_cm': relief_cm(row),
                     'drift': 0.0 if row.get('structured') or row.get('drift') is False else 1.0}
 if 'MeadowTurf' not in layers:
     raise RuntimeError('MeadowTurf layer is required as the default of M_Env_Terrain')
@@ -202,6 +215,104 @@ warp_amount = scalar_param(mat, 'UVWarpCm', 55, -2300, 520)
 warp = custom(mat, -2100, 320, 'return XY + (Noise.rg - 0.5) * 2.0 * Amount;', F2, ['XY', 'Noise', 'Amount'], 'Warped world XY')
 link(xy, '', warp, 'XY'); link(warp_tex, 'RGB', warp, 'Noise'); link(warp_amount, '', warp, 'Amount')
 
+# Relief (14 Nov 2026): the ground is a flat sheet; a parallax occlusion march through the layers' own height maps
+# moves every lookup to where the view ray meets the height field, so stones, clods, ruts and board gaps sit at
+# different depths and hide each other as the camera moves. Heights hang below the sheet (the tops stay at the
+# collision plane, so feet and props never sink). The march runs in world XY, costs one height lookup per step and
+# per layer present at the pixel, fades out with distance, and its inputs are linked below, where they exist.
+# MPC_Env_Ground.ReliefScale (dink.GroundRelief <scale>) scales it live; 0 skips the march.
+ground_mpc = LIB.load_asset(MATS + '/MPC_Env_Ground') if LIB.does_asset_exist(MATS + '/MPC_Env_Ground') else None
+if ground_mpc is None:
+    ground_mpc = TOOLS.create_asset('MPC_Env_Ground', MATS, unreal.MaterialParameterCollection, unreal.MaterialParameterCollectionFactoryNew())
+    rows = []
+    for pname, value in (('ReliefScale', 1.0),):
+        row = unreal.CollectionScalarParameter()
+        row.set_editor_property('parameter_name', pname)
+        row.set_editor_property('default_value', value)
+        rows.append(row)
+    ground_mpc.set_editor_property('scalar_parameters', rows)
+    save(ground_mpc)
+relief_live = expr(mat, unreal.MaterialExpressionCollectionParameter, -2600, 620, collection=ground_mpc)
+relief_live.set_editor_property('parameter_name', 'ReliefScale')
+RELIEF_CODE = '''
+float3 v = normalize(V);
+float3 g = cross(ddx(WP), ddy(WP));
+float up = dot(g, g) > 1e-12 ? abs(normalize(g).z) : 1.0;
+float amount = Live * Scale * (1.0 - saturate((Dist - FadeStart) / max(FadeRange, 1.0))) * saturate((up - 0.6) / 0.25);
+float4 w = float4(max(Mask, 0.0), 0.0);
+w.w = saturate(1.0 - (w.x + w.y + w.z));
+if (Patch > 0.0)
+{
+    float n = Fine.g * 0.6 + Fine.b * 0.4;
+    float p = saturate((n - (1.0 - Patch)) * 5.0) * saturate((Z + 14.0) / 10.0);
+    float mud = saturate((-Z - 6.0 - n * 14.0) / 12.0);
+    w = float4((1.0 - p) * (1.0 - mud), p * (1.0 - mud), mud, 0.0);
+}
+w /= max(w.x + w.y + w.z + w.w, 1e-3);
+float4 d = w * float4(RA, RB, RC, RD) * amount;   // each layer's share of the depth below the sheet, cm
+float dmax = d.x + d.y + d.z + d.w;
+if (dmax < 0.05) return float4(0.0, 0.0, 0.0, 0.0);
+float vz = max(v.z, MinVz);
+float2 dir = -v.xy / vz;                           // cm of world XY per cm of depth
+float2 gx = ddx(WP.xy), gy = ddy(WP.xy);              // camera-relative: absolute positions are too coarse for derivatives
+float2 sa = lerp(Warp, XY, saturate(St.x)), sb = lerp(Warp, XY, saturate(St.y)), sc = lerp(Warp, XY, saturate(St.z)), sd = lerp(Warp, XY, saturate(St.w));
+int n = (int)clamp(ceil(lerp(Steps, Steps * 0.4, saturate(v.z))), 4.0, 64.0);
+float prevRay = 0.0, prevSurf = 0.0, hit = dmax;
+[loop] for (int i = 0; i <= n; ++i)
+{
+    float ray = dmax * (float)i / (float)n;
+    float2 o = dir * ray;
+    float surf = 0.0;                              // depth of the height field under this point of the ray
+    [branch] if (d.x > 0.02) surf += d.x * (1.0 - HA.SampleGrad(View.MaterialTextureBilinearWrapedSampler, (sa + o) / TA, gx / TA, gy / TA).r);
+    [branch] if (d.y > 0.02) surf += d.y * (1.0 - HB.SampleGrad(View.MaterialTextureBilinearWrapedSampler, (sb + o) / TB, gx / TB, gy / TB).r);
+    [branch] if (d.z > 0.02) surf += d.z * (1.0 - HC.SampleGrad(View.MaterialTextureBilinearWrapedSampler, (sc + o) / TC, gx / TC, gy / TC).r);
+    [branch] if (d.w > 0.02) surf += d.w * (1.0 - HD.SampleGrad(View.MaterialTextureBilinearWrapedSampler, (sd + o) / TD, gx / TD, gy / TD).r);
+    if (i > 0 && surf <= ray)
+    {
+        // the ray passed under the surface between the last two steps: meet it on the straight line between them
+        float a = prevSurf - prevRay, b = ray - surf;
+        hit = lerp(prevRay, ray, a / max(a + b, 1e-4));
+        break;
+    }
+    prevRay = ray; prevSurf = surf;
+}
+// Self shadow: climb from the hit point towards the sun; relief that stands above the climbing ray shades it.
+float shadow = 0.0;
+float3 l = normalize(Sun);
+[branch] if (ShadowK > 0.0 && l.z > 0.05 && hit > 0.02)
+{
+    float2 ho = dir * hit, ldir = l.xy / max(l.z, 0.25);
+    [loop] for (int j = 1; j <= 6; ++j)
+    {
+        float up = hit * (float)j / 6.0;
+        float2 o = ho + ldir * up;
+        float surf = 0.0;
+        [branch] if (d.x > 0.02) surf += d.x * (1.0 - HA.SampleGrad(View.MaterialTextureBilinearWrapedSampler, (sa + o) / TA, gx / TA, gy / TA).r);
+        [branch] if (d.y > 0.02) surf += d.y * (1.0 - HB.SampleGrad(View.MaterialTextureBilinearWrapedSampler, (sb + o) / TB, gx / TB, gy / TB).r);
+        [branch] if (d.z > 0.02) surf += d.z * (1.0 - HC.SampleGrad(View.MaterialTextureBilinearWrapedSampler, (sc + o) / TC, gx / TC, gy / TC).r);
+        [branch] if (d.w > 0.02) surf += d.w * (1.0 - HD.SampleGrad(View.MaterialTextureBilinearWrapedSampler, (sd + o) / TD, gx / TD, gy / TD).r);
+        shadow = max(shadow, ((hit - up) - surf) / max(up, 0.05));
+    }
+    shadow = saturate(shadow * 2.0) * ShadowK * saturate(amount);
+}
+return float4(dir * hit, hit / vz, shadow);'''
+relief = custom(mat, -2300, 620, RELIEF_CODE, F4,
+                ['XY', 'Warp', 'V', 'WP', 'Dist', 'Mask', 'Patch', 'Fine', 'Z', 'St', 'Live', 'Scale', 'FadeStart', 'FadeRange', 'Steps', 'MinVz', 'Sun', 'ShadowK',
+                 'RA', 'RB', 'RC', 'RD', 'TA', 'TB', 'TC', 'TD', 'HA', 'HB', 'HC', 'HD'], 'Relief: parallax occlusion march')
+relief_xy = expr(mat, unreal.MaterialExpressionComponentMask, -2100, 620, r=True, g=True, b=False, a=False)
+link(relief, '', relief_xy, '')
+xy_relief = expr(mat, unreal.MaterialExpressionAdd, -2100, 80)
+link(xy, '', xy_relief, 'A'); link(relief_xy, '', xy_relief, 'B')
+link(xy, '', relief, 'XY'); link(warp, '', relief, 'Warp'); link(depth, '', relief, 'Dist'); link(relief_live, '', relief, 'Live')
+link(expr(mat, unreal.MaterialExpressionCameraVectorWS, -2600, 700), '', relief, 'V')
+link(expr(mat, unreal.MaterialExpressionWorldPosition, -2600, 780,
+          world_position_shader_offset=unreal.WorldPositionIncludedOffsets.WPT_CAMERA_RELATIVE), '', relief, 'WP')
+for pname, value, pin in (('ReliefScale', 1.0, 'Scale'), ('ReliefFadeStartCm', 900.0, 'FadeStart'), ('ReliefFadeRangeCm', 900.0, 'FadeRange'),
+                          ('ReliefSteps', 24.0, 'Steps'), ('ReliefMinViewZ', 0.3, 'MinVz'), ('ProcPatch', 0.0, 'Patch'),
+                          ('ReliefShadow', 0.5, 'ShadowK')):   # the importer sets ReliefShadow 0 on indoor screens: no sun there
+    link(scalar_param(mat, pname, value, -2600, 860), '', relief, pin)
+link(expr(mat, unreal.MaterialExpressionSkyAtmosphereLightDirection, -2600, 940), '', relief, 'Sun')
+
 S = {}
 for i, L in enumerate(LAYERS):
     y = 700 + i * 1100
@@ -211,12 +322,16 @@ for i, L in enumerate(LAYERS):
     structured = scalar_param(mat, f'Structured{L}', 0.0, -2100, y - 320, group='Layers')
     # Drift 0: the field-scale value drift and the dry, yellowed patches leave this layer alone (floors, snow, ice).
     drift = scalar_param(mat, f'Drift{L}', 1.0, -2100, y - 400, group='Layers')
-    uv_src = custom(mat, -2050, y - 80, 'return lerp(W, XY, saturate(S));', F2, ['W', 'XY', 'S'], 'Warped or straight XY')
-    link(warp, '', uv_src, 'W'); link(xy, '', uv_src, 'XY'); link(structured, '', uv_src, 'S')
+    uv_src = custom(mat, -2050, y - 80, 'return lerp(W, XY, saturate(S)) + Off;', F2, ['W', 'XY', 'S', 'Off'], 'Warped or straight XY, relief shifted')
+    link(warp, '', uv_src, 'W'); link(xy, '', uv_src, 'XY'); link(structured, '', uv_src, 'S'); link(relief_xy, '', uv_src, 'Off')
+    link(tile, '', relief, 'T' + L)
+    link(scalar_param(mat, f'Relief{L}Cm', default['relief_cm'], -2100, y - 480, group='Layers'), '', relief, 'R' + L)
+    link(expr(mat, unreal.MaterialExpressionTextureObjectParameter, -2100, y - 560, parameter_name=f'H{L}', texture=default['textures']['H'],
+              sampler_type=ST.SAMPLERTYPE_LINEAR_GRAYSCALE, group='Layers'), '', relief, 'H' + L)
     uv = expr(mat, unreal.MaterialExpressionDivide, -1950, y)
     link(uv_src, '', uv, 'A'); link(tile, '', uv, 'B')
     uv_plain = expr(mat, unreal.MaterialExpressionDivide, -1950, y + 80)
-    link(xy, '', uv_plain, 'A'); link(tile, '', uv_plain, 'B')
+    link(xy_relief, '', uv_plain, 'A'); link(tile, '', uv_plain, 'B')
     uv_far = expr(mat, unreal.MaterialExpressionMultiply, -1800, y + 80)
     link(uv_plain, '', uv_far, 'A'); link(far_scale, '', uv_far, 'B')
     # second, quarter-turned and rescaled lookup of the same tile: blended in by noise so no row of tiles lines up
@@ -262,6 +377,9 @@ mask_uv = custom(mat, -1900, -500, 'return UV + (Noise.gb - 0.5) * 2.0 * Amount 
 link(fine_tex, 'RGB', mask_uv, 'Fine'); link(scalar_param(mat, 'MaskWarpFine', 0.007, -2100, -340), '', mask_uv, 'FineAmount')
 link(tc, '', mask_uv, 'UV'); link(warp_tex, 'RGB', mask_uv, 'Noise'); link(mask_warp, '', mask_uv, 'Amount')
 mask = tex_param(mat, 'LayerMask', support['MaskLayerA'], ST.SAMPLERTYPE_MASKS, mask_uv, -1600, -500, source=CLAMP)
+# The march reads the same mask lookup as the layers: a layer edge stays on the sheet (shifting the mask by the
+# relief needs screen-space derivatives of absolute world positions, which are too coarse far from the origin).
+link(mask, 'RGB', relief, 'Mask'); link(fine_tex, 'RGB', relief, 'Fine'); link(wz, '', relief, 'Z'); link(structured4, '', relief, 'St')
 blend_k = scalar_param(mat, 'HeightBlend', 0.55, -1300, -420)
 blend_depth = scalar_param(mat, 'HeightBlendDepth', 0.12, -1300, -340)
 weights = custom(mat, -1100, -500, '''
@@ -352,7 +470,9 @@ link(big_tex, 'RGB', color, 'Big'); link(big_strength, '', color, 'BigStrength')
 for L in LAYERS:
     link(S[L]['BC'], 'RGB', color, 'BC' + L); link(S[L]['Far'], 'RGB', color, 'F' + L); link(S[L]['Macro'], 'RGB', color, 'M' + L)
 link(weights, '', color, 'W'); link(far, '', color, 'Far'); link(macro_strength, '', color, 'Strength')
-out(color, '', MP.MP_BASE_COLOR)
+relief_lit = custom(mat, -700, 0, 'return C * (1.0 - R.w);', F3, ['C', 'R'], 'Relief self shadow')
+link(color, '', relief_lit, 'C'); link(relief, '', relief_lit, 'R')
+out(relief_lit, '', MP.MP_BASE_COLOR)
 
 vnormal = expr(mat, unreal.MaterialExpressionVertexNormalWS, -1300, 400)
 wp_rel = expr(mat, unreal.MaterialExpressionWorldPosition, -1300, 480,
@@ -418,6 +538,8 @@ for L in LAYERS:
     link(S[L]['E'], 'RGB', emissive, 'E' + L); link(S[L]['ES'], '', emissive, 'S' + L)
 link(weights, '', emissive, 'W')
 out(emissive, '', MP.MP_EMISSIVE_COLOR)
+# No pixel depth offset from the relief: tried on 14 Nov 2026, the sunk pixels fall into the shadow of the sheet
+# itself (the whole ground went dark but for the highest stones) and Nanite meshes take a slower raster path.
 mat.set_editor_property('tangent_space_normal', False)
 mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_OPAQUE)
 EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_NANITE, True)
@@ -441,12 +563,13 @@ for name, data in layers.items():
     EDIT.set_material_instance_scalar_parameter_value(mi, 'BacklightA', data['backlight'])
     EDIT.set_material_instance_scalar_parameter_value(mi, 'StructuredA', data['structured'])
     EDIT.set_material_instance_scalar_parameter_value(mi, 'DriftA', data['drift'])
+    EDIT.set_material_instance_scalar_parameter_value(mi, 'ReliefACm', data['relief_cm'])
     if 'E' in data['textures']:
         EDIT.set_material_instance_texture_parameter_value(mi, 'EA', data['textures']['E'])
         EDIT.set_material_instance_scalar_parameter_value(mi, 'EmissiveStrengthA', data['emissive'])
     EDIT.update_material_instance(mi)
     save(mi)
-    report['layers'][name] = {'tile_cm': data['tile_cm'], 'normal_strength': data['normal_strength'],
+    report['layers'][name] = {'tile_cm': data['tile_cm'], 'normal_strength': data['normal_strength'], 'relief_cm': data['relief_cm'],
                               'macro': data['textures']['Macro'].get_name(), 'instance': path}
 
 def terrain_instance(mi_name, layer_names, scalars=None, vectors=None):
@@ -465,6 +588,7 @@ def terrain_instance(mi_name, layer_names, scalars=None, vectors=None):
         EDIT.set_material_instance_scalar_parameter_value(mi, 'Backlight' + L, data['backlight'])
         EDIT.set_material_instance_scalar_parameter_value(mi, 'Structured' + L, data['structured'])
         EDIT.set_material_instance_scalar_parameter_value(mi, 'Drift' + L, data['drift'])
+        EDIT.set_material_instance_scalar_parameter_value(mi, f'Relief{L}Cm', data['relief_cm'])
     for k, v in (scalars or {}).items():
         EDIT.set_material_instance_scalar_parameter_value(mi, k, float(v))
     for k, v in (vectors or {}).items():
@@ -480,7 +604,7 @@ if 'EarthPath' in layers:
                      {'ProcPatch': 0.5, 'WetZ': -56.0, 'WetRangeCm': 12.0, 'HeightBlend': 0.7})
 # Far skirt and hill ring: meadow that darkens to a wooded tone with height.
 terrain_instance('MI_Env_Terrain_Backdrop', ['MeadowTurf'],
-                 {'HeightTintRangeCm': 4500.0, 'FarBlendMax': 1.0, 'FieldVariation': 0.4, 'DetailNormal': 0.0},
+                 {'HeightTintRangeCm': 4500.0, 'FarBlendMax': 1.0, 'FieldVariation': 0.4, 'DetailNormal': 0.0, 'ReliefScale': 0.0},
                  {'HeightTint': (0.42, 0.56, 0.40)})
 
 # Firelight flicker (light function): three incommensurate sines, never below 62 percent.
