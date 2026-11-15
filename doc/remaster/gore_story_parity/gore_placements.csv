@@ -1,0 +1,242 @@
+origin,screen,seq,frame,cls,kind,vision,size,px,state,evidence,name,card_w_m,card_h_m,repr
+S001_P34,1,355,1,corpse_mom,live,1,100,68x50,placeholder,greybox actor card (corpse_mom); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_interior_001.draft.,,1.7,1.25,actor
+S001_P44,1,158,1,burn_hole_decal,background,2,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,1.0074,0.876,actor
+S001_P45,1,158,1,burn_hole_decal,background,2,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,1.0074,0.876,actor
+S001_P46,1,158,1,burn_hole_decal,background,2,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,1.0074,0.876,actor
+S001_P47,1,158,3,burn_hole_decal,background,2,100,42x40,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,1.8396,1.752,actor
+S001_P48,1,158,3,burn_hole_decal,background,2,100,42x40,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,1.8396,1.752,actor
+S001_P49,1,158,3,burn_hole_decal,live,2,100,42x40,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,1.8396,1.752,actor
+S005_P25,5,158,2,burn_hole_decal,live,0,100,23x23,placeholder,greybox actor card (burn_hole_decal),,1.0074,1.0074,actor
+S005_P26,5,158,1,burn_hole_decal,live,0,100,23x20,placeholder,greybox actor card (burn_hole_decal),,1.0074,0.876,actor
+S005_P27,5,158,1,burn_hole_decal,background,0,100,23x20,placeholder,greybox instance (burn_hole_decal),,1.0074,0.876,instance
+S058_P06,58,436,16,dink_dead,live,0,100,104x90,placeholder,greybox actor card (dink_dead),,2.6,2.25,actor
+S060_P06,60,188,4,blood_splat,background,0,100,39x56,placeholder,greybox instance (blood_splat),,0.975,1.4,instance
+S060_P07,60,188,4,blood_splat,background,0,100,39x56,placeholder,greybox instance (blood_splat),,0.975,1.4,instance
+S061_P07,61,188,4,blood_splat,background,0,100,39x56,placeholder,greybox instance (blood_splat),,0.975,1.4,instance
+S061_P08,61,188,4,blood_splat,background,0,51,39x56,placeholder,greybox instance (blood_splat),,0.4973,0.714,instance
+S066_P23,66,158,2,burn_hole_decal,live,0,100,23x23,placeholder,greybox actor card (burn_hole_decal),,1.0074,1.0074,actor
+S066_P24,66,158,3,burn_hole_decal,live,0,100,42x40,placeholder,greybox actor card (burn_hole_decal),,1.8396,1.752,actor
+S073_P20,73,90,1,bones,background,0,59,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.7605,0.9965,instance
+S074_P17,74,90,1,bones,background,0,38,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.1339,0.6418,instance
+S074_P18,74,90,1,bones,background,0,38,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.1339,0.6418,instance
+S074_P19,74,90,3,bones,background,0,62,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.7802,1.2566,instance
+S074_P20,74,90,4,bones,background,0,83,48x39,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.243,1.8224,instance
+S086_P01,86,405,1,corpse_soldier,live,0,100,74x57,placeholder,greybox actor card (corpse_soldier),,1.85,1.425,actor
+S091_P06,91,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S091_P07,91,188,4,blood_splat,background,0,100,39x56,placeholder,greybox instance (blood_splat),,0.975,1.4,instance
+S091_P08,91,188,4,blood_splat,background,0,200,39x56,placeholder,greybox instance (blood_splat),,1.95,2.8,instance
+S091_P09,91,188,4,blood_splat,background,0,243,39x56,placeholder,greybox instance (blood_splat),,2.3693,3.402,instance
+S091_P10,91,188,4,blood_splat,background,0,85,39x56,placeholder,greybox instance (blood_splat),,0.8288,1.19,instance
+S091_P11,91,188,4,blood_splat,background,0,77,39x56,placeholder,greybox instance (blood_splat),,0.7508,1.078,instance
+S091_P12,91,188,4,blood_splat,background,0,77,39x56,placeholder,greybox instance (blood_splat),,0.7508,1.078,instance
+S091_P13,91,188,4,blood_splat,background,0,77,39x56,placeholder,greybox instance (blood_splat),,0.7508,1.078,instance
+S091_P14,91,188,4,blood_splat,background,0,65,39x56,placeholder,greybox instance (blood_splat),,0.6338,0.91,instance
+S091_P15,91,188,4,blood_splat,background,0,47,39x56,placeholder,greybox instance (blood_splat),,0.4582,0.658,instance
+S091_P16,91,188,4,blood_splat,background,0,38,39x56,placeholder,greybox instance (blood_splat),,0.3705,0.532,instance
+S091_P17,91,188,4,blood_splat,background,0,38,39x56,placeholder,greybox instance (blood_splat),,0.3705,0.532,instance
+S091_P18,91,188,4,blood_splat,background,0,38,39x56,placeholder,greybox instance (blood_splat),,0.3705,0.532,instance
+S091_P19,91,188,4,blood_splat,background,0,38,39x56,placeholder,greybox instance (blood_splat),,0.3705,0.532,instance
+S091_P20,91,188,4,blood_splat,background,0,38,39x56,placeholder,greybox instance (blood_splat),,0.3705,0.532,instance
+S091_P21,91,245,1,corpse_maiden,background,0,100,63x47,final,"family-bound: corpse_maiden -> /Game/Dink/Photoreal/Corpses/SM_Corpse_Maiden_PR.SM_Corpse_Maiden_PR; instance, card hidden at screen activation, collision and s",,1.575,1.175,instance
+S092_P01,92,385,1,corpse_merchant,background,0,100,74x53,final,"family-bound: 385 people/merchant/green/death- -> /Game/Dink/Photoreal/Corpses/SM_Corpse_Merchant_Green_PR.SM_Corpse_Merchant_Green_PR; instance, card hidden at",,1.85,1.325,instance
+S094_P01,94,345,1,corpse_merchant,live,0,100,74x53,final,"family-bound: 345 people/merchant/death- -> /Game/Dink/Photoreal/Corpses/SM_Corpse_Merchant_PR.SM_Corpse_Merchant_PR; actor, card hidden at screen activation, c",,1.85,1.325,actor
+S094_P02,94,187,3,blood_splat,background,0,100,39x56,placeholder,greybox instance (blood_splat),,0.975,1.4,instance
+S094_P03,94,187,1,blood_splat,background,0,100,32x18,placeholder,greybox instance (blood_splat),,0.8,0.45,instance
+S094_P04,94,187,2,blood_splat,background,0,100,21x12,placeholder,greybox instance (blood_splat),,0.525,0.3,instance
+S094_P05,94,187,2,blood_splat,background,0,100,21x12,placeholder,greybox instance (blood_splat),,0.525,0.3,instance
+S094_P06,94,188,2,blood_splat,background,0,100,38x29,placeholder,greybox instance (blood_splat),,0.95,0.725,instance
+S094_P07,94,188,2,blood_splat,background,0,100,38x29,placeholder,greybox instance (blood_splat),,0.95,0.725,instance
+S094_P08,94,188,2,blood_splat,background,0,100,38x29,placeholder,greybox instance (blood_splat),,0.95,0.725,instance
+S098_P01,98,90,4,bones,background,0,100,48x39,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.7024,2.1957,instance
+S098_P02,98,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S098_P04,98,141,1,pillbug_corpse,background,0,100,46x35,placeholder,greybox instance (pillbug_corpse); source candidate: creature source SourceAssets/Art/Creatures/Pillbug (not wired for this ID),,1.15,0.875,instance
+S098_P05,98,90,3,bones,background,0,100,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.8713,2.0268,instance
+S098_P06,98,90,5,skull,background,0,100,15x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,0.8445,1.126,instance
+S099_P01,99,90,6,skull,live,0,100,16x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; actor, card hidden at screen activation, collision and script unchanged; ledger=none",,0.9008,1.126,actor
+S099_P03,99,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S099_P04,99,90,3,bones,background,0,100,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.8713,2.0268,instance
+S099_P06,99,90,1,bones,background,0,100,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.9839,1.689,instance
+S100_P25,100,143,1,pillbug_corpse,background,0,100,44x36,placeholder,greybox instance (pillbug_corpse); source candidate: creature source SourceAssets/Art/Creatures/Pillbug (not wired for this ID),,1.1,0.9,instance
+S100_P26,100,141,1,pillbug_corpse,background,0,100,46x35,placeholder,greybox instance (pillbug_corpse); source candidate: creature source SourceAssets/Art/Creatures/Pillbug (not wired for this ID),,1.15,0.875,instance
+S100_P27,100,127,4,duck_corpse,background,0,100,35x32,placeholder,greybox instance (duck_corpse); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.9705,1.8016,instance
+S100_P28,100,90,1,bones,background,0,100,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.9839,1.689,instance
+S100_P29,100,90,6,skull,background,0,100,16x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,0.9008,1.126,instance
+S100_P30,100,90,3,bones,background,0,100,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.8713,2.0268,instance
+S100_P31,100,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S100_P32,100,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S100_P33,100,90,1,bones,background,0,100,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.9839,1.689,instance
+S100_P34,100,212,1,dragon_corpse,background,0,100,105x122,placeholder,greybox instance (dragon_corpse),,2.625,3.05,instance
+S105_P20,105,90,2,bones,background,0,44,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.2386,0.8918,instance
+S105_P21,105,90,1,bones,background,0,36,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.0742,0.608,instance
+S106_P15,106,90,2,bones,background,0,62,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.7453,1.2566,instance
+S122_P11,122,189,1,blood_splat,background,0,100,23x27,placeholder,greybox instance (blood_splat),,0.575,0.675,instance
+S122_P12,122,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S122_P13,122,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S123_P06,123,90,6,skull,background,0,100,16x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,1.1008,1.376,instance
+S126_P02,126,189,2,blood_splat,background,0,100,39x29,placeholder,greybox instance (blood_splat),,0.975,0.725,instance
+S126_P03,126,189,2,blood_splat,background,0,100,39x29,placeholder,greybox instance (blood_splat),,0.975,0.725,instance
+S126_P04,126,188,2,blood_splat,background,0,100,38x29,placeholder,greybox instance (blood_splat),,0.95,0.725,instance
+S126_P05,126,188,2,blood_splat,background,0,100,38x29,placeholder,greybox instance (blood_splat),,0.95,0.725,instance
+S131_P02,131,90,6,skull,background,0,100,16x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,0.9008,1.126,instance
+S131_P03,131,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S131_P04,131,90,1,bones,background,0,100,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.9839,1.689,instance
+S137_P12,137,90,1,bones,background,0,46,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.3726,0.7769,instance
+S137_P13,137,90,2,bones,background,0,68,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.9142,1.3782,instance
+S137_P14,137,90,2,bones,background,0,50,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.4075,1.0134,instance
+S145_P01,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.077,2.9526,instance
+S145_P02,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0785,2.9526,instance
+S145_P03,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.08,2.9568,instance
+S145_P04,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.083,2.961,instance
+S145_P05,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0845,2.961,instance
+S145_P06,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0845,2.961,instance
+S145_P07,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.086,2.9652,instance
+S145_P08,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.089,2.9694,instance
+S145_P09,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0905,2.9694,instance
+S145_P10,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0905,2.9694,instance
+S145_P11,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0905,2.9694,instance
+S145_P12,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.089,2.9694,instance
+S145_P13,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0845,2.961,instance
+S145_P14,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.089,2.9652,instance
+S145_P15,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.095,2.9736,instance
+S145_P16,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.086,2.961,instance
+S145_P17,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0875,2.9652,instance
+S145_P18,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0905,2.9694,instance
+S145_P19,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0905,2.9694,instance
+S145_P20,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0815,2.9568,instance
+S145_P21,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.089,2.9652,instance
+S145_P22,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0935,2.9736,instance
+S145_P23,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0995,2.9778,instance
+S145_P24,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0845,2.961,instance
+S145_P25,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.08,2.9568,instance
+S145_P26,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.083,2.9568,instance
+S145_P27,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0845,2.961,instance
+S145_P28,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0845,2.961,instance
+S145_P29,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0815,2.9568,instance
+S145_P30,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0815,2.9568,instance
+S145_P31,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.083,2.9568,instance
+S145_P32,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.089,2.9652,instance
+S145_P33,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.092,2.9694,instance
+S145_P34,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0965,2.9778,instance
+S145_P35,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.101,2.982,instance
+S145_P36,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.092,2.9694,instance
+S145_P37,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.092,2.9694,instance
+S145_P38,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.0935,2.9694,instance
+S145_P39,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.095,2.9736,instance
+S145_P40,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.098,2.9778,instance
+S145_P41,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1025,2.982,instance
+S145_P42,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.098,2.9778,instance
+S145_P43,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1025,2.9862,instance
+S145_P44,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1085,2.9946,instance
+S145_P45,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.116,3.003,instance
+S145_P46,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.098,2.982,instance
+S145_P47,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.098,2.982,instance
+S145_P48,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.101,2.982,instance
+S145_P49,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.107,2.9904,instance
+S145_P50,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1055,2.9904,instance
+S145_P51,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.107,2.9904,instance
+S145_P52,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.113,2.9988,instance
+S145_P53,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1175,3.0072,instance
+S145_P54,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.107,2.9904,instance
+S145_P55,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.113,2.9988,instance
+S145_P56,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1175,3.003,instance
+S145_P57,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1205,3.0072,instance
+S145_P58,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1145,2.9988,instance
+S145_P59,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.11,2.9946,instance
+S145_P60,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.104,2.9862,instance
+S145_P61,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.11,2.9946,instance
+S145_P62,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.113,2.9988,instance
+S145_P63,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.116,3.003,instance
+S145_P64,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.119,3.0072,instance
+S145_P65,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.11,2.9946,instance
+S145_P66,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1115,2.9988,instance
+S145_P67,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1175,3.0072,instance
+S145_P68,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1115,2.9946,instance
+S145_P69,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1145,2.9988,instance
+S145_P70,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1145,2.9988,instance
+S145_P71,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.11,2.9946,instance
+S145_P72,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1085,2.9904,instance
+S145_P73,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.11,2.9946,instance
+S145_P74,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1115,2.9946,instance
+S145_P75,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1145,2.9988,instance
+S145_P76,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.119,3.0072,instance
+S145_P77,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.119,3.0072,instance
+S145_P78,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.119,3.0072,instance
+S145_P79,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1025,2.9862,instance
+S145_P80,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.113,2.9988,instance
+S145_P81,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.11,2.9946,instance
+S145_P82,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1115,2.9946,instance
+S145_P83,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1145,2.9988,instance
+S145_P84,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.119,3.0072,instance
+S145_P85,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.119,3.0072,instance
+S145_P86,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.113,2.9988,instance
+S145_P87,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.1205,3.0072,instance
+S145_P88,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.116,3.003,instance
+S145_P89,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.11,2.9946,instance
+S145_P90,145,121,1,duck_head,background,0,100,15x42,placeholder,greybox instance (duck_head); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.104,2.9862,instance
+S154_P07,154,90,3,bones,background,0,100,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,3.5088,2.4768,instance
+S154_P11,154,90,6,skull,live,0,100,16x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; actor, card hidden at screen activation, collision and script unchanged; ledger=none",,1.1008,1.376,actor
+S154_P22,154,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S154_P39,154,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S154_P40,154,189,4,blood_splat,background,0,85,51x56,placeholder,greybox instance (blood_splat),,1.0837,1.19,instance
+S154_P41,154,189,4,blood_splat,background,0,53,51x56,placeholder,greybox instance (blood_splat),,0.6758,0.742,instance
+S154_P42,154,189,4,blood_splat,background,0,53,51x56,placeholder,greybox instance (blood_splat),,0.6758,0.742,instance
+S154_P43,154,189,4,blood_splat,background,0,85,51x56,placeholder,greybox instance (blood_splat),,1.0837,1.19,instance
+S157_P04,157,275,1,corpse_knight,live,0,100,81x55,final,"family-bound: corpse_knight -> /Game/Dink/Photoreal/Corpses/SM_Corpse_Knight_PR.SM_Corpse_Knight_PR; actor, card hidden at screen activation, collision and scri",,2.025,1.375,actor
+S158_P06,158,188,4,blood_splat,background,0,100,39x56,placeholder,greybox instance (blood_splat),,0.975,1.4,instance
+S158_P07,158,216,1,dragon_corpse,live,0,100,94x96,final,"family-bound: 216 foes/dragon/f2-x7- torn dragon, turned -> /Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR; actor, card hidden at screen a",,2.35,2.4,actor
+S169_P01,169,90,1,bones,background,0,66,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.9694,1.1147,instance
+S169_P11,169,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S169_P12,169,90,3,bones,background,0,100,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.8713,2.0268,instance
+S169_P13,169,90,4,bones,background,0,100,48x39,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.7024,2.1957,instance
+S190_P06,190,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S190_P07,190,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S190_P08,190,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S190_P09,190,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S191_P06,191,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S191_P07,191,189,4,blood_splat,background,0,100,51x56,placeholder,greybox instance (blood_splat),,1.275,1.4,instance
+S222_P04,222,335,1,corpse_girl,background,0,100,58x37,final,"family-bound: corpse_girl -> /Game/Dink/Photoreal/Corpses/SM_Corpse_Girl_PR.SM_Corpse_Girl_PR; instance, card hidden at screen activation, collision and script ",,1.45,0.925,instance
+S222_P05,222,415,1,corpse_peasant,background,0,100,114x59,final,"family-bound: corpse_peasant -> /Game/Dink/Photoreal/Corpses/SM_Corpse_Peasant_PR.SM_Corpse_Peasant_PR; instance, card hidden at screen activation, collision an",,2.85,1.475,instance
+S238_P12,238,212,1,dragon_corpse,live,0,100,105x122,placeholder,greybox actor card (dragon_corpse),,2.625,3.05,actor
+S257_P02,257,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S257_P03,257,90,3,bones,background,0,82,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.3545,1.662,instance
+S257_P04,257,90,5,skull,background,0,100,15x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,0.8445,1.126,instance
+S257_P05,257,90,4,bones,background,0,100,48x39,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.7024,2.1957,instance
+S257_P06,257,90,2,bones,background,0,64,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.8016,1.2972,instance
+S257_P07,257,90,1,bones,background,0,88,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.6258,1.4863,instance
+S258_P01,258,90,5,skull,background,0,100,15x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,0.8445,1.126,instance
+S258_P02,258,90,6,skull,background,0,100,16x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,0.9008,1.126,instance
+S258_P03,258,90,6,skull,background,0,100,16x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,0.9008,1.126,instance
+S258_P04,258,90,4,bones,background,0,100,48x39,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.7024,2.1957,instance
+S258_P05,258,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S258_P06,258,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S258_P07,258,90,1,bones,background,0,63,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.8799,1.0641,instance
+S258_P08,258,90,1,bones,background,0,63,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.8799,1.0641,instance
+S258_P09,258,90,1,bones,background,0,63,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.8799,1.0641,instance
+S259_P02,259,90,1,bones,background,0,100,53x30,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.9839,1.689,instance
+S259_P03,259,90,2,bones,background,0,100,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.815,2.0268,instance
+S259_P04,259,90,2,bones,background,0,59,50x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,1.6608,1.1958,instance
+S259_P05,259,90,3,bones,background,0,78,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.2396,1.5809,instance
+S259_P06,259,90,5,skull,background,0,100,15x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,0.8445,1.126,instance
+S259_P07,259,90,6,skull,background,0,100,16x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,0.9008,1.126,instance
+S259_P08,259,90,3,bones,background,0,81,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,2.3258,1.6417,instance
+S439_P23,439,158,2,burn_hole_decal,live,2,100,23x23,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,2.2655,2.2724,actor
+S439_P24,439,158,2,burn_hole_decal,live,2,100,23x23,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,2.2655,2.2724,actor
+S439_P25,439,158,3,burn_hole_decal,live,2,100,42x40,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,4.137,3.952,actor
+S439_P26,439,158,3,burn_hole_decal,live,2,100,42x40,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,4.137,3.952,actor
+S439_P27,439,158,1,burn_hole_decal,live,2,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,2.2632,1.976,actor
+S439_P28,439,158,1,burn_hole_decal,live,2,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,2.2655,1.976,actor
+S439_P29,439,154,1,burn_damage_decal,live,1,100,90x69,placeholder,greybox actor card (burn_damage_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439,,2.25,1.725,actor
+S439_P30,439,158,1,burn_hole_decal,live,2,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,2.2655,1.976,actor
+S439_P34,439,158,4,burnt_floor_hole,live,2,100,90x69,placeholder,greybox actor card (burnt_floor_hole); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.,,8.865,6.8172,actor
+S439_P36,439,158,1,burn_hole_decal,live,2,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,2.2632,1.976,actor
+S439_P37,439,158,1,burn_hole_decal,live,2,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,2.2632,1.976,actor
+S439_P38,439,158,5,burnt_floor_hole,live,2,100,90x69,placeholder,greybox actor card (burnt_floor_hole); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.,,8.865,6.8172,actor
+S439_P46,439,158,1,burn_hole_decal,live,1,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant; source candidate: unpublished draft SourceAssets/Art/StonebrookRuins/stonebrook_ruins_exterior_439.d,,2.2655,1.976,actor
+S521_P05,521,121,4,duck_corpse,background,0,100,20x30,placeholder,greybox instance (duck_corpse); source candidate: creature source SourceAssets/Art/Creatures/Duck (not wired for this ID),,1.984,2.964,instance
+S533_P21,533,158,2,burn_hole_decal,background,1,100,23x23,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,2.2011,2.2425,actor
+S533_P22,533,158,1,burn_hole_decal,live,1,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,2.2103,1.954,actor
+S533_P23,533,158,3,burn_hole_decal,background,1,100,42x40,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,4.0194,3.9,actor
+S536_P16,536,158,1,burn_hole_decal,live,1,100,23x20,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,2.2287,1.962,actor
+S536_P26,536,158,2,burn_hole_decal,live,1,100,23x23,placeholder,greybox actor card (burn_hole_decal); vision-gated variant,,2.2287,2.2563,actor
+S760_P06,760,90,3,bones,background,0,100,51x36,final,"family-bound: bones -> /Game/Dink/Photoreal/Props/SM_Bones_Scatter_PR.SM_Bones_Scatter_PR; instance, card hidden at screen activation, collision and script unch",,4.2738,2.682,instance
+S760_P07,760,90,5,skull,background,0,100,15x20,final,"family-bound: skull -> /Game/Dink/Photoreal/Props/SM_Skull_PR.SM_Skull_PR; instance, card hidden at screen activation, collision and script unchanged; ledger=no",,1.257,1.49,instance
