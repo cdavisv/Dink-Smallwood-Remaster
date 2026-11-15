@@ -110,7 +110,10 @@ namespace
 						if (!Test->TestTrue(FString::Printf(TEXT("%s (%s): its decor component is hidden and a family component stands in"), *P.Origin, *B.Family),
 							Decor && Decor->bHiddenInGame && Shown && Shown->GetInstanceCount() > 0)) continue;
 						++Dressed;
-						Test->TestTrue(FString::Printf(TEXT("%s: the mesh is above the ground"), *P.Origin), Shown->Bounds.GetBox().Min.Z > 20.0);
+						// the instance itself (a headless run does not keep the instanced component's bounds current)
+						FTransform Placed;
+						Test->TestTrue(FString::Printf(TEXT("%s: the mesh is above the ground"), *P.Origin),
+							Shown->GetInstanceTransform(0, Placed, /*bWorldSpace*/ true) && Placed.GetLocation().Z > 20.0);
 						Test->TestTrue(FString::Printf(TEXT("%s: the mesh has no collision"), *P.Origin), Shown->GetCollisionEnabled() == ECollisionEnabled::NoCollision);
 					}
 				}
