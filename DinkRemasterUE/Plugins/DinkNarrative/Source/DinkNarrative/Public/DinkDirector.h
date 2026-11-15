@@ -297,6 +297,7 @@ public:
 private:
 	friend class UDinkStorySubsystem;
 	friend class UDinkGameplay;
+	friend class FDinkFreezeReleaseTest; // Dink.Input.FreezeReleasedByReset drives SetFrozen with a real controller
 	void RegisterCommands();
 	void Register(const TCHAR* Name, EDinkCommandStatus Status, const TCHAR* Note, FDinkCommandHandler Handler);
 	/** Registers sp_<Prop> as a recorded property (stored on the sprite for the animation/AI layers). */
