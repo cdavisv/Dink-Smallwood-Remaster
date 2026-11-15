@@ -1435,6 +1435,17 @@ void UDinkDirector::ReleaseScreenSprites(int32 KeepScreen, const TSet<int32>& Ke
 
 void UDinkDirector::ResetSprites()
 {
+	// A freeze holds the player controller's move input (a counter) and Dink's gravity; release both before the sprite
+	// table goes, or nothing can undo them afterwards (alpha bug A19: escape.c freezes Dink, "Load a previously saved game"
+	// loads (LoadState resets the sprites) and Dink never walks again). load_game's load_map clears the freeze too
+	// (dink.cpp:1013-1015).
+	if (bDinkInputBlocked) SetFrozen(1, false);
+	if (bDinkInputBlocked)
+	{
+		// Dink's record or actor is already gone: release the first local controller directly
+		if (APlayerController* PC = GetWorld() ? GetWorld()->GetFirstPlayerController() : nullptr) PC->SetIgnoreMoveInput(false);
+		bDinkInputBlocked = false;
+	}
 	++SpriteResetSerial;
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
 	{
