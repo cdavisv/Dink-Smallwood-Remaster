@@ -108,8 +108,12 @@ void ADinkScreenVolume::SetLockBarriers(bool bLocked)
 	{
 		if (Slab)
 		{
-			Slab->SetVisibility(bLocked);
-			Slab->SetHiddenInGame(!bLocked);
+			// Collision only: the original draws no wall at a locked edge. drawscreenlock (dink.cpp:16769-16787, called
+			// at 17483-17485) frames the whole game area with a pulsing red border and the lock icon; the grey
+			// engine-default slabs were the only thing a player saw of the lock in the remaster.
+			Slab->SetVisibility(false);
+			Slab->SetHiddenInGame(true);
+			Slab->SetCastShadow(false);
 			Slab->SetCollisionEnabled(bLocked ? ECollisionEnabled::QueryAndPhysics : ECollisionEnabled::NoCollision);
 		}
 	}
