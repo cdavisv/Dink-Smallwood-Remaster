@@ -6,6 +6,22 @@ with the 1997 frames (`ref/<row-id>/`, extracted from the original graphics, plu
 placement it covers, the exact sources and **unpushed half-done branches** to start from, import command and binding
 row, capture commands, gore bar, dependencies and size. 31 packets. Read your stream's packets in order.
 
+## Owner direction of 15 Nov 2026: smooth and natural, not blocky (binds every packet)
+
+The owner, in short: as the art is redone, add modern smoothing and a natural feel. The 1997 rivers, coasts and other
+terrain step like stairs only because of the technology of the time; do not keep that. Edges curve instead of stepping,
+the landscape gets real shape, everything less blocky, photoreal.
+
+- Treat any 50 px tile step in what you build (water rims, ground patches, cliff and rock edges, wall runs, hedges and
+  fences that follow tile edges, roofs and floors laid on the tile grid) as a defect: round, bend and vary it.
+- Opus code streams are already on the landscape itself (started 15 Nov): `water-shapes` (every shoreline smooth and
+  continuous across screens), `terrain-layers` (ground layer outlines, VS-09), `landforms` (a world heightfield: banks
+  sloping into water, relief, raised cliffs) and `rendering`. Read their PRs and notes before touching ground, water or
+  cliffs; WB-1 and VS-09 are theirs now.
+- What does not change: gore and story stay at least at the 1997 level; the simulation's hardness and the probe stay
+  1997. A drawn shape (and Dink's own collision) may follow the smoothed outline only within about half a tile of the
+  1997 one and must never open or close a passage.
+
 ## Rules (all of them bind every stream)
 
 1. **Fable 5.2 only.** Art design and every Blender step happen only in a Claude Fable 5.2 session (owner rule). If your
