@@ -39,9 +39,7 @@ real proportions, and its width passes the card by the thrown drops. The bodies 
 
 ## Not in this change
 
-- **The woman in red (245):** her rebuild for this change baked with missing skin textures (LFS pointers after a
-  rebase; magenta arms in the capture). Rebuilt with the textures; waiting for its turn at the editor to be captured
-  again. Master keeps her small pool until then.
+- **The woman in red (245): added on 15 Nov** (`maiden_before_after.jpg`). Rebuilt with her textures: blood on the ground 1.73 m2 against 0.71 m2 of red in the picture, 1.99 m wide with drops (card 1.57 m). Seen on screen 91: the pool spreads past her on every side in lobes with drops; skin and dress are textured. The walking girl sprite S091_P22 (another placement) stands in front of her in the capture. Her hands still tilt up off the ground.
 - The soldier, Dink and the mother: unchanged (not bound).
 - The knight's doll-like proportions (ball head, short limbs): the source harness; not changed.
 
