@@ -1,0 +1,3403 @@
+{
+"1": [
+{
+"a": "StaticMeshActor",
+"o": "",
+"cn": "StaticMeshComponent0",
+"mesh": "/Game/Dink/Photoreal/Props/SM_Candle_Iron_PR.SM_Candle_Iron_PR",
+"mats": [
+"/Game/Dink/Photoreal/Props/MI_Prop_Candle_Holder_01.MI_Prop_Candle_Holder_01",
+"/Game/Dink/Photoreal/Props/MI_Prop_Candle_Holder_01_Wax.MI_Prop_Candle_Holder_01_Wax"
+],
+"what": "floating 92 cm above the surface under it (height 45 cm)"
+}
+],
+"2": [
+{
+"what": "1 sprite cards visible next to 25 photoreal meshes"
+}
+],
+"3": [
+{
+"what": "4 sprite cards visible next to 44 photoreal meshes"
+}
+],
+"4": [
+{
+"what": "2 sprite cards visible next to 22 photoreal meshes"
+}
+],
+"5": [
+{
+"what": "3 sprite cards visible next to 38 photoreal meshes"
+}
+],
+"6": [
+{
+"what": "1 sprite cards visible next to 39 photoreal meshes"
+}
+],
+"25": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 299"
+}
+],
+"26": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "1 sprite cards visible next to 12 photoreal meshes"
+}
+],
+"27": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "1 sprite cards visible next to 13 photoreal meshes"
+}
+],
+"28": [
+{
+"what": "2 sprite cards visible next to 4 photoreal meshes"
+}
+],
+"29": [
+{
+"what": "5 sprite cards visible next to 3 photoreal meshes"
+}
+],
+"31": [
+{
+"what": "1 sprite cards visible next to 5 photoreal meshes"
+}
+],
+"32": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "6 sprite cards visible next to 2 photoreal meshes"
+}
+],
+"33": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "1 sprite cards visible next to 46 photoreal meshes"
+}
+],
+"34": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"35": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "2 sprite cards visible next to 47 photoreal meshes"
+}
+],
+"36": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "1 sprite cards visible next to 51 photoreal meshes"
+}
+],
+"37": [
+{
+"what": "1 sprite cards visible next to 22 photoreal meshes"
+}
+],
+"38": [
+{
+"what": "2 sprite cards visible next to 25 photoreal meshes"
+}
+],
+"58": [
+{
+"what": "1 sprite cards visible next to 11 photoreal meshes"
+}
+],
+"60": [
+{
+"what": "2 sprite cards visible next to 14 photoreal meshes"
+}
+],
+"61": [
+{
+"what": "2 sprite cards visible next to 14 photoreal meshes"
+}
+],
+"64": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "2 sprite cards visible next to 12 photoreal meshes"
+}
+],
+"66": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "3 sprite cards visible next to 31 photoreal meshes"
+}
+],
+"67": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"68": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "2 sprite cards visible next to 26 photoreal meshes"
+}
+],
+"69": [
+{
+"what": "play frame dark: mean luma 0.071"
+}
+],
+"70": [
+{
+"what": "19 sprite cards visible next to 12 photoreal meshes"
+}
+],
+"73": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"74": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "ScriptFamilyArt",
+"mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Gold_Pile_PR.SM_Gold_Pile_PR",
+"mats": [
+"/Game/Dink/Photoreal/Unclaimed/MI_Gold_Pile_PR.MI_Gold_Pile_PR"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "2 sprite cards visible next to 32 photoreal meshes"
+}
+],
+"85": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"90": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "4 sprite cards visible next to 11 photoreal meshes"
+}
+],
+"91": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "16 sprite cards visible next to 12 photoreal meshes"
+}
+],
+"94": [
+{
+"what": "7 sprite cards visible next to 4 photoreal meshes"
+}
+],
+"97": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "17 sprite cards visible next to 29 photoreal meshes"
+}
+],
+"98": [
+{
+"what": "2 sprite cards visible next to 4 photoreal meshes"
+},
+{
+"what": "play frame dark: mean luma 0.086"
+}
+],
+"99": [
+{
+"what": "play frame dark: mean luma 0.097"
+}
+],
+"100": [
+{
+"what": "6 sprite cards visible next to 4 photoreal meshes"
+},
+{
+"what": "play frame dark: mean luma 0.082"
+}
+],
+"101": [
+{
+"what": "1 sprite cards visible next to 8 photoreal meshes"
+},
+{
+"what": "play frame dark: mean luma 0.080"
+}
+],
+"102": [
+{
+"what": "10 sprite cards visible next to 2 photoreal meshes"
+}
+],
+"106": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "1 sprite cards visible next to 28 photoreal meshes"
+}
+],
+"122": [
+{
+"what": "3 sprite cards visible next to 21 photoreal meshes"
+}
+],
+"123": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "3 sprite cards visible next to 7 photoreal meshes"
+}
+],
+"124": [
+{
+"what": "2 sprite cards visible next to 5 photoreal meshes"
+}
+],
+"126": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "6 sprite cards visible next to 2 photoreal meshes"
+}
+],
+"127": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "ScriptFamilyArt",
+"mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Gold_Pile_PR.SM_Gold_Pile_PR",
+"mats": [
+"/Game/Dink/Photoreal/Unclaimed/MI_Gold_Pile_PR.MI_Gold_Pile_PR"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "4 sprite cards visible next to 13 photoreal meshes"
+}
+],
+"129": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "1 sprite cards visible next to 28 photoreal meshes"
+}
+],
+"130": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"132": [
+{
+"what": "1 sprite cards visible next to 13 photoreal meshes"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_02_0 / FamilyArt_Decor_97_15_1",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "play frame dark: mean luma 0.076"
+}
+],
+"134": [
+{
+"what": "play frame dark: mean luma 0.080"
+}
+],
+"137": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "2 sprite cards visible next to 25 photoreal meshes"
+}
+],
+"138": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "1 sprite cards visible next to 25 photoreal meshes"
+}
+],
+"144": [
+{
+"what": "1 sprite cards visible next to 82 photoreal meshes"
+}
+],
+"145": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 144"
+}
+],
+"149": [
+{
+"what": "6 sprite cards visible next to 2 photoreal meshes"
+}
+],
+"154": [
+{
+"what": "11 sprite cards visible next to 42 photoreal meshes"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_03_0 / FamilyArt_Decor_97_05_0",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_03_0 / FamilyArt_Decor_97_02_0",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_05_0 / FamilyArt_Decor_97_02_0",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+}
+],
+"156": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "3 sprite cards visible next to 12 photoreal meshes"
+}
+],
+"157": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "4 sprite cards visible next to 10 photoreal meshes"
+}
+],
+"158": [
+{
+"what": "1 sprite cards visible next to 13 photoreal meshes"
+}
+],
+"159": [
+{
+"what": "4 sprite cards visible next to 15 photoreal meshes"
+}
+],
+"160": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "4 sprite cards visible next to 10 photoreal meshes"
+}
+],
+"161": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "4 sprite cards visible next to 36 photoreal meshes"
+}
+],
+"162": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "1 sprite cards visible next to 35 photoreal meshes"
+}
+],
+"163": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "3 sprite cards visible next to 38 photoreal meshes"
+}
+],
+"164": [
+{
+"what": "1 sprite cards visible next to 13 photoreal meshes"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_09_1 / FamilyArt_Decor_97_11_0",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_11_0 / FamilyArt_Decor_97_02_0",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_11_0 / FamilyArt_Decor_97_13_1",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_02_0 / FamilyArt_Decor_97_13_1",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "play frame dark: mean luma 0.078"
+}
+],
+"165": [
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_09_0 / FamilyArt_Decor_97_11_2",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_09_0 / FamilyArt_Decor_97_15_0",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_09_0 / FamilyArt_Decor_97_12_0",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "play frame dark: mean luma 0.077"
+}
+],
+"166": [
+{
+"what": "2 sprite cards visible next to 22 photoreal meshes"
+},
+{
+"what": "play frame dark: mean luma 0.078"
+}
+],
+"170": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "2 sprite cards visible next to 22 photoreal meshes"
+}
+],
+"178": [
+{
+"what": "2 sprite cards visible next to 204 photoreal meshes"
+}
+],
+"180": [
+{
+"what": "1 sprite cards visible next to 246 photoreal meshes"
+}
+],
+"182": [
+{
+"what": "2 sprite cards visible next to 214 photoreal meshes"
+}
+],
+"183": [
+{
+"what": "1 sprite cards visible next to 216 photoreal meshes"
+}
+],
+"184": [
+{
+"what": "1 sprite cards visible next to 237 photoreal meshes"
+}
+],
+"187": [
+{
+"what": "2 sprite cards visible next to 232 photoreal meshes"
+}
+],
+"188": [
+{
+"what": "7 sprite cards visible next to 211 photoreal meshes"
+}
+],
+"190": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "7 sprite cards visible next to 12 photoreal meshes"
+}
+],
+"191": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "5 sprite cards visible next to 12 photoreal meshes"
+}
+],
+"192": [
+{
+"what": "18 sprite cards visible next to 9 photoreal meshes"
+}
+],
+"193": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "1 sprite cards visible next to 31 photoreal meshes"
+}
+],
+"194": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "1 sprite cards visible next to 33 photoreal meshes"
+}
+],
+"195": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "1 sprite cards visible next to 46 photoreal meshes"
+}
+],
+"196": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "1 sprite cards visible next to 40 photoreal meshes"
+}
+],
+"198": [
+{
+"what": "play frame dark: mean luma 0.088"
+}
+],
+"209": [
+{
+"what": "5 sprite cards visible next to 222 photoreal meshes"
+}
+],
+"211": [
+{
+"what": "1 sprite cards visible next to 247 photoreal meshes"
+}
+],
+"212": [
+{
+"what": "1 sprite cards visible next to 274 photoreal meshes"
+}
+],
+"213": [
+{
+"what": "1 sprite cards visible next to 282 photoreal meshes"
+}
+],
+"215": [
+{
+"what": "1 sprite cards visible next to 279 photoreal meshes"
+}
+],
+"218": [
+{
+"what": "1 sprite cards visible next to 293 photoreal meshes"
+}
+],
+"219": [
+{
+"what": "5 sprite cards visible next to 369 photoreal meshes"
+}
+],
+"223": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+}
+],
+"225": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "1 sprite cards visible next to 50 photoreal meshes"
+}
+],
+"226": [
+{
+"what": "1 sprite cards visible next to 49 photoreal meshes"
+}
+],
+"227": [
+{
+"what": "play frame dark: mean luma 0.084"
+}
+],
+"228": [
+{
+"what": "4 sprite cards visible next to 40 photoreal meshes"
+}
+],
+"229": [
+{
+"what": "1 sprite cards visible next to 25 photoreal meshes"
+}
+],
+"237": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+}
+],
+"238": [
+{
+"what": "1 sprite cards visible next to 191 photoreal meshes"
+}
+],
+"242": [
+{
+"what": "1 sprite cards visible next to 171 photoreal meshes"
+}
+],
+"244": [
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_09_0 / FamilyArt_Decor_97_06_0",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) FamilyArt_Decor_97_09_0 / FamilyArt",
+"mesh": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C",
+"mesh2": "/Game/Dink/Photoreal/Scatter/SM_Pebbles_C.SM_Pebbles_C"
+}
+],
+"245": [
+{
+"what": "2 sprite cards visible next to 134 photoreal meshes"
+}
+],
+"246": [
+{
+"what": "1 sprite cards visible next to 126 photoreal meshes"
+}
+],
+"248": [
+{
+"what": "1 sprite cards visible next to 133 photoreal meshes"
+}
+],
+"251": [
+{
+"what": "4 sprite cards visible next to 182 photoreal meshes"
+}
+],
+"254": [
+{
+"what": "1 sprite cards visible next to 11 photoreal meshes"
+}
+],
+"260": [
+{
+"what": "1 sprite cards visible next to 46 photoreal meshes"
+}
+],
+"261": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"270": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "1 sprite cards visible next to 177 photoreal meshes"
+}
+],
+"274": [
+{
+"what": "6 sprite cards visible next to 244 photoreal meshes"
+}
+],
+"276": [
+{
+"what": "1 sprite cards visible next to 214 photoreal meshes"
+}
+],
+"277": [
+{
+"what": "2 sprite cards visible next to 132 photoreal meshes"
+}
+],
+"282": [
+{
+"what": "1 sprite cards visible next to 124 photoreal meshes"
+}
+],
+"284": [
+{
+"what": "1 sprite cards visible next to 91 photoreal meshes"
+}
+],
+"288": [
+{
+"what": "1 sprite cards visible next to 116 photoreal meshes"
+}
+],
+"289": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"290": [
+{
+"what": "1 sprite cards visible next to 40 photoreal meshes"
+}
+],
+"301": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+}
+],
+"302": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "2 sprite cards visible next to 198 photoreal meshes"
+}
+],
+"303": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+}
+],
+"306": [
+{
+"what": "1 sprite cards visible next to 253 photoreal meshes"
+}
+],
+"307": [
+{
+"what": "6 sprite cards visible next to 264 photoreal meshes"
+}
+],
+"334": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+}
+],
+"347": [
+{
+"what": "1 sprite cards visible next to 98 photoreal meshes"
+}
+],
+"350": [
+{
+"what": "4 sprite cards visible next to 225 photoreal meshes"
+}
+],
+"364": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"366": [
+{
+"what": "4 sprite cards visible next to 198 photoreal meshes"
+}
+],
+"368": [
+{
+"what": "2 sprite cards visible next to 263 photoreal meshes"
+}
+],
+"369": [
+{
+"what": "2 sprite cards visible next to 202 photoreal meshes"
+}
+],
+"370": [
+{
+"what": "1 sprite cards visible next to 366 photoreal meshes"
+}
+],
+"374": [
+{
+"what": "8 sprite cards visible next to 395 photoreal meshes"
+}
+],
+"376": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"382": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 381"
+}
+],
+"385": [
+{
+"what": "5 sprite cards visible next to 48 photoreal meshes"
+}
+],
+"395": [
+{
+"what": "1 sprite cards visible next to 160 photoreal meshes"
+}
+],
+"397": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "5 sprite cards visible next to 196 photoreal meshes"
+}
+],
+"399": [
+{
+"what": "1 sprite cards visible next to 231 photoreal meshes"
+}
+],
+"400": [
+{
+"what": "2 sprite cards visible next to 322 photoreal meshes"
+}
+],
+"401": [
+{
+"what": "1 sprite cards visible next to 248 photoreal meshes"
+}
+],
+"402": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 102"
+}
+],
+"404": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "ScriptFamilyArt",
+"mesh": "/Game/Dink/Photoreal/Props/SM_Shelf_Bottles_PR.SM_Shelf_Bottles_PR",
+"mats": [
+"/Game/Dink/Photoreal/Props/MI_Prop_Glaze_Blue.MI_Prop_Glaze_Blue",
+"/Game/Dink/Photoreal/Props/MI_Prop_OakWarm.MI_Prop_OakWarm",
+"/Game/Dink/Photoreal/Props/MI_Prop_Glaze_Red.MI_Prop_Glaze_Red",
+"/Game/Dink/Photoreal/Props/MI_Prop_Glaze_Green.MI_Prop_Glaze_Green"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "4 sprite cards visible next to 290 photoreal meshes"
+}
+],
+"405": [
+{
+"what": "1 sprite cards visible next to 176 photoreal meshes"
+}
+],
+"407": [
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+},
+{
+"what": "coplanar overlap (z-fighting candidate) StaticMeshComponent0 / StaticMeshComponent0",
+"mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01",
+"mesh2": "/Game/Dink/Kits/StonebrookExterior/SM_Path_Earth_8m_01.SM_Path_Earth_8m_01"
+}
+],
+"408": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "6 sprite cards visible next to 403 photoreal meshes"
+}
+],
+"409": [
+{
+"what": "11 sprite cards visible next to 412 photoreal meshes"
+}
+],
+"417": [
+{
+"what": "6 sprite cards visible next to 97 photoreal meshes"
+}
+],
+"418": [
+{
+"what": "9 sprite cards visible next to 15 photoreal meshes"
+}
+],
+"419": [
+{
+"what": "8 sprite cards visible next to 194 photoreal meshes"
+}
+],
+"420": [
+{
+"what": "3 sprite cards visible next to 34 photoreal meshes"
+}
+],
+"432": [
+{
+"what": "1 sprite cards visible next to 207 photoreal meshes"
+}
+],
+"433": [
+{
+"what": "1 sprite cards visible next to 219 photoreal meshes"
+}
+],
+"437": [
+{
+"what": "8 sprite cards visible next to 272 photoreal meshes"
+}
+],
+"439": [
+{
+"what": "play frame dark: mean luma 0.046"
+}
+],
+"440": [
+{
+"what": "6 sprite cards visible next to 449 photoreal meshes"
+}
+],
+"441": [
+{
+"what": "8 sprite cards visible next to 412 photoreal meshes"
+}
+],
+"442": [
+{
+"what": "17 sprite cards visible next to 320 photoreal meshes"
+}
+],
+"446": [
+{
+"what": "1 sprite cards visible next to 235 photoreal meshes"
+}
+],
+"448": [
+{
+"what": "8 sprite cards visible next to 12 photoreal meshes"
+}
+],
+"458": [
+{
+"what": "13 sprite cards visible next to 219 photoreal meshes"
+}
+],
+"462": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 461"
+}
+],
+"469": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 468"
+}
+],
+"471": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 470"
+}
+],
+"472": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 470"
+}
+],
+"474": [
+{
+"what": "16 sprite cards visible next to 183 photoreal meshes"
+}
+],
+"476": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 475"
+}
+],
+"480": [
+{
+"what": "4 sprite cards visible next to 77 photoreal meshes"
+}
+],
+"483": [
+{
+"what": "1 sprite cards visible next to 9 photoreal meshes"
+}
+],
+"497": [
+{
+"what": "8 sprite cards visible next to 339 photoreal meshes"
+}
+],
+"498": [
+{
+"what": "10 sprite cards visible next to 388 photoreal meshes"
+}
+],
+"499": [
+{
+"what": "4 sprite cards visible next to 314 photoreal meshes"
+}
+],
+"500": [
+{
+"what": "6 sprite cards visible next to 267 photoreal meshes"
+}
+],
+"501": [
+{
+"what": "10 sprite cards visible next to 337 photoreal meshes"
+}
+],
+"504": [
+{
+"what": "5 sprite cards visible next to 361 photoreal meshes"
+}
+],
+"505": [
+{
+"what": "9 sprite cards visible next to 358 photoreal meshes"
+}
+],
+"506": [
+{
+"what": "4 sprite cards visible next to 353 photoreal meshes"
+}
+],
+"507": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 506"
+}
+],
+"512": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 511"
+}
+],
+"514": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "2 sprite cards visible next to 14 photoreal meshes"
+}
+],
+"515": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "1 sprite cards visible next to 20 photoreal meshes"
+}
+],
+"521": [
+{
+"what": "2 sprite cards visible next to 398 photoreal meshes"
+}
+],
+"530": [
+{
+"what": "6 sprite cards visible next to 315 photoreal meshes"
+}
+],
+"532": [
+{
+"what": "7 sprite cards visible next to 259 photoreal meshes"
+}
+],
+"533": [
+{
+"what": "2 sprite cards visible next to 211 photoreal meshes"
+}
+],
+"534": [
+{
+"what": "1 sprite cards visible next to 347 photoreal meshes"
+}
+],
+"535": [
+{
+"what": "2 sprite cards visible next to 348 photoreal meshes"
+}
+],
+"536": [
+{
+"what": "32 sprite cards visible next to 321 photoreal meshes"
+}
+],
+"537": [
+{
+"what": "11 sprite cards visible next to 308 photoreal meshes"
+}
+],
+"538": [
+{
+"what": "6 sprite cards visible next to 376 photoreal meshes"
+}
+],
+"539": [
+{
+"what": "3 sprite cards visible next to 165 photoreal meshes"
+}
+],
+"544": [
+{
+"what": "2 sprite cards visible next to 56 photoreal meshes"
+}
+],
+"546": [
+{
+"what": "8 sprite cards visible next to 19 photoreal meshes"
+}
+],
+"547": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_3",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "3 sprite cards visible next to 20 photoreal meshes"
+}
+],
+"557": [
+{
+"what": "1 sprite cards visible next to 181 photoreal meshes"
+}
+],
+"562": [
+{
+"what": "1 sprite cards visible next to 234 photoreal meshes"
+}
+],
+"564": [
+{
+"what": "1 sprite cards visible next to 312 photoreal meshes"
+}
+],
+"568": [
+{
+"what": "3 sprite cards visible next to 383 photoreal meshes"
+}
+],
+"570": [
+{
+"what": "3 sprite cards visible next to 284 photoreal meshes"
+}
+],
+"577": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_2",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "2 sprite cards visible next to 18 photoreal meshes"
+}
+],
+"579": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+}
+],
+"583": [
+{
+"what": "2 sprite cards visible next to 190 photoreal meshes"
+}
+],
+"585": [
+{
+"what": "7 sprite cards visible next to 66 photoreal meshes"
+}
+],
+"586": [
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScriptSpriteActor",
+"o": "",
+"cn": "Marker",
+"mesh": "/Engine/BasicShapes/Cylinder.Cylinder",
+"mats": [
+"/Engine/EngineMaterials/DefaultMaterial.DefaultMaterial"
+],
+"what": "script-sprite placeholder marker"
+},
+{
+"what": "2 sprite cards visible next to 17 photoreal meshes"
+}
+],
+"587": [
+{
+"what": "5 sprite cards visible next to 105 photoreal meshes"
+}
+],
+"590": [
+{
+"what": "7 sprite cards visible next to 167 photoreal meshes"
+}
+],
+"599": [
+{
+"what": "3 sprite cards visible next to 221 photoreal meshes"
+}
+],
+"600": [
+{
+"what": "1 sprite cards visible next to 137 photoreal meshes"
+}
+],
+"601": [
+{
+"what": "1 sprite cards visible next to 258 photoreal meshes"
+}
+],
+"604": [
+{
+"what": "4 sprite cards visible next to 169 photoreal meshes"
+}
+],
+"609": [
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_0",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"a": "DinkScreenVolume",
+"o": "",
+"cn": "LockBarrier_1",
+"mesh": "/Engine/BasicShapes/Cube.Cube",
+"mats": [
+"/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+],
+"what": "engine default material"
+},
+{
+"what": "1 sprite cards visible next to 12 photoreal meshes"
+},
+{
+"what": "play frame dark: mean luma 0.099"
+}
+],
+"610": [
+{
+"what": "3 sprite cards visible next to 14 photoreal meshes"
+}
+],
+"617": [
+{
+"what": "4 sprite cards visible next to 129 photoreal meshes"
+}
+],
+"618": [
+{
+"what": "6 sprite cards visible next to 84 photoreal meshes"
+}
+],
+"619": [
+{
+"what": "6 sprite cards visible next to 154 photoreal meshes"
+}
+],
+"625": [
+{
+"what": "1 sprite cards visible next to 227 photoreal meshes"
+}
+],
+"629": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 628"
+}
+],
+"632": [
+{
+"what": "2 sprite cards visible next to 231 photoreal meshes"
+}
+],
+"633": [
+{
+"what": "15 sprite cards visible next to 218 photoreal meshes"
+}
+],
+"634": [
+{
+"what": "3 sprite cards visible next to 120 photoreal meshes"
+}
+],
+"635": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 634"
+}
+],
+"636": [
+{
+"what": "2 sprite cards visible next to 151 photoreal meshes"
+}
+],
+"648": [
+{
+"what": "1 sprite cards visible next to 334 photoreal meshes"
+}
+],
+"652": [
+{
+"what": "3 sprite cards visible next to 248 photoreal meshes"
+}
+],
+"656": [
+{
+"what": "2 sprite cards visible next to 250 photoreal meshes"
+}
+],
+"658": [
+{
+"what": "5 sprite cards visible next to 237 photoreal meshes"
+}
+],
+"660": [
+{
+"what": "4 sprite cards visible next to 194 photoreal meshes"
+}
+],
+"661": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 660"
+}
+],
+"663": [
+{
+"what": "8 sprite cards visible next to 267 photoreal meshes"
+}
+],
+"665": [
+{
+"what": "1 sprite cards visible next to 164 photoreal meshes"
+}
+],
+"671": [
+{
+"what": "2 sprite cards visible next to 115 photoreal meshes"
+}
+],
+"680": [
+{
+"what": "6 sprite cards visible next to 414 photoreal meshes"
+}
+],
+"681": [
+{
+"what": "1 sprite cards visible next to 383 photoreal meshes"
+}
+],
+"685": [
+{
+"what": "1 sprite cards visible next to 227 photoreal meshes"
+}
+],
+"688": [
+{
+"what": "2 sprite cards visible next to 184 photoreal meshes"
+}
+],
+"693": [
+{
+"what": "5 sprite cards visible next to 125 photoreal meshes"
+}
+],
+"694": [
+{
+"what": "3 sprite cards visible next to 231 photoreal meshes"
+}
+],
+"695": [
+{
+"what": "11 sprite cards visible next to 219 photoreal meshes"
+}
+],
+"696": [
+{
+"what": "3 sprite cards visible next to 194 photoreal meshes"
+}
+],
+"697": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 696"
+}
+],
+"699": [
+{
+"what": "2 sprite cards visible next to 128 photoreal meshes"
+}
+],
+"700": [
+{
+"what": "3 sprite cards visible next to 44 photoreal meshes"
+}
+],
+"701": [
+{
+"what": "2 sprite cards visible next to 10 photoreal meshes"
+}
+],
+"711": [
+{
+"what": "2 sprite cards visible next to 271 photoreal meshes"
+}
+],
+"712": [
+{
+"what": "5 sprite cards visible next to 398 photoreal meshes"
+}
+],
+"713": [
+{
+"what": "3 sprite cards visible next to 362 photoreal meshes"
+}
+],
+"715": [
+{
+"what": "1 sprite cards visible next to 201 photoreal meshes"
+}
+],
+"716": [
+{
+"what": "2 sprite cards visible next to 229 photoreal meshes"
+}
+],
+"734": [
+{
+"what": "6 sprite cards visible next to 222 photoreal meshes"
+}
+],
+"747": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 746"
+}
+],
+"748": [
+{
+"what": "not captured: the teleport was refused, the player stayed on screen 746"
+}
+],
+"760": [
+{
+"what": "3 sprite cards visible next to 9 photoreal meshes"
+}
+],
+"762": [
+{
+"what": "8 sprite cards visible next to 18 photoreal meshes"
+}
+],
+"763": [
+{
+"what": "6 sprite cards visible next to 13 photoreal meshes"
+}
+],
+"764": [
+{
+"what": "7 sprite cards visible next to 21 photoreal meshes"
+}
+],
+"766": [
+{
+"what": "1 sprite cards visible next to 145 photoreal meshes"
+}
+]
+}

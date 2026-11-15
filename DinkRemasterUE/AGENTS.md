@@ -1,3 +1,9 @@
+## Whole-world visual sweep (15 November 2026)
+
+- `Scripts/PhotorealQA/visual_sweep.py <out>` + `DINK_CAPTURE_TIMEOUT=5400 Scripts/PhotorealQA/run_capture.sh <out>/sweep.txt` captures all 644 screens (play camera + overview) in one run of about 76 min; `visual_sweep_report.py <out> --log=<log>` runs the detectors and makes the contact sheets. `dink.SceneAudit <file>` (DinkCore, review only) appends a JSON line with every visible primitive and light of the player's screen. Results, grades and the 20 worst: `Docs/Verification/VisualSweep_15Nov2026/`; art work queued in `doc/remaster/FABLE_ART_QUEUE.md`.
+- Pitfall: `dink.Goto` to a point in filled water is refused silently (the teleport overlaps the water's low blocker; the hardness files do not show water fill) and the player stays where he was; the sweep script tries up to four points per screen and the report marks a screen "not captured" when its audit line names another screen.
+- Pitfall: the scene audit's downward trace hits the greybox screen's hardness prisms (3 m tall) before the ground plane; the report treats only the lowest greybox hit as ground.
+
 ## Water banks on the screens whose water has no fill (14 November 2026)
 
 - 244, 385, 438, 465, 494, 633, 736 have water tiles the collision does not fill. The export bends the tile outline into a shoreline (`natural_water_shape`, never cutting a river), writes it into the terrain mask alpha like filled water, and flags sea shores (`water_sea`); the runtime draws one shore-material sheet per screen (`dink.WaterTiles`). Visual only, collision export byte-identical. Evidence: `Docs/Verification/WaterBanks_14Nov2026/`.
