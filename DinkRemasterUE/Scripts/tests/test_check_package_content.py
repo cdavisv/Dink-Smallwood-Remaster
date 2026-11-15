@@ -53,6 +53,11 @@ class CheckPackageContentTest(unittest.TestCase):
         missing, _, _ = cpc.check(self.project, _listing("Dink/Kits/SM_Wall", "Dink/Photoreal/Props/SM_Bed_PR"))
         self.assertEqual(missing, [])
 
+    def test_folder_case_from_the_cook_passes(self):
+        # 14 Nov 2026: the cook lists Content/Dink/Audio/Voice/dink as .../Voice/Dink (the FName of /Game/Dink); same package
+        missing, _, _ = cpc.check(self.project, _listing("DINK/kits/sm_wall", "Dink/PHOTOREAL/Props/SM_Bed_PR"))
+        self.assertEqual(missing, [])
+
     def test_main_exit_codes(self):
         listing = self.project / "listing.txt"
         listing.write_text(_listing("Dink/Kits/SM_Wall"), encoding="utf-8")

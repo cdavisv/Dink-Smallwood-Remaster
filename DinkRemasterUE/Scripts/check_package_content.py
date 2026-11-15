@@ -100,7 +100,10 @@ def check(project: Path, listing_text: str) -> tuple[list[tuple[str, str]], int,
     packaged = packaged_set(listing_text)
     refs = referenced_packages(project)
     required = {pkg: src for pkg, src in refs.items() if exists_on_disk(project, pkg)}
-    missing = sorted((pkg, src) for pkg, src in required.items() if pkg not in packaged)
+    # Package names are case-insensitive in Unreal and the cook keeps the case a folder's name was first seen with
+    # (Voice/dink is listed as Voice/Dink, beside /Game/Dink), so compare without case.
+    packaged_lower = {p.lower() for p in packaged}
+    missing = sorted((pkg, src) for pkg, src in required.items() if pkg.lower() not in packaged_lower)
     return missing, len(required), len(packaged)
 
 
