@@ -1491,6 +1491,27 @@ namespace
 		const int32 Frame = Sequence == Still ? FMath::Max(0, Sprite.GetProp(TEXT("pframe"))) : 0;
 		const int32 Size = Sprite.GetProp(TEXT("size"), 100);
 		if (Family->DressScriptSprite(Actor, Sequence, Frame, FVector(0.0, 0.0, -ScriptSpriteLiftCm), Size > 0 ? Size / 100.f : 1.f)) return;
+		// A sprite without a picture (seq and pseq 0: the invisible touch, hardness and warp sprites scripts make with
+		// create_sprite(x, y, brain, 0, 0)) is never drawn by the original: getpic returns 0 for pseq 0 and
+		// draw_sprite_game returns when getpic < 1 (dink.cpp:443-445, 5498). Its grey marker is hidden until a script
+		// gives it a picture. Presentation only: the sprite, its script, touch box and hardness are unchanged.
+		static const FName NoPicture(TEXT("DinkScriptSpriteNoPicture"));
+		if (ScriptActor->Marker)
+		{
+			if (Sequence <= 0)
+			{
+				if (!ScriptActor->Marker->bHiddenInGame) ScriptActor->Marker->ComponentTags.AddUnique(NoPicture);
+				ScriptActor->Marker->SetHiddenInGame(true);
+				return;
+			}
+			if (ScriptActor->Marker->ComponentHasTag(NoPicture))
+			{
+				ScriptActor->Marker->ComponentTags.Remove(NoPicture);
+				const bool bOtherLayer = Actor->ActorHasTag(TEXT("DinkAuthoredArt")) || Actor->ActorHasTag(TEXT("DinkHumanoid")) ||
+					Actor->ActorHasTag(TEXT("DinkScriptHumanoid")) || Actor->ActorHasTag(TEXT("DinkCreature"));
+				if (!bOtherLayer) ScriptActor->Marker->SetHiddenInGame(false);
+			}
+		}
 		const AActor* Host = Followed && Sprite.GetProp(TEXT("brain")) == 15 ? Followed->Actor.Get() : nullptr;
 		if (Host && ScriptActor->Marker && !ScriptActor->Marker->bHiddenInGame &&
 			(Host->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag) || Host->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag)))

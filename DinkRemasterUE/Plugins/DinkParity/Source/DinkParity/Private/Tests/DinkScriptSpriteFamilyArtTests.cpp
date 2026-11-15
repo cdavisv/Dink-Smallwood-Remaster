@@ -172,6 +172,21 @@ namespace
 				Test->TestFalse(TEXT("an unbound picture keeps its marker"), Plain->Marker->bHiddenInGame);
 				Test->TestTrue(TEXT("an unbound marker keeps its scale"), Plain->GetActorScale3D().Equals(FVector(.3, .3, .6), .001));
 			}
+
+			// A sprite without a picture (create_sprite x, y, brain, 0, 0: touch, hardness and warp sprites) is never drawn
+			// by the original (getpic, draw_sprite_game, dink.cpp:443-445, 5498): no grey marker until it gets a picture.
+			ADinkScriptSpriteActor* Blank = Create(420, 0, 0);
+			const int32 BlankHandle = Handle;
+			if (Test->TestNotNull(TEXT("create_sprite without a picture spawns"), Blank))
+			{
+				Test->TestTrue(TEXT("a sprite without a picture shows no marker"), Blank->Marker->bHiddenInGame);
+				Test->TestFalse(TEXT("the actor itself stays (script, touch box)"), Blank->IsHidden());
+				Director->SpriteProperty(nullptr, TEXT("pseq"), BlankHandle, FreeSeq);
+				Director->SpriteProperty(nullptr, TEXT("pframe"), BlankHandle, FreeFrame);
+				Test->TestFalse(TEXT("a picture given later shows the marker of an unbound picture"), Blank->Marker->bHiddenInGame);
+				Director->SpriteProperty(nullptr, TEXT("pseq"), BlankHandle, 0);
+				Test->TestTrue(TEXT("pseq 0 hides it again"), Blank->Marker->bHiddenInGame);
+			}
 			return true;
 		}
 
