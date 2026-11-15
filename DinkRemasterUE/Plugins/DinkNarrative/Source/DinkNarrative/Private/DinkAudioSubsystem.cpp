@@ -120,12 +120,19 @@ void UDinkAudioSubsystem::Initialize(FSubsystemCollectionBase& Collection)
  if (Voices.Load(FPaths::ProjectContentDir() / TEXT("Dink/Data/Audio/voice.json"))) UE_LOG(LogDinkPlayback, Log, TEXT("Voice table: %d recorded lines, volume %.2f"), Voices.Lines.Num(), Voices.Volume);
  GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>()->OnScreenChanged.AddUObject(this, &UDinkAudioSubsystem::EnterScreen);
 }
+void UDinkAudioSubsystem::StopEffect(UAudioComponent* Effect)
+{
+ if (!IsValid(Effect)) return;
+ const bool bRepeat = RepeatEffects.Remove(Effect) > 0;
+ Effect->Stop();
+ if (bRepeat) Effect->DestroyComponent(); // not auto-destroyed (see ReplaysRepeat)
+}
 bool UDinkAudioSubsystem::CanPlay() const { return GetWorld() && GetWorld()->GetAudioDevice().IsValid() && !IsRunningDedicatedServer(); }
 void UDinkAudioSubsystem::StopAll()
 {
  if (Music) { Music->Stop(); Music->DestroyComponent(); } Music = nullptr; PlayingMusic.Reset();
- for (UAudioComponent* Effect : Effects) if (Effect) Effect->Stop();
- Effects.Reset(); Ambient.Reset(); EffectSprites.Reset();
+ for (UAudioComponent* Effect : Effects) if (Effect) StopEffect(Effect);
+ Effects.Reset(); Ambient.Reset(); EffectSprites.Reset(); RepeatEffects.Reset();
  for (const auto& Pair : VoiceComponents) if (Pair.Value.IsValid()) Pair.Value->Stop();
  VoiceComponents.Reset(); VoiceTracker.Reset();
 }
@@ -192,7 +199,7 @@ void UDinkAudioSubsystem::EnterScreen(ADinkScreenVolume* Screen)
  {
   UAudioComponent* C = Effects[I];
   if (IsValid(C) && C->GetAttachParent() && Greybox->FindScreenAt(C->GetAttachParent()->GetComponentLocation()) != Screen)
-  { C->Stop(); Effects.RemoveAtSwap(I); }
+  { StopEffect(C); Effects.RemoveAtSwap(I); }
  }
  if (const FDinkApprovedSound* Override = Selection.Screens.Find(FString::FromInt(Screen->ScreenNumber))) { PlayMusic(*Override); return; }
  if (Screen->MusicAction == TEXT("stop")) { if (Music) { Music->Stop(); Music->DestroyComponent(); } Music = nullptr; PlayingMusic.Reset(); return; }
@@ -220,18 +227,16 @@ void UDinkAudioSubsystem::HandleCue(const FString& Cue, UDinkDirector* Director)
  AActor* Actor = Director && Sprite > 0 ? Director->GetActor(Sprite) : nullptr;
  Sprite = FDinkAudioSelection::SpatialSpriteHandle(Sprite, IsValid(Actor));
  USoundBase* Sound = LoadObject<USoundBase>(nullptr, *Entry->Asset); if (!Sound) return;
- if (Repeat != 0 && !Entry->bLoop)
- {
-  if (USoundWave* Wave = Cast<USoundWave>(Sound)) { USoundWave* Loop = DuplicateObject<USoundWave>(Wave, this); Loop->bLooping = true; Sound = Loop; }
- }
+ const bool bReplay = FDinkAudioSelection::ReplaysRepeat(Entry->bLoop, Repeat);
  UAudioComponent* Component = nullptr;
  if (Actor && Actor->GetRootComponent())
  {
   USoundAttenuation* Attenuation = NewObject<USoundAttenuation>(this);
   Attenuation->Attenuation.AttenuationShapeExtents = FVector(150.f); Attenuation->Attenuation.FalloffDistance = 2200.f;
-  Component = UGameplayStatics::SpawnSoundAttached(Sound, Actor->GetRootComponent(), NAME_None, FVector::ZeroVector, EAttachLocation::KeepRelativeOffset, true, Selection.SfxVolume, FDinkAudioSelection::Pitch(Speed), 0.f, Attenuation, nullptr, true);
+  Component = UGameplayStatics::SpawnSoundAttached(Sound, Actor->GetRootComponent(), NAME_None, FVector::ZeroVector, EAttachLocation::KeepRelativeOffset, true, Selection.SfxVolume, FDinkAudioSelection::Pitch(Speed), 0.f, Attenuation, nullptr, !bReplay);
  }
- else if (!Sprite) Component = UGameplayStatics::SpawnSound2D(GetWorld(), Sound, Selection.SfxVolume, FDinkAudioSelection::Pitch(Speed));
+ else if (!Sprite) Component = UGameplayStatics::SpawnSound2D(GetWorld(), Sound, Selection.SfxVolume, FDinkAudioSelection::Pitch(Speed), 0.f, nullptr, false, !bReplay);
+ if (Component && bReplay) RepeatEffects.Add(Component, FPlatformTime::Seconds());
  if (Component) { UE_LOG(LogDinkPlayback, Log, TEXT("Playing approved sound %s sprite=%d pitch=%.3f repeat=%d"), *Entry->Asset, Sprite, FDinkAudioSelection::Pitch(Speed), Repeat); Effects.Add(Component); if (Sprite) EffectSprites.Add(Component, Sprite); }
 }
 void UDinkAudioSubsystem::Tick(float DeltaTime)
@@ -251,24 +256,32 @@ void UDinkAudioSubsystem::Tick(float DeltaTime)
    if (!Sprite.bActive || !Sprite.Actor.IsValid() || Id <= 0 || !Selection.Sounds.Contains(FString::FromInt(Id)) || !Screen || Sprite.Screen != Screen->ScreenNumber) continue;
    Wanted.Add(Pair.Key);
    auto* Existing = Ambient.Find(Pair.Key);
-   if (Existing && Existing->Key == Id && Existing->Value.IsValid() && Existing->Value->IsPlaying()) continue;
-   if (Existing && Existing->Value.IsValid()) Existing->Value->Stop();
+   // a repeating ambient between two plays is alive (the effects loop below replays it in place)
+   if (Existing && Existing->Key == Id && Existing->Value.IsValid() && (Existing->Value->IsPlaying() || RepeatEffects.Contains(Existing->Value.Get()))) continue;
+   if (Existing && Existing->Value.IsValid()) StopEffect(Existing->Value.Get());
    const int32 Before = Effects.Num();
    HandleCue(FString::Printf(TEXT("sound:%d speed=22050 sprite=%d repeat=1"), Id, Pair.Key), Director);
    if (Effects.Num() > Before) Ambient.Add(Pair.Key, TPair<int32, TWeakObjectPtr<UAudioComponent>>(Id, Effects.Last().Get()));
   }
   for (auto It = Ambient.CreateIterator(); It; ++It)
-   if (!Wanted.Contains(It.Key())) { if (It.Value().Value.IsValid()) It.Value().Value->Stop(); It.RemoveCurrent(); }
+   if (!Wanted.Contains(It.Key())) { if (It.Value().Value.IsValid()) StopEffect(It.Value().Value.Get()); It.RemoveCurrent(); }
  }
  if (CanPlay()) UpdateVoices(Director);
  for (int32 I = Effects.Num() - 1; I >= 0; --I)
  {
   UAudioComponent* C = Effects[I];
+  if (double* Started = IsValid(C) && !C->IsPlaying() ? RepeatEffects.Find(C) : nullptr)
+  {
+   // a repeating cue: again from the start, once a full length has passed since the last start (no per-frame replay of a culled one)
+   const double Now = FPlatformTime::Seconds();
+   if (FDinkAudioSelection::ReplayDue(Now, *Started, C->Sound ? C->Sound->GetDuration() / FMath::Max(C->PitchMultiplier, .01f) : 0.f)) { C->Play(); *Started = Now; }
+   continue;
+  }
   if (!IsValid(C) || !C->IsPlaying()) { EffectSprites.Remove(C); Effects.RemoveAtSwap(I); continue; }
   if (const int32* Handle = EffectSprites.Find(C); Handle && Director)
   {
    const FDinkSprite* Sprite = Director->FindSprite(*Handle);
-   if (!Sprite || !Sprite->bActive) { C->Stop(); EffectSprites.Remove(C); Effects.RemoveAtSwap(I); }
+   if (!Sprite || !Sprite->bActive) { StopEffect(C); EffectSprites.Remove(C); Effects.RemoveAtSwap(I); }
   }
  }
 }

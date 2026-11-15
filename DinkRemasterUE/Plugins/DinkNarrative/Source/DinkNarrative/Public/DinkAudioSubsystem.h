@@ -22,6 +22,16 @@ struct DINKNARRATIVE_API FDinkAudioSelection
  const FDinkApprovedSound* ResolveMusic(const FString& Raw) const;
  static int32 SpatialSpriteHandle(int32 Handle, bool bHasBoundActor = false);
  static float Pitch(int32 OriginalSpeed) { return OriginalSpeed > 0 ? FMath::Clamp(OriginalSpeed / 22050.f, .125f, 4.f) : 1.f; }
+ /**
+  * A repeating cue (playsound's repeat argument, a sprite's sp_sound) of a sound that is not itself a loop is replayed by the
+  * subsystem each time it ends, on a component that is not auto-destroyed. It used to play a duplicate of the SoundWave with
+  * bLooping set, which a cooked game cannot do: a cooked SoundWave has no editor data to duplicate, and the packaged game died
+  * with a fatal error in USoundWave::Serialize on the first screen with an ambient sound (SCR_036, Terris; playthrough QA 15 Nov 2026).
+  */
+ static bool ReplaysRepeat(bool bAssetLoops, int32 Repeat) { return Repeat != 0 && !bAssetLoops; }
+ /** When a finished repeating one-shot may start again: a full played length (the sound's duration over its pitch, at least 0.1 s) after its last start. */
+ static bool ReplayDue(double NowSeconds, double LastStartSeconds, float DurationSeconds)
+ { return NowSeconds - LastStartSeconds >= FMath::Max(0.1, double(DurationSeconds)); }
 };
 /** One spoken line's recording (Content/Dink/Data/Audio/voice.json, written by Scripts/import_voice.py). */
 struct DINKNARRATIVE_API FDinkVoiceLine
@@ -99,6 +109,13 @@ private:
  TMap<int32, TPair<int32, TWeakObjectPtr<UAudioComponent>>> Ambient;
  UPROPERTY(Transient) TObjectPtr<UAudioComponent> Music;
  UPROPERTY(Transient) TArray<TObjectPtr<UAudioComponent>> Effects;
+ /**
+  * Effects replayed when they end (FDinkAudioSelection::ReplaysRepeat) -> wall-clock time of their last start; not auto-destroyed,
+  * so StopEffect destroys them. A replay waits at least the sound's own length since the last start, so a one-shot the audio
+  * engine culls at once (out of range, inaudible) is not restarted every frame.
+  */
+ TMap<TObjectKey<UAudioComponent>, double> RepeatEffects;
+ void StopEffect(UAudioComponent* Effect);
  UPROPERTY(Transient) TObjectPtr<USoundAttenuation> VoiceAttenuation;
  void EnterScreen(ADinkScreenVolume* Screen);
  void PlayMusic(const FDinkApprovedSound& Entry);
