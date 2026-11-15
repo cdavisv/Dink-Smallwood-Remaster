@@ -338,7 +338,7 @@
   "decals": {
     "note": "Round 6: sprite classes shown as deferred ground decals (Props/Decals, 2 x 2 atlases: one material instance per cell, picked by a stable hash of the origin). Visual only; scripted or animated placements keep their card.",
     "blood_splat": {
-      "size_cm": 90,
+      "size_cm": 170,
       "materials": [
         "/Game/Dink/Photoreal/Props/MI_Decal_BloodSplat_0.MI_Decal_BloodSplat_0",
         "/Game/Dink/Photoreal/Props/MI_Decal_BloodSplat_1.MI_Decal_BloodSplat_1",
