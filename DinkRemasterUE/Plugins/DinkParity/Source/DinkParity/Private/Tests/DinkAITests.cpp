@@ -118,8 +118,9 @@ namespace DinkAITest
 	bool OnHardness(const FEnv& E, const FDinkSprite& S)
 	{
 		const int32 Code = E.G->GetHard(S.Screen, FMath::RoundToInt32(S.X), FMath::RoundToInt32(S.Y));
-		// get_hard (D:569-575) reads a stamped hardbox of a placement with prop != 0 (a map.dat warp: SCR_003's door S003_P14) as 0 for every
-		// sprite, so a villager may stand in the doorway's box; only Dink warps there.
+		// A stamped hardbox of a placement with prop != 0 (a map.dat warp: SCR_003's door S003_P14) is hard for a brain's move (get_hard,
+		// D:527-546, read by check_if_move_is_legal D:13503); only Dink's walk reads it as 0 (get_hard_play D:548-580). The exception stays
+		// lenient: a sprite placed in a doorway by the map is not a move into it.
 		return Code != 0 && !(Code > 100 && E.G->GetPlacementProp(FDinkOriginId(S.Screen, Code - 100)) != 0);
 	}
 

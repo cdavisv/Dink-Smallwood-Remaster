@@ -393,10 +393,11 @@ namespace DinkPropTest
 	}
 }
 
-// get_hard (dink.cpp:569-575) reads a stamped hardbox of a placement whose prop is not 0 as 0, for every sprite that moves: monsters, people and
-// missiles walk and fly through a map.dat warp's hardbox (a door). Only Dink warps there (special_block from the walk code, D:16906-16911).
-// The remaster used to stop every sprite at a door's hardbox (alpha bug list: "monsters and missiles treat a warp's hardbox as solid").
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkPropSpritesCrossWarpTest, "Dink.Gameplay.Prop.SpritesCrossMapWarpHardbox", DINK_TEST_FLAGS)
+// check_if_move_is_legal reads get_hard (dink.cpp:13503), which returns the hit map as it is (D:527-546): a map.dat warp's stamped hardbox (a
+// door, prop 1) is solid for every sprite a brain moves. Only Dink's walk reads get_hard_play (D:548-580), whose prop test (D:569-575) turns
+// the box into 0 and a warp. Alpha bug A2 (14 Nov 2026) had cited those lines as get_hard's and let monsters, people and missiles through
+// doors; A45 (15 Nov 2026, doc/remaster/DINKC_PARITY.md) restores the engine rule.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkPropSpritesCrossWarpTest, "Dink.Gameplay.Prop.SpritesStopAtMapWarpHardbox", DINK_TEST_FLAGS)
 bool FDinkPropSpritesCrossWarpTest::RunTest(const FString& Parameters)
 {
 	using namespace DinkPropTest;
@@ -407,7 +408,8 @@ bool FDinkPropSpritesCrossWarpTest::RunTest(const FString& Parameters)
 	}
 	const FDinkOriginId Door(Screen, DoorIndex);
 	// Engine x 415 crosses the door's hardbox (code 102); south of it the column is free down to y 275.
-	TestEqual(TEXT("the door's hardbox reads 102 in the map (GetHard keeps it for the pawn's warp box and the probe)"), E.G->GetHard(Screen, 415, 240), 102);
+	TestEqual(TEXT("the door's hardbox reads 102 in the map"), E.G->GetHard(Screen, 415, 240), 102);
+	TestEqual(TEXT("the door is a map.dat warp (prop 1)"), E.G->GetPlacementProp(Door), 1);
 	int32 Edge = 275;
 	while (Edge > 200 && E.G->GetHard(Screen, 415, Edge - 1) == 0)
 	{
@@ -418,15 +420,14 @@ bool FDinkPropSpritesCrossWarpTest::RunTest(const FString& Parameters)
 	{
 		return false;
 	}
-	const int32 Through = FollowWalk(E, 415, 275, 200);
-	TestTrue(FString::Printf(TEXT("a walker from the south walks into the door's hardbox (prop 1: get_hard reads 0), past its edge at y %d (got %d)"), Edge, Through), Through < Edge - 1);
+	TestEqual(TEXT("a walker from the south stops at the door's hardbox (get_hard keeps a prop-1 box hard, D:527-546)"), FollowWalk(E, 415, 275, 200), Edge);
 
-	// With sp_prop(door, 0) (owner decision OD1) the flag is 0: the stamped hardbox is solid for sprites, as for any prop-0 placement.
+	// sp_prop(door, 0) (owner decision OD1) changes nothing for a brain's walk: the box is solid either way.
 	const int32 DoorHandle = E.D->HandleForPlacement(Screen, DoorIndex);
 	Run(E, DoorHandle, { FString::Printf(TEXT("sp_prop %d 0"), DoorHandle) });
 	TestEqual(TEXT("sp_prop(door, 0)"), E.G->GetPlacementProp(Door), 0);
-	TestEqual(TEXT("then the walker stops at the hardbox's south edge"), FollowWalk(E, 415, 275, 200), Edge);
+	TestEqual(TEXT("then the walker still stops at the hardbox's south edge"), FollowWalk(E, 415, 275, 200), Edge);
 	Run(E, DoorHandle, { FString::Printf(TEXT("sp_prop %d 1"), DoorHandle) });
-	TestTrue(TEXT("map.dat's prop 1 again: walk-through again"), FollowWalk(E, 415, 275, 200) < Edge - 1);
+	TestEqual(TEXT("map.dat's prop 1 again: still solid for the walker"), FollowWalk(E, 415, 275, 200), Edge);
 	return true;
 }

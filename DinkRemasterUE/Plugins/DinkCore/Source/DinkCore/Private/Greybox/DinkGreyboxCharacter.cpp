@@ -217,13 +217,13 @@ bool ADinkGreyboxCharacter::IsHumanSteering() const
 float ADinkGreyboxCharacter::DesiredTopSpeed() const
 {
 	const int32 Forced = CVarHeroGait.GetValueOnGameThread();
-	if (Forced == 1) return WalkSpeed;
-	if (Forced == 2) return RunSpeed;
+	if (Forced == 1) return WalkSpeed * DinkSpeedScale;
+	if (Forced == 2) return RunSpeed * DinkSpeedScale;
 	// Only a person at the controls walks: the bot, scripted moves and the debug commands feed
 	// movement directly and keep the run speed their routes and timings were measured with.
-	if (!IsHumanSteering()) return RunSpeed;
+	if (!IsHumanSteering()) return RunSpeed * DinkSpeedScale;
 	const bool bRun = (CVarHeroRunByDefault.GetValueOnGameThread() != 0) != bRunKeyHeld;
-	return bRun ? RunSpeed : WalkSpeed;
+	return (bRun ? RunSpeed : WalkSpeed) * DinkSpeedScale;
 }
 
 void ADinkGreyboxCharacter::UpdateGait(float DeltaSeconds)

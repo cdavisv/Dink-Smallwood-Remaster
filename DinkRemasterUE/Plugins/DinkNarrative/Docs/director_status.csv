@@ -51,7 +51,7 @@ sp_attack_wait,sprites,29,command,implemented,no attack before game time + ms (D
 sp_defense,sprites,28,command,implemented,defense of the actor's UDinkStatsComponent (recorded when it has none)
 sp_range,sprites,28,command,implemented,"melee reach of the sprite's attack (sword: 40 px instead of 28) and a missile's hit margin (D:15476, 14322)"
 sp_hard,sprites,28,command,implemented,"the sprite's hard flag (0 = its hardbox is hard); on a placement's sprite also the loaded map's flag, which draw_hard_sprite / draw_hard_map read (dink.cpp:9979-9998); also bound as EXTERNAL (value form)"
-script_attach,sprites,26,command,implemented,re-owns the instance (1000 = survives screen changes)
+script_attach,sprites,26,command,implemented,"re-owns the instance (1000 = survives screen changes); &current_sprite becomes that number, so later sp_* on 1000 do nothing (D:8075-8087, change_sprite D:5396-5403)"
 editor_frame,world,25,command,implemented,"stored as the override's Variant (""frame<N>"") when the placement has an override; also bound as EXTERNAL (value form)"
 editor_seq,world,25,command,implemented,"stored as the override's Variant (""seq<N>"") when the placement has an override; also bound as EXTERNAL (value form)"
 draw_hard_sprite,world,25,command,implemented,"the tile hardness back under the sprite's hardbox, then every hardbox whose flag is 0 stamped again (dink.cpp:8089-8104); the greybox's solid collision follows"
@@ -109,7 +109,7 @@ get_last_bow_power,other,3,external,implemented,EXTERNAL function bound with loo
 get_rand_sprite_with_this_brain,other,3,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 kill_cur_item,inventory,3,command,implemented,"removes the armed item: its `disarm`, then `holdingdrop` and `drop`; the calling script stops (D:1480, D:7801)"
 load_game,system,3,command,implemented,"UDinkSaveSubsystem::LoadFromSlot(""dink_save<N>""); ends the script"
-set_dink_speed,stats,3,command,recorded,Dink's 2D walk speed (main.c sets 3); the greybox character walks at a fixed 6 m/s; recorded on Dink's sprite
+set_dink_speed,stats,3,command,implemented,"Dink's walk speed (D:7563-7575, read at D:17311-17321): 1, 2, 3 give 12, 6, 3 px per frame (main.c sets 3; item-bt.c's boots 2); the pawn's top speed is scaled by that over 3"
 set_mode,system,3,command,recorded,engine/menu mode switch of the 2D title and escape screens; no equivalent yet
 sp_disabled,sprites,3,command,recorded,"sprite disabled flag, recorded"
 stopmidi,audio,3,command,implemented,audio stub: logs the music stop

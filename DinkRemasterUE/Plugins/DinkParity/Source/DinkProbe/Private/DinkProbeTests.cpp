@@ -4919,6 +4919,16 @@ namespace DinkProbeTest
 		}
 
 		/** Waits at the Windemere healer (nothing there to hurt him) at 8x until the Darklands rooms are back (editor_type 6: 5 minutes after Dink last left them). */
+		/** The Darklands visits of chapter 19 are skipped only when the gold is there AND Dink has reached this level: its level-up (on Attack) takes
+		 *  strength from 29 to 30, and item-b1's arrow does (power / 100) * (strength / 5) (item-b1.c:70-89), so 30 is what makes Seth's 300 hp
+		 *  fall to the elixirs Dink can carry. Since A45 (16 Nov 2026) Dink comes to chapter 19 with the gold already, and without the level-up
+		 *  of these fights he lost to Seth with all eleven elixirs drunk. */
+		static constexpr int32 DarklandsMinLevel = 6;
+		static bool DarklandsDone(FCtx& C, int32 GoldTarget)
+		{
+			return C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("level")) >= DarklandsMinLevel;
+		}
+
 		void AddRespawnWait(const TCHAR* Name, int32 GoldTarget, const TArray<FString>& Answers)
 		{
 			auto Due = [](FCtx& C) -> int64
@@ -4941,21 +4951,22 @@ namespace DinkProbeTest
 			Add(Name,
 				[GoldTarget, Due, Now](FCtx& C)
 				{
-					if (C.Fact(TEXT("gold")) >= GoldTarget || Now(C) >= Due(C)) { C.Dilate(1.0f); return; }
+					if (DarklandsDone(C, GoldTarget) || Now(C) >= Due(C)) { C.Dilate(1.0f); return; }
 					if (!C.OnScreen(195)) { C.Goto(195, 300, 250); }
 					C.Dilate(8.0f);
 				},
 				[GoldTarget, Due, Now](FCtx& C)
 				{
-					if (C.Fact(TEXT("gold")) >= GoldTarget || Now(C) >= Due(C)) { C.Dilate(1.0f); return C.Idle(); }
+					if (DarklandsDone(C, GoldTarget) || Now(C) >= Due(C)) { C.Dilate(1.0f); return C.Idle(); }
 					return false;
 				}, 400.0, Answers, 1.0, true);
 		}
 
-		/** One visit of the three Darklands rooms (chapters 15-17's fights and their loot), skipped once gold reaches GoldTarget. */
+		/** One visit of the three Darklands rooms (chapters 15-17's fights and their loot), skipped once gold reaches GoldTarget and Dink has
+		 *  DarklandsMinLevel. */
 		void AddDarklandsVisit(int32 Visit, int32 GoldTarget, const TArray<FString>& LevelUps)
 		{
-			auto Rich = [GoldTarget](FCtx& C) { return C.Fact(TEXT("gold")) >= GoldTarget; };
+			auto Rich = [GoldTarget](FCtx& C) { return DarklandsDone(C, GoldTarget); };
 			auto Heal = [this, Rich, LevelUps](int32 Room)
 			{
 				TArray<FString> Answers = { TEXT("Get healed") };
@@ -4973,7 +4984,9 @@ namespace DinkProbeTest
 			{
 				Add(*FString::Printf(TEXT("the loot of SCR_%03d"), Room),
 					[Rich, Room](FCtx& C) { if (!Rich(C) || C.OnScreen(Room)) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } } },
-					[Rich, Room](FCtx& C) { return (!C.OnScreen(Room) || Drops(C) == 0) && C.Idle() && !C.Busy(); }, 40.0, LevelUps, 0.5);
+					// Skipped once rich, as the visit is: Dink then never entered the room, and a script left busy elsewhere (the Windemere
+					// healer's talk loops on wait) must not hold the step (seen 16 Nov 2026 after A45 moved the gold earned before chapter 19).
+					[Rich, Room](FCtx& C) { return (Rich(C) && C.Idle()) || ((!C.OnScreen(Room) || Drops(C) == 0) && C.Idle() && !C.Busy()); }, 40.0, LevelUps, 0.5);
 			};
 			Heal(156);
 			Add(*FString::Printf(TEXT("visit %d: SCR_156 (s7-bong, s7-slay, s7-drag; screenlock): DuelFight with the sword, the dragon first"), Visit),

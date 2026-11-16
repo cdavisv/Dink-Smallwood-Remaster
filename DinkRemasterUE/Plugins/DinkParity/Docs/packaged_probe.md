@@ -1,5 +1,25 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
+> **Re-baselined with PR #141 (DinkC parity A43, A45, A47; 16 Nov 2026, master 84e045b0 + #141, PIE, private copy, world regenerated with
+> `import_greybox.sh --region all --export` and `--region stonebrook`).** `Scripts/test.sh Dink` 320/320, then `Dink.Gameplay.Probe`
+> 29/29 again: all twenty md5s equal in both runs (and equal to a third and fourth run on master 5d8a4a1f + #141). Packaged parity was not
+> run for this PR (the packaged run on master follows separately). Ch1 cc2e12fb5c, Ch2 bc267a0dfc, Ch3 bbd401167c, Ch4 8740518c57,
+> Ch5 d987c043f6, Ch6 2df37e4a27, Ch7 a16d1d23b8, Ch8 764e9d330f, Ch9 dd1e2662fa, Ch10 23fd57dfdc, Ch11 f69c75447b, Ch12 3540ee8dd7,
+> Ch13 ce2e8979e1, Ch14 20dc28bd96, Ch15 9f32c71ded, Ch16 f719041788, Ch17 c8b5b537a6, Ch18 e9b93c613a, Ch19 8c362880f0, Ch20 be28390b9d.
+> - Ch1 (was b4ad88c02c): A47, `script_attach(n)` sets the instance's sprite, which `&current_sprite` reads (dink.cpp:8075-8087), and sp_* on
+>   1000 do nothing (change_sprite, 5396-5403). The one trace line that moves is dam-icee.c:77-78 (the ice of the SCR_177 prison rescue,
+>   attached to 1000 at line 46): `sp_brain(&current_sprite, 12)` now goes to 1000. Martridge's scroll (s1-mh-f.c:37-40) still shrinks away:
+>   that script is the owner-approved exception of 16 Nov 2026 (`UDinkStorySubsystem::CurrentSpriteField`, DINKC_PARITY.md deviations).
+> - Ch2-Ch10 unchanged.
+> - Ch11 (was 0d70cebfcd) to Ch18 (was d33886b797): A45, a brain's move reads `get_hard` (dink.cpp:13503, 527-546), which keeps a map.dat
+>   warp's hardbox (a door) hard; only Dink's walk reads `get_hard_play` (548-580). This reverses item (1) of the 14 Nov re-baseline below:
+>   that item cited 569-575 (inside `get_hard_play`) as `get_hard`'s, so the bow-shop keeper of SCR_097 (s3-st2p, brain 16) bounces off the
+>   exit door again instead of entering its box, and the random sequence differs from the second visit to SCR_583 on, as before 14 Nov.
+> - Ch19 (was 45b399bac8), Ch20 (was 84f33687af): with A45 Dink comes to chapter 19 with the gold already, so the probe skipped the Darklands
+>   visits and their level-up; at strength 29 item-b1's arrow does (power / 100) * (strength / 5) = 5 a hit, not 6 (item-b1.c:70-89), and Seth
+>   outlasted eleven elixirs. Probe tactic only: the visits now also run until Dink is level 6 (`DarklandsDone`), and the loot step is skipped
+>   with the visit. Chapter 20 then wins as before (`&story` 16).
+
 > **Re-baselined 14 Nov 2026 (alpha QA: master 8ba0e903 + PR #102 + the alpha-qa parity fixes; world regenerated).** `Scripts/test.sh` 263/263 in 895 s,
 > `Scripts/package.sh` (752 s; content check 655/655), `Scripts/run_packaged_tests.sh`: twenty chapters, every one `PARITY OK`. Ch1-Ch10 unchanged;
 > Ch11 0d70cebfcd, Ch12 79c8ce55f9, Ch13 98a2e17ba0, Ch14 f1ddbaab7b, Ch15 7e3dbbd0b1, Ch16 48e797069a, Ch17 4277c65c35, Ch18 d33886b797,

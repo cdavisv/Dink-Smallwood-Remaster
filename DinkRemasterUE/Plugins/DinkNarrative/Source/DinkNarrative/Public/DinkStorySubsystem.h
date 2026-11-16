@@ -497,6 +497,14 @@ public:
 
 	// ---- Interaction ----
 
+	/** script_attach (D:8075-8087) rewrites the instance's sprite: &current_sprite follows AttachedTo at once, in the running line too. */
+	void SetLiveCurrentSprite(FDinkScriptInstance& I);
+	/**
+	 * What &current_sprite reads: the instance's sprite field, which script_attach rewrites (D:8075-8087), i.e. AttachedTo. Owner-approved
+	 * deviation (A47, 16 Nov 2026): s1-mh-f.c keeps its own sprite after script_attach(1000), so Martridge's scroll shrinks away as its
+	 * author wrote (s1-mh-f.c:33-40); in the 1997 binary those sp_* went to 1000 and the scroll stayed on the floor.
+	 */
+	static int32 CurrentSpriteField(const FDinkScriptInstance& I);
 	/** The talk key: runs `talk` of the nearest scripted actor in front of Pawn. True if one started. */
 	bool TryTalk(APawn* Pawn);
 	/** Screen load (the engine's load_screen + draw_screen): kills scripts of the old screen, runs `main` of the new one. */

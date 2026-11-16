@@ -1,3 +1,12 @@
+## DinkC script runtime parity (15 November 2026)
+
+- Audit: `doc/remaster/DINKC_PARITY.md` (every command, the language and the brains against dink.cpp; probe coverage; softlock scan). Tools: `tools/parity_audit/dinkc_*.py`.
+- Fixed (tests `Dink.Parity.DinkC.*`): `set_dink_speed` scales the pawn's top speed (`ADinkGreyboxCharacter::DinkSpeedScale`, the boots; a load/restart resets it, load_game D:1423); brains read map.dat warp boxes as hard (get_hard D:13503, not get_hard_play), reverting bug A2; `script_attach` moves `&current_sprite` (A47), except in s1-mh-f.c, whose scroll shrinks away by owner decision of 16 Nov 2026 (`UDinkStorySubsystem::CurrentSpriteField`; deviations table in DINKC_PARITY.md).
+- Held back (A44): `stop_entire_game` (branch `fix/dinkc-stop-entire-game`): its level-up pauses shift the probe's rand() stream and chapter 8's knights win.
+- Held back (A40): `set_callback_random` timers should end on wait / say_stop* / say_xy and before talk/hit/damage (kill_returning_stuff D:5049; branch `fix/dinkc-callbacks`). With it the Joppa dragons stay locked on Dink after his first hit and probe chapter 12 dies; re-tune `DuelFight` first.
+- Held back (A41): `create_sprite` should use add_sprite_dumb's defaults (`UDinkDirector::InitDumbSprite`: speed 0, timing 0, base_* -1, D:3089-3135; branch `fix/dinkc-create-sprite-dumb`). The probe's Jack step (`KiteAndCast`) was tuned to the wrong defaults and dies with the right ones; re-tune it first.
+- Pitfall: dink.cpp:569-575 is inside `get_hard_play` (Dink's walk, D:548-580), not `get_hard` (D:527-546). Check which function a cited line belongs to.
+
 ## Leg layer: planted feet, stride warp, gait styles (16 November 2026)
 
 - `UDinkBodyAnimInstance` (hero, Mother, Milder) runs a presentation-only leg layer (`DinkFootPlacement.h`): foot lock with hysteresis, pivot steps on the spot, two-bone soft IK, ground adaptation, gait style (`animation_natural.json` `style`), stride warp (the stance foot travels back at the body's speed; walking only, < 320 cm/s), a hip rise of up to 2.8 cm for shorter steps. `dink.Anim.Legs 0` restores master's pose exactly (the identity test checks it); `dink.Anim.FootLock/GroundAdapt/Style/LookAt` switch the parts.

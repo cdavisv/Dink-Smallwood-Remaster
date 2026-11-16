@@ -206,6 +206,10 @@ public:
 	int32 HandleForPlacement(int32 Screen, int32 Placement);
 	/** add_sprite's defaults on a script-made sprite (speed 1, timing 33, size 100, base_* 0, dir 0). */
 	static void InitCreatedSprite(FDinkSprite& Sprite);
+	/** add_sprite_dumb's defaults (D:3089-3135), which create_sprite uses (D:9041-9051): speed 0, timing 0, size 100, hard 1, base_* -1, dir 0. */
+	static void InitDumbSprite(FDinkSprite& Sprite);
+	/** set_dink_speed's walk speed (D:17311-17321) over main.c's default 3: 4 for 1, 2 for 2, 1 for 3, 1/3 above, 0 for <= 0. */
+	static float DinkSpeedScale(int32 DinkSpeed);
 	/** A new virtual sprite (no actor) at engine pixel X/Y on Screen. */
 	int32 CreateVirtualSprite(int32 Screen, double X, double Y);
 	/** Smallest free handle >= 2 (the engine's add_sprite picks the first free slot). */
