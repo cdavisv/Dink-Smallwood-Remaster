@@ -522,7 +522,7 @@ def check_owner_ids(rows, current, ever):
     return typos, stale, present
 
 
-STALE_IDS = set()
+STALE_IDS = {}          # owner id -> why it is stale ("was removed ...", "never existed ...", "is missing ...")
 
 
 def known_rows(check_ids=True):
@@ -537,16 +537,14 @@ def known_rows(check_ids=True):
             ever = ids_ever()
             typos, stale, present = check_owner_ids(d.get("rows", []), current, ever)
             for i in typos:
-                print("art_wiring_audit: warning: owner row %s is in neither table%s; its reasons are stale" % (
-                    i, " (git history unknown: removed or mistyped)" if ever is None else " and never was (a typo?)"),
-                      file=sys.stderr)
+                STALE_IDS[i] = ("is missing from both tables (git history unknown: removed or mistyped)" if ever is None
+                                else "never existed in either table's history (a typo or a renumbered row?)")
             for i in stale:
-                print("art_wiring_audit: warning: owner row %s was removed from the tables; its reasons are stale" % i,
-                      file=sys.stderr)
-            stale = stale + typos
+                STALE_IDS[i] = "was removed from the tables (its PR merged or the row was retired)"
+            for i in sorted(STALE_IDS):
+                print("art_wiring_audit: warning: owner row %s %s; its reasons are stale" % (i, STALE_IDS[i]), file=sys.stderr)
             for i in present:
                 print("art_wiring_audit: warning: pending id %s now exists; drop it from pending_ids" % i, file=sys.stderr)
-            STALE_IDS.update(stale)
     return [(re.compile(r["match"]), re.compile(r["source"]) if r.get("source") else None, r["kind"], r["why"])
             for r in d.get("rows", [])]
 
@@ -756,8 +754,13 @@ def commit_roots(commit):
     if commit in _COMMIT_CACHE:
         return _COMMIT_CACHE[commit]
 
+    failed = []
+
     def git(*args):
-        return subprocess.run(["git", "-C", PROJECT] + list(args), capture_output=True, text=True).stdout
+        r = subprocess.run(["git", "-C", PROJECT] + list(args), capture_output=True, text=True)
+        if r.returncode:
+            failed.append(" ".join(args[:2]))
+        return r.stdout
     if subprocess.run(["git", "-C", PROJECT, "cat-file", "-e", commit + "^{commit}"], capture_output=True).returncode != 0:
         sys.exit("art_wiring_audit: unknown commit %r (--cook-commit / --sweep-commit)" % commit)
     prefix = git("rev-parse", "--show-prefix").strip()
@@ -790,8 +793,17 @@ def commit_roots(commit):
     for game, where in COMPOSED.items():
         if game in cpk.files:
             roots[game].add(where)
+    if failed:
+        # a missing blob or a failing git would silently drop historical roots: the evidence of this commit is
+        # unavailable, and every in_commit answer for it is "unknown" (rows stay unverified, with the reason)
+        print("art_wiring_audit: warning: git failed %d time(s) reading commit %s (%s); its evidence is unavailable" % (
+            len(failed), commit, failed[0]), file=sys.stderr)
+        COMMIT_UNAVAILABLE.add(commit)
     _COMMIT_CACHE[commit] = (set(cpk.files), roots)
     return _COMMIT_CACHE[commit]
+
+
+COMMIT_UNAVAILABLE = set()
 
 
 def in_commit(game, commit, via_here, roots_here=None):
@@ -799,8 +811,8 @@ def in_commit(game, commit, via_here, roots_here=None):
     the root it is reached from today must have been a root there too (same binding rules); a package reached from
     a world map counts as bound when it existed (the maps of that commit are not in git)."""
     files, roots = commit_roots(commit)
-    if game not in files:
-        return False
+    if commit in COMMIT_UNAVAILABLE:
+        return False            # counted unverified; main names the commit as unavailable
     root = ROOT_OF.get(game, game)
     labels = (roots_here or {}).get(root) or {via_here.get(root, "")}
     if any(w.startswith("world map") for w in labels):
@@ -809,18 +821,28 @@ def in_commit(game, commit, via_here, roots_here=None):
 
 
 AUDIT_SKIPPED = []     # scene audit lines that do not parse (a damaged copy): their screen, when it can be read
+AUDIT_STATS = collections.Counter()
 
 
 def audit_lines(audit_path):
     """The scene audit's screen records; an unparsable line is skipped and noted in AUDIT_SKIPPED."""
+    AUDIT_SKIPPED.clear()
+    AUDIT_STATS.clear()
     with open(audit_path, "rb") as h:
         for raw in h:
+            if not raw.strip(b"\r\n "):
+                continue
             if not raw.strip(b"\x00\r\n "):
+                AUDIT_STATS["nul_only"] += 1           # zero-filled blocks of a salvaged copy
+                AUDIT_SKIPPED.append(None)
                 continue
             try:
-                yield json.loads(raw)
+                d = json.loads(raw)
+                AUDIT_STATS["parsed"] += 1
+                yield d
             except ValueError:
                 m = re.match(rb'\{"screen":(\d+)', raw)
+                AUDIT_STATS["damaged_with_header" if m else "damaged_no_header"] += 1
                 AUDIT_SKIPPED.append(int(m.group(1)) if m else None)
 
 
@@ -969,9 +991,10 @@ def main():
         cov = covered_by(name, index)
         if not cov and k:       # the reviewed reason names its owner row (A2xx, DS-07, PQ-Q5, ...)
             cov = " ".join(dict.fromkeys(OWNER_ID.findall(k[1])))
-            if any(i in STALE_IDS for i in OWNER_ID.findall(k[1])):
-                details.append("stale reason: owner row %s was removed from the tables" % ", ".join(
-                    i for i in OWNER_ID.findall(k[1]) if i in STALE_IDS))
+        if k:                   # whatever filled covered_by, a reason naming a missing owner row is stale
+            for i in OWNER_ID.findall(k[1]):
+                if i in STALE_IDS:
+                    details.append("stale reason: owner row %s %s" % (i, STALE_IDS[i]))
         if not games:
             flags.append(gap_flag(reason, cov) or "not_imported")
         bound_where, cooked_s, seen_s = "", "", ""
@@ -1175,8 +1198,21 @@ def main():
                       sum(len(r["final_origin_cards"].split()) for r in card_rows),
                       sum(1 for r in card_rows if r["mesh_available"]))]
     if AUDIT_SKIPPED:
-        lines += ["", "Scene audit lines skipped (unreadable or damaged; read twice, once per use): screens %s" % ", ".join(
-            str(x) for x in sorted({x for x in AUDIT_SKIPPED if x is not None}))]
+        named = sorted({x for x in AUDIT_SKIPPED if x is not None})
+        blind = AUDIT_STATS["damaged_no_header"] + AUDIT_STATS["nul_only"]
+        # a damaged line without a readable header could be any screen the sweep should have but no line gives
+        expected = {p.get("screen") for p in placements} if placements else set()
+        could_be = sorted(x for x in expected - captured if x is not None) if blind else []
+        lines += ["", "Scene audit lines skipped: %d (%d damaged with a readable screen: %s; %d damaged without one; "
+                  "%d zero-filled); lines parsed: %d%s" % (
+                      len(AUDIT_SKIPPED), AUDIT_STATS["damaged_with_header"], ", ".join(map(str, named)) or "-",
+                      AUDIT_STATS["damaged_no_header"], AUDIT_STATS["nul_only"], AUDIT_STATS["parsed"],
+                      ("; a line without a screen could be any of the %d screens with placements but no parsed line: %s"
+                       % (len(could_be), " ".join(map(str, could_be[:40])) + (" ..." if len(could_be) > 40 else "")))
+                      if could_be else "")]
+    if COMMIT_UNAVAILABLE:
+        lines += ["", "Evidence commits unavailable (git failed reading them; their rows stay unverified): " +
+                  ", ".join(sorted(COMMIT_UNAVAILABLE))]
     unexplained = [r["asset"] for r in rows if r["flag"] == "not_seen" and "UNEXPLAINED" in r["detail"]]
     lines += ["", "not_seen rows without an explanation: %d%s" % (len(unexplained), (": " + ", ".join(unexplained)) if unexplained else "")]
     txt = "\n".join(lines) + "\n"

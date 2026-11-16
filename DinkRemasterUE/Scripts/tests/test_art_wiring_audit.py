@@ -280,12 +280,15 @@ class OwnerIdHistory(unittest.TestCase):
                            capture_output=True)
             shallow = self._run(clone / 'DinkRemasterUE')                               # CI: depth-1 checkout
             self.assertEqual(shallow.returncode, 0, shallow.stderr)
-            self.assertIn('history unknown', shallow.stderr)
+            self.assertIn('DS-08 is missing from both tables (git history unknown', shallow.stderr)
+            self.assertIn("ran ['DS-08']", shallow.stdout)                              # the reason is marked stale
             plain = Path(d) / 'plain'
             shutil.copytree(src, plain, ignore=shutil.ignore_patterns('.git'))           # snapshot without .git
             nogit = self._run(plain / 'DinkRemasterUE')
             self.assertEqual(nogit.returncode, 0, nogit.stderr)
-            self.assertIn('warning', nogit.stderr)
+            self.assertIn('DS-08 is missing from both tables (git history unknown', nogit.stderr)
+            self.assertIn("ran ['DS-08']", nogit.stdout)
+            self.assertNotIn('A209', nogit.stdout)                                     # a present row is not stale
 
     def test_removing_a_named_row_from_a_copy_of_the_tables_keeps_the_run_going(self):
         with tempfile.TemporaryDirectory() as d:
@@ -324,6 +327,31 @@ class InCommit(unittest.TestCase):
         self.assertFalse(A.in_commit('/Game/A/SM_New', 'c0ffee', via))     # existed but not bound there
         self.assertFalse(A.in_commit('/Game/A/SM_Gone', 'c0ffee', via))    # did not exist
         self.assertTrue(A.in_commit('/Game/A/SM_New', 'c0ffee', via, {'/Game/A/SM_New': {'g.json', 'world map L_X'}}))
+
+
+
+class AuditSkips(unittest.TestCase):
+    def test_damaged_and_zero_filled_lines_are_counted(self):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / 'audit.jsonl'
+            f.write_bytes(b'{"screen":1,"prims":[]}\n{"screen":595,"prims":[{"o"\x00\x00\x00\n'
+                          b'\x00\x00\x00\x00\n\x01garbage\n{"screen":3,"prims":[]}\n')
+            screens = A.captured_screens(str(f))
+            self.assertEqual(screens, {1, 3})
+            self.assertEqual(A.AUDIT_SKIPPED, [595, None, None])
+            self.assertEqual((A.AUDIT_STATS['damaged_with_header'], A.AUDIT_STATS['damaged_no_header'],
+                              A.AUDIT_STATS['nul_only'], A.AUDIT_STATS['parsed']), (1, 1, 1, 2))
+
+
+class CommitEvidence(unittest.TestCase):
+    def test_unavailable_commit_answers_unknown(self):
+        A._COMMIT_CACHE['badc0de'] = ({'/Game/A/SM_X'}, {'/Game/A/SM_X': {'f.json'}})
+        A.COMMIT_UNAVAILABLE.add('badc0de')
+        try:
+            self.assertFalse(A.in_commit('/Game/A/SM_X', 'badc0de', {'/Game/A/SM_X': 'f.json'}))
+        finally:
+            A.COMMIT_UNAVAILABLE.discard('badc0de')
+        self.assertTrue(A.in_commit('/Game/A/SM_X', 'badc0de', {'/Game/A/SM_X': 'f.json'}))
 
 
 if __name__ == '__main__':
