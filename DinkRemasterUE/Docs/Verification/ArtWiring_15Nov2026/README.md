@@ -6,7 +6,7 @@ and, if not, why. It audits the wiring (import, binding, cook, draw, clip caller
 source is good enough to bind is an art decision for the Fable queue.
 
 Tree: master `9cc796b6`. Tool: `DinkRemasterUE/Scripts/art_wiring_audit.py` (read-only, standard library; unit tests in
-`Scripts/tests/test_art_wiring_audit.py`, 15 pass). Reviewed reasons for sources that do not reach the player:
+`Scripts/tests/test_art_wiring_audit.py`, 24 pass). Reviewed reasons for sources that do not reach the player:
 `Scripts/art_wiring_known.json` (50 rows; add a row when you decide, drop it when you bind). Two runs on the same inputs
 write byte-identical files.
 
@@ -78,8 +78,8 @@ python3 -I Scripts/art_wiring_audit.py \
 | flag | rows | meaning |
 |---|---:|---|
 | ok | 300 | imported, bound, cooked, and drawn in the sweep (meshes) or asked for at runtime (clips) |
-| replaced | 25 | bound, and by design the runtime draws or plays another asset in its place: 16 Pass1 clips replaced by mocap (`drop_prefixes`, including `Jump_Start`, `Land` and the NPC walks), the headless manifest meshes (`SK_Mother`, `SK_Milder`, `SK_Dink`/`SK_Dink_Hands`, the old `SK_Pillbug`), the dense grass patches the tall ones replace, the screen-1 fireplace replaced by its refinement, and `mesh_swaps` sources placed only by authored manifests |
-| not_seen | 160 | bound and cooked but not in the sweep, each with its reason in `detail`: 104 `stonebrook_fields_471.json` meshes (screen 471 was not captured), 49 vista meshes outside the play screen, 3 family meshes whose placements are vision-gated (catapult, monument, note), 1 scripted placement, the burnable pine (`burnable`), the burnt cottage (`state_swaps`), the pillbug corpse (drawn only after a kill), and Milder's photoreal mesh (script-made character, story beat not played). **0 unexplained.** |
+| replaced | 25 | bound, and by design the runtime draws or plays another asset in its place: 16 Pass1 clips replaced by mocap (`drop_prefixes`, including `Jump_Start`, `Land` and the NPC walks), the headless manifest meshes (`SK_Mother`, `SK_Milder`, `SK_Dink`/`SK_Dink_Hands`, the old `SK_Pillbug`), the dense grass patches the tall ones replace, and the screen-1 fireplace replaced by its refinement |
+| not_seen | 160 | bound and cooked but not in the sweep, each with its reason in `detail`: 104 `stonebrook_fields_471.json` meshes (screen 471 was not captured), 49 vista meshes outside the play screen, 3 family meshes whose placements are vision-gated (catapult, monument, note), the burnable pine (`burnable`), the burnt cottage (`state_swaps`), the pillbug corpse (drawn only after a kill), and Milder's photoreal mesh (script-made character, story beat not played). **0 unexplained.** |
 | unverified | 20 | added by PR #113 after the cook and the sweep (duck, slime, pig, gore meshes, their clips). Needs a cook and a sweep of current master. |
 | lod | 10 | **A200**: drawn meshes with one LOD and Nanite off (corpse kit 15-55k triangles, three set pieces 6-9k). perf-stutter owns it. |
 | bug | 15 | **A204**: brazier and candle light props never placed. **A205**: seven #113 creature clips no role plays, and `SM_Slime_Trail` never imported. **A206**: `fence_rail_ew` draws the old kit fence. **A207**: the render-only vista draws old meshes the swap replaces elsewhere (`SM_Grass_Meadow_01` 17 times on screen 1, the split-rail fence 20 times, oak, pine V3, boulder). |
@@ -160,3 +160,26 @@ The scripted boulders and script-made people are rows VS-15 and VS-16 of PR #148
 | `art_wiring.csv` | one row per delivered source or unclaimed art package: asset, kind, stream, source (every copy), exported, imported (every package), bound (root or `via`), cooked, seen (sweep screens, clip caller, or player pawn), flag, detail (checks, stale twins, the not-seen reason), reason, covered_by |
 | `drawn_cards.csv` | drawn sprite cards per class: count, how many carry an origin, screens, cards on final origins, family row, meshes made for the class |
 | `summary.md` | counts by flag and by kind, texture coverage, card coverage, unexplained not_seen rows |
+
+Follow-ups after the merge of PR #154 (branch `audit/art-wiring-followups`): A209 lists all 13 props; the
+not_seen and replaced breakdowns match the table; a Unclaimed `STATUS.md` note explains only a source that is not
+drawn (the corpse kit's bodies share names with the unclaimed kit's corpses); every owner id in
+`art_wiring_known.json` is checked against the two tables, and the check only ever warns (CI clones depth 1 and a
+snapshot has no `.git`, so the history is not always known): an id whose row was removed (a queue row goes when its PR
+merges) marks the reason stale in `detail`, an id the history never had (or when the history is unknown) is reported
+the same way, and a `pending_ids` entry that now exists warns; separate deliveries that share a name are reported in
+`detail` (32 rows; an export's `Export/Game/...` mirror and its LOD/FBX folders count as one delivery): each delivery
+names the package(s) imported from that file (full `/Game` path, whatever the package is called, from every
+package's recorded `AssetImportData` `RelativeFilename`), or says the delivery is the import source of other packages
+(keep it), or that no package records it (20 rows have such a delivery); `unverified` rebuilds the roots of the evidence commit
+with the same binding rules. The owner branches the rows name (`fix/fence-runs`, `fix/family-duplicates`,
+`fix/art-wiring-scripted-static`, `fix/family-script-allowance`) are pushed when their PRs open;
+the sweep's `audit.jsonl` became unreadable on 15 Nov 23:26 (filesystem checksum errors on that one file): the table
+was regenerated from a salvaged copy (bad blocks zero-filled), which loses exactly one screen line, 595 (the summary names
+it). No committed row depends on it: against the table built from the intact file (commit 63b24708), all 853 rows
+keep their flag, seen column, not-seen reason and owner, and `drawn_cards.csv` is byte-identical (595 had no drawn
+card; its 3 placements are bound by no row whose reason changed). The `seen` column comes from the sweep's intact
+`meshes.csv`; the only mesh seen on 595 alone is its generated screen mesh, not a source row. The original file was
+read once for the salvage and is left as it is (it belongs to the visual-sweep stream);
+`art/stonebrook-mother-burnholes` belongs to the GP-Q5 stream. `test_c_only_runtime_modules_are_cpp_roots` reads
+the project's real `.uplugin`/`.uproject` files, so it needs a full checkout (or those files in a test snapshot).
