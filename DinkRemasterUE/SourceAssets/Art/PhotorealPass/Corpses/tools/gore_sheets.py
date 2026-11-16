@@ -197,12 +197,18 @@ def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, rea
     return {'BC': u8(bc), 'N': u8(n * 0.5 + 0.5), 'ORM': u8(orm), 'cover': cover}
 
 
-def scorch_sheet(px, size, seed, r=0.35, spikes=22, spike_len=(0.5, 1.5), aspect=1.0, rot=0.0):
+def scorch_sheet(px, size, seed, r=0.35, spikes=22, spike_len=(0.5, 1.5), aspect=1.0, rot=0.0, centres=None, ash_k=0.18, stamp=None, soft=False, through=False):
     """a burnt hole: a charred, cracked centre whose edge runs out into thin burn tongues, ash-grey flecks and scorched brown inside"""
     rng = np.random.default_rng(seed); cv = Canvas(px, size); k = cv.k
-    cv.poly(lobed((0, 0), r * aspect, r, rot, rng, lobes=0.30))
-    for _ in range(spikes):                          # burn tongues: thin, jagged, sometimes forked
-        a = rng.uniform(0, 2 * math.pi); L = r * rng.uniform(*spike_len); w = r * rng.uniform(0.05, 0.13); p = np.array([math.cos(a), math.sin(a)]) * r * 0.55; pts_l = []; pts_r = []; n = 7
+    centres = centres or [(0.0, 0.0, 1.0)]                # picture 158 frame 3 is two holes run together: (x, y, radius factor) each
+    if stamp is not None:                            # the 1997 picture's own outline: (mask image 'L', width m, height m, centre xy); no drawn hole, no drawn tongues
+        sim, sw, sd, sc = stamp; w_ = max(1, int(round(sw * k))); h_ = max(1, int(round(sd * k))); big = sim.resize((w_, h_), Image.BICUBIC)
+        cv.im.paste(big, (int(round(px / 2 + sc[0] * k - w_ / 2)), int(round(px / 2 - sc[1] * k - h_ / 2)))); cv.d = ImageDraw.Draw(cv.im); centres = []; spikes = 0
+    for cx_, cy_, rk in centres:
+        cv.poly(lobed((cx_, cy_), r * rk * aspect, r * rk, rot, rng, lobes=0.30))
+    for i_ in range(spikes * len(centres)):          # burn tongues: thin, jagged, sometimes forked
+        cx_, cy_, rk = centres[i_ % len(centres)]; r_ = r * rk
+        a = rng.uniform(0, 2 * math.pi); L = r_ * rng.uniform(*spike_len); w = r_ * rng.uniform(0.05, 0.13); p = np.array([cx_, cy_]) + np.array([math.cos(a), math.sin(a)]) * r_ * 0.55; pts_l = []; pts_r = []; n = 7
         for i in range(n + 1):
             t = i / n; a += rng.normal(0, 0.16); p = p + np.array([math.cos(a), math.sin(a)]) * L / n; ww = w * (1 - t) ** 0.8 + 0.002; nx, ny = -math.sin(a), math.cos(a)
             pts_l.append((p[0] + nx * ww, p[1] + ny * ww)); pts_r.append((p[0] - nx * ww, p[1] - ny * ww))
@@ -211,24 +217,47 @@ def scorch_sheet(px, size, seed, r=0.35, spikes=22, spike_len=(0.5, 1.5), aspect
                 for j in range(4):
                     q2 = q + np.array([math.cos(b), math.sin(b)]) * L * 0.12; cv.d.line([cv.xy(q), cv.xy(q2)], fill=255, width=max(2, int(ww * k * (1.2 - 0.25 * j)))); q = q2
         cv.poly(pts_l + pts_r[::-1])
-    for _ in range(60):                              # cinders thrown out
-        a = rng.uniform(0, 2 * math.pi); d = r * rng.uniform(1.0, 2.2); cv.disc((math.cos(a) * d, math.sin(a) * d), rng.uniform(0.004, 0.014))
+    for _ in range(60 if centres else 0):            # cinders thrown out
+        a = rng.uniform(0, 2 * math.pi); d = r * rng.uniform(1.0, 2.2); cx_, cy_, rk = centres[rng.integers(len(centres))]; cv.disc((cx_ + math.cos(a) * d * rk, cy_ + math.sin(a) * d * rk), rng.uniform(0.004, 0.014))
     base = blur(cv.arr(), 0.004 * k); nz = noise2(px, size / 0.05, rng, 4, 0.6)
     cover = sstep(-0.05, 0.05, base - 0.5 - 0.35 * (nz - 0.5))
     core = sstep(0.5, 0.95, blur(cover, 0.05 * k)); soot = blur(cover, 0.035 * k)            # soot halo round the char
     fine = noise2(px, size / 0.008, rng, 3, 0.6); crack = noise2(px, size / 0.03, rng, 2, 0.5); crack = 1 - sstep(0.0, 0.035, np.abs(crack - 0.5))
-    ash = sstep(0.62, 0.72, noise2(px, size / 0.04, rng, 4, 0.6)) * core; ember = sstep(0.66, 0.74, noise2(px, size / 0.06, rng, 3, 0.6)) * core
+    heart = sstep(0.55, 1.0, blur(cover, 0.10 * k))                                         # the middle of each hole: where the picture glows brown-red
+    ash = sstep(0.66, 0.74, noise2(px, size / 0.025, rng, 4, 0.6)) * core * ash_k / 0.8; ember = sstep(0.50, 0.66, noise2(px, size / 0.035, rng, 3, 0.6)) * heart
     col = np.broadcast_to(_srgb((14, 12, 11)), (px, px, 3)).copy() * (0.6 + 0.8 * fine[..., None])
     col = col * (1 - 0.8 * ash[..., None]) + _srgb((96, 92, 86))[None, None, :] * 0.8 * ash[..., None]
-    col = col * (1 - 0.75 * ember[..., None]) + _srgb((92, 44, 18))[None, None, :] * 0.75 * ember[..., None]
+    col = col * (1 - 0.75 * ember[..., None]) + _srgb((74, 30, 14))[None, None, :] * 0.75 * ember[..., None]
     col *= (1 - 0.7 * crack * core)[..., None]
     alpha = np.maximum(sstep(0.3, 0.6, cover), 0.0)
     halo = sstep(0.12, 0.5, soot) * (0.45 + 0.55 * fine)                                    # dithered soot round the hole (alpha-tested: the noise makes it break up)
     alpha = np.maximum(alpha, sstep(0.42, 0.58, halo))
-    h = -0.004 * core + 0.0015 * ash - 0.002 * crack * core + 0.0006 * fine
-    gy, gx = np.gradient(h * k); n = np.dstack([-gx, gy, np.ones_like(h)]); n /= np.linalg.norm(n, axis=2, keepdims=True)
+    if through:                                      # burnt THROUGH (15 Nov 2026): a black void with the charred far wall of the planks showing, as the black of picture 158
+        hole = sstep(0.45, 0.62, blur(cover, 0.006 * k)); d_w = int(round(0.055 * k)); d_l = int(round(0.012 * k))
+        north = np.roll(hole, d_w, axis=0); north[:d_w] = 0            # the hole moved towards the camera (south, down in the image)
+        wall = hole * (1 - sstep(0.3, 0.7, north))                      # inside the hole, within a plank thickness of its far (north) rim: the cut face of the floor
+        lipn = np.roll(hole, d_l, axis=0); lipn[:d_l] = 0; lip = hole * (1 - sstep(0.3, 0.7, lipn))       # the top arris of that face catches the light
+        grain = noise2(px, size / 0.006, rng, 2, 0.5); grain = blur(np.repeat(grain[:1], px, 0) * 0.6 + grain * 0.4, 0.6)   # split wood: streaks running down the face
+        depth = sstep(0.0, 1.0, blur(hole, 0.07 * k)) * hole           # 0 at the rim, 1 in the middle
+        void = np.broadcast_to(_srgb((3, 3, 3)), (px, px, 3)).copy()
+        void = void + _srgb((46, 15, 8))[None, None, :] * (0.55 * heart * sstep(0.45, 0.7, noise2(px, size / 0.05, rng, 3, 0.6)))[..., None]   # the picture's brown-red heart: rubble and dull embers far below
+        wcol = _srgb((52, 31, 18))[None, None, :] * (0.45 + 0.9 * grain)[..., None]; wcol = wcol * (1 - 0.6 * sstep(0.2, 0.9, np.roll(depth, -d_w // 2, axis=0)))[..., None]
+        wcol = wcol * (1 - lip[..., None]) + _srgb((110, 72, 44))[None, None, :] * lip[..., None] * (0.6 + 0.6 * grain)[..., None]
+        inside = void * (1 - wall[..., None]) + wcol * wall[..., None]
+        rimc = (1 - hole) * sstep(0.3, 0.6, cover)                      # what is left of the cover outside the void: charred plank tops, cracked, a little ash
+        col = col * 0.55
+        col = col * (1 - hole[..., None]) + inside * hole[..., None]
+        h = -0.03 * blur(hole, 0.004 * k) - 0.0015 * crack * rimc + 0.0006 * fine
+        gy, gx = np.gradient(h * k); n = np.dstack([-gx, gy, np.ones_like(h)]); n /= np.linalg.norm(n, axis=2, keepdims=True)
+        n = n * (1 - (hole * (1 - wall))[..., None]) + np.array([0, 0, 1.0])[None, None, :] * (hole * (1 - wall))[..., None]
+        bc = None; rough_t = np.clip(0.9 + 0.1 * fine + hole, 0, 1)
+    if soft:                                         # a deferred decal blends: the soot fades out instead of breaking up into dots
+        alpha = np.clip(np.maximum(sstep(0.3, 0.6, cover), 0.8 * sstep(0.03, 0.55, soot) * (0.6 + 0.4 * fine)), 0, 1)
+    if not through:
+        h = -0.004 * core + 0.0015 * ash - 0.002 * crack * core + 0.0006 * fine
+        gy, gx = np.gradient(h * k); n = np.dstack([-gx, gy, np.ones_like(h)]); n /= np.linalg.norm(n, axis=2, keepdims=True)
     bc = np.dstack([_to_srgb(col), alpha]); bc[alpha < 0.02, :3] = np.asarray((14, 12, 11), np.float32) / 255.0
-    orm = np.dstack([1 - 0.5 * core * crack, 0.82 + 0.15 * fine, np.zeros_like(h)])
+    orm = np.dstack([1 - 0.5 * core * crack, rough_t if through else 0.82 + 0.15 * fine, np.zeros_like(h)])
     u8 = lambda a: (np.clip(a, 0, 1) * 255 + 0.5).astype(np.uint8)
     return {'BC': u8(bc), 'N': u8(n * 0.5 + 0.5), 'ORM': u8(orm), 'cover': cover}
 

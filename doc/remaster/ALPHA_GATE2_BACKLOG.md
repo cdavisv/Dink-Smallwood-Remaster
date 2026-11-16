@@ -8,20 +8,20 @@ Alpha gate 2 (`doc/remaster/REMASTER_PLAN.md`): every origin ID is final, placeh
 
 | | open |
 |---|---:|
-| sprite families | 119 |
-| origin IDs | 1179 |
-| map placements | 864 |
+| sprite families | 116 |
+| origin IDs | 1170 |
+| map placements | 855 |
 | screens (ground tile layer) | 303 |
 | script warps with their own ID | 12 |
 | unclassified IDs | 0 |
 
-Claimed by the Claude photoreal pass (in progress elsewhere, not final): **47 families, 854 origin IDs, 546 placements**. Unclaimed: 72 families, 325 origin IDs, 318 placements.
+Claimed by the Claude photoreal pass (in progress elsewhere, not final): **47 families, 854 origin IDs, 546 placements**. Unclaimed: 69 families, 316 origin IDs, 309 placements.
 
-Largest family by origin IDs: `screen ground (tile layer)` (303 IDs, 0 map placements, so it sorts at #119).
+Largest family by origin IDs: `screen ground (tile layer)` (303 IDs, 0 map placements, so it sorts at #116).
 
-Largest families no stream has claimed: `blood_splat` 46, `tree_fruit` 34, `burn_hole_decal` 26, `npc_knight_blue` 18, `arrow_prop` 14, `cave_hole_warp` 10, `log_cabin_window` 9, `stairs_wood` 9, `fish` 8, `gold_coin` 8.
+Largest families no stream has claimed: `blood_splat` 46, `tree_fruit` 34, `burn_hole_decal` 20, `npc_knight_blue` 18, `arrow_prop` 14, `cave_hole_warp` 10, `log_cabin_window` 9, `stairs_wood` 9, `fish` 8, `gold_coin` 8.
 
-Closed for comparison (art_coverage rows): final bespoke 1053, final by family 4178, cut 152, placeholder 1224 of 6607 rows.
+Closed for comparison (art_coverage rows): final bespoke 1060, final by family 4180, cut 152, placeholder 1215 of 6607 rows.
 
 ## How to regenerate
 
@@ -42,9 +42,9 @@ Sorted by open map placements. Family is the class id (`tools/data/sprite_classe
 | 3 | [`blood_splat`](#f3-blood-splat) | Blood splatter (blood, 39x56 px) | seq 188 (24), seq 189 (18), seq 187 (4) | 46 | 46 | - |
 | 4 | [`castle_wall_diag`](#f4-castle-wall-diag) | Castle curtain wall (diagonal run) (castle_kit, 350x463 px) | seq 67 (46) | 46 | 46 | Structures |
 | 5 | [`tree_fruit`](#f5-tree-fruit) | Fruit hanging in a tree (food, 7x12 px) | seq 421 (34) | 34 | 34 | - |
-| 6 | [`burn_hole_decal`](#f6-burn-hole-decal) | Burnt hole / scorch mark (damage, 23x20 px) | seq 158 (26) | 26 | 26 | - |
-| 7 | [`bridge_wood_deck`](#f7-bridge-wood-deck) | Wooden bridge deck (bridge_wood, 65x88 px) | seq 58 (22) | 22 | 22 | Structures |
-| 8 | [`door_wood_single`](#f8-door-wood-single) | Wooden door (doors, 24x64 px) | seq 61 (20) | 22 | 20 | Structures |
+| 6 | [`bridge_wood_deck`](#f6-bridge-wood-deck) | Wooden bridge deck (bridge_wood, 65x88 px) | seq 58 (22) | 22 | 22 | Structures |
+| 7 | [`door_wood_single`](#f7-door-wood-single) | Wooden door (doors, 24x64 px) | seq 61 (20) | 22 | 20 | Structures |
+| 8 | [`burn_hole_decal`](#f8-burn-hole-decal) | Burnt hole / scorch mark (damage, 23x20 px) | seq 158 (20) | 20 | 20 | - |
 | 9 | [`castle_tower_round`](#f9-castle-tower-round) | Round castle tower (castle_kit, 193x409 px) | seq 67 (20) | 20 | 20 | Structures |
 | 10 | [`npc_knight_blue`](#f10-npc-knight-blue) | Knight (blue) (npc_knight, 91x125 px) | seq 287 (8), seq 289 (8), seq 281 (1), seq 283 (1) | 18 | 18 | - |
 | 11 | [`fence_rail_ns`](#f11-fence-rail-ns) | Rail fence (north-south) (fence_rail, 26x136 px) | seq 93 (17) | 17 | 17 | Structures |
@@ -131,31 +131,28 @@ Sorted by open map placements. Family is the class id (`tools/data/sprite_classe
 | 92 | [`castle_drawbridge`](#f92-castle-drawbridge) | Drawbridge with chains (castle_kit, 149x192 px) | seq 68 (1) | 1 | 1 | - |
 | 93 | [`castle_gatehouse`](#f93-castle-gatehouse) | Castle gatehouse block (castle_kit, 335x389 px) | seq 67 (1) | 1 | 1 | Structures |
 | 94 | [`church_door`](#f94-church-door) | Church door (church, 35x82 px) | seq 60 (1) | 1 | 1 | - |
-| 95 | [`corpse_mom`](#f95-corpse-mom) | Dead mother (burnt house) (npc_mom, 68x50 px) | seq 355 (1) | 1 | 1 | - |
-| 96 | [`corpse_soldier`](#f96-corpse-soldier) | Dead soldier (npc_soldier, 74x57 px) | seq 405 (1) | 1 | 1 | - |
-| 97 | [`dink_dead`](#f97-dink-dead) | Dink lying dead (cutscene pose) (dink, 104x90 px) | seq 436 (1) | 1 | 1 | - |
-| 98 | [`food_bread`](#f98-food-bread) | Bread loaf (food, 30x25 px) | seq 421 (1) | 1 | 1 | - |
-| 99 | [`food_cheese`](#f99-food-cheese) | Cheese (food, 21x19 px) | seq 421 (1) | 1 | 1 | - |
-| 100 | [`food_drumstick`](#f100-food-drumstick) | Meat drumstick (food, 28x31 px) | seq 421 (1) | 1 | 1 | - |
-| 101 | [`food_grapes`](#f101-food-grapes) | Grapes (food, 29x30 px) | seq 421 (1) | 1 | 1 | - |
-| 102 | [`food_ham`](#f102-food-ham) | Ham / steak (food, 28x28 px) | seq 421 (1) | 1 | 1 | - |
-| 103 | [`king_on_throne`](#f103-king-on-throne) | King Daniel on throne (seated) (npc_king, 124x119 px) | seq 421 (1) | 1 | 1 | - |
-| 104 | [`npc_gnome_purple`](#f104-npc-gnome-purple) | Gnome / wizard (purple) (npc_gnome, 51x74 px) | seq 561 (1) | 1 | 1 | - |
-| 105 | [`npc_maiden_blue`](#f105-npc-maiden-blue) | Woman (blue dress) (npc_maiden, 55x83 px) | seq 251 (1) | 1 | 1 | - |
-| 106 | [`npc_maiden_brown`](#f106-npc-maiden-brown) | Woman (brown dress) (npc_maiden, 55x83 px) | seq 241 (1) | 1 | 1 | - |
-| 107 | [`npc_maiden_red`](#f107-npc-maiden-red) | Woman (red dress) (npc_maiden, 55x83 px) | seq 221 (1) | 1 | 1 | - |
-| 108 | [`npc_mom`](#f108-npc-mom) | Dink's mother (npc_mom, 59x88 px) | seq 351 (1) | 1 | 1 | - |
-| 109 | [`npc_old_man`](#f109-npc-old-man) | Old man (npc_oldman, 67x74 px) | seq 231 (1) | 1 | 1 | - |
-| 110 | [`npc_soldier`](#f110-npc-soldier) | Soldier (npc_soldier, 76x93 px) | seq 403 (1) | 1 | 1 | - |
-| 111 | [`ore_rock_blue`](#f111-ore-rock-blue) | Blue crystal rock (boulders, 44x29 px) | seq 95 (1) | 1 | 1 | - |
-| 112 | [`poster_wanted`](#f112-poster-wanted) | "Wanted" poster (signs, 43x61 px) | seq 462 (1) | 1 | 1 | - |
-| 113 | [`snow_house_door`](#f113-snow-house-door) | House door (snow_house, 43x78 px) | seq 96 (1) | 1 | 1 | - |
-| 114 | [`snow_house_lower`](#f114-snow-house-lower) | House lower walls (snow_house, 381x188 px) | seq 96 (1) | 1 | 1 | - |
-| 115 | [`snow_house_roof`](#f115-snow-house-roof) | House pyramid roof (snow_house, 404x201 px) | seq 96 (1) | 1 | 1 | - |
-| 116 | [`snow_house_timber`](#f116-snow-house-timber) | House timbered upper walls (snow_house, 400x179 px) | seq 96 (1) | 1 | 1 | - |
-| 117 | [`thorn_branch`](#f117-thorn-branch) | Thorn branch (graveyard, 28x25 px) | seq 90 (1) | 1 | 1 | Vegetation |
-| 118 | [`tree_oak_large`](#f118-tree-oak-large) | Broadleaf (oak) tree (trees, 204x270 px) | seq 32 (1) | 1 | 1 | Vegetation |
-| 119 | [`screen ground (tile layer)`](#f119-screen-ground-tile-layer) | tile-layer ground of each screen (grass, sand, water, walls painted into tilesets) · sheet_tiles.png | - | 303 | 0 | Terrain |
+| 95 | [`food_bread`](#f95-food-bread) | Bread loaf (food, 30x25 px) | seq 421 (1) | 1 | 1 | - |
+| 96 | [`food_cheese`](#f96-food-cheese) | Cheese (food, 21x19 px) | seq 421 (1) | 1 | 1 | - |
+| 97 | [`food_drumstick`](#f97-food-drumstick) | Meat drumstick (food, 28x31 px) | seq 421 (1) | 1 | 1 | - |
+| 98 | [`food_grapes`](#f98-food-grapes) | Grapes (food, 29x30 px) | seq 421 (1) | 1 | 1 | - |
+| 99 | [`food_ham`](#f99-food-ham) | Ham / steak (food, 28x28 px) | seq 421 (1) | 1 | 1 | - |
+| 100 | [`king_on_throne`](#f100-king-on-throne) | King Daniel on throne (seated) (npc_king, 124x119 px) | seq 421 (1) | 1 | 1 | - |
+| 101 | [`npc_gnome_purple`](#f101-npc-gnome-purple) | Gnome / wizard (purple) (npc_gnome, 51x74 px) | seq 561 (1) | 1 | 1 | - |
+| 102 | [`npc_maiden_blue`](#f102-npc-maiden-blue) | Woman (blue dress) (npc_maiden, 55x83 px) | seq 251 (1) | 1 | 1 | - |
+| 103 | [`npc_maiden_brown`](#f103-npc-maiden-brown) | Woman (brown dress) (npc_maiden, 55x83 px) | seq 241 (1) | 1 | 1 | - |
+| 104 | [`npc_maiden_red`](#f104-npc-maiden-red) | Woman (red dress) (npc_maiden, 55x83 px) | seq 221 (1) | 1 | 1 | - |
+| 105 | [`npc_mom`](#f105-npc-mom) | Dink's mother (npc_mom, 59x88 px) | seq 351 (1) | 1 | 1 | - |
+| 106 | [`npc_old_man`](#f106-npc-old-man) | Old man (npc_oldman, 67x74 px) | seq 231 (1) | 1 | 1 | - |
+| 107 | [`npc_soldier`](#f107-npc-soldier) | Soldier (npc_soldier, 76x93 px) | seq 403 (1) | 1 | 1 | - |
+| 108 | [`ore_rock_blue`](#f108-ore-rock-blue) | Blue crystal rock (boulders, 44x29 px) | seq 95 (1) | 1 | 1 | - |
+| 109 | [`poster_wanted`](#f109-poster-wanted) | "Wanted" poster (signs, 43x61 px) | seq 462 (1) | 1 | 1 | - |
+| 110 | [`snow_house_door`](#f110-snow-house-door) | House door (snow_house, 43x78 px) | seq 96 (1) | 1 | 1 | - |
+| 111 | [`snow_house_lower`](#f111-snow-house-lower) | House lower walls (snow_house, 381x188 px) | seq 96 (1) | 1 | 1 | - |
+| 112 | [`snow_house_roof`](#f112-snow-house-roof) | House pyramid roof (snow_house, 404x201 px) | seq 96 (1) | 1 | 1 | - |
+| 113 | [`snow_house_timber`](#f113-snow-house-timber) | House timbered upper walls (snow_house, 400x179 px) | seq 96 (1) | 1 | 1 | - |
+| 114 | [`thorn_branch`](#f114-thorn-branch) | Thorn branch (graveyard, 28x25 px) | seq 90 (1) | 1 | 1 | Vegetation |
+| 115 | [`tree_oak_large`](#f115-tree-oak-large) | Broadleaf (oak) tree (trees, 204x270 px) | seq 32 (1) | 1 | 1 | Vegetation |
+| 116 | [`screen ground (tile layer)`](#f116-screen-ground-tile-layer) | tile-layer ground of each screen (grass, sand, water, walls painted into tilesets) · sheet_tiles.png | - | 303 | 0 | Terrain |
 
 ## Open origin IDs
 
@@ -181,17 +178,17 @@ S014: P01 · S015: P01 P02 P03 · S016: P01 P02 P06 · S017: P01 · S018: P02 ·
 **5. `tree_fruit`** (34 IDs)  
 S442: P02 P04 P05 P06 P07 P08 P09 P10 P11 P12 P15 P16 P17 P18 P19 P20 P21 P22 P23 · S474: P02 P03 P04 P05 P06 P07 P08 P09 P10 P11 P12 P13 P15 P16 P17
 
-<a id="f6-burn-hole-decal"></a>
-**6. `burn_hole_decal`** (26 IDs)  
-S001: P44 P45 P46 P47 P48 P49 · S005: P25 P26 P27 · S066: P23 P24 · S439: P23 P24 P25 P26 P27 P28 P30 P36 P37 P46 · S533: P21 P22 P23 · S536: P16 P26
-
-<a id="f7-bridge-wood-deck"></a>
-**7. `bridge_wood_deck`** (22 IDs)  
+<a id="f6-bridge-wood-deck"></a>
+**6. `bridge_wood_deck`** (22 IDs)  
 S416: P01 P02 · S448: P01 P02 P03 P04 P05 P06 P07 · S480: P01 P02 P03 · S512: P01 P02 · S533: P01 P02 P03 P25 · S544: P01 P02 · S701: P01 P02
 
-<a id="f8-door-wood-single"></a>
-**8. `door_wood_single`** (22 IDs)  
+<a id="f7-door-wood-single"></a>
+**7. `door_wood_single`** (22 IDs)  
 S188: P10 · S219: P10 · S251: P09 · S274: P07 · S409: P16 · S418: P16 · S419: P02 · S497: P12 · S498: P11 · S499: P07 · S500: P06 · S501: P11 · S506: P20 · S530: P11 · S539: P12 · S585: P14 · S587: P12 · S617: P15 · S619: P09 · S734: P31 · SW_s2-mdoor_L106@S530_P11 · SW_s2-mdoor_L82@S530_P11
+
+<a id="f8-burn-hole-decal"></a>
+**8. `burn_hole_decal`** (20 IDs)  
+S005: P25 P26 P27 · S066: P23 P24 · S439: P23 P24 P25 P26 P27 P28 P30 P36 P37 P46 · S533: P21 P22 P23 · S536: P16 P26
 
 <a id="f9-castle-tower-round"></a>
 **9. `castle_tower_round`** (20 IDs)  
@@ -537,102 +534,90 @@ S080: P04
 **94. `church_door`** (1 IDs)  
 S188: P06
 
-<a id="f95-corpse-mom"></a>
-**95. `corpse_mom`** (1 IDs)  
-S001: P34
-
-<a id="f96-corpse-soldier"></a>
-**96. `corpse_soldier`** (1 IDs)  
-S086: P01
-
-<a id="f97-dink-dead"></a>
-**97. `dink_dead`** (1 IDs)  
-S058: P06
-
-<a id="f98-food-bread"></a>
-**98. `food_bread`** (1 IDs)  
+<a id="f95-food-bread"></a>
+**95. `food_bread`** (1 IDs)  
 S070: P33
 
-<a id="f99-food-cheese"></a>
-**99. `food_cheese`** (1 IDs)  
+<a id="f96-food-cheese"></a>
+**96. `food_cheese`** (1 IDs)  
 S070: P26
 
-<a id="f100-food-drumstick"></a>
-**100. `food_drumstick`** (1 IDs)  
+<a id="f97-food-drumstick"></a>
+**97. `food_drumstick`** (1 IDs)  
 S070: P23
 
-<a id="f101-food-grapes"></a>
-**101. `food_grapes`** (1 IDs)  
+<a id="f98-food-grapes"></a>
+**98. `food_grapes`** (1 IDs)  
 S070: P30
 
-<a id="f102-food-ham"></a>
-**102. `food_ham`** (1 IDs)  
+<a id="f99-food-ham"></a>
+**99. `food_ham`** (1 IDs)  
 S070: P32
 
-<a id="f103-king-on-throne"></a>
-**103. `king_on_throne`** (1 IDs)  
+<a id="f100-king-on-throne"></a>
+**100. `king_on_throne`** (1 IDs)  
 S070: P03
 
-<a id="f104-npc-gnome-purple"></a>
-**104. `npc_gnome_purple`** (1 IDs)  
+<a id="f101-npc-gnome-purple"></a>
+**101. `npc_gnome_purple`** (1 IDs)  
 S006: P23
 
-<a id="f105-npc-maiden-blue"></a>
-**105. `npc_maiden_blue`** (1 IDs)  
+<a id="f102-npc-maiden-blue"></a>
+**102. `npc_maiden_blue`** (1 IDs)  
 S004: P16
 
-<a id="f106-npc-maiden-brown"></a>
-**106. `npc_maiden_brown`** (1 IDs)  
+<a id="f103-npc-maiden-brown"></a>
+**103. `npc_maiden_brown`** (1 IDs)  
 S410: P06
 
-<a id="f107-npc-maiden-red"></a>
-**107. `npc_maiden_red`** (1 IDs)  
+<a id="f104-npc-maiden-red"></a>
+**104. `npc_maiden_red`** (1 IDs)  
 S122: P09
 
-<a id="f108-npc-mom"></a>
-**108. `npc_mom`** (1 IDs)  
+<a id="f105-npc-mom"></a>
+**105. `npc_mom`** (1 IDs)  
 S001: P26
 
-<a id="f109-npc-old-man"></a>
-**109. `npc_old_man`** (1 IDs)  
+<a id="f106-npc-old-man"></a>
+**106. `npc_old_man`** (1 IDs)  
 S002: P23
 
-<a id="f110-npc-soldier"></a>
-**110. `npc_soldier`** (1 IDs)  
+<a id="f107-npc-soldier"></a>
+**107. `npc_soldier`** (1 IDs)  
 S410: P07
 
-<a id="f111-ore-rock-blue"></a>
-**111. `ore_rock_blue`** (1 IDs)  
+<a id="f108-ore-rock-blue"></a>
+**108. `ore_rock_blue`** (1 IDs)  
 S590: P09
 
-<a id="f112-poster-wanted"></a>
-**112. `poster_wanted`** (1 IDs)  
+<a id="f109-poster-wanted"></a>
+**109. `poster_wanted`** (1 IDs)  
 S035: P27
 
-<a id="f113-snow-house-door"></a>
-**113. `snow_house_door`** (1 IDs)  
+<a id="f110-snow-house-door"></a>
+**110. `snow_house_door`** (1 IDs)  
 S149: P07
 
-<a id="f114-snow-house-lower"></a>
-**114. `snow_house_lower`** (1 IDs)  
+<a id="f111-snow-house-lower"></a>
+**111. `snow_house_lower`** (1 IDs)  
 S149: P03
 
-<a id="f115-snow-house-roof"></a>
-**115. `snow_house_roof`** (1 IDs)  
+<a id="f112-snow-house-roof"></a>
+**112. `snow_house_roof`** (1 IDs)  
 S149: P08
 
-<a id="f116-snow-house-timber"></a>
-**116. `snow_house_timber`** (1 IDs)  
+<a id="f113-snow-house-timber"></a>
+**113. `snow_house_timber`** (1 IDs)  
 S149: P06
 
-<a id="f117-thorn-branch"></a>
-**117. `thorn_branch`** (1 IDs)  
+<a id="f114-thorn-branch"></a>
+**114. `thorn_branch`** (1 IDs)  
 S192: P05
 
-<a id="f118-tree-oak-large"></a>
-**118. `tree_oak_large`** (1 IDs)  
+<a id="f115-tree-oak-large"></a>
+**115. `tree_oak_large`** (1 IDs)  
 S693: P06
 
-<a id="f119-screen-ground-tile-layer"></a>
-**119. `screen ground (tile layer)`** (303 IDs)  
+<a id="f116-screen-ground-tile-layer"></a>
+**116. `screen ground (tile layer)`** (303 IDs)  
 SCR 002 003 004 005 006 013 014 015 016 017 018 025 026 027 028 029 030 031 032 033 034 035 036 037 038 045 046 047 048 049 050 057 058 059 060 061 062 063 064 065 066 067 068 069 077 078 079 080 081 082 085 086 089 090 092 093 094 095 096 097 098 099 100 101 109 110 111 112 113 114 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 143 145 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 177 178 179 180 181 182 183 184 185 188 189 190 192 193 194 195 196 197 198 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 241 242 243 244 245 246 247 248 249 250 251 252 254 255 256 257 258 259 260 261 273 274 275 276 277 278 279 280 281 283 284 285 286 287 288 289 290 302 309 310 316 317 318 319 320 339 340 341 342 343 348 349 371 373 374 375 377 385 396 397 410 426 427 428 430 431 432 442 444 445 458 459 460 461 465 490 491 492 493 494 495 496 505 510 520 523 524 525 526 527 528 531 532 534 535 540 542 552 557 558 559 562 563 564 565 566 567 573 579 589 590 591 593 594 595 596 598 606 616 620 621 622 623 624 625 627 630 631 633 637 648 649 652 653 654 655 657 662 664 667 683 684 685 686 687 694 696 713 717 718 719 735 736 749 750 765 766 767

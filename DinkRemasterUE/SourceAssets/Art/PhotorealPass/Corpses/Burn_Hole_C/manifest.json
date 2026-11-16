@@ -1,0 +1,80 @@
+{
+ "name": "SM_Burn_Hole_C_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/SM_Burn_Hole_C_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/SM_Burn_Hole_C_PR.blend",
+ "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Burn_Hole_C_PR",
+ "dimensions_m": [
+  2.2,
+  2.2,
+  0.006
+ ],
+ "bounds_min_m": [
+  -1.1,
+  -1.1,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.1,
+  1.1,
+  0.006
+ ],
+ "lod0_triangles": 3,
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "material": "MI_Burn_Hole_C",
+   "channels": "base colour sRGB + alpha (cut-out)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "material": "MI_Burn_Hole_C",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "material": "MI_Burn_Hole_C",
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Burn_Hole_C"
+ ],
+ "kit_materials": [
+  {
+   "name": "MI_Burn_Hole_C",
+   "kind": "masked",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_ORM.png"
+   }
+  }
+ ],
+ "collision_hulls": 0,
+ "material_exception": "unique BC/N/ORM bakes private to this asset (not a row of ART_STANDARD.md section 2): remains are one-off set pieces",
+ "pivot": "bbox centre in X/Y, lowest point at z = 0; in Blender +X is screen right and +Y screen up (north) for a yaw_from_sprite row",
+ "families": [
+  "burn_hole_decal",
+  "158 struct/details/damage/hole-"
+ ],
+ "dresses": "two burnt holes run together (picture 3)",
+ "third_party": [
+  "park_dirt (render ground)"
+ ],
+ "known_weaknesses": "A flat alpha-tested card 6 mm above the ground: the outline is a hard cut-out, nothing soaks into the ground or stains grass blades, and it does not follow uneven ground. Depth is painted for the fixed play camera (the far wall of the hole, the plank ends, the dark below): from the side or from the north it is flat.",
+ "pool_card_m": 2.2,
+ "derived_from": "tools/gore_sheets.py (numpy and PIL, no scan)"
+}

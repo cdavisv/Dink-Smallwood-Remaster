@@ -63,6 +63,32 @@ class CorpseKitTests(unittest.TestCase):
                 self.assertEqual(row.get('fit'), 'none', row['family'])
                 self.assertTrue(row.get('yaw_from_sprite'), row['family'])
 
+    def test_the_mother_and_the_burn_holes_of_the_starting_house_are_placed_by_origin(self):
+        # screen 1 is dressed by its own manifest, where family rows draw nothing: these seven are `replacements` rows
+        doc = json.loads((PROJECT / 'Content/Dink/Data/Art/stonebrook.json').read_text())
+        rows = {r['origin']: r['mesh'] for r in doc['replacements'] if r['mesh'].startswith(GAME)}
+        self.assertEqual(rows.get('S001_P34'), GAME + 'SM_Corpse_Mother_PR.SM_Corpse_Mother_PR')
+        self.assertEqual(sorted(o for o in rows if o != 'S001_P34'), ['S001_P44', 'S001_P45', 'S001_P46', 'S001_P47', 'S001_P48', 'S001_P49'])
+        sizes = {a['mesh']: a['expected_size_cm'] for a in doc['assets']}
+        for mesh in set(rows.values()):
+            name = mesh.rsplit('.', 1)[1]
+            self.assertIn(name, self.assets, 'replacement mesh is not in the kit: ' + name)
+            self.assertEqual(sizes[mesh][:2], [round(v * 100, 2) for v in self.assets[name]['dimensions_m'][:2]], name)
+
+    def test_a_picture_decal_covers_at_least_the_ground_its_1997_picture_covered(self):
+        decals = self.kit['decals']
+        self.assertEqual(json.loads((KIT / 'Decals/decals.json').read_text()), decals)
+        pictures = set()
+        for row in decals['sets']:
+            for f in row['files'].values():
+                self.assertTrue((KIT / 'Decals' / f).is_file(), f)
+            self.assertEqual(len(row['cells']), 4, row['name'])
+            for cell in row['cells']:
+                pictures.add(cell['picture'])
+                self.assertGreaterEqual(cell['decal_area_m2'], cell['picture_area_m2'], '%s cell %d' % (row['name'], cell['cell']))
+                self.assertGreaterEqual(cell['cell_m'], max(cell['card_m']), '%s cell %d' % (row['name'], cell['cell']))
+        self.assertLessEqual({'187_01', '187_02', '187_03', '188_02', '188_04', '189_01', '189_02', '189_04', '158_01', '158_02', '158_03'}, pictures)
+
     def test_no_collision_comes_with_the_kit(self):
         for asset in self.assets.values():
             self.assertEqual(asset['collision_hulls'], 0, asset['name'])

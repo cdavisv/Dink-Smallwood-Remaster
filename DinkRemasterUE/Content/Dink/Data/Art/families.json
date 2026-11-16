@@ -1288,6 +1288,22 @@
       "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). 415 people/peasant2/death-, screen 222: hacked down, his long-handled sickle beside him. Posed from the rig as dead weight, opened as the 1997 picture shows, body and pool inside the picture's footprint; the pool, the drops and the soaked fringe are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the picture shows it."
     },
     {
+      "family": "corpse_soldier",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Soldier_PR.SM_Corpse_Soldier_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). 405 people/soldier/death-, Milder on screen 86 (script s7-mil): hacked through jerkin and mail, the belly cut across with entrails out, the chest split to the ribs. Posed from the rig as dead weight, opened as the 1997 picture shows; the pool is laid from the red of the picture (blood 1.99 m2 against 0.65 m2 of red in the picture) and is a ground card in the same mesh (no companion decal). scripted: the script only hides the placement and answers talk; the mesh follows the actor. yaw_from_sprite: the body lies as the picture shows it."
+    },
+    {
+      "family": "dink_dead",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dink_Dead_PR.SM_Dink_Dead_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). 436 dink/die/ds-x3- frame 16, the body on screen 58 that \"sort of looks like me\" (script s7-dink: talk only, then the original shrinks it away). The hero's rig posed as dead weight at its natural size, the chest split, head and shoulders in a pool laid from the red of the picture (blood 3.13 m2 against 0.74 m2 of red in the picture); the pool is a ground card in the same mesh. scripted: the mesh follows the actor."
+    },
+    {
       "family": "216 foes/dragon/f2-x7- torn dragon, turned",
       "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
       "fit": "none",

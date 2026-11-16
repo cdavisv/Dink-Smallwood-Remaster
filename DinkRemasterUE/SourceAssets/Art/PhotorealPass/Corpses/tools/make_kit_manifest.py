@@ -10,7 +10,8 @@ Import (from DinkRemasterUE/, headless, re-runnable):
 
 The kit has its own content folder, /Game/Dink/Photoreal/Corpses, with its own master materials (M_Struct_Baked for the
 opaque atlases, M_Struct_Baked_Cut for the cut-out ones), so importing it never rewrites another kit's packages.
-Without --all the kit lists only the meshes a row of Content/Dink/Data/Art/families.json uses.
+Without --all the kit lists only the meshes a row of Content/Dink/Data/Art/families.json or a `replacements` row of a
+dink-art/1 manifest uses.
 """
 import glob
 import json
@@ -27,6 +28,14 @@ GAME = '/Game/Dink/Photoreal/Corpses/'
 def bound_meshes():
     rows = json.load(open(os.path.join(REPO, 'DinkRemasterUE', 'Content', 'Dink', 'Data', 'Art', 'families.json')))['families']
     paths = [r.get('mesh', '') for r in rows] + [v for r in rows for v in r.get('variants', [])]
+    # dressed screens place by origin: the `replacements` rows of the dink-art/1 manifests (the mother and the burn holes of screen 1)
+    for path in sorted(glob.glob(os.path.join(REPO, 'DinkRemasterUE', 'Content', 'Dink', 'Data', 'Art', '*.json'))):
+        try:
+            data = json.load(open(path))
+        except ValueError:
+            continue
+        if isinstance(data, dict) and data.get('schema') == 'dink-art/1':
+            paths += [r.get('mesh', '') for r in data.get('replacements', []) if isinstance(r, dict)]
     return {p.rsplit('.', 1)[1] for p in paths if p.startswith(GAME)}
 
 
@@ -48,7 +57,15 @@ def build(everything=False):
         assets.append({'name': m['name'], 'class': m['class'], 'fbx': m['fbx'], 'materials': m['materials'],
                        'dimensions_m': [round(float(v), 3) for v in m['dimensions_m']], 'collision_hulls': 0,
                        'families': m['families'], 'folder': os.path.relpath(os.path.dirname(path), REPO).replace(os.sep, '/')})
-    return {
+    decals = None
+    dpath = os.path.join(KIT, 'Decals', 'decals.json')
+    if os.path.isfile(dpath):                        # ground decals drawn from the 1997 pictures (tools/build_decals.py): imported as MI_Decal_<Set>_0..3
+        decals = json.load(open(dpath))
+        for row in decals['sets']:
+            for f in row['files'].values():
+                if not os.path.isfile(os.path.join(KIT, 'Decals', f)):
+                    raise SystemExit('decal set %s: missing %s' % (row['name'], f))
+    doc = {
         'schema': 'dink-props/1',
         'root': ROOT,
         'generated_by': 'Corpses/tools/make_kit_manifest.py (do not edit by hand)',
@@ -62,6 +79,9 @@ def build(everything=False):
             'materials': materials,
         },
     }
+    if decals:
+        doc['decals'] = decals
+    return doc
 
 
 def main():
