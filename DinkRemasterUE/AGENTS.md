@@ -1,3 +1,11 @@
+## DinkC script runtime parity (15 November 2026)
+
+- Audit: `doc/remaster/DINKC_PARITY.md` (every command, the language and the brains against dink.cpp; probe coverage; softlock scan). Tools: `tools/parity_audit/dinkc_*.py`.
+- Fixed (tests `Dink.Parity.DinkC.*`): `load_screen` ends Dink's freeze and move as load_map does (D:1013-1015: the pits no longer leave him frozen); `set_dink_speed` scales the pawn's top speed (`ADinkGreyboxCharacter::DinkSpeedScale`, the boots); `stop_entire_game` pauses every sprite while its menu is up (`UDinkDirector::bStopEntireGame`); brains read map.dat warp boxes as hard (get_hard D:13503, not get_hard_play), reverting bug A2; `script_attach` moves `&current_sprite` (A47).
+- Held back (A40): `set_callback_random` timers should end on wait / say_stop* / say_xy and before talk/hit/damage (kill_returning_stuff D:5049; branch `fix/dinkc-callbacks`, `UDinkStorySubsystem::KillReturningStuff` is already here, uncalled). With it the Joppa dragons stay locked on Dink after his first hit and probe chapter 12 dies; re-tune `DuelFight` first.
+- Held back (A41): `create_sprite` should use add_sprite_dumb's defaults (`UDinkDirector::InitDumbSprite`: speed 0, timing 0, base_* -1, D:3089-3135; branch `fix/dinkc-create-sprite-dumb`). The probe's Jack step (`KiteAndCast`) was tuned to the wrong defaults and dies with the right ones; re-tune it first.
+- Pitfall: dink.cpp:569-575 is inside `get_hard_play` (Dink's walk, D:548-580), not `get_hard` (D:527-546). Check which function a cited line belongs to.
+
 ## Water colour from sea to pond across screens; stale-world water fallback (15 November 2026)
 
 - The importer coloured each screen's water on its own (sea when kind `sea` or the mask has DrySand/ShingleBeach, else silty pond), so open sea with only wet sand (424, 480, 576, 608, the south coast 720-724 and 750-758) was pond-olive, and 31 screen edges had a straight olive-against-blue-green seam (e.g. 634/665 against 666, the seam seen beside 633's sheet).

@@ -100,8 +100,14 @@ public:
 	bool IsRunKeyHeld() const { return bRunKeyHeld; }
 	/** True while movement input from the player's own controls arrived within the grace time. */
 	bool IsHumanSteering() const;
-	/** Top ground speed wanted now: WalkSpeed or RunSpeed. */
+	/** Top ground speed wanted now: WalkSpeed or RunSpeed, times DinkSpeedScale. */
 	float DesiredTopSpeed() const;
+	/**
+	 * set_dink_speed (dink.cpp:7563-7575, read every frame at D:17311-17321): Dink's walk speed in 2D pixels per frame is 12 for
+	 * dinkspeed 1, 6 for 2, 3 for 3 (main.c's default) and 1 above that. The scale is that speed over the default 3 (item-bt.c's boots
+	 * arm with set_dink_speed(2): twice as fast). Set by the director's set_dink_speed.
+	 */
+	float DinkSpeedScale = 1.f;
 	/** Movement from the player's own controls (stick or keys; X right, Y forward, relative to the camera). */
 	void PlayerMoveInput(FVector2D Axis);
 	void ZoomCamera(float Steps);
