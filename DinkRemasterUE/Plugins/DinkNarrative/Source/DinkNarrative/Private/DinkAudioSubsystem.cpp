@@ -133,11 +133,28 @@ void UDinkAudioSubsystem::StopVoice(int32 Text)
 {
  if (TWeakObjectPtr<UAudioComponent> Component; VoiceComponents.RemoveAndCopyValue(Text, Component) && Component.IsValid()) Component->FadeOut(.08f, 0.f);
 }
+bool UDinkAudioSubsystem::IsVoiceTailPlaying(int32 Text, const FString& LineId) const
+{
+ const TWeakObjectPtr<UAudioComponent>* Component = VoiceComponents.Find(Text);
+ return Component && Component->IsValid() && (*Component)->IsPlaying() && VoiceTracker.IsTail(Text, LineId);
+}
+void UDinkAudioSubsystem::HandleLineSkipped(int32 Text)
+{
+ if (!VoiceComponents.Contains(Text)) return;
+ StopVoice(Text); VoiceTracker.Forget(Text);
+ UE_LOG(LogDinkPlayback, Log, TEXT("Voice of text %d stopped: line skipped"), Text);
+}
 void UDinkAudioSubsystem::UpdateVoices(UDinkDirector* Director)
 {
  UGameInstance* Instance = GetWorld()->GetGameInstance();
  UDinkStorySubsystem* Story = Instance ? Instance->GetSubsystem<UDinkStorySubsystem>() : nullptr;
  if (!Story || Voices.Lines.IsEmpty()) return;
+ if (HookedStory.Get() != Story)
+ {
+  if (UDinkStorySubsystem* Old = HookedStory.Get()) Old->OnLineSkipped.Remove(LineSkippedHandle);
+  LineSkippedHandle = Story->OnLineSkipped.AddUObject(this, &UDinkAudioSubsystem::HandleLineSkipped);
+  HookedStory = Story;
+ }
  for (auto It = VoiceComponents.CreateIterator(); It; ++It)
  {
   if (!It.Value().IsValid() || !It.Value()->IsPlaying()) { VoiceTracker.Forget(It.Key()); It.RemoveCurrent(); }
@@ -171,6 +188,8 @@ void UDinkAudioSubsystem::UpdateVoices(UDinkDirector* Director)
 void UDinkAudioSubsystem::Deinitialize()
 {
  if (UDinkGreyboxSubsystem* Greybox = GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>()) Greybox->OnScreenChanged.RemoveAll(this);
+ if (UDinkStorySubsystem* Story = HookedStory.Get()) Story->OnLineSkipped.Remove(LineSkippedHandle);
+ HookedStory.Reset();
  StopAll(); Super::Deinitialize();
 }
 void UDinkAudioSubsystem::PlayMusic(const FDinkApprovedSound& Entry)

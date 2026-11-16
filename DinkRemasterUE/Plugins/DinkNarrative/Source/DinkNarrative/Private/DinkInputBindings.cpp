@@ -14,6 +14,7 @@ namespace DinkInput
 			{ EKeys::Q, EAction::Magic }, { EKeys::Gamepad_FaceButton_Top, EAction::Magic },
 			{ EKeys::Escape, EAction::MainMenu }, { EKeys::Gamepad_Special_Right, EAction::MainMenu },
 			{ EKeys::M, EAction::Map }, { EKeys::Gamepad_Special_Left, EAction::Map },
+			{ EKeys::Enter, EAction::Inventory }, { EKeys::I, EAction::Inventory },
 		};
 		return Table;
 	}
