@@ -1,0 +1,23 @@
+subject,caption
+588_S588_P05,S588_P05 (save machine family mesh): Dink stopped by its 1997 box (prism) metres short of the mesh
+586_S586_P03,Kernsin fountain: the box (prism) stops Dink well short of the basin
+193_S193_P14,interior: wall hardbox over the floor in front of the drawn wall. Columns 1 and 2 equal: Dink did not move (already against the box)
+034_S034_P28,interior: prisms on open floor in front of the wall and table. Columns 1 and 2 equal: Dink did not move
+250_tile11_6,"path: solid tile hardness across open sand, nothing drawn"
+211_S211_P08,bush: low tile lines (blue) and the bush box on open grass
+470_tile4_1,pond: Dink walks on drawn water; the 1997 low edge (blue) lies on the dry bank
+746_tile2_4,sea shore: Dink stands in drawn sea; low edge on the beach
+671_tile2_4,pond: Dink in drawn water; low edge on the dry bank
+382_edge_right,sea shore: Dink in drawn sea at the screen edge; low edge on the sand
+701_tile8_1,shore: Dink in drawn water next to the beach. DEFECT: column 3 blank (camera inside a prism)
+441_S441_P03,fence: one 4 m module; the box runs on along the fence line
+536_S536_P34,grey boulder: box (prism) in front of and beside the drawn rock
+214_S214_P06,pines: low lines and boxes between the trunks
+734_S734_P11,barrel field: box far from the barrel; a 1997 card still drawn
+524_S524_P04,pine + gold heart: the tree box (prism) far from the trunk
+352_S352_P38,meadow: low tile line across open grass. DEFECT: column 1 is a stale frame of 524 (teleport not yet drawn)
+227_S227_P01,dungeon exit: nothing drawn at the exit; walking south warps to 710 (shot 2)
+085_tile3_1,lava floor: walkable as in 1997 (hardness 0)
+151_tile4_0,snow isle: solid line at the drawn edge of the snow
+488_S488_P11,pillbug: no prism in column 3 (live sprites have no hardness prism; its hit box is not drawn)
+251_S251_P05,"forest edge strip: 1997 card and strip, box beside it"
