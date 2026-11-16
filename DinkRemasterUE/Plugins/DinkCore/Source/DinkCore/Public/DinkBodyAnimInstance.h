@@ -3,6 +3,8 @@
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
 #include "Animation/AnimInstanceProxy.h"
+#include "BonePose.h"
+#include "DinkFootPlacement.h"
 #include "DinkBodyAnimInstance.generated.h"
 
 class UAnimSequence;
@@ -70,9 +72,56 @@ struct FDinkBodyActionFrame
 	float Weight = 0.f, LowerBodyWeight = 0.f;
 };
 
+/** What the leg layer gets from the game thread each frame (see DinkFootPlacement.h). */
+struct FDinkLegInput
+{
+	bool bEnabled = false, bTeleport = false, bAirborne = false;
+	FTransform ComponentToWorld = FTransform::Identity;
+	/** World velocity of the mesh component (its travel, smoothed lag included), cm/s. */
+	FVector Velocity = FVector::ZeroVector;
+	float DeltaTime = 0.f;
+	/** 0 standing still .. 1 walking (120 cm/s and up). */
+	float MoveAlpha = 0.f;
+	bool bStanding = true;
+	/** Visible ground under each foot (0 left, 1 right), as a height offset from the mesh origin's plane, cm (world), and its normal. */
+	bool bGround[2] = {false, false};
+	float GroundOffset[2] = {0.f, 0.f};
+	FVector GroundNormal[2] = {FVector::UpVector, FVector::UpVector};
+	/** Extra pelvis drop (cm, world) of a landing. */
+	float LandingDip = 0.f;
+	/** Stride factor of the style, as applied to the gait solver this frame (MoveAlpha already mixed in). */
+	float StrideScale = 1.f;
+	FDinkGaitStyle Style;
+	float StepCycleCm = 0.f;
+};
+
+/** Head turned towards a point (component space), with a weight. */
+struct FDinkLookInput
+{
+	FVector Target = FVector::ZeroVector;
+	float Weight = 0.f;
+};
+
+/** What the leg layer did on the last evaluated frame, for tests and the motion trace. */
+struct FDinkLegTelemetry
+{
+	uint8 State[2] = {0, 0};
+	float LockWeight[2] = {0.f, 0.f};
+	float KneeFlexDeg[2] = {0.f, 0.f};
+	float PelvisOffsetCm = 0.f;
+	float LookYawDeg = 0.f, LookPitchDeg = 0.f;
+	int32 Steps[2] = {0, 0}, Plants[2] = {0, 0};
+	/** Pins let go (both feet): lifted, ran off, too far from the pose. */
+	int32 Releases[3] = {0, 0, 0};
+	FVector FootWorld[2] = {FVector::ZeroVector, FVector::ZeroVector};
+	bool bValid = false;
+};
+
 /** Snapshot the worker thread evaluates. */
 struct FDinkBodyFrame
 {
+	FDinkLegInput Legs;
+	FDinkLookInput Look;
 	TArray<FDinkBodyLayer, TInlineAllocator<12>> Base;
 	TArray<FDinkBodyActionFrame, TInlineAllocator<2>> Actions;
 	/** Upper-body lean in mesh space, degrees: X forward, Y to the character's left. */
@@ -89,13 +138,33 @@ struct DINKCORE_API FDinkBodyAnimProxy : public FAnimInstanceProxy
 	virtual void PreUpdate(UAnimInstance* InAnimInstance, float DeltaSeconds) override;
 	virtual bool Evaluate(FPoseContext& Output) override;
 	FDinkBodyFrame Frame;
+	FDinkLegTelemetry Telemetry;
 private:
+	void ApplyLegs(FCompactPose& Out);
+	void ApplyChestSwing(FCompactPose& Out);
+	void ApplyLook(FCompactPose& Out);
+	FTransform ComponentSpace(const FCompactPose& Pose, int32 Index) const;
 	TArray<bool> LowerBody;
+	int32 PelvisBone = INDEX_NONE, NeckBone = INDEX_NONE, Spine3Bone = INDEX_NONE;
+	int32 Thigh[2] = {INDEX_NONE, INDEX_NONE}, Calf[2] = {INDEX_NONE, INDEX_NONE}, Foot[2] = {INDEX_NONE, INDEX_NONE};
+	float PlantedFootZ[2] = {0.f, 0.f}, LowZ[2] = {0.f, 0.f};
+	FVector FootForward[2] = {FVector::YAxisVector, FVector::YAxisVector};
+	FDinkFootLock Locks[2];
+	FVector PrevDesired[2] = {FVector::ZeroVector, FVector::ZeroVector};
+	bool bPrevDesired = false;
+	/** Stride warp: the planted foot's step length scaled so it travels back under the body exactly at the body's speed
+	 * (the slow-walk cadence law and the clip's own stride leave it 15-20% off, which was the slide). Smoothed, 0.6-1.6. */
+	float StrideWarp = 1.f;
+	float PrevStepY[2] = {0.f, 0.f};
+	float PelvisOffset = 0.f, PelvisVelocity = 0.f;
 	TArray<int32, TInlineAllocator<2>> LeanBones;
 	int32 ChestBone = INDEX_NONE, HeadBone = INDEX_NONE, ClavicleL = INDEX_NONE, ClavicleR = INDEX_NONE, UpperArmL = INDEX_NONE, UpperArmR = INDEX_NONE;
 	uint16 MaskSerial = 0;
 	bool bMaskReady = false;
 };
+
+/** A foot set down (the leg layer pinned it): owner actor, foot bone (foot_l / foot_r), where, world. Game thread. */
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FDinkFootPlant, AActor* /*Owner*/, FName /*Foot*/, FVector /*WorldLocation*/);
 
 /**
  * Native animation of the hero and the humanoid NPCs: no animation blueprint. Locomotion is a
@@ -122,6 +191,14 @@ public:
 	/** How this body walks slower than its walk clip (see FDinkGaitBlend): 1 long slow steps, 0 short quick ones. */
 	void SetSlowCadencePower(float Power) { SlowCadence = FMath::Clamp(Power, 0.f, 1.f); }
 	void StopActions();
+	/** Turns the head towards a world point (NPCs looking at Dink), Weight 0..1; limited to what a neck can turn. */
+	void SetLookAt(const FVector& WorldTarget, float Weight) { LookWorld = WorldTarget; LookWeight = FMath::Clamp(Weight, 0.f, 1.f); }
+	/** The leg layer's state on the last evaluated frame (game thread). */
+	const FDinkLegTelemetry& GetLegTelemetry() const { return LegTelemetry; }
+	FName GetSet() const { return SetName; }
+	/** Every body running this animation: broadcast once each time a foot is set down (a gait step, a pivot step, a
+	 * landing), at most once per 0.18 s per foot; nothing while dink.Anim.Legs or dink.Anim.FootLock is 0. For footsteps. */
+	static FDinkFootPlant& OnFootPlant();
 	bool HasClip(FName Name) const;
 	bool IsActionActive() const;
 	FName GetActionName() const { return ActionName; }
@@ -154,6 +231,20 @@ private:
 	FVector2f Lean = FVector2f::ZeroVector;
 	FVector4f Posture = FVector4f(0, 0, 0, 0);
 	float SlowCadence = FDinkGaitBlend::SlowCadencePower;
-	bool bAirborne = false;
+	bool bAirborne = false, bWasAirborne = false, bLegsReady = false;
+	FName SetName;
+	FVector LookWorld = FVector::ZeroVector;
+	float LookWeight = 0.f, AirTime = 0.f, LandTime = 10.f, LandAmplitude = 0.f;
+	float GroundSmoothed[2] = {0.f, 0.f};
+	FVector LastComponentLocation = FVector::ZeroVector;
+	FDinkLegTelemetry LegTelemetry;
+	float LastPlant[2] = {-1.f, -1.f};
+	/** Standing weight as shown (eased towards the solver's) and the gait mix last seen while moving. */
+	float IdleShown = 1.f;
+	bool bSnapStand = true;
+	TArray<float, TInlineAllocator<4>> LastGait;
+	static constexpr float StandBlendSeconds = .22f;
+	void UpdateLegInput(float Dt);
+	void PublishFrame();
 	friend struct FDinkBodyAnimProxy;
 };

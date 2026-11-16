@@ -97,10 +97,16 @@ public:
 	/** Posture layer in degrees (chest, head, shoulders) shown on this body. */
 	void SetPosture(FVector4f Degrees) { Posture = Degrees; }
 	void SetSlowCadencePower(float Power);
+	/** How much the head is turned towards Dink now, 0..1 (eased). */
+	float GetLookWeight() const { return LookWeight; }
 protected:
 	virtual void RegisterComponentTickFunctions(bool bRegister) override;
 private:
+	void UpdateLook(UDinkBodyAnimInstance& Body, float DeltaTime);
 	FDinkHumanoidPresentTickFunction PresentTick;
+	FVector LookTarget = FVector::ZeroVector;
+	float LookWeight = 0.f;
+	bool bLooking = false;
 	FDinkMotionEstimate Motion;
 	FDinkBodyDynamics BodyDynamics;
 	FDinkBodySmoother Smoother;

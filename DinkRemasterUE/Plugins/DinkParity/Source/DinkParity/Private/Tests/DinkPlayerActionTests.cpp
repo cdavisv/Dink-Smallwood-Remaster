@@ -1,3 +1,5 @@
+#include "Misc/ScopeExit.h"
+#include "HAL/IConsoleManager.h"
 #include "DinkTestHelpers.h"
 #include "DinkArtSubsystem.h"
 #include "DinkPlayerActionComponent.h"
@@ -280,6 +282,13 @@ public:
         Dummy->SetSkeletalMesh(Mesh->GetSkeletalMeshAsset());
         Dummy->RegisterComponent();
         Dummy->SetComponentTickEnabled(false);
+        // This mesh stands still and the travel is added to the probe by hand: a foot pinned to the world by the leg layer
+        // (dink.Anim.FootLock) would be pinned to a ground that never moves. The pins are tested with a moving mesh in
+        // Dink.Animation.Legs.InEngine; here the clips, the style's stride and the leg reach are measured on their own.
+        IConsoleVariable* FootLock = IConsoleManager::Get().FindConsoleVariable(TEXT("dink.Anim.FootLock"));
+        const int32 FootLockBefore = FootLock ? FootLock->GetInt() : 1;
+        if (FootLock) FootLock->Set(0, ECVF_SetByCode);
+        ON_SCOPE_EXIT { if (FootLock) FootLock->Set(FootLockBefore, ECVF_SetByCode); };
         const float Dt = 1.f / 60.f;
         double WorstMean = 0, WorstMax = 0;
         Dummy->SetAnimInstanceClass(UDinkBodyAnimInstance::StaticClass());
