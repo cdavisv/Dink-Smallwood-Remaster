@@ -226,10 +226,10 @@ namespace
 				TMap<FString, float> Out;
 				const TSharedPtr<FJsonObject>* Obj = nullptr;
 				if (!Root->TryGetObjectField(Field, Obj) || !Obj || !Obj->IsValid()) return Out;
-				for (const TPair<FString, TSharedPtr<FJsonValue>>& KV : (*Obj)->Values)
+				for (const auto& KV : (*Obj)->Values)
 				{
 					double V = 0.0;
-					if (KV.Value.IsValid() && KV.Value->TryGetNumber(V) && V > 0.1 && V < 10.0) Out.Add(KV.Key, float(V));
+					if (KV.Value.IsValid() && KV.Value->TryGetNumber(V) && V > 0.1 && V < 10.0) Out.Add(FString(*KV.Key), float(V));
 				}
 				return Out;
 			};
