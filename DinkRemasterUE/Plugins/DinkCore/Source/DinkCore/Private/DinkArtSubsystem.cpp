@@ -404,7 +404,8 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 	{
 		for (const TSharedPtr<FJsonValue>& Value : *Rows)
 		{
-			const TSharedPtr<FJsonObject> Row = Value->AsObject();
+			const TSharedPtr<FJsonObject> Row = Value.IsValid() ? Value->AsObject() : nullptr;
+			if (!Row) continue; // not an object: AsObject logged it
 			if (ADinkWarpPlaceholderActor* A = Cast<ADinkWarpPlaceholderActor>(Placements.FindRef(Row->GetStringField(TEXT("origin")))))
 			{
 				A->Warp->SetMobility(EComponentMobility::Movable);
@@ -417,7 +418,7 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 	{
 		for (const TSharedPtr<FJsonValue>& Value : *Rows)
 		{
-			if (ADinkPlaceholderActor* A = Placements.FindRef(Value->AsString())) A->Card->SetHiddenInGame(true);
+			if (ADinkPlaceholderActor* A = Placements.FindRef(Value->AsString()); A && A->Card) A->Card->SetHiddenInGame(true);
 		}
 	}
 	if (Manifest->TryGetArrayField(TEXT("hide_screen_visuals"), Rows))
@@ -537,7 +538,8 @@ void UDinkArtSubsystem::ApplyManifest(UWorld& World, const TSharedPtr<FJsonObjec
 	{
 		for (const TSharedPtr<FJsonValue>& Value : *Rows)
 		{
-			const TSharedPtr<FJsonObject> Row = Value->AsObject();
+			const TSharedPtr<FJsonObject> Row = Value.IsValid() ? Value->AsObject() : nullptr;
+			if (!Row) continue; // not an object: AsObject logged it
 			AActor* A = World.SpawnActor<AActor>();
 			if (!A) continue;
 			A->Tags.Add(TEXT("DinkAuthoredArt"));

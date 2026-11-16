@@ -280,7 +280,9 @@ void UDinkEnvironmentSubsystem::LoadConfig()
 				if (!Pair.Value->TryGetObject(Row) || !Row) continue;
 				FDinkDecalClass Decal;
 				double Size = 0.0;
-				if ((*Row)->TryGetNumberField(TEXT("size_cm"), Size)) Decal.SizeCm = float(Size);
+				// A zero, negative or non-finite size would hand the renderer's decal pass a degenerate box for good (the screens'
+				// ground decals are never removed): such a row keeps the default size.
+				if ((*Row)->TryGetNumberField(TEXT("size_cm"), Size) && FMath::IsFinite(Size) && Size >= 1.0) Decal.SizeCm = float(Size);
 				const TArray<TSharedPtr<FJsonValue>>* Paths = nullptr;
 				if ((*Row)->TryGetArrayField(TEXT("materials"), Paths) && Paths)
 				{
@@ -2153,7 +2155,8 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 	{
 		if (PerM2 <= 0.f) return;
 		const float StepCm = 100.f / FMath::Sqrt(PerM2);
-		const int32 N = FMath::Max(1, FMath::RoundToInt(GrassCellCm / StepCm));
+		// Bounded: a large density (environment.json or dink.GrassDensity) is N x N blades per cell and would stall the frame.
+		const int32 N = FMath::Clamp(FMath::RoundToInt(GrassCellCm / StepCm), 1, 256);
 		const float Step = GrassCellCm / N;
 		for (int32 Y = 0; Y < N; ++Y)
 			for (int32 X = 0; X < N; ++X)

@@ -564,7 +564,10 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 		if (Shown) Shown->DestroyComponent();
 		if (!Card)
 		{
-			Card = NewObject<UMaterialBillboardComponent>(Actor, TEXT("ScriptFamilyEffect"));
+			// A unique name: a card destroyed earlier (DestroyComponent) keeps its name until garbage collection, and NewObject under
+			// that name rebuilds the dead object in place (the engine's "UObject overwrite": a render-fence stall, and every weak
+			// pointer to the old component then resolves to the new one).
+			Card = NewObject<UMaterialBillboardComponent>(Actor, MakeUniqueObjectName(Actor, UMaterialBillboardComponent::StaticClass(), TEXT("ScriptFamilyEffect")));
 			Card->SetMobility(EComponentMobility::Movable);
 			Card->SetupAttachment(Actor->GetRootComponent());
 			Card->SetUsingAbsoluteScale(true);
@@ -605,7 +608,8 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 	}
 	if (!Shown)
 	{
-		Shown = NewObject<UStaticMeshComponent>(Actor, TEXT("ScriptFamilyArt"));
+		// A unique name: the mesh just destroyed above keeps "ScriptFamilyArt" until garbage collection (see the effect card).
+		Shown = NewObject<UStaticMeshComponent>(Actor, MakeUniqueObjectName(Actor, UStaticMeshComponent::StaticClass(), TEXT("ScriptFamilyArt")));
 		Shown->SetMobility(EComponentMobility::Movable);
 		Shown->SetupAttachment(Actor->GetRootComponent());
 		// The marker root is scaled (0.3, 0.3, 0.6, or sp_size): the mesh keeps its own size and turn.
