@@ -41,7 +41,6 @@ ENVIRONMENT = os.path.join(CONTENT, "Dink", "Data", "Environment", "environment.
 # `python3 -I Scripts/art_coverage.py` lists them as "actor", never "instance". Rebind the row, or set the flag on the
 # material, before one of these meshes is given to a class with background placements.
 ACTOR_ONLY_FAMILY_MESHES = {
-    "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01": "fence_rail_ew: 18 placements, all actors",
     "/Game/Dink/Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01": "barrel: 95 placements, all actors",
 }
 

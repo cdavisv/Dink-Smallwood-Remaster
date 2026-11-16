@@ -85,12 +85,67 @@
     },
     {
       "family": "fence_rail_ew",
-      "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR.SM_Fence_SplitRail_4m_PR",
       "fit": "none",
       "span": "width",
       "anchor": "hardbox",
       "yaw_from_sprite": true,
-      "note": "93 lands/fence/fence- frame 1 (east-west run; with yaw_from_sprite off a run takes a stable per-origin yaw, set it true to align runs east-west). North-south and diagonal runs stay unbound: their sprite is a projected depth that a uniform scale cannot fit."
+      "note": "93 lands/fence/fence- frame 1 (east-west run; with yaw_from_sprite off a run takes a stable per-origin yaw, set it true to align runs east-west). The photoreal split rail (A206: family art never gets environment.json mesh_swaps, so the row names it directly). North-south and diagonal runs are the sequence-and-frame rows 93 frames 4, 3/6 and 2/5 below (A201)."
+    },
+    {
+      "family": "93 lands/fence/fence- north-south run",
+      "frame": 4,
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR.SM_Fence_SplitRail_4m_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": 90,
+      "span": "height",
+      "anchor": "hardbox",
+      "note": "A201 (15 Nov 2026). fence_rail_ns, frame 4 (26x136 px): the split rail turned to run north-south, repeated along the card height. anchor hardbox (PR #155) centres the run on the 1997 hardbox, 20 px north of the ground point. Mesh: the photoreal split rail made for all four fence classes (PhotorealPass/Structures/Stonebrook/modules.json); unlike the old kit fence its material is flagged for instanced meshes, and S441_P31 is a background (instanced) placement. Sequence-and-frame rows win over the class rows; fence_rail_ew is not touched."
+    },
+    {
+      "family": "93 lands/fence/fence- diagonal NW run a",
+      "frame": 3,
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR.SM_Fence_SplitRail_4m_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": 26,
+      "span": "width",
+      "anchor": "hardbox",
+      "note": "A201. fence_rail_diag_nw, frame 3 (77x88 px): the run from north-west to south-east, 26 degrees off east-west (the slope of the 1997 chains on 409, 437, 568: about 0.48 px south per px east), repeated along the card width."
+    },
+    {
+      "family": "93 lands/fence/fence- diagonal NW run b",
+      "frame": 6,
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR.SM_Fence_SplitRail_4m_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": 26,
+      "span": "width",
+      "anchor": "hardbox",
+      "note": "A201. fence_rail_diag_nw, frame 6 (66x86 px): the other picture of the same north-west to south-east run (the chains alternate frames 3 and 6)."
+    },
+    {
+      "family": "93 lands/fence/fence- diagonal NE run a",
+      "frame": 2,
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR.SM_Fence_SplitRail_4m_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": -22,
+      "span": "width",
+      "anchor": "hardbox",
+      "note": "A201. fence_rail_diag_ne, frame 2 (69x90 px): the run from south-west to north-east, 22 degrees off east-west (the line through the 1997 hardbox centres of the chains on 407, 441, 469: 55 px east and 21 px north per piece; seen in the game, 35 degrees left the pieces staggered)."
+    },
+    {
+      "family": "93 lands/fence/fence- diagonal NE run b",
+      "frame": 5,
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Fence_SplitRail_4m_PR.SM_Fence_SplitRail_4m_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "yaw_offset": -22,
+      "span": "width",
+      "anchor": "hardbox",
+      "note": "A201. fence_rail_diag_ne, frame 5 (62x79 px): the other picture of the south-west to north-east run."
     },
     {
       "family": "pine_forest_edge_strip",
