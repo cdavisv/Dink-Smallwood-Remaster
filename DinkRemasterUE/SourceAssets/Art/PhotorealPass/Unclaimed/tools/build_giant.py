@@ -40,7 +40,7 @@ def build_hi(c):
     mouth = np.exp(-((z - (1.735 - 0.5 * x * x)) / 0.017) ** 2) * smoothstep(-0.64, -0.72, y) * (1 - smoothstep(0.12, 0.16, np.abs(x)))
     L.set_co(body, Pq + N * ((step - 0.5) * 0.024 * (0.6 + 0.8 * thick) - cr * 0.02 + chips * 1.5 + lump - eye * 0.085 - mouth * 0.05)[:, None])
     # the brown, mottled sandstone of 821 (the first build was a pale cream that washed out in daylight)
-    body.data.materials.append(P.rock_mat('stone', 'rock_boulder_dry', tint=(0.72, 0.50, 0.30), value=0.50, sat=1.0, moss=0.10, lichen=0.22, dirt_z=0.35, scale=1.3, seed=12.0))
+    body.data.materials.append(P.rock_mat('stone', 'rock_boulder_dry', tint=(0.66, 0.44, 0.25), value=0.40, sat=1.0, moss=0.08, lichen=0.15, dirt_z=0.5, scale=1.3, seed=12.0))
     obs = [body]; t = NT('eye'); t.set(base=(0.006, 0.005, 0.004), rough=0.07, spec=0.8); em = t.mat
     for sx in (1, -1):                                             # eyes: dark wet stones deep in the sockets, a mouth that is a real cleft
         hit = C.surface_hit(body, (0.088 * sx, -1.6, 1.855), (0, 1, 0)); ey = (hit[0][1] if hit else -0.72) + 0.012

@@ -1464,6 +1464,18 @@ if 'duck' in ONLY:
         report['duck']['error'] = str(error)
         warn(f'duck not imported: {error}')
 
+def corpse_lods(mesh):
+    """Corpse meshes: three LODs at 100 / 50 / 25 % of the triangles, LOD1 from about 10 m and LOD2 from about 20 m (the play
+    camera stays on LOD0), every material section kept. The convention of the perf pass (Scripts/add_kit_lods.py) for all corpses."""
+    radius = max(1.0, float(mesh.get_bounds().sphere_radius))
+    options = unreal.EditorScriptingMeshReductionOptions()
+    options.set_editor_property('auto_compute_lod_screen_size', False)
+    options.set_editor_property('reduction_settings', [unreal.EditorScriptingMeshReductionSettings(percent_triangles=percent, screen_size=size)
+                                                       for percent, size in ((1.0, 1.0), (0.5, min(0.95, radius / 1000.0)), (0.25, min(0.9, radius / 2000.0)))])
+    MESHES.set_lods_with_notification(mesh, options, True)
+    return MESHES.get_lod_count(mesh)
+
+
 # ------------------------------------------------------------------------------------------- monsters (gate 2 creatures)
 # DINK_PHOTOREAL_ONLY=monsters (or any of bonca,slayer,dragon,giant,knight): the rigged monsters of PhotorealPass/Unclaimed
 # -> /Game/Dink/Photoreal/Creatures/<Name>. Each brings its own skeleton, its clips (Unclaimed/tools/clips_bonca.py,
@@ -1484,11 +1496,14 @@ class AnySlot(dict):
 
 MONSTERS = (('bonca', 'bonca_gray', 'Bonca', ('Brown', 'Purple'), True, False),
             ('slayer', 'slayer', 'Slayer', (), True, False),
-            ('dragon', 'dragon', 'Dragon', (), False, True),
+            ('dragon', 'dragon', 'Dragon', (), True, True),
             ('giant', 'stone_giant', 'Stone_Giant', (), True, False),
-            ('knight', 'npc_knight_blue', 'Knight', ('Red', 'Silver'), False, False))
+            ('knight', 'npc_knight_blue', 'Knight', ('Red', 'Silver'), False, False),
+            ('goblin_hammer', 'goblin_hammer', 'Goblin_Hammer', (), True, False),
+            ('goblin_horned', 'goblin_horned', 'Goblin_Horned', (), True, False),
+            ('goblin_soldier', 'goblin_soldier', 'Goblin_Soldier', (), True, False))
 for key, family, name, variants, corpse, two_sided in MONSTERS:
-    if key not in ONLY and 'monsters' not in ONLY:
+    if key not in ONLY and 'monsters' not in ONLY and not (key.startswith('goblin') and 'goblins' in ONLY):
         continue
     MD = PASS / 'Unclaimed' / family / name
     folder = BASE + '/Creatures/' + name.replace('_', '')
@@ -1519,13 +1534,14 @@ for key, family, name, variants, corpse, two_sided in MONSTERS:
             cparent = surface_material(folder, f'M_{name}_Corpse_PR', ctex)
             body, changed = import_static([MD / f'SM_{name}_Corpse_PR.fbx'], folder, f'SM_{name}_Corpse_PR', True)
             assign_slots(body, AnySlot(cparent), f'SM_{name}_Corpse_PR')
+            corpse_lod_count = corpse_lods(body)
             save(body)
             box = body.get_bounding_box()
-            entry['corpse'] = {'mesh': folder + f'/SM_{name}_Corpse_PR', 'reimported': changed, 'blood_soaked': soaked,
+            entry['corpse'] = {'mesh': folder + f'/SM_{name}_Corpse_PR', 'reimported': changed, 'blood_soaked': soaked, 'lods': corpse_lod_count,
                                'size_cm': [round(box.max.x - box.min.x, 1), round(box.max.y - box.min.y, 1), round(box.max.z - box.min.z, 1)]}
             # what lies round the body, projected on the ground and the grass (the class row's corpse decal): the lobed
             # pool with its thrown drops (551-559, 645; Unclaimed/tools/corpse_blood.py), or the stone giant's dark grit (825)
-            for kind, rough in (('BloodPool', 0.12), ('Grit', 0.9)):
+            for kind, rough in (('BloodPool', 0.30), ('Grit', 0.9)):   # 0.12 read as wet paint in full sun
                 picture = MD / f'T_{name}_PR_{kind}_BC.png'
                 if picture.exists():
                     ground = decal_material(folder, f'M_{name}_{kind}_Decal', import_texture(picture, tex_folder, 'BCA', wrap=False), roughness=rough)

@@ -18,7 +18,12 @@ from PIL import Image, ImageFilter
 
 HERE = os.path.dirname(os.path.abspath(__file__)); UNC = os.path.dirname(HERE)
 # family, name, 1997 picture (seed), share of the skin soaked, base colour the corpse wears (all three boncas leave the brown body of 551-559)
-WHO = (('bonca_gray', 'Bonca', 551, 0.56, 'T_Bonca_PR_Brown_BC.png'), ('slayer', 'Slayer', 645, 0.60, 'T_Slayer_PR_BC.png'))
+WHO = (('bonca_gray', 'Bonca', 551, 0.56, 'T_Bonca_PR_Brown_BC.png'), ('slayer', 'Slayer', 645, 0.60, 'T_Slayer_PR_BC.png'),
+       # the goblins of 765 / 785 / 805 lie drenched: more of the skin and the clothes soaked than the animals
+       ('goblin_hammer', 'Goblin_Hammer', 765, 0.68, 'T_Goblin_Hammer_PR_BC.png'), ('goblin_horned', 'Goblin_Horned', 785, 0.68, 'T_Goblin_Horned_PR_BC.png'),
+       ('goblin_soldier', 'Goblin_Soldier', 805, 0.66, 'T_Goblin_Soldier_PR_BC.png'),
+       # the torn dragon of 212 / 216 is red almost all over; its tears take the raw flesh painted into the texture's corner (clips_monsters.py tear)
+       ('dragon', 'Dragon', 212, 0.78, 'T_Dragon_PR_BC.png'))
 
 
 def noise(size, cell, rng):
@@ -64,9 +69,19 @@ def pool(size, seed, aspect=1.28):
     a = np.asarray(img.filter(ImageFilter.GaussianBlur(0.8 * size / 1024)), np.float32) / 255.0
     a = np.clip((a - 0.35) / 0.3, 0, 1)
     # colour: saturated red, darker where it stands deep (middle) and at a thin dried line along the rim
-    deep = np.clip(1 - r / 0.42, 0, 1) * (0.6 + 0.4 * noise(size, 96, rng)); edge = np.clip(1 - np.abs(rim - r) * size / 14.0, 0, 1) * (r > 0.2)
-    red = 0.60 - 0.20 * deep - 0.12 * edge + 0.05 * (noise(size, 24, rng) - 0.5)
-    rgb = np.stack([red, 0.016 + 0.0 * red, 0.012 + 0.0 * red], -1)
+    # colour: not one flat red. Where it stands deep (the middle, in blotches) it is dark, almost black-red; the body of the pool
+    # is saturated red; along the rim runs a band that has begun to dry, browner and duller; the thrown drops are the dry tone
+    inside = np.clip((rim - r) * size / 40.0, 0, 1)                 # 0 at the rim, 1 a few centimetres in
+    blot = np.clip(noise(size, 96, rng) * 1.9 - 0.62, 0, 1) * inside   # standing blood in blotches all over the pool, not only under the body
+    # (16 Nov, seen in the game: a pool that is bright red all over reads as spilled paint in full sun.) Blood is bright only where
+    # it lies thin: a hand's width inside the rim it already stands and darkens, and it is darkest in the blotches and the middle
+    stand = np.clip((rim - r) / 0.13, 0, 1) ** 0.8 * (0.80 + 0.35 * (noise(size, 40, rng) - 0.5))
+    deep = np.clip(np.maximum(np.clip(1 - r / 0.36, 0, 1) ** 0.7 * 0.9, 0.62 * stand) + 0.55 * blot, 0, 1)
+    edge = np.clip(1 - np.abs(rim - r) * size / 55.0, 0, 1) * (r > 0.2)
+    out = np.clip((r - rim) * size / 10.0, 0, 1)                    # 1 outside the pool: drops and runs
+    dry = np.clip(edge + 0.85 * out, 0, 1)
+    red = 0.53 - 0.38 * deep - 0.17 * dry * (1 - deep) + 0.05 * (noise(size, 24, rng) - 0.5)
+    rgb = np.stack([red, 0.012 + 0.034 * dry, 0.009 + 0.014 * dry], -1)
     return np.dstack([rgb, a])
 
 
@@ -91,16 +106,34 @@ def grit(size, seed):
 
 for fam, name, seq, cover, wears in WHO:
     d = os.path.join(UNC, fam, name)
+    if not os.path.exists(os.path.join(d, wears)): continue
     bc = np.asarray(Image.open(os.path.join(d, wears)).convert('RGB'), np.float32) / 255.0
     orm = np.asarray(Image.open(os.path.join(d, 'T_%s_PR_ORM.png' % name)).convert('RGB'), np.float32) / 255.0
     size = bc.shape[0]
     m, n = soak(size, cover, seq)
+    wj = os.path.join(d, 'corpse_wing_uv.json')
+    if os.path.exists(wj):                                          # the wing that still stands (clips_monsters.py tear): pale skin, blood from the root
+        import json; from PIL import ImageDraw
+        wt = Image.new('L', (size, size), 0); dr = ImageDraw.Draw(wt)
+        for t, u0, v0, u1, v1, u2, v2 in json.load(open(wj))['triangles']:
+            dr.polygon([(u0 * size, (1 - v0) * size), (u1 * size, (1 - v1) * size), (u2 * size, (1 - v2) * size)], fill=int(1 + 254 * min(1.0, max(0.0, t))))
+        wt = np.asarray(wt, np.float32); on = wt > 0; t = np.clip((wt - 1) / 254.0, 0, 1)
+        rngw = np.random.default_rng(seq + 5); streak = noise(size, 20, rngw) * 0.6 + noise(size, 6, rngw) * 0.4
+        keep = np.clip((0.58 - t) / 0.34 + (streak - 0.5) * 1.0, 0, 1)       # 1 at the root, runs and spatter to about half way, none at the tips
+        spat = ((noise(size, 5, rngw) > 0.80) & (noise(size, 50, rngw) > 0.5)).astype(np.float32) * 0.8
+        m = np.where(on, np.clip(np.maximum(m * keep, spat * (t < 0.85)), 0, 1), m)
+        print('%s: standing wing %.1f%% of the texture, %.0f%% of it bloodied' % (name, 100 * float(on.mean()), 100 * float((m[on] > 0.5).mean())))
     # fresh blood over skin: dark where it stands thick, a little brighter at thin edges; dried rims darker still
     thick = np.clip((n - np.quantile(n, 1.0 - cover * 0.6)) / 0.1, 0, 1)
-    blood = np.stack([0.56 - 0.24 * thick, 0.014 + 0.0 * thick, 0.010 + 0.0 * thick], -1)
+    # (16 Nov, seen in the game beside the darker pools: a body at 0.54 red with a 0.16 roughness reads as a toy dipped in paint.)
+    # Blood on a body is as dark as the pool it lies in, brighter only where it is thin, and it is tacky, not lacquer
+    blood = np.stack([0.41 - 0.27 * thick + 0.05 * (noise(size, 24, np.random.default_rng(seq + 11)) - 0.5), 0.012 + 0.0 * thick, 0.009 + 0.0 * thick], -1)
     out = bc * (1 - 0.94 * m[..., None]) + blood * (0.94 * m[..., None])
+    if name == 'Dragon':                                            # raw flesh for the tear faces: UV (0.010, 0.990) = the top-left corner
+        k = size // 40; rng2 = np.random.default_rng(216); fl = rng2.random((k, k)).astype(np.float32)
+        out[:k, :k] = np.stack([0.50 + 0.18 * fl, 0.030 + 0.03 * fl, 0.028 + 0.02 * fl], -1)
     Image.fromarray((np.clip(out, 0, 1) * 255).astype(np.uint8)).save(os.path.join(d, 'T_%s_PR_Corpse_BC.png' % name))
-    o2 = orm.copy(); o2[..., 1] = orm[..., 1] * (1 - m) + (0.16 + 0.12 * (1 - thick)) * m; o2[..., 2] = orm[..., 2] * (1 - m)
+    o2 = orm.copy(); o2[..., 1] = orm[..., 1] * (1 - m) + (0.24 + 0.20 * (1 - thick)) * m; o2[..., 2] = orm[..., 2] * (1 - m)
     Image.fromarray((np.clip(o2, 0, 1) * 255).astype(np.uint8)).save(os.path.join(d, 'T_%s_PR_Corpse_ORM.png' % name))
     pl = pool(1024, seq)
     Image.fromarray((np.clip(pl, 0, 1) * 255).astype(np.uint8), 'RGBA').save(os.path.join(d, 'T_%s_PR_BloodPool_BC.png' % name))

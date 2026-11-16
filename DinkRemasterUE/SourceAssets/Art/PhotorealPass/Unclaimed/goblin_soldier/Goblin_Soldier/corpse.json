@@ -1,0 +1,10 @@
+{
+ "mesh": "SM_Goblin_Soldier_Corpse_PR",
+ "death_clip_last_frame_minus_corpse_m": [
+  -0.0371,
+  0.8746,
+  0.0182
+ ],
+ "axes": "Blender: +X right, -Y forward, +Z up; root-relative",
+ "reshaped": false
+}

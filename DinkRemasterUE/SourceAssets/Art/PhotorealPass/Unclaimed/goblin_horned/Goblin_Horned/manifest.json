@@ -1,0 +1,146 @@
+{
+ "name": "SK_Goblin_Horned_PR",
+ "class": "character_humanoid",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_horned/Goblin_Horned/SK_Goblin_Horned_PR_LOD0.fbx",
+ "lod_fbx": [
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_horned/Goblin_Horned/SK_Goblin_Horned_PR_LOD0.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_horned/Goblin_Horned/SK_Goblin_Horned_PR_LOD1.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_horned/Goblin_Horned/SK_Goblin_Horned_PR_LOD2.fbx",
+  "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_horned/Goblin_Horned/SK_Goblin_Horned_PR_LOD3.fbx"
+ ],
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_horned/Goblin_Horned/SK_Goblin_Horned_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_goblin.py Horned final",
+ "dimensions_m": [
+  0.8846,
+  0.5806,
+  1.4826
+ ],
+ "bounds_min_m": [
+  -0.4688,
+  -0.3755,
+  0.0001
+ ],
+ "bounds_max_m": [
+  0.4158,
+  0.2051,
+  1.4827
+ ],
+ "lod0_triangles": 20000,
+ "lod1_triangles": 9998,
+ "lod2_triangles": 4998,
+ "lod3_triangles": 2398,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 35000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_horned/Goblin_Horned/T_Goblin_Horned_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_horned/Goblin_Horned/T_Goblin_Horned_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_horned/Goblin_Horned/T_Goblin_Horned_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Goblin_Horned_PR"
+ ],
+ "rig": {
+  "root_bone": "root",
+  "bones": [
+   "root",
+   "pelvis",
+   "spine_01",
+   "spine_02",
+   "spine_03",
+   "spine_04",
+   "spine_05",
+   "neck_01",
+   "neck_02",
+   "head",
+   "clavicle_l",
+   "upperarm_l",
+   "lowerarm_l",
+   "hand_l",
+   "clavicle_r",
+   "upperarm_r",
+   "lowerarm_r",
+   "hand_r",
+   "thigh_l",
+   "calf_l",
+   "foot_l",
+   "ball_l",
+   "thigh_r",
+   "calf_r",
+   "foot_r",
+   "ball_r"
+  ],
+  "bone_count": 26,
+  "weights": {
+   "method": "inverse distance",
+   "max_influences": 4,
+   "unweighted_vertices": 0
+  },
+  "rest_pose": "standing pose as modelled (not a T pose)",
+  "animation": "none: skeleton and skin weights only; no clips, no Physics Asset, no control rig",
+  "skeleton": "bespoke (CONVENTIONS.md section 11: any skeleton with a single root bone named root)"
+ },
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "uv_range": [
+   0.0051,
+   0.9949
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 49.3,
+   "p99": 183.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.452,
+   "p95": 0.602
+  },
+  "metallic_mean": 0.052,
+  "ao_mean": 0.282
+ },
+ "pivot": "feet: armature origin on the ground between the feet, front on -Y",
+ "families": [
+  "goblin_horned",
+  "781-789 foes/goblin/horns/walk"
+ ],
+ "origin_ids": {},
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "horned goblin (Mog), 1.37 m before the class row scales him up: olive skin, red-brown studded jerkin, spiked iron pauldrons, a helmet with bull horns, a spiked club in the right hand",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound to any placement",
+ "known_weaknesses": "NOT photoreal at 1 m. The body is a joint-graph sculpt (no modelled muscle, hands are mittens round the weapon, the face is pressed-in eyes and mouth with ball eyes and two tusks, no lids or nostrils). Garments are shells lifted off that body: real hems, but no seams, lacing or cloth simulation, and they bend with the automatic skin weights of the body. Helmet, weapon and shield are rigid on their bone; pauldrons are skinned. Decimated game mesh without joint loops. Clips are the poses made for the knight (clips_monsters.py). The horned goblin (Mog) is the same body in another kit, not a bigger build.",
+ "contact_crop": 0.95,
+ "skeleton_note": "bone names and hierarchy of the project humanoid core set (CONVENTIONS.md section 11), goblin proportions"
+}

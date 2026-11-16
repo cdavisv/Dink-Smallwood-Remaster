@@ -1,0 +1,10 @@
+{
+ "mesh": "SM_Dragon_Corpse_PR",
+ "death_clip_last_frame_minus_corpse_m": [
+  -0.5864,
+  0.6003,
+  0.1246
+ ],
+ "axes": "Blender: +X right, -Y forward, +Z up; root-relative",
+ "reshaped": true
+}

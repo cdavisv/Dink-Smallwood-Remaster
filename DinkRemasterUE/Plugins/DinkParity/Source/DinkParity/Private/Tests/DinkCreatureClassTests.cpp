@@ -252,7 +252,7 @@ bool FDinkCreatureClassDressTest::RunTest(const FString&)
 		ADinkPlaceholderActor* OriginBound = SpawnPlacement(World, 438, 3, TEXT("pillbug"), 131, TEXT("en-pill"), Plane);
 		ADinkPlaceholderActor* Proxy = SpawnPlacement(World, 527, 5, TEXT("pillbug"), 131, NAME_None, Plane);
 		Proxy->PlacementKind = TEXT("hardness_only");
-		ADinkPlaceholderActor* Other = SpawnPlacement(World, 527, 6, TEXT("goblin_soldier"), 801, TEXT("en-gs"), Plane);
+		ADinkPlaceholderActor* Other = SpawnPlacement(World, 527, 6, TEXT("fish"), 434, NAME_None, Plane);
 		First->SetActorLocation(FVector(1000, 0, 0));
 		Second->SetActorLocation(FVector(90000, 0, 0));
 		const TArray<FName> TagsBefore = First->Tags;

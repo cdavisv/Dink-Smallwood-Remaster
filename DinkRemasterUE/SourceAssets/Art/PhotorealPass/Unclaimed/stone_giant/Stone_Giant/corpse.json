@@ -1,0 +1,10 @@
+{
+ "mesh": "SM_Stone_Giant_Corpse_PR",
+ "death_clip_last_frame_minus_corpse_m": [
+  -0.0504,
+  -0.7414,
+  -0.0475
+ ],
+ "axes": "Blender: +X right, -Y forward, +Z up; root-relative",
+ "reshaped": true
+}

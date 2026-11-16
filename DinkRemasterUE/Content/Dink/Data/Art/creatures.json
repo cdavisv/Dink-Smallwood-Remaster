@@ -1578,11 +1578,211 @@
             218,
             219
           ],
-          "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
-          "scale": 1.7
+          "mesh": "/Game/Dink/Photoreal/Creatures/Dragon/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Dragon/M_Dragon_BloodPool_Decal.M_Dragon_BloodPool_Decal",
+            "size_cm": [
+              1250,
+              1000
+            ],
+            "depth_cm": 45
+          }
         }
       ],
-      "note": "Dragon (en-drag, sc-drag, s7-drag; brain 10, walk 202-208). It has no attack sequence: it spits fire while it treads, so the Attack clip is authored and not bound. A kill leaves sprites 212-218: the corpse kit's torn dragon with its own pool. Corpse scale 1.7: the kit mesh was made for the placed 216 card and lay as a small heap beside the live dragon; the 1997 remains are about two thirds of the live dragon's width."
+      "note": "Dragon (en-drag, sc-drag, s7-drag; brain 10, walk 202-208). It has no attack sequence: it spits fire while it treads, so no sequence selects the Attack clip (hit, death and attack clips are delivered for the creature one-shots). A kill leaves sprites 212-218: the brown body of the death pose lying on the ground, torn at the neck, a wing root, a hip and the tail, the tears raw red, soaked red almost all over, the wing under the body torn off and flat, the other still raised from the carcass as in 212, in a wide pool with a dark centre, drying rim and thrown drops (decal 12.5 x 10 m: the pool itself about 6 m, as long as the remains). It replaces the corpse kit's tan dragon for killed dragons (the placed 216 card keeps the kit asset)."
+    },
+    {
+      "class": "goblin_hammer",
+      "mesh": "/Game/Dink/Photoreal/Creatures/GoblinHammer/SK_Goblin_Hammer_PR.SK_Goblin_Hammer_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/GoblinHammer/Animations/AN_Goblin_Hammer_Idle.AN_Goblin_Hammer_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/GoblinHammer/Animations/AN_Goblin_Hammer_Walk.AN_Goblin_Hammer_Walk",
+            "speed_cm_s": 97.3
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/GoblinHammer/Animations/AN_Goblin_Hammer_Run.AN_Goblin_Hammer_Run",
+            "speed_cm_s": 242.6
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            761,
+            762,
+            763,
+            764,
+            766,
+            767,
+            768,
+            769
+          ],
+          "locomotion": true
+        },
+        "attack": {
+          "sequences": [
+            751,
+            752,
+            753,
+            754,
+            756,
+            757,
+            758,
+            759
+          ],
+          "clip": "/Game/Dink/Photoreal/Creatures/GoblinHammer/Animations/AN_Goblin_Hammer_Attack.AN_Goblin_Hammer_Attack"
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            765
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/GoblinHammer/SM_Goblin_Hammer_Corpse_PR.SM_Goblin_Hammer_Corpse_PR",
+          "scale": 1.4,
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/GoblinHammer/M_Goblin_Hammer_BloodPool_Decal.M_Goblin_Hammer_BloodPool_Decal",
+            "size_cm": [
+              400,
+              320
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "scale": 1.4,
+      "note": "Goblin with the war hammer (en-gh, s3-gh, s3-gob; walk 761-769, attack 752-758). No base_death (commented out in en-gh.c): a kill leaves 765 (base_walk + 5, dink.cpp:12371-12383): the body on its back, drenched, the hammer beside it, in a pool with thrown drops. Scale 1.4: the 1997 goblin stands a head over Dink."
+    },
+    {
+      "class": "goblin_horned",
+      "mesh": "/Game/Dink/Photoreal/Creatures/GoblinHorned/SK_Goblin_Horned_PR.SK_Goblin_Horned_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/GoblinHorned/Animations/AN_Goblin_Horned_Idle.AN_Goblin_Horned_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/GoblinHorned/Animations/AN_Goblin_Horned_Walk.AN_Goblin_Horned_Walk",
+            "speed_cm_s": 97.3
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/GoblinHorned/Animations/AN_Goblin_Horned_Run.AN_Goblin_Horned_Run",
+            "speed_cm_s": 242.6
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            781,
+            782,
+            783,
+            784,
+            786,
+            787,
+            788,
+            789
+          ],
+          "locomotion": true
+        },
+        "attack": {
+          "sequences": [
+            771,
+            772,
+            773,
+            774,
+            776,
+            777,
+            778,
+            779,
+            780
+          ],
+          "clip": "/Game/Dink/Photoreal/Creatures/GoblinHorned/Animations/AN_Goblin_Horned_Attack.AN_Goblin_Horned_Attack"
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            785
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/GoblinHorned/SM_Goblin_Horned_Corpse_PR.SM_Goblin_Horned_Corpse_PR",
+          "scale": 1.7,
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/GoblinHorned/M_Goblin_Horned_BloodPool_Decal.M_Goblin_Horned_BloodPool_Decal",
+            "size_cm": [
+              400,
+              320
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "scale": 1.7,
+      "note": "Horned goblin, Mog (en-gmog, spawned by s3-mog; walk 781-789, attack 772-778 and the special 780). A kill leaves 785. No placement carries this class: the row binds the sprites the script creates. Scale 1.7: he is the biggest of them (781 is 135 px against the hammer goblin's 107)."
+    },
+    {
+      "class": "goblin_soldier",
+      "mesh": "/Game/Dink/Photoreal/Creatures/GoblinSoldier/SK_Goblin_Soldier_PR.SK_Goblin_Soldier_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/GoblinSoldier/Animations/AN_Goblin_Soldier_Idle.AN_Goblin_Soldier_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/GoblinSoldier/Animations/AN_Goblin_Soldier_Walk.AN_Goblin_Soldier_Walk",
+            "speed_cm_s": 97.3
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/GoblinSoldier/Animations/AN_Goblin_Soldier_Run.AN_Goblin_Soldier_Run",
+            "speed_cm_s": 242.6
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            801,
+            802,
+            803,
+            804,
+            806,
+            807,
+            808,
+            809
+          ],
+          "locomotion": true
+        },
+        "attack": {
+          "sequences": [
+            791,
+            792,
+            793,
+            794,
+            796,
+            797,
+            798,
+            799
+          ],
+          "clip": "/Game/Dink/Photoreal/Creatures/GoblinSoldier/Animations/AN_Goblin_Soldier_Attack.AN_Goblin_Soldier_Attack"
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            805
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/GoblinSoldier/SM_Goblin_Soldier_Corpse_PR.SM_Goblin_Soldier_Corpse_PR",
+          "scale": 1.45,
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/GoblinSoldier/M_Goblin_Soldier_BloodPool_Decal.M_Goblin_Soldier_BloodPool_Decal",
+            "size_cm": [
+              400,
+              320
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "scale": 1.45,
+      "note": "Goblin soldier (en-gs, s3-gs, s3-gobg; walk 801-809, attack 792-798): scale coat, helmet, shield, bill. A kill leaves 805: sprawled on his back with the bill beside him, the pool the length of the body."
     }
   ]
 }

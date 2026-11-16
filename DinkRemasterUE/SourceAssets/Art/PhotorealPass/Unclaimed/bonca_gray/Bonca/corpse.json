@@ -1,0 +1,10 @@
+{
+ "mesh": "SM_Bonca_Corpse_PR",
+ "death_clip_last_frame_minus_corpse_m": [
+  -0.1708,
+  0.2727,
+  -0.2289
+ ],
+ "axes": "Blender: +X right, -Y forward, +Z up; root-relative",
+ "reshaped": false
+}

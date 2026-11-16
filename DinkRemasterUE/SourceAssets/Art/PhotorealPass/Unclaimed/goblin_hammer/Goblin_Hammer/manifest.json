@@ -11,24 +11,24 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/goblin_hammer/Goblin_Hammer/SK_Goblin_Hammer_PR.blend",
  "build": "Unclaimed/tools/bl.sh build_goblin.py Hammer final",
  "dimensions_m": [
-  0.7429,
-  0.602,
-  1.3847
+  0.8359,
+  0.6596,
+  1.395
  ],
  "bounds_min_m": [
-  -0.3848,
-  -0.4278,
-  -0.0003
+  -0.42,
+  -0.4524,
+  0.0001
  ],
  "bounds_max_m": [
-  0.3581,
-  0.1742,
-  1.3844
+  0.4158,
+  0.2072,
+  1.3951
  ],
- "lod0_triangles": 14000,
- "lod1_triangles": 7000,
- "lod2_triangles": 3500,
- "lod3_triangles": 1680,
+ "lod0_triangles": 20000,
+ "lod1_triangles": 9998,
+ "lod2_triangles": 4998,
+ "lod3_triangles": 2398,
  "triangle_budget": {
   "soft": 20000,
   "hard": 35000,
@@ -109,24 +109,24 @@
   "loose_verts": 0,
   "zero_area_faces": 0,
   "uv_range": [
-   0.0032,
-   0.9968
+   0.0048,
+   0.9952
   ],
   "transforms_applied": true
  },
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 68.3,
-   "p99": 109.1
+   "mean": 46.8,
+   "p99": 115.3
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.534,
-   "p95": 0.85
+   "mean": 0.475,
+   "p95": 0.601
   },
-  "metallic_mean": 0.033,
-  "ao_mean": 0.608
+  "metallic_mean": 0.027,
+  "ao_mean": 0.3
  },
  "pivot": "feet: armature origin on the ground between the feet, front on -Y",
  "families": [
@@ -142,12 +142,12 @@
   ]
  },
  "supersedes": "none (placeholder greybox cards)",
- "dresses": "goblin with a war hammer, 1.37 m: green warty skin, brown tunic and breeches, leather skullcap, a square-headed iron hammer on a 1.1 m shaft in the right hand",
+ "dresses": "goblin with a war hammer, 1.37 m: olive warty skin, studded leather jerkin, breeches, boots, iron skullcap, a square-headed iron hammer on a 1.1 m shaft in the right hand",
  "third_party": [
   "rusty_metal_02"
  ],
  "status": "source delivered; not imported into Unreal, not bound to any placement",
- "known_weaknesses": "NOT photoreal at 1 m: a fused blob figure. Clothing is the body surface puffed out and recoloured by region, not separate garments, so there are no hems, belts, buckles or layered edges; the face is pressed-in eyes and mouth with ball eyes and two tusks, without lids or nostrils. Hands are mittens: the weapon passes through the fist. Helmet, weapon and shield are skinned by nearest bone with the same automatic weights as the body (they should be rigid attachments on sockets). Decimated game mesh without joint loops; one test pose; no animation clips, no Physics Asset. Rest pose is a standing guard pose, not the A pose of the Manny skeleton.",
+ "known_weaknesses": "NOT photoreal at 1 m. The body is a joint-graph sculpt (no modelled muscle, hands are mittens round the weapon, the face is pressed-in eyes and mouth with ball eyes and two tusks, no lids or nostrils). Garments are shells lifted off that body: real hems, but no seams, lacing or cloth simulation, and they bend with the automatic skin weights of the body. Helmet, weapon and shield are rigid on their bone; pauldrons are skinned. Decimated game mesh without joint loops. Clips are the poses made for the knight (clips_monsters.py). The horned goblin (Mog) is the same body in another kit, not a bigger build.",
  "contact_crop": 0.95,
  "skeleton_note": "bone names and hierarchy of the project humanoid core set (CONVENTIONS.md section 11), goblin proportions"
 }
