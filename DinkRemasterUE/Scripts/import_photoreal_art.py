@@ -1074,11 +1074,11 @@ def creature_skeletal_options(skeleton):
     return options
 
 
-def creature_mesh(source_dir, source, folder, name, skeleton, materials):
+def creature_mesh(source_dir, source, folder, name, skeleton, materials, sub='Export'):
     """A photoreal creature's skeletal mesh from Export/<source>_LOD0..2.fbx -> (mesh, rig, slot names).
     `skeleton` None: the mesh brings its own; else the import targets it."""
     target = folder + '/' + name
-    fbx = [source_dir / f'Export/{source}_LOD{i}.fbx' for i in range(3)]
+    fbx = [(source_dir / sub if sub else source_dir) / f'{source}_LOD{i}.fbx' for i in range(3)]
     key = '|'.join(stamp_of(f) for f in fbx)
     mesh = LIB.load_asset(target) if LIB.does_asset_exist(target) else None
     if mesh is None or LIB.get_metadata_tag(mesh, 'DinkSource') != key:
@@ -1114,11 +1114,11 @@ def creature_mesh(source_dir, source, folder, name, skeleton, materials):
     return mesh, rig, [str(s.get_editor_property('material_slot_name')) for s in slots]
 
 
-def creature_clips(source_dir, source_prefix, folder, asset_prefix, skeleton, actions):
+def creature_clips(source_dir, source_prefix, folder, asset_prefix, skeleton, actions, sub='Export'):
     """In-place clips Export/<source_prefix>_<Action>.fbx -> <folder>/Animations/<asset_prefix>_<Action>. actions: (name, loops)."""
     clips = {}
     for action, loop in actions:
-        fbx = source_dir / f'Export/{source_prefix}_{action}.fbx'
+        fbx = (source_dir / sub if sub else source_dir) / f'{source_prefix}_{action}.fbx'
         if not fbx.exists():
             continue
         name = f'{asset_prefix}_{action}'
@@ -1329,7 +1329,7 @@ if 'slime' in ONLY:
             mesh, changed = import_static([SL / 'Export/SM_Slime_Splat.fbx'], folder, f'SM_Slime_Splat_{colour}', True)
             # thrown gel: one wet colour (the atlas of the living slime does not map onto these blobs)
             gel = new_material(folder, f'M_SlimeGel_{colour}')
-            tint = {'Blue': (0.006, 0.009, 0.045), 'Green': (0.12, 0.09, 0.008), 'Red': (0.06, 0.018, 0.010)}[colour]   # linear: the body colour of the sprite (red: the brown-red of 701/703)
+            tint = {'Blue': (0.02, 0.025, 0.12), 'Green': (0.12, 0.09, 0.008), 'Red': (0.06, 0.018, 0.010)}[colour]   # linear: the body colour of the sprite (red: the brown-red of 701/703)
             out(expr(gel, unreal.MaterialExpressionConstant3Vector, -400, 0, constant=unreal.LinearColor(tint[0], tint[1], tint[2], 1.0)), '', MP.MP_BASE_COLOR)
             out(expr(gel, unreal.MaterialExpressionConstant, -400, 200, r=0.12), '', MP.MP_ROUGHNESS)
             out(expr(gel, unreal.MaterialExpressionConstant, -400, 300, r=0.6), '', MP.MP_SPECULAR)
@@ -1339,8 +1339,10 @@ if 'slime' in ONLY:
             save(mesh)
             # the splash pictures are lighter than the 1997 splatters (661, 681, 701/703) and their outer spatter thin: each colour is
             # pulled to its sprite's mean (linear ratio sprite / picture, darkened a third for the remaster's sunlight) and the spatter
-            # made solid (15 Nov 2026 review; parameters of the same pictures, no new art)
-            look = {'Red': dict(tint=(0.42, 0.62, 0.42), opacity_gain=1.8), 'Blue': dict(tint=(0.21, 0.2, 0.33), opacity_gain=1.8),
+            # made solid (15 Nov 2026 review; parameters of the same pictures, no new art). Blue, second pass: on grass the stain only
+            # tinted the blade bases and read as a dark shadow, so it is lifted to the bright quarter of 661 (sRGB about 54,46,108) and
+            # every spatter piece made opaque (gain 3)
+            look = {'Red': dict(tint=(0.42, 0.62, 0.42), opacity_gain=1.8), 'Blue': dict(tint=(0.45, 0.4, 0.75), opacity_gain=3.0),
                     'Green': dict(tint=(0.43, 0.41, 0.06), opacity_gain=1.8)}[colour]
             decal = decal_material(folder, f'M_SlimeSplat_{colour}_Decal', import_texture(SL / f'Textures/T_SlimeSplat_{colour}_BC.png', tex_folder, 'BCA', wrap=False), roughness=0.5, **look)
             splats[colour] = {'mesh': folder + f'/SM_Slime_Splat_{colour}', 'decal': decal.get_path_name()}
@@ -1453,6 +1455,76 @@ if 'duck' in ONLY:
     except Exception as error:
         report['duck']['error'] = str(error)
         warn(f'duck not imported: {error}')
+
+# ------------------------------------------------------------------------------------------- monsters (gate 2 creatures)
+# DINK_PHOTOREAL_ONLY=monsters (or any of bonca,slayer,dragon,giant,knight): the rigged monsters of PhotorealPass/Unclaimed
+# -> /Game/Dink/Photoreal/Creatures/<Name>. Each brings its own skeleton, its clips (Unclaimed/tools/clips_bonca.py,
+# clips_monsters.py; clips.json holds the measured stride speeds), its colour variants as material instances, and, for
+# the bonca, the slayer and the stone giant, the body frozen in the last frame of the death clip (bonca and slayer with
+# the blood-soaked textures of Unclaimed/tools/corpse_blood.py, each with its ground decal: the pool with thrown drops, or
+# the giant's grit; its corpse is broken into blocks by clips_monsters.py). The dragon and the knight leave their corpse kit assets.
+class AnySlot(dict):
+    """One material for whatever slot name the FBX carries."""
+    def __init__(self, material):
+        super().__init__()
+        self.material = material
+    def __contains__(self, key):
+        return True
+    def __getitem__(self, key):
+        return self.material
+
+
+MONSTERS = (('bonca', 'bonca_gray', 'Bonca', ('Brown', 'Purple'), True, False),
+            ('slayer', 'slayer', 'Slayer', (), True, False),
+            ('dragon', 'dragon', 'Dragon', (), False, True),
+            ('giant', 'stone_giant', 'Stone_Giant', (), True, False),
+            ('knight', 'npc_knight_blue', 'Knight', ('Red', 'Silver'), False, False))
+for key, family, name, variants, corpse, two_sided in MONSTERS:
+    if key not in ONLY and 'monsters' not in ONLY:
+        continue
+    MD = PASS / 'Unclaimed' / family / name
+    folder = BASE + '/Creatures/' + name.replace('_', '')
+    tex_folder = folder + '/Textures'
+    entry = report.setdefault('monsters', {}).setdefault(key, {})
+    try:
+        tex = {r: import_texture(MD / f'T_{name}_PR_{r}.png', tex_folder, r) for r in ('BC', 'N', 'ORM')}
+        parent = surface_material(folder, f'M_{name}_PR', tex, skeletal=True, two_sided=two_sided)
+        base = instance(folder, f'MI_{name}_PR', parent, tex)
+        mesh, rig, slots = creature_mesh(MD, f'SK_{name}_PR', folder, f'SK_{name}_PR', None, AnySlot(base))
+        skeleton = mesh.get_editor_property('skeleton')
+        save(skeleton); save(mesh)
+        entry.update({'mesh': folder + f'/SK_{name}_PR', 'skeleton': skeleton.get_path_name(), 'bones': len(rig['bones']), 'bounds_size_cm': rig.get('bounds_size_cm'),
+                      'lods': unreal.SkeletalMeshEditorSubsystem.get_lod_count(mesh), 'slots': slots, 'material': base.get_path_name()})
+        entry['variants'] = {v: instance(folder, f'MI_{name}_{v}_PR', parent, dict(tex, BC=import_texture(MD / f'T_{name}_PR_{v}_BC.png', tex_folder, 'BC'))).get_path_name()
+                             for v in variants}
+        meta = json.loads((MD / 'clips.json').read_text())
+        clips = creature_clips(MD, f'A_{name}', folder, f'AN_{name}', skeleton, tuple((clip, bool(row.get('loop'))) for clip, row in meta.items()))
+        for clip, row in meta.items():
+            if clip in clips and 'speed_cm_s' in row:
+                clips[clip]['speed_cm_s'] = row['speed_cm_s']
+        if sorted(clips) != sorted(meta):
+            raise RuntimeError(f'{name}: clips missing: ' + ', '.join(sorted(set(meta) - set(clips))))
+        entry['clips'] = clips
+        if corpse:
+            soaked = (MD / f'T_{name}_PR_Corpse_BC.png').exists()
+            ctex = dict(tex, BC=import_texture(MD / f'T_{name}_PR_Corpse_BC.png', tex_folder, 'BC'), ORM=import_texture(MD / f'T_{name}_PR_Corpse_ORM.png', tex_folder, 'ORM')) if soaked else tex
+            cparent = surface_material(folder, f'M_{name}_Corpse_PR', ctex)
+            body, changed = import_static([MD / f'SM_{name}_Corpse_PR.fbx'], folder, f'SM_{name}_Corpse_PR', True)
+            assign_slots(body, AnySlot(cparent), f'SM_{name}_Corpse_PR')
+            save(body)
+            box = body.get_bounding_box()
+            entry['corpse'] = {'mesh': folder + f'/SM_{name}_Corpse_PR', 'reimported': changed, 'blood_soaked': soaked,
+                               'size_cm': [round(box.max.x - box.min.x, 1), round(box.max.y - box.min.y, 1), round(box.max.z - box.min.z, 1)]}
+            # what lies round the body, projected on the ground and the grass (the class row's corpse decal): the lobed
+            # pool with its thrown drops (551-559, 645; Unclaimed/tools/corpse_blood.py), or the stone giant's dark grit (825)
+            for kind, rough in (('BloodPool', 0.12), ('Grit', 0.9)):
+                picture = MD / f'T_{name}_PR_{kind}_BC.png'
+                if picture.exists():
+                    ground = decal_material(folder, f'M_{name}_{kind}_Decal', import_texture(picture, tex_folder, 'BCA', wrap=False), roughness=rough)
+                    entry['corpse']['ground_decal'] = ground.get_path_name()
+    except Exception as error:
+        entry['error'] = str(error)
+        warn(f'{key} not imported: {error}')
 
 dest = ROOT / 'Saved/PhotorealPass/import_photoreal.json'
 dest.parent.mkdir(parents=True, exist_ok=True)

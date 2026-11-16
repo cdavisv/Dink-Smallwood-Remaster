@@ -572,7 +572,10 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 		if (Shown) Shown->DestroyComponent();
 		if (!Card)
 		{
-			Card = NewObject<UMaterialBillboardComponent>(Actor, TEXT("ScriptFamilyEffect"));
+			// A unique name: a card destroyed earlier (DestroyComponent) keeps its name until garbage collection, and NewObject under
+			// that name rebuilds the dead object in place (the engine's "UObject overwrite": a render-fence stall, and every weak
+			// pointer to the old component then resolves to the new one).
+			Card = NewObject<UMaterialBillboardComponent>(Actor, MakeUniqueObjectName(Actor, UMaterialBillboardComponent::StaticClass(), TEXT("ScriptFamilyEffect")));
 			Card->SetMobility(EComponentMobility::Movable);
 			Card->SetupAttachment(Actor->GetRootComponent());
 			Card->SetUsingAbsoluteScale(true);
@@ -613,7 +616,8 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 	}
 	if (!Shown)
 	{
-		Shown = NewObject<UStaticMeshComponent>(Actor, TEXT("ScriptFamilyArt"));
+		// A unique name: the mesh just destroyed above keeps "ScriptFamilyArt" until garbage collection (see the effect card).
+		Shown = NewObject<UStaticMeshComponent>(Actor, MakeUniqueObjectName(Actor, UStaticMeshComponent::StaticClass(), TEXT("ScriptFamilyArt")));
 		Shown->SetMobility(EComponentMobility::Movable);
 		Shown->SetupAttachment(Actor->GetRootComponent());
 		// The marker root is scaled (0.3, 0.3, 0.6, or sp_size): the mesh keeps its own size and turn.
@@ -665,6 +669,65 @@ UStaticMesh* UDinkArtFamilySubsystem::MeshFor(const FDinkFamilyBinding& Binding,
 	return Variant ? Variant : Main;
 }
 
+bool UDinkArtFamilySubsystem::SetPlacementPicture(ADinkPlaceholderActor& Actor, int32 Sequence, int32 Frame, bool bScripted)
+{
+	UWorld* World = GetWorld();
+	if (!World || !Actor.Origin || IsCollisionFitRequested(Actor.Origin->OriginId)) return false;
+	const FPlacementPicture* Known = PlacementPictures.Find(&Actor);
+	const bool bImported = Sequence <= 0 || (Sequence == Actor.Origin->Sequence && Frame == Actor.Origin->Frame && bScripted == !Actor.Origin->ScriptName.IsNone());
+	if (bImported ? !Known : (Known && Known->Sequence == Sequence && Known->Frame == Frame && Known->bScripted == bScripted))
+	{
+		return Actor.ActorHasTag(FamilyTag);
+	}
+	if (bImported) PlacementPictures.Remove(&Actor);
+	else PlacementPictures.Add(&Actor, FPlacementPicture{Sequence, Frame, bScripted});
+	if (!bReady) return false;
+	if (!bIndexed) BuildIndex(*World);
+	// Undo what DressActor did for the old picture (its FamilyArt parts and the hidden card), then dress from the new one.
+	TInlineComponentArray<UStaticMeshComponent*> Parts(&Actor);
+	bool bUndressed = false;
+	for (UStaticMeshComponent* Part : Parts)
+	{
+		if (Part && Part != Actor.Card && Part->ComponentHasTag(FamilyTag) && !Part->ComponentHasTag(ScriptSpriteTag) && Part->GetName().StartsWith(TEXT("FamilyArt")))
+		{
+			Actor.RemoveInstanceComponent(Part);
+			Part->DestroyComponent();
+			bUndressed = true;
+		}
+	}
+	if (bUndressed)
+	{
+		Actor.Tags.Remove(FamilyTag);
+		if (Actor.Card) Actor.Card->SetHiddenInGame(false);
+	}
+	// A screen not yet activated is dressed by ApplyScreen, from the picture registered above.
+	return AppliedScreens.Contains(Actor.ScreenNumber) && DressActor(Actor);
+}
+
+bool UDinkArtFamilySubsystem::FollowPlacementPicture(ADinkPlaceholderActor& Actor, int32 Sequence, int32 Frame)
+{
+	if (!bReady || !Actor.Origin || Sequence <= 0 || Frame <= 0) return false;
+	const FDinkFamilyBinding* Row = DinkArtFamily::Resolve(Bindings, Sequence, NAME_None, Frame);
+	if (!Row || Row->Sequence != Sequence || Row->Frame != Frame) return false;
+	// The binding the placement is dressed from now: its registered picture, else the imported one.
+	int32 ShownSequence = Actor.Origin->Sequence, ShownFrame = Actor.Origin->Frame;
+	FName ShownClass = Actor.Origin->ClassId;
+	if (const FPlacementPicture* Known = PlacementPictures.Find(&Actor))
+	{
+		ShownSequence = Known->Sequence;
+		ShownFrame = Known->Frame;
+		ShownClass = ClassOfPicture(Known->Sequence, Known->Frame);
+	}
+	// Already dressed with that mesh (175/4 -> 175/5: the lid stays up): nothing to do, no component is rebuilt.
+	const FDinkFamilyBinding* Shown = DinkArtFamily::Resolve(Bindings, ShownSequence, ShownClass, ShownFrame);
+	if (Actor.ActorHasTag(FamilyTag) && Shown && (Shown == Row || (Shown->Mesh == Row->Mesh && Shown->Variants == Row->Variants && Shown->Scale == Row->Scale &&
+		Shown->AnchorFront == Row->AnchorFront && Shown->bYawFromSprite == Row->bYawFromSprite && Shown->YawOffset == Row->YawOffset))) return false;
+	const bool bShown = SetPlacementPicture(Actor, Sequence, Frame, !Actor.Origin->ScriptName.IsNone());
+	UE_LOG(LogDink, Log, TEXT("Family art: %s follows its animation to %d/%d (%s)"), *Actor.Origin->OriginId.ToString(), Sequence, Frame,
+		bShown ? *Row->Mesh : TEXT("not shown"));
+	return bShown;
+}
+
 int32 UDinkArtFamilySubsystem::ApplyScreen(int32 ScreenNumber)
 {
 	UWorld* World = GetWorld();
@@ -709,6 +772,14 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	P.ClassId = Actor.Origin->ClassId;
 	P.bScripted = !Actor.Origin->ScriptName.IsNone();
 	P.bHardnessOnly = Actor.PlacementKind == TEXT("hardness_only");
+	// The picture the save gave this placement (SetPlacementPicture), and with it its class and its (cleared) script.
+	if (const FPlacementPicture* Saved = PlacementPictures.Find(&Actor))
+	{
+		P.Sequence = Saved->Sequence;
+		P.Frame = Saved->Frame;
+		P.ClassId = ClassOfPicture(Saved->Sequence, Saved->Frame);
+		P.bScripted = Saved->bScripted;
+	}
 	const FDinkFamilyBinding* B = nullptr;
 	const EDinkFamilyDecision Decision = DinkArtFamily::Decide(P, Precedence, Bindings, B);
 	DecisionCounts.FindOrAdd(Decision)++;

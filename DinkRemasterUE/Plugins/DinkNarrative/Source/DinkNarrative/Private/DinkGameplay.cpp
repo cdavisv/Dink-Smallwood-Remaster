@@ -8,6 +8,14 @@
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "Greybox/DinkGreyboxCharacter.h"
 #include "DinkFloatingNumbers.h"
+#include "Greybox/DinkPlaceholderActor.h"
+#include "DinkArtFamilySubsystem.h"
+#include "DinkOriginComponent.h"
+#include "Hardness/DinkFamilyCollisionFit.h"
+#include "Components/StaticMeshComponent.h"
+#include "Materials/MaterialInterface.h"
+#include "EngineUtils.h"
+#include "HAL/IConsoleManager.h"
 #include "Algo/StableSort.h"
 #include "DinkInventoryComponent.h"
 #include "DinkStorySubsystem.h"
@@ -2330,6 +2338,156 @@ bool UDinkGameplay::MapPlacement(const FDinkPlacementInfo& P, bool& bActive, int
 	// single Variant (which holds only the last one written).
 	EffectiveHardnessPicture(P, Seq, Frame);
 	return true;
+}
+
+namespace
+{
+	TAutoConsoleVariable<int32> CVarDinkSavedPicture(TEXT("dink.SavedPicture"), 1,
+		TEXT("1: a placement whose save holds editor_type 2-5 shows the saved editor_seq/editor_frame on screen entry (UDinkGameplay::PresentPlacementPictures). ")
+		TEXT("0: review only, placements keep whatever they showed (the look before 14 Nov 2026). Presentation only."));
+}
+
+void UDinkGameplay::PresentPlacementPictures(int32 Screen) const
+{
+	if (CVarDinkSavedPicture.GetValueOnGameThread() == 0)
+	{
+		return;
+	}
+	UWorld* World = Story ? Story->GetWorld() : nullptr;
+	const UDinkWorldStateSubsystem* State = Story ? Story->GetWorldState() : nullptr;
+	if (!World || !State)
+	{
+		return;
+	}
+	const UDinkArtFamilySubsystem* Family = World->GetSubsystem<UDinkArtFamilySubsystem>();
+	for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
+	{
+		ADinkPlaceholderActor* Actor = *It;
+		const FDinkPlacementInfo* P = Actor->Origin && Actor->Origin->OriginId.Screen == Screen ? Data.FindPlacement(Actor->Origin->OriginId) : nullptr;
+		// Fitted barrels (families.json collision_fit) publish their own released picture and own their actor's state.
+		if (!P || (Family && Family->IsCollisionFitRequested(P->Origin)))
+		{
+			continue;
+		}
+		// update_play_changes (D:5786-5811, 5829-5830): editor_type 2-5 give the placement the save's editor_seq / editor_frame. A save
+		// without them (older remaster saves: 0/0) has no picture to show, so the imported one stays.
+		const EDinkOverrideType Type = State->GetOverrideType(P->Origin);
+		int32 Seq = Actor->Origin->Sequence, Frame = Actor->Origin->Frame;
+		bool bSaved = Type >= EDinkOverrideType::LiveNoHardness && Type <= EDinkOverrideType::BackgroundHard;
+		if (bSaved)
+		{
+			EffectiveHardnessPicture(*P, Seq, Frame);
+			if (Seq <= 0 || Frame <= 0)
+			{
+				Seq = Actor->Origin->Sequence;
+				Frame = Actor->Origin->Frame;
+				bSaved = false;
+			}
+		}
+		PresentPlacementPicture(*Actor, Seq, Frame, bSaved);
+		// place_sprites_game draws a type 3/5 placement into the background (D:6036-6054): it is seen whatever its sprite did on an
+		// earlier visit (a smashed barrel's sprite was killed, which hid its actor). Live ones (2/4) are shown by EnterScreenPlacements.
+		const int32 Vision = Story->GetFacts() ? Story->GetFacts()->GetFact(TEXT("vision")) : 0;
+		if (bSaved && (Type == EDinkOverrideType::BackgroundNoHardness || Type == EDinkOverrideType::BackgroundHard) &&
+			(P->Vision == 0 || P->Vision == Vision) && !State->IsPlacementRemoved(P->Origin))
+		{
+			Actor->SetActorHiddenInGame(false);
+		}
+	}
+}
+
+bool UDinkGameplay::PresentPlacementPicture(ADinkPlaceholderActor& Actor, int32 Seq, int32 Frame, bool bSaved) const
+{
+	static const FName ShownTag(TEXT("DinkSavedPicture"));
+	UStaticMeshComponent* Card = Actor.Card;
+	UWorld* World = Actor.GetWorld();
+	if (!Actor.Origin || !Card || !World || Actor.ActorHasTag(TEXT("DinkAuthoredArt")))
+	{
+		return false;
+	}
+	UDinkArtFamilySubsystem* Family = World->GetSubsystem<UDinkArtFamilySubsystem>();
+	if (Family && Family->IsCollisionFitRequested(Actor.Origin->OriginId))
+	{
+		return false; // a fitted barrel: PublishHardnessFitVisuals shows its released picture
+	}
+	const bool bImported = !bSaved || (Seq == Actor.Origin->Sequence && Frame == Actor.Origin->Frame);
+	bool bShown = !bImported;
+	if (!bImported || Actor.ActorHasTag(ShownTag))
+	{
+		// The card: the importer's sprite material of that picture (MI_Sprite_<seq>_<frame>), placed from the imported card by the two
+		// pictures' sizes and pivots as the original draws a frame (DinkFamilyCollisionFit::ProjectLegacyCard), keeping the billboard's yaw.
+		const FString Key = FString::Printf(TEXT("%d_%02d"), Seq, Frame);
+		const FString Path = FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_%s.MI_Sprite_%s"), *Key, *Key);
+		UMaterialInterface* Material = LoadObject<UMaterialInterface>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet);
+		FTransform Relative = Actor.ImportedCardRelativeTransform;
+		FString Error;
+		bool bPlaced = Actor.bHasImportedCardBaseline;
+		if (bPlaced && !bImported)
+		{
+			auto Picture = [this](int32 S, int32 F)
+			{
+				FDinkLegacyPictureDescriptor D;
+				D.Sequence = S;
+				D.Frame = F;
+				if (const FDinkFrameInfo* Info = Data.FindFrame(S, F))
+				{
+					D.Width = Info->Width;
+					D.Height = Info->Height;
+					D.OriginX = Info->OriginX;
+					D.OriginY = Info->OriginY;
+					D.Sha1 = Info->PictureDescriptorSha1;
+				}
+				return D;
+			};
+			bPlaced = DinkFamilyCollisionFit::ProjectLegacyCard(Picture(Actor.Origin->Sequence, Actor.Origin->Frame), Picture(Seq, Frame),
+				Actor.ImportedCardRelativeTransform, Relative, Error);
+		}
+		if (Material && bPlaced)
+		{
+			Relative.SetRotation(Card->GetRelativeRotation().Quaternion());
+			if (Card->Mobility != EComponentMobility::Movable)
+			{
+				Card->SetMobility(EComponentMobility::Movable);
+			}
+			Card->SetRelativeTransform(Relative);
+			Card->SetMaterial(0, Material);
+			if (bImported)
+			{
+				Actor.Tags.Remove(ShownTag);
+			}
+			else
+			{
+				Actor.Tags.AddUnique(ShownTag);
+			}
+		}
+		else
+		{
+			bShown = false;
+			UE_LOG(LogDinkNarrative, Warning, TEXT("saved picture of %s: %s not shown on its card (%s)"), *Actor.Origin->OriginId.ToString(), *Key,
+				!Material ? TEXT("no imported sprite material") : Error.IsEmpty() ? TEXT("no imported card baseline") : *Error);
+		}
+	}
+	if (Family)
+	{
+		// The family mesh follows the same picture; the save also cleared the script (D:5831).
+		Family->SetPlacementPicture(Actor, bSaved ? Seq : 0, Frame, !bSaved && !Actor.Origin->ScriptName.IsNone());
+	}
+	return bShown;
+}
+
+void UDinkGameplay::PresentAnimatedPlacement(const FDinkSprite& Sprite) const
+{
+	if (CVarDinkSavedPicture.GetValueOnGameThread() == 0)
+	{
+		return;
+	}
+	ADinkPlaceholderActor* Actor = Cast<ADinkPlaceholderActor>(Sprite.Actor.Get());
+	UWorld* World = Actor ? Actor->GetWorld() : nullptr;
+	UDinkArtFamilySubsystem* Family = World ? World->GetSubsystem<UDinkArtFamilySubsystem>() : nullptr;
+	if (Family && Actor->Origin)
+	{
+		Family->FollowPlacementPicture(*Actor, Sprite.GetProp(P_PSeq), Sprite.GetProp(P_PFrame));
+	}
 }
 
 void UDinkGameplay::AddHardness(FDinkHardnessMap& Map, int32 L, int32 T, int32 R, int32 B, uint8 Code)

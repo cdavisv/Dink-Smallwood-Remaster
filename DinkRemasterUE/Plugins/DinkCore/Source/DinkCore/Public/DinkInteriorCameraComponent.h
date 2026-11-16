@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "DinkCameraFoliage.h"
 #include "DinkInteriorCameraComponent.generated.h"
 
 class USpringArmComponent;
@@ -26,6 +27,25 @@ struct FDinkCameraOccluder
     UPROPERTY() TArray<TObjectPtr<UMaterialInstanceDynamic>> FadeMaterials;
     ECollisionResponse CameraResponse = ECR_Block;
     float Opacity = 1.f;
+};
+
+/** One crown faded because it stands between the camera and Dink (DinkCameraFoliage). */
+USTRUCT()
+struct FDinkFoliageFade
+{
+    GENERATED_BODY()
+    /** The tree's own component: a plain mesh, or the instanced component one of whose instances it is. */
+    UPROPERTY() TObjectPtr<UStaticMeshComponent> Source;
+    /** Instance index in Source, or INDEX_NONE for a plain mesh component. */
+    int32 Instance = INDEX_NONE;
+    /** An instance fades through a stand-in mesh at its place while the instance itself is shrunk to nothing. */
+    UPROPERTY() TObjectPtr<UStaticMeshComponent> Proxy;
+    FTransform InstanceTransform;
+    UPROPERTY() TArray<TObjectPtr<UMaterialInterface>> OriginalOverrides;
+    UPROPERTY() TArray<TObjectPtr<UMaterialInstanceDynamic>> FadeMaterials;
+    float Opacity = 1.f;
+    double HoldUntil = 0.0;
+    bool bInTheWay = false;
 };
 
 /** Interior presentation only. Original controller input, Pawn collision and warp rules stay authoritative. */
@@ -60,6 +80,10 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") bool bInteriorMode = false;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") int32 FadingOccluderCount = 0;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") int32 ManagedOccluderCount = 0;
+    /** Crowns (trees, tall bushes) faded this frame because they stand between the camera and Dink. */
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") int32 FadingFoliageCount = 0;
+    /** Crown candidates near Dink, from the last gather. */
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") int32 FoliageCandidateCount = 0;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") FVector FloorFramingShift = FVector::ZeroVector;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") bool bFloorFramingAvailable = false;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") bool bFloorFramingFeasible = true;
@@ -73,9 +97,26 @@ private:
     void UpdateFraming(float DeltaTime);
     void UpdateOutdoorHeadroom();
     bool CalculateFraming(float ShoulderY, const FMatrix& Projection, FVector2D& Shift) const;
+    /** Fades the crowns between the camera and Dink (see DinkCameraFoliage.h); restores them when they are clear. */
+    void UpdateFoliage(float DeltaTime);
+    void GatherFoliage();
+    bool FoliageSupported(UStaticMeshComponent& Component);
+    bool BeginFoliageFade(FDinkFoliageFade& Entry);
+    void EndFoliageFade(FDinkFoliageFade& Entry);
+    void RestoreFoliage();
     UPROPERTY() TObjectPtr<USpringArmComponent> Arm;
     UPROPERTY() TObjectPtr<UCameraComponent> Camera;
     UPROPERTY() TArray<FDinkCameraOccluder> Occluders;
+    UPROPERTY() TArray<FDinkFoliageFade> FoliageFades;
+    struct FFoliageCandidate { TWeakObjectPtr<UStaticMeshComponent> Component; int32 Instance = INDEX_NONE; DinkCameraFoliage::FCrown Crown; };
+    TArray<FFoliageCandidate> FoliageCandidates;
+    /** Base material path (lower case) -> its camera fade variant (camera_materials.json "foliage_variants"). */
+    TMap<FString,FString> FoliageVariants;
+    UPROPERTY() TMap<TObjectPtr<UMaterialInterface>,TObjectPtr<UMaterialInterface>> FoliageVariantByBase;
+    TMap<TWeakObjectPtr<UMaterialInterface>,bool> FoliageMaterialSupported;
+    FVector FoliageGatherOrigin = FVector(TNumericLimits<double>::Max());
+    double FoliageGatherTime = -1.0;
+    TWeakObjectPtr<ADinkScreenVolume> FoliageGatherScreen;
     TWeakObjectPtr<ADinkScreenVolume> CurrentScreen;
     TMap<FString,FString> MaterialVariants;
     TMap<int32,TArray<FVector2D>> RoomFloors;

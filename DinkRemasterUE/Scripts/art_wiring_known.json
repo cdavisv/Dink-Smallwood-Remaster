@@ -1,0 +1,279 @@
+{
+  "schema": "dink-art-wiring-known/1",
+  "note": "Reviewed reasons for delivered sources that do not reach the player (read by Scripts/art_wiring_audit.py; first match wins). `match` is a regular expression on the asset name, `source` (optional) one on its source path. `kind`: deliberate (a written decision keeps it out), queued (an art queue row or open branch owns the work), superseded (another delivered asset of the same family is the one shown), alternate (a source-only candidate beside the bound asset, waiting for an art decision). Reviewed 15 Nov 2026 by the art-wiring audit; add a row when you take a decision, remove it when the asset is bound. `pending_ids` lists owner ids that an open PR adds (the run checks every other id against ALPHA_BUG_LIST.md and FABLE_ART_QUEUE.md).",
+  "rows": [
+    {
+      "match": "^AN_Dink_Fist$",
+      "kind": "superseded",
+      "why": "candidate of Characters/Animations/Unarmed (status 'candidate'), named only by Data/Art/hero_actions.json, which no runtime code reads; the Pass1 Fist_Jab/Cross/Swing clips of animation_pass.json play the punch"
+    },
+    {
+      "match": "^SM_Prop_(Brazier_Standing|Candle_Holder)_01$",
+      "kind": "bug",
+      "why": "A204: environment.json indoor light_props lists them and DinkEnvironmentSubsystem loads them (LightPropMeshes), but only hanging_lantern (~741) and wall_torch (~762) are ever placed"
+    },
+    {
+      "match": "^SM_Veg_GrassPatch_Dense_0[1-3]$",
+      "kind": "replaced",
+      "why": "environment.json grass.preferred_meshes; DinkEnvironmentSubsystem.cpp removes every grass mesh that is not a GrassPatch_Tall once the tall patches are imported (~147-149)"
+    },
+    {
+      "match": "^SM_Wall_Plaster_DoorHeader$",
+      "kind": "deliberate",
+      "why": "no families.json row or manifest places it (the int_wall_plaster_doorjamb note calls the header and the right jamb unbound; the right jamb has since been bound by a frame row and is drawn, the header has not)"
+    },
+    {
+      "match": "^SM_Fireplace_Stonebrook_V3Contact$",
+      "kind": "alternate",
+      "why": "fireplace refinement study named only by the editor-only DinkImport module (DinkRoofSourceMetadataLibrary.cpp); screen 1 binds FireplaceFiredClayV4"
+    },
+    {
+      "match": "^(SK_Mother|SK_Milder)$",
+      "kind": "replaced",
+      "why": "characters.json mesh; when the game renders, DinkArtSubsystem DinkPhotorealNpcMesh draws SK_<Name>_Photoreal instead (the manifest mesh is drawn headless only)"
+    },
+    {
+      "match": "^SK_Pillbug$",
+      "kind": "replaced",
+      "why": "creatures.json origin rows of the older pillbug; the rendering game shows the photoreal class creature SK_Pillbug_Photoreal of the class row"
+    },
+    {
+      "match": "^SK_Dink(_Hands)?$",
+      "kind": "replaced",
+      "why": "characters.json player mesh (SK_Dink_Hands); dink.PhotorealHero draws SK_Dink_Photoreal when the game renders"
+    },
+    {
+      "match": "^AN_(Slime_Death|Duck_Hit|Duck_Death|Duck_HeadlessDeath)$",
+      "kind": "deliberate",
+      "why": "A205: not played by the event one-shots of anim/creature-oneshots (design agreed 16 Nov 2026), gore at the 1997 level: no intact slime body falls where 1997 shows remains, and the duck keeps its PR #113 head-pop and headless run"
+    },
+    {
+      "match": "^AN_Dragon_Death$",
+      "kind": "deliberate",
+      "why": "A210: not played by the event one-shots of anim/creature-oneshots (design agreed 16 Nov 2026), gore at the 1997 level: no intact dragon falls where 1997 shows its remains"
+    },
+    {
+      "match": "^AN_(Duck_(Peck|Quack)|Slime_Attack)$",
+      "kind": "queued",
+      "why": "A205: imported with the creature classes of PR #113 and not played by any creatures.json role; anim-motion plays them as presentation-only event one-shots on branch anim/creature-oneshots (duck peck and quack as idle fidgets, the slime attack), coordinator decision of 16 Nov 2026"
+    },
+    {
+      "match": "^AN_(Bonca_(Death|Hit)|Dragon_(Attack|Hit)|Slayer_(Death|Hit)|Stone_Giant_(Death|Hit))$",
+      "kind": "queued",
+      "why": "A210: authored and deliberately left unbound (monster IMPORT.md: 'Deaths are what 1997 does: no monster has a hit or death animation'; the dragon's attack likewise; the 1997 scripts never set sp_base_hit and add_kill_sprite D:12359-12412 spawns a separate corpse sprite); reversed by the coordinator decision of 16 Nov 2026: anim-motion plays them as presentation-only event one-shots on branch anim/creature-oneshots (a per-class death clip may still be switched off if its in-game seam check with the corpse fails: stone giant, bonca, slayer)"
+    },
+    {
+      "match": "^SM_Slime_Trail$",
+      "kind": "bug",
+      "why": "A205: exported with the slime (PhotorealPass/Creatures/Slime/Export) but not imported by PR #113; no creatures.json role uses a trail"
+    },
+    {
+      "match": "^SM_Basket_Wicker_PR$",
+      "kind": "superseded",
+      "why": "families.json basket_wicker row: its only placement is on screen 1, where stonebrook.json binds the Codex basket (Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01) instead"
+    },
+    {
+      "match": "^SM_Slime_Splat$",
+      "kind": "superseded",
+      "why": "imported as the colour variants SM_Slime_Splat_Blue / _Green / _Red that the slime corpse rows bind"
+    },
+    {
+      "match": "^SM_Fireplace_Fieldstone_01$",
+      "kind": "replaced",
+      "why": "stonebrook_refinement_fireplace_v2.json replaces screen 1's fireplace (S001_P19) with SM_Fireplace_Stonebrook_FiredClayV4 (the sweep audit shows it on that origin)"
+    },
+    {
+      "match": "^SM_Ceiling_Oak_2m_01$",
+      "kind": "deliberate",
+      "why": "listed only in stonebrook.json `assets` (the size check), no element or replacement of that manifest places it"
+    },
+    {
+      "match": "^SM_Pine_Stonebrook_01$",
+      "kind": "superseded",
+      "why": "named only as an environment.json mesh_swaps source (a key is not a binding); no manifest or world map places it: the fields screens use SM_Pine_Stonebrook_V3, which is itself swapped for the photoreal pines"
+    },
+    {
+      "match": "^SM_(Castle_|Bridge_|Chimney_Stone_|Cottage_Thatched_|Door_Wood_|Island_Hut_|Island_Fence_|Island_TorchPole)",
+      "source": "PhotorealPass/Structures/(Misc|Castle)/",
+      "kind": "queued",
+      "why": "Structures Misc/Castle kits (interim, three review rounds, never imported): Fable packets VS-01, VS-02, VS-05, VS-14 start from the unpushed branch art/gate2-static-structures, which imports them and assembles per-screen sets"
+    },
+    {
+      "match": "^SM_(Cottage_Door|Cottage_Thatched_Large|Cottage_Thatched_Small|Fence_Gate|Fence_GatePost|Fence_SplitRail_4m_Broken|Well_Stone|Well_ShaftCap)_PR$",
+      "kind": "queued",
+      "why": "imported Structures/Stonebrook pieces for multi-sprite cottages, yards and wells: placed by the per-screen sets of art/gate2-static-structures (VS-01, VS-14), not by a family row"
+    },
+    {
+      "match": "^SM_Barrel_Oak_PR$",
+      "kind": "alternate",
+      "why": "the barrel family stays on the reviewed Codex barrel (Props/Stonebrook/PhotorealBarrelV1/SM_Barrel_Oak_01) that the barrel contract and its cook tests assert; the photoreal-pass barrel (round 2, known_weaknesses) waits for an art decision"
+    },
+    {
+      "match": "^SM_(FeedSack_Jute|Fireplace_Fieldstone)_PR$",
+      "kind": "superseded",
+      "why": "screen 1 shows the Codex refinements bound by stonebrook.json (PhotorealFeedSackV1, FireplaceFiredClayV4); the photoreal-pass pieces are interim alternates"
+    },
+    {
+      "match": "^SM_(Candle_Iron_01|Pie_Rustic_01|Fireplace_Stonebrook_V2)$",
+      "kind": "superseded",
+      "why": "older Stonebrook kit pieces: screen 1 binds SM_Candle_Iron_PR / SM_Pie_Rustic_PR / FireplaceFiredClayV4 instead"
+    },
+    {
+      "match": "^SM_Town_Wall_Narrow$",
+      "kind": "deliberate",
+      "why": "town-house kit module that Scripts/assemble_town_houses.py never picks (no 1997 wall run is that narrow)"
+    },
+    {
+      "match": "^SM_(ClamShell_Closed|ClamShell_Open|Starfish_A|Starfish_B|Pebbles_D)$",
+      "kind": "superseded",
+      "why": "single shells and stars replaced by the clusters and large stars of commit f6527a0c (SCATTER_ALLOW in import_photoreal_art.py lists the scatter that is imported)"
+    },
+    {
+      "match": "^SM_BeachPebbles_92_",
+      "kind": "alternate",
+      "why": "Coastal/BeachPebblesV1: source-only per-frame candidate (seq 92 frames 5-11); beach_pebbles (281 placements) is bound to the scatter pebbles SM_BeachPebbles_A-D. Art decision"
+    },
+    {
+      "match": "^SM_(Aubergine|Pepper_Green|Pumpkin|Tomato)_PR$",
+      "kind": "queued",
+      "why": "Unclaimed STATUS.md food_fruit: these four lie on the tables of screen 70 and the family layer stands a mesh on the floor: bug row A209 (placement work, no new art)"
+    },
+    {
+      "match": "^SM_Wall_Dungeon_(Ivy|Breach)$",
+      "kind": "alternate",
+      "why": "interim wall-kit modules; families.json rows dungeon_wall_stone_ivy / _cracked show the plain straight modules as a written STAND-IN until these are accepted. Art decision: DS-02"
+    },
+    {
+      "match": ".",
+      "source": "Stonebrook/Refinements/SharedStonebrookVistaV1/",
+      "kind": "alternate",
+      "why": "Codex source-only publication candidate of the shared Stonebrook vista (house 440, willow, 128 ground tiles); never imported, no runtime manifest. The vista in game is stonebrook_vista_v4.json"
+    },
+    {
+      "match": "^SM_Barrel_Broken_CurvedV4$",
+      "kind": "alternate",
+      "why": "Codex broken-barrel V4 study, inactive source candidate; barrel_broken is bound to SM_Barrel_Smashed_PR"
+    },
+    {
+      "match": "^SK_Dink_V33_",
+      "kind": "alternate",
+      "why": "Codex hero trouser study V33 (source-only, no review); the hero in game is SK_Dink_Photoreal (garments rebuilt 14 Nov 2026)"
+    },
+    {
+      "match": "^SK_Mother_ClothingV1$",
+      "kind": "alternate",
+      "why": "Codex Mother clothing candidate V1 (source-only); the Mother in game is SK_Mother_Photoreal"
+    },
+    {
+      "match": "_EdgeSmoothing$",
+      "kind": "deliberate",
+      "why": "diagnostic export of an edge-authoring packet, not a game asset"
+    },
+    {
+      "match": ".",
+      "source": "Stonebrook440/",
+      "kind": "alternate",
+      "why": "Stonebrook440 local candidate (two-storey house of 440, farm tools, yard dressing; 'not imported, Unreal deliberately not launched'): competes with Structures/Misc SM_Cottage_Thatched_TwoStorey_PR of VS-01. Art decision: DS-03"
+    },
+    {
+      "match": ".",
+      "source": "StonebrookRuins/",
+      "kind": "alternate",
+      "why": "StonebrookRuins candidate (burning cottage with fire sockets for 439 vision 1, burnt cottage, burnt interior modules for SCR_001, the Mother's remains): never imported; the game shows SM_Cottage_Stonebrook_PR_Burnt (environment.json state_swaps) for 439 vision 2 and intact modules plus fire and burn cards otherwise. Art decision: DS-01"
+    },
+    {
+      "match": ".",
+      "source": "PhotorealPass/Unclaimed/(hearth_fire|sparkle_fx)/",
+      "kind": "queued",
+      "why": "flipbook only, not imported: Fable row DS-06"
+    },
+    {
+      "match": ".",
+      "source": "PhotorealPass/Unclaimed/(explosion_fx|fire_burst_fx|fireball_fx)/",
+      "kind": "queued",
+      "why": "flipbook only, not imported: Fable row GP-Q9 (explosion and fire effects of script sprites)"
+    },
+    {
+      "match": ".",
+      "source": "PhotorealPass/Unclaimed/fountain_spray_fx/",
+      "kind": "queued",
+      "why": "flipbook only, not imported: Fable row VS-11 (Kernsin fountain water)"
+    },
+    {
+      "match": ".",
+      "source": "PhotorealPass/Unclaimed/(blood_splat|burn_hole_decal|burn_damage_decal)/",
+      "kind": "queued",
+      "why": "per-frame decal sets kept as alternates; the blood and burn decals of the 1997 pictures are Fable row GP-Q6 (and PR fix/gore-story-parity)"
+    },
+    {
+      "match": ".",
+      "source": "PhotorealPass/Unclaimed/(ground_crack|ground_hole_dark)/",
+      "kind": "queued",
+      "why": "decal sets, not imported: holes and cracks are Fable row VS-08"
+    },
+    {
+      "match": ".",
+      "source": "PhotorealPass/Unclaimed/burnt_floor_hole/",
+      "kind": "queued",
+      "why": "decal set, not imported: the burn holes of SCR_001 are Fable row GP-Q5"
+    },
+    {
+      "match": "^(SK_King_PR|SM_King_On_Throne_PR|SK_Knight_PR)$",
+      "kind": "queued",
+      "why": "not imported (Unclaimed STATUS.md: partial, several alpha-tested slots); King Daniel and the throne-room knights are Fable row PQ-Q5"
+    },
+    {
+      "match": "^(SM_Corpse_Mother_PR|SM_Corpse_Soldier_PR|SM_Dink_Dead_PR)$",
+      "kind": "queued",
+      "why": "not imported (the kit importer has no alpha-tested hair slot); the Mother's body S001_P34, Milder's corpse S086_P01 and the dead Dink S058_P06 are Fable row GP-Q5 (branch art/stonebrook-mother-burnholes)"
+    },
+    {
+      "match": "^SM_Window_Stained_Twin_PR$",
+      "kind": "queued",
+      "why": "church window of a multi-sprite building: Fable row VS-06 (the church)"
+    },
+    {
+      "match": "^(SM_Snow_House_(Lower|Roof|Timber)_PR|SM_Door_Snow_House_PR)$",
+      "kind": "queued",
+      "why": "snow-isle house of screen 149 in several sprites: Fable row VS-10"
+    },
+    {
+      "match": "^(SM_Gold_Coin_PR|SM_Arrow_PR)$",
+      "kind": "queued",
+      "why": "Fable row VS-14 (gold coins, arrows; the coin needs a thicker game mesh, the arrows a wall or range placement)"
+    },
+    {
+      "match": "^(SM_Castle_Drawbridge_PR|SM_Door_Castle_PR)$",
+      "kind": "queued",
+      "why": "castle gate pieces: Fable row VS-02 (castle walls, towers and gate)"
+    },
+    {
+      "match": "^SM_Ore_Rock_Blue_PR$",
+      "kind": "queued",
+      "why": "its only placement is a scripted road rock (s3-rock): Fable row VS-15 (scripted rocks; on PR #148, pending)",
+      "pending_ids": [
+        "VS-15"
+      ]
+    },
+    {
+      "match": "^SK_(Girl|Gnome_Wizard|Maiden_Blue|Maiden_Brown|Maiden_Red|Merchant|Old_Man|Peasant|Soldier)_PR$",
+      "kind": "queued",
+      "why": "rigged townsfolk, not imported (Unclaimed STATUS.md: partial): Fable row DS-07"
+    },
+    {
+      "match": "^SM_Stairs_Wood_PR$",
+      "kind": "queued",
+      "why": "partial (one open flight for pictures that are floor openings and closed flights): Fable row DS-08"
+    },
+    {
+      "match": "^SM_Arch_Stone_PR$",
+      "kind": "queued",
+      "why": "dungeon_arch_freestanding is bound to a stand-in wall arch; swapping in this arch needs a look in game: Fable row DS-02"
+    },
+    {
+      "match": "^(SM_Bomb_PR|SM_Bread_Braided_PR|SM_Cheese_Wheel_PR|SM_Grapes_PR|SM_Steak_TBone_PR|SM_Banner_Red_PR|SM_Notice_Hark_PR|SM_Notice_Wanted_PR|SM_Cellar_Hatch_PR)$",
+      "kind": "queued",
+      "why": "delivered mesh the family layer cannot place (table top or shelf, wall, flat under a wall): bug row A209 (with the four table-top fruits) (a per-placement height / wall mount, or per-screen manifest elements)"
+    }
+  ]
+}

@@ -1017,11 +1017,12 @@
           "decal": {
             "material": "/Game/Dink/Photoreal/Creatures/Slime/M_SlimeSplat_Blue_Decal.M_SlimeSplat_Blue_Decal",
             "size_cm": [
-              320,
-              320
+              214,
+              214
             ],
-            "depth_cm": 45
-          }
+            "depth_cm": 70
+          },
+          "scale": 1.5
         },
         {
           "sequences": [
@@ -1035,7 +1036,7 @@
               320,
               320
             ],
-            "depth_cm": 45
+            "depth_cm": 70
           }
         }
       ],
@@ -1075,7 +1076,7 @@
               320,
               320
             ],
-            "depth_cm": 45
+            "depth_cm": 70
           }
         },
         {
@@ -1090,7 +1091,7 @@
               320,
               320
             ],
-            "depth_cm": 45
+            "depth_cm": 70
           }
         }
       ],
@@ -1134,7 +1135,7 @@
               320,
               320
             ],
-            "depth_cm": 45
+            "depth_cm": 70
           }
         }
       ],
@@ -1196,6 +1197,392 @@
       ],
       "note": "Farm pig. Killed, the original turns it into the blood burst of sequence 164 and it is gone (pig_brain, dink.cpp:13367-13382); the burst and its stain stand for that. The five Stonebrook pigs keep their origin rows (feeding, body boxes) and get the same mesh through dink.PhotorealPig.",
       "blood_blob": "/Game/Dink/Photoreal/Creatures/Gore/SM_BloodBlob.SM_BloodBlob"
+    },
+    {
+      "class": "bonca_gray",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Bonca/SK_Bonca_PR.SK_Bonca_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Idle.AN_Bonca_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Walk.AN_Bonca_Walk",
+            "speed_cm_s": 119.0
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Run.AN_Bonca_Run",
+            "speed_cm_s": 249.0
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            601,
+            602,
+            603,
+            604,
+            606,
+            607,
+            608,
+            609
+          ],
+          "locomotion": true
+        },
+        "attack": {
+          "sequences": [
+            591,
+            592,
+            593,
+            594,
+            596,
+            597,
+            598,
+            599
+          ],
+          "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Attack.AN_Bonca_Attack"
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            551,
+            552,
+            553,
+            554,
+            556,
+            557,
+            558,
+            559
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/Bonca/SM_Bonca_Corpse_PR.SM_Bonca_Corpse_PR",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Bonca/M_Bonca_BloodPool_Decal.M_Bonca_BloodPool_Decal",
+            "size_cm": [
+              680,
+              530
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "note": "Grey bonca (en-bong, s7-bong; walk 601-609, attack 592-598). Brain 9, a kill leaves the body in its pool (base_death 550, sprites 551-559; add_kill_sprite dink.cpp:12359): the brown striped body frozen from the death pose, soaked red (all three colours leave the brown body, as the original's one death set), in a lobed pool that reaches past it on every side with a ring of thrown drops (decal 6.8 x 5.3 m: the pool itself about 3.4 m, 1.5 times the body). The original has no hit or death animation; those clips are authored and not bound."
+    },
+    {
+      "class": "bonca_brown",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Bonca/SK_Bonca_PR.SK_Bonca_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Idle.AN_Bonca_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Walk.AN_Bonca_Walk",
+            "speed_cm_s": 119.0
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Run.AN_Bonca_Run",
+            "speed_cm_s": 249.0
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            531,
+            532,
+            533,
+            534,
+            536,
+            537,
+            538,
+            539
+          ],
+          "locomotion": true
+        },
+        "attack": {
+          "sequences": [
+            541,
+            542,
+            543,
+            544,
+            546,
+            547,
+            548,
+            549
+          ],
+          "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Attack.AN_Bonca_Attack"
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            551,
+            552,
+            553,
+            554,
+            556,
+            557,
+            558,
+            559
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/Bonca/SM_Bonca_Corpse_PR.SM_Bonca_Corpse_PR",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Bonca/M_Bonca_BloodPool_Decal.M_Bonca_BloodPool_Decal",
+            "size_cm": [
+              680,
+              530
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "materials": {
+        "MI_Bonca_PR": "/Game/Dink/Photoreal/Creatures/Bonca/MI_Bonca_Brown_PR.MI_Bonca_Brown_PR"
+      },
+      "note": "Brown bonca (en-bonc, en-boncd; walk 531-539, attack 542-548). Brain 9, a kill leaves the body in its pool (base_death 550, sprites 551-559; add_kill_sprite dink.cpp:12359): the brown striped body frozen from the death pose, soaked red (all three colours leave the brown body, as the original's one death set), in a lobed pool that reaches past it on every side with a ring of thrown drops (decal 6.8 x 5.3 m: the pool itself about 3.4 m, 1.5 times the body). The original has no hit or death animation; those clips are authored and not bound."
+    },
+    {
+      "class": "bonca_purple",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Bonca/SK_Bonca_PR.SK_Bonca_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Idle.AN_Bonca_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Walk.AN_Bonca_Walk",
+            "speed_cm_s": 119.0
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Run.AN_Bonca_Run",
+            "speed_cm_s": 249.0
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            611,
+            612,
+            613,
+            614,
+            616,
+            617,
+            618,
+            619
+          ],
+          "locomotion": true
+        },
+        "attack": {
+          "sequences": [
+            621,
+            622,
+            623,
+            624,
+            626,
+            627,
+            628,
+            629
+          ],
+          "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Attack.AN_Bonca_Attack"
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            551,
+            552,
+            553,
+            554,
+            556,
+            557,
+            558,
+            559
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/Bonca/SM_Bonca_Corpse_PR.SM_Bonca_Corpse_PR",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Bonca/M_Bonca_BloodPool_Decal.M_Bonca_BloodPool_Decal",
+            "size_cm": [
+              680,
+              530
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "materials": {
+        "MI_Bonca_PR": "/Game/Dink/Photoreal/Creatures/Bonca/MI_Bonca_Purple_PR.MI_Bonca_Purple_PR"
+      },
+      "note": "Purple bonca (en-pbon; walk 611-619, attack 622-628). Brain 9, a kill leaves the body in its pool (base_death 550, sprites 551-559; add_kill_sprite dink.cpp:12359): the brown striped body frozen from the death pose, soaked red (all three colours leave the brown body, as the original's one death set), in a lobed pool that reaches past it on every side with a ring of thrown drops (decal 6.8 x 5.3 m: the pool itself about 3.4 m, 1.5 times the body). The original has no hit or death animation; those clips are authored and not bound."
+    },
+    {
+      "class": "slayer",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Slayer/SK_Slayer_PR.SK_Slayer_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Slayer/Animations/AN_Slayer_Idle.AN_Slayer_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Slayer/Animations/AN_Slayer_Walk.AN_Slayer_Walk",
+            "speed_cm_s": 98.0
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Slayer/Animations/AN_Slayer_Run.AN_Slayer_Run",
+            "speed_cm_s": 335.5
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            641,
+            642,
+            643,
+            644,
+            646,
+            647,
+            648,
+            649
+          ],
+          "locomotion": true
+        },
+        "attack": {
+          "sequences": [
+            631,
+            632,
+            633,
+            634,
+            636,
+            637,
+            638,
+            639
+          ],
+          "clip": "/Game/Dink/Photoreal/Creatures/Slayer/Animations/AN_Slayer_Attack.AN_Slayer_Attack"
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            645
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/Slayer/SM_Slayer_Corpse_PR.SM_Slayer_Corpse_PR",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/Slayer/M_Slayer_BloodPool_Decal.M_Slayer_BloodPool_Decal",
+            "size_cm": [
+              640,
+              500
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "note": "Slayer (en-slay, sc-slay, s7-slay; walk 641-649, attack 632-638). It has no base_death: a kill leaves sequence 645 (base_walk + 5, add_kill_sprite dink.cpp:12372-12383), the body on its side in its blood: the mesh frozen from the death pose with the tail curled round it, blood-soaked, in a lobed pool with thrown drops (decal 6.4 x 5.0 m)."
+    },
+    {
+      "class": "stone_giant",
+      "mesh": "/Game/Dink/Photoreal/Creatures/StoneGiant/SK_Stone_Giant_PR.SK_Stone_Giant_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/StoneGiant/Animations/AN_Stone_Giant_Idle.AN_Stone_Giant_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/StoneGiant/Animations/AN_Stone_Giant_Walk.AN_Stone_Giant_Walk",
+            "speed_cm_s": 51.6
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/StoneGiant/Animations/AN_Stone_Giant_Run.AN_Stone_Giant_Run",
+            "speed_cm_s": 225.8
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            821,
+            822,
+            823,
+            824,
+            826,
+            827,
+            828,
+            829
+          ],
+          "locomotion": true
+        },
+        "attack": {
+          "sequences": [
+            811,
+            812,
+            813,
+            814,
+            816,
+            817,
+            818,
+            819
+          ],
+          "clip": "/Game/Dink/Photoreal/Creatures/StoneGiant/Animations/AN_Stone_Giant_Attack.AN_Stone_Giant_Attack"
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            825
+          ],
+          "mesh": "/Game/Dink/Photoreal/Creatures/StoneGiant/SM_Stone_Giant_Corpse_PR.SM_Stone_Giant_Corpse_PR",
+          "decal": {
+            "material": "/Game/Dink/Photoreal/Creatures/StoneGiant/M_Stone_Giant_Grit_Decal.M_Stone_Giant_Grit_Decal",
+            "size_cm": [
+              620,
+              500
+            ],
+            "depth_cm": 45
+          }
+        }
+      ],
+      "note": "Stone giant (en-stg; walk 821-829, attack 812-818). No base_death: a kill leaves sequence 825 (base_walk + 5): a heap of its own stones without blood, as the picture: the body of the death pose broken at the joints into ten blocks that lie a little apart, on dark grit (ground decal)."
+    },
+    {
+      "class": "dragon",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Dragon/SK_Dragon_PR.SK_Dragon_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Idle.AN_Dragon_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Walk.AN_Dragon_Walk",
+            "speed_cm_s": 75.2
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Run.AN_Dragon_Run",
+            "speed_cm_s": 257.3
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            201,
+            202,
+            203,
+            204,
+            206,
+            207,
+            208,
+            209
+          ],
+          "locomotion": true
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            211,
+            212,
+            213,
+            214,
+            216,
+            217,
+            218,
+            219
+          ],
+          "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
+          "scale": 1.7
+        }
+      ],
+      "note": "Dragon (en-drag, sc-drag, s7-drag; brain 10, walk 202-208). It has no attack sequence: it spits fire while it treads, so the Attack clip is authored and not bound. A kill leaves sprites 212-218: the corpse kit's torn dragon with its own pool. Corpse scale 1.7: the kit mesh was made for the placed 216 card and lay as a small heap beside the live dragon; the 1997 remains are about two thirds of the live dragon's width."
     }
   ]
 }

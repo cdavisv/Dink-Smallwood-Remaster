@@ -178,6 +178,8 @@ bool FDinkCreatureClassRowsTest::RunTest(const FString&)
 	TestNotNull(TEXT("a direction out of range is taken as 3"), Bug.CorpseFor(140, 0));
 	TestNull(TEXT("facing 2 has no death picture, mirrored or not"), Bug.CorpseFor(140, 2));
 	TestNull(TEXT("no base_death, no corpse of this row"), Bug.CorpseFor(-1, 1));
+	TestNotNull(TEXT("no base_death: the body picture base_walk + 5, if the row has it (dink.cpp:12371-12383)"), Bug.CorpseFor(-1, 1, 136));
+	TestNull(TEXT("no base_death and no body picture at base_walk + 5"), Bug.CorpseFor(-1, 1, 130));
 	TestNull(TEXT("another death base is another creature's"), Bug.CorpseFor(660, 1));
 	TestTrue(TEXT("the corpse's ground decal is read"), Bug.Corpses[0].DecalMaterial == TEXT("/Game/A/M_Pool.M_Pool") && Bug.Corpses[0].DecalSizeCm == FVector2D(440, 400) && Bug.Corpses[0].DecalDepthCm == 30.0);
 	{
@@ -250,7 +252,7 @@ bool FDinkCreatureClassDressTest::RunTest(const FString&)
 		ADinkPlaceholderActor* OriginBound = SpawnPlacement(World, 438, 3, TEXT("pillbug"), 131, TEXT("en-pill"), Plane);
 		ADinkPlaceholderActor* Proxy = SpawnPlacement(World, 527, 5, TEXT("pillbug"), 131, NAME_None, Plane);
 		Proxy->PlacementKind = TEXT("hardness_only");
-		ADinkPlaceholderActor* Other = SpawnPlacement(World, 527, 6, TEXT("bonca_gray"), 601, TEXT("en-bonc"), Plane);
+		ADinkPlaceholderActor* Other = SpawnPlacement(World, 527, 6, TEXT("goblin_soldier"), 801, TEXT("en-gs"), Plane);
 		First->SetActorLocation(FVector(1000, 0, 0));
 		Second->SetActorLocation(FVector(90000, 0, 0));
 		const TArray<FName> TagsBefore = First->Tags;

@@ -13,11 +13,11 @@ from pplib import NT, smoothstep, fbm
 
 SCRIPT = 'build_dragon.py'
 J = {'pelvis': (0, 0.28, 1.25), 'belly': (0, 0.06, 1.68), 'chest': (0, -0.16, 2.16), 'neck1': (0, -0.38, 2.62), 'neck2': (0, -0.66, 2.98), 'neck3': (0, -0.98, 3.18), 'head': (0, -1.28, 3.14), 'snout': (0, -1.58, 3.02),
-     'snout_tip': (0, -1.76, 2.95), 'jaw': (0, -1.50, 2.93), 'tail1': (0, 0.74, 1.00), 'tail2': (0, 1.24, 0.72), 'tail3': (0, 1.84, 0.52), 'tail4': (0, 2.44, 0.46), 'tail5': (0, 3.02, 0.55), 'tail6': (0, 3.52, 0.76),
+     'snout_tip': (0, -1.76, 2.95), 'jaw': (0, -1.50, 2.86), 'jaw_tip': (0, -1.70, 2.79), 'tail1': (0, 0.74, 1.00), 'tail2': (0, 1.24, 0.72), 'tail3': (0, 1.84, 0.52), 'tail4': (0, 2.44, 0.46), 'tail5': (0, 3.02, 0.55), 'tail6': (0, 3.52, 0.76),
      'tail7': (0, 3.92, 1.02)}
 R = {'pelvis': (0.36, 0.38, 0.36), 'belly': (0.42, 0.44, 0.42), 'chest': (0.40, 0.40, 0.42), 'neck1': 0.245, 'neck2': 0.185, 'neck3': 0.155, 'head': (0.16, 0.2, 0.165), 'snout': (0.11, 0.14, 0.10), 'snout_tip': (0.08, 0.08, 0.065),
-     'jaw': (0.09, 0.14, 0.05), 'tail1': 0.29, 'tail2': 0.215, 'tail3': 0.155, 'tail4': 0.105, 'tail5': 0.068, 'tail6': 0.042, 'tail7': 0.024}
-E = [('pelvis', 'belly'), ('belly', 'chest'), ('chest', 'neck1'), ('neck1', 'neck2'), ('neck2', 'neck3'), ('neck3', 'head'), ('head', 'snout'), ('snout', 'snout_tip'), ('head', 'jaw'),
+     'jaw': (0.085, 0.13, 0.045), 'jaw_tip': 0.05, 'tail1': 0.29, 'tail2': 0.215, 'tail3': 0.155, 'tail4': 0.105, 'tail5': 0.068, 'tail6': 0.042, 'tail7': 0.024}
+E = [('pelvis', 'belly'), ('belly', 'chest'), ('chest', 'neck1'), ('neck1', 'neck2'), ('neck2', 'neck3'), ('neck3', 'head'), ('head', 'snout'), ('snout', 'snout_tip'), ('head', 'jaw'), ('jaw', 'jaw_tip'),
      ('pelvis', 'tail1'), ('tail1', 'tail2'), ('tail2', 'tail3'), ('tail3', 'tail4'), ('tail4', 'tail5'), ('tail5', 'tail6'), ('tail6', 'tail7')]
 for s, sx in (('l', 1), ('r', -1)):
     J.update({'hip_' + s: (0.36 * sx, 0.14, 1.16), 'knee_' + s: (0.50 * sx, -0.36, 0.76), 'hock_' + s: (0.48 * sx, 0.20, 0.44), 'ankle_' + s: (0.48 * sx, 0.02, 0.15), 'foot_' + s: (0.50 * sx, -0.28, 0.085),
@@ -31,7 +31,7 @@ for s, sx in (('l', 1), ('r', -1)):
           ('wwrist_' + s, 'f1_' + s), ('wwrist_' + s, 'f2_' + s), ('wwrist_' + s, 'f3_' + s)]
 
 BONES = [('root', (0, 0, 0), (0, 0.15, 0), None), ('pelvis', 'pelvis', 'belly', 'root'), ('spine_01', 'belly', 'chest', 'pelvis'), ('spine_02', 'chest', 'neck1', 'spine_01'), ('neck_01', 'neck1', 'neck2', 'spine_02'),
-         ('neck_02', 'neck2', 'neck3', 'neck_01'), ('neck_03', 'neck3', 'head', 'neck_02'), ('head', 'head', 'snout_tip', 'neck_03'), ('jaw', 'head', 'jaw', 'head')] + \
+         ('neck_02', 'neck2', 'neck3', 'neck_01'), ('neck_03', 'neck3', 'head', 'neck_02'), ('head', 'head', 'snout_tip', 'neck_03'), ('jaw', 'head', 'jaw_tip', 'head')] + \
         [('tail_%02d' % (i + 1), a, b, 'pelvis' if i == 0 else 'tail_%02d' % i) for i, (a, b) in enumerate([('pelvis', 'tail1'), ('tail1', 'tail2'), ('tail2', 'tail3'), ('tail3', 'tail4'), ('tail4', 'tail5'), ('tail5', 'tail6'), ('tail6', 'tail7')])]
 for s in 'lr':
     BONES += [('thigh_' + s, 'hip_' + s, 'knee_' + s, 'pelvis'), ('calf_' + s, 'knee_' + s, 'hock_' + s, 'thigh_' + s), ('foot_' + s, 'hock_' + s, 'ankle_' + s, 'calf_' + s), ('ball_' + s, 'ankle_' + s, 'toe2_' + s, 'foot_' + s),
@@ -41,11 +41,11 @@ for s in 'lr':
 
 
 def hide_mat():
-    """orange-brown scaled hide, darker saddle along the back, pale plated belly"""
+    """the brown scaled hide of 202 (the first build was orange-tan): dark saddle along the back, pale plated belly"""
     t = NT('hide'); scute = t.attr('scute'); n1 = t.noise(4, 5, 0.65); n2 = t.noise(26, 4, 0.6, distortion=0.6); nz = t.sep(t.gnormal)[2]
     cell = t.voronoi(95, feature='DISTANCE_TO_EDGE'); cv = t.sep(t.voronoi(95, out='Color')); edge = t.ramp(cell, [(0.0, 1.0), (0.1, 0.0)])
-    base = t.ramp(n1, [(0.25, (0.085, 0.030, 0.010)), (0.55, (0.20, 0.080, 0.022)), (0.85, (0.36, 0.17, 0.045))]); base = t.hsv(base, v=t.maprange(cv[0], 0, 1, 0.7, 1.3), h=t.maprange(cv[1], 0, 1, 0.485, 0.515))
-    back = t.maprange(nz, 0.2, 0.9, 0.0, 1.0, interp='SMOOTHSTEP'); base = t.mix(t.math('MULTIPLY', back, 0.6), base, t.mix(n2, (0.045, 0.016, 0.008), (0.11, 0.04, 0.014)))
+    base = t.ramp(n1, [(0.25, (0.045, 0.019, 0.008)), (0.55, (0.105, 0.046, 0.016)), (0.85, (0.20, 0.098, 0.034))]); base = t.hsv(base, v=t.maprange(cv[0], 0, 1, 0.7, 1.3), h=t.maprange(cv[1], 0, 1, 0.485, 0.515))
+    back = t.maprange(nz, 0.2, 0.9, 0.0, 1.0, interp='SMOOTHSTEP'); base = t.mix(t.math('MULTIPLY', back, 0.6), base, t.mix(n2, (0.024, 0.010, 0.006), (0.06, 0.024, 0.010)))
     base = t.mix(t.math('MULTIPLY', scute, 0.9), base, t.mix(n2, (0.30, 0.20, 0.085), (0.52, 0.40, 0.19)))
     ao = t.ao(0.07, 12); base = t.mix(t.math('MULTIPLY', t.ramp(ao, [(0.35, 1.0), (0.8, 0.0)]), 0.7), base, (0.02, 0.012, 0.008)); base = t.mix(t.math('MULTIPLY', edge, 0.55), base, (0.018, 0.01, 0.006))
     rough = t.mixf(n2, 0.36, 0.56); rough = t.math('ADD', rough, t.math('MULTIPLY', edge, 0.3))
@@ -56,18 +56,18 @@ def hide_mat():
 def membrane_mat():
     """wing skin from its own UV (u from the leading finger to the trailing one, v from the wrist to the edge): green, veined, torn and reddened towards the trailing edge"""
     t = NT('membrane'); uv = t.sep(t.uv); u = uv[0]; v = uv[1]; n = t.noise(1.0, 5, 0.65, vec=t.comb(t.math('MULTIPLY', u, 6.0), t.math('MULTIPLY', v, 9.0), 0.0)); n2 = t.noise(120, 3, 0.6)
-    base = t.ramp(n, [(0.25, (0.022, 0.060, 0.018)), (0.55, (0.055, 0.125, 0.035)), (0.85, (0.14, 0.21, 0.06))])
+    base = t.ramp(n, [(0.25, (0.090, 0.130, 0.075)), (0.55, (0.185, 0.245, 0.140)), (0.85, (0.34, 0.39, 0.23))])
     vein = t.ramp(t.voronoi(1.0, vec=t.comb(t.math('MULTIPLY', u, 9.0), t.math('MULTIPLY', v, 5.0), 0.0), feature='DISTANCE_TO_EDGE'), [(0.0, 1.0), (0.05, 0.0)])
     ray = t.ramp(t.math('ABSOLUTE', t.math('SUBTRACT', t.math('FRACT', t.math('MULTIPLY', u, 5.0)), 0.5)), [(0.0, 1.0), (0.06, 0.0)])
-    base = t.mix(t.math('MULTIPLY', t.math('MAXIMUM', vein, ray), 0.6), base, (0.02, 0.045, 0.014))
-    red = t.maprange(t.math('ADD', v, t.math('MULTIPLY', t.math('SUBTRACT', n, 0.5), 0.3)), 0.70, 1.02, 0.0, 1.0, interp='SMOOTHSTEP'); base = t.mix(t.math('MULTIPLY', red, 0.8), base, t.mix(n2, (0.13, 0.022, 0.012), (0.27, 0.06, 0.022)))
+    base = t.mix(t.math('MULTIPLY', t.math('MAXIMUM', vein, ray), 0.6), base, (0.055, 0.075, 0.035))
+    red = t.maprange(t.math('ADD', v, t.math('MULTIPLY', t.math('SUBTRACT', n, 0.5), 0.3)), 0.70, 1.02, 0.0, 1.0, interp='SMOOTHSTEP'); base = t.mix(t.math('MULTIPLY', red, 0.55), base, t.mix(n2, (0.16, 0.085, 0.040), (0.30, 0.17, 0.075)))
     t.set(base=base, rough=t.mixf(n, 0.4, 0.62), normal=t.bump(t.math('ADD', t.math('MAXIMUM', vein, ray), t.math('MULTIPLY', n2, 0.3)), 0.5, 0.003), sss=0.1, sss_scale=0.02); return t.mat
 
 
-MEMBRANE_THICK = 0.012
+MEMBRANE_THICK = 0.006
 
 
-def membrane(name, a0, a1, b0, b1, c, hi, sag=0.12, thick=None):
+def membrane(name, a0, a1, b0, b1, c, hi, sag=0.20, thick=None):
     """skin stretched between two spars (a0 -> a1 and b0 -> b1), scalloped at the free edge; a thin closed shell"""
     a0, a1, b0, b1 = (np.array(p, float) for p in (a0, a1, b0, b1)); nu, nv = (40, 40) if hi else (7, 7)
 
@@ -117,11 +117,15 @@ def build_hi(c, hi=True):
         for sx in (1, -1):
             ty = -1.50 - k * 0.032; tz = 3.0 - k * 0.012; hit = C.surface_hit(body, (0.4 * sx, ty, tz), (-sx, 0, 0)); tx = (hit[0][0] if hit else 0.08 * sx) - 0.01 * sx
             tt = C.cone('tooth', (tx, ty, tz), (tx * 1.03, ty - 0.004, tz - 0.05), 0.011, c, nu=6, nv=5); tt.data.materials.append(tm); obs.append(tt)
+    for k in range(6):                                             # the lower jaw hangs open: its own row of teeth
+        for sx in (1, -1):
+            ty = -1.52 - k * 0.032; tz = 2.875 - k * 0.011; hit = C.surface_hit(body, (0.4 * sx, ty, tz), (-sx, 0, 0)); tx = (hit[0][0] if hit else 0.07 * sx) - 0.01 * sx
+            tt = C.cone('tooth', (tx, ty, tz - 0.005), (tx * 1.03, ty - 0.004, tz + 0.04), 0.010, c, nu=6, nv=5); tt.data.materials.append(tm); obs.append(tt)
     return obs
 
 
-WEAK = ('NOT photoreal at 1 m: a lit maquette. Anatomy is a joint-graph blob with displaced belly plates; no modelled musculature, wing-finger joints, eyelids, nostrils or mouth interior (there is a jaw bone but no mouth opening). '
-        'Wing membranes are 12 mm solid shells stretched between straight spars: opaque in the game material (no translucency map), with no folds when the wing bends. '
+WEAK = ('NOT photoreal at 1 m: a lit maquette. Anatomy is a joint-graph blob with displaced belly plates; no modelled musculature, wing-finger joints, eyelids, nostrils, tongue or mouth lining (the jaw hangs open on its bone, with teeth). '
+        'Wing membranes are 6 mm solid shells stretched between straight spars: opaque in the game material (no translucency map), with no folds when the wing bends. '
         'Game mesh is a decimation of the remeshed source (no edge loops at joints). Inverse-distance skin weights, checked in one pose; membranes follow the nearest finger bone and will stretch badly if the wings fold. '
         'No animation clips (the dragon of the game flies, breathes fire and dies: none of that is here), no Physics Asset. Scale is a guess from the sprite: 3.4 m at the head, 6.7 m wingspan.')
 

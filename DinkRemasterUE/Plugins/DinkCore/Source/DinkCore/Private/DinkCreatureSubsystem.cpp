@@ -409,7 +409,8 @@ UDinkCreatureClassComponent* UDinkCreatureSubsystem::AttachClassBody(AActor& Act
 	float GroundOffsetCm, float YawDeg, int32 SizePercent)
 {
 	if (!Actor.GetRootComponent()) return nullptr;
-	UDinkCreatureClassComponent* Body = NewObject<UDinkCreatureClassComponent>(&Actor, TEXT("ClassCreature"));
+	// A unique name: a body destroyed on an earlier failed Configure keeps its name until garbage collection (UObject overwrite).
+	UDinkCreatureClassComponent* Body = NewObject<UDinkCreatureClassComponent>(&Actor, MakeUniqueObjectName(&Actor, UDinkCreatureClassComponent::StaticClass(), TEXT("ClassCreature")));
 	Body->SetupAttachment(Actor.GetRootComponent());
 	Actor.AddInstanceComponent(Body);
 	Body->RegisterComponent();
@@ -496,13 +497,13 @@ UDinkCreatureClassComponent* UDinkCreatureSubsystem::PresentScriptSprite(AActor*
 	return Body;
 }
 
-bool UDinkCreatureSubsystem::LeaveCorpse(FName ClassId, int32 BaseDeath, int32 Dir, const FVector& Ground, float YawDeg, int32 SizePercent)
+bool UDinkCreatureSubsystem::LeaveCorpse(FName ClassId, int32 BaseDeath, int32 Dir, const FVector& Ground, float YawDeg, int32 SizePercent, int32 BaseWalk)
 {
 	UWorld* World = GetWorld();
 	const int32 Index = ClassBindings.IndexOfByPredicate([ClassId](const FDinkCreatureClassBinding& B) { return B.ClassId == ClassId; });
 	if (!World || Index == INDEX_NONE) return false;
 	const FDinkCreatureClassBinding& Binding = ClassBindings[Index];
-	const FDinkCreatureCorpse* Corpse = Binding.CorpseFor(BaseDeath, Dir);
+	const FDinkCreatureCorpse* Corpse = Binding.CorpseFor(BaseDeath, Dir, BaseWalk);
 	if (!Corpse) return false;
 	const int32 CorpseIndex = int32(Corpse - Binding.Corpses.GetData());
 	UStaticMesh* Mesh = LoadedClasses[Index]->CorpseMeshes[CorpseIndex];

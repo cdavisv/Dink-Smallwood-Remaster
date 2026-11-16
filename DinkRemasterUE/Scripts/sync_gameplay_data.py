@@ -124,6 +124,27 @@ def release_picture_keys(family_policy: dict, placements: list, canonical_sequen
     return pictures
 
 
+SAVED_PICTURE_SEQ = re.compile(r"\beditor_seq\s*\([^,;]*,\s*(\d+)\s*\)")
+SAVED_PICTURE_FRAME = re.compile(r"\beditor_frame\s*\([^,;]*,\s*(\d+)\s*\)")
+
+
+def saved_picture_keys(script_texts: dict, canonical_sequences: list) -> dict:
+    """Pictures the story saves for a placement (editor_seq / editor_frame, shown on later visits: update_play_changes,
+    dink.cpp:5786-5830): the n-th editor_seq of a script pairs with its n-th editor_frame. script_texts maps a script name
+    to its DinkC source; no IO."""
+    images = {(q["seq"], f["frame"]): f.get("image") for q in canonical_sequences for f in q["frames"]
+              if not f.get("empty") and f.get("width") and f.get("height")}
+    pictures = {}
+    for name in sorted(script_texts):
+        text = script_texts[name]
+        for seq, frame in zip(SAVED_PICTURE_SEQ.findall(text), SAVED_PICTURE_FRAME.findall(text)):
+            image = images.get((int(seq), int(frame)))
+            if not image:
+                raise ValueError(f"{name}: saved picture {seq}/{frame} has no canonical frame image")
+            pictures.setdefault(f"{int(seq)}_{int(frame):02d}", image)
+    return pictures
+
+
 def frames(dinkex: pathlib.Path):
     seqs = json.loads((dinkex / "sequences.json").read_text())["sequences"]
     rows = []

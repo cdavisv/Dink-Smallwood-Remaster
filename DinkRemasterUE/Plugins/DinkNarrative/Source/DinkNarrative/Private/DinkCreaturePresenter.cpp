@@ -140,7 +140,7 @@ void UDinkCreaturePresenter::Present()
 			// presenter), and it stays put once its actor is hidden. A sprite whose actor is gone keeps the last reading.
 			const UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(Sprite->Actor.Get());
 			Creatures->LeaveCorpse(Last.ClassId, Sprite->GetProp(C_BaseDeath, -1), DinkCreatureClass::KillDir(Last.Brain, Sprite->Dir),
-				Body ? Body->GetShownLocation() : Last.Ground, Body ? Body->GetShownYaw() : Last.Yaw, Last.SizePercent);
+				Body ? Body->GetShownLocation() : Last.Ground, Body ? Body->GetShownYaw() : Last.Yaw, Last.SizePercent, Sprite->GetProp(C_BaseWalk, 0));
 		}
 		else if (Sprite && !Sprite->bActive && Sprite->bBurstKill)
 		{

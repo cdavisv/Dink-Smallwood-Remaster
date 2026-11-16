@@ -195,11 +195,17 @@ void UDinkGameplay::ThinkSprite(int32 H, double Tick)
 	{
 		CheckIfMoveIsLegal(*S);
 	}
+	const int32 PSeq0 = S->GetProp(B_PSeq), PFrame0 = S->GetProp(B_PFrame);
 	Animate(*S, Tick); // may run hit scripts: S is not used after this
 	S = D->FindSprite(H);
 	if (!S || !S->bActive)
 	{
 		return;
+	}
+	if (!S->bSpawned && S->Origin.IsValid() && (S->GetProp(B_PSeq) != PSeq0 || S->GetProp(B_PFrame) != PFrame0))
+	{
+		// Presentation only: a placement whose animation reaches a picture with its own family mesh (the chest's lid up) shows it now.
+		PresentAnimatedPlacement(*S);
 	}
 	if (!S->bMoving && (S->X != X0 || S->Y != Y0))
 	{

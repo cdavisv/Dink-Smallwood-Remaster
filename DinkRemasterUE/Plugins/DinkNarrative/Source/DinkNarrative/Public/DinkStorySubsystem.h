@@ -525,4 +525,23 @@ private:
 	bool bSyncingFacts = false;
 	bool bAutoTick = false;
 	int32 LastScreen = 0;
+	/** Dink's freeze and move serials when his pawn was first seen outside LastScreen (NoteScreenCrossing), -1 when not seen. */
+	int32 CrossingFreezeSerial = -1;
+	int32 CrossingMoveSerial = -1;
+	/** The greybox's warp serial at the last screen entry: a different one now means this entry is a warp. */
+	int32 SeenWarpSerial = 0;
+public:
+	/**
+	 * The pawn has left LastScreen (seen every Advance, before scripts run; the greybox reports the new screen up to ~0.25 s later):
+	 * remembers Dink's freeze and move serials, so the screen entry's load_map clears only what was there before the crossing.
+	 * Tests call it directly. Only the first call per crossing counts.
+	 */
+	void NoteScreenCrossing();
+	/** Whether a screen entry is a load_map for Dink (see OnScreenEntered): not force_vision, not the screen a script's load_screen already
+	 *  loaded, and not an edge crossing while dink_can_walk_off_screen is set (dink.cpp:14056); a warp is one either way (15724). */
+	static bool IsLoadMapEntry(bool bForceVisionRebuild, bool bScriptLoaded, bool bWarped, bool bWalkOffScreen)
+	{
+		return !bForceVisionRebuild && !bScriptLoaded && (bWarped || !bWalkOffScreen);
+	}
+private:
 };

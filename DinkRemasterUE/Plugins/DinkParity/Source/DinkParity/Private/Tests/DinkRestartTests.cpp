@@ -69,6 +69,16 @@ public:
                 // Compare the same post-dialogue point on a genuinely fresh world.
                 InitialStory = Facts->GetFact(TEXT("story"));
             }
+            // Before dying, enter a screen whose hardness is a registered original-hardness world (DinkHardnessWorldV1): the
+            // story keeps its physics owner per screen, and an owner of the old world left behind by the restart refused the
+            // new world's owner on the next visit ("another retained body owner exists"), which held the loading gate and
+            // froze Dink for good (CPP_STABILITY_AUDIT.md R1).
+            Test->TestTrue(TEXT("SCR_417 is a registered original-hardness screen"), Story->GetGameplay()->RequiresOriginalHardnessScreen(HardnessScreen));
+            World->GetSubsystem<UDinkGreyboxSubsystem>()->GotoScreen(HardnessScreen, 300.f, 200.f);
+            Phase = 5; PhaseAt = FPlatformTime::Seconds(); return false;
+        }
+        if (Phase == 4)
+        {
             // Dirty persistent state and inventory before actual lethal combat damage.
             Facts->SetFact(TEXT("story"), 17); Facts->SetFact(TEXT("gold"), 777);
             State->SetOverride(FDinkOriginId(438, 3), EDinkOverrideType::RemovedForever);
@@ -76,6 +86,20 @@ public:
             Inventory->AddItem(TEXT("restart-test-item"));
             Test->TestTrue(TEXT("actual damage reaches player brain"), Story->GetGameplay()->HurtThing(1, 1000) > 0);
             Phase = 1; PhaseAt = FPlatformTime::Seconds(); return false;
+        }
+        if (Phase == 5)
+        {
+            // OnScreenEntered sets player_map and admits the screen's hardness in the same call.
+            if (Facts->GetFact(TEXT("player_map")) != HardnessScreen || FPlatformTime::Seconds() - PhaseAt < 1.0)
+            {
+                if (FPlatformTime::Seconds() - PhaseAt > 15) { Test->AddError(FString::Printf(TEXT("cycle%d: SCR_%d was never entered"), Cycle, HardnessScreen)); return true; }
+                return false;
+            }
+            Test->TestFalse(FString::Printf(TEXT("cycle%d: the registered hardness screen is admitted (no loading gate)"), Cycle), Story->GetGameplay()->IsHardnessLoading());
+            Test->TestTrue(FString::Printf(TEXT("cycle%d: the registered hardness screen is projected"), Cycle), Story->GetGameplay()->UsesOriginalHardnessProjection(HardnessScreen));
+            Test->TestFalse(FString::Printf(TEXT("cycle%d: Dink can move on the registered hardness screen"), Cycle), World->GetFirstPlayerController()->IsMoveInputIgnored());
+            if (Story->GetGameplay()->IsHardnessLoading()) return true; // frozen for good: no death menu can follow
+            Phase = 4; return false;
         }
         if (Phase == 1)
         {
@@ -111,6 +135,7 @@ private:
     FVector InitialPosition = FVector::ZeroVector;
     double Began = 0, PhaseAt = 0;
     int32 Phase = 0, Cycle = 0, InitialStory = 0;
+    static constexpr int32 HardnessScreen = 417;
 };
 }
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkDeathRestartTest, "Dink.Gameplay.Restart.DeathMenuCreatesFreshPlayableWorldTwice", DINK_TEST_FLAGS)

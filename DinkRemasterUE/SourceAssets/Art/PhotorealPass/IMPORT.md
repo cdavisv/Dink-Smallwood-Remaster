@@ -250,6 +250,44 @@ Runtime only (`UDinkEnvironmentSubsystem::BuildIndoor`, nothing of it in headles
 - **Coverage**: `Scripts/art_coverage.py` counts these placements `final` with evidence `class-bound:` (`creature_class_rows`, `creature_class_binding`).
 - **Captures**: `Scripts/CreatureQA/make_scripts.py` writes before/after capture scripts for `Scripts/PhotorealQA/run_capture.sh`; results and what was seen: `Docs/Verification/CreatureClassBinding_13Nov2026/`.
 
+## Monsters: bonca, slayer, stone giant (15 Nov 2026)
+
+The rigged monsters of `Unclaimed/` had no clips and were bound nowhere (cards). Now each is a creature class
+(`creatures.json` `classes`: `bonca_gray`, `bonca_brown`, `bonca_purple`, `slayer`, `stone_giant`), with its corpse.
+
+- **Sources** (Blender, `Unclaimed/tools/bl.sh <script>`; pull `ThirdParty/polyhaven/{forrest_ground_01,rock_boulder_dry}`
+  from LFS first): `build_bonca.py final` (the hide is baked as a code: detail, stripe, leg, and painted three times:
+  grey with near-white stripes 601, brown with orange stripes 531, violet with lilac stripes 611; white eye),
+  `build_slayer.py final` (teal chitin plates, open jaw, the whip tail level behind it, 4.3 m), `build_giant.py final`
+  (brown bedded sandstone, eye stones in sockets, hardened skin weights). Then the clips, which the build wipes:
+  `clips_bonca.py build review export`, `clips_monsters.py <slayer|giant> build review export` (Idle, Walk, Run, Attack,
+  Hit, Death; `clips.json` holds the measured gait speeds; the same run freezes the last frame of the death clip as
+  `SM_<Name>_Corpse_PR.fbx`, centred, and for the giant breaks it at the joints into ten blocks piled as a heap),
+  `python3 -I corpse_blood.py` (soaked corpse skin, `T_<Name>_PR_BloodPool_BC.png`: a lobed pool with runs and about
+  150 thrown drops, and the giant's `T_Stone_Giant_PR_Grit_BC.png`), and `export_monster_ue.py <bonca|slayer|giant>`
+  (`Export/`, the creature importer's convention; the kit's own `SK_*_LOD*.fbx` are refused by its gate).
+- **Import**: `DINK_PHOTOREAL_ONLY=monsters Scripts/import_photoreal_art.sh` (or any of `bonca,slayer,giant`) ->
+  `/Game/Dink/Photoreal/Creatures/{Bonca,Slayer,StoneGiant}`: `SK_<Name>_PR` with its own skeleton, `AN_<Name>_<Clip>`,
+  `MI_<Name>_PR`, `MI_Bonca_Brown_PR`, `MI_Bonca_Purple_PR`, `SM_<Name>_Corpse_PR`, and the ground decals
+  `M_Bonca_BloodPool_Decal`, `M_Slayer_BloodPool_Decal`, `M_Stone_Giant_Grit_Decal`.
+- **Rows**: walk sequences are a locomotion role (idle, walk, run by measured speed); the attack sequences (bonca
+  54x/59x/62x, slayer 63x, giant 81x) play `AN_<Name>_Attack` over the sprite sequence's own duration.
+- **Deaths are what 1997 does**: no monster has a hit or death animation; a kill swaps the sprite for its corpse picture
+  (`add_kill_sprite`, dink.cpp:12359: `base_death` + direction, or `base_walk` + 5 for a sprite without one, which
+  `FDinkCreatureClassBinding::CorpseFor` now follows). Bonca 551-559: the brown body soaked red in its pool (all three
+  colours leave the brown body, as the original's one death set), decal 6.8 x 5.3 m. Slayer 645: the body with its tail
+  curled, in its pool, decal 6.4 x 5.0 m. Stone giant 825: the heap of its stones on dark grit, no blood (the picture has
+  none). The Hit and Death clips are authored and not bound.
+
+## Monster: dragon (16 Nov 2026)
+
+Class row `dragon` (16 placements). `Unclaimed/tools/bl.sh build_dragon.py final` (brown hide, thin pale wing skins between
+finger spars, open jaw), then `clips_monsters.py dragon build review export` and `export_monster_ue.py dragon`; import with
+`DINK_PHOTOREAL_ONLY=dragon Scripts/import_photoreal_art.sh` -> `/Game/Dink/Photoreal/Creatures/Dragon` (two-sided
+material for the wings). Walk 201-209 is a locomotion role; there is no attack sequence (it spits fire while it treads),
+so `AN_Dragon_Attack` is authored and not bound. A kill leaves the corpse kit's `SM_Dragon_Corpse_PR` (212-218) at corpse
+`scale` 1.7, so the remains are about two thirds of the live dragon's width, as 212/216 against 202.
+
 ## Turning the pass off
 
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):

@@ -1,0 +1,30 @@
+{
+ "Idle": {
+  "frames": 61,
+  "loop": true
+ },
+ "Walk": {
+  "frames": 25,
+  "loop": true,
+  "stride_m": 0.476,
+  "speed_cm_s": 119.0
+ },
+ "Run": {
+  "frames": 17,
+  "loop": true,
+  "stride_m": 0.664,
+  "speed_cm_s": 249.0
+ },
+ "Attack": {
+  "frames": 19,
+  "loop": false
+ },
+ "Hit": {
+  "frames": 11,
+  "loop": false
+ },
+ "Death": {
+  "frames": 37,
+  "loop": false
+ }
+}

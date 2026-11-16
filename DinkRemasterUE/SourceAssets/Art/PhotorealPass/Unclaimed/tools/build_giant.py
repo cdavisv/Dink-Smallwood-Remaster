@@ -36,15 +36,20 @@ def build_hi(c):
     step = smoothstep(0.0, 0.2, band) * (1 - smoothstep(0.8, 1.0, band)) * (0.35 + 0.65 * smoothstep(-0.3, 0.3, fbm(Pq, 25, 1.8, 2)))
     joint = np.minimum(np.abs(((x + 0.3 * w) / 0.31) % 1.0 - 0.5), np.abs(((y + 0.2 * w) / 0.37) % 1.0 - 0.5)); cr = smoothstep(0.035, 0.0, joint)
     chips = -0.012 * smoothstep(0.25, 0.6, fbm(Pq, 7, 7, 3)); lump = 0.012 * fbm(Pq, 11, 3.5, 3)
-    eye = np.exp(-(((np.abs(x) - 0.085) / 0.035) ** 2 + ((z - 1.855) / 0.022) ** 2)) * smoothstep(-0.6, -0.7, y)
-    mouth = np.exp(-((z - (1.735 - 0.5 * x * x)) / 0.012) ** 2) * smoothstep(-0.66, -0.74, y) * (1 - smoothstep(0.1, 0.13, np.abs(x)))
-    L.set_co(body, Pq + N * ((step - 0.5) * 0.024 * (0.6 + 0.8 * thick) - cr * 0.02 + chips * 1.5 + lump - eye * 0.05 - mouth * 0.022)[:, None])
-    body.data.materials.append(P.rock_mat('stone', 'rock_boulder_dry', tint=(0.95, 0.78, 0.56), value=0.95, sat=0.8, moss=0.25, lichen=0.3, dirt_z=0.25, scale=1.3, seed=12.0))
-    return [body]
+    eye = np.exp(-(((np.abs(x) - 0.088) / 0.044) ** 2 + ((z - 1.855) / 0.030) ** 2)) * smoothstep(-0.6, -0.7, y)
+    mouth = np.exp(-((z - (1.735 - 0.5 * x * x)) / 0.017) ** 2) * smoothstep(-0.64, -0.72, y) * (1 - smoothstep(0.12, 0.16, np.abs(x)))
+    L.set_co(body, Pq + N * ((step - 0.5) * 0.024 * (0.6 + 0.8 * thick) - cr * 0.02 + chips * 1.5 + lump - eye * 0.085 - mouth * 0.05)[:, None])
+    # the brown, mottled sandstone of 821 (the first build was a pale cream that washed out in daylight)
+    body.data.materials.append(P.rock_mat('stone', 'rock_boulder_dry', tint=(0.72, 0.50, 0.30), value=0.50, sat=1.0, moss=0.10, lichen=0.22, dirt_z=0.35, scale=1.3, seed=12.0))
+    obs = [body]; t = NT('eye'); t.set(base=(0.006, 0.005, 0.004), rough=0.07, spec=0.8); em = t.mat
+    for sx in (1, -1):                                             # eyes: dark wet stones deep in the sockets, a mouth that is a real cleft
+        hit = C.surface_hit(body, (0.088 * sx, -1.6, 1.855), (0, 1, 0)); ey = (hit[0][1] if hit else -0.72) + 0.012
+        e = C.ball('eye', (0.088 * sx, ey, 1.855), 0.026, c, squash=(1.15, 0.8, 0.8)); e.data.materials.append(em); obs.append(e)
+    return obs
 
 
 WEAK = ('NOT photoreal at 1 m: a blob figure with a rock texture. The body is a fused joint graph with strata, jointing and chips from displacement; it does not break into separate blocks at the joints, so it reads as a stone-skinned ape rather than as stacked rock. '
-        'Eyes and mouth are displaced pits only. The game mesh is a decimation (no joint loops) and stone should not stretch: skinned deformation will smear the bedding at the shoulders and hips; rigid chunks per bone would be the right build. '
+        'The eyes are dark stones in displaced sockets and the mouth a displaced cleft: no lids, no teeth. The game mesh is a decimation (no joint loops); the skin weights are hardened (5th power) so each bone carries a block and a narrow seam bends, but it is still one skin, not separate rocks. '
         'Inverse-distance or bone-heat automatic weights, one test pose. No animation clips, no Physics Asset.')
 
 
@@ -58,9 +63,17 @@ def main(mode):
     if mode == 'review':
         shots(hi, 'Stone_Giant_hi', L.REVIEW); return
     lo = L.make_lo(hi, 14000, asset, L.coll(asset), angle=72, margin=0.004); arm = C.make_armature(asset + '_Armature', J, BONES, L.coll(asset)); ids = L.origin_ids(['stone_giant'])
-    C.finish_creature(asset, 'creature', lo, hi, arm, outdir, 2048, families=['stone_giant', '821-829 foes/stonegnt/walk', '816 foes/stonegnt/attack'], origin=ids,
+    man, lods, files, vfiles = C.finish_creature(asset, 'creature', lo, hi, arm, outdir, 2048, families=['stone_giant', '821-829 foes/stonegnt/walk', '816 foes/stonegnt/attack'], origin=ids,
                       dresses='stone giant: a knuckle-walking, ape-built giant of bedded tan sandstone, 2.1 m at the shoulder and 1.9 m across, with massive forearms, a small head sunk between the shoulders and deep-set eye pits',
                       weaknesses=WEAK, script=SCRIPT + ' final', extrude=0.015, maxdist=0.04, third_party=['rock_boulder_dry'], extra={'contact_crop': 0.9})
+    # Stone does not stretch: harden the skin weights so each bone carries its own block and only a narrow seam bends
+    # (weights to the 5th power, renormalised), and write the kit FBX again from the hardened meshes.
+    for i, o in enumerate(lods):
+        for v in o.data.vertices:
+            gs = [(g.group, g.weight ** 5) for g in v.groups]; tot = sum(w for _, w in gs) or 1.0
+            for gi, w in gs:
+                o.vertex_groups[gi].add([v.index], w / tot, 'REPLACE')
+        C.export_skeletal(os.path.join(outdir, '%s_LOD%d.fbx' % (asset, i)), arm, o)
     shots([lo], 'render', outdir)
     C.pose(arm, {'upperarm_l': (-35, 0, 0), 'lowerarm_l': (-20, 0, 0), 'thigh_r': (-20, 0, 0), 'calf_r': (15, 0, 0), 'head': (0, 0, 20), 'spine_02': (0, 0, 8)})
     L.shot(R_, os.path.join(outdir, 'render_pose.png'), [lo], az=36, el=12, fill=1.25, lens=60, res=(1000, 750), spp=128); C.pose(arm, {}); L.save_blend()

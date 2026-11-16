@@ -441,6 +441,13 @@ void UDinkStorySubsystem::FinishInstance(FDinkScriptInstance& I, const TCHAR* Re
 
 void UDinkStorySubsystem::RemoveFinishedInstances()
 {
+	// Not while a script runs: the steps up the call stack (StepInstance's instance, RunNow's outer, `external`'s caller) hold
+	// pointers to their instances, and a screen entered from inside a script (force_vision on a registered-hardness screen ends
+	// every instance not attached to 1000) would free them under their feet. Advance and RunUntilIdle remove them after the step.
+	if (CurrentInstanceId != 0)
+	{
+		return;
+	}
 	Instances.RemoveAll([](const TUniquePtr<FDinkScriptInstance>& I) { return !I->IsAlive(); });
 }
 
@@ -919,6 +926,26 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 	{
 		return;
 	}
+	// The controller's move hold follows its reasons (a freeze, the hardness gate) every frame: a hold whose reason went away with
+	// a reset, a load or a lost pawn is given back here at the latest, and a controller that appeared later is held at once.
+	Director->UpdatePlayerMoveHold();
+	// The pawn may already stand on the next screen before the greybox reports it: note the crossing now, before input or scripts
+	// of this frame can freeze or move Dink anew (see NoteScreenCrossing).
+	if (UWorld* World = GetWorld(); World && World->IsGameWorld())
+	{
+		const UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>();
+		const APlayerController* PC = World->GetFirstPlayerController();
+		const APawn* Pawn = PC ? PC->GetPawn() : nullptr;
+		const ADinkScreenVolume* Physical = Greybox && Pawn ? Greybox->FindScreenAt(Pawn->GetActorLocation()) : nullptr;
+		if (Physical && Physical->ScreenNumber != LastScreen && LastScreen > 0)
+		{
+			NoteScreenCrossing();
+		}
+		else if (Physical && Physical->ScreenNumber == LastScreen)
+		{
+			CrossingFreezeSerial = CrossingMoveSerial = -1; // back before the greybox noticed: no crossing pending
+		}
+	}
 	// The inventory screen stops the game (dink.cpp:17361: the main loop only runs process_item): no time passes for scripts,
 	// brains, texts, the status update or the world-state clock until it closes.
 	if (InventoryScreen.bOpen)
@@ -1069,6 +1096,15 @@ int64 UDinkStorySubsystem::RunUntilIdle(int64 MaxLines)
 // ---------------------------------------------------------------------------------------------
 // Screens and talking
 
+void UDinkStorySubsystem::NoteScreenCrossing()
+{
+	if (Director && CrossingFreezeSerial < 0)
+	{
+		CrossingFreezeSerial = Director->GetDinkFreezeSerial();
+		CrossingMoveSerial = Director->GetDinkMoveSerial();
+	}
+}
+
 void UDinkStorySubsystem::PollScreenChange()
 {
 	UWorld* World = GetWorld();
@@ -1152,7 +1188,20 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,
 	}
 	if (!bRunScreenScripts)
 	{
-		// No scripts (tests): place_sprites_game's hardness still follows the save's editor_types (D:5974).
+		// No scripts (tests, dink.ScreenScripts 0 in capture runs): place_sprites_game's hardness still follows the save's editor_types
+		// (D:5974). No placement pass admits a marked screen here, so the hardness gate this entry closed is opened again (it held Dink
+		// and stopped the story for good, alpha bug A86), and load_map's clearing of Dink's freeze and move still applies.
+		if (Gameplay && Gameplay->IsHardnessLoading())
+		{
+			UE_LOG(LogDinkNarrative, Log, TEXT("screen scripts off: SCR_%03d keeps its legacy hardness; the loading gate opens"), Screen);
+			Gameplay->FinishScriptlessHardnessLoad();
+		}
+		if (!bForceVisionRebuild)
+		{
+			Director->ConsumeScriptLoadedScreen(Screen);
+			Director->ApplyLoadMapToDink();
+			CrossingFreezeSerial = CrossingMoveSerial = -1;
+		}
 		if (Gameplay && Gameplay->HasData())
 		{
 			Gameplay->ApplyLoadedPlayChanges(Screen);
@@ -1198,9 +1247,28 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,
     {UE_LOG(LogDinkNarrative,Error,TEXT("hardness screen admission refused: %s"),*HardnessError);return;}
     if(bRestartSavedRuntime)Gameplay->RearmAfterOriginalLoad(); // DISARM then ARM, as load_game does (dink.cpp:1435-1439, 1452-1456)
 	Gameplay->SyncDinkFromActor();
-	// Remaster safety rule: the original cannot change screens while Dink is frozen, but a warp or
-	// dink.Goto can. If no surviving script is running (one that could unfreeze him), do it here.
-	if (Director->GetDink().bFrozen && !bSurvivorRuns)
+	// load_map clears Dink's freeze on every screen load (dink.cpp:1013-1015): walking off an edge (14071-14151) and a warp
+	// (15724) do it here. A script's load_screen did it already when it ran (7874-7878, UDinkDirector's load_screen), and the
+	// script may have frozen him again since: then only the remaster safety rule applies (a warp or dink.Goto can change the
+	// screen while Dink is frozen; if no surviving script is running, nothing could unfreeze him). force_vision is no load.
+	// While dink_can_walk_off_screen is set the original loads no screen when Dink crosses an edge (did_player_cross_screen
+	// returns at once, dink.cpp:14056; s2-culg.c:37-39 walks a frozen Dink off the bottom): a remaster edge change then is no load_map.
+	// load_map also stops Dink's scripted move (move_active, move_nohard: the same lines). Only what Dink had when he crossed into
+	// the new screen is cleared: a freeze or move started after the crossing (Esc's escape.c, a death, a spell, while the greybox had
+	// not yet reported the new screen) stays. dink_can_walk_off_screen stops only edge crossings; a warp still runs load_map (15724).
+	const bool bScriptLoaded = Director->ConsumeScriptLoadedScreen(Screen);
+	const UDinkGreyboxSubsystem* WarpSource = GetWorld() ? GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+	const int32 WarpSerialNow = WarpSource ? WarpSource->GetWarpSerial() : SeenWarpSerial;
+	const bool bWarped = WarpSerialNow != SeenWarpSerial;
+	SeenWarpSerial = WarpSerialNow;
+	const int32 FreezeLimit = CrossingFreezeSerial >= 0 ? CrossingFreezeSerial : MAX_int32;
+	const int32 MoveLimit = CrossingMoveSerial >= 0 ? CrossingMoveSerial : MAX_int32;
+	CrossingFreezeSerial = CrossingMoveSerial = -1;
+	if (IsLoadMapEntry(bForceVisionRebuild, bScriptLoaded, bWarped, Director->bDinkCanWalkOffScreen) && Director->ApplyLoadMapToDink(FreezeLimit, MoveLimit))
+	{
+		UE_LOG(LogDinkNarrative, Log, TEXT("screen load stops Dink's move and clears his freeze (load_map, dink.cpp:1013-1015)"));
+	}
+	else if (Director->GetDink().bFrozen && !bSurvivorRuns)
 	{
 		UE_LOG(LogDinkNarrative, Log, TEXT("screen change ended the script that froze Dink; unfreezing him"));
 		Director->SetFrozen(1, false);
@@ -1261,6 +1329,11 @@ void UDinkStorySubsystem::EnterScreenPlacements(int32 Screen)
 			Pair.Value->SetActorHiddenInGame(true);
 			Pair.Value->SetActorEnableCollision(false);
 		}
+	}
+	// Presentation: the placements update_play_changes rewrote show the save's picture (live or drawn into the background).
+	if (Gameplay && Gameplay->HasData())
+	{
+		Gameplay->PresentPlacementPictures(Screen);
 	}
 	if (!Gameplay->HasData())
 	{
@@ -1530,6 +1603,10 @@ bool UDinkStorySubsystem::HandlePendingRestart()
     NowMs = 0;
     ClockCarryMs = 0;
     NextInstanceId = 1;
+    // The registered-hardness owners belong to the world being replaced: retained, the first one refused the new world's owner
+    // of the same screen ("another retained body owner exists"), which held the loading gate and froze Dink for good, and their
+    // strong component references kept the old world alive. Released before ResetRuntime, which rebuilds the slot history.
+    if (Gameplay) Gameplay->ShutdownRuntimeHardness();
     ResetRuntime();
     bNewGamePending = false;
     bRunScreenScripts = true;

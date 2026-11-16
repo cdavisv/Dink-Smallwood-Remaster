@@ -126,16 +126,16 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 77.4,
-   "p99": 148.9
+   "mean": 83.7,
+   "p99": 199.1
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.518,
-   "p95": 0.713
+   "mean": 0.531,
+   "p95": 0.715
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.697
+  "ao_mean": 0.766
  },
  "pivot": "feet: armature origin on the ground between the feet, front on -Y",
  "families": [
@@ -198,10 +198,10 @@
   ]
  },
  "supersedes": "none (placeholder greybox cards)",
- "dresses": "bonca: a hunched, neckless biped about 1.45 m at the hump and 2.5 m nose to tail tip; grey-green banded hide with pale fold crests, pale eyes low in the front of the trunk, wide slit mouth with peg teeth, three-clawed feet with a rear spur, thick tail",
+ "dresses": "bonca: a hunched, neckless biped about 1.45 m at the hump and 2.5 m nose to tail tip; dark hide with tiger stripes across the back and tail (grey with near-white stripes, brown with orange, violet with lilac), a white eye low in the front of the trunk, wide slit mouth with peg teeth, three-clawed feet with a rear spur, thick tail",
  "third_party": [],
  "status": "source delivered; not imported into Unreal, not bound to any placement",
- "known_weaknesses": "NOT photoreal at 1 m: it reads as a carefully lit maquette, smooth and rubbery, and passes only at gameplay distance. Anatomy is invented from 90-pixel sprites: a blob of a trunk on a joint graph, with no modelled musculature, knees or ankle tendons; folds are a sine band pattern, not sculpted. The face is two amber eye domes, a displaced slit and nine peg teeth; no lids, nostrils, gums or tongue, and the mouth cannot open (no jaw bone). The game mesh is a decimation of the remeshed source, so it has no edge loops at the joints: it will crease when the legs and tail bend far. Skin weights are inverse-distance to the bones (bone heat did not solve on the multi-shell mesh), checked in one test pose only (render_pose.png). No animation clips, no Physics Asset. Smart-projected UVs: many islands, so mip seams are possible. The brown and purple hides are tints of the grey base colour, not separately painted.",
+ "known_weaknesses": "NOT photoreal at 1 m: it reads as a carefully lit maquette, smooth and rubbery, and passes only at gameplay distance. Anatomy is invented from 90-pixel sprites: a blob of a trunk on a joint graph, with no modelled musculature, knees or ankle tendons; folds are a sine band pattern, not sculpted. The face is two amber eye domes, a displaced slit and nine peg teeth; no lids, nostrils, gums or tongue, and the mouth cannot open (no jaw bone). The game mesh is a decimation of the remeshed source, so it has no edge loops at the joints: it will crease when the legs and tail bend far. Skin weights are inverse-distance to the bones (bone heat did not solve on the multi-shell mesh), checked in one test pose only (render_pose.png). No animation clips, no Physics Asset. Smart-projected UVs: many islands, so mip seams are possible. The three hides are painted from one baked code (detail, stripe, leg): same stripe layout on all three.",
  "colour_families": {
   "bonca_gray": "T_Bonca_PR_BC.png",
   "bonca_brown": "T_Bonca_PR_Brown_BC.png",

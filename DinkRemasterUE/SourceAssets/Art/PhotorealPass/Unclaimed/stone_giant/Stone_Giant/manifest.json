@@ -107,13 +107,13 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 99.9,
-   "p99": 164.8
+   "mean": 62.5,
+   "p99": 100.9
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.509,
-   "p95": 0.832
+   "mean": 0.513,
+   "p95": 0.843
   },
   "metallic_mean": 0.0,
   "ao_mean": 0.53
@@ -148,6 +148,6 @@
   "rock_boulder_dry"
  ],
  "status": "source delivered; not imported into Unreal, not bound to any placement",
- "known_weaknesses": "NOT photoreal at 1 m: a blob figure with a rock texture. The body is a fused joint graph with strata, jointing and chips from displacement; it does not break into separate blocks at the joints, so it reads as a stone-skinned ape rather than as stacked rock. Eyes and mouth are displaced pits only. The game mesh is a decimation (no joint loops) and stone should not stretch: skinned deformation will smear the bedding at the shoulders and hips; rigid chunks per bone would be the right build. Inverse-distance or bone-heat automatic weights, one test pose. No animation clips, no Physics Asset.",
+ "known_weaknesses": "NOT photoreal at 1 m: a blob figure with a rock texture. The body is a fused joint graph with strata, jointing and chips from displacement; it does not break into separate blocks at the joints, so it reads as a stone-skinned ape rather than as stacked rock. The eyes are dark stones in displaced sockets and the mouth a displaced cleft: no lids, no teeth. The game mesh is a decimation (no joint loops); the skin weights are hardened (5th power) so each bone carries a block and a narrow seam bends, but it is still one skin, not separate rocks. Inverse-distance or bone-heat automatic weights, one test pose. No animation clips, no Physics Asset.",
  "contact_crop": 0.9
 }

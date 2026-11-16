@@ -11,8 +11,8 @@
  "build": "Unclaimed/tools/bl.sh build_slayer.py final",
  "dimensions_m": [
   0.898,
-  3.5298,
-  2.3809
+  4.4397,
+  1.8787
  ],
  "bounds_min_m": [
   -0.4496,
@@ -21,8 +21,8 @@
  ],
  "bounds_max_m": [
   0.4483,
-  2.31,
-  2.3864
+  3.2199,
+  1.8842
  ],
  "lod0_triangles": 18000,
  "lod1_triangles": 9000,
@@ -108,24 +108,24 @@
   "loose_verts": 0,
   "zero_area_faces": 0,
   "uv_range": [
-   0.0051,
-   0.9949
+   0.005,
+   0.995
   ],
   "transforms_applied": true
  },
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 68.0,
-   "p99": 150.5
+   "mean": 69.6,
+   "p99": 150.6
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.436,
-   "p95": 0.656
+   "mean": 0.295,
+   "p95": 0.536
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.609
+  "ao_mean": 0.585
  },
  "pivot": "feet: armature origin on the ground between the feet, front on -Y",
  "families": [
@@ -159,9 +159,9 @@
   ]
  },
  "supersedes": "none (placeholder greybox cards)",
- "dresses": "slayer: a gaunt hunched biped, 1.7 m at the spines and about 3.5 m from snout to the tip of its whip tail; dark teal hide with brown blotches and raw red sores, one long amber scythe on each arm, seven raked dorsal spines, digitigrade clawed legs, red eyes",
+ "dresses": "slayer: a gaunt hunched biped, 1.7 m at the spines and about 4.3 m from snout to the tip of its whip tail; wet teal-green chitin plates with dark seams and rust-brown blotches, an open jaw of needle teeth, a whip tail trailing level behind it, one long amber scythe on each arm, seven raked dorsal spines, digitigrade clawed legs, red eyes",
  "third_party": [],
  "status": "source delivered; not imported into Unreal, not bound to any placement",
- "known_weaknesses": "NOT photoreal at 1 m: a lit maquette. Anatomy is invented from 110-pixel sprites on a joint graph: no modelled muscle, tendon or joint structure beyond rib hoops and a vertebral ridge from displacement. Scythes, spines, claws and teeth are separate horn solids pushed into the body, without sockets or gums. The head has no mouth opening, lids or nostrils, and there is no jaw bone. The game mesh is a decimation of the remeshed source: no edge loops at joints, and the 1 cm tail tip keeps few triangles. Skin weights are inverse-distance, checked in one pose (render_pose.png). No animation clips, no Physics Asset. Smart-projected UVs with many islands.",
+ "known_weaknesses": "NOT photoreal at 1 m: a lit maquette. Anatomy is invented from 110-pixel sprites on a joint graph: no modelled muscle, tendon or joint structure beyond rib hoops and a vertebral ridge from displacement. Scythes, spines, claws and teeth are separate horn solids pushed into the body, without sockets or gums. The lower jaw hangs open under the snout with its own teeth, but there is no jaw bone (it cannot move), no tongue, lids or nostrils. The game mesh is a decimation of the remeshed source: no edge loops at joints, and the 1 cm tail tip keeps few triangles. Skin weights are inverse-distance, checked in one pose (render_pose.png). No animation clips, no Physics Asset. Smart-projected UVs with many islands.",
  "contact_crop": 0.9
 }
