@@ -18,9 +18,9 @@
       "why": "environment.json grass.preferred_meshes; DinkEnvironmentSubsystem.cpp removes every grass mesh that is not a GrassPatch_Tall once the tall patches are imported (~147-149)"
     },
     {
-      "match": "^SM_Wall_Plaster_(DoorHeader|DoorJamb_R)$",
+      "match": "^SM_Wall_Plaster_DoorHeader$",
       "kind": "deliberate",
-      "why": "families.json int_wall_plaster_doorjamb note: the class covers both jambs, so every jamb shows the left module; the right jamb and the header are imported but unbound"
+      "why": "no families.json row or manifest places it (the int_wall_plaster_doorjamb note calls the header and the right jamb unbound; the right jamb has since been bound by a frame row and is drawn, the header has not)"
     },
     {
       "match": "^SM_Fireplace_Stonebrook_V3Contact$",
@@ -33,9 +33,9 @@
       "why": "characters.json mesh; when the game renders, DinkArtSubsystem DinkPhotorealNpcMesh draws SK_<Name>_Photoreal instead (the manifest mesh is drawn headless only)"
     },
     {
-      "match": "^(SK_Pillbug|SM_Pillbug_Corpse)$",
+      "match": "^SK_Pillbug$",
       "kind": "replaced",
-      "why": "creatures.json origin rows of the older pillbug; the rendering game shows the photoreal class creature (SK_Pillbug_Photoreal, SM_Pillbug_Corpse_PR) of the class row"
+      "why": "creatures.json origin rows of the older pillbug; the rendering game shows the photoreal class creature SK_Pillbug_Photoreal of the class row"
     },
     {
       "match": "^SK_Dink(_Hands)?$",
@@ -46,6 +46,16 @@
       "match": "^AN_(Duck_(Death|HeadlessDeath|Hit|Peck|Quack)|Slime_(Attack|Death))$",
       "kind": "bug",
       "why": "A205: imported with the creature classes of PR #113, but no creatures.json role plays them (duck: walk/headless locomotion only; slimes: walk only, death shows the splat corpse at once)"
+    },
+    {
+      "match": "^SM_Slime_Trail$",
+      "kind": "bug",
+      "why": "A205: exported with the slime (PhotorealPass/Creatures/Slime/Export) but not imported by PR #113; no creatures.json role uses a trail"
+    },
+    {
+      "match": "^SM_Basket_Wicker_PR$",
+      "kind": "superseded",
+      "why": "families.json basket_wicker row: its only placement is on screen 1, where stonebrook.json binds the Codex basket (Props/Stonebrook/PhotorealBasketV1/SM_Basket_Wicker_01) instead"
     },
     {
       "match": "^SM_Slime_Splat$",
@@ -115,8 +125,8 @@
     },
     {
       "match": "^SM_(Aubergine|Pepper_Green|Pumpkin|Tomato)_PR$",
-      "kind": "deliberate",
-      "why": "Unclaimed STATUS.md food_fruit: these four lie on the tables of screen 70; the family layer stands a mesh on the floor"
+      "kind": "queued",
+      "why": "Unclaimed STATUS.md food_fruit: these four lie on the tables of screen 70 and the family layer stands a mesh on the floor: bug row A209 (placement work, no new art)"
     },
     {
       "match": "^SM_Wall_Dungeon_(Ivy|Breach)$",
@@ -196,6 +206,61 @@
       "source": "PhotorealPass/Unclaimed/burnt_floor_hole/",
       "kind": "queued",
       "why": "decal set, not imported: the burn holes of SCR_001 are Fable row GP-Q5"
+    },
+    {
+      "match": "^(SK_King_PR|SM_King_On_Throne_PR|SK_Knight_PR)$",
+      "kind": "queued",
+      "why": "not imported (Unclaimed STATUS.md: partial, several alpha-tested slots); King Daniel and the throne-room knights are Fable row PQ-Q5"
+    },
+    {
+      "match": "^(SM_Corpse_Mother_PR|SM_Corpse_Soldier_PR|SM_Dink_Dead_PR)$",
+      "kind": "queued",
+      "why": "not imported (the kit importer has no alpha-tested hair slot); the Mother's body S001_P34, Milder's corpse S086_P01 and the dead Dink S058_P06 are Fable row GP-Q5 (branch art/stonebrook-mother-burnholes)"
+    },
+    {
+      "match": "^SM_Window_Stained_Twin_PR$",
+      "kind": "queued",
+      "why": "church window of a multi-sprite building: Fable row VS-06 (the church)"
+    },
+    {
+      "match": "^(SM_Snow_House_(Lower|Roof|Timber)_PR|SM_Door_Snow_House_PR)$",
+      "kind": "queued",
+      "why": "snow-isle house of screen 149 in several sprites: Fable row VS-10"
+    },
+    {
+      "match": "^(SM_Gold_Coin_PR|SM_Arrow_PR)$",
+      "kind": "queued",
+      "why": "Fable row VS-14 (gold coins, arrows; the coin needs a thicker game mesh, the arrows a wall or range placement)"
+    },
+    {
+      "match": "^(SM_Castle_Drawbridge_PR|SM_Door_Castle_PR)$",
+      "kind": "queued",
+      "why": "castle gate pieces: Fable row VS-02 (castle walls, towers and gate)"
+    },
+    {
+      "match": "^SM_Ore_Rock_Blue_PR$",
+      "kind": "queued",
+      "why": "its only placement is a scripted road rock (s3-rock): Fable row VS-15 (scripted rocks; on PR #148, pending)"
+    },
+    {
+      "match": "^SK_(Girl|Gnome_Wizard|Maiden_Blue|Maiden_Brown|Maiden_Red|Merchant|Old_Man|Peasant|Soldier)_PR$",
+      "kind": "queued",
+      "why": "rigged townsfolk, not imported (Unclaimed STATUS.md: partial): Fable row DS-07"
+    },
+    {
+      "match": "^SM_Stairs_Wood_PR$",
+      "kind": "queued",
+      "why": "partial (one open flight for pictures that are floor openings and closed flights): Fable row DS-08"
+    },
+    {
+      "match": "^SM_Arch_Stone_PR$",
+      "kind": "queued",
+      "why": "dungeon_arch_freestanding is bound to a stand-in wall arch; swapping in this arch needs a look in game: Fable row DS-02"
+    },
+    {
+      "match": "^(SM_Bomb_PR|SM_Bread_Braided_PR|SM_Cheese_Wheel_PR|SM_Grapes_PR|SM_Steak_TBone_PR|SM_Banner_Red_PR|SM_Notice_Hark_PR|SM_Notice_Wanted_PR|SM_Cellar_Hatch_PR)$",
+      "kind": "queued",
+      "why": "delivered mesh the family layer cannot place (table top or shelf, wall, flat under a wall): bug row A209 (a per-placement height / wall mount, or per-screen manifest elements)"
     }
   ]
 }

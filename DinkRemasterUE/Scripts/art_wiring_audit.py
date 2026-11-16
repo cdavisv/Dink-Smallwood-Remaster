@@ -213,9 +213,34 @@ def walk_json(value, where, pk, roots, bare_prefix=None, key=""):
 
 
 def swapped_sources():
-    """{package: [targets]} that environment.json mesh_swaps replaces at runtime (the key mesh is never drawn)."""
+    """{package: [targets]} that environment.json mesh_swaps replaces at runtime, and {package: actor tag} of
+    mesh_swap_only_tag (the swap then runs only on owners with that tag, e.g. DinkArtScreen_439)."""
     env = read_json(os.path.join(CONTENT, "Dink", "Data", "Environment", "environment.json")) or {}
-    return {k.split(".")[0]: v for k, v in (env.get("mesh_swaps") or {}).items()}
+    swaps = {k.split(".")[0]: v for k, v in (env.get("mesh_swaps") or {}).items()}
+    only = {k.split(".")[0]: v for k, v in (env.get("mesh_swap_only_tag") or {}).items()}
+    return swaps, only
+
+
+def swap_status(games, roots, swapped, only_tag, authored, context):
+    """How mesh_swaps treats a swap source, per root (DinkArtSubsystem DinkApplyEnvironmentMeshSwap runs only for
+    elements of authored, non-context dink-art manifests, and with mesh_swap_only_tag only on owners tagged
+    DinkArtScreen_<screen>). -> (swapped roots, roots unswapped by a written only-tag decision, roots unswapped by
+    the wiring). camera_*.json name meshes for the fade rules only and place nothing."""
+    done, decided, missed = [], [], []
+    for g in games:
+        if g not in swapped:
+            continue
+        tag = only_tag.get(g)
+        for w in sorted(roots.get(g, set())):
+            if os.path.basename(w).startswith("camera_"):
+                continue
+            if w in authored and (tag is None or tag == "DinkArtScreen_%s" % authored[w]):
+                done.append(w)
+            elif tag is not None and (w in authored or w in context):
+                decided.append(w)
+            else:
+                missed.append(w)
+    return sorted(set(done)), sorted(set(decided)), sorted(set(missed))
 
 
 def runtime_roots(pk, generated_maps):
@@ -404,10 +429,11 @@ def deliberate_clip_reason(name, natural, superseded):
 
 
 def cpp_literals():
+    """TEXT("...") literals of the Runtime modules (Editor and DeveloperTool modules play nothing for a player)."""
     out = set()
-    for f in glob.glob(os.path.join(PROJECT, "Plugins", "*", "Source", "**", "*.cpp"), recursive=True) + \
-            glob.glob(os.path.join(PROJECT, "Plugins", "*", "Source", "**", "*.h"), recursive=True):
-        if "/Tests/" in f:
+    for d in runtime_module_dirs():
+      for f in sorted(glob.glob(os.path.join(d, "**", "*.cpp"), recursive=True) + glob.glob(os.path.join(d, "**", "*.h"), recursive=True)):
+        if "/Tests/" in f.replace(os.sep, "/"):
             continue
         with open(f, encoding="utf-8", errors="replace") as h:
             out.update(re.findall(r'TEXT\("([A-Za-z0-9_]+)"\)', h.read()))
@@ -579,6 +605,8 @@ def in_commit(game, commit):
     if commit not in _COMMIT_CACHE:
         def git(*args):
             return subprocess.run(["git", "-C", PROJECT] + list(args), capture_output=True, text=True).stdout
+        if subprocess.run(["git", "-C", PROJECT, "cat-file", "-e", commit + "^{commit}"], capture_output=True).returncode != 0:
+            sys.exit("art_wiring_audit: unknown commit %r (--cook-commit / --sweep-commit)" % commit)
         files = set(git("ls-tree", "-r", "--name-only", commit, "--", "Content").splitlines())
         prefix = git("rev-parse", "--show-prefix").strip()
         files = {f[len(prefix):] if prefix and f.startswith(prefix) else f for f in files}
@@ -629,6 +657,11 @@ def unseen_reason(games, via, families, placements, captured, environment):
     if "DinkPhotorealNpcMesh" in roots:
         return ("drawn for the characters.json placement or script profile it replaces (Milder: script profile s1-bul, "
                 "a sprite his script creates); the sweep entered each screen once and did not play that story beat")
+    if "creatures.json" in roots:
+        cr = read_json(os.path.join(CONTENT, "Dink", "Data", "Art", "creatures.json")) or {}
+        corpses = json.dumps([c.get("corpses", []) for c in cr.get("classes", [])] + [p.get("corpse") for p in cr.get("placements", [])])
+        if any(g in corpses for g in games):
+            return "creatures.json corpse: drawn only after a kill (add_kill_sprite); the sweep killed nothing"
     if "environment.json" in roots:
         texts = {k: json.dumps(v) for k, v in environment.items()}
         sections = sorted(k for k, t in texts.items() if any(g in t for g in games))
@@ -705,10 +738,15 @@ def main():
     known = known_rows()
     literals = cpp_literals()
     index = coverage_index()
-    swapped = swapped_sources()
-    dink_art = {rel(f) for f in glob.glob(os.path.join(CONTENT, "Dink", "Data", "Art", "*.json"))
-                if str((read_json(f) or {}).get("schema", "")).startswith("dink-art/")
-                and "context" not in (read_json(f) or {})}   # context manifests (render-only vista) are not swapped
+    swapped, only_tag = swapped_sources()
+    authored, context = {}, set()       # authored dink-art manifests -> screen; render-only context manifests
+    for f in sorted(glob.glob(os.path.join(CONTENT, "Dink", "Data", "Art", "*.json"))):
+        d = read_json(f) or {}
+        if str(d.get("schema", "")).startswith("dink-art/"):
+            if "context" in d:
+                context.add(rel(f))
+            else:
+                authored[rel(f)] = d.get("screen", 1)
     captured = captured_screens(a.scene_audit) if a.scene_audit else set()
     placements = load_placements(a.placements)
     families = (read_json(os.path.join(CONTENT, "Dink", "Data", "Art", "families.json")) or {}).get("families", [])
@@ -736,6 +774,8 @@ def main():
         elif st and ("not imported" in st[1] or "not bound" in st[1]):
             reason = ("STATUS.md: " + st[1] + "; " + st[2])[:300]
         cov = covered_by(name, index)
+        if not cov and k:       # the reviewed reason names its owner row (A2xx, DS-07, PQ-Q5, ...)
+            cov = " ".join(dict.fromkeys(re.findall(r"\b(?:[A-Z]{2}-Q?\d+|A\d{2,3})\b", k[1])))
         if not games:
             flags.append(gap_flag(reason, cov) or "not_imported")
         bound_where, cooked_s, seen_s = "", "", ""
@@ -779,23 +819,25 @@ def main():
         after_sweep = bool(a.sweep_commit) and all(not in_commit(g, a.sweep_commit) for g in bound_games)
         if bound_games and kind != "clip":
             if any(g in swapped for g in bound_games):
-                # DinkArtSubsystem DinkApplyEnvironmentMeshSwap hides the component of this mesh and draws a photoreal mesh
-                # in its place, but only for elements of authored dink-art manifests (DinkArtSubsystem.cpp ~492): family
-                # art, world maps and other layers draw the swap source as it is
                 targets = " / ".join(sorted({os.path.basename(t.split(".")[0]) for g in bound_games for t in swapped.get(g, [])}))
-                # camera_*.json only name meshes for the camera fade rules; they place nothing
-                unswapped = sorted(w for w in {w for g in bound_games for w in roots.get(g, set())} - dink_art
-                                   if not os.path.basename(w).startswith("camera_"))
-                if seen_s:
+                done, decided, missed = swap_status(bound_games, roots, swapped, only_tag, authored, context)
+                if missed:
                     flags.append("bug")
-                    details.append("drawn unswapped in the sweep (%s) although mesh_swaps maps it to %s" % (seen_s, targets))
-                elif not unswapped:
+                    cov = cov or " ".join(x for x, hit in (("A206", any(os.path.basename(w) == "families.json" for w in missed)),
+                                                           ("A207", any(w in context for w in missed))) if hit)
+                    details.append("drawn unswapped by %s: mesh_swaps (-> %s) runs only for elements of authored (non-context) "
+                                   "dink-art manifests%s" % (", ".join(missed), targets, "; seen in the sweep: " + seen_s if seen_s else ""))
+                elif decided:
+                    flags.append("deliberate")
+                    reason = reason or ("deliberate: environment.json mesh_swap_only_tag limits the swap to %s; %s keep the old "
+                                        "mesh on purpose (environment.json note)" % (
+                                            only_tag.get(bound_games[0], "?"), ", ".join(decided)))
+                elif seen_s:
+                    flags.append("bug")
+                    details.append("drawn unswapped in the sweep (%s) although every root is swapped (-> %s)" % (seen_s, targets))
+                else:
                     flags.append("replaced")
                     reason = reason or "replaced: environment.json mesh_swaps draws %s in its place" % targets
-                else:
-                    flags.append("bug")
-                    details.append("drawn unswapped by %s: mesh_swaps (-> %s) applies only to elements of authored (non-context) dink-art manifests"
-                                   % (", ".join(unswapped), targets))
             elif k and k[0] in ("replaced", "bug", "superseded"):
                 flags.append(k[0])
             elif any(g in HERO_MESHES for g in bound_games):
@@ -850,8 +892,9 @@ def main():
         elif cooked_s == "no":
             flags.append("not_cooked")
         elif g in swapped:
-            flags.append("replaced")
-            reason = reason or "replaced: environment.json mesh_swaps"
+            done, decided, missed = swap_status([g], roots, swapped, only_tag, authored, context)
+            flags.append("bug" if missed else "deliberate" if decided else "replaced")
+            reason = reason or ("replaced: environment.json mesh_swaps" if not (missed or decided) else "")
         elif k and k[0] in ("replaced", "bug", "superseded"):
             flags.append(k[0])
         elif g in HERO_MESHES:

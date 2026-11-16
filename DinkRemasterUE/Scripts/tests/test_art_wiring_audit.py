@@ -166,5 +166,30 @@ class Classifier(unittest.TestCase):
         self.assertEqual(sorted(self.roots), ['/Game/Dink/A/SM_Door'])
 
 
+class Swaps(unittest.TestCase):
+    """environment.json mesh_swaps: which roots the runtime swaps (review 2 of PR #154)."""
+
+    def test_authored_swapped_context_and_family_not(self):
+        swapped = {'/Game/K/SM_Oak': ['/Game/P/SM_Veg_Oak']}
+        roots = {'/Game/K/SM_Oak': {'Content/Dink/Data/Art/stonebrook_exterior.json', 'Content/Dink/Data/Art/vista.json',
+                                    'Content/Dink/Data/Art/families.json', 'Content/Dink/Data/Art/camera_exteriors.json'}}
+        authored = {'Content/Dink/Data/Art/stonebrook_exterior.json': 439}
+        context = {'Content/Dink/Data/Art/vista.json'}
+        done, decided, missed = A.swap_status(['/Game/K/SM_Oak'], roots, swapped, {}, authored, context)
+        self.assertEqual(done, ['Content/Dink/Data/Art/stonebrook_exterior.json'])
+        self.assertEqual(decided, [])
+        self.assertEqual(missed, ['Content/Dink/Data/Art/families.json', 'Content/Dink/Data/Art/vista.json'])  # camera_* ignored
+
+    def test_only_tag_limits_the_swap_on_purpose(self):
+        g = '/Game/K/SM_Cottage'
+        swapped = {g: ['/Game/P/SM_Cottage_PR']}
+        only = {g: 'DinkArtScreen_439'}
+        roots = {g: {'a439.json', 'a001.json', 'vista.json'}}
+        done, decided, missed = A.swap_status([g], roots, swapped, only, {'a439.json': 439, 'a001.json': 1}, {'vista.json'})
+        self.assertEqual(done, ['a439.json'])
+        self.assertEqual(decided, ['a001.json', 'vista.json'])   # kept old on purpose, not a wiring bug
+        self.assertEqual(missed, [])
+
+
 if __name__ == '__main__':
     unittest.main()

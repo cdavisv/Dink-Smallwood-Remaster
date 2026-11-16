@@ -5,17 +5,15 @@ rows: 853; unreadable packages (LFS object missing): 0
 
 | flag | rows |
 |---|---:|
-| not_imported | 1 |
 | lod | 10 |
 | bug | 15 |
-| queued | 69 |
+| queued | 109 |
 | alternate | 195 |
-| documented | 36 |
-| deliberate | 8 |
-| superseded | 13 |
+| deliberate | 5 |
+| superseded | 14 |
 | not_seen | 160 |
 | unverified | 20 |
-| replaced | 26 |
+| replaced | 25 |
 | ok | 300 |
 
 | kind | flag | rows |
@@ -28,15 +26,13 @@ rows: 853; unreadable packages (LFS object missing): 0
 | decal/flipbook | queued | 24 |
 | mesh | alternate | 195 |
 | mesh | bug | 8 |
-| mesh | deliberate | 8 |
-| mesh | documented | 36 |
+| mesh | deliberate | 5 |
 | mesh | lod | 10 |
-| mesh | not_imported | 1 |
 | mesh | not_seen | 160 |
 | mesh | ok | 275 |
-| mesh | queued | 45 |
-| mesh | replaced | 10 |
-| mesh | superseded | 12 |
+| mesh | queued | 85 |
+| mesh | replaced | 9 |
+| mesh | superseded | 13 |
 | mesh | unverified | 8 |
 | package only | ok | 4 |
 | package only | unverified | 4 |
