@@ -43,9 +43,14 @@
       "why": "characters.json player mesh (SK_Dink_Hands); dink.PhotorealHero draws SK_Dink_Photoreal when the game renders"
     },
     {
-      "match": "^AN_(Dragon_Death|Slime_Death|Duck_Hit|Duck_Death|Duck_HeadlessDeath)$",
+      "match": "^AN_(Slime_Death|Duck_Hit|Duck_Death|Duck_HeadlessDeath)$",
       "kind": "deliberate",
-      "why": "not played by the event one-shots of anim/creature-oneshots (design agreed 16 Nov 2026), gore at the 1997 level: no intact dragon or slime body falls where 1997 shows remains, and the duck keeps its PR #113 head-pop and headless run (A205, A210)"
+      "why": "A205: not played by the event one-shots of anim/creature-oneshots (design agreed 16 Nov 2026), gore at the 1997 level: no intact slime body falls where 1997 shows remains, and the duck keeps its PR #113 head-pop and headless run"
+    },
+    {
+      "match": "^AN_Dragon_Death$",
+      "kind": "deliberate",
+      "why": "A210: not played by the event one-shots of anim/creature-oneshots (design agreed 16 Nov 2026), gore at the 1997 level: no intact dragon falls where 1997 shows its remains"
     },
     {
       "match": "^AN_(Duck_(Peck|Quack)|Slime_Attack)$",
