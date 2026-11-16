@@ -51,7 +51,7 @@ class LFSMetadataAuditTests(unittest.TestCase):
         self.add_plain_source("SourceAssets/source.json", b'{"approved":"source metadata"}\n')
         # Minimal supporting data allows the real audit CLI to run all its normal
         # syntax/layout/audio checks; it is not a game-content verification fixture.
-        selection = {"runtime": {}, "counts": {"sfx": 44, "music": 28, "rejected": 4}}
+        selection = {"runtime": {}, "counts": {"sfx": 48, "music": 28, "rejected": 0, "redone": 4}}
         self.write("SourceAssets/Audio/selection_manifest.json", json.dumps(selection).encode())
         self.write("Content/Dink/Data/Audio/approved.json", b"{}")
 

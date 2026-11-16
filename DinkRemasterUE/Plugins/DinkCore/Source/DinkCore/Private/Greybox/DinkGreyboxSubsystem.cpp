@@ -156,6 +156,7 @@ void UDinkGreyboxSubsystem::NotifyWarped(APawn* Pawn, const UDinkWarpComponent& 
 	LastWarpTime.Add(Pawn, GetWorld()->GetTimeSeconds());
 	NextScreenCheck = 0.0;
 	++WarpSerial;
+	OnWarped.Broadcast(Pawn, Warp);
 }
 
 namespace

@@ -1,0 +1,50 @@
+id,1997 file,script playsound calls,scripts,sp_sound uses,engine call (dink.cpp),remaster emitter,take,asset,cooked,heard (sweep),sweep RMS dBFS,sweep LUFS,sweep peak dBFS,played in gameplay run,source LUFS,in-game LUFS (x0.8),source peak dBFS
+1,QUACK.WAV,1,s7-duck,0,"12825 duck brain (quack, 800 Hz spread)",DinkBrains.cpp duck cue,approved,SFX_01_quack,yes,yes,-24.3,-22.1,-10.8,0,-17.0,-18.9,-2.7
+2,PIG1.WAV,0,,0,13421-13427 pig brain (pig1-4),DinkBrains.cpp pig cue,approved,SFX_02_pig1,yes,yes,-26.7,-28.1,-11.0,0,-23.1,-25.0,-2.9
+3,PIG2.WAV,0,,0,13421-13427 pig brain,DinkBrains.cpp pig cue,approved,SFX_03_pig2,yes,yes,-26.0,-25.9,-11.3,0,-20.9,-22.8,-3.0
+4,PIG3.WAV,0,,0,13421-13427 pig brain,DinkBrains.cpp pig cue,approved,SFX_04_pig3,yes,yes,-24.7,-24.9,-10.8,0,-20.0,-21.9,-3.0
+5,PIG4.WAV,0,,0,13421-13427 pig brain,DinkBrains.cpp pig cue,approved,SFX_05_pig4,yes,yes,-23.2,-20.1,-13.1,0,-13.0,-14.9,-3.0
+6,BURN.WAV,9,dam-bom dam-bom2 dam-bomn dam-fire dam-sfb s2-sec1,0,,DinkDirector playsound,approved,SFX_06_burn,yes,yes,-20.2,-20.3,-11.0,0,-15.4,-17.3,-3.0
+7,OPEN.WAV,0,,0,15343-15344 touched map.dat warp without its own sound (12000 Hz),DinkAudioLife warp (OnWarped),approved,SFX_07_open,yes,yes,-23.8,-20.2,-11.3,0,-14.4,-16.3,-2.6
+8,SWING.WAV,7,item-axe item-bt item-fst item-sw1 item-sw2 item-sw3,0,,DinkDirector playsound,approved,SFX_08_swing,yes,yes,-17.8,-29.1,-10.6,0,-24.4,-26.3,-3.0
+9,PUNCH.WAV,21,s2-auntp s2-jack start-3,0,14284/14308/14356/15551 hit with attack_hit_sound 0,DinkGameplay/DinkBrains hit cue (take REJECTED by the owner: silent),REJECTED,,,,,,,,,,
+10,SWORD2.WAV,14,apotion bpotion get-fb get-sfb gheart heart,0,,DinkDirector playsound,approved,SFX_10_sword2,yes,yes,-28.5,-23.5,-11.4,0,-17.9,-19.8,-2.3
+11,SELECT.WAV,0,,0,15975/16026/16033 talk menu move; 16501-16613 item screen move,DinkAudioLife menu; DinkInventoryScreen,approved,SFX_11_select,yes,yes,-25.9,-24.9,-10.9,0,-20.0,-21.9,-3.0
+12,WSCREAM.WAV,7,s1-lg s2-culg s3-chick s5-fd s5-fguy s7-dgirl,0,,DinkDirector playsound,approved,SFX_12_wscream,yes,yes,-21.9,-20.1,-15.4,0,-10.0,-11.9,-2.9
+13,PICKER.WAV,1,item-pig,0,"5851 exp raise mark (15050), 5864 exp tick (29050)",DinkAudioLife status ticks,approved,SFX_13_picker,yes,yes,-37.1,-34.0,-9.9,0,-30.1,-32.0,-2.9
+14,GOLD.WAV,0,,0,5931 gold tick,DinkAudioLife status ticks,approved,SFX_14_gold,yes,yes,-29.4,-25.3,-12.6,0,-19.0,-20.9,-2.7
+15,GRUNT1.WAV,1,s2-fgate,0,14708 Dink hurt (25050-27050),DinkAudioLife hurt grunt,approved,SFX_15_grunt1,yes,yes,-21.8,-21.1,-11.0,0,-16.0,-17.9,-3.0
+16,GRUNT2.WAV,0,,0,14709 Dink hurt (25050-27050),DinkAudioLife hurt grunt,approved,SFX_16_grunt2,yes,yes,-23.6,-22.9,-11.0,0,-17.9,-19.8,-2.9
+17,SEL1.WAV,6,item-b3 item-fb item-ice item-sfb start-3 start-4,0,16158 talk menu pick; 16632 item screen close,DinkAudioLife menu pick; DinkInventoryScreen,approved,SFX_17_sel1,yes,yes,-25.9,-21.8,-11.2,0,-16.1,-18.0,-2.7
+18,ESCAPE.WAV,11,dam-fire dam-icee dam-sfb dinfo escape savebot,0,14962 item screen open; 16480/16554 arm (42050),DinkInventoryScreen,approved,SFX_18_escape,yes,yes,-30.2,-29.5,-10.1,0,-24.8,-26.7,-3.0
+19,NONO.WAV,5,s2-ryan3,0,14472 mouse pointer (brain 13) clicks on nothing: only the 1997 start screen (start.c) uses the pointer,none: the remaster has its own title menu,approved,SFX_19_nono,yes,yes,-20.5,-21.2,-11.0,0,-16.2,-18.1,-3.0
+20,SEL2.WAV,5,start-1 start-2 start-3 start-4,0,,DinkDirector playsound,approved,SFX_20_sel2,yes,yes,-29.8,-28.9,-10.3,0,-24.5,-26.4,-3.0
+21,SEL3.WAV,10,s6-warp s7-warp start-1 start-2 start-3 start-4,0,,DinkDirector playsound,approved,SFX_21_sel3,yes,yes,-33.1,-32.5,-9.9,0,-28.7,-30.6,-3.0
+22,HIGH2.WAV,8,gheart item-eli s1-h1-m s1-mh-f s2-healp s2-mh-m,0,5899/5907/5914 strength/defense/magic tick,DinkAudioLife status ticks,approved,SFX_22_high2,yes,yes,-27.2,-21.3,-11.7,0,-15.2,-17.1,-3.0
+23,FIRE.WAV,0,,1,,,approved,SFX_23_fire,yes,yes,-38.6,-34.9,-4.6,0,-31.3,-33.2,-2.6
+24,SPELL1.WAV,32,item-p1 king s1-mh-m s1-wiz s2-cslay s2-cult,0,,DinkDirector playsound,approved,SFX_24_spell1,yes,yes,-26.5,-23.6,-11.7,0,-18.2,-20.1,-3.0
+25,CAVEENT.WAV,0,,0,,,none,,,,,,,,,,
+26,SNARL1.WAV,0,,0,,,approved,SFX_26_snarl1,yes,yes,-20.8,-21.8,-10.9,0,-16.8,-18.7,-3.0
+27,SNARL2.WAV,11,en-gh en-gmog en-gs en-slay en-stg s2-cslay,0,,DinkDirector playsound,approved,SFX_27_snarl2,yes,yes,-21.9,-20.1,-13.7,0,-11.9,-13.8,-3.0
+28,SNARL3.WAV,12,en-gh en-gmog en-gs en-slay en-stg s2-cslay,0,,DinkDirector playsound,approved,SFX_28_snarl3,yes,yes,-21.3,-21.7,-10.9,0,-16.7,-18.6,-3.0
+29,HURT1.WAV,12,en-bonc en-bonc1 en-boncd en-bong en-pbon s1-cavem,0,,DinkDirector playsound,approved,SFX_29_hurt1,yes,yes,-20.2,-20.0,-17.7,0,-8.1,-10.0,-3.0
+30,HURT2.WAV,7,en-pill en-pill1 en-pill2 en-pillf s1-fmons s7-pill,0,,DinkDirector playsound,approved,SFX_30_hurt2,yes,yes,-25.0,-20.8,-13.7,0,-12.7,-14.6,-2.7
+31,ATTACK1.WAV,19,en-bonc en-bonc1 en-boncd en-bong en-drag en-pbon,0,,DinkDirector playsound,approved,SFX_31_attack1,yes,yes,-20.5,-20.0,-16.6,0,-9.3,-11.2,-2.8
+32,CAVEENT.WAV,2,s1-cave s1-caves,0,,DinkDirector playsound,approved,SFX_32_caveent,yes,yes,-20.9,-22.2,-11.0,0,-17.4,-19.3,-3.0
+33,LEVEL.WAV,1,lraise,0,,DinkDirector playsound,approved,SFX_33_level,yes,yes,-24.6,-21.0,-11.3,0,-16.0,-17.9,-3.0
+34,SAVE.WAV,14,s6-warp s7-warp,1,,DinkDirector playsound,approved,SFX_34_save,yes,yes,-15.7,-17.1,-9.6,0,-10.4,-12.3,-3.0
+35,SPLASH.WAV,2,fish1 s1-boat,0,,DinkDirector playsound,approved,SFX_35_splash,yes,yes,-33.3,-28.6,-11.0,0,-23.6,-25.5,-3.0
+36,SWORD1.WAV,3,s1-rob2 s2-ca-g s2-fight,0,,DinkDirector playsound,approved,SFX_36_sword1,yes,yes,-32.9,-26.6,-11.1,0,-21.2,-23.1,-2.7
+37,BHIT.WAV,12,bar-dp bar-e bar-f1 bar-gh bar-m bar-sh,0,,DinkDirector playsound,approved,SFX_37_bhit,yes,yes,-24.3,-22.9,-10.3,0,-17.8,-19.7,-2.9
+38,SQUISH.WAV,8,en-slim en-slimb s7-slimb s8-da,0,,DinkDirector playsound,approved,SFX_38_squish,yes,yes,-27.4,-23.5,-11.1,0,-18.2,-20.1,-2.9
+39,STAIRS.WAV,3,s2-sec1 s2-sec3 s3-sec1,0,,DinkDirector playsound,approved,SFX_39_stairs,yes,yes,-22.9,-22.4,-11.0,0,-17.4,-19.3,-2.9
+40,STEPS.WAV,3,s3-1st,0,,DinkDirector playsound,approved,SFX_40_steps,yes,yes,-29.1,-33.2,-10.1,0,-29.2,-31.1,-3.0
+41,ARROW.WAV,4,dam-a1,0,,DinkDirector playsound,approved,SFX_41_arrow,yes,yes,-31.5,-29.2,-10.3,0,-24.9,-26.8,-2.8
+42,FLYBY.WAV,4,s2-fgate s4-h1p s8-da,0,,DinkDirector playsound,approved,SFX_42_flyby,yes,yes,-22.8,-28.8,-10.8,0,-23.9,-25.8,-3.0
+43,SECRET.WAV,26,dam-icee en-bonc1 en-pbon en-pill1 item-p1 s1-boot,0,,DinkDirector playsound,approved,SFX_43_secret,yes,yes,-21.8,-20.4,-11.0,0,-15.5,-17.4,-3.0
+44,BOW1.WAV,4,item-b1 item-b2,0,,DinkDirector playsound,REJECTED,,,,,,,,,,
+45,KNOCK.WAV,3,s2-mdoor,0,,DinkDirector playsound,approved,SFX_45_knock,yes,yes,-27.9,-29.0,-10.4,0,-24.7,-26.6,-3.0
+46,DRAG1.WAV,5,en-drag s5-fguy s7-boss s7-drag sc-drag,0,,DinkDirector playsound,approved,SFX_46_drag1,yes,yes,-20.5,-20.0,-14.4,0,-11.4,-13.3,-3.0
+47,DRAG2.WAV,4,en-drag s5-fguy s7-drag sc-drag,0,,DinkDirector playsound,approved,SFX_47_drag2,yes,yes,-21.0,-20.0,-13.1,0,-12.8,-14.7,-3.0
+48,AXE.WAV,0,,0,,,REJECTED,,,,,,,,,,
+49,BIRD1.WAV,1,s7-boss,0,,DinkDirector playsound,REJECTED,,,,,,,,,,

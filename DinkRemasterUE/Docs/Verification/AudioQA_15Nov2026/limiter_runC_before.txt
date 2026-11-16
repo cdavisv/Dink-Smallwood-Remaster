@@ -1,0 +1,33 @@
+# Run C (16 Nov 2026, 08:40-08:55): output level per 30 s, front channels, OLD limiter (analog detector, 3 ms look-ahead)
+# soak from about 270 s to 880 s (dink.AudioQA.Soak 600: random approved effects at a high rate)
+     0s rms  -25.6 peak  -0.53 dBFS  >-1.5dBFS:       3  >=0dBFS:      0
+    30s rms  -25.3 peak  -1.33 dBFS  >-1.5dBFS:       2  >=0dBFS:      0
+    60s rms  -35.0 peak  -1.00 dBFS  >-1.5dBFS:       4  >=0dBFS:      0
+    90s rms  -27.5 peak  -1.35 dBFS  >-1.5dBFS:       1  >=0dBFS:      0
+   120s rms  -26.4 peak  -1.50 dBFS  >-1.5dBFS:       1  >=0dBFS:      0
+   150s rms  -33.1 peak  -7.00 dBFS  >-1.5dBFS:       0  >=0dBFS:      0
+   180s rms  -25.6 peak  -9.15 dBFS  >-1.5dBFS:       0  >=0dBFS:      0
+   210s rms  -22.6 peak  -5.89 dBFS  >-1.5dBFS:       0  >=0dBFS:      0
+   240s rms  -24.5 peak  -1.95 dBFS  >-1.5dBFS:       0  >=0dBFS:      0
+   270s rms  -11.2 peak   0.00 dBFS  >-1.5dBFS:    1910  >=0dBFS:    333
+   300s rms   -8.5 peak   0.00 dBFS  >-1.5dBFS:    5426  >=0dBFS:    836
+   330s rms   -8.4 peak   0.00 dBFS  >-1.5dBFS:    7090  >=0dBFS:   1301
+   360s rms   -7.3 peak   0.00 dBFS  >-1.5dBFS:   17008  >=0dBFS:   3447
+   390s rms   -7.8 peak   0.00 dBFS  >-1.5dBFS:   13484  >=0dBFS:   2873
+   420s rms   -9.4 peak   0.00 dBFS  >-1.5dBFS:    3701  >=0dBFS:    603
+   450s rms  -10.0 peak   0.00 dBFS  >-1.5dBFS:    4191  >=0dBFS:    885
+   480s rms  -10.0 peak   0.00 dBFS  >-1.5dBFS:    5095  >=0dBFS:   1069
+   510s rms  -10.2 peak   0.00 dBFS  >-1.5dBFS:    4327  >=0dBFS:    865
+   540s rms  -10.1 peak   0.00 dBFS  >-1.5dBFS:    5355  >=0dBFS:   1207
+   570s rms  -10.3 peak   0.00 dBFS  >-1.5dBFS:    4327  >=0dBFS:   1027
+   600s rms  -10.1 peak   0.00 dBFS  >-1.5dBFS:    5771  >=0dBFS:   1383
+   630s rms  -10.7 peak   0.00 dBFS  >-1.5dBFS:    4349  >=0dBFS:    941
+   660s rms  -10.5 peak   0.00 dBFS  >-1.5dBFS:    4089  >=0dBFS:    835
+   690s rms   -9.7 peak   0.00 dBFS  >-1.5dBFS:    9101  >=0dBFS:   2190
+   720s rms   -9.6 peak   0.00 dBFS  >-1.5dBFS:   11641  >=0dBFS:   3265
+   750s rms   -9.6 peak   0.00 dBFS  >-1.5dBFS:   10831  >=0dBFS:   2887
+   780s rms   -9.7 peak   0.00 dBFS  >-1.5dBFS:   12511  >=0dBFS:   3823
+   810s rms   -9.6 peak   0.00 dBFS  >-1.5dBFS:   13489  >=0dBFS:   3988
+   840s rms   -9.6 peak   0.00 dBFS  >-1.5dBFS:   13711  >=0dBFS:   4126
+   870s rms  -11.9 peak   0.00 dBFS  >-1.5dBFS:    7551  >=0dBFS:   2143
+   900s rms  -33.9 peak  -2.31 dBFS  >-1.5dBFS:       0  >=0dBFS:      0

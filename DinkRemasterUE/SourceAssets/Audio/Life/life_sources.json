@@ -1,0 +1,230 @@
+{
+ "schema": "dink-audio-life-sources/1",
+ "tool": "Scripts/AudioQA/synth_life.py (procedural placeholder)",
+ "files": [
+  {
+   "name": "Step_grass_1",
+   "kind": "step",
+   "surface": "grass",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_grass_2",
+   "kind": "step",
+   "surface": "grass",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_grass_3",
+   "kind": "step",
+   "surface": "grass",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_grass_4",
+   "kind": "step",
+   "surface": "grass",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_dirt_1",
+   "kind": "step",
+   "surface": "dirt",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_dirt_2",
+   "kind": "step",
+   "surface": "dirt",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_dirt_3",
+   "kind": "step",
+   "surface": "dirt",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_dirt_4",
+   "kind": "step",
+   "surface": "dirt",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_sand_1",
+   "kind": "step",
+   "surface": "sand",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_sand_2",
+   "kind": "step",
+   "surface": "sand",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_sand_3",
+   "kind": "step",
+   "surface": "sand",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_sand_4",
+   "kind": "step",
+   "surface": "sand",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_wood_1",
+   "kind": "step",
+   "surface": "wood",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_wood_2",
+   "kind": "step",
+   "surface": "wood",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_wood_3",
+   "kind": "step",
+   "surface": "wood",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_wood_4",
+   "kind": "step",
+   "surface": "wood",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_stone_1",
+   "kind": "step",
+   "surface": "stone",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_stone_2",
+   "kind": "step",
+   "surface": "stone",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_stone_3",
+   "kind": "step",
+   "surface": "stone",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_stone_4",
+   "kind": "step",
+   "surface": "stone",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_snow_1",
+   "kind": "step",
+   "surface": "snow",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_snow_2",
+   "kind": "step",
+   "surface": "snow",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_snow_3",
+   "kind": "step",
+   "surface": "snow",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_snow_4",
+   "kind": "step",
+   "surface": "snow",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_water_1",
+   "kind": "step",
+   "surface": "water",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_water_2",
+   "kind": "step",
+   "surface": "water",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_water_3",
+   "kind": "step",
+   "surface": "water",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Step_water_4",
+   "kind": "step",
+   "surface": "water",
+   "duration_s": 0.42,
+   "loop": false
+  },
+  {
+   "name": "Bed_sea",
+   "kind": "bed",
+   "bed": "sea",
+   "duration_s": 24.0,
+   "loop": true
+  },
+  {
+   "name": "Bed_wind",
+   "kind": "bed",
+   "bed": "wind",
+   "duration_s": 24.0,
+   "loop": true
+  },
+  {
+   "name": "Bed_cave",
+   "kind": "bed",
+   "bed": "cave",
+   "duration_s": 24.0,
+   "loop": true
+  },
+  {
+   "name": "Bed_meadow",
+   "kind": "bed",
+   "bed": "meadow",
+   "duration_s": 24.0,
+   "loop": true
+  }
+ ]
+}

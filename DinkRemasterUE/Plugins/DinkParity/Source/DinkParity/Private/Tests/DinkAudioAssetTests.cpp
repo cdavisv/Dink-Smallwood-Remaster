@@ -30,7 +30,7 @@ bool FDinkApprovedAudioAssetsTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("published runtime schema"), Runtime->GetStringField(TEXT("schema")), FString(TEXT("dink-audio/1")));
 	const TArray<TSharedPtr<FJsonValue>>* Rows = nullptr;
 	if (!TestTrue(TEXT("selection has approved assets"), Selection->TryGetArrayField(TEXT("assets"), Rows)) || !Rows) return false;
-	TestEqual(TEXT("review selected exactly 72 assets"), Rows->Num(), 72);
+	TestEqual(TEXT("review plus redo picks select exactly 76 assets"), Rows->Num(), 76);
 	TMap<FString, USoundWave*> Approved;
 	TSet<USoundWave*> UniqueWaves;
 	for (const TSharedPtr<FJsonValue>& Value : *Rows)
@@ -59,8 +59,8 @@ bool FDinkApprovedAudioAssetsTest::RunTest(const FString& Parameters)
 		TestTrue(TEXT("imported duration matches source WAV: ") + Name,
 			FMath::Abs(double(Sound->Duration) - SourceDuration) <= 0.02);
 	}
-	TestEqual(TEXT("72 unique imported SoundWave paths"), Approved.Num(), 72);
-	TestEqual(TEXT("72 distinct SoundWave objects"), UniqueWaves.Num(), 72);
+	TestEqual(TEXT("76 unique imported SoundWave paths"), Approved.Num(), 76);
+	TestEqual(TEXT("76 distinct SoundWave objects"), UniqueWaves.Num(), 76);
 	TSet<FString> Referenced;
 	for (const FString& Section : {FString(TEXT("sounds")), FString(TEXT("music")), FString(TEXT("screen_music"))})
 	{
@@ -78,16 +78,13 @@ bool FDinkApprovedAudioAssetsTest::RunTest(const FString& Parameters)
 			Referenced.Add(Path);
 		}
 	}
-	TestEqual(TEXT("every approved SoundWave is reachable from runtime routing"), Referenced.Num(), 72);
+	TestEqual(TEXT("every approved SoundWave is reachable from runtime routing"), Referenced.Num(), 76);
 	const TSharedPtr<FJsonObject> Sounds = Runtime->GetObjectField(TEXT("sounds"));
-	for (const FString& Rejected : {FString(TEXT("9")), FString(TEXT("44")), FString(TEXT("48")), FString(TEXT("49"))})
-	{
-		TestFalse(TEXT("rejected sound ID has no runtime mapping: ") + Rejected, Sounds->HasField(Rejected));
-		const FString Prefix = FString::Printf(TEXT("SFX_%02d_"), FCString::Atoi(*Rejected));
-		for (const TPair<FString, USoundWave*>& Pair : Approved)
-			TestFalse(TEXT("rejected sound was not imported: ") + Prefix, Pair.Value->GetName().StartsWith(Prefix));
-	}
-	TestEqual(TEXT("four explicit review rejections preserved"), Runtime->GetArrayField(TEXT("rejected")).Num(), 4);
+	TestEqual(TEXT("no review rejection left without a take"), Runtime->GetArrayField(TEXT("rejected")).Num(), 0);
+	// 9 punch, 44 bow, 48 axe and 49 bird were rejected by the review and replaced by regenerated takes (SourceAssets/Audio/SFX/redo_15Nov2026.json).
+	TestEqual(TEXT("four regenerated replacements recorded"), Runtime->GetArrayField(TEXT("redo")).Num(), 4);
+	for (const FString& Redone : {FString(TEXT("9")), FString(TEXT("44")), FString(TEXT("48")), FString(TEXT("49"))})
+		TestTrue(TEXT("regenerated sound ID has a runtime mapping: ") + Redone, Sounds->HasField(Redone));
 	const TSharedPtr<FJsonObject> Music = Runtime->GetObjectField(TEXT("music"));
 	if (TestTrue(TEXT("5.ogg music alias retained"), Music->HasField(TEXT("5.ogg"))) &&
 		TestTrue(TEXT("5.mid music alias retained"), Music->HasField(TEXT("5.mid"))))

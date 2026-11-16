@@ -1,4 +1,5 @@
 #include "DinkAudioSubsystem.h"
+#include "DinkAudioLife.h"
 #include "DinkDirector.h"
 #include "DinkStorySubsystem.h"
 #include "Engine/GameInstance.h"
@@ -17,6 +18,9 @@ DEFINE_LOG_CATEGORY_STATIC(LogDinkPlayback, Log, All);
 #include "Serialization/JsonSerializer.h"
 #include "Sound/SoundWave.h"
 #include "Sound/SoundAttenuation.h"
+#include "Sound/SoundConcurrency.h"
+#include "UObject/UObjectGlobals.h"
+#include "Misc/PackageName.h"
 
 FString FDinkAudioSelection::Key(const FString& Raw)
 {
@@ -117,7 +121,13 @@ void UDinkAudioSubsystem::Initialize(FSubsystemCollectionBase& Collection)
  Super::Initialize(Collection);
  Collection.InitializeDependency<UDinkGreyboxSubsystem>();
  Selection.Load(FPaths::ProjectContentDir() / TEXT("Dink/Data/Audio/approved.json"));
+ Selection.LoadMix(FPaths::ProjectContentDir() / TEXT("Dink/Data/Audio/mix.json"));
  if (Voices.Load(FPaths::ProjectContentDir() / TEXT("Dink/Data/Audio/voice.json"))) UE_LOG(LogDinkPlayback, Log, TEXT("Voice table: %d recorded lines, volume %.2f"), Voices.Lines.Num(), Voices.Volume);
+ // Distance from Dink on the 1997 curve (FDinkAudioMix; the listener override is UDinkAudioLifeSubsystem's), made before any sound.
+ EffectAttenuation = NewObject<USoundAttenuation>(this); FDinkAudioMix::Effect(EffectAttenuation->Attenuation);
+ VoiceAttenuation = NewObject<USoundAttenuation>(this); FDinkAudioMix::Voice(VoiceAttenuation->Attenuation);
+ PitchRandom.Initialize(int32(FPlatformTime::Cycles() & 0x7fffffff));
+ for (const auto& Pair : Selection.Sounds) if (USoundBase* Sound = LoadObject<USoundBase>(nullptr, *Pair.Value.Asset)) Preloaded.AddUnique(Sound);
  GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>()->OnScreenChanged.AddUObject(this, &UDinkAudioSubsystem::EnterScreen);
 }
 void UDinkAudioSubsystem::StopOwnerlessRepeats()
@@ -145,14 +155,17 @@ void UDinkAudioSubsystem::StopEffect(UAudioComponent* Effect)
 bool UDinkAudioSubsystem::CanPlay() const { return GetWorld() && GetWorld()->GetAudioDevice().IsValid() && !IsRunningDedicatedServer(); }
 void UDinkAudioSubsystem::StopAll()
 {
- if (Music) { Music->Stop(); Music->DestroyComponent(); } Music = nullptr; PlayingMusic.Reset();
+ StopMusic(0.f);
+ for (UAudioComponent* Fading : FadingMusic) if (IsValid(Fading)) { Fading->Stop(); Fading->DestroyComponent(); }
+ FadingMusic.Reset();
  for (UAudioComponent* Effect : Effects) if (Effect) StopEffect(Effect);
  Effects.Reset(); Ambient.Reset(); EffectSprites.Reset(); RepeatEffects.Reset(); OwnerlessRepeats.Reset();
  for (const auto& Pair : VoiceComponents) if (Pair.Value.IsValid()) Pair.Value->Stop();
- VoiceComponents.Reset(); VoiceTracker.Reset();
+ VoiceComponents.Reset(); VoiceTracker.Reset(); PendingVoices.Reset();
 }
 void UDinkAudioSubsystem::StopVoice(int32 Text)
 {
+ PendingVoices.RemoveAll([Text](const FDinkVoiceTracker::FVoice& P) { return P.Text == Text; });
  if (TWeakObjectPtr<UAudioComponent> Component; VoiceComponents.RemoveAndCopyValue(Text, Component) && Component.IsValid()) Component->FadeOut(.08f, 0.f);
 }
 bool UDinkAudioSubsystem::IsVoiceTailPlaying(int32 Text, const FString& LineId) const
@@ -162,6 +175,7 @@ bool UDinkAudioSubsystem::IsVoiceTailPlaying(int32 Text, const FString& LineId) 
 }
 void UDinkAudioSubsystem::HandleLineSkipped(int32 Text)
 {
+ PendingVoices.RemoveAll([Text](const FDinkVoiceTracker::FVoice& P) { return P.Text == Text; });
  if (!VoiceComponents.Contains(Text)) return;
  StopVoice(Text); VoiceTracker.Forget(Text);
  UE_LOG(LogDinkPlayback, Log, TEXT("Voice of text %d stopped: line skipped"), Text);
@@ -195,27 +209,43 @@ void UDinkAudioSubsystem::UpdateVoices(UDinkDirector* Director)
  for (const FDinkVoiceTracker::FVoice& V : Changes.Started)
  {
   const FDinkVoiceLine* Line = Voices.Find(V.LineId);
-  USoundBase* Sound = Line ? LoadObject<USoundBase>(nullptr, *Line->Asset) : nullptr;
-  if (!Sound) { UE_LOG(LogDinkPlayback, Warning, TEXT("Voice %s: recording %s does not load"), *V.LineId, Line ? *Line->Asset : TEXT("?")); VoiceTracker.Forget(V.Text); continue; }
-  // Dink is the camera's subject and say_xy texts have no speaker: both play flat. Others speak from where they stand.
-  AActor* Actor = Director && V.Owner != 1 && V.Owner != UDinkDirector::HandleNoSprite ? Director->GetActor(V.Owner) : nullptr;
-  UAudioComponent* Component = nullptr;
-  if (Actor && Actor->GetRootComponent())
+  if (!Line) { UE_LOG(LogDinkPlayback, Warning, TEXT("Voice %s: no recording"), *V.LineId); VoiceTracker.Forget(V.Text); continue; }
+  if (USoundBase* Loaded = FindObject<USoundBase>(nullptr, *Line->Asset)) { SpawnVoice(V, Loaded, Director); continue; }
+  PendingVoices.Add(V);
+  const FString Asset = Line->Asset;
+  TWeakObjectPtr<UDinkAudioSubsystem> Weak(this);
+  LoadPackageAsync(FPackageName::ObjectPathToPackageName(Asset), FLoadPackageAsyncDelegate::CreateLambda([Weak, V, Asset](const FName&, UPackage*, EAsyncLoadingResult::Type Result)
   {
-   if (!VoiceAttenuation)
-   {
-    VoiceAttenuation = NewObject<USoundAttenuation>(this);
-    VoiceAttenuation->Attenuation.AttenuationShapeExtents = FVector(900.f); VoiceAttenuation->Attenuation.FalloffDistance = 3500.f;
-   }
-   Component = UGameplayStatics::SpawnSoundAttached(Sound, Actor->GetRootComponent(), NAME_None, FVector::ZeroVector, EAttachLocation::KeepRelativeOffset, true, Voices.Volume, 1.f, 0.f, VoiceAttenuation, nullptr, true);
-  }
-  else Component = UGameplayStatics::SpawnSound2D(GetWorld(), Sound, Voices.Volume, 1.f, 0.f, nullptr, false, true);
-  if (!Component) { VoiceTracker.Forget(V.Text); continue; }
-  if (bVoicesPaused) Component->SetPaused(true);
-  VoiceComponents.Add(V.Text, Component);
-  LastVoiceLine = V.LineId;
-  UE_LOG(LogDinkPlayback, Log, TEXT("Playing voice %s speaker=%d text=%d %s"), *V.LineId, V.Owner, V.Text, Actor ? TEXT("positional") : TEXT("2d"));
+   UDinkAudioSubsystem* Self = Weak.Get();
+   if (!Self) return;
+   auto Same = [&V](const FDinkVoiceTracker::FVoice& P) { return P.Text == V.Text && P.LineId == V.LineId && P.ExpireMs == V.ExpireMs; };
+   const int32 Index = Self->PendingVoices.IndexOfByPredicate(Same);
+   if (Index == INDEX_NONE) return; // stopped meanwhile (skip, load, StopAll)
+   Self->PendingVoices.RemoveAt(Index);
+   const FDinkVoiceTracker::FVoice* Live = Self->VoiceTracker.Playing.FindByPredicate(Same);
+   USoundBase* Sound = Result == EAsyncLoadingResult::Succeeded ? FindObject<USoundBase>(nullptr, *Asset) : nullptr;
+   if (Live && !Live->bTail && Sound && Self->CanPlay()) { Self->SpawnVoice(V, Sound, Self->BoundDirector.Get()); return; }
+   if (!Sound) UE_LOG(LogDinkPlayback, Warning, TEXT("Voice %s: recording %s does not load"), *V.LineId, *Asset);
+   if (Live) Self->VoiceTracker.Forget(V.Text); // its text is gone or it cannot play: the tracker lets go of it
+  }));
  }
+}
+void UDinkAudioSubsystem::SpawnVoice(const FDinkVoiceTracker::FVoice& V, USoundBase* Sound, UDinkDirector* Director)
+{
+ // Dink is the camera's subject and say_xy texts have no speaker: both play flat. Others speak from where they stand.
+ AActor* Actor = Director && V.Owner != 1 && V.Owner != UDinkDirector::HandleNoSprite ? Director->GetActor(V.Owner) : nullptr;
+ UAudioComponent* Component = nullptr;
+ if (Actor && Actor->GetRootComponent())
+ {
+  if (!VoiceAttenuation) { VoiceAttenuation = NewObject<USoundAttenuation>(this); FDinkAudioMix::Voice(VoiceAttenuation->Attenuation); } // made in Initialize
+  Component = UGameplayStatics::SpawnSoundAttached(Sound, Actor->GetRootComponent(), NAME_None, FVector::ZeroVector, EAttachLocation::KeepRelativeOffset, true, Voices.Volume, 1.f, 0.f, VoiceAttenuation, nullptr, true);
+ }
+ else Component = UGameplayStatics::SpawnSound2D(GetWorld(), Sound, Voices.Volume, 1.f, 0.f, nullptr, false, true);
+ if (!Component) { VoiceTracker.Forget(V.Text); return; }
+ if (bVoicesPaused) Component->SetPaused(true);
+ VoiceComponents.Add(V.Text, Component);
+ LastVoiceLine = V.LineId;
+ UE_LOG(LogDinkPlayback, Log, TEXT("Playing voice %s speaker=%d text=%d %s"), *V.LineId, V.Owner, V.Text, Actor ? TEXT("positional") : TEXT("2d"));
 }
 void UDinkAudioSubsystem::Deinitialize()
 {
@@ -227,13 +257,46 @@ void UDinkAudioSubsystem::Deinitialize()
 void UDinkAudioSubsystem::PlayMusic(const FDinkApprovedSound& Entry)
 {
  if (PlayingMusic == Entry.Asset && Music && Music->IsPlaying()) return;
- if (Music) { Music->Stop(); Music->DestroyComponent(); } Music = nullptr; PlayingMusic.Reset();
+ if (PendingMusic == Entry.Asset) return;
+ StopMusic(FDinkAudioMix::MusicFadeOutS); // the old theme fades under the new one (crossfade)
  if (!CanPlay()) return;
- if (USoundBase* Sound = LoadObject<USoundBase>(nullptr, *Entry.Asset))
+ if (USoundBase* Loaded = FindObject<USoundBase>(nullptr, *Entry.Asset)) { StartMusic(Entry.Asset, Loaded); return; }
+ // Not in memory: load it asynchronously and start it when it arrives (a synchronous load here was a 98 ms screen-entry frame in the
+ // packaged game, perf-stutter 15 Nov 2026); the old theme is already fading, so the few frames of the load are not heard.
+ PendingMusic = Entry.Asset;
+ const FString Asset = Entry.Asset;
+ TWeakObjectPtr<UDinkAudioSubsystem> Weak(this);
+ LoadPackageAsync(FPackageName::ObjectPathToPackageName(Asset), FLoadPackageAsyncDelegate::CreateLambda([Weak, Asset](const FName&, UPackage*, EAsyncLoadingResult::Type Result)
  {
-  Music = UGameplayStatics::SpawnSound2D(GetWorld(), Sound, Selection.MusicVolume, 1.f, 0.f, nullptr, false, false);
-  if (Music) { PlayingMusic = Entry.Asset; UE_LOG(LogDinkPlayback, Log, TEXT("Playing approved music %s volume=%.2f"), *Entry.Asset, Selection.MusicVolume); }
+  UDinkAudioSubsystem* Self = Weak.Get();
+  if (!Self || Self->PendingMusic != Asset) return; // replaced or stopped meanwhile
+  Self->PendingMusic.Reset();
+  USoundBase* Sound = Result == EAsyncLoadingResult::Succeeded ? FindObject<USoundBase>(nullptr, *Asset) : nullptr;
+  if (Sound && Self->CanPlay()) Self->StartMusic(Asset, Sound);
+  else if (!Sound) UE_LOG(LogDinkPlayback, Warning, TEXT("Approved music %s did not load"), *Asset);
+ }));
+}
+void UDinkAudioSubsystem::StartMusic(const FString& Asset, USoundBase* Sound)
+{
+ Music = UGameplayStatics::CreateSound2D(GetWorld(), Sound, Selection.MusicVolume * Selection.MusicGainOf(Asset), 1.f, 0.f, nullptr, false, false);
+ if (Music) { Music->FadeIn(FDinkAudioMix::MusicFadeInS, 1.f); PlayingMusic = Asset; UE_LOG(LogDinkPlayback, Log, TEXT("Playing approved music %s volume=%.3f"), *Asset, Selection.MusicVolume * Selection.MusicGainOf(Asset)); }
+}
+void UDinkAudioSubsystem::StopMusic(float FadeSeconds)
+{
+ if (IsValid(Music))
+ {
+  if (FadeSeconds > 0.f && Music->IsPlaying()) { Music->FadeOut(FadeSeconds, 0.f); FadingMusic.Add(Music); }
+  else { Music->Stop(); Music->DestroyComponent(); }
  }
+ Music = nullptr; PlayingMusic.Reset(); PendingMusic.Reset();
+}
+USoundConcurrency* UDinkAudioSubsystem::ConcurrencyFor(const FString& Id)
+{
+ if (TObjectPtr<USoundConcurrency>* Found = EffectConcurrency.Find(Id)) return *Found;
+ USoundConcurrency* C = NewObject<USoundConcurrency>(this);
+ C->Concurrency.MaxCount = FDinkAudioMix::MaxSameEffect;
+ C->Concurrency.ResolutionRule = EMaxConcurrentResolutionRule::StopOldest;
+ return EffectConcurrency.Add(Id, C);
 }
 void UDinkAudioSubsystem::EnterScreen(ADinkScreenVolume* Screen)
 {
@@ -247,7 +310,7 @@ void UDinkAudioSubsystem::EnterScreen(ADinkScreenVolume* Screen)
  }
  StopOwnerlessRepeats();
  if (const FDinkApprovedSound* Override = Selection.Screens.Find(FString::FromInt(Screen->ScreenNumber))) { PlayMusic(*Override); return; }
- if (Screen->MusicAction == TEXT("stop")) { if (Music) { Music->Stop(); Music->DestroyComponent(); } Music = nullptr; PlayingMusic.Reset(); return; }
+ if (Screen->MusicAction == TEXT("stop")) { StopMusic(FDinkAudioMix::MusicStopFadeS); return; }
  if (Screen->MusicAction == TEXT("none") || Screen->MusicRaw == 0) return;
  if (const FDinkApprovedSound* Entry = Selection.ResolveMusic(Screen->MusicFile)) PlayMusic(*Entry);
  else if (const FDinkApprovedSound* Raw = Selection.ResolveMusic(FString::FromInt(Screen->MusicRaw))) PlayMusic(*Raw);
@@ -255,16 +318,18 @@ void UDinkAudioSubsystem::EnterScreen(ADinkScreenVolume* Screen)
 void UDinkAudioSubsystem::HandleCue(const FString& Cue, UDinkDirector* Director)
 {
  if (Director) BoundDirector = Director;
- if (Cue == TEXT("music:stop") || Cue == TEXT("cd:stop")) { if (Music) { Music->Stop(); Music->DestroyComponent(); } Music = nullptr; PlayingMusic.Reset(); return; }
+ if (Cue == TEXT("music:stop") || Cue == TEXT("cd:stop")) { StopMusic(FDinkAudioMix::MusicStopFadeS); return; }
+ if (bSuspended && Director) return; // a QA sweep is recording: the game's own cues wait
  if (Cue.StartsWith(TEXT("music:"))) { if (const FDinkApprovedSound* Entry = Selection.ResolveMusic(Cue.Mid(6))) PlayMusic(*Entry); return; }
  if (!Cue.StartsWith(TEXT("sound:")) || !CanPlay()) return;
  TArray<FString> Tokens; Cue.Mid(6).ParseIntoArrayWS(Tokens);
  if (Tokens.IsEmpty()) return;
  const FDinkApprovedSound* Entry = Selection.Sounds.Find(Tokens[0]); if (!Entry) return;
- int32 Speed = 22050, Sprite = 0, Repeat = 0;
+ int32 Speed = 22050, Plus = 0, Sprite = 0, Repeat = 0;
  for (int32 I = 1; I < Tokens.Num(); ++I)
  {
   if (Tokens[I].StartsWith(TEXT("speed="))) Speed = FCString::Atoi(*Tokens[I].Mid(6));
+  else if (Tokens[I].StartsWith(TEXT("random="))) Plus = FMath::Max(0, FCString::Atoi(*Tokens[I].Mid(7))); // playsound's plus: RandomRange(min, min+plus) Hz
   else if (Tokens[I].StartsWith(TEXT("sprite="))) Sprite = FCString::Atoi(*Tokens[I].Mid(7));
   else if (Tokens[I] == TEXT("sprite") && I + 1 < Tokens.Num()) Sprite = FCString::Atoi(*Tokens[++I]);
   else if (Tokens[I].StartsWith(TEXT("repeat="))) Repeat = FCString::Atoi(*Tokens[I].Mid(7));
@@ -273,17 +338,17 @@ void UDinkAudioSubsystem::HandleCue(const FString& Cue, UDinkDirector* Director)
  Sprite = FDinkAudioSelection::SpatialSpriteHandle(Sprite, IsValid(Actor));
  USoundBase* Sound = LoadObject<USoundBase>(nullptr, *Entry->Asset); if (!Sound) return;
  const bool bReplay = FDinkAudioSelection::ReplaysRepeat(Entry->bLoop, Repeat);
+ if (Speed > 0) Speed = FDinkAudioMix::Frequency(Speed, Plus, PitchRandom);
+ // One-shots only: a repeating cue (loop asset or replayed one-shot) is never evicted by its own kind (the warp machines layer seven 34s).
+ USoundConcurrency* Concurrency = Repeat != 0 ? nullptr : ConcurrencyFor(Tokens[0]);
+ const float Volume = Selection.SfxVolume * Selection.SfxGainOf(Tokens[0]);
  UAudioComponent* Component = nullptr;
  if (Actor && Actor->GetRootComponent())
  {
-  if (!EffectAttenuation) // one shared settings object for every positional effect (they all used identical ones)
-  {
-   EffectAttenuation = NewObject<USoundAttenuation>(this);
-   EffectAttenuation->Attenuation.AttenuationShapeExtents = FVector(150.f); EffectAttenuation->Attenuation.FalloffDistance = 2200.f;
-  }
-  Component = UGameplayStatics::SpawnSoundAttached(Sound, Actor->GetRootComponent(), NAME_None, FVector::ZeroVector, EAttachLocation::KeepRelativeOffset, true, Selection.SfxVolume, FDinkAudioSelection::Pitch(Speed), 0.f, EffectAttenuation, nullptr, !bReplay);
+  if (!EffectAttenuation) { EffectAttenuation = NewObject<USoundAttenuation>(this); FDinkAudioMix::Effect(EffectAttenuation->Attenuation); } // made in Initialize
+  Component = UGameplayStatics::SpawnSoundAttached(Sound, Actor->GetRootComponent(), NAME_None, FVector::ZeroVector, EAttachLocation::KeepRelativeOffset, true, Volume, FDinkAudioSelection::Pitch(Speed), 0.f, EffectAttenuation, Concurrency, !bReplay);
  }
- else if (!Sprite) Component = UGameplayStatics::SpawnSound2D(GetWorld(), Sound, Selection.SfxVolume, FDinkAudioSelection::Pitch(Speed), 0.f, nullptr, false, !bReplay);
+ else if (!Sprite) Component = UGameplayStatics::SpawnSound2D(GetWorld(), Sound, Volume, FDinkAudioSelection::Pitch(Speed), 0.f, Concurrency, false, !bReplay);
  if (Component && bReplay) { RepeatEffects.Add(Component, FPlatformTime::Seconds()); }
  if (Component && FDinkAudioSelection::StopsOnScreenBuild(Repeat, Sprite, false)) OwnerlessRepeats.Add(Component, GFrameCounter);
  if (Component) { UE_LOG(LogDinkPlayback, Log, TEXT("Playing approved sound %s sprite=%d pitch=%.3f repeat=%d"), *Entry->Asset, Sprite, FDinkAudioSelection::Pitch(Speed), Repeat); Effects.Add(Component); if (Sprite) EffectSprites.Add(Component, Sprite); }
@@ -293,7 +358,7 @@ void UDinkAudioSubsystem::Tick(float DeltaTime)
  UDinkDirector* Director = BoundDirector.Get();
  if (!Director && GetWorld()->GetGameInstance())
   if (UDinkStorySubsystem* Story = GetWorld()->GetGameInstance()->GetSubsystem<UDinkStorySubsystem>()) Director = Story->GetDirector();
- if (Director && CanPlay())
+ if (Director && CanPlay() && !bSuspended)
  {
   BoundDirector = Director;
   const ADinkScreenVolume* Screen = GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>()->GetCurrentScreen();
@@ -315,7 +380,8 @@ void UDinkAudioSubsystem::Tick(float DeltaTime)
   for (auto It = Ambient.CreateIterator(); It; ++It)
    if (!Wanted.Contains(It.Key())) { if (It.Value().Value.IsValid()) StopEffect(It.Value().Value.Get()); It.RemoveCurrent(); }
  }
- if (CanPlay()) UpdateVoices(Director);
+ if (CanPlay() && !bSuspended) UpdateVoices(Director);
+ ApplyVoiceGains();
  // Components destroyed elsewhere (level change, garbage collection) leave stale keys: prune them.
  for (auto It = RepeatEffects.CreateIterator(); It; ++It) if (!It.Key().ResolveObjectPtr()) It.RemoveCurrent();
  for (auto It = OwnerlessRepeats.CreateIterator(); It; ++It) if (!It.Key().ResolveObjectPtr()) It.RemoveCurrent();
@@ -336,6 +402,21 @@ void UDinkAudioSubsystem::Tick(float DeltaTime)
    continue;
   }
   if (!IsValid(C) || !C->IsPlaying()) { EffectSprites.Remove(C); Effects.RemoveAtSwap(I); continue; }
+ }
+ for (int32 I = FadingMusic.Num() - 1; I >= 0; --I) // themes that have faded out under a new one
+  if (!IsValid(FadingMusic[I]) || !FadingMusic[I]->IsPlaying()) { if (IsValid(FadingMusic[I])) FadingMusic[I]->DestroyComponent(); FadingMusic.RemoveAtSwap(I); }
+}
+void UDinkAudioSubsystem::ApplyVoiceGains()
+{
+ // The few recorded lines far louder or quieter than the rest (mix.json `voice`) get their gain in the frame they start, before the
+ // audio thread renders them; the rest play at the table volume.
+ for (auto It = VoiceGainApplied.CreateIterator(); It; ++It) if (!VoiceComponents.Contains(It.Key())) It.RemoveCurrent();
+ for (const FDinkVoiceTracker::FVoice& V : VoiceTracker.Playing)
+ {
+  const TWeakObjectPtr<UAudioComponent>* C = VoiceComponents.Find(V.Text);
+  if (!C || !C->IsValid() || VoiceGainApplied.FindRef(V.Text) == *C) continue;
+  VoiceGainApplied.Add(V.Text, *C);
+  if (const float Gain = Selection.VoiceGainOf(V.LineId); Gain != 1.f) (*C)->SetVolumeMultiplier(Voices.Volume * Gain);
  }
 }
 TStatId UDinkAudioSubsystem::GetStatId() const { RETURN_QUICK_DECLARE_CYCLE_STAT(UDinkAudioSubsystem, STATGROUP_Tickables); }

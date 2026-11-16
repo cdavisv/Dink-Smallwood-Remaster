@@ -11,8 +11,8 @@ bool FDinkApprovedAudioLookup::RunTest(const FString&)
 {
  FDinkAudioSelection Selection;
  TestTrue(TEXT("published approved manifest loads"), Selection.Load(FPaths::ProjectContentDir() / TEXT("Dink/Data/Audio/approved.json")));
- TestEqual(TEXT("44 approved SFX"), Selection.Sounds.Num(), 44);
- for (const TCHAR* Key : {TEXT("9"), TEXT("44"), TEXT("48"), TEXT("49")}) TestFalse(FString::Printf(TEXT("rejected SFX %s silent"), Key), Selection.Sounds.Contains(Key));
+ TestEqual(TEXT("48 approved SFX (44 from the review, 4 regenerated)"), Selection.Sounds.Num(), 48);
+ for (const TCHAR* Key : {TEXT("9"), TEXT("44"), TEXT("48"), TEXT("49")}) TestTrue(FString::Printf(TEXT("regenerated SFX %s plays"), Key), Selection.Sounds.Contains(Key));
  const FDinkApprovedSound* Ogg = Selection.ResolveMusic(TEXT("SOUND/5.OGG"));
  const FDinkApprovedSound* Midi = Selection.ResolveMusic(TEXT("sound\\5.mid"));
  TestNotNull(TEXT("5.ogg resolves"), Ogg); TestNotNull(TEXT("5.mid resolves"), Midi);

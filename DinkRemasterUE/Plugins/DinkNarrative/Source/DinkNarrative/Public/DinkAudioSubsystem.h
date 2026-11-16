@@ -4,6 +4,8 @@
 #include "DinkAudioSubsystem.generated.h"
 class UAudioComponent;
 class USoundAttenuation;
+class USoundBase;
+class USoundConcurrency;
 class ADinkScreenVolume;
 class UDinkDirector;
 class UDinkStorySubsystem;
@@ -19,6 +21,12 @@ struct DINKNARRATIVE_API FDinkAudioSelection
  TMap<FString, FDinkApprovedSound> Sounds, Music, Screens;
  float MusicVolume = .35f, SfxVolume = .8f;
  bool Load(const FString& Filename);
+ /** Per-take loudness gains (Content/Dink/Data/Audio/mix.json, Scripts/AudioQA/build_mix.py): effect id / music asset -> gain on the category volume. */
+ TMap<FString, float> SfxGain, MusicGain, VoiceGain; // VoiceGain: ink line id -> gain (only the levelled lines)
+ bool LoadMix(const FString& Filename);
+ float SfxGainOf(const FString& Id) const { const float* G = SfxGain.Find(Id); return G ? *G : 1.f; }
+ float MusicGainOf(const FString& Asset) const { const float* G = MusicGain.Find(Asset); return G ? *G : 1.f; }
+ float VoiceGainOf(const FString& LineId) const { const float* G = VoiceGain.Find(LineId); return G ? *G : 1.f; }
  static FString Key(const FString& Raw);
  const FDinkApprovedSound* ResolveMusic(const FString& Raw) const;
  static int32 SpatialSpriteHandle(int32 Handle, bool bHasBoundActor = false);
@@ -138,6 +146,31 @@ private:
  void StopEffect(UAudioComponent* Effect);
  UPROPERTY(Transient) TObjectPtr<USoundAttenuation> VoiceAttenuation;
  UPROPERTY(Transient) TObjectPtr<USoundAttenuation> EffectAttenuation;
+ // Mixing (audio QA, 15 Nov 2026; numbers in FDinkAudioMix, DinkAudioLife.h)
+public:
+ /** QA sweep (dink.AudioQA.Sweep): the game's own cues, ambient repeats and voices hold still so each recorded window holds one sound. */
+ void SetSuspended(bool bInSuspended) { bSuspended = bInSuspended; }
+private:
+ bool bSuspended = false;
+ /** Music fading out after a change of theme (crossfade); destroyed once silent. */
+ UPROPERTY(Transient) TArray<TObjectPtr<UAudioComponent>> FadingMusic;
+ /** One concurrency group per approved effect: at most FDinkAudioMix::MaxSameEffect at once, the oldest stops. */
+ UPROPERTY(Transient) TMap<FString, TObjectPtr<USoundConcurrency>> EffectConcurrency;
+ /** The approved effects, loaded once at start (no first-use load on the game thread mid-fight). */
+ UPROPERTY(Transient) TArray<TObjectPtr<USoundBase>> Preloaded;
+ FRandomStream PitchRandom;
+ void StopMusic(float FadeSeconds);
+ /** A theme being loaded asynchronously (not yet in memory: no synchronous package load on a screen change); it starts when ready unless replaced. */
+ FString PendingMusic;
+ void StartMusic(const FString& Asset, USoundBase* Sound);
+ /** Recordings not in memory when their text appeared: loading asynchronously (a LoadObject here flushed the async loader on the game
+  *  thread before every line); each starts when it arrives if its text is still the one shown. */
+ TArray<FDinkVoiceTracker::FVoice> PendingVoices;
+ void SpawnVoice(const FDinkVoiceTracker::FVoice& V, USoundBase* Sound, UDinkDirector* Director);
+ /** Text handle -> recording whose loudness gain (mix.json `voice`) is applied; set in the frame the recording starts. */
+ TMap<int32, TWeakObjectPtr<UAudioComponent>> VoiceGainApplied;
+ void ApplyVoiceGains();
+ USoundConcurrency* ConcurrencyFor(const FString& Id);
  void EnterScreen(ADinkScreenVolume* Screen);
  void PlayMusic(const FDinkApprovedSound& Entry);
  bool CanPlay() const;

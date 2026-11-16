@@ -16,6 +16,9 @@ Output: SourceAssets/Audio/SFX/<slot>_<cue>_<a|b>.wav
             seamless loop), peak-normalised to -3 dBFS with a single constant gain
         SourceAssets/Audio/SFX/quality_report.csv   (measurable checks only, see below)
 
+Regenerated takes listed in SFX/redo_*.json (`generations`) are also cut to that spec's `trim_to_s`
+(counted from the trimmed start) with a 15 ms fade-out at the cut; earlier takes are untouched.
+
 Leading silence is defined as the time before the first sample whose absolute value reaches
 -50 dBFS. One-shots keep PREROLL_MS of that lead-in so the first transient is not clipped hard.
 
@@ -49,6 +52,24 @@ SILENT_PEAK_DB = -40.0
 DURATION_TOLERANCE = 0.25
 SNAPPY_MAX_LEAD_MS = 150.0
 CLIP_SAMPLES = 3
+END_FADE_S = 0.015
+
+
+def load_trims():
+    """stem -> trim_to_s for every regenerated take recorded in SFX/redo_*.json."""
+    import json
+    trims = {}
+    for spec in sorted(SFX_DIR.glob("redo_*.json")):
+        d = json.loads(spec.read_text(encoding="utf-8"))
+        by_slot = {t["slot"]: t.get("trim_to_s") for t in d.get("takes", [])}
+        for g in d.get("generations", []):
+            t = by_slot.get(g["stem"][:2])
+            if t:
+                trims[g["stem"]] = float(t)
+    return trims
+
+
+TRIMS = load_trims()
 
 
 def run(cmd, **kw):
@@ -91,7 +112,7 @@ def volumedetect(path):
 
 
 def split_name(path):
-    m = re.fullmatch(r"(\d\d)_(.+)_([ab])", path.stem)
+    m = re.fullmatch(r"(\d\d)_(.+)_([a-z])", path.stem)
     if not m:
         raise ValueError(f"unexpected file name {path.name}")
     return m.groups()
@@ -116,6 +137,10 @@ def convert(mp3):
     if start:
         af.append(f"atrim=start_sample={start}")
         af.append("asetpts=PTS-STARTPTS")
+    trim = TRIMS.get(mp3.stem)
+    if trim and not loop:
+        af.append(f"atrim=end_sample={int(round(trim * RATE))}")
+        af.append(f"afade=t=out:st={trim - END_FADE_S:.4f}:d={END_FADE_S}")
     af.append(f"volume={gain:.8f}")
     run(["ffmpeg", "-y", "-v", "error", "-i", str(mp3), "-af", ",".join(af),
          "-ar", str(RATE), "-ac", str(ch), "-c:a", "pcm_s16le", "-map_metadata", "-1", str(wav)])
@@ -191,9 +216,14 @@ def main():
     for f in files:
         wav, trimmed = convert(f)
         print(f"{f.name} -> {wav.name} (trimmed {trimmed * 1000:.0f} ms)")
-    if not args.no_report and not args.only:
+    if not args.no_report:
         requested = load_requested()
         rows = [analyse(f, requested) for f in files]
+        if args.only and REPORT.exists():          # update just these rows, keep the rest of the report
+            with open(REPORT, newline="", encoding="utf-8") as fh:
+                old = {r["file"]: r for r in csv.DictReader(fh)}
+            old.update({r["file"]: r for r in rows})
+            rows = [old[k] for k in sorted(old)]
         with open(REPORT, "w", newline="", encoding="utf-8") as fh:
             w = csv.DictWriter(fh, fieldnames=list(rows[0]))
             w.writeheader()

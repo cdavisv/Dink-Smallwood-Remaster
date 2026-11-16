@@ -1,0 +1,19 @@
+# Run E (16 Nov 2026, 10:22-10:30): output level per 30 s, front channels, NEW limiter settings (brickwall: zero attack, no look-ahead)
+# soak from about 175 s to 475 s. The opening windows equal run C's to the sample: the master-submix limiter has no measurable effect on the device output (A164 reopened).
+     0s rms  -25.4 peak  -0.53 dBFS  >-1.5dBFS:       2  >=0dBFS:      0
+    30s rms  -25.4 peak  -1.33 dBFS  >-1.5dBFS:       2  >=0dBFS:      0
+    60s rms  -36.0 peak  -1.00 dBFS  >-1.5dBFS:       4  >=0dBFS:      0
+    90s rms  -27.1 peak  -1.35 dBFS  >-1.5dBFS:       1  >=0dBFS:      0
+   120s rms  -29.3 peak -10.12 dBFS  >-1.5dBFS:       0  >=0dBFS:      0
+   150s rms  -19.3 peak  -2.01 dBFS  >-1.5dBFS:       0  >=0dBFS:      0
+   180s rms  -10.5 peak   0.00 dBFS  >-1.5dBFS:     355  >=0dBFS:     24
+   210s rms   -8.0 peak   0.00 dBFS  >-1.5dBFS:    8273  >=0dBFS:   1604
+   240s rms   -8.6 peak   0.00 dBFS  >-1.5dBFS:    6515  >=0dBFS:   1144
+   270s rms   -9.0 peak   0.00 dBFS  >-1.5dBFS:    5413  >=0dBFS:   1047
+   300s rms   -9.0 peak   0.00 dBFS  >-1.5dBFS:    7367  >=0dBFS:   1431
+   330s rms   -9.5 peak   0.00 dBFS  >-1.5dBFS:    3978  >=0dBFS:    702
+   360s rms   -8.0 peak   0.00 dBFS  >-1.5dBFS:   12251  >=0dBFS:   2500
+   390s rms   -8.2 peak   0.00 dBFS  >-1.5dBFS:   11542  >=0dBFS:   2612
+   420s rms   -8.7 peak   0.00 dBFS  >-1.5dBFS:    8697  >=0dBFS:   1827
+   450s rms   -9.0 peak   0.00 dBFS  >-1.5dBFS:    9872  >=0dBFS:   2152
+   480s rms  -49.5 peak -33.78 dBFS  >-1.5dBFS:       0  >=0dBFS:      0
