@@ -42,6 +42,9 @@ struct FDinkBundleScreen
 	FString GroundMask, GroundMaskHash;
 	/** How much of the sea's colour the screen's water fill takes, 0 (pond) .. 1 (sea); -1 when the bundle predates `water_sea`. */
 	double WaterSea = -1.0;
+	/** The sea weight at the screen's corners, edge middles and centre [NW, N, NE, W, C, E, SW, S, SE] (water_sea_patch);
+	 *  empty when the bundle predates it. M_Env_WaterShore blends between them, so the colour runs on across borders. */
+	TArray<double> WaterSeaPatch;
 	/** Non-empty when the exporter left the screen out (reason), e.g. a layout overlap. */
 	FString Excluded;
 };
