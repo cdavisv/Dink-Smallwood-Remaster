@@ -120,10 +120,25 @@ void UDinkAudioSubsystem::Initialize(FSubsystemCollectionBase& Collection)
  if (Voices.Load(FPaths::ProjectContentDir() / TEXT("Dink/Data/Audio/voice.json"))) UE_LOG(LogDinkPlayback, Log, TEXT("Voice table: %d recorded lines, volume %.2f"), Voices.Lines.Num(), Voices.Volume);
  GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>()->OnScreenChanged.AddUObject(this, &UDinkAudioSubsystem::EnterScreen);
 }
+void UDinkAudioSubsystem::StopOwnerlessRepeats()
+{
+ // A full screen build stops every repeating sound no sprite owns, whatever its asset (kill_repeat_sounds, dink.cpp:6410-6424,
+ // called by the rebuild at 6750, which load_screen/draw_screen and force_vision (8497) run; sound_set_survive, never used by the
+ // base game, is not modelled): the warp machines' seven Playsound(34, .., 1) hums (s6-warp.c, s7-warp.c; 34 is a loop asset)
+ // end when their load_screen draws the next screen. A repeat the new screen's own scripts started in this same frame is spared.
+ for (int32 I = Effects.Num() - 1; I >= 0; --I)
+ {
+  UAudioComponent* C = Effects[I];
+  const uint64* Started = IsValid(C) ? OwnerlessRepeats.Find(C) : nullptr;
+  if (Started && FDinkAudioSelection::StopsOnScreenBuild(1, 0, *Started == GFrameCounter))
+  { StopEffect(C); EffectSprites.Remove(C); Effects.RemoveAtSwap(I); }
+ }
+}
 void UDinkAudioSubsystem::StopEffect(UAudioComponent* Effect)
 {
  if (!IsValid(Effect)) return;
  const bool bRepeat = RepeatEffects.Remove(Effect) > 0;
+ OwnerlessRepeats.Remove(Effect);
  Effect->Stop();
  if (bRepeat) Effect->DestroyComponent(); // not auto-destroyed (see ReplaysRepeat)
 }
@@ -132,7 +147,7 @@ void UDinkAudioSubsystem::StopAll()
 {
  if (Music) { Music->Stop(); Music->DestroyComponent(); } Music = nullptr; PlayingMusic.Reset();
  for (UAudioComponent* Effect : Effects) if (Effect) StopEffect(Effect);
- Effects.Reset(); Ambient.Reset(); EffectSprites.Reset(); RepeatEffects.Reset();
+ Effects.Reset(); Ambient.Reset(); EffectSprites.Reset(); RepeatEffects.Reset(); OwnerlessRepeats.Reset();
  for (const auto& Pair : VoiceComponents) if (Pair.Value.IsValid()) Pair.Value->Stop();
  VoiceComponents.Reset(); VoiceTracker.Reset();
 }
@@ -218,8 +233,9 @@ void UDinkAudioSubsystem::EnterScreen(ADinkScreenVolume* Screen)
  {
   UAudioComponent* C = Effects[I];
   if (IsValid(C) && C->GetAttachParent() && Greybox->FindScreenAt(C->GetAttachParent()->GetComponentLocation()) != Screen)
-  { StopEffect(C); Effects.RemoveAtSwap(I); }
+  { StopEffect(C); Effects.RemoveAtSwap(I); continue; }
  }
+ StopOwnerlessRepeats();
  if (const FDinkApprovedSound* Override = Selection.Screens.Find(FString::FromInt(Screen->ScreenNumber))) { PlayMusic(*Override); return; }
  if (Screen->MusicAction == TEXT("stop")) { if (Music) { Music->Stop(); Music->DestroyComponent(); } Music = nullptr; PlayingMusic.Reset(); return; }
  if (Screen->MusicAction == TEXT("none") || Screen->MusicRaw == 0) return;
@@ -250,12 +266,16 @@ void UDinkAudioSubsystem::HandleCue(const FString& Cue, UDinkDirector* Director)
  UAudioComponent* Component = nullptr;
  if (Actor && Actor->GetRootComponent())
  {
-  USoundAttenuation* Attenuation = NewObject<USoundAttenuation>(this);
-  Attenuation->Attenuation.AttenuationShapeExtents = FVector(150.f); Attenuation->Attenuation.FalloffDistance = 2200.f;
-  Component = UGameplayStatics::SpawnSoundAttached(Sound, Actor->GetRootComponent(), NAME_None, FVector::ZeroVector, EAttachLocation::KeepRelativeOffset, true, Selection.SfxVolume, FDinkAudioSelection::Pitch(Speed), 0.f, Attenuation, nullptr, !bReplay);
+  if (!EffectAttenuation) // one shared settings object for every positional effect (they all used identical ones)
+  {
+   EffectAttenuation = NewObject<USoundAttenuation>(this);
+   EffectAttenuation->Attenuation.AttenuationShapeExtents = FVector(150.f); EffectAttenuation->Attenuation.FalloffDistance = 2200.f;
+  }
+  Component = UGameplayStatics::SpawnSoundAttached(Sound, Actor->GetRootComponent(), NAME_None, FVector::ZeroVector, EAttachLocation::KeepRelativeOffset, true, Selection.SfxVolume, FDinkAudioSelection::Pitch(Speed), 0.f, EffectAttenuation, nullptr, !bReplay);
  }
  else if (!Sprite) Component = UGameplayStatics::SpawnSound2D(GetWorld(), Sound, Selection.SfxVolume, FDinkAudioSelection::Pitch(Speed), 0.f, nullptr, false, !bReplay);
- if (Component && bReplay) RepeatEffects.Add(Component, FPlatformTime::Seconds());
+ if (Component && bReplay) { RepeatEffects.Add(Component, FPlatformTime::Seconds()); }
+ if (Component && FDinkAudioSelection::StopsOnScreenBuild(Repeat, Sprite, false)) OwnerlessRepeats.Add(Component, GFrameCounter);
  if (Component) { UE_LOG(LogDinkPlayback, Log, TEXT("Playing approved sound %s sprite=%d pitch=%.3f repeat=%d"), *Entry->Asset, Sprite, FDinkAudioSelection::Pitch(Speed), Repeat); Effects.Add(Component); if (Sprite) EffectSprites.Add(Component, Sprite); }
 }
 void UDinkAudioSubsystem::Tick(float DeltaTime)
@@ -286,9 +306,18 @@ void UDinkAudioSubsystem::Tick(float DeltaTime)
    if (!Wanted.Contains(It.Key())) { if (It.Value().Value.IsValid()) StopEffect(It.Value().Value.Get()); It.RemoveCurrent(); }
  }
  if (CanPlay()) UpdateVoices(Director);
+ // Components destroyed elsewhere (level change, garbage collection) leave stale keys: prune them.
+ for (auto It = RepeatEffects.CreateIterator(); It; ++It) if (!It.Key().ResolveObjectPtr()) It.RemoveCurrent();
+ for (auto It = OwnerlessRepeats.CreateIterator(); It; ++It) if (!It.Key().ResolveObjectPtr()) It.RemoveCurrent();
  for (int32 I = Effects.Num() - 1; I >= 0; --I)
  {
   UAudioComponent* C = Effects[I];
+  // The owner first: a repeating cue whose sprite is gone stops, also between two plays (no stray replay).
+  if (const int32* Handle = IsValid(C) ? EffectSprites.Find(C) : nullptr; Handle && Director)
+  {
+   const FDinkSprite* Sprite = Director->FindSprite(*Handle);
+   if (!Sprite || !Sprite->bActive) { StopEffect(C); EffectSprites.Remove(C); Effects.RemoveAtSwap(I); continue; }
+  }
   if (double* Started = IsValid(C) && !C->IsPlaying() ? RepeatEffects.Find(C) : nullptr)
   {
    // a repeating cue: again from the start, once a full length has passed since the last start (no per-frame replay of a culled one)
@@ -297,11 +326,6 @@ void UDinkAudioSubsystem::Tick(float DeltaTime)
    continue;
   }
   if (!IsValid(C) || !C->IsPlaying()) { EffectSprites.Remove(C); Effects.RemoveAtSwap(I); continue; }
-  if (const int32* Handle = EffectSprites.Find(C); Handle && Director)
-  {
-   const FDinkSprite* Sprite = Director->FindSprite(*Handle);
-   if (!Sprite || !Sprite->bActive) { StopEffect(C); EffectSprites.Remove(C); Effects.RemoveAtSwap(I); }
-  }
  }
 }
 TStatId UDinkAudioSubsystem::GetStatId() const { RETURN_QUICK_DECLARE_CYCLE_STAT(UDinkAudioSubsystem, STATGROUP_Tickables); }
