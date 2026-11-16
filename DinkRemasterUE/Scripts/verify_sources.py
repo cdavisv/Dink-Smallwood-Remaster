@@ -97,7 +97,7 @@ with tempfile.TemporaryDirectory(prefix='dink-layout-') as temp:
     assert module.default_data_repo(project) == t
 selection = json.loads((root / 'SourceAssets/Audio/selection_manifest.json').read_text())
 assert selection['runtime'] == json.loads((root / 'Content/Dink/Data/Audio/approved.json').read_text())
-assert selection['counts'] == {'sfx': 44, 'music': 28, 'rejected': 4}
+assert selection['counts'] == {'sfx': 48, 'music': 28, 'rejected': 0, 'redone': 4}  # 9, 44, 48, 49 regenerated (SourceAssets/Audio/SFX/redo_15Nov2026.json)
 report = {'verification_mode': 'metadata' if args.metadata_only else 'full', 'binary_files_verified': verified_binary, 'binary_files_metadata_only': metadata_binary, 'python_syntax_files': python_count, 'shell_syntax_files': shell_count, 'ledger_rows': len(rows), 'historical_rows_binary_verified': history_proof['historical_rows_binary_verified'], 'historical_rows_metadata_only': history_proof['historical_rows_metadata_only'], 'missing_assets': len(missing), 'hash_errors': len(bad), 'secret_flags': secret_flags, 'errors': errors, 'layout_cases_passed': 3, 'approved_audio_runtime_matches': True, 'passed': not errors and (not secret_flags)}
 print(json.dumps(report, indent=2), flush=True)
 sys.exit(0 if report['passed'] else 1)
