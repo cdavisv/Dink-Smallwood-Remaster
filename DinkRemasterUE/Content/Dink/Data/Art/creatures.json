@@ -1534,6 +1534,55 @@
         }
       ],
       "note": "Stone giant (en-stg; walk 821-829, attack 812-818). No base_death: a kill leaves sequence 825 (base_walk + 5): a heap of its own stones without blood, as the picture: the body of the death pose broken at the joints into ten blocks that lie a little apart, on dark grit (ground decal)."
+    },
+    {
+      "class": "dragon",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Dragon/SK_Dragon_PR.SK_Dragon_PR",
+      "locomotion": {
+        "idle": "/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Idle.AN_Dragon_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Walk.AN_Dragon_Walk",
+            "speed_cm_s": 75.2
+          },
+          {
+            "clip": "/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Run.AN_Dragon_Run",
+            "speed_cm_s": 257.3
+          }
+        ]
+      },
+      "roles": {
+        "walk": {
+          "sequences": [
+            201,
+            202,
+            203,
+            204,
+            206,
+            207,
+            208,
+            209
+          ],
+          "locomotion": true
+        }
+      },
+      "corpses": [
+        {
+          "sequences": [
+            211,
+            212,
+            213,
+            214,
+            216,
+            217,
+            218,
+            219
+          ],
+          "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
+          "scale": 1.7
+        }
+      ],
+      "note": "Dragon (en-drag, sc-drag, s7-drag; brain 10, walk 202-208). It has no attack sequence: it spits fire while it treads, so the Attack clip is authored and not bound. A kill leaves sprites 212-218: the corpse kit's torn dragon with its own pool. Corpse scale 1.7: the kit mesh was made for the placed 216 card and lay as a small heap beside the live dragon; the 1997 remains are about two thirds of the live dragon's width."
     }
   ]
 }

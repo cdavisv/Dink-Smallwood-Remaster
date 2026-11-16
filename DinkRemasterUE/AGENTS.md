@@ -1,3 +1,7 @@
+## Dragon as a creature class (16 November 2026)
+
+- `creatures.json` class row `dragon` on the rebuilt `SK_Dragon_PR` (brown hide, thin wing skins, open jaw); a kill leaves the corpse kit's torn dragon at corpse `scale` 1.7. Import notes: `IMPORT.md` "Monster: dragon"; evidence and what is still wrong (flat opaque wing skins, tan remains against a brown body): `Docs/Verification/Dragon_16Nov2026/README.md`.
+
 ## Monsters as creature classes: bonca (three hides), slayer, stone giant, with their corpses (15 November 2026)
 
 - `creatures.json` `classes` rows `bonca_gray`, `bonca_brown`, `bonca_purple`, `slayer`, `stone_giant` (Fable packets VS-04, GP-Q1, GP-Q2): walk = locomotion role, attack sequences play `AN_<Name>_Attack`; a kill leaves the row's corpse with a ground decal. Sources, import command and what binds: `SourceAssets/Art/PhotorealPass/IMPORT.md` "Monsters". Evidence and what is still wrong: `Docs/Verification/Monsters_15Nov2026/README.md`.

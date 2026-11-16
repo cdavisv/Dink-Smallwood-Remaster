@@ -279,6 +279,15 @@ The rigged monsters of `Unclaimed/` had no clips and were bound nowhere (cards).
   curled, in its pool, decal 6.4 x 5.0 m. Stone giant 825: the heap of its stones on dark grit, no blood (the picture has
   none). The Hit and Death clips are authored and not bound.
 
+## Monster: dragon (16 Nov 2026)
+
+Class row `dragon` (16 placements). `Unclaimed/tools/bl.sh build_dragon.py final` (brown hide, thin pale wing skins between
+finger spars, open jaw), then `clips_monsters.py dragon build review export` and `export_monster_ue.py dragon`; import with
+`DINK_PHOTOREAL_ONLY=dragon Scripts/import_photoreal_art.sh` -> `/Game/Dink/Photoreal/Creatures/Dragon` (two-sided
+material for the wings). Walk 201-209 is a locomotion role; there is no attack sequence (it spits fire while it treads),
+so `AN_Dragon_Attack` is authored and not bound. A kill leaves the corpse kit's `SM_Dragon_Corpse_PR` (212-218) at corpse
+`scale` 1.7, so the remains are about two thirds of the live dragon's width, as 212/216 against 202.
+
 ## Turning the pass off
 
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):
