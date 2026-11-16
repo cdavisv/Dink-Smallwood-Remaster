@@ -25,6 +25,8 @@ known line), `dink.View` and `dink.TimeDilation 0.25` (so a capture lands inside
 - `04_dialogue_held_line.jpg`: a held line (`s2-sale` talk: `freeze(1)`, two `say_stop`). dink.Player move_ignored=1,
   holding D for 1.5 s moved him 0 px; the click skipped to the next line; Enter skipped that one; then move_ignored=0.
 
+- `05_dialogue_hint_free_vs_held.jpg` (follow-up commit, run on 84e045b0): the hint on a free line reads "Space", on a held line "Space / Enter / Click".
+
 ## Tests and probe
 - Targeted: `Dink.Narrative.Title+Dink.Input+Dink.Gameplay.Controls+Dink.Narrative.Presentation+Dink.Audio.InventoryPausesEveryVoice+Dink.Gameplay.Probe`
   50/50 on master 3a7b4451c + branch, world regenerated; all twenty probe trace md5s equal `Plugins/DinkParity/Docs/packaged_probe.md`.
