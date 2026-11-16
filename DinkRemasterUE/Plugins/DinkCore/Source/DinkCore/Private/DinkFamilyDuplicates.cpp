@@ -113,7 +113,7 @@ void DinkFamilyDuplicates::Gather(UWorld& World, const TArray<FDinkFamilyBinding
 	{
 		const ADinkPlaceholderActor& A = **It;
 		const UStaticMeshComponent* Card = A.Card;
-		if (!A.Origin || !Card || !Card->GetStaticMesh() || !A.GetRootComponent() || A.ActorHasTag(TEXT("DinkAuthoredArt")) ||
+		if (!A.Origin || !A.Origin->OriginId.IsValid() || !Card || !Card->GetStaticMesh() || !A.GetRootComponent() || A.ActorHasTag(TEXT("DinkAuthoredArt")) ||
 			A.ActorHasTag(TEXT("DinkHumanoid")) || A.ActorHasTag(TEXT("DinkCreature")) || A.Vision != 0 || IsFitted(A)) continue;
 		FDinkFamilyPlacement P;
 		P.Origin = A.Origin->OriginId.ToString();
@@ -164,6 +164,7 @@ void DinkFamilyDuplicates::Gather(UWorld& World, const TArray<FDinkFamilyBinding
 			if (!bAll || !Shared || Shared->Mesh.IsEmpty() || !Shared->Effect.IsEmpty()) continue;
 			for (const FDinkInstanceOrigin* O : Pair.Value)
 			{
+				if (!O->OriginId.IsValid()) continue;
 				FTransform Card;
 				if (!Decor->GetInstanceTransform(O->InstanceIndex, Card, /*bWorldSpace*/ true)) continue;
 				FDinkFamilyCopy C;
@@ -203,8 +204,8 @@ void UDinkFamilyDuplicatesSubsystem::EnsureBuilt(UDinkArtFamilySubsystem& Famili
 			++Hidden;
 		}
 	BuildMs = (FPlatformTime::Seconds() - Start) * 1000.0;
-	UE_LOG(LogDink, Display, TEXT("DINK FAMILY DUPLICATES: %d family copies, %d dropped as the same object as a kept copy on a neighbour screen (%d placement actors, %d background instances; %.1f ms, once)"),
-		Copies, Dropped.Num(), Hidden, Dropped.Num() - Hidden, BuildMs);
+	UE_LOG(LogDink, Display, TEXT("DINK FAMILY DUPLICATES: %d family copies, %d dropped as the same object as a kept copy on a neighbour screen (%d placement-actor cards hidden now; %.1f ms, once)"),
+		Copies, Dropped.Num(), Hidden, BuildMs);
 }
 
 UDinkFamilyDuplicatesSubsystem* UDinkFamilyDuplicatesSubsystem::For(UDinkArtFamilySubsystem& Families)

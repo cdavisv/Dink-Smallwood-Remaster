@@ -157,7 +157,7 @@ namespace
 		A->Card->SetStaticMesh(&Card);
 		A->Card->SetRelativeLocation(FVector(0.0, 0.0, 500.0));
 		A->Card->SetRelativeScale3D(FVector(10.0, 1.0, 10.0));
-		A->Origin->OriginId = FDinkOriginId(Screen, Index);
+		A->Origin->OriginId = FDinkOriginId(Screen, Index);  // 1997 screens hold at most 99 sprites: Index < 100
 		A->Origin->Sequence = 32;
 		A->Origin->Frame = 1;
 		A->Origin->ClassId = TEXT("tree_pine_large");
@@ -176,9 +176,9 @@ namespace
 			G->ScreenNumber = Screen;
 			if (Screen == 177) S.Screen177 = G;
 		}
-		S.PineOutside = Placement(World, Card, 177, 201, 300, 450);
-		S.PineInside = Placement(World, Card, 209, 202, 300, 50);
-		S.MixedOutside = Placement(World, Card, 209, 203, 100, -20);
+		S.PineOutside = Placement(World, Card, 177, 91, 300, 450);
+		S.PineInside = Placement(World, Card, 209, 92, 300, 50);
+		S.MixedOutside = Placement(World, Card, 209, 93, 100, -20);
 		// The decor instance of 177 that S.MixedOutside repeats: a background (type 0) placement.
 		UInstancedStaticMeshComponent* Decor = NewObject<UInstancedStaticMeshComponent>(S.Screen177, TEXT("Decor_32_1"));
 		Decor->SetupAttachment(S.Screen177->GetRootComponent());
@@ -188,7 +188,7 @@ namespace
 		const FVector Ground = DinkLayout::MapPixelToUnreal(Corners(177), 100, 380) - S.Screen177->GetActorLocation();
 		const int32 Index = Decor->AddInstance(FTransform(FRotator::ZeroRotator, Ground + FVector(0, 0, 500), FVector(10.0, 1.0, 10.0)), /*bWorldSpace*/ false);
 		FDinkInstanceOrigin O;
-		O.OriginId = FDinkOriginId(177, 204);
+		O.OriginId = FDinkOriginId(177, 94);
 		O.Sequence = 32;
 		O.Frame = 1;
 		O.ClassId = TEXT("tree_pine_large");
@@ -257,14 +257,14 @@ bool FDinkFamilyDuplicatesDressOrderTest::RunTest(const FString&)
 			TestEqual(FString::Printf(TEXT("%s: the dropped mixed copy never gets a mesh"), *When), FamilyParts(*S.MixedOutside), 0);
 		}
 		TestEqual(FString::Printf(TEXT("%s: two dropped"), Order), Dupes->GetDropped().Num(), 2);
-		TestEqual(FString::Printf(TEXT("%s: S177_P201 is drawn by S209_P202"), Order), Dupes->GetDropped().FindRef(TEXT("S177_P201")), FString(TEXT("S209_P202")));
-		TestEqual(FString::Printf(TEXT("%s: S209_P203 is drawn by S177_P204"), Order), Dupes->GetDropped().FindRef(TEXT("S209_P203")), FString(TEXT("S177_P204")));
+		TestEqual(FString::Printf(TEXT("%s: S177_P91 is drawn by S209_P92"), Order), Dupes->GetDropped().FindRef(TEXT("S177_P91")), FString(TEXT("S209_P92")));
+		TestEqual(FString::Printf(TEXT("%s: S209_P93 is drawn by S177_P94"), Order), Dupes->GetDropped().FindRef(TEXT("S209_P93")), FString(TEXT("S177_P94")));
 		TestEqual(FString::Printf(TEXT("%s: the kept pine has its mesh"), Order), FamilyParts(*S.PineInside), 1);
 		TestEqual(FString::Printf(TEXT("%s: the kept decor instance has its mesh"), Order), FamilyParts(*S.Screen177), 1);
 		TestTrue(FString::Printf(TEXT("%s: dropped actors are tagged"), Order),
 			S.PineOutside->ActorHasTag(UDinkFamilyDuplicatesSubsystem::DroppedTag) && S.MixedOutside->ActorHasTag(UDinkFamilyDuplicatesSubsystem::DroppedTag));
 		TestFalse(FString::Printf(TEXT("%s: kept actor not tagged dropped"), Order), S.PineInside->ActorHasTag(UDinkFamilyDuplicatesSubsystem::DroppedTag));
-		TestTrue(FString::Printf(TEXT("%s: origin IDs unchanged"), Order), S.PineOutside->Origin->OriginId.ToString() == TEXT("S177_P201"));
+		TestTrue(FString::Printf(TEXT("%s: origin IDs unchanged"), Order), S.PineOutside->Origin->OriginId.ToString() == TEXT("S177_P91"));
 	}
 	return true;
 }
