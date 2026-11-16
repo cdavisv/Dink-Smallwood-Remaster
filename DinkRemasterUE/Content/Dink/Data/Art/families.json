@@ -1,6 +1,6 @@
 {
   "schema": "dink-art-families/1",
-  "about": "Sprite-family art bindings, read by UDinkArtFamilySubsystem at screen activation and by Scripts/art_coverage.py. Visual only: placements keep their collision, hardness, origin IDs and scripts. Precedence: origin and screen bindings in the other Data/Art manifests win; a sequence row with a `frame` (one picture) wins over a class id row, which wins over a plain sequence row. fit none (the default): real-size meshes standing at the card's ground point, like the player and the dressed screens. Rules: SourceAssets/Art/ART_STANDARD.md. Optional `variants` (further mesh paths): a placement picks the main mesh or a variant by a stable hash of its origin ID. Optional `yaw_offset` (degrees) is added to the chosen yaw. Optional `anchor_front` (0..1) stands the mesh's front edge, not its centre, on the sprite's bottom edge. Optional `span` (\"width\" or \"height\" for edge-on strips): the module is repeated along its X axis and scaled along X only until it fills that dimension of the layout-scaled card (interior wall runs: the kit is 0.025 m per pixel, interiors are laid out at 0.0438); `span` \"stretch\" scales one module along X to the card width (the arch); `span_fill` is the mesh of the further modules and `span_end` (left/right) the end the main mesh keeps.",
+  "about": "Sprite-family art bindings, read by UDinkArtFamilySubsystem at screen activation and by Scripts/art_coverage.py. Visual only: placements keep their collision, hardness, origin IDs and scripts. Precedence: origin and screen bindings in the other Data/Art manifests win; a sequence row with a `frame` (one picture) wins over a class id row, which wins over a plain sequence row. fit none (the default): real-size meshes standing at the card's ground point, like the player and the dressed screens. Rules: SourceAssets/Art/ART_STANDARD.md. Optional `variants` (further mesh paths): a placement picks the main mesh or a variant by a stable hash of its origin ID. Optional `yaw_offset` (degrees) is added to the chosen yaw. Optional `anchor` (\"card\" default, \"hardbox\", \"hardbox_inner\"; physical mapping 15 Nov 2026, DinkFamilyAnchor.h) stands the mesh on the placement's 1997 hardbox (its centre, or for thin wall modules its face towards the screen's middle) instead of the card's ground point; presentation only. Optional `anchor_front` (0..1) stands the mesh's front edge, not its centre, on the sprite's bottom edge. Optional `span` (\"width\" or \"height\" for edge-on strips): the module is repeated along its X axis and scaled along X only until it fills that dimension of the layout-scaled card (interior wall runs: the kit is 0.025 m per pixel, interiors are laid out at 0.0438); `span` \"stretch\" scales one module along X to the card width (the arch); `span_fill` is the mesh of the further modules and `span_end` (left/right) the end the main mesh keeps.",
   "families": [
     {
       "family": "barrel",
@@ -14,6 +14,7 @@
       "family": "bed",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Bed_Oak_PR.SM_Bed_Oak_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "64 inside/details/inacc- frame 3. Scripted beds are the sleep/save beds; the bed stays a bed. Photoreal pass: was SM_Bed_Oak_01."
@@ -22,6 +23,7 @@
       "family": "table_long",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Table_Oak_Long_PR.SM_Table_Oak_Long_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "note": "87 inside/details/table- frames 3 and 5. table_round, benches, cabinets and posts stay unbound: the oak table's rectangle would change their silhouette. Photoreal pass: was SM_Table_Oak_01."
     },
@@ -37,6 +39,7 @@
       "family": "boulder_grey_tall",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Grey_Tall_PR.SM_Boulder_Grey_Tall_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frames 1, 2: the standing grey boulder built for this class. Scripted (pushable, bombable) rocks keep their cards."
     },
@@ -54,6 +57,7 @@
       "family": "boulder_flat",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Flat_PR.SM_Boulder_Flat_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frames 4, 5: the bedded flat boulder built for this class, or the low field boulder C. Gate 2 batch 1, 13 Nov 2026: field boulder C dropped as a variant (1.2 m against a 2 m picture, half hidden in the grass)."
     },
@@ -61,6 +65,7 @@
       "family": "boulder_red",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_Red_PR.SM_Boulder_Red_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Faceting sweep, 13 Nov 2026: was SM_Boulder_Fieldstone_01 (the old Stonebrook kit boulder, a smooth lump with stepped terraces). 95 lands/rocks/rock- frame 3: the reddish boulder built for this class (the grey fieldstone had the wrong colour). Its crack is a weak point of the source. Scripted (bombable) red rocks keep their cards."
     },
@@ -82,6 +87,8 @@
       "family": "fence_rail_ew",
       "mesh": "/Game/Dink/Kits/StonebrookExterior/SM_Fence_SplitRail_4m_01.SM_Fence_SplitRail_4m_01",
       "fit": "none",
+      "span": "width",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "note": "93 lands/fence/fence- frame 1 (east-west run; with yaw_from_sprite off a run takes a stable per-origin yaw, set it true to align runs east-west). North-south and diagonal runs stay unbound: their sprite is a projected depth that a uniform scale cannot fit."
     },
@@ -89,6 +96,8 @@
       "family": "pine_forest_edge_strip",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_PineForestEdge_H_01.SM_Veg_PineForestEdge_H_01",
       "fit": "none",
+      "span": "width",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "note": "Photoreal pass forest edge, horizontal strip; faces the sprite view so the strip keeps its direction."
     },
@@ -103,6 +112,7 @@
       "family": "tree_willow",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Willow_01.SM_Veg_Willow_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "32 lands/trees/tree-. Photoreal pass willow (was a stand-in oak)."
     },
@@ -110,6 +120,7 @@
       "family": "tree_willow_large",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Willow_Large_01.SM_Veg_Willow_Large_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "32 lands/trees/tree-. Photoreal pass large willow (was a stand-in oak)."
     },
@@ -177,6 +188,7 @@
       "family": "fallen_log",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_FallenLog_01.SM_Veg_FallenLog_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass fallen log."
     },
@@ -221,6 +233,7 @@
       "family": "tree_pine_large",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Pine_Large_01.SM_Veg_Pine_Large_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "32 lands/trees/tree- frame 1. Photoreal pass pines by origin hash: large and medium, the storm-bent one about 1 in 8 (variants repeat a path to weight it). Scripted pines keep their cards: s2-sec1/s2-sec3/s3-sec1 burn the tree from DinkC (die(): sp_seq 20 fire, then sp_pseq 89 frame 10 as the burnt stump), and a family mesh does not follow a script changing the sprite. SM_Veg_Pine_Dry_01 and SM_Veg_Pine_Burnt_01 are imported for that and need a presentation hook on the sprite change.",
       "variants": [
@@ -237,6 +250,7 @@
       "family": "tree_oak_large",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Oak_Large_01.SM_Veg_Oak_Large_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "32 lands/trees/tree-. Photoreal pass oaks; the 15 m wide Oak_02 one in three.",
       "variants": [
@@ -248,6 +262,7 @@
       "family": "tree_dead_dark",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_DeadTree_Dark_01.SM_Veg_DeadTree_Dark_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass dead tree (Darklands)."
     },
@@ -255,6 +270,7 @@
       "family": "tree_dead_dark_tall",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_DeadTree_DarkTall_01.SM_Veg_DeadTree_DarkTall_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass tall dead tree (Darklands)."
     },
@@ -262,6 +278,7 @@
       "family": "tree_dead_frosted",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_DeadTree_Frosted_01.SM_Veg_DeadTree_Frosted_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass frosted dead tree (snow regions)."
     },
@@ -269,6 +286,7 @@
       "family": "bush_small",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Small_01.SM_Veg_Bush_Small_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass bush. Gate 2 batch 1, 13 Nov 2026: scripted placements included (seen in the game: the mesh goes with its actor when a script removes the sprite).",
       "scripted": true
@@ -285,6 +303,7 @@
       "family": "bush_round_large",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Round_Large_01.SM_Veg_Bush_Round_Large_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass bush. Gate 2 batch 1, 13 Nov 2026: scripted placements included (seen in the game: the mesh goes with its actor when a script removes the sprite).",
       "scripted": true
@@ -293,6 +312,7 @@
       "family": "bush_wide",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_Bush_Wide_01.SM_Veg_Bush_Wide_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass bush."
     },
@@ -300,6 +320,7 @@
       "family": "thorn_bush",
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBush_01.SM_Veg_ThornBush_01",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "note": "Photoreal pass thorn bushes. Gate 2 batch 1, 13 Nov 2026: the dense bush (46 canes) repeated along the card width so the hedge covers the hardbox that hurts; scripted (touch damage) placements included.",
       "variants": [
@@ -532,6 +553,7 @@
       "family": "crate",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Crate_Large_PR.SM_Crate_Large_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "scripted": true,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card. Round 6: scripted crates included, like the barrel (a box script flattens the picture on a hit; placement cards are not redrawn from script state either)."
@@ -540,6 +562,7 @@
       "family": "crate_stack",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Crate_Large_PR.SM_Crate_Large_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
     },
@@ -547,6 +570,7 @@
       "family": "crate_small",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Crate_Small_PR.SM_Crate_Small_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "scripted": true,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card. Round 6: scripted crates included, like the barrel (a box script flattens the picture on a hit; placement cards are not redrawn from script state either)."
@@ -573,6 +597,7 @@
       "family": "grain_sack",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Sack_Grain_PR.SM_Sack_Grain_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
     },
@@ -580,6 +605,7 @@
       "family": "table_round",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Table_Oak_Round_PR.SM_Table_Oak_Round_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card. Gate 2 batch 1, 13 Nov 2026: scripted placements included (seen in the game: the mesh goes with its actor when a script removes the sprite).",
       "scripted": true
@@ -648,6 +674,7 @@
       "family": "counter_wood",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Counter_Oak_PR.SM_Counter_Oak_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
@@ -663,6 +690,7 @@
       "family": "cabinet_wood",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Cabinet_Oak_PR.SM_Cabinet_Oak_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
     },
@@ -670,6 +698,7 @@
       "family": "cabinet_narrow",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Cabinet_Oak_PR.SM_Cabinet_Oak_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
     },
@@ -677,6 +706,7 @@
       "family": "dungeon_pillar",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Dungeon_Pillar_Twin_PR.SM_Dungeon_Pillar_Twin_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
     },
@@ -819,6 +849,7 @@
       "family": "save_machine",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Save_Machine_PR.SM_Save_Machine_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 449 bonuses/save. Static: the original loops an animation (savebot.c, brain 6). Its script only talks or reacts to hits and pushes; it never changes the picture."
@@ -835,6 +866,7 @@
       "family": "bookcase",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Bookcase_PR.SM_Bookcase_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 64 inside/details/inacc- frame 4. Its script only talks or reacts to hits and pushes; it never changes the picture."
@@ -883,6 +915,7 @@
       "family": "snake_pillar",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Snake_Pillar_PR.SM_Snake_Pillar_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 82 struct/stone pillar with the coiled snake, 2.5 m."
     },
@@ -934,6 +967,7 @@
       "family": "boulder_white_pair",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Boulder_White_Pair_PR.SM_Boulder_White_Pair_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 95 lands/rocks/rock- frame 9. Unscripted placements only: a scripted rock keeps its card, like the other boulder classes."
     },
@@ -941,6 +975,7 @@
       "family": "fountain_stone",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Fountain_Stone_PR.SM_Fountain_Stone_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": false,
       "scripted": true,
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 66 frames 23 and 24. Still water; the animated spray stays the sprite card of its own placement. Its script only talks or reacts to hits and pushes; it never changes the picture."
@@ -978,6 +1013,7 @@
       "family": "golden_duck_statue",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Duck_Statue_Gold_PR.SM_Duck_Statue_Gold_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 159 frame 8: the gold duck on its rock (source recorded as partial)."
     },
@@ -1007,6 +1043,7 @@
       "family": "teleport_shrine",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Shrine_Glass_PR.SM_Shrine_Glass_PR",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 159 frame 7: the stone alcove with its stained-glass light. Static, no glow. Its script (s6-warp.c, s7-warp.c) only talks and spins the machine beside it."
@@ -1024,6 +1061,7 @@
       "frame": 9,
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBush_02.SM_Veg_ThornBush_02",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "Thorn bramble, sprite frame 9 (the open coil): the sparse bush. Same rules as the thorn_bush row.",
@@ -1034,6 +1072,7 @@
       "frame": 10,
       "mesh": "/Game/Dink/Photoreal/Vegetation/SM_Veg_ThornBush_02.SM_Veg_ThornBush_02",
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "Thorn bramble, sprite frame 10 (the small open coil): the sparse bush. Same rules as the thorn_bush row.",
@@ -1044,6 +1083,7 @@
       "mesh": "/Game/Dink/Photoreal/Structures/SM_SignPost_Single_PR.SM_SignPost_Single_PR",
       "frame": 7,
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "186 struct/landmark/landm- frame 7: one arrow board on a post; the boards carry no lettering (the game shows the text). scripted: the sign scripts only talk."
@@ -1053,6 +1093,7 @@
       "mesh": "/Game/Dink/Photoreal/Structures/SM_SignPost_Double_PR.SM_SignPost_Double_PR",
       "frame": 8,
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "186 struct/landmark/landm- frame 8: two boards on a post; the boards carry no lettering (the game shows the text). scripted: the sign scripts only talk."
@@ -1062,6 +1103,7 @@
       "mesh": "/Game/Dink/Photoreal/Structures/SM_SignPost_Triple_PR.SM_SignPost_Triple_PR",
       "frame": 9,
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "186 struct/landmark/landm- frame 9: three boards on a post; the boards carry no lettering (the game shows the text). scripted: the sign scripts only talk."
@@ -1071,6 +1113,7 @@
       "mesh": "/Game/Dink/Photoreal/Structures/SM_SignPost_Triple_PR.SM_SignPost_Triple_PR",
       "frame": 10,
       "fit": "none",
+      "anchor": "hardbox",
       "yaw_from_sprite": true,
       "scripted": true,
       "note": "186 struct/landmark/landm- frame 10: three boards on a post; the boards carry no lettering (the game shows the text). scripted: the sign scripts only talk."

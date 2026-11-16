@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "Subsystems/WorldSubsystem.h"
 #include "Hardness/DinkFamilyCollisionFit.h"
+#include "DinkFamilyAnchor.h"
 #include "DinkArtFamilySubsystem.generated.h"
 
 class ADinkGreyboxScreen;
@@ -53,6 +54,8 @@ struct DINKCORE_API FDinkFamilyBinding
 	double Scale = 1.0;
 	/** 0..1 (JSON "anchor_front"): moves the mesh back (north) by this share of half its depth, so at 1 its front edge, not its centre, stands on the sprite's bottom edge. For deep modules such as the curved wall. */
 	double AnchorFront = 0.0;
+	/** JSON "anchor": "card" (default), "hardbox" or "hardbox_inner" (DinkFamilyAnchor.h): stand the mesh on the 1997 hardbox, not the card. */
+	EDinkFamilyAnchor Anchor = EDinkFamilyAnchor::Card;
 	/** true: also dress placements that carry a DinkC script (default: scripted placements keep their card). */
 	bool bScripted = false;
 	/**
