@@ -550,7 +550,11 @@ namespace DinkOverlay
 			if (C.bBlocking)
 			{
 				const FSlateFontInfo HintFont = Font(TEXT("Regular"), 12.f);
-				const FString Hint = TEXT("Space / Enter / Click");
+				// The keys that skip in this state (DinkNarrativeInput.cpp IsDinkHeld): while Dink can move freely only Space
+				// (gamepad A) skips, so Enter, E and the click keep their own jobs; while he is held they skip too.
+				UDinkDirector* Dir = S.GetDirector();
+				const bool bHeld = (Dir && Dir->GetDink().bFrozen) || S.HasButtonWait();
+				const FString Hint = bHeld ? TEXT("Space / Enter / Click") : TEXT("Space");
 				const FVector2f HintSize = FPainter::Measure(Hint, HintFont);
 				const FVector2f ChevronCentre(Pos.X + W - 30.f, Pos.Y + H - 18.f);
 				// Measured widths come out a little short at small pixel sizes (hinting): keep a clear gap before the chevron.
