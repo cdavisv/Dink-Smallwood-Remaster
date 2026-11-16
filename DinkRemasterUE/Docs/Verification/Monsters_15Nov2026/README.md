@@ -65,7 +65,8 @@ cut 152 (bonca_gray 21, slayer 21, stone_giant 14, bonca_brown 12, bonca_purple 
 
 - `Dink.Art`: 66/66 passed (16 Nov, on the rebuilt binary: master 6ef7a590 + the duck/slime/pig change + this change;
   the `CorpseFor` test lines are in it). Python unit tests: 903 OK in the private copy.
-- NOT YET RUN on this change: `Dink.Gameplay.Probe` (the twenty md5s); it is queued in the Unreal lock.
+- `Dink.Gameplay.Probe`: 29/29 passed (16 Nov, same binary) and the twenty trace md5s equal the current table of
+  `Plugins/DinkParity/Docs/packaged_probe.md` (Ch1 b4ad88c02c ... Ch20 84f33687af).
 - The binary of the frames: `bonca.jpg`, `slayer_giant_live.jpg` and `before_after_play.jpg` were taken on the build of
   15 Nov noon (master + the duck/slime/pig change), `whole_screen_and_giant_heap.jpg` and `slayer_giant_killed.jpg` on the rebuilt one (master
   6ef7a590 + the duck/slime/pig change + this change). Neither is today's master.
