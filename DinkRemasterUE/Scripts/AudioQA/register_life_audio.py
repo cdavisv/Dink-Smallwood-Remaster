@@ -6,7 +6,7 @@
 
 Writes Content/Dink/Data/Audio/life.json (read by UDinkAudioLifeSubsystem): per surface the step takes, per bed its loop, each
 with a gain that brings its integrated loudness (ffmpeg ebur128) to the category target, so a replaced take needs no code change.
-Adds or refreshes one SourceAssets/asset_ledger.csv row per file (status `placeholder` for synthesised ones).
+Adds or refreshes one SourceAssets/asset_ledger.csv row per file (status `placeholder` for synthesised ones; for generated takes\n(prepare_life_takes.py) the delivered MP3 is the row, the WAV its derived file, and every take not picked keeps a row too).
 """
 import csv, hashlib, json, re, subprocess, sys
 from pathlib import Path
@@ -60,12 +60,32 @@ def main() -> int:
         digest = hashlib.sha256(wav.read_bytes()).hexdigest()
         placeholder = 'placeholder' in tool
         what = f"footstep, {f['surface']}" if f['kind'] == 'step' else f"ambience bed, {f['bed']} (seamless loop)"
+        g = f.get('generation')
+        if g:   # a generated take (prepare_life_takes.py): the delivered MP3 is the source, the prepared WAV derives from it
+            mp3 = ROOT / f['delivered']
+            new.append([f['delivered'], f"SourceAssets/Audio/Life/{wav.name}", 'sfx', 'none (1997 has no footsteps or ambience beds)',
+                        'ElevenLabs', 'eleven_text_to_sound_v2', g['prompt'], g['parameters'], g['generation_id'], meta['flow_id'],
+                        meta['generated_on'], str(g['credits']), meta['licence'], hashlib.sha256(mp3.read_bytes()).hexdigest(),
+                        f"{f['duration_s']:.3f}", 'candidate',
+                        f"{what}; runtime take {f['name']} (prepared WAV {digest[:16]}..., {level:.1f} LUFS); round {g['round']}, node {g['node']}, "
+                        f"session {g['session_id']}; measured {g['lufs']} LUFS, peak {g['sample_peak_dbfs']:+.2f} dBFS; picked by measurement "
+                        f"(SourceAssets/Audio/Life/life_takes.json), owner listening pending"])
+            continue
         new.append([f"SourceAssets/Audio/Life/{wav.name}", f"Content/Dink/Audio/Life/{f['name']}.uasset", 'sfx',
                     'none (1997 has no footsteps or ambience beds)', 'Original project work' if placeholder else 'see notes', tool, '',
                     f"loudness {level:.1f} LUFS; loop={str(f['loop']).lower()}", '', '', '2026-11-15', '0',
                     'Project-authored source (procedural synthesis, no samples)' if placeholder else '', digest,
                     f"{f['duration_s']:.3f}", 'placeholder' if placeholder else 'candidate',
                     f"{what}; procedural placeholder until a generated take replaces it (FABLE_ART_QUEUE AU-01/AU-02); ElevenLabs was not attached to the session that made it"])
+    for g in meta.get('not_picked', []):   # every other generated take keeps its ledger row
+        mp3 = SRC / 'delivered' / f"{g['stem']}.mp3"
+        what = f"footstep, {g['surface']}" if g['kind'] == 'step' else f"ambience bed, {g['bed']}"
+        new.append([f"SourceAssets/Audio/Life/delivered/{mp3.name}", '', 'sfx', 'none (1997 has no footsteps or ambience beds)', 'ElevenLabs',
+                    'eleven_text_to_sound_v2', g['prompt'], g['parameters'], g['generation_id'], meta['flow_id'], meta['generated_on'],
+                    str(g['credits']), meta['licence'], hashlib.sha256(mp3.read_bytes()).hexdigest(), '', 
+                    'rejected' if g['verdict'] == 'rejected' else 'not_selected',
+                    f"{what}; round {g['round']}, node {g['node']}, session {g['session_id']}; measured {g['lufs']} LUFS, peak "
+                    f"{g['sample_peak_dbfs']:+.2f} dBFS; QA verdict: {g['verdict']} ({g['reason']})"])
     with open(LEDGER, 'w', newline='', encoding='utf-8') as fh:
         w = csv.writer(fh, lineterminator='\n')
         w.writerow(header); w.writerows(kept); w.writerows(new)
