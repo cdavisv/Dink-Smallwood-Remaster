@@ -1,4 +1,6 @@
 #include "Greybox/DinkGreyboxCharacter.h"
+#include "Greybox/DinkGreyboxSubsystem.h"
+#include "Greybox/DinkScreenVolume.h"
 #include "DinkCollision.h"
 #include "DinkCoreModule.h"
 #include "DinkArtSubsystem.h"
@@ -24,6 +26,11 @@
 #include "InputMappingContext.h"
 #include "InputModifiers.h"
 #include "InputTriggers.h"
+#include "Dom/JsonObject.h"
+#include "Misc/FileHelper.h"
+#include "Misc/Paths.h"
+#include "Serialization/JsonReader.h"
+#include "Serialization/JsonSerializer.h"
 
 const FName ADinkGreyboxCharacter::ScrawnyShape(TEXT("Physique_Scrawny"));
 const FName ADinkGreyboxCharacter::BrawnyShape(TEXT("Physique_Brawny"));
@@ -45,11 +52,11 @@ ADinkGreyboxCharacter::ADinkGreyboxCharacter()
 	UCharacterMovementComponent* Move = GetCharacterMovement();
 	Move->bOrientRotationToMovement = true;
 	Move->RotationRate = FRotator(0.f, 300.f, 0.f);
-	Move->MaxAcceleration = 900.f;
+	Move->MaxAcceleration = 900.f;       // BaseAcceleration (UpdateGait scales it by PaceScale)
 	Move->GroundFriction = 6.f;
 	Move->MaxWalkSpeed = RunSpeed;
 	Move->MinAnalogWalkSpeed = 20.f;
-	Move->BrakingDecelerationWalking = 850.f;
+	Move->BrakingDecelerationWalking = 850.f;   // BaseBraking
 	Move->JumpZVelocity = 280.f;
 	Move->GravityScale = 1.45f;
 	Move->AirControl = .2f;
@@ -198,6 +205,40 @@ namespace
 		TEXT("How fast Dink turns to the player's direction keys, degrees per second (the original turns on the key's frame; 300 is the rate movement fed by the bot and scripts keeps)."));
 	TAutoConsoleVariable<int32> CVarHeroOriginalHold(TEXT("dink.Hero.OriginalInputHold"), 1,
 		TEXT("1: as in 1997, Dink stands still for an attack or a spell (sp_nocontrol), only turns while the bow is drawn, and a key diagonal is 0.943 of the straight walk; 0: the keys always walk at full speed."));
+	TAutoConsoleVariable<int32> CVarHeroWorldScalePace(TEXT("dink.Hero.WorldScalePace"), 1,
+		TEXT("1: the run speed and its acceleration follow the world scale (hero_pace.json: the screen kind's layout scale over the scale the 6 m/s run was tuned at), so a running Dink keeps his margin over the monsters, which move in 1997 pixels; 0: the fixed 6 m/s run."));
+	/** The hero's base acceleration and braking, cm/s^2 (scaled with the run by PaceScale). */
+	constexpr float BaseAcceleration = 900.f, BaseBraking = 850.f;
+	/** hero_pace.json: kind -> run factor, kind -> walk factor. Loaded once. */
+	struct FHeroPaceTable
+	{
+		TMap<FName, float> Run, Walk;
+		TMap<int32, float> Screens;
+		FHeroPaceTable()
+		{
+			FString Text;
+			TSharedPtr<FJsonObject> Root;
+			if (!FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Gameplay/hero_pace.json")))) return;
+			const TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Text);
+			if (!FJsonSerializer::Deserialize(Reader, Root) || !Root.IsValid()) return;
+			const auto Read = [&Root](const TCHAR* Field)
+			{
+				TMap<FString, float> Out;
+				const TSharedPtr<FJsonObject>* Obj = nullptr;
+				if (!Root->TryGetObjectField(Field, Obj) || !Obj || !Obj->IsValid()) return Out;
+				for (const auto& KV : (*Obj)->Values)
+				{
+					double V = 0.0;
+					if (KV.Value.IsValid() && KV.Value->TryGetNumber(V) && V > 0.1 && V < 10.0) Out.Add(FString(*KV.Key), float(V));
+				}
+				return Out;
+			};
+			for (const TPair<FString, float>& KV : Read(TEXT("run"))) Run.Add(FName(*KV.Key), KV.Value);
+			for (const TPair<FString, float>& KV : Read(TEXT("walk"))) Walk.Add(FName(*KV.Key), KV.Value);
+			for (const TPair<FString, float>& KV : Read(TEXT("screens"))) Screens.Add(FCString::Atoi(*KV.Key), KV.Value);
+		}
+	};
+	const FHeroPaceTable& HeroPace() { static const FHeroPaceTable Table; return Table; }
 	/** Yaw rate movement fed directly (bot, scripted moves, tests) has always turned the pawn at; it stays for them. */
 	constexpr float FedTurnRate = 300.f;
 	/** The original's diagonal against its straight walk: 2 + 2 px a frame against 3 (sqrt(8) / 3). */
@@ -214,22 +255,49 @@ bool ADinkGreyboxCharacter::IsHumanSteering() const
 	return GetWorld() && GetWorld()->GetTimeSeconds() - LastHumanMoveSeconds < HumanSteerGraceSeconds;
 }
 
+float ADinkGreyboxCharacter::PaceScale() const
+{
+	if (CVarHeroWorldScalePace.GetValueOnGameThread() == 0) return 1.f;
+	const UWorld* World = GetWorld();
+	const UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+	const ADinkScreenVolume* Screen = Greybox ? Greybox->GetCurrentScreen() : nullptr;
+	if (!Screen) return 1.f;
+	const float* Factor = HeroPace().Screens.Find(Screen->ScreenNumber);
+	if (!Factor) Factor = HeroPace().Run.Find(Screen->Kind);
+	return Factor ? *Factor : 1.f;
+}
+
+float ADinkGreyboxCharacter::WalkPaceScale() const
+{
+	if (CVarHeroWorldScalePace.GetValueOnGameThread() == 0) return 1.f;
+	const UWorld* World = GetWorld();
+	const UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+	const ADinkScreenVolume* Screen = Greybox ? Greybox->GetCurrentScreen() : nullptr;
+	const float* Factor = Screen ? HeroPace().Walk.Find(Screen->Kind) : nullptr;
+	return Factor ? *Factor : 1.f;
+}
+
 float ADinkGreyboxCharacter::DesiredTopSpeed() const
 {
+	const float Run = RunSpeed * PaceScale(), Walk = WalkSpeed * WalkPaceScale();
 	const int32 Forced = CVarHeroGait.GetValueOnGameThread();
-	if (Forced == 1) return WalkSpeed;
-	if (Forced == 2) return RunSpeed;
+	if (Forced == 1) return Walk;
+	if (Forced == 2) return Run;
 	// Only a person at the controls walks: the bot, scripted moves and the debug commands feed
-	// movement directly and keep the run speed their routes and timings were measured with.
-	if (!IsHumanSteering()) return RunSpeed;
+	// movement directly and keep the run speed (in 1997 pixels) their routes and timings were measured with.
+	if (!IsHumanSteering()) return Run;
 	const bool bRun = (CVarHeroRunByDefault.GetValueOnGameThread() != 0) != bRunKeyHeld;
-	return bRun ? RunSpeed : WalkSpeed;
+	return bRun ? Run : Walk;
 }
 
 void ADinkGreyboxCharacter::UpdateGait(float DeltaSeconds)
 {
 	UCharacterMovementComponent* Movement = GetCharacterMovement();
 	const float Target = DesiredTopSpeed();
+	// The acceleration follows the run's world-scale factor too, so a start and a stop cover the same pixels as before.
+	const float Pace = PaceScale();
+	Movement->MaxAcceleration = BaseAcceleration * Pace;
+	Movement->BrakingDecelerationWalking = BaseBraking * Pace;
 	// Without a person steering the speed is exactly what it always was; with one it eases.
 	Movement->MaxWalkSpeed = IsHumanSteering() || CVarHeroGait.GetValueOnGameThread() != 0
 		? FMath::FInterpConstantTo(Movement->MaxWalkSpeed, Target, DeltaSeconds, CVarHeroGaitChange.GetValueOnGameThread())

@@ -42,11 +42,23 @@ start = { screen = 1, x = 314, y = 161 }
 
 [scale]
 # Linear multiplier on base_m_per_px, per kind (REMASTER_PLAN section 3).
-settlement = 4.0
-wilderness = 2.75
-sea = 2.75
-dungeon = 2.25
-interior = 1.75
+# 15 Nov 2026 (owner's order: the original map larger, everything a little farther apart; coordinator's ratios):
+# was settlement 4.0, wilderness and sea 2.75, dungeon 2.25, interior 1.75. Objects do not follow these by
+# themselves: see doc/remaster/WORLD_SCALE.md for which families keep their real size.
+settlement = 4.6
+wilderness = 3.6
+sea = 3.6
+dungeon = 2.7
+interior = 2.0
+
+[pace]
+# The scale per kind the hero's 6 m/s run (and the bot's routes, the travel-time figures) were tuned at. Monsters move
+# in 1997 pixels, so their world speed is proportional to [scale]; the run is multiplied by scale / reference on each
+# screen kind (Content/Dink/Data/Gameplay/hero_pace.json, written by the export), so a running Dink keeps the margin
+# over every monster he had (owner decision A75, 15 Nov 2026) and the pixels per second the bot was measured with.
+# The walk stays a human walking pace (1.7 m/s): walk_follows_scale = false.
+reference = { settlement = 4.0, wilderness = 2.75, sea = 2.75, dungeon = 2.25, interior = 1.75 }
+walk_follows_scale = false
 
 # Sheets: landmasses laid out as one continuous rubber sheet each.
 # `anchor = "fixed"` keeps the grid position; `direction` pushes a detached
