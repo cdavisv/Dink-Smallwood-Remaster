@@ -603,6 +603,10 @@ void UDinkDirector::RegisterCommands()
 		const int32 Target = Story->GetFacts() ? Story->GetFacts()->GetFact(TEXT("player_map")) : 0;
 		FDinkSprite& Dink = GetDink();
 		Dink.Screen = Target;
+		// load_screen runs load_map at once, which stops Dink's move and clears his freeze (dink.cpp:7874-7878, 1013-1015); the script
+		// may move or freeze him again.
+		ApplyLoadMapToDink();
+		ScriptLoadedScreen = Target;
 		if (UWorld* World = GetWorld())
 		{
 			if (UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>())
@@ -1439,17 +1443,12 @@ void UDinkDirector::ReleaseScreenSprites(int32 KeepScreen, const TSet<int32>& Ke
 
 void UDinkDirector::ResetSprites()
 {
-	// A freeze holds the player controller's move input (a counter) and Dink's gravity; release both before the sprite
-	// table goes, or nothing can undo them afterwards (alpha bug A19: escape.c freezes Dink, "Load a previously saved game"
-	// loads (LoadState resets the sprites) and Dink never walks again). load_game's load_map clears the freeze too
-	// (dink.cpp:1013-1015).
-	if (bDinkInputBlocked) SetFrozen(1, false);
-	if (bDinkInputBlocked)
-	{
-		// Dink's record or actor is already gone: release the first local controller directly
-		if (APlayerController* PC = GetWorld() ? GetWorld()->GetFirstPlayerController() : nullptr) PC->SetIgnoreMoveInput(false);
-		bDinkInputBlocked = false;
-	}
+	// A freeze holds the player controller's move input and Dink's gravity; release both before the sprite table goes, or nothing
+	// can undo them afterwards (alpha bug A19: dinfo.c's death menu freezes Dink (dinfo.c:3) and loads (:81); LoadState resets the
+	// sprites). load_game's load_map clears the freeze too (dink.cpp:1013-1015). Both are released on what they were taken from,
+	// so this also works when Dink's record or pawn link is already gone.
+	if (FDinkSprite* Dink = Sprites.Find(1); Dink && Dink->bFrozen) SetFrozen(1, false);
+	RestoreDinkGravity();
 	++SpriteResetSerial;
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
 	{
@@ -1467,7 +1466,111 @@ void UDinkDirector::ResetSprites()
 	HandleByActor.Reset();
 	OriginIndex.Reset();
 	OriginIndexWorld.Reset();
-	bDinkInputBlocked = false;
+	ScriptLoadedScreen = INDEX_NONE;
+	// Dink is gone and not frozen; only the hardness gate may still want the controller held.
+	UpdatePlayerMoveHold();
+}
+
+APlayerController* UDinkDirector::FindPlayerController() const
+{
+	if (const FDinkSprite* Dink = Sprites.Find(1))
+	{
+		if (const APawn* Pawn = Cast<APawn>(Dink->Actor.Get()))
+		{
+			if (APlayerController* PC = Cast<APlayerController>(Pawn->GetController()))
+			{
+				return PC;
+			}
+		}
+	}
+	const UWorld* World = GetWorld();
+	return World ? World->GetFirstPlayerController() : nullptr;
+}
+
+void UDinkDirector::UpdatePlayerMoveHold()
+{
+	const FDinkSprite* Dink = Sprites.Find(1);
+	const UDinkGameplay* Game = Story ? Story->GetGameplay() : nullptr;
+	const bool bWanted = (Dink && Dink->bFrozen) || (Game && Game->IsHardnessLoading());
+	APlayerController* PC = bWanted ? FindPlayerController() : nullptr;
+	if (bWanted && !PC)
+	{
+		PC = MoveHoldController.Get(); // Dink's pawn link went away with a reset: keep the hold on the controller that has it
+	}
+	if (MoveHoldController.IsValid() && MoveHoldController.Get() != PC)
+	{
+		MoveHoldController->SetIgnoreMoveInput(false);
+		MoveHoldController.Reset();
+	}
+	else if (MoveHoldController.IsValid() && !MoveHoldController->IsMoveInputIgnored())
+	{
+		// Our count was zeroed behind our back (a possession's ClientRestart runs ResetIgnoreInputFlags): take it again.
+		MoveHoldController->SetIgnoreMoveInput(true);
+	}
+	if (!MoveHoldController.IsValid())
+	{
+		MoveHoldController.Reset(); // a destroyed controller took its count with it
+		if (PC)
+		{
+			PC->SetIgnoreMoveInput(true);
+			MoveHoldController = PC;
+		}
+	}
+	SyncDinkGravity();
+}
+
+void UDinkDirector::SyncDinkGravity()
+{
+	// A frozen Dink is carried by script in screen pixels, and the original's pixels reach past the map (a cutscene puts him
+	// at y 480 to walk in from below, s2-culg.c:47, `dink_can_walk_off_screen`); there is no ground there, so the pawn would fall
+	// out of the world and stay there. No gravity while a script holds him and his controller is held. The gravity lives on the
+	// pawn that is Dink now: when the pawn changes, the old one gets its gravity back and the new one loses it.
+	const FDinkSprite* Dink = Sprites.Find(1);
+	const ACharacter* Character = Dink && Dink->bFrozen && HoldsPlayerMoveInput() ? Cast<ACharacter>(Dink->Actor.Get()) : nullptr;
+	UCharacterMovementComponent* Want = Character ? Character->GetCharacterMovement() : nullptr;
+	if (GravityHeldMovement.Get() == Want && (Want || !GravityHeldMovement.IsValid()))
+	{
+		return;
+	}
+	RestoreDinkGravity();
+	if (Want)
+	{
+		DinkGravityScale = Want->GravityScale;
+		Want->GravityScale = 0.f;
+		Want->StopMovementImmediately();
+		GravityHeldMovement = Want;
+	}
+}
+
+bool UDinkDirector::ApplyLoadMapToDink(int32 FreezeSerialLimit, int32 MoveSerialLimit)
+{
+	FDinkSprite* Dink = Sprites.Find(1);
+	if (!Dink)
+	{
+		return false;
+	}
+	bool bChanged = false;
+	if ((Dink->bMoving || Dink->bMoveNoHard) && DinkMoveSerial <= MoveSerialLimit)
+	{
+		Dink->bMoving = false;      // g_sprite[1].move_active = false
+		Dink->bMoveNoHard = false;  // g_sprite[1].move_nohard = false
+		bChanged = true;
+	}
+	if (Dink->bFrozen && DinkFreezeSerial <= FreezeSerialLimit)
+	{
+		SetFrozen(1, false);        // g_sprite[1].freeze = false
+		bChanged = true;
+	}
+	return bChanged;
+}
+
+void UDinkDirector::RestoreDinkGravity()
+{
+	if (UCharacterMovementComponent* Movement = GravityHeldMovement.Get())
+	{
+		Movement->GravityScale = DinkGravityScale;
+	}
+	GravityHeldMovement.Reset();
 }
 
 namespace
@@ -1650,6 +1753,7 @@ void UDinkDirector::SetFrozen(int32 Handle, bool bFrozen)
 	{
 		return;
 	}
+	const bool bWasFrozen = Sprite->bFrozen;
 	Sprite->bFrozen = bFrozen;
 	if (UDinkScriptSpriteComponent* Comp = Sprite->Actor.IsValid() ? UDinkScriptSpriteComponent::FindOrAdd(Sprite->Actor.Get()) : nullptr)
 	{
@@ -1657,32 +1761,11 @@ void UDinkDirector::SetFrozen(int32 Handle, bool bFrozen)
 	}
 	if (Handle == 1)
 	{
-		APawn* Pawn = Cast<APawn>(Sprite->Actor.Get());
-		APlayerController* PC = Pawn ? Cast<APlayerController>(Pawn->GetController()) : nullptr;
-		if (PC && bDinkInputBlocked != bFrozen)
+		if (bFrozen && !bWasFrozen)
 		{
-			PC->SetIgnoreMoveInput(bFrozen);
-			bDinkInputBlocked = bFrozen;
-			// A frozen Dink is carried by script in screen pixels, and the original's pixels reach past the map (a cutscene puts him
-			// at y 480 to walk in from below, s2-culg.c:47, `dink_can_walk_off_screen`); there is no ground there, so the pawn would fall
-			// out of the world and stay there. No gravity while a script holds him.
-			if (const ACharacter* Character = Cast<ACharacter>(Pawn))
-			{
-				if (UCharacterMovementComponent* Movement = Character->GetCharacterMovement())
-				{
-					if (bFrozen)
-					{
-						DinkGravityScale = Movement->GravityScale;
-						Movement->GravityScale = 0.f;
-						Movement->StopMovementImmediately();
-					}
-					else
-					{
-						Movement->GravityScale = DinkGravityScale;
-					}
-				}
-			}
+			++DinkFreezeSerial; // a new freeze (see ApplyLoadMapToDink's limits)
 		}
+		UpdatePlayerMoveHold(); // also takes or gives back Dink's gravity (SyncDinkGravity)
 	}
 }
 
@@ -1873,6 +1956,10 @@ void UDinkDirector::ApplyDir(FDinkSprite& Sprite, const FQuat* ValidatedAuthored
 
 void UDinkDirector::StartMove(FDinkSprite& Sprite, int32 Dir, int32 Stop, int32 NoHard)
 {
+	if (Sprite.Handle == 1)
+	{
+		++DinkMoveSerial; // a new scripted move of Dink (see ApplyLoadMapToDink's limits)
+	}
 	Sprite.bMoveNoHard = NoHard == 1;
 	const FIntPoint V = DirVector(Dir);
 	if (V == FIntPoint(0, 0))

@@ -338,6 +338,9 @@ public:
     /** After an original-style load: the armed item's and spell's DISARM on a freshly loaded script, then ARM (load_game, dink.cpp:1435-1439, 1452-1456). */
     void RearmAfterOriginalLoad();
     void FinishLegacyHardnessLoad(int32 Screen) { if(!RequiresOriginalHardnessScreen(Screen))SetHardnessLoading(false); }
+    /** dink.ScreenScripts 0 (capture and dev runs): no placement pass will admit a marked screen's projection, so the gate the entry
+     *  closed would stay closed for good (Dink held, the story stopped). The screen keeps its legacy hardness instead. */
+    void FinishScriptlessHardnessLoad() { HardnessProjection.Reset(); SetHardnessLoading(false); }
     void GateOriginalHardnessTransition() { SetHardnessLoading(true); }
     bool IsHardnessLoading() const { return bHardnessLoading; }
     bool UsesOriginalHardnessProjection(int32 Screen) const;
@@ -713,7 +716,6 @@ private:
     TSharedPtr<FDinkOriginalSlotHistory> OriginalSlotHistory;
     void SetHardnessLoading(bool Loading);
     bool bHardnessLoading=false;
-    TWeakObjectPtr<APlayerController> HardnessBlockedController;
     TSharedPtr<FDinkHardnessProjection> HardnessProjection;
     // Retain registered physical bodies independently of transient map/session lifetime.
     TMap<int32, TSharedPtr<DinkHardness::PhysicsOwner>> HardnessOwners;
