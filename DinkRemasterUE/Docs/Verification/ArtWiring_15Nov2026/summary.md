@@ -7,12 +7,12 @@ rows: 853; unreadable packages (LFS object missing): 0
 |---|---:|
 | lod | 10 |
 | bug | 15 |
-| queued | 109 |
+| queued | 107 |
 | alternate | 195 |
 | deliberate | 5 |
 | superseded | 14 |
 | not_seen | 160 |
-| unverified | 20 |
+| unverified | 22 |
 | replaced | 25 |
 | ok | 300 |
 
@@ -30,17 +30,17 @@ rows: 853; unreadable packages (LFS object missing): 0
 | mesh | lod | 10 |
 | mesh | not_seen | 160 |
 | mesh | ok | 275 |
-| mesh | queued | 85 |
+| mesh | queued | 83 |
 | mesh | replaced | 9 |
 | mesh | superseded | 13 |
-| mesh | unverified | 8 |
+| mesh | unverified | 10 |
 | package only | ok | 4 |
 | package only | unverified | 4 |
 
 Textures under the art folders: 819; with a suffix rule (normal / mask / colour): 755; flagged: 0
 
-Drawn sprite cards (scene audit, above the ground): 728 cards of 100 classes; 644 carry an origin ID (the final-origin check covers these; 84 decor/instanced cards have none); on an origin counted final: 0; classes with a delivered mesh made for them: 70
+Drawn sprite cards (scene audit, above the ground): 728 cards of 100 classes; 644 carry an origin ID (the final-origin check covers these; 84 decor/instanced cards have none); on an origin counted final: 0; classes with a delivered mesh made for them: 67
 
-Scene audit lines skipped: 2 (1 damaged with a readable screen: 595; 0 damaged without one; 1 zero-filled); lines parsed: 643; a line without a screen could be any of the 15 screens with placements but no parsed line: 145 402 462 469 471 472 476 507 512 595 629 661 697 747 748
+Scene audit lines skipped: 1 (1 damaged with a readable screen: 595; 0 damaged without one; 0 zero-filled); lines parsed: 643
 
 not_seen rows without an explanation: 0

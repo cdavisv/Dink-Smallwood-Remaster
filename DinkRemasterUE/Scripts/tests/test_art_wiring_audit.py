@@ -335,12 +335,13 @@ class AuditSkips(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             f = Path(d) / 'audit.jsonl'
             f.write_bytes(b'{"screen":1,"prims":[]}\n{"screen":595,"prims":[{"o"\x00\x00\x00\n'
-                          b'\x00\x00\x00\x00\n\x01garbage\n{"screen":3,"prims":[]}\n')
+                          b'\x00\x00\x00\x00\n\x01garbage\n{"screen":3,"prims":[]}\n\x00\x00\x00\x00')  # EOF padding
             screens = A.captured_screens(str(f))
             self.assertEqual(screens, {1, 3})
             self.assertEqual(A.AUDIT_SKIPPED, [595, None, None])
             self.assertEqual((A.AUDIT_STATS['damaged_with_header'], A.AUDIT_STATS['damaged_no_header'],
                               A.AUDIT_STATS['nul_only'], A.AUDIT_STATS['parsed']), (1, 1, 1, 2))
+            self.assertEqual(A.AUDIT_STATS['eof_padding'], 1)       # zero fill after the last newline is no lost line
 
 
 class CommitEvidence(unittest.TestCase):
@@ -352,6 +353,58 @@ class CommitEvidence(unittest.TestCase):
         finally:
             A.COMMIT_UNAVAILABLE.discard('badc0de')
         self.assertTrue(A.in_commit('/Game/A/SM_X', 'badc0de', {'/Game/A/SM_X': 'f.json'}))
+
+
+
+class CommitAbsence(unittest.TestCase):
+    """Review of #171: a package absent at the evidence commit is never 'present'."""
+
+    def setUp(self):
+        A._COMMIT_CACHE['abc123'] = ({'/Game/A/SM_Root'}, {'/Game/A/SM_Root': {'f.json'}})
+        A.ROOT_OF.update({'/Game/A/MI_New': '/Game/A/SM_Root', '/Game/A/SM_Map': '/Game/A/SM_Map'})
+
+    def test_absent_package_reached_from_a_world_map_is_not_present(self):
+        via = {'/Game/A/SM_Map': 'world map L_X'}
+        self.assertFalse(A.in_commit('/Game/A/SM_Map', 'abc123', via, {'/Game/A/SM_Map': {'world map L_X'}}))
+
+    def test_absent_package_whose_root_existed_is_not_present(self):
+        via = {'/Game/A/SM_Root': 'f.json', '/Game/A/MI_New': 'via SM_Root (f.json)'}
+        self.assertFalse(A.in_commit('/Game/A/MI_New', 'abc123', via))
+        self.assertTrue(A.in_commit('/Game/A/SM_Root', 'abc123', via))
+
+
+class GitFailures(unittest.TestCase):
+    def test_a_failing_git_show_marks_the_commit_unavailable(self):
+        real = A.subprocess.run
+
+        class R:
+            def __init__(self, rc, out=''):
+                self.returncode, self.stdout, self.stderr = rc, out, ''
+
+        def fake(cmd, **kw):
+            if 'cat-file' in cmd or 'rev-parse' in cmd:
+                return R(0, '')
+            if 'ls-tree' in cmd:
+                return R(0, 'Content/Dink/Data/Art/x.json\n')
+            return R(128)                       # git show: missing blob
+        A.subprocess.run = fake
+        try:
+            A._COMMIT_CACHE.pop('deadbeef', None)
+            A.commit_roots('deadbeef')
+            self.assertIn('deadbeef', A.COMMIT_UNAVAILABLE)
+            self.assertIn('unavailable', A.after_commit_note('deadbeef', 'cook'))
+        finally:
+            A.subprocess.run = real
+            A.COMMIT_UNAVAILABLE.discard('deadbeef')
+            A._COMMIT_CACHE.pop('deadbeef', None)
+
+
+class StaleWording(unittest.TestCase):
+    def test_removed_never_and_unknown_are_worded_apart(self):
+        w = A.stale_wording(['DS-77'], ['GP-Q9'], {'GP-Q9'})
+        self.assertIn('never existed', w['DS-77'])
+        self.assertIn('was removed', w['GP-Q9'])
+        self.assertIn('history unknown', A.stale_wording(['GP-Q9'], [], None)['GP-Q9'])
 
 
 if __name__ == '__main__':

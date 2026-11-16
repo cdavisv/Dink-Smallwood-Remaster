@@ -15,7 +15,7 @@ cottage_thatched_small,14,7,274 497 501 532 537 619,,,SM_Cottage_Thatched_Small_
 fence_rail_diag_nw,14,14,409 437 568,,,
 stone_giant,14,14,178 182 183 209 211 212 213 215 242 245 246,,,SK_Stone_Giant_PR
 arrow_prop,13,10,97 663,,,SM_Arrow_PR
-chest_small,13,13,5 69 101 184 209 276 282 288 395 536 557 671 685,,,SM_Chest_Small_Open_PR SM_Chest_Small_PR
+chest_small,13,13,5 69 101 184 209 276 282 288 395 536 557 671 685,,yes,
 door_wood_wide,13,13,350 440 497 498 501 504 505 532 537 538 585 618 619,,,SM_Door_Wood_Wide_PR
 fence_rail_ns,12,11,408 409 441 536,,,
 bonca_brown,11,11,29 302 306 562 583 648,,,SK_Bonca_PR
@@ -60,8 +60,8 @@ boulder_red,2,2,536 590,,yes,
 burn_hole_decal,2,2,66,,,Decal_Burn_Scorch_01 Decal_Burn_Scorch_02 Decal_Burn_Scorch_03
 cabinet_wood,2,2,3,,yes,
 cellar_hatch,2,2,68,,,SM_Cellar_Hatch_PR
-chest_large,2,2,98 536,,,SM_Chest_Small_Open_PR SM_Chest_Small_PR
-chest_medium,2,2,26 284,,,SM_Chest_Small_Open_PR SM_Chest_Small_PR
+chest_large,2,2,98 536,,,
+chest_medium,2,2,26 284,,,
 church,2,1,188,,,SM_Church_PR
 church_window_small,2,2,187,,,SM_Window_Church_Small_PR
 fireball_fx,2,2,366,,,FX_Fireball

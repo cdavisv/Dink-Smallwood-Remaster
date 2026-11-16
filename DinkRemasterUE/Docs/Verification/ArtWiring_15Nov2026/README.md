@@ -6,7 +6,7 @@ and, if not, why. It audits the wiring (import, binding, cook, draw, clip caller
 source is good enough to bind is an art decision for the Fable queue.
 
 Tree: master `9cc796b6`. Tool: `DinkRemasterUE/Scripts/art_wiring_audit.py` (read-only, standard library; unit tests in
-`Scripts/tests/test_art_wiring_audit.py`, 24 pass). Reviewed reasons for sources that do not reach the player:
+`Scripts/tests/test_art_wiring_audit.py`, 30 pass). Reviewed reasons for sources that do not reach the player:
 `Scripts/art_wiring_known.json` (50 rows; add a row when you decide, drop it when you bind). Two runs on the same inputs
 write byte-identical files.
 
@@ -80,10 +80,10 @@ python3 -I Scripts/art_wiring_audit.py \
 | ok | 300 | imported, bound, cooked, and drawn in the sweep (meshes) or asked for at runtime (clips) |
 | replaced | 25 | bound, and by design the runtime draws or plays another asset in its place: 16 Pass1 clips replaced by mocap (`drop_prefixes`, including `Jump_Start`, `Land` and the NPC walks), the headless manifest meshes (`SK_Mother`, `SK_Milder`, `SK_Dink`/`SK_Dink_Hands`, the old `SK_Pillbug`), the dense grass patches the tall ones replace, and the screen-1 fireplace replaced by its refinement |
 | not_seen | 160 | bound and cooked but not in the sweep, each with its reason in `detail`: 104 `stonebrook_fields_471.json` meshes (screen 471 was not captured), 49 vista meshes outside the play screen, 3 family meshes whose placements are vision-gated (catapult, monument, note), the burnable pine (`burnable`), the burnt cottage (`state_swaps`), the pillbug corpse (drawn only after a kill), and Milder's photoreal mesh (script-made character, story beat not played). **0 unexplained.** |
-| unverified | 20 | added by PR #113 after the cook and the sweep (duck, slime, pig, gore meshes, their clips). Needs a cook and a sweep of current master. |
+| unverified | 22 | bound after the cook and the sweep: PR #113's duck, slime, pig and gore meshes and clips (20) and the two chest meshes PR #151 bound (`SM_Chest_Small_PR`, `_Open_PR`). Needs a cook and a sweep of current master. |
 | lod | 10 | **A200**: drawn meshes with one LOD and Nanite off (corpse kit 15-55k triangles, three set pieces 6-9k). perf-stutter owns it. |
 | bug | 15 | **A204**: brazier and candle light props never placed. **A205**: seven #113 creature clips no role plays, and `SM_Slime_Trail` never imported. **A206**: `fence_rail_ew` draws the old kit fence. **A207**: the render-only vista draws old meshes the swap replaces elsewhere (`SM_Grass_Meadow_01` 17 times on screen 1, the split-rail fence 20 times, oak, pine V3, boulder). |
-| queued | 109 | an open branch or queue row owns it, named in `covered_by`: Structures Misc/Castle and Stonebrook yard pieces (VS-01/02/05/14), chests (VS-07), effects and decals (GP-Q6, GP-Q9, VS-08, VS-11, DS-06), King and knights (PQ-Q5), corpses (GP-Q5), church window (VS-06), snow-isle house (VS-10), coin and arrow (VS-14), castle gate (VS-02), blue ore rock (VS-15, pending #148), rigged townsfolk (DS-07), stairs (DS-08), stone arch (DS-02), and 13 table, shelf and wall props (A209) |
+| queued | 107 | an open branch or queue row owns it, named in `covered_by`: Structures Misc/Castle and Stonebrook yard pieces (VS-01/02/05/14), effects and decals (GP-Q6, GP-Q9, VS-08, VS-11, DS-06), King and knights (PQ-Q5), corpses (GP-Q5), church window (VS-06), snow-isle house (VS-10), coin and arrow (VS-14), castle gate (VS-02), blue ore rock (VS-15, pending #148), rigged townsfolk (DS-07), stairs (DS-08), stone arch (DS-02), and 13 table, shelf and wall props (A209) |
 | alternate | 195 | a finished source beside the bound asset, waiting for an art decision: DS-01 (22), DS-03 (13), DS-02 (2), DS-05 (158) |
 | documented | 0 | (sources only `STATUS.md` explained: each now has an owner row above) |
 | deliberate | 5 | a reviewed reason: the town house's unused narrow wall, the door header (the right jamb is bound and drawn), the screen-1 ceiling listed only for its size check, a diagnostic export, and the vista's old cottage that `mesh_swap_only_tag` keeps on purpose |
@@ -112,7 +112,7 @@ Other checks:
 |---|---|---|
 | A200 | ten bound meshes with one LOD, Nanite off | perf-stutter (branch `perf/stutter-framerate` carries the LOD script) |
 | A201 = A55 / PQ-Q2 | north-south and diagonal fence cards. First bind the split-rail module per angle with `span`/`yaw_offset` (in-game fit check); PQ-Q2 new art only for angles that do not fit | art-wiring-audit sub-agent, branch `fix/fence-runs` |
-| A202 | scripted placements of bound classes still draw cards: thorn S192_P05, willows S414_P02/S446_P02, pine S534_P10, cabinets S003_P15/P16. S474_P01 (nut tree) and S693_P06 (giant oak) stay with VS-10 | branches `fix/art-wiring-scripted-static` (thorn; the willows wait for A208) and `fix/family-script-allowance` (pine, cabinets) |
+| A202 | scripted placements of bound classes still draw cards: thorn S192_P05, willows S414_P02/S446_P02, pine S534_P10, cabinets S003_P15/P16. S474_P01 (nut tree) and S693_P06 (giant oak) stay with VS-10 | the thorn stays a card (its mesh hides the hazard: DS-09); the willows wait for A208; branch `fix/family-script-allowance` (pine, cabinets) |
 | A208 | one object placed on two screens is drawn as two family meshes (about 200 pairs drawn twice in the sweep: willows, pines, oaks, forest strips, dungeon walls, statues, boulders) | sub-agent branch `fix/family-duplicates` |
 | A203 / DS-04 | no weapon meshes. 1997 shows the armed weapon in idle, walk and attack, so the attach must show it in all three while armed | Fable (meshes), then code |
 | A204 | brazier and candle light props loaded but never placed | open: needs a placement rule |
@@ -173,7 +173,7 @@ names the package(s) imported from that file (full `/Game` path, whatever the pa
 package's recorded `AssetImportData` `RelativeFilename`), or says the delivery is the import source of other packages
 (keep it), or that no package records it (20 rows have such a delivery); `unverified` rebuilds the roots of the evidence commit
 with the same binding rules. The owner branches the rows name (`fix/fence-runs`, `fix/family-duplicates`,
-`fix/art-wiring-scripted-static`, `fix/family-script-allowance`) are pushed when their PRs open;
+`fix/family-script-allowance`) are pushed when their PRs open (`fix/art-wiring-scripted-static`, the thorn binding, was tried and dropped: DS-09);
 the sweep's `audit.jsonl` became unreadable on 15 Nov 23:26 (filesystem checksum errors on that one file): the table
 was regenerated from a salvaged copy (bad blocks zero-filled), which loses exactly one screen line, 595 (the summary names
 it). No committed row depends on it: against the table built from the intact file (commit 63b24708), all 853 rows

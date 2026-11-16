@@ -522,6 +522,15 @@ def check_owner_ids(rows, current, ever):
     return typos, stale, present
 
 
+def stale_wording(typos, stale, ever):
+    """{owner id: why its reasons are stale}: removed (history known, the row existed), never existed (history known),
+    or missing with the history unknown."""
+    out = {i: ("is missing from both tables (git history unknown: removed or mistyped)" if ever is None
+               else "never existed in either table's history (a typo or a renumbered row?)") for i in typos}
+    out.update({i: "was removed from the tables (its PR merged or the row was retired)" for i in stale})
+    return out
+
+
 STALE_IDS = {}          # owner id -> why it is stale ("was removed ...", "never existed ...", "is missing ...")
 
 
@@ -536,11 +545,7 @@ def known_rows(check_ids=True):
         else:
             ever = ids_ever()
             typos, stale, present = check_owner_ids(d.get("rows", []), current, ever)
-            for i in typos:
-                STALE_IDS[i] = ("is missing from both tables (git history unknown: removed or mistyped)" if ever is None
-                                else "never existed in either table's history (a typo or a renumbered row?)")
-            for i in stale:
-                STALE_IDS[i] = "was removed from the tables (its PR merged or the row was retired)"
+            STALE_IDS.update(stale_wording(typos, stale, ever))
             for i in sorted(STALE_IDS):
                 print("art_wiring_audit: warning: owner row %s %s; its reasons are stale" % (i, STALE_IDS[i]), file=sys.stderr)
             for i in present:
@@ -813,6 +818,8 @@ def in_commit(game, commit, via_here, roots_here=None):
     files, roots = commit_roots(commit)
     if commit in COMMIT_UNAVAILABLE:
         return False            # counted unverified; main names the commit as unavailable
+    if game not in files:
+        return False            # the package did not exist at that commit
     root = ROOT_OF.get(game, game)
     labels = (roots_here or {}).get(root) or {via_here.get(root, "")}
     if any(w.startswith("world map") for w in labels):
@@ -833,6 +840,9 @@ def audit_lines(audit_path):
             if not raw.strip(b"\r\n "):
                 continue
             if not raw.strip(b"\x00\r\n "):
+                if not raw.endswith(b"\n"):
+                    AUDIT_STATS["eof_padding"] += 1    # zero fill after the last newline (block-aligned salvage): no line
+                    continue
                 AUDIT_STATS["nul_only"] += 1           # zero-filled blocks of a salvaged copy
                 AUDIT_SKIPPED.append(None)
                 continue
@@ -844,6 +854,13 @@ def audit_lines(audit_path):
                 m = re.match(rb'\{"screen":(\d+)', raw)
                 AUDIT_STATS["damaged_with_header" if m else "damaged_no_header"] += 1
                 AUDIT_SKIPPED.append(int(m.group(1)) if m else None)
+
+
+def after_commit_note(commit, what):
+    """Why a row is unverified against the commit a cook or sweep ran on."""
+    if commit in COMMIT_UNAVAILABLE:
+        return "the evidence of the %s commit %s is unavailable (git failed reading it)" % (what, commit)
+    return "added or bound after the %s (not in the tree at %s)" % (what, commit)
 
 
 def captured_screens(audit_path):
@@ -1032,7 +1049,7 @@ def main():
         if bound_games and cooked_s == "no":
             if newer:
                 flags.append("unverified")
-                details.append("not in the tree that was cooked (added after that cook)")
+                details.append(after_commit_note(a.cook_commit, "cook"))
             else:
                 flags.append("not_cooked")
         after_sweep = bool(a.sweep_commit) and all(not in_commit(g, a.sweep_commit, via, roots) for g in bound_games)
@@ -1063,7 +1080,7 @@ def main():
                 seen_s = seen_s or "player pawn (the scene audit lists the screen, not the pawn; the hero is in every frame)"
             elif not seen_s and seen and kind == "mesh" and after_sweep:
                 flags.append("unverified")
-                details.append("not seen: added after the sweep (not in its tree)")
+                details.append("not seen: " + after_commit_note(a.sweep_commit, "sweep"))
             elif not seen_s and seen and kind == "mesh":
                 why = unseen_reason(bound_games, via, families, placements, captured, environment)
                 flags.append("not_seen")
@@ -1103,11 +1120,14 @@ def main():
         seen_s = "yes" if g in seen else ""
         k = known_reason(n, g, known)
         reason = "%s: %s" % k if k else ""
+        for i in (OWNER_ID.findall(k[1]) if k else []):
+            if i in STALE_IDS:
+                details.append("stale reason: owner row %s %s" % (i, STALE_IDS[i]))
         if not bound_where:
             flags.append(gap_flag(reason, covered_by(n, index)) or "unbound")
         elif cooked_s == "no" and a.cook_commit and not in_commit(g, a.cook_commit, via, roots):
             flags.append("unverified")
-            details.append("not in the tree that was cooked (added after that cook)")
+            details.append(after_commit_note(a.cook_commit, "cook"))
         elif cooked_s == "no":
             flags.append("not_cooked")
         elif g in swapped:
@@ -1120,7 +1140,7 @@ def main():
             seen_s = "player pawn"
         elif not seen_s and seen and n.startswith("SM_") and a.sweep_commit and not in_commit(g, a.sweep_commit, via, roots):
             flags.append("unverified")
-            details.append("not seen: added after the sweep (not bound in its tree)")
+            details.append("not seen: " + after_commit_note(a.sweep_commit, "sweep"))
         elif not seen_s and seen and n.startswith("SM_"):
             flags.append("not_seen")
             details.append("not seen: " + unseen_reason([g], via, families, placements, captured, environment))
@@ -1202,7 +1222,7 @@ def main():
         blind = AUDIT_STATS["damaged_no_header"] + AUDIT_STATS["nul_only"]
         # a damaged line without a readable header could be any screen the sweep should have but no line gives
         expected = {p.get("screen") for p in placements} if placements else set()
-        could_be = sorted(x for x in expected - captured if x is not None) if blind else []
+        could_be = sorted(x for x in expected - captured - set(named) if x is not None) if blind else []
         lines += ["", "Scene audit lines skipped: %d (%d damaged with a readable screen: %s; %d damaged without one; "
                   "%d zero-filled); lines parsed: %d%s" % (
                       len(AUDIT_SKIPPED), AUDIT_STATS["damaged_with_header"], ", ".join(map(str, named)) or "-",
