@@ -261,6 +261,12 @@ public:
 	int32 DirFromWorld(int32 Screen, const FVector& Location, const FVector& Direction) const;
 	/** Numpad direction of a pixel-space vector (y grows south). 0 for a zero vector. */
 	static int32 DirFromPixelDelta(double Dx, double Dy);
+	/**
+	 * The original's &savegameinfo line for a save slot (dink.cpp:4093-4106): "Slot N - H:MM - <save info>" for a used slot, where H:MM is
+	 * the play time the save holds (g_playerInfo.minutes, dink.cpp:1054) and the base game's save info is "Level &level" (dink.cpp:17729,
+	 * deciphered when saved, 1066-1069); "Slot N - Empty" when Save is null. Play time here is the story clock the save carries.
+	 */
+	static FString SaveGameInfo(int32 Slot, const class UDinkSaveGame* Save);
 
 	// ---- Fade ----
 	/** 0 = clear, 1 = black. */
