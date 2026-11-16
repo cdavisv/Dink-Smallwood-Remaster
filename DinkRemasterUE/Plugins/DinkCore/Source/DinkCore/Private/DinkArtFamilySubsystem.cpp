@@ -251,6 +251,14 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 			if ((*Row)->TryGetStringField(TEXT("span_end"), End)) B.SpanEnd = End == TEXT("left") ? -1 : End == TEXT("right") ? 1 : 0;
 		}
 		B.AnchorFront = FMath::Clamp(B.AnchorFront, 0.0, 1.0);
+		{
+			FString AnchorText;
+			if ((*Row)->TryGetStringField(TEXT("anchor"), AnchorText) && !DinkFamilyAnchor::Parse(AnchorText, B.Anchor))
+			{
+				Errors.Add(FString::Printf(TEXT("%s: anchor must be card, hardbox or hardbox_inner"), *B.Family));
+				continue;
+			}
+		}
 		(*Row)->TryGetStringField(TEXT("note"), B.Note);
 		double FrameNumber = 0.0;
 		const bool bHasFrame = (*Row)->TryGetNumberField(TEXT("frame"), FrameNumber);
@@ -718,6 +726,20 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	// a spanning module (interior wall runs) is repeated along its run until it fills the layout-scaled card
 	TArray<DinkArtFamily::FSpanPiece> Pieces;
 	DinkArtFamily::SpanPieces(*B, (B->Span == 2 ? CardScale.Z : CardScale.X) * 100.0, Mesh->GetBoundingBox().GetSize().X * Scale, Pieces);
+	// families.json "anchor": stand the mesh on the placement's 1997 hardbox (presentation only, DinkFamilyAnchor.h)
+	FVector2D Stand(CardLocation.X, CardLocation.Y - Back);
+	if (B->Anchor != EDinkFamilyAnchor::Card)
+	{
+		const UDinkGreyboxSubsystem* Grey = Actor.GetWorld() ? Actor.GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+		const ADinkScreenVolume* Volume = Grey ? Grey->FindScreen(Actor.ScreenNumber) : nullptr;
+		FVector Target;
+		if (Volume && DinkFamilyAnchor::AnchorWorld(*Volume, B->Anchor, P.Sequence, P.Frame, Card->GetComponentLocation(), CardScale.X * 100.0,
+			Actor.GetActorRotation().Yaw - Volume->GetActorRotation().Yaw + Yaw, Mesh->GetBoundingBox().GetSize() * Scale, Target))
+		{
+			const FVector Local = Actor.GetActorTransform().InverseTransformPosition(Target);
+			Stand = FVector2D(Local.X, Local.Y);
+		}
+	}
 	UStaticMeshComponent* Component = nullptr;
 	for (int32 Index = 0; Index < Pieces.Num(); ++Index)
 	{
@@ -732,7 +754,7 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		Part->SetGenerateOverlapEvents(false);
 		Part->ComponentTags.Add(FamilyTag);
 		Part->SetStaticMesh(PieceMesh);
-		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), FVector(CardLocation.X, CardLocation.Y - Back, 0.0), Yaw, Scale, Pieces[Index]));
+		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), FVector(Stand.X, Stand.Y, 0.0), Yaw, Scale, Pieces[Index]));
 		Actor.AddInstanceComponent(Part);
 		Part->RegisterComponent();
 		// A drawn solid body larger than the placement's 1997 hardbox stops the player (player only; unscripted placements,
@@ -823,7 +845,20 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 			const double Yaw = Card.Rotator().Yaw + (Shared->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(O->OriginId.ToString())) + Shared->YawOffset;
 			// The greybox ground is world Z 0; the screen root sits on it.
 			const double Back = Shared->AnchorFront * 0.5 * DinkArtFamily::DepthAfterYaw(Bounds.GetSize(), Yaw - Card.Rotator().Yaw, Scale);
-			const FVector Ground = FVector(At.X, At.Y, -Screen.GetActorLocation().Z) - FRotator(0.0, Card.Rotator().Yaw, 0.0).RotateVector(FVector(0.0, Back, 0.0));
+			FVector Ground = FVector(At.X, At.Y, -Screen.GetActorLocation().Z) - FRotator(0.0, Card.Rotator().Yaw, 0.0).RotateVector(FVector(0.0, Back, 0.0));
+			if (Shared->Anchor != EDinkFamilyAnchor::Card)
+			{
+				// families.json "anchor": stand the mesh on the placement's 1997 hardbox (presentation only, DinkFamilyAnchor.h)
+				const UDinkGreyboxSubsystem* Grey = Screen.GetWorld() ? Screen.GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+				const ADinkScreenVolume* Volume = Grey ? Grey->FindScreen(Screen.ScreenNumber) : nullptr;
+				FVector Target;
+				if (Volume && DinkFamilyAnchor::AnchorWorld(*Volume, Shared->Anchor, O->Sequence, O->Frame, Screen.GetActorTransform().TransformPosition(At),
+					Card.GetScale3D().X * 100.0, Yaw - Volume->GetActorRotation().Yaw + Screen.GetActorRotation().Yaw, Bounds.GetSize() * Scale, Target))
+				{
+					const FVector Local = Screen.GetActorTransform().InverseTransformPosition(Target);
+					Ground = FVector(Local.X, Local.Y, -Screen.GetActorLocation().Z);
+				}
+			}
 			const FTransform InstanceTransform = DinkArtFamily::SpanTransform(Bounds, Ground, Yaw, Scale, Pieces[PieceIndex]);
 			Family->AddInstance(InstanceTransform, /*bWorldSpace*/ false);
 			// instance transforms are relative to the screen root, as the family component is (player-only blocker, see above)
