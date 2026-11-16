@@ -1,0 +1,191 @@
+{
+ "schema": "dink-photoreal-character/1",
+ "asset": "SK_King_Photoreal",
+ "class": "character_humanoid",
+ "source_blend": "Unclaimed/king_on_throne/King_On_Throne/SM_King_On_Throne_PR.blend",
+ "build": "blender -b -t 4 --python Characters/Tools/npc_port.py -- King",
+ "fbx": [
+  "Export/SK_King_Photoreal_LOD0.fbx",
+  "Export/SK_King_Photoreal_LOD1.fbx",
+  "Export/SK_King_Photoreal_LOD2.fbx",
+  "Export/SK_King_Photoreal_LOD3.fbx"
+ ],
+ "dimensions_m": [
+  2.1539676189422607,
+  1.1867668628692627,
+  1.8099756240844727
+ ],
+ "bone_count": 89,
+ "root_bone": "root",
+ "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones; armature of Characters/Milder)",
+ "lods": [
+  {
+   "mesh": "SK_King_Photoreal_LOD0",
+   "triangles": 20392,
+   "vertices": 10771,
+   "max_influences": 1,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_King_Photoreal_LOD1",
+   "triangles": 10195,
+   "vertices": 5565,
+   "max_influences": 1,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_King_Photoreal_LOD2",
+   "triangles": 5098,
+   "vertices": 2932,
+   "max_influences": 1,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_King_Photoreal_LOD3",
+   "triangles": 2447,
+   "vertices": 1527,
+   "max_influences": 1,
+   "unweighted": 0
+  }
+ ],
+ "lod0_triangles": 20392,
+ "material_slots": [
+  "MI_King_PR_Skin",
+  "MI_King_PR_Eyes",
+  "MI_King_PR_Hair",
+  "MI_King_PR_Outfit",
+  "MI_King_PR_Throne"
+ ],
+ "materials": {
+  "MI_King_PR_Skin": {
+   "textures": {
+    "BC": "../../../Unclaimed/king_on_throne/King/T_King_PR_Skin_BC.png",
+    "N": "../../../Unclaimed/king_on_throne/King/T_King_PR_Skin_N.png",
+    "ORM": "../../../Unclaimed/king_on_throne/King/T_King_PR_Skin_ORM.png",
+    "SSS": "Textures/T_King_PR_Skin_SSS.png"
+   },
+   "shading": "subsurface profile / skin; SSS is a flat scatter colour (the source has no thickness map)",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_King_PR_Eyes": {
+   "textures": {
+    "BC": "Textures/T_King_PR_Eyes_BC.png",
+    "N": "Textures/T_King_PR_Eyes_N.png",
+    "ORM": "Textures/T_King_PR_Eyes_ORM.png"
+   },
+   "shading": "default lit, low roughness",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_King_PR_Hair": {
+   "textures": {
+    "BC": "../../../Unclaimed/king_on_throne/King/T_King_PR_Hair_BC.png",
+    "N": "../../../Unclaimed/king_on_throne/King/T_King_PR_Hair_N.png",
+    "ORM": "Textures/T_King_PR_Hair_ORM.png"
+   },
+   "shading": "MASKED (alpha in BC.a), two-sided hair cards, default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_King_PR_Outfit": {
+   "textures": {
+    "BC": "../../../Unclaimed/king_on_throne/King/T_King_PR_Outfit_BC.png",
+    "N": "../../../Unclaimed/king_on_throne/King/T_King_PR_Outfit_N.png",
+    "ORM": "../../../Unclaimed/king_on_throne/King/T_King_PR_Outfit_ORM.png"
+   },
+   "shading": "default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_King_PR_Throne": {
+   "textures": {
+    "BC": "../../../Unclaimed/king_on_throne/King_On_Throne/T_King_On_Throne_PR_Throne_BC.png",
+    "N": "../../../Unclaimed/king_on_throne/King_On_Throne/T_King_On_Throne_PR_Throne_N.png",
+    "ORM": "../../../Unclaimed/king_on_throne/King_On_Throne/T_King_On_Throne_PR_Throne_ORM.png"
+   },
+   "shading": "default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  }
+ },
+ "port": {
+  "height_ratio": 1.0,
+  "static": true,
+  "lods": [
+   {
+    "vertices": 10771,
+    "pole_vertices": 0
+   },
+   {
+    "vertices": 5565,
+    "pole_vertices": 0
+   },
+   {
+    "vertices": 2932,
+    "pole_vertices": 0
+   },
+   {
+    "vertices": 1527,
+    "pole_vertices": 0
+   }
+  ]
+ },
+ "placement_scale": 1.0,
+ "animation_set": "NpcM",
+ "families": [
+  "king_on_throne"
+ ],
+ "validation": {
+  "assets": 1,
+  "assets_passed": 0,
+  "errors": 1,
+  "warnings": 7
+ },
+ "validator_findings": [
+  [
+   "warning",
+   "TRIS_OVER_TARGET",
+   "LOD0 has 20392 triangles, target for character_humanoid is 20000 (hard max 35000)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "905 non-manifold edges (904 open boundary, 1 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "690 non-manifold edges (689 open boundary, 1 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "LOOSE_GEOMETRY",
+   "0 loose vertices, 2 loose (wire) edges"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "519 non-manifold edges (516 open boundary, 1 >2 faces, 2 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "LOOSE_GEOMETRY",
+   "0 loose vertices, 3 loose (wire) edges"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "359 non-manifold edges (355 open boundary, 1 >2 faces, 3 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "error",
+   "UV_OVERLAP",
+   "UV0 islands overlap (40.3 % of UV area, 8915 triangles); class character_humanoid needs unique UVs"
+  ],
+  [
+   "info",
+   "UV_OVERLAP",
+   "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ]
+ ],
+ "known_weaknesses": [
+  "King Daniel seated on his throne is one frozen piece on the root bone (throne, footstool and king): he does not move, breathe or turn his head.",
+  "The cloak is modelled, not draped; plain throne carving."
+ ]
+}

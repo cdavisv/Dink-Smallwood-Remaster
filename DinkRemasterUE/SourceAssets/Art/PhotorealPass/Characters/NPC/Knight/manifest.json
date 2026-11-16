@@ -1,0 +1,114 @@
+{
+ "schema": "dink-photoreal-character/1",
+ "asset": "SK_Knight_Photoreal",
+ "class": "character_humanoid",
+ "source_blend": "Unclaimed/npc_knight_blue/Knight/SK_Knight_PR.blend",
+ "build": "blender -b -t 4 --python Characters/Tools/npc_port.py -- Knight",
+ "fbx": [
+  "Export/SK_Knight_Photoreal_LOD0.fbx",
+  "Export/SK_Knight_Photoreal_LOD1.fbx",
+  "Export/SK_Knight_Photoreal_LOD2.fbx",
+  "Export/SK_Knight_Photoreal_LOD3.fbx"
+ ],
+ "dimensions_m": [
+  1.1532938480377197,
+  0.46190983057022095,
+  2.351436138153076
+ ],
+ "bone_count": 89,
+ "root_bone": "root",
+ "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones; armature of Characters/Milder)",
+ "lods": [
+  {
+   "mesh": "SK_Knight_Photoreal_LOD0",
+   "triangles": 16008,
+   "vertices": 8096,
+   "max_influences": 1,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Knight_Photoreal_LOD1",
+   "triangles": 8004,
+   "vertices": 4094,
+   "max_influences": 1,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Knight_Photoreal_LOD2",
+   "triangles": 4002,
+   "vertices": 2093,
+   "max_influences": 1,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Knight_Photoreal_LOD3",
+   "triangles": 1920,
+   "vertices": 1052,
+   "max_influences": 1,
+   "unweighted": 0
+  }
+ ],
+ "lod0_triangles": 16008,
+ "material_slots": [
+  "MI_Knight_PR_Outfit"
+ ],
+ "materials": {
+  "MI_Knight_PR_Outfit": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_knight_blue/Knight/T_Knight_PR_BC.png",
+    "N": "../../../Unclaimed/npc_knight_blue/Knight/T_Knight_PR_N.png",
+    "ORM": "../../../Unclaimed/npc_knight_blue/Knight/T_Knight_PR_ORM.png"
+   },
+   "shading": "default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  }
+ },
+ "port": {
+  "height_ratio": 0.9974,
+  "lods": [
+   {
+    "vertices": 8096,
+    "pole_vertices": 523,
+    "min_z": -0.0274,
+    "max_z": 2.3241
+   },
+   {
+    "vertices": 4094,
+    "pole_vertices": 133,
+    "min_z": -0.0271,
+    "max_z": 2.3241
+   },
+   {
+    "vertices": 2093,
+    "pole_vertices": 66,
+    "min_z": -0.0278,
+    "max_z": 2.3242
+   },
+   {
+    "vertices": 1052,
+    "pole_vertices": 37,
+    "min_z": -0.029,
+    "max_z": 2.3246
+   }
+  ],
+  "lift_m": 0.0274
+ },
+ "placement_scale": 1.003,
+ "animation_set": "NpcM",
+ "families": [
+  "npc_knight_blue"
+ ],
+ "validation": {
+  "assets": 1,
+  "assets_passed": 1,
+  "errors": 0,
+  "warnings": 0
+ },
+ "validator_findings": [],
+ "known_weaknesses": [
+  "Plate harness of clean swept plates, rigid on one bone each: nobody inside, no straps or rivets, mitten gauntlets.",
+  "The halberd stands upright beside him on the root bone: his hand does not hold it.",
+  "Ported from the 26-bone Unclaimed source by its own skin weights: fingers, twist bones and the other mannequin bones carry no weight (mitten hands, no forearm twist).",
+  "Face, hair and cloth are those of the Unclaimed source (see its manifest): a plain base face and card hair; they have not been through the head, skin and groom tools of the three main characters."
+ ]
+}

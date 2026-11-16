@@ -435,11 +435,13 @@ HAIR_LOOK = {
     'Dink': {'tint': (2.4, 1.5, 1.1), 'scalars': {'Scatter': 0.8, 'BrowGain': 1.6}},
     'Mother': {'tint': (0.72, 0.67, 0.6), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.3, 'StrandVariation': 0.12, 'DepthShade': 0.45, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12, 'BrowGain': 1.5}},
+    # Seth wears the hero's hair atlas: a plain mid brown as in his 1997 pictures, not the hero's red-gold
+    'Seth': {'tint': (1.5, 1.02, 0.74), 'scalars': {'Scatter': 0.6, 'BrowGain': 1.6}},
 }
 
 
 # Skin tint per character (multiplies the base colour). The Mother's fair skin was chalk in the window light of her house.
-SKIN_LOOK = {'Mother': (0.72, 0.66, 0.63)}
+SKIN_LOOK = {'Mother': (0.72, 0.66, 0.63), 'Seth': (0.80, 0.78, 0.76)}    # Seth: the pale grey-beige of his 1997 face
 
 
 def hair_material(folder, name, defaults, morph=False):
@@ -950,6 +952,12 @@ def import_character(CHAR, HERO, folder):
         masked = 'masked' in row['shading'].lower()
         tex = {}
         for role, rel in row['textures'].items():
+            # a texture set another character already imported (manifest `shared_textures`: source folder -> its content
+            # folder; Seth wears the hero's sets) is used where it is, not imported a second time
+            shared = next((f + '/' + Path(rel).stem for prefix, f in manifest.get('shared_textures', {}).items() if rel.startswith(prefix + '/')), None)
+            if shared and LIB.does_asset_exist(shared):
+                tex[role] = LIB.load_asset(shared)
+                continue
             tex[role] = import_texture(HERO / rel, tex_folder, 'BCA' if (role == 'BC' and masked) else role)
         kind = 'skin' if 'SSS' in tex else 'hair' if 'Hair' in mat_name else 'eye' if 'Eyes' in mat_name else 'lit'
         if kind == 'hair' and HAIR_MODEL == 'hair' and 'FLOW' in tex and 'MSK' in tex:
@@ -1169,6 +1177,57 @@ def creature_clips(source_dir, source_prefix, folder, asset_prefix, skeleton, ac
         clips[action] = {'clip': target, 'duration_s': round(inspection['duration_s'], 4), 'loop': loop}
     return clips
 
+
+# ------------------------------------------------------------------------------------------- people (14 Nov 2026)
+# DINK_PHOTOREAL_ONLY=npcs: the townsfolk, guards and the wizard. Characters/NPC/<Name> (ported from Unclaimed onto the
+# mannequin rig by Characters/Tools/npc_port.py) import like the three main characters into
+# /Game/Dink/Photoreal/Characters/NPC/<Name>. Characters/NPC/variants.json then makes colour variants: a copy of an
+# imported mesh (of this folder, or the Mother or Milder) whose named slots get an instance of the base's material
+# with another base colour map and/or tint. Data/Art/creatures.json binds them as class rows (Scripts/bind_people_classes.py).
+if 'npcs' in ONLY:
+    NPC = PASS / 'Characters/NPC'
+    report['npcs'] = {}
+    for manifest_file in sorted(NPC.glob('*/manifest.json')):
+        npc = manifest_file.parent.name
+        mesh = import_character(npc, manifest_file.parent, BASE + '/Characters/NPC/' + npc)
+        report['npcs'][npc] = {'mesh': mesh.get_path_name(), 'bounds_cm': [round(v * 2, 1) for v in mesh.get_bounds().box_extent.to_tuple()]}
+    for variant, row in json.loads((NPC / 'variants.json').read_text())['variants'].items():
+        source = BASE + '/Characters/' + row['base'] + '/' + row['base_asset']
+        folder = BASE + '/Characters/NPC/' + variant
+        target = folder + '/SK_' + variant + '_Photoreal'
+        if not LIB.does_asset_exist(source):
+            warn(f'npc variant {variant}: base {source} is not imported; skipped')
+            continue
+        base_stamp = LIB.get_metadata_tag(LIB.load_asset(source), 'DinkSource')
+        mesh = LIB.load_asset(target) if LIB.does_asset_exist(target) else None
+        if mesh is not None and LIB.get_metadata_tag(mesh, 'DinkVariantOf') != base_stamp:
+            # the base was re-imported: the copy is stale. Deleting it here does not work (the deleted asset lingers in
+            # memory and DuplicateAsset then refuses the path), so the folder has to go before the editor starts.
+            raise RuntimeError(f'npc variant {variant} is a copy of an older {row["base"]}: remove Content/Dink/Photoreal/Characters/NPC/{variant} '
+                               '(and every other variant folder of that base) and run the import again')
+        if mesh is None:
+            mesh = LIB.duplicate_asset(source, target)
+            if mesh is None:
+                raise RuntimeError(f'npc variant {variant}: could not copy {source} (remove Content/Dink/Photoreal/Characters/NPC/{variant} and run again)')
+            LIB.set_metadata_tag(mesh, 'DinkVariantOf', base_stamp)
+        slots = list(mesh.get_editor_property('materials'))
+        for slot in slots:
+            slot_key = str(slot.get_editor_property('material_slot_name')).split('.')[0]
+            change = row['materials'].get(slot_key)
+            if not change:
+                continue
+            masked = 'Hair' in slot_key
+            tex = {role: import_texture(NPC / rel, folder + '/Textures', 'BCA' if (role == 'BC' and masked) else role)
+                   for role, rel in change.get('textures', {}).items()}
+            mi = instance(folder, 'MI_' + variant + '_PR_' + slot_key.split('_PR_')[-1], slot.get_editor_property('material_interface'), tex, change.get('scalars'))
+            if change.get('tint'):
+                EDIT.set_material_instance_vector_parameter_value(mi, 'Tint', unreal.LinearColor(change['tint'][0], change['tint'][1], change['tint'][2], 1.0))
+                EDIT.update_material_instance(mi)
+                save(mi)
+            slot.set_editor_property('material_interface', mi)
+        mesh.set_editor_property('materials', slots)
+        save(mesh)
+        report['npcs'][variant] = {'mesh': target, 'variant_of': source, 'bounds_cm': [round(v * 2, 1) for v in mesh.get_bounds().box_extent.to_tuple()]}
 
 # ------------------------------------------------------------------------------------------- pillbug (round 6)
 # DINK_PHOTOREAL_ONLY=pillbug: Creatures/Pillbug -> /Game/Dink/Photoreal/Creatures/Pillbug (SK_Pillbug_Photoreal on the

@@ -1,5 +1,5 @@
 """Compose final BC / N / ORM PNG sets from the raw bakes. usage: post_tex.py <CharDir> <Prefix e.g. T_Dink_PR> [groups...]"""
-import sys, json, numpy as np
+import os, sys, json, numpy as np
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFilter
 Image.MAX_IMAGE_PIXELS = None
@@ -30,6 +30,12 @@ for g in (sys.argv[3:] or sorted({m['group'] for m in meta.values()})):
     k = np.where(lum < floor, floor / np.maximum(lum, 1e-3), 1.0); B = np.clip(B * np.minimum(k, 3.0)[..., None], 0, 240 / 255)
     Image.fromarray((B * 255 + .5).astype(np.uint8)).save(TX / f'{prefix}_{g}_BC.png')
     n.save(TX / f'{prefix}_{g}_N.png')
-    orm = np.dstack([a, np.asarray(r, np.float32) / 255, mt])
+    rough = np.asarray(r, np.float32) / 255
+    if os.environ.get('METAL_ROUGH'):
+        # "gain,offset" for the metal parts only (cfg/tex.env). Milder's plate baked at 0.4: in the game his gauntlets and pauldrons
+        # mirrored the meadow bright green from behind (16 Nov 2026); worn field steel is a satin 0.6.
+        gain, offset = (float(v) for v in os.environ['METAL_ROUGH'].split(','))
+        rough = rough * (1 - mt) + np.clip(rough * gain + offset, 0, 1) * mt
+    orm = np.dstack([a, rough, mt])
     Image.fromarray((orm * 255 + .5).astype(np.uint8)).save(TX / f'{prefix}_{g}_ORM.png')
     print('wrote', g, size)

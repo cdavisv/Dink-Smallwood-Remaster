@@ -1783,6 +1783,744 @@
       ],
       "scale": 1.45,
       "note": "Goblin soldier (en-gs, s3-gs, s3-gobg; walk 801-809, attack 792-798): scale coat, helmet, shield, bill. A kill leaves 805: sprawled on his back with the bill beside him, the pool the length of the body."
+    },
+    {
+      "class": "npc_maiden_red",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/MaidenRed/SK_MaidenRed_Photoreal.SK_MaidenRed_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 245.7,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 540.0,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.9,
+      "roles": {
+        "walk": {
+          "sequences": [
+            221,
+            223,
+            227,
+            229
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/maiden/red: the young woman in the red dress. Walk pictures 221-229: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 220). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_old_man",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/OldMan/SK_OldMan_Photoreal.SK_OldMan_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 237.5,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 522.0,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.87,
+      "roles": {
+        "walk": {
+          "sequences": [
+            231,
+            233,
+            237,
+            239
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/oldman: the stooped figure in the brown robe (Ethel of SCR_002 is drawn with it). Walk pictures 231-239: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 230). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_maiden_brown",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/MaidenBrown/SK_MaidenBrown_Photoreal.SK_MaidenBrown_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 245.7,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 540.0,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.9,
+      "roles": {
+        "walk": {
+          "sequences": [
+            241,
+            243,
+            247,
+            249
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/maiden/brown. Walk pictures 241-249: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 240). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_maiden_blue",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/MaidenBlue/SK_MaidenBlue_Photoreal.SK_MaidenBlue_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 245.7,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 540.0,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.9,
+      "roles": {
+        "walk": {
+          "sequences": [
+            251,
+            253,
+            257,
+            259
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/maiden/blue. Walk pictures 251-259: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 250). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_knight_red",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/KnightRed/SK_KnightRed_Photoreal.SK_KnightRed_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 273.8,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 601.8,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 1.003,
+      "roles": {
+        "walk": {
+          "sequences": [
+            271,
+            273,
+            277,
+            279
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/knight/red: dark red harness. Walk pictures 271-279: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 270). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_knight_blue",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/Knight/SK_Knight_Photoreal.SK_Knight_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 273.8,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 601.8,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 1.003,
+      "roles": {
+        "walk": {
+          "sequences": [
+            281,
+            283,
+            287,
+            289
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/knight/blue: the guards of the castle. Walk pictures 281-289: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 280). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_knight_silver",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/KnightSilver/SK_KnightSilver_Photoreal.SK_KnightSilver_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 273.8,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 601.8,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 1.003,
+      "roles": {
+        "walk": {
+          "sequences": [
+            291,
+            293,
+            297,
+            299
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/knight/silver (the gravedigger of SCR_408 is drawn with it). Walk pictures 291-299: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 290). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_knight_gold",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/KnightGold/SK_KnightGold_Photoreal.SK_KnightGold_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 273.8,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 601.8,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 1.003,
+      "roles": {
+        "walk": {
+          "sequences": [
+            301,
+            303,
+            307,
+            309
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/knight/gold: the Cast; made by scripts only. Walk pictures 301-309: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 300). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_girl",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/Girl/SK_Girl_Photoreal.SK_Girl_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 175.0,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 384.6,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.641,
+      "roles": {
+        "walk": {
+          "sequences": [
+            331,
+            333,
+            337,
+            339
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/girl. Walk pictures 331-339: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 330). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_merchant_red",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/MerchantRed/SK_MerchantRed_Photoreal.SK_MerchantRed_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 254.4,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 559.2,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.932,
+      "roles": {
+        "walk": {
+          "sequences": [
+            341,
+            343,
+            347,
+            349
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/merchant: Jack and the men of Terris; made by scripts only. Walk pictures 341-349: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 340). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_matron_green",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/MatronGreen/SK_MatronGreen_Photoreal.SK_MatronGreen_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 245.7,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 540.0,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.9,
+      "roles": {
+        "walk": {
+          "sequences": [
+            361,
+            363,
+            367,
+            369
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/mom/brown: the stout woman in green; made by scripts only. Walk pictures 361-369: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 360). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_merchant_blue",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/Merchant/SK_Merchant_Photoreal.SK_Merchant_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 254.4,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 559.2,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.932,
+      "roles": {
+        "walk": {
+          "sequences": [
+            371,
+            373,
+            377,
+            379
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/merchant/blue. Walk pictures 371-379: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 370). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_merchant_green",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/MerchantGreen/SK_MerchantGreen_Photoreal.SK_MerchantGreen_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 254.4,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 559.2,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.932,
+      "roles": {
+        "walk": {
+          "sequences": [
+            381,
+            383,
+            387,
+            389
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/merchant/green. Walk pictures 381-389: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 380). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_merchant_purple",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/MerchantPurple/SK_MerchantPurple_Photoreal.SK_MerchantPurple_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 254.4,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 559.2,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.932,
+      "roles": {
+        "walk": {
+          "sequences": [
+            391,
+            393,
+            397,
+            399
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/merchant/purple: the barkeep; made by scripts only. Walk pictures 391-399: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 390). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_soldier",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/Soldier/SK_Soldier_Photoreal.SK_Soldier_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 273.0,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 600.0,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 1.0,
+      "roles": {
+        "walk": {
+          "sequences": [
+            401,
+            403,
+            407,
+            409
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/soldier. Walk pictures 401-409: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 400). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_peasant",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/Peasant/SK_Peasant_Photoreal.SK_Peasant_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 254.4,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 559.2,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.932,
+      "roles": {
+        "walk": {
+          "sequences": [
+            411,
+            413,
+            417,
+            419
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/peasant2: straw hat and pole. Walk pictures 411-419: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 410). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_gnome_purple",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/Gnome/SK_Gnome_Photoreal.SK_Gnome_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 151.2,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 332.4,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 0.554,
+      "roles": {
+        "walk": {
+          "sequences": [
+            561,
+            563,
+            567,
+            569
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/gnome: the wizard Martridge. Walk pictures 561-569: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 560). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "seth",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/Seth/SK_Seth_Photoreal.SK_Seth_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 395.8,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 870.0,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 1.45,
+      "roles": {
+        "walk": {
+          "sequences": [
+            580,
+            581,
+            583,
+            587,
+            589
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "effects/magic/seth1w-9w and pose (loaded over 580-589 by s7-mil): Seth, the last enemy (s7-boss, made in Milder's scene on SCR_086). Walk pictures 580-589: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 580). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+    },
+    {
+      "class": "npc_knight_red_attacking",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/KnightRed/SK_KnightRed_Photoreal.SK_KnightRed_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 273.8,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 601.8,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -90.0,
+        0
+      ],
+      "scale": 1.003,
+      "roles": {
+        "walk": {
+          "sequences": [
+            712,
+            714,
+            716,
+            718
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "people/knight/red/attack 712-718: shown standing, no swing clip"
+    },
+    {
+      "class": "king_on_throne",
+      "mesh": "/Game/Dink/Photoreal/Characters/NPC/King/SK_King_Photoreal.SK_King_Photoreal",
+      "locomotion": {
+        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "gaits": [
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+            "speed_cm_s": 273.0,
+            "cycles": 2
+          },
+          {
+            "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+            "speed_cm_s": 600.0,
+            "cycles": 3
+          }
+        ]
+      },
+      "rotation_deg": [
+        0,
+        -135.0,
+        0
+      ],
+      "scale": 1.0,
+      "roles": {
+        "walk": {
+          "sequences": [
+            9421
+          ],
+          "locomotion": true
+        }
+      },
+      "note": "misc 421 frame 31: the King seated, one piece with his throne; bound by class id (9421 is no picture)"
     }
   ]
 }

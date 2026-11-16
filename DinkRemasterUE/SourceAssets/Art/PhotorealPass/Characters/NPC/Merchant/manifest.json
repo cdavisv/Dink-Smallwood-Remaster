@@ -1,0 +1,189 @@
+{
+ "schema": "dink-photoreal-character/1",
+ "asset": "SK_Merchant_Photoreal",
+ "class": "character_humanoid",
+ "source_blend": "Unclaimed/npc_merchant_blue/Merchant/SK_Merchant_PR.blend",
+ "build": "blender -b -t 4 --python Characters/Tools/npc_port.py -- Merchant",
+ "fbx": [
+  "Export/SK_Merchant_Photoreal_LOD0.fbx",
+  "Export/SK_Merchant_Photoreal_LOD1.fbx",
+  "Export/SK_Merchant_Photoreal_LOD2.fbx",
+  "Export/SK_Merchant_Photoreal_LOD3.fbx"
+ ],
+ "dimensions_m": [
+  1.0600690841674805,
+  0.45745474100112915,
+  1.8111189603805542
+ ],
+ "bone_count": 89,
+ "root_bone": "root",
+ "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones; armature of Characters/Milder)",
+ "lods": [
+  {
+   "mesh": "SK_Merchant_Photoreal_LOD0",
+   "triangles": 30594,
+   "vertices": 15760,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Merchant_Photoreal_LOD1",
+   "triangles": 15297,
+   "vertices": 8066,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Merchant_Photoreal_LOD2",
+   "triangles": 7648,
+   "vertices": 4163,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Merchant_Photoreal_LOD3",
+   "triangles": 3670,
+   "vertices": 2095,
+   "max_influences": 4,
+   "unweighted": 0
+  }
+ ],
+ "lod0_triangles": 30594,
+ "material_slots": [
+  "MI_Merchant_PR_Skin",
+  "MI_Merchant_PR_Eyes",
+  "MI_Merchant_PR_Hair",
+  "MI_Merchant_PR_Outfit"
+ ],
+ "materials": {
+  "MI_Merchant_PR_Skin": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Skin_BC.png",
+    "N": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Skin_N.png",
+    "ORM": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Skin_ORM.png",
+    "SSS": "Textures/T_Merchant_PR_Skin_SSS.png"
+   },
+   "shading": "subsurface profile / skin; SSS is a flat scatter colour (the source has no thickness map)",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_Merchant_PR_Eyes": {
+   "textures": {
+    "BC": "Textures/T_Merchant_PR_Eyes_BC.png",
+    "N": "Textures/T_Merchant_PR_Eyes_N.png",
+    "ORM": "Textures/T_Merchant_PR_Eyes_ORM.png"
+   },
+   "shading": "default lit, low roughness",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_Merchant_PR_Hair": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Hair_BC.png",
+    "N": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Hair_N.png",
+    "ORM": "Textures/T_Merchant_PR_Hair_ORM.png"
+   },
+   "shading": "MASKED (alpha in BC.a), two-sided hair cards, default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_Merchant_PR_Outfit": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_BC.png",
+    "N": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_N.png",
+    "ORM": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_ORM.png"
+   },
+   "shading": "default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  }
+ },
+ "port": {
+  "height_ratio": 1.0725,
+  "lods": [
+   {
+    "vertices": 15760,
+    "pole_vertices": 0,
+    "min_z": -0.0076,
+    "max_z": 1.8035
+   },
+   {
+    "vertices": 8066,
+    "pole_vertices": 0,
+    "min_z": -0.0076,
+    "max_z": 1.8035
+   },
+   {
+    "vertices": 4163,
+    "pole_vertices": 0,
+    "min_z": -0.008,
+    "max_z": 1.8032
+   },
+   {
+    "vertices": 2095,
+    "pole_vertices": 0,
+    "min_z": -0.0085,
+    "max_z": 1.803
+   }
+  ],
+  "lift_m": 0.0076
+ },
+ "placement_scale": 0.932,
+ "animation_set": "NpcM",
+ "families": [
+  "npc_merchant_blue"
+ ],
+ "validation": {
+  "assets": 1,
+  "assets_passed": 0,
+  "errors": 1,
+  "warnings": 7
+ },
+ "validator_findings": [
+  [
+   "warning",
+   "TRIS_OVER_TARGET",
+   "LOD0 has 30594 triangles, target for character_humanoid is 20000 (hard max 35000)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "888 non-manifold edges (888 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "797 non-manifold edges (797 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "LOOSE_GEOMETRY",
+   "0 loose vertices, 2 loose (wire) edges"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "638 non-manifold edges (636 open boundary, 0 >2 faces, 2 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "LOOSE_GEOMETRY",
+   "0 loose vertices, 5 loose (wire) edges"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "477 non-manifold edges (472 open boundary, 0 >2 faces, 5 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "error",
+   "UV_OVERLAP",
+   "UV0 islands overlap (10.7 % of UV area, 4825 triangles); class character_humanoid needs unique UVs"
+  ],
+  [
+   "info",
+   "UV_OVERLAP",
+   "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ]
+ ],
+ "known_weaknesses": [
+  "Ported from the 26-bone Unclaimed source by its own skin weights: fingers, twist bones and the other mannequin bones carry no weight (mitten hands, no forearm twist).",
+  "Face, hair and cloth are those of the Unclaimed source (see its manifest): a plain base face and card hair; they have not been through the head, skin and groom tools of the three main characters."
+ ]
+}
