@@ -83,6 +83,13 @@ struct DINKNARRATIVE_API FDinkSprite
 	double NoTouchUntilMs = 0.0;
 	/** duck_brain: the duck lost its head (base 110); the next hit runs duckdie. */
 	bool bHeadless = false;
+	/**
+	 * Set by the kill path of UDinkGameplay::ProcessDamage where the engine turns the sprite into the blood burst of
+	 * sequence 164 (duck_brain's hit on a headless duck, D:12726-12740; pig_brain's kill, D:13370-13382). Presentation
+	 * only (the class layer's burst reads it): never saved, never traced, and a sprite removed by sp_active 0 / sp_kill
+	 * or a script's own handling does not have it, as the original shows no blood then.
+	 */
+	bool bBurstKill = false;
 
 	// Brain state (UDinkGameplay::ThinkSprite; the engine's sprite fields of the same names). Script-visible
 	// values (seq, frame, speed, timing, target, follow, distance, attack_wait, mx, my, base_*) live in Props.

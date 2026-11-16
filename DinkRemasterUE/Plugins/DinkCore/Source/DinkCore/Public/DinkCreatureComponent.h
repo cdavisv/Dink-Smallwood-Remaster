@@ -43,6 +43,8 @@ class DINKCORE_API UDinkCreatureComponent : public USkeletalMeshComponent
 	FDinkMotionEstimate Motion;
 	bool bFeeding = false;
 	float SpeedCmS = 0.f;
+	/** SpeedCmS averaged over a quarter second: what the blend space and the play rate are given. */
+	float ShownSpeedCmS = 0.f;
 	TSet<TWeakObjectPtr<AActor>> ConsumedFood;
 	UPROPERTY(Transient) TObjectPtr<UBlendSpace> Locomotion;
 	UPROPERTY(Transient) TObjectPtr<UAnimSequence> Feed;

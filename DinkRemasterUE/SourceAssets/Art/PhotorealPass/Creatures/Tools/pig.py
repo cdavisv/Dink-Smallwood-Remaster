@@ -49,15 +49,18 @@ def build_high(arm):
     parts = []
     def add(vs, fs, nm='p'): o = mesh_obj(nm, vs, fs); parts.append(o); return o
     # x, centre z, half height up, half height down, half width, superellipse exponent
-    T = [(-.752, .70, .05, .05, .04, 2.0), (-.725, .66, .15, .17, .13, 2.0), (-.66, .63, .245, .27, .225, 2.1), (-.56, .62, .29, .30, .285, 2.2),
-         (-.42, .62, .305, .325, .315, 2.25), (-.26, .62, .312, .355, .33, 2.3), (-.10, .62, .312, .375, .335, 2.3), (.06, .62, .305, .35, .33, 2.3),
-         (.20, .625, .295, .325, .315, 2.25), (.32, .635, .28, .30, .29, 2.2), (.43, .645, .26, .28, .26, 2.15), (.52, .655, .24, .265, .235, 2.1),
-         (.60, .66, .225, .25, .212, 2.1), (.67, .66, .195, .235, .19, 2.1), (.74, .655, .158, .20, .16, 2.1), (.81, .645, .122, .158, .125, 2.15),
+    # Review of 14 Nov 2026 ("lumpy", a box on legs in the game): the topline arches over the loin and falls to the tail, the flank
+    # tucks up behind the belly, the neck narrows into the head, and the sections are rounder (exponent near 2).
+    T = [(-.752, .70, .04, .04, .04, 2.0), (-.725, .66, .14, .14, .12, 2.0), (-.66, .63, .23, .23, .215, 2.0), (-.56, .62, .285, .275, .275, 2.05),
+         (-.42, .62, .315, .315, .31, 2.1), (-.26, .62, .325, .35, .325, 2.12), (-.10, .62, .32, .37, .33, 2.12), (.06, .62, .305, .355, .325, 2.12),
+         (.20, .625, .285, .33, .31, 2.1), (.32, .635, .265, .30, .285, 2.08), (.43, .645, .245, .275, .25, 2.05), (.52, .655, .225, .255, .22, 2.05),
+         (.60, .66, .205, .24, .20, 2.05), (.67, .66, .18, .225, .18, 2.05), (.74, .655, .145, .195, .155, 2.1), (.81, .645, .115, .155, .122, 2.15),
          (.875, .637, .098, .122, .10, 2.2), (.93, .631, .083, .098, .086, 2.3), (.972, SZ, .075, .084, .078, 2.6), (.998, SZ, .071, .077, .074, 3.0)]
     add(*loft([((x, 0, zc), (0, hw, 0), (0, 0, hu), (0, 0, hd), e) for x, zc, hu, hd, hw, e in T], 44))
     # shoulder, ham, jowl, cheek, brow/ear root, withers, belly sag, brisket
-    for c, r in (((.20, .21, .60), (.20, .135, .25)), ((-.46, .20, .58), (.25, .165, .28)), ((.60, .095, .50), (.13, .09, .10)), ((.69, .105, .60), (.095, .065, .10)),
-                 ((.26, 0, .87), (.18, .15, .07)), ((-.12, .02, .40), (.40, .29, .15)), ((.40, 0, .47), (.15, .16, .11))):
+    for c, r in (((.20, .19, .60), (.20, .125, .25)), ((-.46, .165, .58), (.25, .15, .28)),   # shoulder and ham stay inside the barrel's width: no separate bulbs ((.60, .095, .50), (.13, .09, .10)), ((.69, .105, .60), (.095, .065, .10)),
+                 ((.26, 0, .855), (.18, .15, .07)), ((-.10, .02, .41), (.36, .28, .16)), ((.40, 0, .47), (.15, .16, .11)),
+                 ((-.47, 0, .625), (.25, .23, .29))):                                                    # the rump between the hams: one rounded mass, no crease
         for s in ((1, -1) if c[1] > .05 else (1,)):
             vs, fs, d = ellipsoid((c[0], c[1] * s, c[2]), r, 24, 14); add(vs, fs)
     def limb(pts, y):
@@ -75,7 +78,7 @@ def build_high(arm):
         add(*limb([((-.34, .52), .185, .13), ((-.28, .42), .15, .112), ((-.335, .32), .105, .088), ((-.42, .225), .072, .064), ((-.435, .19), .074, .064), ((-.42, .12), .057, .056), ((-.395, .068), .062, .064), ((-.385, .05), .060, .062)], B['thigh_' + sd][0].y * .93))
     body = join(parts, 'PigBody')
     apply_mod(body, 'REMESH', mode='VOXEL', voxel_size=VOX, adaptivity=0)
-    apply_mod(body, 'SMOOTH', factor=.6, iterations=16)
+    apply_mod(body, 'SMOOTH', factor=.6, iterations=34)
     me = body.data; me.polygons.foreach_set('use_smooth', [True] * len(me.polygons)); me.update()
     co = co_np(me); n = nrm_np(me); x, y, z = co[:, 0], co[:, 1], co[:, 2]; ay = np.abs(y)
     N1 = vn(co, 3.1, 1.0); N2 = vn(co, 7.5, 4.0); N3 = vn(co, 19, 9.0)
@@ -86,24 +89,24 @@ def build_high(arm):
     co[:, 1] *= (1 - .17 * ss(.70, .95, z) * (1 - ss(.5, .66, x)))
     co[:, 2] -= .018 * gauss(x - .82, .07) * ss(.66, .72, z) * (1 - ss(.05, .12, ay))                                       # dish between brow and snout
     # asymmetry: belly hangs a little to one side, one ham fuller, general organic lumpiness
-    co[:, 1] += .012 * gauss(z - .36, .12) * gauss(x + .1, .35)
-    co += n * (N1 * .010 + N2 * .005 + N3 * .0015)[:, None]
+    co[:, 1] += .006 * gauss(z - .36, .12) * gauss(x + .1, .35)
+    co += n * (N1 * .0025 + N2 * .0010 + N3 * .0006)[:, None]                     # was .010/.005: read as lumps, not as flesh
     # spine ridge, hip bones, shoulder blades
     co += n * (.010 * gauss(y, .028) * ss(.8, .9, z) * ss(-.66, -.5, x) * (1 - ss(.3, .5, x)))[:, None]
     for s in (1, -1):
-        push((.22, s * .31, .60), .13, .015); push((-.50, s * .31, .56), .17, .012); push((.06, s * .335, .62), .055, -.011); push((-.30, s * .335, .62), .06, -.013); push((-.46, s * .17, .93), .05, .010); push((.36, s * .25, .62), .05, -.008)
-        push((-.47, s * .16, .925), .07, .013); push((.2, s * .17, .91), .09, .008); push((-.27, s * .33, .55), .10, -.012); push((.03, s * .33, .58), .09, -.007)
+        push((.22, s * .30, .60), .17, .005); push((-.50, s * .30, .56), .21, .006)   # no hollows on the flank: they read as dents in the game
+        push((.2, s * .17, .90), .11, .005)
         push((.66, s * .17, .53), .06, .010)                                                              # jowl
     # neck rolls and jowl folds: deep, irregular
     m = ss(.31, .38, x) * (1 - ss(.60, .68, x)) * (1 - ss(.80, .9, z))
     ph = (x - .33) * math.tau / .075 + ay * 4.5 + N2 * 2.2 + (z - .6) * 3
-    co += n * (.0075 * np.sin(ph) * m * (.55 + .45 * N1) * (1 - .5 * ss(.7, .88, z)))[:, None]
+    co += n * (.0038 * np.sin(ph) * m * (.35 + .65 * N1) * (1 - .7 * ss(.62, .84, z)))[:, None]     # folds, not ribs
     m2 = ss(.56, .62, x) * (1 - ss(.74, .8, x)) * (1 - ss(.50, .58, z))                                   # under-jaw dewlap folds
     co += n * (.005 * np.sin((x - .56) * math.tau / .05 + N2 * 2) * m2)[:, None]
     # flank folds at elbow and stifle, belly skin ripples
     for cx_, cz_, dp in ((.075, .48, .011), (-.2, .47, .012)):
         m = gauss(z - cz_, .10) * ss(.2, .29, ay)
-        co -= n * (dp * gauss(x - cx_ - (z - cz_) * .45 + N2 * .012, .016) * m)[:, None]
+        co -= n * (dp * .6 * gauss(x - cx_ - (z - cz_) * .45 + N2 * .012, .022) * m)[:, None]
     co += n * (.003 * np.sin(x * math.tau / .06 + N2 * 3) * (n[:, 2] < -.4) * ss(.44, .34, z) * (ay < .25))[:, None]
     # leg joint wrinkles (carpus, hock, pastern)
     legd = np.full(len(co), 1e9)
@@ -166,11 +169,11 @@ def build_high(arm):
     set_color_attr(me, 'msk', np.stack([red, mud, pid, wr], 1))
     dung = np.clip(.45 * ss(-.36, -.70, x) * (1 - ss(.50, .86, z)) * (.75 + .9 * N2) + .35 * gauss(np.hypot(x + .72, z - .62), .07) * (ay < .08) * (.4 + N3) + .5 * ss(.35, .7, N1 * N2 * 4) * (x < -.1) * (z < .6), 0, 1)
     hair = np.clip(ss(.36, .5, z) * (1 - ss(.86, .95, x)) * (1 - .6 * (n[:, 2] < -.5)), 0, 1)
-    thickm = ss(.62, 1.0, mud + .3 * N3) * (.0045 + .005 * np.abs(vn(co, 28, 3.0)))                       # caked mud has thickness
+    thickm = ss(.62, 1.0, mud + .3 * N3) * (.002 + .002 * np.abs(vn(co, 28, 3.0)))                       # caked mud has thickness
     co2 = co + n * thickm[:, None]
     rg = np.random.default_rng(12); cand = np.nonzero((x < -.40) & (z > .28) & (z < .84) & (n[:, 0] < .2))[0]
     for i in rg.choice(cand, 34, replace=False):                                                          # dung clumps and their smears running down
-        d = np.linalg.norm(co - co[i], axis=1); r_ = rg.uniform(.010, .022); co2 += n * (rg.uniform(.005, .011) * gauss(d, r_))[:, None]
+        d = np.linalg.norm(co - co[i], axis=1); r_ = rg.uniform(.010, .022); co2 += n * (rg.uniform(.001, .0025) * gauss(d, r_))[:, None]            # was 5-11 mm: warts on the rump in the game
         dung = np.maximum(dung, gauss(d, r_ * 1.3)); dung = np.maximum(dung, .8 * gauss(np.hypot(x - co[i, 0], y - co[i, 1]), r_ * .6) * (z < co[i, 2]) * ss(co[i, 2] - .12 * rg.random(), co[i, 2], z))
     set_co(me, co2)
     set_color_attr(me, 'loc', np.stack([dung, np.zeros(len(co)), np.zeros(len(co)), hair], 1))

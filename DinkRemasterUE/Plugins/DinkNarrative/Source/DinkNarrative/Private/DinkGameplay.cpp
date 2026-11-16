@@ -1276,6 +1276,7 @@ void UDinkGameplay::ProcessDamage()
 			if (S->bHeadless)
 			{
 				Note(FString::Printf(TEXT("duckdie %d"), H));
+				S->bBurstKill = true; // the engine adds sequence 164 whatever the script does (D:12730-12734)
 				RunProc(H, NAME_DuckDie);
 				if (FDinkSprite* After = D->FindSprite(H))
 				{
@@ -1311,6 +1312,7 @@ void UDinkGameplay::ProcessDamage()
 			S->Props.Add(P_Hitpoints, Hp);
 			if (Hp < 1)
 			{
+				S->bBurstKill = true; // seq 164, brain 7 (D:13378-13381)
 				AddExp(S->GetProp(P_Exp), H);
 				Note(FString::Printf(TEXT("die %d (%s)"), H, *S->Script.ToString()));
 				RunProc(H, NAME_Die);
