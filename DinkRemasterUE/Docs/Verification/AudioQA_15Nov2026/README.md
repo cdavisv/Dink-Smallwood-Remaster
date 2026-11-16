@@ -16,9 +16,14 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
 | `clips/redo_*_pick.ogg`, `clips/redo_*_runnerup*.ogg` | **For the owner to listen to:** each pick and its runner-up, as the game imports them. |
 | `clips/runA_opening_scene_before_fixes.ogg` | 76 s of the opening scene before the mix fixes (run A, 16 Nov). |
 | `cue_runH.md` | Run H: the regenerated bow and axe cued by play in Dink's house, found in the recording. |
+| `cue_runL.md` | Run L: the generated footsteps and ambience beds in play (SCR_001 wood, SCR_439 grass, a screen per bed) and all 32 life takes in a sweep, found in the recording. |
+| `clips/life_*.ogg` | **For the owner to listen to:** the four takes of each footstep surface, the first 12 s of each bed. |
 | `limiter_runC_before.txt`, `limiter_runE_after.txt` | Output level per 30 s with the 15 Nov limiter settings (run C) and the brickwall settings (run E). |
 
 ## Proven
+
+- **Owner approval (16 Nov 2026, ~12:55 PT, owner decision 12):** the four regenerated effects `09_punch_e`, `44_bow1_i`,
+  `48_axe_i` and `49_bird1_c` are approved.
 
 - **The four regenerated effects play in the game.**
   - Each one was played through the audio subsystem (`dink.AudioQA.Sweep`) and found in the recording by
@@ -32,6 +37,12 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
   - Axe: two throws (`item-axe.c`) struck and cued `SFX_48_axe` at pitch 0.59, the 13000 Hz the script sets. Both were
     found by waveform: match 0.73 and 0.77 against the pitched-down take. The strike lands on the tail of the throw's
     own swing, so it is not a clean level step.
+- **Footsteps and ambience beds (run L, 16 Nov).** Details in `cue_runL.md`.
+  - All 32 generated takes play: the sweep finds each one by waveform (match 0.89 to 1.000).
+  - In play: wood steps in the house are found 19 times of 24 cues. The cave and wind beds are found under the screen
+    music (match 0.70 and 0.47).
+  - Grass steps outside overlap too densely to separate one by one, and the quieter sea and meadow beds are masked by
+    music for the correlation.
 - **Tests on the final tree** (world regenerated with `--region all` and `--region stonebrook` each time):
   - origin/master 41e80f73 plus this branch: full `Dink` suite 311 of 312.
   - origin/master 5d8a4a1f (rebased) plus this branch: 309 of 312.
@@ -50,7 +61,6 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
 
 ## Not proven
 
-- **Owner listening.** The picks were made by measurement and spectrogram only. Clips are in `clips/`.
 - **A fist hit and Seth's bird line in actual play** are not shown in a recording. Console drives kept leaving Dink
   frozen or missing:
   - `dink.Goto` leaves Dink frozen on arrival (SCR_030, SCR_474).
@@ -69,4 +79,4 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
   - The processor settings are right: `Dink.Audio.MasterLimiterHoldsCeiling`.
   - **Fixed 16 Nov 2026:** the preset never applied those settings (the instance ran the engine's default compressor);
     cause, fix and recorded proof in `../MasterLimiter_16Nov2026/README.md`.
-- **Footsteps and ambience beds** are still procedural placeholders (AU-01, AU-02).
+- **Owner listening to the footsteps and ambience beds.** They were generated on 16 Nov (47 takes, 757 credits) and picked by measurement and spectrogram; clips are `clips/life_Step_<surface>_all4.ogg` (the four takes of each surface) and `clips/life_Bed_<name>_first12s.ogg`.

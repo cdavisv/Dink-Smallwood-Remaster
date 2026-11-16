@@ -13,10 +13,9 @@ every generation id: `SourceAssets/Audio/SFX/redo_15Nov2026.json`. Ledger: one r
 - **Measurements:** ffmpeg `ebur128=peak=true` for integrated LUFS and true peak, plus a float decode for sample peak and
   clipped samples. All measurements are on the delivered MP3s.
 
-**How the picks were made.** Nobody has listened to these takes yet. The picks rest on the measurements above, the
-50 ms RMS envelope and the spectrograms in this folder. The owner should listen to `09_punch_e`, `44_bow1_i` and
-`48_axe_i` and `49_bird1_c`, and to the bird alternatives `d` and `e`, before calling them final. Clips of each pick and
-runner-up are in `clips/` (see the end of this sheet).
+**How the picks were made.** The picks rest on the measurements above, the 50 ms RMS envelope and the spectrograms in
+this folder. **The owner approved all four on 16 Nov 2026** (`09_punch_e`, `44_bow1_i`, `48_axe_i`, `49_bird1_c`; owner
+decision 12). Clips of each pick and runner-up are in `clips/` (see the end of this sheet).
 
 ## All takes
 
@@ -109,7 +108,7 @@ Spectrograms (log magnitude, 0-16 kHz): `redo_spectrogram_punch_e_bow_i.png`, `r
   export `approved_choices.csv`, which is unchanged and keeps its original hash.
 - **Manifest:** `selection_manifest.json` and the runtime `approved.json` now hold 48 effects (44 from the review plus the
   4 regenerated ones). `rejected` is empty, and a new `redo` list holds the four replacements.
-- **Ledger:** the picked rows are `approved` with the note "Audio QA pick ... owner listening pending". The owner's rejected
+- **Ledger:** the picked rows are `approved` with the note "Audio QA pick ... owner approved 16 Nov 2026 (owner decision 12)". The owner's rejected
   `a`/`b` rows stay `rejected`.
 - **Import:** `Scripts/import_approved_audio.sh`.
 
