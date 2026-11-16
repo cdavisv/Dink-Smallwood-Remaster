@@ -23,6 +23,12 @@
 #include "DrawDebugHelpers.h"
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
+#include "HAL/IConsoleManager.h"
+
+// The wind-up's red wireframe ball was the greybox's telegraph; with photoreal creatures it drew a debug sphere over every
+// attacker in play (playthrough QA, 15 Nov 2026: over Seth and the pillbugs). Off by default; the wind-up itself is unchanged.
+static TAutoConsoleVariable<int32> CVarDinkTelegraphMarker(TEXT("dink.TelegraphMarker"), 0,
+	TEXT("1 = draw the greybox wind-up marker (a red debug sphere over an attacker that winds up); 0 = off (default)."));
 
 namespace
 {
@@ -612,11 +618,11 @@ bool UDinkGameplay::AdaptationAllowsAttack(FDinkSprite& S, int32 Target, int32& 
 	S.Props.Add(B_My, 0);
 	S.Props.Add(B_Seq, 0);
 	Note(FString::Printf(TEXT("wind-up %d at %d (%.0f ms)"), S.Handle, Target, Adaptation.WindUpMs));
-	if (const AActor* Actor = S.Actor.Get())
+	if (const AActor* Actor = S.Actor.Get(); Actor && CVarDinkTelegraphMarker.GetValueOnGameThread() != 0)
 	{
 		if (UWorld* World = Actor->GetWorld())
 		{
-			// Greybox telegraph placeholder: a red marker over the attacker for the wind-up.
+			// Greybox telegraph placeholder: a red marker over the attacker for the wind-up (debug only since the photoreal pass).
 			DrawDebugSphere(World, Actor->GetActorLocation() + FVector(0, 0, 150), 25.f, 8, FColor::Red, false, static_cast<float>(Adaptation.WindUpMs / 1000.0), 0, 3.f);
 		}
 	}
