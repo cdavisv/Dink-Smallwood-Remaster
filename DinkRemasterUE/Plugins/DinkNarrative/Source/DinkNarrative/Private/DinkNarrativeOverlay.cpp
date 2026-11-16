@@ -23,6 +23,11 @@
 #include "Rendering/DrawElements.h"
 #include "Rendering/SlateRenderer.h"
 #include "Styling/CoreStyle.h"
+#include "DinkLayout.h"
+#include "EngineUtils.h"
+#include "GameFramework/Pawn.h"
+#include "Greybox/DinkGreyboxSubsystem.h"
+#include "Greybox/DinkScreenVolume.h"
 
 namespace DinkOverlay
 {
@@ -657,6 +662,18 @@ namespace DinkOverlay
 					Title.Append(Wrap(L, TitleFont, W - 2.f * PadX));
 				}
 			}
+			// escape.c's Help > Keyboard commands is the 1997 text (verbatim: Ctrl, Space talk, Shift magic). Below it, the keys
+			// this remaster actually uses, so the in-game help does not leave a player stuck.
+			if (Title.Num() > 0 && Title[0].StartsWith(TEXT("Ctrl = Attack")))
+			{
+				Title.Add(TEXT(" "));
+				for (const TCHAR* L : { TEXT("In this remaster: F, Left Ctrl or left click attack and choose; E talks; Q casts magic;"),
+					TEXT("Enter or I opens the items; Space skips text (in cutscenes Enter too); Esc is this menu; M is the map; Shift walks slowly."),
+					TEXT("Gamepad: X attack, B talk, Y magic, RB items, A choose and skip, Start menu, Back map, LB walk.") })
+				{
+					Title.Append(Wrap(L, TitleFont, W - 2.f * PadX));
+				}
+			}
 			const float TitleLineH = FPainter::LineHeight(TitleFont) * 1.1f;
 			const float RowH = 46.f;
 			TArray<TArray<FString>> Rows;
@@ -718,6 +735,413 @@ namespace DinkOverlay
 			P.Alpha = BaseAlpha;
 		}
 	};
+}
+
+namespace DinkOverlay
+{
+	/**
+	 * The title screen (FDinkTitleScreen): the world behind a darkened left column, the name, the rows of the page, and key
+	 * hints. Writes each row's absolute rectangle back for the mouse (FDinkTitleScreen::RowScreenRects).
+	 */
+	struct FTitlePainter
+	{
+		FPainter& P;
+		const UDinkStorySubsystem& S;
+		double Now;
+
+		static constexpr float ColumnW = 760.f;
+
+		void Paint()
+		{
+			const FDinkTitleScreen& T = S.GetTitleScreen();
+			const FVector2f View = P.Size();
+			const float Scale = FMath::Clamp(FMath::Min(View.X / 1920.f, View.Y / 1080.f), 0.55f, 1.6f);
+			const float BaseAlpha = P.Alpha;
+
+			// The column: dark at the left edge, fading out towards the picture (a few stacked bands).
+			const float ColW = FMath::Min(ColumnW * Scale, View.X * 0.62f);
+			for (int32 i = 0; i < 8; ++i)
+			{
+				const float W = ColW * (1.f - i * 0.085f);
+				P.Box(FVector2f::ZeroVector, FVector2f(W, View.Y), FLinearColor(0.012f, 0.014f, 0.02f, 0.11f), 0.f);
+			}
+			// A light vignette over the whole picture.
+			P.Box(FVector2f::ZeroVector, View, FLinearColor(0.f, 0.f, 0.f, 0.12f), 0.f);
+
+			const float X = 96.f * Scale;
+			float Y = View.Y * 0.16f;
+			FSlateFontInfo Logo = Font(TEXT("Bold"), 64.f * Scale);
+			Logo.LetterSpacing = 160;
+			P.Text(FVector2f(X, Y), TEXT("DINK"), Logo, TextMain, true);
+			Y += FPainter::LineHeight(Logo) * 0.92f;
+			P.Text(FVector2f(X, Y), TEXT("SMALLWOOD"), Logo, Accent, true);
+			Y += FPainter::LineHeight(Logo) * 1.02f;
+			FSlateFontInfo Sub = Font(TEXT("Regular"), 15.f * Scale);
+			Sub.LetterSpacing = 220;
+			P.Text(FVector2f(X + 4.f * Scale, Y), TEXT("REMASTERED"), Sub, TextDim, true);
+			Y += 70.f * Scale;
+
+			// The page, sliding in when it changes.
+			const float In = EaseOut(static_cast<float>((Now - T.PageChangedAt) / 0.22));
+			P.Alpha = BaseAlpha * In;
+			const float PageX = X + (1.f - In) * 18.f * Scale;
+			T.RowScreenRects.Reset();
+			if (T.Page == EDinkTitlePage::Main)
+			{
+				PaintRows(FVector2f(PageX, Y), Scale, 30.f, 62.f, 380.f);
+			}
+			else if (T.Page == EDinkTitlePage::Continue)
+			{
+				P.Text(FVector2f(PageX, Y - 30.f * Scale), TEXT("CONTINUE"), Font(TEXT("Bold"), 13.f * Scale), TextDim);
+				PaintRows(FVector2f(PageX, Y), Scale, 18.f, 42.f, ColumnW - 160.f);
+			}
+			else
+			{
+				PaintControls(FVector2f(PageX, Y - 30.f * Scale), Scale);
+			}
+			P.Alpha = BaseAlpha;
+
+			// Key hints and the build line.
+			const float HintY = View.Y - 64.f * Scale;
+			float HX = X;
+			HX += P.KeyHint(FVector2f(HX, HintY), { TEXT("W"), TEXT("S") }, TEXT("Move"), Scale) + 26.f * Scale;
+			HX += P.KeyHint(FVector2f(HX, HintY), { TEXT("Enter"), TEXT("Click") }, TEXT("Select"), Scale) + 26.f * Scale;
+			if (T.Page != EDinkTitlePage::Main)
+			{
+				P.KeyHint(FVector2f(HX, HintY), { TEXT("Esc") }, TEXT("Back"), Scale);
+			}
+			const FSlateFontInfo Small = Font(TEXT("Regular"), 11.f * Scale);
+			const FString Build = TEXT("Alpha build  -  based on Dink Smallwood (1997) by Robinson Technologies");
+			const FVector2f BS = FPainter::Measure(Build, Small);
+			P.Text(FVector2f(View.X - BS.X - 40.f * Scale, View.Y - 40.f * Scale), Build, Small, FLinearColor(1.f, 1.f, 1.f, 0.45f), true);
+		}
+
+		void PaintRows(FVector2f Pos, float Scale, float TextSize, float RowH, float RowW)
+		{
+			const FDinkTitleScreen& T = S.GetTitleScreen();
+			const TArray<FString> Rows = S.GetTitleRows();
+			const FSlateFontInfo RowFont = Font(TEXT("Regular"), TextSize * Scale);
+			const FSlateFontInfo SelFont = Font(TEXT("Bold"), TextSize * Scale);
+			const float H = RowH * Scale;
+			const float W = RowW * Scale;
+			float Y = Pos.Y;
+			for (int32 i = 0; i < Rows.Num(); ++i)
+			{
+				const bool bSel = i == T.Selected;
+				const bool bEnabled = S.IsTitleRowEnabled(i);
+				const bool bBack = T.Page == EDinkTitlePage::Continue && i == Rows.Num() - 1;
+				if (bBack)
+				{
+					Y += 10.f * Scale; // a little room before Back
+				}
+				const FVector2f RowPos(Pos.X - 22.f * Scale, Y);
+				const FVector2f RowSize(W, H - 6.f * Scale);
+				if (bSel)
+				{
+					const float Glow = 0.12f + 0.05f * Pulse(Now);
+					P.Box(RowPos, RowSize, WithAlpha(Accent, Glow), 10.f * Scale);
+					P.Box(RowPos + FVector2f(0.f, 8.f * Scale), FVector2f(4.f * Scale, RowSize.Y - 16.f * Scale), Accent, 2.f * Scale);
+				}
+				const FLinearColor Color = !bEnabled ? FLinearColor(1.f, 1.f, 1.f, 0.30f) : (bSel ? TextMain : FLinearColor(0.80f, 0.81f, 0.84f, 1.f));
+				const FSlateFontInfo& F = bSel ? SelFont : RowFont;
+				const float TY = Y + (RowSize.Y - FPainter::LineHeight(F)) * 0.5f;
+				P.Text(FVector2f(Pos.X, TY), Rows[i], F, Color, true);
+				// Absolute rectangle for the mouse.
+				const FVector2D A = P.Geometry.LocalToAbsolute(FVector2D(RowPos));
+				const FVector2D B = P.Geometry.LocalToAbsolute(FVector2D(RowPos + RowSize));
+				T.RowScreenRects.Add(FBox2D(A, B));
+				Y += H;
+			}
+		}
+
+		void PaintControls(FVector2f Pos, float Scale)
+		{
+			P.Text(Pos, TEXT("CONTROLS"), Font(TEXT("Bold"), 13.f * Scale), TextDim);
+			struct FRow { const TCHAR* Action; const TCHAR* Keys; const TCHAR* Pad; };
+			static const FRow Rows[] = {
+				{ TEXT("Move"), TEXT("WASD / arrows"), TEXT("Left stick") },
+				{ TEXT("Walk slowly"), TEXT("Shift"), TEXT("LB") },
+				{ TEXT("Attack / use item"), TEXT("F, Left Ctrl, left click"), TEXT("X, right trigger") },
+				{ TEXT("Talk"), TEXT("E"), TEXT("B") },
+				{ TEXT("Choose in a menu"), TEXT("Enter, Space, E, F, click"), TEXT("A") },
+				{ TEXT("Skip a line"), TEXT("Space"), TEXT("A") },
+				{ TEXT("Skip a line in a cutscene"), TEXT("Space, Enter, E, click"), TEXT("A") },
+				{ TEXT("Cast magic"), TEXT("Q"), TEXT("Y") },
+				{ TEXT("Inventory"), TEXT("Enter, I"), TEXT("RB") },
+				{ TEXT("Quick-arm item 1-10"), TEXT("1-9, 0"), TEXT("") },
+				{ TEXT("Menu (load, restart, quit, help)"), TEXT("Esc"), TEXT("Start") },
+				{ TEXT("Map"), TEXT("M"), TEXT("Back / View") },
+			};
+			const FSlateFontInfo A = Font(TEXT("Bold"), 15.f * Scale);
+			const FSlateFontInfo K = Font(TEXT("Regular"), 15.f * Scale);
+			float Y = Pos.Y + 34.f * Scale;
+			// Columns as wide as their longest entry (fixed offsets let the long action names run into the keys).
+			float WAction = 0.f, WKeys = 0.f;
+			for (const FRow& R : Rows)
+			{
+				WAction = FMath::Max(WAction, FPainter::Measure(R.Action, A).X);
+				WKeys = FMath::Max(WKeys, FPainter::Measure(R.Keys, K).X);
+			}
+			const float C1 = Pos.X, C2 = C1 + WAction + 28.f * Scale, C3 = C2 + WKeys + 28.f * Scale;
+			P.Text(FVector2f(C2, Y), TEXT("KEYBOARD / MOUSE"), Font(TEXT("Bold"), 10.f * Scale), TextDim);
+			P.Text(FVector2f(C3, Y), TEXT("GAMEPAD"), Font(TEXT("Bold"), 10.f * Scale), TextDim);
+			Y += 24.f * Scale;
+			for (const FRow& R : Rows)
+			{
+				P.Text(FVector2f(C1, Y), R.Action, A, TextMain, true);
+				P.Text(FVector2f(C2, Y), R.Keys, K, FLinearColor(0.82f, 0.83f, 0.86f, 1.f), true);
+				P.Text(FVector2f(C3, Y), R.Pad, K, FLinearColor(0.82f, 0.83f, 0.86f, 1.f), true);
+				Y += 31.f * Scale;
+			}
+			P.Text(FVector2f(C1, Y + 6.f * Scale), TEXT("Save your game at the save machines you find on your travels."), Font(TEXT("Italic"), 13.f * Scale), TextDim, true);
+			Y += 56.f * Scale;
+			// The one row: Back.
+			const FDinkTitleScreen& T = S.GetTitleScreen();
+			T.RowScreenRects.Reset();
+			const FVector2f RowPos(C1 - 22.f * Scale, Y);
+			const FVector2f RowSize(220.f * Scale, 40.f * Scale);
+			P.Box(RowPos, RowSize, WithAlpha(Accent, 0.12f + 0.05f * Pulse(Now)), 10.f * Scale);
+			P.Box(RowPos + FVector2f(0.f, 8.f * Scale), FVector2f(4.f * Scale, RowSize.Y - 16.f * Scale), Accent, 2.f * Scale);
+			P.Text(FVector2f(C1, Y + (RowSize.Y - FPainter::LineHeight(A)) * 0.5f), TEXT("Back"), A, TextMain, true);
+			const FVector2D PA = P.Geometry.LocalToAbsolute(FVector2D(RowPos));
+			const FVector2D PB = P.Geometry.LocalToAbsolute(FVector2D(RowPos + RowSize));
+			T.RowScreenRects.Add(FBox2D(PA, PB));
+		}
+	};
+
+	/**
+	 * The status HUD: the original's always-on status bar (life, experience, magic charge, gold, the armed weapon and spell,
+	 * dink.cpp draw_status_all) as a compact panel in the top left, from the same facts the inventory's status column reads.
+	 */
+	struct FStatusPainter
+	{
+		FPainter& P;
+		const SDinkNarrativeOverlay& Overlay;
+		const UDinkStorySubsystem& S;
+
+		void Bar(FVector2f Pos, FVector2f Size, float Fraction, const FLinearColor& Color)
+		{
+			P.Box(Pos, Size, FLinearColor(1.f, 1.f, 1.f, 0.10f), Size.Y * 0.5f);
+			const float Fill = Size.X * FMath::Clamp(Fraction, 0.f, 1.f);
+			if (Fill >= Size.Y)
+			{
+				P.Box(Pos, FVector2f(Fill, Size.Y), Color, Size.Y * 0.5f);
+			}
+		}
+
+		void Slot(FVector2f Pos, float Size, FName Script, bool bMagic, float Scale)
+		{
+			P.Box(Pos, FVector2f(Size, Size), FLinearColor(1.f, 1.f, 1.f, Script.IsNone() ? 0.04f : 0.08f), 10.f * Scale, FLinearColor(1.f, 1.f, 1.f, 0.10f), 1.f);
+			if (Script.IsNone())
+			{
+				return;
+			}
+			const FVector2f C = Pos + FVector2f(Size, Size) * 0.5f;
+			if (const FSlateBrush* Icon = Overlay.FindItemIcon(Script))
+			{
+				P.Image(C - FVector2f(Size, Size) * 0.36f, FVector2f(Size, Size) * 0.72f, Icon);
+			}
+			else
+			{
+				const FLinearColor Disc = bMagic ? MagicBlue : Accent;
+				P.TextCentered(C, Monogram(FDinkPresentationData::Get().ItemName(Script)), Font(TEXT("Bold"), 15.f * Scale), Disc);
+			}
+		}
+
+		void Paint()
+		{
+			const UDinkFactSubsystem* F = S.GetFacts();
+			UDinkDirector* D = S.GetDirector();
+			UDinkInventoryComponent* Inv = D ? D->GetInventory() : nullptr;
+			if (!F)
+			{
+				return;
+			}
+			auto Fact = [F](const TCHAR* Name) { return F->GetFact(Name); };
+			const FVector2f View = P.Size();
+			const float Scale = FMath::Clamp(FMath::Min(View.X / 1920.f, View.Y / 1080.f), 0.6f, 1.5f);
+			const FVector2f Pos(28.f * Scale, 24.f * Scale);
+			const FVector2f Size(392.f * Scale, 112.f * Scale);
+			P.Shadow(Pos, Size, 16.f * Scale, 0.6f);
+			P.Box(Pos, Size, WithAlpha(PanelFill, 0.80f), 16.f * Scale, PanelEdge, 1.f);
+
+			// Level badge.
+			const FVector2f Badge = Pos + FVector2f(14.f, 14.f) * Scale;
+			const float BadgeS = 52.f * Scale;
+			P.Box(Badge, FVector2f(BadgeS, BadgeS), WithAlpha(Accent, 0.18f), 12.f * Scale, WithAlpha(Accent, 0.7f), 1.5f);
+			P.TextCentered(Badge + FVector2f(BadgeS * 0.5f, BadgeS * 0.36f), FString::FromInt(Fact(TEXT("level"))), Font(TEXT("Bold"), 20.f * Scale), Accent);
+			P.TextCentered(Badge + FVector2f(BadgeS * 0.5f, BadgeS * 0.78f), TEXT("LEVEL"), Font(TEXT("Bold"), 7.f * Scale), TextDim);
+
+			// Life and experience.
+			const float BX = Badge.X + BadgeS + 14.f * Scale;
+			const float BW = 196.f * Scale;
+			const int32 Life = Fact(TEXT("life"));
+			const int32 LifeMax = FMath::Max(1, Fact(TEXT("lifemax")));
+			const FSlateFontInfo Label = Font(TEXT("Bold"), 10.f * Scale);
+			const FSlateFontInfo Val = Font(TEXT("Regular"), 10.f * Scale);
+			P.Text(FVector2f(BX, Badge.Y - 2.f * Scale), TEXT("LIFE"), Label, TextDim);
+			const FString LifeText = FString::Printf(TEXT("%d / %d"), FMath::Max(0, Life), LifeMax);
+			P.Text(FVector2f(BX + BW - FPainter::Measure(LifeText, Val).X, Badge.Y - 2.f * Scale), LifeText, Val, TextMain);
+			Bar(FVector2f(BX, Badge.Y + 15.f * Scale), FVector2f(BW, 9.f * Scale), static_cast<float>(Life) / LifeMax, LifeRed);
+			const int32 Level = Fact(TEXT("level"));
+			const int32 Next = FMath::Max(1, DinkRules::ExpForNextLevel(Level));
+			P.Text(FVector2f(BX, Badge.Y + 30.f * Scale), TEXT("EXP"), Label, TextDim);
+			const FString ExpText = FString::Printf(TEXT("%d / %d"), Fact(TEXT("exp")), Next);
+			P.Text(FVector2f(BX + BW - FPainter::Measure(ExpText, Val).X, Badge.Y + 30.f * Scale), ExpText, Val, TextMain);
+			Bar(FVector2f(BX, Badge.Y + 46.f * Scale), FVector2f(BW, 5.f * Scale), static_cast<float>(Fact(TEXT("exp"))) / Next, Accent);
+
+			// Gold and magic charge on the bottom line.
+			const float LineY = Pos.Y + Size.Y - 30.f * Scale;
+			P.Box(FVector2f(Badge.X + 2.f * Scale, LineY + 3.f * Scale), FVector2f(12.f, 12.f) * Scale, FLinearColor(0.98f, 0.80f, 0.28f, 1.f), 6.f * Scale);
+			P.Text(FVector2f(Badge.X + 22.f * Scale, LineY), FString::Printf(TEXT("%d gold"), Fact(TEXT("gold"))), Font(TEXT("Regular"), 12.f * Scale), TextMain);
+			const int32 Cost = Fact(TEXT("magic_cost"));
+			if (Cost > 0)
+			{
+				P.Text(FVector2f(BX + 34.f * Scale, LineY + 1.f * Scale), TEXT("MAGIC"), Label, TextDim);
+				Bar(FVector2f(BX + 80.f * Scale, LineY + 5.f * Scale), FVector2f(BW - 80.f * Scale, 7.f * Scale), static_cast<float>(Fact(TEXT("magic_level"))) / Cost,
+					Fact(TEXT("magic_level")) >= Cost ? FLinearColor(0.55f, 0.75f, 1.f, 1.f) : MagicBlue);
+			}
+
+			// The armed weapon and spell.
+			if (Inv)
+			{
+				const float SlotS = 46.f * Scale;
+				const float SX = Pos.X + Size.X - 2.f * SlotS - 22.f * Scale;
+				Slot(FVector2f(SX, Badge.Y), SlotS, Inv->GetArmedItem(), false, Scale);
+				Slot(FVector2f(SX + SlotS + 8.f * Scale, Badge.Y), SlotS, Inv->GetArmedMagic(), true, Scale);
+				P.TextCentered(FVector2f(SX + SlotS * 0.5f, Badge.Y + SlotS + 12.f * Scale), TEXT("WEAPON"), Font(TEXT("Bold"), 7.f * Scale), TextDim);
+				P.TextCentered(FVector2f(SX + SlotS * 1.5f + 8.f * Scale, Badge.Y + SlotS + 12.f * Scale), TEXT("MAGIC"), Font(TEXT("Bold"), 7.f * Scale), TextDim);
+			}
+		}
+	};
+}
+
+namespace DinkOverlay
+{
+	/**
+	 * show_bmp("tiles\\map1.bmp", 1, 0) (button6.c, the map item): the 1997 picture is a painted map of the mainland with the
+	 * place names and, because showdot is 1, a pulsing dot on Dink's last outdoor screen (process_show_bmp, dink.cpp:16745-16762).
+	 * The remaster draws the same from its own world layout: every outdoor screen of the mainland sheet by kind (land, town,
+	 * sea), the region names, and the dot where Dink last stood outdoors.
+	 */
+	struct FMapPainter
+	{
+		FPainter& P;
+		const UDinkStorySubsystem& S;
+		const SDinkNarrativeOverlay::FMapData& Map;
+		FVector2D DinkMetres;
+		bool bHasDink;
+		double Now;
+		double Since;
+
+		void Paint()
+		{
+			const FVector2f View = P.Size();
+			const float In = EaseOut(static_cast<float>((Now - Since) / 0.2));
+			const float BaseAlpha = P.Alpha;
+			P.Alpha = BaseAlpha * In;
+			P.Box(FVector2f::ZeroVector, View, FLinearColor(0.f, 0.f, 0.f, 0.7f), 0.f);
+			const FVector2f PanelPos(48.f, 40.f);
+			const FVector2f PanelSize(View.X - 96.f, View.Y - 80.f);
+			P.Shadow(PanelPos, PanelSize, 22.f);
+			P.Box(PanelPos, PanelSize, FLinearColor(0.10f, 0.09f, 0.07f, 0.97f), 22.f, PanelEdge, 1.f);
+			P.Text(PanelPos + FVector2f(32.f, 22.f), TEXT("Map"), Font(TEXT("Bold"), 26.f), TextMain);
+			{
+				const float W = FPainter::KeyHintWidth({ TEXT("Enter"), TEXT("Esc"), TEXT("M") }, TEXT("Close"));
+				P.KeyHint(PanelPos + FVector2f(PanelSize.X - 32.f - W, 28.f), { TEXT("Enter"), TEXT("Esc"), TEXT("M") }, TEXT("Close"));
+			}
+			if (Map.Screens.Num() == 0 || !Map.Bounds.bIsValid)
+			{
+				P.TextCentered(PanelPos + PanelSize * 0.5f, TEXT("No map of this land."), Font(TEXT("Regular"), 18.f), TextDim);
+				P.Alpha = BaseAlpha;
+				return;
+			}
+			// Fit the land into the panel, keeping its shape.
+			const FVector2f AreaPos = PanelPos + FVector2f(32.f, 78.f);
+			const FVector2f AreaSize = PanelSize - FVector2f(64.f, 110.f);
+			const FVector2D Extent = Map.Bounds.GetSize();
+			const float K = FMath::Min(AreaSize.X / static_cast<float>(Extent.X), AreaSize.Y / static_cast<float>(Extent.Y));
+			const FVector2f Offset = AreaPos + (AreaSize - FVector2f(static_cast<float>(Extent.X), static_cast<float>(Extent.Y)) * K) * 0.5f;
+			auto ToPanel = [&](const FVector2D& M) { return Offset + FVector2f(static_cast<float>(M.X - Map.Bounds.Min.X), static_cast<float>(M.Y - Map.Bounds.Min.Y)) * K; };
+
+			for (const SDinkNarrativeOverlay::FMapScreen& Sc : Map.Screens)
+			{
+				const FVector2f A = ToPanel(Sc.Min);
+				const FVector2f B = ToPanel(Sc.Max);
+				FLinearColor C = Sc.Kind == 2 ? FLinearColor(0.15f, 0.30f, 0.46f, 1.f) : (Sc.Kind == 1 ? FLinearColor(0.56f, 0.46f, 0.30f, 1.f) : FLinearColor(0.25f, 0.36f, 0.19f, 1.f));
+				// A little variation per screen so the land reads as land, not a grid of one colour.
+				const float V = 0.94f + 0.06f * static_cast<float>((Sc.Screen * 7919) % 13) / 12.f;
+				C = FLinearColor(C.R * V, C.G * V, C.B * V, 1.f);
+				P.Box(A, (B - A) + FVector2f(0.6f, 0.6f), C, 0.f);
+			}
+			// Place names.
+			const FSlateFontInfo LabelFont = Font(TEXT("Bold"), 15.f);
+			for (const TPair<FString, FVector2D>& L : Map.Labels)
+			{
+				P.TextCentered(ToPanel(L.Value), L.Key, LabelFont, FLinearColor(0.98f, 0.92f, 0.70f, 1.f), true);
+			}
+			// The compass, as on the painted map.
+			const FVector2f Compass = AreaPos + FVector2f(40.f, 40.f);
+			P.TextCentered(Compass + FVector2f(0.f, -22.f), TEXT("N"), Font(TEXT("Bold"), 16.f), Accent, true);
+			P.Lines({ Compass + FVector2f(0.f, -10.f), Compass + FVector2f(0.f, 18.f) }, Accent, 2.f);
+			P.Lines({ Compass + FVector2f(-12.f, 4.f), Compass + FVector2f(12.f, 4.f) }, Accent, 2.f);
+			// Dink's dot (showdot).
+			if (bHasDink)
+			{
+				const FVector2f D = ToPanel(DinkMetres);
+				const float R = 7.f + 3.f * Pulse(Now);
+				P.Box(D - FVector2f(R + 4.f, R + 4.f), FVector2f(2.f * (R + 4.f), 2.f * (R + 4.f)), FLinearColor(1.f, 0.85f, 0.35f, 0.25f), R + 4.f);
+				P.Box(D - FVector2f(R, R), FVector2f(2.f * R, 2.f * R), FLinearColor(0.95f, 0.22f, 0.16f, 1.f), R, FLinearColor::White, 1.5f);
+				P.Text(D + FVector2f(R + 8.f, -10.f), TEXT("Dink"), Font(TEXT("Bold"), 13.f), TextMain, true);
+			}
+			P.Alpha = BaseAlpha;
+		}
+	};
+}
+
+void SDinkNarrativeOverlay::EnsureMapData(const UWorld* World) const
+{
+	if (MapData.World.Get() == World && MapData.Screens.Num() > 0)
+	{
+		return;
+	}
+	MapData = FMapData();
+	MapData.World = World;
+	if (!World)
+	{
+		return;
+	}
+	static const FName Mainland(TEXT("mainland"));
+	TMap<FString, TPair<FVector2D, int32>> Regions;
+	for (TActorIterator<ADinkScreenVolume> It(const_cast<UWorld*>(World)); It; ++It)
+	{
+		const ADinkScreenVolume* V = *It;
+		if (V->Sheet != Mainland || V->bIndoor)
+		{
+			continue;
+		}
+		const FDinkScreenCorners& C = V->Corners;
+		FMapScreen& Sc = MapData.Screens.AddDefaulted_GetRef();
+		Sc.Screen = V->ScreenNumber;
+		Sc.Min = FVector2D(FMath::Min(FMath::Min(C.NW.X, C.SW.X), FMath::Min(C.NE.X, C.SE.X)), FMath::Min(FMath::Min(C.NW.Y, C.NE.Y), FMath::Min(C.SW.Y, C.SE.Y)));
+		Sc.Max = FVector2D(FMath::Max(FMath::Max(C.NW.X, C.SW.X), FMath::Max(C.NE.X, C.SE.X)), FMath::Max(FMath::Max(C.NW.Y, C.NE.Y), FMath::Max(C.SW.Y, C.SE.Y)));
+		Sc.Kind = V->Kind == FName(TEXT("sea")) ? 2 : (V->Kind == FName(TEXT("settlement")) ? 1 : 0);
+		MapData.Bounds += FBox2D(Sc.Min, Sc.Max);
+		const FString Name = V->RegionName;
+		if (!Name.IsEmpty() && Sc.Kind != 2)
+		{
+			TPair<FVector2D, int32>& R = Regions.FindOrAdd(Name, TPair<FVector2D, int32>(FVector2D::ZeroVector, 0));
+			R.Key += (Sc.Min + Sc.Max) * 0.5;
+			++R.Value;
+		}
+	}
+	for (const TPair<FString, TPair<FVector2D, int32>>& R : Regions)
+	{
+		if (R.Value.Value > 0)
+		{
+			MapData.Labels.Add(R.Key, R.Value.Key / R.Value.Value);
+		}
+	}
 }
 
 bool SDinkNarrativeOverlay::IsVoiceStillSpeaking(const UDinkStorySubsystem& S, const FBoxContent& C)
@@ -880,10 +1304,63 @@ int32 SDinkNarrativeOverlay::OnPaint(const FPaintArgs& Args, const FGeometry& Al
 	FPainter P(AllottedGeometry, OutDrawElements, LayerId);
 	const double Now = FPlatformTime::Seconds();
 	const FDinkInventoryScreen& Inv = S->GetInventoryScreen();
+	const FDinkTitleScreen& Title = S->GetTitleScreen();
+	if (Title.bOpen)
+	{
+		// Fade in from black over the first moment (the camera settles), then the title.
+		const float Black = 1.f - EaseOut(static_cast<float>((Now - Title.OpenedAt) / 0.9));
+		FTitlePainter{ P, *S, Now }.Paint();
+		if (Black > 0.f)
+		{
+			P.Box(FVector2f::ZeroVector, P.Size(), FLinearColor(0.f, 0.f, 0.f, Black), 0.f);
+		}
+		return P.Layer;
+	}
+	// The status bar, under the fades and the texts (the original draws it beside the play area all game).
+	if (!Inv.bOpen && !S->bNewGamePending)
+	{
+		FStatusPainter{ P, *this, *S }.Paint();
+	}
 	// The original draws no text while the item screen is up (dink.cpp:17364, bRenderDinkText = false).
 	if (!Inv.bOpen)
 	{
 		PaintNarrative(&P, *S, Now);
+	}
+	// Where Dink stands outdoors (the map's dot), and a show_bmp map on top of everything (the original draws only the
+	// picture while it is up, dink.cpp:17370).
+	if (const UWorld* World = S->GetWorld())
+	{
+		const UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>();
+		const ADinkScreenVolume* Screen = Greybox ? Greybox->GetCurrentScreen() : nullptr;
+		const APlayerController* PC = World->GetFirstPlayerController();
+		const APawn* Pawn = PC ? PC->GetPawn() : nullptr;
+		if (const FDinkShownBitmap* Bitmap = S->GetShownBitmap(); Bitmap && Bitmap->IsWorldMap())
+		{
+			EnsureMapData(World);
+			// The dot: where Dink stands when he is outdoors on the mainland, else the middle of his last outdoor screen (the
+			// story's last_map, which is saved with the game), when that screen is on the mainland map.
+			FVector2D Dot = FVector2D::ZeroVector;
+			bool bDot = false;
+			static const FName Mainland(TEXT("mainland"));
+			if (Screen && Pawn && !Screen->bIndoor && Screen->Sheet == Mainland)
+			{
+				Dot = DinkLayout::UnrealToMetres(Pawn->GetActorLocation());
+				bDot = true;
+			}
+			else if (const ADinkScreenVolume* Last = Greybox ? Greybox->FindScreen(S->GetLastOutdoorScreen()) : nullptr; Last && Last->Sheet == Mainland)
+			{
+				Dot = DinkLayout::MapPixelToMetres(Last->Corners, 300.0, 200.0);
+				bDot = true;
+			}
+			FMapPainter{ P, *S, MapData, Dot, bDot, Now, Bitmap->Since }.Paint();
+		}
+	}
+	// The title fades out over the game after New Game / Continue.
+	if (Title.ClosedAt >= 0.0 && Now - Title.ClosedAt < 0.45)
+	{
+		P.Alpha = 1.f - EaseOut(static_cast<float>((Now - Title.ClosedAt) / 0.45));
+		FTitlePainter{ P, *S, Now }.Paint();
+		P.Alpha = 1.f;
 	}
 	if (Inv.bOpen || Now - Inv.ChangedAt < 0.16)
 	{

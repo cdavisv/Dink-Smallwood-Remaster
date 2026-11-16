@@ -40,6 +40,7 @@ bool FDinkInputGamepadTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("A picks and skips"), IsBound(EKeys::Gamepad_FaceButton_Bottom, EAction::Confirm));
 	TestTrue(TEXT("Start opens the main menu (escape.c), Esc on the keyboard"), IsBound(EKeys::Gamepad_Special_Right, EAction::MainMenu) && IsBound(EKeys::Escape, EAction::MainMenu));
 	TestTrue(TEXT("Back shows the map (button6.c), M on the keyboard"), IsBound(EKeys::Gamepad_Special_Left, EAction::Map) && IsBound(EKeys::M, EAction::Map));
+	TestTrue(TEXT("the right shoulder opens the item screen (the original's button 4)"), IsBound(EKeys::Gamepad_RightShoulder, EAction::Inventory));
 	TestTrue(TEXT("the d-pad moves a menu's highlight"), IsBound(EKeys::Gamepad_DPad_Up, EAction::MenuUp) && IsBound(EKeys::Gamepad_DPad_Down, EAction::MenuDown));
 	// The character's own gamepad mappings (ADinkGreyboxCharacter: run on the left shoulder, jump on A) are never a talk, attack or magic
 	// button: the pre-processor would eat them before Enhanced Input sees them.
@@ -58,7 +59,7 @@ bool FDinkInputGamepadTest::RunTest(const FString& Parameters)
 			continue;
 		}
 		int32 WorldActions = 0;
-		for (const EAction A : { EAction::Talk, EAction::Attack, EAction::Magic, EAction::MainMenu, EAction::Map })
+		for (const EAction A : { EAction::Talk, EAction::Attack, EAction::Magic, EAction::MainMenu, EAction::Map, EAction::Inventory })
 		{
 			WorldActions += IsBound(B.Key, A) ? 1 : 0;
 		}

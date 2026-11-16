@@ -550,11 +550,25 @@ bool FDinkControlsInventoryRulesTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("no inventory from the digit"), M.Story->IsInventoryOpen());
 	TestTrue(TEXT("Dink's question (a blocking line) is up"), FramesUntil(M, [&M]() { return HasBlockingText(M.Story); }));
 	TestEqual(TEXT("&result 2"), M.Facts->GetFact(TEXT("result")), 2);
-	M.D->GetDink().bFrozen = false;
-	const int32 Skips = CountKind(M.Story, TEXT("skip"));
-	TestTrue(TEXT("Enter on a blocking line"), M.Input->ProcessKeyDown(EKeys::Enter));
+	// Dink held (a cutscene): Enter skips the line, as in 1997.
+	M.D->GetDink().bFrozen = true;
+	int32 Skips = CountKind(M.Story, TEXT("skip"));
+	TestTrue(TEXT("Enter on a blocking line while Dink is held"), M.Input->ProcessKeyDown(EKeys::Enter));
 	TestEqual(TEXT("Enter skipped the line"), CountKind(M.Story, TEXT("skip")), Skips + 1);
 	TestFalse(TEXT("and did not open the inventory"), M.Story->IsInventoryOpen());
+	// Dink free while someone talks (owner's decision 15 Nov 2026): Enter is the item screen, only Space skips.
+	TestTrue(TEXT("the next blocking line"), FramesUntil(M, [&M]() { return HasBlockingText(M.Story); }));
+	M.D->GetDink().bFrozen = false;
+	Skips = CountKind(M.Story, TEXT("skip"));
+	M.Input->ProcessKeyDown(EKeys::Enter);
+	TestEqual(TEXT("Enter does not skip while Dink moves freely"), CountKind(M.Story, TEXT("skip")), Skips);
+	if (M.Story->IsInventoryOpen())
+	{
+		M.Story->CloseInventory(false);
+	}
+	TestTrue(TEXT("still a blocking line"), HasBlockingText(M.Story));
+	TestTrue(TEXT("Space skips it"), M.Input->ProcessKeyDown(EKeys::SpaceBar));
+	TestEqual(TEXT("Space skipped the line"), CountKind(M.Story, TEXT("skip")), Skips + 1);
 	return true;
 }
 

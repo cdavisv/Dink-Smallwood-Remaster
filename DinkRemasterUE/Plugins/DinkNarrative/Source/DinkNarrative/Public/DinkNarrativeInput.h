@@ -30,7 +30,9 @@ class UDinkStorySubsystem;
  *                        Enter, I, Escape or gamepad B close it (the original closes with Enter, dink.cpp:16630). The game is paused.
  *   2. Menu (choice):    Up/Down, W/S or the mouse wheel move the highlight; Enter, Space, E or left click pick it;
  *                        1-9 pick directly.
- *   3. Blocking text or wait_for_button: Enter, Space, E or left click skip it (the original's skip).
+ *   3. Blocking text or wait_for_button: while Dink is held (frozen in a cutscene, or a wait_for_button) Enter, Space, E,
+ *                        gamepad A or left click skip it (the original's skip); while he can move freely only Space and
+ *                        gamepad A skip, and the other keys go on to step 4 (owner's playtest decision, 15 Nov 2026).
  *   4. Otherwise:        Enter / I open the inventory when Dink may act (UDinkStorySubsystem::CanOpenInventory: not frozen,
  *                        no bow drawn, not locked in an attack; the original opens it from Dink's brain only); E talks;
  *                        F / Ctrl / left click attack; Q casts; digits quick-arm; Esc / M run escape.c / button6.c.
@@ -59,6 +61,7 @@ public:
 	virtual bool HandleMouseButtonUpEvent(FSlateApplication& SlateApp, const FPointerEvent& MouseEvent) override;
 	virtual bool HandleMouseButtonDoubleClickEvent(FSlateApplication& SlateApp, const FPointerEvent& MouseEvent) override;
 	virtual bool HandleMouseWheelOrGestureEvent(FSlateApplication& SlateApp, const FPointerEvent& InWheelEvent, const FPointerEvent* InGestureEvent) override;
+	virtual bool HandleMouseMoveEvent(FSlateApplication& SlateApp, const FPointerEvent& MouseEvent) override;
 	virtual const TCHAR* GetDebugName() const override { return TEXT("DinkNarrativeInput"); }
 
 	static constexpr double RepeatGuardSeconds = 0.04;
@@ -71,6 +74,15 @@ public:
 	/** A mouse button went down (a double-click counts as a down). True if it did something; the caller never consumes it. */
 	bool ProcessMouseDown(const FKey& Button);
 	void ProcessMouseUp(const FKey& Button);
+	/**
+	 * The title screen (FDinkTitleScreen) takes every key first while it is open: Up/Down, W/S, the d-pad and the wheel move
+	 * the highlight (rows that do nothing are skipped); Enter, Space, E, F, gamepad A or a left click on a row pick it; 1-9, 0
+	 * pick a row directly; Esc, Backspace or gamepad B go back to the main page. Talk, attack, magic, map and inventory keys
+	 * do nothing; any other key (the console key) passes. The mouse highlights the row under it.
+	 */
+	bool ProcessTitleKey(const FKey& Key);
+	/** A click (bClick) or a move of the mouse at an absolute position while the title is open. True if a row was hit. */
+	bool ProcessTitlePointer(const FVector2D& ScreenPos, bool bClick);
 	/** Wheel: Delta > 0 is up. True if a menu or the inventory used it. */
 	bool ProcessWheel(float Delta);
 	/** Tick's release check: a key-up that outlived the repeat guard at Now, or the window lost (no key-up will come), lets the attack go. */

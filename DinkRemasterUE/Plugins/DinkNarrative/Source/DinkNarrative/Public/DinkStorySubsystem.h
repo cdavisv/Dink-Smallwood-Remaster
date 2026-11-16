@@ -12,6 +12,8 @@ class UDinkFactSubsystem;
 class UDinkWorldStateSubsystem;
 class UDinkSaveGame;
 class APawn;
+class APlayerController;
+class AActor;
 class FDinkNarrativeInputProcessor;
 class SWidget;
 class UGameViewportClient;
@@ -143,6 +145,85 @@ struct DINKNARRATIVE_API FDinkInventoryScreen
 	int32 Cursor = 1;
 	/** Real time (FPlatformTime::Seconds) of the last open/close, for the presentation's fade. */
 	double ChangedAt = 0.0;
+};
+
+/** A show_bmp picture on screen (the original's full-screen bitmap: button6.c's map, tiles\\map1.bmp). */
+struct DINKNARRATIVE_API FDinkShownBitmap
+{
+	/** The script instance that waits for the key (EDinkBlock::Button). */
+	int32 InstanceId = 0;
+	/** The file the script named ("tiles\\map1.bmp"). */
+	FString Name;
+	/** Real time it appeared (presentation fade). */
+	double Since = 0.0;
+
+	bool IsWorldMap() const { return Name.Contains(TEXT("map"), ESearchCase::IgnoreCase); }
+};
+
+/** Pages of the title screen (DinkTitleMenu.cpp). */
+enum class EDinkTitlePage : uint8
+{
+	/** New Game, Continue, Controls, Quit. */
+	Main,
+	/** The ten save slots (the original's start-2.c "Continue": load_game(1..10)). */
+	Continue,
+	/** The keyboard, mouse and gamepad layout. */
+	Controls,
+};
+
+/** One save slot as the title's Continue page shows it, read from the slot's UDinkSaveGame. */
+struct DINKNARRATIVE_API FDinkTitleSlot
+{
+	int32 Slot = 0;
+	bool bExists = false;
+	int32 Level = 0;
+	int32 Life = 0;
+	int32 LifeMax = 0;
+	int32 Gold = 0;
+	/** UDinkSaveGame::GameTimeMs: the game clock when it was saved. */
+	int64 PlayMs = 0;
+	FDateTime SavedAtUtc;
+	/** Area of the saved screen (ADinkScreenVolume::AreaName, else its region name), empty when unknown. */
+	FString Area;
+};
+
+/**
+ * The remaster's title screen. The 1997 game draws its title with start.c and start-1..4.c (Start, Continue, Quit); the HD
+ * engine, which this remaster follows, skips start.c (`is_base_game`) and shows its own main menu. Here it is shown once
+ * when a real game world starts, never under automation, the probe, capture scripts or -NoTitle (UDinkStorySubsystem::
+ * ShouldShowTitle), so nothing about the 1997 simulation changes. While it is open no script runs and no story time passes;
+ * the new game (newgame.c, as before) starts only when the player picks New Game, and Continue loads a slot as load_game does.
+ */
+struct DINKNARRATIVE_API FDinkTitleScreen
+{
+	bool bOpen = false;
+	EDinkTitlePage Page = EDinkTitlePage::Main;
+	/** Highlighted row of the current page. */
+	int32 Selected = 0;
+	/** Real time (FPlatformTime::Seconds) the screen opened and the page last changed (presentation fades). */
+	double OpenedAt = 0.0;
+	double PageChangedAt = 0.0;
+	/** Real time the screen closed (fade out), -1 while open or never shown. */
+	double ClosedAt = -1.0;
+	/** Slots 1-10, read when the screen opens and when the Continue page is entered. */
+	TArray<FDinkTitleSlot> Slots;
+	/** Row rectangles of the last paint in absolute Slate (desktop) coordinates, for mouse hover and clicks; written by the overlay. */
+	mutable TArray<FBox2D> RowScreenRects;
+
+	/** The row under an absolute (desktop) position, INDEX_NONE if none. */
+	int32 RowAt(const FVector2D& ScreenPos) const
+	{
+		for (int32 i = 0; i < RowScreenRects.Num(); ++i)
+		{
+			if (RowScreenRects[i].IsInside(ScreenPos))
+			{
+				return i;
+			}
+		}
+		return INDEX_NONE;
+	}
+
+	bool AnySave() const { return Slots.ContainsByPredicate([](const FDinkTitleSlot& S) { return S.bExists; }); }
 };
 
 /** A line shown on screen, for voice playback and other presentation listeners (UDinkStorySubsystem::OnLineShown). */
@@ -308,6 +389,11 @@ public:
 	/** Keyboard menu: move the highlight / pick the highlighted option. */
 	void MoveMenuSelection(int32 Delta);
 	bool ChooseSelected() { return Choose(Menu.Selected); }
+	/** A script waits for the skip key (wait_for_button, show_bmp: EDinkBlock::Button). */
+	bool HasButtonWait() const
+	{
+		return Instances.ContainsByPredicate([](const TUniquePtr<FDinkScriptInstance>& I) { return I->State == EDinkInstanceState::Blocked && I->Block == EDinkBlock::Button; });
+	}
 	/** The original's skip: ends the blocking texts (and button waits). Returns true if something was skipped. */
 	bool SkipDialogue();
 	/** Text sprite handle -> text. */
@@ -317,6 +403,14 @@ public:
 	void RemoveTextSprite(int32 Handle);
 	/** Shows a line for Speaker (handle) the way the director shows spoken lines. Returns the text handle. */
 	int32 ShowText(const FDinkStoryLine& Line, int32 Speaker, int32 InstanceId);
+
+	/** The last screen Dink entered that is not indoor (the original's last_map: the map's dot), 0 if none yet. Saved. */
+	int32 GetLastOutdoorScreen() const { return LastOutdoorScreen; }
+
+	/** show_bmp: the picture Name is on screen while instance InstanceId waits for the key (called by the director). */
+	void NoteShownBitmap(int32 InstanceId, const FString& Name);
+	/** The show_bmp picture the player is looking at (its script still waits for the key), null if none. */
+	const FDinkShownBitmap* GetShownBitmap() const;
 
 	/** Black-screen amount 0..1 (fade_down/fade_up). */
 	float GetFadeAlpha() const;
@@ -352,6 +446,35 @@ public:
 	bool ArmInventorySelection();
 	/** Arm item slot N (1-based) as choosing it on the inventory screen does; false if it is empty or Dink may not act. */
 	bool QuickArmItemSlot(int32 Slot);
+
+	// ---- Title screen (DinkTitleMenu.cpp) ----
+
+	const FDinkTitleScreen& GetTitleScreen() const { return TitleScreen; }
+	bool IsTitleOpen() const { return TitleScreen.bOpen; }
+	/**
+	 * Whether a game world that is starting shows the title: a game world, not automation / instant mode / a commandlet, no
+	 * -NoTitle, no automation or capture script in -ExecCmds, and dink.Title.Enable 1. Never true for the probe or tests.
+	 */
+	bool ShouldShowTitle() const;
+	/** Opens the title over the current world: Dink held still, no scripts, the title camera. False without a player. */
+	bool OpenTitle();
+	/** Row texts of the current page (presentation and tests). */
+	TArray<FString> GetTitleRows() const;
+	/** False for rows that do nothing now (Continue without saves, an empty slot). */
+	bool IsTitleRowEnabled(int32 Row) const;
+	void MoveTitleSelection(int32 Delta);
+	/** Highlights Row (mouse hover) if it does something; the move sound when it changes. */
+	void HighlightTitleRow(int32 Row);
+	/** Picks the highlighted row (Enter / Space / click). */
+	bool ConfirmTitle() { return ChooseTitleRow(TitleScreen.Selected); }
+	/** Picks row Row (0-based; a digit or a click). False if the row is disabled or out of range. */
+	bool ChooseTitleRow(int32 Row);
+	/** Esc / Backspace / gamepad B: back to the main page. False on the main page. */
+	bool TitleBack();
+	/** Re-reads slots 1-10 from disk. */
+	void RefreshTitleSlots();
+	/** Tests: replaces quitting the application from the title's Quit row. */
+	TFunction<void()> OnTitleQuit;
 
 	// ---- Facts ----
 
@@ -502,6 +625,31 @@ private:
 	FDinkInventoryScreen InventoryScreen;
 	/** The inventory paused the world (and unpauses it on close); false when it was paused already. */
 	bool bInventoryPausedWorld = false;
+	/** The last show_bmp (GetShownBitmap checks that its script still waits). */
+	FDinkShownBitmap ShownBitmap;
+	/** The move hold while a choice menu or a show_bmp picture is up (SyncUiMoveHold), on this controller. */
+	bool bUiMoveHeld = false;
+	TWeakObjectPtr<APlayerController> UiMoveHoldController;
+	void SyncUiMoveHold();
+	/** The title screen (DinkTitleMenu.cpp). */
+	FDinkTitleScreen TitleScreen;
+	/** The first real game world has not been looked at for the title yet (set in Initialize). */
+	bool bTitleDecisionPending = false;
+	/** Where the pawn stood when the title opened: a tool that moves it (dink.Goto) dismisses the title as a new game. */
+	FVector TitlePawnStart = FVector::ZeroVector;
+	/** The title's camera (a transient actor in the game world) and the point it looks at. */
+	TWeakObjectPtr<AActor> TitleCamera;
+	FVector TitleFocus = FVector::ZeroVector;
+	bool bTitleMusicStarted = false;
+	bool bTitleSavedCursor = false;
+	/** The first game world with a player: decides once whether to show the title. */
+	void DecideTitle();
+	/** Camera drift, music, and a tool moving the pawn. */
+	void UpdateTitle(float DeltaSeconds);
+	/** Closes the title and gives Dink back; with bNewGame the newgame start stays pending, otherwise a load follows. */
+	void CloseTitle(bool bNewGame);
+	void SetTitlePage(EDinkTitlePage Page);
+	void PlaceTitleCamera(double Seconds);
 	void PlayInterfaceSound(int32 Sound, int32 Speed);
 	/** The Slate overlay that draws texts, menus, the fade and the inventory screen (DinkNarrativeOverlay.cpp), on the current world's game viewport. */
 	TSharedPtr<SWidget> Overlay;
@@ -544,4 +692,5 @@ public:
 		return !bForceVisionRebuild && !bScriptLoaded && (bWarped || !bWalkOffScreen);
 	}
 private:
+	int32 LastOutdoorScreen = 0;
 };

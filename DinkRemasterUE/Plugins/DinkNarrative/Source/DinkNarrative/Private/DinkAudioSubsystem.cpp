@@ -315,6 +315,10 @@ void UDinkAudioSubsystem::EnterScreen(ADinkScreenVolume* Screen)
  if (const FDinkApprovedSound* Entry = Selection.ResolveMusic(Screen->MusicFile)) PlayMusic(*Entry);
  else if (const FDinkApprovedSound* Raw = Selection.ResolveMusic(FString::FromInt(Screen->MusicRaw))) PlayMusic(*Raw);
 }
+void UDinkAudioSubsystem::ReplayScreenMusic()
+{
+ if (UDinkGreyboxSubsystem* Greybox = GetWorld() ? GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr) EnterScreen(Greybox->GetCurrentScreen());
+}
 void UDinkAudioSubsystem::HandleCue(const FString& Cue, UDinkDirector* Director)
 {
  if (Director) BoundDirector = Director;

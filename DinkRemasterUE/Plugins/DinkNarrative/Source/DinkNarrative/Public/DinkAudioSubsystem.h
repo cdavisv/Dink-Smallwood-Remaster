@@ -106,6 +106,8 @@ public:
  void StopAll();
  /** kill_repeat_sounds: stops the repeating cues no sprite owns (screen change, force_vision's rebuild). */
  void StopOwnerlessRepeats();
+ /** Plays the current screen's music again, as entering it does (the title screen hands the music back when it closes). */
+ void ReplayScreenMusic();
  const FDinkAudioSelection& GetSelection() const { return Selection; }
  const FString& GetPlayingMusicAsset() const { return PlayingMusic; }
  int32 GetEffectCount() const { return Effects.Num(); }

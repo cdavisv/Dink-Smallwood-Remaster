@@ -3,6 +3,7 @@
 #include "DinkNarrativeInput.h"
 #include "DinkInputBindings.h"
 #include "DinkGameplay.h"
+#include "DinkDirector.h"
 #include "DinkStorySubsystem.h"
 #include "Engine/Console.h"
 #include "Engine/GameViewportClient.h"
@@ -38,6 +39,23 @@ namespace
 			}
 		}
 		return INDEX_NONE;
+	}
+
+	/**
+	 * Who may skip a blocking line. While Dink is held (frozen in a cutscene, or a script waits for a button: wait_for_button)
+	 * every confirm key and the left click skip, as in 1997. While he can move freely (a line spoken in passing, a cave's
+	 * muttering, a shopkeeper's answer), only Space and gamepad A skip, so Enter, E, F and the click keep their own jobs
+	 * (items, talk, attack). Owner's playtest decision, 15 Nov 2026.
+	 */
+	bool IsDinkHeld(UDinkStorySubsystem& S)
+	{
+		UDinkDirector* D = S.GetDirector();
+		return (D && D->GetDink().bFrozen) || S.HasButtonWait();
+	}
+
+	bool IsFreeSkipKey(const FKey& Key)
+	{
+		return Key == EKeys::SpaceBar || Key == EKeys::Gamepad_FaceButton_Bottom;
 	}
 
 	/**
@@ -202,6 +220,15 @@ bool FDinkNarrativeInputProcessor::HandleMouseButtonDownEvent(FSlateApplication&
 	// click on the focused game viewport is game input.
 	if (IsGameInputAllowed() && AcceptsClick(IsOverGameViewport(SlateApp, MouseEvent)))
 	{
+		const UDinkStorySubsystem* S = Story.Get();
+		if (S && S->IsTitleOpen())
+		{
+			if (MouseEvent.GetEffectingButton() == EKeys::LeftMouseButton)
+			{
+				ProcessTitlePointer(MouseEvent.GetScreenSpacePosition(), /*bClick*/ true);
+			}
+			return false;
+		}
 		ProcessMouseDown(MouseEvent.GetEffectingButton());
 	}
 	return false; // never consumed: the viewport needs the click for focus and mouse capture
@@ -218,9 +245,87 @@ bool FDinkNarrativeInputProcessor::HandleMouseButtonDoubleClickEvent(FSlateAppli
 	// Slate turns the second of two quick clicks into a double-click instead of a down: it is still a press.
 	if (IsGameInputAllowed() && AcceptsClick(IsOverGameViewport(SlateApp, MouseEvent)))
 	{
+		const UDinkStorySubsystem* S = Story.Get();
+		if (S && S->IsTitleOpen())
+		{
+			// On the title the first click already picked the row (and may have changed the page): the second half of a
+			// double-click picks nothing more.
+			return false;
+		}
 		ProcessMouseDown(MouseEvent.GetEffectingButton());
 	}
 	return false;
+}
+
+bool FDinkNarrativeInputProcessor::HandleMouseMoveEvent(FSlateApplication& SlateApp, const FPointerEvent& MouseEvent)
+{
+	const UDinkStorySubsystem* S = Story.Get();
+	if (S && S->IsTitleOpen() && IsGameInputAllowed() && IsOverGameViewport(SlateApp, MouseEvent))
+	{
+		ProcessTitlePointer(MouseEvent.GetScreenSpacePosition(), /*bClick*/ false);
+	}
+	return false; // the cursor still moves
+}
+
+bool FDinkNarrativeInputProcessor::ProcessTitleKey(const FKey& Key)
+{
+	UDinkStorySubsystem* S = Story.Get();
+	if (!S || !S->IsTitleOpen())
+	{
+		return false;
+	}
+	using DinkInput::EAction;
+	if (DinkInput::IsBound(Key, EAction::MenuUp))
+	{
+		S->MoveTitleSelection(-1);
+		return true;
+	}
+	if (DinkInput::IsBound(Key, EAction::MenuDown))
+	{
+		S->MoveTitleSelection(1);
+		return true;
+	}
+	if (Key == EKeys::Escape || Key == EKeys::BackSpace || Key == EKeys::Gamepad_FaceButton_Right)
+	{
+		S->TitleBack();
+		return true;
+	}
+	if (IsConfirmKey(Key) || IsAttackKey(Key))
+	{
+		S->ConfirmTitle();
+		return true;
+	}
+	if (const int32 Digit = DigitIndex(Key); Digit != INDEX_NONE)
+	{
+		S->ChooseTitleRow(Digit);
+		return true;
+	}
+	// Dink's own keys do nothing on the title; anything else (the console key) passes on.
+	return DinkInput::IsBound(Key, EAction::Talk) || DinkInput::IsBound(Key, EAction::Magic) || DinkInput::IsBound(Key, EAction::Map)
+		|| DinkInput::IsBound(Key, EAction::Inventory) || DinkInput::IsBound(Key, EAction::MainMenu);
+}
+
+bool FDinkNarrativeInputProcessor::ProcessTitlePointer(const FVector2D& ScreenPos, bool bClick)
+{
+	UDinkStorySubsystem* S = Story.Get();
+	if (!S || !S->IsTitleOpen())
+	{
+		return false;
+	}
+	const int32 Row = S->GetTitleScreen().RowAt(ScreenPos);
+	if (Row == INDEX_NONE)
+	{
+		return false;
+	}
+	if (bClick)
+	{
+		S->ChooseTitleRow(Row);
+	}
+	else
+	{
+		S->HighlightTitleRow(Row); // hover moves the highlight as the arrow keys do
+	}
+	return true;
 }
 
 bool FDinkNarrativeInputProcessor::HandleMouseWheelOrGestureEvent(FSlateApplication& SlateApp, const FPointerEvent& InWheelEvent, const FPointerEvent* InGestureEvent)
@@ -249,6 +354,23 @@ bool FDinkNarrativeInputProcessor::ProcessKeyDown(const FKey& Key, bool bRepeat)
 	const bool bConfirm = IsConfirmKey(Key);
 	const int32 Digit = DigitIndex(Key);
 
+	if (S->IsTitleOpen())
+	{
+		return ProcessTitleKey(Key);
+	}
+	if (S->GetShownBitmap())
+	{
+		// A show_bmp picture (the map): any of the six game buttons closes it (ThinkShowBmp, dink.cpp:16722-16740); the
+		// script that showed it runs on. Other keys (the console key) pass.
+		using DinkInput::EAction;
+		if (bConfirm || IsAttackKey(Key) || DinkInput::IsBound(Key, EAction::Talk) || DinkInput::IsBound(Key, EAction::Magic)
+			|| DinkInput::IsBound(Key, EAction::Inventory) || DinkInput::IsBound(Key, EAction::MainMenu) || DinkInput::IsBound(Key, EAction::Map))
+		{
+			S->SkipDialogue();
+			return true;
+		}
+		return false;
+	}
 	if (S->IsInventoryOpen())
 	{
 		// The item screen (dink.cpp:16409-16636): cursor keys, the attack button arms, Enter closes.
@@ -257,12 +379,12 @@ bool FDinkNarrativeInputProcessor::ProcessKeyDown(const FKey& Key, bool bRepeat)
 			S->CloseInventory();
 			return true;
 		}
-		if (Key == EKeys::Left || Key == EKeys::A || Key == EKeys::Gamepad_DPad_Left)
+		if (Key == EKeys::Left || Key == EKeys::A || Key == EKeys::Gamepad_DPad_Left || Key == EKeys::Gamepad_LeftStick_Left)
 		{
 			S->MoveInventoryCursor(-1, 0);
 			return true;
 		}
-		if (Key == EKeys::Right || Key == EKeys::D || Key == EKeys::Gamepad_DPad_Right)
+		if (Key == EKeys::Right || Key == EKeys::D || Key == EKeys::Gamepad_DPad_Right || Key == EKeys::Gamepad_LeftStick_Right)
 		{
 			S->MoveInventoryCursor(1, 0);
 			return true;
@@ -308,6 +430,16 @@ bool FDinkNarrativeInputProcessor::ProcessKeyDown(const FKey& Key, bool bRepeat)
 			S->ChooseSelected();
 			return true;
 		}
+		// The attack button chooses too (1997: button 1 picks in the talk menu, dink.cpp:16153; escape.c's help says
+		// "Ctrl = Attack/choose"), not within the click guard of the menu appearing (a fight's level-up menu, lraise.c).
+		if (IsAttackKey(Key))
+		{
+			if (!ClickGuarded(MenuSeenAt))
+			{
+				S->ChooseSelected();
+			}
+			return true;
+		}
 		if (Digit != INDEX_NONE && Digit < 9)
 		{
 			S->Choose(Digit);
@@ -315,7 +447,7 @@ bool FDinkNarrativeInputProcessor::ProcessKeyDown(const FKey& Key, bool bRepeat)
 		}
 		return false;
 	}
-	if (bConfirm && S->SkipDialogue())
+	if (bConfirm && (IsFreeSkipKey(Key) || IsDinkHeld(*S)) && S->SkipDialogue())
 	{
 		return true;
 	}
@@ -363,6 +495,11 @@ bool FDinkNarrativeInputProcessor::ProcessMouseDown(const FKey& Button)
 		return false;
 	}
 	ObserveScreen(FPlatformTime::Seconds());
+	// Never an attack while the title is up, nor from the rest of the click (or double-click) that closed it.
+	if (S->IsTitleOpen() || ClickGuarded(S->GetTitleScreen().ClosedAt))
+	{
+		return S->IsTitleOpen();
+	}
 	if (S->IsInventoryOpen())
 	{
 		S->ArmInventorySelection(); // the item screen's attack button
@@ -373,13 +510,17 @@ bool FDinkNarrativeInputProcessor::ProcessMouseDown(const FKey& Button)
 	{
 		return !ClickGuarded(MenuSeenAt) && S->ChooseSelected();
 	}
-	if (NewestBlockingText(*S) != 0 && ClickGuarded(BlockingTextSeenAt))
+	// The click skips only while Dink is held (a cutscene); while he moves freely it is the attack (IsDinkHeld).
+	if (IsDinkHeld(*S))
 	{
-		return false;
-	}
-	if (S->SkipDialogue())
-	{
-		return true;
+		if (NewestBlockingText(*S) != 0 && ClickGuarded(BlockingTextSeenAt))
+		{
+			return false;
+		}
+		if (S->SkipDialogue())
+		{
+			return true;
+		}
 	}
 	return PressAttack(Button);
 }
@@ -399,6 +540,11 @@ bool FDinkNarrativeInputProcessor::ProcessWheel(float Delta)
 	if (!S || !S->IsReady() || FMath::IsNearlyZero(Delta))
 	{
 		return false;
+	}
+	if (S->IsTitleOpen())
+	{
+		S->MoveTitleSelection(Delta > 0.f ? -1 : 1);
+		return true;
 	}
 	if (S->IsInventoryOpen())
 	{
