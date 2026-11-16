@@ -27,7 +27,8 @@ from mathutils import Matrix, Vector
 A = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else []
 WHO = A[0] if A else 'slayer'
 HERE = os.path.dirname(os.path.abspath(__file__)); UNC = os.path.dirname(HERE)
-SRC = {'slayer': ('slayer', 'Slayer'), 'dragon': ('dragon', 'Dragon'), 'giant': ('stone_giant', 'Stone_Giant'), 'knight': ('npc_knight_blue', 'Knight')}[WHO]
+SRC = {'slayer': ('slayer', 'Slayer'), 'dragon': ('dragon', 'Dragon'), 'giant': ('stone_giant', 'Stone_Giant'), 'knight': ('npc_knight_blue', 'Knight'),
+       'goblin_hammer': ('goblin_hammer', 'Goblin_Hammer'), 'goblin_horned': ('goblin_horned', 'Goblin_Horned'), 'goblin_soldier': ('goblin_soldier', 'Goblin_Soldier')}[WHO]
 DIR = os.path.join(UNC, *SRC); NAME = SRC[1]; BLEND = os.path.join(DIR, 'SK_%s_PR.blend' % NAME)
 FPS = 30; TAU = math.tau
 ARM = None
@@ -284,7 +285,9 @@ def kn_death(t):
     move('pelvis', (0, .55 * fall + .05 * st, -(hip - .16) * fall)); sw('pelvis', 10 * st + 80 * fall)
     for b in SPN: sw(b, 2 * st + 1.5 * fall)
     sw('head', 14 * st - 6 * rest); yaw('head', 20 * rest)
-    kn_carry(1 - fall, tilt=-80 * fall); sw('upperarm_r', -20 * fall); roll('upperarm_r', 55 * fall); roll('upperarm_l', -70 * fall); sw('lowerarm_l', 20 * fall)
+    # the knight's halberd lies along his forearm and is tilted back to the ground; a goblin's weapon stands beside him at rest
+    # (parallel to his body), so it comes to lie along the ground with him without the tilt (765 / 785 / 805: weapon beside the body)
+    kn_carry(1 - fall, tilt=(0 if WHO.startswith('goblin') else -80) * fall); sw('upperarm_r', -20 * fall); roll('upperarm_r', 55 * fall); roll('upperarm_l', -70 * fall); sw('lowerarm_l', 20 * fall)
     kn_leg('l', 16 * rest, .25 * bump(t, .2, .7) + .2 * rest); kn_leg('r', -4 * fall, 0); yaw('thigh_l', 14 * fall); yaw('thigh_r', -8 * fall)
 
 
@@ -293,7 +296,9 @@ CLIPS = {
     'dragon': (('Idle', dr_idle, 60, True), ('Walk', dr_walk, 30, True), ('Run', lambda t: dr_walk(t, 1.7), 16, True), ('Attack', dr_attack, 24, False), ('Hit', dr_hit, 12, False), ('Death', dr_death, 42, False)),
     'giant': (('Idle', gi_idle, 60, True), ('Walk', gi_walk, 32, True), ('Run', lambda t: gi_walk(t, 1.9), 16, True), ('Attack', gi_attack, 26, False), ('Hit', gi_hit, 12, False), ('Death', gi_death, 40, False)),
     'knight': (('Idle', kn_idle, 60, True), ('Walk', kn_walk, 28, True), ('Run', lambda t: kn_walk(t, 1.45), 16, True), ('Attack', kn_attack, 22, False), ('Hit', kn_hit, 10, False), ('Death', kn_death, 36, False)),
-}[WHO]
+}
+# the goblins stand on the knight's bone names and carry a long weapon in the right hand: the same poses drive them
+CLIPS = CLIPS['knight' if WHO.startswith('goblin') else WHO]
 
 
 def stand():
@@ -303,7 +308,7 @@ def stand():
     move('pelvis', (0, 0, -dz))
 
 
-THICK = {'slayer': .07, 'dragon': .14, 'giant': .2, 'knight': .08}[WHO]
+THICK = {'slayer': .07, 'dragon': .14, 'giant': .2, 'knight': .08}.get(WHO, .09)
 
 
 def lie():
@@ -337,7 +342,7 @@ def build():
             bpy.context.view_layer.update()
             fn((f % n) / n if loop else f / n)
             if clip in ('Walk', 'Run'): stand()
-            if clip == 'Death' and WHO in ('slayer', 'giant'): lie()
+            if clip == 'Death' and (WHO in ('slayer', 'giant', 'dragon') or WHO.startswith('goblin')): lie()
             for b in order:
                 if b == 'root': continue
                 pb = ARM.pose.bones[b]; pb.keyframe_insert('rotation_quaternion', frame=f + 1)
@@ -417,7 +422,33 @@ def shatter(ob, src):
         for g in v.groups:
             k = PIECES.get(names.get(g.group, ''), 0); acc[k] = acc.get(k, 0.0) + g.weight
         piece_v.append(max(acc, key=acc.get) if acc else 0)
-    bm = bmesh.new(); bm.from_mesh(me); bm.verts.ensure_lookup_table(); uv = bm.loops.layers.uv.active; tag = bm.faces.layers.int.new('piece')
+    # picture 212: ONE wing still stands up from the carcass (pale skin, bloodied from the root); the wing the body fell on is the one
+    # that is torn off and lies flat. The upper wing of the death pose therefore stays part of the trunk.
+    wz = {k: [me.vertices[i].co.z for i, q in enumerate(piece_v) if q == k] for k in (2, 3)}
+    up = max((k for k in (2, 3) if wz[k]), key=lambda k: sum(wz[k]) / len(wz[k]), default=None)
+    def core(v):                                              # spine, ribs and tail root: what the carcass rests on (not a leg, not the wing)
+        acc = {}
+        for g in v.groups: acc[names.get(g.group, '')] = g.weight
+        b = max(acc, key=acc.get) if acc else ''
+        return b.startswith(('pelvis', 'spine', 'chest', 'tail_0', 'neck_01'))
+    trunk_i = {i for i, q in enumerate(piece_v) if q == 0 and core(me.vertices[i])}
+    print('[CLIPS] bones', sorted(names.values()), 'core verts', len(trunk_i))
+    wing_i = {i for i, q in enumerate(piece_v) if up and q == up}
+    if up: piece_v = [0 if q == up else q for q in piece_v]
+    bm = bmesh.new(); bm.from_mesh(me); bm.verts.ensure_lookup_table(); uv = bm.loops.layers.uv.active; tag = bm.faces.layers.int.new('piece'); vid = bm.verts.layers.int.new('src')
+    for v in bm.verts: v[vid] = 1 if v.index in trunk_i else 0
+    # the standing wing keeps its pale skin: blood runs out from the root and thins towards the tips (212). corpse_blood.py reads the
+    # wing's UV triangles with their distance from the root (0 root .. 1 tip) and soaks the texture accordingly.
+    if wing_i and uv:
+        import json as _json
+        core_c = sum((me.vertices[i].co for i in trunk_i), Vector()) / max(1, len(trunk_i)); wv = [bm.verts[i] for i in wing_i]
+        root = min(wv, key=lambda v: (v.co - core_c).length).co.copy(); far = max((v.co - root).length for v in wv) or 1.0; tris = []
+        for f in bm.faces:
+            if all(v.index in wing_i for v in f.verts):
+                ls = list(f.loops); t = (f.calc_center_median() - root).length / far
+                for k in range(1, len(ls) - 1): tris.append([round(t, 3)] + [round(c, 5) for l in (ls[0], ls[k], ls[k + 1]) for c in l[uv].uv])
+        with open(os.path.join(DIR, 'corpse_wing_uv.json'), 'w') as fh: _json.dump({'about': 'UV triangles of the wing that still stands on the dead dragon: [distance from the wing root 0..1, u0, v0, u1, v1, u2, v2]', 'triangles': tris}, fh)
+        print('[CLIPS] standing wing: %d UV triangles' % len(tris))
     for f in bm.faces:
         cnt = {}
         for v in f.verts: cnt[piece_v[v.index]] = cnt.get(piece_v[v.index], 0) + 1
@@ -434,6 +465,10 @@ def shatter(ob, src):
             src_l = next((ol for ol in l.vert.link_loops if ol.face in old), None)
             if src_l is not None and uv: l[uv].uv = src_l[uv].uv
     bmesh.ops.triangulate(bm, faces=[f for f in bm.faces if f not in old and len(f.verts) > 4])
+    # the trunk LIES on the ground: in the death pose it rests on the wing under it, and with that wing torn off and flattened the
+    # carcass hung 0.9 m in the air (seen in the game on 16 Nov as a piece standing up)
+    tv = list({v for f in bm.faces if f[tag] == 0 for v in f.verts}); zs = sorted(v.co.z for v in tv if v[vid]); z0 = zs[len(zs) // 25] if zs else 0.0      # the belly side sinks a little into the pool
+    for v in tv: v.co.z = max(v.co.z - (z0 - 0.004), 0.004 + 0.02 * rnd.random())                       # a leg under the body is pressed flat
     centre = sum((v.co for v in bm.verts), Vector()) / max(1, len(bm.verts))
     for k in range(10):
         vs = list({v for f in bm.faces if f[tag] == k for v in f.verts})
@@ -449,21 +484,117 @@ def shatter(ob, src):
     bm.normal_update(); bm.to_mesh(me); bm.free(); me.update()
 
 
+FLESH_UV = (0.010, 0.990)     # corpse_blood.py paints raw flesh into this corner of the dragon's corpse texture
+
+
+def tear(ob, src):
+    """Sprites 212 / 216: the dead dragon is torn apart, raw and red, not a sleeping animal. The body of the death pose is torn at the
+    neck, at both wing roots, at one hip and half way down the tail; every tear is closed with a face that takes the raw-flesh colour
+    of the corpse texture; the head and neck lie turned away from the trunk, the leg and the tail end are thrown clear and lie flat, the trunk lies
+    on the ground, the wing under it is torn off and collapsed flat, and the upper wing still stands from the carcass as in 212."""
+    import bmesh, random
+    rnd = random.Random(212); names = {g.index: g.name for g in src.vertex_groups}; me = ob.data
+
+    def piece(bone):
+        if bone in ('neck_02', 'neck_03', 'head', 'jaw'): return 1
+        if bone.startswith('wing_'): return 2 if bone.endswith('_l') else 3
+        if bone in ('tail_04', 'tail_05', 'tail_06', 'tail_07'): return 4
+        if bone in ('thigh_r', 'calf_r', 'foot_r', 'ball_r'): return 5
+        return 0
+    piece_v = []
+    for v in me.vertices:
+        acc = {}
+        for g in v.groups:
+            k = piece(names.get(g.group, '')); acc[k] = acc.get(k, 0.0) + g.weight
+        piece_v.append(max(acc, key=acc.get) if acc else 0)
+    # picture 212: ONE wing still stands up from the carcass (pale skin, bloodied from the root); the wing the body fell on is the one
+    # that is torn off and lies flat. The upper wing of the death pose therefore stays part of the trunk.
+    wz = {k: [me.vertices[i].co.z for i, q in enumerate(piece_v) if q == k] for k in (2, 3)}
+    up = max((k for k in (2, 3) if wz[k]), key=lambda k: sum(wz[k]) / len(wz[k]), default=None)
+    def core(v):                                              # spine, ribs and tail root: what the carcass rests on (not a leg, not the wing)
+        acc = {}
+        for g in v.groups: acc[names.get(g.group, '')] = g.weight
+        b = max(acc, key=acc.get) if acc else ''
+        return b.startswith(('pelvis', 'spine', 'chest', 'tail_0', 'neck_01'))
+    trunk_i = {i for i, q in enumerate(piece_v) if q == 0 and core(me.vertices[i])}
+    print('[CLIPS] bones', sorted(names.values()), 'core verts', len(trunk_i))
+    wing_i = {i for i, q in enumerate(piece_v) if up and q == up}
+    if up: piece_v = [0 if q == up else q for q in piece_v]
+    bm = bmesh.new(); bm.from_mesh(me); bm.verts.ensure_lookup_table(); uv = bm.loops.layers.uv.active; tag = bm.faces.layers.int.new('piece'); vid = bm.verts.layers.int.new('src')
+    for v in bm.verts: v[vid] = 1 if v.index in trunk_i else 0
+    # the standing wing keeps its pale skin: blood runs out from the root and thins towards the tips (212). corpse_blood.py reads the
+    # wing's UV triangles with their distance from the root (0 root .. 1 tip) and soaks the texture accordingly.
+    if wing_i and uv:
+        import json as _json
+        core_c = sum((me.vertices[i].co for i in trunk_i), Vector()) / max(1, len(trunk_i)); wv = [bm.verts[i] for i in wing_i]
+        root = min(wv, key=lambda v: (v.co - core_c).length).co.copy(); far = max((v.co - root).length for v in wv) or 1.0; tris = []
+        for f in bm.faces:
+            if all(v.index in wing_i for v in f.verts):
+                ls = list(f.loops); t = (f.calc_center_median() - root).length / far
+                for k in range(1, len(ls) - 1): tris.append([round(t, 3)] + [round(c, 5) for l in (ls[0], ls[k], ls[k + 1]) for c in l[uv].uv])
+        with open(os.path.join(DIR, 'corpse_wing_uv.json'), 'w') as fh: _json.dump({'about': 'UV triangles of the wing that still stands on the dead dragon: [distance from the wing root 0..1, u0, v0, u1, v1, u2, v2]', 'triangles': tris}, fh)
+        print('[CLIPS] standing wing: %d UV triangles' % len(tris))
+    for f in bm.faces:
+        cnt = {}
+        for v in f.verts: cnt[piece_v[v.index]] = cnt.get(piece_v[v.index], 0) + 1
+        f[tag] = max(cnt, key=cnt.get)
+    bmesh.ops.split_edges(bm, edges=[e for e in bm.edges if len(e.link_faces) == 2 and e.link_faces[0][tag] != e.link_faces[1][tag]])
+    old = set(bm.faces); bmesh.ops.holes_fill(bm, edges=[e for e in bm.edges if e.is_boundary], sides=0)
+    for f in bm.faces:
+        if f in old: continue
+        nb = next((lf for e in f.edges for lf in e.link_faces if lf in old), None)
+        if nb is not None: f[tag] = nb[tag]
+        f.smooth = False
+        if uv:
+            for l in f.loops: l[uv].uv = FLESH_UV
+    # the trunk LIES on the ground: in the death pose it rests on the wing under it, and with that wing torn off and flattened the
+    # carcass hung 0.9 m in the air (seen in the game on 16 Nov as a piece standing up)
+    tv = list({v for f in bm.faces if f[tag] == 0 for v in f.verts}); zs = sorted(v.co.z for v in tv if v[vid]); z0 = zs[len(zs) // 25] if zs else 0.0      # the belly side sinks a little into the pool
+    for v in tv: v.co.z = max(v.co.z - (z0 - 0.004), 0.004 + 0.02 * rnd.random())                       # a leg under the body is pressed flat
+    centre = sum((v.co for v in bm.verts), Vector()) / max(1, len(bm.verts))
+    for k in range(1, 6):
+        vs = list({v for f in bm.faces if f[tag] == k for v in f.verts})
+        if not vs: continue
+        c = sum((v.co for v in vs), Vector()) / len(vs); out = Vector((c.x - centre.x, c.y - centre.y, 0)); out = out.normalized() if out.length > 1e-3 else Vector((1, 0, 0))
+        if k in (2, 3):                                        # a wing: collapsed, flat on the ground, pulled a little off the trunk
+            z0 = min(v.co.z for v in vs)
+            for v in vs: v.co.z = 0.012 + (v.co.z - z0) * 0.07 + 0.02 * rnd.random(); v.co.x += out.x * 0.25; v.co.y += out.y * 0.25
+            continue
+        # a torn-off piece LIES: its thinnest principal axis is turned to the vertical first (the neck and the tail end of the death pose
+        # rise from the trunk; a piece rotated only about Z stood up 2.7 m, seen in the game on 16 Nov), then it is swung round and thrown clear
+        import numpy as np
+        P = np.array([tuple(v.co - c) for v in vs]); thin = Vector(np.linalg.eigh(P.T @ P)[1][:, 0])
+        if thin.z < 0: thin = -thin
+        L = thin.rotation_difference(Vector((0, 0, 1))).to_matrix().to_4x4()
+        R = Matrix.Rotation(math.radians(rnd.uniform(35, 70) * rnd.choice((-1, 1))), 4, 'Z') @ Matrix.Rotation(math.radians(rnd.uniform(-6, 6)), 4, 'X') @ L
+        d = out * {1: 0.55, 4: 0.45, 5: 0.60}[k]
+        for v in vs: v.co = c + (R @ (v.co - c)) + d
+        z0 = min(v.co.z for v in vs)
+        for v in vs: v.co.z -= z0 - 0.004
+    for k in range(0, 6):
+        zs = [v.co.z for f in bm.faces if f[tag] == k for v in f.verts]
+        if zs: print('[CLIPS] torn piece', k, 'height', round(max(zs) - min(zs), 2), 'top', round(max(zs), 2))
+    bm.normal_update(); bm.to_mesh(me); bm.free(); me.update()
+
+
 def export():
     sc = bpy.context.scene
     for o in bpy.context.view_layer.objects: o.select_set(False)
     ARM.hide_set(False); ARM.select_set(True); bpy.context.view_layer.objects.active = ARM
     # the clips and the skeletal mesh go to Unreal through export_monster_ue.py (the creature importer's convention)
     # the body as it lies after the death clip: a static mesh for the corpse the kill leaves
-    if WHO not in ('slayer', 'giant'): return                # the dragon and the knight leave their corpse kit assets (PhotorealPass/Corpses)
+    if WHO not in ('slayer', 'giant', 'dragon') and not WHO.startswith('goblin'): return                # the dragon and the knight leave their corpse kit assets (PhotorealPass/Corpses)
     n = next(c[2] for c in CLIPS if c[0] == 'Death'); set_clip('%s_Death' % NAME, n + 1)
     src = lod0(); dg = bpy.context.evaluated_depsgraph_get(); me = bpy.data.meshes.new_from_object(src.evaluated_get(dg), depsgraph=dg)
     ob = bpy.data.objects.new('SM_%s_Corpse_PR' % NAME, me); sc.collection.objects.link(ob); ob.matrix_world = src.matrix_world.copy()
     zmin = min((ob.matrix_world @ v.co).z for v in me.vertices)
     for v in me.vertices: v.co.z -= zmin - .004
     if WHO == 'giant': shatter(ob, src)
+    if WHO == 'dragon': tear(ob, src)
     cx = (max(v.co.x for v in me.vertices) + min(v.co.x for v in me.vertices)) / 2; cy = (max(v.co.y for v in me.vertices) + min(v.co.y for v in me.vertices)) / 2
     for v in me.vertices: v.co.x -= cx; v.co.y -= cy                      # the body lies in the middle of its pool (the ground decal is centred on the kill)
+    import json as _json                                                   # for a death one-shot that hands over to this mesh: where it lies against the clip's last frame
+    with open(os.path.join(DIR, 'corpse.json'), 'w') as fh: _json.dump({'mesh': 'SM_%s_Corpse_PR' % NAME, 'death_clip_last_frame_minus_corpse_m': [round(cx, 4), round(cy, 4), round(zmin - .004, 4)], 'axes': 'Blender: +X right, -Y forward, +Z up; root-relative', 'reshaped': WHO in ('giant', 'dragon')}, fh, indent=1)
     for o in bpy.context.view_layer.objects: o.select_set(False)
     ob.select_set(True); bpy.context.view_layer.objects.active = ob
     p = os.path.join(DIR, 'SM_%s_Corpse_PR.fbx' % NAME)
@@ -479,5 +610,7 @@ ARM = next(o for o in bpy.data.objects if o.type == 'ARMATURE')
 if 'build' in A:
     build(); ARM.data.pose_position = 'REST'; bpy.ops.wm.save_mainfile(); ARM.data.pose_position = 'POSE'
 if 'review' in A: review()
+if 'review' in A:                       # the review sheets are EEVEE: say which GPU drew them (run with DRI_PRIME=pci-0000_03_00_0: the RX 6800)
+    import gpu; print('[GPU] EEVEE renderer:', gpu.platform.renderer_get())
 if 'export' in A:
     bpy.ops.wm.open_mainfile(filepath=BLEND); ARM = next(o for o in bpy.data.objects if o.type == 'ARMATURE'); export()

@@ -301,6 +301,37 @@ so `AN_Dragon_Attack` is authored and not bound. A kill leaves the corpse kit's 
 
 - **What binds at runtime**: `structure_sets.json` beside `town_houses.json` (same loader, same switch `dink.TownHouses`). A set hides the cards it names and shows its modules; nothing else changes.
 
+## Monsters: goblins (16 Nov 2026)
+
+Class rows `goblin_hammer` (761-769, attack 751-759), `goblin_soldier` (801-809, attack 791-799) and `goblin_horned` (Mog,
+781-789, attack 771-779 and 780; script-made, no placement). `Unclaimed/tools/bl.sh build_goblin.py all final` (needs the
+`rusty_metal_02` scan from LFS): a bare body, garments as separate shells with hems, and gear that is rigid in the game mesh
+(helmet on `head`, weapon on `hand_r`, shield on `lowerarm_l`). Then per goblin `clips_monsters.py goblin_<kit> build review
+export` (the knight's pose functions; the dead goblin's weapon comes to lie beside him), `export_monster_ue.py goblin_<kit>`,
+and `python3 -I corpse_blood.py`. Import: `DINK_PHOTOREAL_ONLY=goblins Scripts/import_photoreal_art.sh` ->
+`/Game/Dink/Photoreal/Creatures/Goblin{Hammer,Horned,Soldier}` (hit and death clips are delivered with the walk and attack
+clips; the creature one-shots play them). A kill leaves `base_walk + 5` (765 / 785 / 805): the body on
+its back, drenched, in a pool with thrown drops (`M_Goblin_<Kit>_BloodPool_Decal`, corpse `scale` = the row's `scale`).
+`corpse_blood.py` (all monster corpses, the bonca's and the slayer's too): a pool is dark where the blood stands (from a
+hand's width inside the rim, and in blotches) and bright only at its thin rim, with runs and drops in the drying tone; the
+blood on a body is as dark as its pool and tacky rather than glossy. A pool on grass only reddens the grass (the carpet
+does not open under corpse decals yet). To see a goblin corpse in a capture send `dink.Run <its script> hit <origin>` before
+`dink.Hurt <origin> 900`: `dink.Hurt` does not run `hit`, and the goblins' `hit` is what makes them brain 9.
+
+## Dragon remains (16 Nov 2026)
+
+A killed dragon no longer leaves the corpse kit's tan dragon but its own remains: `clips_monsters.py dragon build export`
+freezes the death pose and tears it (`tear`: at the neck, the root of the wing under the body, one hip and half way down the
+tail; the tear faces take the raw flesh painted into the corner of `T_Dragon_PR_Corpse_BC.png`; the trunk is set down on its
+spine and ribs, the torn wing is collapsed flat, every thrown piece is laid on its thinnest axis, and the upper wing still
+stands from the carcass, bloodied, as picture 212 has it), `corpse_blood.py`
+soaks about three quarters of the brown hide, keeps the standing wing's skin pale away from its root (`corpse_wing_uv.json`,
+written by `tear`) and writes `T_Dragon_PR_BloodPool_BC.png`; the importer makes `SM_Dragon_Corpse_PR`,
+`M_Dragon_Corpse_PR` and `M_Dragon_BloodPool_Decal` in `/Game/Dink/Photoreal/Creatures/Dragon`. The placed 216 card keeps the
+kit asset (`families.json`). Every monster corpse gets three LODs at import (`corpse_lods`: 100 / 50 / 25 % of the triangles,
+switching at about 10 m and 20 m); `corpse.json` beside each source gives where the corpse lies against the death clip's last
+frame.
+
 ## Turning the pass off
 
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):

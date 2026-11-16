@@ -208,6 +208,8 @@ def export(arm):
     for v in me.vertices: v.co.z -= zmin - .004
     cx = (max(v.co.x for v in me.vertices) + min(v.co.x for v in me.vertices)) / 2; cy = (max(v.co.y for v in me.vertices) + min(v.co.y for v in me.vertices)) / 2
     for v in me.vertices: v.co.x -= cx; v.co.y -= cy                      # the body lies in the middle of its pool (the ground decal is centred on the kill)
+    import json as _json                                                   # for a death one-shot that hands over to this mesh: where it lies against the clip's last frame
+    with open(os.path.join(DIR, 'corpse.json'), 'w') as fh: _json.dump({'mesh': 'SM_%s_Corpse_PR' % 'Bonca', 'death_clip_last_frame_minus_corpse_m': [round(cx, 4), round(cy, 4), round(zmin - .004, 4)], 'axes': 'Blender: +X right, -Y forward, +Z up; root-relative', 'reshaped': False}, fh, indent=1)
     for o in bpy.context.view_layer.objects: o.select_set(False)
     ob.select_set(True); bpy.context.view_layer.objects.active = ob
     p = os.path.join(DIR, 'SM_Bonca_Corpse_PR.fbx')
@@ -226,5 +228,7 @@ arm = next(o for o in bpy.data.objects if o.type == 'ARMATURE')
 if 'build' in A:
     build(arm); arm.data.pose_position = 'REST'; bpy.ops.wm.save_mainfile(); arm.data.pose_position = 'POSE'
 if 'review' in A: review(arm)
+if 'review' in A:                       # the review sheets are EEVEE: say which GPU drew them (run with DRI_PRIME=pci-0000_03_00_0: the RX 6800)
+    import gpu; print('[GPU] EEVEE renderer:', gpu.platform.renderer_get())
 if 'export' in A:
     bpy.ops.wm.open_mainfile(filepath=BLEND); export(next(o for o in bpy.data.objects if o.type == 'ARMATURE'))

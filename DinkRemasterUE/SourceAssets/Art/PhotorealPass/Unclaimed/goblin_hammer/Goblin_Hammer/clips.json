@@ -1,0 +1,36 @@
+{
+ "Idle": {
+  "frames": 61,
+  "loop": true,
+  "duration_s": 2.0
+ },
+ "Walk": {
+  "frames": 29,
+  "loop": true,
+  "duration_s": 0.9333,
+  "stride_m": 0.454,
+  "speed_cm_s": 97.3
+ },
+ "Run": {
+  "frames": 17,
+  "loop": true,
+  "duration_s": 0.5333,
+  "stride_m": 0.647,
+  "speed_cm_s": 242.6
+ },
+ "Attack": {
+  "frames": 23,
+  "loop": false,
+  "duration_s": 0.7333
+ },
+ "Hit": {
+  "frames": 11,
+  "loop": false,
+  "duration_s": 0.3333
+ },
+ "Death": {
+  "frames": 37,
+  "loop": false,
+  "duration_s": 1.2
+ }
+}

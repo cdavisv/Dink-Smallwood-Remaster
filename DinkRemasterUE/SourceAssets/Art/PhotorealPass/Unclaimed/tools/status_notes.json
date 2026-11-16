@@ -312,11 +312,11 @@
  },
  "goblin_soldier": {
   "status": "partial",
-  "why": "rigged goblin (project humanoid bone names, 4 LODs, pose-tested) with scale coat, helmet, shield and bill. Partial: fused blob body with painted-on clothing, gear skinned by nearest bone, no animation clips"
+  "why": "rigged goblin (project humanoid bone names, 4 LODs, pose-tested) with scale coat, helmet, shield and bill. Rebuilt 16 Nov 2026: bare body, garments as separate shells, rigid gear, walk / attack / hit / death clips, a drenched corpse with a pool; bound as creature class goblin_soldier. Partial: simple smooth limbs close up, no face or hand detail"
  },
  "goblin_hammer": {
   "status": "partial",
-  "why": "rigged goblin (same body as the soldier) with tunic, skullcap and war hammer. Partial for the same reasons as the soldier"
+  "why": "rigged goblin (same body as the soldier) with tunic, skullcap and war hammer; rebuilt and bound 16 Nov 2026 as creature class goblin_hammer (the horned kit of the same build is Mog, class goblin_horned). Partial for the same reasons as the soldier"
  },
  "burnt_floor_hole": {
   "status": "partial",
