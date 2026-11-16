@@ -392,23 +392,38 @@ def unclaimed_status():
     return out
 
 
-def delivery_detail(deliveries, games, pk):
-    """Which of several same-named deliveries each package was imported from (its recorded RelativeFilename)."""
-    if not games:
-        return "%d separate deliveries share this name (%s); none imported" % (len(deliveries), "; ".join(deliveries))
-    parts, used = [], set()
-    for g in games:
-        roots_of = sorted({delivery_root(x) for x in pk.import_sources(g)})
-        hit = [d for d in roots_of if d in deliveries]
-        used.update(hit)
+def source_index(pk):
+    """{(delivery, file stem): {packages}} and {delivery: {packages}} over EVERY package's recorded import source, so a
+    delivery imported under another package name (SK_Pig -> SK_Pig_Photoreal) is still found."""
+    if getattr(pk, "_source_index", None) is None:
+        by_dn, by_d = collections.defaultdict(set), collections.defaultdict(set)
+        for g in sorted(pk.files):
+            if "/_Generated/" in g or not os.path.basename(g).startswith(("SM_", "SK_", "AN_", "T_", "A_")):
+                continue
+            for src in pk.import_sources(g):
+                d = delivery_root(src)
+                by_dn[(d, LOD_SUFFIX.sub("", os.path.splitext(os.path.basename(src))[0]))].add(g)
+                by_d[d].add(g)
+        pk._source_index = (by_dn, by_d)
+    return pk._source_index
+
+
+def delivery_detail(deliveries, stems, pk):
+    """For each of several same-named deliveries: which package was imported from this file (full /Game path), or
+    whether the delivery is the import source of other packages (keep it), or nothing imported it."""
+    by_dn, by_d = source_index(pk)
+    parts = []
+    for d in deliveries:
+        hit = sorted({g for st in stems for g in by_dn.get((d, st), ())})
         if hit:
-            parts.append("%s imported from %s" % (os.path.basename(g), ", ".join(hit)))
+            parts.append("%s imported as %s" % (d, ", ".join(hit)))
+        elif by_d.get(d):
+            other = sorted(by_d[d])
+            parts.append("%s: this file not imported, but the delivery is the import source of %s%s (keep it)" % (
+                d, ", ".join(other[:3]), " and %d more" % (len(other) - 3) if len(other) > 3 else ""))
         else:
-            parts.append("%s: recorded source %s matches no delivery" % (
-                os.path.basename(g), ", ".join(roots_of) if roots_of else "(none recorded)"))
-    rest = [d for d in deliveries if d not in used]
-    return "%d separate deliveries share this name: %s%s" % (
-        len(deliveries), "; ".join(parts), ("; not imported: " + ", ".join(rest)) if rest else "")
+            parts.append("%s: not imported (no package records it)" % d)
+    return "%d separate deliveries share this name: %s" % (len(deliveries), "; ".join(parts))
 
 
 def unclaimed_family_of(path):
@@ -478,20 +493,31 @@ def table_ids(paths=None):
 
 
 def ids_ever():
-    """Every row id the two tables have ever had (rows added in their git history): a queue row is removed when its
-    PR merges (FABLE_ART_QUEUE.md), so an id that existed is stale, not a typo."""
-    out = subprocess.run(["git", "-C", PROJECT, "log", "-p", "--format=", "--",
-                          "../doc/remaster/ALPHA_BUG_LIST.md", "../doc/remaster/FABLE_ART_QUEUE.md"],
-                         capture_output=True, text=True).stdout
-    return set(re.findall(r"^\+\| *([A-Z]{1,2}-?Q?[0-9]+[a-z]?) *\|", out, re.M))
+    """Every row id the two tables have ever had (rows added in their git history), or None when the history is not
+    known: no git, no work tree, a shallow clone (CI checks out depth 1), or a failing git. Informative only."""
+    try:
+        def git(*args):
+            return subprocess.run(["git", "-C", PROJECT] + list(args), capture_output=True, text=True)
+        inside = git("rev-parse", "--is-inside-work-tree")
+        shallow = git("rev-parse", "--is-shallow-repository")
+        if inside.returncode or inside.stdout.strip() != "true" or shallow.returncode or shallow.stdout.strip() != "false":
+            return None
+        log = git("log", "-p", "--format=", "--", "../doc/remaster/ALPHA_BUG_LIST.md", "../doc/remaster/FABLE_ART_QUEUE.md")
+        if log.returncode:
+            return None
+    except OSError:
+        return None
+    return set(re.findall(r"^\+\| *([A-Z]{1,2}-?Q?[0-9]+[a-z]?) *\|", log.stdout, re.M))
 
 
 def check_owner_ids(rows, current, ever):
-    """-> (typos, stale, pending_now_present). A typo (an id the tables never had) stops the run; a stale id (a row
-    that existed and was removed) only warns; a pending id that now exists asks for the `pending_ids` entry to go."""
+    """-> (unknown, stale, pending_now_present). unknown: an id neither table has and their history never had (or the
+    history is not known, ever=None); stale: an id whose row was removed. Both only warn (CI must stay green when a
+    queue row goes as its PR merges); a pending id that now exists asks for the `pending_ids` entry to go."""
     named = {(i, bool(i in r.get("pending_ids", []))) for r in rows for i in OWNER_ID.findall(r["why"])}
-    typos = sorted({i for i, pend in named if not pend and i not in current and i not in ever})
-    stale = sorted({i for i, pend in named if not pend and i not in current and i in ever})
+    gone = {i for i, pend in named if not pend and i not in current}
+    stale = sorted(gone & ever) if ever is not None else []
+    typos = sorted(gone - set(stale))
     present = sorted({i for i, pend in named if pend and i in current})
     return typos, stale, present
 
@@ -508,13 +534,16 @@ def known_rows(check_ids=True):
             print("art_wiring_audit: warning: ALPHA_BUG_LIST.md / FABLE_ART_QUEUE.md not found; owner ids not checked",
                   file=sys.stderr)
         else:
-            typos, stale, present = check_owner_ids(d.get("rows", []), current, ids_ever())
-            if typos:
-                sys.exit("art_wiring_audit: art_wiring_known.json names rows the bug list / art queue never had: "
-                         + ", ".join(typos))
+            ever = ids_ever()
+            typos, stale, present = check_owner_ids(d.get("rows", []), current, ever)
+            for i in typos:
+                print("art_wiring_audit: warning: owner row %s is in neither table%s; its reasons are stale" % (
+                    i, " (git history unknown: removed or mistyped)" if ever is None else " and never was (a typo?)"),
+                      file=sys.stderr)
             for i in stale:
                 print("art_wiring_audit: warning: owner row %s was removed from the tables; its reasons are stale" % i,
                       file=sys.stderr)
+            stale = stale + typos
             for i in present:
                 print("art_wiring_audit: warning: pending id %s now exists; drop it from pending_ids" % i, file=sys.stderr)
             STALE_IDS.update(stale)
@@ -651,9 +680,8 @@ def card_table(audit_path, coverage_path, families_path, unbound_by_class, place
     fam = {f.get("family") for f in (read_json(families_path) or {}).get("families", [])}
     by_origin = {p["id"]: p.get("class_id") for p in placements}
     cards = collections.defaultdict(lambda: {"cards": 0, "screens": set(), "final": [], "buried": 0, "with_origin": 0})
-    with open(audit_path, encoding="utf-8") as h:
-        for line in h:
-            d = json.loads(line)
+    if True:
+        for d in audit_lines(audit_path):
             for p in d.get("prims", []):
                 m = re.search(r"MI_Sprite_(\d+)_(\d+)", json.dumps(p.get("mats", [])))
                 cn = p.get("cn", "")
@@ -780,12 +808,24 @@ def in_commit(game, commit, via_here, roots_here=None):
     return root in roots
 
 
+AUDIT_SKIPPED = []     # scene audit lines that do not parse (a damaged copy): their screen, when it can be read
+
+
+def audit_lines(audit_path):
+    """The scene audit's screen records; an unparsable line is skipped and noted in AUDIT_SKIPPED."""
+    with open(audit_path, "rb") as h:
+        for raw in h:
+            if not raw.strip(b"\x00\r\n "):
+                continue
+            try:
+                yield json.loads(raw)
+            except ValueError:
+                m = re.match(rb'\{"screen":(\d+)', raw)
+                AUDIT_SKIPPED.append(int(m.group(1)) if m else None)
+
+
 def captured_screens(audit_path):
-    out = set()
-    with open(audit_path, encoding="utf-8") as h:
-        for line in h:
-            out.add(json.loads(line).get("screen"))
-    return out
+    return {d.get("screen") for d in audit_lines(audit_path)}
 
 
 def load_placements(path):
@@ -913,7 +953,8 @@ def main():
         reason = ""
         deliveries = sorted({delivery_root(rel(x, ART)) for x in srcs})
         if kind != "clip" and len(deliveries) > 1:
-            details.append(delivery_detail(deliveries, games, pk))
+            stems = {LOD_SUFFIX.sub("", os.path.splitext(os.path.basename(x))[0]) for x in srcs}
+            details.append(delivery_detail(deliveries, stems, pk))
         fam = unclaimed_family_of(src) if src else None
         st = status.get(name) or (status.get("family:" + fam) if fam else None)
         k = known_reason(name, src_all, known)
@@ -1060,8 +1101,11 @@ def main():
         elif not seen_s and seen and n.startswith("SM_"):
             flags.append("not_seen")
             details.append("not seen: " + unseen_reason([g], via, families, placements, captured, environment))
-        rows.append({"asset": n, "kind": "package only", "stream": "/".join(g.split("/")[2:4]), "source": "",
-                     "exported": "?", "imported": g, "bound": bound_where, "cooked": cooked_s, "seen": seen_s,
+        recorded = ["SourceAssets/Art/" + x for x in pk.import_sources(g)]
+        rows.append({"asset": n, "kind": "package only", "stream": "/".join(g.split("/")[2:4]),
+                     "source": " | ".join(recorded),
+                     "exported": ("yes" if all(os.path.isfile(os.path.join(PROJECT, x)) for x in recorded) else "no") if recorded else "?",
+                     "imported": g, "bound": bound_where, "cooked": cooked_s, "seen": seen_s,
                      "covered_by": covered_by(n, index),
                      "flag": worst(flags), "detail": "; ".join(dict.fromkeys(details)), "reason": reason})
 
@@ -1130,6 +1174,9 @@ def main():
                       n_cards, len(card_rows), n_origin, n_cards - n_origin,
                       sum(len(r["final_origin_cards"].split()) for r in card_rows),
                       sum(1 for r in card_rows if r["mesh_available"]))]
+    if AUDIT_SKIPPED:
+        lines += ["", "Scene audit lines skipped (unreadable or damaged; read twice, once per use): screens %s" % ", ".join(
+            str(x) for x in sorted({x for x in AUDIT_SKIPPED if x is not None}))]
     unexplained = [r["asset"] for r in rows if r["flag"] == "not_seen" and "UNEXPLAINED" in r["detail"]]
     lines += ["", "not_seen rows without an explanation: %d%s" % (len(unexplained), (": " + ", ".join(unexplained)) if unexplained else "")]
     txt = "\n".join(lines) + "\n"

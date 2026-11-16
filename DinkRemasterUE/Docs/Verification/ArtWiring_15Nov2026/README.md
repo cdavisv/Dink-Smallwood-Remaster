@@ -6,7 +6,7 @@ and, if not, why. It audits the wiring (import, binding, cook, draw, clip caller
 source is good enough to bind is an art decision for the Fable queue.
 
 Tree: master `9cc796b6`. Tool: `DinkRemasterUE/Scripts/art_wiring_audit.py` (read-only, standard library; unit tests in
-`Scripts/tests/test_art_wiring_audit.py`, 22 pass). Reviewed reasons for sources that do not reach the player:
+`Scripts/tests/test_art_wiring_audit.py`, 24 pass). Reviewed reasons for sources that do not reach the player:
 `Scripts/art_wiring_known.json` (50 rows; add a row when you decide, drop it when you bind). Two runs on the same inputs
 write byte-identical files.
 
@@ -164,12 +164,18 @@ The scripted boulders and script-made people are rows VS-15 and VS-16 of PR #148
 Follow-ups after the merge of PR #154 (branch `audit/art-wiring-followups`): A209 lists all 13 props; the
 not_seen and replaced breakdowns match the table; a Unclaimed `STATUS.md` note explains only a source that is not
 drawn (the corpse kit's bodies share names with the unclaimed kit's corpses); every owner id in
-`art_wiring_known.json` is checked against the two tables: an id the tables never had (git history) stops the run, an
-id whose row was removed (a queue row goes when its PR merges) only warns and marks the reason stale, and a
-`pending_ids` entry that now exists warns; separate deliveries that share a name are reported in `detail` (32 rows; an
-export's `Export/Game/...` mirror and its LOD/FBX folders count as one delivery): each package names the delivery its
-recorded import source (`AssetImportData` `RelativeFilename`) belongs to, the others are listed as not imported; `unverified` rebuilds the roots of the evidence commit
+`art_wiring_known.json` is checked against the two tables, and the check only ever warns (CI clones depth 1 and a
+snapshot has no `.git`, so the history is not always known): an id whose row was removed (a queue row goes when its PR
+merges) marks the reason stale in `detail`, an id the history never had (or when the history is unknown) is reported
+the same way, and a `pending_ids` entry that now exists warns; separate deliveries that share a name are reported in
+`detail` (32 rows; an export's `Export/Game/...` mirror and its LOD/FBX folders count as one delivery): each delivery
+names the package(s) imported from that file (full `/Game` path, whatever the package is called, from every
+package's recorded `AssetImportData` `RelativeFilename`), or says the delivery is the import source of other packages
+(keep it), or that no package records it (20 rows have such a delivery); `unverified` rebuilds the roots of the evidence commit
 with the same binding rules. The owner branches the rows name (`fix/fence-runs`, `fix/family-duplicates`,
 `fix/art-wiring-scripted-static`, `fix/family-script-allowance`) are pushed when their PRs open;
+the sweep's `audit.jsonl` became unreadable on 15 Nov 23:26 (filesystem checksum errors on that one file): the table
+was regenerated from a salvaged copy (bad blocks zero-filled), which loses the line of screen 595 (the summary names
+it; the flag and card counts did not change);
 `art/stonebrook-mother-burnholes` belongs to the GP-Q5 stream. `test_c_only_runtime_modules_are_cpp_roots` reads
 the project's real `.uplugin`/`.uproject` files, so it needs a full checkout (or those files in a test snapshot).

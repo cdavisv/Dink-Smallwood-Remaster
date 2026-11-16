@@ -41,4 +41,6 @@ Textures under the art folders: 819; with a suffix rule (normal / mask / colour)
 
 Drawn sprite cards (scene audit, above the ground): 728 cards of 100 classes; 644 carry an origin ID (the final-origin check covers these; 84 decor/instanced cards have none); on an origin counted final: 0; classes with a delivered mesh made for them: 70
 
+Scene audit lines skipped (unreadable or damaged; read twice, once per use): screens 595
+
 not_seen rows without an explanation: 0
