@@ -471,14 +471,10 @@ FDinkGreyboxImportResult FDinkGreyboxImporter::Run(const FDinkGreyboxImportOptio
 			}
 		}
         for(const auto& Screen:FittedScreens)for(const FString& Key:Screen.Value.PictureKeys)SpriteKeys.Add(Key);
-		// Saved pictures (the flat barrel, the open chest): UDinkGameplay::PresentPlacementPictures loads their materials by name.
-		for (const auto& Pair : Bundle.Sprites)
-		{
-			if (Pair.Value.bSaved)
-			{
-				SpriteKeys.Add(Pair.Key);
-			}
-		}
+		// Every picture of the bundle, not only the placements' (sprite_pictures.json: script sprites without a family
+		// mesh are drawn as their 1997 picture on a card, UDinkArtFamilySubsystem::DressScriptSprite, A53). This includes the
+		// saved pictures (the flat barrel, the open chest) that UDinkGameplay::PresentPlacementPictures loads by name.
+		for (const auto& Pair : Bundle.Sprites) SpriteKeys.Add(Pair.Key);
 		TArray<FString> SortedKeys = SpriteKeys.Array();
 		SortedKeys.Sort();
 		for (const FString& Key : SortedKeys)

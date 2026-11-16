@@ -1,4 +1,5 @@
 #include "DinkDirector.h"
+#include "Misc/Crc.h"
 #include "Hardness/DinkHardnessActivation.h"
 #include "DinkAudioSubsystem.h"
 #include "DinkCreatureSubsystem.h"
@@ -820,6 +821,8 @@ void UDinkDirector::RegisterCommands()
 		{
 			Gameplay->ApplyInitLine(Ctx.Str(0));
 		}
+		// Presentation: picture cards of the sequence show the init file's frames (Seth's pose and walks, s7-mil.c:9-13).
+		UDinkArtFamilySubsystem::RegisterInitSequencePicture(Ctx.Str(0));
 		UE_LOG(LogDinkDirector, Verbose, TEXT("init \"%s\" recorded"), *Ctx.Str(0));
 		return FDinkCommandResult();
 	});
@@ -1463,6 +1466,7 @@ void UDinkDirector::ResetSprites()
 		}
 	}
 	Sprites.Reset();
+	PresentedPicture.Reset();
 	HandleByOrigin.Reset();
 	HandleByActor.Reset();
 	OriginIndex.Reset();
@@ -1581,7 +1585,7 @@ namespace
 
 	/**
 	 * Presentation only: a sprite made by create_sprite shows the family mesh of its picture when families.json has
-	 * one (dropped gold, hearts, potions), instead of the grey marker. The playing sequence when one is set, else the
+	 * one (dropped gold, hearts, potions), else its 1997 picture on a camera-facing card, instead of the grey marker. The playing sequence when one is set, else the
 	 * still picture (pseq, pframe), as the original draws it.
 	 *
 	 * Followed: the sprite this one rides on (brain 15, brain_parm: the twinkle a gold heap creates over itself), or null.
@@ -1598,7 +1602,31 @@ namespace
 		const int32 Sequence = Seq > 0 ? Seq : Still;
 		const int32 Frame = Sequence == Still ? FMath::Max(0, Sprite.GetProp(TEXT("pframe"))) : 0;
 		const int32 Size = Sprite.GetProp(TEXT("size"), 100);
-		if (Family->DressScriptSprite(Actor, Sequence, Frame, FVector(0.0, 0.0, -ScriptSpriteLiftCm), Size > 0 ? Size / 100.f : 1.f)) return;
+		// A twinkle riding a sprite that shows a family mesh (brain 15 on a gold heap) gets no picture card of its own.
+		const AActor* Rides = Followed && Sprite.GetProp(TEXT("brain")) == 15 ? Followed->Actor.Get() : nullptr;
+		const bool bRidesDressed = Rides && (Rides->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag) || Rides->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag));
+		if (Family->DressScriptSprite(Actor, Sequence, Frame, FVector(0.0, 0.0, -ScriptSpriteLiftCm), Size > 0 ? Size / 100.f : 1.f, !bRidesDressed)) return;
+		// A sprite without a picture (seq and pseq 0: the invisible touch, hardness and warp sprites scripts make with
+		// create_sprite(x, y, brain, 0, 0)) is never drawn by the original: getpic returns 0 for pseq 0 and
+		// draw_sprite_game returns when getpic < 1 (dink.cpp:443-445, 5498). Its grey marker is hidden until a script
+		// gives it a picture. Presentation only: the sprite, its script, touch box and hardness are unchanged.
+		static const FName NoPicture(TEXT("DinkScriptSpriteNoPicture"));
+		if (ScriptActor->Marker)
+		{
+			if (Sequence <= 0)
+			{
+				if (!ScriptActor->Marker->bHiddenInGame) ScriptActor->Marker->ComponentTags.AddUnique(NoPicture);
+				ScriptActor->Marker->SetHiddenInGame(true);
+				return;
+			}
+			if (ScriptActor->Marker->ComponentHasTag(NoPicture))
+			{
+				ScriptActor->Marker->ComponentTags.Remove(NoPicture);
+				const bool bOtherLayer = Actor->ActorHasTag(TEXT("DinkAuthoredArt")) || Actor->ActorHasTag(TEXT("DinkHumanoid")) ||
+					Actor->ActorHasTag(TEXT("DinkScriptHumanoid")) || Actor->ActorHasTag(TEXT("DinkCreature"));
+				if (!bOtherLayer) ScriptActor->Marker->SetHiddenInGame(false);
+			}
+		}
 		const AActor* Host = Followed && Sprite.GetProp(TEXT("brain")) == 15 ? Followed->Actor.Get() : nullptr;
 		if (Host && ScriptActor->Marker && !ScriptActor->Marker->bHiddenInGame &&
 			(Host->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag) || Host->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag)))
@@ -2062,9 +2090,26 @@ void UDinkDirector::FinishAllMoves()
 void UDinkDirector::Tick(double DeltaMs, double NowMs)
 {
 	TArray<int32> ToKill;
+	if (PresentedPicture.Num() > Sprites.Num() * 2 + 64) PresentedPicture.Reset();
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
 	{
 		StepMove(Pair.Value, DeltaMs);
+		// A created sprite's drawn picture can change without a script command (changedir while it walks, brains):
+		// present it again whenever its picture changes, so a sprite born without a picture (create_sprite x, y, 9, 0, 0
+		// then sp_base_walk, as the Terris guards of s2-ryan3.c and s2-bar.c) shows up as soon as it has one.
+		FDinkSprite& S = Pair.Value;
+		if (S.bSpawned && S.Actor.IsValid() && S.Actor->IsA<ADinkScriptSpriteActor>())
+		{
+			const int32 Parts[6] = { S.GetProp(TEXT("seq")), S.GetProp(TEXT("pseq")), S.GetProp(TEXT("pframe")), S.GetProp(TEXT("size"), 100),
+				S.GetProp(TEXT("brain")), S.GetProp(TEXT("brain_parm")) };
+			const uint32 Picture = FCrc::MemCrc32(Parts, sizeof(Parts));
+			const uint32* Last = PresentedPicture.Find(Pair.Key);
+			if (!Last || *Last != Picture)
+			{
+				PresentedPicture.Add(Pair.Key, Picture);
+				PresentScriptSprite(S.Actor.Get(), S, FindSprite(S.GetProp(TEXT("brain_parm"))));
+			}
+		}
 		if (Pair.Value.KillAtMs > 0.0 && NowMs >= Pair.Value.KillAtMs)
 		{
 			Pair.Value.KillAtMs = 0.0;
@@ -2223,12 +2268,14 @@ void UDinkDirector::LoadState(const TSharedPtr<FJsonObject>& State)
 	// Resume a saved explicit track without adding a new classic script cue.
 	if (!Audio.CurrentMusic.IsEmpty() && Audio.Playback) Audio.Playback(TEXT("music:") + Audio.CurrentMusic);
 	InitLines.Reset();
+	UDinkArtFamilySubsystem::ClearInitSequencePictures();
 	const TArray<TSharedPtr<FJsonValue>>* Inits = nullptr;
 	if (State->TryGetArrayField(TEXT("init"), Inits))
 	{
 		for (const TSharedPtr<FJsonValue>& V : *Inits)
 		{
 			InitLines.Add(V->AsString());
+			UDinkArtFamilySubsystem::RegisterInitSequencePicture(V->AsString());
 			if (UDinkGameplay* Gameplay = Story ? Story->GetGameplay() : nullptr)
 			{
 				Gameplay->ApplyInitLine(V->AsString()); // the sequences the saved game had loaded

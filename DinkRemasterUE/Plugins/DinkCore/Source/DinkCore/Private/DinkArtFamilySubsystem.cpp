@@ -13,6 +13,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Dom/JsonObject.h"
 #include "Engine/StaticMesh.h"
+#include "Engine/CollisionProfile.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "HAL/FileManager.h"
@@ -26,6 +27,159 @@
 const FName UDinkArtFamilySubsystem::FamilyTag(TEXT("DinkFamilyArt"));
 const FName UDinkArtFamilySubsystem::ScriptSpriteTag(TEXT("DinkScriptFamilyArt"));
 const FName UDinkArtFamilySubsystem::ScriptEffectTag(TEXT("DinkScriptFamilyEffect"));
+const FName UDinkArtFamilySubsystem::ScriptPictureTag(TEXT("DinkScriptPictureCard"));
+
+TArray<TWeakObjectPtr<UStaticMeshComponent>>& UDinkArtFamilySubsystem::ScriptPictureCards()
+{
+	static TArray<TWeakObjectPtr<UStaticMeshComponent>> Cards;
+	return Cards;
+}
+
+namespace
+{
+	/** Data/Art/sprite_pictures.json, read once: key -> pixel width, height, origin x, origin y. */
+	const TMap<FString, FIntVector4>& DinkSpritePictureTable()
+	{
+		static TMap<FString, FIntVector4> Pictures;
+		static bool bLoaded = false;
+		if (!bLoaded)
+		{
+			bLoaded = true;
+			FString Text;
+			TSharedPtr<FJsonObject> Root;
+			const FString Path = FPaths::ProjectContentDir() / TEXT("Dink/Data/Art/sprite_pictures.json");
+			if (FFileHelper::LoadFileToString(Text, *Path) && FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) && Root)
+			{
+				const TSharedPtr<FJsonObject>* Rows = nullptr;
+				if (Root->TryGetObjectField(TEXT("pictures"), Rows) && Rows)
+				{
+					for (const auto& Pair : (*Rows)->Values)
+					{
+						const TArray<TSharedPtr<FJsonValue>>* V = nullptr;
+						if (Pair.Value->TryGetArray(V) && V && V->Num() == 4)
+							Pictures.Add(FString(Pair.Key.ToView()), FIntVector4(int32((*V)[0]->AsNumber()), int32((*V)[1]->AsNumber()), int32((*V)[2]->AsNumber()), int32((*V)[3]->AsNumber())));
+					}
+				}
+			}
+			if (Pictures.IsEmpty()) UE_LOG(LogDink, Warning, TEXT("Script sprites: no picture sizes in %s; pictures without a mesh keep the marker"), *Path);
+		}
+		return Pictures;
+	}
+
+	TMap<int32, FString>& DinkInitSequencePictures()
+	{
+		static TMap<int32, FString> Map;
+		return Map;
+	}
+
+	/** The picture key a script sprite of Sequence shows at Frame: the init file's frame when an init line replaced the sequence. */
+	FString ScriptPictureKey(int32 Sequence, int32 Frame)
+	{
+		const FString* Init = DinkInitSequencePictures().Find(Sequence);
+		return Init ? FString::Printf(TEXT("%s_%02d"), **Init, Frame) : FString::Printf(TEXT("%d_%02d"), Sequence, Frame);
+	}
+}
+
+bool UDinkArtFamilySubsystem::PictureInfo(int32 Sequence, int32 Frame, FIntVector4& Out)
+{
+	return PictureInfoForKey(FString::Printf(TEXT("%d_%02d"), Sequence, Frame), Out);
+}
+
+bool UDinkArtFamilySubsystem::PictureInfoForKey(const FString& Key, FIntVector4& Out)
+{
+	if (const FIntVector4* Found = DinkSpritePictureTable().Find(Key))
+	{
+		Out = *Found;
+		return true;
+	}
+	return false;
+}
+
+bool UDinkArtFamilySubsystem::RegisterInitSequencePicture(const FString& Line)
+{
+	TArray<FString> W;
+	Line.ParseIntoArrayWS(W);
+	if (W.Num() < 3 || !(W[0].Equals(TEXT("load_sequence_now"), ESearchCase::IgnoreCase) || W[0].Equals(TEXT("load_sequence"), ESearchCase::IgnoreCase)))
+		return false;
+	const int32 Seq = FCString::Atoi(*W[2]);
+	FString Path = W[1].Replace(TEXT("\\"), TEXT("/")).ToLower();
+	if (Seq <= 0 || !W[2].IsNumeric() || Path.StartsWith(TEXT("graphics/dink/"))) return false;
+	FString File;
+	if (!Path.Split(TEXT("/"), nullptr, &File, ESearchCase::CaseSensitive, ESearchDir::FromEnd)) File = Path;
+	FString Stem;
+	for (const TCHAR C : File)
+		if (FChar::IsAlnum(C)) Stem.AppendChar(C);
+	if (Stem.IsEmpty()) return false;
+	DinkInitSequencePictures().Add(Seq, TEXT("init_") + Stem);
+	return true;
+}
+
+void UDinkArtFamilySubsystem::ClearInitSequencePictures()
+{
+	DinkInitSequencePictures().Reset();
+}
+
+FString UDinkArtFamilySubsystem::InitSequencePicture(int32 Sequence)
+{
+	const FString* Found = DinkInitSequencePictures().Find(Sequence);
+	return Found ? *Found : FString();
+}
+
+namespace
+{
+	/** The 1997 picture of a script sprite on a camera-facing card (SM_DinkCard: 1 m square, bottom-centre pivot, face +Y). */
+	bool ShowScriptPictureCard(AActor* Actor, int32 Sequence, int32 Frame, const FVector& Ground, float Size)
+	{
+		FIntVector4 Pic;
+		const int32 Shown = FMath::Max(1, Frame);
+		const FString Key = ScriptPictureKey(Sequence, Shown);
+		if (Sequence <= 0 || !UDinkArtFamilySubsystem::PictureInfoForKey(Key, Pic) || Pic.X <= 0 || Pic.Y <= 0) return false;
+		UMaterialInterface* Material = LoadObject<UMaterialInterface>(nullptr,
+			*FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_%s.MI_Sprite_%s"), *Key, *Key), nullptr, LOAD_NoWarn | LOAD_Quiet);
+		static TWeakObjectPtr<UStaticMesh> CardMesh;
+		if (!CardMesh.IsValid())
+			CardMesh = LoadObject<UStaticMesh>(nullptr, TEXT("/Game/Dink/_Generated/Shared/SM_DinkCard.SM_DinkCard"), nullptr, LOAD_NoWarn | LOAD_Quiet);
+		if (!Material || !CardMesh.IsValid()) return false;
+		UStaticMeshComponent* Card = Actor->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptPictureTag);
+		if (!Card)
+		{
+			Card = NewObject<UStaticMeshComponent>(Actor, TEXT("ScriptPictureCard"));
+			Card->SetMobility(EComponentMobility::Movable);
+			Card->SetupAttachment(Actor->GetRootComponent());
+			Card->SetUsingAbsoluteRotation(true);
+			Card->SetUsingAbsoluteScale(true);
+			Card->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
+			Card->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			Card->SetCanEverAffectNavigation(false);
+			Card->SetGenerateOverlapEvents(false);
+			Card->ComponentTags.Add(UDinkArtFamilySubsystem::ScriptPictureTag);
+			Card->SetStaticMesh(CardMesh.Get());
+			Actor->AddInstanceComponent(Card);
+			Card->RegisterComponent();
+			UDinkArtFamilySubsystem::ScriptPictureCards().Add(Card);
+		}
+		Card->SetMaterial(0, Material);
+		Card->SetHiddenInGame(false);
+		// True size, as the importer's "base" cards of characters and loose items: 0.025 m per 1997 pixel times sp_size.
+		const double Cm = 2.5 * FMath::Max(double(Size), 0.05);
+		const FRotator Facing = Card->GetComponentRotation();
+		const FVector Right = FRotationMatrix(Facing).GetUnitAxis(EAxis::X);
+		// The picture's origin pixel stands on the ground point; the card's pivot is its bottom centre.
+		Card->SetWorldScale3D(FVector(Pic.X * Cm / 100.0, 1.0, Pic.Y * Cm / 100.0));
+		Card->SetWorldLocation(Ground + Right * ((Pic.X * 0.5 - Pic.Z) * Cm) - FVector(0.0, 0.0, (Pic.Y - Pic.W) * Cm));
+		return true;
+	}
+
+	/** Removes a script sprite's picture card; true when there was one. */
+	bool RemoveScriptPictureCard(AActor* Actor)
+	{
+		UStaticMeshComponent* Card = Actor ? Actor->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptPictureTag) : nullptr;
+		if (!Card) return false;
+		UDinkArtFamilySubsystem::ScriptPictureCards().Remove(Card);
+		Card->DestroyComponent();
+		return true;
+	}
+}
 
 namespace
 {
@@ -540,7 +694,7 @@ FName UDinkArtFamilySubsystem::ClassOfPicture(int32 Sequence, int32 Frame) const
 	return Found ? *Found : NAME_None;
 }
 
-bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, int32 Frame, const FVector& GroundOffset, float Size)
+bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, int32 Frame, const FVector& GroundOffset, float Size, bool bAllowPictureCard)
 {
 	UWorld* World = GetWorld();
 	if (!Actor || !World || !Actor->GetRootComponent()) return false;
@@ -554,7 +708,8 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 	const FVector Ground = Actor->GetActorLocation() + GroundOffset;
 	// No origin ID: the spot stands in for it, so heaps dropped side by side differ in variant and yaw, the same every run.
 	const FString Key = FString::Printf(TEXT("script:%d:%d:%d:%d"), Sequence, Frame, FMath::RoundToInt(Ground.X), FMath::RoundToInt(Ground.Y));
-	if (bReady && !bOtherLayer && Sequence > 0)
+	// A sequence an init line replaced (Seth over the green gnome, s7-mil.c) no longer shows dink.ini's picture: no family mesh of it.
+	if (bReady && !bOtherLayer && Sequence > 0 && !DinkInitSequencePictures().Contains(Sequence))
 	{
 		if (!bIndexed) BuildIndex(*World);
 		// A frame no placement of the world uses (an animation's other frames) takes the class of its sequence.
@@ -569,6 +724,7 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 	const TObjectPtr<UMaterialInterface>* Effect = B && !B->Effect.IsEmpty() ? Effects.Find(B->Effect) : nullptr;
 	if (Effect && *Effect)
 	{
+		RemoveScriptPictureCard(Actor);
 		if (Shown) Shown->DestroyComponent();
 		if (!Card)
 		{
@@ -602,13 +758,18 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 	}
 	if (!Mesh)
 	{
-		if (Shown)
+		if (Shown) Shown->DestroyComponent();
+		// No family mesh: the 1997 picture on a card, never the grey marker, when that picture was imported (A53).
+		if (!bOtherLayer && bAllowPictureCard && ShowScriptPictureCard(Actor, Sequence, Frame, Ground, Size))
 		{
-			Shown->DestroyComponent();
-			if (Marker && !bOtherLayer) Marker->SetHiddenInGame(false);
+			if (Marker) Marker->SetHiddenInGame(true);
+			return true;
 		}
+		const bool bHadCard = RemoveScriptPictureCard(Actor);
+		if ((Shown || bHadCard) && Marker && !bOtherLayer) Marker->SetHiddenInGame(false);
 		return false;
 	}
+	RemoveScriptPictureCard(Actor);
 	if (Shown && Shown->GetStaticMesh() != Mesh)
 	{
 		Shown->DestroyComponent();

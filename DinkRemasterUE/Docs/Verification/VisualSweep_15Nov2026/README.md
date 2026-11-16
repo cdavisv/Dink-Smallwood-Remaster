@@ -4,7 +4,7 @@ Owner's order: "check for issues, visual problems ... double check visuals". Eve
 regions, interiors, dungeons, the sea and the three parked fragments) was captured in the real game at the play
 camera and from above, scene-audited, run through automatic detectors, and looked at by eye, sheet by sheet. Fable
 (art design) was at its limit, so this is triage: what needs Blender or new art is queued in
-`doc/remaster/FABLE_ART_QUEUE.md` (rows VS-01 to VS-14); the small non-Blender fixes are in a separate PR.
+`doc/remaster/FABLE_ART_QUEUE.md` (rows VS-01 to VS-16); the small non-Blender fixes are in a separate PR.
 
 Tree: master `f92915fe` (PR #126 water banks merged), private project copy rebuilt, world regenerated with
 `import_greybox.sh --region all --export` then `--region stonebrook`. One capture run, offscreen Vulkan 1280x720,
@@ -36,13 +36,13 @@ Tree: master `f92915fe` (PR #126 water banks merged), private project copy rebui
 
 | grade | screens |
 |---|---:|
-| OK | 237 |
-| minor | 295 |
-| defect | 95 |
-| not captured (teleport refused, see below) | 17 |
+| OK | 238 |
+| minor | 308 |
+| defect | 96 |
+| not captured (teleport refused, see below) | 2 |
 | **total** | **644** |
 
-Detectors over the 627 captured screens: grey engine-default primitives on 58 screens (all of them either the
+Detectors over the 627 screens captured in the full run: grey engine-default primitives on 58 screens (all of them either the
 screenlock slabs, 29 screens, or the `create_sprite` marker cylinder, 31 screens); empty or default textures 0; magenta 0;
 the game log of the whole run has **no** `Failed to compile Material`, no `missing usage flag`, no `Default Material
 will be used`, no texture error and no Nanite material warning (only one engine VSM queue overflow line); 14 screens
@@ -62,14 +62,14 @@ Nothing faceted was seen by eye at the play camera beyond what earlier sweeps fi
 | 3 | Grey engine-default screenlock slabs (WorldGrid cubes 1.6 m high along the open edges) on every locked fight screen; the original draws a pulsing red frame, no wall | 29 screens (26, 27, 32, 64, 90, 91, 123, 126, 156, 157, 160, 190, 191, 223, 270, 301-303, 334 ...) | `frames/026_*.jpg`, `090_*.jpg` | fixed in the fix PR |
 | 4 | Goodheart castle walls and towers are 46-50 m cards with pixel bricks | 368-370, 399-401, 432, 433 | `frames/368_*.jpg`, `401_*.jpg` | VS-02 |
 | 5 | Play camera inside a pine crown (boom passes into the foliage; nothing but needles in view) | 20 forest screens: 134, 240, 241, 272, 311-313, 333, 335, 343, 345, 348, 363, 502, 535, 560, 767, 768 ... | `frames/312_play.jpg`, `343_play.jpg` | code (camera), not art: reported |
-| 6 | Scripted boulders still on cards: the Windemere rock the bomb removes (S536_P15), the rocks blocking the Kernsin road (590), the push rocks S277_P03 and S601_P08 | 536, 590, 277, 601, 535 | `frames/536_play.jpg`, `590_play.jpg`, `277_play.jpg` | fixed in the fix PR (binding) |
+| 6 | Scripted boulders still on cards: the Windemere rock the bomb removes (S536_P15), the rocks blocking the Kernsin road (590), the push rocks S277_P03 and S601_P08 | 536, 590, 277, 601, 535 | `frames/536_play.jpg`, `590_play.jpg`, `277_play.jpg` | Fable queue VS-15: binding the existing field boulders was tried and dropped (they are a fifth of the card and uncover the cave hole under the 277 push rock) |
 | 7 | Small treasure chests are pixel cards up to 4.5 m, filling the view in dark rooms | 069, 101, 282, 395, 536, 557 (+ 5, 184, 209, 276, 288, 671, 685, 747) | `frames/069_play.jpg`, `395_play.jpg`, `557_play.jpg` | binding job (mesh exists, opened state needs wiring): reported |
 | 8 | Terris, Windemere, Kernsin and Koka cottages as cards beside 3D cottages | 501, 530, 532, 617-619, 734 | `frames/501_*.jpg`, `530_*.jpg`, `617_*.jpg`, `619_*.jpg`, `734_*.jpg` | VS-01 |
 | 9 | Sea drawn in pond olive, or olive sheets over the cyan sea with a straight seam | 424, 456, 480, 576, 608 (whole sheet); 720-724, 750-758 (south coast all olive); seams on ~40 more | `frames/424_*.jpg`, `456_*.jpg`, `480_*.jpg`, `720_*.jpg`, `753_*.jpg` | water follow-up of PR #126 (another agent is on `mark_sea_water`): reported |
 | 10 | Dragons are big pixel cards | 123, 124, 127, 156, 159, 160, 191 | `frames/127_play.jpg`, `159_play.jpg` | VS-03 |
 | 11 | Goblin sanctuary: two-storey hut cards with blue pixels beside the 3D round huts | 680, 681, 763, 764 | `frames/680_*.jpg`, `681_*.jpg`, `763_*.jpg` | VS-05 |
 | 12 | The church is one 43 m card; its window cards float black | 187, 188 | `frames/188_*.jpg` | VS-06 |
-| 13 | Grey cylinder markers of `create_sprite` sprites that have no picture (touch and warp sprites of s2-cave, the bar, Windemere) | 34, 162, 193, 579 (+ 27 screens where the audit finds one out of view) | `frames/034_*.jpg` | fixed in the fix PR |
+| 13 | Grey cylinder markers of `create_sprite` sprites: almost all stand in for script people without art (the Terris bar wench and drinkers, the s2-cave guide, Windemere townsfolk ...); a few are sprites with no picture at all | 34 (5), 162, 193, 579 and 27 more screens (35 markers) | `frames/034_*.jpg` | pictureless ones hidden in the fix PR (2 of 35); the rest are Fable queue VS-16 |
 | 14 | Ground layers keep the 1997 tile edges: pale rectangles, dashed dirt strips, stair-step sand coasts | ~120 outdoor screens | `frames/059_*.jpg`, `245_*.jpg`, `341_*.jpg`, `383_*.jpg` | VS-09 |
 | 15 | Cave and ground holes are black spiky upright cards | 144 (the snow isle hole), 180, 483 (+ 9) | `frames/180_*.jpg`, `144_play.jpg`, `483_play.jpg` | VS-08 |
 | 16 | Kernsin fountain spray is a blue pixel card | 586 | `frames/586_play.jpg` | VS-11 |
@@ -91,12 +91,14 @@ Nothing faceted was seen by eye at the play camera beyond what earlier sweeps fi
 - **Capture points inside buildings** (439 Dink's house body, 498, 506): the walkable point nearest the centre lies
   inside an assembled house (hardness 0 inside the 1997 wall line); not something a player sees.
 
-### Not captured (17 screens)
+### Not captured
 
-025, 145, 382, 402, 462, 469, 471, 472, 476, 507, 512, 629, 635, 661, 697, 747, 748: the teleport was refused (the point
-lies in filled water, whose blocker the hardness files do not show, or the screen has no hardness file) and the player
-stayed on the previous screen. `visual_sweep.py` now tries up to four points per screen; these screens are captured
-in the fix PR's run.
+In the full run 17 screens were not captured: 025, 145, 382, 402, 462, 469, 471, 472, 476, 507, 512, 629, 635, 661,
+697, 747, 748. The teleport was refused (the point lies in filled water, whose blocker the hardness files do not show,
+or the screen has no hardness file) and the player stayed on the previous screen. `visual_sweep.py` now tries up to
+four points per screen; the second run (the fix PR's, same tree plus the fixes, which change none of these screens'
+art) captured 15 of them (`sheets/recaptured_fix_run.jpg`, graded in the table). **145 and 402 are still not
+captured** (every point refused).
 
 ## What was not checked
 
@@ -113,6 +115,8 @@ in the fix PR's run.
 | `sheets/play_NN.jpg`, `sheets/over_NN.jpg` | the 33 + 33 contact sheets, 20 screens each in the table's order; label: screen, region, kind, detector marks (D default material, S script marker, F floating, K sunk, Z coplanar) |
 | `frames/NNN_play.jpg`, `frames/NNN_over.jpg` | full frames (960x540) of the screens named above |
 | `detectors.csv`, `findings.json`, `meshes.csv`, `log_findings.txt` | detector output of the run |
+| `sheets/recaptured_fix_run.jpg` | the 15 screens the full run missed, captured in the second run (play camera above, overview below) |
+| `scripted_boulders_tried.jpg` | master against the existing field boulders bound to the scripted rocks (tried, dropped: Fable queue VS-15) |
 
 ## Per-screen grades
 
@@ -121,7 +125,7 @@ out of view); "grey default-material prims" are the lock slabs or the script mar
 
 | screen | region | kind | sheet | grade | what I saw | detectors |
 |---:|---|---|---:|---|---|---|
-| 025 | darklands | wilderness | 1 | not captured | (goto failed, shows 299) | not captured |
+| 025 | darklands | wilderness | 1 | minor | bare dark ground plane (recaptured in the fix run) |  |
 | 026 | darklands | wilderness | 1 | defect | grey lock slabs | grey default-material prims 3, cards 1 |
 | 027 | darklands | wilderness | 1 | defect | grey lock slabs | grey default-material prims 3, cards 1 |
 | 028 | darklands | wilderness | 1 | minor | pixel creature cards (slayers) | cards 2 |
@@ -403,7 +407,7 @@ out of view); "grey default-material prims" are the lock slabs or the script mar
 | 379 | stonebrook | wilderness | 14 | minor | cyan/olive river colour seam |  |
 | 380 | east_wilds | wilderness | 15 | minor | olive river, pine near camera |  |
 | 381 | east_wilds | wilderness | 15 | minor | olive river with cyan seam corner |  |
-| 382 | east_wilds | wilderness | 15 | not captured | (goto failed, shows 381) | not captured |
+| 382 | east_wilds | wilderness | 15 | minor | tile-shaped sand/sea (recaptured) |  |
 | 383 | east_wilds | wilderness | 15 | minor | tile-shaped sand/sea maze |  |
 | 384 | koka_isle | wilderness | 15 | minor | tile-shaped sand/sea |  |
 | 389 | west_seas | sea | 15 | OK |  |  |
@@ -468,21 +472,21 @@ out of view); "grey default-material prims" are the lock slabs or the script mar
 | 459 | kernsin_wilds | wilderness | 18 | minor | rect patches |  |
 | 460 | kernsin_wilds | wilderness | 18 | minor | rect patches |  |
 | 461 | kernsin_wilds | wilderness | 18 | minor | olive water, tile-shaped edges |  |
-| 462 | kernsin_wilds | wilderness | 18 | not captured | (goto failed, shows 461) | not captured |
+| 462 | kernsin_wilds | wilderness | 18 | minor | olive water, rect patches (recaptured) |  |
 | 463 | terris_wilds | wilderness | 18 | minor | olive water |  |
 | 464 | terris | settlement | 18 | minor | olive water, rect patches |  |
 | 465 | terris | settlement | 18 | minor | olive river (known rim seam 465) |  |
 | 466 | terris | settlement | 18 | minor | olive river |  |
 | 467 | terris | settlement | 18 | minor | rect patches |  |
 | 468 | terris | settlement | 18 | minor | right-angle river |  |
-| 469 | stonebrook | wilderness | 18 | not captured | (shows 468) | not captured |
+| 469 | stonebrook | wilderness | 18 | minor | right-angle olive water (recaptured) | cards 9 |
 | 470 | stonebrook | wilderness | 18 | minor | right-angle olive river |  |
-| 471 | stonebrook | wilderness | 18 | not captured | (shows 470) | not captured |
-| 472 | stonebrook | wilderness | 18 | not captured | (shows 470) | not captured |
+| 471 | stonebrook | wilderness | 18 | minor | right-angle olive pond (recaptured) |  |
+| 472 | stonebrook | wilderness | 18 | minor | olive river (recaptured) |  |
 | 473 | stonebrook | wilderness | 18 | minor | rect patches |  |
 | 474 | stonebrook | wilderness | 18 | OK |  | cards 16 |
 | 475 | stonebrook | wilderness | 19 | minor | olive river |  |
-| 476 | east_wilds | wilderness | 19 | not captured | (shows 475) | not captured |
+| 476 | east_wilds | wilderness | 19 | minor | olive river (recaptured) |  |
 | 477 | east_wilds | wilderness | 19 | minor | olive river |  |
 | 478 | east_wilds | wilderness | 19 | minor | olive/cyan seam |  |
 | 479 | east_wilds | wilderness | 19 | minor | olive trapezoid over cyan sea |  |
@@ -509,12 +513,12 @@ out of view); "grey default-material prims" are the lock slabs or the script mar
 | 504 | windemere | settlement | 20 | OK |  | cards 5 |
 | 505 | windemere | settlement | 20 | minor | rect patches | cards 9 |
 | 506 | windemere | settlement | 20 | minor | capture point inside a Windemere long house (camera against inner walls) | cards 4 |
-| 507 | windemere_wilds | wilderness | 20 | not captured | (shows 506) | not captured |
+| 507 | windemere_wilds | wilderness | 20 | minor | olive river (recaptured) |  |
 | 508 | east_wilds | wilderness | 20 | minor | olive river |  |
 | 509 | east_wilds | wilderness | 20 | OK |  |  |
 | 510 | east_wilds | wilderness | 20 | minor | rect patches |  |
 | 511 | east_wilds | wilderness | 20 | minor | olive/cyan seam |  |
-| 512 | koka_isle | wilderness | 20 | not captured | (shows 511) | not captured |
+| 512 | koka_isle | wilderness | 20 | minor | olive sheet over cyan sea (recaptured) | cards 11 |
 | 516 | west_seas | sea | 20 | OK |  |  |
 | 517 | west_seas | sea | 20 | OK |  |  |
 | 518 | west_seas | sea | 20 | OK |  |  |
@@ -620,13 +624,13 @@ out of view); "grey default-material prims" are the lock slabs or the script mar
 | 626 | terris_wilds | wilderness | 25 | minor | rect patches |  |
 | 627 | terris_wilds | wilderness | 25 | minor | rect patches |  |
 | 628 | terris_wilds | wilderness | 25 | minor | olive water |  |
-| 629 | terris_wilds | wilderness | 25 | not captured | (shows 628) | not captured |
+| 629 | terris_wilds | wilderness | 25 | minor | right-angle olive water (recaptured) |  |
 | 630 | terris_wilds | wilderness | 26 | minor | rect patches |  |
 | 631 | windemere_wilds | wilderness | 26 | minor | rect patches |  |
 | 632 | windemere_wilds | wilderness | 26 | OK |  | cards 2 |
 | 633 | windemere_wilds | wilderness | 26 | minor | blue pixel bits at feet; known rim seam 633 | cards 15 |
 | 634 | windemere_wilds | wilderness | 26 | minor | right-angle olive river | cards 3 |
-| 635 | windemere_wilds | wilderness | 26 | not captured | (shows 634) | not captured |
+| 635 | windemere_wilds | wilderness | 26 | minor | olive water (recaptured) |  |
 | 636 | east_wilds | wilderness | 26 | minor | olive river | cards 2 |
 | 637 | east_wilds | wilderness | 26 | minor | rect patches |  |
 | 638 | east_wilds | wilderness | 26 | minor | rect patches, tile-shaped sand |  |
@@ -647,7 +651,7 @@ out of view); "grey default-material prims" are the lock slabs or the script mar
 | 658 | terris_wilds | wilderness | 27 | minor | rect patches | cards 5 |
 | 659 | terris_wilds | wilderness | 27 | OK |  |  |
 | 660 | terris_wilds | wilderness | 27 | minor | olive river, rect patches | cards 4 |
-| 661 | terris_wilds | wilderness | 27 | not captured | (shows 660) | not captured |
+| 661 | terris_wilds | wilderness | 27 | minor | olive water (recaptured) |  |
 | 662 | terris_wilds | wilderness | 27 | minor | dashed dirt strip |  |
 | 663 | windemere_wilds | wilderness | 27 | minor | orange pixel arrow cards in flight | cards 8 |
 | 664 | windemere_wilds | wilderness | 27 | minor | rect patches |  |
@@ -678,7 +682,7 @@ out of view); "grey default-material prims" are the lock slabs or the script mar
 | 694 | terris_wilds | wilderness | 28 | minor | square dirt patch | cards 3 |
 | 695 | windemere_wilds | wilderness | 28 | minor | rect patches | cards 11 |
 | 696 | windemere_wilds | wilderness | 28 | minor | rect patches | cards 3 |
-| 697 | windemere_wilds | wilderness | 28 | not captured | (shows 696) | not captured |
+| 697 | windemere_wilds | wilderness | 28 | minor | tile-shaped pond (recaptured) |  |
 | 698 | windemere_wilds | wilderness | 28 | minor | tile-shaped water outline |  |
 | 699 | windemere_wilds | wilderness | 28 | OK |  | cards 2 |
 | 700 | koka_isle | wilderness | 29 | minor | tile-shaped sand/sea | cards 3 |
@@ -718,8 +722,8 @@ out of view); "grey default-material prims" are the lock slabs or the script mar
 | 744 | goblin_sanctuary | settlement | 30 | minor | olive/green water edge |  |
 | 745 | goblin_sanctuary | settlement | 30 | OK |  |  |
 | 746 | south_coast | wilderness | 30 | OK |  |  |
-| 747 | south_coast | wilderness | 30 | not captured | (shows 746) | not captured |
-| 748 | south_coast | wilderness | 30 | not captured | (shows 746) | not captured |
+| 747 | south_coast | wilderness | 30 | defect | chest_small pixel card fills the play view (recaptured) | cards 1 |
+| 748 | south_coast | wilderness | 30 | OK | (recaptured) | cards 2 |
 | 749 | south_coast | wilderness | 30 | OK |  |  |
 | 750 | south_coast | wilderness | 31 | minor | olive sea |  |
 | 751 | south_coast | wilderness | 31 | minor | olive sea |  |
@@ -765,3 +769,4 @@ out of view); "grey default-material prims" are the lock slabs or the script mar
 | 113 | snow_castle | wilderness | 33 | minor | bare snow plane |  |
 | 114 | snow_castle | wilderness | 33 | minor | bare snow plane |  |
 | 143 | snow_castle | wilderness | 33 | minor | bare snow plane |  |
+

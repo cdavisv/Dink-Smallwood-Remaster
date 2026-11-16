@@ -817,6 +817,8 @@ bool FDinkAIScreenlockBarrierTest::RunTest(const FString& Parameters)
 	TestEqual(TEXT("one slab per open edge"), Volume->LockBarriers.Num(), 4);
 	TestTrue(TEXT("locked: a walker is stopped at the edge"), Blocked(ECC_Pawn));
 	TestTrue(TEXT("locked: a projectile too"), Blocked(DinkCollision::Projectile));
+	for (const UStaticMeshComponent* Slab : Volume->LockBarriers)
+		TestTrue(TEXT("locked: the slabs block but are not drawn (the original draws no wall)"), Slab && !Slab->IsVisible() && Slab->bHiddenInGame);
 	if (Greybox)
 	{
 		TestEqual(TEXT("the greybox knows the locked screen"), Greybox->GetLockedScreen(), 302);

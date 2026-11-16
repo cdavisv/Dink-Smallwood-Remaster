@@ -13,6 +13,7 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "AssetCompilingManager.h"
 #include "Components/StaticMeshComponent.h"
+#include "Materials/MaterialInterface.h"
 #include "Editor.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/World.h"
@@ -28,6 +29,15 @@ namespace
 	{
 		return Actor.FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag);
 	}
+
+	UStaticMeshComponent* PictureCard(const AActor& Actor)
+	{
+		return Actor.FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptPictureTag);
+	}
+
+	/** Drawn = the marker of an unbound picture, a family mesh or a picture card is visible. */
+	#define GUARD_DRAWN(A) (!(A)->Marker->bHiddenInGame || ((A)->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag) != nullptr) \
+		|| ((A)->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptPictureTag) != nullptr))
 
 	class FDinkScriptSpriteFamilyCheck : public IAutomationLatentCommand
 	{
@@ -132,11 +142,13 @@ namespace
 				const int32 RiderHandle = Handle;
 				if (Test->TestNotNull(TEXT("a second sprite spawns on the heap"), Rider))
 				{
-					Test->TestFalse(TEXT("an unbound sprite that follows nothing keeps its marker"), Rider->Marker->bHiddenInGame);
+					Test->TestNotNull(TEXT("an unbound sprite that follows nothing shows its 1997 picture on a card"), PictureCard(*Rider));
+					Test->TestTrue(TEXT("and no grey marker"), Rider->Marker->bHiddenInGame);
 					Director->SpriteProperty(nullptr, TEXT("brain"), RiderHandle, 15);
 					Director->SpriteProperty(nullptr, TEXT("brain_parm"), RiderHandle, HeapHandle);
 					Test->TestTrue(TEXT("a rider on a dressed sprite hides its marker"), Rider->Marker->bHiddenInGame);
 					Test->TestNull(TEXT("the rider gets no mesh of its own"), ScriptFamilyMesh(*Rider));
+					Test->TestNull(TEXT("nor a picture card over the heap's mesh"), PictureCard(*Rider));
 				}
 			}
 
@@ -154,11 +166,13 @@ namespace
 			Director->SpriteProperty(nullptr, TEXT("pseq"), HeapHandle, FreeSeq);
 			Director->SpriteProperty(nullptr, TEXT("pframe"), HeapHandle, FreeFrame);
 			Test->TestNull(TEXT("a picture without a family row drops the mesh"), ScriptFamilyMesh(*Heap));
-			Test->TestFalse(TEXT("and shows the marker again"), Heap->Marker->bHiddenInGame);
+			Test->TestNotNull(TEXT("and shows its 1997 picture on a card instead (A53: never the grey marker)"), PictureCard(*Heap));
+			Test->TestTrue(TEXT("with the marker hidden"), Heap->Marker->bHiddenInGame);
 			Director->SpriteProperty(nullptr, TEXT("pseq"), HeapHandle, BoundSeq);
 			Director->SpriteProperty(nullptr, TEXT("pframe"), HeapHandle, BoundFrame);
 			Test->TestNotNull(TEXT("the bound picture brings the mesh back"), ScriptFamilyMesh(*Heap));
 			Test->TestTrue(TEXT("and hides the marker again"), Heap->Marker->bHiddenInGame);
+			Test->TestNull(TEXT("and drops the picture card"), PictureCard(*Heap));
 
 			// nodraw hides the whole actor, mesh included.
 			Director->SpriteProperty(nullptr, TEXT("nodraw"), HeapHandle, 1);
@@ -169,8 +183,82 @@ namespace
 			if (Test->TestNotNull(TEXT("create_sprite of an unbound picture spawns"), Plain))
 			{
 				Test->TestNull(TEXT("an unbound picture gets no family mesh"), ScriptFamilyMesh(*Plain));
-				Test->TestFalse(TEXT("an unbound picture keeps its marker"), Plain->Marker->bHiddenInGame);
+				UStaticMeshComponent* Card = PictureCard(*Plain);
+				if (Test->TestNotNull(TEXT("an unbound picture is drawn as its 1997 picture on a card"), Card))
+				{
+					const FString Expected = FString::Printf(TEXT("MI_Sprite_%d_%02d"), FreeSeq, FreeFrame);
+					Test->TestTrue(TEXT("the card carries that picture's material"), Card->GetMaterial(0) && Card->GetMaterial(0)->GetName() == Expected);
+					Test->TestTrue(TEXT("the card has no collision"), Card->GetCollisionEnabled() == ECollisionEnabled::NoCollision);
+					FIntVector4 Pic;
+					if (Test->TestTrue(TEXT("the picture's size is known"), UDinkArtFamilySubsystem::PictureInfo(FreeSeq, FreeFrame, Pic)))
+						Test->TestTrue(TEXT("the card has the picture's true size (0.025 m per pixel)"),
+							FMath::IsNearlyEqual(Card->GetComponentScale().X, Pic.X * 0.025, 0.01) && FMath::IsNearlyEqual(Card->GetComponentScale().Z, Pic.Y * 0.025, 0.01));
+				}
+				Test->TestTrue(TEXT("and no grey marker"), Plain->Marker->bHiddenInGame);
 				Test->TestTrue(TEXT("an unbound marker keeps its scale"), Plain->GetActorScale3D().Equals(FVector(.3, .3, .6), .001));
+			}
+
+			// Seth (A53): s7-mil.c:9-13 loads his pose into 580 (dink.ini has none) and his walks over the green gnome of 581-589
+			// with init("load_sequence_now ..."); figure_out reloads an active sequence (dink.cpp:2335-2366). His cards show
+			// the init file's frames, never the grey marker and never the gnome.
+			Director->Execute(Caller, FDinkStoryLine::Parse(TEXT(">> init \"load_sequence_now graphics\\effects\\magic\\pose 580 75 41 129 -30 -16 31 10\""), {TEXT("cmd"), TEXT("src:1")}));
+			Director->Execute(Caller, FDinkStoryLine::Parse(TEXT(">> init \"load_sequence_now graphics\\effects\\magic\\seth1w 581 75 43 133 -19 -16 23 16\""), {TEXT("cmd"), TEXT("src:1")}));
+			Test->TestEqual(TEXT("the init line names the picture of 580"), UDinkArtFamilySubsystem::InitSequencePicture(580), FString(TEXT("init_pose")));
+			Test->TestEqual(TEXT("and replaces the gnome's 581"), UDinkArtFamilySubsystem::InitSequencePicture(581), FString(TEXT("init_seth1w")));
+			Test->TestTrue(TEXT("a hero sequence is left to the hero"), UDinkArtFamilySubsystem::InitSequencePicture(79).IsEmpty() &&
+				!UDinkArtFamilySubsystem::RegisterInitSequencePicture(TEXT("load_sequence_now graphics\\dink\\walk\\ds-w9- 79 43 38 72 -14 -9 14 9")));
+			for (const TPair<int32, FString>& Seth : TArray<TPair<int32, FString>>{{580, TEXT("MI_Sprite_init_pose_01")}, {581, TEXT("MI_Sprite_init_seth1w_01")}})
+			{
+				ADinkScriptSpriteActor* S = Create(540 + Seth.Key - 580, Seth.Key, 1);
+				if (!Test->TestNotNull(*FString::Printf(TEXT("create_sprite of Seth's %d spawns"), Seth.Key), S)) continue;
+				UStaticMeshComponent* Card = PictureCard(*S);
+				Test->TestNull(*FString::Printf(TEXT("Seth's %d gets no family mesh of the old picture"), Seth.Key), ScriptFamilyMesh(*S));
+				if (Test->TestNotNull(*FString::Printf(TEXT("Seth's %d is drawn as his 1997 picture on a card"), Seth.Key), Card))
+					Test->TestTrue(*FString::Printf(TEXT("with %s"), *Seth.Value), Card->GetMaterial(0) && Card->GetMaterial(0)->GetName() == Seth.Value);
+				Test->TestTrue(TEXT("and no grey marker"), S->Marker->bHiddenInGame);
+			}
+			UDinkArtFamilySubsystem::ClearInitSequencePictures();
+			Director->InitLines.Reset();
+
+			// A sprite without a picture (create_sprite x, y, brain, 0, 0: touch, hardness and warp sprites) is never drawn
+			// by the original (getpic, draw_sprite_game, dink.cpp:443-445, 5498): no grey marker until it gets a picture.
+			ADinkScriptSpriteActor* Blank = Create(420, 0, 0);
+			const int32 BlankHandle = Handle;
+			if (Test->TestNotNull(TEXT("create_sprite without a picture spawns"), Blank))
+			{
+				Test->TestTrue(TEXT("a sprite without a picture shows no marker"), Blank->Marker->bHiddenInGame);
+				Test->TestFalse(TEXT("the actor itself stays (script, touch box)"), Blank->IsHidden());
+				Director->SpriteProperty(nullptr, TEXT("pseq"), BlankHandle, FreeSeq);
+				Director->SpriteProperty(nullptr, TEXT("pframe"), BlankHandle, FreeFrame);
+				Test->TestNotNull(TEXT("a picture given later is drawn on a card"), PictureCard(*Blank));
+				Test->TestTrue(TEXT("still without the marker"), Blank->Marker->bHiddenInGame);
+				Director->SpriteProperty(nullptr, TEXT("pseq"), BlankHandle, 0);
+				Test->TestTrue(TEXT("pseq 0 hides it again"), Blank->Marker->bHiddenInGame);
+				Test->TestNull(TEXT("and removes the card"), PictureCard(*Blank));
+			}
+
+			// The Terris guards (s2-ryan3.c:47-72, s2-bar.c:192-229): create_sprite(x, y, 9, 0, 0), sp_base_walk 290, then they
+			// walk: the picture comes from changedir, never from an sp_ command. The sprite must be drawn once it has one.
+			ADinkScriptSpriteActor* Guard = Create(480, 0, 0);
+			const int32 GuardHandle = Handle;
+			if (Test->TestNotNull(TEXT("a guard made without a picture spawns"), Guard))
+			{
+				Director->SpriteProperty(nullptr, TEXT("brain"), GuardHandle, 9);
+				Director->SpriteProperty(nullptr, TEXT("base_walk"), GuardHandle, 290);
+				Test->TestTrue(TEXT("no picture yet: nothing drawn"), Guard->Marker->bHiddenInGame);
+				if (FDinkSprite* S = Director->FindSprite(GuardHandle))
+				{
+					S->Props.Add(TEXT("seq"), 292);   // what changedir gives a sprite walking south on base 290 (dink.cpp changedir)
+					S->Dir = 2;
+				}
+				Director->Tick(1000.0 / 60.0, FPlatformTime::Seconds() * 1000.0);
+				Test->TestTrue(TEXT("walking gave the guard a picture: it is drawn (never invisible while it fights)"), GUARD_DRAWN(Guard));
+				FIntVector4 GuardPic;
+				if (UDinkArtFamilySubsystem::PictureInfo(292, 1, GuardPic))
+				{
+					Test->TestNotNull(TEXT("as its 1997 picture on a card (A53)"), PictureCard(*Guard));
+					Test->TestTrue(TEXT("and not as the grey marker"), Guard->Marker->bHiddenInGame);
+				}
 			}
 			return true;
 		}

@@ -1,4 +1,5 @@
 #include "Greybox/DinkGreyboxSubsystem.h"
+#include "DinkArtFamilySubsystem.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Greybox/DinkPlaceholderActor.h"
 #include "DinkInstanceOriginsComponent.h"
@@ -208,6 +209,27 @@ namespace
 				Card->SetMobility(EComponentMobility::Movable);
 			}
 			Card->SetWorldRotation(FRotator(0.0, Yaw, 0.0));
+		}
+		// The 1997 pictures of script-created sprites that have no family mesh (UDinkArtFamilySubsystem::DressScriptSprite).
+		TArray<TWeakObjectPtr<UStaticMeshComponent>>& Pictures = UDinkArtFamilySubsystem::ScriptPictureCards();
+		for (int32 I = Pictures.Num() - 1; I >= 0; --I)
+		{
+			UStaticMeshComponent* Card = Pictures[I].Get();
+			if (!Card || Card->GetWorld() != &World)
+			{
+				if (!Card) Pictures.RemoveAtSwap(I);
+				continue;
+			}
+			const AActor* Owner = Card->GetOwner();
+			// A script character or creature body took the sprite over: its own layer draws it.
+			const bool bTaken = Owner && (Owner->ActorHasTag(TEXT("DinkHumanoid")) || Owner->ActorHasTag(TEXT("DinkScriptHumanoid")) ||
+				Owner->ActorHasTag(TEXT("DinkCreature")) || Owner->ActorHasTag(TEXT("DinkAuthoredArt")));
+			if (bTaken != Card->bHiddenInGame) Card->SetHiddenInGame(bTaken);
+			if (bTaken) continue;
+			const FVector To = (Camera - Card->GetComponentLocation()) * FVector(1, 1, 0);
+			if (To.SizeSquared() < 1.0) continue;
+			const double Yaw = FMath::RadiansToDegrees(FMath::Atan2(-To.X, To.Y));
+			if (FMath::Abs(FRotator::NormalizeAxis(Card->GetComponentRotation().Yaw - Yaw)) >= 0.5) Card->SetWorldRotation(FRotator(0.0, Yaw, 0.0));
 		}
 	}
 }
