@@ -23,6 +23,9 @@ cut 152 (bonca_gray 21, slayer 21, stone_giant 14, bonca_brown 12, bonca_purple 
 
 - `bonca.jpg`: the 1997 frames over the game. Row 2: brown boncas of SCR_029 at the play camera. Row 3: close (brown,
   purple in the cave of SCR_514). Row 4: killed brown (SCR_029), grey (SCR_090), purple (SCR_514).
+- `before_after_play.jpg`: the play camera with the class art off (`-dpcvars=dink.CreatureClassArt=0`: the 1997 pictures on
+  cards) and on, on SCR_029, SCR_157, SCR_178 and SCR_514; and what a killed bonca left before (its gold, nothing else)
+  and leaves now.
 - `slayer_giant_live.jpg`: slayers on SCR_157 and SCR_028, the stone giant on SCR_178, play camera and close. These are
   from the first import: the giant in them is the paler stone, before it was darkened (see below).
 - `source_bonca_three_hides.jpg`, `source_slayer.jpg`, `source_stone_giant.jpg`: Cycles renders of the game meshes
