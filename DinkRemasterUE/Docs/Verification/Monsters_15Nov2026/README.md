@@ -26,6 +26,8 @@ cut 152 (bonca_gray 21, slayer 21, stone_giant 14, bonca_brown 12, bonca_purple 
 - `before_after_play.jpg`: the play camera with the class art off (`-dpcvars=dink.CreatureClassArt=0`: the 1997 pictures on
   cards) and on, on SCR_029, SCR_157, SCR_178 and SCR_514; and what a killed bonca left before (its gold, nothing else)
   and leaves now.
+- `whole_screen_and_giant_heap.jpg`: from above on the rebuilt binary: brown boncas (SCR_029), grey boncas alive (SCR_090,
+  SCR_160), slayers (SCR_028, SCR_157), stone giants in the darkened stone (SCR_178), and the killed giant's heap.
 - `slayer_giant_live.jpg`: slayers on SCR_157 and SCR_028, the stone giant on SCR_178, play camera and close. These are
   from the first import: the giant in them is the paler stone, before it was darkened (see below).
 - `source_bonca_three_hides.jpg`, `source_slayer.jpg`, `source_stone_giant.jpg`: Cycles renders of the game meshes
@@ -51,18 +53,21 @@ cut 152 (bonca_gray 21, slayer 21, stone_giant 14, bonca_brown 12, bonca_purple 
 - Slayer: the jaw hangs open but does not move; legs are not segmented beyond the plate texture; no wet eye highlight.
 - Stone giant: one skin with hardened weights, not separate rocks: seams still bend at the shoulders and hips.
 - Pools are a flat decal: bright and glossy, no thickness, and they do not follow the body's facing beyond the yaw.
-- The grey bonca was NOT seen alive: on SCR_090 the pairs kill each other before the camera arrives (its corpse is in
-  the sheet). Its hide is seen only in the source render.
+- The stone giant still reads pale in full sun (tan, lighter than 821) although its stone was darkened; its remains are
+  blocks that overlap each other rather than a tidy heap, and the grit decal under them does not show through grass.
+- The grey bonca is seen alive only from above (SCR_090, SCR_160), not close.
 - Clips are authored poses (idle, walk, run, attack), not motion capture; the attack is one lunge for every direction.
 
 ## Not checked / not done
 
-- NOT YET SEEN IN THE GAME: the slayer's and the stone giant's remains (they need the rebuilt binary with the
-  `base_walk + 5` rule; the build is queued), and the darkened giant alive. Their corpse meshes were looked at in Blender
-  only (`source_corpses_preview.jpg`).
-- NOT YET RUN on this change: `Dink.Art`, `Dink.Gameplay.Probe` (the twenty md5s), the new `CorpseFor` test lines. Python
-  unit tests: 903 OK in the private copy. The in-game frames above were taken on the previous binary (master of 15 Nov +
-  the duck/slime/pig change), which shows the rows but not the two `base_walk + 5` corpses.
+- NOT YET SEEN IN THE GAME: the slayer's remains. The capture's two blows of 50 did not kill it (the stone giant died,
+  the slayer did not); a capture with a killing blow is queued. Its corpse mesh and pool were looked at in Blender only
+  (`source_corpses_preview.jpg`). The rule that leaves it (`base_walk + 5`) is the one that left the giant's heap.
+- NOT YET RUN on this change: `Dink.Art`, `Dink.Gameplay.Probe` (the twenty md5s), the new `CorpseFor` test lines; all
+  three are queued in the Unreal lock. Python unit tests: 903 OK in the private copy.
+- The binary of the frames: `bonca.jpg`, `slayer_giant_live.jpg` and `before_after_play.jpg` were taken on the build of
+  15 Nov noon (master + the duck/slime/pig change), `whole_screen_and_giant_heap.jpg` on the rebuilt one (master
+  6ef7a590 + the duck/slime/pig change + this change). Neither is today's master.
 - Goblins (GP-Q3) and the fish (VS-04) are not in this change: they stay on cards. The dragon is the next change.
 - Not looked at: every other screen of the 57 (only 28, 29, 90, 157, 178, 514), fights in motion at full speed, the
   packaged build, frame time with many of them on screen.
