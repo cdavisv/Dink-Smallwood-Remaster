@@ -16,6 +16,7 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
 | `clips/redo_*_pick.ogg`, `clips/redo_*_runnerup*.ogg` | **For the owner to listen to:** each pick and its runner-up, as the game imports them. |
 | `clips/runA_opening_scene_before_fixes.ogg` | 76 s of the opening scene before the mix fixes (run A, 16 Nov). |
 | `cue_runH.md` | Run H: the regenerated bow and axe cued by play in Dink's house, found in the recording. |
+| `cue_runM.md`, `clips/runM_fist_hits_in_play.ogg` | Run M: eight fist hits in play on the AlkTree, each heard in the recording. |
 | `cue_runL.md` | Run L: the generated footsteps and ambience beds in play (SCR_001 wood, SCR_439 grass, a screen per bed) and all 32 life takes in a sweep, found in the recording. |
 | `clips/life_*.ogg` | **For the owner to listen to:** the four takes of each footstep surface, the first 12 s of each bed. |
 | `limiter_runC_before.txt`, `limiter_runE_after.txt` | Output level per 30 s with the 15 Nov limiter settings (run C) and the brickwall settings (run E). |
@@ -37,6 +38,9 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
   - Axe: two throws (`item-axe.c`) struck and cued `SFX_48_axe` at pitch 0.59, the 13000 Hz the script sets. Both were
     found by waveform: match 0.73 and 0.77 against the pitched-down take. The strike lands on the tail of the throw's
     own swing, so it is not a clean level step.
+- **A fist hit in play (run M, 16 Nov).** Eight punches at the AlkTree (S474_P01), the probe's fist target. Each cued
+  `SFX_09_punch` on the attack's hit frame, and each was found in the recording at its own onset (match 0.41 to 0.46,
+  -14.5 dBFS over 0.45 s). Five nuts fell, as the tree's script does. Details in `cue_runM.md`.
 - **Footsteps and ambience beds (run L, 16 Nov).** Details in `cue_runL.md`.
   - All 32 generated takes play: the sweep finds each one by waveform (match 0.89 to 1.000).
   - In play: wood steps in the house are found 19 times of 24 cues. The cave and wind beds are found under the screen
@@ -61,16 +65,16 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
 
 ## Not proven
 
-- **A fist hit and Seth's bird line in actual play** are not shown in a recording. Console drives kept leaving Dink
-  frozen or missing:
-  - `dink.Goto` leaves Dink frozen on arrival (SCR_030, SCR_474).
+- **Seth's bird line in actual play** is not shown in a recording. It comes only at the end of the game (`s7-boss.c:185-186`);
+  the probe plays that fight, but headless. The bird take itself plays (runs C and D sweeps), and the cue path is script
+  `playsound`, which the bow above also uses.
+- **Earlier fist attempts and what they taught** (the hit is proven by run M above):
+  - On SCR_030 and SCR_474 the screen's pillbugs killed Dink (10 life); `dinfo.die` and the death menu held him, which
+    first looked like `dink.Goto` freezing him.
   - `dink.Npc.Hold 1` freezes Dink as well as the NPCs.
-  - Punches at the photoreal table use the mesh's authored bounds and missed.
   - In run C the bow sat in slot 3 behind pig food.
-  - In runs H and I, eleven punches landed on nothing: five, then three with Dink walked into the round table's edge from the north, then three where his mother stands. The photoreal table and the mother use authored-geometry hits (`DinkAuthoredInteraction.cpp`), which these console drives did not satisfy. A fist hit needs a hand-driven session, or a test that drives `UDinkGameplay::PlayerAttack` against a target with a 1997 hardbox.
-  - The cue path is the same one every other approved effect uses: the `attack_hit_sound` cue for hits
-    (`DinkGameplay.cpp:910`, `DinkBrains.cpp:1149-1153`; the axe's strike above used it), script `playsound` for the bird (the bow above went through it).
-  - Seth's bird line is reached only at the end of the game. The probe plays that fight, but headless.
+  - In runs H and I, eleven punches at the photoreal round table and the mother hit nothing: both use authored-geometry
+    hits (`DinkAuthoredInteraction.cpp`), which those console drives did not satisfy.
 - **The master limiter (bug A164, reopened).**
   - Runs C and E give the same output peaks to the sample, so the limiter added to the main submix has no measurable
     effect on the device output.
