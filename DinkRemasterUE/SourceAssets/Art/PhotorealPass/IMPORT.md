@@ -10,6 +10,8 @@ All commands run from `DinkRemasterUE/`, headless, and are re-runnable. A re-exp
 | Ground colour grid for trunk feet | `python3 -I Scripts/export_ground_colour.py` (after a world export or a terrain texture change) | `ImportData/screens.json`, `ImportData/ground_mask`, `Terrain/*/T_Terrain_*_BC.png` | `Content/Dink/Data/Environment/ground_colour.json` |
 | World (ground masks, per-screen terrain and water instances, sky, backdrop) | `Scripts/import_greybox.sh --region all --export` | the two above, `tools/data/tile_classes.csv` | `/Game/Dink/_Generated`, `Content/Dink/Data/Environment/layer_cover.json` |
 
+Ground-layer outlines (15 Nov 2026, VS-09): the world export rebuilds every outdoor screen's terrain-mask weights in world space with the screens round it (`Scripts/ground_layer_fields.py`, called by `naturalise_ground_masks` in `export_import_bundle.py`): rounded, noise-bent outlines that stay within half a tile of the 1997 ones, feathered, the same on both sides of a screen border. Mask texels are edge-aligned (texel 0 on the west edge, texel 95 on the east edge), so the material's clamped lookup shows the same weights on both sides of a border. After a change run the export and the world import, then `export_ground_colour.py`. Look at outlines without the game: `python3 -I Scripts/PhotorealQA/ground_mask_mosaic.py ImportData out.png <screen>`; border steps over the whole world: `python3 -I Scripts/PhotorealQA/ground_mask_seams.py ImportData`.
+
 Order after a terrain change: environment materials, then the world. Vegetation, scatter and hero are independent of the world import: they are bound at runtime.
 
 ## What binds the imports at runtime

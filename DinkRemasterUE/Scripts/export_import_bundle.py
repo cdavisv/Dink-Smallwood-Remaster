@@ -145,16 +145,22 @@ TERRAIN_NEAREST = {
 }
 
 
-def fold_terrain_layers(weights: dict, limit: int = TERRAIN_MAX_LAYERS):
+def fold_terrain_layers(weights: dict, limit: int = TERRAIN_MAX_LAYERS, keep: dict | None = None):
     """Fold the smallest layers of `weights` (name -> weight array) into others until at most `limit` are left.
     -> (weights, merged {layer: the same-family layer that draws it}, dropped {layer: the other layer that draws it}).
-    Pure bookkeeping: a screen with `limit` layers or fewer comes back untouched."""
+    Pure bookkeeping: a screen with `limit` layers or fewer comes back untouched. `keep` (layer -> priority, natural
+    outlines): layers of a lower priority fold first, whatever their size (a neighbour's sliver before the screen's
+    own layers, a layer that never reaches the rim before one that does)."""
     weights = dict(weights)
     merged, dropped = {}, {}
-    size = lambda k: (float(weights[k].sum()), k)
+    size = (lambda k: (float(weights[k].sum()), k)) if keep is None else (lambda k: (keep.get(k, 0), float(weights[k].sum()), k))
     while len(weights) > limit:
         victim = target = None
-        for name in sorted(weights, key=size):        # the smallest layer that has a relative on the screen goes first
+        # with priorities only the lowest group is a candidate: a neighbour's sliver goes before ANY of the screen's own
+        # layers, even one that has a relative to merge into
+        low = min(keep.get(k, 0) for k in weights) if keep is not None else None
+        candidates = [k for k in weights if keep is None or keep.get(k, 0) == low]
+        for name in sorted(candidates, key=size):     # the smallest layer that has a relative on the screen goes first
             family = next((f for f in TERRAIN_FAMILIES if name in f), ())
             relatives = [k for k in family if k in weights and k != name]
             if relatives:
@@ -162,7 +168,7 @@ def fold_terrain_layers(weights: dict, limit: int = TERRAIN_MAX_LAYERS):
                 merged[victim] = target
                 break
         if victim is None:
-            victim = min(weights, key=size)
+            victim = min(candidates, key=size)
             target = next((k for k in TERRAIN_NEAREST.get(victim, ()) if k in weights), None) or max((k for k in weights if k != victim), key=size)
             dropped[victim] = target
         weights[target] = weights[target] + weights.pop(victim)
@@ -337,12 +343,15 @@ def shore_alpha(n: int, cells: dict, neighbours: dict) -> np.ndarray:
     return np.clip(0.5 + d / SHORE_RANGE_CM, 0.0, 1.0)
 
 
-def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict, means: dict, fill_water=None, indoor=False, facts=None, shore_water=None):
+def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict, means: dict, fill_water=None, indoor=False, facts=None, shore_water=None,
+                 raw_out=None):
     """-> (layers [dict], RGBA mask Image, grass cover base64 or None), or (None, None, None) when the screen
     keeps its painted ground. Alpha is the signed distance to the waterline: 128 at the shore, 255 at 2 m or
     more on land (also the value without water), 0 at 2 m or more into the water.
     `facts` (a dict) is filled with what the art audit needs to know about the screen's ground: the tile classes
-    on it, the layer each maps to, the layers the mask carries and the layers folded into others (merged, dropped)."""
+    on it, the layer each maps to, the layers the mask carries and the layers folded into others (merged, dropped).
+    `raw_out` (a dict) receives the 1997 tile weights before folding (`weights`: layer -> 64 x 96 cells), whether the
+    screen keeps its painted ground (`painted`) and its water cells (`water`), for naturalise_ground_masks."""
     layers = cat["resolved_layers"]
     class_map = dict(cat["classes"])
     if indoor:
@@ -394,6 +403,8 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
         else:
             add(class_layer[terrain], r, c, 1.0)
     painted = not weights or unmapped > 0.10 * len(scr["tiles"])
+    if raw_out is not None:
+        raw_out.update(weights={k: v.copy() for k, v in weights.items()}, painted=bool(painted), water=None)
     tiles_of = {k: round(float(v.sum()) / (px * px), 2) for k, v in weights.items()}
     weights, merged, dropped = fold_terrain_layers(weights)
     names = [] if painted else sorted(weights, key=lambda k: (-weights[k].sum(), k))
@@ -433,6 +444,8 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
         water_small = fw > 127
         px_cm = 600.0 / TERRAIN_MASK_W * 4.38  # about 4.4 cm per map pixel
         shore = np.clip(0.5 + signed_shore_distance(water_small, px_cm) / 400.0, 0.0, 1.0)
+    if raw_out is not None:
+        raw_out["water"] = water_small
     rgba = np.dstack([np.clip(stack[:, :, :3], 0.0, 1.0), shore])   # a fourth layer is what R + G + B leave
     img = Image.fromarray((rgba * 255.0 + 0.5).astype(np.uint8), "RGBA")
     cover = None
@@ -445,8 +458,102 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
     return [layers[n] for n in names], img, cover
 
 
+def naturalise_ground_masks(out: Path, cat: dict, ground_raw: dict, ground_masks: dict, corners: dict, ground_classes: dict,
+                            layer_cover: dict) -> dict:
+    """Replace the tile-shaped layer weights of every outdoor screen's terrain mask by natural outlines computed in
+    world space with the screens round it (Scripts/ground_layer_fields.py: rounded, noise-bent within half a tile of
+    the 1997 outline, feathered, continuous across screen borders), then write the masks. Indoor floors keep their
+    tile weights. Every mask is written edge-aligned (texel 0 on the west edge, texel 95 on the east edge), as
+    M_Env_Terrain's clamped lookup shows on the border (ground_layer_fields.py). The alpha (shore distance) is left as terrain_mask made it.
+    `ground_raw`: screen -> terrain_mask's raw_out plus `indoor`; `ground_masks`: screen -> (mask Image, layer rows,
+    screens.json record), updated in place with the new layers and hash; `corners`: screen -> world corners;
+    `ground_classes` (facts) and `layer_cover` are updated for the screens whose layers change. -> counts."""
+    from ground_layer_fields import STRUCTURED_BEND, region_sources, connected_weights, connectivity_faults, edge_aligned_own, smooth_screen_layers
+    layers = cat["resolved_layers"]
+    grass = cat.get("grass_layer", "MeadowTurf")
+    bend = {k: STRUCTURED_BEND for k, row in layers.items() if row.get("structured")}
+    # patch size varies over a field for the layers the 1997 map scatters in small patches (not paths, ledges or
+    # the ground round them)
+    vary = {k: 1.0 for k in ("RockyGrass", "WildGrass", "TransitionDirt") if k in layers}
+    outdoor = {m for m, r in ground_raw.items() if not r.get("indoor") and r.get("weights")}
+    stats = {"natural": 0, "indoor": 0, "bleed_folded": 0, "own_folded": 0, "split_before": 0, "merged_before": 0,
+             "split": 0, "merged": 0, "final_split": 0, "final_merged": 0, "final_split_screens": [], "final_merged_screens": []}
+    px = TERRAIN_MASK_W // 12
+    for n, (img, _, rec) in sorted(ground_masks.items()):
+        rgba = np.asarray(img).astype(np.float64) / 255.0
+        raw = ground_raw[n]
+        if raw.get("indoor") or n not in outdoor:
+            rgb = edge_aligned_own({c: rgba[:, :, c] for c in range(3)})
+            rgba = np.dstack([rgb[0], rgb[1], rgb[2], rgba[:, :, 3]])
+            stats["indoor"] += 1
+        else:
+            neighbours = {k: m for k, m in world_neighbours(n, corners).items() if m in outdoor}
+            smooth = smooth_screen_layers(n, {m: ground_raw[m]["weights"] for m in [n] + list(neighbours.values())}, neighbours, bend, vary=vary,
+                                          report=stats, fixed={cat.get("classes", {}).get("water", "WetSand")})
+            own = raw["weights"]
+            rim = {k: float(v[0].sum() + v[-1].sum() + v[:, 0].sum() + v[:, -1].sum()) for k, v in smooth.items()}
+            # the screen's own layers keep their channels (the smallest own layer folds only when the own layers alone
+            # are more than four); a neighbour's sliver folds first, one that reaches the rim last of them
+            # (priority 3: a layer of the screen's tile classes; 2: one that only comes from a transition tile's colour split)
+            f0 = ground_classes.get(str(n)) or {}
+            tile_layers = {f0.get("layer_of", {}).get(c) for c, k in (f0.get("classes") or {}).items() if k} | set(f0.get("surroundings") or {})
+            keep = {k: 3 if k in tile_layers else 2 if k in own and float(own[k].sum()) > 0.0 else (1 if rim[k] > 0.5 else 0) for k in smooth}
+            weights, merged, dropped = fold_terrain_layers(smooth, keep=keep)
+            # the written winners keep every 1997 region of the screen in one piece and apart (after blur, feather, fold)
+            weights = connected_weights(weights, own, report=stats.setdefault("final_fix", {}))
+            names = sorted(weights, key=lambda k: (-weights[k].sum(), k))
+            # the written mask against the 1997 tiles: no 1997 layer region split in two, no two joined (per screen)
+            own_names = sorted(own)
+            own_frac = np.stack([own[k] for k in own_names]); own_frac = own_frac / np.maximum(own_frac.sum(axis=0, keepdims=True), 1e-6)
+            res_names = sorted(weights)
+            res_win = np.array(res_names)[np.argmax(np.stack([weights[k] for k in res_names]), axis=0)]
+            own_src = region_sources(own_frac, np.argmax(own_frac, axis=0))
+            for k in set(own_names) & set(res_names):
+                sp, mg = connectivity_faults(own_src[own_names.index(k)], res_win == k)
+                stats["final_split"] += sp; stats["final_merged"] += mg
+                if sp: stats["final_split_screens"].append((n, k))
+                if mg: stats["final_merged_screens"].append((n, k))
+            stack = np.stack([weights[k] for k in names], axis=2)
+            stack = stack / np.maximum(stack.sum(axis=2, keepdims=True), 1e-6)
+            rgb = np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W, 3))
+            rgb[:, :, :min(3, len(names))] = stack[:, :, :3]
+            rgba = np.dstack([rgb, rgba[:, :, 3]])
+            rows = [layers[k] for k in names]
+            ground_masks[n] = (img, rows, rec)
+            rec["ground_layers"] = rows
+            tiles_of = lambda k: round(float((own[k] if k in own else smooth[k]).sum()) / (px * px), 2)
+            facts = ground_classes.get(str(n))
+            if facts is not None:
+                facts["layers"] = list(names)
+                # a layer the screen's own tiles do not have (it only reaches in from a neighbour's outline) is not
+                # counted as merged or dropped; it is listed apart
+                facts["merged"] = {k: {"tiles": tiles_of(k), "drawn_as": merged[k]} for k in sorted(merged) if k in own}
+                facts["dropped"] = {k: {"tiles": tiles_of(k), "drawn_as": dropped[k]} for k in sorted(dropped) if k in own}
+                folded = dict(merged, **dropped)
+                bleed = {k: {"tiles": tiles_of(k), "drawn_as": folded[k]} for k in sorted(folded) if k not in own}
+                if bleed:
+                    facts["neighbour_layers_folded"] = bleed
+                else:
+                    facts.pop("neighbour_layers_folded", None)
+                facts["outline"] = "natural"
+            stats["bleed_folded"] += sum(1 for k in list(dropped) + list(merged) if k not in own)
+            stats["own_folded"] += sum(1 for k in list(dropped) + list(merged) if k in own)
+            if grass in names:
+                water = raw.get("water")
+                g = weights[grass] * (~water if water is not None else 1.0)
+                g = g.reshape(TERRAIN_MASK_H // COVER_DIV, COVER_DIV, TERRAIN_MASK_W // COVER_DIV, COVER_DIV).mean(axis=(1, 3))
+                import base64
+                layer_cover[str(n)] = base64.b64encode((np.clip(g, 0.0, 1.0) * 255.0 + 0.5).astype(np.uint8).tobytes()).decode("ascii")
+            else:
+                layer_cover.pop(str(n), None)
+            stats["natural"] += 1
+        mask = Image.fromarray((np.clip(rgba, 0.0, 1.0) * 255.0 + 0.5).astype(np.uint8), "RGBA")
+        write_png_if_changed(out / "ground_mask" / f"{rec['id']}.png", mask)
+        rec["ground_mask_hash"] = sha1_bytes(mask.tobytes() + json.dumps(rec["ground_layers"], sort_keys=True).encode())
+    return stats
 
-FOREST_CLEAR_PX = 40       # about 2.8 m in the wilderness layout: the reach of a large pine's lower boughs
+
+FOREST_CLEAR_PX = 40      # about 2.8 m in the wilderness layout: the reach of a large pine's lower boughs
 FOREST_CAMERA_PX = 110     # about 7.5 m: the camera boom (4 m) plus a crown
 
 
@@ -991,6 +1098,8 @@ def main(argv=None) -> int:
     ground_classes = {}
     shore_cells = {}      # screen -> water_cells (every screen, so each mask can see its neighbours' water)
     screen_masks = {}     # screen -> (terrain mask, its layers, screens.json record): alpha filled in after the loop
+    ground_raw = {}       # screen -> the 1997 tile weights of its terrain mask (terrain_mask raw_out), for naturalise_ground_masks
+    ground_masks = {}     # screen -> (terrain mask, its layers, screens.json record): written after the loop
     (out / "sprites").mkdir(exist_ok=True)
 
     layout = json.loads((analyse / "world_layout.json").read_text())
@@ -1147,13 +1256,15 @@ def main(argv=None) -> int:
                 terrain_means = terrain_class_means(tile_classes, tileset)
             ground_classes[str(n)] = {}
             shore_water = None if fill_water.any() or scr["indoor"] else natural_water_shape(scr["tiles"], tile_classes, n)
+            raw = {}
             ground_layers, ground_mask, cover = terrain_mask(scr, ground, tile_classes, terrain_cat, terrain_means, fill_water, bool(scr["indoor"]),
-                                                             facts=ground_classes[str(n)], shore_water=shore_water)
+                                                             facts=ground_classes[str(n)], shore_water=shore_water, raw_out=raw)
             shore_cells[n] = water_cells(fill_water, shore_water)
+            ground_raw[n] = dict(raw, indoor=bool(scr["indoor"]))
             if ground_mask is not None:
                 if cover is not None:
                     layer_cover[str(n)] = cover
-                # written after the loop, when the neighbours' water is known (shore_alpha)
+                # written after the loop (shore_alpha, then naturalise_ground_masks)
 
         rect_total += sum(len(v) for v in rects.values())
         coll_hash = sha1_json(rects)
@@ -1246,6 +1357,7 @@ def main(argv=None) -> int:
             screen_rec["ground_layers"] = ground_layers
             screen_rec["ground_mask"] = f"ground_mask/{sid}.png"
             screen_masks[n] = (ground_mask, ground_layers, screen_rec)
+            ground_masks[n] = (ground_mask, ground_layers, screen_rec)
         screens_out.append(screen_rec)
 
         # --- placements
@@ -1344,8 +1456,7 @@ def main(argv=None) -> int:
         rgba = np.asarray(ground_mask).copy()
         rgba[:, :, 3] = (alpha * 255.0 + 0.5).astype(np.uint8)
         ground_mask = Image.fromarray(rgba, "RGBA")
-        write_png_if_changed(out / "ground_mask" / f"{screen_rec['id']}.png", ground_mask)
-        screen_rec["ground_mask_hash"] = sha1_bytes(ground_mask.tobytes() + json.dumps(ground_layers, sort_keys=True).encode())
+        ground_masks[n] = (ground_mask, ground_layers, screen_rec)   # RGB natural outlines and write: naturalise_ground_masks
 
     by_id = {p["id"]: p for p in placements_out}
     screen_by_num = {s["screen"]: s for s in screens_out}
@@ -1545,6 +1656,16 @@ def main(argv=None) -> int:
             if s["screen"] in sea and (collision_out.get(s["id"], {}).get("fill_water")):
                 s["water_sea"] = sea[s["screen"]]
                 s["water_sea_patch"] = ground_classes[str(s["screen"])]["water_sea_patch"]
+        # natural land-layer outlines across screen borders (after the sea colour, which reads the 1997 layers);
+        # presentation only (outside the screen hash, like the mask)
+        natural = naturalise_ground_masks(out, terrain_cat, ground_raw, ground_masks, {s["screen"]: s["corners"] for s in screens_out},
+                                          ground_classes, layer_cover)
+        print(f"terrain masks: {natural['natural']} outdoor screens with natural layer outlines, {natural['indoor']} kept tile-shaped "
+              f"(indoor); folded for want of a mask channel: {natural['bleed_folded']} neighbour layers, {natural['own_folded']} own layers")
+        print(f"terrain masks: 1997 layer regions split by the smoothing {natural['split_before']} -> {natural['split']}, joined "
+              f"{natural['merged_before']} -> {natural['merged']} (window); written masks before the final check split "
+              f"{natural['final_fix'].get('split_before', 0)}, joined {natural['final_fix'].get('merged_before', 0)}; written split {natural['final_split']}, "
+              f"joined {natural['final_merged']}: " + ", ".join(f"{n} {k}" for n, k in (natural['final_split_screens'] + natural['final_merged_screens'])[:40]))
     write_json(out / "screens.json", {"schema": EXPORTER_VERSION + "/screens", "screens": screens_out})
     if terrain_cat is not None:
         # Runtime grass scatter hook (UDinkEnvironmentSubsystem): meadow coverage per screen (w x h, sampled bilinearly).
