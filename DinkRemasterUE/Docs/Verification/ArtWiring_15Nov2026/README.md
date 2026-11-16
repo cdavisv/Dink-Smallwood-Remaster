@@ -175,7 +175,11 @@ package's recorded `AssetImportData` `RelativeFilename`), or says the delivery i
 with the same binding rules. The owner branches the rows name (`fix/fence-runs`, `fix/family-duplicates`,
 `fix/art-wiring-scripted-static`, `fix/family-script-allowance`) are pushed when their PRs open;
 the sweep's `audit.jsonl` became unreadable on 15 Nov 23:26 (filesystem checksum errors on that one file): the table
-was regenerated from a salvaged copy (bad blocks zero-filled), which loses the line of screen 595 (the summary names
-it; the flag and card counts did not change);
+was regenerated from a salvaged copy (bad blocks zero-filled), which loses exactly one screen line, 595 (the summary names
+it). No committed row depends on it: against the table built from the intact file (commit 63b24708), all 853 rows
+keep their flag, seen column, not-seen reason and owner, and `drawn_cards.csv` is byte-identical (595 had no drawn
+card; its 3 placements are bound by no row whose reason changed). The `seen` column comes from the sweep's intact
+`meshes.csv`; the only mesh seen on 595 alone is its generated screen mesh, not a source row. The original file was
+read once for the salvage and is left as it is (it belongs to the visual-sweep stream);
 `art/stonebrook-mother-burnholes` belongs to the GP-Q5 stream. `test_c_only_runtime_modules_are_cpp_roots` reads
 the project's real `.uplugin`/`.uproject` files, so it needs a full checkout (or those files in a test snapshot).
