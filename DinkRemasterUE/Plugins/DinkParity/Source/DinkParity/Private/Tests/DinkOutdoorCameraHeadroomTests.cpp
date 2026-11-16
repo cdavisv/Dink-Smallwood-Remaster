@@ -27,7 +27,7 @@ IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkOutdoorHeadroomMath,"Dink.Art.Camera.Outdo
 bool FDinkOutdoorHeadroomMath::RunTest(const FString&)
 {
     // Measured actual doorway arrival: 106.18594cm against the cottage, yaw89.4271/pitch-18.
-    const FVector Pawn(97729.1303395717,37510.18435747431,98.3499956131);
+    const FVector Pawn(125590.8012,49223.57382,98.3499956131);
     const FVector Eye(97728.12056988107,37409.20056726398,131.1632583712);
     const FRotator R(-18,89.4271,0); const FVector F=R.Vector(),U=R.RotateVector(FVector::UpVector);
     const FVector Top=Pawn+FVector(0,0,96); double Lift=0;
@@ -82,7 +82,7 @@ public:
             bGuard=G->BeginWarp(H);if (!Test->TestTrue(TEXT("scoped static camera inspection prevents fixture teleport firing a warp"),bGuard)) return true;
             CapsuleResponses=H->GetCapsuleComponent()->GetCollisionResponseToChannels();Input=H->InputComponent;
             H->GetCharacterMovement()->StopMovementImmediately();
-            H->SetActorLocation(FVector(97729.1303395717,37510.18435747431,98.3499956131),false,nullptr,ETeleportType::TeleportPhysics);
+            H->SetActorLocation(FVector(125590.8012,49223.57382,98.3499956131),false,nullptr,ETeleportType::TeleportPhysics);
             G->RefreshCurrentScreen();PC->SetControlRotation(FRotator(-18,89.4271,0));At=FPlatformTime::Seconds();Stage=1;return false;
         }
         if (FPlatformTime::Seconds()-At<.5) return false;

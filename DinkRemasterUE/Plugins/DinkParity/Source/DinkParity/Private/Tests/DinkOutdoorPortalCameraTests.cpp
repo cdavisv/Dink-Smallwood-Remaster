@@ -59,7 +59,7 @@ public:
             Overrides=Mesh->OverrideMaterials;Visible=Mesh->IsVisible();Hidden=Mesh->bHiddenInGame;
             CapsuleResponses=H->GetCapsuleComponent()->GetCollisionResponseToChannels();Input=H->InputComponent;
             H->GetCharacterMovement()->StopMovementImmediately();
-            H->SetActorLocation(FVector(97729.63625545749,37512.61084546293,98.34999561309814),false,nullptr,ETeleportType::TeleportPhysics);
+            H->SetActorLocation(FVector(125591.3757,49226.37007,98.34999561309814),false,nullptr,ETeleportType::TeleportPhysics);
             Grey->RefreshCurrentScreen();PC->SetControlRotation(FRotator(-18,86.1711,0));At=FPlatformTime::Seconds();Stage=1;return false;
         }
         if(!C||!Rule||!Mesh.IsValid())
@@ -104,7 +104,7 @@ public:
         {
             Test->TestEqual(TEXT("free outdoor400 restored without cap poisoning zoom"),Arm->TargetArmLength,400.f);
             Test->TestEqual(TEXT("free outdoor has no cap"),C->OutdoorPortalArmCap,0.f);Test->TestEqual(TEXT("free outdoor has no lift"),C->OutdoorHeadroomLift,0.f);
-            H->SetActorLocation(FVector(-183760.16,392550.355,98.15),false,nullptr,ETeleportType::TeleportPhysics);Grey->RefreshCurrentScreen();At=FPlatformTime::Seconds();Stage=3;return false;
+            H->SetActorLocation(FVector(-184944.97,406283.74,98.15),false,nullptr,ETeleportType::TeleportPhysics);Grey->RefreshCurrentScreen();At=FPlatformTime::Seconds();Stage=3;return false;
         }
         Test->TestTrue(TEXT("actual indoor mode retained"),C->bInteriorMode);Test->TestEqual(TEXT("indoor desired arm stays240"),C->GetDesiredArmLength(),240.f);
         Test->TestEqual(TEXT("indoor cap cleared"),C->OutdoorPortalArmCap,0.f);Test->TestEqual(TEXT("indoor outdoor-lift cleared"),C->OutdoorHeadroomLift,0.f);
