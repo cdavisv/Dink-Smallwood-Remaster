@@ -116,3 +116,22 @@ at the creature again before every shot (`dink.CalAnchorOrigin`), because a duck
   `Dink.Art.CreatureClass` 6/6 with the new `BurstOnlyOnAKillAndStainsReused` and all 29 probe tests; the twenty probe
   trace md5s equal `Plugins/DinkParity/Docs/packaged_probe.md` (Ch1 b4ad88c02c ... Ch20 84f33687af). Python unit tests
   883 OK in the private copy.
+
+## Follow-up, 15/16 Nov 2026 night: the blue splatter on grass (parameters only)
+
+- Before: a killed blue slime on grass (SCR_633) left a dark stain at the blade bases that the grass hid: less than 661, a
+  bright blue scatter about the slime's size.
+- Done: `M_SlimeSplat_Blue_Decal` lifted to the bright quarter of 661 (tint 0.45 / 0.4 / 0.75 on the same picture,
+  sRGB about 54, 46, 108) with every spatter piece opaque (gain 3); every slime corpse decal now projects 70 cm deep, so
+  it reaches 45 cm above the ground and colours the grass tips instead of only the bases (it also colours the shins of
+  whoever stands in it); the blue heap is shown 1.5 times larger (the decal keeps its 3.2 m: 214 cm x 1.5) and its gel
+  is a brighter blue. No new art.
+- `gore_5_blue_slime_on_grass.jpg`: 1997 651/661, before, after. After: a blue splash about one and a half to two slime
+  widths across, solid in the middle with scattered pieces at its rim, clearly read on the grass from the play camera
+  and close up. The gel heap itself is still hidden in the grass.
+- Green slimes with `en-slim` (SCR_546, 610; both are dungeon rooms, there is no open screen with one): `gore_6_green_slime_enslim_701.jpg`: two kills on the open floor of SCR_546 leave the red-brown 701 splatter with its gel heap, about the slime's size (living green slimes beside it give the scale), as 1997 does. The room is dark, so it reads dark red.
+- Run: re-import `DINK_PHOTOREAL_ONLY=slime` and captures on the private copy whose editor binaries were built from
+  `0bf319c9` plus #113 (the creature code is the same on master `b25cdfa2`; the copy's content and scripts are master's,
+  its world was not regenerated after master's importer change). `Dink.Art.CreatureClass`: 6/6 on that copy.
+- The duck-head cards of SCR_145 (GP-Q7) and rows CG-1 to CG-6 stay with the Fable B stream.
+
