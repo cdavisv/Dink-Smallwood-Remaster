@@ -1099,6 +1099,15 @@ def main():
             elif played.startswith("no (no runtime"):
                 flags.append("unbound")
                 details.append("bound by a manifest but no runtime caller plays it")
+        # a reviewed reason that says the asset is out (queued / alternate / deliberate) goes stale once the asset is in:
+        # a clip a runtime caller now plays, or a mesh a root now binds. A deliberate one (a gore decision, say) bound by
+        # mistake is a bug; a queued or alternate one is a note to drop or update the reason (review of #173)
+        if k and k[0] in ("queued", "alternate", "deliberate") and bound_games:
+            now_in = clip_played(name, "", literals, roots, games) if kind == "clip" else "bound by " + bound_where
+            if not now_in.startswith("no ("):
+                flags.append("bug" if k[0] == "deliberate" else "note")
+                details.append("stale reason: the %s reason no longer holds, the asset is in (%s)" % (k[0], now_in))
+                print("art_wiring_audit: warning: %s has a %s reason but is in (%s)" % (name, k[0], now_in), file=sys.stderr)
         if cov and not reason and any(f in ("not_imported", "unbound") for f in flags):
             reason = "queued: " + cov
         rows.append({

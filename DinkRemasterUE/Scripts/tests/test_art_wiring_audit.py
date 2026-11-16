@@ -160,7 +160,10 @@ class Classifier(unittest.TestCase):
         self.assertNotIn('/Game/Dink/Old/SM_Wall', self.roots)
 
     def test_c_only_runtime_modules_are_cpp_roots(self):
-        # reads the project's real .uplugin / .uproject files: run in a full checkout (or copy them into a snapshot)
+        # reads the project's real .uplugin / .uproject files; a snapshot without them skips
+        if not (A.glob.glob(os.path.join(A.PROJECT, 'Plugins', '*', '*.uplugin'))
+                and os.path.isfile(os.path.join(A.PROJECT, 'DinkRemaster.uproject'))):
+            self.skipTest('no .uproject/.uplugin files in this tree')
         dirs = [d.replace(os.sep, '/') for d in A.runtime_module_dirs()]
         self.assertTrue(any(d.endswith('Plugins/DinkCore/Source/DinkCore') for d in dirs))
         self.assertFalse(any('DinkImport' in d or 'DinkParity' in d or 'DinkProbe' in d for d in dirs))

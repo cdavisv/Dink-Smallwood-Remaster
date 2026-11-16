@@ -6,8 +6,8 @@ and, if not, why. It audits the wiring (import, binding, cook, draw, clip caller
 source is good enough to bind is an art decision for the Fable queue.
 
 Tree: master `9cc796b6`. Tool: `DinkRemasterUE/Scripts/art_wiring_audit.py` (read-only, standard library; unit tests in
-`Scripts/tests/test_art_wiring_audit.py`, 30 pass). Reviewed reasons for sources that do not reach the player:
-`Scripts/art_wiring_known.json` (50 rows; add a row when you decide, drop it when you bind). Two runs on the same inputs
+`Scripts/tests/test_art_wiring_audit.py`, 31 pass). Reviewed reasons for sources that do not reach the player:
+`Scripts/art_wiring_known.json` (52 rows; add a row when you decide, drop it when you bind). Two runs on the same inputs
 write byte-identical files.
 
 Revised after the independent review of PR #154. The first version took bare asset names out of free-text notes and
