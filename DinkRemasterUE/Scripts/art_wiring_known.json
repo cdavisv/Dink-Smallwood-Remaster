@@ -48,6 +48,11 @@
       "why": "A205: imported with the creature classes of PR #113, but no creatures.json role plays them (duck: walk/headless locomotion only; slimes: walk only, death shows the splat corpse at once)"
     },
     {
+      "match": "^AN_(Bonca_(Death|Hit)|Dragon_(Attack|Death|Hit)|Slayer_(Death|Hit)|Stone_Giant_(Death|Hit))$",
+      "kind": "bug",
+      "why": "A210: imported with the monster classes of PRs #163/#170, but no creatures.json role plays them"
+    },
+    {
       "match": "^SM_Slime_Trail$",
       "kind": "bug",
       "why": "A205: exported with the slime (PhotorealPass/Creatures/Slime/Export) but not imported by PR #113; no creatures.json role uses a trail"
@@ -87,11 +92,6 @@
       "match": "^SM_(Cottage_Door|Cottage_Thatched_Large|Cottage_Thatched_Small|Fence_Gate|Fence_GatePost|Fence_SplitRail_4m_Broken|Well_Stone|Well_ShaftCap)_PR$",
       "kind": "queued",
       "why": "imported Structures/Stonebrook pieces for multi-sprite cottages, yards and wells: placed by the per-screen sets of art/gate2-static-structures (VS-01, VS-14), not by a family row"
-    },
-    {
-      "match": "^SM_Chest_Small(_Open)?_PR$",
-      "kind": "queued",
-      "why": "chest_small binding with its opened state: presentation-fixes stream (families.json chest rows) and VS-07"
     },
     {
       "match": "^SM_Barrel_Oak_PR$",

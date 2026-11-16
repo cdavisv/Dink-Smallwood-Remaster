@@ -832,7 +832,9 @@ AUDIT_STATS = collections.Counter()
 
 
 def audit_lines(audit_path):
-    """The scene audit's screen records; an unparsable line is skipped and noted in AUDIT_SKIPPED."""
+    """The scene audit's screen records; an unparsable line is skipped and noted in AUDIT_SKIPPED. Limit: a zero-filled
+    run that swallows one or more newlines shows as fewer lines than were lost (the count is a lower bound); the
+    could-be list in the summary (screens with placements but no parsed line) bounds what is missing."""
     AUDIT_SKIPPED.clear()
     AUDIT_STATS.clear()
     with open(audit_path, "rb") as h:
@@ -856,11 +858,14 @@ def audit_lines(audit_path):
                 AUDIT_SKIPPED.append(int(m.group(1)) if m else None)
 
 
-def after_commit_note(commit, what):
-    """Why a row is unverified against the commit a cook or sweep ran on."""
+def after_commit_note(commit, what, game=None):
+    """Why a row is unverified against the commit a cook or sweep ran on: the evidence is unavailable, the package did
+    not exist then, or it existed but nothing bound it then."""
     if commit in COMMIT_UNAVAILABLE:
         return "the evidence of the %s commit %s is unavailable (git failed reading it)" % (what, commit)
-    return "added or bound after the %s (not in the tree at %s)" % (what, commit)
+    if game is not None and game in commit_roots(commit)[0]:
+        return "bound after the %s (the package existed at %s, unbound)" % (what, commit)
+    return "added after the %s (not in the tree at %s)" % (what, commit)
 
 
 def captured_screens(audit_path):
@@ -1049,7 +1054,7 @@ def main():
         if bound_games and cooked_s == "no":
             if newer:
                 flags.append("unverified")
-                details.append(after_commit_note(a.cook_commit, "cook"))
+                details.append(after_commit_note(a.cook_commit, "cook", newer[0]))
             else:
                 flags.append("not_cooked")
         after_sweep = bool(a.sweep_commit) and all(not in_commit(g, a.sweep_commit, via, roots) for g in bound_games)
@@ -1080,7 +1085,7 @@ def main():
                 seen_s = seen_s or "player pawn (the scene audit lists the screen, not the pawn; the hero is in every frame)"
             elif not seen_s and seen and kind == "mesh" and after_sweep:
                 flags.append("unverified")
-                details.append("not seen: " + after_commit_note(a.sweep_commit, "sweep"))
+                details.append("not seen: " + after_commit_note(a.sweep_commit, "sweep", bound_games[0]))
             elif not seen_s and seen and kind == "mesh":
                 why = unseen_reason(bound_games, via, families, placements, captured, environment)
                 flags.append("not_seen")
@@ -1127,7 +1132,7 @@ def main():
             flags.append(gap_flag(reason, covered_by(n, index)) or "unbound")
         elif cooked_s == "no" and a.cook_commit and not in_commit(g, a.cook_commit, via, roots):
             flags.append("unverified")
-            details.append(after_commit_note(a.cook_commit, "cook"))
+            details.append(after_commit_note(a.cook_commit, "cook", g))
         elif cooked_s == "no":
             flags.append("not_cooked")
         elif g in swapped:
@@ -1140,7 +1145,7 @@ def main():
             seen_s = "player pawn"
         elif not seen_s and seen and n.startswith("SM_") and a.sweep_commit and not in_commit(g, a.sweep_commit, via, roots):
             flags.append("unverified")
-            details.append("not seen: " + after_commit_note(a.sweep_commit, "sweep"))
+            details.append("not seen: " + after_commit_note(a.sweep_commit, "sweep", g))
         elif not seen_s and seen and n.startswith("SM_"):
             flags.append("not_seen")
             details.append("not seen: " + unseen_reason([g], via, families, placements, captured, environment))
