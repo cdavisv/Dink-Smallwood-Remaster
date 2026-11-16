@@ -1,4 +1,5 @@
 #include "DinkDirector.h"
+#include "Misc/Crc.h"
 #include "Hardness/DinkHardnessActivation.h"
 #include "DinkAudioSubsystem.h"
 #include "DinkCreatureSubsystem.h"
@@ -1463,6 +1464,7 @@ void UDinkDirector::ResetSprites()
 		}
 	}
 	Sprites.Reset();
+	PresentedPicture.Reset();
 	HandleByOrigin.Reset();
 	HandleByActor.Reset();
 	OriginIndex.Reset();
@@ -2083,9 +2085,26 @@ void UDinkDirector::FinishAllMoves()
 void UDinkDirector::Tick(double DeltaMs, double NowMs)
 {
 	TArray<int32> ToKill;
+	if (PresentedPicture.Num() > Sprites.Num() * 2 + 64) PresentedPicture.Reset();
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
 	{
 		StepMove(Pair.Value, DeltaMs);
+		// A created sprite's drawn picture can change without a script command (changedir while it walks, brains):
+		// present it again whenever its picture changes, so a sprite born without a picture (create_sprite x, y, 9, 0, 0
+		// then sp_base_walk, as the Terris guards of s2-ryan3.c and s2-bar.c) shows up as soon as it has one.
+		FDinkSprite& S = Pair.Value;
+		if (S.bSpawned && S.Actor.IsValid() && S.Actor->IsA<ADinkScriptSpriteActor>())
+		{
+			const int32 Parts[6] = { S.GetProp(TEXT("seq")), S.GetProp(TEXT("pseq")), S.GetProp(TEXT("pframe")), S.GetProp(TEXT("size"), 100),
+				S.GetProp(TEXT("brain")), S.GetProp(TEXT("brain_parm")) };
+			const uint32 Picture = FCrc::MemCrc32(Parts, sizeof(Parts));
+			const uint32* Last = PresentedPicture.Find(Pair.Key);
+			if (!Last || *Last != Picture)
+			{
+				PresentedPicture.Add(Pair.Key, Picture);
+				PresentScriptSprite(S.Actor.Get(), S, FindSprite(S.GetProp(TEXT("brain_parm"))));
+			}
+		}
 		if (Pair.Value.KillAtMs > 0.0 && NowMs >= Pair.Value.KillAtMs)
 		{
 			Pair.Value.KillAtMs = 0.0;

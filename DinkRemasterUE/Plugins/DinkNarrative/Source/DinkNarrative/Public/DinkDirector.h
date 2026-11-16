@@ -367,6 +367,9 @@ private:
 	TMap<FName, FDinkCommandDef> Commands;
 	TArray<FString> ExternalNames;
 	TMap<int32, FDinkSprite> Sprites;
+	/** Per created sprite, the picture (seq, pseq, pframe, size, brain, brain_parm) its presentation was last made for:
+	 * Tick presents it again when walking (changedir), a brain or a script changed the picture by any path. */
+	TMap<int32, uint32> PresentedPicture;
 	TMap<FDinkOriginId, int32> HandleByOrigin;
 	TMap<TWeakObjectPtr<AActor>, int32> HandleByActor;
 	TMap<FDinkOriginId, TWeakObjectPtr<AActor>> OriginIndex;

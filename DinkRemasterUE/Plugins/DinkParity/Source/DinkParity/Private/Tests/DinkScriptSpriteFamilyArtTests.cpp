@@ -29,6 +29,9 @@ namespace
 		return Actor.FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag);
 	}
 
+	/** Drawn = the marker of an unbound picture, a family mesh or a picture card is visible. */
+	#define GUARD_DRAWN(A) (!(A)->Marker->bHiddenInGame || ((A)->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag) != nullptr))
+
 	class FDinkScriptSpriteFamilyCheck : public IAutomationLatentCommand
 	{
 	public:
@@ -186,6 +189,24 @@ namespace
 				Test->TestFalse(TEXT("a picture given later shows the marker of an unbound picture"), Blank->Marker->bHiddenInGame);
 				Director->SpriteProperty(nullptr, TEXT("pseq"), BlankHandle, 0);
 				Test->TestTrue(TEXT("pseq 0 hides it again"), Blank->Marker->bHiddenInGame);
+			}
+
+			// The Terris guards (s2-ryan3.c:47-72, s2-bar.c:192-229): create_sprite(x, y, 9, 0, 0), sp_base_walk 290, then they
+			// walk: the picture comes from changedir, never from an sp_ command. The sprite must be drawn once it has one.
+			ADinkScriptSpriteActor* Guard = Create(480, 0, 0);
+			const int32 GuardHandle = Handle;
+			if (Test->TestNotNull(TEXT("a guard made without a picture spawns"), Guard))
+			{
+				Director->SpriteProperty(nullptr, TEXT("brain"), GuardHandle, 9);
+				Director->SpriteProperty(nullptr, TEXT("base_walk"), GuardHandle, 290);
+				Test->TestTrue(TEXT("no picture yet: nothing drawn"), Guard->Marker->bHiddenInGame);
+				if (FDinkSprite* S = Director->FindSprite(GuardHandle))
+				{
+					S->Props.Add(TEXT("seq"), 292);   // what changedir gives a sprite walking south on base 290 (dink.cpp changedir)
+					S->Dir = 2;
+				}
+				Director->Tick(1000.0 / 60.0, FPlatformTime::Seconds() * 1000.0);
+				Test->TestTrue(TEXT("walking gave the guard a picture: it is drawn (never invisible while it fights)"), GUARD_DRAWN(Guard));
 			}
 			return true;
 		}
