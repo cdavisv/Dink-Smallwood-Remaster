@@ -70,7 +70,7 @@ NECK = {'Brawny': (.010, .005), 'Scrawny': (-.001, 0.0)}   # the scrawny neck wa
 # thick through the waist: a big man who eats well, not an athlete.
 LIMBS['Burly'] = {
     'upperarm': {'prof': [(0, .011), (.18, .016), (.45, .019), (.8, .012), (1, .008)], 'ang': (1.25, 1.2, .55, 1.0)},
-    'lowerarm': {'prof': [(0, .008), (.25, .011), (.7, .005), (1, .002), (1.1, 0)], 'ang': (1.0, 1.0, 1.0, 1.15)},
+    'lowerarm': {'prof': [(0, .011), (.25, .017), (.7, .011), (1, .005), (1.1, 0)], 'ang': (1.0, 1.0, 1.0, 1.15)},   # the forearms were a boy's under a big man's shoulders (14 Nov 2026)
     'thigh':    {'prof': [(-.1, .006), (.1, .012), (.35, .017), (.8, .009), (1, .005)], 'ang': (1.3, 1.0, .45, 1.0)},
     'calf':     {'prof': [(0, .005), (.3, .010), (.65, .004), (.9, 0)], 'ang': (.4, 1.4, .8, 1.0)},
 }

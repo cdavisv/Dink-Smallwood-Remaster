@@ -76,6 +76,7 @@ for gname, (size, objs) in groups.items():
             if h is None: continue
             deselect(); o.hide_render = False; h.select_set(True); o.select_set(True); bpy.context.view_layer.objects.active = o
             kw = dict(type=typ, use_selected_to_active=True, cage_extrusion=.006, max_ray_distance=.014, margin=12, use_clear=False)
+            if o.name in SELF_HI: kw.update(cage_extrusion=.015, max_ray_distance=.03)   # the smoothed copy pulls up to a centimetre away from the coarse folds: at 14 mm the rays missed it in patches (holes in the seat of the mail; shorter rays made more)
             if typ == 'DIFFUSE': kw['pass_filter'] = {'COLOR'}
             if typ == 'NORMAL': kw['normal_space'] = 'TANGENT'
             bpy.ops.object.bake(**kw)
