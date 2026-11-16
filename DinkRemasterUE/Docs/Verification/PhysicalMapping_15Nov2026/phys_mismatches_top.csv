@@ -1,0 +1,942 @@
+category,severity,screen,subject,detail
+1 invisible wall (hardbox),14494.7,748,S748_P01,"Dink stops up to 703 cm (p90) from anything drawn on 96% of its 519 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.1, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),13132.1,588,S588_P05,"Dink stops up to 717 cm (p90) from anything drawn on 100% of its 376 px contact edge; its mesh does not reach the hardbox edge; class npc, type 1, seq 449.4, mesh SM_Save_Machine_PR, kinds family"
+1 invisible wall (hardbox),12406.3,569,S569_P02,"Dink stops up to 680 cm (p90) from anything drawn on 100% of its 376 px contact edge; its mesh does not reach the hardbox edge; class npc, type 1, seq 449.5, mesh SM_Save_Machine_PR, kinds family"
+1 invisible wall (hardbox),12327.6,762,S762_P01,"Dink stops up to 615 cm (p90) from anything drawn on 96% of its 502 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.3, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),12268.9,763,S763_P20,"Dink stops up to 622 cm (p90) from anything drawn on 92% of its 530 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.7, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),12150.7,253,S253_P06,"Dink stops up to 626 cm (p90) from anything drawn on 100% of its 430 px contact edge; its mesh does not reach the hardbox edge; class scripted_prop, type 1, seq 159.7, mesh SM_Shrine_Glass_PR, kinds family"
+1 invisible wall (hardbox),11203.3,764,S764_P02,"Dink stops up to 584 cm (p90) from anything drawn on 94% of its 483 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.3, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),10772.1,586,S586_P03,"Dink stops up to 687 cm (p90) from anything drawn on 90% of its 340 px contact edge; its mesh does not reach the hardbox edge; class scripted_prop, type 1, seq 66.24, mesh SM_Fountain_Stone_PR, kinds family"
+1 invisible wall (hardbox),10413.5,763,S763_P03,"Dink stops up to 529 cm (p90) from anything drawn on 89% of its 574 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.3, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),10171.4,764,S764_P03,"Dink stops up to 516 cm (p90) from anything drawn on 87% of its 598 px contact edge; only its card is drawn; class scripted_prop, type 1, seq 424.1, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),10130.1,762,S762_P08,"Dink stops up to 520 cm (p90) from anything drawn on 91% of its 538 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.7, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),9559.8,577,S577_P04,"Dink stops up to 698 cm (p90) from anything drawn on 100% of its 211 px contact edge; nothing of its own drawn (screen-dressed or missing); class background, type 0, seq 80.10, mesh -, kinds -"
+1 invisible wall (hardbox),9109.1,710,S710_P14,"Dink stops up to 609 cm (p90) from anything drawn on 100% of its 256 px contact edge; its mesh does not reach the hardbox edge; class scripted_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Dry_01, kinds environment"
+1 invisible wall (hardbox),8800.4,253,S253_P05,"Dink stops up to 978 cm (p90) from anything drawn on 90% of its 109 px contact edge; nothing of its own drawn (screen-dressed or missing); class sprite_prop, type 1, seq 179.1, mesh -, kinds -"
+1 invisible wall (hardbox),8739.7,372,S372_P04,"Dink stops up to 596 cm (p90) from anything drawn on 100% of its 247 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),8664.0,307,S307_P13,"Dink stops up to 582 cm (p90) from anything drawn on 100% of its 256 px contact edge; its mesh does not reach the hardbox edge; class scripted_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Dry_01, kinds environment"
+1 invisible wall (hardbox),8559.4,251,S251_P05,"Dink stops up to 514 cm (p90) from anything drawn on 97% of its 350 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.8, mesh SM_Veg_PineForestEdge_H_01, kinds family"
+1 invisible wall (hardbox),8399.7,762,S762_P09,"Dink stops up to 448 cm (p90) from anything drawn on 89% of its 538 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.7, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),8045.3,521,S521_P01,"Dink stops up to 576 cm (p90) from anything drawn on 85% of its 314 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.1, mesh SM_Veg_Bush_Round_Large_01, kinds family"
+1 invisible wall (hardbox),7798.0,276,S276_P03,"Dink stops up to 531 cm (p90) from anything drawn on 100% of its 252 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),7773.4,283,S283_P02,"Dink stops up to 461 cm (p90) from anything drawn on 92% of its 399 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.8, mesh SM_Veg_PineForestEdge_H_01, kinds family"
+1 invisible wall (hardbox),7701.2,524,S524_P03,"Dink stops up to 564 cm (p90) from anything drawn on 92% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),7687.8,763,S763_P04,"Dink stops up to 529 cm (p90) from anything drawn on 92% of its 293 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.4, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),7620.4,376,S376_P05,"Dink stops up to 540 cm (p90) from anything drawn on 95% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),7529.4,499,S499_P02,"Dink stops up to 531 cm (p90) from anything drawn on 87% of its 314 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.1, mesh SM_Veg_Bush_Round_Large_01, kinds family"
+1 invisible wall (hardbox),7496.0,524,S524_P01,"Dink stops up to 486 cm (p90) from anything drawn on 88% of its 362 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),7433.2,242,S242_P08,"Dink stops up to 478 cm (p90) from anything drawn on 90% of its 357 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),7325.6,599,S599_P03,"Dink stops up to 523 cm (p90) from anything drawn on 86% of its 314 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.1, mesh SM_Veg_Bush_Round_Large_01, kinds family"
+1 invisible wall (hardbox),7219.2,659,S659_P07,"Dink stops up to 508 cm (p90) from anything drawn on 96% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),7158.3,763,S763_P02,"Dink stops up to 413 cm (p90) from anything drawn on 87% of its 492 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.3, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),7131.5,254,S254_P05,"Dink stops up to 432 cm (p90) from anything drawn on 94% of its 372 px contact edge; its mesh does not reach the hardbox edge; class npc, type 1, seq 449.5, mesh SM_Save_Machine_PR, kinds family"
+1 invisible wall (hardbox),7105.4,283,S283_P04,"Dink stops up to 461 cm (p90) from anything drawn on 91% of its 348 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.8, mesh SM_Veg_PineForestEdge_H_01, kinds family"
+1 invisible wall (hardbox),6997.2,377,S377_P06,"Dink stops up to 510 cm (p90) from anything drawn on 93% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),6972.3,500,S500_P13,"Dink stops up to 702 cm (p90) from anything drawn on 100% of its 111 px contact edge; nothing of its own drawn (screen-dressed or missing); class sprite_prop, type 1, seq 32.1, mesh -, kinds -"
+1 invisible wall (hardbox),6910.1,764,S764_P09,"Dink stops up to 470 cm (p90) from anything drawn on 92% of its 304 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 424.7, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),6879.8,401,S401_P01,"Dink stops up to 365 cm (p90) from anything drawn on 92% of its 528 px contact edge; only its card is drawn; class background, type 0, seq 67.7, mesh -, kinds card"
+1 invisible wall (hardbox),6806.1,502,S502_P07,"Dink stops up to 470 cm (p90) from anything drawn on 99% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),6761.2,632,S632_P01,"Dink stops up to 473 cm (p90) from anything drawn on 98% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),6740.1,570,S570_P05,"Dink stops up to 507 cm (p90) from anything drawn on 87% of its 276 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.1, mesh SM_Veg_Bush_Round_Large_01, kinds family"
+1 invisible wall (hardbox),6735.3,659,S659_P01,"Dink stops up to 482 cm (p90) from anything drawn on 95% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),6652.5,659,S659_P05,"Dink stops up to 482 cm (p90) from anything drawn on 94% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),6610.8,537,S537_P15,"Dink stops up to 478 cm (p90) from anything drawn on 79% of its 362 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),6513.3,521,S521_P08,"Dink stops up to 457 cm (p90) from anything drawn on 98% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),6431.9,186,S186_P04,"Dink stops up to 462 cm (p90) from anything drawn on 95% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),6334.4,210,S210_P06,"Dink stops up to 465 cm (p90) from anything drawn on 100% of its 222 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),6152.2,601,S601_P01,"Dink stops up to 431 cm (p90) from anything drawn on 83% of its 362 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),6151.4,441,S441_P02,"Dink stops up to 395 cm (p90) from anything drawn on 96% of its 324 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 93.1, mesh SM_Fence_SplitRail_4m_01, kinds family"
+1 invisible wall (hardbox),6124.7,187,S187_P06,"Dink stops up to 519 cm (p90) from anything drawn on 92% of its 192 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),6107.8,596,S596_P03,"Dink stops up to 442 cm (p90) from anything drawn on 86% of its 314 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.1, mesh SM_Veg_Bush_Round_Large_01, kinds family"
+1 invisible wall (hardbox),6077.2,499,S499_P03,"Dink stops up to 444 cm (p90) from anything drawn on 96% of its 244 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.2, mesh SM_Veg_Bush_Round_Medium_01, kinds family"
+1 invisible wall (hardbox),6005.7,658,S658_P01,"Dink stops up to 448 cm (p90) from anything drawn on 77% of its 362 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),6003.6,687,S687_P03,"Dink stops up to 418 cm (p90) from anything drawn on 88% of its 325 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),5936.9,211,S211_P08,"Dink stops up to 471 cm (p90) from anything drawn on 79% of its 304 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.1, mesh SM_Veg_Bush_Round_Large_01, kinds family"
+1 invisible wall (hardbox),5870.8,503,S503_P06,"Dink stops up to 445 cm (p90) from anything drawn on 91% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5861.6,536,S536_P09,"Dink stops up to 505 cm (p90) from anything drawn on 93% of its 184 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 95.3, mesh SM_Boulder_Red_PR, kinds family"
+1 invisible wall (hardbox),5820.7,179,S179_P01,"Dink stops up to 521 cm (p90) from anything drawn on 95% of its 164 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5819.5,659,S659_P06,"Dink stops up to 404 cm (p90) from anything drawn on 100% of its 256 px contact edge; its mesh does not reach the hardbox edge; class scripted_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Dry_01, kinds environment"
+1 invisible wall (hardbox),5800.4,212,S212_P02,"Dink stops up to 394 cm (p90) from anything drawn on 87% of its 352 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),5774.9,459,S459_P02,"Dink stops up to 390 cm (p90) from anything drawn on 87% of its 362 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),5672.9,566,S566_P08,"Dink stops up to 417 cm (p90) from anything drawn on 94% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5668.9,713,S713_P10,"Dink stops up to 403 cm (p90) from anything drawn on 98% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5631.2,561,S561_P05,"Dink stops up to 372 cm (p90) from anything drawn on 89% of its 362 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),5630.8,560,S560_P03,"Dink stops up to 333 cm (p90) from anything drawn on 96% of its 404 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.8, mesh SM_Veg_PineForestEdge_H_01, kinds family"
+1 invisible wall (hardbox),5606.7,440,S440_P20,"Dink stops up to 365 cm (p90) from anything drawn on 100% of its 298 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 93.1, mesh SM_Fence_SplitRail_4m_01, kinds family"
+1 invisible wall (hardbox),5586.5,716,S716_P03,"Dink stops up to 424 cm (p90) from anything drawn on 91% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5558.0,488,S488_P03,"Dink stops up to 396 cm (p90) from anything drawn on 99% of its 250 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.2, mesh SM_Veg_Bush_Round_Medium_01, kinds family"
+1 invisible wall (hardbox),5551.1,242,S242_P01,"Dink stops up to 478 cm (p90) from anything drawn on 79% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),5536.7,443,S443_P03,"Dink stops up to 518 cm (p90) from anything drawn on 100% of its 134 px contact edge; nothing of its own drawn (screen-dressed or missing); class sprite_prop, type 1, seq 32.1, mesh -, kinds -"
+1 invisible wall (hardbox),5530.4,432,S432_P03,"Dink stops up to 482 cm (p90) from anything drawn on 88% of its 202 px contact edge; only its card is drawn; class sprite_prop, type 1, seq 186.1, mesh SM_DinkCard, kinds card"
+1 invisible wall (hardbox),5436.5,278,S278_P02,"Dink stops up to 420 cm (p90) from anything drawn on 89% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5399.1,213,S213_P01,"Dink stops up to 361 cm (p90) from anything drawn on 91% of its 341 px contact edge; its mesh does not reach the hardbox edge; class npc, type 1, seq 449.5, mesh SM_Save_Machine_PR, kinds family"
+1 invisible wall (hardbox),5380.3,503,S503_P05,"Dink stops up to 503 cm (p90) from anything drawn on 87% of its 180 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5318.5,535,S535_P08,"Dink stops up to 387 cm (p90) from anything drawn on 96% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5313.7,349,S349_P01,"Dink stops up to 348 cm (p90) from anything drawn on 89% of its 376 px contact edge; its mesh does not reach the hardbox edge; class npc, type 1, seq 449.5, mesh SM_Save_Machine_PR, kinds family"
+1 invisible wall (hardbox),5310.7,102,S102_P04,"Dink stops up to 841 cm (p90) from anything drawn on 100% of its 44 px contact edge; nothing of its own drawn (screen-dressed or missing); class sprite_prop, type 1, seq 186.5, mesh -, kinds -"
+1 invisible wall (hardbox),5309.7,186,S186_P07,"Dink stops up to 402 cm (p90) from anything drawn on 92% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5307.6,686,S686_P01,"Dink stops up to 391 cm (p90) from anything drawn on 80% of its 358 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),5306.7,408,S408_P02,"Dink stops up to 541 cm (p90) from anything drawn on 100% of its 112 px contact edge; nothing of its own drawn (screen-dressed or missing); class sprite_prop, type 1, seq 93.1, mesh -, kinds -"
+1 invisible wall (hardbox),5301.9,210,S210_P05,"Dink stops up to 390 cm (p90) from anything drawn on 96% of its 247 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),5291.4,316,S316_P05,"Dink stops up to 436 cm (p90) from anything drawn on 84% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),5273.1,768,S768_P04,"Dink stops up to 373 cm (p90) from anything drawn on 100% of its 251 px contact edge; its mesh does not reach the hardbox edge; class npc, type 1, seq 449.5, mesh SM_Save_Machine_PR, kinds family"
+1 invisible wall (hardbox),5271.1,214,S214_P06,"Dink stops up to 429 cm (p90) from anything drawn on 85% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5262.2,656,S656_P01,"Dink stops up to 423 cm (p90) from anything drawn on 86% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),5251.4,727,S727_P15,"Dink stops up to 836 cm (p90) from anything drawn on 100% of its 392 px contact edge; hardness-only placement (invisible in 1997 too); class background, type 2, seq 64.2, mesh -, kinds -"
+1 invisible wall (hardbox),5177.9,366,S366_P04,"Dink stops up to 364 cm (p90) from anything drawn on 100% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),5172.6,573,S573_P04,"Dink stops up to 375 cm (p90) from anything drawn on 82% of its 358 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (hardbox),5103.3,377,S377_P05,"Dink stops up to 422 cm (p90) from anything drawn on 85% of its 245 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5083.7,542,S542_P03,"Dink stops up to 400 cm (p90) from anything drawn on 88% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),5050.3,502,S502_P08,"Dink stops up to 356 cm (p90) from anything drawn on 100% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Large_01, kinds family"
+1 invisible wall (hardbox),5019.4,440,S440_P19,"Dink stops up to 394 cm (p90) from anything drawn on 79% of its 324 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 93.1, mesh SM_Fence_SplitRail_4m_01, kinds family"
+1 invisible wall (hardbox),5012.3,401,S401_P03,"Dink stops up to 424 cm (p90) from anything drawn on 100% of its 170 px contact edge; nothing of its own drawn (screen-dressed or missing); class background, type 0, seq 67.9, mesh -, kinds -"
+1 invisible wall (hardbox),4927.1,764,S764_P01,"Dink stops up to 380 cm (p90) from anything drawn on 89% of its 267 px contact edge; nothing of its own drawn (screen-dressed or missing); class sprite_prop, type 1, seq 424.4, mesh -, kinds -"
+1 invisible wall (hardbox),4922.2,632,S632_P03,"Dink stops up to 419 cm (p90) from anything drawn on 81% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),4905.1,252,S252_P01,"Dink stops up to 306 cm (p90) from anything drawn on 95% of its 376 px contact edge; its mesh does not reach the hardbox edge; class npc, type 1, seq 449.5, mesh SM_Save_Machine_PR, kinds family"
+1 invisible wall (hardbox),4897.4,536,S536_P94,"Dink stops up to 621 cm (p90) from anything drawn on 100% of its 71 px contact edge; nothing of its own drawn (screen-dressed or missing); class sprite_prop, type 1, seq 95.3, mesh -, kinds -"
+1 invisible wall (hardbox),4861.0,376,S376_P01,"Dink stops up to 452 cm (p90) from anything drawn on 74% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Storm_01, kinds family"
+1 invisible wall (hardbox),4793.5,567,S567_P02,"Dink stops up to 358 cm (p90) from anything drawn on 95% of its 250 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.2, mesh SM_Veg_Bush_Round_Medium_01, kinds family"
+1 invisible wall (hardbox),4779.0,436,S436_P04,"Dink stops up to 392 cm (p90) from anything drawn on 90% of its 230 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.4, mesh SM_Veg_Bush_Small_01, kinds family"
+1 invisible wall (hardbox),4771.0,183,S183_P07,"Dink stops up to 418 cm (p90) from anything drawn on 79% of its 256 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 32.1, mesh SM_Veg_Pine_Medium_01, kinds family"
+1 invisible wall (hardbox),4736.0,405,S405_P03,"Dink stops up to 335 cm (p90) from anything drawn on 85% of its 358 px contact edge; its mesh does not reach the hardbox edge; class sprite_prop, type 1, seq 179.3, mesh SM_Veg_Bush_Wide_01, kinds family"
+1 invisible wall (tile low),16549.7,470,"tile 4,1",grass_rocky tile: Dink stops up to 1813 cm (p90) from anything drawn on 100% of 242 px of contact edge
+1 invisible wall (tile low),16173.4,470,"tile 5,0",grass_rocky tile: Dink stops up to 1493 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),15096.2,445,"tile 1,7",grass_rocky tile: Dink stops up to 1370 cm (p90) from anything drawn on 100% of 358 px of contact edge
+1 invisible wall (tile low),12746.1,474,"tile 0,0",grass_rocky tile: Dink stops up to 1660 cm (p90) from anything drawn on 100% of 172 px of contact edge
+1 invisible wall (tile low),12705.1,474,"tile 1,1",grass_rocky tile: Dink stops up to 1159 cm (p90) from anything drawn on 100% of 358 px of contact edge
+1 invisible wall (tile low),12673.6,552,"tile 4,0",grass_rocky tile: Dink stops up to 1179 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),12251.9,221,"tile 9,1",wasteland tile: Dink stops up to 1566 cm (p90) from anything drawn on 100% of 179 px of contact edge
+1 invisible wall (tile low),11912.1,343,"tile 0,1",grass_rocky tile: Dink stops up to 1454 cm (p90) from anything drawn on 100% of 197 px of contact edge
+1 invisible wall (tile low),11220.4,406,"tile 7,0",grass_rocky tile: Dink stops up to 1048 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),10915.0,534,"tile 7,0",grass_rocky tile: Dink stops up to 1021 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),10827.8,435,"tile 0,0",grass_rocky tile: Dink stops up to 1416 cm (p90) from anything drawn on 100% of 172 px of contact edge
+1 invisible wall (tile low),10544.9,558,"tile 0,7",grass_rocky tile: Dink stops up to 1292 cm (p90) from anything drawn on 100% of 197 px of contact edge
+1 invisible wall (tile low),10413.9,541,"tile 11,0",grass_rocky tile: Dink stops up to 1037 cm (p90) from anything drawn on 100% of 303 px of contact edge
+1 invisible wall (tile low),10335.9,111,"tile 5,2",snow tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 109 px of contact edge
+1 invisible wall (tile low),10303.6,690,"tile 11,0",grass_rocky tile: Dink stops up to 1027 cm (p90) from anything drawn on 100% of 303 px of contact edge
+1 invisible wall (tile low),10108.7,434,"tile 11,7",grass_rocky tile: Dink stops up to 1095 cm (p90) from anything drawn on 100% of 255 px of contact edge
+1 invisible wall (tile low),10002.5,711,"tile 8,0",grass_rocky tile: Dink stops up to 939 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),9960.7,477,"tile 11,6",grass_rocky tile: Dink stops up to 994 cm (p90) from anything drawn on 100% of 303 px of contact edge
+1 invisible wall (tile low),9900.0,17,"tile 6,1",snow tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9900.0,18,"tile 3,5",snow tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9900.0,45,"tile 11,6",snow tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9900.0,59,"tile 11,0",wasteland tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9900.0,60,"tile 11,7",wasteland tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9900.0,112,"tile 10,0",snow tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9776.2,32,"tile 0,5",wasteland tile: Dink stops up to 1669 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9652.5,60,"tile 11,6",wasteland tile: Dink stops up to 1649 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9469.0,253,"tile 0,6",grass_rocky tile: Dink stops up to 1036 cm (p90) from anything drawn on 100% of 251 px of contact edge
+1 invisible wall (tile low),9440.2,631,"tile 7,2",grass_rocky tile: Dink stops up to 1025 cm (p90) from anything drawn on 100% of 255 px of contact edge
+1 invisible wall (tile low),9405.0,32,"tile 0,4",wasteland tile: Dink stops up to 1608 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9318.1,349,"tile 7,6",grass_rocky tile: Dink stops up to 877 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),9286.7,470,"tile 5,1",grass_rocky tile: Dink stops up to 1377 cm (p90) from anything drawn on 100% of 134 px of contact edge
+1 invisible wall (tile low),9281.2,31,"tile 11,5",wasteland tile: Dink stops up to 1587 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9106.1,31,"tile 2,7",wasteland tile: Dink stops up to 1174 cm (p90) from anything drawn on 100% of 179 px of contact edge
+1 invisible wall (tile low),9033.8,189,"tile 11,5",wasteland tile: Dink stops up to 1546 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),9023.0,342,"tile 1,7",grass_rocky tile: Dink stops up to 989 cm (p90) from anything drawn on 100% of 251 px of contact edge
+1 invisible wall (tile low),8910.0,31,"tile 11,4",wasteland tile: Dink stops up to 1525 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8853.0,725,"tile 11,3",grass_rocky tile: Dink stops up to 1257 cm (p90) from anything drawn on 100% of 147 px of contact edge
+1 invisible wall (tile low),8847.2,588,"tile 10,5",grass_rocky tile: Dink stops up to 835 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),8835.4,654,"tile 0,6",grass_rocky tile: Dink stops up to 987 cm (p90) from anything drawn on 100% of 242 px of contact edge
+1 invisible wall (tile low),8786.2,61,"tile 11,7",wasteland tile: Dink stops up to 1504 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8746.2,655,"tile 9,6",grass_rocky tile: Dink stops up to 955 cm (p90) from anything drawn on 100% of 254 px of contact edge
+1 invisible wall (tile low),8746.0,575,"tile 0,6",grass_rocky tile: Dink stops up to 977 cm (p90) from anything drawn on 100% of 242 px of contact edge
+1 invisible wall (tile low),8662.5,29,"tile 11,4",wasteland tile: Dink stops up to 1484 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8662.5,189,"tile 11,4",wasteland tile: Dink stops up to 1484 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8538.8,28,"tile 11,5",wasteland tile: Dink stops up to 1463 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8536.0,349,"tile 6,7",grass_rocky tile: Dink stops up to 1054 cm (p90) from anything drawn on 100% of 197 px of contact edge
+1 invisible wall (tile low),8478.7,415,"tile 1,3",grass_rocky tile: Dink stops up to 802 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),8420.5,597,"tile 8,1",grass_rocky tile: Dink stops up to 926 cm (p90) from anything drawn on 100% of 251 px of contact edge
+1 invisible wall (tile low),8415.0,61,"tile 9,7",wasteland tile: Dink stops up to 1442 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8373.6,79,"tile 7,7",snow tile: Dink stops up to 1195 cm (p90) from anything drawn on 100% of 146 px of contact edge
+1 invisible wall (tile low),8368.5,725,"tile 11,4",grass_rocky tile: Dink stops up to 920 cm (p90) from anything drawn on 100% of 251 px of contact edge
+1 invisible wall (tile low),8316.2,520,"tile 7,0",grass_rocky tile: Dink stops up to 787 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),8291.2,61,"tile 11,6",wasteland tile: Dink stops up to 1422 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8291.2,61,"tile 10,7",wasteland tile: Dink stops up to 1422 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8264.7,415,"tile 0,4",grass_rocky tile: Dink stops up to 925 cm (p90) from anything drawn on 100% of 242 px of contact edge
+1 invisible wall (tile low),8255.9,435,"tile 11,2",grass_rocky tile: Dink stops up to 830 cm (p90) from anything drawn on 100% of 303 px of contact edge
+1 invisible wall (tile low),8254.8,729,"tile 3,0",grass_rocky tile: Dink stops up to 782 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),8227.7,441,"tile 1,0",grass_rocky tile: Dink stops up to 779 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),8167.5,17,"tile 5,1",snow tile: Dink stops up to 1401 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8167.5,28,"tile 11,4",wasteland tile: Dink stops up to 1401 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8167.5,29,"tile 11,5",wasteland tile: Dink stops up to 1401 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8134.6,247,"tile 1,1",grass_rocky tile: Dink stops up to 771 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),8123.0,460,"tile 0,7",grass tile: Dink stops up to 1394 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8073.1,660,"tile 5,7",grass_rocky tile: Dink stops up to 883 cm (p90) from anything drawn on 100% of 255 px of contact edge
+1 invisible wall (tile low),8065.1,631,"tile 6,2",grass_rocky tile: Dink stops up to 888 cm (p90) from anything drawn on 100% of 251 px of contact edge
+1 invisible wall (tile low),8043.8,60,"tile 10,7",wasteland tile: Dink stops up to 1381 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),8043.8,223,"tile 11,7",wasteland tile: Dink stops up to 1381 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7976.8,435,"tile 1,1",grass_rocky tile: Dink stops up to 743 cm (p90) from anything drawn on 100% of 358 px of contact edge
+1 invisible wall (tile low),7965.5,474,"tile 1,0",grass_rocky tile: Dink stops up to 1218 cm (p90) from anything drawn on 100% of 127 px of contact edge
+1 invisible wall (tile low),7923.3,444,"tile 2,2",grass_rocky tile: Dink stops up to 738 cm (p90) from anything drawn on 100% of 358 px of contact edge
+1 invisible wall (tile low),7920.0,61,"tile 9,6",wasteland tile: Dink stops up to 1360 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7920.0,223,"tile 11,6",wasteland tile: Dink stops up to 1360 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7899.1,597,"tile 8,0",grass_rocky tile: Dink stops up to 1126 cm (p90) from anything drawn on 100% of 147 px of contact edge
+1 invisible wall (tile low),7881.2,434,"tile 11,6",grass_rocky tile: Dink stops up to 1095 cm (p90) from anything drawn on 100% of 155 px of contact edge
+1 invisible wall (tile low),7864.6,461,"tile 10,7",grass tile: Dink stops up to 1392 cm (p90) from anything drawn on 100% of 94 px of contact edge
+1 invisible wall (tile low),7830.9,584,"tile 11,1",grass_rocky tile: Dink stops up to 730 cm (p90) from anything drawn on 100% of 358 px of contact edge
+1 invisible wall (tile low),7808.6,534,"tile 6,1",grass_rocky tile: Dink stops up to 877 cm (p90) from anything drawn on 100% of 242 px of contact edge
+1 invisible wall (tile low),7796.2,61,"tile 10,6",wasteland tile: Dink stops up to 1339 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7753.9,604,"tile 10,0",grass_rocky tile: Dink stops up to 1196 cm (p90) from anything drawn on 100% of 125 px of contact edge
+1 invisible wall (tile low),7742.5,447,"tile 1,3",grass_rocky tile: Dink stops up to 736 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),7736.9,461,"tile 9,7",grass_rocky tile: Dink stops up to 1167 cm (p90) from anything drawn on 100% of 131 px of contact edge
+1 invisible wall (tile low),7696.9,477,"tile 10,7",grass_rocky tile: Dink stops up to 954 cm (p90) from anything drawn on 100% of 197 px of contact edge
+1 invisible wall (tile low),7672.5,60,"tile 10,6",wasteland tile: Dink stops up to 1319 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7666.0,306,"tile 10,7",grass_rocky tile: Dink stops up to 1009 cm (p90) from anything drawn on 100% of 174 px of contact edge
+1 invisible wall (tile low),7611.3,714,"tile 0,0",grass_rocky tile: Dink stops up to 836 cm (p90) from anything drawn on 100% of 254 px of contact edge
+1 invisible wall (tile low),7548.8,30,"tile 11,5",wasteland tile: Dink stops up to 1298 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7547.8,558,"tile 1,6",grass_rocky tile: Dink stops up to 718 cm (p90) from anything drawn on 100% of 344 px of contact edge
+1 invisible wall (tile low),7470.9,414,"tile 2,4",grass_rocky tile: Dink stops up to 698 cm (p90) from anything drawn on 100% of 358 px of contact edge
+1 invisible wall (tile low),7457.2,460,"tile 0,6",grass tile: Dink stops up to 1283 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7367.2,573,"tile 11,2",grass_rocky tile: Dink stops up to 809 cm (p90) from anything drawn on 100% of 255 px of contact edge
+1 invisible wall (tile low),7355.4,651,"tile 9,2",grass_rocky tile: Dink stops up to 688 cm (p90) from anything drawn on 100% of 358 px of contact edge
+1 invisible wall (tile low),7318.7,477,"tile 11,7",grass_rocky tile: Dink stops up to 1173 cm (p90) from anything drawn on 100% of 116 px of contact edge
+1 invisible wall (tile low),7301.2,31,"tile 10,5",wasteland tile: Dink stops up to 1257 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7292.7,274,"tile 11,4",grass_rocky tile: Dink stops up to 738 cm (p90) from anything drawn on 100% of 303 px of contact edge
+1 invisible wall (tile low),7275.2,309,"tile 11,6",grass_rocky tile: Dink stops up to 681 cm (p90) from anything drawn on 100% of 358 px of contact edge
+1 invisible wall (tile low),7262.1,349,"tile 7,7",grass_rocky tile: Dink stops up to 1164 cm (p90) from anything drawn on 100% of 116 px of contact edge
+1 invisible wall (tile low),7177.5,30,"tile 11,4",wasteland tile: Dink stops up to 1236 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7177.5,62,"tile 11,7",wasteland tile: Dink stops up to 1236 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile low),7147.7,441,"tile 11,6",grass_rocky tile: Dink stops up to 1016 cm (p90) from anything drawn on 100% of 149 px of contact edge
+1 invisible wall (tile low),7134.8,380,"tile 9,7",grass_rocky tile: Dink stops up to 785 cm (p90) from anything drawn on 100% of 255 px of contact edge
+1 invisible wall (tile solid),11312.6,151,"tile 4,0",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11312.6,151,"tile 7,0",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11312.6,151,"tile 3,2",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11312.6,151,"tile 8,2",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11312.6,151,"tile 4,3",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11312.6,151,"tile 5,3",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11312.6,151,"tile 6,3",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11312.6,151,"tile 7,3",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11301.1,150,"tile 4,0",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11301.1,150,"tile 7,0",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11301.1,150,"tile 3,2",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11301.1,150,"tile 8,2",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11301.1,150,"tile 4,3",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11301.1,150,"tile 5,3",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11301.1,150,"tile 6,3",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11301.1,150,"tile 7,3",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11255.9,151,"tile 4,1",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),11255.9,151,"tile 7,1",snow tile: Dink stops up to 1925 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),11244.5,150,"tile 4,1",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),11244.5,150,"tile 7,1",snow tile: Dink stops up to 1924 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),11065.0,153,"tile 4,0",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11065.0,153,"tile 7,0",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11065.0,153,"tile 3,2",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11065.0,153,"tile 8,2",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11065.0,153,"tile 4,3",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11065.0,153,"tile 5,3",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11065.0,153,"tile 6,3",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11065.0,153,"tile 7,3",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),11009.5,153,"tile 4,1",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),11009.5,153,"tile 7,1",snow tile: Dink stops up to 1884 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),10890.0,78,"tile 11,1",snow tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 121 px of contact edge
+1 invisible wall (tile solid),10837.4,152,"tile 4,0",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10837.4,152,"tile 7,0",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10837.4,152,"tile 3,2",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10837.4,152,"tile 8,2",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10837.4,152,"tile 4,3",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10837.4,152,"tile 5,3",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10837.4,152,"tile 6,3",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10837.4,152,"tile 7,3",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10783.1,152,"tile 4,1",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),10783.1,152,"tile 7,1",snow tile: Dink stops up to 1846 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),10428.1,553,"tile 4,3",path tile: Dink stops up to 1796 cm (p90) from anything drawn on 100% of 98 px of contact edge
+1 invisible wall (tile solid),10388.0,555,"tile 2,3",path tile: Dink stops up to 1780 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),10360.8,120,"tile 4,0",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10360.8,120,"tile 7,0",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10360.8,120,"tile 3,2",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10360.8,120,"tile 8,2",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10360.8,120,"tile 4,3",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10360.8,120,"tile 5,3",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10360.8,120,"tile 6,3",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10360.8,120,"tile 7,3",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),10308.9,120,"tile 4,1",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),10308.9,120,"tile 7,1",snow tile: Dink stops up to 1767 cm (p90) from anything drawn on 100% of 99 px of contact edge
+1 invisible wall (tile solid),9935.9,554,"tile 2,7",path tile: Dink stops up to 1696 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,13,"tile 4,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,13,"tile 7,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,13,"tile 3,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,13,"tile 8,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,13,"tile 4,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,13,"tile 5,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,13,"tile 6,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,13,"tile 7,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,17,"tile 7,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,17,"tile 8,2",snow tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,18,"tile 4,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,18,"tile 7,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,18,"tile 3,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,18,"tile 8,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,18,"tile 4,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,18,"tile 5,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,18,"tile 6,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,18,"tile 7,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,81,"tile 1,1",snow tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,82,"tile 4,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,82,"tile 7,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,82,"tile 3,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,82,"tile 8,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,82,"tile 4,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,82,"tile 5,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,82,"tile 6,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,82,"tile 7,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,109,"tile 4,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,109,"tile 7,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,109,"tile 3,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,109,"tile 8,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,109,"tile 4,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,109,"tile 5,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,109,"tile 6,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,109,"tile 7,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,110,"tile 4,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,110,"tile 7,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,110,"tile 3,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,110,"tile 8,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,110,"tile 4,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,110,"tile 5,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,110,"tile 6,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,110,"tile 7,3",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,114,"tile 4,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,114,"tile 7,0",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+1 invisible wall (tile solid),9900.0,114,"tile 3,2",ice tile: Dink stops up to 1690 cm (p90) from anything drawn on 100% of 100 px of contact edge
+2 hardbox vs mesh,1772.2,188,S188_P04,"SM_Veg_PineForestEdge_H_01: hardbox covered 14%; box 206x33 px at 10.0 cm/px, kinds family_instance"
+2 hardbox vs mesh,1750.6,251,S251_P05,"SM_Veg_PineForestEdge_H_01: hardbox covered 14%; box 206x33 px at 9.9 cm/px, kinds family"
+2 hardbox vs mesh,1606.5,283,S283_P04,"SM_Veg_PineForestEdge_H_01: hardbox covered 17%; box 206x33 px at 9.4 cm/px, kinds family"
+2 hardbox vs mesh,1600.6,282,S282_P01,"SM_Veg_PineForestEdge_H_01: hardbox covered 18%; box 206x33 px at 9.4 cm/px, kinds family"
+2 hardbox vs mesh,1595.0,283,S283_P02,"SM_Veg_PineForestEdge_H_01: hardbox covered 17%; box 206x33 px at 9.4 cm/px, kinds family"
+2 hardbox vs mesh,1587.0,282,S282_P02,"SM_Veg_PineForestEdge_H_01: hardbox covered 18%; box 206x33 px at 9.4 cm/px, kinds family"
+2 hardbox vs mesh,1537.2,441,S441_P03,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.9 cm/px, kinds family"
+2 hardbox vs mesh,1537.2,441,S441_P02,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.9 cm/px, kinds family"
+2 hardbox vs mesh,1535.3,409,S409_P03,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1535.3,409,S409_P01,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1534.7,440,S440_P20,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1534.7,440,S440_P19,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1534.7,440,S440_P18,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1534.7,440,S440_P16,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1533.2,408,S408_P12,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1533.2,408,S408_P11,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1533.2,408,S408_P09,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1510.6,536,S536_P37,"SM_Fence_SplitRail_4m_01: hardbox covered 11%; box 176x24 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,1504.5,560,S560_P03,"SM_Veg_PineForestEdge_H_01: hardbox covered 18%; box 206x33 px at 8.9 cm/px, kinds family"
+2 hardbox vs mesh,1415.3,253,S253_P06,"SM_Shrine_Glass_PR: hardbox covered 7%; box 156x63 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1348.7,663,S663_P05,"SM_Fence_SplitRail_4m_01: hardbox covered 14%; box 176x24 px at 8.9 cm/px, kinds family"
+2 hardbox vs mesh,1177.2,713,S713_P04,"SM_Wall_Dungeon_Curve: offset 366 cm (-5,-366); hardbox covered 4%; mesh 53% outside the hardbox (scale 0.23); box 116x62 px at 10.1 cm/px, kinds family"
+2 hardbox vs mesh,1142.4,522,S522_P02,"SM_Veg_Bush_Wide_01: hardbox covered 17%; box 139x46 px at 9.9 cm/px, kinds family"
+2 hardbox vs mesh,1124.9,537,S537_P15,"SM_Veg_Bush_Wide_01: hardbox covered 17%; box 139x46 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,1121.0,556,S556_P01,"SM_Veg_Bush_Wide_01: hardbox covered 17%; box 139x46 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,1116.6,555,S555_P11,"SM_Veg_Bush_Wide_01: hardbox covered 17%; box 139x46 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,1110.6,567,S567_P04,"SM_Veg_Bush_Wide_01: hardbox covered 17%; box 139x46 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,1089.6,213,S213_P05,"SM_Veg_Pine_Storm_01: offset 404 cm (-196,-353); hardbox covered 14%; mesh 81% outside the hardbox (scale 0.49); box 95x37 px at 8.2 cm/px, kinds family"
+2 hardbox vs mesh,1087.9,333,S333_P03,"SM_Veg_PineForestEdge_H_01: hardbox covered 24%; box 206x33 px at 7.0 cm/px, kinds family"
+2 hardbox vs mesh,1085.0,333,S333_P01,"SM_Veg_PineForestEdge_H_01: hardbox covered 24%; box 206x33 px at 7.0 cm/px, kinds family"
+2 hardbox vs mesh,1078.6,436,S436_P03,"SM_Veg_Bush_Wide_01: hardbox covered 21%; box 139x46 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1046.6,334,S334_P10,"SM_Veg_PineForestEdge_H_01: hardbox covered 24%; box 206x33 px at 6.7 cm/px, kinds family"
+2 hardbox vs mesh,1042.4,334,S334_P09,"SM_Veg_PineForestEdge_H_01: hardbox covered 25%; box 206x33 px at 6.7 cm/px, kinds family"
+2 hardbox vs mesh,1029.7,593,S593_P01,"SM_Veg_Pine_Storm_01: offset 395 cm (-238,-315); hardbox covered 18%; mesh 75% outside the hardbox (scale 0.49); box 95x37 px at 8.6 cm/px, kinds family"
+2 hardbox vs mesh,1024.6,536,S536_P43,"SM_Duck_Statue_Gold_PR: hardbox covered 6%; box 113x65 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,1018.6,744,S744_P01,"SM_Veg_Bush_Round_Large_01: hardbox covered 18%; box 123x38 px at 10.0 cm/px, kinds family"
+2 hardbox vs mesh,1017.1,745,S745_P01,"SM_Veg_Bush_Round_Large_01: hardbox covered 18%; box 123x38 px at 10.1 cm/px, kinds family"
+2 hardbox vs mesh,1016.1,586,S586_P03,"SM_Fountain_Stone_PR: hardbox covered 13%; box 119x55 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,1015.6,561,S561_P05,"SM_Veg_Bush_Wide_01: hardbox covered 21%; box 139x46 px at 9.2 cm/px, kinds family"
+2 hardbox vs mesh,1013.1,303,S303_P03,"SM_Veg_PineForestEdge_H_01: hardbox covered 28%; box 206x33 px at 6.8 cm/px, kinds family"
+2 hardbox vs mesh,1011.3,713,S713_P06,"SM_Wall_Dungeon_Straight_B: hardbox covered 22%; box 128x62 px at 10.1 cm/px, kinds family"
+2 hardbox vs mesh,1004.8,599,S599_P04,"SM_Veg_Bush_Wide_01: hardbox covered 24%; box 139x46 px at 9.5 cm/px, kinds family"
+2 hardbox vs mesh,998.9,601,S601_P01,"SM_Veg_Bush_Wide_01: hardbox covered 23%; box 139x46 px at 9.3 cm/px, kinds family"
+2 hardbox vs mesh,990.8,713,S713_P08,"SM_Wall_Dungeon_Straight_A: hardbox covered 13%; box 113x62 px at 10.1 cm/px, kinds family"
+2 hardbox vs mesh,990.0,521,S521_P01,"SM_Veg_Bush_Round_Large_01: hardbox covered 19%; box 123x38 px at 9.9 cm/px, kinds family"
+2 hardbox vs mesh,986.5,712,S712_P16,"SM_Wall_Dungeon_Straight_A: hardbox covered 13%; box 113x62 px at 10.0 cm/px, kinds family"
+2 hardbox vs mesh,983.3,337,S337_P01,"SM_Veg_Bush_Round_Large_01: hardbox covered 18%; box 123x38 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,981.3,713,S713_P13,"SM_Wall_Dungeon_Straight_B: hardbox covered 22%; box 125x62 px at 10.1 cm/px, kinds family"
+2 hardbox vs mesh,978.6,490,S490_P02,"SM_Veg_Bush_Round_Large_01: hardbox covered 20%; box 123x38 px at 9.9 cm/px, kinds family"
+2 hardbox vs mesh,973.0,524,S524_P01,"SM_Veg_Bush_Wide_01: hardbox covered 20%; box 139x46 px at 8.7 cm/px, kinds family"
+2 hardbox vs mesh,968.9,499,S499_P02,"SM_Veg_Bush_Round_Large_01: hardbox covered 18%; box 123x38 px at 9.6 cm/px, kinds family"
+2 hardbox vs mesh,961.2,570,S570_P05,"SM_Veg_Bush_Round_Large_01: hardbox covered 20%; box 123x38 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,959.2,154,S154_P01,"SM_Dragon_Statue_PR: offset 373 cm (-373,-12); hardbox covered 0%; mesh 100% outside the hardbox (scale 0.33); box 71x33 px at 6.9 cm/px, kinds family"
+2 hardbox vs mesh,948.9,568,S568_P01,"SM_Veg_Bush_Round_Large_01: hardbox covered 20%; box 123x38 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,943.8,530,S530_P09,"SM_Veg_Bush_Round_Large_01: hardbox covered 20%; box 123x38 px at 9.6 cm/px, kinds family"
+2 hardbox vs mesh,937.4,154,S154_P23,"SM_Shrine_Glass_PR: hardbox covered 13%; box 156x63 px at 6.9 cm/px, kinds family"
+2 hardbox vs mesh,926.7,180,S180_P05,"SM_Veg_Bush_Wide_01: hardbox covered 22%; box 139x46 px at 8.6 cm/px, kinds family"
+2 hardbox vs mesh,922.6,273,S273_P06,"SM_Veg_Bush_Wide_01: hardbox covered 25%; box 139x46 px at 8.8 cm/px, kinds family"
+2 hardbox vs mesh,919.7,335,S335_P04,"SM_Veg_PineForestEdge_H_01: hardbox covered 29%; box 206x33 px at 6.3 cm/px, kinds family"
+2 hardbox vs mesh,917.0,242,S242_P08,"SM_Veg_Bush_Wide_01: hardbox covered 23%; box 139x46 px at 8.6 cm/px, kinds family"
+2 hardbox vs mesh,911.2,658,S658_P01,"SM_Veg_Bush_Wide_01: hardbox covered 23%; box 139x46 px at 8.5 cm/px, kinds family"
+2 hardbox vs mesh,900.9,713,S713_P07,"SM_Wall_Dungeon_Straight_A: hardbox covered 24%; box 117x62 px at 10.1 cm/px, kinds family"
+2 hardbox vs mesh,899.8,212,S212_P02,"SM_Veg_Bush_Wide_01: hardbox covered 23%; box 139x46 px at 8.4 cm/px, kinds family"
+2 hardbox vs mesh,891.3,713,S713_P10,"SM_Veg_Pine_Medium_01: hardbox covered 7%; box 95x37 px at 10.1 cm/px, kinds family"
+2 hardbox vs mesh,884.3,186,S186_P06,"SM_Veg_Pine_Medium_01: hardbox covered 7%; box 95x37 px at 10.0 cm/px, kinds family"
+2 hardbox vs mesh,882.2,599,S599_P03,"SM_Veg_Bush_Round_Large_01: hardbox covered 24%; box 123x38 px at 9.5 cm/px, kinds family"
+2 hardbox vs mesh,877.8,187,S187_P04,"SM_Veg_Pine_Medium_01: hardbox covered 8%; box 95x37 px at 10.0 cm/px, kinds family"
+2 hardbox vs mesh,873.9,186,S186_P07,"SM_Veg_Pine_Medium_01: hardbox covered 8%; box 95x37 px at 10.0 cm/px, kinds family"
+2 hardbox vs mesh,872.5,309,S309_P01,"SM_Veg_Bush_Wide_01: hardbox covered 24%; box 139x46 px at 8.2 cm/px, kinds family"
+2 hardbox vs mesh,872.0,442,S442_P03,"SM_Veg_Pine_Medium_01: hardbox covered 7%; box 95x37 px at 9.9 cm/px, kinds family"
+2 hardbox vs mesh,872.0,178,S178_P06,"SM_Veg_Bush_Wide_01: hardbox covered 24%; box 139x46 px at 8.3 cm/px, kinds family"
+2 hardbox vs mesh,866.1,536,S536_P36,"SM_Boulder_Red_PR: hardbox covered 13%; box 103x37 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,864.7,307,S307_P03,"SM_Veg_Bush_Round_Large_01: hardbox covered 26%; box 123x38 px at 9.5 cm/px, kinds family"
+2 hardbox vs mesh,864.3,568,S568_P10,"SM_Boulder_Red_PR: hardbox covered 13%; box 103x37 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,864.3,568,S568_P09,"SM_Boulder_Red_PR: hardbox covered 13%; box 103x37 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,863.1,536,S536_P09,"SM_Boulder_Red_PR: hardbox covered 14%; box 103x37 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,862.5,710,S710_P14,"SM_Veg_Pine_Dry_01: hardbox covered 9%; box 95x37 px at 10.0 cm/px, kinds environment"
+2 hardbox vs mesh,861.5,186,S186_P05,"SM_Veg_Pine_Medium_01: hardbox covered 10%; box 95x37 px at 10.0 cm/px, kinds family"
+2 hardbox vs mesh,859.9,214,S214_P03,"SM_Veg_Bush_Wide_01: hardbox covered 24%; box 139x46 px at 8.1 cm/px, kinds family"
+2 hardbox vs mesh,859.8,750,S750_P01,"SM_Veg_Bush_Wide_01: hardbox covered 24%; box 139x46 px at 8.2 cm/px, kinds family"
+2 hardbox vs mesh,857.6,186,S186_P04,"SM_Veg_Pine_Medium_01: hardbox covered 10%; box 95x37 px at 10.0 cm/px, kinds family"
+2 hardbox vs mesh,857.3,568,S568_P11,"SM_Boulder_Red_PR: hardbox covered 14%; box 103x37 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,856.1,536,S536_P02,"SM_Boulder_Red_PR: hardbox covered 14%; box 103x37 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,855.9,285,S285_P01,"SM_Veg_Bush_Round_Large_01: hardbox covered 22%; box 123x38 px at 9.0 cm/px, kinds family"
+2 hardbox vs mesh,855.6,535,S535_P11,"SM_Boulder_Red_PR: hardbox covered 14%; box 103x37 px at 9.6 cm/px, kinds family"
+2 hardbox vs mesh,854.3,568,S568_P12,"SM_Boulder_Red_PR: hardbox covered 14%; box 103x37 px at 9.7 cm/px, kinds family"
+2 hardbox vs mesh,852.9,284,S284_P06,"SM_Veg_Pine_Storm_01: offset 443 cm (-412,-164); hardbox covered 26%; mesh 53% outside the hardbox (scale 0.49); box 95x37 px at 9.2 cm/px, kinds family"
+2 hardbox vs mesh,850.3,187,S187_P05,"SM_Veg_Pine_Large_01: hardbox covered 10%; box 95x37 px at 10.0 cm/px, kinds family"
+2 hardbox vs mesh,848.1,584,S584_P04,"SM_Veg_Pine_Large_01: hardbox covered 11%; box 95x37 px at 10.0 cm/px, kinds family"
+2 hardbox vs mesh,845.1,502,S502_P03,"SM_Veg_Pine_Medium_01: hardbox covered 7%; box 95x37 px at 9.6 cm/px, kinds family"
+2 hardbox vs mesh,843.5,596,S596_P03,"SM_Veg_Bush_Round_Large_01: hardbox covered 23%; box 123x38 px at 8.9 cm/px, kinds family"
+2 hardbox vs mesh,842.9,521,S521_P08,"SM_Veg_Pine_Medium_01: hardbox covered 11%; box 95x37 px at 9.9 cm/px, kinds family"
+2 hardbox vs mesh,841.8,181,S181_P09,"SM_Veg_Bush_Wide_01: hardbox covered 24%; box 139x46 px at 8.0 cm/px, kinds family"
+2 hardbox vs mesh,839.6,535,S535_P08,"SM_Veg_Pine_Medium_01: hardbox covered 8%; box 95x37 px at 9.6 cm/px, kinds family"
+2 hardbox vs mesh,837.0,503,S503_P07,"SM_Veg_Pine_Medium_01: hardbox covered 9%; box 95x37 px at 9.6 cm/px, kinds family"
+2 hardbox vs mesh,835.2,503,S503_P05,"SM_Veg_Pine_Medium_01: hardbox covered 9%; box 95x37 px at 9.6 cm/px, kinds family"
+2 hardbox vs mesh,833.4,503,S503_P08,"SM_Veg_Pine_Medium_01: hardbox covered 9%; box 95x37 px at 9.6 cm/px, kinds family"
+2 hardbox vs mesh,833.2,377,S377_P05,"SM_Veg_Pine_Medium_01: hardbox covered 10%; box 95x37 px at 9.8 cm/px, kinds family"
+2 hardbox vs mesh,832.6,441,S441_P28,"SM_Veg_Pine_Medium_01: hardbox covered 11%; box 95x37 px at 9.9 cm/px, kinds family"
+2 hardbox vs mesh,831.4,182,S182_P06,"SM_Veg_Bush_Wide_01: hardbox covered 25%; box 139x46 px at 8.0 cm/px, kinds family"
+3 creature hit box vs body,746.0,252,S252_P01,"SM_Save_Machine_PR (brain 6, script savebot): hit registers 746 cm short of the body, visible sword contact missed by up to 0 cm, body centre 89 cm from the hardbox centre; W:726/0 E:746/0 N:648/0 S:520/0"
+3 creature hit box vs body,745.3,408,S408_P25,"SM_Save_Machine_PR (brain 6, script savebot): hit registers 745 cm short of the body, visible sword contact missed by up to 0 cm, body centre 89 cm from the hardbox centre; W:726/0 E:745/0 N:647/0 S:519/0"
+3 creature hit box vs body,743.7,588,S588_P05,"SM_Save_Machine_PR (brain 6, script savebot): hit registers 744 cm short of the body, visible sword contact missed by up to 0 cm, body centre 89 cm from the hardbox centre; W:724/0 E:744/0 N:646/0 S:518/0"
+3 creature hit box vs body,723.0,569,S569_P02,"SM_Save_Machine_PR (brain 6, script savebot): hit registers 723 cm short of the body, visible sword contact missed by up to 0 cm, body centre 88 cm from the hardbox centre; W:704/0 E:723/0 N:636/0 S:510/0"
+3 creature hit box vs body,681.6,344,S344_P01,"SM_Save_Machine_PR (brain 6, script savebot): hit registers 682 cm short of the body, visible sword contact missed by up to 0 cm, body centre 86 cm from the hardbox centre; W:663/0 E:682/0 N:540/0 S:417/0"
+3 creature hit box vs body,601.7,488,S488_P11,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 602 cm short of the body, visible sword contact missed by up to 0 cm, body centre 203 cm from the hardbox centre; W:305/0 E:434/0 N:602/0 S:266/0"
+3 creature hit box vs body,573.9,213,S213_P01,"SM_Save_Machine_PR (brain 6, script savebot): hit registers 574 cm short of the body, visible sword contact missed by up to 0 cm, body centre 74 cm from the hardbox centre; W:557/0 E:574/0 N:467/0 S:360/0"
+3 creature hit box vs body,539.9,552,S552_P02,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 540 cm short of the body, visible sword contact missed by up to 0 cm, body centre 99 cm from the hardbox centre; W:340/0 E:440/0 N:540/0 S:420/0"
+3 creature hit box vs body,526.8,378,S378_P09,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 527 cm short of the body, visible sword contact missed by up to 0 cm, body centre 139 cm from the hardbox centre; W:409/0 E:321/0 N:527/0 S:311/0"
+3 creature hit box vs body,526.6,648,S648_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 527 cm short of the body, visible sword contact missed by up to 0 cm, body centre 154 cm from the hardbox centre; W:228/0 E:527/0 N:417/0 S:387/0"
+3 creature hit box vs body,494.0,599,S599_P18,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 494 cm short of the body, visible sword contact missed by up to 0 cm, body centre 163 cm from the hardbox centre; W:210/0 E:494/0 N:475/0 S:362/0"
+3 creature hit box vs body,494.0,599,S599_P15,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 494 cm short of the body, visible sword contact missed by up to 0 cm, body centre 163 cm from the hardbox centre; W:210/0 E:494/0 N:475/0 S:362/0"
+3 creature hit box vs body,486.8,648,S648_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 487 cm short of the body, visible sword contact missed by up to 0 cm, body centre 176 cm from the hardbox centre; W:258/0 E:487/0 N:477/0 S:258/0"
+3 creature hit box vs body,483.1,488,S488_P10,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 483 cm short of the body, visible sword contact missed by up to 0 cm, body centre 173 cm from the hardbox centre; W:473/0 E:266/0 N:483/0 S:256/0"
+3 creature hit box vs body,474.9,349,S349_P01,"SM_Save_Machine_PR (brain 6, script savebot): hit registers 475 cm short of the body, visible sword contact missed by up to 0 cm, body centre 67 cm from the hardbox centre; W:460/0 E:475/0 N:409/0 S:313/0"
+3 creature hit box vs body,473.5,563,S563_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 474 cm short of the body, visible sword contact missed by up to 0 cm, body centre 137 cm from the hardbox centre; W:362/0 E:278/0 N:474/0 S:260/0"
+3 creature hit box vs body,473.5,563,S563_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 474 cm short of the body, visible sword contact missed by up to 0 cm, body centre 94 cm from the hardbox centre; W:288/0 E:390/0 N:474/0 S:362/0"
+3 creature hit box vs body,464.2,563,S563_P08,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 464 cm short of the body, visible sword contact missed by up to 0 cm, body centre 137 cm from the hardbox centre; W:269/0 E:381/0 N:464/0 S:260/0"
+3 creature hit box vs body,458.3,306,S306_P07,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 458 cm short of the body, visible sword contact missed by up to 0 cm, body centre 135 cm from the hardbox centre; W:373/0 E:287/0 N:458/0 S:249/0"
+3 creature hit box vs body,445.4,715,S715_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 445 cm short of the body, visible sword contact missed by up to 0 cm, body centre 146 cm from the hardbox centre; W:445/0 E:157/0 N:314/0 S:314/0"
+3 creature hit box vs body,440.0,552,S552_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 440 cm short of the body, visible sword contact missed by up to 0 cm, body centre 65 cm from the hardbox centre; W:320/0 E:430/0 N:440/0 S:420/0"
+3 creature hit box vs body,438.0,616,S616_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 438 cm short of the body, visible sword contact missed by up to 0 cm, body centre 56 cm from the hardbox centre; W:338/0 E:438/0 N:418/0 S:418/0"
+3 creature hit box vs body,436.3,563,S563_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 436 cm short of the body, visible sword contact missed by up to 0 cm, body centre 85 cm from the hardbox centre; W:371/0 E:288/0 N:436/0 S:334/0"
+3 creature hit box vs body,433.0,768,S768_P04,"SM_Save_Machine_PR (brain 6, script savebot): hit registers 433 cm short of the body, visible sword contact missed by up to 0 cm, body centre 63 cm from the hardbox centre; W:419/0 E:433/0 N:364/0 S:274/0"
+3 creature hit box vs body,430.4,584,S584_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 430 cm short of the body, visible sword contact missed by up to 0 cm, body centre 54 cm from the hardbox centre; W:330/0 E:430/0 N:330/0 S:420/0"
+3 creature hit box vs body,430.4,584,S584_P02,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 430 cm short of the body, visible sword contact missed by up to 0 cm, body centre 21 cm from the hardbox centre; W:420/0 E:430/0 N:340/0 S:430/0"
+3 creature hit box vs body,428.8,378,S378_P07,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 429 cm short of the body, visible sword contact missed by up to 0 cm, body centre 55 cm from the hardbox centre; W:331/0 E:429/0 N:409/0 S:409/0"
+3 creature hit box vs body,428.1,616,S616_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 428 cm short of the body, visible sword contact missed by up to 0 cm, body centre 80 cm from the hardbox centre; W:408/0 E:329/0 N:428/0 S:338/0"
+3 creature hit box vs body,428.1,254,S254_P05,"SM_Save_Machine_PR (brain 6, script savebot): hit registers 428 cm short of the body, visible sword contact missed by up to 0 cm, body centre 62 cm from the hardbox centre; W:414/0 E:428/0 N:359/0 S:270/0"
+3 creature hit box vs body,426.3,522,S522_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 426 cm short of the body, visible sword contact missed by up to 0 cm, body centre 88 cm from the hardbox centre; W:317/0 E:426/0 N:416/0 S:327/0"
+3 creature hit box vs body,426.3,522,S522_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 426 cm short of the body, visible sword contact missed by up to 0 cm, body centre 47 cm from the hardbox centre; W:426/0 E:347/0 N:416/0 S:416/0"
+3 creature hit box vs body,423.5,274,S274_P18,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 423 cm short of the body, visible sword contact missed by up to 0 cm, body centre 126 cm from the hardbox centre; W:253/0 E:352/0 N:423/0 S:236/0"
+3 creature hit box vs body,420.9,626,S626_P07,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 421 cm short of the body, visible sword contact missed by up to 0 cm, body centre 124 cm from the hardbox centre; W:317/0 E:231/0 N:421/0 S:231/0"
+3 creature hit box vs body,420.9,626,S626_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 421 cm short of the body, visible sword contact missed by up to 0 cm, body centre 124 cm from the hardbox centre; W:317/0 E:231/0 N:421/0 S:231/0"
+3 creature hit box vs body,420.0,552,S552_P01,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 420 cm short of the body, visible sword contact missed by up to 0 cm, body centre 87 cm from the hardbox centre; W:420/0 E:330/0 N:420/0 S:320/0"
+3 creature hit box vs body,420.0,474,S474_P14,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 420 cm short of the body, visible sword contact missed by up to 0 cm, body centre 55 cm from the hardbox centre; W:322/0 E:420/0 N:381/0 S:381/0"
+3 creature hit box vs body,418.6,647,S647_P08,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 419 cm short of the body, visible sword contact missed by up to 0 cm, body centre 88 cm from the hardbox centre; W:419/0 E:321/0 N:409/0 S:311/0"
+3 creature hit box vs body,418.3,599,S599_P16,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 418 cm short of the body, visible sword contact missed by up to 0 cm, body centre 85 cm from the hardbox centre; W:333/0 E:333/0 N:418/0 S:295/0"
+3 creature hit box vs body,418.1,616,S616_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 418 cm short of the body, visible sword contact missed by up to 0 cm, body centre 56 cm from the hardbox centre; W:319/0 E:418/0 N:319/0 S:418/0"
+3 creature hit box vs body,417.2,648,S648_P02,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 417 cm short of the body, visible sword contact missed by up to 0 cm, body centre 87 cm from the hardbox centre; W:417/0 E:328/0 N:417/0 S:318/0"
+3 creature hit box vs body,414.9,457,S457_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 415 cm short of the body, visible sword contact missed by up to 0 cm, body centre 94 cm from the hardbox centre; W:264/0 E:415/0 N:208/0 S:368/0"
+3 creature hit box vs body,411.0,528,S528_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 411 cm short of the body, visible sword contact missed by up to 0 cm, body centre 50 cm from the hardbox centre; W:324/0 E:411/0 N:401/0 S:401/0"
+3 creature hit box vs body,408.8,647,S647_P09,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 409 cm short of the body, visible sword contact missed by up to 0 cm, body centre 86 cm from the hardbox centre; W:409/0 E:321/0 N:409/0 S:311/0"
+3 creature hit box vs body,403.6,626,S626_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 404 cm short of the body, visible sword contact missed by up to 0 cm, body centre 122 cm from the hardbox centre; W:231/0 E:326/0 N:404/0 S:222/0"
+3 creature hit box vs body,401.7,715,S715_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 402 cm short of the body, visible sword contact missed by up to 0 cm, body centre 153 cm from the hardbox centre; W:305/0 E:297/0 N:402/0 S:139/0"
+3 creature hit box vs body,401.7,715,S715_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 402 cm short of the body, visible sword contact missed by up to 0 cm, body centre 161 cm from the hardbox centre; W:192/0 E:402/0 N:375/0 S:174/0"
+3 creature hit box vs body,401.3,528,S528_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 401 cm short of the body, visible sword contact missed by up to 0 cm, body centre 83 cm from the hardbox centre; W:305/0 E:401/0 N:401/0 S:314/0"
+3 creature hit box vs body,401.3,528,S528_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 401 cm short of the body, visible sword contact missed by up to 0 cm, body centre 52 cm from the hardbox centre; W:305/0 E:401/0 N:314/0 S:401/0"
+3 creature hit box vs body,399.4,378,S378_P08,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 399 cm short of the body, visible sword contact missed by up to 0 cm, body centre 64 cm from the hardbox centre; W:360/0 E:370/0 N:399/0 S:321/0"
+3 creature hit box vs body,392.9,715,S715_P09,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 393 cm short of the body, visible sword contact missed by up to 0 cm, body centre 128 cm from the hardbox centre; W:192/0 E:393/0 N:174/0 S:375/0"
+3 creature hit box vs body,392.9,715,S715_P08,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 393 cm short of the body, visible sword contact missed by up to 0 cm, body centre 125 cm from the hardbox centre; W:192/0 E:393/0 N:174/0 S:367/0"
+3 creature hit box vs body,392.9,715,S715_P07,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 393 cm short of the body, visible sword contact missed by up to 0 cm, body centre 125 cm from the hardbox centre; W:192/0 E:393/0 N:183/0 S:375/0"
+3 creature hit box vs body,392.9,715,S715_P02,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 393 cm short of the body, visible sword contact missed by up to 0 cm, body centre 124 cm from the hardbox centre; W:393/0 E:200/0 N:174/0 S:375/0"
+3 creature hit box vs body,387.3,435,S435_P02,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 387 cm short of the body, visible sword contact missed by up to 0 cm, body centre 91 cm from the hardbox centre; W:280/0 E:387/0 N:368/0 S:270/0"
+3 creature hit box vs body,385.9,735,S735_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 386 cm short of the body, visible sword contact missed by up to 0 cm, body centre 147 cm from the hardbox centre; W:125/0 E:273/0 N:386/0 S:168/0"
+3 creature hit box vs body,385.9,735,S735_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 386 cm short of the body, visible sword contact missed by up to 0 cm, body centre 147 cm from the hardbox centre; W:125/0 E:273/0 N:386/0 S:168/0"
+3 creature hit box vs body,384.2,715,S715_P12,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 384 cm short of the body, visible sword contact missed by up to 0 cm, body centre 150 cm from the hardbox centre; W:384/0 E:200/0 N:375/0 S:183/0"
+3 creature hit box vs body,384.2,715,S715_P11,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 384 cm short of the body, visible sword contact missed by up to 0 cm, body centre 118 cm from the hardbox centre; W:384/0 E:200/0 N:174/0 S:367/0"
+3 creature hit box vs body,384.2,715,S715_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 384 cm short of the body, visible sword contact missed by up to 0 cm, body centre 153 cm from the hardbox centre; W:384/0 E:200/0 N:375/0 S:174/0"
+3 creature hit box vs body,382.4,278,S278_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 382 cm short of the body, visible sword contact missed by up to 0 cm, body centre 85 cm from the hardbox centre; W:290/0 E:264/0 N:382/0 S:256/0"
+3 creature hit box vs body,380.6,563,S563_P10,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 381 cm short of the body, visible sword contact missed by up to 0 cm, body centre 65 cm from the hardbox centre; W:269/0 E:381/0 N:381/0 S:362/0"
+3 creature hit box vs body,380.6,563,S563_P07,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 381 cm short of the body, visible sword contact missed by up to 0 cm, body centre 93 cm from the hardbox centre; W:269/0 E:381/0 N:362/0 S:260/0"
+3 creature hit box vs body,380.4,599,S599_P14,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 380 cm short of the body, visible sword contact missed by up to 0 cm, body centre 93 cm from the hardbox centre; W:286/0 E:380/0 N:352/0 S:239/0"
+3 creature hit box vs body,377.3,457,S457_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 377 cm short of the body, visible sword contact missed by up to 0 cm, body centre 82 cm from the hardbox centre; W:377/0 E:293/0 N:340/0 S:246/0"
+3 creature hit box vs body,375.5,715,S715_P10,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 375 cm short of the body, visible sword contact missed by up to 0 cm, body centre 95 cm from the hardbox centre; W:270/0 E:375/0 N:332/0 S:218/0"
+3 creature hit box vs body,372.9,306,S306_P08,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 373 cm short of the body, visible sword contact missed by up to 0 cm, body centre 45 cm from the hardbox centre; W:373/0 E:297/0 N:259/0 S:354/0"
+3 creature hit box vs body,371.3,563,S563_P09,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 371 cm short of the body, visible sword contact missed by up to 0 cm, body centre 58 cm from the hardbox centre; W:269/0 E:371/0 N:371/0 S:362/0"
+3 creature hit box vs body,369.7,270,S270_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill1): hit registers 370 cm short of the body, visible sword contact missed by up to 0 cm, body centre 100 cm from the hardbox centre; W:194/0 E:289/0 N:370/0 S:231/0"
+3 creature hit box vs body,367.1,685,S685_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 367 cm short of the body, visible sword contact missed by up to 0 cm, body centre 105 cm from the hardbox centre; W:240/0 E:327/0 N:367/0 S:216/0"
+3 creature hit box vs body,362.0,563,S563_P11,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 362 cm short of the body, visible sword contact missed by up to 0 cm, body centre 50 cm from the hardbox centre; W:362/0 E:278/0 N:260/0 S:362/0"
+3 creature hit box vs body,359.2,685,S685_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 359 cm short of the body, visible sword contact missed by up to 0 cm, body centre 107 cm from the hardbox centre; W:200/0 E:280/0 N:359/0 S:200/0"
+3 creature hit box vs body,359.2,685,S685_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 359 cm short of the body, visible sword contact missed by up to 0 cm, body centre 99 cm from the hardbox centre; W:256/0 E:256/0 N:359/0 S:200/0"
+3 creature hit box vs body,355.0,270,S270_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill1): hit registers 355 cm short of the body, visible sword contact missed by up to 0 cm, body centre 96 cm from the hardbox centre; W:180/0 E:326/0 N:355/0 S:267/0"
+3 creature hit box vs body,354.3,311,S311_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 354 cm short of the body, visible sword contact missed by up to 0 cm, body centre 49 cm from the hardbox centre; W:266/0 E:354/0 N:328/0 S:328/0"
+3 creature hit box vs body,353.6,655,S655_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 354 cm short of the body, visible sword contact missed by up to 0 cm, body centre 70 cm from the hardbox centre; W:270/0 E:201/0 N:354/0 S:270/0"
+3 creature hit box vs body,353.6,655,S655_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 354 cm short of the body, visible sword contact missed by up to 0 cm, body centre 68 cm from the hardbox centre; W:270/0 E:209/0 N:354/0 S:270/0"
+3 creature hit box vs body,350.7,735,S735_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 351 cm short of the body, visible sword contact missed by up to 0 cm, body centre 128 cm from the hardbox centre; W:90/0 E:315/0 N:351/0 S:266/0"
+3 creature hit box vs body,350.7,735,S735_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 351 cm short of the body, visible sword contact missed by up to 0 cm, body centre 128 cm from the hardbox centre; W:90/0 E:315/0 N:351/0 S:266/0"
+3 creature hit box vs body,343.4,563,S563_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 343 cm short of the body, visible sword contact missed by up to 0 cm, body centre 56 cm from the hardbox centre; W:325/0 E:315/0 N:343/0 S:278/0"
+3 creature hit box vs body,339.6,457,S457_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 340 cm short of the body, visible sword contact missed by up to 0 cm, body centre 45 cm from the hardbox centre; W:340/0 E:311/0 N:311/0 S:274/0"
+3 creature hit box vs body,336.7,311,S311_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 337 cm short of the body, visible sword contact missed by up to 0 cm, body centre 76 cm from the hardbox centre; W:248/0 E:337/0 N:310/0 S:231/0"
+3 creature hit box vs body,331.8,191,S191_P08,"SK_Pillbug_Photoreal (brain 9, script s7-pill): hit registers 332 cm short of the body, visible sword contact missed by up to 0 cm, body centre 143 cm from the hardbox centre; W:249/0 E:119/0 N:332/0 S:112/0"
+3 creature hit box vs body,329.1,310,S310_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 329 cm short of the body, visible sword contact missed by up to 0 cm, body centre 45 cm from the hardbox centre; W:329/0 E:251/0 N:225/0 S:312/0"
+3 creature hit box vs body,325.8,626,S626_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 326 cm short of the body, visible sword contact missed by up to 0 cm, body centre 58 cm from the hardbox centre; W:222/0 E:326/0 N:326/0 S:317/0"
+3 creature hit box vs body,323.3,278,S278_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 323 cm short of the body, visible sword contact missed by up to 0 cm, body centre 54 cm from the hardbox centre; W:230/0 E:315/0 N:323/0 S:298/0"
+3 creature hit box vs body,318.2,659,S659_P08,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 318 cm short of the body, visible sword contact missed by up to 0 cm, body centre 39 cm from the hardbox centre; W:318/0 E:249/0 N:232/0 S:310/0"
+3 creature hit box vs body,311.0,625,S625_P04,"SM_Snake_Carving_PR (brain 6, script -): hit registers 311 cm short of the body, visible sword contact missed by up to 0 cm, body centre 6 cm from the hardbox centre; W:286/0 E:294/0 N:261/0 S:311/0"
+3 creature hit box vs body,308.4,735,S735_P08,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 308 cm short of the body, visible sword contact missed by up to 0 cm, body centre 68 cm from the hardbox centre; W:266/0 E:132/0 N:245/0 S:308/0"
+3 creature hit box vs body,305.6,666,S666_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 306 cm short of the body, visible sword contact missed by up to 0 cm, body centre 116 cm from the hardbox centre; W:306/0 E:167/0 N:297/0 S:151/0"
+3 creature hit box vs body,304.6,279,S279_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 305 cm short of the body, visible sword contact missed by up to 0 cm, body centre 66 cm from the hardbox centre; W:229/0 E:305/0 N:288/0 S:221/0"
+3 creature hit box vs body,303.6,685,S685_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 304 cm short of the body, visible sword contact missed by up to 0 cm, body centre 32 cm from the hardbox centre; W:272/0 E:280/0 N:304/0 S:280/0"
+3 creature hit box vs body,301.4,735,S735_P07,"SK_Pillbug_Photoreal (brain 9, script en-pill2): hit registers 301 cm short of the body, visible sword contact missed by up to 0 cm, body centre 103 cm from the hardbox centre; W:266/0 E:139/0 N:301/0 S:175/0"
+3 creature hit box vs body,299.7,487,S487_P07,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 300 cm short of the body, visible sword contact missed by up to 0 cm, body centre 93 cm from the hardbox centre; W:148/0 E:217/0 N:300/0 S:161/0"
+3 creature hit box vs body,296.8,608,S608_P05,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 297 cm short of the body, visible sword contact missed by up to 0 cm, body centre 93 cm from the hardbox centre; W:201/0 E:146/0 N:297/0 S:153/0"
+3 creature hit box vs body,296.8,608,S608_P02,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 297 cm short of the body, visible sword contact missed by up to 0 cm, body centre 93 cm from the hardbox centre; W:201/0 E:146/0 N:297/0 S:153/0"
+3 creature hit box vs body,294.2,309,S309_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 294 cm short of the body, visible sword contact missed by up to 0 cm, body centre 72 cm from the hardbox centre; W:294/0 E:220/0 N:286/0 S:204/0"
+3 creature hit box vs body,286.7,624,S624_P06,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 287 cm short of the body, visible sword contact missed by up to 0 cm, body centre 41 cm from the hardbox centre; W:215/0 E:287/0 N:287/0 S:287/0"
+3 creature hit box vs body,286.7,624,S624_P02,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 287 cm short of the body, visible sword contact missed by up to 0 cm, body centre 41 cm from the hardbox centre; W:215/0 E:287/0 N:287/0 S:287/0"
+3 creature hit box vs body,283.8,551,S551_P03,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 284 cm short of the body, visible sword contact missed by up to 0 cm, body centre 75 cm from the hardbox centre; W:208/0 E:284/0 N:284/0 S:193/0"
+3 creature hit box vs body,277.4,655,S655_P04,"SK_Pillbug_Photoreal (brain 9, script en-pill): hit registers 277 cm short of the body, visible sword contact missed by up to 0 cm, body centre 50 cm from the hardbox centre; W:178/0 E:262/0 N:277/0 S:262/0"
+4 pickup touch box,199.2,524,S524_P04,"SM_Heart_Gold_PR (gheart): picked up 199 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,185.5,352,S352_P38,"SM_Gold_Pile_PR (lgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,185.5,352,S352_P36,"SM_Gold_Pile_PR (lgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,185.5,352,S352_P35,"SM_Gold_Pile_PR (lgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,185.5,352,S352_P34,"SM_Gold_Pile_PR (lgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,185.5,352,S352_P29,"SM_Gold_Pile_PR (lgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,185.5,352,S352_P28,"SM_Gold_Pile_PR (lgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,185.5,352,S352_P27,"SM_Gold_Pile_PR (lgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,185.5,352,S352_P25,"SM_Gold_Pile_PR (lgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,185.5,352,S352_P24,"SM_Gold_Pile_PR (lgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,184.6,663,S663_P16,"SM_Gold_Coins_Few_PR (sgold): picked up 185 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,178.6,352,S352_P39,"SM_Gold_Pile_PR (lgold): picked up 179 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,178.6,352,S352_P32,"SM_Gold_Pile_PR (lgold): picked up 179 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,178.6,352,S352_P31,"SM_Gold_Pile_PR (lgold): picked up 179 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,178.6,352,S352_P26,"SM_Gold_Pile_PR (lgold): picked up 179 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,178.6,352,S352_P23,"SM_Gold_Pile_PR (lgold): picked up 179 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,178.6,352,S352_P22,"SM_Gold_Pile_PR (lgold): picked up 179 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,151.1,352,S352_P20,"SM_Heart_Gold_PR (gheart): picked up 151 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,150.8,157,S157_P09,"SM_Heart_Gold_PR (gheart): picked up 151 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,150.8,190,S190_P10,"SM_Heart_Red_PR (heart): picked up 151 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,122.9,681,S681_P17,"SM_Potion_Flask_PR (rpotion): picked up 123 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,122.9,681,S681_P16,"SM_Potion_Flask_PR (rpotion): picked up 123 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,122.9,681,S681_P15,"SM_Potion_Flask_PR (rpotion): picked up 123 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,122.9,681,S681_P14,"SM_Potion_Flask_PR (rpotion): picked up 123 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,114.9,597,S597_P01,"SM_Potion_Flask_Purple_PR (ppotion): picked up 115 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,113.7,663,S663_P06,"SM_Potion_Flask_PR (rpotion): picked up 114 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,112.6,106,S106_P19,"SM_Heart_Gold_PR (gheart): picked up 113 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,112.6,165,S165_P01,"SM_Heart_Gold_PR (gheart): picked up 113 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,112.6,166,S166_P02,"SM_Heart_Gold_PR (gheart): picked up 113 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,104.2,273,S273_P08,"SM_Potion_Flask_Purple_PR (ppotion): picked up 104 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,102.4,750,S750_P02,"SM_Potion_Flask_Blue_PR (apotion): picked up 102 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,101.6,214,S214_P02,"SM_Potion_Flask_PR (rpotion): picked up 102 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,101.2,243,S243_P01,"SM_Potion_Flask_Blue_PR (bpotion): picked up 101 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,92.5,209,S209_P10,"SM_Potion_Flask_PR (rpotion): picked up 92 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,90.0,248,S248_P03,"SM_Potion_Flask_PR (rpotion): picked up 90 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,88.9,62,S062_P10,"SM_Potion_Flask_Purple_PR (ppotion): picked up 89 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,88.9,62,S062_P09,"SM_Potion_Flask_Purple_PR (ppotion): picked up 89 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,88.9,159,S159_P13,"SM_Potion_Flask_Purple_PR (ppotion): picked up 89 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,88.9,159,S159_P11,"SM_Potion_Flask_Purple_PR (ppotion): picked up 89 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,88.9,159,S159_P10,"SM_Potion_Flask_Purple_PR (ppotion): picked up 89 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,82.2,352,S352_P21,"SM_Potion_Flask_Purple_PR (apotion): picked up 82 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,82.2,352,S352_P19,"SM_Potion_Flask_PR (rpotion): picked up 82 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,82.2,352,S352_P18,"SM_Potion_Flask_Blue_PR (bpotion): picked up 82 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,82.2,352,S352_P17,"SM_Potion_Flask_Purple_PR (ppotion): picked up 82 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,82.0,32,S032_P08,"SM_Potion_Flask_PR (rpotion): picked up 82 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,82.0,122,S122_P14,"SM_Potion_Flask_Blue_PR (bpotion): picked up 82 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,82.0,127,S127_P11,"SM_Potion_Flask_Blue_PR (apotion): picked up 82 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,82.0,159,S159_P12,"SM_Potion_Flask_Purple_PR (ppotion): picked up 82 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,82.0,223,S223_P13,"SM_Potion_Flask_PR (rpotion): picked up 82 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,75.2,603,S603_P02,"SM_Potion_Flask_Blue_PR (bpotion): picked up 75 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,67.6,166,S166_P23,"SM_Potion_Flask_Blue_PR (bpotion): picked up 68 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,67.6,166,S166_P01,"SM_Potion_Flask_Blue_PR (apotion): picked up 68 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,62.0,166,S166_P24,"SM_Potion_Flask_PR (rpotion): picked up 62 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,62.0,198,S198_P21,"SM_Potion_Flask_PR (rpotion): picked up 62 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,62.0,166,S166_P20,"SM_Potion_Flask_Purple_PR (ppotion): picked up 62 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,62.0,198,S198_P20,"SM_Potion_Flask_PR (rpotion): picked up 62 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,50.8,101,S101_P10,"SM_Heart_Red_PR (sheart): picked up 51 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,50.8,101,S101_P09,"SM_Heart_Red_PR (sheart): picked up 51 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,50.8,101,S101_P08,"SM_Heart_Red_PR (sheart): picked up 51 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,50.8,101,S101_P06,"SM_Heart_Red_PR (sheart): picked up 51 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,50.8,101,S101_P05,"SM_Heart_Red_PR (sheart): picked up 51 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,50.8,101,S101_P04,"SM_Heart_Red_PR (sheart): picked up 51 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,50.8,70,S070_P22,"SM_Potion_Flask_Blue_PR (bpotion): picked up 51 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,50.7,101,S101_P07,"SM_Heart_Red_PR (sheart): picked up 51 cm from the mesh, stands 0 cm over it without the touch"
+4 pickup touch box,50.7,101,S101_P03,"SM_Heart_Red_PR (sheart): picked up 51 cm from the mesh, stands 0 cm over it without the touch"
+4 screen-edge exit,869.4,187,right edge to SCR_188,42 of 50 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,807.3,382,right edge to SCR_383,39 of 59 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,765.9,602,right edge to SCR_603,37 of 75 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,621.0,426,right edge to SCR_427,30 of 63 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,600.3,597,down edge to SCR_629,29 of 112 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,579.6,629,down edge to SCR_661,28 of 84 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,558.9,635,right edge to SCR_636,27 of 82 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,558.9,665,down edge to SCR_697,27 of 82 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,538.2,427,right edge to SCR_428,26 of 72 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,517.5,470,right edge to SCR_471,25 of 100 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,517.5,471,right edge to SCR_472,25 of 88 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,517.5,473,right edge to SCR_474,25 of 89 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,496.8,425,right edge to SCR_426,24 of 65 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,496.8,469,right edge to SCR_470,24 of 81 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,496.8,477,right edge to SCR_478,24 of 83 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,496.8,725,right edge to SCR_726,24 of 97 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,428,right edge to SCR_429,23 of 99 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,461,right edge to SCR_462,23 of 93 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,462,right edge to SCR_463,23 of 99 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,463,right edge to SCR_464,23 of 99 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,464,right edge to SCR_465,23 of 99 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,466,right edge to SCR_467,23 of 87 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,467,right edge to SCR_468,23 of 99 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,475,right edge to SCR_476,23 of 99 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,478,right edge to SCR_479,23 of 65 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,500,right edge to SCR_501,23 of 95 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,476.1,697,right edge to SCR_698,23 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,455.4,380,right edge to SCR_381,22 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,455.4,381,right edge to SCR_382,22 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,455.4,476,right edge to SCR_477,22 of 65 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,455.4,570,right edge to SCR_571,22 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,434.7,144,down edge to SCR_176,21 of 51 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,434.7,176,down edge to SCR_208,21 of 51 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,434.7,315,down edge to SCR_347,21 of 41 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,434.7,347,down edge to SCR_379,21 of 108 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,434.7,429,down edge to SCR_461,21 of 166 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,434.7,572,down edge to SCR_604,21 of 165 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,434.7,576,down edge to SCR_608,21 of 33 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,434.7,736,down edge to SCR_768,21 of 51 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,414.0,340,down edge to SCR_372,20 of 133 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,414.0,346,down edge to SCR_378,20 of 109 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,414.0,384,down edge to SCR_416,20 of 31 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,414.0,436,down edge to SCR_468,20 of 111 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,414.0,565,down edge to SCR_597,20 of 145 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,414.0,575,right edge to SCR_576,20 of 21 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,393.3,276,down edge to SCR_308,19 of 136 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,393.3,308,down edge to SCR_340,19 of 136 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,393.3,314,down edge to SCR_346,19 of 41 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,393.3,352,down edge to SCR_384,19 of 126 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,393.3,540,down edge to SCR_572,19 of 164 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,393.3,604,down edge to SCR_636,19 of 164 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,393.3,733,down edge to SCR_765,19 of 162 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,393.3,759,right edge to SCR_760,19 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,393.3,760,right edge to SCR_761,19 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,372.6,372,down edge to SCR_404,18 of 161 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,372.6,501,down edge to SCR_533,18 of 160 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,372.6,539,down edge to SCR_571,18 of 160 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,372.6,544,down edge to SCR_576,18 of 128 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,372.6,607,down edge to SCR_639,18 of 151 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,372.6,640,down edge to SCR_672,18 of 127 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,372.6,661,down edge to SCR_693,18 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,372.6,672,down edge to SCR_704,18 of 104 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,351.9,314,right edge to SCR_315,17 of 50 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,351.9,472,down edge to SCR_504,17 of 119 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,351.9,533,down edge to SCR_565,17 of 134 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,351.9,570,down edge to SCR_602,17 of 68 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,351.9,701,down edge to SCR_733,17 of 89 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,331.2,183,right edge to SCR_184,16 of 95 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,331.2,379,right edge to SCR_380,16 of 70 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,331.2,465,right edge to SCR_466,16 of 57 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,331.2,688,right edge to SCR_689,16 of 84 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,331.2,689,right edge to SCR_690,16 of 84 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,331.2,690,right edge to SCR_691,16 of 34 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,331.2,749,right edge to SCR_750,16 of 51 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,331.2,750,right edge to SCR_751,16 of 84 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,331.2,751,right edge to SCR_752,16 of 84 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,310.5,507,right edge to SCR_508,15 of 84 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,310.5,633,right edge to SCR_634,15 of 116 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,310.5,743,right edge to SCR_744,15 of 84 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,310.5,744,right edge to SCR_745,15 of 84 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,289.8,105,right edge to SCR_106,14 of 118 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,289.8,214,right edge to SCR_215,14 of 86 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,289.8,303,down edge to SCR_335,14 of 59 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,289.8,334,down edge to SCR_366,14 of 44 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,289.8,473,down edge to SCR_505,14 of 116 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,289.8,596,right edge to SCR_597,14 of 116 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,289.8,691,right edge to SCR_692,14 of 49 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,289.8,692,right edge to SCR_693,14 of 49 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,289.8,763,right edge to SCR_764,14 of 67 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,269.1,74,down edge to SCR_106,13 of 167 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,269.1,105,down edge to SCR_137,13 of 184 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,269.1,137,down edge to SCR_169,13 of 184 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,269.1,748,right edge to SCR_749,13 of 61 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,248.4,60,right edge to SCR_061,12 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,248.4,70,down edge to SCR_102,12 of 159 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,248.4,99,down edge to SCR_131,12 of 114 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,248.4,186,down edge to SCR_218,12 of 76 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,248.4,209,right edge to SCR_210,12 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,248.4,210,right edge to SCR_211,12 of 98 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 screen-edge exit,248.4,213,right edge to SCR_214,12 of 81 edge cells (3 px) where 1997 crosses are blocked for the capsule on one side
+4 warp trigger,1460.8,227,S227_P01,exit trigger with nothing drawn on 100% of it (nearest drawn 1461 cm)
+4 warp trigger,1443.9,69,S069_P01,exit trigger with nothing drawn on 100% of it (nearest drawn 1444 cm)
+4 warp trigger,1128.9,101,S101_P01,exit trigger with nothing drawn on 100% of it (nearest drawn 1129 cm)
+4 warp trigger,1074.4,131,S131_P01,exit trigger with nothing drawn on 100% of it (nearest drawn 1074 cm)
+4 warp trigger,738.6,132,S132_P19,exit trigger with nothing drawn on 100% of it (nearest drawn 739 cm)
+4 warp trigger,735.2,165,S165_P19,exit trigger with nothing drawn on 100% of it (nearest drawn 735 cm)
+4 warp trigger,732.9,166,S166_P19,exit trigger with nothing drawn on 100% of it (nearest drawn 733 cm)
+4 warp trigger,721.7,164,S164_P19,exit trigger with nothing drawn on 100% of it (nearest drawn 722 cm)
+4 warp trigger,721.7,259,S259_P01,interior_door trigger with nothing drawn on 100% of it (nearest drawn 722 cm)
+4 warp trigger,720.0,198,S198_P19,exit trigger with nothing drawn on 100% of it (nearest drawn 720 cm)
+4 warp trigger,471.2,243,SW_s6-hole_L22@S243_P13,pit trigger with nothing drawn on 100% of it (nearest drawn 471 cm)
+4 warp trigger,438.8,202,S202_P19,exit trigger with nothing drawn on 78% of it (nearest drawn 439 cm)
+4 warp trigger,416.9,102,S102_P15,exit trigger with nothing drawn on 100% of it (nearest drawn 417 cm)
+4 warp trigger,285.2,257,S257_P01,exit trigger with nothing drawn on 100% of it (nearest drawn 285 cm)
+4 warp trigger,228.9,577,S577_P13,exit trigger with nothing drawn on 88% of it (nearest drawn 229 cm)
+4 warp trigger,221.8,102,S102_P16,exit trigger with nothing drawn on 100% of it (nearest drawn 222 cm)
+4 warp trigger,202.6,289,S289_P19,exit trigger with nothing drawn on 100% of it (nearest drawn 203 cm)
+4 warp trigger,192.5,196,S196_P20,exit trigger with nothing drawn on 86% of it (nearest drawn 192 cm)
+4 warp trigger,192.5,228,S228_P20,exit trigger with nothing drawn on 86% of it (nearest drawn 192 cm)
+4 warp trigger,192.5,261,S261_P20,exit trigger with nothing drawn on 86% of it (nearest drawn 192 cm)
+4 warp trigger,191.2,161,S161_P20,exit trigger with nothing drawn on 86% of it (nearest drawn 191 cm)
+4 warp trigger,191.2,162,S162_P20,exit trigger with nothing drawn on 86% of it (nearest drawn 191 cm)
+4 warp trigger,185.1,193,S193_P01,exit trigger with nothing drawn on 90% of it (nearest drawn 185 cm)
+4 warp trigger,182.4,6,S006_P16,exit trigger with nothing drawn on 90% of it (nearest drawn 182 cm)
+4 warp trigger,181.7,163,S163_P15,exit trigger with nothing drawn on 79% of it (nearest drawn 182 cm)
+4 warp trigger,175.0,36,S036_P18,exit trigger with nothing drawn on 84% of it (nearest drawn 175 cm)
+4 warp trigger,171.9,194,S194_P20,exit trigger with nothing drawn on 75% of it (nearest drawn 172 cm)
+4 warp trigger,169.3,5,S005_P17,exit trigger with nothing drawn on 80% of it (nearest drawn 169 cm)
+4 warp trigger,169.3,33,S033_P17,exit trigger with nothing drawn on 80% of it (nearest drawn 169 cm)
+4 warp trigger,169.3,35,S035_P17,exit trigger with nothing drawn on 80% of it (nearest drawn 169 cm)
+4 warp trigger,167.6,195,S195_P17,exit trigger with nothing drawn on 80% of it (nearest drawn 168 cm)
+4 warp trigger,167.6,225,S225_P17,exit trigger with nothing drawn on 80% of it (nearest drawn 168 cm)
+4 warp trigger,167.6,226,S226_P17,exit trigger with nothing drawn on 80% of it (nearest drawn 168 cm)
+4 warp trigger,160.6,97,S097_P17,exit trigger with nothing drawn on 76% of it (nearest drawn 161 cm)
+4 warp trigger,158.8,129,S129_P15,exit trigger with nothing drawn on 75% of it (nearest drawn 159 cm)
+4 warp trigger,158.8,130,S130_P15,exit trigger with nothing drawn on 75% of it (nearest drawn 159 cm)
+4 warp trigger,157.5,67,S067_P15,exit trigger with nothing drawn on 75% of it (nearest drawn 158 cm)
+4 warp trigger,145.7,290,S290_P19,exit trigger with nothing drawn on 77% of it (nearest drawn 146 cm)
+4 warp trigger,116.9,710,SW_s3-sec1_L39@S710_P14,script_transition trigger with nothing drawn on 92% of it (nearest drawn 117 cm)
+4 warp trigger,111.1,307,SW_s2-sec1_L37@S307_P13,script_transition trigger with nothing drawn on 91% of it (nearest drawn 111 cm)
+4 warp trigger,97.7,253,SW_s6-warp_L46@S253_P06,teleport_machine trigger with nothing drawn on 94% of it (nearest drawn 98 cm)
+4 warp trigger,87.3,80,S080_P06,door trigger with nothing drawn on 88% of it (nearest drawn 87 cm)
+4 warp trigger,66.7,659,SW_s2-sec3_L37@S659_P06,script_transition trigger with nothing drawn on 91% of it (nearest drawn 67 cm)
+4 warp trigger,55.0,154,SW_s7-warp_L46@S154_P23,teleport trigger with nothing drawn on 82% of it (nearest drawn 55 cm)
+4 warp trigger,0.0,154,SW_s7-warp_L46@S154_P08,teleport trigger with nothing drawn on 76% of it (nearest drawn 0 cm)
+6 terrain,25.0,320,"tile 11,2","grass tile, 1997 walkable (largest region) on 100%, only 0% walkable for the capsule and 8% drawn on"
+6 terrain,25.0,767,"tile 7,3","grass tile, 1997 walkable (largest region) on 100%, only 0% walkable for the capsule and 9% drawn on"
+6 terrain,24.9,671,"tile 2,4","grass tile, 1997 walkable (largest region) on 100%, only 0% walkable for the capsule and 0% drawn on"
+6 terrain,24.8,426,"tile 1,2","grass tile, 1997 walkable (largest region) on 100%, only 1% walkable for the capsule and 0% drawn on"
+6 terrain,24.8,470,"tile 4,2","grass tile, 1997 walkable (largest region) on 100%, only 1% walkable for the capsule and 0% drawn on"
+6 terrain,24.8,507,"tile 5,2","grass tile, 1997 walkable (largest region) on 96%, only 1% walkable for the capsule and 0% drawn on"
+6 terrain,24.8,690,"tile 10,2","grass tile, 1997 walkable (largest region) on 100%, only 1% walkable for the capsule and 0% drawn on"
+6 terrain,24.6,603,"tile 4,6","grass tile, 1997 walkable (largest region) on 100%, only 1% walkable for the capsule and 0% drawn on"
+6 terrain,24.4,383,"tile 6,3","sand tile, 1997 walkable (largest region) on 97%, only 2% walkable for the capsule and 0% drawn on"
+6 terrain,24.4,487,"tile 6,3","sand tile, 1997 walkable (largest region) on 97%, only 2% walkable for the capsule and 0% drawn on"
+6 terrain,24.4,701,"tile 8,1","sand tile, 1997 walkable (largest region) on 97%, only 2% walkable for the capsule and 6% drawn on"
+6 terrain,24.4,703,"tile 10,1","sand tile, 1997 walkable (largest region) on 97%, only 2% walkable for the capsule and 0% drawn on"
+6 terrain,24.4,760,"tile 2,1","sand tile, 1997 walkable (largest region) on 97%, only 2% walkable for the capsule and 0% drawn on"
+6 terrain,24.4,760,"tile 10,1","sand tile, 1997 walkable (largest region) on 97%, only 2% walkable for the capsule and 3% drawn on"
+6 terrain,24.4,761,"tile 4,1","sand tile, 1997 walkable (largest region) on 97%, only 2% walkable for the capsule and 0% drawn on"
+6 terrain,24.4,634,"tile 1,6","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 3% drawn on"
+6 terrain,24.3,480,"tile 3,4","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 0% drawn on"
+6 terrain,24.3,602,"tile 4,0","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 0% drawn on"
+6 terrain,24.2,603,"tile 2,4","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 0% drawn on"
+6 terrain,24.2,666,"tile 3,2","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,469,"tile 5,2","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,472,"tile 7,4","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,478,"tile 10,2","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,571,"tile 8,2","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 2% drawn on"
+6 terrain,24.1,597,"tile 7,2","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,671,"tile 1,4","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 9% drawn on"
+6 terrain,24.1,689,"tile 8,4","grass tile, 1997 walkable (largest region) on 100%, only 3% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,508,"tile 3,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,671,"tile 3,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 5% drawn on"
+6 terrain,24.1,671,"tile 9,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 10% drawn on"
+6 terrain,24.1,117,"tile 1,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,379,"tile 1,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,427,"tile 7,3","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,462,"tile 7,3","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,466,"tile 7,3","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,470,"tile 3,2","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,470,"tile 9,4","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,480,"tile 5,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,507,"tile 1,0","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,512,"tile 1,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,533,"tile 3,2","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,576,"tile 1,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,608,"tile 7,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 10% drawn on"
+6 terrain,24.1,629,"tile 1,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,697,"tile 7,0","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,697,"tile 9,2","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.1,752,"tile 1,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.0,689,"tile 3,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 1% drawn on"
+6 terrain,24.0,690,"tile 3,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.0,693,"tile 9,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.0,725,"tile 6,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,24.0,744,"tile 5,6","grass tile, 1997 walkable (largest region) on 100%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,23.9,730,"tile 3,5","sand tile, 1997 walkable (largest region) on 97%, only 4% walkable for the capsule and 0% drawn on"
+6 terrain,23.8,384,"tile 10,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.8,386,"tile 8,1","sand tile, 1997 walkable (largest region) on 97%, only 5% walkable for the capsule and 9% drawn on"
+6 terrain,23.8,387,"tile 8,1","sand tile, 1997 walkable (largest region) on 97%, only 5% walkable for the capsule and 9% drawn on"
+6 terrain,23.8,388,"tile 8,1","sand tile, 1997 walkable (largest region) on 97%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.8,456,"tile 10,5","sand tile, 1997 walkable (largest region) on 97%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.8,478,"tile 5,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 3% drawn on"
+6 terrain,23.8,539,"tile 5,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.8,576,"tile 8,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.8,634,"tile 5,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.8,665,"tile 8,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.8,697,"tile 2,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.8,698,"tile 4,4","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,117,"tile 10,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,380,"tile 2,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,470,"tile 0,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,470,"tile 6,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,539,"tile 8,0","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,565,"tile 8,0","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,565,"tile 6,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 4% drawn on"
+6 terrain,23.7,576,"tile 6,4","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,608,"tile 10,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,634,"tile 10,0","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,634,"tile 3,4","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,671,"tile 10,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 12% drawn on"
+6 terrain,23.7,690,"tile 8,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,698,"tile 2,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 1% drawn on"
+6 terrain,23.7,726,"tile 2,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,731,"tile 4,3","sand tile, 1997 walkable (largest region) on 97%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.7,732,"tile 4,3","sand tile, 1997 walkable (largest region) on 97%, only 5% walkable for the capsule and 3% drawn on"
+6 terrain,23.7,744,"tile 8,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 1% drawn on"
+6 terrain,23.7,752,"tile 8,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 8% drawn on"
+6 terrain,23.7,426,"tile 7,2","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 9% drawn on"
+6 terrain,23.7,507,"tile 11,4","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,671,"tile 6,6","grass tile, 1997 walkable (largest region) on 100%, only 5% walkable for the capsule and 9% drawn on"
+6 terrain,23.6,352,"tile 0,4","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,582,"tile 3,2","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 5% drawn on"
+6 terrain,23.6,351,"tile 10,4","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,383,"tile 4,4","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,425,"tile 7,2","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,426,"tile 8,2","grass tile, 1997 walkable (largest region) on 100%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,471,"tile 4,4","grass tile, 1997 walkable (largest region) on 100%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,474,"tile 10,4","grass tile, 1997 walkable (largest region) on 100%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,700,"tile 1,2","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,701,"tile 4,2","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,746,"tile 10,4","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,747,"tile 2,4","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain,23.6,747,"tile 10,4","sand tile, 1997 walkable (largest region) on 90%, only 6% walkable for the capsule and 0% drawn on"
+6 terrain (as 1997),5.0,85,"tile 1,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 2,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 3,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 4,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 5,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 6,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 7,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 8,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 9,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 10,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 11,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 1,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 2,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 3,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 4,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 5,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 6,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 7,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 8,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 9,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 10,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 11,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 1,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 2,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 3,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 4,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 5,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 6,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 7,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 8,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 9,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 10,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 11,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 1,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 2,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 3,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 4,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 5,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 6,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 7,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 8,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 9,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 10,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,85,"tile 11,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,86,"tile 0,1","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,86,"tile 0,2","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,86,"tile 0,3","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,86,"tile 0,4","lava tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,438,"tile 7,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,438,"tile 8,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,438,"tile 8,6","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 1,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 2,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 3,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 4,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 5,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 1,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 2,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 3,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 4,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,467,"tile 1,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,467,"tile 2,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,467,"tile 3,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,467,"tile 4,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,494,"tile 6,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,494,"tile 7,4","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,494,"tile 7,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,602,"tile 2,6","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,602,"tile 3,6","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,602,"tile 3,7","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,603,"tile 8,2","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,603,"tile 9,2","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,603,"tile 9,3","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,635,"tile 2,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,635,"tile 3,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,635,"tile 3,6","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,765,"tile 1,1","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,765,"tile 2,1","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,765,"tile 2,2","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,438,"tile 7,6","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,465,"tile 6,5","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,603,"tile 8,3","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,635,"tile 2,6","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,636,"tile 0,7","water tile, 100% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),5.0,765,"tile 1,2","water tile, 99% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.9,602,"tile 2,7","water tile, 99% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.9,494,"tile 6,5","water tile, 99% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.8,86,"tile 1,1","lava tile, 97% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.8,86,"tile 10,1","lava tile, 97% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.8,467,"tile 1,5","water tile, 96% walkable for the capsule; 1997 hardness 0 on 98% of it"
+6 terrain (as 1997),4.7,86,"tile 2,1","lava tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.7,86,"tile 3,1","lava tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.7,86,"tile 4,1","lava tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.7,86,"tile 5,1","lava tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.7,86,"tile 6,1","lava tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.7,86,"tile 7,1","lava tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.7,86,"tile 8,1","lava tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.7,86,"tile 9,1","lava tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.7,465,"tile 11,4","water tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+6 terrain (as 1997),4.7,465,"tile 5,5","water tile, 94% walkable for the capsule; 1997 hardness 0 on 100% of it"
+7 standing inside,30.0,1,S001_P20,"npc s1-h1-2 at (289,114) inside the drawn body of S001_P19; a capsule cannot stand there"
+7 standing inside,30.0,34,H34,"scripted_prop s2-man1 at (70,280) inside the drawn body of S034_P29"
+7 standing inside,30.0,34,H35,"scripted_prop s2-man2 at (70,220) inside the drawn body of S034_P28; a capsule cannot stand there"
+7 standing inside,30.0,34,H36,"scripted_prop s2-ryant at (540,248) inside the drawn body of S034_P31; a capsule cannot stand there"
+7 standing inside,30.0,66,H2,"npc s2-nadp at (264,256) inside the drawn body of S066_P21"
+7 standing inside,30.0,122,S122_P01,"scripted_prop SM_Veg_ThornBush_02 at (169,141) inside the drawn body of S122_P05"
+7 standing inside,30.0,137,S137_P18,"creature SM_DinkCard at (166,81) inside the drawn body of S137_P14"
+7 standing inside,30.0,229,S229_P07,"scripted_prop SM_Crate_Large_PR at (326,287) inside the drawn body of S229_P08; a capsule cannot stand there"
+7 standing inside,30.0,260,S260_P30,"npc SM_DinkCard at (93,186) inside the drawn body of S260_P07"
+7 standing inside,30.0,260,S260_P07,"scripted_prop SM_Fountain_Stone_PR at (93,194) inside the drawn body of S260_P30"
+7 standing inside,30.0,352,H41,"creature  at (338,386) inside the drawn body of S352_P39"
+7 standing inside,30.0,352,H40,"creature  at (435,374) inside the drawn body of S352_P38; a capsule cannot stand there"
+7 standing inside,30.0,352,H39,"creature  at (419,377) inside the drawn body of S352_P36; a capsule cannot stand there"
+7 standing inside,30.0,352,H38,"creature  at (356,375) inside the drawn body of S352_P35; a capsule cannot stand there"
+7 standing inside,30.0,352,H37,"creature  at (395,374) inside the drawn body of S352_P34; a capsule cannot stand there"
+7 standing inside,30.0,352,H36,"creature  at (303,373) inside the drawn body of S352_P32; a capsule cannot stand there"
+7 standing inside,30.0,352,H35,"creature  at (320,382) inside the drawn body of S352_P31"
+7 standing inside,30.0,352,H34,"creature  at (366,384) inside the drawn body of S352_P29"
+7 standing inside,30.0,352,H33,"creature  at (385,366) inside the drawn body of S352_P28; a capsule cannot stand there"
+7 standing inside,30.0,352,H32,"creature  at (414,367) inside the drawn body of S352_P27; a capsule cannot stand there"
+7 standing inside,30.0,352,H31,"creature  at (402,384) inside the drawn body of S352_P26"
+7 standing inside,30.0,352,H30,"creature  at (382,379) inside the drawn body of S352_P25"
+7 standing inside,30.0,352,H29,"creature  at (364,368) inside the drawn body of S352_P24; a capsule cannot stand there"
+7 standing inside,30.0,352,H28,"creature  at (341,379) inside the drawn body of S352_P23"
+7 standing inside,30.0,352,H27,"creature  at (321,370) inside the drawn body of S352_P22; a capsule cannot stand there"
+7 standing inside,30.0,501,S501_P12,"pickup SM_DinkCard at (397,202) inside the drawn body of S501_P10"
+7 standing inside,30.0,530,S530_P11,"pickup SM_DinkCard at (226,241) inside the drawn body of S530_P04"
+7 standing inside,30.0,537,S537_P10,"pickup SM_DinkCard at (432,336) inside the drawn body of S537_P23"
+7 standing inside,30.0,586,S586_P14,"npc SM_DinkCard at (277,245) inside the drawn body of S586_P03"
+7 standing inside,30.0,586,S586_P03,"scripted_prop SM_Fountain_Stone_PR at (278,248) inside the drawn body of S586_P14"
+7 standing inside,30.0,742,S742_P12,"scripted_prop SM_Crate_Large_PR at (436,149) inside the drawn body of S742_P16"

@@ -1,0 +1,301 @@
+wait 25
+dink.Fact lifemax 900
+dink.Fact life 900
+dink.Fact strength 3
+dink.Goto 588 239 278
+wait 4
+shot <shots>/588_S588_P05_0.png
+dink.WalkTo 239 197 4
+wait 6
+dink.Player
+shot <shots>/588_S588_P05_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/588_S588_P05_2.png
+dink.GreyboxBlockers 0
+dink.Goto 253 241 380
+wait 4
+shot <shots>/253_S253_P06_0.png
+dink.WalkTo 241 337 4
+wait 6
+dink.Player
+shot <shots>/253_S253_P06_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/253_S253_P06_2.png
+dink.GreyboxBlockers 0
+dink.Goto 586 278 338
+wait 4
+shot <shots>/586_S586_P03_0.png
+dink.WalkTo 278 266 4
+wait 6
+dink.Player
+shot <shots>/586_S586_P03_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/586_S586_P03_2.png
+dink.GreyboxBlockers 0
+dink.Goto 748 490 237
+wait 4
+shot <shots>/748_S748_P01_0.png
+dink.WalkTo 490 145 4
+wait 6
+dink.Player
+shot <shots>/748_S748_P01_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/748_S748_P01_2.png
+dink.GreyboxBlockers 0
+dink.Goto 251 100 338
+wait 4
+shot <shots>/251_S251_P05_0.png
+dink.WalkTo 100 367 4
+wait 6
+dink.Player
+shot <shots>/251_S251_P05_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/251_S251_P05_2.png
+dink.GreyboxBlockers 0
+dink.Goto 441 291 344
+wait 4
+shot <shots>/441_S441_P03_0.png
+dink.WalkTo 291 367 4
+wait 6
+dink.Player
+shot <shots>/441_S441_P03_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/441_S441_P03_2.png
+dink.GreyboxBlockers 0
+dink.Goto 214 495 149
+wait 4
+shot <shots>/214_S214_P06_0.png
+dink.WalkTo 501 83 4
+wait 6
+dink.Player
+shot <shots>/214_S214_P06_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/214_S214_P06_2.png
+dink.GreyboxBlockers 0
+dink.Goto 734 135 284
+wait 4
+shot <shots>/734_S734_P11_0.png
+dink.WalkTo 135 360 4
+wait 6
+dink.Player
+shot <shots>/734_S734_P11_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/734_S734_P11_2.png
+dink.GreyboxBlockers 0
+dink.Goto 211 99 217
+wait 4
+shot <shots>/211_S211_P08_0.png
+dink.WalkTo 99 153 4
+wait 6
+dink.Player
+shot <shots>/211_S211_P08_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/211_S211_P08_2.png
+dink.GreyboxBlockers 0
+dink.Goto 536 330 122
+wait 4
+shot <shots>/536_S536_P34_0.png
+dink.WalkTo 330 55 4
+wait 6
+dink.Player
+shot <shots>/536_S536_P34_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/536_S536_P34_2.png
+dink.GreyboxBlockers 0
+dink.Goto 193 400 149
+wait 4
+shot <shots>/193_S193_P14_0.png
+dink.WalkTo 448 52 4
+wait 6
+dink.Player
+shot <shots>/193_S193_P14_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/193_S193_P14_2.png
+dink.GreyboxBlockers 0
+dink.Goto 488 230 316
+wait 4
+shot <shots>/488_S488_P11_0.png
+dink.WalkTo 230 255 4
+wait 6
+dink.Player
+shot <shots>/488_S488_P11_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/488_S488_P11_2.png
+dink.GreyboxBlockers 0
+dink.Goto 524 161 254
+wait 4
+shot <shots>/524_S524_P04_0.png
+dink.WalkTo 161 198 4
+wait 6
+dink.Player
+shot <shots>/524_S524_P04_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/524_S524_P04_2.png
+dink.GreyboxBlockers 0
+dink.Goto 352 438 368
+wait 4
+shot <shots>/352_S352_P38_0.png
+dink.WalkTo 438 374 4
+wait 6
+dink.Player
+shot <shots>/352_S352_P38_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/352_S352_P38_2.png
+dink.GreyboxBlockers 0
+dink.Goto 229 329 338
+wait 4
+shot <shots>/229_S229_P07_0.png
+dink.WalkTo 329 282 4
+wait 6
+dink.Player
+shot <shots>/229_S229_P07_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/229_S229_P07_2.png
+dink.GreyboxBlockers 0
+dink.Goto 34 64 309
+wait 4
+shot <shots>/034_S034_P28_0.png
+dink.WalkTo 64 242 4
+wait 6
+dink.Player
+shot <shots>/034_S034_P28_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/034_S034_P28_2.png
+dink.GreyboxBlockers 0
+dink.Goto 470 224 144
+wait 4
+shot <shots>/470_tile4_1_0.png
+dink.WalkTo 224 74 4
+wait 6
+dink.Player
+shot <shots>/470_tile4_1_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/470_tile4_1_2.png
+dink.GreyboxBlockers 0
+dink.Goto 746 124 294
+wait 4
+shot <shots>/746_tile2_4_0.png
+dink.WalkTo 124 224 4
+wait 6
+dink.Player
+shot <shots>/746_tile2_4_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/746_tile2_4_2.png
+dink.GreyboxBlockers 0
+dink.Goto 250 574 380
+wait 4
+shot <shots>/250_tile11_6_0.png
+dink.WalkTo 574 324 4
+wait 6
+dink.Player
+shot <shots>/250_tile11_6_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/250_tile11_6_2.png
+dink.GreyboxBlockers 0
+dink.Goto 151 224 100
+wait 4
+shot <shots>/151_tile4_0_0.png
+dink.WalkTo 224 24 4
+wait 6
+dink.Player
+shot <shots>/151_tile4_0_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/151_tile4_0_2.png
+dink.GreyboxBlockers 0
+dink.Goto 85 174 144
+wait 4
+shot <shots>/085_tile3_1_0.png
+dink.WalkTo 174 74 4
+wait 6
+dink.Player
+shot <shots>/085_tile3_1_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/085_tile3_1_2.png
+dink.GreyboxBlockers 0
+dink.Goto 227 497 380
+wait 4
+shot <shots>/227_S227_P01_0.png
+dink.WalkTo 497 393 4
+wait 6
+dink.Player
+shot <shots>/227_S227_P01_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/227_S227_P01_2.png
+dink.GreyboxBlockers 0
+dink.Goto 382 580 301
+wait 4
+shot <shots>/382_edge_right_0.png
+dink.WalkTo 592 200 4
+wait 6
+dink.Player
+shot <shots>/382_edge_right_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/382_edge_right_2.png
+dink.GreyboxBlockers 0
+dink.Goto 671 124 294
+wait 4
+shot <shots>/671_tile2_4_0.png
+dink.WalkTo 124 224 4
+wait 6
+dink.Player
+shot <shots>/671_tile2_4_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/671_tile2_4_2.png
+dink.GreyboxBlockers 0
+dink.Goto 701 424 144
+wait 4
+shot <shots>/701_tile8_1_0.png
+dink.WalkTo 424 74 4
+wait 6
+dink.Player
+shot <shots>/701_tile8_1_1.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/701_tile8_1_2.png
+dink.GreyboxBlockers 0
+dink.Fact strength 6
+dink.Goto 277 205 200
+wait 4
+shot <shots>/push/277_before_a.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/push/277_before_b.png
+dink.GreyboxBlockers 0
+dink.Goto 277 222 180
+wait 2
+dink.WalkTo 330 180 8
+wait 14
+dink.Player
+dink.Goto 277 205 200
+wait 4
+shot <shots>/push/277_after_a.png
+dink.GreyboxBlockers 1
+wait 1
+shot <shots>/push/277_after_b.png
+dink.GreyboxBlockers 0
+dink.Fact rock_placement
+dink.PhysAudit 277 277 <out>/push_after quit
