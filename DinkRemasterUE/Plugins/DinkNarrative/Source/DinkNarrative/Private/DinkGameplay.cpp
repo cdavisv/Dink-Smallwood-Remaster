@@ -6,6 +6,8 @@
 #include "DinkFactSubsystem.h"
 #include "DinkWorldStateSubsystem.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
+#include "Greybox/DinkGreyboxCharacter.h"
+#include "DinkFloatingNumbers.h"
 #include "Algo/StableSort.h"
 #include "DinkInventoryComponent.h"
 #include "DinkStorySubsystem.h"
@@ -507,14 +509,59 @@ void UDinkGameplay::SyncDinkFacingFromActor()
 	}
 	SyncDinkFromActor();
 	FDinkSprite& Dink = D->GetDink();
-	if (const AActor* Actor = Dink.Actor.Get())
+	if (AActor* Actor = Dink.Actor.Get())
 	{
-		const int32 Dir = D->DirFromWorld(Dink.Screen, Actor->GetActorLocation(), Actor->GetActorForwardVector());
+		FVector Facing = Actor->GetActorForwardVector();
+		// The player's keys set dir on their frame in the original (changedir, dink.cpp:15013-15070) and an attack, a spell or the
+		// bow reads it at once (14812-14820); the pawn may still be turning towards them. Only the player's own input records a
+		// facing, so the bot, scripted moves and the console keep the pawn's forward vector as before.
+		if (ADinkGreyboxCharacter* Hero = Cast<ADinkGreyboxCharacter>(Actor))
+		{
+			FVector Keys;
+			if (Hero->GetPlayerFacing(Keys))
+			{
+				Facing = Keys;
+				Hero->FaceDirectionNow(Keys);
+			}
+		}
+		const int32 Dir = D->DirFromWorld(Dink.Screen, Actor->GetActorLocation(), Facing);
 		if (Dir != 0)
 		{
 			Dink.Dir = Dir;
 		}
 	}
+}
+
+bool UDinkGameplay::IsDinkHeldBySequence() const
+{
+	UDinkDirector* D = const_cast<UDinkGameplay*>(this)->Director();
+	if (!D || DinkHoldSeq <= 0 || DinkHoldSeqStartMs < 0.0)
+	{
+		return false;
+	}
+	if (!bDinkNoControlForSeq || D->GetDink().GetProp(P_Seq) != DinkHoldSeq)
+	{
+		return false;
+	}
+	const int32 Length = Data.SequenceDurationMs(DinkHoldSeq);
+	// (A load can turn the clock back: a hold never outlives the time it was started in.)
+	return Length > 0 && NowMs >= DinkHoldSeqStartMs && NowMs < DinkHoldSeqStartMs + Length;
+}
+
+void UDinkGameplay::OnDinkNoControl(int32 Value)
+{
+	bDinkNoControlForSeq = Value == 1;
+}
+
+void UDinkGameplay::UpdatePlayerHold()
+{
+	UDinkDirector* D = Director();
+	ADinkGreyboxCharacter* Hero = D ? Cast<ADinkGreyboxCharacter>(D->GetDink().Actor.Get()) : nullptr;
+	if (!Hero)
+	{
+		return;
+	}
+	Hero->SetPlayerHold(IsDinkHeldBySequence() ? EDinkPlayerHold::Rooted : Bow.bActive ? EDinkPlayerHold::TurnOnly : EDinkPlayerHold::None);
 }
 
 void UDinkGameplay::Note(const FString& E)
@@ -749,6 +796,9 @@ void UDinkGameplay::OnSequenceSet(int32 Handle, int32 Seq)
 {
     if (Handle == 1)
     {
+        DinkHoldSeq = Seq;
+        DinkHoldSeqStartMs = Story ? Story->GetNowMs() : NowMs;
+        bDinkNoControlForSeq = false; // the item scripts set sp_nocontrol right after sp_seq
         AActor* Actor = Director() ? Director()->GetActor(Handle) : nullptr;
         if (UWorld* World = Actor ? Actor->GetWorld() : nullptr)
             if (UDinkArtSubsystem* Art = World->GetSubsystem<UDinkArtSubsystem>())
@@ -1189,7 +1239,27 @@ void UDinkGameplay::AddExp(int32 Amount, int32 Sprite, bool bAlways)
 	{
 		SetFact(TEXT("exp"), DinkRules::AddExperience(GetFact(TEXT("exp")), Amount));
 		Note(FString::Printf(TEXT("exp +%d from %d"), Amount, Sprite));
+		ShowFloatingNumber(Sprite, Amount, true); // add_exp's yellow number (D:629-642)
 	}
+}
+
+void UDinkGameplay::ShowFloatingNumber(int32 Handle, int32 Value, bool bExperience) const
+{
+	// Presentation only: the original made a text sprite (brain 8); nothing here enters the simulation.
+	UDinkDirector* D = const_cast<UDinkGameplay*>(this)->Director();
+	const FDinkSprite* S = D ? D->FindSprite(Handle) : nullptr;
+	AActor* Actor = S ? S->Actor.Get() : nullptr;
+	UWorld* World = Actor ? Actor->GetWorld() : nullptr;
+	UDinkFloatingNumbers* Numbers = World ? World->GetSubsystem<UDinkFloatingNumbers>() : nullptr;
+	if (!Numbers || Value <= 0)
+	{
+		return;
+	}
+	FVector Origin, Extent;
+	Actor->GetActorBounds(/*bOnlyCollidingComponents*/ false, Origin, Extent, /*bIncludeFromChildActors*/ true);
+	const double Top = Extent.Z > 1.0 && Extent.Z < 400.0 ? Origin.Z + Extent.Z : Actor->GetActorLocation().Z + 100.0;
+	Numbers->Show(FVector(Actor->GetActorLocation().X, Actor->GetActorLocation().Y, Top + 15.0), Value,
+		bExperience ? EDinkFloatingNumber::Experience : EDinkFloatingNumber::Damage);
 }
 
 void UDinkGameplay::AddKillSprite(int32 Handle)
@@ -1237,7 +1307,8 @@ void UDinkGameplay::ProcessDamage()
 		}
 		if (H == 1)
 		{
-			// human_brain (D:14697): &life -= damage, not below 0.
+			// human_brain (D:14697): draw_damage over Dink (14699), &life -= damage, not below 0.
+			ShowFloatingNumber(H, Dmg, false);
 			SetFact(TEXT("life"), FMath::Max(0, GetFact(TEXT("life")) - Dmg));
 			Note(FString::Printf(TEXT("dink -%d life"), Dmg));
 			continue;
@@ -1254,6 +1325,7 @@ void UDinkGameplay::ProcessDamage()
 			{
 				break;
 			}
+			ShowFloatingNumber(H, Dmg, false); // draw_damage (D:12897, 13095, 13244): the whole hit, before it is clamped to the hitpoints
 			Hp -= FMath::Min(Dmg, Hp);
 			S->Props.Add(P_Hitpoints, Hp);
 			if (Hp < 1)
@@ -1273,6 +1345,7 @@ void UDinkGameplay::ProcessDamage()
 			break;
 		}
 		case 3: // duck_brain (D:12723)
+			ShowFloatingNumber(H, Dmg, false); // both of duck_brain's hit branches draw_damage (D:12736, 12747)
 			if (S->bHeadless)
 			{
 				Note(FString::Printf(TEXT("duckdie %d"), H));
@@ -1308,6 +1381,7 @@ void UDinkGameplay::ProcessDamage()
 			break;
 		case 4: // pig_brain (D:13370)
 		{
+			ShowFloatingNumber(H, Dmg, false); // draw_damage (D:13369)
 			const int32 Hp = S->GetProp(P_Hitpoints) - Dmg;
 			S->Props.Add(P_Hitpoints, Hp);
 			if (Hp < 1)
@@ -1460,6 +1534,7 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs)
 		StatusTick();
 		NextStatusMs += 100.0;
 	}
+	UpdatePlayerHold();
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -1486,6 +1561,7 @@ bool UDinkGameplay::PlayerAttack()
 	{
 		FlushPendingHits();
 	}
+	UpdatePlayerHold(); // the use set sp_nocontrol (or drew the bow): the player's keys stop on this frame
 	return true;
 }
 
@@ -1508,6 +1584,7 @@ bool UDinkGameplay::PlayerCastMagic()
 	bCastingMagic = true;
 	RunInstanceProc(MagicInstance, NAME_Use);
 	bCastingMagic = false;
+	UpdatePlayerHold();
 	// A spell whose `use` set no hit sequence still gets its gesture (cosmetic).
 	if (UDinkDirector* D = Director())
 	{
@@ -1530,6 +1607,8 @@ bool UDinkGameplay::PlayerAttackPress()
 
 namespace
 {
+	TAutoConsoleVariable<float> CVarMonsterPace(TEXT("dink.Monster.PaceCmPerSpeed"), 0.f,
+		TEXT("Review switch for bug list A75 (owner decision, off by default): > 0 paces monsters (brains 9 and 10) like townsfolk, this many cm/s per point of sp_speed at sp_timing 0, in the rendered game only (dink.Npc.HumanPace rules). 200 keeps the 1997 ratio of a speed-1 monster to Dink's run (1:3)."));
 	TAutoConsoleVariable<int32> CVarNpcHumanPace(TEXT("dink.Npc.HumanPace"), 1,
 		TEXT("Pace of humanoid NPCs (npc_pace.json). 0: the original speed (60 px/s per point of sp_speed, a sprint in the remaster's larger rooms); 1: a walking pace in the rendered game, the original speed in automated tests and headless runs, whose recorded timings depend on it; 2: a walking pace everywhere."));
 }
@@ -1603,7 +1682,9 @@ double UDinkGameplay::PaceScale(const FDinkSprite& S) const
 		return 1.0;
 	}
 	const int32 Speed = FMath::Max(1, S.GetProp(TEXT("speed"), 1));
-	const double Wanted = PaceSpeedCm(S.GetProp(P_Brain), S.Script, Speed);
+	const int32 Brain = S.GetProp(P_Brain);
+	const float MonsterCm = CVarMonsterPace.GetValueOnGameThread();
+	const double Wanted = MonsterCm > 0.f && (Brain == 9 || Brain == 10) ? double(MonsterCm) * Speed : PaceSpeedCm(Brain, S.Script, Speed);
 	if (Wanted <= 0.0)
 	{
 		return 1.0;
@@ -1734,7 +1815,33 @@ void UDinkGameplay::ProcessBow(double TickMs)
 		return;
 	}
 	// The arrow keys turn Dink while he draws (D:14568-14598); here the pawn's facing is the direction input, as for the attack key.
-	SyncDinkFacingFromActor();
+	ADinkGreyboxCharacter* Hero = Cast<ADinkGreyboxCharacter>(D->GetDink().Actor.Get());
+	FVector Keys;
+	if (Hero && Hero->GetPlayerFacing(Keys))
+	{
+		// The player's own keys (process_bow, D:14566-14596): no key, no turn; a diagonal sets the 100 ms wait and a single
+		// key may change the aim only after it, so letting go of Up a frame before Right still fires the diagonal.
+		if (Hero->HasPlayerKeysThisFrame())
+		{
+			const int32 Previous = D->GetDink().Dir;
+			SyncDinkFacingFromActor();
+			FDinkSprite& Aim = D->GetDink();
+			if (Aim.Dir == 1 || Aim.Dir == 3 || Aim.Dir == 7 || Aim.Dir == 9)
+			{
+				Bow.TurnWaitMs = TickMs + 100.0;
+			}
+			else if (!(Bow.TurnWaitMs < TickMs) && Previous != 0)
+			{
+				Aim.Dir = Previous;
+				FQuat Facing;
+				if (D->GetSpriteFacingRotation(Aim, Facing)) Hero->SetActorRotation(Facing); // the shown aim stays the diagonal
+			}
+		}
+	}
+	else
+	{
+		SyncDinkFacingFromActor(); // movement fed directly (the bot): the pawn's forward vector, as before
+	}
 	FDinkSprite& Drawer = D->GetDink();
 	Drawer.Props.Add(P_PSeq, 100 + Drawer.Dir);
 	// The pull (D:14600-14612): every 10 ms of engine time, 7 power once hitme is set, at most 500; the picture follows the draw.

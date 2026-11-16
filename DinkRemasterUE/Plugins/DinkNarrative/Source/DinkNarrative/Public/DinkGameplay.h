@@ -277,6 +277,8 @@ struct DINKNARRATIVE_API FDinkBowStatus
 	int32 LastPower = 0;
 	/** g_bowStatus.pull_wait: engine ms of the next pull (every 10 ms, i.e. every 60 Hz frame). */
 	double PullWaitMs = 0.0;
+	/** g_bowStatus.wait: engine ms until which a diagonal aim holds against a single key (process_bow, 100 ms, D:14566-14596). */
+	double TurnWaitMs = 0.0;
 };
 
 /**
@@ -430,6 +432,14 @@ public:
 	bool IsHumanPaceActive() const;
 	/** Length of a sequence's frames in ms (0 if unknown): how long the original keeps Dink in an attack. */
 	int32 SequenceDurationMs(int32 Seq) const { return Data.SequenceDurationMs(Seq); }
+	/**
+	 * True while Dink is held by sp_nocontrol for the sequence a script started (an attack 100 + dir, a spell 320 + dir): the
+	 * original's human_brain returns before the movement keys until that sequence has played (dink.cpp:14742, 16958). The
+	 * player's own keys follow it (ADinkGreyboxCharacter::SetPlayerHold); nothing in the simulation reads it.
+	 */
+	bool IsDinkHeldBySequence() const;
+	/** sp_nocontrol(1, Value) ran (the director): it holds Dink for the sequence playing now. */
+	void OnDinkNoControl(int32 Value);
 
 	// ---- The bow (D:9397-9420, 14564-14621, 17344) ----
 
@@ -745,6 +755,14 @@ private:
 	double NowMs = 0.0;
 	double NextStatusMs = 100.0;
 	bool bPushActive = false;
+	/** Dink's last scripted sequence and when it started (IsDinkHeldBySequence). */
+	int32 DinkHoldSeq = 0;
+	double DinkHoldSeqStartMs = -1.0;
+	bool bDinkNoControlForSeq = false;
+	/** draw_damage / add_exp's rising number over a sprite (UDinkFloatingNumbers; presentation only). */
+	void ShowFloatingNumber(int32 Handle, int32 Value, bool bExperience) const;
+	/** Sets the player pawn's EDinkPlayerHold from the sequence hold and the bow (presentation of the player's keys only). */
+	void UpdatePlayerHold();
 	int32 PushDir = 0;
 	double PushStartMs = 0.0;
 	/** Brain clock: engine frames run at BrainClockMs, BrainCarryMs of game time not yet used. */
