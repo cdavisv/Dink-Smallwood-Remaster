@@ -1,0 +1,70 @@
+LogDinkAudio: audio cue sound:22 speed=22050 random=0 sprite=0 repeat=0
+LogDink: Display: DINK CAPTURE: exec dink.Goto 299 300 200
+LogDink: Display: DINK CAPTURE: exec dink.Goto 557 241 219
+LogDinkNarrative: Display: gold = 0
+LogDinkNarrative: Display: lifemax = 10
+LogDinkNarrative: Display: magic = 0
+LogDinkNarrative: Display: life = 10
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 241 197 1.5
+LogDink: Display: DINK CAPTURE: exec dink.Attack
+LogDink: Family art: S557_P05 follows its animation to 175/3 (/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR)
+LogDink: Display: DINK PLAYER: screen=557 map=241.000,201.938 world=47269.822,48856.499,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 241 195 2
+LogDink: Display: DINK PLAYER: screen=557 map=241.000,201.938 world=47269.822,48856.499,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDinkNarrative: Display: gold = 200
+LogDinkNarrative: Display: lifemax = 10
+LogDinkNarrative: Display: magic = 0
+LogDinkNarrative: Display: life = 10
+LogDink: Display: DINK CAPTURE: exec dink.Goto 557 275 196
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 241 196 2
+LogDink: Display: DINK PLAYER: screen=557 map=277.428,191.027 world=47452.770,48788.501,98.150 yaw=180.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDinkNarrative: Display: gold = 200
+LogDinkNarrative: Display: lifemax = 10
+LogDinkNarrative: Display: magic = 0
+LogDinkNarrative: Display: life = 10
+LogDink: Display: DINK CAPTURE: exec dink.Goto 282 307 265
+LogDinkNarrative: Display: gold = 200
+LogDinkNarrative: Display: lifemax = 10
+LogDinkNarrative: Display: magic = 0
+LogDinkNarrative: Display: life = 10
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 307 243 1.5
+LogDink: Display: DINK CAPTURE: exec dink.Attack
+LogDinkAudio: audio cue sound:10 speed=22050 random=0 sprite=0 repeat=0
+LogDinkAudio: audio cue sound:22 speed=22050 random=0 sprite=0 repeat=0
+LogDink: Family art: S282_P06 follows its animation to 175/3 (/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR)
+LogDink: Display: DINK PLAYER: screen=282 map=307.000,249.083 world=111562.494,20938.713,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 307 241 2
+LogDink: Display: DINK PLAYER: screen=282 map=307.000,249.083 world=111562.494,20938.713,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDinkNarrative: Display: gold = 200
+LogDinkNarrative: Display: lifemax = 20
+LogDinkNarrative: Display: magic = 0
+LogDinkNarrative: Display: life = 10
+LogDink: Display: DINK CAPTURE: exec dink.Goto 282 341 242
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 307 242 2
+LogDink: Display: DINK PLAYER: screen=282 map=310.511,239.577 world=111563.329,20882.758,98.150 yaw=180.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDinkNarrative: Display: gold = 200
+LogDinkNarrative: Display: lifemax = 20
+LogDinkNarrative: Display: magic = 0
+LogDinkNarrative: Display: life = 10
+LogDink: Display: DINK CAPTURE: exec dink.Goto 69 323 229
+LogDinkNarrative: Display: gold = 200
+LogDinkNarrative: Display: lifemax = 20
+LogDinkNarrative: Display: magic = 0
+LogDinkNarrative: Display: life = 10
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 323 207 1.5
+LogDink: Display: DINK CAPTURE: exec dink.Attack
+LogDink: Family art: S069_P02 follows its animation to 175/3 (/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR)
+LogDink: Display: DINK PLAYER: screen=69 map=323.000,213.996 world=-85317.015,393049.705,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 323 205 2
+LogDink: Display: DINK PLAYER: screen=69 map=323.000,213.982 world=-85317.015,393049.630,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDinkNarrative: Display: gold = 200
+LogDinkNarrative: Display: lifemax = 20
+LogDinkNarrative: Display: magic = 0
+LogDinkNarrative: Display: life = 10
+LogDink: Display: DINK CAPTURE: exec dink.Goto 69 357 206
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 323 206 2
+LogDink: Display: DINK PLAYER: screen=69 map=327.996,206.000 world=-85288.915,393004.730,98.150 yaw=180.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDinkNarrative: Display: gold = 200
+LogDinkNarrative: Display: lifemax = 20
+LogDinkNarrative: Display: magic = 0
+LogDinkNarrative: Display: life = 10

@@ -33,5 +33,9 @@
       "floor_z_cm": 0,
       "provenance": "Actual 56 imported floor tiles, source local0..199.4x0..199.2cm and Y handedness; floor top0cm. Conservative convex room rectangle;5cm camera framing inset."
     }
+  },
+  "foliage_variants": {
+    "/Game/Dink/Photoreal/Vegetation/M_Veg_Foliage.M_Veg_Foliage": "/Game/Dink/Camera/Vegetation/M_CameraFade_VegFoliage_v1.M_CameraFade_VegFoliage_v1",
+    "/Game/Dink/Photoreal/Vegetation/M_Veg_Bark.M_Veg_Bark": "/Game/Dink/Camera/Vegetation/M_CameraFade_VegBark_v1.M_CameraFade_VegBark_v1"
   }
 }
