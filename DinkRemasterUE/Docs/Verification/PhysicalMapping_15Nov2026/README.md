@@ -73,7 +73,7 @@ against the box and did not move); the pillbug row has no box (live sprites have
   and the 1997 low hardness that edges the water lies further on, on the drawn dry bank or beach: he wades where water is drawn
   and is stopped by an invisible low wall on dry sand. The audit's tile check counts low hardness next to water tiles as drawn
   (2,914 tiles "next to water"): these captures show that count is not proof; the drawn water's outline does not follow the
-  1997 water edge (bug A79).
+  1997 water edge (bug A94).
 - `before_props.jpg`: the fence S441_P03 is one 4 m module while its box runs on along the line; the grey boulder S536_P34 stands
   beside its box; pines (214), the barrel field (734) and the pine over the gold heart (524) show boxes far from the drawn trunk
   or barrel; a low tile line crosses the meadow of 352.
