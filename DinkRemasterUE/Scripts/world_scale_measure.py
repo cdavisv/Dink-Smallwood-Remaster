@@ -70,7 +70,9 @@ def main(argv=None):
     pls = {v: {q["id"]: q for q in load(getattr(a, v), "placements.json")["placements"]} for v in ("old", "new")}
     fam = {r["family"]: r for r in json.load(open(a.families, encoding="utf-8"))["families"]}
     bounds = json.load(open(a.mesh_bounds)) if a.mesh_bounds else {}
-    pace = json.load(open(a.pace))["run"] if a.pace else {}
+    pace_doc = json.load(open(a.pace)) if a.pace else {}
+    pace = pace_doc.get("run", {})
+    pace_screens = pace_doc.get("screens", {})
 
     # 1. per kind
     p("### Screens per kind (centre metres per pixel, median over the kind's screens)\n")
@@ -85,9 +87,11 @@ def main(argv=None):
         nw = med([100 * scr["new"][n]["m_per_px_center"] for n in ids])
         r = med([scr["new"][n]["m_per_px_center"] / scr["old"][n]["m_per_px_center"] for n in ids])
         ratio_by_kind[k] = r
-        run_new = RUN_CM_S * pace.get(k, 1.0)
+        # run seconds across the screen: per screen (its own pace factor), median over the kind
+        run_new_s = med([SCREEN_PX[0] * 100 * scr["new"][n]["m_per_px_center"] / (RUN_CM_S * float(pace_screens.get(str(n), pace.get(k, 1.0)))) for n in ids])
+        run_old_s = med([SCREEN_PX[0] * 100 * scr["old"][n]["m_per_px_center"] / RUN_CM_S for n in ids])
         p(f"| {k} | {len(ids)} | {o:.3f} -> {nw:.3f} | {SCREEN_PX[0]*o/100:.1f} x {SCREEN_PX[1]*o/100:.1f} | "
-          f"{SCREEN_PX[0]*nw/100:.1f} x {SCREEN_PX[1]*nw/100:.1f} | {r:.3f} | {SCREEN_PX[0]*o/RUN_CM_S:.1f} -> {SCREEN_PX[0]*nw/run_new:.1f} | "
+          f"{SCREEN_PX[0]*nw/100:.1f} x {SCREEN_PX[1]*nw/100:.1f} | {r:.3f} | {run_old_s:.1f} -> {run_new_s:.1f} | "
           f"{SCREEN_PX[0]*o/WALK_CM_S:.1f} -> {SCREEN_PX[0]*nw/WALK_CM_S:.1f} |")
     rs = [scr["new"][n]["m_per_px_center"] / scr["old"][n]["m_per_px_center"] for n in scr["old"]]
     p(f"\nPer-screen ratio new/old: min {min(rs):.3f}, median {med(rs):.3f}, max {max(rs):.3f} (rubber-sheet screens between kinds lie between the kind ratios).\n")

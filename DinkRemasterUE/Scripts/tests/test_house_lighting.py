@@ -48,13 +48,15 @@ class HouseLighting(unittest.TestCase):
         self.assertEqual(sum(x['lumens'] for x in self.manifest['lights']), 1110)
 
     def test_absolute_centres_and_inward_axes_from_original_placements(self):
+        # World scale of 15 Nov 2026 (interior 2.0 x 0.025 m/px; doc/remaster/WORLD_SCALE.md): the windows moved with
+        # the room through their 1997 pixels (Scripts/world_scale_convert_art.py), the daylight rows follow them.
         expected = {
-            'NorthWall_1': ([-184286.25375, 392253.48, 185], 90),
-            'NorthWall_6': ([-183356.56625, 392253.48, 185], 90),
-            'WestWall_2': ([-184595.16, 392752.23, 185], 0),
-            'WestWall_4': ([-184595.16, 393127.23, 185], 0),
-            'EastWall_2': ([-183047.66, 392752.23, 185], 180),
-            'EastWall_4': ([-183047.66, 393127.23, 185], 180),
+            'NorthWall_1': ([-185546.22, 405948.74, 185], 90),
+            'NorthWall_6': ([-184483.72000000003, 405948.74, 185], 90),
+            'WestWall_2': ([-185894.96999999997, 406514.45428571425, 185], 0),
+            'WestWall_4': ([-185894.96999999994, 406943.0257142857, 185], 0),
+            'EastWall_2': ([-184134.97000000003, 406514.45428571425, 185], 180),
+            'EastWall_4': ([-184134.96999999997, 406943.0257142857, 185], 180),
         }
         for row in self.manifest['lights'][2:]:
             centre, yaw = expected[row['name'].removeprefix('Daylight_')]
@@ -127,7 +129,7 @@ class HouseLighting(unittest.TestCase):
             with self.assertRaises(ValueError): lighting.apply_lighting(bad, self.manifest)
 
     def test_rectangle_cannot_intersect_source_frame(self):
-        for key, value in [('source_width_cm', 82.5), ('source_height_cm', 136), ('outside_wall_cm', 0)]:
+        for key, value in [('source_width_cm', 94.0), ('source_height_cm', 136), ('outside_wall_cm', 0)]:
             bad = copy.deepcopy(self.profile); bad['daylight'][key] = value
             with self.assertRaises(ValueError): lighting.apply_lighting(bad, self.manifest)
 
@@ -156,7 +158,8 @@ class HouseLighting(unittest.TestCase):
         self.assertLess(overlay.lineno, metadata)
 
     def test_complete_preflight_rejects_runtime_float_and_scaled_aperture_mismatches(self):
-        invalid = [('source_width_cm', 82.5), ('source_width_cm', 81.812499999),
+        # the narrowest window is 88 cm x 1.0625 = 93.5 cm clear at the 15 Nov world scale (was x 0.9296875 = 81.8125)
+        invalid = [('source_width_cm', 94.0), ('source_width_cm', 93.499999999),
                    ('source_height_cm', 135.999999999), ('lumens_per_window', 1e300),
                    ('radius_cm', 1e-300), ('kelvin', 1e-300)]
         for key, value in invalid:
@@ -196,7 +199,7 @@ class HouseLighting(unittest.TestCase):
 
     def test_actual_importer_entry_rejects_invalid_lighting_before_any_native_work(self):
         class NativeWorkReached(RuntimeError): pass
-        variants = [(None, None), ('source_width_cm', 82.5), ('lumens_per_window', 1e300), ('radius_cm', 1e-300), ('screen_corners', None)]
+        variants = [(None, None), ('source_width_cm', 94.0), ('lumens_per_window', 1e300), ('radius_cm', 1e-300), ('screen_corners', None)]
         for key, value in variants:
             with self.subTest(key=key, value=value), tempfile.TemporaryDirectory() as name:
                 root = Path(name); profile = copy.deepcopy(self.profile)
@@ -231,7 +234,7 @@ class HouseLighting(unittest.TestCase):
                 self.assertEqual(data.read_bytes(), before)
 
     def test_actual_standalone_apply_entry_rejects_same_invalid_profiles_without_writes(self):
-        for key, value in [('source_width_cm', 82.5), ('lumens_per_window', 1e300), ('radius_cm', 1e-300)]:
+        for key, value in [('source_width_cm', 94.0), ('lumens_per_window', 1e300), ('radius_cm', 1e-300)]:
             with self.subTest(key=key), tempfile.TemporaryDirectory() as name:
                 root = Path(name); profile = copy.deepcopy(self.profile); profile['daylight'][key] = value
                 data = self._entry_fixture(root, profile); before = data.read_bytes()

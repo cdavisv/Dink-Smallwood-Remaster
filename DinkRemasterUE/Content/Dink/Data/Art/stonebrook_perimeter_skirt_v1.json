@@ -23,8 +23,8 @@
       "name": "StartingHousePerimeterSkirtV1",
       "mesh": "/Game/Dink/Kits/Stonebrook/Refinements/PerimeterSkirtV1/SM_Stonebrook_PerimeterSkirt_V1.SM_Stonebrook_PerimeterSkirt_V1",
       "world_cm": [
-        -183821.68890908716,
-        392940.10499427794,
+        -185015.28875324246,
+        406729.1685648891,
         -18.0
       ],
       "rotation_deg": [
@@ -33,8 +33,8 @@
         0
       ],
       "scale": [
-        1,
-        1,
+        1.1428571428571428,
+        1.1428571428571428,
         1
       ],
       "collision": false,
