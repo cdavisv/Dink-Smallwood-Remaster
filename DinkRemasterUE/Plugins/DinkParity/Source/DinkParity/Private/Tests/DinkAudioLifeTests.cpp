@@ -7,6 +7,9 @@
 #include "Misc/PackageName.h"
 #include "Misc/Paths.h"
 #include "DSP/DynamicsProcessor.h"
+#include "Sound/SoundEffectSubmix.h"
+#include "SubmixEffects/AudioMixerSubmixEffectDynamicsProcessor.h"
+#include "UObject/StrongObjectPtr.h"
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkAudioMixTest, "Dink.Audio.MixFollows1997Curve", DINK_TEST_FLAGS)
 bool FDinkAudioMixTest::RunTest(const FString&)
@@ -177,5 +180,75 @@ bool FDinkAudioLimiterTest::RunTest(const FString&)
 	TestTrue(FString::Printf(TEXT("output peak %.2f dBFS never passes the %.1f dBFS ceiling"), Game, FDinkAudioMix::LimiterCeilingDb),
 		Game <= FDinkAudioMix::LimiterCeilingDb + 0.05f);
 	TestTrue(TEXT("the 15 Nov configuration let peaks through (the defect this pins)"), Before > FDinkAudioMix::LimiterCeilingDb + 1.f);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkAudioLimiterPresetTest, "Dink.Audio.MasterLimiterPresetHoldsCeiling", DINK_TEST_FLAGS)
+bool FDinkAudioLimiterPresetTest::RunTest(const FString&)
+{
+	// Bug A164: the recorded game output passed the -1.5 dBFS ceiling whatever limiter values the code set. The effect instance on
+	// the master bus is made the way UAudioMixerBlueprintLibrary::AddMasterSubmixEffect makes it (AudioMixerBlueprintLibrary.cpp:
+	// 86-98: CreateInstance, SetEnabled) and runs through FSoundEffectSubmix::ProcessAudio, which applies the preset's settings
+	// (Update -> OnPresetChanged) as the audio render thread does. CreateInstance's first instance runs USoundEffectPreset::Init,
+	// which copies the preset's Settings property over what SetSettings stored; so a preset given its values only by SetSettings
+	// runs the engine defaults (a -6 dB compressor). Same +6 dBFS signal as MasterLimiterHoldsCeiling, 6 channels, 1024-frame blocks.
+	auto Run = [](USoundEffectSubmixPreset* Preset, bool& bProcessed)
+	{
+		const int32 Rate = 48000, Ch = 6, Block = 1024, Frames = Rate;
+		FSoundEffectSubmixInitData Init;
+		Init.SampleRate = float(Rate);
+		Init.ParentPresetUniqueId = Preset->GetUniqueID();
+		TSharedPtr<FSoundEffectSubmix, ESPMode::ThreadSafe> Fx = USoundEffectPreset::CreateInstance<FSoundEffectSubmixInitData, FSoundEffectSubmix>(Init, *Preset);
+		Fx->SetEnabled(true);
+		FRandomStream R(1997);
+		const float Hot = FMath::Pow(10.f, 6.f / 20.f);
+		Audio::FAlignedFloatBuffer In, Out;
+		float Peak = 0.f;
+		bProcessed = true;
+		for (int32 F0 = 0; F0 < Frames; F0 += Block)
+		{
+			In.Reset(); In.AddZeroed(Block * Ch); Out.Reset(); Out.AddZeroed(Block * Ch);
+			for (int32 F = 0; F < Block; ++F)
+			{
+				const float T = float(F0 + F) / Rate;
+				const float Tone = T > 0.1f ? 0.6f * Hot * FMath::Sin(2.f * PI * 220.f * T) : 0.f;
+				const float Hit = Hot * FMath::Exp(-FMath::Fmod(T, 0.07f) / 0.005f) * R.FRandRange(-1.f, 1.f);
+				In[F * Ch + 0] = Hit;
+				In[F * Ch + 1] = FMath::Clamp(Tone + Hit, -Hot, Hot);
+			}
+			FSoundEffectSubmixInputData InData;
+			InData.NumFrames = Block; InData.NumChannels = Ch; InData.NumDeviceChannels = Ch; InData.AudioBuffer = &In;
+			FSoundEffectSubmixOutputData OutData;
+			OutData.AudioBuffer = &Out; OutData.NumChannels = Ch;
+			bProcessed &= Fx->ProcessAudio(InData, OutData);
+			for (const float V : Out) Peak = FMath::Max(Peak, FMath::Abs(V));
+		}
+		USoundEffectPreset::UnregisterInstance(Fx);
+		return 20.f * FMath::LogX(10.f, FMath::Max(Peak, 1e-9f));
+	};
+
+	TStrongObjectPtr<USoundEffectSubmixPreset> Game(FDinkAudioMix::MakeLimiterPreset(GetTransientPackage()));
+	bool bGameProcessed = false;
+	const float GameDb = Run(Game.Get(), bGameProcessed);
+	const FSubmixEffectDynamicsProcessorSettings Used = CastChecked<USubmixEffectDynamicsProcessorPreset>(Game.Get())->GetSettings();
+	TestTrue(TEXT("the instance processed every block"), bGameProcessed);
+	TestTrue(TEXT("after the instance's Init the preset still holds the limiter values"),
+		Used.DynamicsProcessorType == ESubmixEffectDynamicsProcessorType::Limiter && FMath::IsNearlyEqual(Used.ThresholdDb, FDinkAudioMix::LimiterCeilingDb)
+		&& FMath::IsNearlyEqual(Used.AttackTimeMsec, FDinkAudioMix::LimiterAttackMs) && FMath::IsNearlyEqual(Used.LookAheadMsec, FDinkAudioMix::LimiterLookAheadMs)
+		&& Used.bAnalogMode == FDinkAudioMix::bLimiterAnalog);
+	TestTrue(FString::Printf(TEXT("output peak %.2f dBFS never passes the %.1f dBFS ceiling"), GameDb, FDinkAudioMix::LimiterCeilingDb),
+		GameDb <= FDinkAudioMix::LimiterCeilingDb + 0.05f);
+
+	// The code before 16 Nov: the same values through SetSettings only.
+	USubmixEffectDynamicsProcessorPreset* OldRaw = NewObject<USubmixEffectDynamicsProcessorPreset>(GetTransientPackage());
+	TStrongObjectPtr<USoundEffectSubmixPreset> Old(OldRaw);
+	OldRaw->SetSettings(CastChecked<USubmixEffectDynamicsProcessorPreset>(Game.Get())->Settings);
+	bool bOldProcessed = false;
+	const float OldDb = Run(Old.Get(), bOldProcessed);
+	const FSubmixEffectDynamicsProcessorSettings OldUsed = OldRaw->GetSettings();
+	AddInfo(FString::Printf(TEXT("+6 dBFS hits and tone through the master-bus effect instance: %.2f dBFS out with MakeLimiterPreset, %.2f dBFS with SetSettings only (the instance ran type %d at %.1f dB)"),
+		GameDb, OldDb, int32(OldUsed.DynamicsProcessorType), OldUsed.ThresholdDb));
+	TestTrue(TEXT("SetSettings alone is overwritten by the first instance's Init (the defect this pins)"),
+		OldUsed.DynamicsProcessorType != ESubmixEffectDynamicsProcessorType::Limiter && OldDb > FDinkAudioMix::LimiterCeilingDb + 1.f);
 	return true;
 }

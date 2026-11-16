@@ -43,14 +43,21 @@ struct DINKNARRATIVE_API FDinkAudioMix
 	/** Master limiter: peaks above this are held down (recorded 15 Nov: the fireplace loop panned hard right reached 0 dBFS). */
 	static constexpr float LimiterCeilingDb = -1.5f;
 	/** Its detector is a brickwall: the engine's "Peak" envelope is a one-pole smoothing of |x|, so with any attack time it lags
-	 *  a transient and the peak passes (recorded 16 Nov, runs A2 and C: the -1.5 dBFS limiter with a 1 ms attack let the output
-	 *  sit at 0 dBFS in the soak). With a zero attack the envelope is |x| itself and with no look-ahead the gain applies to the
-	 *  same sample, so no sample can leave above the ceiling; the digital release recovers in 80 ms.
-	 *  Dink.Audio.MasterLimiterHoldsCeiling runs the engine's FDynamicsProcessor with these values. */
+	 *  a transient and the peak passes (Dink.Audio.MasterLimiterHoldsCeiling on the engine's FDynamicsProcessor: +6 dBFS in gives
+	 *  +2.5 dBFS out with a 1 ms attack). With a zero attack the envelope is |x| itself and with no look-ahead the gain applies to
+	 *  the same sample, so no sample can leave above the ceiling; the digital release recovers in 80 ms.
+	 *  (Runs A2, C and E of 16 Nov did not measure these values: the game never applied them, see MakeLimiterPreset.) */
 	static constexpr bool bLimiterAnalog = false;
 	static constexpr float LimiterLookAheadMs = 0.f;
 	static constexpr float LimiterAttackMs = 0.f;
 	static constexpr float LimiterReleaseMs = 80.f;
+	/** The master limiter preset with the values above. They go into the preset's Settings property, not only SetSettings():
+	 *  SetSettings writes the preset's thread-safe copy (SoundEffectBase.h, EFFECT_PRESET_METHODS UpdateSettings), and the first
+	 *  effect instance made from the preset (UAudioMixerBlueprintLibrary::AddMasterSubmixEffect -> USoundEffectPreset::CreateInstance
+	 *  -> AddEffectInstance, SoundEffectPreset.cpp:36-45) runs Init(), which copies Settings over that copy. Until 16 Nov the game
+	 *  set only the copy, so the master bus ran the engine's default dynamics settings (a compressor: -6 dB, ratio 1.5, 10 dB knee,
+	 *  10 ms attack, 3 ms look-ahead) and peaks reached 0 dBFS (bug A164). Dink.Audio.MasterLimiterPresetHoldsCeiling. */
+	static class USoundEffectSubmixPreset* MakeLimiterPreset(UObject* Outer);
 
 	static void Effect(FSoundAttenuationSettings& S);
 	static void Voice(FSoundAttenuationSettings& S);

@@ -3,7 +3,8 @@ Run with --choices /path/audio_choices.csv; use --check to validate without writ
 
 Regenerated replacements: every SFX/redo_*.json with a `picks` section ({"09_punch": {"take": "e", ...}}) selects that take
 for an effect the owner's review rejected ("neither"). The owner's export stays as it was; the pick is recorded in the runtime
-manifest's `redo` list and in the ledger. A redo take that the pick does not select keeps the status its QA gave it.
+manifest's `redo` list and in the ledger. A redo take that the pick does not select keeps the status its QA gave it. A pick with an
+`owner` field (the owner's verdict after listening) is recorded in the ledger as "Owner approved" instead of "Audio QA pick".
 """
 import argparse
 import csv
@@ -79,7 +80,8 @@ def main():
    if choice=='neither' and ident in picks:
     take=picks[ident]['take']; path=f'SourceAssets/Audio/SFX/delivered/{ident}_{take}.mp3'
     if not re.fullmatch(r'[c-z]',take) or path not in by_input:raise ValueError('Unknown redo pick '+ident+'_'+take)
-    selected[path]=('approved',{'label':'Audio QA pick','choice':take,'note':'regenerated take picked by measurement ('+picks[ident]['spec']+'); owner listening pending'})
+    owner=picks[ident].get('owner')
+    selected[path]=('approved',{'label':'Owner approved' if owner else 'Audio QA pick','choice':take,'note':'regenerated take picked by measurement ('+picks[ident]['spec']+'); '+(owner or 'owner listening pending')})
     redone.append({'kind':'sfx','id':ident,'owner_choice':'neither','owner_note':c['note'],'take':take,'spec':picks[ident]['spec']})
     choice=take
    elif choice=='neither':rejected.append(c); counts['rejected']+=1; continue
@@ -124,7 +126,7 @@ def main():
   for row in rows:
    if row['asset_path'] in selected:
     status,c=selected[row['asset_path']];row['status']=status
-    note=row['notes'].split(' | Owner review:')[0].split(' | Audio QA pick:')[0]
+    note=row['notes'].split(' | Owner review:')[0].split(' | Audio QA pick:')[0].split(' | Owner approved:')[0]
     row['notes']=note+' | '+c.get('label','Owner review')+': '+c['choice']+('; '+c['note'] if c['note'] else '')
   output=io.StringIO(newline='');w=csv.DictWriter(output,fieldnames=fields);w.writeheader();w.writerows(rows)
   atomic(ledger,output.getvalue())

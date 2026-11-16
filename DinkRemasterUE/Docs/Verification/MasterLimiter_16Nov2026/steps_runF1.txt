@@ -1,0 +1,19 @@
+# Run F1 (16 Nov 2026, master limiter fix A164): the opening scene (fire loop beside Dink, the mother's scene), the menu closed
+# (5 Leave), then the 5-minute soak (a random approved effect every 80 ms, half on live sprites, music every 15 s, sea/wind bed).
+capture 00_start
+wait 75
+capture 01_intro
+console dink.Run s1-h1-m talk
+wait 4
+console dink.Choose 5
+wait 2
+console dink.Skip
+wait 2
+capture 02_house
+console dink.AudioQA.Stats
+console dink.AudioQA.Soak 300
+wait 150
+capture 03_soak_mid
+wait 155
+console dink.AudioQA.Stats
+capture 04_after_soak

@@ -1,0 +1,16 @@
+# Run F1 (16 Nov 2026, 13:04-13:11, master 84e045b0 + this fix): output level per 30 s, levels.py (front pair rms; a sample counts at >= 0.8414, i.e. AT the -1.50 dBFS ceiling)
+# soak (dink.AudioQA.Soak 300) from about 99 s to 399 s (recording starts at device init, 13:04:53; soak sent 13:06:32)
+     0s rms  -25.5 peak  -1.50 dBFS  >-1.5dBFS:       2  >=0dBFS:      0
+    30s rms  -25.3 peak  -1.50 dBFS  >-1.5dBFS:       1  >=0dBFS:      0
+    60s rms  -35.7 peak  -1.50 dBFS  >-1.5dBFS:       4  >=0dBFS:      0
+    90s rms  -13.9 peak  -1.50 dBFS  >-1.5dBFS:      51  >=0dBFS:      0
+   120s rms   -8.7 peak  -1.50 dBFS  >-1.5dBFS:    1620  >=0dBFS:      0
+   150s rms   -8.6 peak  -1.50 dBFS  >-1.5dBFS:    1716  >=0dBFS:      0
+   180s rms   -7.7 peak  -1.50 dBFS  >-1.5dBFS:    3910  >=0dBFS:      0
+   210s rms   -7.3 peak  -1.50 dBFS  >-1.5dBFS:    6599  >=0dBFS:      0
+   240s rms   -8.1 peak  -1.50 dBFS  >-1.5dBFS:    3776  >=0dBFS:      0
+   270s rms   -9.0 peak  -1.50 dBFS  >-1.5dBFS:    1820  >=0dBFS:      0
+   300s rms   -9.0 peak  -1.50 dBFS  >-1.5dBFS:    2454  >=0dBFS:      0
+   330s rms   -9.4 peak  -1.50 dBFS  >-1.5dBFS:    2075  >=0dBFS:      0
+   360s rms   -9.3 peak  -1.50 dBFS  >-1.5dBFS:    2426  >=0dBFS:      0
+   390s rms  -11.6 peak  -1.50 dBFS  >-1.5dBFS:     805  >=0dBFS:      0

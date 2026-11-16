@@ -588,24 +588,28 @@
  "picks": {
   "09_punch": {
    "take": "e",
+   "owner": "approved by the owner on listening, 16 Nov 2026 (relayed by the coordinator session)",
    "trim_to_s": 0.45,
    "why": "the only round-1 punch inside the rules (c peaked -18.7 dBFS, d clipped); one broadband slap transient in the first 50 ms over a low thud, -26 LUFS, decays below -50 dB by 0.2 s"
   },
   "44_bow1": {
    "take": "i",
+   "owner": "approved by the owner on listening, 16 Nov 2026 (relayed by the coordinator session)",
    "trim_to_s": 0.7,
    "why": "the only bow take of three rounds inside the rules (round 1 near-silent, round 2 and j/k clip); 80 ms soft string pull, then a broadband snap 0.08-0.15 s that reaches 16 kHz, -19.5 LUFS, peak -0.35 dBFS"
   },
   "49_bird1": {
    "take": "c",
+   "owner": "approved by the owner on listening, 16 Nov 2026 (relayed by the coordinator session)",
    "trim_to_s": 1.8,
    "why": "two simultaneous cries with slow pitch glides (2-4.5 kHz) over 1.3 s: the eeriest and most like \"calling\"; d is chirps with two broadband bursts, e a regular 10 Hz trill (mechanical); all three pass the rules"
   },
   "48_axe": {
    "take": "i",
+   "owner": "approved by the owner on listening, 16 Nov 2026 (relayed by the coordinator session)",
    "trim_to_s": 0.5,
    "why": "the only axe take of three rounds inside the rules (rounds 1-2 all clip, j/k near-silent); a broadband impact at 0.07-0.15 s with a woody low-mid body (0.7-1 kHz) and a quick decay, -22.8 LUFS, peak -2.75 dBFS; played at 13000 Hz in the game (pitch 0.59)"
   }
  },
- "picks_note": "Picked by measurement and spectrogram by the audio-qa session (Claude Opus 5.5), 16 Nov 2026; not yet heard by the owner. Applied on top of the owner exported review by tools/apply_choices.py (approved_choices.csv stays the owner file)."
+ "picks_note": "Picked by measurement and spectrogram by the audio-qa session (Claude Opus 5.5), 16 Nov 2026; the owner listened and approved all four picks the same day (09_punch_e, 44_bow1_i, 48_axe_i, 49_bird1_c; each pick's `owner` field). Applied on top of the owner exported review by tools/apply_choices.py (approved_choices.csv stays the owner file)."
 }
