@@ -6,7 +6,7 @@ and, if not, why. It audits the wiring (import, binding, cook, draw, clip caller
 source is good enough to bind is an art decision for the Fable queue.
 
 Tree: master `9cc796b6`. Tool: `DinkRemasterUE/Scripts/art_wiring_audit.py` (read-only, standard library; unit tests in
-`Scripts/tests/test_art_wiring_audit.py`, 15 pass). Reviewed reasons for sources that do not reach the player:
+`Scripts/tests/test_art_wiring_audit.py`, 22 pass). Reviewed reasons for sources that do not reach the player:
 `Scripts/art_wiring_known.json` (50 rows; add a row when you decide, drop it when you bind). Two runs on the same inputs
 write byte-identical files.
 
@@ -164,9 +164,11 @@ The scripted boulders and script-made people are rows VS-15 and VS-16 of PR #148
 Follow-ups after the merge of PR #154 (branch `audit/art-wiring-followups`): A209 lists all 13 props; the
 not_seen and replaced breakdowns match the table; a Unclaimed `STATUS.md` note explains only a source that is not
 drawn (the corpse kit's bodies share names with the unclaimed kit's corpses); every owner id in
-`art_wiring_known.json` is checked against the two tables (a typo or renumbered row stops the run; `pending_ids` for
-ids an open PR adds); separate deliveries that share a name are reported in `detail` (47 rows: the packages record no
-import source, so which copy was imported cannot be told); `unverified` rebuilds the roots of the evidence commit
+`art_wiring_known.json` is checked against the two tables: an id the tables never had (git history) stops the run, an
+id whose row was removed (a queue row goes when its PR merges) only warns and marks the reason stale, and a
+`pending_ids` entry that now exists warns; separate deliveries that share a name are reported in `detail` (32 rows; an
+export's `Export/Game/...` mirror and its LOD/FBX folders count as one delivery): each package names the delivery its
+recorded import source (`AssetImportData` `RelativeFilename`) belongs to, the others are listed as not imported; `unverified` rebuilds the roots of the evidence commit
 with the same binding rules. The owner branches the rows name (`fix/fence-runs`, `fix/family-duplicates`,
 `fix/art-wiring-scripted-static`, `fix/family-script-allowance`) are pushed when their PRs open;
 `art/stonebrook-mother-burnholes` belongs to the GP-Q5 stream. `test_c_only_runtime_modules_are_cpp_roots` reads

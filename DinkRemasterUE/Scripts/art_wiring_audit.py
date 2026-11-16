@@ -44,7 +44,18 @@ FSTRING = re.compile(rb"([\x01-\xc8])\x00\x00\x00([\x20-\x7e]+)\x00")
 GAME_PATH = re.compile(r"/Game/[A-Za-z0-9_/]+(?:\.[A-Za-z0-9_]+)?")
 ASSET_NAME = re.compile(r"\b((?:SM|SK|MI|M|AN|A|T|NS|MPC|SP|PA|MF|MM|BS|ABP|DM|MID)_[A-Za-z0-9_]+)\b")
 LOD_SUFFIX = re.compile(r"_LOD\d+$", re.I)
-LOD_DIR = re.compile(r"/(LODs?|LOD_V\d+|FBX|Export(_V\d+|V\d+)?)$", re.I)   # an export's own LOD/FBX folder is one delivery
+EXPORT_SEG = re.compile(r"^(Export\w*|LODs?|LOD_V\d+|FBX|NativeLOD\w*|ReedLOD)$", re.I)
+RELATIVE_FILENAME = re.compile(rb'"RelativeFilename"\s*:\s*"([^"]+)"')
+
+
+def delivery_root(path):
+    """One export is one delivery: cut a source path at its first export folder (Export, Export_V6, ExportV2, the
+    Export/Game/Dink/... mirror, LOD/LODs/FBX subfolders) and drop the file name. SourceAssets/Art-relative, '/'."""
+    parts = path.replace(os.sep, "/").replace("\\", "/").split("/")[:-1]
+    for i, seg in enumerate(parts):
+        if EXPORT_SEG.match(seg):
+            return "/".join(parts[:i])
+    return "/".join(parts)
 # Packages of these folders are art; everything else under Content/Dink is data, audio or generated.
 ART_FOLDERS = ("Dink/Photoreal", "Dink/Kits", "Dink/Props", "Dink/Foliage", "Dink/Refinements", "Dink/Hero",
                "Dink/Creatures", "Dink/NPC", "Dink/Materials", "Dink/Textures", "Dink/Camera")
@@ -118,6 +129,28 @@ class Packages:
         out = [m.group(2).decode() for m in FSTRING.finditer(data) if len(m.group(2)) + 1 == m.group(1)[0]]
         self._strings[game] = out
         return out
+
+    def import_sources(self, game):
+        """Source files the package was imported from (AssetImportData RelativeFilename), as SourceAssets/Art/... paths;
+        read from the raw bytes because the import data is one long JSON string."""
+        data = b""
+        try:
+            with open(self.files[game], "rb") as h:
+                data = h.read()
+            if data.startswith(LFS_MAGIC) and self.lfs:
+                oid = re.search(rb"oid sha256:([0-9a-f]{64})", data)
+                if oid:
+                    o = oid.group(1).decode()
+                    p = os.path.join(self.lfs, "lfs", "objects", o[:2], o[2:4], o)
+                    data = open(p, "rb").read() if os.path.isfile(p) else b""
+        except OSError:
+            return []
+        out = set()
+        for m in RELATIVE_FILENAME.finditer(data):
+            path = m.group(1).decode("utf-8", "replace").replace("\\\\", "/").replace("\\", "/")
+            if "SourceAssets/Art/" in path:
+                out.add(path[path.index("SourceAssets/Art/") + len("SourceAssets/Art/"):])
+        return sorted(out)
 
     def refs(self, game):
         out = set()
@@ -359,6 +392,25 @@ def unclaimed_status():
     return out
 
 
+def delivery_detail(deliveries, games, pk):
+    """Which of several same-named deliveries each package was imported from (its recorded RelativeFilename)."""
+    if not games:
+        return "%d separate deliveries share this name (%s); none imported" % (len(deliveries), "; ".join(deliveries))
+    parts, used = [], set()
+    for g in games:
+        roots_of = sorted({delivery_root(x) for x in pk.import_sources(g)})
+        hit = [d for d in roots_of if d in deliveries]
+        used.update(hit)
+        if hit:
+            parts.append("%s imported from %s" % (os.path.basename(g), ", ".join(hit)))
+        else:
+            parts.append("%s: recorded source %s matches no delivery" % (
+                os.path.basename(g), ", ".join(roots_of) if roots_of else "(none recorded)"))
+    rest = [d for d in deliveries if d not in used]
+    return "%d separate deliveries share this name: %s%s" % (
+        len(deliveries), "; ".join(parts), ("; not imported: " + ", ".join(rest)) if rest else "")
+
+
 def unclaimed_family_of(path):
     parts = rel(path, ART).split(os.sep)
     if len(parts) > 2 and parts[0] == "PhotorealPass" and parts[1] == "Unclaimed":
@@ -413,29 +465,59 @@ def sources():
 OWNER_ID = re.compile(r"\b(?:[A-Z]{2}-Q?\d+|A\d{2,3})\b")
 
 
-def table_ids():
+def table_ids(paths=None):
     """Row ids of doc/remaster/ALPHA_BUG_LIST.md and FABLE_ART_QUEUE.md (first cell of each table row)."""
     ids = set()
-    for name in ("ALPHA_BUG_LIST.md", "FABLE_ART_QUEUE.md"):
+    for p in paths or [os.path.join(os.path.dirname(PROJECT), "doc", "remaster", n) for n in ("ALPHA_BUG_LIST.md", "FABLE_ART_QUEUE.md")]:
         try:
-            with open(os.path.join(os.path.dirname(PROJECT), "doc", "remaster", name), encoding="utf-8") as h:
+            with open(p, encoding="utf-8") as h:
                 ids.update(m.group(1) for m in re.finditer(r"^\| *([A-Z]{1,2}-?Q?[0-9]+[a-z]?) *\|", h.read(), re.M))
         except OSError:
             pass
     return ids
 
 
+def ids_ever():
+    """Every row id the two tables have ever had (rows added in their git history): a queue row is removed when its
+    PR merges (FABLE_ART_QUEUE.md), so an id that existed is stale, not a typo."""
+    out = subprocess.run(["git", "-C", PROJECT, "log", "-p", "--format=", "--",
+                          "../doc/remaster/ALPHA_BUG_LIST.md", "../doc/remaster/FABLE_ART_QUEUE.md"],
+                         capture_output=True, text=True).stdout
+    return set(re.findall(r"^\+\| *([A-Z]{1,2}-?Q?[0-9]+[a-z]?) *\|", out, re.M))
+
+
+def check_owner_ids(rows, current, ever):
+    """-> (typos, stale, pending_now_present). A typo (an id the tables never had) stops the run; a stale id (a row
+    that existed and was removed) only warns; a pending id that now exists asks for the `pending_ids` entry to go."""
+    named = {(i, bool(i in r.get("pending_ids", []))) for r in rows for i in OWNER_ID.findall(r["why"])}
+    typos = sorted({i for i, pend in named if not pend and i not in current and i not in ever})
+    stale = sorted({i for i, pend in named if not pend and i not in current and i in ever})
+    present = sorted({i for i, pend in named if pend and i in current})
+    return typos, stale, present
+
+
+STALE_IDS = set()
+
+
 def known_rows(check_ids=True):
-    """The reviewed reasons. Every owner id a reason names (A204, DS-07, PQ-Q5, ...) must be a row of the bug list or
-    the art queue: a typo or a renumbered row stops the run (review of PR #154)."""
+    """The reviewed reasons, with their owner ids checked against the bug list and the art queue (review of #154/#162)."""
     d = read_json(os.path.join(PROJECT, "Scripts", "art_wiring_known.json")) or {}
     if check_ids:
-        ids = table_ids()
-        # a row may name an id that an open PR adds (`pending_ids`); every other id must exist now
-        missing = sorted({i for r in d.get("rows", []) for i in OWNER_ID.findall(r["why"]) if i not in r.get("pending_ids", [])} - ids)
-        if ids and missing:
-            sys.exit("art_wiring_audit: art_wiring_known.json names rows that ALPHA_BUG_LIST.md / FABLE_ART_QUEUE.md do "
-                     "not have: " + ", ".join(missing))
+        current = table_ids()
+        if not current:
+            print("art_wiring_audit: warning: ALPHA_BUG_LIST.md / FABLE_ART_QUEUE.md not found; owner ids not checked",
+                  file=sys.stderr)
+        else:
+            typos, stale, present = check_owner_ids(d.get("rows", []), current, ids_ever())
+            if typos:
+                sys.exit("art_wiring_audit: art_wiring_known.json names rows the bug list / art queue never had: "
+                         + ", ".join(typos))
+            for i in stale:
+                print("art_wiring_audit: warning: owner row %s was removed from the tables; its reasons are stale" % i,
+                      file=sys.stderr)
+            for i in present:
+                print("art_wiring_audit: warning: pending id %s now exists; drop it from pending_ids" % i, file=sys.stderr)
+            STALE_IDS.update(stale)
     return [(re.compile(r["match"]), re.compile(r["source"]) if r.get("source") else None, r["kind"], r["why"])
             for r in d.get("rows", [])]
 
@@ -672,6 +754,11 @@ def commit_roots(commit):
             stem = os.path.splitext(os.path.basename(f))[0]
             if (isinstance(data, dict) and data.get("schema") == "dink-art/1") or stem in named:
                 walk_json(data, f, cpk, roots, BARE_PREFIX.get(os.path.basename(f)))
+    for f in sorted(every):
+        if f.startswith("Config/") and f.endswith(".ini"):
+            for m in GAME_PATH.findall(git("show", "%s:./%s" % (commit, f))):
+                if m.split(".")[0] in cpk.files:
+                    roots[m.split(".")[0]].add(f)
     for game, where in COMPOSED.items():
         if game in cpk.files:
             roots[game].add(where)
@@ -679,7 +766,7 @@ def commit_roots(commit):
     return _COMMIT_CACHE[commit]
 
 
-def in_commit(game, commit, via_here):
+def in_commit(game, commit, via_here, roots_here=None):
     """Was the package there and bound at `commit` (the tree a cook or sweep ran on)? Its package must exist there, and
     the root it is reached from today must have been a root there too (same binding rules); a package reached from
     a world map counts as bound when it existed (the maps of that commit are not in git)."""
@@ -687,7 +774,8 @@ def in_commit(game, commit, via_here):
     if game not in files:
         return False
     root = ROOT_OF.get(game, game)
-    if via_here.get(root, "").startswith("world map"):
+    labels = (roots_here or {}).get(root) or {via_here.get(root, "")}
+    if any(w.startswith("world map") for w in labels):
         return True
     return root in roots
 
@@ -823,10 +911,9 @@ def main():
             games = sorted(pk.by_name.get(name.replace("AN_", "AN_", 1) + "_PR", []))
         flags, details = [], []
         reason = ""
-        deliveries = sorted({LOD_DIR.sub("", os.path.dirname(rel(x)).replace(os.sep, "/")) for x in srcs})
+        deliveries = sorted({delivery_root(rel(x, ART)) for x in srcs})
         if kind != "clip" and len(deliveries) > 1:
-            details.append("%d separate deliveries share this name (%s); the package does not record which one was "
-                           "imported" % (len(deliveries), "; ".join(deliveries)))
+            details.append(delivery_detail(deliveries, games, pk))
         fam = unclaimed_family_of(src) if src else None
         st = status.get(name) or (status.get("family:" + fam) if fam else None)
         k = known_reason(name, src_all, known)
@@ -841,6 +928,9 @@ def main():
         cov = covered_by(name, index)
         if not cov and k:       # the reviewed reason names its owner row (A2xx, DS-07, PQ-Q5, ...)
             cov = " ".join(dict.fromkeys(OWNER_ID.findall(k[1])))
+            if any(i in STALE_IDS for i in OWNER_ID.findall(k[1])):
+                details.append("stale reason: owner row %s was removed from the tables" % ", ".join(
+                    i for i in OWNER_ID.findall(k[1]) if i in STALE_IDS))
         if not games:
             flags.append(gap_flag(reason, cov) or "not_imported")
         bound_where, cooked_s, seen_s = "", "", ""
@@ -874,14 +964,14 @@ def main():
                 details.append("%d packages of this name, none bound" % len(games))
         elif len(games) > 1 and len(bound_games) < len(games):
             details.append("stale twin(s), not bound: " + " ".join(g for g in games if g not in via))
-        newer = [g for g in bound_games if not in_commit(g, a.cook_commit, via)] if a.cook_commit else []
+        newer = [g for g in bound_games if not in_commit(g, a.cook_commit, via, roots)] if a.cook_commit else []
         if bound_games and cooked_s == "no":
             if newer:
                 flags.append("unverified")
                 details.append("not in the tree that was cooked (added after that cook)")
             else:
                 flags.append("not_cooked")
-        after_sweep = bool(a.sweep_commit) and all(not in_commit(g, a.sweep_commit, via) for g in bound_games)
+        after_sweep = bool(a.sweep_commit) and all(not in_commit(g, a.sweep_commit, via, roots) for g in bound_games)
         if bound_games and kind != "clip":
             if any(g in swapped for g in bound_games):
                 targets = " / ".join(sorted({os.path.basename(t.split(".")[0]) for g in bound_games for t in swapped.get(g, [])}))
@@ -951,7 +1041,7 @@ def main():
         reason = "%s: %s" % k if k else ""
         if not bound_where:
             flags.append(gap_flag(reason, covered_by(n, index)) or "unbound")
-        elif cooked_s == "no" and a.cook_commit and not in_commit(g, a.cook_commit, via):
+        elif cooked_s == "no" and a.cook_commit and not in_commit(g, a.cook_commit, via, roots):
             flags.append("unverified")
             details.append("not in the tree that was cooked (added after that cook)")
         elif cooked_s == "no":
@@ -964,7 +1054,7 @@ def main():
             flags.append(k[0])
         elif g in HERO_MESHES:
             seen_s = "player pawn"
-        elif not seen_s and seen and n.startswith("SM_") and a.sweep_commit and not in_commit(g, a.sweep_commit, via):
+        elif not seen_s and seen and n.startswith("SM_") and a.sweep_commit and not in_commit(g, a.sweep_commit, via, roots):
             flags.append("unverified")
             details.append("not seen: added after the sweep (not bound in its tree)")
         elif not seen_s and seen and n.startswith("SM_"):

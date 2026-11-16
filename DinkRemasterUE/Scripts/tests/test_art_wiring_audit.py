@@ -201,5 +201,67 @@ class Swaps(unittest.TestCase):
         self.assertEqual(missed, [])
 
 
+class Deliveries(unittest.TestCase):
+    """Review of PR #162: one export is one delivery; name the one each package came from."""
+
+    def test_export_mirror_and_lod_folders_fold(self):
+        self.assertEqual(A.delivery_root('Stonebrook440/Export/LODs/SM_HayBale_01_LOD0.fbx'), 'Stonebrook440')
+        self.assertEqual(A.delivery_root('Stonebrook440/Export/Game/Dink/Props/Stonebrook440/SM_HayBale_01.fbx'), 'Stonebrook440')
+        self.assertEqual(A.delivery_root('PhotorealPass/Corpses/Corpse_Girl/SM_Corpse_Girl_PR.fbx'), 'PhotorealPass/Corpses/Corpse_Girl')
+
+    def test_detail_names_the_imported_delivery(self):
+        class PK:
+            def import_sources(self, g):
+                return ['PhotorealPass/Corpses/Corpse_Girl/SM_Corpse_Girl_PR.fbx'] if g.endswith('Girl_PR') else []
+        d = A.delivery_detail(['PhotorealPass/Corpses/Corpse_Girl', 'PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl'],
+                              ['/Game/Dink/Photoreal/Corpses/SM_Corpse_Girl_PR'], PK())
+        self.assertIn('imported from PhotorealPass/Corpses/Corpse_Girl', d)
+        self.assertIn('not imported: PhotorealPass/Unclaimed/corpse_girl/Corpse_Girl', d)
+        self.assertIn('none imported', A.delivery_detail(['a', 'b'], [], PK()))
+        self.assertIn('matches no delivery', A.delivery_detail(['a', 'b'], ['/Game/X/SM_Other'], PK()))
+
+    def test_import_source_is_read_from_the_bytes(self):
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / 'SM_X.uasset'
+            f.write_bytes(b'x' * 300 + b'{ "RelativeFilename" : "../../../SourceAssets/Art/Kit/Export/SM_X.fbx", "Timestamp" }')
+            pk = FakePackages({})
+            pk.files = {'/Game/X/SM_X': str(f)}
+            pk.lfs = None
+            self.assertEqual(A.Packages.import_sources(pk, '/Game/X/SM_X'), ['Kit/Export/SM_X.fbx'])
+
+
+class OwnerIdHistory(unittest.TestCase):
+    def test_removed_queue_row_warns_typo_stops(self):
+        rows = [{'why': 'owned by DS-07'}, {'why': 'see GP-Q9'}, {'why': 'VS-15 pending', 'pending_ids': ['VS-15']}]
+        current = {'DS-07'}                       # GP-Q9 removed when its PR merged
+        typos, stale, present = A.check_owner_ids(rows, current, {'DS-07', 'GP-Q9'})
+        self.assertEqual((typos, stale, present), ([], ['GP-Q9'], []))
+        typos, stale, present = A.check_owner_ids([{'why': 'see DS-77'}], current, {'DS-07'})
+        self.assertEqual(typos, ['DS-77'])        # never existed: a typo
+        self.assertEqual(A.check_owner_ids(rows, current | {'VS-15'}, set())[2], ['VS-15'])
+
+    def test_removing_a_named_row_from_a_copy_of_the_tables_keeps_the_run_going(self):
+        with tempfile.TemporaryDirectory() as d:
+            bug = Path(d) / 'ALPHA_BUG_LIST.md'
+            bug.write_text('| A209 | S3 | x |\n')
+            q = Path(d) / 'FABLE_ART_QUEUE.md'
+            q.write_text('| DS-07 | x |\n')     # DS-08 removed
+            current = A.table_ids([str(bug), str(q)])
+            typos, stale, _ = A.check_owner_ids([{'why': 'DS-08 and A209'}], current, {'DS-08', 'A209', 'DS-07'})
+            self.assertEqual(typos, [])
+            self.assertEqual(stale, ['DS-08'])
+
+
+class InCommit(unittest.TestCase):
+    def test_bound_at_the_commit_by_its_root(self):
+        A._COMMIT_CACHE['c0ffee'] = ({'/Game/A/SM_Old', '/Game/A/MI_Old', '/Game/A/SM_New'}, {'/Game/A/SM_Old': {'f.json'}})
+        A.ROOT_OF.update({'/Game/A/MI_Old': '/Game/A/SM_Old', '/Game/A/SM_New': '/Game/A/SM_New'})
+        via = {'/Game/A/SM_Old': 'f.json', '/Game/A/MI_Old': 'via SM_Old (f.json)', '/Game/A/SM_New': 'g.json'}
+        self.assertTrue(A.in_commit('/Game/A/MI_Old', 'c0ffee', via))      # reached from a root bound there
+        self.assertFalse(A.in_commit('/Game/A/SM_New', 'c0ffee', via))     # existed but not bound there
+        self.assertFalse(A.in_commit('/Game/A/SM_Gone', 'c0ffee', via))    # did not exist
+        self.assertTrue(A.in_commit('/Game/A/SM_New', 'c0ffee', via, {'/Game/A/SM_New': {'g.json', 'world map L_X'}}))
+
+
 if __name__ == '__main__':
     unittest.main()
