@@ -290,6 +290,16 @@ finger spars, open jaw), then `clips_monsters.py dragon build review export` and
 material for the wings). Walk 201-209 is a locomotion role; there is no attack sequence (it spits fire while it treads),
 so `AN_Dragon_Attack` is authored and not bound. A kill leaves the corpse kit's `SM_Dragon_Corpse_PR` (212-218) at corpse
 `scale` 1.7, so the remains are about two thirds of the live dragon's width, as 212/216 against 202.
+## Structure sets (14 Nov 2026)
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| Bridge, island and cottage meshes | `DINK_KIT=Structures/Misc DINK_KIT_FOLDER=Structures Scripts/import_town_exteriors.sh` | `Structures/Misc/manifest.json` | `/Game/Dink/Photoreal/Structures/SM_Bridge_Wood_*_PR`, `SM_Island_*_PR`, `SM_Cottage_Thatched_*_PR` |
+| Castle kit | `DINK_KIT=Structures/Castle DINK_KIT_FOLDER=Structures Scripts/import_town_exteriors.sh` | `Structures/Castle/manifest.json` | `/Game/Dink/Photoreal/Structures/SM_Castle_Wall_8m`, `SM_Castle_Tower_Round`, `SM_Castle_Gatehouse`, `MI_Struct_CastleAshlar`, `Textures/T_Terrain_CastleAshlar_*` |
+| The two-storey house and its yard props (Stonebrook440 kit) | `Scripts/import_stonebrook440.sh` | `SourceAssets/Art/Stonebrook440/art_manifest.json`, `Export/LODs/*.fbx`, `Textures/` | `/Game/Dink/Kits/Stonebrook440/SM_*`, `/Game/Dink/Materials/Stonebrook440/MI_*`, `/Game/Dink/Textures/Stonebrook440/T_*` (no runtime manifest: the kit's layout is not published) |
+| The sets | `python3 -I Scripts/assemble_structures.py` (in a tree with `ImportData/` and `tools/dinkex/out`), then `python3 -I Scripts/PhotorealQA/structure_walk_check.py` | placements, collision, screens, sequences | `Content/Dink/Data/Art/structure_sets.json` |
+
+- **What binds at runtime**: `structure_sets.json` beside `town_houses.json` (same loader, same switch `dink.TownHouses`). A set hides the cards it names and shows its modules; nothing else changes.
 
 ## Turning the pass off
 

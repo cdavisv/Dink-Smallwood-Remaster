@@ -41,6 +41,11 @@ def rel(path):
 def bound_meshes():
     rows = json.load(open(os.path.join(REPO, 'DinkRemasterUE', 'Content', 'Dink', 'Data', 'Art', 'families.json')))['families']
     paths = [r.get('mesh', '') for r in rows] + [v for r in rows for v in r.get('variants', [])]
+    # and the meshes a structure set stands on a screen (Scripts/assemble_structures.py: the log cabin, its door and window)
+    sets = os.path.join(REPO, 'DinkRemasterUE', 'Content', 'Dink', 'Data', 'Art', 'structure_sets.json')
+    if os.path.isfile(sets):
+        for row in json.load(open(sets))['screens'].values():
+            paths += [m['mesh'] + '.' + m['mesh'].rsplit('/', 1)[1] for h in row['houses'] for m in h['modules']]
     return {p.rsplit('.', 1)[1] for p in paths if p.startswith('/Game/Dink/Photoreal/Unclaimed/')}
 
 

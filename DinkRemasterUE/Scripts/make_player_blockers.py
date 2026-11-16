@@ -26,6 +26,7 @@ KINDS = {"family", "family_instance", "authored"}
 SOLID = ("Boulder", "Rock", "Stone", "Stump", "Tree", "Pine", "Oak", "Willow", "Log", "Wall", "Barrel", "Chest", "Crate", "Table",
          "Chair", "Bed", "Bench", "Cabinet", "Counter", "Shelf", "Statue", "Pillar", "Monument", "Gravestone", "Fountain", "Idol",
          "Post", "Rubble", "Sack", "Jar", "Ballista", "Anvil", "Cart", "Well", "Fireplace")
+CASTLE = ("SM_Castle_Wall_8m", "SM_Castle_Tower_Round")
 OPEN = ("Door", "Arch", "Cottage", "House", "ForestEdge", "Pair", "Curve", "Gate", "Jamb", "Bridge", "Stair", "Rug", "Carpet", "Corpse", "Heart", "Potion", "Machine",
         "Shrine", "Grass", "Fern", "Bush", "Flower")
 
@@ -40,8 +41,12 @@ def wanted(path: str, kind: str) -> bool:
         return False
     if kind in KINDS:
         return any(k in name for k in SOLID)
-    # the environment layer: only the town house kit takes blockers (its walls stand on the 1997 house hardness)
-    return kind == "environment" and name.startswith("SM_Town_") and "Roof" not in name
+    # the environment layer: only the town house kit takes blockers (its walls stand on the 1997 house hardness), and the castle's
+    # curtain wall and towers of the structure sets (a straight run crosses the notches of the 1997 outline: the walk audit of
+    # 16 Nov found the capsule up to 1.1 m inside 46 wall modules). Not the gatehouse: its arch holds the castle door's warp.
+    if kind != "environment":
+        return False
+    return (name.startswith("SM_Town_") and "Roof" not in name) or name in CASTLE
 
 
 def area(poly):
@@ -96,8 +101,17 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("dirs", nargs="+", type=Path)
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "Content/Dink/Data/Art/player_blockers.json")
+    ap.add_argument("--only", default="", help="comma list of mesh names: add or replace only these rows in the existing file "
+                                               "(an audit of a few screens must not rewrite the hulls measured on the whole map)")
     a = ap.parse_args(argv)
     table = build(a.dirs)
+    if a.only:
+        names = set(a.only.split(","))
+        old = json.loads(a.out.read_text())
+        rows = {m["mesh"]: m for m in old["meshes"]}
+        rows.update({m["mesh"]: m for m in table["meshes"] if mesh_name(m["mesh"]) in names})
+        old["meshes"] = [rows[k] for k in sorted(rows)]
+        table = old
     a.out.write_text(json.dumps(table, indent=1) + "\n")
     print(f"{len(table['meshes'])} meshes -> {a.out}")
     for m in table["meshes"]:

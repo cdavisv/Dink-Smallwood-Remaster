@@ -13,7 +13,8 @@ env -u DISPLAY -u WAYLAND_DISPLAY "$UE_ROOT/Engine/Binaries/Linux/UnrealEditor-C
 rc=$?
 if [[ $rc -eq 0 ]] && grep -q 'DINK TOWN IMPORT OK:' "$LOG"; then
   grep 'DINK TOWN IMPORT OK:' "$LOG" | tail -1 | sed 's/^.*DINK TOWN/DINK TOWN/'
-  grep 'DINK TOWN: ' "$LOG" | sed 's/^.*DINK TOWN: /  warning: /' | sort -u | head -20
+  # no warning line is the good case: without the '|| true' grep's exit 1 became the script's (pipefail), and a clean import reported failure
+  grep 'DINK TOWN: ' "$LOG" | sed 's/^.*DINK TOWN: /  warning: /' | sort -u | head -20 || true
 else
   echo "TOWN IMPORT FAILED (exit $rc): $LOG"
   grep 'LogPython: Error' "$LOG" | head -14
