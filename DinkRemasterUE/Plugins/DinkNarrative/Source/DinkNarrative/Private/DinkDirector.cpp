@@ -12,6 +12,7 @@
 #include "DinkLayout.h"
 #include "DinkOriginComponent.h"
 #include "DinkSaveSubsystem.h"
+#include "DinkSaveGame.h"
 #include "DinkStatsComponent.h"
 #include "DinkWorldStateSubsystem.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
@@ -884,8 +885,9 @@ void UDinkDirector::BindExternals(FDinkInkStory& InkStory)
 	Bind(TEXT("savegameinfo"), [Arg](const TArray<Ink::FValueType>& Args)
 	{
 		const int32 Slot = Arg(Args, 0);
-		const bool bExists = UGameplayStatics::DoesSaveGameExist(SaveSlotName(Slot), 0);
-		return StringResult(bExists ? FString::Printf(TEXT("Slot %d - Saved game"), Slot) : FString::Printf(TEXT("Slot %d - Empty"), Slot));
+		const UDinkSaveGame* Save = UGameplayStatics::DoesSaveGameExist(SaveSlotName(Slot), 0)
+			? Cast<UDinkSaveGame>(UGameplayStatics::LoadGameFromSlot(SaveSlotName(Slot), 0)) : nullptr;
+		return StringResult(UDinkDirector::SaveGameInfo(Slot, Save));
 	});
 	Bind(TEXT("game_exist"), [Arg](const TArray<Ink::FValueType>& Args)
 	{
@@ -1744,6 +1746,28 @@ int32 UDinkDirector::ScreenAt(const FVector& Location) const
 		}
 	}
 	return GetCurrentScreen();
+}
+
+FString UDinkDirector::SaveGameInfo(int32 Slot, const UDinkSaveGame* Save)
+{
+	if (!Save)
+	{
+		return FString::Printf(TEXT("Slot %d - Empty"), Slot);
+	}
+	// The story clock (UDinkStorySubsystem::SaveStateToJson "nowMs") counts from the new game and is restored by a load, as the
+	// original's minutes are (dink.cpp:1054, 1400).
+	double NowMs = 0.0;
+	if (const FString* Narrative = Save->SubsystemState.Find(TEXT("narrative")))
+	{
+		const int32 At = Narrative->Find(TEXT("\"nowMs\":"));
+		if (At != INDEX_NONE)
+		{
+			NowMs = FCString::Atod(**Narrative + At + 8);
+		}
+	}
+	const int32 Minutes = FMath::Max(0, FMath::FloorToInt32(NowMs / 60000.0));
+	const int32* Level = Save->Facts.Find(TEXT("level"));
+	return FString::Printf(TEXT("Slot %d - %d:%02d - Level %d"), Slot, Minutes / 60, Minutes % 60, Level ? *Level : 1);
 }
 
 int32 UDinkDirector::DirFromPixelDelta(double Dx, double Dy)

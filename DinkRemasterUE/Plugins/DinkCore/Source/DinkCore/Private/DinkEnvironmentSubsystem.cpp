@@ -46,8 +46,10 @@
 #endif
 #include "Engine/Texture.h"
 
+// Set per effects-quality level by Config/DefaultScalability.ini, so it must be a scalability variable: without the flag the engine
+// ignored the ini line and raised an ensure at every start of the packaged game (playthrough QA, 15 Nov 2026).
 static TAutoConsoleVariable<float> CVarDinkGrassDensity(TEXT("dink.GrassDensity"), 1.f,
-	TEXT("Multiplier on the configured meadow grass scatter density (0 = no scatter)."));
+	TEXT("Multiplier on the configured meadow grass scatter density (0 = no scatter)."), ECVF_Scalability);
 static TAutoConsoleVariable<int32> CVarDinkInteriorExposure(TEXT("dink.InteriorExposure"), 1,
 	TEXT("1 = open the exposure and lift shadows on indoor screens (presentation only)."));
 static TAutoConsoleVariable<float> CVarDinkInteriorExposureBias(TEXT("dink.InteriorExposureBias"), -0.5f,

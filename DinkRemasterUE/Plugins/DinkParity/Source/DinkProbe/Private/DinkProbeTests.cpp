@@ -49,6 +49,7 @@
 #include "Tests/AutomationEditorCommon.h"
 #endif
 #include "DinkProbeHold.h"
+#include "DinkBeatCapture.h"
 #include "DinkProbeLoadOracle.h"
 #include "DinkProbeContactRoute.h"
 #include "DinkArtFamilySubsystem.h"
@@ -3695,6 +3696,8 @@ namespace DinkProbeTest
 			if (Step.Done(C))
 			{
 				Log.Add(FString::Printf(TEXT("OK   %2d %s (%.1f s game time, done at %.3f s)"), Current + 1, *Step.Name, Elapsed, Now));
+				DinkBeatCapture::Request(FString::Printf(TEXT("ch%d_step%02d"), Spec.Number, Current + 1), Step.Name, 2);
+				UE_LOG(LogTemp, Display, TEXT("DINK PROBE STEP: ch%d %d %s (done at %.3f s)"), Spec.Number, Current + 1, *Step.Name, Now);
 				++Current;
 				bActed = false;
 				StepStart = Now;
