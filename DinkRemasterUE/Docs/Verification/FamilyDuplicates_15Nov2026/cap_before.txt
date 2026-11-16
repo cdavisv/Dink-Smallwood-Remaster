@@ -1,0 +1,201 @@
+wait 22
+dink.Goto 299 300 200
+dink.View -90 -12
+wait 30
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+dink.Fact lifemax 999
+dink.Fact life 999
+# tree_pine_large S209_P08 (262,124) kept; S177_P04 (262,524 on 177) dropped
+dink.Goto 209 150 300
+dink.Goto 209 300 230
+wait 4
+dink.Player
+dink.CalAnchorOrigin S209_P08
+dink.CalCam 0 1500 700 0 0 450 70 1
+wait 2
+fps pine_209
+shot <cap>/before/pine_209_play.png
+dink.CalCam 0 3600 2600 0 0 0 60 1
+wait 2
+shot <cap>/before/pine_209_wide.png
+dink.CalCam off
+dink.SceneAudit <cap>/before/audit.jsonl
+# pine_forest_edge_strip_vert S218_P08 (434,189) kept; S186_P02 dropped
+dink.Goto 218 300 300
+dink.Goto 218 470 360
+dink.Goto 218 470 300
+wait 4
+dink.Player
+dink.CalAnchorOrigin S218_P08
+dink.CalCam 0 1500 700 0 0 450 70 1
+wait 2
+fps strip_218
+shot <cap>/before/strip_218_play.png
+dink.CalCam 0 3600 2600 0 0 0 60 1
+wait 2
+shot <cap>/before/strip_218_wide.png
+dink.CalCam off
+dink.SceneAudit <cap>/before/audit.jsonl
+# tree_dead_dark S223_P01 (395,362) kept; S191_P12 and S255_P02 dropped
+dink.Goto 223 300 200
+dink.Goto 223 330 395
+wait 4
+dink.Player
+dink.CalAnchorOrigin S223_P01
+dink.CalCam 0 1500 700 0 0 450 70 1
+wait 2
+fps dead_223
+shot <cap>/before/dead_223_play.png
+dink.CalCam 0 3600 2600 0 0 0 60 1
+wait 2
+shot <cap>/before/dead_223_wide.png
+dink.CalCam off
+dink.SceneAudit <cap>/before/audit.jsonl
+# dungeon_wall_stone S073_P01 (578,229) kept; S074_P08 dropped
+dink.Goto 73 500 320
+wait 4
+dink.Player
+dink.CalAnchorOrigin S073_P01
+dink.CalCam 0 700 900 0 0 150 75 1
+wait 2
+fps dungeon_073
+shot <cap>/before/dungeon_073_play.png
+dink.CalCam 0 1200 1800 0 0 0 70 1
+wait 2
+shot <cap>/before/dungeon_073_wide.png
+dink.CalCam off
+dink.SceneAudit <cap>/before/audit.jsonl
+# tree_willow_large four copies: S451_P07 (181,110) kept; S419_P12, S418_P01, S450_P07 dropped
+dink.Goto 451 300 300
+dink.Goto 451 181 260
+wait 4
+dink.Player
+dink.CalAnchorOrigin S451_P07
+dink.CalCam 0 1500 700 0 0 450 70 1
+wait 2
+fps willow_451
+shot <cap>/before/willow_451_play.png
+dink.CalCam 0 3600 2600 0 0 0 60 1
+wait 2
+shot <cap>/before/willow_451_wide.png
+dink.CalCam off
+dink.SceneAudit <cap>/before/audit.jsonl
+# tree_oak_large S408_P08 (572,436 on 408) kept (36 px out); S409_P51, S376_P09 dropped
+dink.Goto 440 300 200
+dink.Goto 440 560 140
+wait 4
+dink.Player
+dink.CalAnchorOrigin S408_P08
+dink.CalCam 0 1500 700 0 0 450 70 1
+wait 2
+fps oak_440
+shot <cap>/before/oak_440_play.png
+dink.CalCam 0 3600 2600 0 0 0 60 1
+wait 2
+shot <cap>/before/oak_440_wide.png
+dink.CalCam off
+dink.SceneAudit <cap>/before/audit.jsonl
+# S217_P02 = S185_P02 (one object, exact pixel); S216_P02 is 15 px away in 1997: kept as a second pine
+dink.Goto 217 300 300
+dink.Goto 217 95 220
+wait 4
+dink.Player
+dink.CalAnchorOrigin S217_P02
+dink.CalCam 0 1500 700 0 0 450 70 1
+wait 2
+fps twopines_217
+shot <cap>/before/twopines_217_play.png
+dink.CalCam 0 3600 2600 0 0 0 60 1
+wait 2
+shot <cap>/before/twopines_217_wide.png
+dink.CalCam off
+dink.SceneAudit <cap>/before/audit.jsonl
+# tree_willow S446_P02/S414_P02 (scripted s1-h1-4: master leaves both as cards)
+dink.Goto 446 160 230
+wait 4
+dink.Player
+dink.CalAnchorOrigin S446_P02
+dink.CalCam 0 1500 700 0 0 450 70 1
+wait 2
+fps willow_446
+shot <cap>/before/willow_446_play.png
+dink.CalCam 0 3600 2600 0 0 0 60 1
+wait 2
+shot <cap>/before/willow_446_wide.png
+dink.CalCam off
+dink.SceneAudit <cap>/before/audit.jsonl
+# edge walk
+dink.Goto 209 150 300
+dink.Goto 209 300 230
+wait 4
+dink.CalAnchorOrigin S209_P08
+dink.CalCam 1800 900 1100 0 0 200 70 1
+wait 2
+shot <cap>/before/walk_n00.png
+dink.WalkTo 340 -150 8
+wait 0.4
+shot <cap>/before/walk_n01.png
+wait 0.4
+shot <cap>/before/walk_n02.png
+wait 0.4
+shot <cap>/before/walk_n03.png
+wait 0.4
+shot <cap>/before/walk_n04.png
+wait 0.4
+shot <cap>/before/walk_n05.png
+wait 0.4
+shot <cap>/before/walk_n06.png
+wait 0.4
+shot <cap>/before/walk_n07.png
+wait 0.4
+shot <cap>/before/walk_n08.png
+wait 0.4
+shot <cap>/before/walk_n09.png
+dink.WalkTo 340 300 3
+wait 0.4
+shot <cap>/before/walk_n10.png
+wait 0.4
+shot <cap>/before/walk_n11.png
+wait 0.4
+shot <cap>/before/walk_n12.png
+wait 0.4
+shot <cap>/before/walk_n13.png
+wait 1
+dink.Player
+dink.SceneAudit <cap>/before/audit_walk.jsonl
+dink.WalkTo 340 560 8
+wait 0.4
+shot <cap>/before/walk_s01.png
+wait 0.4
+shot <cap>/before/walk_s02.png
+wait 0.4
+shot <cap>/before/walk_s03.png
+wait 0.4
+shot <cap>/before/walk_s04.png
+wait 0.4
+shot <cap>/before/walk_s05.png
+wait 0.4
+shot <cap>/before/walk_s06.png
+wait 0.4
+shot <cap>/before/walk_s07.png
+wait 0.4
+shot <cap>/before/walk_s08.png
+wait 0.4
+shot <cap>/before/walk_s09.png
+wait 0.4
+shot <cap>/before/walk_s10.png
+wait 0.4
+shot <cap>/before/walk_s11.png
+wait 1
+dink.Player
+dink.SceneAudit <cap>/before/audit_walk.jsonl
+dink.CalCam off
+wait 1
+quit

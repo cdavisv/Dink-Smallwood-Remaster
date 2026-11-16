@@ -1,4 +1,7 @@
-"""Offline mirror of the A208 rule (DinkFamilyDuplicates.cpp) over placements.json; writes the evidence CSV."""
+"""Offline mirror of the A208 rule (DinkFamilyDuplicates.cpp) over ImportData/placements.json; writes the evidence CSV.
+Usage: make_pairs_csv.py <ImportData dir> <visual-sweep audit.jsonl> <out.csv>. Rows: every same-class pair on different screens
+within 1 m (the brief's measurement); decision = pair (one object) or why it stays two. Eligibility of the runtime
+(family-bound, not scripted, &vision 0) is not mirrored: both_familyart_in_sweep marks pairs that master drew twice."""
 import json, math, sys, collections, csv
 B, AUDIT, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
 P = json.load(open(B + '/placements.json'))['placements']
@@ -49,7 +52,7 @@ for c, L in by.items():
                 both_familyart_in_sweep=int(drawn[a['id']] > 0 and drawn[b['id']] > 0), decision=why))
 rows.sort(key=lambda r: (r['decision'] != 'pair', r['class_id'], r['copy_a']))
 with open(OUT, 'w', newline='') as f:
-    w = csv.DictWriter(f, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
+    w = csv.DictWriter(f, fieldnames=list(rows[0].keys()), lineterminator='\n'); w.writeheader(); w.writerows(rows)
 cnt = collections.Counter((r['decision'] == 'pair', r['case']) for r in rows)
 print(len(rows), dict(cnt))
 print('pairs with both FamilyArt in sweep:', sum(1 for r in rows if r['decision'] == 'pair' and r['both_familyart_in_sweep']))
@@ -72,7 +75,7 @@ for r in rows:
     r['dropped_for'] = ';'.join(dropped[x] for x in (a, b) if x in dropped)
 for r in rows: r.setdefault('dropped_for', '')
 with open(OUT, 'w', newline='') as f:
-    w = csv.DictWriter(f, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
+    w = csv.DictWriter(f, fieldnames=list(rows[0].keys()), lineterminator='\n'); w.writeheader(); w.writerows(rows)
 print('origins kept', len(kept), 'dropped', len(dropped), 'pair rows with both copies kept (chain ends)', sum(1 for r in rows if r['decision']=='pair' and not r['dropped']))
 json.dump({'dropped': dropped, 'kept': sorted(kept)}, open(OUT.replace('.csv', '_dropped.json'), 'w'), indent=1)
 for ex in ('S177_P04', 'S186_P02', 'S191_P12', 'S073_P01', 'S414_P02'):
