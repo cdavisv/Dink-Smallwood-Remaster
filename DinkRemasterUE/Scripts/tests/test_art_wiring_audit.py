@@ -89,7 +89,8 @@ class Reasons(unittest.TestCase):
     def test_known_table_parses_and_matches(self):
         rows = A.known_rows()
         self.assertTrue(rows)
-        self.assertEqual(A.known_reason('SK_Duck', '', rows)[0], 'queued')
+        self.assertIsNone(A.known_reason('SK_Duck', '', rows))           # #113 merged: the duck is wired, no reason
+        self.assertEqual(A.known_reason('AN_Duck_Peck', '', rows)[0], 'bug')
         self.assertEqual(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/PhotorealPass/Structures/Castle/x.fbx', rows)[0], 'queued')
         self.assertIsNone(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/Other/x.fbx', rows))
         self.assertEqual(A.known_reason('SM_Anything', 'SourceAssets/Art/StonebrookRuins/Export/a.fbx', rows)[0], 'alternate')
@@ -97,7 +98,9 @@ class Reasons(unittest.TestCase):
     def test_gap_flag(self):
         self.assertEqual(A.gap_flag('queued: PR #113', ''), 'queued')
         self.assertEqual(A.gap_flag('', 'VS-02'), 'queued')
-        self.assertEqual(A.gap_flag('not imported: hangs on a wall', ''), 'deliberate')
+        self.assertEqual(A.gap_flag('deliberate: a reviewed reason', ''), 'deliberate')
+        self.assertEqual(A.gap_flag('STATUS.md: not imported: hangs on a wall', ''), 'documented')  # not reviewed here
+        self.assertEqual(A.gap_flag('replaced: mocap', ''), 'replaced')
         self.assertIsNone(A.gap_flag('', ''))
 
     def test_clip_played(self):
@@ -120,6 +123,47 @@ class Reasons(unittest.TestCase):
         self.assertEqual(by['fence_rail_ns']['cards'], 1)               # the buried card is not drawn
         self.assertEqual(by['fence_rail_ns']['mesh_available'], 'SM_Fence')
         self.assertEqual(by['fence_rail_ew']['final_origin_cards'], 'S409_P03')
+
+
+class Classifier(unittest.TestCase):
+    """Review of PR #154 (15 Nov 2026): what may and may not count as a runtime binding."""
+
+    def setUp(self):
+        self.pk = FakePackages({'/Game/Dink/A/SM_Door': b'', '/Game/Dink/B/SM_Door': b'', '/Game/Dink/A/SM_Only': b'',
+                                '/Game/Dink/Photoreal/TownExteriors/SM_Wall': b'', '/Game/Dink/Old/SM_Wall': b''})
+        self.roots = A.collections.defaultdict(set)
+
+    def test_a_free_text_fields_do_not_bind(self):
+        A.walk_json({'family': 'x', 'mesh': '/Game/Dink/A/SM_Only.SM_Only',
+                     'note': 'SM_Door is imported but unbound; see /Game/Dink/B/SM_Door', 'why': 'SM_Door'},
+                    'families.json', self.pk, self.roots)
+        self.assertEqual(sorted(self.roots), ['/Game/Dink/A/SM_Only'])
+
+    def test_a_keys_and_asset_lists_do_not_bind(self):
+        A.walk_json({'mesh_swaps': {'/Game/Dink/A/SM_Door': ['/Game/Dink/A/SM_Only']},
+                     'assets': [{'mesh': '/Game/Dink/B/SM_Door.SM_Door'}]}, 'environment.json', self.pk, self.roots)
+        self.assertEqual(sorted(self.roots), ['/Game/Dink/A/SM_Only'])     # (d): the swap source key is not bound
+
+    def test_b_a_path_binds_only_the_package_it_names(self):
+        A.walk_json({'mesh': '/Game/Dink/A/SM_Door.SM_Door'}, 'm.json', self.pk, self.roots)
+        self.assertEqual(sorted(self.roots), ['/Game/Dink/A/SM_Door'])      # not the same-named twin in B
+        A.walk_json({'mesh': 'SM_Door'}, 'm.json', self.pk, self.roots)     # an ambiguous bare name binds nothing more
+        self.assertEqual(sorted(self.roots), ['/Game/Dink/A/SM_Door'])
+        A.walk_json({'mesh': 'SM_Wall'}, 'town_houses.json', self.pk, self.roots,
+                    A.BARE_PREFIX['town_houses.json'])                      # resolved under the runtime's folder
+        self.assertIn('/Game/Dink/Photoreal/TownExteriors/SM_Wall', self.roots)
+        self.assertNotIn('/Game/Dink/Old/SM_Wall', self.roots)
+
+    def test_c_only_runtime_modules_are_cpp_roots(self):
+        dirs = [d.replace(os.sep, '/') for d in A.runtime_module_dirs()]
+        self.assertTrue(any(d.endswith('Plugins/DinkCore/Source/DinkCore') for d in dirs))
+        self.assertFalse(any('DinkImport' in d or 'DinkParity' in d or 'DinkProbe' in d for d in dirs))
+
+    def test_c_cpp_literals_bind_but_comments_do_not(self):
+        text = '// SM_Only is mentioned in a comment\nLoad(TEXT("/Game/Dink/A/SM_Door.SM_Door"));'
+        for lit in A.CPP_LITERAL.findall(text):
+            A.bind_string(lit, 'x.cpp', self.pk, self.roots)
+        self.assertEqual(sorted(self.roots), ['/Game/Dink/A/SM_Door'])
 
 
 if __name__ == '__main__':

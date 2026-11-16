@@ -57,7 +57,7 @@ COMPOSED = {
     "/Game/Dink/Photoreal/Characters/Mother/SK_Mother_Photoreal": "DinkArtSubsystem.cpp DinkPhotorealNpcMesh (SK_<Name>_Photoreal)",
     "/Game/Dink/Photoreal/Characters/Milder/SK_Milder_Photoreal": "DinkArtSubsystem.cpp DinkPhotorealNpcMesh (SK_<Name>_Photoreal)",
 }
-SEVERITY = ["ok", "not_seen", "superseded", "deliberate", "alternate", "queued", "note", "texture", "lod", "nanite", "unbound", "not_cooked",
+SEVERITY = ["ok", "replaced", "unverified", "not_seen", "superseded", "deliberate", "documented", "alternate", "queued", "note", "bug", "texture", "lod", "nanite", "unbound", "not_cooked",
             "default_material", "missing_texture", "not_imported"]
 
 
@@ -162,37 +162,97 @@ def read_json(path):
         return None
 
 
-def runtime_roots(pk, generated_maps):
-    """{package: [where]} named at runtime: Data JSON, C++, Config, world maps."""
-    roots = collections.defaultdict(set)
-    texts = []
-    for f in glob.glob(os.path.join(CONTENT, "Dink", "Data", "**", "*.json"), recursive=True):
-        if "/Data/Audio/" in f or "/Hardness/" in f:
-            continue
-        texts.append(f)
-    for pat in ("Plugins/*/Source/**/*.cpp", "Plugins/*/Source/**/*.h", "Source/**/*.cpp", "Source/**/*.h",
-                "Config/*.ini"):
-        for f in glob.glob(os.path.join(PROJECT, pat), recursive=True):
-            if "/Tests/" in f or "/Test/" in f:
+# JSON keys whose string values are prose, labels or identifiers, never a binding (review of 15 Nov 2026)
+FREE_TEXT_KEY = re.compile(r"note|about|comment|why|desc|reason|weak|readme|help|todo|history|schema|generated_by|^name$|^id$|^label$",
+                           re.I)
+# Bare asset names in these manifests are resolved by the runtime under one folder (DinkEnvironmentSubsystem.cpp
+# builds "/Game/Dink/Photoreal/TownExteriors/" + mesh); elsewhere a bare name binds only when it is unique.
+BARE_PREFIX = {"town_houses.json": "/Game/Dink/Photoreal/TownExteriors/"}
+CPP_LITERAL = re.compile(r'"((?:[^"\\\n]|\\.)*)"')
+WHOLE_NAME = re.compile(r"^" + ASSET_NAME.pattern.replace(r"\b", "") + r"$")
+
+
+def runtime_module_dirs():
+    """Source folders of the modules a packaged game loads (.uplugin/.uproject module type Runtime only):
+    Editor modules (DinkImport, DinkParity) and DeveloperTool modules (DinkProbe) draw nothing for a player."""
+    dirs = []
+    for desc in sorted(glob.glob(os.path.join(PROJECT, "Plugins", "*", "*.uplugin")) + [os.path.join(PROJECT, "DinkRemaster.uproject")]):
+        d = read_json(desc) or {}
+        for m in d.get("Modules", []):
+            if m.get("Type") == "Runtime":
+                dirs.append(os.path.join(os.path.dirname(desc), "Source", m["Name"]))
+    return dirs
+
+
+def bind_string(text, where, pk, roots, bare_prefix=None):
+    """A string value binds the package its /Game path names (exactly), or, when the whole string is an asset name,
+    the package of that name (under bare_prefix when the manifest has one; only a unique name otherwise)."""
+    for m in GAME_PATH.findall(text):
+        p = m.split(".")[0]
+        if p in pk.files:
+            roots[p].add(where)
+    if WHOLE_NAME.match(text):
+        cands = sorted(pk.by_name.get(text, []))
+        if bare_prefix:
+            cands = [c for c in cands if c.startswith(bare_prefix)]
+        if len(cands) == 1:
+            roots[cands[0]].add(where)
+
+
+def walk_json(value, where, pk, roots, bare_prefix=None, key=""):
+    if isinstance(value, dict):
+        for k, v in value.items():                      # keys never bind (mesh_swaps sources, slot names)
+            if k == "assets":                           # the asset list a manifest validates (sizes, skeletons), not a placement
                 continue
-            texts.append(f)
-    for f in texts:
-        try:
-            with open(f, encoding="utf-8", errors="replace") as h:
-                txt = h.read()
-        except OSError:
+            walk_json(v, where, pk, roots, bare_prefix, k)
+    elif isinstance(value, list):
+        for v in value:
+            walk_json(v, where, pk, roots, bare_prefix, key)
+    elif isinstance(value, str) and not FREE_TEXT_KEY.search(key):
+        bind_string(value, where, pk, roots, bare_prefix)
+
+
+def swapped_sources():
+    """{package: [targets]} that environment.json mesh_swaps replaces at runtime (the key mesh is never drawn)."""
+    env = read_json(os.path.join(CONTENT, "Dink", "Data", "Environment", "environment.json")) or {}
+    return {k.split(".")[0]: v for k, v in (env.get("mesh_swaps") or {}).items()}
+
+
+def runtime_roots(pk, generated_maps):
+    """{package: {where}} named at runtime: Data JSON values, string literals of Runtime C++ modules, Config, world
+    maps, and the composed paths of COMPOSED."""
+    roots = collections.defaultdict(set)
+    literals = []
+    for d in runtime_module_dirs():
+        for f in sorted(glob.glob(os.path.join(d, "**", "*.cpp"), recursive=True) + glob.glob(os.path.join(d, "**", "*.h"), recursive=True)):
+            if "/Tests/" not in f.replace(os.sep, "/"):
+                with open(f, encoding="utf-8", errors="replace") as h:
+                    literals += CPP_LITERAL.findall(h.read())
+    named = "\n".join(literals)
+    for f in sorted(glob.glob(os.path.join(CONTENT, "Dink", "Data", "**", "*.json"), recursive=True)):
+        if "/Data/Audio/" in f.replace(os.sep, "/") or "/Hardness/" in f.replace(os.sep, "/"):
             continue
-        where = rel(f)
-        for m in GAME_PATH.findall(txt):
-            p = m.split(".")[0]
-            if p in pk.files:
-                roots[p].add(where)
-            elif os.path.basename(p) in pk.by_name:     # folder + name joined in code: name is enough
-                for q in pk.by_name[os.path.basename(p)]:
-                    roots[q].add(where)
-        for m in ASSET_NAME.findall(txt):
-            for q in pk.by_name.get(m, []):
-                roots[q].add(where)
+        data = read_json(f)
+        if data is None:
+            continue
+        # a Data file is read at runtime when it is a dink-art/1 manifest (DinkArtSubsystem scans Data/Art for that
+        # schema) or when Runtime C++ names its file; others (hero_actions.json, ground_review.json) bind nothing
+        stem = os.path.splitext(os.path.basename(f))[0]
+        if not (isinstance(data, dict) and data.get("schema") == "dink-art/1") and stem not in named:
+            continue
+        walk_json(data, rel(f), pk, roots, BARE_PREFIX.get(os.path.basename(f)))
+    for d in runtime_module_dirs():
+        for f in sorted(glob.glob(os.path.join(d, "**", "*.cpp"), recursive=True) + glob.glob(os.path.join(d, "**", "*.h"), recursive=True)):
+            if "/Tests/" in f.replace(os.sep, "/"):
+                continue
+            with open(f, encoding="utf-8", errors="replace") as h:
+                for lit in CPP_LITERAL.findall(h.read()):
+                    bind_string(lit, rel(f), pk, roots)
+    for f in sorted(glob.glob(os.path.join(PROJECT, "Config", "*.ini"))):
+        with open(f, encoding="utf-8", errors="replace") as h:
+            for m in GAME_PATH.findall(h.read()):
+                if m.split(".")[0] in pk.files:
+                    roots[m.split(".")[0]].add(rel(f))
     for m in generated_maps:
         roots[m].add("world map " + os.path.basename(m))
     for game, where in COMPOSED.items():
@@ -279,8 +339,8 @@ def sources():
     """Delivered source assets: (name, kind, source file, stream)."""
     rows = {}
     skip_dirs = ("/ThirdParty/", "/_build/", "/Working/", "/Previews/", "/Preview/", "/History/", "/ReedLOD/")
-    for f in glob.glob(os.path.join(ART, "**", "*"), recursive=True):
-        low = f.lower()
+    for f in sorted(glob.glob(os.path.join(ART, "**", "*"), recursive=True)):
+        low = f.replace(os.sep, "/").lower()
         if not low.endswith((".fbx", ".glb")) or any(s.lower() in low for s in skip_dirs):
             continue
         stem = LOD_SUFFIX.sub("", os.path.splitext(os.path.basename(f))[0])
@@ -291,16 +351,16 @@ def sources():
             stem = "AN_" + stem[2:] if stem.startswith("A_") else stem
         stream = "/".join(rel(f, ART).split(os.sep)[:2])
         key = (stem, kind)
-        # the same asset exported by two streams (an older source tree and the photoreal pass): keep the newest file,
-        # name both streams
+        # the same asset exported by two streams (an older source tree and the photoreal pass): one row that lists
+        # every copy (sorted, so the table regenerates byte-identically) and names both streams
         if key in rows:
             old = rows[key]
-            keep = f if os.path.getmtime(f) >= os.path.getmtime(old[2]) else old[2]
+            copies = sorted(set(old[2].split(" | ")) | {f})
             streams = " + ".join(sorted(set(old[3].split(" + ")) | {stream}))
-            rows[key] = (stem, kind, keep, streams)
+            rows[key] = (stem, kind, " | ".join(copies), streams)
         else:
             rows[key] = (stem, kind, f, stream)
-    for man in glob.glob(os.path.join(ART, "**", "animation_manifest.json"), recursive=True):
+    for man in sorted(glob.glob(os.path.join(ART, "**", "animation_manifest.json"), recursive=True)):
         m = read_json(man) or {}
         base = os.path.dirname(man)
         clips = m.get("clips") or m.get("animations") or {}
@@ -309,10 +369,10 @@ def sources():
             fbx = os.path.join(base, c.get("fbx", ""))
             rows[(name, "clip")] = (name, "clip", fbx if os.path.isfile(fbx) else "", "/".join(rel(man, ART).split(os.sep)[:3]))
     # Flipbooks and decal sets of the unclaimed kit: a folder with T_*_BC but no mesh source.
-    for d in glob.glob(os.path.join(ART, "PhotorealPass", "Unclaimed", "*", "*")):
+    for d in sorted(glob.glob(os.path.join(ART, "PhotorealPass", "Unclaimed", "*", "*"))):
         if not os.path.isdir(d) or glob.glob(os.path.join(d, "*.fbx")) or glob.glob(os.path.join(d, "*.glb")):
             continue
-        bcs = glob.glob(os.path.join(d, "T_*_BC.png")) + glob.glob(os.path.join(d, "T_*_Flipbook*.png"))
+        bcs = sorted(glob.glob(os.path.join(d, "T_*_BC.png")) + glob.glob(os.path.join(d, "T_*_Flipbook*.png")))
         if bcs:
             name = os.path.basename(d)
             rows[(name, "fx")] = (name, "decal/flipbook", bcs[0], "PhotorealPass/Unclaimed")
@@ -328,7 +388,7 @@ def known_rows():
 def known_reason(name, src, rows):
     """-> (kind, why) of the first reviewed row matching the asset, or None."""
     for m, srx, kind, why in rows:
-        if m.search(name) and (srx is None or (src and srx.search(src.replace(os.sep, "/")))):
+        if m.search(name) and (srx is None or (src and srx.search(src.replace(os.sep, "/").replace("\\", "/")))):
             return kind, why
     return None
 
@@ -434,7 +494,7 @@ def check_package(pk, game, tags, budget_tris=5000):
     return out
 
 
-def card_table(audit_path, coverage_path, families_path, unbound_by_class):
+def card_table(audit_path, coverage_path, families_path, unbound_by_class, placements=()):
     """Sprite cards the scene audit saw drawn (above ground), per sprite class, with what could replace them.
 
     -> rows: class, cards, screens, final_origin_cards (cards on an origin art_coverage counts final: a wiring bug),
@@ -451,46 +511,154 @@ def card_table(audit_path, coverage_path, families_path, unbound_by_class):
         with open(coverage_path, encoding="utf-8") as h:
             state = {r["origin_id"]: r["state"] for r in csv.DictReader(h)}
     fam = {f.get("family") for f in (read_json(families_path) or {}).get("families", [])}
-    cards = collections.defaultdict(lambda: {"cards": 0, "screens": set(), "final": [], "buried": 0})
+    by_origin = {p["id"]: p.get("class_id") for p in placements}
+    cards = collections.defaultdict(lambda: {"cards": 0, "screens": set(), "final": [], "buried": 0, "with_origin": 0})
     with open(audit_path, encoding="utf-8") as h:
         for line in h:
             d = json.loads(line)
             for p in d.get("prims", []):
                 m = re.search(r"MI_Sprite_(\d+)_(\d+)", json.dumps(p.get("mats", [])))
                 cn = p.get("cn", "")
-                if not m or not (cn == "Card" or cn.startswith("Decor")):
+                o = p.get("o")
+                # a card is a sprite picture on a Card / Decor component (indoor cards use a lit material instance, so
+                # an origin on the stock card mesh counts too); replacement meshes on a Card component do not
+                if not (cn == "Card" or cn.startswith("Decor")):
                     continue
-                cls = classes.get((m.group(1), str(int(m.group(2)))), "seq %s/%s" % m.groups())
+                if not m and not (o in by_origin and "DinkCard" in (p.get("mesh") or "")):
+                    continue
+                cls = by_origin.get(o) or (classes.get((m.group(1), str(int(m.group(2)))), "seq %s/%s" % m.groups()) if m else "?")
                 c = cards[cls]
                 if p.get("max", [0, 0, 0])[2] < -500:      # parked under the ground: not drawn
                     c["buried"] += 1
                     continue
                 c["cards"] += 1
+                c["with_origin"] += 1 if o else 0
                 c["screens"].add(d["screen"])
                 if p.get("o") and state.get(p["o"]) == "final":
                     c["final"].append(p["o"])
     out = []
-    for cls, c in sorted(cards.items(), key=lambda x: -x[1]["cards"]):
+    for cls, c in sorted(cards.items(), key=lambda x: (-x[1]["cards"], x[0])):
         if not c["cards"]:
             continue
-        out.append({"class": cls, "cards": c["cards"], "screens": " ".join(str(x) for x in sorted(c["screens"])),
+        out.append({"class": cls, "cards": c["cards"], "with_origin": c["with_origin"], "screens": " ".join(str(x) for x in sorted(c["screens"])),
                     "final_origin_cards": " ".join(c["final"]), "family_row": "yes" if cls in fam else "",
                     "mesh_available": " ".join(sorted(unbound_by_class.get(cls, [])))})
     return out
 
 
+KNOWN_KINDS = ("queued", "alternate", "superseded", "deliberate", "replaced", "bug")
+
+
 def gap_flag(reason, cov):
-    """The flag of a source that does not reach the player, from the reason written for it."""
-    for kind in ("queued", "alternate", "superseded", "deliberate"):
+    """The flag of a source that does not reach the player. Only a reviewed reason (art_wiring_known.json, prefixed
+    with its kind) is deliberate / alternate / superseded / replaced / bug; a queue row that names the asset makes it
+    queued; a note in the unclaimed kit's STATUS.md alone is `documented` (written down, not reviewed here)."""
+    for kind in KNOWN_KINDS:
         if reason.startswith(kind + ":"):
             return kind
-    if reason.startswith("queued") or cov:
+    if cov:
         return "queued"
-    return "deliberate" if reason else None
+    if reason.startswith("STATUS.md"):
+        return "documented"
+    return None
 
 
 def worst(flags):
     return max(flags, key=SEVERITY.index) if flags else "ok"
+
+
+HERO_MESHES = {"/Game/Dink/Photoreal/Characters/Dink/SK_Dink_Photoreal", "/Game/Dink/Hero/SK_Dink"}
+
+
+_COMMIT_CACHE = {}
+
+
+def in_commit(game, commit):
+    """Did `commit` (the tree a cook or a sweep ran on) have this package, bound by the same kind of root? The package
+    file must exist there and, when this tree's Data JSON names the package, that commit's Data JSON must name it too."""
+    if commit not in _COMMIT_CACHE:
+        def git(*args):
+            return subprocess.run(["git", "-C", PROJECT] + list(args), capture_output=True, text=True).stdout
+        files = set(git("ls-tree", "-r", "--name-only", commit, "--", "Content").splitlines())
+        prefix = git("rev-parse", "--show-prefix").strip()
+        files = {f[len(prefix):] if prefix and f.startswith(prefix) else f for f in files}
+        data = []
+        for f in sorted(files):
+            if f.startswith("Content/Dink/Data/") and f.endswith(".json") and "/Audio/" not in f and "/Hardness/" not in f:
+                data.append(git("show", "%s:./%s" % (commit, f)))
+        _COMMIT_CACHE[commit] = (files, "\n".join(data))
+    files, data = _COMMIT_CACHE[commit]
+    stem = "Content/" + game[len("/Game/"):]
+    if stem + ".uasset" not in files and stem + ".umap" not in files:
+        return False
+    return game in data or game not in data_text_here()
+
+
+_HERE = []
+
+
+def data_text_here():
+    if not _HERE:
+        _HERE.append("\n".join(open(f, encoding="utf-8", errors="replace").read() for f in sorted(
+            glob.glob(os.path.join(CONTENT, "Dink", "Data", "**", "*.json"), recursive=True))
+            if "/Audio/" not in f.replace(os.sep, "/") and "/Hardness/" not in f.replace(os.sep, "/")))
+    return _HERE[0]
+
+
+def captured_screens(audit_path):
+    out = set()
+    with open(audit_path, encoding="utf-8") as h:
+        for line in h:
+            out.add(json.loads(line).get("screen"))
+    return out
+
+
+def load_placements(path):
+    """placements.json of a world export -> list of placements (empty without --placements)."""
+    d = read_json(path) if path else None
+    return (d or {}).get("placements", []) if isinstance(d, dict) else []
+
+
+def unseen_reason(games, via, families, placements, captured, environment):
+    """Why a bound mesh is absent from the sweep's scene audit, or 'UNEXPLAINED'."""
+    roots = " ".join(via[g] for g in games)
+    if "stonebrook_fields_471" in roots:
+        return "bound by stonebrook_fields_471.json; screen 471 was not captured by the sweep"
+    if "stonebrook_vista" in roots:
+        return "vista mesh outside the play screen (the scene audit lists only primitives whose centre is on the player's screen)"
+    if "DinkPhotorealNpcMesh" in roots:
+        return ("drawn for the characters.json placement or script profile it replaces (Milder: script profile s1-bul, "
+                "a sprite his script creates); the sweep entered each screen once and did not play that story beat")
+    if "environment.json" in roots:
+        texts = {k: json.dumps(v) for k, v in environment.items()}
+        sections = sorted(k for k, t in texts.items() if any(g in t for g in games))
+        if sections:
+            return "environment.json %s: drawn only in that state or place (burn, state swap, light props); not in the sweep's states" % "/".join(sections)
+    classes = set()
+    for f in families:
+        meshes = [f.get("mesh", "")] + list(f.get("variants", [])) + [f.get("span_fill", "")]
+        if any(m.split(".")[0] in games for m in meshes if m):
+            classes.add((f.get("family"), f.get("frame")))
+    if classes and placements:
+        mine = [p for p in placements if any(c == p.get("class_id") or (str(c) == str(p.get("seq")) and (fr is None or fr == p.get("frame")))
+                                             for c, fr in classes)]
+        if not mine:
+            return "family row with no placement of its class in the world export"
+        visible = [p for p in mine if p.get("screen") in captured and not p.get("vision") and not p.get("script")]
+        if not visible:
+            parts = []
+            vg = sum(1 for p in mine if p.get("vision"))
+            nc = sum(1 for p in mine if p.get("screen") not in captured)
+            sc = sum(1 for p in mine if p.get("script") and not p.get("vision"))
+            if vg: parts.append("%d vision-gated (story state)" % vg)
+            if nc: parts.append("%d on screens not captured" % nc)
+            if sc: parts.append("%d scripted (keep their card unless the row is scripted)" % sc)
+            return "its %d placement(s): %s (%s)" % (len(mine), ", ".join(parts), " ".join(sorted(p["id"] for p in mine)[:6]))
+        return "UNEXPLAINED: %d unscripted placement(s) on captured screens at vision 0, e.g. %s" % (
+            len(visible), " ".join(sorted(p["id"] for p in visible)[:4]))
+    if "families.json" in roots:
+        return "UNEXPLAINED (families.json row; pass --placements to check its placements)"
+    return "UNEXPLAINED (%s)" % roots[:120]
 
 
 def main():
@@ -503,6 +671,12 @@ def main():
     ap.add_argument("--scene-audit", help="audit.jsonl of a dink.SceneAudit sweep: adds the drawn-card table")
     ap.add_argument("--coverage-csv", help="art_coverage.py output (origin states) for the drawn-card table")
     ap.add_argument("--cards-out", help="CSV for the drawn-card table (default: <out> with _cards)")
+    ap.add_argument("--cook-commit", help="git commit the --cooked set was cooked from: a bound package that commit did not "
+                                          "have or bind postdates the cook (flag unverified, not not_cooked)")
+    ap.add_argument("--sweep-commit", help="git commit the --scene-audit sweep ran on: a bound mesh that commit did not "
+                                           "have or bind postdates the sweep (flag unverified, not not_seen)")
+    ap.add_argument("--placements", help="ImportData/placements.json of a world export: origin -> class for the card table, "
+                                         "and the reason a bound mesh is not seen")
     a = ap.parse_args()
 
     roots_dirs = [("/Game/", CONTENT)]
@@ -531,74 +705,121 @@ def main():
     known = known_rows()
     literals = cpp_literals()
     index = coverage_index()
+    swapped = swapped_sources()
+    dink_art = {rel(f) for f in glob.glob(os.path.join(CONTENT, "Dink", "Data", "Art", "*.json"))
+                if str((read_json(f) or {}).get("schema", "")).startswith("dink-art/")
+                and "context" not in (read_json(f) or {})}   # context manifests (render-only vista) are not swapped
+    captured = captured_screens(a.scene_audit) if a.scene_audit else set()
+    placements = load_placements(a.placements)
+    families = (read_json(os.path.join(CONTENT, "Dink", "Data", "Art", "families.json")) or {}).get("families", [])
+    environment = read_json(os.path.join(CONTENT, "Dink", "Data", "Environment", "environment.json")) or {}
     rows = []
     claimed = set()
-    for name, kind, src, stream in sources():
-        games = [g for g in pk.by_name.get(name, []) if "/_Generated/" not in g]
+    for name, kind, src_all, stream in sources():
+        srcs = src_all.split(" | ") if src_all else []
+        src = srcs[0] if srcs else ""
+        games = sorted(g for g in pk.by_name.get(name, []) if "/_Generated/" not in g)
         if kind == "mesh" and not games:
-            # an FBX of the same object exported again under an alternate name (_PR, _Game) is not a separate asset
-            games = [g for g in pk.by_name.get(name + "_PR", [])]
+            # an FBX of the same object exported again under an alternate name (_PR) is not a separate asset
+            games = sorted(pk.by_name.get(name + "_PR", []))
+        if kind == "clip" and not games:
+            games = sorted(pk.by_name.get(name.replace("AN_", "AN_", 1) + "_PR", []))
         flags, details = [], []
         reason = ""
         fam = unclaimed_family_of(src) if src else None
         st = status.get(name) or (status.get("family:" + fam) if fam else None)
-        if kind == "clip":
-            reason = deliberate_clip_reason(name, natural, superseded)
-        if st and ("not imported" in st[1] or "not bound" in st[1]):
-            reason = (st[1] + "; " + st[2])[:300]
-        cov0 = covered_by(name, index)
-        if not reason:
-            k = known_reason(name, src, known)
-            if k:
-                reason = "%s: %s" % k
-                if k[0] == "queued":
-                    cov0 = cov0 or "see reason"
+        k = known_reason(name, src_all, known)
+        if k:
+            reason = "%s: %s" % k
+        elif kind == "clip" and deliberate_clip_reason(name, natural, {}):
+            reason = "replaced: " + deliberate_clip_reason(name, natural, {})
+        elif st and ("not imported" in st[1] or "not bound" in st[1]):
+            reason = ("STATUS.md: " + st[1] + "; " + st[2])[:300]
+        cov = covered_by(name, index)
         if not games:
-            flags.append(gap_flag(reason, cov0) or "not_imported")
+            flags.append(gap_flag(reason, cov) or "not_imported")
         bound_where, cooked_s, seen_s = "", "", ""
         for g in games:
             claimed.add(g)
-            t = pk.tags(g)
-            for f, d in check_package(pk, g, t):
+            for f, d in check_package(pk, g, pk.tags(g)):
                 flags.append(f)
                 details.append(d)
-            for r in pk.refs(g):
+            for r in sorted(pk.refs(g)):
                 if r in pk.files:
                     claimed.add(r)
-                    rt = pk.tags(r)
-                    for f, d in check_package(pk, r, rt):
+                    for f, d in check_package(pk, r, pk.tags(r)):
                         flags.append(f)
                         details.append(os.path.basename(r) + ": " + d)
-                    for rr in pk.refs(r):
+                    for rr in sorted(pk.refs(r)):
                         if rr in pk.files and os.path.basename(rr).startswith("T_"):
                             claimed.add(rr)
                             for f, d in check_package(pk, rr, pk.tags(rr)):
                                 flags.append(f)
                                 details.append(os.path.basename(rr) + ": " + d)
-            if g in via:
+            if g in via and not bound_where:
                 bound_where = via[g]
-            if cooked is not None:
+            if cooked is not None and g in via:
                 cooked_s = "yes" if g.lower() in cooked else "no"
-            if g in seen:
+            if g in seen and not seen_s:
                 seen_s = "yes (%s uses, screens %s)" % (seen[g]["uses"], " ".join(seen[g]["screens"].split()[:6]))
+        bound_games = [g for g in games if g in via]
         if games and not bound_where:
-            flags.append(gap_flag(reason, cov0) or "unbound")
-        if games and bound_where and cooked_s == "no":
-            flags.append("not_cooked")
-        if games and bound_where and kind == "mesh" and not seen_s and seen and "/Hero/" not in games[0]:
-            flags.append("not_seen")
+            flags.append(gap_flag(reason, cov) or "unbound")
+            if len(games) > 1:
+                details.append("%d packages of this name, none bound" % len(games))
+        elif len(games) > 1 and len(bound_games) < len(games):
+            details.append("stale twin(s), not bound: " + " ".join(g for g in games if g not in via))
+        newer = [g for g in bound_games if not in_commit(g, a.cook_commit)] if a.cook_commit else []
+        if bound_games and cooked_s == "no":
+            if newer:
+                flags.append("unverified")
+                details.append("not in the tree that was cooked (added after that cook)")
+            else:
+                flags.append("not_cooked")
+        after_sweep = bool(a.sweep_commit) and all(not in_commit(g, a.sweep_commit) for g in bound_games)
+        if bound_games and kind != "clip":
+            if any(g in swapped for g in bound_games):
+                # DinkArtSubsystem DinkApplyEnvironmentMeshSwap hides the component of this mesh and draws a photoreal mesh
+                # in its place, but only for elements of authored dink-art manifests (DinkArtSubsystem.cpp ~492): family
+                # art, world maps and other layers draw the swap source as it is
+                targets = " / ".join(sorted({os.path.basename(t.split(".")[0]) for g in bound_games for t in swapped.get(g, [])}))
+                # camera_*.json only name meshes for the camera fade rules; they place nothing
+                unswapped = sorted(w for w in {w for g in bound_games for w in roots.get(g, set())} - dink_art
+                                   if not os.path.basename(w).startswith("camera_"))
+                if seen_s:
+                    flags.append("bug")
+                    details.append("drawn unswapped in the sweep (%s) although mesh_swaps maps it to %s" % (seen_s, targets))
+                elif not unswapped:
+                    flags.append("replaced")
+                    reason = reason or "replaced: environment.json mesh_swaps draws %s in its place" % targets
+                else:
+                    flags.append("bug")
+                    details.append("drawn unswapped by %s: mesh_swaps (-> %s) applies only to elements of authored (non-context) dink-art manifests"
+                                   % (", ".join(unswapped), targets))
+            elif k and k[0] in ("replaced", "bug", "superseded"):
+                flags.append(k[0])
+            elif any(g in HERO_MESHES for g in bound_games):
+                seen_s = seen_s or "player pawn (the scene audit lists the screen, not the pawn; the hero is in every frame)"
+            elif not seen_s and seen and kind == "mesh" and after_sweep:
+                flags.append("unverified")
+                details.append("not seen: added after the sweep (not in its tree)")
+            elif not seen_s and seen and kind == "mesh":
+                why = unseen_reason(bound_games, via, families, placements, captured, environment)
+                flags.append("not_seen")
+                details.append("not seen: " + why)
         played = ""
-        if kind == "clip":
-            played = clip_played(name, reason, literals, roots, games) if games else ""
-            if games and bound_where and played.startswith("no (no runtime"):
+        if kind == "clip" and bound_games:
+            played = clip_played(name, reason, literals, roots, games)
+            if reason.startswith("replaced:"):
+                flags.append("replaced")
+            elif played.startswith("no (no runtime"):
                 flags.append("unbound")
                 details.append("bound by a manifest but no runtime caller plays it")
-        cov = covered_by(name, index)
         if cov and not reason and any(f in ("not_imported", "unbound") for f in flags):
             reason = "queued: " + cov
         rows.append({
-            "asset": name, "kind": kind, "stream": stream, "source": rel(src) if src else "",
-            "exported": "yes" if src and os.path.isfile(src) else "no",
+            "asset": name, "kind": kind, "stream": stream, "source": " | ".join(rel(x) for x in srcs),
+            "exported": "yes" if srcs and all(os.path.isfile(x) for x in srcs) else "no",
             "imported": " ".join(games), "bound": bound_where, "cooked": cooked_s, "seen": seen_s or played,
             "covered_by": cov,
             "flag": worst(flags), "detail": "; ".join(dict.fromkeys(details)), "reason": reason,
@@ -617,16 +838,34 @@ def main():
             flags.append(fl)
             details.append(d)
         bound_where = via.get(g, "")
-        cooked_s = "" if cooked is None else ("yes" if g.lower() in cooked else "no")
+        cooked_s = "" if cooked is None or not bound_where else ("yes" if g.lower() in cooked else "no")
         seen_s = "yes" if g in seen else ""
+        k = known_reason(n, g, known)
+        reason = "%s: %s" % k if k else ""
         if not bound_where:
-            flags.append("unbound")
+            flags.append(gap_flag(reason, covered_by(n, index)) or "unbound")
+        elif cooked_s == "no" and a.cook_commit and not in_commit(g, a.cook_commit):
+            flags.append("unverified")
+            details.append("not in the tree that was cooked (added after that cook)")
         elif cooked_s == "no":
             flags.append("not_cooked")
+        elif g in swapped:
+            flags.append("replaced")
+            reason = reason or "replaced: environment.json mesh_swaps"
+        elif k and k[0] in ("replaced", "bug", "superseded"):
+            flags.append(k[0])
+        elif g in HERO_MESHES:
+            seen_s = "player pawn"
+        elif not seen_s and seen and n.startswith("SM_") and a.sweep_commit and not in_commit(g, a.sweep_commit):
+            flags.append("unverified")
+            details.append("not seen: added after the sweep (not bound in its tree)")
+        elif not seen_s and seen and n.startswith("SM_"):
+            flags.append("not_seen")
+            details.append("not seen: " + unseen_reason([g], via, families, placements, captured, environment))
         rows.append({"asset": n, "kind": "package only", "stream": "/".join(g.split("/")[2:4]), "source": "",
                      "exported": "?", "imported": g, "bound": bound_where, "cooked": cooked_s, "seen": seen_s,
                      "covered_by": covered_by(n, index),
-                     "flag": worst(flags), "detail": "; ".join(dict.fromkeys(details)), "reason": ""})
+                     "flag": worst(flags), "detail": "; ".join(dict.fromkeys(details)), "reason": reason})
 
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     cols = ["asset", "kind", "stream", "source", "exported", "imported", "bound", "cooked", "seen", "flag", "detail",
@@ -640,8 +879,8 @@ def main():
     if a.scene_audit:
         # which sprite classes an existing but unbound / unimported mesh was made for (source manifests' families)
         unbound_by_class = collections.defaultdict(set)
-        names = {r["asset"] for r in rows if r["flag"] in ("unbound", "not_imported", "queued", "deliberate")}
-        for man in glob.glob(os.path.join(ART, "**", "manifest.json"), recursive=True):
+        names = {r["asset"] for r in rows if r["flag"] in ("unbound", "not_imported", "queued", "deliberate", "documented", "alternate")}
+        for man in sorted(glob.glob(os.path.join(ART, "**", "manifest.json"), recursive=True)):
             m = read_json(man) or {}
             for mod in (m.get("modules") or m.get("assets") or []):
                 if not isinstance(mod, dict) or mod.get("name") not in names:
@@ -655,10 +894,10 @@ def main():
                     if not asset.startswith("family:") and info == (st, ingame, _note):
                         unbound_by_class[key[7:]].add(asset)
         card_rows = card_table(a.scene_audit, a.coverage_csv,
-                               os.path.join(CONTENT, "Dink", "Data", "Art", "families.json"), unbound_by_class)
+                               os.path.join(CONTENT, "Dink", "Data", "Art", "families.json"), unbound_by_class, placements)
         cards_out = a.cards_out or os.path.splitext(a.out)[0] + "_cards.csv"
         with open(cards_out, "w", newline="", encoding="utf-8") as h:
-            w = csv.DictWriter(h, lineterminator="\n", fieldnames=["class", "cards", "screens", "final_origin_cards", "family_row", "mesh_available"])
+            w = csv.DictWriter(h, lineterminator="\n", fieldnames=["class", "cards", "with_origin", "screens", "final_origin_cards", "family_row", "mesh_available"])
             w.writeheader()
             w.writerows(card_rows)
 
@@ -674,12 +913,27 @@ def main():
     lines += ["", "| kind | flag | rows |", "|---|---|---:|"]
     for (k, f), n in sorted(by_kind.items()):
         lines.append("| %s | %s | %d |" % (k, f, n))
+    # every texture under the art folders, not only those reached from a source row
+    tex_all = sorted(g for g in pk.files if g.startswith(tuple("/Game/" + x for x in ART_FOLDERS)) and os.path.basename(g).startswith("T_"))
+    tex_ruled, tex_flags = 0, []
+    for g in tex_all:
+        n = os.path.basename(g)
+        if NORMAL_TEX.search(n) or MASK_TEX.search(n) or COLOUR_TEX.search(n) or n.endswith("_E"):
+            tex_ruled += 1
+        tex_flags += ["%s (%s)" % (g, d) for f, d in check_package(pk, g, pk.tags(g))]
+    lines += ["", "Textures under the art folders: %d; with a suffix rule (normal / mask / colour): %d; flagged: %d%s" % (
+        len(tex_all), tex_ruled, len(tex_flags), (": " + "; ".join(tex_flags)) if tex_flags else "")]
     if card_rows:
-        lines += ["", "Drawn sprite cards (scene audit): %d cards of %d classes; on an origin counted final: %d; "
+        n_cards = sum(r["cards"] for r in card_rows)
+        n_origin = sum(r["with_origin"] for r in card_rows)
+        lines += ["", "Drawn sprite cards (scene audit, above the ground): %d cards of %d classes; %d carry an origin ID "
+                  "(the final-origin check covers these; %d decor/instanced cards have none); on an origin counted final: %d; "
                   "classes with a delivered mesh made for them: %d" % (
-                      sum(r["cards"] for r in card_rows), len(card_rows),
+                      n_cards, len(card_rows), n_origin, n_cards - n_origin,
                       sum(len(r["final_origin_cards"].split()) for r in card_rows),
                       sum(1 for r in card_rows if r["mesh_available"]))]
+    unexplained = [r["asset"] for r in rows if r["flag"] == "not_seen" and "UNEXPLAINED" in r["detail"]]
+    lines += ["", "not_seen rows without an explanation: %d%s" % (len(unexplained), (": " + ", ".join(unexplained)) if unexplained else "")]
     txt = "\n".join(lines) + "\n"
     print(txt)
     print("wrote", rel(a.out) if a.out.startswith(PROJECT) else a.out)
