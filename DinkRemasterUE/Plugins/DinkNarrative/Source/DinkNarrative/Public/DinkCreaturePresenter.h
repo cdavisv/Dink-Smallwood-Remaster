@@ -56,6 +56,8 @@ private:
 		float Yaw = 0.f;
 		int32 Hitpoints = 0;
 		int32 Brain = 0;
+		/** The sequence it showed (animating, else its picture). */
+		int32 Sequence = 0;
 		int32 SizePercent = 100;
 	};
 	float SequenceDuration(const class UDinkGameplay& Game, int32 Sequence);

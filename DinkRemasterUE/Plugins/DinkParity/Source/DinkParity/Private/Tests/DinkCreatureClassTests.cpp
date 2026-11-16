@@ -70,23 +70,25 @@ namespace
 		~FClassArtMode() { if (Variable) Variable->SetWithCurrentPriority(Previous); if (Art) Art->SetWithCurrentPriority(PreviousArt); }
 	};
 
-	bool ShippedPillbugRowReady(FAutomationTestBase& Test)
+	bool ShippedRowReady(FAutomationTestBase& Test, FName ClassId)
 	{
 		FString Text;
 		const TSharedPtr<FJsonObject> Manifest = FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Art/creatures.json"))) ? ParseJson(Text) : nullptr;
 		TArray<FDinkCreatureClassBinding> Rows;
 		if (Manifest) DinkCreatureClass::ParseBindings(*Manifest, Rows);
-		const FDinkCreatureClassBinding* Pillbug = Rows.FindByPredicate([](const FDinkCreatureClassBinding& B) { return B.ClassId == TEXT("pillbug"); });
-		if (!Test.TestNotNull(TEXT("creatures.json has a pillbug class row"), Pillbug)) return false;
-		FString Package = Pillbug->Mesh;
+		const FDinkCreatureClassBinding* Row = Rows.FindByPredicate([ClassId](const FDinkCreatureClassBinding& B) { return B.ClassId == ClassId; });
+		if (!Test.TestNotNull(FString::Printf(TEXT("creatures.json has a %s class row"), *ClassId.ToString()), Row)) return false;
+		FString Package = Row->Mesh;
 		Package.Split(TEXT("."), &Package, nullptr);
-		if (!FPackageName::DoesPackageExist(Package) || !LoadObject<USkeletalMesh>(nullptr, *Pillbug->Mesh, nullptr, LOAD_NoWarn | LOAD_Quiet))
+		if (!FPackageName::DoesPackageExist(Package) || !LoadObject<USkeletalMesh>(nullptr, *Row->Mesh, nullptr, LOAD_NoWarn | LOAD_Quiet))
 		{
-			Test.AddWarning(TEXT("skipped: the photoreal pillbug is not imported in this checkout"));
+			Test.AddWarning(FString::Printf(TEXT("skipped: the photoreal %s is not imported in this checkout"), *ClassId.ToString()));
 			return false;
 		}
 		return true;
 	}
+
+	bool ShippedPillbugRowReady(FAutomationTestBase& Test) { return ShippedRowReady(Test, TEXT("pillbug")); }
 
 	ADinkPlaceholderActor* SpawnPlacement(UWorld* World, int32 Screen, int32 Index, FName ClassId, int32 Sequence, FName Script, UStaticMesh* CardMesh)
 	{
@@ -248,7 +250,7 @@ bool FDinkCreatureClassDressTest::RunTest(const FString&)
 		ADinkPlaceholderActor* OriginBound = SpawnPlacement(World, 438, 3, TEXT("pillbug"), 131, TEXT("en-pill"), Plane);
 		ADinkPlaceholderActor* Proxy = SpawnPlacement(World, 527, 5, TEXT("pillbug"), 131, NAME_None, Plane);
 		Proxy->PlacementKind = TEXT("hardness_only");
-		ADinkPlaceholderActor* Other = SpawnPlacement(World, 527, 6, TEXT("slime_blue"), 651, TEXT("en-slimb"), Plane);
+		ADinkPlaceholderActor* Other = SpawnPlacement(World, 527, 6, TEXT("bonca_gray"), 601, TEXT("en-bonc"), Plane);
 		First->SetActorLocation(FVector(1000, 0, 0));
 		Second->SetActorLocation(FVector(90000, 0, 0));
 		const TArray<FName> TagsBefore = First->Tags;
@@ -320,6 +322,10 @@ namespace
 		TArray<int32> Handles;
 		AActor* Dink = nullptr;
 		static constexpr int32 Screen = 999;
+		/** What the three placements are: the pillbug with en-pill by default; without a script the brain and walk are set here. */
+		FName Family = TEXT("pillbug");
+		int32 Sequence = 131, Brain = 0, BaseWalk = -1;
+		FName Script = TEXT("en-pill");
 
 		bool Start(UStaticMesh* Plane)
 		{
@@ -343,14 +349,25 @@ namespace
 			const FVector2D Starts[] = { FVector2D(126, 108), FVector2D(363, 186), FVector2D(233, 364) };
 			for (int32 Index = 0; Index < 3; ++Index)
 			{
-				ADinkPlaceholderActor* Bug = SpawnPlacement(World, Screen, 4 + Index, TEXT("pillbug"), 131, TEXT("en-pill"), Plane);
+				ADinkPlaceholderActor* Bug = SpawnPlacement(World, Screen, 4 + Index, Family, Sequence, Script, Plane);
+				Bug->Brain = Brain;
 				Bugs.Add(Bug);
 				const int32 Handle = D->HandleForActor(Bug);
 				Handles.Add(Handle);
 				FDinkSprite* Sprite = D->FindSprite(Handle);
 				Sprite->Screen = Screen; Sprite->X = Starts[Index].X; Sprite->Y = Starts[Index].Y;
 				D->SyncActorToSprite(*Sprite);
-				Story->StartProcedure(TEXT("en-pill"), TEXT("main"), Handle);
+				if (Script.IsNone())
+				{
+					Sprite->Props.Add(TEXT("brain"), Brain);
+					Sprite->Props.Add(TEXT("base_walk"), BaseWalk);
+					Sprite->Props.Add(TEXT("seq"), Sequence);
+					Sprite->Props.Add(TEXT("pseq"), Sequence);
+					Sprite->Props.Add(TEXT("speed"), 1);
+					Sprite->Dir = 1;
+					continue;
+				}
+				Story->StartProcedure(Script, TEXT("main"), Handle);
 				Story->RunUntilIdle();
 				D->FindSprite(Handle)->Props.Add(TEXT("target"), 1); // en-pill.c targets Dink on a coin toss; every bug chases here
 			}
@@ -369,6 +386,7 @@ namespace
 				Presenter->Present();
 				for (ADinkPlaceholderActor* Bug : Bugs)
 					if (UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(Bug)) Body->TickComponent(Dt, LEVELTICK_All, nullptr);
+				Creatures->StepGore(Dt);
 			}
 		}
 
@@ -578,5 +596,112 @@ bool FDinkCreatureClassParityTest::RunTest(const FString&)
 	}
 	TestEqual(TEXT("frames that differ"), Different, 0);
 	TestTrue(TEXT("the trace is not empty and the sprites moved"), Traces[0].Num() == 240 && Traces[0][0] != Traces[0][239]);
+	return true;
+}
+
+// The duck's gore rows: the fountain of the headless run, the head that flies off, the burst of the second hit.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkCreatureClassGoreRowsTest, "Dink.Art.CreatureClass.GoreRowsParseAndRefuse", DINK_TEST_FLAGS)
+bool FDinkCreatureClassGoreRowsTest::RunTest(const FString&)
+{
+	const TCHAR* Json = TEXT(R"({"schema":"dink-creatures/1","classes":[
+		{"class":"duck","mesh":"/Game/A/SK_Duck.SK_Duck","blood_drop":"/Game/A/SM_Drop.SM_Drop",
+		 "locomotion":{"idle":"/Game/A/I.I","gaits":[{"clip":"/Game/A/W.W","speed_cm_s":60}]},
+		 "roles":{"walk":{"sequences":[21,23],"locomotion":true},
+		          "headless":{"sequences":[111,113],"locomotion":true,"mesh":"/Game/A/SK_Headless.SK_Headless",
+		            "gore":{"bone":"neck_02","drops_per_second":90,"drop_speed_cm_s":300,"spread_deg":16,"drop_size_cm":1.5,
+		                    "trail":{"material":"/Game/A/M_Puddle.M_Puddle","every_cm":90,"size_cm":30},
+		                    "severed":{"flying":"/Game/A/SM_Fly.SM_Fly","landed":"/Game/A/SM_Head.SM_Head","decal":"/Game/A/M_Puddle.M_Puddle","decal_size_cm":70,"speed_cm_s":330,"drops":40}}}},
+		 "bursts":[{"sequences":[111,113],"brain":3,"drops":160,"decal":{"material":"/Game/A/M_Burst.M_Burst","size_cm":170}}]},
+		{"class":"nodrop","mesh":"/Game/A/SK_X.SK_X","locomotion":{"idle":"/Game/A/I.I","gaits":[{"clip":"/Game/A/W.W","speed_cm_s":60}]},
+		 "roles":{"walk":{"sequences":[300],"locomotion":true,"gore":{"bone":"neck","drops_per_second":10}}}},
+		{"class":"nobone","mesh":"/Game/A/SK_X.SK_X","blood_drop":"/Game/A/SM_Drop.SM_Drop","locomotion":{"idle":"/Game/A/I.I","gaits":[{"clip":"/Game/A/W.W","speed_cm_s":60}]},
+		 "roles":{"walk":{"sequences":[400],"locomotion":true,"gore":{"drops_per_second":10}}}},
+		{"class":"nolanding","mesh":"/Game/A/SK_X.SK_X","blood_drop":"/Game/A/SM_Drop.SM_Drop","locomotion":{"idle":"/Game/A/I.I","gaits":[{"clip":"/Game/A/W.W","speed_cm_s":60}]},
+		 "roles":{"walk":{"sequences":[500],"locomotion":true,"gore":{"bone":"neck","severed":{"flying":"/Game/A/SM_Fly.SM_Fly"}}}}}]})");
+	const TSharedPtr<FJsonObject> Manifest = ParseJson(Json);
+	TArray<FDinkCreatureClassBinding> Bindings;
+	TArray<FString> Problems;
+	TestEqual(TEXT("only the complete row is kept"), DinkCreatureClass::ParseBindings(*Manifest, Bindings, &Problems), 1);
+	TestEqual(TEXT("three rows refused, one reason each"), Problems.Num(), 3);
+	if (Bindings.Num() != 1) return false;
+	const FDinkCreatureClassBinding& Duck = Bindings[0];
+	const FDinkCreatureRole* Headless = Duck.RoleFor(113);
+	TestNotNull(TEXT("headless role"), Headless);
+	if (!Headless) return false;
+	TestTrue(TEXT("fountain"), Headless->Gore.HasFountain() && Headless->Gore.Bone == FName(TEXT("neck_02")) && FMath::IsNearlyEqual(Headless->Gore.DropsPerSecond, 90.f));
+	TestTrue(TEXT("trail"), Headless->Gore.TrailDecal == TEXT("/Game/A/M_Puddle.M_Puddle") && FMath::IsNearlyEqual(Headless->Gore.TrailEveryCm, 90.f));
+	TestTrue(TEXT("severed head"), Headless->Gore.HasSevered() && Headless->Gore.LandedMesh == TEXT("/Game/A/SM_Head.SM_Head") && Headless->Gore.SeveredDrops == 40);
+	const FDinkCreatureRole* Walk = Duck.RoleFor(21);
+	TestTrue(TEXT("the walk role has no gore"), Walk && !Walk->Gore.HasFountain() && !Walk->Gore.HasSevered());
+	TestNotNull(TEXT("the headless duck with duck_brain bursts"), Duck.BurstFor(111, 3));
+	TestNull(TEXT("a whole duck does not burst"), Duck.BurstFor(21, 3));
+	TestNull(TEXT("another brain does not burst"), Duck.BurstFor(111, 9));
+	TestEqual(TEXT("blood drop mesh"), Duck.BloodDrop, FString(TEXT("/Game/A/SM_Drop.SM_Drop")));
+	// A picture the row does not know: the plain creature, not the role with its own (headless) mesh, although that sorts first.
+	DinkCreatureClass::FSpriteView Unknown;
+	Unknown.PSeq = 999;
+	const FDinkCreatureRole* Fallback = DinkCreatureClass::RoleForSprite(Duck, Unknown);
+	TestTrue(TEXT("an unknown picture stands in the plain walk role"), Fallback && Fallback->Name == FName(TEXT("walk")));
+	return true;
+}
+
+// The burst of sequence 164 belongs to the kill path only (duck_brain's hit on a headless duck, dink.cpp:12726-12740): a
+// duck a script removes (sp_active 0, sp_kill) leaves no blood, as in the original. Stains are moved at the cap, not
+// destroyed and made again.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkCreatureClassBurstOnKillTest, "Dink.Art.CreatureClass.BurstOnlyOnAKillAndStainsReused", DINK_TEST_FLAGS)
+bool FDinkCreatureClassBurstOnKillTest::RunTest(const FString&)
+{
+	if (!ShippedRowReady(*this, TEXT("duck"))) return true;
+	UStaticMesh* Plane = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Plane.Plane"));
+	FClassArtMode Art(2);
+	FPillbugScene Scene;
+	Scene.Family = TEXT("duck");
+	Scene.Sequence = 21;
+	Scene.Brain = 3;
+	Scene.BaseWalk = 20;
+	Scene.Script = NAME_None;
+	if (!TestTrue(TEXT("scene starts"), Scene.Start(Plane))) return false;
+	ON_SCOPE_EXIT { Scene.Stop(); };
+	for (const ADinkPlaceholderActor* Duck : Scene.Bugs)
+		if (!TestNotNull(TEXT("each duck placement has its creature"), UDinkCreatureSubsystem::FindClassBody(Duck))) return false;
+	const float Dt = 1.f / 60.f;
+	auto Run = [&Scene, Dt](int32 Frames) { for (int32 Frame = 0; Frame < Frames; ++Frame) Scene.Step(Dt); };
+	auto Hit = [&Scene](int32 Handle) { Scene.Game->HurtThing(Handle, 10); Scene.Game->ProcessDamage(); Scene.Story->RunUntilIdle(); };
+	Run(10);
+	// first hits: two ducks lose their heads and run on headless
+	Hit(Scene.Handles[0]);
+	Hit(Scene.Handles[1]);
+	TestTrue(TEXT("the first hit makes the duck headless"), Scene.D->FindSprite(Scene.Handles[0])->bHeadless && Scene.D->FindSprite(Scene.Handles[1])->bHeadless);
+	Run(20);
+	TestEqual(TEXT("no burst for a first hit"), Scene.Creatures->GetBurstCount(), 0);
+	TestTrue(TEXT("the neck fountains"), Scene.Creatures->GetBloodDropCount() > 0);
+	// a script removes the second headless duck and the whole third one: no blood
+	Scene.D->DeactivateSprite(Scene.Handles[1], 0);
+	Scene.D->DeactivateSprite(Scene.Handles[2], 0);
+	Run(2);
+	TestEqual(TEXT("sp_active 0 is not a kill: no burst"), Scene.Creatures->GetBurstCount(), 0);
+	TestFalse(TEXT("and the sprite is not marked"), Scene.D->FindSprite(Scene.Handles[1])->bBurstKill);
+	// the second hit on the first one: the burst of sequence 164
+	Hit(Scene.Handles[0]);
+	TestFalse(TEXT("the simulation removed the duck"), Scene.D->FindSprite(Scene.Handles[0])->bActive);
+	TestTrue(TEXT("the kill path marked it"), Scene.D->FindSprite(Scene.Handles[0])->bBurstKill);
+	Run(2);
+	TestEqual(TEXT("one burst"), Scene.Creatures->GetBurstCount(), 1);
+	Run(2);
+	TestEqual(TEXT("and only one"), Scene.Creatures->GetBurstCount(), 1);
+	TestTrue(TEXT("the ball of droplets is in the air"), Scene.Creatures->GetBloodDropCount() > 500);
+	// gore instances are moved in place: a second of the burst leaves the drop count falling, never a stale instance
+	Run(150);
+	TestTrue(TEXT("the burst has rained down within two and a half seconds"), Scene.Creatures->GetBloodDropCount() < 100);
+	// stains: at the cap the oldest one is moved
+	UMaterialInterface* Stain = LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Dink/Photoreal/Creatures/Gore/M_BloodBurst_Decal.M_BloodBurst_Decal"));
+	if (TestNotNull(TEXT("stain material"), Stain))
+	{
+		const int32 MadeBefore = Scene.Creatures->GetBloodDecalsMade();
+		for (int32 Index = 0; Index < 3 * UDinkCreatureSubsystem::MaxBloodDecals; ++Index)
+			Scene.Creatures->AddBloodDecal(Stain, FVector(Index * 10.0, 0.0, 0.0), 0.f, 30.f);
+		TestEqual(TEXT("stains stop at the cap"), Scene.Creatures->GetBloodDecalCount(), UDinkCreatureSubsystem::MaxBloodDecals);
+		TestTrue(TEXT("no decal component is made past the cap"), Scene.Creatures->GetBloodDecalsMade() <= UDinkCreatureSubsystem::MaxBloodDecals && Scene.Creatures->GetBloodDecalsMade() >= MadeBefore);
+	}
 	return true;
 }

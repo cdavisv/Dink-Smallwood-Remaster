@@ -13,6 +13,9 @@
 UDinkCreatureComponent::UDinkCreatureComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
+	// The scripts and brains move the actor from the story subsystem, a tickable object that runs after the actor tick
+	// groups: in the default group this component measured last frame's position (QA item A6).
+	PrimaryComponentTick.TickGroup = TG_PostUpdateWork;
 	SetMobility(EComponentMobility::Movable);
 	SetCollisionProfileName(TEXT("NoCollision"));
 	SetGenerateOverlapEvents(false);
@@ -32,7 +35,7 @@ bool UDinkCreatureComponent::Configure(USkeletalMesh* Mesh, UBlendSpace* InLocom
 	Locomotion = InLocomotion;
 	Feed = InFeed;
 	Motion.Reset();
-	SpeedCmS = 0.f;
+	SpeedCmS = ShownSpeedCmS = 0.f;
 	ConsumedFood.Reset();
 	ResumeLocomotion();
 	return true;
@@ -96,6 +99,10 @@ void UDinkCreatureComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 	{
 		const FVector At = Owner->GetActorLocation();
 		SpeedCmS = Motion.Update(At, DeltaTime);
+		// The sprite moves in whole pixels (6.9 cm) on 60 Hz steps, so the speed over 100 ms steps by a pixel's worth from
+		// frame to frame. The animation is driven by a quarter-second average of it; a stop is followed at once.
+		const float Follow = SpeedCmS <= Settings.StationarySpeedCmS ? 1.f : 1.f - FMath::Exp(-FMath::Max(DeltaTime, 0.f) / 0.25f);
+		ShownSpeedCmS = ShownSpeedCmS <= Settings.StationarySpeedCmS ? SpeedCmS : FMath::Lerp(ShownSpeedCmS, SpeedCmS, Follow);
 		if (bFeeding && (Motion.GetImmediateSpeed() > Settings.StationarySpeedCmS || SpeedCmS > Settings.StationarySpeedCmS || !GetSingleNodeInstance() ||
 						 !GetSingleNodeInstance()->IsPlaying()))
 			ResumeLocomotion();
@@ -108,11 +115,11 @@ void UDinkCreatureComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 				{
 					const FBlendParameter& Parameter = Locomotion->GetBlendParameter(Axis);
 					if (Parameter.DisplayName.Contains(TEXT("Speed")))
-						Position[Axis] = FMath::Clamp(SpeedCmS, Parameter.Min, Parameter.Max);
+						Position[Axis] = FMath::Clamp(ShownSpeedCmS, Parameter.Min, Parameter.Max);
 				}
 				Animation->SetBlendSpacePosition(Position);
 				const float HighestNominal = FMath::Max(Settings.NominalWalkSpeedCmS, Settings.NominalRunSpeedCmS);
-				Animation->SetPlayRate(FMath::Clamp(SpeedCmS / FMath::Max(HighestNominal, 1.f), 1.f, 3.f));
+				Animation->SetPlayRate(FMath::Clamp(ShownSpeedCmS / FMath::Max(HighestNominal, 1.f), 1.f, 3.f));
 			}
 			if (const UDinkCreatureSubsystem* Creatures = GetWorld()->GetSubsystem<UDinkCreatureSubsystem>())
 				for (const TWeakObjectPtr<AActor>& Food : Creatures->GetFoodActors())
