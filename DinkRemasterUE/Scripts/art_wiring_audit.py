@@ -44,6 +44,7 @@ FSTRING = re.compile(rb"([\x01-\xc8])\x00\x00\x00([\x20-\x7e]+)\x00")
 GAME_PATH = re.compile(r"/Game/[A-Za-z0-9_/]+(?:\.[A-Za-z0-9_]+)?")
 ASSET_NAME = re.compile(r"\b((?:SM|SK|MI|M|AN|A|T|NS|MPC|SP|PA|MF|MM|BS|ABP|DM|MID)_[A-Za-z0-9_]+)\b")
 LOD_SUFFIX = re.compile(r"_LOD\d+$", re.I)
+LOD_DIR = re.compile(r"/(LODs?|LOD_V\d+|FBX|Export(_V\d+|V\d+)?)$", re.I)   # an export's own LOD/FBX folder is one delivery
 # Packages of these folders are art; everything else under Content/Dink is data, audio or generated.
 ART_FOLDERS = ("Dink/Photoreal", "Dink/Kits", "Dink/Props", "Dink/Foliage", "Dink/Refinements", "Dink/Hero",
                "Dink/Creatures", "Dink/NPC", "Dink/Materials", "Dink/Textures", "Dink/Camera")
@@ -290,8 +291,9 @@ def reach(pk, roots):
     """Package -> first root it is reached from (breadth first over package references)."""
     via = {}
     queue = collections.deque()
-    for p, where in roots.items():
+    for p, where in sorted(roots.items()):
         via[p] = sorted(where)[0]
+        ROOT_OF[p] = p
         queue.append(p)
     while queue:
         p = queue.popleft()
@@ -300,8 +302,12 @@ def reach(pk, roots):
         for q in pk.refs(p):
             if q not in via:
                 via[q] = "via " + os.path.basename(p) + " (" + via[p].split(" (")[0] + ")"
+                ROOT_OF[q] = ROOT_OF[p]
                 queue.append(q)
     return via
+
+
+ROOT_OF = {}    # package -> the root package it is reached from (filled by reach)
 
 
 def newest_referenced_set():
@@ -371,7 +377,7 @@ def sources():
         stem = LOD_SUFFIX.sub("", os.path.splitext(os.path.basename(f))[0])
         kind = "clip" if stem.startswith(("A_", "AN_")) else "mesh"
         if kind == "clip":
-            if "/Animations/" in f:
+            if "/Animations/" in f.replace(os.sep, "/"):
                 continue                   # hero/NPC clips come from the clip manifests (names differ from files)
             stem = "AN_" + stem[2:] if stem.startswith("A_") else stem
         stream = "/".join(rel(f, ART).split(os.sep)[:2])
@@ -404,8 +410,32 @@ def sources():
     return sorted(rows.values(), key=lambda r: (r[3], r[0]))
 
 
-def known_rows():
+OWNER_ID = re.compile(r"\b(?:[A-Z]{2}-Q?\d+|A\d{2,3})\b")
+
+
+def table_ids():
+    """Row ids of doc/remaster/ALPHA_BUG_LIST.md and FABLE_ART_QUEUE.md (first cell of each table row)."""
+    ids = set()
+    for name in ("ALPHA_BUG_LIST.md", "FABLE_ART_QUEUE.md"):
+        try:
+            with open(os.path.join(os.path.dirname(PROJECT), "doc", "remaster", name), encoding="utf-8") as h:
+                ids.update(m.group(1) for m in re.finditer(r"^\| *([A-Z]{1,2}-?Q?[0-9]+[a-z]?) *\|", h.read(), re.M))
+        except OSError:
+            pass
+    return ids
+
+
+def known_rows(check_ids=True):
+    """The reviewed reasons. Every owner id a reason names (A204, DS-07, PQ-Q5, ...) must be a row of the bug list or
+    the art queue: a typo or a renumbered row stops the run (review of PR #154)."""
     d = read_json(os.path.join(PROJECT, "Scripts", "art_wiring_known.json")) or {}
+    if check_ids:
+        ids = table_ids()
+        # a row may name an id that an open PR adds (`pending_ids`); every other id must exist now
+        missing = sorted({i for r in d.get("rows", []) for i in OWNER_ID.findall(r["why"]) if i not in r.get("pending_ids", [])} - ids)
+        if ids and missing:
+            sys.exit("art_wiring_audit: art_wiring_known.json names rows that ALPHA_BUG_LIST.md / FABLE_ART_QUEUE.md do "
+                     "not have: " + ", ".join(missing))
     return [(re.compile(r["match"]), re.compile(r["source"]) if r.get("source") else None, r["kind"], r["why"])
             for r in d.get("rows", [])]
 
@@ -599,38 +629,67 @@ HERO_MESHES = {"/Game/Dink/Photoreal/Characters/Dink/SK_Dink_Photoreal", "/Game/
 _COMMIT_CACHE = {}
 
 
-def in_commit(game, commit):
-    """Did `commit` (the tree a cook or a sweep ran on) have this package, bound by the same kind of root? The package
-    file must exist there and, when this tree's Data JSON names the package, that commit's Data JSON must name it too."""
-    if commit not in _COMMIT_CACHE:
-        def git(*args):
-            return subprocess.run(["git", "-C", PROJECT] + list(args), capture_output=True, text=True).stdout
-        if subprocess.run(["git", "-C", PROJECT, "cat-file", "-e", commit + "^{commit}"], capture_output=True).returncode != 0:
-            sys.exit("art_wiring_audit: unknown commit %r (--cook-commit / --sweep-commit)" % commit)
-        files = set(git("ls-tree", "-r", "--name-only", commit, "--", "Content").splitlines())
-        prefix = git("rev-parse", "--show-prefix").strip()
-        files = {f[len(prefix):] if prefix and f.startswith(prefix) else f for f in files}
-        data = []
-        for f in sorted(files):
-            if f.startswith("Content/Dink/Data/") and f.endswith(".json") and "/Audio/" not in f and "/Hardness/" not in f:
-                data.append(git("show", "%s:./%s" % (commit, f)))
-        _COMMIT_CACHE[commit] = (files, "\n".join(data))
-    files, data = _COMMIT_CACHE[commit]
-    stem = "Content/" + game[len("/Game/"):]
-    if stem + ".uasset" not in files and stem + ".umap" not in files:
+class _CommitPackages:
+    """The package names of a commit's Content (from git ls-tree), shaped like Packages for bind_string."""
+
+    def __init__(self, files):
+        self.files = {"/Game/" + f[len("Content/"):].rsplit(".", 1)[0]: f for f in files if f.endswith((".uasset", ".umap"))}
+        self.by_name = collections.defaultdict(list)
+        for g in self.files:
+            self.by_name[os.path.basename(g)].append(g)
+
+
+def commit_roots(commit):
+    """(package files, direct roots) at `commit`, by the same binding rules as runtime_roots: Data JSON that the
+    runtime reads there (dink-art/1, or named by that commit's Runtime C++), the string literals of its Runtime
+    modules, and the composed paths."""
+    if commit in _COMMIT_CACHE:
+        return _COMMIT_CACHE[commit]
+
+    def git(*args):
+        return subprocess.run(["git", "-C", PROJECT] + list(args), capture_output=True, text=True).stdout
+    if subprocess.run(["git", "-C", PROJECT, "cat-file", "-e", commit + "^{commit}"], capture_output=True).returncode != 0:
+        sys.exit("art_wiring_audit: unknown commit %r (--cook-commit / --sweep-commit)" % commit)
+    prefix = git("rev-parse", "--show-prefix").strip()
+    every = [f[len(prefix):] if prefix and f.startswith(prefix) else f
+             for f in git("ls-tree", "-r", "--name-only", commit, "--", ".").splitlines()]
+    cpk = _CommitPackages([f for f in every if f.startswith("Content/")])
+    roots = collections.defaultdict(set)
+    module_dirs = [os.path.relpath(d, PROJECT).replace(os.sep, "/") + "/" for d in runtime_module_dirs()]
+    literals = []
+    for f in sorted(every):
+        if f.endswith((".cpp", ".h")) and "/Tests/" not in f and any(f.startswith(d) for d in module_dirs):
+            for lit in CPP_LITERAL.findall(git("show", "%s:./%s" % (commit, f))):
+                literals.append(lit)
+                bind_string(lit, "C++ at " + commit, cpk, roots)
+    named = "\n".join(literals)
+    for f in sorted(every):
+        if f.startswith("Content/Dink/Data/") and f.endswith(".json") and "/Audio/" not in f and "/Hardness/" not in f:
+            try:
+                data = json.loads(git("show", "%s:./%s" % (commit, f)))
+            except ValueError:
+                continue
+            stem = os.path.splitext(os.path.basename(f))[0]
+            if (isinstance(data, dict) and data.get("schema") == "dink-art/1") or stem in named:
+                walk_json(data, f, cpk, roots, BARE_PREFIX.get(os.path.basename(f)))
+    for game, where in COMPOSED.items():
+        if game in cpk.files:
+            roots[game].add(where)
+    _COMMIT_CACHE[commit] = (set(cpk.files), roots)
+    return _COMMIT_CACHE[commit]
+
+
+def in_commit(game, commit, via_here):
+    """Was the package there and bound at `commit` (the tree a cook or sweep ran on)? Its package must exist there, and
+    the root it is reached from today must have been a root there too (same binding rules); a package reached from
+    a world map counts as bound when it existed (the maps of that commit are not in git)."""
+    files, roots = commit_roots(commit)
+    if game not in files:
         return False
-    return game in data or game not in data_text_here()
-
-
-_HERE = []
-
-
-def data_text_here():
-    if not _HERE:
-        _HERE.append("\n".join(open(f, encoding="utf-8", errors="replace").read() for f in sorted(
-            glob.glob(os.path.join(CONTENT, "Dink", "Data", "**", "*.json"), recursive=True))
-            if "/Audio/" not in f.replace(os.sep, "/") and "/Hardness/" not in f.replace(os.sep, "/")))
-    return _HERE[0]
+    root = ROOT_OF.get(game, game)
+    if via_here.get(root, "").startswith("world map"):
+        return True
+    return root in roots
 
 
 def captured_screens(audit_path):
@@ -764,6 +823,10 @@ def main():
             games = sorted(pk.by_name.get(name.replace("AN_", "AN_", 1) + "_PR", []))
         flags, details = [], []
         reason = ""
+        deliveries = sorted({LOD_DIR.sub("", os.path.dirname(rel(x)).replace(os.sep, "/")) for x in srcs})
+        if kind != "clip" and len(deliveries) > 1:
+            details.append("%d separate deliveries share this name (%s); the package does not record which one was "
+                           "imported" % (len(deliveries), "; ".join(deliveries)))
         fam = unclaimed_family_of(src) if src else None
         st = status.get(name) or (status.get("family:" + fam) if fam else None)
         k = known_reason(name, src_all, known)
@@ -771,11 +834,13 @@ def main():
             reason = "%s: %s" % k
         elif kind == "clip" and deliberate_clip_reason(name, natural, {}):
             reason = "replaced: " + deliberate_clip_reason(name, natural, {})
-        elif st and ("not imported" in st[1] or "not bound" in st[1]):
+        elif st and ("not imported" in st[1] or "not bound" in st[1]) and not any(g in via for g in games):
+            # the unclaimed kit's note explains a gap; it says nothing about a same-named asset another kit delivered
+            # and the game draws (the corpse kit's bodies share names with the unclaimed kit's corpses)
             reason = ("STATUS.md: " + st[1] + "; " + st[2])[:300]
         cov = covered_by(name, index)
         if not cov and k:       # the reviewed reason names its owner row (A2xx, DS-07, PQ-Q5, ...)
-            cov = " ".join(dict.fromkeys(re.findall(r"\b(?:[A-Z]{2}-Q?\d+|A\d{2,3})\b", k[1])))
+            cov = " ".join(dict.fromkeys(OWNER_ID.findall(k[1])))
         if not games:
             flags.append(gap_flag(reason, cov) or "not_imported")
         bound_where, cooked_s, seen_s = "", "", ""
@@ -809,14 +874,14 @@ def main():
                 details.append("%d packages of this name, none bound" % len(games))
         elif len(games) > 1 and len(bound_games) < len(games):
             details.append("stale twin(s), not bound: " + " ".join(g for g in games if g not in via))
-        newer = [g for g in bound_games if not in_commit(g, a.cook_commit)] if a.cook_commit else []
+        newer = [g for g in bound_games if not in_commit(g, a.cook_commit, via)] if a.cook_commit else []
         if bound_games and cooked_s == "no":
             if newer:
                 flags.append("unverified")
                 details.append("not in the tree that was cooked (added after that cook)")
             else:
                 flags.append("not_cooked")
-        after_sweep = bool(a.sweep_commit) and all(not in_commit(g, a.sweep_commit) for g in bound_games)
+        after_sweep = bool(a.sweep_commit) and all(not in_commit(g, a.sweep_commit, via) for g in bound_games)
         if bound_games and kind != "clip":
             if any(g in swapped for g in bound_games):
                 targets = " / ".join(sorted({os.path.basename(t.split(".")[0]) for g in bound_games for t in swapped.get(g, [])}))
@@ -886,7 +951,7 @@ def main():
         reason = "%s: %s" % k if k else ""
         if not bound_where:
             flags.append(gap_flag(reason, covered_by(n, index)) or "unbound")
-        elif cooked_s == "no" and a.cook_commit and not in_commit(g, a.cook_commit):
+        elif cooked_s == "no" and a.cook_commit and not in_commit(g, a.cook_commit, via):
             flags.append("unverified")
             details.append("not in the tree that was cooked (added after that cook)")
         elif cooked_s == "no":
@@ -899,7 +964,7 @@ def main():
             flags.append(k[0])
         elif g in HERO_MESHES:
             seen_s = "player pawn"
-        elif not seen_s and seen and n.startswith("SM_") and a.sweep_commit and not in_commit(g, a.sweep_commit):
+        elif not seen_s and seen and n.startswith("SM_") and a.sweep_commit and not in_commit(g, a.sweep_commit, via):
             flags.append("unverified")
             details.append("not seen: added after the sweep (not bound in its tree)")
         elif not seen_s and seen and n.startswith("SM_"):

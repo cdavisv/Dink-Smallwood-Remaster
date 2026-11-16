@@ -155,6 +155,7 @@ class Classifier(unittest.TestCase):
         self.assertNotIn('/Game/Dink/Old/SM_Wall', self.roots)
 
     def test_c_only_runtime_modules_are_cpp_roots(self):
+        # reads the project's real .uplugin / .uproject files: run in a full checkout (or copy them into a snapshot)
         dirs = [d.replace(os.sep, '/') for d in A.runtime_module_dirs()]
         self.assertTrue(any(d.endswith('Plugins/DinkCore/Source/DinkCore') for d in dirs))
         self.assertFalse(any('DinkImport' in d or 'DinkParity' in d or 'DinkProbe' in d for d in dirs))
@@ -164,6 +165,15 @@ class Classifier(unittest.TestCase):
         for lit in A.CPP_LITERAL.findall(text):
             A.bind_string(lit, 'x.cpp', self.pk, self.roots)
         self.assertEqual(sorted(self.roots), ['/Game/Dink/A/SM_Door'])
+
+
+class OwnerIds(unittest.TestCase):
+    def test_owner_ids_must_exist(self):
+        ids = A.table_ids()          # reads doc/remaster in a full checkout
+        self.assertIn('A209', ids)
+        self.assertIn('DS-07', ids)
+        self.assertEqual(A.OWNER_ID.findall('see A204 and DS-07, PQ-Q5'), ['A204', 'DS-07', 'PQ-Q5'])
+        A.known_rows()               # every id art_wiring_known.json names exists (or is declared pending)
 
 
 class Swaps(unittest.TestCase):

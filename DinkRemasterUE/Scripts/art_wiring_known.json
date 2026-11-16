@@ -1,6 +1,6 @@
 {
   "schema": "dink-art-wiring-known/1",
-  "note": "Reviewed reasons for delivered sources that do not reach the player (read by Scripts/art_wiring_audit.py; first match wins). `match` is a regular expression on the asset name, `source` (optional) one on its source path. `kind`: deliberate (a written decision keeps it out), queued (an art queue row or open branch owns the work), superseded (another delivered asset of the same family is the one shown), alternate (a source-only candidate beside the bound asset, waiting for an art decision). Reviewed 15 Nov 2026 by the art-wiring audit; add a row when you take a decision, remove it when the asset is bound.",
+  "note": "Reviewed reasons for delivered sources that do not reach the player (read by Scripts/art_wiring_audit.py; first match wins). `match` is a regular expression on the asset name, `source` (optional) one on its source path. `kind`: deliberate (a written decision keeps it out), queued (an art queue row or open branch owns the work), superseded (another delivered asset of the same family is the one shown), alternate (a source-only candidate beside the bound asset, waiting for an art decision). Reviewed 15 Nov 2026 by the art-wiring audit; add a row when you take a decision, remove it when the asset is bound. `pending_ids` lists owner ids that an open PR adds (the run checks every other id against ALPHA_BUG_LIST.md and FABLE_ART_QUEUE.md).",
   "rows": [
     {
       "match": "^AN_Dink_Fist$",
@@ -240,7 +240,10 @@
     {
       "match": "^SM_Ore_Rock_Blue_PR$",
       "kind": "queued",
-      "why": "its only placement is a scripted road rock (s3-rock): Fable row VS-15 (scripted rocks; on PR #148, pending)"
+      "why": "its only placement is a scripted road rock (s3-rock): Fable row VS-15 (scripted rocks; on PR #148, pending)",
+      "pending_ids": [
+        "VS-15"
+      ]
     },
     {
       "match": "^SK_(Girl|Gnome_Wizard|Maiden_Blue|Maiden_Brown|Maiden_Red|Merchant|Old_Man|Peasant|Soldier)_PR$",
@@ -260,7 +263,7 @@
     {
       "match": "^(SM_Bomb_PR|SM_Bread_Braided_PR|SM_Cheese_Wheel_PR|SM_Grapes_PR|SM_Steak_TBone_PR|SM_Banner_Red_PR|SM_Notice_Hark_PR|SM_Notice_Wanted_PR|SM_Cellar_Hatch_PR)$",
       "kind": "queued",
-      "why": "delivered mesh the family layer cannot place (table top or shelf, wall, flat under a wall): bug row A209 (a per-placement height / wall mount, or per-screen manifest elements)"
+      "why": "delivered mesh the family layer cannot place (table top or shelf, wall, flat under a wall): bug row A209 (with the four table-top fruits) (a per-placement height / wall mount, or per-screen manifest elements)"
     }
   ]
 }
