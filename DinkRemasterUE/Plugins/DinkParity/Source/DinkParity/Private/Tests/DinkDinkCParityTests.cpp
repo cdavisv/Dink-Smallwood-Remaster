@@ -77,6 +77,54 @@ namespace DinkCParityTest
 
 using namespace DinkCParityTest;
 
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkCParityCallbackKilledTest, "Dink.Parity.DinkC.CallbackEndsOnWaitSayAndHit", DINK_TEST_FLAGS)
+bool FDinkCParityCallbackKilledTest::RunTest(const FString& Parameters)
+{
+	// kill_returning_stuff (D:5049-5070) ends a script's set_callback_random timers. wait and the say_stop family call it (D:8043, 7916, 7948,
+	// 7973, 7997), and so does the engine before it runs `hit`, `talk` or `damage` in the script (D:15541, 15582, 14217, 14277, hurt D:9968).
+	FEnv E = Make(*this, false);
+	if (!E.IsValid()) return false;
+
+	// 1. s1-caves.c (SCR_131): main calls noise() once and then set_callback_random("noise", 5000, 10000); noise() does wait(4000), which ends
+	// the timer. The original roars at most twice; the remake used to call noise every 5-15 s for as long as Dink stayed in the cave.
+	E.Facts->SetFact(TEXT("wizard_see"), 0);
+	const int32 From = E.Story->Events.Num();
+	const int32 Cave = E.Story->StartProcedure(TEXT("s1-caves"), TEXT("main"), 0, {}, 131, /*bNewInstance*/ true);
+	if (!TestTrue(TEXT("s1-caves main starts"), Cave != 0)) return false;
+	Frames(E, 90.0);
+	TestTrue(TEXT("s1-caves: the callback ran noise at most once in 90 s (its wait(4000) ended the timer)"), Starts(E, TEXT("s1-caves"), TEXT("noise"), From) <= 1);
+	if (const FDinkScriptInstance* I = E.Story->FindInstance(Cave))
+	{
+		TestTrue(TEXT("s1-caves: no set_callback_random timer is left"), I->CallbackProc.IsNone());
+	}
+
+	// 2. en-bong.c: main ends with set_callback_random("target", 2000, 0); Dink's hit runs `hit` after kill_returning_stuff, so the Bonca
+	// keeps the target `hit` gave it (sp_target(&current_sprite, &enemy_sprite)) instead of re-picking one every 2 s.
+	const int32 Bonca = E.D->CreateVirtualSprite(12, 300, 200);
+	FDinkSprite* B = E.D->FindSprite(Bonca);
+	UDinkDirector::InitDumbSprite(*B);
+	B->Props.Add(TEXT("brain"), 9);
+	const int32 Caller = E.D->CreateVirtualSprite(12, 100, 100);
+	const int32 CallerId = E.Story->StartProcedure(TEXT("s1-brg2"), TEXT("hit"), Caller, {}, 12, true);
+	FDinkScriptInstance* CallerI = E.Story->FindInstance(CallerId);
+	if (!TestNotNull(TEXT("a caller instance"), CallerI)) return false;
+	Run(E, *CallerI, FString::Printf(TEXT("sp_script %d \"en-bong\""), Bonca));
+	Frames(E, 1.0); // main: wait(500), then the callback is set
+	const FDinkScriptInstance* BI = E.Story->FindInstanceForSprite(Bonca);
+	if (!TestNotNull(TEXT("en-bong runs on the Bonca"), BI)) return false;
+	TestTrue(TEXT("en-bong: the target callback is set"), BI->CallbackProc == FName(TEXT("target")));
+	E.Facts->SetFact(TEXT("enemy_sprite"), 1);
+	E.Story->StartProcedure(TEXT("en-bong"), TEXT("hit"), Bonca);
+	BI = E.Story->FindInstanceForSprite(Bonca);
+	TestTrue(TEXT("en-bong: hit ended the callback (kill_returning_stuff before HIT, D:15582)"), BI && BI->CallbackProc.IsNone());
+
+	// 3. A wait ends the caller's own timer.
+	CallerI->CallbackProc = TEXT("main");
+	Run(E, *CallerI, TEXT("wait 10"));
+	TestTrue(TEXT("wait ends the instance's set_callback_random timer (D:8043)"), CallerI->CallbackProc.IsNone());
+	return true;
+}
+
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkCParityLoadScreenUnfreezesTest, "Dink.Parity.DinkC.LoadScreenUnfreezesDink", DINK_TEST_FLAGS)
 bool FDinkCParityLoadScreenUnfreezesTest::RunTest(const FString& Parameters)
 {

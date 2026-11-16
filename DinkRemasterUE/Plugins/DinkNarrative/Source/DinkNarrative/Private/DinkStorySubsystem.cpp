@@ -309,7 +309,11 @@ int32 UDinkStorySubsystem::StartProcedure(FName Script, FName Procedure, int32 S
 	// The engine runs `talk`, `hit` and `damage` in the sprite's script after kill_returning_stuff (D:14215-14217, 14264-14266, 14275-14277,
 	// 14413-14415, 15539-15541, 15580-15582, hurt D:9958-9968): a monster's set_callback_random retargeting (en-bong.c, s7-drag.c `target`)
 	// stops when Dink hits it, and its `hit` locks it onto him.
-	// (Bug A40, held back on branch fix/dinkc-callbacks until the probe's dragon fight is re-tuned.)
+	static const FName ProcTalk(TEXT("talk")), ProcHit(TEXT("hit")), ProcDamage(TEXT("damage"));
+	if (I && (Procedure == ProcTalk || Procedure == ProcHit || Procedure == ProcDamage))
+	{
+		KillReturningStuff(*I);
+	}
 	if (!I)
 	{
 		int32 InstanceScreen = Screen;
@@ -640,7 +644,8 @@ void UDinkStorySubsystem::HandleSpokenLine(FDinkScriptInstance& I, const FDinkSt
 	{
 		// say_stop, say_stop_npc, say_stop_xy and say_xy call kill_returning_stuff(script) (D:7916, 7948, 7973, 7997) once the speaker
 		// passed their checks (sprite 0, say_stop_npc's text_owned_by): the script's set_callback_random timer ends. s1-caves.c's `noise`
-		// (wait(4000), then a say_stop) so roars twice in the original, not every 5-15 s. Bug A40: held back on branch fix/dinkc-callbacks.
+		// (wait(4000), then a say_stop) so roars twice in the original, not every 5-15 s.
+		KillReturningStuff(I);
 	}
 	if (Line.SayCall == SayStop)
 	{

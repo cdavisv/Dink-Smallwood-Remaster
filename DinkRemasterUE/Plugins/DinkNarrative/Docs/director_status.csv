@@ -1,6 +1,6 @@
 command,category,uses,form,status,note
 (line) say_stop,dialogue,1702,spoken line,implemented,"shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); blocks until timed out (strlen x 77 ms, min 2700) or skipped"
-wait,timing,1550,command,implemented,suspends this script instance for ms of game time (others keep running)
+wait,timing,1550,command,implemented,"suspends this script instance for ms of game time (others keep running); ends its set_callback_random timer (kill_returning_stuff, D:8043)"
 unfreeze,control,378,command,implemented,undoes freeze
 create_sprite,sprites,342,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 (line) say,dialogue,339,spoken line,implemented,shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); does not block

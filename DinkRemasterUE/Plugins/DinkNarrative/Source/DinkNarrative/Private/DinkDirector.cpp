@@ -181,10 +181,10 @@ void UDinkDirector::RegisterCommands()
 	};
 
 	// ---- Timing and control ----
-	Register(TEXT("wait"), S::Implemented, TEXT("suspends this script instance for ms of game time (others keep running)"), [this, Block](FDinkCommandContext& Ctx)
+	Register(TEXT("wait"), S::Implemented, TEXT("suspends this script instance for ms of game time (others keep running); ends its set_callback_random timer (kill_returning_stuff, D:8043)"), [this, Block](FDinkCommandContext& Ctx)
 	{
-		// dink.cpp:8034-8053 also calls kill_returning_stuff(script) here: bug A40, held back (branch fix/dinkc-callbacks) until the probe's
-		// dragon fight is re-tuned.
+		// dink.cpp:8034-8053: kill_returning_stuff(script), then a one-shot callback that runs the script on after ms.
+		UDinkStorySubsystem::KillReturningStuff(Ctx.Instance);
 		return Block(EDinkBlock::Time, Story->GetNowMs() + FMath::Max(0, Ctx.Int(0)));
 	});
 	Register(TEXT("freeze"), S::Implemented, TEXT("sprite frozen; for Dink (1) player movement input is ignored"), [this](FDinkCommandContext& Ctx)
