@@ -1362,6 +1362,16 @@ def main(argv=None) -> int:
     saved_pictures = saved_picture_keys({p.stem: p.read_text(errors="replace") for p in sorted(story.glob("*.c"))}, canonical_sequences)
     for key, image in saved_pictures.items():
         pic_keys.setdefault(key, image)
+    # Script-created sprites without a family mesh are drawn as their 1997 picture on a card (A53): every picture listed
+    # in Content/Dink/Data/Art/sprite_pictures.json (Scripts/export_sprite_pictures.py) gets its texture and material too.
+    script_pictures = here / "Content/Dink/Data/Art/sprite_pictures.json"
+    if script_pictures.exists():
+        wanted = set(json.loads(script_pictures.read_text())["pictures"])
+        for sequence in canonical_sequences:
+            for frame in sequence["frames"]:
+                key = f"{sequence['seq']}_{frame['frame']:02d}"
+                if key in wanted and frame.get("image"):
+                    pic_keys.setdefault(key, frame["image"])
 
     # --- sprites
     sprites_out = {}

@@ -189,6 +189,13 @@ public:
 	static const FName ScriptSpriteTag;
 	/** Tag on the camera-facing effect card of a script-created sprite (rows with "effect"). */
 	static const FName ScriptEffectTag;
+	/** Tag on the card that shows a script-created sprite's 1997 picture when its picture has no family mesh. */
+	static const FName ScriptPictureTag;
+
+	/** The picture cards made by DressScriptSprite; UDinkGreyboxSubsystem turns them to face the camera each frame. */
+	static TArray<TWeakObjectPtr<class UStaticMeshComponent>>& ScriptPictureCards();
+	/** Pixel width, height and origin (x, y) of a 1997 picture "<seq>_<frame:02d>" from Data/Art/sprite_pictures.json. */
+	static bool PictureInfo(int32 Sequence, int32 Frame, FIntVector4& Out);
 
 	/**
 	 * Presentation of a sprite a script created (create_sprite: pickups, dropped gold and hearts). Such a sprite has no
@@ -198,8 +205,12 @@ public:
 	 * Call again when the picture or the size changes: the mesh follows, and a picture without a family row gets the
 	 * marker back. Actors that another layer presents (script characters, creatures, food) are left alone.
 	 * Visual only: touch, hit and talk keep the sprite's pixel box. Returns true when a family mesh is shown.
+	 * A picture without a family mesh (script people, Seth, effects) is drawn as the 1997 picture on a camera-facing card
+	 * (MI_Sprite_<seq>_<frame> of the import, real size from sprite_pictures.json, its origin on the ground point) and the
+	 * grey marker is hidden; true is returned then too. bAllowPictureCard false leaves that out (a twinkle riding a heap).
+	 * The marker stays only when the picture was never imported.
 	 */
-	bool DressScriptSprite(AActor* Actor, int32 Sequence, int32 Frame, const FVector& GroundOffset, float Size = 1.f);
+	bool DressScriptSprite(AActor* Actor, int32 Sequence, int32 Frame, const FVector& GroundOffset, float Size = 1.f, bool bAllowPictureCard = true);
 
 	/**
 	 * Class id of a sprite picture, learnt from the placements of the loaded world (sprite_classes.csv is import-time
