@@ -15,6 +15,9 @@ def pixel(p):
  return q
 pig_ids=[p['id'] for p in placements if p['class_id']=='pig']
 layout={'schema':'dink-art/1','screen':407,'hide_screen_visuals':[407],'authored_collision_screens':[407],'hide_origins':[p['id'] for p in placements if p['id'] not in pig_ids],'replacements':[],'elements':[],'lights':[], 'asset_paths':{name:'/Game/Dink/Kits/StonebrookExterior/'+name+'.'+name for name in ['SM_Ground_Meadow_20m_01','SM_Fence_SplitRail_4m_01','SM_Boulder_Fieldstone_01','SM_Grass_Meadow_01','SM_Path_Earth_8m_01']}}
+# Screen 375's two north-south fence pieces lie below its play area (map y 601-602: 1997 never draws them), but the family
+# layer dresses 375 as 407's neighbour and their split rails would stand inside this pen (A201 review, 16 Nov 2026).
+layout['hide_origins']+=['S375_P02','S375_P03']
 def add(name,mesh,p,z=0,yaw=0,scale=(1,1,1),collision=False):
  layout['elements'].append({'name':name,'mesh':mesh,'source_pixel':p,'height_cm':z,'rotation_deg':[0,yaw,0],'scale':list(scale),'collision':collision})
 minimum=[min(v[i] for v in c.values())-.02 for i in range(2)];maximum=[max(v[i] for v in c.values())+.02 for i in range(2)];width=(maximum[0]-minimum[0])/3;depth=(maximum[1]-minimum[1])/2

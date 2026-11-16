@@ -90,7 +90,7 @@
       "span": "width",
       "anchor": "hardbox",
       "yaw_from_sprite": true,
-      "note": "93 lands/fence/fence- frame 1 (east-west run; with yaw_from_sprite off a run takes a stable per-origin yaw, set it true to align runs east-west). North-south and diagonal runs stay unbound: their sprite is a projected depth that a uniform scale cannot fit."
+      "note": "93 lands/fence/fence- frame 1 (east-west run; with yaw_from_sprite off a run takes a stable per-origin yaw, set it true to align runs east-west). The photoreal split rail (A206: family art never gets environment.json mesh_swaps, so the row names it directly). North-south and diagonal runs are the sequence-and-frame rows 93 frames 4, 3/6 and 2/5 below (A201)."
     },
     {
       "family": "93 lands/fence/fence- north-south run",
