@@ -632,7 +632,7 @@ def main():
     cols = ["asset", "kind", "stream", "source", "exported", "imported", "bound", "cooked", "seen", "flag", "detail",
             "reason", "covered_by"]
     with open(a.out, "w", newline="", encoding="utf-8") as h:
-        w = csv.DictWriter(h, fieldnames=cols)
+        w = csv.DictWriter(h, fieldnames=cols, lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
 
@@ -658,7 +658,7 @@ def main():
                                os.path.join(CONTENT, "Dink", "Data", "Art", "families.json"), unbound_by_class)
         cards_out = a.cards_out or os.path.splitext(a.out)[0] + "_cards.csv"
         with open(cards_out, "w", newline="", encoding="utf-8") as h:
-            w = csv.DictWriter(h, fieldnames=["class", "cards", "screens", "final_origin_cards", "family_row", "mesh_available"])
+            w = csv.DictWriter(h, lineterminator="\n", fieldnames=["class", "cards", "screens", "final_origin_cards", "family_row", "mesh_available"])
             w.writeheader()
             w.writerows(card_rows)
 
