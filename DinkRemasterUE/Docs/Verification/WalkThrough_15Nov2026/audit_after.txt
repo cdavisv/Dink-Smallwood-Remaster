@@ -1,0 +1,19 @@
+# rows 40634 on 559 screens; walls rows 2457
+# non-card items 39891; walk-in >= 20.0 cm (not soft): 109
+
+## by mesh (count, max depth, screens)
+   35     44 family           SM_Wall_Dungeon_Curve                    solid 73 74 105 137 169 170 202 385 417 449 452 546
+   16     44 family_instance  SM_Wall_Dungeon_Curve                    solid 73 74 138 514 515 546 578 579 610
+   16     78 family           SM_Veg_PineForestEdge_V_01               solid 144 208 218 241 250 279 282 288 335 601
+   14     76 family           SM_Veg_PineForestEdge_H_01               solid 208 238 239 279 280 281 288 767
+    8     42 family           SM_Barrel_Oak_01                         solid 60 63 96 222 224
+    7     29 environment      SM_Town_Wall_Door                        solid 219 419 498 499 506 539 585
+    5     28 family           SM_Heart_Gold_PR                         other 106 157 165 166 352
+    2     56 family           SM_Teleport_Machine_PR                   other 154 253
+    2     72 family_instance  SM_Veg_PineForestEdge_V_01               solid 284
+    1     22 family           SM_Heart_Red_PR                          other 190
+    1     48 family           SM_Fountain_Stone_PR                     solid 260
+    1     78 family_instance  SM_Veg_PineForestEdge_H_01               solid 284
+    1    463 authored         SM_Cottage_Stonebrook_PR                 solid 439
+
+## worst 60

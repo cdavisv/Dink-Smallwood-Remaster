@@ -359,6 +359,12 @@ private:
 	// `water_tiles` of screens whose collision has no water fill (dink.WaterTiles). ---
 	struct FDinkReliefRock { FVector2D Px = FVector2D::ZeroVector; float ClearPx = 0.f; int32 Tier = 1; };
 	void ApplyRelief(int32 ScreenNumber, const FDinkScreenCorners& Corners);
+	/** Whether the walker collision blocks the centre and a ring of RadiusCm round it (relief rock fitting). */
+	bool ReliefDiscBlocked(const FVector& Centre, double RadiusCm) const;
+	/** The greybox screen actor that holds a screen's walker collision (cached; null until its level is loaded). */
+	const class ADinkGreyboxScreen* FindGreyboxScreen(int32 ScreenNumber);
+	TMap<int32, TWeakObjectPtr<class ADinkGreyboxScreen>> GreyboxScreens;
+	double GreyboxScreensScan = -10.0;
 	TMap<int32, TArray<FDinkReliefRock>> ReliefRocks;
 	TMap<int32, TArray<FBox2D>> WaterTileRects;
 	TMap<int32, TArray<float>> WaterTileSea; // ground_classes.json `water_sea_patch` (or `water_sea` nine times): the sea weight (0 pond .. 1 sea) at the sheet's corners, edge middles and centre
