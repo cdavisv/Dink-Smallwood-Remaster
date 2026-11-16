@@ -374,6 +374,9 @@ public:
 
 	// ---- Interaction ----
 
+	/** script_attach (D:8075-8087) rewrites the instance's sprite: &current_sprite follows AttachedTo at once, in the running line too. */
+	void SetLiveCurrentSprite(FDinkScriptInstance& I);
+
 	/** The talk key: runs `talk` of the nearest scripted actor in front of Pawn. True if one started. */
 	bool TryTalk(APawn* Pawn);
 	/** Screen load (the engine's load_screen + draw_screen): kills scripts of the old screen, runs `main` of the new one. */
@@ -468,7 +471,8 @@ private:
 	int32 StepInstance(int32 InstanceId, int32 MaxLines);
 	void HandleSpokenLine(FDinkScriptInstance& Instance, const FDinkStoryLine& Line);
 	/** Unblocks instances whose wait is over. Returns true if any changed. */
-	bool UpdateBlocks();
+	/** bGameStopped (stop_entire_game): only says and children end; waits, moves and frames hold (no process_callbacks, no brains). */
+	bool UpdateBlocks(bool bGameStopped = false);
 	void FinishInstance(FDinkScriptInstance& Instance, const TCHAR* Reason);
 	void RemoveFinishedInstances();
 	void OpenMenu(FDinkScriptInstance& Instance);

@@ -204,6 +204,10 @@ public:
 	int32 HandleForPlacement(int32 Screen, int32 Placement);
 	/** add_sprite's defaults on a script-made sprite (speed 1, timing 33, size 100, base_* 0, dir 0). */
 	static void InitCreatedSprite(FDinkSprite& Sprite);
+	/** add_sprite_dumb's defaults (D:3089-3135), which create_sprite uses (D:9041-9051): speed 0, timing 0, size 100, hard 1, base_* -1, dir 0. */
+	static void InitDumbSprite(FDinkSprite& Sprite);
+	/** set_dink_speed's walk speed (D:17311-17321) over main.c's default 3: 4 for 1, 2 for 2, 1 for 3, 1/3 above, 0 for <= 0. */
+	static float DinkSpeedScale(int32 DinkSpeed);
 	/** A new virtual sprite (no actor) at engine pixel X/Y on Screen. */
 	int32 CreateVirtualSprite(int32 Screen, double X, double Y);
 	/** Smallest free handle >= 2 (the engine's add_sprite picks the first free slot). */
@@ -231,7 +235,8 @@ public:
 	// ---- Movement and time ----
 
 	/** Advances movement, sp_kill timers and fades. */
-	void Tick(double DeltaMs, double NowMs);
+	/** bGameStopped (stop_entire_game): kill timers still run (D:16811-16833, before the get_frame branch), moves do not (they run in the brain). */
+	void Tick(double DeltaMs, double NowMs, bool bGameStopped = false);
 	bool IsMoving(int32 Handle) const;
 	/** move / move_stop: walks the sprite in numpad direction Dir until x (or y for 2/8) passes Stop. */
 	void StartMove(FDinkSprite& Sprite, int32 Dir, int32 Stop, int32 NoHard = 0);
@@ -288,6 +293,8 @@ public:
 	/** dink.ini lines scripts ran with init() (sequence redefinitions), in order, for the animation layer. */
 	TArray<FString> InitLines;
 	bool bDinkCanWalkOffScreen = false;
+	/** stop_entire_game(1) (D:10099-10108): no sprite thinks or animates while a menu is up; cleared on the first frame without one (D:17431-17440). */
+	bool bStopEntireGame = false;
 	/** load_screen is moving the pawn (IsDinkPlacedByScript). */
 	bool bPlacingDink = false;
 	FDinkAudioStub Audio;

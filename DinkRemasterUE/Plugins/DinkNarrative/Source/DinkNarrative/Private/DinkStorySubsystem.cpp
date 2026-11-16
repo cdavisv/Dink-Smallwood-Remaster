@@ -306,6 +306,10 @@ int32 UDinkStorySubsystem::StartProcedure(FName Script, FName Procedure, int32 S
 		return 0;
 	}
 	FDinkScriptInstance* I = bNewInstance ? nullptr : FindInstanceForSprite(Sprite, Script);
+	// The engine runs `talk`, `hit` and `damage` in the sprite's script after kill_returning_stuff (D:14215-14217, 14264-14266, 14275-14277,
+	// 14413-14415, 15539-15541, 15580-15582, hurt D:9958-9968): a monster's set_callback_random retargeting (en-bong.c, s7-drag.c `target`)
+	// stops when Dink hits it, and its `hit` locks it onto him.
+	// (Bug A40, held back on branch fix/dinkc-callbacks until the probe's dragon fight is re-tuned.)
 	if (!I)
 	{
 		int32 InstanceScreen = Screen;
@@ -318,6 +322,16 @@ int32 UDinkStorySubsystem::StartProcedure(FName Script, FName Procedure, int32 S
 	}
 	BeginProcedure(*I, Procedure, Path, Args);
 	return I->Id;
+}
+
+void UDinkStorySubsystem::SetLiveCurrentSprite(FDinkScriptInstance& I)
+{
+	I.Vars.Add(TEXT("current_sprite"), I.AttachedTo);
+	if (CurrentInstanceId == I.Id && Story.IsLoaded())
+	{
+		TGuardValue<bool> Guard(bSyncingFacts, true);
+		Story.SetInt(TEXT("current_sprite"), I.AttachedTo);
+	}
 }
 
 void UDinkStorySubsystem::BeginProcedure(FDinkScriptInstance& I, FName Procedure, const FString& Path, const TArray<int32>& Args)
@@ -446,7 +460,8 @@ void UDinkStorySubsystem::RemoveFinishedInstances()
 
 void UDinkStorySubsystem::SwapIn(FDinkScriptInstance& I)
 {
-    I.Vars.Add(TEXT("current_sprite"),I.Sprite);
+    // &current_sprite is the instance's sprite field (decipher D:3846-3910), which script_attach rewrites (D:8075-8087): AttachedTo.
+    I.Vars.Add(TEXT("current_sprite"),I.AttachedTo);
     I.Vars.Add(TEXT("current_script"),I.Id);
 	TGuardValue<bool> Guard(bSyncingFacts, true);
 	for (const TPair<FString, int32>& Var : I.Vars)
@@ -463,9 +478,9 @@ void UDinkStorySubsystem::SwapOut(FDinkScriptInstance& I)
 	}
     // Original decipher/var_equals resolves these from the live instance,
     // not a cached local that predates force_vision's sprite1000 reassignment.
-    I.Vars.Add(TEXT("current_sprite"),I.Sprite);
+    I.Vars.Add(TEXT("current_sprite"),I.AttachedTo);
     I.Vars.Add(TEXT("current_script"),I.Id);
-    Story.SetInt(TEXT("current_sprite"),I.Sprite);
+    Story.SetInt(TEXT("current_sprite"),I.AttachedTo);
     Story.SetInt(TEXT("current_script"),I.Id);
 }
 
@@ -820,13 +835,17 @@ float UDinkStorySubsystem::GetFadeAlpha() const
 // ---------------------------------------------------------------------------------------------
 // Time
 
-bool UDinkStorySubsystem::UpdateBlocks()
+bool UDinkStorySubsystem::UpdateBlocks(bool bGameStopped)
 {
 	bool bChanged = false;
 	for (const TUniquePtr<FDinkScriptInstance>& Ptr : Instances)
 	{
 		FDinkScriptInstance& I = *Ptr;
 		if (I.State != EDinkInstanceState::Blocked)
+		{
+			continue;
+		}
+		if (bGameStopped && I.Block != EDinkBlock::Say && I.Block != EDinkBlock::Child)
 		{
 			continue;
 		}
@@ -941,11 +960,21 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 	}
 	PollScreenChange();
     if(Gameplay&&Gameplay->IsHardnessLoading())return;
-	Director->Tick(DeltaMs, NowMs);
-	UpdatePlayerPush();
-	Gameplay->Tick(DeltaMs, NowMs);
+	// stop_entire_game(1) (lraise.c's level-up menu, D:10099-10108). Every sprite is thought with get_frame (D:17423): its kill timer and
+	// that timer's callback still run (D:16811-16833: so texts expire and a say_stop goes on), but no brain, animation, move or touch damage
+	// (D:16850-16883). The frame then runs only the menu (process_talk, D:17431-17436): no process_callbacks, so no wait ends. On the first
+	// frame without a menu the flag clears, and that frame too ends there (goto flip, D:17437-17444).
+	const bool bGameStopped = Director->bStopEntireGame;
+	const bool bClearStop = bGameStopped && Menu.InstanceId == 0 &&
+		!Instances.ContainsByPredicate([](const TUniquePtr<FDinkScriptInstance>& I) { return I->State == EDinkInstanceState::Choosing; });
+	Director->Tick(DeltaMs, NowMs, bGameStopped);
+	if (!bGameStopped)
+	{
+		UpdatePlayerPush();
+		Gameplay->Tick(DeltaMs, NowMs);
+	}
 
-	// Texts time out.
+	// Texts time out (a text is a sprite with a kill timer).
 	for (int32 T = ActiveTexts.Num() - 1; T >= 0; --T)
 	{
 		if (ActiveTexts[T].ExpireMs <= NowMs)
@@ -954,11 +983,16 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 			ActiveTexts.RemoveAt(T);
 		}
 	}
+	if (bClearStop)
+	{
+		Director->bStopEntireGame = false;
+		return;
+	}
 
-	// set_callback_random: fires into an idle instance (D:11639).
+	// set_callback_random: fires into an idle instance (D:11639); not while the game is stopped (the engine skips process_callbacks then).
 	for (const TUniquePtr<FDinkScriptInstance>& I : Instances)
 	{
-		if (!I->CallbackProc.IsNone() && I->State == EDinkInstanceState::Idle && NowMs >= I->NextCallbackMs)
+		if (!bGameStopped && !I->CallbackProc.IsNone() && I->State == EDinkInstanceState::Idle && NowMs >= I->NextCallbackMs)
 		{
 			I->NextCallbackMs = NowMs + I->CallbackMinMs + (I->CallbackRandomMs > 0 ? Gameplay->RandomModulo(I->CallbackRandomMs) : 0);
 			StartProcedure(I->Script, I->CallbackProc, I->Sprite);
@@ -967,7 +1001,8 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 
 	for (int32 Pass = 0; Pass < 8; ++Pass)
 	{
-		bool bProgress = UpdateBlocks();
+		// While the game is stopped no wait, move or frame ends; says and children do, and the menu's script goes on.
+		bool bProgress = UpdateBlocks(bGameStopped);
 		TArray<int32> Ids;
 		for (const TUniquePtr<FDinkScriptInstance>& I : Instances)
 		{

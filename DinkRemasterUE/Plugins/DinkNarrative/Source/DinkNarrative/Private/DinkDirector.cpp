@@ -15,6 +15,7 @@
 #include "DinkSaveGame.h"
 #include "DinkStatsComponent.h"
 #include "DinkWorldStateSubsystem.h"
+#include "Greybox/DinkGreyboxCharacter.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "Greybox/DinkGreyboxCharacter.h"
 #include "Greybox/DinkPlaceholderActor.h"
@@ -184,6 +185,8 @@ void UDinkDirector::RegisterCommands()
 	// ---- Timing and control ----
 	Register(TEXT("wait"), S::Implemented, TEXT("suspends this script instance for ms of game time (others keep running)"), [this, Block](FDinkCommandContext& Ctx)
 	{
+		// dink.cpp:8034-8053 also calls kill_returning_stuff(script) here: bug A40, held back (branch fix/dinkc-callbacks) until the probe's
+		// dragon fight is re-tuned.
 		return Block(EDinkBlock::Time, Story->GetNowMs() + FMath::Max(0, Ctx.Int(0)));
 	});
 	Register(TEXT("freeze"), S::Implemented, TEXT("sprite frozen; for Dink (1) player movement input is ignored"), [this](FDinkCommandContext& Ctx)
@@ -213,9 +216,13 @@ void UDinkDirector::RegisterCommands()
 		R.bEndScript = true;
 		return R;
 	});
-	Register(TEXT("script_attach"), S::Implemented, TEXT("re-owns the instance (1000 = survives screen changes)"), [](FDinkCommandContext& Ctx)
+	Register(TEXT("script_attach"), S::Implemented, TEXT("re-owns the instance (1000 = survives screen changes); &current_sprite becomes that number, so later sp_* on 1000 do nothing (D:8075-8087, change_sprite D:5396-5403)"), [this](FDinkCommandContext& Ctx)
 	{
+		// dink.cpp:8075-8087: g_scriptInstance[script]->sprite = n. That field is what &current_sprite reads, so after script_attach(1000) an
+		// sp_*(&current_sprite, ..) is sp_*(1000, ..), which change_sprite ignores (D:5396-5403): Martridge's scroll (s1-mh-f.c:37-40) stays on
+		// the floor. Coordinator decision 15 Nov 2026 (bug A47): the engine's behaviour is live, as for every author-intent case.
 		Ctx.Instance.AttachedTo = Ctx.Int(0);
+		Story->SetLiveCurrentSprite(Ctx.Instance);
 		return FDinkCommandResult();
 	});
 	Register(TEXT("external"), S::Implemented, TEXT("runs another script's procedure in a new instance for the same sprite at once (dink.cpp:11326-11360); the caller waits only if the child blocks"), [this, Block](FDinkCommandContext& Ctx)
@@ -227,7 +234,8 @@ void UDinkDirector::RegisterCommands()
 		}
 		const FName Script(*Ctx.Str(0));
 		const FName Proc(*Ctx.Str(1));
-		const int32 Child = Story->StartProcedure(Script, Proc, Ctx.Instance.Sprite, Args, Ctx.Instance.Screen, /*bNewInstance*/ true);
+		// load_script(name, g_scriptInstance[script]->sprite) (D:11335): the caller's sprite field, which script_attach rewrites (AttachedTo).
+		const int32 Child = Story->StartProcedure(Script, Proc, Ctx.Instance.AttachedTo, Args, Ctx.Instance.Screen, /*bNewInstance*/ true);
 		if (Child == 0)
 		{
 			UE_LOG(LogDinkDirector, Log, TEXT("external %s.%s: not in the converted story (the original has no such script or procedure); nothing to run"), *Script.ToString(), *Proc.ToString());
@@ -497,7 +505,7 @@ void UDinkDirector::RegisterCommands()
 	{
 		const int32 Handle = CreateVirtualSprite(InstanceScreen(Ctx.Instance), Ctx.Int(0), Ctx.Int(1));
 		FDinkSprite& Sprite = Sprites[Handle];
-		InitCreatedSprite(Sprite);
+		InitCreatedSprite(Sprite); // A41: the engine uses add_sprite_dumb (D:9041-9051, InitDumbSprite); held back until the probe's Jack step is re-tuned
 		Sprite.Props.Add(TEXT("brain"), Ctx.Int(2));
 		Sprite.Props.Add(TEXT("pseq"), Ctx.Int(3));
 		Sprite.Props.Add(TEXT("pframe"), Ctx.Int(4));
@@ -819,15 +827,26 @@ void UDinkDirector::RegisterCommands()
 		UE_LOG(LogDinkDirector, Verbose, TEXT("init \"%s\" recorded"), *Ctx.Str(0));
 		return FDinkCommandResult();
 	});
-	for (const TCHAR* Name : { TEXT("set_mode"), TEXT("stop_entire_game"), TEXT("reset_timer"), TEXT("set_button") })
+	Register(TEXT("stop_entire_game"), S::Implemented, TEXT("stop_entire_game(1) (D:10099-10108): while a menu is up no brain, move, touch damage or wait runs; kill timers and texts do (ThinkSprite with get_frame, D:16811-16833, 17423); cleared on the first frame without a menu, which runs nothing else (D:17431-17444)"), [this](FDinkCommandContext& Ctx)
+	{
+		bStopEntireGame = Ctx.Int(0) == 1;
+		return FDinkCommandResult();
+	});
+	for (const TCHAR* Name : { TEXT("set_mode"), TEXT("reset_timer"), TEXT("set_button") })
 	{
 		Register(Name, S::Recorded, TEXT("engine/menu mode switch of the 2D title and escape screens; no equivalent yet"), [this](FDinkCommandContext& Ctx) { return RecordOnly(Ctx); });
 	}
-	Register(TEXT("set_dink_speed"), S::Recorded, TEXT("Dink's 2D walk speed (main.c sets 3); the greybox character walks at a fixed 6 m/s; recorded on Dink's sprite"), [this](FDinkCommandContext& Ctx)
+	Register(TEXT("set_dink_speed"), S::Implemented, TEXT("Dink's walk speed (D:7563-7575, read at D:17311-17321): 1, 2, 3 give 12, 6, 3 px per frame (main.c sets 3; item-bt.c's boots 2); the pawn's top speed is scaled by that over 3"), [this](FDinkCommandContext& Ctx)
 	{
+		// get_parms && g_nlist[0] != 0 (D:7568): 0 is ignored.
 		if (Ctx.Int(0) != 0)
 		{
-			GetDink().Props.Add(TEXT("dinkspeed"), Ctx.Int(0));
+			FDinkSprite& Dink = GetDink();
+			Dink.Props.Add(TEXT("dinkspeed"), Ctx.Int(0));
+			if (ADinkGreyboxCharacter* Hero = Cast<ADinkGreyboxCharacter>(Dink.Actor.Get()))
+			{
+				Hero->DinkSpeedScale = DinkSpeedScale(Ctx.Int(0));
+			}
 		}
 		return FDinkCommandResult();
 	});
@@ -919,7 +938,7 @@ void UDinkDirector::BindExternals(FDinkInkStory& InkStory)
 		const int32 Screen = Instance ? InstanceScreen(*Instance) : GetCurrentScreen();
 		const int32 Handle = CreateVirtualSprite(Screen, Arg(Args, 0), Arg(Args, 1));
 		FDinkSprite& Sprite = Sprites[Handle];
-		InitCreatedSprite(Sprite);
+		InitCreatedSprite(Sprite); // A41: the engine uses add_sprite_dumb (D:9041-9051, InitDumbSprite); held back until the probe's Jack step is re-tuned
 		Sprite.Props.Add(TEXT("brain"), Arg(Args, 2));
 		Sprite.Props.Add(TEXT("pseq"), Arg(Args, 3));
 		Sprite.Props.Add(TEXT("pframe"), Arg(Args, 4));
@@ -1211,6 +1230,30 @@ int32 UDinkDirector::HandleForPlacement(int32 Screen, int32 Placement)
 	return Handle;
 }
 
+float UDinkDirector::DinkSpeedScale(int32 DinkSpeed)
+{
+	// D:17311-17321: g_sprite[1].speed = 0 for dinkspeed <= 0, 12 for 1, 6 for 2, 3 for 3, else 1; main.c's 3 is the remake's normal speed.
+	const float Speed = DinkSpeed <= 0 ? 0.f : DinkSpeed == 1 ? 12.f : DinkSpeed == 2 ? 6.f : DinkSpeed == 3 ? 3.f : 1.f;
+	return Speed / 3.f;
+}
+
+void UDinkDirector::InitDumbSprite(FDinkSprite& Sprite)
+{
+	// add_sprite_dumb (D:3089-3135), what create_sprite calls (D:9041-9051): a zeroed sprite with speed 0, timer (sp_timing) 0, size 100,
+	// hard 1 and every base_* -1. Before 15 Nov 2026 create_sprite used add_sprite's defaults (speed 1, timing 33, bases 0): a created
+	// brain-9 sprite without sp_base_attack (s1-gate.c's Chealse, s1-lg) then took Dink as its target when hit (D:15556) and stood still
+	// for good (pill_brain's in_this_base(seq, 0)); created missiles without sp_timing (s2-cave2, s4-h1p, s8-da) flew at half speed.
+	Sprite.Dir = 0;
+	Sprite.Props.Add(TEXT("speed"), 0);
+	Sprite.Props.Add(TEXT("timing"), 0);
+	Sprite.Props.Add(TEXT("size"), 100);
+	Sprite.Props.Add(TEXT("hard"), 1);
+	for (const TCHAR* Base : { TEXT("base_walk"), TEXT("base_idle"), TEXT("base_attack"), TEXT("base_death"), TEXT("base_hit") })
+	{
+		Sprite.Props.Add(Base, -1);
+	}
+}
+
 void UDinkDirector::InitCreatedSprite(FDinkSprite& Sprite)
 {
 	// add_sprite (D:4299): a zeroed sprite with speed 1, timer 33, size 100, hard 1 (so base_walk etc. are 0, dir 0).
@@ -1450,6 +1493,14 @@ void UDinkDirector::ResetSprites()
 		// Dink's record or actor is already gone: release the first local controller directly
 		if (APlayerController* PC = GetWorld() ? GetWorld()->GetFirstPlayerController() : nullptr) PC->SetIgnoreMoveInput(false);
 		bDinkInputBlocked = false;
+	}
+	// load_game sets dinkspeed back to 3 (dink.cpp:1423) after disarming the weapon (D:1313-1322), and a new game's main.c sets 3: a load
+	// or a restart leaves the boots' set_dink_speed(2) behind; the re-arm of the loaded weapon sets it again if the boots are armed there.
+	{
+		APawn* Pawn = nullptr;
+		if (const FDinkSprite* DinkSprite = Sprites.Find(1)) Pawn = Cast<APawn>(DinkSprite->Actor.Get());
+		if (!Pawn) if (APlayerController* PC = GetWorld() ? GetWorld()->GetFirstPlayerController() : nullptr) Pawn = PC->GetPawn();
+		if (ADinkGreyboxCharacter* Hero = Cast<ADinkGreyboxCharacter>(Pawn)) Hero->DinkSpeedScale = 1.f;
 	}
 	++SpriteResetSerial;
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
@@ -1972,12 +2023,15 @@ void UDinkDirector::FinishAllMoves()
 	}
 }
 
-void UDinkDirector::Tick(double DeltaMs, double NowMs)
+void UDinkDirector::Tick(double DeltaMs, double NowMs, bool bGameStopped)
 {
 	TArray<int32> ToKill;
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
 	{
-		StepMove(Pair.Value, DeltaMs);
+		if (!bGameStopped)
+		{
+			StepMove(Pair.Value, DeltaMs);
+		}
 		if (Pair.Value.KillAtMs > 0.0 && NowMs >= Pair.Value.KillAtMs)
 		{
 			Pair.Value.KillAtMs = 0.0;
