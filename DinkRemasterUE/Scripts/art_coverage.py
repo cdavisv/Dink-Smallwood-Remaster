@@ -326,6 +326,10 @@ def load_families(assets, notes):
         if not isinstance(d, dict):
             continue
         schema = d.get("schema")
+        if isinstance(schema, str) and schema.startswith("dink-town-houses/") and d.get("families_yield") is True:
+            # FDinkFamilyPrecedence::AddManifest: a structure set owns the placements its sets stand for
+            for row in (d.get("screens") or {}).values():
+                origins.update(o for o in (row.get("stands_for") or {}) if isinstance(o, str))
         if schema == "dink-art/1":
             for field in ("replacements", "warp_overrides"):
                 origins.update(x["origin"] for x in d.get(field) or [] if isinstance(x, dict) and x.get("origin"))
@@ -525,7 +529,7 @@ def family_binding(rows, seq, cls, frame=None):
 TOWN_KIT = "/Game/Dink/Photoreal/TownExteriors/"
 
 
-def town_house_cards(data, resolve):
+def town_house_cards(data, resolve, source="town_houses.json", label="town-house", what="town house"):
     """town_houses.json -> {origin: (state, evidence)} for every card the file names, mirroring
     UDinkEnvironmentSubsystem::LoadTownHouses / ApplyTownHouses.
 
@@ -567,25 +571,26 @@ def town_house_cards(data, resolve):
             hid = stands.get(o)
             h = houses.get(hid) if hid else None
             if o not in hidden:
-                out[o] = ("placeholder", "town_houses.json names house %s for this card but its screen does not hide it: the sprite card stays" % hid)
+                out[o] = ("placeholder", "%s names house %s for this card but its screen does not hide it: the sprite card stays" % (source, hid))
             elif h is None:
-                out[o] = ("placeholder", "town_houses.json hides this card but no assembled house stands for it (stands_for %s)" % (hid or "is empty"))
+                out[o] = ("placeholder", "%s hides this card but no assembled house stands for it (stands_for %s)" % (source, hid or "is empty"))
             elif not h.get("modules"):
-                out[o] = ("placeholder", "town_houses.json hides this card but house %s has no modules" % hid)
+                out[o] = ("placeholder", "%s hides this card but house %s has no modules" % (source, hid))
             elif missing(h):
-                out[o] = ("placeholder", "town house %s lacks kit mesh %s: drawn incomplete" % (hid, ", ".join(missing(h)[:3])))
+                out[o] = ("placeholder", "%s %s lacks kit mesh %s: drawn incomplete" % (what, hid, ", ".join(missing(h)[:3])))
             elif not screen_draws:
                 out[o] = ("placeholder", "no kit mesh of this card's screen loads: the runtime keeps the sprite cards")
             elif (h.get("review") or {}).get("state") == "placeholder":
-                out[o] = ("placeholder", "town house %s failed the in-game review: %s" % (hid, h["review"].get("reason", "no reason recorded")))
+                out[o] = ("placeholder", "%s %s failed the in-game review: %s" % (what, hid, h["review"].get("reason", "no reason recorded")))
             elif o in uncovered:
-                out[o] = ("placeholder", "card hidden and town house %s stands for its building, but no house body covers the ground this picture "
-                          "covered (nearest %.1f m away): open ground is shown there" % (hid, float(uncovered[o])))
+                out[o] = ("placeholder", "card hidden and %s %s stands for its building, but no house body covers the ground this picture "
+                          "covered (nearest %.1f m away): open ground is shown there" % (what, hid, float(uncovered[o])))
             else:
                 kit = sorted({m["mesh"] for m in h["modules"]})
-                out[o] = ("final", "town-house: town_houses.json house %s%s (%d modules of %d kit meshes under %s) stands for this card; "
+                out[o] = ("final", "%s: %s house %s%s (%d modules of %d kit meshes%s) stands for this card; "
                           "card hidden by ApplyTownHouses (dink.TownHouses), collision, warps and scripts unchanged" % (
-                              hid, " of building %s" % building[hid] if building.get(hid) else "", len(h["modules"]), len(kit), TOWN_KIT.rstrip("/")))
+                              label, source, hid, " of building %s" % building[hid] if building.get(hid) else "", len(h["modules"]), len(kit),
+                              " under " + TOWN_KIT.rstrip("/") if all(not k.startswith("/") for k in kit) else ""))
     return out
 
 
@@ -702,6 +707,9 @@ def classify(args):
     manifests["families"] = fam_rows
     ground_facts, ground_review = load_ground(notes, getattr(args, "ground_rule", None))
     town_cards = town_house_cards(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Art", "town_houses.json")), assets.resolve)
+    # structures drawn in several sprites (fence runs, bridges, wells, cottages, huts): same file schema, same runtime path
+    structure_cards = town_house_cards(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Art", "structure_sets.json")), assets.resolve,
+                                       source="structure_sets.json", label="structure-set", what="structure set")
     class_rows = creature_class_rows(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Art", "creatures.json")), assets.resolve, notes)
     manifests["creature_classes"] = class_rows
 
@@ -812,7 +820,7 @@ def classify(args):
             # Owner decision, 9 Nov 2026: placements that can never meaningfully become final are cut, with the reason.
             return finish(r, fam, art_kind, "cut", "cut (owner decision 9 Nov 2026): " + "; ".join(cut_reasons) + "; " + base + " (%s)" % cls)
         # --- final: town house (family 33 cards the assembled kit houses stand for) -------------------
-        town = town_cards.get(oid)
+        town = town_cards.get(oid) or structure_cards.get(oid)
         if town and town[0] == "final":
             return finish(r, fam, art_kind, "final", town[1])
         if town:

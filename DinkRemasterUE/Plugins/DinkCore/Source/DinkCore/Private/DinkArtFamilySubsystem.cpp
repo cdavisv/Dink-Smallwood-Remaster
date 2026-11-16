@@ -291,6 +291,21 @@ void FDinkFamilyPrecedence::AddManifest(const FJsonObject& Manifest)
 	{
 		AddOriginRows(Manifest, TEXT("placements"), Origins);
 	}
+	else if (Schema.StartsWith(TEXT("dink-town-houses/")))
+	{
+		// A structure set that says so (structure_sets.json, "families_yield": true) owns the placements its sets stand for: a fence
+		// sprite laid as a run of modules must not get the family layer's single fence module as well. town_houses.json does not set it.
+		bool bYield = false;
+		const TSharedPtr<FJsonObject>* ScreensObject = nullptr;
+		if (!Manifest.TryGetBoolField(TEXT("families_yield"), bYield) || !bYield || !Manifest.TryGetObjectField(TEXT("screens"), ScreensObject) || !ScreensObject) return;
+		for (const auto& Pair : (*ScreensObject)->Values)
+		{
+			const TSharedPtr<FJsonObject>* Row = nullptr;
+			const TSharedPtr<FJsonObject>* Stands = nullptr;
+			if (!Pair.Value.IsValid() || !Pair.Value->TryGetObject(Row) || !Row || !(*Row)->TryGetObjectField(TEXT("stands_for"), Stands) || !Stands) continue;
+			for (const auto& Origin : (*Stands)->Values) Origins.Add(FString(Origin.Key.ToView()));
+		}
+	}
 }
 
 FDinkFamilyPrecedence FDinkFamilyPrecedence::LoadDirectory(const FString& Directory, const FString& SkipFile)

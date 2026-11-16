@@ -501,21 +501,43 @@ def island_fence(m, L=4.4):
 
 
 def island_torch(m):
-    """the three-pronged pole of frame 18: a thick cane split into three tines above a red cloth binding, each tine charred at the tip"""
+    """the pole of 424 frame 18 and 425 frame 1 (15 Nov 2026, redone after the 1997 picture): a pale jointed bone shaft in a dark stone
+    socket, a hand of five curved claws at its head and a blood-red crystal shard standing in the palm. 2.6 m.
+    Slots: 0 fieldstone (socket), 1 bone, 3 red (crystal)."""
     r = m.rng; H = 2.6
-    cane(m, [0, 0, -0.03], [0.02, 0.01, H - 0.75], 0.046, sides=9)
-    for k in range(3):
-        a = 2 * math.pi * k / 3 + 0.4
-        base = np.array([0.02, 0.01, H - 0.8]); mid = base + np.array([0.11 * math.cos(a), 0.11 * math.sin(a), 0.3]); tip = base + np.array([0.13 * math.cos(a), 0.13 * math.sin(a), 0.78])
-        m.tube([base, base + (mid - base) * 0.5 + np.array([0, 0, 0.02]), mid, tip], [0.024, 0.023, 0.021, 0.016], 1, sides=7, tag=TAG_TIMBER, smooth=True)
-        m.tube([tip - np.array([0, 0, 0.05]), tip + np.array([0, 0, 0.012])], 0.0175, 1, sides=7, tag=TAG_GLASS + 30, smooth=True)     # charred tip
-    pts = []
-    for i in range(46):                                         # the binding: cloth strip wound in nine turns
-        a = 2 * math.pi * 9 * i / 45
-        pts.append([0.02 + 0.05 * math.cos(a), 0.01 + 0.05 * math.sin(a), H - 0.98 + 0.2 * i / 45])
-    m.tube(pts, 0.014, 3, sides=5, tag=TAG_ROPE, smooth=True, tile=0.35, vrange=(0.5, 0.3))
-    packing(m, 0.0, 0.0, k=3)
-    m.ucx = [([-0.08, -0.08, 0], [0.08, 0.08, H])]
+    # the socket: a squat dark stone, wider at the foot
+    m.tube([[0, 0, -0.04], [0, 0, 0.05], [0.004, 0.0, 0.2], [0.006, 0.002, 0.3]], [0.15, 0.14, 0.105, 0.085], 0, sides=10, tag=2, smooth=True, tile=1.0, rough=0.05)
+    # the shaft: four long bones end to end, each waisted with swollen knuckle ends, leaning a little off true as bones do
+    zs = [0.27, 0.74, 1.20, 1.65, 2.06]; off = [(0.0, 0.0), (0.012, -0.006), (-0.006, 0.01), (0.01, 0.006), (0.0, 0.0)]
+    for i in range(4):
+        (x0, y0), (x1, y1) = off[i], off[i + 1]; z0, z1 = zs[i], zs[i + 1]; n = 15; pts = []; rr = []
+        thick = 0.06 - 0.004 * i
+        for k in range(n):
+            t = k / (n - 1); pts.append([x0 + (x1 - x0) * t, y0 + (y1 - y0) * t, z0 - 0.012 + (z1 - z0 + 0.024) * t])
+            end = min(t, 1 - t)                                                # 0 at the ends
+            knob = math.exp(-(end / 0.075) ** 2)                               # the swollen epiphysis
+            rr.append(thick * (0.74 + 0.8 * knob + 0.06 * math.sin(7 * t + i)) * (0.72 if k in (0, n - 1) else 1.0))
+        m.tube(pts, rr, 1, sides=14, tag=TAG_BONE, smooth=True, tile=1.5, vrange=(0.5, 0.25), shape=[1.0, 0.97, 0.93, 0.9, 0.93, 0.97, 1.0, 1.03, 1.0, 0.95, 0.91, 0.95, 1.0, 1.03])
+    # the hand: a knob of wrist bones, then five claws that spread and curl up and inward round the crystal
+    wrist = np.array([0.0, 0.0, 2.07])
+    m.tube([wrist + [0, 0, -0.05], wrist + [0, 0, 0.0], wrist + [0, 0, 0.05]], [0.06, 0.088, 0.06], 1, sides=14, tag=TAG_BONE, smooth=True, tile=1.5, vrange=(0.5, 0.25))
+    for k in range(5):
+        a = 2 * math.pi * k / 5 + 0.3 + r.uniform(-0.12, 0.12); ca, sa = math.cos(a), math.sin(a)
+        reach = 0.31 + r.uniform(-0.02, 0.03); top = 0.33 + r.uniform(-0.03, 0.04)
+        pts = []; rr = []; n = 19
+        for j in range(n):
+            t = j / (n - 1)
+            out_ = reach * math.sin(math.pi * 0.8 * t)                                                                  # out, then the tip hooks back in
+            up = top * (1 - math.cos(math.pi * 0.8 * t)) / 1.809
+            pts.append([0.03 + out_, 0.02 + up, 0.0])            # laid flat (the tube's frame turns over where a path passes the vertical), stood up below
+            joint = math.exp(-((t - 0.36) / 0.05) ** 2) + math.exp(-((t - 0.68) / 0.045) ** 2)                          # two knuckles
+            rr.append((0.034 * (1 - t) ** 0.8 + 0.004) * (1 + 0.4 * joint) + 0.002)
+        n0 = len(m.V)
+        m.tube(pts, rr, 1, sides=12, tag=TAG_BONE, smooth=True, tile=1.5, vrange=(0.5, 0.25))
+        m.xform_since(n0, np.array(Matrix.Translation(wrist.tolist()) @ Matrix.Rotation(a, 4, 'Z') @ Matrix.Rotation(math.pi / 2, 4, 'X')))
+    # the crystal: a six-sided shard, flat faces (not smoothed), thicker below the middle, standing in the palm and above the claw tips
+    m.tube([wrist + [0, 0, 0.04], wrist + [0.004, 0.0, 0.13], wrist + [0.006, 0.002, 0.27], wrist + [0.004, 0.004, 0.40]], [0.018, 0.062, 0.05, 0.004], 3, sides=6, tag=1, smooth=False, tile=0.6, vrange=(0.5, 0.3))
+    m.ucx = [([-0.12, -0.12, 0], [0.12, 0.12, H])]
 
 
 def hut_storey(m, R=2.6, HW=1.9, door=True, z0=0.0, seed=7, band_seed=3):
@@ -750,9 +772,11 @@ def misc_modules(rows):
         m = mk('SM_Island_Fence_Lattice_PR', 4.4, 1.8, 'prop_large', ('fieldstone', 'bamboo', 'rope'), 'bamboo'); m.floor0 = True; island_fence(m)
         rec(m, ['424 struct/island/isle- frames 7-12', 'island_fence_lattice'], 'none', '4.4 m run of cane lattice fence: three posts, two rails, crossed diagonals in each bay, all bamboo with node rings, rope lashings at every crossing',
             fit={'pivot': 'ground centre, run along X; end posts at x = +-2.2 (share a post between runs as with the split-rail fence)'})
-        m = mk('SM_Island_TorchPole_PR', 0.4, 2.6, 'prop', ('fieldstone', 'bamboo', 'rope', 'red_cloth'), 'bamboo'); m.floor0 = True; island_torch(m)
-        rec(m, ['424 struct/island/isle- frame 18', 'island_totem_pole'], 'none', 'three-tined cane pole, 2.6 m, bound with red cloth below the tines, tips charred (class island_totem_pole; frame 18)',
-            fit={'pivot': 'foot of the pole', 'light': 'unlit; if the game lights it, put flames on the three tips at z = 2.58 m'})
+    if want('Island') or want('Island_TorchPole'):
+        m = mk('SM_Island_TorchPole_PR', 0.7, 2.6, 'prop', ('fieldstone', 'bone', 'rope', 'red_cloth'), 'bamboo'); m.floor0 = True; island_torch(m)
+        rec(m, ['424 struct/island/isle- frame 18', '425 struct/island/isle2- frame 1', 'island_totem_pole', 'island_torch'], 'the three-tined cane pole of the first build',
+            'bone torch pole, 2.6 m: four jointed long bones in a dark stone socket, a hand of five curved claws at the head holding a blood-red crystal shard (424 frame 18 and 425 frame 1 are the same picture)',
+            fit={'pivot': 'foot of the pole', 'light': 'unlit; the crystal is plain red (the kit graph has no emissive): if the game lights it, put a small red light at z = 2.4 m'})
     return out
 
 

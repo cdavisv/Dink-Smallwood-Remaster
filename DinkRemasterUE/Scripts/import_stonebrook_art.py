@@ -174,7 +174,15 @@ for name, data in SPEC['materials'].items():
             EDIT.connect_material_expressions(panner, '', node, 'Coordinates')
         channels[suffix] = node
     if 'BC' in channels:
-        EDIT.connect_material_property(channels['BC'], 'RGB', unreal.MaterialProperty.MP_BASE_COLOR)
+        if data.get('base_tint'):
+            # optional colour trim of a baked set (linear RGB multiplier), decided in the game: the 440 kit's thatch
+            tint = expression(mat, unreal.MaterialExpressionConstant3Vector, -350, -160, constant=unreal.LinearColor(*[float(v) for v in data['base_tint']], 1.0))
+            tinted = expression(mat, unreal.MaterialExpressionMultiply, -150, -80)
+            EDIT.connect_material_expressions(channels['BC'], 'RGB', tinted, 'A')
+            EDIT.connect_material_expressions(tint, '', tinted, 'B')
+            EDIT.connect_material_property(tinted, '', unreal.MaterialProperty.MP_BASE_COLOR)
+        else:
+            EDIT.connect_material_property(channels['BC'], 'RGB', unreal.MaterialProperty.MP_BASE_COLOR)
         if masked:
             EDIT.connect_material_property(channels['BC'], 'A', unreal.MaterialProperty.MP_OPACITY_MASK)
     else:
@@ -203,6 +211,9 @@ for name, data in SPEC['materials'].items():
         EDIT.connect_material_property(normal, '', unreal.MaterialProperty.MP_NORMAL)
     scalar(mat, data.get('specular', 0.35), unreal.MaterialProperty.MP_SPECULAR, 500)
     EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_NANITE, True)
+    if os.environ.get('DINK_ART_INSTANCED_USAGE') == '1':
+        # a kit whose meshes are drawn by instanced components (the structure sets): without this flag the game draws the default material
+        EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_INSTANCED_STATIC_MESHES, True)
     EDIT.recompile_material(mat)
     save(mat)
     materials[name] = mat

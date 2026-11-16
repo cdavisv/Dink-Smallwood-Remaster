@@ -657,39 +657,41 @@
   "fbx": "SM_Island_TorchPole_PR.fbx",
   "materials": [
    "MI_Struct_Fieldstone",
-   "MI_Island_Bamboo",
+   "MI_Island_Bone",
    "MI_Island_RedCloth"
   ],
-  "source_blend": "Misc.blend",
-  "lod0_triangles": 1258,
-  "lod1_triangles": 566,
-  "lod2_triangles": 250,
+  "source_blend": "Misc_part_Island_TorchPole.blend",
+  "lod0_triangles": 4172,
+  "lod1_triangles": 1876,
+  "lod2_triangles": 834,
   "dimensions_m": [
-   0.423,
-   0.335,
-   2.592
+   0.717,
+   0.685,
+   2.47
   ],
   "bounds_min_m": [
-   -0.238,
-   -0.135,
+   -0.374,
+   -0.295,
    0.0
   ],
   "bounds_max_m": [
-   0.185,
-   0.2,
-   2.592
+   0.343,
+   0.39,
+   2.47
   ],
   "open_edges": 0,
   "collision_hulls": 1,
   "families": [
    "424 struct/island/isle- frame 18",
-   "island_totem_pole"
+   "425 struct/island/isle2- frame 1",
+   "island_totem_pole",
+   "island_torch"
   ],
-  "supersedes": "none",
-  "dresses": "three-tined cane pole, 2.6 m, bound with red cloth below the tines, tips charred (class island_totem_pole; frame 18)",
+  "supersedes": "the three-tined cane pole of the first build",
+  "dresses": "bone torch pole, 2.6 m: four jointed long bones in a dark stone socket, a hand of five curved claws at the head holding a blood-red crystal shard (424 frame 18 and 425 frame 1 are the same picture)",
   "fit": {
    "pivot": "foot of the pole",
-   "light": "unlit; if the game lights it, put flames on the three tips at z = 2.58 m"
+   "light": "unlit; the crystal is plain red (the kit graph has no emissive): if the game lights it, put a small red light at z = 2.4 m"
   }
  }
 ]

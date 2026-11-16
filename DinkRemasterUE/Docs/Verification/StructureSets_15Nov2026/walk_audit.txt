@@ -1,0 +1,41 @@
+# dink.WalkAudit 187 766 (whole outdoor map), 16 Nov 2026, build master 3a7b4451 + branch
+
+## before the fixes (no castle blockers; repeated buildings not recognised)
+structure-set mesh rows on set screens: 878 | no walk-in of 30 cm: 783 | deepest point on closed ground: 37 | on reachable ground: 58
+{'SM_Castle_Tower_Round': 4, 'SM_Castle_Wall_8m': 50, 'SM_Castle_Gatehouse': 1, 'SM_Cottage_Thatched_Large_PR': 1, 'SM_Island_Hut_TwoStorey_PR': 1, 'SM_Island_Hut_Round_PR': 1}
+  depth 461 cm  screen 402  SM_Castle_Tower_Round  standable cells 2235 of 3452  at px 403,77
+  depth 461 cm  screen 399  SM_Castle_Tower_Round  standable cells 2758 of 3452  at px 512,49
+  depth 461 cm  screen 336  SM_Castle_Tower_Round  standable cells 2632 of 3452  at px 472,399
+  depth 369 cm  screen 433  SM_Castle_Tower_Round  standable cells 393 of 3452  at px 197,70
+  depth 334 cm  screen 501  SM_Cottage_Thatched_Large_PR  standable cells 5441 of 7315  at px 500,52
+  depth 319 cm  screen 764  SM_Island_Hut_Round_PR  standable cells 1112 of 1767  at px 263,151
+  depth 203 cm  screen 402  SM_Castle_Gatehouse  standable cells 2817 of 4972  at px 180,130
+  depth 112 cm  screen 400  SM_Castle_Wall_8m  standable cells 474 of 783  at px 489,343
+  depth 112 cm  screen 400  SM_Castle_Wall_8m  standable cells 302 of 783  at px 413,316
+  depth 111 cm  screen 400  SM_Castle_Wall_8m  standable cells 222 of 865  at px 61,146
+  depth 109 cm  screen 433  SM_Castle_Wall_8m  standable cells 141 of 785  at px 6,20
+  depth 108 cm  screen 433  SM_Castle_Wall_8m  standable cells 83 of 247  at px 108,94
+  ... (58 rows in all)
+
+## after (player blockers for the castle wall and towers; off-screen modules read through their own screen)
+structure-set mesh rows on set screens: 817 | no walk-in of 30 cm: 781 | deepest point on closed ground: 34 | on reachable ground: 2
+{'SM_Castle_Gatehouse': 1, 'SM_Island_Hut_TwoStorey_PR': 1}
+  depth 203 cm  screen 402  SM_Castle_Gatehouse  standable cells 2817 of 4972  at px 180,130
+  depth 32 cm  screen 763  SM_Island_Hut_TwoStorey_PR  standable cells 47 of 2289  at px 590,174
+exit 0
+
+## Scripts/check_player_blockers.py on the same run (the 13 lines of 7 screens are master's town-house blockers, identical to Docs/Verification/WalkThrough_15Nov2026/connectivity_after.txt)
+SCR_497 CUT OFF: 2984 px around px 521,46; only from there: S497_P13, S497_P15; 40 blockers (9.7 cm/px)
+SCR_498 CUT OFF: 6081 px around px 275,222; only from there: S498_P10; 114 blockers (9.7 cm/px)
+SCR_498 CUT OFF: 216 px around px 499,314; only from there: S498_P11; 114 blockers (9.7 cm/px)
+SCR_498 CUT OFF: 52 px around px 514,331; only from there: S498_P11; 114 blockers (9.7 cm/px)
+SCR_499 CUT OFF: 2433 px around px 87,203; only from there: S499_P07; 31 blockers (9.6 cm/px)
+SCR_505 CUT OFF: 2691 px around px 123,230; only from there: S505_P01; 85 blockers (9.7 cm/px)
+SCR_505 CUT OFF: 3888 px around px 185,261; only from there: S505_P01; 85 blockers (9.7 cm/px)
+SCR_538 CUT OFF: 3592 px around px 208,268; only from there: S538_P07; 75 blockers (9.8 cm/px)
+SCR_538 CUT OFF: 4446 px around px 279,307; only from there: S538_P21; 75 blockers (9.8 cm/px)
+SCR_538 CUT OFF: 532 px around px 362,378; only from there: S538_P09; 75 blockers (9.8 cm/px)
+SCR_539 CUT OFF: 940 px around px 152,263; only from there: S539_P02; 19 blockers (5.9 cm/px)
+SCR_585 CUT OFF: 3695 px around px 290,83; only from there: S585_P13; 60 blockers (9.9 cm/px)
+SCR_585 CUT OFF: 2072 px around px 503,141; only from there: S585_P14; 60 blockers (9.9 cm/px)
+297 screens with blockers checked, 7 cut off something the player must reach

@@ -1087,6 +1087,20 @@
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 424 frames 13, 16 and 17: one spear planted upright, with a stable per-origin yaw; the sprites lean a little to either side."
     },
     {
+      "family": "island_totem_pole",
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_TorchPole_PR.SM_Island_TorchPole_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Structures/Misc kit (15 Nov 2026). 424 struct/island/isle- frame 18: a jointed bone pole in a stone socket, a hand of five claws at its head holding a red crystal, 2.6 m at real size (the card is 5.9 m at the settlement scale)."
+    },
+    {
+      "family": "island_torch",
+      "mesh": "/Game/Dink/Photoreal/Structures/SM_Island_TorchPole_PR.SM_Island_TorchPole_PR",
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "Structures/Misc kit (15 Nov 2026). 425 frame 1 is the picture of 424 frame 18: the same bone pole. The one placement of frame 6 (S-bent over) stands upright too."
+    },
+    {
       "family": "teleport_machine",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Teleport_Machine_PR.SM_Teleport_Machine_PR",
       "fit": "none",
