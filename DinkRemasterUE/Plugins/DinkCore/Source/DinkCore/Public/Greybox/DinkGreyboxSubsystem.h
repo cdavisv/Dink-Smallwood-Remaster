@@ -13,6 +13,8 @@ class UPrimitiveComponent;
 class UProceduralMeshComponent;
 class ADinkGreyboxScreen;
 DECLARE_MULTICAST_DELEGATE_OneParam(FDinkScreenChanged, ADinkScreenVolume*);
+/** A map.dat warp moved the player (UDinkAudioLifeSubsystem plays the warp's sound, dink.cpp:15343-15345). */
+DECLARE_MULTICAST_DELEGATE_TwoParams(FDinkWarped, APawn*, const UDinkWarpComponent&);
 
 /**
  * Play-time helper for the imported greybox: knows every screen volume, tracks which original
@@ -34,6 +36,7 @@ class DINKCORE_API UDinkGreyboxSubsystem : public UTickableWorldSubsystem
 
 public:
 	FDinkScreenChanged OnScreenChanged;
+	FDinkWarped OnWarped;
 	void RegisterScreen(ADinkScreenVolume* Screen);
 	void UnregisterScreen(ADinkScreenVolume* Screen);
 	void RegisterVisionPlaceholder(ADinkPlaceholderActor* Placeholder);

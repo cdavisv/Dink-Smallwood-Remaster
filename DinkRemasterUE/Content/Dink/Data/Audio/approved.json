@@ -33,6 +33,10 @@
       "asset": "/Game/Dink/Audio/SFX/SFX_08_swing.SFX_08_swing",
       "loop": false
     },
+    "9": {
+      "asset": "/Game/Dink/Audio/SFX/SFX_09_punch.SFX_09_punch",
+      "loop": false
+    },
     "10": {
       "asset": "/Game/Dink/Audio/SFX/SFX_10_sword2.SFX_10_sword2",
       "loop": false
@@ -165,6 +169,10 @@
       "asset": "/Game/Dink/Audio/SFX/SFX_43_secret.SFX_43_secret",
       "loop": false
     },
+    "44": {
+      "asset": "/Game/Dink/Audio/SFX/SFX_44_bow1.SFX_44_bow1",
+      "loop": false
+    },
     "45": {
       "asset": "/Game/Dink/Audio/SFX/SFX_45_knock.SFX_45_knock",
       "loop": false
@@ -175,6 +183,14 @@
     },
     "47": {
       "asset": "/Game/Dink/Audio/SFX/SFX_47_drag2.SFX_47_drag2",
+      "loop": false
+    },
+    "48": {
+      "asset": "/Game/Dink/Audio/SFX/SFX_48_axe.SFX_48_axe",
+      "loop": false
+    },
+    "49": {
+      "asset": "/Game/Dink/Audio/SFX/SFX_49_bird1.SFX_49_bird1",
       "loop": false
     }
   },
@@ -610,30 +626,39 @@
     "music": 0.35,
     "sfx": 0.8
   },
-  "rejected": [
+  "rejected": [],
+  "redo": [
     {
       "kind": "sfx",
       "id": "09_punch",
-      "choice": "neither",
-      "note": "no sound"
+      "owner_choice": "neither",
+      "owner_note": "no sound",
+      "take": "e",
+      "spec": "SourceAssets/Audio/SFX/redo_15Nov2026.json"
     },
     {
       "kind": "sfx",
       "id": "44_bow1",
-      "choice": "neither",
-      "note": "i can't really hear it"
+      "owner_choice": "neither",
+      "owner_note": "i can't really hear it",
+      "take": "i",
+      "spec": "SourceAssets/Audio/SFX/redo_15Nov2026.json"
     },
     {
       "kind": "sfx",
       "id": "48_axe",
-      "choice": "neither",
-      "note": "can't hear b, and a needs work"
+      "owner_choice": "neither",
+      "owner_note": "can't hear b, and a needs work",
+      "take": "i",
+      "spec": "SourceAssets/Audio/SFX/redo_15Nov2026.json"
     },
     {
       "kind": "sfx",
       "id": "49_bird1",
-      "choice": "neither",
-      "note": "both have issues"
+      "owner_choice": "neither",
+      "owner_note": "both have issues",
+      "take": "c",
+      "spec": "SourceAssets/Audio/SFX/redo_15Nov2026.json"
     }
   ]
 }

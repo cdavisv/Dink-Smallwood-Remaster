@@ -1,0 +1,218 @@
+line,voice,character,asset,duration s,cooked,heard (sweep),sweep RMS dBFS,sweep LUFS,sweep peak dBFS,played in gameplay run,source LUFS
+en-gh.talk.001,goblin,goblin,VO_en_gh_talk_001,3.04,yes,yes,-21.5,-20.2,-7.7,0,-17.1
+en-gmog.die.001,mog,Mog,VO_en_gmog_die_001,1.12,yes,yes,-27.6,-27.2,-14.8,0,-24.1
+findduck.main.001,dink,Dink,VO_findduck_main_001,1.6,yes,yes,-22.3,-20.0,-9.7,0,-16.9
+findduck.main.002,dink,Dink,VO_findduck_main_002,2.0,yes,yes,-26.4,-25.0,-11.4,0,-21.9
+item-pig.use.001,dink,Dink,VO_item_pig_use_001,2.0,yes,yes,-24.2,-21.8,-11.6,0,-18.9
+king.hit.001,king,King Daniel,VO_king_hit_001,2.96,yes,yes,-21.5,-20.7,-7.0,0,-17.7
+king.talk.007,narrator,end card,VO_king_talk_007,1.6,yes,yes,-19.4,-18.2,-8.0,0,-15.1
+s1-boot.hit.001,merchant,cobbler,VO_s1_boot_hit_001,2.32,yes,yes,-17.1,-15.0,-7.0,0,-11.9
+s1-brg2.talk.002,man_middle,toll man,VO_s1_brg2_talk_002,1.92,yes,yes,-16.5,-15.3,-6.1,0,-12.2
+s1-bul.main.001,dink,Dink,VO_s1_bul_main_001,1.76,yes,yes,-24.4,-21.9,-12.3,0,-18.8
+s1-bul.main.002,milder,Milder Flatstomp,VO_s1_bul_main_002,2.48,yes,yes,-21.6,-20.8,-7.7,0,-17.8
+s1-bul.main.003,dink,Dink,VO_s1_bul_main_003,1.52,yes,yes,-24.7,-23.5,-11.5,0,-20.5
+s1-bul.main.004,milder,Milder Flatstomp,VO_s1_bul_main_004,0.96,yes,yes,-28.4,-28.2,-11.6,0,-25.2
+s1-bul.main.005,milder,Milder Flatstomp,VO_s1_bul_main_005,3.92,yes,yes,-25.4,-24.5,-10.4,0,-21.5
+s1-bul.main.006,dink,Dink,VO_s1_bul_main_006,1.68,yes,yes,-25.8,-24.2,-11.0,0,-21.2
+s1-bul.main.007,milder,Milder Flatstomp,VO_s1_bul_main_007,2.24,yes,yes,-24.3,-23.6,-9.6,0,-20.5
+s1-bul.main.008,dink,Dink,VO_s1_bul_main_008,0.96,yes,yes,-27.2,-24.7,-13.8,0,-21.7
+s1-bul.main.009,dink,Dink,VO_s1_bul_main_009,1.12,yes,yes,-27.6,-25.5,-14.5,0,-22.5
+s1-bul.main.010,milder,Milder Flatstomp,VO_s1_bul_main_010,3.52,yes,yes,-21.1,-19.9,-7.8,0,-16.9
+s1-bul.main.011,dink,Dink,VO_s1_bul_main_011,1.68,yes,yes,-24.0,-21.7,-11.4,0,-18.6
+s1-cavem.main.001,monster,Bonca,VO_s1_cavem_main_001,2.96,yes,yes,-21.4,-21.7,-7.7,0,-18.6
+s1-gg.talk.001,guard,Guard Renton,VO_s1_gg_talk_001,3.44,yes,yes,-25.8,-24.7,-9.9,0,-21.6
+s1-gg.talk.002,dink,Dink,VO_s1_gg_talk_002,1.92,yes,yes,-26.8,-24.9,-12.5,0,-21.8
+s1-gg.talk.003,guard,Guard Renton,VO_s1_gg_talk_003,3.84,yes,yes,-22.4,-21.2,-7.9,0,-18.2
+s1-gg.talk.004,guard,Guard Renton,VO_s1_gg_talk_004,1.6,yes,yes,-24.1,-22.5,-9.6,0,-19.4
+s1-gg.talk.005,dink,Dink,VO_s1_gg_talk_005,0.8,yes,yes,-26.2,-23.8,-12.7,0,-20.7
+s1-h1-m.main.002,mother,Mother,VO_s1_h1_m_main_002,2.4,yes,yes,-22.4,-22.1,-9.2,0,-19.1
+s1-h1-m.main.003,dink,Dink,VO_s1_h1_m_main_003,1.52,yes,yes,-25.8,-24.6,-10.2,0,-21.5
+s1-h1-m.main.004,mother,Mother,VO_s1_h1_m_main_004,3.04,yes,yes,-21.0,-20.7,-8.0,0,-17.7
+s1-h1-m.main.005,mother,Mother,VO_s1_h1_m_main_005,3.12,yes,yes,-23.6,-22.6,-8.2,0,-19.6
+s1-h1-m.main.006,dink,Dink,VO_s1_h1_m_main_006,2.08,yes,yes,-22.5,-21.2,-10.3,0,-18.2
+s1-h1-m.main.007,mother,Mother,VO_s1_h1_m_main_007,1.28,yes,yes,-25.1,-24.4,-11.2,0,-21.4
+s1-h1-m.main.008,mother,Mother,VO_s1_h1_m_main_008,2.24,yes,yes,-21.7,-20.7,-8.1,0,-17.6
+s1-h1-m.main.009,dink,Dink,VO_s1_h1_m_main_009,1.52,yes,yes,-23.8,-21.8,-9.8,0,-18.8
+s1-h1-m.main.010,mother,Mother,VO_s1_h1_m_main_010,1.6,yes,yes,-20.3,-18.3,-7.5,0,-15.2
+s1-h1-o.main.001,woman_young,Lyna,VO_s1_h1_o_main_001,0.96,yes,yes,-21.1,-17.3,-6.6,0,-14.1
+s1-h1-o.main.002,dink,Dink,VO_s1_h1_o_main_002,2.56,yes,yes,-28.6,-26.4,-14.4,0,-23.2
+s1-h1-o.main.003,dink,Dink,VO_s1_h1_o_main_003,1.44,yes,yes,-27.0,-25.0,-11.1,0,-21.9
+s1-h1-o.main.004,woman_old,Ethel,VO_s1_h1_o_main_004,2.24,yes,yes,-25.8,-25.1,-9.1,0,-22.0
+s1-h1-o.main.009,woman_young,Lyna,VO_s1_h1_o_main_009,2.0,yes,yes,-22.8,-22.1,-11.7,0,-19.0
+s1-h1-o.main.010,milder,Milder Flatstomp,VO_s1_h1_o_main_010,1.68,yes,yes,-29.5,-28.8,-15.1,0,-25.7
+s1-h1-o.main.011,dink,Dink,VO_s1_h1_o_main_011,3.68,yes,yes,-20.6,-19.2,-9.9,0,-16.2
+s1-h1-o.main.012,dink,Dink,VO_s1_h1_o_main_012,1.68,yes,yes,-24.1,-21.3,-10.2,0,-18.2
+s1-h1-s.main.001,dink,Dink,VO_s1_h1_s_main_001,2.0,yes,yes,-20.7,-19.5,-11.4,0,-16.4
+s1-h1-s.main.002,dink,Dink,VO_s1_h1_s_main_002,4.56,yes,yes,-22.2,-21.0,-10.8,0,-18.0
+s1-h1-s.main.003,dink,Dink,VO_s1_h1_s_main_003,2.64,yes,yes,-27.5,-26.5,-14.4,0,-23.5
+s1-h1-s.main.004,dink,Dink,VO_s1_h1_s_main_004,1.12,yes,yes,-25.4,-22.9,-11.7,0,-19.8
+s1-h1-s.main.005,dink,Dink,VO_s1_h1_s_main_005,3.44,yes,yes,-24.8,-23.0,-11.1,0,-19.9
+s1-h1-s.main.006,dink,Dink,VO_s1_h1_s_main_006,1.28,yes,yes,-22.5,-20.7,-11.0,0,-17.7
+s1-h2-o.main.002,woman_old,Ethel,VO_s1_h2_o_main_002,1.76,yes,yes,-22.6,-21.7,-7.5,0,-18.7
+s1-h2-o.main.004,woman_old,Ethel,VO_s1_h2_o_main_004,2.88,yes,yes,-20.4,-20.0,-6.0,0,-17.0
+s1-h2-o.main.005,woman_old,Ethel,VO_s1_h2_o_main_005,3.6,yes,yes,-22.8,-21.5,-7.1,0,-18.5
+s1-h2-o.talk.014,dink,Dink,VO_s1_h2_o_talk_014,1.6,yes,yes,-26.7,-25.7,-12.8,0,-22.6
+s1-h2-o.talk.015,woman_old,Ethel,VO_s1_h2_o_talk_015,3.76,yes,yes,-19.4,-18.3,-6.0,0,-15.3
+s1-h2-o.talk.016,dink,Dink,VO_s1_h2_o_talk_016,4.24,yes,yes,-23.9,-23.2,-10.4,0,-20.1
+s1-h2-o.talk.017,woman_old,Ethel,VO_s1_h2_o_talk_017,1.6,yes,yes,-21.3,-20.3,-6.9,0,-17.3
+s1-lg.hit.001,girl,Chealse,VO_s1_lg_hit_001,2.32,yes,yes,-16.4,-15.6,-6.4,0,-12.5
+s1-ltr.main.001,woman_middle,letter from Aunt Maria,VO_s1_ltr_main_001,1.2,yes,yes,-21.6,-21.5,-10.3,0,-18.4
+s1-ltr.main.002,woman_middle,letter from Aunt Maria,VO_s1_ltr_main_002,3.68,yes,yes,-20.7,-20.8,-9.6,0,-17.8
+s1-ltr.main.003,woman_middle,letter from Aunt Maria,VO_s1_ltr_main_003,4.64,yes,yes,-20.9,-21.1,-9.8,0,-18.0
+s1-ltr.main.004,woman_middle,letter from Aunt Maria,VO_s1_ltr_main_004,4.56,yes,yes,-22.9,-23.2,-11.2,0,-20.1
+s1-ltr.main.005,woman_middle,letter from Aunt Maria,VO_s1_ltr_main_005,4.72,yes,yes,-22.3,-22.7,-8.8,0,-19.6
+s1-ltr.main.006,woman_middle,letter from Aunt Maria,VO_s1_ltr_main_006,3.68,yes,yes,-21.0,-21.1,-10.5,0,-18.1
+s1-ltr.main.007,woman_middle,letter from Aunt Maria,VO_s1_ltr_main_007,2.64,yes,yes,-19.7,-19.8,-9.2,0,-16.8
+s1-ltr.main.008,dink,Dink,VO_s1_ltr_main_008,4.4,yes,yes,-27.9,-25.9,-8.9,0,-22.8
+s1-ltr.main.009,dink,Dink,VO_s1_ltr_main_009,2.32,yes,yes,-21.9,-20.6,-9.7,0,-17.5
+s1-mh-f.talk.001,dink,Dink,VO_s1_mh_f_talk_001,2.48,yes,yes,-22.7,-21.8,-10.7,0,-18.7
+s1-mh-f.talk.002,dink,Dink,VO_s1_mh_f_talk_002,1.28,yes,yes,-28.9,-25.6,-13.7,0,-22.3
+s1-mh-f.talk.003,martridge,letter from Martridge,VO_s1_mh_f_talk_003,1.52,yes,yes,-23.0,-20.1,-8.9,0,-17.1
+s1-mh-f.talk.004,martridge,letter from Martridge,VO_s1_mh_f_talk_004,4.0,yes,yes,-21.4,-20.0,-7.4,0,-17.0
+s1-mh-f.talk.005,martridge,letter from Martridge,VO_s1_mh_f_talk_005,3.44,yes,yes,-22.8,-21.8,-7.8,0,-18.8
+s1-mh-f.talk.006,martridge,letter from Martridge,VO_s1_mh_f_talk_006,4.0,yes,yes,-22.1,-20.5,-6.6,0,-17.5
+s1-mh-f.talk.007,martridge,letter from Martridge,VO_s1_mh_f_talk_007,4.32,yes,yes,-21.1,-19.3,-6.4,0,-16.3
+s1-mh-f.talk.008,martridge,letter from Martridge,VO_s1_mh_f_talk_008,4.16,yes,yes,-20.4,-19.1,-6.0,0,-16.1
+s1-mh-f.talk.009,martridge,letter from Martridge,VO_s1_mh_f_talk_009,1.36,yes,yes,-19.4,-16.0,-6.2,0,-12.9
+s1-mh-f.talk.010,martridge,letter from Martridge,VO_s1_mh_f_talk_010,5.44,yes,yes,-22.2,-19.7,-6.6,0,-16.6
+s1-mh-f.talk.011,martridge,letter from Martridge,VO_s1_mh_f_talk_011,4.64,yes,yes,-19.6,-18.1,-6.3,0,-15.3
+s1-mh-f.talk.012,martridge,letter from Martridge,VO_s1_mh_f_talk_012,3.04,yes,yes,-20.4,-18.2,-6.9,0,-15.2
+s1-mh-f.talk.013,dink,Dink,VO_s1_mh_f_talk_013,4.56,yes,yes,-22.4,-21.4,-10.7,0,-18.3
+s1-mh-f.talk.014,dink,Dink,VO_s1_mh_f_talk_014,2.32,yes,yes,-21.9,-20.0,-9.0,0,-17.0
+s1-mh-m.main.002,dink,Dink,VO_s1_mh_m_main_002,1.36,yes,yes,-22.7,-20.0,-11.5,0,-17.0
+s1-mh-m.main.003,martridge,Wizard Martridge,VO_s1_mh_m_main_003,3.6,yes,yes,-20.8,-18.5,-6.0,0,-15.5
+s1-mh-m.talk.001,dink,Dink,VO_s1_mh_m_talk_001,3.6,yes,yes,-24.5,-23.2,-9.6,0,-20.2
+s1-mh-m.talk.002,martridge,Wizard Martridge,VO_s1_mh_m_talk_002,4.72,yes,yes,-19.4,-17.7,-6.5,0,-14.7
+s1-mh-m.talk.003,dink,Dink,VO_s1_mh_m_talk_003,3.68,yes,yes,-25.5,-24.2,-10.7,0,-21.1
+s1-mh-m.talk.004,martridge,Wizard Martridge,VO_s1_mh_m_talk_004,2.64,yes,yes,-21.3,-19.5,-6.0,0,-16.5
+s1-mh-m.talk.005,martridge,Wizard Martridge,VO_s1_mh_m_talk_005,2.88,yes,yes,-20.9,-19.0,-6.2,0,-16.0
+s1-mh-m.talk.006,dink,Dink,VO_s1_mh_m_talk_006,2.8,yes,yes,-26.5,-25.4,-12.8,0,-22.3
+s1-mh-m.talk.007,martridge,Wizard Martridge,VO_s1_mh_m_talk_007,2.88,yes,yes,-20.1,-17.5,-6.5,0,-14.5
+s1-mh-m.talk.008,martridge,Wizard Martridge,VO_s1_mh_m_talk_008,5.28,yes,yes,-21.2,-19.8,-6.3,0,-16.7
+s1-mh-m.talk.009,dink,Dink,VO_s1_mh_m_talk_009,3.52,yes,yes,-24.7,-23.2,-11.0,0,-20.1
+s1-mh-m.talk.010,dink,Dink,VO_s1_mh_m_talk_010,3.36,yes,yes,-24.9,-23.6,-10.7,0,-20.5
+s1-mh-m.talk.011,martridge,Wizard Martridge,VO_s1_mh_m_talk_011,2.0,yes,yes,-25.3,-22.8,-9.7,0,-19.7
+s1-mh-m.talk.012,dink,Dink,VO_s1_mh_m_talk_012,3.92,yes,yes,-24.5,-23.6,-10.8,0,-20.6
+s1-mh-m.talk.013,martridge,Wizard Martridge,VO_s1_mh_m_talk_013,2.96,yes,yes,-21.9,-18.6,-6.7,0,-15.5
+s1-mh-m.talk.014,dink,Dink,VO_s1_mh_m_talk_014,2.4,yes,yes,-25.1,-23.6,-11.6,0,-20.5
+s1-mh-m.talk.015,martridge,Wizard Martridge,VO_s1_mh_m_talk_015,2.32,yes,yes,-22.5,-21.4,-9.2,0,-18.4
+s1-mh-m.talk.016,martridge,Wizard Martridge,VO_s1_mh_m_talk_016,2.88,yes,yes,-23.4,-21.7,-8.2,0,-18.6
+s1-mh-m.talk.017,dink,Dink,VO_s1_mh_m_talk_017,4.08,yes,yes,-25.6,-23.5,-9.4,0,-20.4
+s1-mh-m.talk.018,dink,Dink,VO_s1_mh_m_talk_018,3.44,yes,yes,-24.2,-23.4,-10.2,0,-20.4
+s1-mh-m.talk.019,martridge,Wizard Martridge,VO_s1_mh_m_talk_019,3.2,yes,yes,-20.1,-18.1,-6.4,0,-15.1
+s1-mh-m.talk.020,dink,Dink,VO_s1_mh_m_talk_020,2.48,yes,yes,-28.5,-27.3,-13.8,0,-24.2
+s1-mh-m.talk.021,martridge,Wizard Martridge,VO_s1_mh_m_talk_021,4.96,yes,yes,-20.5,-18.9,-6.8,0,-15.9
+s1-mh-m.talk.022,martridge,Wizard Martridge,VO_s1_mh_m_talk_022,4.32,yes,yes,-19.0,-17.1,-6.4,0,-14.2
+s1-mh-m.talk.023,dink,Dink,VO_s1_mh_m_talk_023,2.8,yes,yes,-24.7,-23.1,-9.8,0,-20.0
+s1-mh-m.talk.024,martridge,Wizard Martridge,VO_s1_mh_m_talk_024,2.32,yes,yes,-20.5,-17.1,-6.1,0,-14.0
+s1-mh-m.talk.025,dink,Dink,VO_s1_mh_m_talk_025,1.36,yes,yes,-24.8,-23.4,-12.9,0,-20.4
+s1-mh-m.talk.026,martridge,Wizard Martridge,VO_s1_mh_m_talk_026,2.48,yes,yes,-21.2,-17.8,-6.4,0,-14.8
+s1-mh-m.talk.027,dink,Dink,VO_s1_mh_m_talk_027,1.6,yes,yes,-25.7,-24.1,-12.2,0,-21.1
+s1-mh-m.talk.028,martridge,Wizard Martridge,VO_s1_mh_m_talk_028,4.96,yes,yes,-21.1,-18.9,-6.5,0,-15.8
+s1-nut.touch.002,dink,Dink,VO_s1_nut_touch_002,1.52,yes,yes,-23.5,-21.5,-10.1,0,-18.4
+s1-oldd.talk.003,dink,Dink,VO_s1_oldd_talk_003,4.08,yes,yes,-23.8,-22.4,-10.2,0,-19.4
+s1-oldd.talk.004,dink,Dink,VO_s1_oldd_talk_004,1.52,yes,yes,-28.0,-25.2,-11.8,0,-22.0
+s1-oldd.talk.005,duck,Quackers,VO_s1_oldd_talk_005,0.96,yes,yes,-24.0,-20.1,-8.6,0,-16.9
+s1-oldd.talk.006,duck,Quackers,VO_s1_oldd_talk_006,2.48,yes,yes,-26.2,-23.0,-10.4,0,-19.9
+s1-sack.touch.001,dink,Dink,VO_s1_sack_touch_001,2.08,yes,yes,-24.6,-22.9,-10.3,0,-19.8
+s1-wand.hit.001,traveller,traveller,VO_s1_wand_hit_001,2.56,yes,yes,-21.7,-20.7,-7.6,0,-17.7
+s1-wand2.hit.001,zands,Chance Zands,VO_s1_wand2_hit_001,2.08,yes,yes,-19.9,-19.2,-7.1,0,-16.2
+s1-wiz.main.001,dink,Dink,VO_s1_wiz_main_001,1.12,yes,yes,-26.7,-24.3,-13.0,0,-21.2
+s1-wiz.main.002,dink,Dink,VO_s1_wiz_main_002,1.04,yes,yes,-23.6,-21.2,-11.4,0,-18.1
+s1-wiz.main.003,martridge,Wizard Martridge,VO_s1_wiz_main_003,2.48,yes,yes,-19.3,-16.9,-6.8,0,-13.9
+s1-wiz.main.004,dink,Dink,VO_s1_wiz_main_004,3.28,yes,yes,-23.5,-22.4,-10.8,0,-19.4
+s1-wiz.main.005,martridge,Wizard Martridge,VO_s1_wiz_main_005,2.32,yes,yes,-17.6,-15.9,-6.0,0,-12.9
+s1-wiz.main.006,martridge,Wizard Martridge,VO_s1_wiz_main_006,3.36,yes,yes,-18.8,-16.7,-6.8,0,-13.7
+s1-wiz.main.007,dink,Dink,VO_s1_wiz_main_007,2.0,yes,yes,-25.0,-23.4,-10.3,0,-20.4
+s1-wiz.main.008,dink,Dink,VO_s1_wiz_main_008,2.56,yes,yes,-25.3,-24.1,-10.7,0,-21.0
+s1-wiz.main.009,dink,Dink,VO_s1_wiz_main_009,2.64,yes,yes,-25.2,-23.5,-11.6,0,-20.5
+s1-wiz.main.010,martridge,Wizard Martridge,VO_s1_wiz_main_010,3.6,yes,yes,-22.8,-20.2,-6.8,0,-17.2
+s1-wiz.main.011,martridge,Wizard Martridge,VO_s1_wiz_main_011,4.72,yes,yes,-21.2,-19.7,-6.8,0,-16.7
+s1-wiz.main.012,dink,Dink,VO_s1_wiz_main_012,2.48,yes,yes,-25.6,-24.6,-13.0,0,-21.5
+s1-wiz.main.013,martridge,Wizard Martridge,VO_s1_wiz_main_013,4.72,yes,yes,-20.2,-18.4,-6.6,0,-15.5
+s1-wiz.main.014,dink,Dink,VO_s1_wiz_main_014,4.0,yes,yes,-25.8,-24.2,-10.2,0,-21.1
+s1-wiz.main.015,martridge,Wizard Martridge,VO_s1_wiz_main_015,2.56,yes,yes,-18.0,-16.5,-6.3,0,-13.4
+s2-auntp.main.001,man_middle,Jack Kneedlewood,VO_s2_auntp_main_001,2.32,yes,yes,-16.0,-14.9,-6.3,0,-11.9
+s2-auntp.main.002,woman_middle,Aunt Maria Kneedlewood,VO_s2_auntp_main_002,2.48,yes,yes,-19.5,-18.0,-8.2,0,-14.9
+s2-auntp.main.003,man_middle,Jack Kneedlewood,VO_s2_auntp_main_003,1.36,yes,yes,-17.3,-15.1,-6.0,0,-12.1
+s2-auntp.main.004,woman_middle,Aunt Maria Kneedlewood,VO_s2_auntp_main_004,2.4,yes,yes,-17.5,-17.3,-7.8,0,-14.2
+s2-auntp.main.005,man_middle,Jack Kneedlewood,VO_s2_auntp_main_005,1.44,yes,yes,-18.8,-17.7,-7.5,0,-14.7
+s2-auntp.main.006,man_middle,Jack Kneedlewood,VO_s2_auntp_main_006,1.2,yes,yes,-20.2,-19.7,-8.0,0,-16.7
+s2-auntp.main.007,man_middle,Jack Kneedlewood,VO_s2_auntp_main_007,2.24,yes,yes,-18.3,-17.3,-6.7,0,-14.2
+s2-auntp.main.009,dink,Dink,VO_s2_auntp_main_009,0.88,yes,yes,-21.4,-19.4,-9.5,0,-16.5
+s2-auntp.main.010,man_middle,Jack Kneedlewood,VO_s2_auntp_main_010,1.6,yes,yes,-15.9,-14.3,-6.8,0,-11.3
+s2-auntp.main.011,dink,Dink,VO_s2_auntp_main_011,4.16,yes,yes,-24.1,-22.9,-10.5,0,-19.7
+s2-auntp.main.012,man_middle,Jack Kneedlewood,VO_s2_auntp_main_012,2.72,yes,yes,-15.6,-15.1,-6.7,0,-12.1
+s2-auntp.main.013,dink,Dink,VO_s2_auntp_main_013,1.12,yes,yes,-23.6,-21.0,-10.6,0,-18.0
+s2-auntp.main.014,man_middle,Jack Kneedlewood,VO_s2_auntp_main_014,1.6,yes,yes,-15.5,-13.2,-6.0,0,-10.2
+s2-auntp.main.015,woman_middle,Aunt Maria Kneedlewood,VO_s2_auntp_main_015,2.08,yes,yes,-19.3,-18.7,-8.6,0,-15.7
+s2-auntp.main.016,dink,Dink,VO_s2_auntp_main_016,1.28,yes,yes,-22.8,-20.6,-11.8,0,-17.6
+s2-auntp.main.017,man_middle,Jack Kneedlewood,VO_s2_auntp_main_017,4.08,yes,yes,-15.7,-14.5,-6.5,0,-11.5
+s2-auntp.main.018,woman_middle,Aunt Maria Kneedlewood,VO_s2_auntp_main_018,2.88,yes,yes,-19.9,-19.9,-8.5,0,-16.9
+s2-auntp.main.019,woman_middle,Aunt Maria Kneedlewood,VO_s2_auntp_main_019,2.24,yes,yes,-19.5,-19.5,-9.1,0,-16.5
+s2-auntp.main.020,man_middle,Jack Kneedlewood,VO_s2_auntp_main_020,3.2,yes,yes,-17.9,-15.8,-6.0,0,-12.8
+s2-auntp.main.021,woman_middle,Aunt Maria Kneedlewood,VO_s2_auntp_main_021,3.2,yes,yes,-21.2,-20.9,-8.9,0,-18.0
+s2-auntp.main.022,dink,Dink,VO_s2_auntp_main_022,2.4,yes,yes,-25.3,-23.9,-11.3,0,-20.9
+s2-auntp.main.023,woman_middle,Aunt Maria Kneedlewood,VO_s2_auntp_main_023,1.92,yes,yes,-20.4,-20.5,-8.0,0,-17.4
+s2-bar.main.001,dink,Dink,VO_s2_bar_main_001,1.28,yes,yes,-22.4,-20.1,-9.6,0,-17.1
+s2-bar.main.002,dink,Dink,VO_s2_bar_main_002,2.8,yes,yes,-23.9,-22.8,-11.3,0,-19.8
+s2-bar.main.003,dink,Dink,VO_s2_bar_main_003,1.52,yes,yes,-22.8,-21.0,-10.2,0,-18.3
+s2-bar.main.004,dink,Dink,VO_s2_bar_main_004,2.48,yes,yes,-26.4,-24.9,-12.0,0,-21.8
+s2-bar.main.005,dink,Dink,VO_s2_bar_main_005,1.2,yes,yes,-24.5,-23.1,-11.9,0,-20.0
+s2-bar.main.006,man_middle,barkeep,VO_s2_bar_main_006,2.4,yes,yes,-17.5,-16.9,-6.7,0,-13.9
+s2-bar.main.007,man_middle,barkeep,VO_s2_bar_main_007,2.24,yes,yes,-18.4,-17.4,-7.2,0,-14.3
+s2-bar.main.008,man_middle,barkeep,VO_s2_bar_main_008,1.76,yes,yes,-18.4,-17.1,-6.6,0,-14.1
+s2-bar.main.009,dink,Dink,VO_s2_bar_main_009,1.44,yes,yes,-26.1,-24.2,-12.5,0,-21.1
+s2-bar.main.010,villain,Cast agent / bar thug,VO_s2_bar_main_010,1.76,yes,yes,-24.2,-23.3,-9.9,0,-20.3
+s2-bar.main.011,villain,Cast agent / bar thug,VO_s2_bar_main_011,2.08,yes,yes,-21.6,-19.9,-7.4,0,-16.9
+s2-cave.main.001,man_middle,cave prisoner,VO_s2_cave_main_001,1.12,yes,yes,-16.5,-14.8,-6.4,0,-11.8
+s2-cave.main.002,dink,Dink,VO_s2_cave_main_002,1.12,yes,yes,-21.0,-19.3,-9.8,0,-16.3
+s2-cave.main.003,dink,Dink,VO_s2_cave_main_003,1.28,yes,yes,-23.6,-21.9,-10.7,0,-18.9
+s2-cave.main.004,man_middle,cave prisoner,VO_s2_cave_main_004,1.68,yes,yes,-17.3,-16.3,-7.0,0,-13.3
+s2-cave.main.005,dink,Dink,VO_s2_cave_main_005,0.72,yes,yes,-26.3,-23.8,-12.1,0,-20.8
+s2-cave.main.006,dink,Dink,VO_s2_cave_main_006,1.44,yes,yes,-23.8,-21.9,-12.9,0,-18.9
+s2-cave.main.007,man_middle,cave prisoner,VO_s2_cave_main_007,2.64,yes,yes,-18.7,-17.2,-6.5,0,-14.2
+s2-cave.main.008,dink,Dink,VO_s2_cave_main_008,1.52,yes,yes,-28.5,-27.2,-15.3,0,-24.1
+s2-cave.main.009,dink,Dink,VO_s2_cave_main_009,1.92,yes,yes,-25.8,-23.3,-10.8,0,-20.3
+s2-cave.main.010,man_middle,cave prisoner,VO_s2_cave_main_010,2.08,yes,yes,-18.4,-18.0,-6.8,0,-14.7
+s2-cave.main.011,dink,Dink,VO_s2_cave_main_011,0.96,yes,yes,-26.0,-23.4,-11.5,0,-20.4
+s2-cave.main.012,man_middle,cave prisoner,VO_s2_cave_main_012,2.24,yes,yes,-13.0,-11.9,-6.0,0,-8.9
+s2-cave.main.013,man_middle,cave prisoner,VO_s2_cave_main_013,2.96,yes,yes,-15.8,-14.9,-6.5,0,-11.9
+s2-cave.main.014,dink,Dink,VO_s2_cave_main_014,2.72,yes,yes,-24.5,-23.2,-10.4,0,-20.2
+s2-cave.main.015,man_middle,cave prisoner,VO_s2_cave_main_015,3.6,yes,yes,-20.3,-19.0,-6.6,0,-16.0
+s2-cave.main.016,man_middle,cave prisoner,VO_s2_cave_main_016,2.24,yes,yes,-22.0,-21.2,-7.5,0,-18.2
+s2-cave.main.017,man_middle,cave prisoner,VO_s2_cave_main_017,1.44,yes,yes,-17.9,-16.8,-6.8,0,-13.8
+s2-cave.main.018,dink,Dink,VO_s2_cave_main_018,2.56,yes,yes,-24.4,-22.4,-10.7,0,-19.3
+s2-cave.main.019,man_middle,cave prisoner,VO_s2_cave_main_019,1.92,yes,yes,-19.1,-17.8,-6.6,0,-14.8
+s2-cave.main.020,man_middle,cave prisoner,VO_s2_cave_main_020,3.28,yes,yes,-18.5,-17.6,-6.7,0,-14.6
+s2-cave.main.021,dink,Dink,VO_s2_cave_main_021,4.32,yes,yes,-24.1,-21.9,-10.5,0,-18.9
+s2-cave.main.037,man_middle,cave prisoner,VO_s2_cave_main_037,3.12,yes,yes,-21.5,-20.3,-7.6,0,-17.2
+s2-cave.main.038,man_middle,cave prisoner,VO_s2_cave_main_038,0.96,yes,yes,-17.7,-15.2,-6.3,0,-12.2
+s2-cave.main.039,dink,Dink,VO_s2_cave_main_039,3.04,yes,yes,-24.3,-23.0,-10.2,0,-20.1
+s2-cman.hit.001,nelson,Bishop Nelson,VO_s2_cman_hit_001,1.68,yes,yes,-16.8,-15.4,-6.4,0,-12.3
+s2-h2-s.main.001,dink,Dink,VO_s2_h2_s_main_001,3.92,yes,yes,-24.6,-23.2,-10.4,0,-20.2
+s2-h2-s.main.002,dink,Dink,VO_s2_h2_s_main_002,2.08,yes,yes,-26.6,-24.1,-12.4,0,-21.0
+s2-jack.die.001,woman_middle,Aunt Maria Kneedlewood,VO_s2_jack_die_001,2.16,yes,yes,-18.8,-18.4,-8.5,0,-15.4
+s2-jack.die.002,dink,Dink,VO_s2_jack_die_002,2.32,yes,yes,-27.6,-25.3,-12.7,0,-22.2
+s2-jack.die.003,woman_middle,Aunt Maria Kneedlewood,VO_s2_jack_die_003,4.64,yes,yes,-23.2,-22.5,-10.2,0,-19.4
+s2-jack.die.004,dink,Dink,VO_s2_jack_die_004,3.12,yes,yes,-26.4,-24.5,-11.0,0,-21.4
+s2-jack.hit.001,man_middle,Jack Kneedlewood,VO_s2_jack_hit_001,2.24,yes,yes,-14.6,-13.5,-6.1,0,-10.5
+s2-man1.hit.001,man_old,old man 1,VO_s2_man1_hit_001,1.2,yes,yes,-21.7,-19.7,-7.8,0,-16.6
+s2-mh-m.main.001,wizard_old,old magician,VO_s2_mh_m_main_001,2.24,yes,yes,-21.0,-21.5,-6.6,0,-18.5
+s2-mh-m.main.002,dink,Dink,VO_s2_mh_m_main_002,1.6,yes,yes,-24.0,-23.0,-11.3,0,-20.3
+s2-mh-m.main.003,wizard_old,old magician,VO_s2_mh_m_main_003,2.88,yes,yes,-20.9,-20.5,-7.4,0,-17.5
+s2-mh-m.talk.001,dink,Dink,VO_s2_mh_m_talk_001,4.48,yes,yes,-24.5,-23.3,-10.7,0,-20.2
+s2-mh-m.talk.002,dink,Dink,VO_s2_mh_m_talk_002,3.2,yes,yes,-24.9,-23.2,-10.7,0,-20.1
+s2-mh-m.talk.008,wizard_old,old magician,VO_s2_mh_m_talk_008,5.04,yes,yes,-19.6,-19.6,-6.3,0,-16.6
+s2-mh-m.talk.009,wizard_old,old magician,VO_s2_mh_m_talk_009,3.6,yes,yes,-19.3,-19.0,-6.5,0,-15.9
+s2-mh-m.talk.010,wizard_old,old magician,VO_s2_mh_m_talk_010,3.76,yes,yes,-20.6,-19.9,-6.6,0,-16.9
+s2-mh-m.talk.011,wizard_old,old magician,VO_s2_mh_m_talk_011,4.0,yes,yes,-18.3,-17.3,-6.1,0,-14.3
+s2-mh-m.talk.012,dink,Dink,VO_s2_mh_m_talk_012,3.36,yes,yes,-27.2,-24.9,-11.7,0,-21.7
+s2-mh-m.talk.013,wizard_old,old magician,VO_s2_mh_m_talk_013,4.8,yes,yes,-17.0,-16.1,-6.2,0,-13.0
+s2-mh-m.talk.014,dink,Dink,VO_s2_mh_m_talk_014,2.96,yes,yes,-22.9,-20.7,-10.2,0,-17.6
+s2-sec2.die.001,tree,talking tree,VO_s2_sec2_die_001,5.28,yes,yes,-21.0,-18.5,-6.0,0,-15.4
+s3-chick.hit.001,christina,Christina,VO_s3_chick_hit_001,1.92,yes,yes,-20.0,-19.4,-6.8,0,-16.3
+s3-freak.main.001,man_young,duck freak,VO_s3_freak_main_001,1.12,yes,yes,-19.3,-17.2,-6.7,0,-14.2
+s5-fguy.main.004,dragon,dragon,VO_s5_fguy_main_004,3.12,yes,yes,-18.6,-19.6,-8.4,0,-16.5
+s7-boss.hit.001,seth,Seth,VO_s7_boss_hit_001,2.08,yes,yes,-18.7,-17.7,-7.9,0,-14.7
+s7-dgirl.main.001,ghost,crazy ghost girl,VO_s7_dgirl_main_001,1.12,yes,yes,-26.0,-25.7,-16.2,0,-22.6

@@ -1,0 +1,380 @@
+{
+ "beds": {
+  "cave": {
+   "asset": "/Game/Dink/Audio/Life/Bed_cave.Bed_cave",
+   "gain": 1.109,
+   "lufs": -30.9
+  },
+  "meadow": {
+   "asset": "/Game/Dink/Audio/Life/Bed_meadow.Bed_meadow",
+   "gain": 0.447,
+   "lufs": -23.0
+  },
+  "sea": {
+   "asset": "/Game/Dink/Audio/Life/Bed_sea.Bed_sea",
+   "gain": 0.385,
+   "lufs": -21.7
+  },
+  "wind": {
+   "asset": "/Game/Dink/Audio/Life/Bed_wind.Bed_wind",
+   "gain": 0.417,
+   "lufs": -22.4
+  }
+ },
+ "import": [
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_grass_1",
+   "source": "SourceAssets/Audio/Life/Step_grass_1.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_grass_2",
+   "source": "SourceAssets/Audio/Life/Step_grass_2.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_grass_3",
+   "source": "SourceAssets/Audio/Life/Step_grass_3.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_grass_4",
+   "source": "SourceAssets/Audio/Life/Step_grass_4.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_dirt_1",
+   "source": "SourceAssets/Audio/Life/Step_dirt_1.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_dirt_2",
+   "source": "SourceAssets/Audio/Life/Step_dirt_2.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_dirt_3",
+   "source": "SourceAssets/Audio/Life/Step_dirt_3.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_dirt_4",
+   "source": "SourceAssets/Audio/Life/Step_dirt_4.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_sand_1",
+   "source": "SourceAssets/Audio/Life/Step_sand_1.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_sand_2",
+   "source": "SourceAssets/Audio/Life/Step_sand_2.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_sand_3",
+   "source": "SourceAssets/Audio/Life/Step_sand_3.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_sand_4",
+   "source": "SourceAssets/Audio/Life/Step_sand_4.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_wood_1",
+   "source": "SourceAssets/Audio/Life/Step_wood_1.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_wood_2",
+   "source": "SourceAssets/Audio/Life/Step_wood_2.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_wood_3",
+   "source": "SourceAssets/Audio/Life/Step_wood_3.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_wood_4",
+   "source": "SourceAssets/Audio/Life/Step_wood_4.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_stone_1",
+   "source": "SourceAssets/Audio/Life/Step_stone_1.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_stone_2",
+   "source": "SourceAssets/Audio/Life/Step_stone_2.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_stone_3",
+   "source": "SourceAssets/Audio/Life/Step_stone_3.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_stone_4",
+   "source": "SourceAssets/Audio/Life/Step_stone_4.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_snow_1",
+   "source": "SourceAssets/Audio/Life/Step_snow_1.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_snow_2",
+   "source": "SourceAssets/Audio/Life/Step_snow_2.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_snow_3",
+   "source": "SourceAssets/Audio/Life/Step_snow_3.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_snow_4",
+   "source": "SourceAssets/Audio/Life/Step_snow_4.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_water_1",
+   "source": "SourceAssets/Audio/Life/Step_water_1.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_water_2",
+   "source": "SourceAssets/Audio/Life/Step_water_2.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_water_3",
+   "source": "SourceAssets/Audio/Life/Step_water_3.wav"
+  },
+  {
+   "duration_s": 0.42,
+   "loop": false,
+   "name": "Step_water_4",
+   "source": "SourceAssets/Audio/Life/Step_water_4.wav"
+  },
+  {
+   "duration_s": 24.0,
+   "loop": true,
+   "name": "Bed_sea",
+   "source": "SourceAssets/Audio/Life/Bed_sea.wav"
+  },
+  {
+   "duration_s": 24.0,
+   "loop": true,
+   "name": "Bed_wind",
+   "source": "SourceAssets/Audio/Life/Bed_wind.wav"
+  },
+  {
+   "duration_s": 24.0,
+   "loop": true,
+   "name": "Bed_cave",
+   "source": "SourceAssets/Audio/Life/Bed_cave.wav"
+  },
+  {
+   "duration_s": 24.0,
+   "loop": true,
+   "name": "Bed_meadow",
+   "source": "SourceAssets/Audio/Life/Bed_meadow.wav"
+  }
+ ],
+ "note": "Written by Scripts/AudioQA/register_life_audio.py. gain brings each take to its category loudness (steps -26 LUFS, beds -30 LUFS at the file); volumes are the category faders.",
+ "schema": "dink-audio-life/1",
+ "steps": {
+  "dirt": [
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_dirt_1.Step_dirt_1",
+    "gain": 1.799,
+    "lufs": -31.1
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_dirt_2.Step_dirt_2",
+    "gain": 1.758,
+    "lufs": -30.9
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_dirt_3.Step_dirt_3",
+    "gain": 1.496,
+    "lufs": -29.5
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_dirt_4.Step_dirt_4",
+    "gain": 1.549,
+    "lufs": -29.8
+   }
+  ],
+  "grass": [
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_grass_1.Step_grass_1",
+    "gain": 0.741,
+    "lufs": -23.4
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_grass_2.Step_grass_2",
+    "gain": 0.733,
+    "lufs": -23.3
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_grass_3.Step_grass_3",
+    "gain": 0.668,
+    "lufs": -22.5
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_grass_4.Step_grass_4",
+    "gain": 0.7,
+    "lufs": -22.9
+   }
+  ],
+  "sand": [
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_sand_1.Step_sand_1",
+    "gain": 0.653,
+    "lufs": -22.3
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_sand_2.Step_sand_2",
+    "gain": 0.733,
+    "lufs": -23.3
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_sand_3.Step_sand_3",
+    "gain": 0.733,
+    "lufs": -23.3
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_sand_4.Step_sand_4",
+    "gain": 0.716,
+    "lufs": -23.1
+   }
+  ],
+  "snow": [
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_snow_1.Step_snow_1",
+    "gain": 0.653,
+    "lufs": -22.3
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_snow_2.Step_snow_2",
+    "gain": 0.724,
+    "lufs": -23.2
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_snow_3.Step_snow_3",
+    "gain": 0.589,
+    "lufs": -21.4
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_snow_4.Step_snow_4",
+    "gain": 0.776,
+    "lufs": -23.8
+   }
+  ],
+  "stone": [
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_stone_1.Step_stone_1",
+    "gain": 2.089,
+    "lufs": -32.4
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_stone_2.Step_stone_2",
+    "gain": 2.213,
+    "lufs": -32.9
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_stone_3.Step_stone_3",
+    "gain": 1.862,
+    "lufs": -31.4
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_stone_4.Step_stone_4",
+    "gain": 1.738,
+    "lufs": -30.8
+   }
+  ],
+  "water": [
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_water_1.Step_water_1",
+    "gain": 0.61,
+    "lufs": -21.7
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_water_2.Step_water_2",
+    "gain": 0.7,
+    "lufs": -22.9
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_water_3.Step_water_3",
+    "gain": 0.7,
+    "lufs": -22.9
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_water_4.Step_water_4",
+    "gain": 0.724,
+    "lufs": -23.2
+   }
+  ],
+  "wood": [
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_wood_1.Step_wood_1",
+    "gain": 1.072,
+    "lufs": -26.6
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_wood_2.Step_wood_2",
+    "gain": 0.902,
+    "lufs": -25.1
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_wood_3.Step_wood_3",
+    "gain": 0.923,
+    "lufs": -25.3
+   },
+   {
+    "asset": "/Game/Dink/Audio/Life/Step_wood_4.Step_wood_4",
+    "gain": 0.776,
+    "lufs": -23.8
+   }
+  ]
+ },
+ "volumes": {
+  "beds": 0.5,
+  "steps": 0.55
+ }
+}

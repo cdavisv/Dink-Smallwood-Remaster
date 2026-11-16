@@ -1,5 +1,9 @@
 """Validate exported listening decisions and select existing audio without regeneration.
 Run with --choices /path/audio_choices.csv; use --check to validate without writes.
+
+Regenerated replacements: every SFX/redo_*.json with a `picks` section ({"09_punch": {"take": "e", ...}}) selects that take
+for an effect the owner's review rejected ("neither"). The owner's export stays as it was; the pick is recorded in the runtime
+manifest's `redo` list and in the ledger. A redo take that the pick does not select keeps the status its QA gave it.
 """
 import argparse
 import csv
@@ -43,6 +47,12 @@ def main():
  ledger=ROOT/'SourceAssets/asset_ledger.csv'
  with ledger.open(newline='') as f: reader=csv.DictReader(f); fields=reader.fieldnames; rows=list(reader)
  by_input={r['asset_path']:r for r in rows}
+ picks={}
+ for spec in sorted((AUDIO/'SFX').glob('redo_*.json')):
+  for ident,pick in json.loads(spec.read_text()).get('picks',{}).items():
+   if ident in picks:raise ValueError('Two redo picks for '+ident)
+   picks[ident]=dict(pick,spec=str(spec.relative_to(ROOT)))
+ redone=[]
  seen=set(); assets=[]; sounds={}; music={}; rejected=[]; selected={}; counts={'sfx':0,'music':0,'rejected':0}
  def asset(name,folder,source,loop):
   with wave.open(str(ROOT/source),'rb') as w:
@@ -66,7 +76,13 @@ def main():
    for index,path in enumerate(candidates):
     status='rejected' if choice=='neither' else ('approved' if choice=='ab'[index] else 'not_selected')
     selected[path]=(status,c)
-   if choice=='neither':rejected.append(c); counts['rejected']+=1; continue
+   if choice=='neither' and ident in picks:
+    take=picks[ident]['take']; path=f'SourceAssets/Audio/SFX/delivered/{ident}_{take}.mp3'
+    if not re.fullmatch(r'[c-z]',take) or path not in by_input:raise ValueError('Unknown redo pick '+ident+'_'+take)
+    selected[path]=('approved',{'label':'Audio QA pick','choice':take,'note':'regenerated take picked by measurement ('+picks[ident]['spec']+'); owner listening pending'})
+    redone.append({'kind':'sfx','id':ident,'owner_choice':'neither','owner_note':c['note'],'take':take,'spec':picks[ident]['spec']})
+    choice=take
+   elif choice=='neither':rejected.append(c); counts['rejected']+=1; continue
    sounds[str(int(ident[:2]))]=asset('SFX_'+ident,'/Game/Dink/Audio/SFX',f'SourceAssets/Audio/SFX/{ident}_{choice}.wav',int(ident[:2]) in {23,34})
    counts['sfx']+=1
   elif kind=='music':
@@ -94,18 +110,26 @@ def main():
   if raw_key=='105' and s['region']=='edge_of_the_world':screen_music[str(s['screen'])]=music['19_edge_of_the_world']
  # Start a new game with the approved home cue rather than an empty inherited track.
  if '03_home_interior' in music:screen_music['1']=music['03_home_interior']
- runtime={'schema':'dink-audio/1','sounds':sounds,'music':music,'screen_music':screen_music,'volumes':{'music':.35,'sfx':.8},'rejected':rejected}
- result={'schema':'dink-audio-selection/1','review_sha256':hashlib.sha256(raw).hexdigest(),'counts':counts,'assets':assets,'runtime':runtime}
+ if set(picks)-{r['id'] for r in redone}:raise ValueError('Redo pick for an effect the review did not reject: '+str(set(picks)-{r['id'] for r in redone}))
+ counts['redone']=len(redone)
+ runtime={'schema':'dink-audio/1','sounds':sounds,'music':music,'screen_music':screen_music,'volumes':{'music':.35,'sfx':.8},'rejected':rejected,'redo':redone}
+ review_source,review_sha=str(args.choices),hashlib.sha256(raw).hexdigest()
+ # Re-applying the retained copy (e.g. after a redo pick) keeps the identity of the owner's original export.
+ prior=AUDIO/'review_decisions.json'
+ if prior.exists():
+  old=json.loads(prior.read_text())
+  if old.get('choices')==choices:review_source,review_sha=old['source'],old['sha256']
+ result={'schema':'dink-audio-selection/1','review_sha256':review_sha,'counts':counts,'assets':assets,'runtime':runtime}
  if not args.check:
   for row in rows:
    if row['asset_path'] in selected:
     status,c=selected[row['asset_path']];row['status']=status
-    note=row['notes'].split(' | Owner review:')[0]
-    row['notes']=note+' | Owner review: '+c['choice']+('; '+c['note'] if c['note'] else '')
+    note=row['notes'].split(' | Owner review:')[0].split(' | Audio QA pick:')[0]
+    row['notes']=note+' | '+c.get('label','Owner review')+': '+c['choice']+('; '+c['note'] if c['note'] else '')
   output=io.StringIO(newline='');w=csv.DictWriter(output,fieldnames=fields);w.writeheader();w.writerows(rows)
   atomic(ledger,output.getvalue())
   atomic(AUDIO/'approved_choices.csv',raw.decode('utf-8-sig'))
   atomic(AUDIO/'selection_manifest.json',json.dumps(result,indent=2)+'\n')
-  atomic(AUDIO/'review_decisions.json',json.dumps({'source':str(args.choices),'sha256':result['review_sha256'],'counts':counts,'choices':choices},indent=2)+'\n')
+  atomic(AUDIO/'review_decisions.json',json.dumps({'source':review_source,'sha256':review_sha,'counts':counts,'choices':choices},indent=2)+'\n')
  print('AUDIO CHOICES '+('VALID' if args.check else 'APPLIED')+': '+str(counts)+'; '+str(len(assets))+' approved assets')
 if __name__=='__main__':main()

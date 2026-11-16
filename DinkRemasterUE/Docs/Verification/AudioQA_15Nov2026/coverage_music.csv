@@ -1,0 +1,42 @@
+source,cue,uses,scripts / screens,take,kind,cooked,heard (sweep),sweep RMS dBFS,sweep LUFS,sweep peak dBFS,played in gameplay run,source LUFS,in-game LUFS (x0.35)
+playmidi,1003.mid,1,start,MUS_01_title,one-shot,yes,yes,-38.8,-35.1,-20.0,0,-15.8,-24.9
+playmidi,1004,1,s7-mil,MUS_15_goblin_lands,loop,yes,yes,-27.3,-28.6,-15.9,0,-14.4,-23.5
+playmidi,1004.mid,3,s2-cave2 s3-1st s3-camps,MUS_15_goblin_lands,loop,yes,yes,-27.3,-28.6,-15.9,0,-14.4,-23.5
+playmidi,1006,1,s7-hell,MUS_21_final_approach,loop,yes,yes,-30.4,-35.3,-18.6,0,-17.9,-27.0
+playmidi,1009,1,s5-fguy,MUS_15_goblin_lands,loop,yes,yes,-27.3,-28.6,-15.9,0,-14.4,-23.5
+playmidi,1009.mid,1,s3-mog,MUS_15_goblin_lands,loop,yes,yes,-27.3,-28.6,-15.9,0,-14.4,-23.5
+playmidi,1011,1,king,MUS_14_royal_court,loop,yes,yes,-26.8,-27.1,-15.8,0,-15.1,-24.2
+playmidi,1015,1,s7-mil,MUS_21_final_approach,loop,yes,yes,-30.4,-35.3,-18.6,0,-17.9,-27.0
+playmidi,1018,1,s7-hell,MUS_21_final_approach,loop,yes,yes,-30.4,-35.3,-18.6,0,-17.9,-27.0
+playmidi,5.mid,1,s1-h1-m,MUS_28_story,one-shot,yes,yes,-29.9,-29.4,-16.5,0,-18.5,-27.6
+playmidi,battle.mid,5,s1-cavem s1-rob2 s2-bar s2-ryan3,MUS_07_battle,loop,yes,yes,-26.1,-26.5,-14.4,0,-15.5,-24.6
+playmidi,bullythe.mid,2,s1-bul s2-man2,MUS_09_villain,loop,yes,yes,-28.5,-29.1,-15.7,0,-15.5,-24.6
+playmidi,caveexpl.mid,1,sc-ent,MUS_08_cave,loop,yes,yes,-24.4,-27.3,-14.5,0,-16.6,-25.7
+playmidi,denube.mid,1,s2-cult,MUS_22_waltz,one-shot,yes,yes,-35.3,-34.5,-23.2,0,-16.5,-25.6
+playmidi,insper.mid,2,s1-caves s1-h1-o,MUS_11_sorrow_resolve,one-shot,yes,yes,-30.3,-26.7,-14.2,0,-15.6,-24.7
+playmidi,love.mid,2,s1-vic s2-culg,MUS_10_love,loop,yes,yes,-25.3,-26.0,-14.2,0,-15.6,-24.7
+playmidi,lovin.mid,1,s3-tc,MUS_10_love,loop,yes,yes,-25.3,-26.0,-14.2,0,-15.6,-24.7
+playmidi,wanderer.mid,3,s1-cavem s1-mh-o s1-wiz,MUS_06_wonder,loop,yes,yes,-28.8,-28.0,-16.2,0,-16.9,-26.0
+screen,1 1.mid,9,467 497 498 499 500 529 530 531 ...,MUS_04_terris_town,loop,yes,yes,-26.1,-26.6,-15.1,0,-16.0,-25.1
+screen,100 100.mid,6,624 625 626 656 657 658,MUS_05_overworld_wilds,loop,yes,yes,-29.4,-29.9,-15.3,0,-19.2,-28.3
+screen,101 101.mid,1,73,MUS_18_snow_castle,loop,yes,yes,-27.7,-28.2,-16.4,0,-15.7,-24.8
+screen,102 102.mid,1,37,MUS_04_terris_town,loop,yes,yes,-26.1,-26.6,-15.1,0,-16.0,-25.1
+screen,103 103.mid,2,3 35,MUS_04_terris_town,loop,yes,yes,-26.1,-26.6,-15.1,0,-16.0,-25.1
+screen,104 104.mid,6,407 408 409 439 440 441,MUS_02_stonebrook_village,loop,yes,yes,-26.9,-27.4,-14.6,0,-15.4,-24.5
+screen,105 105.mid,11,144 182 184 186 213 277 315 375 ...,MUS_03_home_interior,loop,yes,yes,-29.5,-29.9,-18.4,0,-16.3,-25.4
+screen,106 106.mid,12,501 502 503 504 505 506 535 536 ...,MUS_13_windemere_port,loop,yes,yes,-25.4,-27.7,-14.1,0,-16.3,-25.4
+screen,107 107.mid,4,74 105 169 202,MUS_18_snow_castle,loop,yes,yes,-27.7,-28.2,-16.4,0,-15.7,-24.8
+screen,1002 2.ogg,10,238 239 269 270 271 301 302 303 ...,MUS_12_murkwood,loop,yes,yes,-26.4,-27.8,-15.3,0,-15.8,-24.9
+screen,1005 5.ogg,1,34,MUS_04_terris_town,loop,yes,yes,-26.1,-26.6,-15.1,0,-16.0,-25.1
+screen,1007 7.ogg,46,26 27 28 29 30 31 32 58 ...,MUS_16_darklands,loop,yes,yes,-23.0,-26.2,-16.5,0,-15.1,-24.2
+screen,1008 8.ogg,2,419 451,MUS_20_joppa_isle,loop,yes,yes,-26.9,-29.4,-15.9,0,-16.3,-25.4
+screen,1010 10.ogg,12,257 258 259 514 515 546 547 577 ...,MUS_08_cave,loop,yes,yes,-24.4,-27.3,-14.5,0,-16.6,-25.7
+screen,1012 12.ogg,2,70 102,MUS_14_royal_court,loop,yes,yes,-26.8,-27.1,-15.8,0,-15.1,-24.2
+screen,1013 13.ogg,1,260,MUS_19_edge_of_the_world,loop,yes,yes,-26.2,-27.2,-18.0,0,-15.6,-24.7
+screen,1016 16.ogg,28,384 416 448 480 512 544 576 608 ...,MUS_17_koka_isle,loop,yes,yes,-25.4,-27.1,-13.8,0,-16.7,-25.8
+screen override,1,1,1,MUS_03_home_interior,loop,yes,yes,-29.5,-29.9,-18.4,0,,
+screen override,144,1,144,MUS_19_edge_of_the_world,loop,yes,yes,-26.2,-27.2,-18.0,0,,
+screen override,182,1,182,MUS_19_edge_of_the_world,loop,yes,yes,-26.2,-27.2,-18.0,0,,
+screen override,184,1,184,MUS_19_edge_of_the_world,loop,yes,yes,-26.2,-27.2,-18.0,0,,
+screen override,186,1,186,MUS_19_edge_of_the_world,loop,yes,yes,-26.2,-27.2,-18.0,0,,
+screen override,213,1,213,MUS_19_edge_of_the_world,loop,yes,yes,-26.2,-27.2,-18.0,0,,

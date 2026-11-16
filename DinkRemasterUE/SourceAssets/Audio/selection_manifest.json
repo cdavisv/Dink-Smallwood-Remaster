@@ -2,9 +2,10 @@
   "schema": "dink-audio-selection/1",
   "review_sha256": "4257c9edb8edcd77b01065519688454b0979165a17d3348fbae5eb45a3dcbea3",
   "counts": {
-    "sfx": 44,
+    "sfx": 48,
     "music": 28,
-    "rejected": 4
+    "rejected": 0,
+    "redone": 4
   },
   "assets": [
     {
@@ -70,6 +71,14 @@
       "sha256": "3790f6b04667e94ce662675dfba2482866643cd61c87aec28035aee6d5a59ee5",
       "loop": false,
       "duration_s": 0.48
+    },
+    {
+      "name": "SFX_09_punch",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/09_punch_e.wav",
+      "sha256": "64c3434f9be47fea27336bb9919fe00fad93839f8835069e74e325298c52c6ed",
+      "loop": false,
+      "duration_s": 0.45
     },
     {
       "name": "SFX_10_sword2",
@@ -336,6 +345,14 @@
       "duration_s": 1.36
     },
     {
+      "name": "SFX_44_bow1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/44_bow1_i.wav",
+      "sha256": "48729830c95212da2bcc5c45b5970b90ebe95a0f86f2c52e27441c77730f36cf",
+      "loop": false,
+      "duration_s": 0.7
+    },
+    {
       "name": "SFX_45_knock",
       "folder": "/Game/Dink/Audio/SFX",
       "source": "SourceAssets/Audio/SFX/45_knock_a.wav",
@@ -358,6 +375,22 @@
       "sha256": "24360ed0f445c9b6b0d4982a429695d6c21d37c97088abe4c01b835477d9b8bc",
       "loop": false,
       "duration_s": 3.08
+    },
+    {
+      "name": "SFX_48_axe",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/48_axe_i.wav",
+      "sha256": "f113b4ecbaa1b1cf28eb318a42f2adb280499d7b72bea0ed1fe7662d60524ae5",
+      "loop": false,
+      "duration_s": 0.5
+    },
+    {
+      "name": "SFX_49_bird1",
+      "folder": "/Game/Dink/Audio/SFX",
+      "source": "SourceAssets/Audio/SFX/49_bird1_c.wav",
+      "sha256": "aaef92eee844c3bbd9902b783cdd236daaf43d6f129485b58c94386c7e45ac2a",
+      "loop": false,
+      "duration_s": 1.8
     },
     {
       "name": "MUS_01_title",
@@ -619,6 +652,10 @@
         "asset": "/Game/Dink/Audio/SFX/SFX_08_swing.SFX_08_swing",
         "loop": false
       },
+      "9": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_09_punch.SFX_09_punch",
+        "loop": false
+      },
       "10": {
         "asset": "/Game/Dink/Audio/SFX/SFX_10_sword2.SFX_10_sword2",
         "loop": false
@@ -751,6 +788,10 @@
         "asset": "/Game/Dink/Audio/SFX/SFX_43_secret.SFX_43_secret",
         "loop": false
       },
+      "44": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_44_bow1.SFX_44_bow1",
+        "loop": false
+      },
       "45": {
         "asset": "/Game/Dink/Audio/SFX/SFX_45_knock.SFX_45_knock",
         "loop": false
@@ -761,6 +802,14 @@
       },
       "47": {
         "asset": "/Game/Dink/Audio/SFX/SFX_47_drag2.SFX_47_drag2",
+        "loop": false
+      },
+      "48": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_48_axe.SFX_48_axe",
+        "loop": false
+      },
+      "49": {
+        "asset": "/Game/Dink/Audio/SFX/SFX_49_bird1.SFX_49_bird1",
         "loop": false
       }
     },
@@ -1196,30 +1245,39 @@
       "music": 0.35,
       "sfx": 0.8
     },
-    "rejected": [
+    "rejected": [],
+    "redo": [
       {
         "kind": "sfx",
         "id": "09_punch",
-        "choice": "neither",
-        "note": "no sound"
+        "owner_choice": "neither",
+        "owner_note": "no sound",
+        "take": "e",
+        "spec": "SourceAssets/Audio/SFX/redo_15Nov2026.json"
       },
       {
         "kind": "sfx",
         "id": "44_bow1",
-        "choice": "neither",
-        "note": "i can't really hear it"
+        "owner_choice": "neither",
+        "owner_note": "i can't really hear it",
+        "take": "i",
+        "spec": "SourceAssets/Audio/SFX/redo_15Nov2026.json"
       },
       {
         "kind": "sfx",
         "id": "48_axe",
-        "choice": "neither",
-        "note": "can't hear b, and a needs work"
+        "owner_choice": "neither",
+        "owner_note": "can't hear b, and a needs work",
+        "take": "i",
+        "spec": "SourceAssets/Audio/SFX/redo_15Nov2026.json"
       },
       {
         "kind": "sfx",
         "id": "49_bird1",
-        "choice": "neither",
-        "note": "both have issues"
+        "owner_choice": "neither",
+        "owner_note": "both have issues",
+        "take": "c",
+        "spec": "SourceAssets/Audio/SFX/redo_15Nov2026.json"
       }
     ]
   }
