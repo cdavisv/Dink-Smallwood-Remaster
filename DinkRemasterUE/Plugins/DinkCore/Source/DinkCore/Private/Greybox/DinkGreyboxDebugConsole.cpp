@@ -106,11 +106,16 @@ namespace
 		int32 Samples = 0;
 		uint64 LastSampledFrame = 0;
 		void ResetMark(double Now) { MarkTime = Now; MarkFrame = GFrameCounter; GameMs = RenderMs = GpuMs = GpuMaxMs = 0.0; Samples = 0; }
+		/** Longest frame since the last `wait` (hitch review, bug list A15), and the wall clock of the last tick. */
+		double MaxFrameSeconds = 0.0;
+		double LastTick = 0.0;
 	};
 
 	bool TickCaptureScript(TSharedRef<FDinkCaptureScript> S)
 	{
 		const double Now = FPlatformTime::Seconds();
+		if (S->LastTick > 0.0) S->MaxFrameSeconds = FMath::Max(S->MaxFrameSeconds, Now - S->LastTick);
+		S->LastTick = Now;
 		if (S->LastSampledFrame != GFrameCounter)
 		{
 			// the timings `stat unit` shows: last completed frame of each thread and of the GPU
@@ -134,6 +139,7 @@ namespace
 			{
 				S->WaitUntil = Now + FCString::Atod(*Rest);
 				S->ResetMark(Now);
+				S->MaxFrameSeconds = 0.0;
 				return true;
 			}
 			if (Line.StartsWith(TEXT("shot ")))
@@ -148,8 +154,8 @@ namespace
 				const double Seconds = Now - S->MarkTime;
 				const uint64 Frames = GFrameCounter - S->MarkFrame;
 				const double N = FMath::Max(1, S->Samples);
-				UE_LOG(LogDink, Display, TEXT("DINK CAPTURE: fps %s %.1f (%llu frames in %.2fs) game %.2f ms render %.2f ms gpu %.2f ms (max %.2f)"), *Rest,
-					Seconds > 0.0 ? double(Frames) / Seconds : 0.0, Frames, Seconds, S->GameMs / N, S->RenderMs / N, S->GpuMs / N, S->GpuMaxMs);
+				UE_LOG(LogDink, Display, TEXT("DINK CAPTURE: fps %s %.1f (%llu frames in %.2fs) game %.2f ms render %.2f ms gpu %.2f ms (max %.2f), longest frame %.1f ms"), *Rest,
+					Seconds > 0.0 ? double(Frames) / Seconds : 0.0, Frames, Seconds, S->GameMs / N, S->RenderMs / N, S->GpuMs / N, S->GpuMaxMs, S->MaxFrameSeconds * 1000.0);
 				continue;
 			}
 			UE_LOG(LogDink, Display, TEXT("DINK CAPTURE: exec %s"), *Line);
