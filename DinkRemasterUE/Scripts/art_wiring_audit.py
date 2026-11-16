@@ -69,8 +69,10 @@ COMPOSED = {
     "/Game/Dink/Photoreal/Characters/Mother/SK_Mother_Photoreal": "DinkArtSubsystem.cpp DinkPhotorealNpcMesh (SK_<Name>_Photoreal)",
     "/Game/Dink/Photoreal/Characters/Milder/SK_Milder_Photoreal": "DinkArtSubsystem.cpp DinkPhotorealNpcMesh (SK_<Name>_Photoreal)",
 }
-SEVERITY = ["ok", "replaced", "unverified", "not_seen", "superseded", "deliberate", "documented", "alternate", "queued", "note", "bug", "texture", "lod", "nanite", "unbound", "not_cooked",
-            "default_material", "missing_texture", "not_imported"]
+# `bug` ranks highest: a wiring bug (a gore-excluded clip played by mistake, say) must show even on a row whose cook
+# evidence is stale (not_cooked) or that has another fault (review of #176)
+SEVERITY = ["ok", "replaced", "unverified", "not_seen", "superseded", "deliberate", "documented", "alternate", "queued", "note", "texture", "lod", "nanite", "unbound", "not_cooked",
+            "default_material", "missing_texture", "not_imported", "bug"]
 
 
 def rel(p, base=PROJECT):
@@ -1161,6 +1163,12 @@ def main():
         for i in (OWNER_ID.findall(k[1]) if k else []):
             if i in STALE_IDS:
                 details.append("stale reason: owner row %s %s" % (i, STALE_IDS[i]))
+        pkind = "clip" if n.startswith("AN_") else "mesh"
+        st = stale_when_in(k[0], pkind, n, [g], via, literals, roots) if k else None
+        if st:      # before the other branches, so a bound gore clip is never hidden behind not_cooked or unbound
+            flags.append(st[0])
+            details.append(st[1])
+            print("art_wiring_audit: warning: %s has a %s reason but is in (%s)" % (n, k[0], st[2]), file=sys.stderr)
         if not bound_where:
             flags.append(gap_flag(reason, covered_by(n, index)) or "unbound")
         elif cooked_s == "no" and a.cook_commit and not in_commit(g, a.cook_commit, via, roots):
@@ -1174,10 +1182,8 @@ def main():
             reason = reason or ("replaced: environment.json mesh_swaps" if not (missed or decided) else "")
         elif k and k[0] in ("replaced", "bug", "superseded"):
             flags.append(k[0])
-        elif k and stale_when_in(k[0], "mesh", n, [g], via, literals, roots):
-            st = stale_when_in(k[0], "mesh", n, [g], via, literals, roots)
-            flags.append(st[0])
-            details.append(st[1])
+        elif st:
+            pass
         elif g in HERO_MESHES:
             seen_s = "player pawn"
         elif not seen_s and seen and n.startswith("SM_") and a.sweep_commit and not in_commit(g, a.sweep_commit, via, roots):

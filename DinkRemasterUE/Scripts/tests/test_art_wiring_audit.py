@@ -1,4 +1,5 @@
 """Scripts/art_wiring_audit.py: package reading, the checks and the reviewed-reason table."""
+import csv
 import importlib.util
 import json
 import os
@@ -94,7 +95,8 @@ class Reasons(unittest.TestCase):
         self.assertTrue(rows)
         self.assertIsNone(A.known_reason('SK_Duck', '', rows))           # #113 merged: the duck is wired, no reason
         self.assertEqual(A.known_reason('AN_Duck_Peck', '', rows)[0], 'queued')     # anim/creature-oneshots
-        self.assertEqual(A.known_reason('AN_Duck_Death', '', rows)[0], 'deliberate')  # gore: the duck keeps its head-pop
+        for clip in ('AN_Duck_Death', 'AN_Duck_HeadlessDeath', 'AN_Duck_Hit', 'AN_Slime_Death', 'AN_Dragon_Death'):
+            self.assertEqual(A.known_reason(clip, '', rows)[0], 'deliberate', clip)   # gore decisions of 16 Nov
         self.assertEqual(A.known_reason('SM_Slime_Trail', '', rows)[0], 'bug')
         self.assertEqual(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/PhotorealPass/Structures/Castle/x.fbx', rows)[0], 'queued')
         self.assertIsNone(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/Other/x.fbx', rows))
@@ -457,6 +459,66 @@ class StaleWhenIn(unittest.TestCase):
         self.assertEqual(st[0], 'note')
         self.assertIn('bound by families.json', st[1])
         self.assertIsNone(A.stale_when_in('superseded', 'mesh', 'SM_Thing_PR', [self.MESH], {self.MESH: 'x'}, set(), {}))
+
+
+
+class StaleWhenInMore(unittest.TestCase):
+    """Review of #176: the remaining branches of stale_when_in."""
+    CLIP = '/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Death'
+    MESH = '/Game/Dink/Photoreal/Props/SM_Thing_PR'
+
+    def test_deliberate_clip_bound_without_a_runtime_caller_is_a_bug(self):
+        st = A.stale_when_in('deliberate', 'clip', 'AN_Slime_Death', [self.CLIP], {self.CLIP: 'Content/X/montage.json'}, set(), {})
+        self.assertEqual(st[0], 'bug')
+        self.assertIn('bound by Content/X/montage.json', st[1])
+
+    def test_deliberate_mesh_bound_is_a_bug(self):
+        self.assertEqual(A.stale_when_in('deliberate', 'mesh', 'SM_Thing_PR', [self.MESH], {self.MESH: 'families.json'}, set(), {})[0], 'bug')
+
+    def test_queued_clip_needs_bound_and_played(self):
+        via = {self.CLIP: 'Content/X/montage.json'}
+        self.assertIsNone(A.stale_when_in('queued', 'clip', 'AN_Slime_Death', [self.CLIP], via, set(), {}))           # bound, not played
+        self.assertIsNone(A.stale_when_in('queued', 'clip', 'AN_Slime_Death', [self.CLIP], {}, {'Slime_Death'}, {}))  # played, not bound
+        self.assertEqual(A.stale_when_in('queued', 'clip', 'AN_Slime_Death', [self.CLIP], via, {'Slime_Death'}, {})[0], 'note')
+
+
+class MainRows(unittest.TestCase):
+    """main() call sites: a deliberate gore clip bound through a creatures.json role is a `bug` row, as a source row and
+    as a package-only row, even without a cook (the bug outranks the other flags)."""
+
+    def test_bound_gore_clip_rows(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            ue = root / 'DinkRemasterUE'
+            for sub in ('Scripts', 'Content/Dink/Data/Art', 'Content/Dink/Photoreal/C', 'Source/Game',
+                        'SourceAssets/Art/Creatures/X/Export'):
+                (ue / sub).mkdir(parents=True)
+            (root / 'doc' / 'remaster').mkdir(parents=True)
+            (root / 'doc' / 'remaster' / 'ALPHA_BUG_LIST.md').write_text('| A205 | S3 | x |\n')
+            (root / 'doc' / 'remaster' / 'FABLE_ART_QUEUE.md').write_text('')
+            (ue / 'Scripts' / 'art_wiring_audit.py').write_text(SCRIPT.read_text())
+            (ue / 'Scripts' / 'art_wiring_known.json').write_text(json.dumps({'rows': [
+                {'match': '^AN_Gore(2)?$', 'kind': 'deliberate', 'why': 'A205: gore, stays unbound'}]}))
+            (ue / 'DinkRemaster.uproject').write_text(json.dumps({'Modules': [{'Name': 'Game', 'Type': 'Runtime'}]}))
+            (ue / 'Source' / 'Game' / 'Load.cpp').write_text('auto F = TEXT("Dink/Data/Art/creatures.json");\n')
+            (ue / 'Content' / 'Dink' / 'Data' / 'Art' / 'creatures.json').write_text(json.dumps({'classes': [{'class': 'x', 'roles': {
+                'die': {'clip': '/Game/Dink/Photoreal/C/AN_Gore.AN_Gore'},
+                'die2': {'clip': '/Game/Dink/Photoreal/C/AN_Gore2.AN_Gore2'}}}]}))
+            for n in ('AN_Gore', 'AN_Gore2'):
+                (ue / 'Content' / 'Dink' / 'Photoreal' / 'C' / (n + '.uasset')).write_bytes(b'x')
+            (ue / 'SourceAssets' / 'Art' / 'Creatures' / 'X' / 'Export' / 'A_Gore.fbx').write_bytes(b'x')
+            out = root / 'out.csv'
+            r = subprocess.run([sys.executable, '-I', str(ue / 'Scripts' / 'art_wiring_audit.py'), '--out', str(out),
+                                '--seen', str(root / 'none.csv')], capture_output=True, text=True, cwd=ue)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            with out.open() as h:
+                rows = {x['asset']: x for x in csv.DictReader(h)}
+            self.assertEqual(rows['AN_Gore']['flag'], 'bug')
+            self.assertEqual(rows['AN_Gore']['kind'], 'clip')
+            self.assertIn('yes (creatures.json)', rows['AN_Gore']['seen'])
+            self.assertEqual(rows['AN_Gore2']['kind'], 'package only')
+            self.assertEqual(rows['AN_Gore2']['flag'], 'bug')
+            self.assertIn('has a deliberate reason but is in', r.stderr)
 
 
 if __name__ == '__main__':

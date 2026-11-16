@@ -6,7 +6,7 @@ and, if not, why. It audits the wiring (import, binding, cook, draw, clip caller
 source is good enough to bind is an art decision for the Fable queue.
 
 Tree: master `9cc796b6`. Tool: `DinkRemasterUE/Scripts/art_wiring_audit.py` (read-only, standard library; unit tests in
-`Scripts/tests/test_art_wiring_audit.py`, 37 pass). Reviewed reasons for sources that do not reach the player:
+`Scripts/tests/test_art_wiring_audit.py`, 41 pass). Reviewed reasons for sources that do not reach the player:
 `Scripts/art_wiring_known.json` (52 rows; add a row when you decide, drop it when you bind). Two runs on the same inputs
 write byte-identical files.
 
@@ -208,7 +208,7 @@ the project's real `.uplugin`/`.uproject` files and skips when a snapshot does n
 (`queued`, `alternate`, `deliberate`) is checked against the asset itself. A queued or alternate one goes stale when a
 root binds the package (for a clip, when a runtime caller plays it): flag `note`. A deliberate one (the gore-excluded
 death clips, say) goes stale on any sign of use, a binding of the package or a runtime caller, even a bare C++ role name
-with the package unbound: flag `bug`. The `seen` column then shows how the asset is in. The check only warns (a row
+with the package unbound: flag `bug`, which outranks every other flag (a bound gore clip shows as `bug` even when its cook evidence is stale). For clip source rows the `seen` column then shows how the clip is in; for meshes and package-only rows the `detail` column says it. Package-only clips (`AN_*`) are checked as clips. The check only warns (a row
 flag and a line on stderr); **CI does not run the audit** (its unit tests run, the audit does not), so it catches a
 mistake only when someone reruns `art_wiring_audit.py` by hand on a full checkout with LFS objects (the package reads
 need them) after a binding change, as the rerun after anim-motion's `anim/creature-oneshots` will.
