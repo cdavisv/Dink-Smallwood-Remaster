@@ -158,7 +158,7 @@ screens, so the cost per frame should not rise (to be measured, section 8).
 | decals, relief rocks, walk audit, PhotorealQA scripts | measure cm/px at run time or use pixels | follow by themselves |
 | player blockers (#129) | mesh hulls | follow the meshes; which meshes get one came from a walk audit at the old scale: rerun `dink.WalkAudit` + `make_player_blockers.py` + `check_player_blockers.py` |
 | interiors and warps | pixels; interiors packed 3000 m below the outdoor world | moved by the layout; warps are pixel destinations |
-| save games | `PlayerTransform` in absolute world cm (`DinkSaveGame.h:92`) | NOT migrated: a save from before this change puts Dink at the old position. Remaining (a version-3 step: old corners -> pixel -> new corners, or respawn at the saved screen's pixel) |
+| save games | `PlayerTransform` in absolute world cm (`DinkSaveGame.h:92`); Dink's 1997 pixel and screen in the narrative state | on load, a pawn more than 1 m from Dink's saved pixel (a save from another scale) is stood on that pixel (`UDinkStorySubsystem::RestoreFromSave`, `dink.Save.RelocateToPixel`); within one layout both agree, so the probe's saves and loads are untouched (to be confirmed by the probe run) |
 | fast travel | not implemented (`REMASTER_PLAN.md`) | nothing |
 | Koka bridge stretch, cobbler's-booth join | regions.toml (factor on the kind scale; join in pixels) | follow |
 | detached sheets | `min_gap_m` 1500 absolute | unchanged, gaps still 1500 m |
@@ -193,4 +193,4 @@ before and after; frame cost on one busy screen. The PR text says which of these
 - Authored screens: their space pieces are stretched 14-25 % in X/Y (floor tiles 2.13 m, field tiles 6.9-7.5 m), the
   cottage of 439 is 15 % larger. Fable rows WS-01..03.
 - Every open PR that holds layout-derived data needs its data regenerated after this one (section 6).
-- Old saves land at the old world position (no migration yet).
+- Old saves: the pawn is moved onto Dink's saved pixel (not yet exercised in the game).

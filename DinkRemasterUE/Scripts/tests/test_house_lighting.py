@@ -51,12 +51,12 @@ class HouseLighting(unittest.TestCase):
         # World scale of 15 Nov 2026 (interior 2.0 x 0.025 m/px; doc/remaster/WORLD_SCALE.md): the windows moved with
         # the room through their 1997 pixels (Scripts/world_scale_convert_art.py), the daylight rows follow them.
         expected = {
-            'NorthWall_1': ([-185546.22, 405948.74, 185], 90),
-            'NorthWall_6': ([-184483.72000000003, 405948.74, 185], 90),
-            'WestWall_2': ([-185894.96999999997, 406514.45428571425, 185], 0),
-            'WestWall_4': ([-185894.96999999994, 406943.0257142857, 185], 0),
-            'EastWall_2': ([-184134.97000000003, 406514.45428571425, 185], 180),
-            'EastWall_4': ([-184134.96999999997, 406943.0257142857, 185], 180),
+            'NorthWall_1': ([-185546.22, 405948.74000000005, 185], 90),
+            'NorthWall_6': ([-184483.72, 405948.74000000005, 185], 90),
+            'WestWall_2': ([-185894.97, 406514.4542857143, 185], 0),
+            'WestWall_4': ([-185894.97, 406943.0257142857, 185], 0),
+            'EastWall_2': ([-184134.97, 406514.4542857143, 185], 180),
+            'EastWall_4': ([-184134.97, 406943.0257142857, 185], 180),
         }
         for row in self.manifest['lights'][2:]:
             centre, yaw = expected[row['name'].removeprefix('Daylight_')]
@@ -185,10 +185,11 @@ class HouseLighting(unittest.TestCase):
         (source / 'art_manifest.json').write_text(json.dumps({
             'assets': {'SM_Window_Limewash_2m_01': {'class': 'kit_wall'}}, 'materials': {}}))
         screens = root / 'ImportData/screens.json'; screens.parent.mkdir()
-        # The generated screens export is absent in source-audit checkouts.
+        # The generated screens export is absent in source-audit checkouts. Screen 1 at the 15 Nov world scale
+        # (interior 2.0, doc/remaster/WORLD_SCALE.md).
         screens.write_text(json.dumps({'screens': [{'screen': 1, 'corners': {
-            'nw': [-1851.3391, 3918.4598], 'ne': [-1825.0891, 3918.4598],
-            'sw': [-1851.3391, 3935.9598], 'se': [-1825.0891, 3935.9598],
+            'nw': [-1865.1497, 4054.7874], 'ne': [-1835.1497, 4054.7874],
+            'sw': [-1865.1497, 4074.7874], 'se': [-1835.1497, 4074.7874],
         }}]}))
         path = root / lighting.PROFILE; path.parent.mkdir(parents=True); path.write_text(json.dumps(profile))
         scripts = root / 'Scripts'; scripts.mkdir()

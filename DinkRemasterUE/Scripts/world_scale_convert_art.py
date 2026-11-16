@@ -10,12 +10,12 @@ metres per pixel. Every position goes through the 1997 pixel it stood on: old co
 Newton) -> new corners. So everything keeps its place relative to the 1997 hardness, the warps and the other dressing.
 
 Size rule (WORLD_SCALE.md, "per-family size rule"):
-  - SPACE pieces: the floor, walls, windows, doorways, roofs, ground and field tiles, banks, paths, the vista ground,
-    the skirt and underfloor, the split-rail fence runs and the authored cottage of 439. They are the room, the ground or
-    a run that must close against the 1997 hardness; on authored-collision screens they ARE Dink's collision. Their X/Y
-    scale is multiplied by the local linear ratio of the two layouts (new / old metres per pixel at that point), so they
-    still meet and still close every passage exactly as before. Their height (Z scale) is kept, except for the authored
-    cottage of 439 (its own collision, with a camera portal that needs a uniform scale): it grows as a whole.
+  - SPACE pieces: the floor, roofs, ground and field tiles, banks, paths, the vista ground, the skirt and underfloor:
+    X/Y scale times the local linear ratio of the two layouts (new / old metres per pixel at that point). RUNS (walls,
+    windows, the doorway, split-rail fences: modules along their local X): X only (length follows, thickness and height
+    stay). They are the room, the ground or a run that must close against the 1997 hardness; on authored-collision
+    screens they ARE Dink's collision, so they still meet and close every passage exactly as before. The authored cottage
+    of 439 (its own collision, with a camera portal that needs a uniform scale) grows as a whole.
   - OBJECTS: furniture, barrels, candles, baskets, chimneys, boulders, trees, grass clumps, feed: real size, moved only.
 Postprocess volumes grow in X/Y with the ratio (they cover the room); light radii and warp trigger extents are kept.
 Without --write it prints what would change. The mesh `offset_cm` of `replacements` are relative to their origin
@@ -25,8 +25,11 @@ import argparse, json, math, sys
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[1]
-SPACE = ("SM_Floor_", "SM_Wall_", "SM_Window_", "SM_Doorway_", "SM_IndoorRoof_", "SM_Ground_", "SM_Fields_",
-         "SM_Path_", "SM_VistaGround_", "SM_Stonebrook_PerimeterSkirt", "SM_Underfloor_", "SM_Fence_SplitRail")
+SPACE = ("SM_Floor_", "SM_IndoorRoof_", "SM_Ground_", "SM_Fields_", "SM_Path_", "SM_VistaGround_",
+         "SM_Stonebrook_PerimeterSkirt", "SM_Underfloor_")
+# runs: modules along their local X (walls, windows, the doorway, split-rail fences): the length follows, thickness and
+# height stay real
+RUNS = ("SM_Wall_", "SM_Window_", "SM_Doorway_", "SM_Fence_SplitRail")
 UNIFORM = ("SM_Cottage_Stonebrook",)
 
 
@@ -75,6 +78,49 @@ def is_space(mesh):
     return name.startswith(SPACE)
 
 
+def rescale(e, r):
+    """The size rule; True when the element is a space piece (its scale changed)."""
+    name = e.get("mesh", "").rsplit("/", 1)[-1]
+    sc = list(e.get("scale", [1, 1, 1]))
+    if name.startswith(UNIFORM):
+        # one authored building that is its own collision and carries a camera portal (camera_exteriors.json,
+        # DinkCameraPortal::Limit needs a uniform scale): it grows as a whole, its door stays on its warp
+        e["scale"] = [v * r for v in sc]
+    elif name.startswith(RUNS):
+        e["scale"] = [sc[0] * r] + sc[1:]
+    elif name.startswith(SPACE):
+        e["scale"] = [sc[0] * r, sc[1] * r] + sc[2:]
+    else:
+        return False
+    return True
+
+
+def generator_world(corners, pixel, height_cm):
+    """Scripts/import_stonebrook_art.py world_pixel(), same operations in the same order (bit-identical rows)."""
+    x, y = pixel[0] / 600, pixel[1] / 400
+    nw, ne, se, sw = [corners[k] for k in ('nw', 'ne', 'se', 'sw')]
+    out = [(nw[i]*(1-x)*(1-y) + ne[i]*x*(1-y) + se[i]*x*y + sw[i]*(1-x)*y) * 100 for i in range(2)]
+    return out + [height_cm / 100 * 100]
+
+
+# The source layouts the Stonebrook generator reads (pixels + scale): their scales follow the same rule, so a fresh
+# import_stonebrook_art.py run at the new ImportData gives the same space pieces; the starting house's six windows are
+# written exactly as the generator computes them (Scripts/house_lighting.py pins them byte for byte).
+SOURCE_LAYOUTS = {1: "SourceAssets/Art/Stonebrook/room_layout.json", 439: "SourceAssets/Art/StonebrookExterior/exterior_layout.json"}
+EXACT_ROWS = {1: {"NorthWall_1", "NorthWall_6", "WestWall_2", "WestWall_4", "EastWall_2", "EastWall_4"}}
+
+
+def convert_layout(lay, co, cn):
+    n = 0
+    for e in lay.get("elements", []):
+        if "source_pixel" not in e:
+            continue
+        u, v = e["source_pixel"][0] / 600.0, e["source_pixel"][1] / 400.0
+        if rescale(e, linear_ratio(co, cn, u, v)):
+            n += 1
+    return n
+
+
 def convert_manifest(d, old_sc, new_sc, report):
     screen = d.get("screen")
     co, cn = old_sc[screen]["corners"], new_sc[screen]["corners"]
@@ -84,14 +130,7 @@ def convert_manifest(d, old_sc, new_sc, report):
         if "world_cm" not in e:
             continue
         e["world_cm"], r, px = convert_point(co, cn, e["world_cm"])
-        if e.get("mesh", "").rsplit("/", 1)[-1].startswith(UNIFORM):
-            # one authored building that is its own collision and carries a camera portal (camera_exteriors.json,
-            # DinkCameraPortal::Limit needs a uniform scale): it grows as a whole, its door stays on its warp
-            e["scale"] = [v * r for v in e.get("scale", [1, 1, 1])]
-            report["space"] += 1
-        elif is_space(e.get("mesh", "")):
-            sc = list(e.get("scale", [1, 1, 1]))
-            e["scale"] = [sc[0] * r, sc[1] * r] + sc[2:]
+        if rescale(e, r):
             report["space"] += 1
         else:
             report["object"] += 1
@@ -140,6 +179,22 @@ def main(argv=None):
                 continue
         if not convert_manifest(d, old_sc, new_sc, report):
             continue
+        lay_rel = SOURCE_LAYOUTS.get(d["screen"]) if path.name in ("stonebrook.json", "stonebrook_exterior.json") else None
+        if lay_rel and (Path(a.project) / lay_rel).exists():
+            lay_path = Path(a.project) / lay_rel
+            lay_text = lay_path.read_text(encoding="utf-8")
+            lay = json.loads(lay_text)
+            co, cn = old_sc[d["screen"]]["corners"], new_sc[d["screen"]]["corners"]
+            nl = convert_layout(lay, co, cn)
+            src = {e["name"]: e for e in lay.get("elements", [])}
+            for e in d.get("elements", []):
+                if e.get("name") in EXACT_ROWS.get(d["screen"], ()) and e["name"] in src:
+                    row = src[e["name"]]
+                    e["world_cm"] = generator_world(cn, row["source_pixel"], row.get("height_cm", 0))
+                    e["scale"] = list(row["scale"])
+            print(f"{lay_path.name}: {nl} source scales follow the rule")
+            if a.write:
+                lay_path.write_text(json.dumps(lay, indent=2 if lay_text.startswith("{\n  ") else None) + ("\n" if lay_text.endswith("\n") else ""), encoding="utf-8")
         rs = report.pop("ratio")
         print(f"{path.name} (screen {d['screen']}): {report}, linear ratio {min(rs or [1]):.4f}..{max(rs or [1]):.4f}")
         changed += 1
@@ -158,7 +213,14 @@ def main(argv=None):
         co, cn = old_sc[prof["screen"]]["corners"], new_sc[prof["screen"]]["corners"]
         rows = {e["name"]: e for e in man["elements"]}
         moved = 0
+        lay_src = {}
+        lp = Path(a.project) / SOURCE_LAYOUTS.get(prof["screen"], "")
+        if lp.is_file():
+            lay_src = {e["name"]: e for e in json.loads(lp.read_text(encoding="utf-8")).get("elements", [])}
         for b in prof["windows"]:
+            src_row = lay_src.get(b["expected_source"]["name"])
+            if src_row is not None:
+                b["expected_source"]["scale"] = list(src_row["scale"])
             new_row = rows[b["expected_runtime"]["name"]]
             if b["expected_runtime"] != new_row:
                 b["expected_runtime"] = new_row
