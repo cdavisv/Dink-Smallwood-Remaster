@@ -617,10 +617,30 @@ float foam = saturate((a - 0.465) / 0.03) * step(a, 0.502) * smoothstep(0.35, 0.
 float scum = step(a, 0.5) * (1.0 - saturate(d / 0.4)) * smoothstep(0.55, 0.72, Noise.r * 0.5 + Noise.g * 0.5) * smoothstep(0.3, 0.6, Noise.b) * ScumAmount;
 foam = max(foam, scum);
 return float3(k, foam, lerp(0.04, 0.255, saturate((0.53 - a) * 20.0)));''', F3, ['A', 'Noise', 'ScumAmount'], 'Shore terms')
-link(scalar_param(mat, 'ScumAmount', 0.8, -600, -860, group='Water'), '', shore, 'ScumAmount')
+# How much of the sea's body the water takes (0 silty pond .. 1 sea): nine weights over the screen (SeaNW .. SeaSE:
+# corners, edge middles, centre; the world export's water_sea_patch), blended smoothly by the screen UV. Two joined
+# screens hold the same weights along their shared edge, so the colour runs on across a border instead of stepping.
+sea_names = ('SeaNW', 'SeaN', 'SeaNE', 'SeaW', 'SeaC', 'SeaE', 'SeaSW', 'SeaS', 'SeaSE')
+sea = custom(mat, -900, 900, '''
+float2 t = saturate(UV);
+float2 q = t * 2.0;
+float2 hi = step(1.0, q);
+float2 f = q - hi;
+f = f * f * (3.0 - 2.0 * f);
+float3 cx = hi.x > 0.5 ? float3(0.0, 1.0 - f.x, f.x) : float3(1.0 - f.x, f.x, 0.0);
+float3 cy = hi.y > 0.5 ? float3(0.0, 1.0 - f.y, f.y) : float3(1.0 - f.y, f.y, 0.0);
+float3 north = float3(NW, N, NE), middle = float3(W, C, E), south = float3(SW, S, SE);
+return saturate(cy.x * dot(cx, north) + cy.y * dot(cx, middle) + cy.z * dot(cx, south));''', F1,
+             ['UV', 'NW', 'N', 'NE', 'W', 'C', 'E', 'SW', 'S', 'SE'], 'Sea weight over the screen')
+link(expr(mat, unreal.MaterialExpressionTextureCoordinate, -1100, 900), '', sea, 'UV')
+for i, name in enumerate(sea_names):
+    link(scalar_param(mat, name, 0.0, -1100, 980 + 60 * i, group='Water'), '', sea, name[3:])
+scum = custom(mat, -600, -860, 'return ScumAmount * (1.0 - Sea);', F1, ['ScumAmount', 'Sea'], 'Scum toward the sea')
+link(scalar_param(mat, 'ScumAmount', 0.8, -800, -860, group='Water'), '', scum, 'ScumAmount'); link(sea, '', scum, 'Sea')
+link(scum, '', shore, 'ScumAmount')
 link(shore_mask, 'A', shore, 'A'); link(shore_noise, 'RGB', shore, 'Noise')
 shore_top = custom(mat, -100, -700, 'return lerp(float3(0.55, 0.57, 0.50), float3(0.085, 0.11, 0.04), saturate(ScumAmount));', F3, ['ScumAmount'], 'Top colour')
-link(scalar_param(mat, 'ScumAmount', 0.8, -300, -780, group='Water'), '', shore_top, 'ScumAmount')
+link(scum, '', shore_top, 'ScumAmount')
 out(shore_top, '', MP.MP_BASE_COLOR)
 out(expr(mat, unreal.MaterialExpressionConstant, -400, -200, r=0.0), '', MP.MP_METALLIC)
 shore_spec = expr(mat, unreal.MaterialExpressionComponentMask, -100, -520, r=False, g=False, b=True, a=False)
@@ -634,10 +654,15 @@ link(shore, '', shore_foam, '')
 out(shore_foam, '', MP.MP_OPACITY)
 slw = expr(mat, unreal.MaterialExpressionSingleLayerWaterMaterialOutput, -100, 400)
 # per centimetre through a 3 cm slab: the full value is opaque deep water, scaled down to nothing at the shore
-shore_scatter = custom(mat, -300, 400, 'return C.rgb * S.x;', F3, ['C', 'S'], 'Scattering')
-shore_absorb = custom(mat, -300, 560, 'return C.rgb * S.x;', F3, ['C', 'S'], 'Absorption')
+# Pond (Scattering, Absorption) to sea (SeaScattering, SeaAbsorption) by the sea weight, blended geometrically: the
+# pond's scattering is up to seven times the sea's, so a linear blend at half still reads pond-olive.
+geo = 'return pow(max(C.rgb, 1e-5), 1.0 - Sea) * pow(max(K.rgb, 1e-5), Sea) * S.x;'
+shore_scatter = custom(mat, -300, 400, geo, F3, ['C', 'K', 'Sea', 'S'], 'Scattering')
+shore_absorb = custom(mat, -300, 560, geo, F3, ['C', 'K', 'Sea', 'S'], 'Absorption')
 link(vector_param(mat, 'Scattering', (0.110, 0.120, 0.055), -500, 400), '', shore_scatter, 'C'); link(shore, '', shore_scatter, 'S')
+link(vector_param(mat, 'SeaScattering', (0.016, 0.034, 0.034), -500, 480), '', shore_scatter, 'K'); link(sea, '', shore_scatter, 'Sea')
 link(vector_param(mat, 'Absorption', (0.50, 0.33, 0.55), -500, 560), '', shore_absorb, 'C'); link(shore, '', shore_absorb, 'S')
+link(vector_param(mat, 'SeaAbsorption', (0.42, 0.17, 0.15), -500, 640), '', shore_absorb, 'K'); link(sea, '', shore_absorb, 'Sea')
 link(shore_scatter, '', slw, 'ScatteringCoefficients')
 link(shore_absorb, '', slw, 'AbsorptionCoefficients')
 link(expr(mat, unreal.MaterialExpressionConstant, -500, 720, r=0.2), '', slw, 'PhaseG')

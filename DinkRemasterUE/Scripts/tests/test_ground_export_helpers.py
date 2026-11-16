@@ -10,7 +10,9 @@ try:
     import numpy as np
     from export_import_bundle import (RELIEF_MAX_CLEAR_PX, RELIEF_MIN_CLEAR_PX, fold_terrain_layers, forest_points,  # noqa: E402
                                       map_neighbours, mark_sea_water, natural_water_shape, relief_points, water_is_sea,
-                                      water_meets, water_sea_weights, water_tile_rects)
+                                      water_meets, water_sea_weights, water_tile_rects, water_links, water_sea_patches,
+                                      capped_shore_distance, signed_shore_distance, shore_alpha, world_neighbours,
+                                      SHORE_PX_CM)
 except ImportError as error:    # the world export needs numpy and Pillow; a machine without them cannot run it either
     raise unittest.SkipTest('world export helpers need numpy and Pillow: %s' % error)
 
@@ -214,7 +216,58 @@ class SeaWaterTests(unittest.TestCase):
         weights = mark_sea_water(rows, {101: 'wilderness', 102: 'wilderness', 103: 'wilderness'}, {101: ALL_EDGES})
         self.assertEqual(weights, {101: 1.0, 102: 1.0})
         self.assertEqual(rows['102']['water_sea'], 1.0)
+        self.assertEqual(rows['102']['water_sea_patch'], [1.0] * 9)
         self.assertNotIn('water_sea', rows['103'])
+
+    def test_the_sea_weight_runs_on_across_every_joined_border(self):
+        # 634 (sea) - 635 (half) - 636 (pond) in a row, 603 (pond) north of 635, 667 south of 635 not joined
+        w = {634: water(tiles=96), 635: water(), 636: water(), 603: water(), 667: water(fill=[[100, 100, 200, 200]])}
+        weights = {634: 1.0, 635: 0.5, 636: 0.0, 603: 0.0, 667: 0.0}
+        links = water_links(w)
+        patch = water_sea_patches(weights, links)
+        self.assertEqual(patch[635][4], 0.5)                                 # the centre keeps the screen's weight
+        self.assertEqual(patch[635][3], 0.75)                                # west edge: halfway to 634
+        self.assertEqual(patch[635][5], 0.25)                                # east edge: halfway to 636
+        self.assertEqual(patch[635][7], 0.5)                                 # south: 667 does not join, own weight
+        for n in patch:                                                      # joined screens agree all along the edge
+            for m in links[n]:
+                a, b = patch[n], patch[m]
+                if m == n + 1:
+                    self.assertEqual((a[2], a[5], a[8]), (b[0], b[3], b[6]), (n, m))
+                if m == n + 32:
+                    self.assertEqual((a[6], a[7], a[8]), (b[0], b[1], b[2]), (n, m))
+
+
+class ShoreAlphaTests(unittest.TestCase):
+    def test_capped_distance_is_exact_within_the_cap(self):
+        rng = np.random.default_rng(3)
+        grid = np.zeros((20, 30), bool)
+        grid[5:14, 4:20] = True
+        grid |= rng.random(grid.shape) > 0.93
+        exact = signed_shore_distance(grid, SHORE_PX_CM)
+        capped = capped_shore_distance(grid, SHORE_PX_CM, cap=11)
+        near = np.abs(exact) < 10 * SHORE_PX_CM
+        self.assertTrue(np.allclose(exact[near], capped[near]))
+
+    def test_neighbours_must_lie_against_the_screen_in_the_world(self):
+        c = lambda x, y: {'nw': [x, y], 'ne': [x + 50, y], 'sw': [x, y + 30], 'se': [x + 50, y + 30]}
+        corners = {465: c(100, 100), 464: c(50, 100), 466: c(400, 100), 433: c(100, 70), 498: c(150, 130)}
+        self.assertEqual(world_neighbours(465, corners), {(-1, 0): 464, (0, -1): 433, (1, 1): 498})
+        self.assertEqual(world_neighbours(385, {385: c(0, 0), 384: c(-50, 0)}), {})   # 384 ends the row above
+
+    def test_a_pond_across_a_border_has_one_depth_on_both_sides(self):
+        # a pond straddling the border of 464 (west) and 465: its west bank lies on 464 two texels from the border
+        a = np.zeros((64, 96), bool); a[20:44, 94:] = True
+        b = np.zeros((64, 96), bool); b[20:44, :30] = True
+        cells = {464: a, 465: b}
+        left = shore_alpha(464, cells, {(1, 0): 465})
+        right = shore_alpha(465, cells, {(-1, 0): 464})
+        self.assertTrue(np.allclose(left[:, -1], right[:, 0], atol=1e-6))     # the same value on the border
+        self.assertGreater(right[32, 0], 0.2)                                 # shallow: the bank on 464 is near
+        self.assertLess(right[32, 0], 0.5)
+        alone = shore_alpha(465, cells, {})                                   # on its own 465 never saw that bank
+        self.assertLess(alone[32, 0], right[32, 0] - 0.2)
+        self.assertTrue((shore_alpha(465, {465: np.zeros((64, 96), bool)}, {}) == 1.0).all())
 
 
 class WaterTileRectsTests(unittest.TestCase):

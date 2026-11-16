@@ -361,7 +361,7 @@ private:
 	void ApplyRelief(int32 ScreenNumber, const FDinkScreenCorners& Corners);
 	TMap<int32, TArray<FDinkReliefRock>> ReliefRocks;
 	TMap<int32, TArray<FBox2D>> WaterTileRects;
-	TMap<int32, float> WaterTileSea;        // ground_classes.json `water_sea` (0 pond .. 1 sea; true = 1): how much of the sea's colours the sheet takes
+	TMap<int32, TArray<float>> WaterTileSea; // ground_classes.json `water_sea_patch` (or `water_sea` nine times): the sea weight (0 pond .. 1 sea) at the sheet's corners, edge middles and centre
 	UPROPERTY(Transient)
 	TArray<TObjectPtr<UStaticMesh>> ReliefMeshes;
 	UPROPERTY(Transient)

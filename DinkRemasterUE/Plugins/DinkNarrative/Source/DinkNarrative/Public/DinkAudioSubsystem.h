@@ -6,6 +6,7 @@ class UAudioComponent;
 class USoundAttenuation;
 class ADinkScreenVolume;
 class UDinkDirector;
+class UDinkStorySubsystem;
 struct FDinkActiveText;
 struct DINKNARRATIVE_API FDinkApprovedSound
 {
@@ -74,6 +75,8 @@ struct DINKNARRATIVE_API FDinkVoiceTracker
  FChanges Update(const TArray<FDinkActiveText>& Texts, double NowMs, const FDinkVoiceTable& Table);
  /** The recording of this text ended or could not play. */
  void Forget(int32 Text);
+ /** The text has timed out and its recording is still finishing (the dialogue box keeps showing it meanwhile). */
+ bool IsTail(int32 Text, const FString& LineId) const { return Playing.ContainsByPredicate([&](const FVoice& V) { return V.bTail && V.Text == Text && V.LineId == LineId; }); }
  void Reset() { Playing.Reset(); Known.Reset(); }
 private:
  TMap<int32, double> Known; // text handle -> ExpireMs of every text already seen
@@ -97,6 +100,12 @@ public:
  const FDinkVoiceTable& GetVoices() const { return Voices; }
  int32 GetVoiceCount() const { return VoiceComponents.Num(); }
  const FString& GetLastVoiceLine() const { return LastVoiceLine; }
+ /**
+  * True while the recording of a text that has already timed out is still audible. The dialogue box (DinkNarrativeOverlay.cpp)
+  * keeps that line up until the recording ends or another line takes the box, so the words and the voice end together;
+  * the story's timing is not touched (the text itself is gone from GetActiveTexts()).
+  */
+ bool IsVoiceTailPlaying(int32 Text, const FString& LineId) const;
 private:
  FDinkAudioSelection Selection;
  FDinkVoiceTable Voices;
@@ -122,4 +131,8 @@ private:
  bool CanPlay() const;
  void UpdateVoices(UDinkDirector* Director);
  void StopVoice(int32 Text);
+ /** UDinkStorySubsystem::OnLineSkipped: the player skipped a line; its recording stops in the same frame. */
+ void HandleLineSkipped(int32 Text);
+ TWeakObjectPtr<UDinkStorySubsystem> HookedStory;
+ FDelegateHandle LineSkippedHandle;
 };

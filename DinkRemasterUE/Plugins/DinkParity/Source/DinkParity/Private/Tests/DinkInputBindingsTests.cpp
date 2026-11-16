@@ -30,6 +30,7 @@ bool FDinkInputGamepadTest::RunTest(const FString& Parameters)
 	TestTrue(TEXT("F and Left Ctrl attack"), IsBound(EKeys::F, EAction::Attack) && IsBound(EKeys::LeftControl, EAction::Attack));
 	TestTrue(TEXT("E talks"), IsBound(EKeys::E, EAction::Talk));
 	TestTrue(TEXT("Q casts"), IsBound(EKeys::Q, EAction::Magic));
+	TestTrue(TEXT("Enter and I open the item screen (the original's Enter)"), IsBound(EKeys::Enter, EAction::Inventory) && IsBound(EKeys::I, EAction::Inventory));
 	TestTrue(TEXT("Enter, Space and E pick"), IsBound(EKeys::Enter, EAction::Confirm) && IsBound(EKeys::SpaceBar, EAction::Confirm) && IsBound(EKeys::E, EAction::Confirm));
 	// The gamepad layout.
 	TestTrue(TEXT("X attacks (held: the bow draws)"), IsBound(EKeys::Gamepad_FaceButton_Left, EAction::Attack));

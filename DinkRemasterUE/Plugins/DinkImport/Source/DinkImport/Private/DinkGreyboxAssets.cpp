@@ -918,20 +918,30 @@ namespace DinkGreybox
 		const bool bShoreWater = Terrain && !Rects(TEXT("fill_water")).IsEmpty() && FPackageName::DoesPackageExist(EnvWaterShore);
 		if (bShoreWater)
 		{
-			// How much of the sea's blue-green the water takes, 0 (silty pond water, the material's defaults) .. 1: the
-			// world export's `water_sea` (water_sea_weights: open water and sandy shores are sea, rivers fade to pond
-			// over two screens, no hard step between joined screens). An older bundle without it: the screen's own
-			// rule (the sea sheets and any shore with a dry sand or shingle layer; WetSand is every water bed).
-			float Sea = float(Screen.WaterSea);
-			if (Sea < 0.f)
+			// How much of the sea's blue-green the water takes, 0 (silty pond water, the material's defaults) .. 1, at nine
+			// points of the screen (corners, edge middles, centre): the world export's `water_sea_patch` (water_sea_weights
+			// and water_sea_patches: open water and sandy shores are sea, rivers fade to pond over two screens, and two
+			// joined screens hold the same weights along their shared edge). M_Env_WaterShore blends between the nine by
+			// the screen UV. An older bundle: `water_sea` everywhere, or without it the screen's own rule (the sea sheets
+			// and any shore with a dry sand or shingle layer; WetSand is every water bed).
+			float Patch[9];
+			if (Screen.WaterSeaPatch.Num() == 9)
+				for (int32 I = 0; I < 9; ++I) Patch[I] = FMath::Clamp(float(Screen.WaterSeaPatch[I]), 0.f, 1.f);
+			else
 			{
-				bool bSea = Screen.Kind == TEXT("sea");
-				for (const FDinkBundleGroundLayer& L : Screen.GroundLayers)
-					bSea |= L.Name == TEXT("DrySand") || L.Name == TEXT("ShingleBeach");
-				Sea = bSea ? 1.f : 0.f;
+				float Sea = float(Screen.WaterSea);
+				if (Sea < 0.f)
+				{
+					bool bSea = Screen.Kind == TEXT("sea");
+					for (const FDinkBundleGroundLayer& L : Screen.GroundLayers)
+						bSea |= L.Name == TEXT("DrySand") || L.Name == TEXT("ShingleBeach");
+					Sea = bSea ? 1.f : 0.f;
+				}
+				for (float& P : Patch) P = FMath::Clamp(Sea, 0.f, 1.f);
 			}
-			Sea = FMath::Clamp(Sea, 0.f, 1.f);
-			const FString WaterHash = HashStrings({TEXT("water-mi/5"), MaskPkg, Screen.GroundMaskHash, FString::Printf(TEXT("sea=%.3f"), Sea)});
+			FString PatchKey;
+			for (const float P : Patch) PatchKey += FString::Printf(TEXT("%.3f;"), P);
+			const FString WaterHash = HashStrings({TEXT("water-mi/6"), MaskPkg, Screen.GroundMaskHash, PatchKey});
 			if (IsUpToDate(WaterMiPkg, WaterHash)) MarkUnchanged(WaterMiPkg, WaterHash);
 			else
 			{
@@ -939,14 +949,12 @@ namespace DinkGreybox
 				UMaterialInstanceConstant* MI = BuildMaterialInstance(WaterMiPkg,
 					LoadObject<UMaterialInterface>(nullptr, *(FString(EnvWaterShore) + TEXT(".M_Env_WaterShore"))), bExisted);
 				MI->SetTextureParameterValueEditorOnly(FMaterialParameterInfo(TEXT("ShoreMask")), Cast<UTexture>(LoadGenerated(MaskPkg)));
-				if (Sea > 0.f)
-				{
-					// pond = M_Env_WaterShore's defaults (Scripts/import_environment_materials.py), sea = the old sea body;
-					// UDinkEnvironmentSubsystem::ApplyRelief blends a water sheet the same way
-					MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Absorption")), FMath::Lerp(FLinearColor(0.50f, 0.33f, 0.55f), FLinearColor(0.42f, 0.17f, 0.15f), Sea));
-					MI->SetVectorParameterValueEditorOnly(FMaterialParameterInfo(TEXT("Scattering")), FMath::Lerp(FLinearColor(0.110f, 0.120f, 0.055f), FLinearColor(0.016f, 0.034f, 0.034f), Sea));
-					MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(TEXT("ScumAmount")), FMath::Lerp(0.8f, 0.f, Sea));
-				}
+				// pond = the material's Absorption/Scattering/ScumAmount, sea = its SeaAbsorption/SeaScattering
+				// (Scripts/import_environment_materials.py); UDinkEnvironmentSubsystem::ApplyRelief sets a water sheet the same way
+				static const TCHAR* const PatchNames[9] = {TEXT("SeaNW"), TEXT("SeaN"), TEXT("SeaNE"), TEXT("SeaW"), TEXT("SeaC"),
+					TEXT("SeaE"), TEXT("SeaSW"), TEXT("SeaS"), TEXT("SeaSE")};
+				for (int32 I = 0; I < 9; ++I)
+					if (Patch[I] > 0.f) MI->SetScalarParameterValueEditorOnly(FMaterialParameterInfo(PatchNames[I]), Patch[I]);
 				MI->PostEditChange();
 				MI->MarkPackageDirty();
 				MarkBuilt(MI, WaterMiPkg, WaterHash, bExisted);

@@ -221,6 +221,11 @@ bool FDinkBundle::Load(const FString& InDir, FString& OutError)
 			S.GroundMaskHash = Str(O, TEXT("ground_mask_hash"));
 			S.WaterSea = Num(O, TEXT("water_sea"), -1.0);
 			{
+				const TArray<TSharedPtr<FJsonValue>>* Patch = nullptr;
+				if (O->TryGetArrayField(TEXT("water_sea_patch"), Patch) && Patch && Patch->Num() == 9)
+					for (const TSharedPtr<FJsonValue>& PatchValue : *Patch) S.WaterSeaPatch.Add(PatchValue->AsNumber());
+			}
+			{
 				const TArray<TSharedPtr<FJsonValue>>* GroundLayerRows = nullptr;
 				if (O->TryGetArrayField(TEXT("ground_layers"), GroundLayerRows) && GroundLayerRows)
 				{
