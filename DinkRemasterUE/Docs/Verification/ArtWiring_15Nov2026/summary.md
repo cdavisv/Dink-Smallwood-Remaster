@@ -7,9 +7,9 @@ rows: 880; unreadable packages (LFS object missing): 0
 |---|---:|
 | lod | 13 |
 | bug | 8 |
-| queued | 119 |
+| queued | 114 |
 | alternate | 195 |
-| deliberate | 5 |
+| deliberate | 10 |
 | superseded | 14 |
 | not_seen | 160 |
 | unverified | 41 |
@@ -18,8 +18,9 @@ rows: 880; unreadable packages (LFS object missing): 0
 
 | kind | flag | rows |
 |---|---|---:|
+| clip | deliberate | 5 |
 | clip | ok | 21 |
-| clip | queued | 16 |
+| clip | queued | 11 |
 | clip | replaced | 16 |
 | clip | superseded | 1 |
 | clip | unverified | 23 |

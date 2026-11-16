@@ -94,6 +94,7 @@ class Reasons(unittest.TestCase):
         self.assertTrue(rows)
         self.assertIsNone(A.known_reason('SK_Duck', '', rows))           # #113 merged: the duck is wired, no reason
         self.assertEqual(A.known_reason('AN_Duck_Peck', '', rows)[0], 'queued')     # anim/creature-oneshots
+        self.assertEqual(A.known_reason('AN_Duck_Death', '', rows)[0], 'deliberate')  # gore: the duck keeps its head-pop
         self.assertEqual(A.known_reason('SM_Slime_Trail', '', rows)[0], 'bug')
         self.assertEqual(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/PhotorealPass/Structures/Castle/x.fbx', rows)[0], 'queued')
         self.assertIsNone(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/Other/x.fbx', rows))
