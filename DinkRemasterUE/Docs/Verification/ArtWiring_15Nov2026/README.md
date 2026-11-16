@@ -20,15 +20,19 @@ A209 or an existing row). A208 (one object drawn twice) and A209 were found afte
 ## Pre-rerun note (16 Nov 2026)
 
 `art_wiring.csv`, `drawn_cards.csv` and `summary.md` are regenerated on master **60d8a1e5** (880 rows: ok 300,
-replaced 25, not_seen 160, unverified 41, lod 13, bug 24, queued 103, alternate 195, deliberate 5, superseded 14). They
+replaced 25, not_seen 160, unverified 41, lod 13, bug 8, queued 119, alternate 195, deliberate 5, superseded 14). They
 still use the cook of 15 Nov 16:48 and the sweep of master f92915fe (salvaged copy without screen 595). Every number
-below that depends on the cook or the sweep is **pre-rerun**: the cooked and unverified counts, the not_seen
-breakdown, the drawn-card counts and classes, and the text's tree hash 9cc796b6. The rows #151, #163 and #170 bound
-since (chests, bonca, slayer, stone giant, dragon) are `unverified` until a cook and a visual sweep of current master
-exist; the README refresh comes with that rerun as its own PR. `chest_large` and `chest_medium` list no delivered mesh
-in `drawn_cards.csv` on purpose: the photoreal chest meshes are `chest_small`'s (VS-07). New on 60d8a1e5: bug row A210
-(nine monster clips no role plays; three more single-LOD corpses for A200). DS-09's ThornBush idea needs an in-game
-look before anyone binds it.
+in this README that depends on the cook or the sweep is **pre-rerun**: the cooked and unverified counts, the not_seen
+breakdown, the drawn-card counts and classes, and the tree hash 9cc796b6. So are the body's 853-row counts, the
+texture numbers, "monsters not imported" and the findings table below, which predate 60d8a1e5. The rows #151, #163
+and #170 bound since (chests, bonca, slayer, stone giant, dragon) stay `unverified` until a cook and a visual sweep of
+current master exist; the README refresh comes with that rerun as its own PR. `chest_large` and `chest_medium` list no
+delivered mesh in `drawn_cards.csv` because none exists: the photoreal chest meshes are `chest_small`'s, VS-07 is the
+open art row for `chest_medium`, and nothing queues `chest_large` yet. New on 60d8a1e5: bug row A210 (nine monster
+clips no role plays; three more single-LOD corpses, owned by Fable stream A's `corpse_lods`). The A205 and A210 clips
+are `queued` for anim-motion's event one-shots (branch `anim/creature-oneshots`, coordinator decision of 16 Nov
+reversing monster IMPORT.md's written decision to leave them unbound). DS-09's ThornBush idea needs an in-game look
+before anyone binds it.
 
 ## How it was done
 

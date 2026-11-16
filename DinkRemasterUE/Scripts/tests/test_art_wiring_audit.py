@@ -93,7 +93,8 @@ class Reasons(unittest.TestCase):
         rows = A.known_rows()
         self.assertTrue(rows)
         self.assertIsNone(A.known_reason('SK_Duck', '', rows))           # #113 merged: the duck is wired, no reason
-        self.assertEqual(A.known_reason('AN_Duck_Peck', '', rows)[0], 'bug')
+        self.assertEqual(A.known_reason('AN_Duck_Peck', '', rows)[0], 'queued')     # anim/creature-oneshots
+        self.assertEqual(A.known_reason('SM_Slime_Trail', '', rows)[0], 'bug')
         self.assertEqual(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/PhotorealPass/Structures/Castle/x.fbx', rows)[0], 'queued')
         self.assertIsNone(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/Other/x.fbx', rows))
         self.assertEqual(A.known_reason('SM_Anything', 'SourceAssets/Art/StonebrookRuins/Export/a.fbx', rows)[0], 'alternate')
@@ -405,6 +406,15 @@ class StaleWording(unittest.TestCase):
         self.assertIn('never existed', w['DS-77'])
         self.assertIn('was removed', w['GP-Q9'])
         self.assertIn('history unknown', A.stale_wording(['GP-Q9'], [], None)['GP-Q9'])
+
+
+
+class AfterCommitNote(unittest.TestCase):
+    def test_bound_after_vs_added_after(self):
+        A._COMMIT_CACHE['f00d'] = ({'/Game/A/SM_Old'}, {})
+        self.assertIn('bound after the sweep (the package existed at f00d, unbound)',
+                      A.after_commit_note('f00d', 'sweep', '/Game/A/SM_Old'))
+        self.assertIn('added after the cook (not in the tree at f00d)', A.after_commit_note('f00d', 'cook', '/Game/A/SM_New'))
 
 
 if __name__ == '__main__':

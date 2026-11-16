@@ -44,13 +44,13 @@
     },
     {
       "match": "^AN_(Duck_(Death|HeadlessDeath|Hit|Peck|Quack)|Slime_(Attack|Death))$",
-      "kind": "bug",
-      "why": "A205: imported with the creature classes of PR #113, but no creatures.json role plays them (duck: walk/headless locomotion only; slimes: walk only, death shows the splat corpse at once)"
+      "kind": "queued",
+      "why": "A205: imported with the creature classes of PR #113 and not played by any creatures.json role; to be played as presentation-only event one-shots (hit on damage, death on kill handing over to the corpse) by anim-motion on branch anim/creature-oneshots (coordinator decision of 16 Nov 2026)"
     },
     {
       "match": "^AN_(Bonca_(Death|Hit)|Dragon_(Attack|Death|Hit)|Slayer_(Death|Hit)|Stone_Giant_(Death|Hit))$",
-      "kind": "bug",
-      "why": "A210: imported with the monster classes of PRs #163/#170, but no creatures.json role plays them"
+      "kind": "queued",
+      "why": "A210: authored and deliberately left unbound (monster IMPORT.md: 'Deaths are what 1997 does: no monster has a hit or death animation'; the dragon's attack likewise; the 1997 scripts never set sp_base_hit and add_kill_sprite D:12359-12412 spawns a separate corpse sprite); reversed by the coordinator decision of 16 Nov 2026: anim-motion plays them as presentation-only event one-shots on branch anim/creature-oneshots"
     },
     {
       "match": "^SM_Slime_Trail$",

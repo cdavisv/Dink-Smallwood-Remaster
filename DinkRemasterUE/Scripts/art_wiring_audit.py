@@ -833,8 +833,9 @@ AUDIT_STATS = collections.Counter()
 
 def audit_lines(audit_path):
     """The scene audit's screen records; an unparsable line is skipped and noted in AUDIT_SKIPPED. Limit: a zero-filled
-    run that swallows one or more newlines shows as fewer lines than were lost (the count is a lower bound); the
-    could-be list in the summary (screens with placements but no parsed line) bounds what is missing."""
+    run that swallows one or more newlines shows as fewer lines than were lost (the count is a lower bound). When a
+    damaged or zero-filled line has no readable screen, the summary prints the could-be list (screens with placements
+    but no parsed line), which bounds what is missing; a damaged line with a readable screen names it instead."""
     AUDIT_SKIPPED.clear()
     AUDIT_STATS.clear()
     with open(audit_path, "rb") as h:
