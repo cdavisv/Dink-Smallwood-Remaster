@@ -409,7 +409,8 @@ UDinkCreatureClassComponent* UDinkCreatureSubsystem::AttachClassBody(AActor& Act
 	float GroundOffsetCm, float YawDeg, int32 SizePercent)
 {
 	if (!Actor.GetRootComponent()) return nullptr;
-	UDinkCreatureClassComponent* Body = NewObject<UDinkCreatureClassComponent>(&Actor, TEXT("ClassCreature"));
+	// A unique name: a body destroyed on an earlier failed Configure keeps its name until garbage collection (UObject overwrite).
+	UDinkCreatureClassComponent* Body = NewObject<UDinkCreatureClassComponent>(&Actor, MakeUniqueObjectName(&Actor, UDinkCreatureClassComponent::StaticClass(), TEXT("ClassCreature")));
 	Body->SetupAttachment(Actor.GetRootComponent());
 	Actor.AddInstanceComponent(Body);
 	Body->RegisterComponent();

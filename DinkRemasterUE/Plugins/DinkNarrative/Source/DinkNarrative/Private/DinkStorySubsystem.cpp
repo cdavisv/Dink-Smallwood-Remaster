@@ -441,6 +441,13 @@ void UDinkStorySubsystem::FinishInstance(FDinkScriptInstance& I, const TCHAR* Re
 
 void UDinkStorySubsystem::RemoveFinishedInstances()
 {
+	// Not while a script runs: the steps up the call stack (StepInstance's instance, RunNow's outer, `external`'s caller) hold
+	// pointers to their instances, and a screen entered from inside a script (force_vision on a registered-hardness screen ends
+	// every instance not attached to 1000) would free them under their feet. Advance and RunUntilIdle remove them after the step.
+	if (CurrentInstanceId != 0)
+	{
+		return;
+	}
 	Instances.RemoveAll([](const TUniquePtr<FDinkScriptInstance>& I) { return !I->IsAlive(); });
 }
 
@@ -1596,6 +1603,10 @@ bool UDinkStorySubsystem::HandlePendingRestart()
     NowMs = 0;
     ClockCarryMs = 0;
     NextInstanceId = 1;
+    // The registered-hardness owners belong to the world being replaced: retained, the first one refused the new world's owner
+    // of the same screen ("another retained body owner exists"), which held the loading gate and froze Dink for good, and their
+    // strong component references kept the old world alive. Released before ResetRuntime, which rebuilds the slot history.
+    if (Gameplay) Gameplay->ShutdownRuntimeHardness();
     ResetRuntime();
     bNewGamePending = false;
     bRunScreenScripts = true;

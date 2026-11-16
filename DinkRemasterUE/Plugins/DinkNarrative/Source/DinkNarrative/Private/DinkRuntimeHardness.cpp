@@ -456,6 +456,9 @@ bool UDinkGameplay::AdmitRuntimeHardnessFromSourceFile(int32 Screen,int32 Vision
         (Selected.TileBase!=HardnessProjection->TileBase||Selected.EditorHard!=HardnessProjection->RawEditorHard))return Fail(TEXT("selected source tile baseline unavailable/drifted"));
     const int64 Key=RuntimeHardnessKey(Screen,Vision);
     if(RuntimeHardness.Contains(Key))return Fail(TEXT("screen/vision already admitted"));
+    // An owner of another (replaced) world is never this world's: drop it rather than refuse the screen for good.
+    if(const auto* Old=HardnessOwners.Find(Screen);Old&&*Old!=Owner&&(!Old->IsValid()||(*Old)->GetWorldCookie()!=reinterpret_cast<std::uintptr_t>(Story->GetWorld())))
+    {if(Old->IsValid())(*Old)->InvalidateForScreenRebuild();HardnessOwners.Remove(Screen);}
     if(const auto* Old=HardnessOwners.Find(Screen);Old&&*Old!=Owner)return Fail(TEXT("another retained body owner exists"));
     auto New=DinkHardness::Session::CreateProjected(HardnessProjection->Map,Screen,Vision);
     if(!New)return Fail(TEXT("projected session invalid"));
