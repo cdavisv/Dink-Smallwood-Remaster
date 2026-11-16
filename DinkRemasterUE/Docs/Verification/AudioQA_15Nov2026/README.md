@@ -4,7 +4,7 @@ What changed, how it was proven, and what is not proven.
 
 Every recorded run used SDL's disk audio driver (`Scripts/AudioQA/run_recorded.sh`). The device mix went to a file, and
 nothing played on a speaker or reached PulseAudio. A recording is float32 at 48 kHz on 6 channels (5.1). Runs A, A2 and
-B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 Nov.
+B are from 15-16 Nov, before the regenerated effects. Runs C to M are from 16 Nov.
 
 ## Files here
 
@@ -75,12 +75,12 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
   - In run C the bow sat in slot 3 behind pig food.
   - In runs H and I, eleven punches at the photoreal round table and the mother hit nothing: both use authored-geometry
     hits (`DinkAuthoredInteraction.cpp`), which those console drives did not satisfy.
-- **The master limiter (bug A164, reopened).**
-  - Runs C and E give the same output peaks to the sample, so the limiter added to the main submix has no measurable
+- **The master limiter in these runs (bug A164; fixed afterwards by PR #187).** None of the runs here has the fix.
+  - Runs C and E give the same output peaks to the sample, so the limiter added to the main submix had no measurable
     effect on the device output.
   - In play, only single samples pass -1.5 dBFS (worst -0.53, no clipping).
   - The soak's dense random mix clamps at 0 dBFS.
   - The processor settings are right: `Dink.Audio.MasterLimiterHoldsCeiling`.
-  - **Fixed 16 Nov 2026:** the preset never applied those settings (the instance ran the engine's default compressor);
+  - **Fixed 16 Nov 2026 (#187):** the preset never applied those settings (the instance ran the engine's default compressor);
     cause, fix and recorded proof in `../MasterLimiter_16Nov2026/README.md`.
 - **Owner listening to the footsteps and ambience beds.** They were generated on 16 Nov (47 takes, 757 credits) and picked by measurement and spectrogram; clips are `clips/life_Step_<surface>_all4.ogg` (the four takes of each surface) and `clips/life_Bed_<name>_first12s.ogg`.
