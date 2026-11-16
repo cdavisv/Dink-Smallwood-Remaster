@@ -1,0 +1,200 @@
+{
+ "schema": "dink-photoreal-character/1",
+ "asset": "SK_Girl_Photoreal",
+ "class": "character_humanoid",
+ "source_blend": "Unclaimed/npc_girl/Girl/SK_Girl_PR.blend",
+ "build": "blender -b -t 4 --python Characters/Tools/npc_port.py -- Girl",
+ "fbx": [
+  "Export/SK_Girl_Photoreal_LOD0.fbx",
+  "Export/SK_Girl_Photoreal_LOD1.fbx",
+  "Export/SK_Girl_Photoreal_LOD2.fbx",
+  "Export/SK_Girl_Photoreal_LOD3.fbx"
+ ],
+ "dimensions_m": [
+  1.159214735031128,
+  0.5812240839004517,
+  1.8526506423950195
+ ],
+ "bone_count": 89,
+ "root_bone": "root",
+ "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones; armature of Characters/Milder)",
+ "lods": [
+  {
+   "mesh": "SK_Girl_Photoreal_LOD0",
+   "triangles": 31022,
+   "vertices": 16983,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Girl_Photoreal_LOD1",
+   "triangles": 15510,
+   "vertices": 9080,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Girl_Photoreal_LOD2",
+   "triangles": 7754,
+   "vertices": 4927,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Girl_Photoreal_LOD3",
+   "triangles": 3722,
+   "vertices": 2657,
+   "max_influences": 4,
+   "unweighted": 0
+  }
+ ],
+ "lod0_triangles": 31022,
+ "material_slots": [
+  "MI_Girl_PR_Skin",
+  "MI_Girl_PR_Eyes",
+  "MI_Girl_PR_Hair",
+  "MI_Girl_PR_Outfit"
+ ],
+ "materials": {
+  "MI_Girl_PR_Skin": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_girl/Girl/T_Girl_PR_Skin_BC.png",
+    "N": "../../../Unclaimed/npc_girl/Girl/T_Girl_PR_Skin_N.png",
+    "ORM": "../../../Unclaimed/npc_girl/Girl/T_Girl_PR_Skin_ORM.png",
+    "SSS": "Textures/T_Girl_PR_Skin_SSS.png"
+   },
+   "shading": "subsurface profile / skin; SSS is a flat scatter colour (the source has no thickness map)",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_Girl_PR_Eyes": {
+   "textures": {
+    "BC": "Textures/T_Girl_PR_Eyes_BC.png",
+    "N": "Textures/T_Girl_PR_Eyes_N.png",
+    "ORM": "Textures/T_Girl_PR_Eyes_ORM.png"
+   },
+   "shading": "default lit, low roughness",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_Girl_PR_Hair": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_girl/Girl/T_Girl_PR_Hair_BC.png",
+    "N": "../../../Unclaimed/npc_girl/Girl/T_Girl_PR_Hair_N.png",
+    "ORM": "Textures/T_Girl_PR_Hair_ORM.png"
+   },
+   "shading": "MASKED (alpha in BC.a), two-sided hair cards, default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_Girl_PR_Outfit": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_girl/Girl/T_Girl_PR_Outfit_BC.png",
+    "N": "../../../Unclaimed/npc_girl/Girl/T_Girl_PR_Outfit_N.png",
+    "ORM": "../../../Unclaimed/npc_girl/Girl/T_Girl_PR_Outfit_ORM.png"
+   },
+   "shading": "default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  }
+ },
+ "port": {
+  "height_ratio": 1.5605,
+  "lods": [
+   {
+    "vertices": 16983,
+    "pole_vertices": 0,
+    "min_z": -0.0048,
+    "max_z": 1.8479
+   },
+   {
+    "vertices": 9080,
+    "pole_vertices": 0,
+    "min_z": -0.0048,
+    "max_z": 1.8476
+   },
+   {
+    "vertices": 4927,
+    "pole_vertices": 0,
+    "min_z": -0.0043,
+    "max_z": 1.8473
+   },
+   {
+    "vertices": 2657,
+    "pole_vertices": 0,
+    "min_z": -0.0039,
+    "max_z": 1.8473
+   }
+  ],
+  "lift_m": 0.0048
+ },
+ "placement_scale": 0.641,
+ "animation_set": "NpcF",
+ "families": [
+  "npc_girl"
+ ],
+ "validation": {
+  "assets": 1,
+  "assets_passed": 0,
+  "errors": 1,
+  "warnings": 9
+ },
+ "validator_findings": [
+  [
+   "warning",
+   "TRIS_OVER_TARGET",
+   "LOD0 has 31022 triangles, target for character_humanoid is 20000 (hard max 35000)"
+  ],
+  [
+   "warning",
+   "DUPLICATE_VERTS",
+   "42 vertices coincide with another vertex (within 0.01 mm); merge by distance"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "2688 non-manifold edges (2688 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "DUPLICATE_VERTS",
+   "2 vertices coincide with another vertex (within 0.01 mm); merge by distance"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "2394 non-manifold edges (2394 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "LOOSE_GEOMETRY",
+   "0 loose vertices, 23 loose (wire) edges"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "1821 non-manifold edges (1798 open boundary, 0 >2 faces, 23 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "LOOSE_GEOMETRY",
+   "0 loose vertices, 101 loose (wire) edges"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "1235 non-manifold edges (1134 open boundary, 0 >2 faces, 101 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "error",
+   "UV_OVERLAP",
+   "UV0 islands overlap (13.2 % of UV area, 5189 triangles); class character_humanoid needs unique UVs"
+  ],
+  [
+   "info",
+   "UV_OVERLAP",
+   "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ]
+ ],
+ "known_weaknesses": [
+  "A child carried onto the adult rig and scaled down by the placement: adult limb proportions, an adult face made small.",
+  "Ported from the 26-bone Unclaimed source by its own skin weights: fingers, twist bones and the other mannequin bones carry no weight (mitten hands, no forearm twist).",
+  "Face, hair and cloth are those of the Unclaimed source (see its manifest): a plain base face and card hair; they have not been through the head, skin and groom tools of the three main characters."
+ ]
+}

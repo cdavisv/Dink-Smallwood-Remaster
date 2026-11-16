@@ -2,6 +2,7 @@
 #include "Components/MaterialBillboardComponent.h"
 #include "Materials/MaterialInterface.h"
 #include "DinkCoreModule.h"
+#include "DinkCreatureClassComponent.h"
 #include "DinkEnvironmentSubsystem.h"
 #include "DinkInstanceOriginsComponent.h"
 #include "DinkOriginComponent.h"
@@ -715,9 +716,12 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 	if (!Actor || !World || !Actor->GetRootComponent()) return false;
 	UStaticMeshComponent* Shown = Actor->FindComponentByTag<UStaticMeshComponent>(ScriptSpriteTag);
 	// Script characters, creatures and food are presented by their own layers.
+	// A class row's body (creatures.json `classes`: a script-made duck, townsman or Seth) adds no actor tag; without this test
+	// the sprite's 1997 picture card was drawn through its figure at the next change of frame.
 	const bool bOtherLayer = Actor->ActorHasTag(TEXT("DinkAuthoredArt")) || Actor->ActorHasTag(TEXT("DinkHumanoid")) ||
 		Actor->ActorHasTag(TEXT("DinkScriptHumanoid")) || Actor->ActorHasTag(TEXT("DinkCreature")) ||
-		Actor->FindComponentByTag<UStaticMeshComponent>(TEXT("DinkAuthoredFood")) != nullptr;
+		Actor->FindComponentByTag<UStaticMeshComponent>(TEXT("DinkAuthoredFood")) != nullptr ||
+		Actor->FindComponentByClass<UDinkCreatureClassComponent>() != nullptr;
 	const FDinkFamilyBinding* B = nullptr;
 	UStaticMesh* Mesh = nullptr;
 	const FVector Ground = Actor->GetActorLocation() + GroundOffset;

@@ -1,0 +1,190 @@
+{
+ "schema": "dink-photoreal-character/1",
+ "asset": "SK_Gnome_Photoreal",
+ "class": "character_humanoid",
+ "source_blend": "Unclaimed/npc_gnome_purple/Gnome_Wizard/SK_Gnome_Wizard_PR.blend",
+ "build": "blender -b -t 4 --python Characters/Tools/npc_port.py -- Gnome",
+ "fbx": [
+  "Export/SK_Gnome_Photoreal_LOD0.fbx",
+  "Export/SK_Gnome_Photoreal_LOD1.fbx",
+  "Export/SK_Gnome_Photoreal_LOD2.fbx",
+  "Export/SK_Gnome_Photoreal_LOD3.fbx"
+ ],
+ "dimensions_m": [
+  1.071674108505249,
+  0.6475130319595337,
+  2.2013072967529297
+ ],
+ "bone_count": 89,
+ "root_bone": "root",
+ "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones; armature of Characters/Milder)",
+ "lods": [
+  {
+   "mesh": "SK_Gnome_Photoreal_LOD0",
+   "triangles": 29590,
+   "vertices": 15323,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Gnome_Photoreal_LOD1",
+   "triangles": 14795,
+   "vertices": 7880,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Gnome_Photoreal_LOD2",
+   "triangles": 7396,
+   "vertices": 4092,
+   "max_influences": 4,
+   "unweighted": 0
+  },
+  {
+   "mesh": "SK_Gnome_Photoreal_LOD3",
+   "triangles": 3549,
+   "vertices": 2081,
+   "max_influences": 4,
+   "unweighted": 0
+  }
+ ],
+ "lod0_triangles": 29590,
+ "material_slots": [
+  "MI_Gnome_PR_Skin",
+  "MI_Gnome_PR_Eyes",
+  "MI_Gnome_PR_Hair",
+  "MI_Gnome_PR_Outfit"
+ ],
+ "materials": {
+  "MI_Gnome_PR_Skin": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_gnome_purple/Gnome_Wizard/T_Gnome_Wizard_PR_Skin_BC.png",
+    "N": "../../../Unclaimed/npc_gnome_purple/Gnome_Wizard/T_Gnome_Wizard_PR_Skin_N.png",
+    "ORM": "../../../Unclaimed/npc_gnome_purple/Gnome_Wizard/T_Gnome_Wizard_PR_Skin_ORM.png",
+    "SSS": "Textures/T_Gnome_PR_Skin_SSS.png"
+   },
+   "shading": "subsurface profile / skin; SSS is a flat scatter colour (the source has no thickness map)",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_Gnome_PR_Eyes": {
+   "textures": {
+    "BC": "Textures/T_Gnome_PR_Eyes_BC.png",
+    "N": "Textures/T_Gnome_PR_Eyes_N.png",
+    "ORM": "Textures/T_Gnome_PR_Eyes_ORM.png"
+   },
+   "shading": "default lit, low roughness",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_Gnome_PR_Hair": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_gnome_purple/Gnome_Wizard/T_Gnome_Wizard_PR_Hair_BC.png",
+    "N": "../../../Unclaimed/npc_gnome_purple/Gnome_Wizard/T_Gnome_Wizard_PR_Hair_N.png",
+    "ORM": "Textures/T_Gnome_PR_Hair_ORM.png"
+   },
+   "shading": "MASKED (alpha in BC.a), two-sided hair cards, default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  },
+  "MI_Gnome_PR_Outfit": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_gnome_purple/Gnome_Wizard/T_Gnome_Wizard_PR_Outfit_BC.png",
+    "N": "../../../Unclaimed/npc_gnome_purple/Gnome_Wizard/T_Gnome_Wizard_PR_Outfit_N.png",
+    "ORM": "../../../Unclaimed/npc_gnome_purple/Gnome_Wizard/T_Gnome_Wizard_PR_Outfit_ORM.png"
+   },
+   "shading": "default lit",
+   "normal": "OpenGL (+Y), flip green for UE"
+  }
+ },
+ "port": {
+  "height_ratio": 1.8052,
+  "lods": [
+   {
+    "vertices": 15323,
+    "pole_vertices": 0,
+    "min_z": -0.01,
+    "max_z": 2.1913
+   },
+   {
+    "vertices": 7880,
+    "pole_vertices": 0,
+    "min_z": -0.01,
+    "max_z": 2.1913
+   },
+   {
+    "vertices": 4092,
+    "pole_vertices": 0,
+    "min_z": -0.0114,
+    "max_z": 2.1913
+   },
+   {
+    "vertices": 2081,
+    "pole_vertices": 0,
+    "min_z": -0.0114,
+    "max_z": 2.1904
+   }
+  ],
+  "lift_m": 0.01
+ },
+ "placement_scale": 0.554,
+ "animation_set": "NpcM",
+ "families": [
+  "npc_gnome_purple"
+ ],
+ "validation": {
+  "assets": 1,
+  "assets_passed": 0,
+  "errors": 1,
+  "warnings": 7
+ },
+ "validator_findings": [
+  [
+   "warning",
+   "TRIS_OVER_TARGET",
+   "LOD0 has 29590 triangles, target for character_humanoid is 20000 (hard max 35000)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "1016 non-manifold edges (1016 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "925 non-manifold edges (925 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "LOOSE_GEOMETRY",
+   "0 loose vertices, 2 loose (wire) edges"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "746 non-manifold edges (744 open boundary, 0 >2 faces, 2 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "LOOSE_GEOMETRY",
+   "0 loose vertices, 5 loose (wire) edges"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "568 non-manifold edges (563 open boundary, 0 >2 faces, 5 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "error",
+   "UV_OVERLAP",
+   "UV0 islands overlap (7.9 % of UV area, 4993 triangles); class character_humanoid needs unique UVs"
+  ],
+  [
+   "info",
+   "UV_OVERLAP",
+   "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ]
+ ],
+ "known_weaknesses": [
+  "A small man carried onto the adult rig and scaled down by the placement.",
+  "Ported from the 26-bone Unclaimed source by its own skin weights: fingers, twist bones and the other mannequin bones carry no weight (mitten hands, no forearm twist).",
+  "Face, hair and cloth are those of the Unclaimed source (see its manifest): a plain base face and card hair; they have not been through the head, skin and groom tools of the three main characters."
+ ]
+}

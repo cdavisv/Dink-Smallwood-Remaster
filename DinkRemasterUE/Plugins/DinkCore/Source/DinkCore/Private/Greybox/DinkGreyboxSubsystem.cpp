@@ -1,4 +1,5 @@
 #include "Greybox/DinkGreyboxSubsystem.h"
+#include "DinkCreatureClassComponent.h"
 #include "DinkArtFamilySubsystem.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Greybox/DinkPlaceholderActor.h"
@@ -223,8 +224,10 @@ namespace
 			}
 			const AActor* Owner = Card->GetOwner();
 			// A script character or creature body took the sprite over: its own layer draws it.
+			// (a class row's body adds no actor tag: it is found by its component)
 			const bool bTaken = Owner && (Owner->ActorHasTag(TEXT("DinkHumanoid")) || Owner->ActorHasTag(TEXT("DinkScriptHumanoid")) ||
-				Owner->ActorHasTag(TEXT("DinkCreature")) || Owner->ActorHasTag(TEXT("DinkAuthoredArt")));
+				Owner->ActorHasTag(TEXT("DinkCreature")) || Owner->ActorHasTag(TEXT("DinkAuthoredArt")) ||
+				Owner->FindComponentByClass<UDinkCreatureClassComponent>() != nullptr);
 			if (bTaken != Card->bHiddenInGame) Card->SetHiddenInGame(bTaken);
 			if (bTaken) continue;
 			const FVector To = (Camera - Card->GetComponentLocation()) * FVector(1, 1, 0);

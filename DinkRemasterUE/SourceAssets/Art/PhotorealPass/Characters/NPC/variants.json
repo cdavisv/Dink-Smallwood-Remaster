@@ -1,0 +1,291 @@
+{
+ "schema": "dink-photoreal-npc-variants/1",
+ "variants": {
+  "MaidenBlue": {
+   "base": "Mother",
+   "base_asset": "SK_Mother_Photoreal",
+   "animation_set": "NpcF",
+   "families": [
+    "npc_maiden_blue"
+   ],
+   "what": "woman in a long blue dress, blonde hair",
+   "placement_scale": 0.9,
+   "materials": {
+    "MI_Mother_PR_Outfit": {
+     "textures": {
+      "BC": "MaidenBlue/Textures/T_MaidenBlue_PR_Outfit_BC.png"
+     }
+    },
+    "MI_Mother_PR_Hair": {
+     "tint": [
+      1.45,
+      1.15,
+      0.62
+     ]
+    },
+    "MI_Mother_PR_Skin": {
+     "textures": {
+      "BC": "Maiden/Textures/T_Maiden_PR_Skin_BC.png",
+      "N": "Maiden/Textures/T_Maiden_PR_Skin_N.png",
+      "ORM": "Maiden/Textures/T_Maiden_PR_Skin_ORM.png",
+      "SSS": "Maiden/Textures/T_Maiden_PR_Skin_SSS.png"
+     },
+     "tint": [
+      0.8,
+      0.75,
+      0.72
+     ]
+    }
+   },
+   "walk_bases": [
+    250
+   ]
+  },
+  "MaidenBrown": {
+   "base": "Mother",
+   "base_asset": "SK_Mother_Photoreal",
+   "animation_set": "NpcF",
+   "families": [
+    "npc_maiden_brown"
+   ],
+   "what": "woman in a long brown dress, auburn hair",
+   "placement_scale": 0.9,
+   "materials": {
+    "MI_Mother_PR_Outfit": {
+     "textures": {
+      "BC": "MaidenBrown/Textures/T_MaidenBrown_PR_Outfit_BC.png"
+     }
+    },
+    "MI_Mother_PR_Hair": {
+     "tint": [
+      1.0,
+      0.52,
+      0.24
+     ]
+    },
+    "MI_Mother_PR_Skin": {
+     "textures": {
+      "BC": "Maiden/Textures/T_Maiden_PR_Skin_BC.png",
+      "N": "Maiden/Textures/T_Maiden_PR_Skin_N.png",
+      "ORM": "Maiden/Textures/T_Maiden_PR_Skin_ORM.png",
+      "SSS": "Maiden/Textures/T_Maiden_PR_Skin_SSS.png"
+     },
+     "tint": [
+      0.8,
+      0.75,
+      0.72
+     ]
+    }
+   },
+   "walk_bases": [
+    240
+   ]
+  },
+  "MaidenRed": {
+   "base": "Mother",
+   "base_asset": "SK_Mother_Photoreal",
+   "animation_set": "NpcF",
+   "families": [
+    "npc_maiden_red"
+   ],
+   "what": "woman in a long crimson dress, blonde hair",
+   "placement_scale": 0.9,
+   "materials": {
+    "MI_Mother_PR_Outfit": {
+     "textures": {
+      "BC": "MaidenRed/Textures/T_MaidenRed_PR_Outfit_BC.png"
+     }
+    },
+    "MI_Mother_PR_Hair": {
+     "tint": [
+      1.45,
+      1.15,
+      0.62
+     ]
+    },
+    "MI_Mother_PR_Skin": {
+     "textures": {
+      "BC": "Maiden/Textures/T_Maiden_PR_Skin_BC.png",
+      "N": "Maiden/Textures/T_Maiden_PR_Skin_N.png",
+      "ORM": "Maiden/Textures/T_Maiden_PR_Skin_ORM.png",
+      "SSS": "Maiden/Textures/T_Maiden_PR_Skin_SSS.png"
+     },
+     "tint": [
+      0.8,
+      0.75,
+      0.72
+     ]
+    }
+   },
+   "walk_bases": [
+    220
+   ]
+  },
+  "MatronGreen": {
+   "base": "Mother",
+   "base_asset": "SK_Mother_Photoreal",
+   "animation_set": "NpcF",
+   "families": [],
+   "what": "older woman in a long green dress, greying brown hair",
+   "placement_scale": 0.9,
+   "materials": {
+    "MI_Mother_PR_Outfit": {
+     "textures": {
+      "BC": "MatronGreen/Textures/T_MatronGreen_PR_Outfit_BC.png"
+     }
+    },
+    "MI_Mother_PR_Hair": {
+     "tint": [
+      0.4,
+      0.36,
+      0.3
+     ]
+    }
+   },
+   "walk_bases": [
+    360
+   ]
+  },
+  "Soldier": {
+   "base": "Milder",
+   "base_asset": "SK_Milder_Photoreal",
+   "animation_set": "NpcM",
+   "families": [
+    "npc_soldier"
+   ],
+   "what": "soldier: Milder's harness with a brown gambeson, dark hair",
+   "placement_scale": 1.0,
+   "materials": {
+    "MI_Milder_PR_Outfit": {
+     "textures": {
+      "BC": "Soldier/Textures/T_Soldier_PR_Outfit_BC.png"
+     }
+    },
+    "MI_Milder_PR_Hair": {
+     "tint": [
+      0.4,
+      0.34,
+      0.28
+     ]
+    }
+   },
+   "walk_bases": [
+    400
+   ]
+  },
+  "KnightSilver": {
+   "base": "NPC/Knight",
+   "base_asset": "SK_Knight_Photoreal",
+   "animation_set": "NpcM",
+   "families": [
+    "npc_knight_silver"
+   ],
+   "what": "the knight in bright harness",
+   "materials": {
+    "MI_Knight_PR_Outfit": {
+     "textures": {
+      "BC": "../../Unclaimed/npc_knight_blue/Knight/T_Knight_PR_Silver_BC.png"
+     },
+     "tint": [
+      2.5,
+      2.3,
+      1.8
+     ]
+    }
+   },
+   "walk_bases": [
+    290
+   ]
+  },
+  "MerchantGreen": {
+   "base": "NPC/Merchant",
+   "base_asset": "SK_Merchant_Photoreal",
+   "animation_set": "NpcM",
+   "families": [
+    "npc_merchant_green"
+   ],
+   "what": "the merchant in green",
+   "materials": {
+    "MI_Merchant_PR_Outfit": {
+     "textures": {
+      "BC": "../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_Green_BC.png"
+     }
+    }
+   },
+   "walk_bases": [
+    380
+   ]
+  },
+  "MerchantRed": {
+   "base": "NPC/Merchant",
+   "base_asset": "SK_Merchant_Photoreal",
+   "animation_set": "NpcM",
+   "what": "the townsman in red",
+   "families": [],
+   "materials": {
+    "MI_Merchant_PR_Outfit": {
+     "textures": {
+      "BC": "MerchantRed/Textures/T_MerchantRed_PR_Outfit_BC.png"
+     }
+    }
+   },
+   "walk_bases": [
+    340
+   ]
+  },
+  "MerchantPurple": {
+   "base": "NPC/Merchant",
+   "base_asset": "SK_Merchant_Photoreal",
+   "animation_set": "NpcM",
+   "what": "the townsman in purple",
+   "families": [],
+   "materials": {
+    "MI_Merchant_PR_Outfit": {
+     "textures": {
+      "BC": "MerchantPurple/Textures/T_MerchantPurple_PR_Outfit_BC.png"
+     }
+    }
+   },
+   "walk_bases": [
+    390
+   ]
+  },
+  "KnightGold": {
+   "base": "NPC/Knight",
+   "base_asset": "SK_Knight_Photoreal",
+   "animation_set": "NpcM",
+   "what": "the knight in gilded harness",
+   "families": [],
+   "materials": {
+    "MI_Knight_PR_Outfit": {
+     "textures": {
+      "BC": "KnightGold/Textures/T_KnightGold_PR_Outfit_BC.png"
+     }
+    }
+   },
+   "walk_bases": [
+    300
+   ]
+  },
+  "KnightRed": {
+   "base": "NPC/Knight",
+   "base_asset": "SK_Knight_Photoreal",
+   "animation_set": "NpcM",
+   "what": "the knight in dark red harness",
+   "families": [
+    "npc_knight_red",
+    "npc_knight_red_attacking"
+   ],
+   "materials": {
+    "MI_Knight_PR_Outfit": {
+     "textures": {
+      "BC": "KnightRed/Textures/T_KnightRed_PR_Outfit_BC.png"
+     }
+    }
+   },
+   "walk_bases": [
+    270
+   ]
+  }
+ }
+}

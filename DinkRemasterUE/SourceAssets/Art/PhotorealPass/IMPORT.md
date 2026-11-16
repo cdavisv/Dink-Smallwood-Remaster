@@ -332,6 +332,24 @@ kit asset (`families.json`). Every monster corpse gets three LODs at import (`co
 switching at about 10 m and 20 m); `corpse.json` beside each source gives where the corpse lies against the death clip's last
 frame.
 
+## People: townsfolk, guards, the gnome wizard, the King, Seth (16 Nov 2026)
+
+| What | Command | Source | Unreal |
+|---|---|---|---|
+| Port the Unclaimed people onto the mannequin rig | `cd SourceAssets/Art/PhotorealPass/Characters/Tools && blender -b -t 4 --python npc_port.py -- all` | `Unclaimed/<family>/<Name>/SK_<Name>_PR.blend` (26-bone rig, same bone names) | writes `Characters/NPC/<Name>/Export/*.fbx`, `manifest.json` (points at the Unclaimed textures), filler maps |
+| Colour twins, Seth's outfit map | `python3 -I npc_variants.py` | the Mother's, Milder's and the hero's outfit maps, the Unclaimed knight's and merchant's maps | `Characters/NPC/variants.json`, recoloured outfit maps |
+| Seth | `blender -b -t 4 ../Dink/SK_Dink_Photoreal.blend --python seth_build.py`, then `blender -b -t 4 ../NPC/Seth/SK_Seth_Photoreal.blend --python export_char.py -- <abs>/NPC/Seth/Export <abs>/NPC/Seth/export_report.json character_hero`, then `python3 -I seth_manifest.py` | the hero's blend and texture sets | `Characters/NPC/Seth` (own mesh, the hero's textures shared) |
+| Import | `DINK_PHOTOREAL_ONLY=npcs Scripts/import_photoreal_art.sh` (the hero, the Mother and Milder must be imported: twins are copies of them, Seth uses the hero's textures) | `Characters/NPC/*/manifest.json`, `variants.json` | `/Game/Dink/Photoreal/Characters/NPC/<Name>/SK_<Name>_Photoreal` |
+| Bind | `python3 -I Scripts/bind_people_classes.py` | manifests' and twins' `placement_scale`, the walk bases in the script's table, `bin/dink/dink.ini` | `classes` rows of `Content/Dink/Data/Art/creatures.json` |
+
+- **What binds at runtime.** One class row per 1997 walk base (`DinkCreatureClass.h`): every placement of that sprite class on every screen and every sprite a script makes or dresses with the walk pictures (`create_sprite`, `sp_base_walk`) is shown by the figure, with the mannequin's idle, walk and jog by measured speed. Presentation only: no body, no collision, no actor tag, off in headless runs; talk, hit and touch keep the 1997 boxes. `dink.CreatureClassArt 0` shows the cards again. The Mother stays the origin row of `characters.json` she was.
+- **Why not origin rows.** A `characters.json` placement row gives the actor a drawn body that replaces the 1997 talk, hit and touch boxes (1.5 m reach); the story probe failed on the gravedigger with it. See `AGENTS.md`.
+- **Standing figures** face as their picture: the direction is the last digit of the sequence (the guards of the throne room are 287 and 289). The King's row turns him 45 degrees to face the hall (421 reads as direction 1).
+- **Sizes**: a ported mesh is carried to the mannequin's joints, so every one is about 1.8 m in the file; the row's `scale` (the manifest's `placement_scale`) gives the girl, the gnome and the old man their height back and makes Seth 1.3 times a man. Gait speeds are scaled with it.
+- **Colour twins** are copies of an imported mesh with instances of the base's material instances (another base colour map and/or `Tint`): the three maidens (with a younger skin set, `NPC/Maiden`) and the woman in green are the Mother's, the soldier is Milder's; red, silver and gold knights share the blue knight's mesh; green, red and purple townsmen the blue merchant's. **When a base was re-imported, remove the twins' folders (`Content/Dink/Photoreal/Characters/NPC/<Twin>`) before the import**: the importer stops and says so.
+- **The King** (`NPC/King`, S070_P03) is the Unclaimed set piece whole, on the root bone: he sits and does not animate.
+- **No deaths here.** A killed person leaves the 1997 death picture (base + 5) as before; the bodies are the corpse kit's rows.
+
 ## Turning the pass off
 
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):
