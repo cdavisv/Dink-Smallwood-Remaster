@@ -10,7 +10,7 @@ packaged build, and without ever playing on a desk speaker.
 | `run_recorded.sh <out> <steps> [binary]` | a rendered game on the private display :189 with **SDL's disk audio driver**: the device mix is written to `audio.raw` (float32, interleaved) and nothing reaches PulseAudio; a watchdog kills the game if it ever opens a PulseAudio stream. Steps: `console`, `key`, `hold`, `wait`, `waitlog`, `capture`. One Unreal step (run it through `Saved/Gate2Coord/unreal_turn.sh`) |
 | `build_mix.py` | `Content/Dink/Data/Audio/mix.json`: per-take gains from measured loudness (ffmpeg ebur128): effects into [-26, -17] LUFS, music at -27 LUFS, outlying voice lines into [-24, -13] LUFS, never past -1 dBFS peak |
 | `build_life_data.py` | `Content/Dink/Data/Audio/life_data.json`: the ground class under every 50 px tile of every screen (footsteps), the ambience bed of every screen, the sound of every map.dat warp |
-| `synth_life.py`, `register_life_audio.py`, `import_life_audio.sh` | footstep and ambience takes: procedural placeholders, their loudness and ledger rows, `life.json`, and the editor import into `/Game/Dink/Audio/Life` |
+| `prepare_life_takes.py`, `register_life_audio.py`, `import_life_audio.sh` (`synth_life.py`: the old procedural placeholders) | footstep and ambience takes: the generated takes cut and levelled (one footfall per step, beds whole), their loudness and ledger rows, `life.json`, and the editor import into `/Game/Dink/Audio/Life` |
 
 In the game (`DinkAudioLife.cpp`): `dink.AudioQA.Sweep <plan> [gap]`, `dink.AudioQA.Soak <seconds>`, `dink.AudioQA.Stats`.
 

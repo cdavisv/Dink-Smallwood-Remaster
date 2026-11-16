@@ -20,6 +20,9 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
 
 ## Proven
 
+- **Owner approval (16 Nov 2026, ~12:55 PT, owner decision 12):** the four regenerated effects `09_punch_e`, `44_bow1_i`,
+  `48_axe_i` and `49_bird1_c` are approved.
+
 - **The four regenerated effects play in the game.**
   - Each one was played through the audio subsystem (`dink.AudioQA.Sweep`) and found in the recording by
     cross-correlation with its source take (`Scripts/AudioQA/cue_proof.py`).
@@ -50,7 +53,6 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
 
 ## Not proven
 
-- **Owner listening.** The picks were made by measurement and spectrogram only. Clips are in `clips/`.
 - **A fist hit and Seth's bird line in actual play** are not shown in a recording. Console drives kept leaving Dink
   frozen or missing:
   - `dink.Goto` leaves Dink frozen on arrival (SCR_030, SCR_474).
@@ -69,4 +71,4 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
   - The processor settings are right: `Dink.Audio.MasterLimiterHoldsCeiling`.
   - **Fixed 16 Nov 2026:** the preset never applied those settings (the instance ran the engine's default compressor);
     cause, fix and recorded proof in `../MasterLimiter_16Nov2026/README.md`.
-- **Footsteps and ambience beds** are still procedural placeholders (AU-01, AU-02).
+- **Owner listening to the footsteps and ambience beds.** They were generated on 16 Nov (47 takes, 757 credits) and picked by measurement and spectrogram; clips are `clips/life_Step_<surface>_all4.ogg` (the four takes of each surface) and `clips/life_Bed_<name>_first12s.ogg`.
