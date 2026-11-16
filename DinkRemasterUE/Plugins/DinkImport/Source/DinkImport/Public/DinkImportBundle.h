@@ -45,6 +45,9 @@ struct FDinkBundleScreen
 	/** The sea weight at the screen's corners, edge middles and centre [NW, N, NE, W, C, E, SW, S, SE] (water_sea_patch);
 	 *  empty when the bundle predates it. M_Env_WaterShore blends between them, so the colour runs on across borders. */
 	TArray<double> WaterSeaPatch;
+	/** Map-pixel rects where the water surface is laid (water_draw: the natural, smoothed water shape with a margin;
+	 *  the shore material clears it at the waterline). Empty: the collision's fill_water rects, as before. */
+	TArray<FIntRect> WaterDraw;
 	/** Non-empty when the exporter left the screen out (reason), e.g. a layout overlap. */
 	FString Excluded;
 };

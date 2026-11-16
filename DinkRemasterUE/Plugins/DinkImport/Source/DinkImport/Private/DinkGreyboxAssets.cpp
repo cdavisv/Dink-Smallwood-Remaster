@@ -273,6 +273,10 @@ namespace DinkGreybox
 			for (const TCHAR* Class : {TEXT("solid"), TEXT("low"), TEXT("sprite"), TEXT("warp"), TEXT("fill_water")})
 			{
 				const TArray<FIntRect>* Rectangles = Coll.ByClass.Find(Class);
+				// the drawn water follows the natural water shape (screens.json water_draw) where the export gives one;
+				// the collision keeps the 1997 water fill (never changed here)
+				if (Rectangles && !Screen.WaterDraw.IsEmpty() && FCString::Strcmp(Class, TEXT("fill_water")) == 0)
+					Rectangles = &Screen.WaterDraw;
 				if (!Rectangles) continue;
 				const bool bWater = FCString::Strcmp(Class, TEXT("fill_water")) == 0;
 				const bool bLow = FCString::Strcmp(Class, TEXT("low")) == 0;
@@ -960,7 +964,9 @@ namespace DinkGreybox
 				MarkBuilt(MI, WaterMiPkg, WaterHash, bExisted);
 			}
 		}
-		const FString VisualHash = HashStrings({TEXT("visual-ground-water/2"), GeoHash, MiPkg, bShoreWater ? WaterMiPkg : FString()});
+		FString DrawKey;
+		for (const FIntRect& R : Screen.WaterDraw) DrawKey += FString::Printf(TEXT("%d,%d,%d,%d;"), R.Min.X, R.Min.Y, R.Max.X, R.Max.Y);
+		const FString VisualHash = HashStrings({TEXT("visual-ground-water/3"), GeoHash, MiPkg, bShoreWater ? WaterMiPkg : FString(), DrawKey});
 		const FString DebugHash = HashStrings({TEXT("debug-blockers/1"), GeoHash});
 		FMeshWriter Visual, Debug;
 		WriteScreenPresentation(Screen, *Coll, Pivot, Visual, Debug);

@@ -44,6 +44,14 @@ bool FDinkGreyboxPresentationSplitTest::RunTest(const FString&)
     TestEqual(TEXT("actual old oversized width preserved only in debug"),SpriteBox.GetSize().X,700.f);
     TestEqual(TEXT("actual old oversized depth preserved only in debug"),SpriteBox.GetSize().Y,188.125f);
     TestTrue(TEXT("source collision class membership unchanged"),Before.OrderIndependentCompareEqual(Collision.ByClass));
+    // The natural water shape (screens.json water_draw) moves only the drawn water; the collision stays the 1997 fill.
+    FDinkBundleScreen Shaped=Screen;
+    Shaped.WaterDraw={FIntRect(36,0,48,8),FIntRect(34,8,52,13)};
+    FMeshWriter ShapedVisual,ShapedDebug;
+    WriteScreenPresentation(Shaped,Collision,FVector::ZeroVector,ShapedVisual,ShapedDebug);
+    TestEqual(TEXT("water_draw: ground 192 + two water quads"),ShapedVisual.Triangles,196);
+    TestEqual(TEXT("water_draw leaves the debug prisms alone"),ShapedDebug.Triangles,40);
+    TestTrue(TEXT("water_draw leaves the collision classes alone"),Before.OrderIndependentCompareEqual(Collision.ByClass));
     FMeshWriter EmptyVisual,EmptyDebug;FDinkBundleCollision Empty;
     WriteScreenPresentation(Screen,Empty,FVector::ZeroVector,EmptyVisual,EmptyDebug);
     TestEqual(TEXT("empty-hardness screen still has original ground"),EmptyVisual.Triangles,192);

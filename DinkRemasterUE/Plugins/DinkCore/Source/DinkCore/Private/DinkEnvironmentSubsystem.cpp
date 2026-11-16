@@ -38,6 +38,7 @@
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 #include "Greybox/DinkWarpComponent.h"
+#include "ProceduralMeshComponent.h"
 #include "Materials/Material.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Engine/Texture2D.h"
@@ -1360,6 +1361,16 @@ void UDinkEnvironmentSubsystem::LoadForest()
 			}
 		}
 		const TArray<TSharedPtr<FJsonValue>>* Rects = nullptr;
+		const TArray<TSharedPtr<FJsonValue>>* Block = nullptr;
+		if ((*Row)->TryGetArrayField(TEXT("water_block"), Block) && Block)
+		{
+			TArray<FBox2D>& OutBlock = WaterBlockRects.Add(ScreenNumber);
+			for (const TSharedPtr<FJsonValue>& V : *Block)
+			{
+				const TArray<TSharedPtr<FJsonValue>>& R = V->AsArray();
+				if (R.Num() == 4) OutBlock.Add(FBox2D(FVector2D(R[0]->AsNumber(), R[1]->AsNumber()), FVector2D(R[2]->AsNumber(), R[3]->AsNumber())));
+			}
+		}
 		if (WaterTileMaterial && (*Row)->TryGetArrayField(TEXT("water_tiles"), Rects) && Rects)
 		{
 			// the sea weight at the sheet's corners, edge middles and centre (`water_sea_patch`, water_sea_patches), or
@@ -1506,7 +1517,7 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 	if (bWater)
 	{
 		// One sheet over the whole screen. The shore material reads the screen's terrain mask (alpha = signed distance to
-		// the drawn waterline, written by the world export from natural_water_shape): clear at the waterline, deeper and
+		// the drawn waterline, written by the world export from natural_shore): clear at the waterline, deeper and
 		// darker away from it, nothing on land. So the water ends on a shoreline, not on the tile rectangles.
 		UStaticMesh* Plane = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Plane.Plane"));
 		const FString MaskPath = FString::Printf(TEXT("/Game/Dink/_Generated/Screens/SCR_%03d/T_GroundMask_SCR_%03d.T_GroundMask_SCR_%03d"), ScreenNumber, ScreenNumber, ScreenNumber);
@@ -1572,6 +1583,47 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 		}
 	}
 	UE_LOG(LogDink, Display, TEXT("DINK ENV: relief on screen %d: %d rocks of %d points (tier <= %d; %d dropped: open collision), %d water sheets"), ScreenNumber, Placed, Rocks ? Rocks->Num() : 0, MaxTier, Dropped, Sheets);
+}
+
+static TAutoConsoleVariable<int32> CVarDinkWaterBlockers(TEXT("dink.WaterBlockers"), 1,
+	TEXT("1 = the player stops at the drawn waterline (ground_classes.json water_block: player-only blockers over the drawn water past the 1997 outline); 0 = off. Read when a screen is dressed."));
+
+void UDinkEnvironmentSubsystem::ApplyWaterBlockers(int32 ScreenNumber, const FDinkScreenCorners& Corners)
+{
+	const TArray<FBox2D>* Rects = WaterBlockRects.Find(ScreenNumber);
+	if (!Rects || Rects->IsEmpty() || WaterBlockApplied.Contains(ScreenNumber) || CVarDinkWaterBlockers.GetValueOnGameThread() == 0) return;
+	WaterBlockApplied.Add(ScreenNumber);
+	FActorSpawnParameters SP;
+	SP.ObjectFlags |= RF_Transient;
+	AActor* Actor = GetWorld()->SpawnActor<AActor>(AActor::StaticClass(), FTransform::Identity, SP);
+	if (!Actor) return;
+	// one collision-only procedural mesh per screen at the actor's identity: a convex box per rect, from 50 cm under the
+	// ground to 1.5 m over it, profile DinkPlayerBlock (the player capsule blocks; nothing else responds)
+	UProceduralMeshComponent* Block = NewObject<UProceduralMeshComponent>(Actor, TEXT("WaterBlockers"), RF_Transient);
+	Actor->SetRootComponent(Block);
+	Block->bUseAsyncCooking = false;
+	Block->bUseComplexAsSimpleCollision = false;
+	Block->SetVisibility(false);
+	Block->SetHiddenInGame(true);
+	Block->SetCastShadow(false);
+	Block->SetCanEverAffectNavigation(false);
+	Block->SetGenerateOverlapEvents(false);
+	Block->ComponentTags.Add(TEXT("DinkWaterBlocker"));
+	for (const FBox2D& R : *Rects)
+	{
+		TArray<FVector> Points;
+		for (const FVector2D& P : {R.Min, FVector2D(R.Max.X, R.Min.Y), R.Max, FVector2D(R.Min.X, R.Max.Y)})
+		{
+			const FVector At = DinkLayout::MapPixelToUnreal(Corners, P.X, P.Y);
+			Points.Add(At - FVector(0.0, 0.0, 50.0));
+			Points.Add(At + FVector(0.0, 0.0, 150.0));
+		}
+		Block->AddCollisionConvexMesh(Points);
+	}
+	Block->SetCollisionProfileName(DinkCollision::ProfilePlayerBlock);
+	Block->RegisterComponent();
+	ForestActors.Add(Actor);
+	UE_LOG(LogDink, Display, TEXT("DINK ENV: water blockers on screen %d: %d boxes along the drawn waterline (player only)"), ScreenNumber, Rects->Num());
 }
 
 void UDinkEnvironmentSubsystem::ApplyForest(int32 ScreenNumber, const FDinkScreenCorners& Corners)
@@ -2360,6 +2412,7 @@ void UDinkEnvironmentSubsystem::ApplyNeighbourFamilies(const FVector& Around)
 		if (!TownScreens.IsEmpty() && FVector::DistSquared2D(Screen.Centre, Around) < FMath::Square(16000.0)) ApplyTownHouses(Screen.Number, Screen.Corners);
 		if (!ForestTrees.IsEmpty() && FVector::DistSquared2D(Screen.Centre, Around) < FMath::Square(22000.0)) ApplyForest(Screen.Number, Screen.Corners);
 		if ((!ReliefRocks.IsEmpty() || !WaterTileRects.IsEmpty()) && FVector::DistSquared2D(Screen.Centre, Around) < FMath::Square(22000.0)) ApplyRelief(Screen.Number, Screen.Corners);
+		if (!WaterBlockRects.IsEmpty() && FVector::DistSquared2D(Screen.Centre, Around) < FMath::Square(16000.0)) ApplyWaterBlockers(Screen.Number, Screen.Corners);
 		if (!DecalClasses.IsEmpty() && FVector::DistSquared2D(Screen.Centre, Around) < FMath::Square(16000.0)) ApplyDecals(Screen.Number);
 	}
 	UDinkArtFamilySubsystem* Families = GetWorld()->GetSubsystem<UDinkArtFamilySubsystem>();

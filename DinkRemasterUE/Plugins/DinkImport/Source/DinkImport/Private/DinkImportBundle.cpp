@@ -224,6 +224,9 @@ bool FDinkBundle::Load(const FString& InDir, FString& OutError)
 				const TArray<TSharedPtr<FJsonValue>>* Patch = nullptr;
 				if (O->TryGetArrayField(TEXT("water_sea_patch"), Patch) && Patch && Patch->Num() == 9)
 					for (const TSharedPtr<FJsonValue>& PatchValue : *Patch) S.WaterSeaPatch.Add(PatchValue->AsNumber());
+				const TArray<TSharedPtr<FJsonValue>>* Draw = nullptr;
+				if (O->TryGetArrayField(TEXT("water_draw"), Draw) && Draw)
+					for (const TSharedPtr<FJsonValue>& DrawValue : *Draw) S.WaterDraw.Add(ReadRect(DrawValue->AsArray()));
 			}
 			{
 				const TArray<TSharedPtr<FJsonValue>>* GroundLayerRows = nullptr;
