@@ -324,6 +324,25 @@ int32 UDinkStorySubsystem::StartProcedure(FName Script, FName Procedure, int32 S
 	return I->Id;
 }
 
+int32 UDinkStorySubsystem::CurrentSpriteField(const FDinkScriptInstance& I)
+{
+	// Owner decision 16 Nov 2026 (A47), the one deviation from D:8075-8087: Martridge's scroll (s1-mh-f.c:33-40) attaches to 1000 and then
+	// sets brain 12 on &current_sprite; the author meant the scroll to shrink away, so this script keeps its own sprite there.
+	static const FName OwnerKeepsSprite(TEXT("s1-mh-f"));
+	return I.Script == OwnerKeepsSprite && I.AttachedTo == 1000 && I.Sprite > 0 ? I.Sprite : I.AttachedTo;
+}
+
+void UDinkStorySubsystem::SetLiveCurrentSprite(FDinkScriptInstance& I)
+{
+	const int32 Current = CurrentSpriteField(I);
+	I.Vars.Add(TEXT("current_sprite"), Current);
+	if (CurrentInstanceId == I.Id && Story.IsLoaded())
+	{
+		TGuardValue<bool> Guard(bSyncingFacts, true);
+		Story.SetInt(TEXT("current_sprite"), Current);
+	}
+}
+
 void UDinkStorySubsystem::BeginProcedure(FDinkScriptInstance& I, FName Procedure, const FString& Path, const TArray<int32>& Args)
 {
 	for (int32 A = 1; A <= 9; ++A)
@@ -457,7 +476,8 @@ void UDinkStorySubsystem::RemoveFinishedInstances()
 
 void UDinkStorySubsystem::SwapIn(FDinkScriptInstance& I)
 {
-    I.Vars.Add(TEXT("current_sprite"),I.Sprite);
+    // &current_sprite is the instance's sprite field (decipher D:3846-3910), which script_attach rewrites (D:8075-8087): CurrentSpriteField.
+    I.Vars.Add(TEXT("current_sprite"),CurrentSpriteField(I));
     I.Vars.Add(TEXT("current_script"),I.Id);
 	TGuardValue<bool> Guard(bSyncingFacts, true);
 	for (const TPair<FString, int32>& Var : I.Vars)
@@ -474,9 +494,9 @@ void UDinkStorySubsystem::SwapOut(FDinkScriptInstance& I)
 	}
     // Original decipher/var_equals resolves these from the live instance,
     // not a cached local that predates force_vision's sprite1000 reassignment.
-    I.Vars.Add(TEXT("current_sprite"),I.Sprite);
+    I.Vars.Add(TEXT("current_sprite"),CurrentSpriteField(I));
     I.Vars.Add(TEXT("current_script"),I.Id);
-    Story.SetInt(TEXT("current_sprite"),I.Sprite);
+    Story.SetInt(TEXT("current_sprite"),CurrentSpriteField(I));
     Story.SetInt(TEXT("current_script"),I.Id);
 }
 

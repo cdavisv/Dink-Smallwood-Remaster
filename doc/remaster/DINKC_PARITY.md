@@ -16,17 +16,17 @@ is a later safety fix over undefined 1997 behaviour, the row says so.
 | Distinct names called in `bin/dink/story/*.c` (tools/dinkc `calls.csv`, 10,409 calls) | 144: 129 engine commands and functions, 15 local procedure calls |
 | Engine commands and functions audited | 129 |
 | Equal to dink.cpp | 85 |
-| Divergent, fixed in the fix PR (`fix/dinkc-parity`) | 10 commands, in 6 defects (A40-A45) |
-| Divergent, open | 1 with a bug row (`script_attach`, A47, owner decision) and 9 minor or latent (`d` below); two of them have rows (A46 move timing/hardness, A48 `show_bmp`) |
+| Divergent, fixed in the fix PR (`fix/dinkc-parity`) | 2 commands, in 3 defects (A43, A45, A47); `load_screen` (A42) is fixed by PR #137 |
+| Divergent, open | 8 with fixes written but held back until the probe is re-tuned: `create_sprite` (A41), wait / the say_stop family / say_xy / set_callback_random (A40), and `stop_entire_game` (A44) and 9 minor or latent (`d` below); two of the latent ones have rows (A46 move timing/hardness, A48 `show_bmp`) |
 | Recorded only | 17. These are 2D presentation (draw order, clipping, palette, death sequence, idle sequence), audio, or the title/escape UI that the remaster replaces. |
 | Engine no-ops (`preload_seq`, `debug`, `load_sound`, `make_global_int`) | 4 |
 | Not engine commands (`sp_prop` = owner decision OD1, the misspellings `freeeze`/`unfreeeze`) | 3 |
-| Language constructs audited (if/else, operators, goto, return, menus, locals, script lifetime...) | 22: 2 divergent with an effect (callbacks = A40, `script_attach` = A47), 3 latent |
+| Language constructs audited (if/else, operators, goto, return, menus, locals, script lifetime...) | 22: 2 divergent with an effect (callbacks = A40, fix held back; `script_attach` = A47, fixed), 3 latent |
 | Brains in use (map.dat and scripts) | 16 numbers. 5 defects touch them: create_sprite defaults (A41), warp boxes (A45), `stop_entire_game` (A44), scripted move (A46), pig/duck death details (A49) |
 | Scripts with an entry point | 377. The probe runs 177 of them, 74 only in part; 200 never. 25 of those 200 are dead scripts that no map or script loads. |
 | Director command lines the probe executes | 2,857 of 9,527 (30.0 %) |
 | Script warp targets (`&player_map = N` / `load_screen(N)`) | 31, all real screens in dink.dat |
-| Softlocks found | 1 class in the remake, fixed (A42); 1 in the 1997 scripts, kept (A50, owner decision); 1 path unverified (s2-ryan2). The fixed class: Dink stayed frozen after the pits (`s1-hole`, `s1-hole3`, `s6-hole`, `s6-hole2`) and after the cutscenes that load a screen from a script attached to 1000 (`s2-mdoor`, `s8-duck2`, `s3-mayor`, `en-gmog`) whenever no base script of the new screen unfreezes him |
+| Softlocks found | 1 class in the remake (A42, fixed by PR #137); 1 in the 1997 scripts, kept (A50, owner decision); 1 path unverified (s2-ryan2). The fixed class: Dink stayed frozen after the pits (`s1-hole`, `s1-hole3`, `s6-hole`, `s6-hole2`) and after the cutscenes that load a screen from a script attached to 1000 (`s2-mdoor`, `s8-duck2`, `s3-mayor`, `en-gmog`) whenever no base script of the new screen unfreezes him |
 
 ## Method
 
@@ -66,11 +66,11 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 
 | command | calls | scripts | verdict | dink.cpp | remaster | notes |
 |---|---|---|---|---|---|---|
-| `say_stop` | 1702 | 118 scripts | F | 7901-7932 | DinkStorySubsystem HandleSpokenLine | speaker 0 skipped, kill_text_owned_by(speaker, 1), blocks until the text ends: equal. kill_returning_stuff (D:7916) was missing: fixed (A40) |
-| `wait` | 1549 | 149 scripts | F | 8034-8057 | DinkDirector wait | a one-shot callback after ms: equal; kill_returning_stuff (D:8043) missing: fixed (A40) |
+| `say_stop` | 1702 | 118 scripts | D | 7901-7932 | DinkStorySubsystem HandleSpokenLine | speaker 0 skipped, kill_text_owned_by(speaker, 1), blocks until the text ends: equal. kill_returning_stuff (D:7916) was missing: open, fix held back (A40) |
+| `wait` | 1549 | 149 scripts | D | 8034-8057 | DinkDirector wait | a one-shot callback after ms: equal; kill_returning_stuff (D:8043) missing: open, fix held back (A40) |
 | `preload_seq` | 681 | 142 scripts | N | 8059 | converter comment | asset preload |
 | `unfreeze` | 377 | 104 scripts | E | 7380-7404 | SetFrozen | active sprites only; Dink: move input back |
-| `create_sprite` | 340 | 95 scripts | F | 9041-9056, 3089-3135 | DinkDirector create_sprite + EXTERNAL | add_sprite_dumb: speed 0, timing 0, base_* -1; the remake used add_sprite (speed 1, timing 33, bases 0): fixed (A41) |
+| `create_sprite` | 340 | 95 scripts | D | 9041-9056, 3089-3135 | DinkDirector create_sprite + EXTERNAL | add_sprite_dumb: speed 0, timing 0, base_* -1; the remake uses add_sprite (speed 1, timing 33, bases 0). Fix written but held back: the probe's Jack step relies on the old defaults (A41) |
 | `say` | 339 | 161 scripts | E | 7742-7765 | HandleSpokenLine | sprite 0 skipped, kill_text_owned_by(speaker) unless 1000, no block |
 | `playsound` | 298 | 136 scripts | E | 8395-8411 | UDinkAudioSubsystem (cue) | audio routing, not script semantics |
 | `init` | 289 | 17 scripts | R | 10400-10411, 2335-2460 | ApplyInitLine | dink.ini line; hardbox of a missing sequence applied (parity), the 2D frames are not |
@@ -104,11 +104,11 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 | `load_sound` | 49 | start | N | 8620-8638 | converter comment |  |
 | `sp_exp` | 43 | 42 scripts | E | 9728-9743 | SpriteProperty |  |
 | `sp_strength` | 42 | 36 scripts | E | 10358-10377 | SpriteProperty + stats |  |
-| `say_stop_npc` | 42 | s2-bar, s2-man2, s2-out, s2-wench | F | 7934-7960 | HandleSpokenLine | skipped while the speaker talks (text_owned_by): equal; kill_returning_stuff missing: fixed (A40) |
+| `say_stop_npc` | 42 | s2-bar, s2-man2, s2-out, s2-wench | D | 7934-7960 | HandleSpokenLine | skipped while the speaker talks (text_owned_by): equal; kill_returning_stuff missing: open, fix held back (A40) |
 | `sp` | 39 | 24 scripts | E | 9060-9086 | EXTERNAL sp | first sprite with that editor number, else 0 |
 | `sp_frame` | 38 | 31 scripts | E | 9884-9915 | SpriteProperty frame |  |
 | `sp_frame_delay` | 37 | 21 scripts | E | 9917-9935 | SpriteProperty |  |
-| `say_stop_xy` | 37 | king, s1-ltr, s7-mil, start-3 | F | 7964-7988 | HandleSpokenLine | blocks; kill_returning_stuff missing: fixed (A40) |
+| `say_stop_xy` | 37 | king, s1-ltr, s7-mil, start-3 | D | 7964-7988 | HandleSpokenLine | blocks; kill_returning_stuff missing: open, fix held back (A40) |
 | `sp_distance` | 36 | 30 scripts | E | 10413-10431 | SpriteProperty |  |
 | `get_sprite_with_this_brain` | 36 | 25 scripts | E | 9201-9224 | EXTERNAL | lowest active handle with that brain, not Except; text sprites skipped (brain 8 is never asked) |
 | `sp_base_attack` | 35 | 31 scripts | E | 9512-9528 | SpriteProperty |  |
@@ -118,7 +118,7 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 | `sp_range` | 28 | 25 scripts | E | 9127-9145 | SpriteProperty |  |
 | `sp_defense` | 28 | 26 scripts | E | 10379-10398 | SpriteProperty + stats |  |
 | `sp_hard` | 27 | 23 scripts | E | 9979-10004 | DinkDirector sp_hard | also the loaded map's flag |
-| `script_attach` | 26 | 25 scripts | D | 8075-8087 | DinkDirector script_attach | the engine sets the instance's sprite, so &current_sprite becomes 1000 and later sp_* on it are ignored (change_sprite D:5396-5403); the remake keeps &current_sprite (A47, owner decision) |
+| `script_attach` | 26 | 25 scripts | F | 8075-8087 | DinkDirector script_attach | the engine sets the instance's sprite, so &current_sprite becomes 1000 and later sp_* on it are ignored (change_sprite D:5396-5403); the remake kept &current_sprite: fixed (A47); owner-approved deviation: s1-mh-f keeps its sprite so Martridge's scroll shrinks away |
 | `editor_seq` | 25 | 25 scripts | E | 9653-9664 | EditorVariant |  |
 | `editor_frame` | 25 | 25 scripts | E | 9666-9679 | EditorVariant |  |
 | `draw_hard_sprite` | 24 | 21 scripts | E | 8089-8111 | Gameplay::DrawHardSprite |  |
@@ -126,7 +126,7 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 | `sp_base_death` | 23 | 23 scripts | R | 9548-9564 | recorded | 2D death sequence; the remake's death presentation is the corpse/blood layer (gore audit) |
 | `sp_que` | 20 | 16 scripts | R | 9416-9431 | recorded | 2D draw order |
 | `sp_nodraw` | 20 | 10 scripts | E | 9164-9180 | actor hidden |  |
-| `load_screen` | 19 | 18 scripts | F | 7874-7884, 1013-1015 | DinkDirector load_screen | load_map: Dink's move and freeze end. The remake kept the freeze when a script attached to 1000 still ran: pits softlocked: fixed (A42) |
+| `load_screen` | 19 | 18 scripts | D | 7874-7884, 1013-1015 | DinkDirector load_screen | load_map: Dink's move and freeze end. The remake keeps the freeze when a script attached to 1000 still runs: the pits softlock (A42; fixed by PR #137) |
 | `draw_screen` | 19 | 18 scripts | E | 7767-7785 | one-frame block + PollScreenChange | the screen build (kill_all_scripts, base script, placements) happens at the next PollScreenChange |
 | `draw_status` | 18 | 17 scripts | R | 7832-7848 | recorded | HUD reads the facts |
 | `add_item` | 18 | 13 scripts | E | 7619-7631 | Gameplay::AddItem | pickup procedure in a new instance |
@@ -140,7 +140,7 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 | `sp_reverse` | 12 | 5 scripts | R | 9761-9777 | recorded | 2D animation direction |
 | `sp_flying` | 11 | 10 scripts | E | 10023-10043 | SpriteProperty |  |
 | `sp_kill_wait` | 10 | 10 scripts | d | 10045-10062 | recorded | kill_wait delays a monster's next attack decision; recorded only (AI layer) |
-| `set_callback_random` | 9 | 9 scripts | F | 7530-7544, 4266-4297, 11602-11688 | CallbackProc + Advance | fires into the idle instance; the engine kills it on wait, say_stop*, say_xy and before talk/hit/damage: the remake never did: fixed (A40) |
+| `set_callback_random` | 9 | 9 scripts | D | 7530-7544, 4266-4297, 11602-11688 | CallbackProc + Advance | fires into the idle instance; the engine kills it on wait, say_stop*, say_xy and before talk/hit/damage: the remake never did: open, fix held back (A40) |
 | `sp_size` | 9 | 5 scripts | E | 9381-9395 | actor scale |  |
 | `sp_attack_hit_sound` | 9 | 6 scripts | R | 10315-10334 | recorded | audio |
 | `count_item` | 9 | 5 scripts | E | 10168-10189 | EXTERNAL |  |
@@ -153,7 +153,7 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 | `draw_hard_map` | 6 | s1-h1-4, s1-roc, s4-ducks, s4-rock | E | 8224-8235 | Gameplay::DrawHardMap |  |
 | `fill_screen` | 6 | 5 scripts | R | 8507-8525 | recorded | palette fill of the 2D buffer |
 | `kill_this_item` | 6 | s2-out, s4-st1p | E | 7663-7675, 1505-1537 | Gameplay::KillThisItem |  |
-| `say_xy` | 5 | 5 scripts | F | 7990-8008 | HandleSpokenLine | no block; kill_returning_stuff missing: fixed (A40) |
+| `say_xy` | 5 | 5 scripts | D | 7990-8008 | HandleSpokenLine | no block; kill_returning_stuff missing: open, fix held back (A40) |
 | `kill_game` | 4 | dinfo, escape, start, start-4 | E | 8283-8301 | quit |  |
 | `sp_attack_hit_sound_speed` | 4 | item-axe, item-sw1, item-sw2, item-sw3 | R | 10336-10356 | recorded | audio |
 | `sp_follow` | 4 | s1-duck, s3-freak | E | 9847-9862 | SpriteProperty follow |  |
@@ -187,7 +187,7 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 | `show_bmp` | 1 | button6 | d | 7693-7706 | waits for a key, shows nothing | button6.c's map (tiles\map1.bmp) is not shown (A48) |
 | `sp_base_idle` | 1 | dinfo | R | 9530-9546 | recorded |  |
 | `set_button` | 1 | escape | R | 9745-9759 | recorded | key binding menu |
-| `stop_entire_game` | 1 | lraise | F | 10099-10120, 17423-17440 | bStopEntireGame + Advance | no sprite thinks while the level-up menu is up; the remake only recorded it: monsters kept hitting Dink in lraise's menu: fixed (A44) |
+| `stop_entire_game` | 1 | lraise | D | 10099-10120, 16811-16833, 17423-17444 | recorded | under its menu no brain, move, touch damage or wait runs, kill timers and texts do; the remake only records it. Fix written but held back (branch fix/dinkc-stop-entire-game): its level-up pauses shift the rand() stream and probe chapter 8 (the knights) then loses (A44) |
 | `freeeze` | 1 | s1-h3-3 | X | - | recorded | misspelling the engine ignores (s1-h3-3) |
 | `unfreeeze` | 1 | s1-h3-3 | X | - | recorded | misspelling the engine ignores (s1-h3-3) |
 | `scripts_used` | 1 | s1-ntree | E | 10281-10292 | EXTERNAL (live instances) |  |
@@ -195,6 +195,8 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 | `free_magic` | 1 | s6-vend | E | 7815-7827 | EXTERNAL |  |
 | `is_base_game` | 1 | start | E | 8852-8859 | EXTERNAL 1 |  |
 | `stopcd` | 1 | start-2 | E | 9486-9493 | audio cue |  |
+
+
 
 **Local procedure calls** (`story();`, `buybottle();` ... 15 names, 24 call sites). The engine runs each call in a
 new instance with fresh locals (D:11378-11407). The converter makes it an Ink tunnel on the same instance. All 24 call
@@ -228,8 +230,8 @@ visible effect today.
 | title lines, `&var` interpolation (longest name first) | 5117-5132, var_replace 3995-4026 | text.py | E | gold scripts, lraise, healers, escape |
 | end of procedure without `kill_this_task` (the instance stays) vs `kill_this_task` | run_script 11583-11590, kill_script 3377 | Idle vs FinishInstance | E | - |
 | screen change kills every script not attached to 1000 | kill_all_scripts 3422 | OnScreenEntered | E | 24 `script_attach(1000)` sites |
-| `script_attach(n)` also changes `&current_sprite` | 8075-8087 | only AttachedTo changes | **D (A47)** | s1-mh-f.c:37-40 visible; s7-boss.c:307, dam-icee.c:93 not visible |
-| `set_callback_random` ended by say_stop / say_stop_npc / say_stop_xy / say_xy / wait and by talk/hit/damage | kill_returning_stuff 5049; 7916-8043; 14217, 14266, 14277, 14415, 15541, 15582, 9968 | never ended | **F (A40)** | en-drag, s7-drag, sc-drag, en-bong, s7-bong, sc-lock, s1-caves, s1-cave |
+| `script_attach(n)` also changes `&current_sprite` | 8075-8087 | only AttachedTo changed | **F (A47)** | s1-mh-f.c:37-40 visible (owner deviation: shrinks); s7-boss.c:307, dam-icee.c:93 not visible |
+| `set_callback_random` ended by say_stop / say_stop_npc / say_stop_xy / say_xy / wait and by talk/hit/damage | kill_returning_stuff 5049; 7916-8043; 14217, 14266, 14277, 14415, 15541, 15582, 9968 | never ended | **D (A40, fix held back)** | en-drag, s7-drag, sc-drag, en-bong, s7-bong, sc-lock, s1-caves, s1-cave |
 | `&current_sprite` in external (the caller's sprite) and spawn (1000) | 11336, 8188 | Instance.Sprite / HandleNoSprite | E | - |
 
 ## Brains
@@ -247,29 +249,35 @@ to brain 0, D:6036-6046) / scripts that set the brain.
 | 5 / 7 play once | 0 / 17 files + 80 creates | E | - | - |
 | 6 repeat | 28 / 21 files + 47 creates | E | - | weak |
 | 8 text | engine (say) | story subsystem texts | timing strlen x 77 ms, min 2700 | Talk tests |
-| 9 monster | 31 / 38 files + 8 creates | E in parity mode. Created ones got add_sprite defaults: **F (A41)**. Door boxes: **F (A45)** | targeting, attack, recal, screen edges match D:12887-13046; the 3D adaptation layer (wind-up, two attackers at most) is a deliberate play-mode change | Dink.AI.Monster.* |
+| 9 monster | 31 / 38 files + 8 creates | E in parity mode. Created ones get add_sprite defaults: **D (A41, fix held back)**. Door boxes: **F (A45)** | targeting, attack, recal, screen edges match D:12887-13046; the 3D adaptation layer (wind-up, two attackers at most) is a deliberate play-mode change | Dink.AI.Monster.* |
 | 10 dragon | 7 / en-drag, s7-boss, s7-drag, sc-drag | E | D:13234-13353 | bow target only |
 | 11 missile | 0 / 56 creates, dam-ice | **F (A45)** | it crossed map.dat warp boxes (doors) | Missile tests + Dink.Parity.DinkC.WarpBoxIsHardForBrains |
-| 12 scale | 0 / 25 files + 2 creates | E (created ones ran at timing 33: F A41) | D:15798 | gold shrink |
+| 12 scale | 0 / 25 files + 2 creates | E (created ones run at timing 33: A41, open) | D:15798 | gold shrink |
 | 13 / 14 mouse, button | title screens (start*.c) | R | the remaster's own menus | - |
-| 15 shadow | 0 / 12 creates | E (lagged at timing 33: F A41) | D:13218 | - |
+| 15 shadow | 0 / 12 creates | E (lags at timing 33: A41, open) | D:13218 | - |
 | 16 people | 5 / 41 files | E in parity mode | find_action, edges, reverse match D:13048-13197; the NPC pace setting is a play-mode change | People tests |
 | 17 missile, expires | 0 / dam-bom, dam-bom2 | E | D:14426 | - |
 | all, while `stop_entire_game` | lraise.c | **F (A44)** | ThinkSprite(h, true) D:17423 | Dink.Parity.DinkC.StopEntireGamePausesSprites |
 | all, scripted `move` / `move_stop` | 78 calls | **D (A46)** | the move runs inside the brain (process_move D:12669): the sp_timing gate slows it, hardness stops it unless move_nohard (D:16893); the remake moves at speed x 60 px/s through walls | - |
 
+## Owner-approved deviations from the 1997 binary
+
+| Row | Decided | What the remaster does instead | Where |
+|-----|---------|--------------------------------|-------|
+| A47 | owner, 16 Nov 2026 | Martridge's scroll (s1-mh-f.c:33-40) shrinks away after it is read, as its author wrote; the 1997 binary sent those sp_* to sprite 1000 (D:8075-8087, 5396-5403) and left it on the floor. Only s1-mh-f keeps its own sprite after `script_attach(1000)`. | `UDinkStorySubsystem::CurrentSpriteField` |
+
 ## Defects (bug list rows A40-A50)
 
 | id | sev | defect | dink.cpp | status |
 |---|---|---|---|---|
-| A40 | S2 | `set_callback_random` timers were never ended. The engine ends them on `wait`, the say_stop family and `say_xy`, and when it runs `talk`, `hit` or `damage`. In the remaster, s1-caves roared and Dink complained every 5-15 s for as long as he stayed in the cave (in the original: at most twice). Dragons (s7-drag: 50 % chance to pick a random monster) and Boncas kept re-picking targets after Dink hit them, where the original stays locked on Dink. | 5049-5070, 7916, 7948, 7973, 7997, 8043, 9968, 14217, 14266, 14277, 14415, 15541, 15582 | fixed: `UDinkStorySubsystem::KillReturningStuff`; test `Dink.Parity.DinkC.CallbackEndsOnWaitSayAndHit` |
-| A41 | S2 | `create_sprite` gave add_sprite's defaults (speed 1, timing 33, bases 0) instead of add_sprite_dumb's (speed 0, timing 0, bases -1). If Dink hits s1-gate's Chealse, she takes him as her target (base_attack 0 is not -1, D:15556) and then stands still for good (`in_this_base(seq, 0)`). Script fireballs without `sp_timing` (s2-cave2, s4-h1p, s8-da) fly at half speed. Created shadows and pickups lag, and created people walk at half pace. | 9041-9051, 3089-3135 | fixed: `UDinkDirector::InitDumbSprite`; test `Dink.Parity.DinkC.CreateSpriteUsesAddSpriteDumb` |
-| A42 | S2 | Softlock: Dink stays frozen. `load_screen` is load_map, which ends Dink's freeze and move. The pits (s1-hole, s1-hole3, s6-hole, s6-hole2) and the cutscenes s2-mdoor, s8-duck2, s3-mayor and en-gmog freeze Dink, attach to 1000, load a screen and end without `unfreeze(1)`. In the remaster the screen change was noticed while that script still ran (fade_up), so Dink was not released. On 198, 182, 166 and 131 nothing else frees him (on 38, s2-mh-m's `main` does; on 586, 489 and 731 the next scene does). The probe never takes these routes: it reaches the rooms below through the pit warps. | 7874-7884, 1013-1015 | fixed in the `load_screen` handler; test `Dink.Parity.DinkC.LoadScreenUnfreezesDink` |
-| A43 | S2 | `set_dink_speed` was only recorded, so Herb's boots (item-bt, sold in s1-boot) did nothing. dinkspeed 2 doubles Dink's walk speed (12/6/3 px per frame for 1/2/3). | 7563-7575, 17311-17321 | fixed: `ADinkGreyboxCharacter::DinkSpeedScale`; test `Dink.Parity.DinkC.SetDinkSpeedScalesWalk` |
-| A44 | S2 | `stop_entire_game` was only recorded. In the original no sprite thinks while lraise.c's level-up menu is up. In the remaster, monsters kept walking and hitting, and touch damage kept landing, while the player chose an attribute after a kill in a fight. | 10099-10108, 17423, 17431-17440 | fixed: `UDinkDirector::bStopEntireGame`, handled in `UDinkStorySubsystem::Advance`; test `Dink.Parity.DinkC.StopEntireGamePausesSprites` |
+| A40 | S2 | `set_callback_random` timers were never ended. The engine ends them on `wait`, the say_stop family and `say_xy`, and when it runs `talk`, `hit` or `damage`. In the remaster, s1-caves roared and Dink complained every 5-15 s for as long as he stayed in the cave (in the original: at most twice). Dragons (s7-drag: 50 % chance to pick a random monster) and Boncas kept re-picking targets after Dink hit them, where the original stays locked on Dink. | 5049-5070, 7916, 7948, 7973, 7997, 8043, 9968, 14217, 14266, 14277, 14415, 15541, 15582 | open: the fix (`UDinkStorySubsystem::KillReturningStuff`, test `Dink.Parity.DinkC.CallbackEndsOnWaitSayAndHit`, passing) is on branch `fix/dinkc-callbacks`. It is held back because probe chapter 12 then dies: after Dink's first hit both Joppa dragons stay on him (en-drag `hit`: `sp_target(&current_sprite, &enemy_sprite)`), where the remake let them re-target the family. The probe's DuelFight needs re-tuning |
+| A41 | S2 | `create_sprite` gave add_sprite's defaults (speed 1, timing 33, bases 0) instead of add_sprite_dumb's (speed 0, timing 0, bases -1). If Dink hits s1-gate's Chealse, she takes him as her target (base_attack 0 is not -1, D:15556) and then stands still for good (`in_this_base(seq, 0)`). Script fireballs without `sp_timing` (s2-cave2, s4-h1p, s8-da) fly at half speed. Created shadows and pickups lag, and created people walk at half pace. | 9041-9051, 3089-3135 | open: the fix is on branch `fix/dinkc-create-sprite-dumb`, with test `Dink.Parity.DinkC.CreateSpriteUsesAddSpriteDumb`. It is held back because probe chapter 1 then dies at step 37: Jack is one of s2-auntp's created sprites and chases at 120 px/s, and the probe's KiteAndCast was tuned to the wrong defaults (a 1:3 pace, and a chaser that stalls on base_attack 0) |
+| A42 | S2 | Softlock: Dink stays frozen. `load_screen` is load_map, which ends Dink's freeze and move. The pits (s1-hole, s1-hole3, s6-hole, s6-hole2) and the cutscenes s2-mdoor, s8-duck2, s3-mayor and en-gmog freeze Dink, attach to 1000, load a screen and end without `unfreeze(1)`. In the remaster the screen change was noticed while that script still ran (fade_up), so Dink was not released. On 198, 182, 166 and 131 nothing else frees him (on 38, s2-mh-m's `main` does; on 586, 489 and 731 the next scene does). The probe never takes these routes: it reaches the rooms below through the pit warps. | 7874-7884, 1013-1015 | fixed by PR #137 (fix/unfreeze-followup), which owns A42: load_map clears Dink's freeze and move. This PR's own version was dropped |
+| A43 | S2 | `set_dink_speed` was only recorded, so Herb's boots (item-bt, sold in s1-boot) did nothing. dinkspeed 2 doubles Dink's walk speed (12/6/3 px per frame for 1/2/3). | 7563-7575, 17311-17321 | fixed: `ADinkGreyboxCharacter::DinkSpeedScale`; a load or restart puts it back to dinkspeed 3 (load_game D:1423; the loaded weapon's arm sets it again); test `Dink.Parity.DinkC.SetDinkSpeedScalesWalk` |
+| A44 | S2 | `stop_entire_game` was only recorded. In the original, while lraise.c's level-up menu is up, every sprite is thought with get_frame: kill timers and their callbacks still run (texts expire, say_stop goes on), but no brain, animation, move or touch damage, and no process_callbacks, so no wait ends. The first frame without the menu clears the flag and runs nothing else. In the remaster, monsters kept walking and hitting while the player chose an attribute after a kill. | 10099-10108, 16811-16833, 16850-16883, 17423, 17431-17444 | open: the fix (`UDinkDirector::bStopEntireGame`, `Tick`/`UpdateBlocks` with bGameStopped, test `Dink.Parity.DinkC.StopEntireGamePausesSprites`) is on branch `fix/dinkc-stop-entire-game`, held back: its level-up pauses shift the probe's `rand()` stream and chapter 8's knight fight (SquadFight) is then lost |
 | A45 | S3 | Every sprite but Dink crossed map.dat warp hardboxes (doors). `check_if_move_is_legal` reads `get_hard`, which keeps them hard; only Dink's walk uses `get_hard_play`. Villagers stood in doorways and fireballs flew through doors. | 13503, 527-546, 548-580 | fixed: `UDinkGameplay::CheckIfMoveIsLegal`; test `Dink.Parity.DinkC.WarpBoxIsHardForBrains` |
 | A46 | S3 | Scripted `move`/`move_stop` ignore `sp_timing`, and ignore hardness for everyone but Dink. Cutscene walkers at timing 33 move twice as fast, and they pass walls where the original would stop them. The original could hang a `move_stop` there; the remaster has a 60 s escape. | 8113-8141, 8588-8618, 12669, 16836-16845, 16893 | open (needs the move stepped per brain think; it would move many probe traces) |
-| A47 | S3 | `script_attach(1000)` leaves `&current_sprite` on the old sprite. In the engine it becomes 1000 and later sp_* on it are ignored. In the original, Martridge's scroll (s1-mh-f.c:37-40) stays on the floor after it is read; in the remaster it shrinks away, which is the author's evident intent. The HD engine's "Ignoring command" (D:5398) is a safety fix: the 1997 binary wrote out of bounds there. | 8075-8087, 5396-5403 | open: owner decision (keep the vanishing scroll, or match HD) |
+| A47 | S3 | `script_attach(1000)` left `&current_sprite` on the old sprite. In the engine it becomes 1000 and later sp_* on it are ignored (s1-ltr.c:9-10 says so in a comment). Martridge's scroll (s1-mh-f.c:37-40) stays on the floor after it is read in the engine; in the remaster it shrank away. | 8075-8087, 5396-5403 | closed: owner decision 16 Nov 2026, the scroll shrinks (approved deviation, see below): s1-mh-f keeps its sprite after `script_attach(1000)` (`UDinkStorySubsystem::CurrentSpriteField`); every other script follows the engine; test `Dink.Parity.DinkC.ScriptAttachMovesCurrentSprite` |
 | A48 | S3 | `show_bmp` waits for a key but shows nothing. button6.c's map (`tiles\map1.bmp`, the map key) appears as a blank pause. | 7693-7706 | open (UI: show the picture) |
 | A49 | S3 | Brain details. The pig's death skips its seq-164 death animation under brain 7 (D:13378-13381). Pig damage is not held during a scripted move (D:13360). The duck's first death skips the D:12744 `pseq` in base_walk check. | 12744, 13360, 13378-13381 | open (cosmetic) |
 | A50 | S2 | 1997 softlock kept. s3-st2p.c:30-42: buying the bow with 16 items carried leaves Dink and Arturous frozen (`return` without `unfreeze`). | - (script) | open: owner decision (a fix switch would be a deviation from 1997) |
@@ -294,7 +302,7 @@ are dead (no map placement and no script loads them). The rest:
   [dinkc_parity/scripts_not_covered.md](dinkc_parity/scripts_not_covered.md).
 - **Statically, after the fix PR.**
   - These scripts use no command whose remaster semantics are missing, other than the open rows above: A46 moves,
-    A47 attach, A48 map picture, and the 2D-only `sp_nocontrol` / `sp_kill_wait` / `sp_disabled` / `sp_base_death`.
+    A48 map picture, and the 2D-only `sp_nocontrol` / `sp_kill_wait` / `sp_disabled` / `sp_base_death`.
   - The commands they depend on and that the probe does not exercise are now covered by tests: callbacks
     (s1-cave/s1-caves, sc-lock, sc-drag), created sprites (s8-da, s2-tds, s3-larry, s2-ryan3, s1-rand),
     set_dink_speed (item-bt), load_screen from a 1000 script (s1-hole, s2-mdoor, s8-duck2), stop_entire_game (lraise).
@@ -319,9 +327,9 @@ are dead (no map placement and no script loads them). The rest:
 
 ## Probe traces
 
-The fixes change what scripts and brains do on the probe's route, so trace md5s move. A40: the Bonca and dragon
-fights and every callback's `rand()` draws. A41: every created sprite's timing; drops, fireballs and shadows are on
-every chapter. A44: every level-up. A45: missiles and monsters at doors. A42 and A43 only touch screens and items the
+The fixes change what scripts and brains do on the probe's route, so trace md5s move. A40 (held back) would move the
+Bonca and dragon fights and every callback's `rand()` draw, and chapter 12's dragons fail with it. A41 (held back) would move every created sprite's timing, and chapter 1's
+Jack step fails with it. A44: every level-up. A45: missiles and monsters at doors. A42 and A43 only touch screens and items the
 probe does not use. The fix PR records the new table and these reasons in
 `DinkRemasterUE/Plugins/DinkParity/Docs/packaged_probe.md`.
 

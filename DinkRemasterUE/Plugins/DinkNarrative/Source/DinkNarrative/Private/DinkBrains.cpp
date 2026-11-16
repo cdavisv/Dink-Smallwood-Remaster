@@ -465,14 +465,11 @@ int32 UDinkGameplay::CheckIfMoveIsLegal(FDinkSprite& S)
 	const bool bFlying = S.GetProp(B_Flying) != 0;
 	for (int32 i = 1; i < MovePath.Num(); ++i)
 	{
+		// check_if_move_is_legal reads get_hard (D:13503), which returns the hit map as it is (D:527-546): a stamped hardbox of a map.dat
+		// warp (prop 1, a door) is hard for monsters, people and missiles. Only Dink's own walk reads get_hard_play (D:548-580, 15122-15253),
+		// which turns such a box into 0 and a warp. Before 15 Nov 2026 this read every sprite's path as get_hard_play does: villagers stood in
+		// doorways and fireballs flew through doors instead of hitting them.
 		int32 Hard = GetHard(S.Screen, MovePath[i].X, MovePath[i].Y);
-		// get_hard (D:569-575) reads a stamped hardbox whose placement's prop is not 0 as 0 for every caller: monsters, people and missiles
-		// cross a map.dat warp's hardbox (a door), and only Dink (brain 1, never moved here) warps there (special_block, D:16907-16911).
-		// GetHard keeps the stamped code of a map.dat warp because the pawn's greybox approximates the warp as a solid box with a trigger.
-		if (Hard > 100 && GetPlacementProp(FDinkOriginId(S.Screen, Hard - 100)) != 0)
-		{
-			Hard = 0;
-		}
 		if (Hard == 0 && AuthoredActorMoveBlocked(S, MovePath[i - 1], MovePath[i])) { Hard = 1; }
 		if (Hard == 2 && bFlying)
 		{
