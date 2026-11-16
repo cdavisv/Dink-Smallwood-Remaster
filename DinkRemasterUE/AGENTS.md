@@ -1,3 +1,11 @@
+## Monsters as creature classes: bonca (three hides), slayer, stone giant, with their corpses (15 November 2026)
+
+- `creatures.json` `classes` rows `bonca_gray`, `bonca_brown`, `bonca_purple`, `slayer`, `stone_giant` (Fable packets VS-04, GP-Q1, GP-Q2): walk = locomotion role, attack sequences play `AN_<Name>_Attack`; a kill leaves the row's corpse with a ground decal. Sources, import command and what binds: `SourceAssets/Art/PhotorealPass/IMPORT.md` "Monsters". Evidence and what is still wrong: `Docs/Verification/Monsters_15Nov2026/README.md`.
+- A sprite without `base_death` leaves `base_walk + 5` (dink.cpp:12371-12383): `FDinkCreatureClassBinding::CorpseFor(BaseDeath, Dir, BaseWalk)`, passed by the presenter (`C_BaseWalk`). The slayer (645) and the stone giant (825) need it; test lines in `Dink.Art.CreatureClass.Rows`.
+- The bonca hide is baked as a code (R detail, G stripe, B leg, metallic = hide/mouth) and painted per colour in `build_bonca.py` `paint_hides`: change a colour there, never by tinting a finished map. A rebuild (`build_*.py final`) wipes the clips: run the clip script and `export_monster_ue.py` again, then `corpse_blood.py`.
+- All three bonca colours leave the brown body (the original has one death set, 551-559). The stone giant's remains carry no blood (825 has none): a heap of ten blocks on grit.
+- Traps: Blender needs the Poly Haven scans `forrest_ground_01` and `rock_boulder_dry` pulled from LFS; `tools/bl.sh` takes one machine-wide lock, so another session's long simulation blocks it; `pgrep -f X` / `pkill -f X` match the shell that runs them when its text contains X (kill by PID).
+
 ## Presentation fixes of the visual sweep (15 November 2026)
 
 Evidence: `Docs/Verification/PresentationFixes_15Nov2026/`. Bug list A77 (carried), A78, A79. Presentation only: hardness, collision, scripts and the probe traces are untouched.

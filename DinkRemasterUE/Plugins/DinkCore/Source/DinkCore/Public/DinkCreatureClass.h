@@ -170,7 +170,8 @@ struct DINKCORE_API FDinkCreatureClassBinding
 		return Bursts.FindByPredicate([Sequence, Brain](const FDinkCreatureBurst& B) { return (B.Brain == 0 || B.Brain == Brain) && B.Sequences.Contains(Sequence); });
 	}
 	/** Corpse for a kill: the sprite's death sequence with the engine's mirrored-facing fallback (dink.cpp:12392-12404). */
-	const FDinkCreatureCorpse* CorpseFor(int32 BaseDeath, int32 Dir) const;
+	/** BaseWalk: the sprite's base_walk, for a sprite without base_death: the original leaves base_walk + 5 if that sequence exists (dink.cpp:12371-12383). */
+	const FDinkCreatureCorpse* CorpseFor(int32 BaseDeath, int32 Dir, int32 BaseWalk = 0) const;
 };
 
 /** Why a placement is or is not shown by its class row. */
