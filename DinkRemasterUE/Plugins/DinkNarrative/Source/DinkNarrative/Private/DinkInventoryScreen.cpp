@@ -59,6 +59,7 @@ bool UDinkStorySubsystem::OpenInventory()
 	}
 	PlayInterfaceSound(18, 22050); // dink.cpp:14958
 	AddEvent(TEXT("inventory"), TEXT("open"));
+	OnInventoryToggled.Broadcast(true); // the recordings pause with the game (UDinkAudioSubsystem)
 	return true;
 }
 
@@ -83,6 +84,7 @@ void UDinkStorySubsystem::CloseInventory(bool bSound)
 		PlayInterfaceSound(17, 22050); // dink.cpp:16632
 	}
 	AddEvent(TEXT("inventory"), TEXT("close"));
+	OnInventoryToggled.Broadcast(false);
 }
 
 void UDinkStorySubsystem::MoveInventoryCursor(int32 DX, int32 DY)

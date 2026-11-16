@@ -112,6 +112,11 @@ struct DINKNARRATIVE_API FDinkActiveText
 	bool bXY = false;
 	int32 X = 0;
 	int32 Y = 0;
+	/**
+	 * Grows by one with every text put on screen. A text's handle is reused at once (a skipped say_stop's handle goes to the next
+	 * line in the same frame), this is not: presentation and input tell two lines apart by it. Not saved, not story state.
+	 */
+	int32 ShownSerial = 0;
 };
 
 /** The menu currently shown (one at a time, like the original's talk menu). */
@@ -161,6 +166,7 @@ struct DINKNARRATIVE_API FDinkLineShown
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnDinkLineShown, const FDinkLineShown&);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnDinkLineSkipped, int32 /*TextHandle*/);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnDinkInventoryToggled, bool /*bOpen*/);
 
 /** One thing that happened, in order (tests, the smoke run, dink.Story). */
 struct DINKNARRATIVE_API FDinkNarrativeEvent
@@ -323,6 +329,8 @@ public:
 	FOnDinkLineShown OnLineShown;
 	/** The player skipped this blocking line (SkipDialogue). */
 	FOnDinkLineSkipped OnLineSkipped;
+	/** The item screen opened (true) or closed (false): the game is paused while it is open, recordings included. */
+	FOnDinkInventoryToggled OnInventoryToggled;
 
 	// ---- Inventory screen (DinkInventoryScreen.cpp) ----
 
@@ -509,6 +517,8 @@ private:
 	FString RestartMapName;
 
 	int32 NextInstanceId = 1;
+	/** FDinkActiveText::ShownSerial of the last text shown. */
+	int32 LastTextSerial = 0;
 	int32 CurrentInstanceId = 0;
 	double NowMs = 0.0;
 	/** Guards against echoing a value back to where it came from. */

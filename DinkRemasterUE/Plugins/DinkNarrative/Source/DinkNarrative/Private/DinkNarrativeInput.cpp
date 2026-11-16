@@ -40,7 +40,10 @@ namespace
 		return INDEX_NONE;
 	}
 
-	/** Handle of the newest blocking text on screen, 0 if none. */
+	/**
+	 * ShownSerial of the newest blocking text on screen, 0 if none. Not its handle: a skipped say_stop's handle goes to the next line
+	 * in the same frame (UDinkDirector::AllocateHandle), so a handle would not show that a new line appeared.
+	 */
 	int32 NewestBlockingText(const UDinkStorySubsystem& S)
 	{
 		const TArray<FDinkActiveText>& Texts = S.GetActiveTexts();
@@ -48,7 +51,7 @@ namespace
 		{
 			if (Texts[i].bBlocking)
 			{
-				return Texts[i].Handle;
+				return FMath::Max(1, Texts[i].ShownSerial);
 			}
 		}
 		return 0;

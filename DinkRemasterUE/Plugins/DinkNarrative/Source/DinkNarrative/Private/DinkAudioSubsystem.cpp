@@ -151,17 +151,26 @@ void UDinkAudioSubsystem::HandleLineSkipped(int32 Text)
  StopVoice(Text); VoiceTracker.Forget(Text);
  UE_LOG(LogDinkPlayback, Log, TEXT("Voice of text %d stopped: line skipped"), Text);
 }
+void UDinkAudioSubsystem::HookStory(UDinkStorySubsystem* Story)
+{
+ if (!Story || HookedStory.Get() == Story) return;
+ if (UDinkStorySubsystem* Old = HookedStory.Get()) { Old->OnLineSkipped.Remove(LineSkippedHandle); Old->OnInventoryToggled.Remove(InventoryToggledHandle); }
+ LineSkippedHandle = Story->OnLineSkipped.AddUObject(this, &UDinkAudioSubsystem::HandleLineSkipped);
+ InventoryToggledHandle = Story->OnInventoryToggled.AddUObject(this, &UDinkAudioSubsystem::HandleInventoryToggled);
+ HookedStory = Story;
+ HandleInventoryToggled(Story->IsInventoryOpen());
+}
+void UDinkAudioSubsystem::HandleInventoryToggled(bool bOpen)
+{
+ bVoicesPaused = bOpen;
+ for (const auto& Pair : VoiceComponents) if (Pair.Value.IsValid()) Pair.Value->SetPaused(bOpen);
+}
 void UDinkAudioSubsystem::UpdateVoices(UDinkDirector* Director)
 {
  UGameInstance* Instance = GetWorld()->GetGameInstance();
  UDinkStorySubsystem* Story = Instance ? Instance->GetSubsystem<UDinkStorySubsystem>() : nullptr;
  if (!Story || Voices.Lines.IsEmpty()) return;
- if (HookedStory.Get() != Story)
- {
-  if (UDinkStorySubsystem* Old = HookedStory.Get()) Old->OnLineSkipped.Remove(LineSkippedHandle);
-  LineSkippedHandle = Story->OnLineSkipped.AddUObject(this, &UDinkAudioSubsystem::HandleLineSkipped);
-  HookedStory = Story;
- }
+ HookStory(Story);
  for (auto It = VoiceComponents.CreateIterator(); It; ++It)
  {
   if (!It.Value().IsValid() || !It.Value()->IsPlaying()) { VoiceTracker.Forget(It.Key()); It.RemoveCurrent(); }
@@ -187,6 +196,7 @@ void UDinkAudioSubsystem::UpdateVoices(UDinkDirector* Director)
   }
   else Component = UGameplayStatics::SpawnSound2D(GetWorld(), Sound, Voices.Volume, 1.f, 0.f, nullptr, false, true);
   if (!Component) { VoiceTracker.Forget(V.Text); continue; }
+  if (bVoicesPaused) Component->SetPaused(true);
   VoiceComponents.Add(V.Text, Component);
   LastVoiceLine = V.LineId;
   UE_LOG(LogDinkPlayback, Log, TEXT("Playing voice %s speaker=%d text=%d %s"), *V.LineId, V.Owner, V.Text, Actor ? TEXT("positional") : TEXT("2d"));
@@ -195,7 +205,7 @@ void UDinkAudioSubsystem::UpdateVoices(UDinkDirector* Director)
 void UDinkAudioSubsystem::Deinitialize()
 {
  if (UDinkGreyboxSubsystem* Greybox = GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>()) Greybox->OnScreenChanged.RemoveAll(this);
- if (UDinkStorySubsystem* Story = HookedStory.Get()) Story->OnLineSkipped.Remove(LineSkippedHandle);
+ if (UDinkStorySubsystem* Story = HookedStory.Get()) { Story->OnLineSkipped.Remove(LineSkippedHandle); Story->OnInventoryToggled.Remove(InventoryToggledHandle); }
  HookedStory.Reset();
  StopAll(); Super::Deinitialize();
 }
