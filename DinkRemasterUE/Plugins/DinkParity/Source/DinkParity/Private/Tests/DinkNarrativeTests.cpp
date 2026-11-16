@@ -33,6 +33,38 @@
 
 namespace DinkNarrativeTest
 {
+	/**
+	 * Names of DinkExpanded content packs (scripts x<n>-*, globals x<n>_*; doc/remaster/EXPANDED_CONTENT.md). With the plugin's switch on
+	 * the story is the 1997 story plus the packs' knots; the 1997 counts below are counted without them.
+	 */
+	bool IsExpandedScript(const FString& Script)
+	{
+		return Script.Len() > 2 && Script[0] == TEXT('x') && FChar::IsDigit(Script[1]) && Script[2] == TEXT('-');
+	}
+	bool IsExpandedGlobal(const FString& Global)
+	{
+		return Global.Len() > 2 && Global[0] == TEXT('x') && FChar::IsDigit(Global[1]) && Global[2] == TEXT('_');
+	}
+	template <typename TMapType>
+	int32 CountOriginal(const TMapType& Map, bool bGlobals)
+	{
+		int32 N = 0;
+		for (const auto& Pair : Map)
+		{
+			N += (bGlobals ? IsExpandedGlobal(Pair.Key.ToString()) : IsExpandedScript(Pair.Key.ToString())) ? 0 : 1;
+		}
+		return N;
+	}
+	int32 CountOriginalEntries(const FDinkInkStory& Story)
+	{
+		int32 N = 0;
+		for (const FDinkStoryNames::FEntry& E : Story.Names().Entries)
+		{
+			N += IsExpandedScript(E.Script.ToString()) ? 0 : 1;
+		}
+		return N;
+	}
+
 	struct FEnv
 	{
 		UDinkFactSubsystem* Facts = nullptr;
@@ -144,9 +176,9 @@ bool FDinkNarrativeStoryLoadsTest::RunTest(const FString& Parameters)
 	}
 	FDinkInkStory& Story = Env.Story->GetStory();
 	TestEqual(TEXT("ink JSON format 21 (inklecate 1.2.1)"), Story.GetInkVersion(), 21);
-	TestEqual(TEXT("377 script knots"), Story.Names().ScriptToKnot.Num(), 377);
-	TestEqual(TEXT("930 entry points"), Story.Names().Entries.Num(), 930);
-	TestEqual(TEXT("63 globals"), Story.Names().GlobalToInk.Num(), 63);
+	TestEqual(TEXT("377 script knots"), CountOriginal(Story.Names().ScriptToKnot, false), 377);
+	TestEqual(TEXT("930 entry points"), CountOriginalEntries(Story), 930);
+	TestEqual(TEXT("63 globals"), CountOriginal(Story.Names().GlobalToInk, true), 63);
 
 	// The source value forms include the three original-hardness accessors.
 	const TArray<FString> Externals = {
@@ -192,17 +224,18 @@ bool FDinkNarrativeKnotsResolveTest::RunTest(const FString& Parameters)
 	for (const TPair<FName, FString>& Pair : Story.Names().ScriptToKnot)
 	{
 		TestEqual(TEXT("knot name rule for ") + Pair.Key.ToString(), Pair.Value, DinkNarrative::KnotForScript(Pair.Key.ToString()));
-		if (TestTrue(TEXT("knot resolves: ") + Pair.Value, Story.HasKnot(Pair.Value)))
+		if (TestTrue(TEXT("knot resolves: ") + Pair.Value, Story.HasKnot(Pair.Value)) && !IsExpandedScript(Pair.Key.ToString()))
 		{
 			++Knots;
 		}
 	}
 	for (const FDinkStoryNames::FEntry& E : Story.Names().Entries)
 	{
-		Entries += Story.HasPath(E.Path) ? 1 : 0;
+		const int32 Original = IsExpandedScript(E.Script.ToString()) ? 0 : 1;
+		Entries += Story.HasPath(E.Path) ? Original : 0;
 		TestTrue(TEXT("entry resolves: ") + E.Path, Story.HasPath(E.Path));
 		const FString Body = DinkNarrative::KnotForScript(E.Script.ToString()) + TEXT(".p_") + E.Procedure.ToString();
-		Bodies += Story.HasPath(Body) ? 1 : 0;
+		Bodies += Story.HasPath(Body) ? Original : 0;
 		TestTrue(TEXT("body resolves: ") + Body, Story.HasPath(Body));
 	}
 	TestEqual(TEXT("all 377 d_* knots resolve"), Knots, 377);
@@ -732,7 +765,8 @@ bool FDinkNarrativeSmokeTest::RunTest(const FString& Parameters)
 	AddInfo(FString::Printf(TEXT("smoke run: %d entry points, %d completed, %d hit the step cap (%d idle loops), %d stalled, %d with errors; %lld lines, %d spoken, %d commands, %d menus in %.1f s; report %s"),
 		Report.EntryPoints, Report.Completed, Report.HitStepCap, Report.CapInIdleLoop, Report.Stalled, Report.WithErrors, Report.TotalLines,
 		Report.SpokenLines, Report.Commands, Report.Menus, Seconds, *Path));
-	TestEqual(TEXT("every entry point ran"), Report.EntryPoints, 930);
+	TestEqual(TEXT("930 1997 entry points"), CountOriginalEntries(Env.Story->GetStory()), 930);
+	TestEqual(TEXT("every entry point ran (the 1997 ones, and any DinkExpanded pack's while its switch is on)"), Report.EntryPoints, Env.Story->GetStory().Names().Entries.Num());
 	TestEqual(TEXT("every entry point is accounted for"), Report.Completed + Report.HitStepCap + Report.Stalled, Report.EntryPoints);
 	TestEqual(TEXT("nothing stalls with stubbed commands"), Report.Stalled, 0);
 	TestFalse(TEXT("no unknown director command in the whole story"), Report.Errors.ContainsByPredicate([](const FString& E) { return E.Contains(TEXT("unknown director command")); }));

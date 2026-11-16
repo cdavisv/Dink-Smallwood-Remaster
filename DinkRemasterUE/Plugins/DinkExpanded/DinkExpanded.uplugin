@@ -1,12 +1,29 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "0.1",
+	"VersionName": "0.2",
 	"FriendlyName": "DinkExpanded",
-	"Description": "All non-original (expanded) content. Content-only; disabled for parity builds.",
+	"Description": "All non-original (expanded) content: content packs as data and DinkC scripts, attached to the 1997 world by designed joins. Inert unless its switch is on (default off); see doc/remaster/EXPANDED_CONTENT.md.",
 	"Category": "Dink",
 	"CreatedBy": "Dink Smallwood Remaster team",
 	"CanContainContent": true,
 	"EnabledByDefault": false,
-	"Installed": false
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "DinkExpanded",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "DinkCore",
+			"Enabled": true
+		},
+		{
+			"Name": "DinkNarrative",
+			"Enabled": true
+		}
+	]
 }

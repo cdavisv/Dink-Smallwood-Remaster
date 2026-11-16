@@ -85,8 +85,22 @@ FDinkInkStory::~FDinkInkStory()
 	}
 }
 
+FString& FDinkInkStory::StoryDataOverrideDir()
+{
+	static FString Dir;
+	return Dir;
+}
+
 FString FDinkInkStory::GetDataPath(const TCHAR* File)
 {
+	if (const FString& Override = StoryDataOverrideDir(); !Override.IsEmpty())
+	{
+		const FString Path = Override / File;
+		if (FPaths::FileExists(Path))
+		{
+			return Path;
+		}
+	}
 	return FPaths::ProjectContentDir() / TEXT("Dink/Data/Story") / File;
 }
 

@@ -63,9 +63,65 @@ namespace
 // ---------------------------------------------------------------------------------------------
 // Data
 
+TArray<FString>& FDinkGameplayData::ExtraDataDirs()
+{
+	static TArray<FString> Dirs;
+	return Dirs;
+}
+
 FString FDinkGameplayData::GetDataPath(const TCHAR* File)
 {
-	return FPaths::ProjectContentDir() / TEXT("Dink/Data/Gameplay") / File;
+	const FString Base = FPaths::ProjectContentDir() / TEXT("Dink/Data/Gameplay") / File;
+	if (ExtraDataDirs().Num() > 0 && !FPaths::FileExists(Base))
+	{
+		for (const FString& Dir : ExtraDataDirs())
+		{
+			if (const FString Extra = Dir / File; FPaths::FileExists(Extra))
+			{
+				return Extra;
+			}
+		}
+	}
+	return Base;
+}
+
+namespace
+{
+	/** Appends the rows of every extra data directory's copy of File to Text (whose first line is the 1997 header). */
+	void AppendExtraDataRows(FString& Text, const TCHAR* File)
+	{
+		if (FDinkGameplayData::ExtraDataDirs().Num() == 0)
+		{
+			return;
+		}
+		FString Header;
+		Text.Split(TEXT("\n"), &Header, nullptr);
+		Header.TrimEndInline();
+		for (const FString& Dir : FDinkGameplayData::ExtraDataDirs())
+		{
+			FString Extra;
+			if (!FFileHelper::LoadFileToString(Extra, *(Dir / File)))
+			{
+				continue;
+			}
+			TArray<FString> Lines;
+			Extra.ParseIntoArrayLines(Lines);
+			if (Lines.Num() == 0 || Lines[0].TrimEnd() != Header)
+			{
+				UE_LOG(LogDinkNarrative, Error, TEXT("%s: header differs from the 1997 table, rows not loaded"), *(Dir / File));
+				continue;
+			}
+			if (!Text.EndsWith(TEXT("\n")))
+			{
+				Text += TEXT("\n");
+			}
+			for (int32 i = 1; i < Lines.Num(); ++i)
+			{
+				Text += Lines[i];
+				Text += TEXT("\n");
+			}
+		}
+	}
 }
 
 bool FDinkGameplayData::Load(FString* OutError)
@@ -124,6 +180,7 @@ bool FDinkGameplayData::Load(FString* OutError)
 	{
 		return Fail(TEXT("cannot read ") + GetDataPath(TEXT("placements.csv")) + TEXT(" (run Scripts/sync_gameplay_data.py)"));
 	}
+	AppendExtraDataRows(Text, TEXT("placements.csv"));
 	Lines.Reset();
 	Text.ParseIntoArrayLines(Lines);
 	if (Lines.Num() < 2)
@@ -190,6 +247,7 @@ bool FDinkGameplayData::Load(FString* OutError)
 	Text.Reset();
 	if (FFileHelper::LoadFileToString(Text, *GetDataPath(TEXT("screens.csv"))))
 	{
+		AppendExtraDataRows(Text, TEXT("screens.csv"));
 		Lines.Reset();
 		Text.ParseIntoArrayLines(Lines);
 		for (int32 i = 1; i < Lines.Num(); ++i)
