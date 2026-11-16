@@ -1,0 +1,54 @@
+LogDink: Display: DINK CAPTURE: exec dink.Goto 299 300 200
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -12
+LogDink: Display: DINK CAPTURE: exec dink.Skip
+LogDink: Display: DINK CAPTURE: exec dink.Skip
+LogDink: Display: DINK CAPTURE: exec dink.Skip
+LogDink: Display: DINK CAPTURE: exec dink.CalCam off
+LogDink: Display: DINK CAPTURE: exec dink.Goto 69 323 229
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 400
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -12
+LogDink: Display: DINK CAPTURE: exec dink.Fact magic
+LogDinkNarrative: Display: magic = 0
+LogDink: Display: DINK CAPTURE: exec dink.Sprites
+LogDinkBeat: Display: DINK SPRITE: 1 script=- brain=1 map=323,229 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 2 script=ch1-mp brain=0 map=303,203 hp=0 origin=S069_P02
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 323 207 1.5
+LogDink: Display: DINK WALK: from X=-85317.015 Y=393134.105 Z=98.000 toward X=-85317.015 Y=393010.355 Z=0.000 on screen 69
+LogDink: Display: DINK WALK: timed out (blocked?); now on screen 69 at X=-85317.015 Y=393049.616 Z=98.150, 39 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=69 map=323.000,213.980 world=-85317.015,393049.616,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.Attack
+LogDink: Family art: S069_P02 follows its animation to 175/3 (/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR)
+LogDink: Display: DINK CAPTURE: exec dink.Sprites
+LogDinkBeat: Display: DINK SPRITE: 1 script=- brain=1 map=323,214 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 3 script=ppotion brain=6 map=303,204 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 2 script=- brain=0 map=303,203 hp=0 origin=S069_P02
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=69 map=323.000,213.980 world=-85317.015,393049.616,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.Fact magic
+LogDinkNarrative: Display: magic = 0
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 323 245 2
+LogDink: Display: DINK WALK: from X=-85317.015 Y=393049.616 Z=98.150 toward X=-85317.015 Y=393224.105 Z=0.000 on screen 69
+LogDink: Display: DINK WALK: arrived; now on screen 69 at X=-85317.015 Y=393218.045 Z=98.150, 6 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 303 245 2
+LogDink: Display: DINK WALK: from X=-85317.015 Y=393243.103 Z=98.150 toward X=-85429.515 Y=393224.105 Z=0.000 on screen 69
+LogDink: Display: DINK WALK: arrived; now on screen 69 at X=-85418.789 Y=393225.916 Z=98.150, 11 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=69 map=301.775,244.793 world=-85436.405,393222.941,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.Fact magic
+LogDinkNarrative: Display: magic = 0
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 303 205 2
+LogDink: Display: DINK WALK: from X=-85436.405 Y=393222.941 Z=98.150 toward X=-85429.515 Y=392999.105 Z=0.000 on screen 69
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=69 map=302.438,223.258 world=-85432.676,393101.803,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.Fact magic
+LogDinkNarrative: Display: magic = 0
+LogDinkAudio: audio cue sound:10 speed=22050 random=0 sprite=0 repeat=0
+LogDink: Display: DINK WALK: timed out (blocked?); now on screen 69 at X=-85429.561 Y=393049.618 Z=98.150, 51 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=69 map=302.992,213.980 world=-85429.561,393049.618,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.Fact magic
+LogDinkNarrative: Display: magic = 1
+LogDink: Display: DINK CAPTURE: exec dink.Sprites
+LogDinkBeat: Display: DINK SPRITE: 1 script=- brain=1 map=303,214 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 2 script=- brain=0 map=303,203 hp=0 origin=S069_P02

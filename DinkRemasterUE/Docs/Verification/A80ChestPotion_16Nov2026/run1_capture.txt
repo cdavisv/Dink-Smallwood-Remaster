@@ -1,0 +1,49 @@
+wait 22
+dink.Goto 299 300 200
+dink.View -90 -12
+wait 30
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+dink.Skip
+wait 1
+t.MaxFPS 0
+r.VSync 0
+# A80 check (fix-a80)
+dink.CalCam off
+# A80 part 1: the reporting run's driving (map 323 = engine 343: 20 px east of the chest, whose map.dat x 323 is an ENGINE x)
+dink.Goto 69 323 229
+dink.CameraDistance 400
+dink.View -90 -12
+wait 3
+dink.Fact magic
+dink.Sprites
+dink.WalkTo 323 207 1.5
+wait 1.6
+dink.Player
+dink.Attack
+wait 2
+dink.Sprites
+dink.Player
+dink.Fact magic
+shot <OUT>/a80_1_run_position_open.png
+# part 2: walk round to the potion's own map pixel (303,204): south, west, then north into the chest's front
+dink.WalkTo 323 245 2
+wait 2.2
+dink.WalkTo 303 245 2
+wait 2.2
+dink.Player
+dink.Fact magic
+dink.WalkTo 303 205 2
+wait 0.5
+dink.Player
+dink.Fact magic
+shot <OUT>/a80_2_walking_in.png
+wait 2
+dink.Player
+dink.Fact magic
+dink.Sprites
+shot <OUT>/a80_3_in_front.png
+wait 2
+quit

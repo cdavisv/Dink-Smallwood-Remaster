@@ -446,6 +446,85 @@ bool FDinkGameplayPickupTest::RunTest(const FString& Parameters)
 	return true;
 }
 
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayChestPotionTest, "Dink.Gameplay.Touch.ChestMagicPotion", DINK_TEST_FLAGS)
+bool FDinkGameplayChestPotionTest::RunTest(const FString& Parameters)
+{
+	// Bug A80: the small chest S069_P02 (ch1-mp, map.dat x 323 y 203) makes its magic potion with external("make", "mpotion"):
+	// &save_y += 1, create_sprite(&save_x, &save_y, 6, 178, 4) (add_sprite_dumb D:3089: frame 0, pseq/pframe 178/4), sp_script
+	// "ppotion" (main: touch damage -1, sp_seq 57 with no sp_frame, brain 6). The forward animator starts a frame-0 sequence at
+	// frame 1 (D:17008-17015), so getpic (D:443-453) is 57/n: hardbox -12 -9 9 7 on every frame. run_through_touch_damage_list
+	// (D:15629-15680) runs the touch procedure while Dink's point is inside that box + 2 px (D:15645-15648). Sprite x is the
+	// engine's x, 20 px right of the map pixel (add_hardness D:487-500 stamps x - 20; UDinkDirector::PixelToWorld subtracts it).
+	// The run that reported A80 drove Dink to "map 323" (engine 343) and "map 328" (engine 348): outside the potion's box in
+	// the original as well; the gold and golden heart of the other two chests have boxes wide enough to reach 20 px.
+	FEnv E = Make(*this);
+	if (!E.IsValid())
+	{
+		return false;
+	}
+	NewGame(E);
+	Enter(E, 69);
+	const int32 Chest = E.D->HandleForPlacement(69, 2);
+	const FDinkSprite* C = E.D->FindSprite(Chest);
+	if (!TestNotNull(TEXT("chest S069_P02"), C) || !TestEqual(TEXT("S069_P02 runs ch1-mp"), C->Script, FName(TEXT("ch1-mp"))))
+	{
+		return false;
+	}
+	TestEqual(TEXT("chest x (engine)"), FMath::RoundToInt32(C->X), 323);
+	TestEqual(TEXT("chest y"), FMath::RoundToInt32(C->Y), 203);
+	E.Facts->SetFact(TEXT("magic"), 0);
+	auto Place = [&E](int32 X, int32 Y, int32 Dir)
+	{
+		FDinkSprite& Dk = E.D->GetDink();
+		Dk.Screen = 69;
+		Dk.X = X;
+		Dk.Y = Y;
+		Dk.Dir = Dir;
+	};
+	// The A80 run's punch: dink.WalkTo 323 207 stopped at map 323,214 = engine 343,214, facing north. The fist reaches the chest.
+	Place(343, 214, 8);
+	Attack(E);
+	const int32 Potion = FindByScript(E, TEXT("ppotion"));
+	if (!TestTrue(TEXT("the punch made the magic potion (ch1-mp hit -> make.mpotion -> ppotion)"), Potion != 0))
+	{
+		return false;
+	}
+	{
+		const FDinkSprite* P = E.D->FindSprite(Potion);
+		TestEqual(TEXT("potion x = &save_x (the chest's)"), FMath::RoundToInt32(P->X), 323);
+		TestEqual(TEXT("potion y = &save_y + 1"), FMath::RoundToInt32(P->Y), 204);
+		TestEqual(TEXT("potion on the chest's screen"), P->Screen, 69);
+		TestEqual(TEXT("ppotion main: touch damage -1"), P->GetProp(TEXT("touch_damage")), -1);
+		TestEqual(TEXT("ppotion main: brain 6"), P->GetProp(TEXT("brain")), 6);
+	}
+	RunFor(E, 0.5);
+	{
+		const FDinkSprite* P = E.D->FindSprite(Potion);
+		TestEqual(TEXT("brain 6 keeps sequence 57 running"), P->GetProp(TEXT("seq")), 57);
+		TestEqual(TEXT("getpic shows sequence 57 (D:17010-17012)"), P->GetProp(TEXT("pseq")), 57);
+		int32 L = 0, T = 0, R = 0, B = 0;
+		TestTrue(TEXT("the animating potion has a hardbox"), E.G->GetHardbox(*P, L, T, R, B));
+		TestEqual(TEXT("hardbox = 57's -12 -9 9 7 at 323,204"), FString::Printf(TEXT("%d %d %d %d"), L, T, R, B), FString(TEXT("311 195 332 211")));
+	}
+	TestEqual(TEXT("engine 343,214 (the A80 run's 'map 323'): outside the box + 2 px, not collected (as in 1997)"), E.Facts->GetFact(TEXT("magic")), 0);
+	Place(348, 206, 4);
+	RunFor(E, 0.5);
+	TestEqual(TEXT("engine 348,206 (the A80 run's 'map 328'): not collected (as in 1997)"), E.Facts->GetFact(TEXT("magic")), 0);
+	// Where the original's Dink stands after walking north into the chest: just below its hardness (175/1: -20 -14 20 6; add_hardness
+	// stamps rows 189-208).
+	Place(323, 210, 8);
+	RunFor(E, 0.1);
+	TestEqual(TEXT("in front of the open chest: the potion is collected, &magic 0 -> 1"), E.Facts->GetFact(TEXT("magic")), 1);
+	TestEqual(TEXT("ppotion touch: touch damage 0 (collected once)"), E.D->FindSprite(Potion)->GetProp(TEXT("touch_damage")), 0);
+	RunFor(E, 1.0);
+	TestEqual(TEXT("collected once only"), E.Facts->GetFact(TEXT("magic")), 1);
+	TestFalse(TEXT("brain 12: the potion shrinks and is gone"), E.D->FindSprite(Potion)->bActive);
+	CheckOriginal(*this, TEXT("ppotion"), { TEXT("sp_seq(&current_sprite, 57);"), TEXT("&magic += 1;") });
+	CheckOriginal(*this, TEXT("make"), { TEXT("sp_script(&crap, \"ppotion\");") });
+	CheckOriginal(*this, TEXT("ch1-mp"), { TEXT("external(\"make\", \"mpotion\");") });
+	return true;
+}
+
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkGameplayTouchDamageTest, "Dink.Gameplay.Touch.DamageHurtsDink", DINK_TEST_FLAGS)
 bool FDinkGameplayTouchDamageTest::RunTest(const FString& Parameters)
 {
