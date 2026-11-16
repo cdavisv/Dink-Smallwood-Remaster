@@ -8,9 +8,11 @@
 // animation advances. TickBrains turns game time into whole engine frames.
 //
 // Not ported: brain 1 (Dink is the player's pawn), 8 (texts: the story subsystem), 13 (mouse cursor) and
-// 14 (buttons) of the title and menu screens, sp_reverse animations, the corpse/blood/damage-number
-// sprites (draw_damage, random_blood, add_kill_sprite's picture), and smooth_follow (the base game never
-// turns it on). Scripted move/move_stop belong to the director; a brain yields while one runs, as the
+// 14 (buttons) of the title and menu screens, sp_reverse animations, the damage-number sprites (draw_damage),
+// and smooth_follow (the base game never turns it on). The blood and corpse sprites are not simulation sprites
+// here: random_blood makes its rand() draw and is recorded for the presentation (UDinkGameplay::NoteBlood ->
+// UDinkBloodPresenter; bug list A25) and add_kill_sprite's picture is drawn by UDinkCreaturePresenter (class
+// corpses) or UDinkCorpsePresenter (the 1997 picture on a card, or the explosion 164). Scripted move/move_stop belong to the director; a brain yields while one runs, as the
 // engine's brains do (process_move first).
 
 #include "DinkGameplay.h"
@@ -687,7 +689,12 @@ void UDinkGameplay::DuckBrain(FDinkSprite& S, double Tick)
 	bool bWalk = false;
 	if (Base == 110)
 	{
-		RandomModulo(100); // random_blood's roll (the blood is not drawn)
+		// "if ((rand() % 100)+1 == 1) random_blood(spr[h].x, spr[h].y-18, h)" (D:12798-12802): the headless duck bleeds,
+		// with random_blood's own draw (NoteBlood)
+		if (RandomModulo(100) + 1 == 1)
+		{
+			NoteBlood(S.Handle, 18);
+		}
 		bWalk = true;
 	}
 	if (!bWalk && S.GetProp(B_Seq) == 0)
@@ -1247,8 +1254,14 @@ void UDinkGameplay::MissileBrain(FDinkSprite& S, bool bRepeat)
 		if (T && TargetHp > 0 && Strength != 0)
 		{
 			const int32 Defense = J == 1 ? GetFact(TEXT("defense")) : T->GetProp(B_Defense);
-			T->Damage += DinkRules::ResolveMissileHit(Strength, Defense, Rng());
+			const int32 Hit = DinkRules::ResolveMissileHit(Strength, Defense, Rng());
+			T->Damage += Hit;
 			T->LastHit = 1;
+			// missile_brain: "if (hit > 0) random_blood(spr[j].x, spr[j].y-40, j)" (D:14398-14403)
+			if (Hit > 0)
+			{
+				NoteBlood(J, 40);
+			}
 		}
 		if (T && !T->Script.IsNone())
 		{

@@ -512,7 +512,7 @@ void UDinkDirector::RegisterCommands()
 		{
 			return FDinkCommandResult();
 		}
-		Story->GetGameplay()->HurtThing(Handle, Damage);
+		Story->GetGameplay()->HurtAndBleed(Handle, Damage); // D:9953-9954: random_blood when it hurt
 		const FDinkSprite* Target = FindSprite(Handle);
 		if (Target && Target->GetProp(TEXT("nohit")) != 1 && !Target->Script.IsNone() && Story->HasProcedure(Target->Script, TEXT("hit")))
 		{
