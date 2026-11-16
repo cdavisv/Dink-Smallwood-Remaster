@@ -336,26 +336,35 @@ void UDinkAudioLifeSubsystem::Tick(float DeltaTime)
 	++TickSamples;
 }
 
-void UDinkAudioLifeSubsystem::EnsureLimiter()
+USoundEffectSubmixPreset* FDinkAudioMix::MakeLimiterPreset(UObject* Outer)
 {
-	if (Limiter) return;
-	USubmixEffectDynamicsProcessorPreset* Preset = NewObject<USubmixEffectDynamicsProcessorPreset>(this);
+	USubmixEffectDynamicsProcessorPreset* Preset = NewObject<USubmixEffectDynamicsProcessorPreset>(Outer);
 	FSubmixEffectDynamicsProcessorSettings S = Preset->Settings;
 	S.DynamicsProcessorType = ESubmixEffectDynamicsProcessorType::Limiter;
 	S.PeakMode = ESubmixEffectDynamicsPeakMode::Peak;
 	S.LinkMode = ESubmixEffectDynamicsChannelLinkMode::Peak;
-	S.ThresholdDb = FDinkAudioMix::LimiterCeilingDb;
-	S.LookAheadMsec = FDinkAudioMix::LimiterLookAheadMs;
-	S.AttackTimeMsec = FDinkAudioMix::LimiterAttackMs;
-	S.ReleaseTimeMsec = FDinkAudioMix::LimiterReleaseMs;
+	S.ThresholdDb = LimiterCeilingDb;
+	S.LookAheadMsec = LimiterLookAheadMs;
+	S.AttackTimeMsec = LimiterAttackMs;
+	S.ReleaseTimeMsec = LimiterReleaseMs;
 	S.KneeBandwidthDb = 0.f;
-	S.bAnalogMode = FDinkAudioMix::bLimiterAnalog;
+	S.bAnalogMode = bLimiterAnalog;
 	S.InputGainDb = 0.f;
 	S.OutputGainDb = 0.f;
+	// Settings first: the first instance's Init() copies it over whatever SetSettings stored (see the header).
+	Preset->Settings = S;
 	Preset->SetSettings(S);
-	UAudioMixerBlueprintLibrary::AddMasterSubmixEffect(this, Preset);
-	Limiter = Preset;
-	UE_LOG(LogDinkAudioLife, Log, TEXT("Audio: master limiter at %.1f dBFS"), FDinkAudioMix::LimiterCeilingDb);
+	return Preset;
+}
+
+void UDinkAudioLifeSubsystem::EnsureLimiter()
+{
+	if (Limiter) return;
+	Limiter = FDinkAudioMix::MakeLimiterPreset(this);
+	UAudioMixerBlueprintLibrary::AddMasterSubmixEffect(this, Limiter);
+	const FSubmixEffectDynamicsProcessorSettings& S = CastChecked<USubmixEffectDynamicsProcessorPreset>(Limiter)->GetSettings();
+	UE_LOG(LogDinkAudioLife, Log, TEXT("Audio: master limiter at %.1f dBFS (type %d, attack %.1f ms, look-ahead %.1f ms, release %.0f ms, analog %d)"),
+		S.ThresholdDb, int32(S.DynamicsProcessorType), S.AttackTimeMsec, S.LookAheadMsec, S.ReleaseTimeMsec, S.bAnalogMode ? 1 : 0);
 }
 
 void UDinkAudioLifeSubsystem::UpdateListener()

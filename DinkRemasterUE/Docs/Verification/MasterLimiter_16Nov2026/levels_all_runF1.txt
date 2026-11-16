@@ -1,0 +1,18 @@
+# Run F1, all six channels (levels_all.py); 'above' = more than 1e-6 linear over 0.841395
+# 412.9 s recorded; ceiling -1.5 dBFS = 0.841395 linear; columns: window start, rms (front pair), peak over all 6 channels, samples above -1.5 dBFS (any channel), samples >= 0.999
+     0s rms  -28.5 peak   -1.50 dBFS  >-1.5dBFS:       2  >=0dBFS:      0
+    30s rms  -28.4 peak   -1.50 dBFS  >-1.5dBFS:       1  >=0dBFS:      0
+    60s rms  -38.7 peak   -1.50 dBFS  >-1.5dBFS:       4  >=0dBFS:      0
+    90s rms  -17.2 peak   -1.50 dBFS  >-1.5dBFS:      51  >=0dBFS:      0
+   120s rms  -12.0 peak   -1.50 dBFS  >-1.5dBFS:    1620  >=0dBFS:      0
+   150s rms  -12.0 peak   -1.50 dBFS  >-1.5dBFS:    1717  >=0dBFS:      0
+   180s rms  -11.3 peak   -1.50 dBFS  >-1.5dBFS:    3910  >=0dBFS:      0
+   210s rms  -10.7 peak   -1.50 dBFS  >-1.5dBFS:    6600  >=0dBFS:      0
+   240s rms  -11.6 peak   -1.50 dBFS  >-1.5dBFS:    3777  >=0dBFS:      0
+   270s rms  -12.5 peak   -1.50 dBFS  >-1.5dBFS:    1821  >=0dBFS:      0
+   300s rms  -12.3 peak   -1.50 dBFS  >-1.5dBFS:    2454  >=0dBFS:      0
+   330s rms  -12.5 peak   -1.50 dBFS  >-1.5dBFS:    2075  >=0dBFS:      0
+   360s rms  -12.4 peak   -1.50 dBFS  >-1.5dBFS:    2426  >=0dBFS:      0
+   390s rms  -14.7 peak   -1.50 dBFS  >-1.5dBFS:     805  >=0dBFS:      0
+# whole run: peak -1.500 dBFS, 27263 samples above the ceiling
+# exact: max |x| = 0.8414232 = -1.49971 dBFS, 0.0003 dB over the ceiling (float rounding of the threshold); 0 samples more than 0.001 dB over.

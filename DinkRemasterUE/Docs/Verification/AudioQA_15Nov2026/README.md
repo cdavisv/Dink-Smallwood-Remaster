@@ -67,4 +67,6 @@ B are from 15-16 Nov, before the regenerated effects. Runs C to H are from 16 No
   - In play, only single samples pass -1.5 dBFS (worst -0.53, no clipping).
   - The soak's dense random mix clamps at 0 dBFS.
   - The processor settings are right: `Dink.Audio.MasterLimiterHoldsCeiling`.
+  - **Fixed 16 Nov 2026:** the preset never applied those settings (the instance ran the engine's default compressor);
+    cause, fix and recorded proof in `../MasterLimiter_16Nov2026/README.md`.
 - **Footsteps and ambience beds** are still procedural placeholders (AU-01, AU-02).
