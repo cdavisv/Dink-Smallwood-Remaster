@@ -1345,10 +1345,18 @@ void UDinkEnvironmentSubsystem::LoadForest()
 		const TArray<TSharedPtr<FJsonValue>>* Rects = nullptr;
 		if (WaterTileMaterial && (*Row)->TryGetArrayField(TEXT("water_tiles"), Rects) && Rects)
 		{
+			// the sea weight at the sheet's corners, edge middles and centre (`water_sea_patch`, water_sea_patches), or
+			// one weight for the whole sheet (`water_sea`: a number, or true = 1, from an older export)
 			bool bSea = false;
 			double Sea = 0.0;
-			if ((*Row)->TryGetNumberField(TEXT("water_sea"), Sea) && Sea > 0.0) WaterTileSea.Add(ScreenNumber, float(FMath::Min(Sea, 1.0)));
-			else if ((*Row)->TryGetBoolField(TEXT("water_sea"), bSea) && bSea) WaterTileSea.Add(ScreenNumber, 1.f);
+			const TArray<TSharedPtr<FJsonValue>>* Patch = nullptr;
+			if ((*Row)->TryGetArrayField(TEXT("water_sea_patch"), Patch) && Patch && Patch->Num() == 9)
+			{
+				TArray<float>& Out = WaterTileSea.Add(ScreenNumber);
+				for (const TSharedPtr<FJsonValue>& V : *Patch) Out.Add(FMath::Clamp(float(V->AsNumber()), 0.f, 1.f));
+			}
+			else if ((*Row)->TryGetNumberField(TEXT("water_sea"), Sea) && Sea > 0.0) WaterTileSea.Add(ScreenNumber).Init(float(FMath::Min(Sea, 1.0)), 9);
+			else if ((*Row)->TryGetBoolField(TEXT("water_sea"), bSea) && bSea) WaterTileSea.Add(ScreenNumber).Init(1.f, 9);
 			TArray<FBox2D>& OutRects = WaterTileRects.Add(ScreenNumber);
 			for (const TSharedPtr<FJsonValue>& V : *Rects)
 			{
@@ -1485,13 +1493,13 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 			Sheet->SetStaticMesh(Plane);
 			UMaterialInstanceDynamic* MID = UMaterialInstanceDynamic::Create(WaterTileMaterial, Sheet);
 			MID->SetTextureParameterValue(TEXT("ShoreMask"), Mask);
-			if (const float* Sea = WaterTileSea.Find(ScreenNumber))
+			if (const TArray<float>* Sea = WaterTileSea.Find(ScreenNumber))
 			{
-				// toward the sea: the blend the importer gives a water fill (DinkGreyboxAssets.cpp), from silty pond water
-				// (M_Env_WaterShore's defaults) to the sea's blue-green body
-				MID->SetVectorParameterValue(TEXT("Absorption"), FMath::Lerp(FLinearColor(0.50f, 0.33f, 0.55f), FLinearColor(0.42f, 0.17f, 0.15f), *Sea));
-				MID->SetVectorParameterValue(TEXT("Scattering"), FMath::Lerp(FLinearColor(0.110f, 0.120f, 0.055f), FLinearColor(0.016f, 0.034f, 0.034f), *Sea));
-				MID->SetScalarParameterValue(TEXT("ScumAmount"), FMath::Lerp(0.8f, 0.f, *Sea));
+				// toward the sea, as the importer sets a water fill (DinkGreyboxAssets.cpp): M_Env_WaterShore blends from
+				// silty pond water to the sea's blue-green body by these nine weights over the screen
+				static const TCHAR* const PatchNames[9] = {TEXT("SeaNW"), TEXT("SeaN"), TEXT("SeaNE"), TEXT("SeaW"), TEXT("SeaC"),
+					TEXT("SeaE"), TEXT("SeaSW"), TEXT("SeaS"), TEXT("SeaSE")};
+				for (int32 I = 0; I < 9 && I < Sea->Num(); ++I) MID->SetScalarParameterValue(PatchNames[I], (*Sea)[I]);
 			}
 			Sheet->SetMaterial(0, MID);
 			Sheet->SetCastShadow(false);

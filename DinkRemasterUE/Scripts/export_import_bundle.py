@@ -235,6 +235,108 @@ def signed_shore_distance(water: np.ndarray, px_cm: float) -> np.ndarray:
     return out
 
 
+SHORE_PX_CM = 600.0 / TERRAIN_MASK_W * 4.38     # one mask texel (6.25 map px of about 4.4 cm)
+SHORE_RANGE_CM = 400.0                           # alpha 0.5 +- 0.5 over +-2 m from the waterline
+SHORE_CAP_CELLS = 11                             # beyond 2 m (7.3 texels) plus bilinear slack the alpha is clamped anyway
+SHORE_MARGIN_CELLS = 12                          # texels of the neighbours' water round a screen's own (> SHORE_CAP_CELLS)
+
+
+def water_cells(fill_water=None, shore_water=None) -> np.ndarray:
+    """The 64 x 96 texel grid of a screen's drawn water (as terrain_mask's shore): the collision's water fill, or
+    where it has none the drawn water's shape (natural_water_shape)."""
+    if (fill_water is None or not fill_water.any()) and shore_water is not None:
+        fill_water = shore_water
+    if fill_water is None or not fill_water.any():
+        return np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W), bool)
+    fw = np.asarray(Image.fromarray(fill_water.astype(np.uint8) * 255).resize((TERRAIN_MASK_W, TERRAIN_MASK_H), Image.BOX))
+    return fw > 127
+
+
+def capped_shore_distance(water: np.ndarray, px_cm: float, cap: int = SHORE_CAP_CELLS) -> np.ndarray:
+    """signed_shore_distance (cm, positive on land, negative in water, between cell centres) for every cell whose
+    waterline lies within `cap` cells; farther cells get +-1e4. Exact where it is not capped, and linear in the grid
+    size, so it runs on a screen with its neighbours round it."""
+    far = 1.0e4
+    h, w = water.shape
+    to_water = np.full(water.shape, np.inf)
+    to_land = np.full(water.shape, np.inf)
+    wp = np.pad(water, cap, constant_values=False)
+    lp = np.pad(~water, cap, constant_values=False)
+    for dy in range(-cap, cap + 1):
+        for dx in range(-cap, cap + 1):
+            r = math.hypot(dy, dx)
+            if r > cap or (dy == 0 and dx == 0):
+                continue
+            sw = wp[cap + dy:cap + dy + h, cap + dx:cap + dx + w]
+            sl = lp[cap + dy:cap + dy + h, cap + dx:cap + dx + w]
+            np.minimum(to_water, np.where(sw, r, np.inf), out=to_water)
+            np.minimum(to_land, np.where(sl, r, np.inf), out=to_land)
+    out = np.where(water, -(to_land * px_cm - 0.5 * px_cm), to_water * px_cm - 0.5 * px_cm)
+    return np.where(np.isinf(out), np.where(water, -far, far), out)
+
+
+# the eight screens round screen n on the 1997 map: (column step, row step, corner pairs (own, theirs) that a
+# neighbour placed against it in the world layout shares with it)
+SHORE_NEIGHBOURS = (
+    (-1, -1, (("nw", "se"),)), (0, -1, (("nw", "sw"), ("ne", "se"))), (1, -1, (("ne", "sw"),)),
+    (-1, 0, (("nw", "ne"), ("sw", "se"))), (1, 0, (("ne", "nw"), ("se", "sw"))),
+    (-1, 1, (("sw", "ne"),)), (0, 1, (("sw", "nw"), ("se", "ne"))), (1, 1, (("se", "nw"),)))
+
+
+def world_neighbours(n: int, corners: dict) -> dict:
+    """(column step, row step) -> screen number of the up to eight screens round n on the 1997 map that also lie
+    against it in the world layout (they share the corners of the edge or corner between them; tools/analyse moves
+    some screens, and indoor screens sit anywhere). `corners`: screen -> {nw, ne, sw, se} in metres."""
+    col, row = (n - 1) % MAP_COLUMNS, (n - 1) // MAP_COLUMNS
+    out = {}
+    own = corners.get(n)
+    if own is None:
+        return out
+    for dc, dr, pairs in SHORE_NEIGHBOURS:
+        if not (0 <= col + dc < MAP_COLUMNS) or row + dr < 0:
+            continue
+        m = n + dc + dr * MAP_COLUMNS
+        other = corners.get(m)
+        if other is not None and all(math.dist(own[a], other[b]) < 0.01 for a, b in pairs):
+            out[(dc, dr)] = m
+    return out
+
+
+def shore_alpha(n: int, cells: dict, neighbours: dict) -> np.ndarray:
+    """The terrain mask's alpha of screen n (64 x 96, 0..1: 0.5 at the waterline, 1 two metres or more on land, 0 two
+    metres or more into the water) with the waterline found across screen borders: the shore distance is measured on
+    the screen's water grid with SHORE_MARGIN_CELLS of the world-adjacent neighbours' grids round it (`cells`: screen
+    -> water_cells; `neighbours`: world_neighbours of n; a side without a neighbour repeats the screen's own edge,
+    which is the same as measuring inside the screen only). The texels hold the distance at points spread from edge
+    to edge (texel 0 on the west edge, texel 95 on the east edge), so the two screens of a border hold the same
+    value on it and the water's depth and colour run on across it."""
+    m = SHORE_MARGIN_CELLS
+    h, w = TERRAIN_MASK_H, TERRAIN_MASK_W
+    own = cells[n]
+    window = np.pad(own, m, mode="edge")
+    for (dc, dr), other in neighbours.items():
+        grid = cells.get(other)
+        if grid is None:
+            continue
+        ys = slice(0, m) if dr < 0 else slice(m, m + h) if dr == 0 else slice(m + h, m + h + m)
+        xs = slice(0, m) if dc < 0 else slice(m, m + w) if dc == 0 else slice(m + w, m + w + m)
+        gy = slice(h - m, h) if dr < 0 else slice(0, h) if dr == 0 else slice(0, m)
+        gx = slice(w - m, w) if dc < 0 else slice(0, w) if dc == 0 else slice(0, m)
+        window[ys, xs] = grid[gy, gx]
+    if not window.any():
+        return np.ones((h, w))
+    sd = capped_shore_distance(window, SHORE_PX_CM)
+    # sample points: x = i / (w - 1) of the screen width, in window cell coordinates (cell centres at k + 0.5)
+    cx = np.arange(w) * (w / (w - 1.0)) - 0.5 + m
+    cy = np.arange(h) * (h / (h - 1.0)) - 0.5 + m
+    x0 = np.clip(np.floor(cx).astype(int), 0, w + 2 * m - 2); fx = cx - x0
+    y0 = np.clip(np.floor(cy).astype(int), 0, h + 2 * m - 2); fy = cy - y0
+    top = sd[y0][:, x0] * (1 - fx) + sd[y0][:, x0 + 1] * fx
+    bottom = sd[y0 + 1][:, x0] * (1 - fx) + sd[y0 + 1][:, x0 + 1] * fx
+    d = top * (1 - fy)[:, None] + bottom * fy[:, None]
+    return np.clip(0.5 + d / SHORE_RANGE_CM, 0.0, 1.0)
+
+
 def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict, means: dict, fill_water=None, indoor=False, facts=None, shore_water=None):
     """-> (layers [dict], RGBA mask Image, grass cover base64 or None), or (None, None, None) when the screen
     keeps its painted ground. Alpha is the signed distance to the waterline: 128 at the shore, 255 at 2 m or
@@ -473,19 +575,9 @@ def water_meets(a_rects, b_rects, side: str) -> bool:
     return any(min(p[1], q[1]) - max(p[0], q[0]) > 5 for p in a for q in b)
 
 
-def water_sea_weights(water: dict) -> dict:
-    """How much of the sea's colour each screen's water takes, 0 (silty pond water) to 1 (the sea's blue-green).
-    `water`: screen number -> {"kind", "layers" (the mask's), "tiles" (water tiles of 96), "fill" (fill_water rects),
-    "sheet" (True when the runtime draws the water: `water_tiles`)}.
-
-    Rivers in the 1997 map run into the sea as one body of water, and the importer used to colour each screen on its
-    own (`water_is_sea`), so open sea with only wet sand (the south coast, the water round Koka Isle) was pond-olive
-    and straight seams ran along screen edges. Now: open water (SEA_OPEN_WATER_TILES) and the importer's sea screens
-    are the sea; water one screen away from them is sea too, two screens away half and half, further away pond. A
-    screen whose water joins two or more sea screens is sea (a strip of coast between two sea screens, the corner of
-    an estuary). Between two joined screens the colour never steps by more than half. Screens join when their fills
-    meet across the shared edge (`water_meets`); a sheet joins any neighbour with water.
-    Neighbours never wrap across a row end (`map_neighbours`)."""
+def water_links(water: dict) -> dict:
+    """screen -> the neighbouring water screens its water joins (`water` as in water_sea_weights): their fills meet
+    across the shared edge (`water_meets`), or one of the two is a runtime sheet. Never across a row end."""
     links = {n: set() for n in water}
     for n, w in water.items():
         for m in map_neighbours(n):
@@ -505,6 +597,23 @@ def water_sea_weights(water: dict) -> dict:
             if joined:
                 links[n].add(m)
                 links[m].add(n)
+    return links
+
+
+def water_sea_weights(water: dict) -> dict:
+    """How much of the sea's colour each screen's water takes, 0 (silty pond water) to 1 (the sea's blue-green).
+    `water`: screen number -> {"kind", "layers" (the mask's), "tiles" (water tiles of 96), "fill" (fill_water rects),
+    "sheet" (True when the runtime draws the water: `water_tiles`)}.
+
+    Rivers in the 1997 map run into the sea as one body of water, and the importer used to colour each screen on its
+    own (`water_is_sea`), so open sea with only wet sand (the south coast, the water round Koka Isle) was pond-olive
+    and straight seams ran along screen edges. Now: open water (SEA_OPEN_WATER_TILES) and the importer's sea screens
+    are the sea; water one screen away from them is sea too, two screens away half and half, further away pond. A
+    screen whose water joins two or more sea screens is sea (a strip of coast between two sea screens, the corner of
+    an estuary). Between two joined screens the colour never steps by more than half. Screens join when their fills
+    meet across the shared edge (`water_meets`); a sheet joins any neighbour with water.
+    Neighbours never wrap across a row end (`map_neighbours`)."""
+    links = water_links(water)
     dist = {n: 0 for n in sorted(water) if water_is_sea(water[n]["kind"], water[n]["layers"]) or water[n]["tiles"] >= SEA_OPEN_WATER_TILES}
     queue = sorted(dist)
     while queue:
@@ -537,9 +646,44 @@ def mark_sea_water(ground_classes: dict, kinds: dict, fills: dict) -> dict:
             water[n] = {"kind": kinds.get(n, ""), "layers": row.get("layers") or [], "tiles": row["classes"]["water"],
                         "fill": fills.get(n) or [], "sheet": bool(row.get("water_tiles"))}
     weights = water_sea_weights(water)
+    patches = water_sea_patches(weights, water_links(water))
     for n, weight in weights.items():
         ground_classes[str(n)]["water_sea"] = weight
+        ground_classes[str(n)]["water_sea_patch"] = patches[n]
     return weights
+
+
+def water_sea_patches(weights: dict, links: dict) -> dict:
+    """screen -> its sea weight at nine points [NW, N, NE, W, centre, E, SW, S, SE] (corners, edge middles, centre;
+    rows north to south). M_Env_WaterShore blends between them over the screen, so the colour runs on across a
+    border instead of stepping at it: the middle of an edge to a joined screen (`links`) holds the mean of the two
+    weights, a corner the mean of the joined screens round it; toward a screen it does not join, its own weight.
+    Two joined screens therefore hold the same values all along their shared edge."""
+    def corner(cc: int, rr: int) -> dict:
+        # the up to four screens round map corner (column cc, row rr), grouped by how their water joins
+        round_it = [r * MAP_COLUMNS + c + 1 for r in (rr - 1, rr) for c in (cc - 1, cc)
+                    if 0 <= c < MAP_COLUMNS and r >= 0 and (r * MAP_COLUMNS + c + 1) in weights]
+        group = {s: {s} for s in round_it}
+        for a in round_it:
+            for b in round_it:
+                if b in links.get(a, ()) and group[a] is not group[b]:
+                    merged = group[a] | group[b]
+                    for s in merged:
+                        group[s] = merged
+        return {s: sum(weights[t] for t in g) / len(g) for s, g in group.items()}
+
+    patches = {}
+    for n in sorted(weights):
+        col, row = (n - 1) % MAP_COLUMNS, (n - 1) // MAP_COLUMNS
+        own = weights[n]
+        edge = lambda m: (own + weights[m]) / 2.0 if m in links.get(n, ()) else own
+        west = edge(n - 1) if col > 0 else own
+        east = edge(n + 1) if col < MAP_COLUMNS - 1 else own
+        north, south = edge(n - MAP_COLUMNS), edge(n + MAP_COLUMNS)
+        nw, ne = corner(col, row)[n], corner(col + 1, row)[n]
+        sw, se = corner(col, row + 1)[n], corner(col + 1, row + 1)[n]
+        patches[n] = [round(v, 3) for v in (nw, north, ne, west, own, east, sw, south, se)]
+    return patches
 
 
 def water_tile_rects(tiles: list, tile_classes: dict):
@@ -845,6 +989,8 @@ def main(argv=None) -> int:
     terrain_means = None
     layer_cover = {}
     ground_classes = {}
+    shore_cells = {}      # screen -> water_cells (every screen, so each mask can see its neighbours' water)
+    screen_masks = {}     # screen -> (terrain mask, its layers, screens.json record): alpha filled in after the loop
     (out / "sprites").mkdir(exist_ok=True)
 
     layout = json.loads((analyse / "world_layout.json").read_text())
@@ -1003,10 +1149,11 @@ def main(argv=None) -> int:
             shore_water = None if fill_water.any() or scr["indoor"] else natural_water_shape(scr["tiles"], tile_classes, n)
             ground_layers, ground_mask, cover = terrain_mask(scr, ground, tile_classes, terrain_cat, terrain_means, fill_water, bool(scr["indoor"]),
                                                              facts=ground_classes[str(n)], shore_water=shore_water)
+            shore_cells[n] = water_cells(fill_water, shore_water)
             if ground_mask is not None:
                 if cover is not None:
                     layer_cover[str(n)] = cover
-                write_png_if_changed(out / "ground_mask" / f"{sid}.png", ground_mask)
+                # written after the loop, when the neighbours' water is known (shore_alpha)
 
         rect_total += sum(len(v) for v in rects.values())
         coll_hash = sha1_json(rects)
@@ -1098,7 +1245,7 @@ def main(argv=None) -> int:
         if ground_mask is not None:
             screen_rec["ground_layers"] = ground_layers
             screen_rec["ground_mask"] = f"ground_mask/{sid}.png"
-            screen_rec["ground_mask_hash"] = sha1_bytes(ground_mask.tobytes() + json.dumps(ground_layers, sort_keys=True).encode())
+            screen_masks[n] = (ground_mask, ground_layers, screen_rec)
         screens_out.append(screen_rec)
 
         # --- placements
@@ -1188,6 +1335,17 @@ def main(argv=None) -> int:
                 problems.append(f"{pid}: script '{script}' not in script_kinds.csv")
             rec["hash"] = sha1_json(rec)
             placements_out.append(rec)
+
+    # --- terrain masks: the shore distance in the alpha runs across screen borders (shore_alpha), so water deepens
+    # and clears the same way on both sides of a border; presentation only (outside the screen hash, like the mask)
+    world_corners = {s["screen"]: s["corners"] for s in screens_out}
+    for n, (ground_mask, ground_layers, screen_rec) in sorted(screen_masks.items()):
+        alpha = shore_alpha(n, shore_cells, world_neighbours(n, world_corners))
+        rgba = np.asarray(ground_mask).copy()
+        rgba[:, :, 3] = (alpha * 255.0 + 0.5).astype(np.uint8)
+        ground_mask = Image.fromarray(rgba, "RGBA")
+        write_png_if_changed(out / "ground_mask" / f"{screen_rec['id']}.png", ground_mask)
+        screen_rec["ground_mask_hash"] = sha1_bytes(ground_mask.tobytes() + json.dumps(ground_layers, sort_keys=True).encode())
 
     by_id = {p["id"]: p for p in placements_out}
     screen_by_num = {s["screen"]: s for s in screens_out}
@@ -1362,6 +1520,7 @@ def main(argv=None) -> int:
         for s in screens_out:
             if s["screen"] in sea and (collision_out.get(s["id"], {}).get("fill_water")):
                 s["water_sea"] = sea[s["screen"]]
+                s["water_sea_patch"] = ground_classes[str(s["screen"])]["water_sea_patch"]
     write_json(out / "screens.json", {"schema": EXPORTER_VERSION + "/screens", "screens": screens_out})
     if terrain_cat is not None:
         # Runtime grass scatter hook (UDinkEnvironmentSubsystem): meadow coverage per screen (w x h, sampled bilinearly).
@@ -1381,7 +1540,7 @@ def main(argv=None) -> int:
                                            "rock-mass and cave-wall tiles (`relief`: map x, y, clear radius px, tier 1 = hardness blocks the disc / 2 = only an "
                                            "enclosed pocket is walkable there, class 0 cliff_face 1 rock_mass 2 cave_wall), whether the importer draws a water "
                                            "surface, the water tiles the runtime covers when it does not (`water_tiles`: map-pixel rects), and how much "
-                                           "of the sea's colour the screen's water takes (`water_sea`, 0 pond .. 1 sea, water_sea_weights).",
+                                           "of the sea's colour the screen's water takes (`water_sea`, 0 pond .. 1 sea, water_sea_weights; `water_sea_patch`: the weight at its corners, edge middles and centre, water_sea_patches).",
                                    "screens": ground_classes}, sort_keys=True, indent=0) + "\n"
         classes_file = cover_dir / "ground_classes.json"
         if not classes_file.exists() or classes_file.read_text() != classes_text:
