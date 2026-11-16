@@ -67,9 +67,19 @@ namespace
 	}
 }
 
-const FDinkCreatureCorpse* FDinkCreatureClassBinding::CorpseFor(int32 BaseDeath, int32 Dir) const
+const FDinkCreatureCorpse* FDinkCreatureClassBinding::CorpseFor(int32 BaseDeath, int32 Dir, int32 BaseWalk) const
 {
-	if (BaseDeath < 0) return nullptr; // base_die -1: base_walk + 5 or the generic puff, never one of these (dink.cpp:12371-12389)
+	if (BaseDeath < 0)
+	{
+		// base_die -1 (dink.cpp:12371-12389): the body picture base_walk + 5 if the creature has one (slayer 645, stone
+		// giant 825, the knights), whatever way it faced; otherwise the generic burst, which is not a corpse of a row.
+		if (BaseWalk <= 0) return nullptr;
+		for (const FDinkCreatureCorpse& Corpse : Corpses)
+		{
+			if (Corpse.Sequences.Contains(BaseWalk + 5)) return &Corpse;
+		}
+		return nullptr;
+	}
 	if (Dir < 1 || Dir > 9) Dir = 3;   // dink.cpp:12361-12365
 	for (const int32 Candidate : { BaseDeath + Dir, BaseDeath + MirrorDir(Dir) })
 	{

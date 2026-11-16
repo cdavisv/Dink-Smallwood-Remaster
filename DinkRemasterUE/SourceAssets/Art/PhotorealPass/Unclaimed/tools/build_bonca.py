@@ -37,21 +37,46 @@ for s in 'lr':
 
 
 def hide_mat():
-    t = NT('hide'); fold = t.attr('fold'); mouth = t.attr('mouth'); n1 = t.noise(7, 5, 0.65); n2 = t.noise(38, 4, 0.6, distortion=0.5); nz = t.sep(t.gnormal)[2]
+    """The hide, baked as a CODE and painted per colour family afterwards (paint_hides): base colour R = surface detail
+    (0.5 = neutral: scale cells, crease dirt, pale belly, worn fold crests), G = tiger stripe, B = leg; metallic 1 marks the
+    hide and falls to 0.5 in the mouth. The three hides of 531 / 601 / 611 are one animal in three paints, not tints."""
+    t = NT('hide'); fold = t.attr('fold'); mouth = t.attr('mouth'); stripe = t.attr('stripe'); legm = t.attr('legm')
+    n1 = t.noise(7, 5, 0.65); n2 = t.noise(38, 4, 0.6, distortion=0.5); nz = t.sep(t.gnormal)[2]
     cell = t.voronoi(170, feature='DISTANCE_TO_EDGE'); scale_edge = t.ramp(cell, [(0.0, 1.0), (0.09, 0.0)]); cellv = t.voronoi(170, out='Color')
-    base = t.ramp(n1, [(0.25, (0.028, 0.036, 0.030)), (0.55, (0.070, 0.085, 0.066)), (0.85, (0.115, 0.125, 0.095))])
-    base = t.hsv(base, v=t.maprange(t.sep(cellv)[0], 0, 1, 0.8, 1.2))
+    plate = t.voronoi(46, feature='DISTANCE_TO_EDGE'); plate_edge = t.ramp(plate, [(0.0, 1.0), (0.05, 0.0)])          # larger hide plates between the folds
+    d = t.maprange(n1, 0.25, 0.85, 0.40, 0.60); d = t.math('MULTIPLY', d, t.maprange(t.sep(cellv)[0], 0, 1, 0.78, 1.22))
     ridge = t.math('MULTIPLY', t.ramp(fold, [(0.45, 0.0), (0.9, 1.0)]), t.maprange(nz, -0.2, 0.6, 0.15, 1.0)); ridge = t.math('MULTIPLY', ridge, t.ramp(n2, [(0.2, 0.45), (0.7, 1.0)]))
-    base = t.mix(t.math('MULTIPLY', t.math('MULTIPLY', ridge, t.maprange(t.sep(cellv)[1], 0, 1, 0.45, 1.0)), 0.7), base, t.mix(n2, (0.17, 0.19, 0.15), (0.30, 0.31, 0.25)))                         # pale banding on the fold crests
-    belly = t.maprange(nz, -0.75, -0.15, 1.0, 0.0, interp='SMOOTHSTEP'); base = t.mix(t.math('MULTIPLY', belly, 0.7), base, t.mix(n2, (0.17, 0.165, 0.125), (0.27, 0.25, 0.19)))
-    moss = t.ramp(t.noise(4.3, 4, 0.6, vec=t.mapping(loc=(3, 7, 1))), [(0.56, 0.0), (0.7, 1.0)]); base = t.mix(t.math('MULTIPLY', moss, 0.45), base, (0.05, 0.10, 0.035))
-    ao = t.ao(0.05, 12); crease = t.ramp(ao, [(0.35, 1.0), (0.8, 0.0)]); base = t.mix(t.math('MULTIPLY', crease, 0.75), base, (0.016, 0.016, 0.014))
-    base = t.mix(t.math('MULTIPLY', scale_edge, 0.5), base, (0.015, 0.018, 0.015)); base = t.mix(mouth, base, t.mix(n2, (0.035, 0.008, 0.008), (0.10, 0.02, 0.018)))
-    rough = t.mixf(ridge, t.mixf(n2, 0.48, 0.66), 0.42); rough = t.math('ADD', rough, t.math('MULTIPLY', scale_edge, 0.25)); rough = t.mixf(mouth, rough, 0.25)
-    h = t.math('ADD', t.math('MULTIPLY', t.ramp(cell, [(0.0, 0.0), (0.25, 1.0)]), 0.7), t.math('MULTIPLY', t.noise(420, 3, 0.6), 0.3))
-    nrm = t.bump(t.noise(60, 4, 0.65, distortion=0.8), 0.3, 0.005, normal=t.bump(h, 0.85, 0.0022))
-    t.set(base=base, rough=rough, normal=nrm, spec=0.6)
+    d = t.math('ADD', d, t.math('MULTIPLY', ridge, 0.10))                                                              # worn, paler fold crests
+    belly = t.maprange(nz, -0.75, -0.15, 1.0, 0.0, interp='SMOOTHSTEP'); d = t.math('ADD', d, t.math('MULTIPLY', belly, 0.22))
+    ao = t.ao(0.05, 12); crease = t.ramp(ao, [(0.35, 1.0), (0.8, 0.0)]); d = t.math('MULTIPLY', d, t.maprange(crease, 0, 1, 1.0, 0.30))
+    d = t.math('MULTIPLY', d, t.maprange(scale_edge, 0, 1, 1.0, 0.55)); d = t.math('MULTIPLY', d, t.maprange(plate_edge, 0, 1, 1.0, 0.62))
+    sbreak = t.ramp(n2, [(0.25, 0.55), (0.6, 1.0)]); g = t.math('MULTIPLY', stripe, sbreak)                             # stripes frayed at scale size
+    base = t.comb(t.math('MINIMUM', d, 1.0), g, legm)
+    rough = t.mixf(ridge, t.mixf(n2, 0.50, 0.68), 0.44); rough = t.math('ADD', rough, t.math('MULTIPLY', scale_edge, 0.22)); rough = t.mixf(mouth, rough, 0.22)
+    h = t.math('ADD', t.math('MULTIPLY', t.ramp(cell, [(0.0, 0.0), (0.25, 1.0)]), 0.6), t.math('ADD', t.math('MULTIPLY', t.ramp(plate, [(0.0, 0.0), (0.12, 1.0)]), 0.8), t.math('MULTIPLY', t.noise(420, 3, 0.6), 0.3)))
+    nrm = t.bump(t.noise(60, 4, 0.65, distortion=0.8), 0.3, 0.005, normal=t.bump(h, 0.9, 0.0026))
+    t.set(base=base, rough=rough, normal=nrm, spec=0.6, metal=t.maprange(mouth, 0, 1, 1.0, 0.5))
     return t.mat
+
+
+# linear colours: body, stripe, leg, mouth lining.  531 brown with orange tiger stripes and red-brown legs; 601 grey with
+# near-white stripes; 611 violet with lilac stripes (the 1997 pictures, doc/remaster/fable_packets/ref/VS-04).
+HIDES = {'Gray': ((0.095, 0.100, 0.105), (0.52, 0.54, 0.54), (0.050, 0.052, 0.058), (0.09, 0.02, 0.02)),
+         'Brown': ((0.040, 0.021, 0.011), (0.46, 0.150, 0.022), (0.085, 0.020, 0.011), (0.10, 0.018, 0.014)),
+         'Purple': ((0.070, 0.022, 0.150), (0.40, 0.24, 0.62), (0.035, 0.014, 0.075), (0.10, 0.02, 0.05))}
+PAINT = {}
+
+
+def paint_hides(res):
+    """bake_set post hook: decode the hide code into the three paints; the grey one becomes the baked base colour."""
+    code = res['bc'][..., :3].copy(); metal = res['metal'][..., 0].copy(); hide = smoothstep(0.2, 0.4, metal)[..., None]; mouth = np.clip((1 - metal) * 2, 0, 1)[..., None] * hide
+    det = np.clip(code[..., 0:1] * 2, 0, 2.0); stripe = smoothstep(0.30, 0.62, code[..., 1:2]); leg = np.clip(code[..., 2:3], 0, 1)
+    for name, (body, st, lg, mo) in HIDES.items():
+        col = np.array(body, np.float32) * (1 - leg) + np.array(lg, np.float32) * leg
+        col = col * (1 - stripe * (1 - 0.75 * leg)) + np.array(st, np.float32) * stripe * (1 - 0.75 * leg)
+        col = col * det; col = col * (1 - mouth) + np.array(mo, np.float32) * mouth * np.clip(det, 0.4, 1.4)
+        PAINT[name] = np.clip(col * hide + code * (1 - hide), 0, 1).astype(np.float32)
+    res['bc'][..., :3] = PAINT['Gray']; res['metal'][...] = 0.0
 
 
 def horn_mat():
@@ -61,10 +86,10 @@ def horn_mat():
 
 
 def eye_mat():
-    """amber iris with a vertical slit pupil looking forward (-Y), dark rim, wet cornea"""
-    t = NT('eye'); nrm = t.sep(t.gnormal); fwd = t.math('MULTIPLY', nrm[1], -1.0); slit = t.math('MULTIPLY', t.ramp(t.math('ABSOLUTE', nrm[0]), [(0.07, 1.0), (0.13, 0.0)]), t.ramp(fwd, [(0.55, 0.0), (0.7, 1.0)]))
-    fib = t.noise(3.0, 3, 0.6, vec=t.mapping(scale=(40, 4, 40))); iris = t.mix(fib, (0.20, 0.085, 0.012), (0.48, 0.27, 0.04)); rim = t.ramp(fwd, [(0.35, 1.0), (0.62, 0.0)])
-    base = t.mix(rim, iris, (0.02, 0.012, 0.008)); base = t.mix(slit, base, (0.004, 0.004, 0.004)); t.set(base=base, rough=0.05, spec=0.8, coat=1.0, coat_rough=0.02); return t.mat
+    """the white eye of the pictures: a pale, wet ball with a small dark pupil looking forward (-Y) and a dark rim"""
+    t = NT('eye'); nrm = t.sep(t.gnormal); fwd = t.math('MULTIPLY', nrm[1], -1.0); pupil = t.ramp(fwd, [(0.80, 0.0), (0.88, 1.0)])
+    vein = t.noise(9.0, 3, 0.6); white = t.mix(vein, (0.50, 0.47, 0.38), (0.72, 0.70, 0.60)); rim = t.ramp(fwd, [(0.25, 1.0), (0.5, 0.0)])
+    base = t.mix(rim, white, (0.05, 0.02, 0.015)); base = t.mix(pupil, base, (0.004, 0.004, 0.004)); t.set(base=base, rough=0.05, spec=0.8, coat=1.0, coat_rough=0.02); return t.mat
 
 
 def tooth_mat():
@@ -85,18 +110,26 @@ def build_hi(c):
     amp = (0.004 + 0.011 * smoothstep(-0.3, 0.5, N[:, 2])) * (1 - 0.6 * legm) * (1 - smoothstep(-0.55, -0.7, y) * 0.8) * (1 - smoothstep(1.2, 1.6, y) * 0.7)
     lump = 0.007 * fbm(P, 11, 9, 3) + 0.004 * (1 - np.abs(fbm(P, 13, 26, 3))) ** 3 * -1 + 0.0015 * np.abs(fbm(P, 17, 90, 2))
     L.set_co(body, P + N * ((fold - 0.5) * 2 * amp + lump - 0.028 * mouth)[:, None])
-    C.set_attr(body, 'fold', fold); C.set_attr(body, 'mouth', np.clip(mouth * 1.3, 0, 1)); body.data.materials.append(hide_mat())
+    # tiger stripes: broad bands across the back and tail, forking and breaking, fading out on the belly, the face and the legs
+    ws = fbm(P, 21, 1.1, 3); ws2 = fbm(P, 23, 3.2, 2); s_st = y + 0.42 * z + 0.46 * ws + 0.10 * ws2 + 0.16 * np.abs(x)
+    sb = 0.5 + 0.5 * np.sin(2 * np.pi * s_st / 0.215); stripe = smoothstep(0.56 + 0.16 * ws2, 0.80 + 0.16 * ws2, sb) * smoothstep(-0.45, 0.10, N[:, 2]) * (0.35 + 0.65 * smoothstep(-0.35, 0.15, fbm(P, 29, 2.2, 2)))
+    stripe *= (1 - smoothstep(-0.62, -0.78, y) * 0.85) * (1 - 0.55 * legm)
+    C.set_attr(body, 'fold', fold); C.set_attr(body, 'mouth', np.clip(mouth * 1.3, 0, 1)); C.set_attr(body, 'stripe', np.clip(stripe, 0, 1)); C.set_attr(body, 'legm', legm)
+    body.data.materials.append(hide_mat())
     obs = [body]; hm = horn_mat(); em = eye_mat(); tm = tooth_mat()
     for sx in (1, -1):
-        hit = C.surface_hit(body, (0.135 * sx, -1.5, 0.842), (0, 1, 0)); ey = (hit[0][1] if hit else -0.86) + 0.024            # sunk into the socket: only a shallow dome shows
+        hit = C.surface_hit(body, (0.135 * sx, -1.5, 0.842), (0, 1, 0)); ey = (hit[0][1] if hit else -0.86) + 0.031            # sunk into the socket: only a shallow dome shows
         e = C.ball('eye', (0.135 * sx, ey, 0.842), 0.034, c, squash=(1, 0.9, 0.8)); e.data.materials.append(em); obs.append(e)
         for k, (tx, ty) in enumerate(((0.21, -0.47), (0.31, -0.50), (0.41, -0.45))):
             d = np.array([tx - 0.30, ty + 0.30, 0]); d /= np.linalg.norm(d)
             cl = C.cone('claw', (tx * sx, ty - 0.01, 0.045), ((tx + d[0] * 0.10) * sx, ty + d[1] * 0.11, 0.006), 0.027, c, bend=(0, 0, 0.035)); cl.data.materials.append(hm); obs.append(cl)
         sp = C.cone('spur', (0.29 * sx, 0.01, 0.05), (0.29 * sx, 0.085, 0.008), 0.03, c, bend=(0, 0, 0.03)); sp.data.materials.append(hm); obs.append(sp)
-    for k in range(9):                                            # peg teeth along the lower lip
-        tx = (k - 4) * 0.038; zt = 0.675 - 0.9 * tx * tx - 0.006; yt = -0.925 + 2.4 * tx * tx
-        th = C.cone('tooth', (tx, yt + 0.012, zt - 0.004), (tx * 1.02, yt - 0.006, zt + 0.02 + 0.006 * (k % 2)), 0.0085, c, nu=8, nv=6); th.data.materials.append(tm); obs.append(th)
+    for k in range(1, 8):                                         # peg teeth seated on the lower lip
+        tx = (k - 4) * 0.036; zt = 0.675 - 0.9 * tx * tx - 0.008; hit = C.surface_hit(body, (tx, -1.6, zt), (0, 1, 0))
+        if not hit:
+            continue
+        yt = hit[0][1]
+        th = C.cone('tooth', (tx, yt + 0.016, zt - 0.006), (tx * 1.02, yt + 0.002, zt + 0.018 + 0.006 * (k % 2)), 0.0085, c, nu=8, nv=6); th.data.materials.append(tm); obs.append(th)
     return obs
 
 
@@ -108,7 +141,7 @@ WEAK = ('NOT photoreal at 1 m: it reads as a carefully lit maquette, smooth and 
         'The face is two amber eye domes, a displaced slit and nine peg teeth; no lids, nostrils, gums or tongue, and the mouth cannot open (no jaw bone). '
         'The game mesh is a decimation of the remeshed source, so it has no edge loops at the joints: it will crease when the legs and tail bend far. '
         'Skin weights are inverse-distance to the bones (bone heat did not solve on the multi-shell mesh), checked in one test pose only (render_pose.png). No animation clips, no Physics Asset. Smart-projected UVs: many islands, so mip seams are possible. '
-        'The brown and purple hides are tints of the grey base colour, not separately painted.')
+        'The three hides are painted from one baked code (detail, stripe, leg): same stripe layout on all three.')
 
 
 def main(mode):
@@ -128,9 +161,9 @@ def main(mode):
     fams = {'bonca_gray': 'Gray', 'bonca_brown': 'Brown', 'bonca_purple': 'Purple'}; ids = L.origin_ids(list(fams))
     man, lods, files, vfiles = C.finish_creature(
         asset, 'creature', lo, hi, arm, outdir, 2048, families=list(fams) + ['601-609 foes/bonca/gray/walk', '592-598 foes/bonca/gray/attack', '531-544 foes/bonca', '613-628 foes/bonca/purple'], origin=ids,
-        dresses='bonca: a hunched, neckless biped about 1.45 m at the hump and 2.5 m nose to tail tip; grey-green banded hide with pale fold crests, pale eyes low in the front of the trunk, wide slit mouth with peg teeth, three-clawed feet with a rear spur, thick tail',
+        dresses='bonca: a hunched, neckless biped about 1.45 m at the hump and 2.5 m nose to tail tip; dark hide with tiger stripes across the back and tail (grey with near-white stripes, brown with orange, violet with lilac), a white eye low in the front of the trunk, wide slit mouth with peg teeth, three-clawed feet with a rear spur, thick tail',
         weaknesses=WEAK, script=SCRIPT + ' final', extrude=0.012, maxdist=0.035, ss=1,
-        variants={'Brown': lambda bc: tint(bc, (0.52, 0.36, 0.22), keep=0.35), 'Purple': lambda bc: tint(bc, (0.40, 0.31, 0.50), keep=0.4)},
+        post=paint_hides, variants={'Brown': lambda bc: L.lin2srgb(PAINT['Brown'][::-1]), 'Purple': lambda bc: L.lin2srgb(PAINT['Purple'][::-1])},
         extra={'colour_families': {'bonca_gray': 'T_Bonca_PR_BC.png', 'bonca_brown': 'T_Bonca_PR_Brown_BC.png', 'bonca_purple': 'T_Bonca_PR_Purple_BC.png'}, 'contact_crop': 0.9})
     shots([lo], 'render', outdir)
     C.pose(arm, {'tail_01': (0, 0, 14), 'tail_02': (0, 0, 20), 'tail_03': (0, 0, 24), 'tail_04': (0, 0, 24), 'thigh_l': (-28, 0, 0), 'calf_l': (30, 0, 0), 'thigh_r': (20, 0, 0), 'head': (0, 0, -14), 'spine_03': (0, 0, -8)})

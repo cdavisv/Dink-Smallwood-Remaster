@@ -50,7 +50,7 @@ class DINKCORE_API UDinkCreatureSubsystem : public UWorldSubsystem
 	 * add_kill_sprite's picture (dink.cpp:12359): the class's corpse where a sprite was killed, until ClearCorpses. False
 	 * when the row has no corpse for the sprite's death sequence (base_death + facing).
 	 */
-	bool LeaveCorpse(FName ClassId, int32 BaseDeath, int32 Dir, const FVector& Ground, float YawDeg, int32 SizePercent);
+	bool LeaveCorpse(FName ClassId, int32 BaseDeath, int32 Dir, const FVector& Ground, float YawDeg, int32 SizePercent, int32 BaseWalk = 0);
 	/** The original drops its corpse sprites with the screen. */
 	void ClearCorpses();
 	int32 GetCorpseCount() const { return Corpses.Num(); }

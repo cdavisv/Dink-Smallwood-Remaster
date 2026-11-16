@@ -13,10 +13,12 @@ from pplib import NT, smoothstep, fbm
 
 SCRIPT = 'build_slayer.py'
 J = {'pelvis': (0, 0.28, 1.04), 'spine1': (0, 0.02, 1.20), 'chest': (0, -0.26, 1.30), 'neck': (0, -0.50, 1.30), 'head': (0, -0.70, 1.20), 'snout': (0, -0.94, 1.05), 'snout_tip': (0, -1.13, 0.93),
-     'jaw': (0, -0.80, 1.07), 'tail1': (0, 0.58, 1.00), 'tail2': (0, 0.98, 0.95), 'tail3': (0, 1.42, 1.02), 'tail4': (0, 1.84, 1.24), 'tail5': (0, 2.16, 1.60), 'tail6': (0, 2.30, 2.02), 'tail7': (0, 2.16, 2.38)}
-R = {'pelvis': (0.16, 0.20, 0.17), 'spine1': (0.17, 0.2, 0.19), 'chest': (0.21, 0.22, 0.24), 'neck': (0.11, 0.12, 0.13), 'head': (0.105, 0.13, 0.11), 'snout': (0.06, 0.08, 0.06), 'snout_tip': 0.03, 'jaw': (0.06, 0.09, 0.04),
+     'jaw': (0, -0.84, 0.985), 'jaw_tip': (0, -1.03, 0.885),
+     # the whip tail trails level behind it, longer than the body, as in 641 (the first build curled it up over the back)
+     'tail1': (0, 0.58, 1.00), 'tail2': (0, 0.98, 0.93), 'tail3': (0, 1.44, 0.88), 'tail4': (0, 1.92, 0.87), 'tail5': (0, 2.40, 0.91), 'tail6': (0, 2.84, 0.99), 'tail7': (0, 3.22, 1.10)}
+R = {'pelvis': (0.16, 0.20, 0.17), 'spine1': (0.17, 0.2, 0.19), 'chest': (0.21, 0.22, 0.24), 'neck': (0.11, 0.12, 0.13), 'head': (0.105, 0.13, 0.11), 'snout': (0.06, 0.08, 0.06), 'snout_tip': 0.03, 'jaw': (0.055, 0.08, 0.032), 'jaw_tip': 0.022,
      'tail1': 0.115, 'tail2': 0.078, 'tail3': 0.052, 'tail4': 0.036, 'tail5': 0.025, 'tail6': 0.017, 'tail7': 0.012}
-E = [('pelvis', 'spine1'), ('spine1', 'chest'), ('chest', 'neck'), ('neck', 'head'), ('head', 'snout'), ('snout', 'snout_tip'), ('head', 'jaw'),
+E = [('pelvis', 'spine1'), ('spine1', 'chest'), ('chest', 'neck'), ('neck', 'head'), ('head', 'snout'), ('snout', 'snout_tip'), ('head', 'jaw'), ('jaw', 'jaw_tip'),
      ('pelvis', 'tail1'), ('tail1', 'tail2'), ('tail2', 'tail3'), ('tail3', 'tail4'), ('tail4', 'tail5'), ('tail5', 'tail6'), ('tail6', 'tail7')]
 for s, sx in (('l', 1), ('r', -1)):
     J.update({'hip_' + s: (0.16 * sx, 0.16, 0.98), 'knee_' + s: (0.25 * sx, -0.16, 0.66), 'hock_' + s: (0.22 * sx, 0.20, 0.37), 'ankle_' + s: (0.22 * sx, 0.04, 0.10), 'foot_' + s: (0.23 * sx, -0.14, 0.05),
@@ -37,18 +39,21 @@ for s, sx in (('l', 1), ('r', -1)):
 
 
 def hide_mat():
-    """dark teal hide, brown saddle blotches, raw red sores, bony highlights; fine pebbled scales"""
+    """wet chitin: teal-green plates with dark seams, rust-brown saddle blotches and limb ends (641), pale bone where the
+    shell is stretched over the ribs and the spine; glossy on the plates, dull in the seams"""
     t = NT('hide'); rib = t.attr('rib'); n1 = t.noise(6, 5, 0.65); n2 = t.noise(34, 4, 0.6, distortion=0.6); nz = t.sep(t.gnormal)[2]
     cell = t.voronoi(230, feature='DISTANCE_TO_EDGE'); cellv = t.sep(t.voronoi(230, out='Color'))[0]; edge = t.ramp(cell, [(0.0, 1.0), (0.1, 0.0)])
-    base = t.ramp(n1, [(0.25, (0.014, 0.034, 0.030)), (0.55, (0.030, 0.075, 0.062)), (0.85, (0.060, 0.120, 0.095))]); base = t.hsv(base, v=t.maprange(cellv, 0, 1, 0.75, 1.25))
-    blot = t.ramp(t.noise(3.4, 4, 0.6, vec=t.mapping(loc=(2, 5, 3))), [(0.44, 0.0), (0.56, 1.0)]); base = t.mix(t.math('MULTIPLY', blot, 0.9), base, t.mix(n2, (0.055, 0.026, 0.012), (0.15, 0.075, 0.032)))
-    sore = t.ramp(t.noise(7, 4, 0.7, vec=t.mapping(loc=(7, 1, 4))), [(0.62, 0.0), (0.68, 1.0)]); base = t.mix(t.math('MULTIPLY', sore, 0.85), base, t.mix(n2, (0.10, 0.012, 0.010), (0.30, 0.035, 0.022)))
-    belly = t.maprange(nz, -0.8, -0.2, 1.0, 0.0, interp='SMOOTHSTEP'); base = t.mix(t.math('MULTIPLY', belly, 0.8), base, t.mix(n2, (0.13, 0.10, 0.055), (0.26, 0.21, 0.12)))
-    base = t.mix(t.math('MULTIPLY', rib, 0.6), base, (0.16, 0.19, 0.14))                                   # skin stretched pale over bone
-    ao = t.ao(0.04, 12); base = t.mix(t.math('MULTIPLY', t.ramp(ao, [(0.35, 1.0), (0.8, 0.0)]), 0.75), base, (0.010, 0.012, 0.011)); base = t.mix(t.math('MULTIPLY', edge, 0.5), base, (0.008, 0.012, 0.011))
-    rough = t.mixf(n2, 0.42, 0.62); rough = t.mixf(sore, rough, 0.22); rough = t.math('ADD', rough, t.math('MULTIPLY', edge, 0.25))
-    h = t.math('ADD', t.math('MULTIPLY', t.ramp(cell, [(0.0, 0.0), (0.25, 1.0)]), 0.7), t.math('MULTIPLY', t.noise(500, 3, 0.6), 0.3))
-    nrm = t.bump(t.noise(70, 4, 0.65, distortion=0.8), 0.3, 0.004, normal=t.bump(h, 0.85, 0.0018)); t.set(base=base, rough=rough, normal=nrm, spec=0.6); return t.mat
+    plate = t.voronoi(34, feature='DISTANCE_TO_EDGE', vec=t.mapping(scale=(1.0, 0.55, 1.0))); seam = t.ramp(plate, [(0.0, 1.0), (0.045, 0.0)]); platev = t.sep(t.voronoi(34, out='Color', vec=t.mapping(scale=(1.0, 0.55, 1.0))))[0]
+    base = t.ramp(n1, [(0.25, (0.008, 0.050, 0.045)), (0.55, (0.018, 0.115, 0.095)), (0.85, (0.040, 0.21, 0.16))]); base = t.hsv(base, v=t.math('MULTIPLY', t.maprange(cellv, 0, 1, 0.8, 1.2), t.maprange(platev, 0, 1, 0.7, 1.25)))
+    blot = t.ramp(t.noise(3.4, 4, 0.6, vec=t.mapping(loc=(2, 5, 3))), [(0.47, 0.0), (0.58, 1.0)]); base = t.mix(t.math('MULTIPLY', blot, 0.9), base, t.mix(n2, (0.075, 0.028, 0.010), (0.21, 0.085, 0.028)))
+    sore = t.ramp(t.noise(7, 4, 0.7, vec=t.mapping(loc=(7, 1, 4))), [(0.66, 0.0), (0.71, 1.0)]); base = t.mix(t.math('MULTIPLY', sore, 0.8), base, t.mix(n2, (0.10, 0.012, 0.010), (0.30, 0.035, 0.022)))
+    belly = t.maprange(nz, -0.8, -0.2, 1.0, 0.0, interp='SMOOTHSTEP'); base = t.mix(t.math('MULTIPLY', belly, 0.75), base, t.mix(n2, (0.11, 0.10, 0.050), (0.23, 0.21, 0.11)))
+    base = t.mix(t.math('MULTIPLY', rib, 0.5), base, (0.15, 0.20, 0.14))                                   # shell stretched pale over bone
+    ao = t.ao(0.04, 12); base = t.mix(t.math('MULTIPLY', t.ramp(ao, [(0.35, 1.0), (0.8, 0.0)]), 0.75), base, (0.008, 0.012, 0.011)); base = t.mix(t.math('MULTIPLY', edge, 0.35), base, (0.006, 0.012, 0.011))
+    base = t.mix(t.math('MULTIPLY', seam, 0.85), base, (0.004, 0.008, 0.008))
+    rough = t.mixf(n2, 0.20, 0.36); rough = t.mixf(sore, rough, 0.18); rough = t.math('ADD', rough, t.math('ADD', t.math('MULTIPLY', edge, 0.14), t.math('MULTIPLY', seam, 0.40)))
+    h = t.math('ADD', t.math('MULTIPLY', t.ramp(cell, [(0.0, 0.0), (0.25, 1.0)]), 0.35), t.math('ADD', t.math('MULTIPLY', t.ramp(plate, [(0.0, 0.0), (0.10, 1.0)]), 1.0), t.math('MULTIPLY', t.noise(500, 3, 0.6), 0.2)))
+    nrm = t.bump(t.noise(70, 4, 0.65, distortion=0.8), 0.25, 0.004, normal=t.bump(h, 0.95, 0.0034)); t.set(base=base, rough=rough, normal=nrm, spec=0.7, coat=0.35, coat_rough=0.12); return t.mat
 
 
 def horn_mat():
@@ -94,11 +99,15 @@ def build_hi(c):
         for sx in (1, -1):
             ty = -0.86 - k * 0.034; tz = 1.045 - (k * 0.034) * 0.62; hit = C.surface_hit(body, (0.2 * sx, ty, tz), (-sx, 0, 0)); tx = (hit[0][0] if hit else 0.05 * sx) - 0.006 * sx
             tt = C.cone('tooth', (tx, ty, tz), (tx * 1.05, ty - 0.004, tz - 0.03), 0.006, c, nu=6, nv=5); tt.data.materials.append(tm); obs.append(tt)
+    for k in range(5):                                             # and the lower jaw, which now hangs open under the snout
+        for sx in (1, -1):
+            ty = -0.88 - k * 0.032; tz = 0.975 - (k * 0.032) * 0.52; hit = C.surface_hit(body, (0.2 * sx, ty, tz), (-sx, 0, 0)); tx = (hit[0][0] if hit else 0.04 * sx) - 0.005 * sx
+            tt = C.cone('tooth', (tx, ty, tz - 0.004), (tx * 1.05, ty - 0.004, tz + 0.026), 0.0055, c, nu=6, nv=5); tt.data.materials.append(tm); obs.append(tt)
     return obs
 
 
 WEAK = ('NOT photoreal at 1 m: a lit maquette. Anatomy is invented from 110-pixel sprites on a joint graph: no modelled muscle, tendon or joint structure beyond rib hoops and a vertebral ridge from displacement. '
-        'Scythes, spines, claws and teeth are separate horn solids pushed into the body, without sockets or gums. The head has no mouth opening, lids or nostrils, and there is no jaw bone. '
+        'Scythes, spines, claws and teeth are separate horn solids pushed into the body, without sockets or gums. The lower jaw hangs open under the snout with its own teeth, but there is no jaw bone (it cannot move), no tongue, lids or nostrils. '
         'The game mesh is a decimation of the remeshed source: no edge loops at joints, and the 1 cm tail tip keeps few triangles. Skin weights are inverse-distance, checked in one pose (render_pose.png). '
         'No animation clips, no Physics Asset. Smart-projected UVs with many islands.')
 
@@ -115,10 +124,10 @@ def main(mode):
         shots(hi, 'Slayer_hi', L.REVIEW); return
     lo = L.make_lo(hi, 18000, asset, L.coll(asset), angle=72, margin=0.004); arm = C.make_armature(asset + '_Armature', J, BONES, L.coll(asset)); ids = L.origin_ids(['slayer'])
     C.finish_creature(asset, 'creature', lo, hi, arm, outdir, 2048, families=['slayer', '641-649 foes/slayers/walk', '632-636 foes/slayers/attack'], origin=ids,
-                      dresses='slayer: a gaunt hunched biped, 1.7 m at the spines and about 3.5 m from snout to the tip of its whip tail; dark teal hide with brown blotches and raw red sores, one long amber scythe on each arm, seven raked dorsal spines, digitigrade clawed legs, red eyes',
+                      dresses='slayer: a gaunt hunched biped, 1.7 m at the spines and about 4.3 m from snout to the tip of its whip tail; wet teal-green chitin plates with dark seams and rust-brown blotches, an open jaw of needle teeth, a whip tail trailing level behind it, one long amber scythe on each arm, seven raked dorsal spines, digitigrade clawed legs, red eyes',
                       weaknesses=WEAK, script=SCRIPT + ' final', extrude=0.01, maxdist=0.03, extra={'contact_crop': 0.9})
     shots([lo], 'render', outdir)
-    C.pose(arm, {'tail_02': (0, 0, 18), 'tail_03': (0, 0, 22), 'tail_04': (0, 0, 22), 'tail_05': (0, 0, 20), 'thigh_l': (-25, 0, 0), 'calf_l': (22, 0, 0), 'thigh_r': (18, 0, 0),
+    C.pose(arm, {'tail_02': (0, 0, 14), 'tail_03': (0, 0, 18), 'tail_04': (0, 0, 20), 'tail_05': (0, 0, 20), 'thigh_l': (-25, 0, 0), 'calf_l': (22, 0, 0), 'thigh_r': (18, 0, 0),
                  'upperarm_l': (-35, 0, 0), 'lowerarm_l': (-25, 0, 0), 'neck_01': (0, 0, -16), 'head': (0, 0, -10)})
     L.shot(R_, os.path.join(outdir, 'render_pose.png'), [lo], az=52, el=10, fill=1.25, lens=60, res=(1000, 750), spp=128, dz=-0.1); C.pose(arm, {}); L.save_blend()
 
