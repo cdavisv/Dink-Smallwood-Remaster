@@ -215,15 +215,17 @@ if CFG['age'] > 0:   # authored lines of a lived-in face: nasolabial and marione
     cx_, cz_ = ex + .0165, ez - .001
     rr_ = np.hypot(ax - cx_, z - cz_); an_ = np.arctan2(z - cz_, ax - cx_)
     crow = (.5 + .5 * np.cos(an_ * 10 + 1.0)) ** 7 * sstep(.002, .006, rr_) * sstep(.024, .010, rr_) * (ax > cx_) * (np.abs(an_) < 1.1) * headm * (y < ey + .05)
-    fore = (.5 + .5 * np.cos(2 * np.pi * z / .0068 + 3.0 * n3(60, 71) + 1.5 * np.cos(ax / .03))) ** 5 * forehead * sstep(.062, .035, ax) * sstep(ez + .024, ez + .034, z) * sstep(.45, .7, n3(35, 72, 2) + .25)
+    FP = CFG.get('fore_period', .0068); FW = CFG.get('fore_warp', 3.0)   # spacing of the brow lines and how far noise bends them: evenly spaced straight lines read as a ladder
+    fore = (.5 + .5 * np.cos(2 * np.pi * z / FP + FW * n3(60, 71) + 1.5 * np.cos(ax / .03))) ** 5 * forehead * sstep(.062, .035, ax) * sstep(ez + .024, ez + .034, z) * sstep(.45, .7, n3(35, 72, 2) + .25)
     bagl = np.exp(-((z - (ez - .0185 + .22 * np.abs(ax - ex) ** 1.3 * 6)) / .0013) ** 2) * (np.abs(ax - ex) < .017) * frontm
     glab = np.exp(-((ax - .0045) / .0012) ** 2) * sstep(ez + .004, ez + .012, z) * sstep(ez + .030, ez + .020, z) * frontm
     neckl = (.5 + .5 * np.cos(2 * np.pi * z / .016 + 2 * n3(40, 73))) ** 6 * sstep(nz_ - .095, nz_ - .110, z) * headm * (y < ctr[1] + .02) * sstep(.3, .6, n3(30, 74, 2) + .2)
-    lines = np.clip(naso * 1.0 + mario * .75 + crow * .55 + fore * .30 + bagl * .7 + glab * .5 + neckl * .5, 0, 1.2) * AG
+    lines = np.clip(naso * 1.0 + mario * .75 + crow * .55 + fore * CFG.get('fore_k', .30) + bagl * .7 + glab * .5 + neckl * .5, 0, 1.2) * AG
     age_h = -(lines * 1.5).astype(np.float32)
-    col = col * (1 - lines[..., None] * np.array([.16, .22, .22])[None, None, :])
+    LK = CFG.get('line_k', 1.0)   # how dark the lines and the under-eye are in the albedo: at 1 they vanish at the play distance of a room
+    col = col * (1 - np.clip(lines * LK, 0, 1)[..., None] * np.array([.16, .22, .22])[None, None, :])
     ueye = np.clip(blob((ex, ey + .004, ez - .013), .0105, 1.5) + blob((-ex, ey + .004, ez - .013), .0105, 1.5), 0, 1) * headm * AG
-    col = col * (1 - ueye[..., None] * np.array([.10, .16, .12])[None, None, :])
+    col = col * (1 - np.clip(ueye * LK, 0, 1)[..., None] * np.array([.10, .16, .12])[None, None, :])
     col = col * (1 - lipm[..., None] * np.array([-.02, .05, .03])[None, None, :] * 0) * (1 + (n3(160, 75, 2) - .5)[..., None] * .07 * AG)
 dbg('col_final', col)
 if os.environ.get('PR_DEBUG') == 'stop': sys.exit(0)

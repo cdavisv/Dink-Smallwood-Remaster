@@ -50,7 +50,7 @@ STYLES = {
                 clump=.35, clump_d=.007, noise_d=.0012, noise_s=10.0, frizz_d=.0009, trim_rand=.01, streak_scale=45.0,
                 strand=dict(melanin=.42, redness=.30, rough=.34, radial=.4, rand_col=.12, grey=.16),
                 albedo=(.20, .115, .046), col_var=.08, grey=.05, cap_tip=(.92, 1.0), cap_h=.15, cap_hmax=.002, bun_strips=0, bun_ribbons=False, bun_core=1.06, bun_core_res=(48, 22), bun_coil=.085,   # ribbons wound round a coil are polygons with bright edges at any affordable segment count: the bun is the modelled core alone
-                grey_col=(.33, .27, .19), brow=dict(th=.0044, n=640, arch=.0070), brow_rgb='122,102,74', lash_rgb='60,44,30', brow_melanin=.5, brow_dark=.42,
+                grey_col=(.33, .27, .19), brow=dict(th=.0040, n=600, arch=.0078, x0=-.016, inner_up=.0020), brow_rgb='122,102,74', lash_rgb='30,21,14', brow_melanin=.5, brow_dark=.42,
                 card_mat=dict(transl=.9, shadow=.2, spec=.006, spec2=10.0, ao=.45),
                 tile=dict(frizz=.004, wave=.006, clump=.3, stray=.008, smooth=.5, narrow_k=1.5, nn_dense=85, nn_mid=55, nn_thin=30, n_dense=750, n_mid=300, n_thin=100, n_wisp=30, n_fly=8, strand_px=2.0),
                 shells=[

@@ -432,14 +432,14 @@ HAIR_MODEL = os.environ.get('DINK_HAIR_MODEL', 'hair')   # 'lit' builds the prev
 # Mother's fair hair blew out to straw-white in window light, and any root-to-tip shading drew every painted strand of
 # her pulled-back hair as a separate shingle, so she has none.
 HAIR_LOOK = {
-    'Dink': {'tint': (2.4, 1.5, 1.1), 'scalars': {'Scatter': 0.8}},
+    'Dink': {'tint': (2.4, 1.5, 1.1), 'scalars': {'Scatter': 0.8, 'BrowGain': 1.6}},
     'Mother': {'tint': (0.72, 0.67, 0.6), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.3, 'StrandVariation': 0.12, 'DepthShade': 0.45, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
-    'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12}},
+    'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12, 'BrowGain': 1.5}},
 }
 
 
 # Skin tint per character (multiplies the base colour). The Mother's fair skin was chalk in the window light of her house.
-SKIN_LOOK = {'Mother': (0.78, 0.72, 0.69)}
+SKIN_LOOK = {'Mother': (0.72, 0.66, 0.63)}
 
 
 def hair_material(folder, name, defaults, morph=False):
@@ -482,10 +482,14 @@ return c;''', F3, ['C', 'T', 'M', 'RootShade', 'TipLight', 'Variation', 'DepthSh
     link(param('CapShade', 0.6), '', colour, 'CapShade'); link(flow, 'B', colour, 'Card')
     link(param('RootShade', 0.85), '', colour, 'RootShade'); link(param('TipLight', 1.1), '', colour, 'TipLight')
     link(param('StrandVariation', 0.18), '', colour, 'Variation'); link(param('DepthShade', 0.8), '', colour, 'DepthShade')
-    out(colour, '', MP.MP_BASE_COLOR)
     # ...and no light through them: the scatter and back-light lobes lit the inner end of a brow orange in the sun
     band = custom(mat, -900, 150, 'return 1.0 - step(0.75, UV.y);', F1, ['UV'], 'Scalp hair (1) or brow and lash band (0)')
     link(expr(mat, unreal.MaterialExpressionTextureCoordinate, -1100, 150, coordinate_index=0), '', band, 'UV')
+    # Without scatter and back-light a brow of the hair's own colour reads darker than the hair above it: BrowGain lifts
+    # the band's base colour per character (the hero's brows were near black under mid-brown hair, 14 Nov 2026)
+    brow_colour = custom(mat, -450, -500, 'return C * lerp(Gain, 1.0, B);', F3, ['C', 'Gain', 'B'], 'Brow and lash colour gain')
+    link(colour, '', brow_colour, 'C'); link(param('BrowGain', 1.0), '', brow_colour, 'Gain'); link(band, '', brow_colour, 'B')
+    out(brow_colour, '', MP.MP_BASE_COLOR)
     scat = custom(mat, -600, 150, 'return S * lerp(0.15, 1.0, B);', F1, ['S', 'B'], 'Hair scatter, damped on brows and lashes')
     link(param('Scatter', 0.7), '', scat, 'S'); link(band, '', scat, 'B')
     out(scat, '', MP.MP_METALLIC)
@@ -906,12 +910,11 @@ if 'walls' in ONLY:
 
 # ------------------------------------------------------------------------------------------- hero
 # round 6: Mother and Milder go the same way (DINK_PHOTOREAL_ONLY=mother,milder), each into /Game/Dink/Photoreal/Characters/<Name>
-for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', 'milder')) if k in ONLY]:
-    HERO = PASS / 'Characters' / CHAR
+def import_character(CHAR, HERO, folder):
+    """One character on the shared mannequin skeleton from <HERO>/manifest.json into <folder>; returns its mesh."""
     report['hero'] = {}
     report.setdefault('characters', {})[CHAR] = report['hero']
     manifest = json.loads((HERO / 'manifest.json').read_text())
-    folder = BASE + '/Characters/' + CHAR
     tex_folder = folder + '/Textures'
     name = manifest['asset']
     target = folder + '/' + name
@@ -1057,6 +1060,11 @@ for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', '
                            'skeleton': mesh.get_editor_property('skeleton').get_path_name(),
                            'slots': [str(s.get_editor_property('material_slot_name')) for s in slots],
                            'skin_shading': 'subsurface profile' if profile is not None else 'subsurface'})
+    return mesh
+
+
+for CHAR in [c for c, k in (('Dink', 'hero'), ('Mother', 'mother'), ('Milder', 'milder')) if k in ONLY]:
+    import_character(CHAR, PASS / 'Characters' / CHAR, BASE + '/Characters/' + CHAR)
 
 def creature_skeletal_options(skeleton):
     options = unreal.FbxImportUI()
