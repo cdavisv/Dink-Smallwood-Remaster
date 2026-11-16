@@ -111,6 +111,7 @@ def main():
     parser.add_argument('--serial-rhi',action='store_true',help='Diagnostic only: disable RHI threading and force immediate command submission; may reduce performance.')
     parser.add_argument('--serial-vulkan-submit',action='store_true',help='Diagnostic: disable dedicated Vulkan submission/interrupt threads at startup; end-of-pipe TaskGraph work remains.')
     parser.add_argument('--pulse-sink',help='Route only this audio-enabled game to an existing private PulseAudio sink.')
+    parser.add_argument('--title',action='store_true',help='Show the title screen (QA of the title itself; -unattended sessions skip it otherwise).')
     args=parser.parse_args()
     if args.pulse_sink and not args.audio:parser.error('--pulse-sink requires --audio')
     if args.action=='start':
@@ -131,6 +132,7 @@ def main():
         if args.serial_rhi:command.extend(['-norhithread','-forcerhibypass'])
         if args.serial_vulkan_submit:command.append('-ForceDPCVars=r.Vulkan.Submission.UseInterruptThread=0,r.Vulkan.Submission.UseSubmissionThread=0')
         if not args.audio:command.append('-nosound')
+        if args.title:command.append('-DinkTitle')
         with (TOOLS/'game.stdout.log').open('w') as output:
             process=subprocess.Popen(command,env=env,cwd=PROJECT,stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
         receipt={'display':DISPLAY,'server_pid':server_pid,'game_pid':process.pid,'log':str(args.log),'audio_enabled':args.audio,'pulse_sink':args.pulse_sink,'serial_rhi_diagnostic':args.serial_rhi,'serial_vulkan_submission_diagnostic':args.serial_vulkan_submit,

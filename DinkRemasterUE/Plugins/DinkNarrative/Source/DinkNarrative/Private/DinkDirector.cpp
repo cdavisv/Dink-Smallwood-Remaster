@@ -668,12 +668,13 @@ void UDinkDirector::RegisterCommands()
 		return Block(EDinkBlock::Time, Story->GetNowMs() + FadeDurationMs);
 	});
 	Register(TEXT("fill_screen"), S::Recorded, TEXT("palette fill of the 2D back buffer; the 3D view has nothing to fill"), [this](FDinkCommandContext& Ctx) { return RecordOnly(Ctx); });
-	Register(TEXT("show_bmp"), S::Recorded, TEXT("full-screen picture: not shown yet; waits for the skip key like the original"), [Block](FDinkCommandContext&)
+	Register(TEXT("show_bmp"), S::Implemented, TEXT("full-screen picture until the skip key (D:7693); tiles\\map1.bmp is drawn as the remaster's world map from the layout"), [this, Block](FDinkCommandContext& Ctx)
 	{
+		Story->NoteShownBitmap(Ctx.Instance.Id, Ctx.Str(0));
 		return Block(EDinkBlock::Button);
 	});
 	Register(TEXT("show_popup"), S::Recorded, TEXT("HD-engine mobile quick-tip image; not part of the remaster UI"), [this](FDinkCommandContext& Ctx) { return RecordOnly(Ctx); });
-	Register(TEXT("draw_status"), S::Recorded, TEXT("status bar redraw; no status UI yet (stats are facts)"), [this](FDinkCommandContext& Ctx) { return RecordOnly(Ctx); });
+	Register(TEXT("draw_status"), S::Recorded, TEXT("status bar redraw; the overlay's status panel reads the facts every frame"), [this](FDinkCommandContext& Ctx) { return RecordOnly(Ctx); });
 
 	// ---- Audio (stub) ----
 	Register(TEXT("playmidi"), S::Implemented, TEXT("audio stub: logs the music cue"), [this](FDinkCommandContext& Ctx)
@@ -887,8 +888,13 @@ void UDinkDirector::BindExternals(FDinkInkStory& InkStory)
 
 	Bind(TEXT("buttoninfo"), [](const TArray<Ink::FValueType>& Args)
 	{
-		// The original fills &buttoninfo with the key bound to button N (escape menu); no key-binding UI yet.
-		return StringResult(FString::Printf(TEXT("Button %d"), Args.Num() > 0 ? FDinkInkStory::ArgToInt(Args[0]) : 0));
+		// The original fills &buttoninfo with the action of button N (escape.c's "View/change gamepad buttons", dink.cpp:4057-4067).
+		// The remaster's gamepad buttons are fixed (DinkInput::Bindings, set_button is recorded only), so it names the pad key
+		// that does button N's 1997 default action (button[u] = u, dink.cpp:18048).
+		static const TCHAR* const Names[] = { TEXT("X / RT - Attack"), TEXT("B - Talk/Examine"), TEXT("Y - Magic"), TEXT("RB - Item Screen"),
+			TEXT("Start - Main Menu"), TEXT("Back - Map"), TEXT("(not used)"), TEXT("(not used)"), TEXT("(not used)"), TEXT("(not used)") };
+		const int32 N = Args.Num() > 0 ? FDinkInkStory::ArgToInt(Args[0]) : 0;
+		return StringResult(N >= 1 && N <= 10 ? FString(Names[N - 1]) : FString::Printf(TEXT("Button %d"), N));
 	});
 	Bind(TEXT("savegameinfo"), [Arg](const TArray<Ink::FValueType>& Args)
 	{

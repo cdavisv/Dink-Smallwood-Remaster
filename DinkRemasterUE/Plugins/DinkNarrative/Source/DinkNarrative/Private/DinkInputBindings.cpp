@@ -15,6 +15,8 @@ namespace DinkInput
 			{ EKeys::Escape, EAction::MainMenu }, { EKeys::Gamepad_Special_Right, EAction::MainMenu },
 			{ EKeys::M, EAction::Map }, { EKeys::Gamepad_Special_Left, EAction::Map },
 			{ EKeys::Enter, EAction::Inventory }, { EKeys::I, EAction::Inventory },
+			// The original's button 4 is the item screen (default button[u] = u, dink.cpp:18048; human_brain 14946-14960).
+			{ EKeys::Gamepad_RightShoulder, EAction::Inventory },
 		};
 		return Table;
 	}

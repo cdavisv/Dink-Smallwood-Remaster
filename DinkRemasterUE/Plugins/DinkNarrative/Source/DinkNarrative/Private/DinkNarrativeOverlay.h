@@ -6,6 +6,7 @@
 #include "Widgets/SLeafWidget.h"
 
 class UDinkStorySubsystem;
+class UWorld;
 class UTexture2D;
 struct FSlateBrush;
 
@@ -43,6 +44,25 @@ public:
 	/** Icon hook for the inventory: the texture named in items.csv, loaded once; null draws the monogram. */
 	const FSlateBrush* FindItemIcon(FName Script) const;
 
+	/** One outdoor screen of the world map (show_bmp map1.bmp), in world metres (x east, y south). */
+	struct FMapScreen
+	{
+		int32 Screen = 0;
+		FVector2D Min = FVector2D::ZeroVector;
+		FVector2D Max = FVector2D::ZeroVector;
+		/** 0 land, 1 town, 2 sea. */
+		int32 Kind = 0;
+	};
+	/** The world map's data, built once per world from the screen volumes of the mainland sheet. */
+	struct FMapData
+	{
+		TWeakObjectPtr<const UWorld> World;
+		TArray<FMapScreen> Screens;
+		FBox2D Bounds = FBox2D(ForceInit);
+		/** Region name -> its centre (metres). */
+		TMap<FString, FVector2D> Labels;
+	};
+
 private:
 	TWeakObjectPtr<UDinkStorySubsystem> Story;
 
@@ -75,6 +95,8 @@ private:
 	mutable double BoxSince = 0.0;
 	mutable double BoxGoneAt = -1.0;
 	mutable int32 SeenMenu = 0;
+	mutable FMapData MapData;
+	void EnsureMapData(const UWorld* World) const;
 	mutable double MenuSince = 0.0;
 
 	double SeenAt(int32 Handle, const FString& Text, double Now) const;

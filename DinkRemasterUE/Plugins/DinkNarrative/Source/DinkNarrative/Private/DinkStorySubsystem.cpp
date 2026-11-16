@@ -1,6 +1,7 @@
 #include "DinkStorySubsystem.h"
 #include "Hardness/DinkFamilyCollisionFit.h"
 #include "DinkDirector.h"
+#include "DinkAudioSubsystem.h"
 #include "DinkGameplay.h"
 #include "Hardness/DinkHardnessActivation.h"
 #include "DinkNarrativeInput.h"
@@ -64,6 +65,8 @@ void UDinkStorySubsystem::Initialize(FSubsystemCollectionBase& Collection)
 	bNewGamePending = true;
 	if (!IsRunningCommandlet())
 	{
+		// The first game world with a player decides whether the title is shown (ShouldShowTitle: never in tests or the probe).
+		bTitleDecisionPending = true;
 		bAutoTick = true;
 		if (FSlateApplication::IsInitialized())
 		{
@@ -820,6 +823,30 @@ bool UDinkStorySubsystem::SkipDialogue()
 	return bSkipped;
 }
 
+void UDinkStorySubsystem::NoteShownBitmap(int32 InstanceId, const FString& Name)
+{
+	ShownBitmap.InstanceId = InstanceId;
+	ShownBitmap.Name = Name;
+	ShownBitmap.Since = FPlatformTime::Seconds();
+	AddEvent(TEXT("show_bmp"), Name);
+}
+
+const FDinkShownBitmap* UDinkStorySubsystem::GetShownBitmap() const
+{
+	if (ShownBitmap.InstanceId == 0)
+	{
+		return nullptr;
+	}
+	for (const TUniquePtr<FDinkScriptInstance>& I : Instances)
+	{
+		if (I->Id == ShownBitmap.InstanceId)
+		{
+			return I->State == EDinkInstanceState::Blocked && I->Block == EDinkBlock::Button ? &ShownBitmap : nullptr;
+		}
+	}
+	return nullptr;
+}
+
 float UDinkStorySubsystem::GetFadeAlpha() const
 {
 	return Director ? Director->FadeAlpha : 0.f;
@@ -877,6 +904,31 @@ void UDinkStorySubsystem::Tick(float DeltaTime)
 {
 	EnsureOverlay();
 	Advance(DeltaTime);
+	SyncUiMoveHold();
+}
+
+void UDinkStorySubsystem::SyncUiMoveHold()
+{
+	// Dink does not walk while a choice menu or a show_bmp picture is up: human_brain does not read the stick while the talk
+	// menu is active (dink.cpp:14744), and the main loop draws only the picture (17327-17334). One tracked hold on the
+	// controller's move-ignore counter, separate from the freeze hold and the title's own.
+	UWorld* World = GetWorld();
+	APlayerController* PC = World && World->IsGameWorld() ? World->GetFirstPlayerController() : nullptr;
+	const bool bWant = PC && (GetActiveMenu() != nullptr || GetShownBitmap() != nullptr);
+	if (UiMoveHoldController.Get() != PC)
+	{
+		if (APlayerController* Old = UiMoveHoldController.Get(); Old && bUiMoveHeld)
+		{
+			Old->SetIgnoreMoveInput(false);
+		}
+		bUiMoveHeld = false; // a new controller (level travel) starts with no hold of ours
+		UiMoveHoldController = PC;
+	}
+	if (PC && bWant != bUiMoveHeld)
+	{
+		PC->SetIgnoreMoveInput(bWant);
+		bUiMoveHeld = bWant;
+	}
 }
 
 void UDinkStorySubsystem::EnsureOverlay()
@@ -947,9 +999,26 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 			CrossingFreezeSerial = CrossingMoveSerial = -1; // back before the greybox noticed: no crossing pending
 		}
 	}
+	// The title screen (DinkTitleMenu.cpp): until the player picks New Game or Continue no script runs and no story time
+	// passes; the newgame start below then runs exactly as it does without a title.
+	if (bTitleDecisionPending)
+	{
+		DecideTitle();
+	}
+	if (TitleScreen.bOpen)
+	{
+		UpdateTitle(static_cast<float>(DeltaSeconds));
+		return;
+	}
 	// The inventory screen stops the game (dink.cpp:17361: the main loop only runs process_item): no time passes for scripts,
 	// brains, texts, the status update or the world-state clock until it closes.
 	if (InventoryScreen.bOpen)
+	{
+		return;
+	}
+	// A show_bmp picture (the map) stops the game the same way: the 1997 main loop only draws the picture and waits for a
+	// button (dink.cpp:17327-17334); the key that closes it releases the script (SkipDialogue), which runs on next tick.
+	if (GetShownBitmap())
 	{
 		return;
 	}
@@ -1164,6 +1233,15 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,
     }
 	const int32 Previous = LastScreen;
 	LastScreen = Screen;
+	// The map's dot (the original's last_map: the last screen that is not indoor).
+	if (UWorld* W = GetWorld())
+	{
+		const UDinkGreyboxSubsystem* Greybox = W->GetSubsystem<UDinkGreyboxSubsystem>();
+		if (const ADinkScreenVolume* Vol = Greybox ? Greybox->FindScreen(Screen) : nullptr; Vol && !Vol->bIndoor)
+		{
+			LastOutdoorScreen = Screen;
+		}
+	}
 	AddEvent(TEXT("screen"), FString::FromInt(Screen), FString::Printf(TEXT("from %d"), Previous));
 	// load_map builds the hardness anew (D:5966): what draw_hard_sprite / draw_hard_map changed on the last screen is gone.
 	if (Gameplay)
@@ -1624,6 +1702,8 @@ void UDinkStorySubsystem::ResetRuntime()
 	Menu = FDinkMenu();
 	CurrentInstanceId = 0;
 	LastScreen = 0;
+	LastOutdoorScreen = 0;
+	ShownBitmap = FDinkShownBitmap();
 	if (Gameplay)
 	{
 		Gameplay->Reset();
@@ -1649,6 +1729,7 @@ FString UDinkStorySubsystem::SaveStateToJson()
 	Root->SetNumberField(TEXT("nowMs"), NowMs);
 	Root->SetNumberField(TEXT("nextInstanceId"), NextInstanceId);
 	Root->SetNumberField(TEXT("lastScreen"), LastScreen);
+	Root->SetNumberField(TEXT("lastOutdoorScreen"), LastOutdoorScreen);
 	Root->SetNumberField(TEXT("menuInstance"), Menu.InstanceId);
 	Root->SetNumberField(TEXT("menuSelected"), Menu.Selected);
 	{
@@ -1788,6 +1869,8 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
 	NowMs = Root->GetNumberField(TEXT("nowMs"));
 	NextInstanceId = Root->GetIntegerField(TEXT("nextInstanceId"));
 	LastScreen = Root->GetIntegerField(TEXT("lastScreen"));
+	LastOutdoorScreen = 0;
+	Root->TryGetNumberField(TEXT("lastOutdoorScreen"), LastOutdoorScreen); // saves before 15 Nov 2026 have none
     bool SavedOriginal=false;
     const TSharedPtr<FJsonObject>* SavedGameplayPtr=nullptr;
     const auto SavedGameplay=Root->TryGetObjectField(TEXT("gameplay"),SavedGameplayPtr)?*SavedGameplayPtr:TSharedPtr<FJsonObject>();
@@ -1939,6 +2022,13 @@ void UDinkStorySubsystem::RestoreFromSave(const UDinkSaveGame* Save)
 		if (UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>())
 		{
 			Greybox->RefreshCurrentScreen();
+		}
+		// Music after a load: the director replayed the saved script track (playmidi); the loaded screen's own music wins
+		// where it has one, as 1997's load_game -> StopMidi, load_map -> check_midi (dink.cpp:1331, 1020) plays it. Without
+		// this a cutscene track a script never stopped (s1-h1-o.c's insper.mid) replaced the screen's music on every load.
+		if (UDinkAudioSubsystem* Audio = World->GetSubsystem<UDinkAudioSubsystem>())
+		{
+			Audio->ReplayScreenMusic();
 		}
 	}
 }

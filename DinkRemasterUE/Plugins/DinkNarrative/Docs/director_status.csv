@@ -64,7 +64,7 @@ sp_que,sprites,20,command,recorded,"2D draw order, recorded (no meaning for dept
 draw_screen,world,19,command,implemented,yields one frame (the screen is already drawn in 3D)
 load_screen,world,19,command,implemented,warps Dink to &player_map (greybox dink.Goto) keeping his screen pixel
 add_item,inventory,18,command,implemented,"UDinkInventoryComponent::AddItem(script name), then the item script's `pickup` in a new instance (D:6915)"
-draw_status,ui,18,command,recorded,status bar redraw; no status UI yet (stats are facts)
+draw_status,ui,18,command,recorded,status bar redraw; the overlay's status panel reads the facts every frame
 fade_down,screen,17,command,implemented,"fades the view to black and waits (600 ms, assumed)"
 fade_up,screen,17,command,implemented,"fades back in and waits (600 ms, assumed)"
 free_items,inventory,15,external,implemented,EXTERNAL function bound with lookaheadSafe = false
@@ -134,7 +134,7 @@ free_magic,inventory,1,external,implemented,EXTERNAL function bound with lookahe
 is_base_game,other,1,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 scripts_used,other,1,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 set_button,ui,1,command,recorded,engine/menu mode switch of the 2D title and escape screens; no equivalent yet
-show_bmp,screen,1,command,recorded,full-screen picture: not shown yet; waits for the skip key like the original
+show_bmp,screen,1,command,implemented,full-screen picture until the skip key (D:7693); tiles\map1.bmp is drawn as the remaster's world map from the layout
 sp_base_idle,sprites,1,command,recorded,"2D idle sequence base, recorded for the animation layer"
 stop_entire_game,system,1,command,recorded,engine/menu mode switch of the 2D title and escape screens; no equivalent yet
 stopcd,audio,1,command,implemented,audio stub: logs the (legacy CD) music stop
