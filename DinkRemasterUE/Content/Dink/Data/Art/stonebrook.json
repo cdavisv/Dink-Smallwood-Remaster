@@ -113,6 +113,38 @@
         50.2,
         12.4
       ]
+    },
+    {
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Mother_PR.SM_Corpse_Mother_PR",
+      "expected_size_cm": [
+        240.0,
+        240.0,
+        26.8
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_A_PR.SM_Burn_Hole_A_PR",
+      "expected_size_cm": [
+        150.0,
+        150.0,
+        0.6
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_B_PR.SM_Burn_Hole_B_PR",
+      "expected_size_cm": [
+        150.0,
+        150.0,
+        0.6
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_C_PR.SM_Burn_Hole_C_PR",
+      "expected_size_cm": [
+        220.0,
+        220.0,
+        0.6
+      ]
     }
   ],
   "source": "SourceAssets/Art/Stonebrook/art_manifest.json",
@@ -228,6 +260,139 @@
       "scale": [
         1,
         1,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P34",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Mother_PR.SM_Corpse_Mother_PR",
+      "offset_cm": [
+        -50.0,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P44",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_A_PR.SM_Burn_Hole_A_PR",
+      "offset_cm": [
+        -15.3,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.933,
+        0.933,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P45",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_B_PR.SM_Burn_Hole_B_PR",
+      "offset_cm": [
+        -15.3,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.969,
+        0.969,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P46",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_A_PR.SM_Burn_Hole_A_PR",
+      "offset_cm": [
+        -15.3,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        140,
+        0
+      ],
+      "scale": [
+        0.933,
+        0.933,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P47",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_C_PR.SM_Burn_Hole_C_PR",
+      "offset_cm": [
+        -30.7,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P48",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_C_PR.SM_Burn_Hole_C_PR",
+      "offset_cm": [
+        -30.7,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1
+      ]
+    },
+    {
+      "origin": "S001_P49",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_C_PR.SM_Burn_Hole_C_PR",
+      "offset_cm": [
+        -30.7,
+        0.0,
+        0.0
+      ],
+      "rotation_deg": [
+        0,
+        180,
+        0
+      ],
+      "scale": [
+        1.0,
+        1.0,
         1
       ]
     }

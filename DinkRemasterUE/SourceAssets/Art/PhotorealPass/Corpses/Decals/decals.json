@@ -1,0 +1,182 @@
+{
+ "schema": "dink-decals/1",
+ "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Decals",
+ "generated_by": "Corpses/tools/build_decals.py",
+ "cell_over_card": 1.15,
+ "sets": [
+  {
+   "name": "Blood1997A",
+   "files": {
+    "BC": "T_Decal_Blood1997A_BC.png",
+    "N": "T_Decal_Blood1997A_N.png",
+    "ORM": "T_Decal_Blood1997A_ORM.png"
+   },
+   "resolution_px": 1024,
+   "atlas": "2 x 2, one 1997 picture frame per cell",
+   "cells": [
+    {
+     "cell": 0,
+     "picture": "187_01",
+     "card_m": [
+      0.8,
+      0.45
+     ],
+     "cell_m": 0.92,
+     "picture_area_m2": 0.136,
+     "decal_area_m2": 0.208
+    },
+    {
+     "cell": 1,
+     "picture": "187_02",
+     "card_m": [
+      0.53,
+      0.3
+     ],
+     "cell_m": 0.609,
+     "picture_area_m2": 0.052,
+     "decal_area_m2": 0.092
+    },
+    {
+     "cell": 2,
+     "picture": "187_03",
+     "card_m": [
+      0.97,
+      1.4
+     ],
+     "cell_m": 1.61,
+     "picture_area_m2": 0.206,
+     "decal_area_m2": 0.303
+    },
+    {
+     "cell": 3,
+     "picture": "188_02",
+     "card_m": [
+      0.95,
+      0.72
+     ],
+     "cell_m": 1.092,
+     "picture_area_m2": 0.104,
+     "decal_area_m2": 0.181
+    }
+   ],
+   "material": "deferred decal, translucent: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G",
+   "known_weaknesses": "the outline is the 1997 picture enlarged (39 to 51 pixels across), smoothed and broken up by noise: no single thrown drop with a tail as a photograph would show; 512 px per cell, so the largest placements (3.4 m) show 0.8 cm texels; wet look is roughness and a thin normal relief only."
+  },
+  {
+   "name": "Blood1997B",
+   "files": {
+    "BC": "T_Decal_Blood1997B_BC.png",
+    "N": "T_Decal_Blood1997B_N.png",
+    "ORM": "T_Decal_Blood1997B_ORM.png"
+   },
+   "resolution_px": 1024,
+   "atlas": "2 x 2, one 1997 picture frame per cell",
+   "cells": [
+    {
+     "cell": 0,
+     "picture": "188_04",
+     "card_m": [
+      0.97,
+      1.4
+     ],
+     "cell_m": 1.61,
+     "picture_area_m2": 0.159,
+     "decal_area_m2": 0.278
+    },
+    {
+     "cell": 1,
+     "picture": "189_01",
+     "card_m": [
+      0.57,
+      0.68
+     ],
+     "cell_m": 0.782,
+     "picture_area_m2": 0.099,
+     "decal_area_m2": 0.168
+    },
+    {
+     "cell": 2,
+     "picture": "189_02",
+     "card_m": [
+      0.97,
+      0.72
+     ],
+     "cell_m": 1.115,
+     "picture_area_m2": 0.104,
+     "decal_area_m2": 0.178
+    },
+    {
+     "cell": 3,
+     "picture": "189_04",
+     "card_m": [
+      1.27,
+      1.4
+     ],
+     "cell_m": 1.61,
+     "picture_area_m2": 0.159,
+     "decal_area_m2": 0.281
+    }
+   ],
+   "material": "deferred decal, translucent: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G",
+   "known_weaknesses": "the outline is the 1997 picture enlarged (39 to 51 pixels across), smoothed and broken up by noise: no single thrown drop with a tail as a photograph would show; 512 px per cell, so the largest placements (3.4 m) show 0.8 cm texels; wet look is roughness and a thin normal relief only."
+  },
+  {
+   "name": "Burn1997",
+   "files": {
+    "BC": "T_Decal_Burn1997_BC.png",
+    "N": "T_Decal_Burn1997_N.png",
+    "ORM": "T_Decal_Burn1997_ORM.png"
+   },
+   "resolution_px": 1024,
+   "atlas": "2 x 2, one 1997 picture frame per cell",
+   "cells": [
+    {
+     "cell": 0,
+     "picture": "158_01",
+     "card_m": [
+      2.21,
+      1.95
+     ],
+     "cell_m": 2.541,
+     "picture_area_m2": 1.733,
+     "decal_area_m2": 2.078
+    },
+    {
+     "cell": 1,
+     "picture": "158_02",
+     "card_m": [
+      2.2,
+      2.24
+     ],
+     "cell_m": 2.576,
+     "picture_area_m2": 2.152,
+     "decal_area_m2": 2.527
+    },
+    {
+     "cell": 2,
+     "picture": "158_03",
+     "card_m": [
+      1.84,
+      1.75
+     ],
+     "cell_m": 2.116,
+     "picture_area_m2": 1.033,
+     "decal_area_m2": 1.286
+    },
+    {
+     "cell": 3,
+     "picture": "158_01",
+     "card_m": [
+      1.01,
+      0.88
+     ],
+     "cell_m": 1.161,
+     "picture_area_m2": 0.357,
+     "decal_area_m2": 0.476
+    }
+   ],
+   "material": "deferred decal, translucent: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G",
+   "known_weaknesses": "the outline is the 1997 picture enlarged (39 to 51 pixels across), smoothed and broken up by noise: no single thrown drop with a tail as a photograph would show; 512 px per cell, so the largest placements (3.4 m) show 0.8 cm texels; no depth: a charred patch, not a pit."
+  }
+ ]
+}

@@ -131,7 +131,9 @@ The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README
 - **Rows**: bodies use `fit: none` (real size) and `yaw_from_sprite`. Importing this kit never rewrites another kit's packages.
 - **The flat card and grass**: the grass carpet hides flat meshes. The dragon of screen 238 lies on grass and shows only flecks of its pool; a pool on grass needs a deferred decal, which a family row cannot place yet.
 - **Rows that draw nothing**: screens listed under `hide_screen_visuals` by a `dink-art/1` manifest (1, 439, ...) never take family rows; unscripted `blood_splat` / `burn_hole_decal` actors are taken by the deferred decals of `environment.json` first.
-- **Checks and captures**: `Docs/Verification/CorpseGore_14Nov2026/`.
+- **Dressed screens**: the mother's body and the burn holes of screen 1 are `replacements` rows of `Content/Dink/Data/Art/stonebrook.json` (origin, mesh, `offset_cm` = the card's `offset_x_m`), with their `assets` sizes; the kit manifest lists meshes that such rows name.
+- **Decal sheets**: `python3 -I Corpses/tools/build_decals.py` writes `Corpses/Decals` (three 2 x 2 atlases, one 1997 picture frame per cell: blood 187 / 188 / 189, burn holes 158); the kit import makes `/Game/Dink/Photoreal/Corpses/M_Decal_Sheet` and `MI_Decal_<Set>_0..3` from the manifest's `decals`. Not bound by `environment.json` yet.
+- **Checks and captures**: `Docs/Verification/CorpseGore_14Nov2026/`, `Docs/Verification/StonebrookMotherAndRemains_14Nov2026/`.
 
 ## Faceting sweep (13 Nov 2026)
 

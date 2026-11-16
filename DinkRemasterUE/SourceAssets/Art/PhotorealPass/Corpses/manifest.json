@@ -2,8 +2,65 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses",
  "generated_by": "Corpses/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "7 static meshes of remains, thrown blood and burn holes. Each FBX holds one object named after the asset (LOD0 only, no collision): a body atlas (opaque, or cut-out where it carries hair) and, on a second slot, the alpha-tested ground card with the pool.",
+ "summary": "13 static meshes of remains, thrown blood and burn holes. Each FBX holds one object named after the asset (LOD0 only, no collision): a body atlas (opaque, or cut-out where it carries hair) and, on a second slot, the alpha-tested ground card with the pool.",
  "assets": [
+  {
+   "name": "SM_Burn_Hole_A_PR",
+   "class": "prop_small",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/SM_Burn_Hole_A_PR.fbx",
+   "materials": [
+    "MI_Burn_Hole_A"
+   ],
+   "dimensions_m": [
+    1.5,
+    1.5,
+    0.006
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "burn_hole_decal",
+    "158 struct/details/damage/hole-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A"
+  },
+  {
+   "name": "SM_Burn_Hole_B_PR",
+   "class": "prop_small",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_B/SM_Burn_Hole_B_PR.fbx",
+   "materials": [
+    "MI_Burn_Hole_B"
+   ],
+   "dimensions_m": [
+    1.5,
+    1.5,
+    0.006
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "burn_hole_decal",
+    "158 struct/details/damage/hole-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_B"
+  },
+  {
+   "name": "SM_Burn_Hole_C_PR",
+   "class": "prop_small",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/SM_Burn_Hole_C_PR.fbx",
+   "materials": [
+    "MI_Burn_Hole_C"
+   ],
+   "dimensions_m": [
+    2.2,
+    2.2,
+    0.006
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "burn_hole_decal",
+    "158 struct/details/damage/hole-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C"
+  },
   {
    "name": "SM_Corpse_Girl_PR",
    "class": "prop",
@@ -105,6 +162,26 @@
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green"
   },
   {
+   "name": "SM_Corpse_Mother_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Mother/SM_Corpse_Mother_PR.fbx",
+   "materials": [
+    "MI_Corpse_Mother_PR",
+    "MI_Corpse_Mother_Pool"
+   ],
+   "dimensions_m": [
+    2.4,
+    2.4,
+    0.268
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "corpse_mom",
+    "355 people/mom/death-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Mother"
+  },
+  {
    "name": "SM_Corpse_Peasant_PR",
    "class": "prop",
    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/SM_Corpse_Peasant_PR.fbx",
@@ -123,6 +200,46 @@
     "415 people/peasant2/death-"
    ],
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant"
+  },
+  {
+   "name": "SM_Corpse_Soldier_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Soldier/SM_Corpse_Soldier_PR.fbx",
+   "materials": [
+    "MI_Corpse_Soldier_PR",
+    "MI_Corpse_Soldier_Pool"
+   ],
+   "dimensions_m": [
+    2.6,
+    2.6,
+    0.467
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "corpse_soldier",
+    "405 people/soldier/death-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Soldier"
+  },
+  {
+   "name": "SM_Dink_Dead_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/SM_Dink_Dead_PR.fbx",
+   "materials": [
+    "MI_Dink_Dead_PR",
+    "MI_Dink_Dead_Pool"
+   ],
+   "dimensions_m": [
+    3.7,
+    3.7,
+    0.578
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "dink_dead",
+    "436 dink/die/ds-x3-"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead"
   },
   {
    "name": "SM_Dragon_Corpse_PR",
@@ -146,7 +263,12 @@
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse"
   }
  ],
- "not_imported": [],
+ "not_imported": [
+  {
+   "name": "SM_Corpse_Mother_Joppa_PR",
+   "why": "no families.json row uses it: not bound"
+  }
+ ],
  "integration": {
   "contract": {
    "textures": "BC sRGB (alpha = cut-out mask on masked materials); N linear OpenGL (flip green on import); ORM linear (R occlusion, G roughness, B metallic)",
@@ -154,6 +276,33 @@
    "collision": "none imported; placements keep their hardbox"
   },
   "materials": {
+   "MI_Burn_Hole_A": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/T_Burn_Hole_A_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/T_Burn_Hole_A_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/T_Burn_Hole_A_ORM.png"
+    }
+   },
+   "MI_Burn_Hole_B": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_B/T_Burn_Hole_B_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_B/T_Burn_Hole_B_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_B/T_Burn_Hole_B_ORM.png"
+    }
+   },
+   "MI_Burn_Hole_C": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_ORM.png"
+    }
+   },
    "MI_Corpse_Girl_PR": {
     "baked": true,
     "kind": "masked",
@@ -244,6 +393,24 @@
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Merchant_Green/T_Corpse_Merchant_Green_Pool_ORM.png"
     }
    },
+   "MI_Corpse_Mother_PR": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Mother/T_Corpse_Mother_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Mother/T_Corpse_Mother_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Mother/T_Corpse_Mother_PR_ORM.png"
+    }
+   },
+   "MI_Corpse_Mother_Pool": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Mother/T_Corpse_Mother_Pool_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Mother/T_Corpse_Mother_Pool_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Mother/T_Corpse_Mother_Pool_ORM.png"
+    }
+   },
    "MI_Corpse_Peasant_PR": {
     "baked": true,
     "kind": "masked",
@@ -260,6 +427,42 @@
      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_BC.png",
      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_N.png",
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Peasant/T_Corpse_Peasant_Pool_ORM.png"
+    }
+   },
+   "MI_Corpse_Soldier_PR": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Soldier/T_Corpse_Soldier_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Soldier/T_Corpse_Soldier_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Soldier/T_Corpse_Soldier_PR_ORM.png"
+    }
+   },
+   "MI_Corpse_Soldier_Pool": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Soldier/T_Corpse_Soldier_Pool_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Soldier/T_Corpse_Soldier_Pool_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Soldier/T_Corpse_Soldier_Pool_ORM.png"
+    }
+   },
+   "MI_Dink_Dead_PR": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_PR_ORM.png"
+    }
+   },
+   "MI_Dink_Dead_Pool": {
+    "baked": true,
+    "kind": "masked",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_Pool_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_Pool_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dink_Dead/T_Dink_Dead_Pool_ORM.png"
     }
    },
    "MI_Dragon_Corpse_PR": {
@@ -281,5 +484,187 @@
     }
    }
   }
+ },
+ "decals": {
+  "schema": "dink-decals/1",
+  "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Decals",
+  "generated_by": "Corpses/tools/build_decals.py",
+  "cell_over_card": 1.15,
+  "sets": [
+   {
+    "name": "Blood1997A",
+    "files": {
+     "BC": "T_Decal_Blood1997A_BC.png",
+     "N": "T_Decal_Blood1997A_N.png",
+     "ORM": "T_Decal_Blood1997A_ORM.png"
+    },
+    "resolution_px": 1024,
+    "atlas": "2 x 2, one 1997 picture frame per cell",
+    "cells": [
+     {
+      "cell": 0,
+      "picture": "187_01",
+      "card_m": [
+       0.8,
+       0.45
+      ],
+      "cell_m": 0.92,
+      "picture_area_m2": 0.136,
+      "decal_area_m2": 0.208
+     },
+     {
+      "cell": 1,
+      "picture": "187_02",
+      "card_m": [
+       0.53,
+       0.3
+      ],
+      "cell_m": 0.609,
+      "picture_area_m2": 0.052,
+      "decal_area_m2": 0.092
+     },
+     {
+      "cell": 2,
+      "picture": "187_03",
+      "card_m": [
+       0.97,
+       1.4
+      ],
+      "cell_m": 1.61,
+      "picture_area_m2": 0.206,
+      "decal_area_m2": 0.303
+     },
+     {
+      "cell": 3,
+      "picture": "188_02",
+      "card_m": [
+       0.95,
+       0.72
+      ],
+      "cell_m": 1.092,
+      "picture_area_m2": 0.104,
+      "decal_area_m2": 0.181
+     }
+    ],
+    "material": "deferred decal, translucent: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G",
+    "known_weaknesses": "the outline is the 1997 picture enlarged (39 to 51 pixels across), smoothed and broken up by noise: no single thrown drop with a tail as a photograph would show; 512 px per cell, so the largest placements (3.4 m) show 0.8 cm texels; wet look is roughness and a thin normal relief only."
+   },
+   {
+    "name": "Blood1997B",
+    "files": {
+     "BC": "T_Decal_Blood1997B_BC.png",
+     "N": "T_Decal_Blood1997B_N.png",
+     "ORM": "T_Decal_Blood1997B_ORM.png"
+    },
+    "resolution_px": 1024,
+    "atlas": "2 x 2, one 1997 picture frame per cell",
+    "cells": [
+     {
+      "cell": 0,
+      "picture": "188_04",
+      "card_m": [
+       0.97,
+       1.4
+      ],
+      "cell_m": 1.61,
+      "picture_area_m2": 0.159,
+      "decal_area_m2": 0.278
+     },
+     {
+      "cell": 1,
+      "picture": "189_01",
+      "card_m": [
+       0.57,
+       0.68
+      ],
+      "cell_m": 0.782,
+      "picture_area_m2": 0.099,
+      "decal_area_m2": 0.168
+     },
+     {
+      "cell": 2,
+      "picture": "189_02",
+      "card_m": [
+       0.97,
+       0.72
+      ],
+      "cell_m": 1.115,
+      "picture_area_m2": 0.104,
+      "decal_area_m2": 0.178
+     },
+     {
+      "cell": 3,
+      "picture": "189_04",
+      "card_m": [
+       1.27,
+       1.4
+      ],
+      "cell_m": 1.61,
+      "picture_area_m2": 0.159,
+      "decal_area_m2": 0.281
+     }
+    ],
+    "material": "deferred decal, translucent: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G",
+    "known_weaknesses": "the outline is the 1997 picture enlarged (39 to 51 pixels across), smoothed and broken up by noise: no single thrown drop with a tail as a photograph would show; 512 px per cell, so the largest placements (3.4 m) show 0.8 cm texels; wet look is roughness and a thin normal relief only."
+   },
+   {
+    "name": "Burn1997",
+    "files": {
+     "BC": "T_Decal_Burn1997_BC.png",
+     "N": "T_Decal_Burn1997_N.png",
+     "ORM": "T_Decal_Burn1997_ORM.png"
+    },
+    "resolution_px": 1024,
+    "atlas": "2 x 2, one 1997 picture frame per cell",
+    "cells": [
+     {
+      "cell": 0,
+      "picture": "158_01",
+      "card_m": [
+       2.21,
+       1.95
+      ],
+      "cell_m": 2.541,
+      "picture_area_m2": 1.733,
+      "decal_area_m2": 2.078
+     },
+     {
+      "cell": 1,
+      "picture": "158_02",
+      "card_m": [
+       2.2,
+       2.24
+      ],
+      "cell_m": 2.576,
+      "picture_area_m2": 2.152,
+      "decal_area_m2": 2.527
+     },
+     {
+      "cell": 2,
+      "picture": "158_03",
+      "card_m": [
+       1.84,
+       1.75
+      ],
+      "cell_m": 2.116,
+      "picture_area_m2": 1.033,
+      "decal_area_m2": 1.286
+     },
+     {
+      "cell": 3,
+      "picture": "158_01",
+      "card_m": [
+       1.01,
+       0.88
+      ],
+      "cell_m": 1.161,
+      "picture_area_m2": 0.357,
+      "decal_area_m2": 0.476
+     }
+    ],
+    "material": "deferred decal, translucent: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G",
+    "known_weaknesses": "the outline is the 1997 picture enlarged (39 to 51 pixels across), smoothed and broken up by noise: no single thrown drop with a tail as a photograph would show; 512 px per cell, so the largest placements (3.4 m) show 0.8 cm texels; no depth: a charred patch, not a pit."
+   }
+  ]
  }
 }
