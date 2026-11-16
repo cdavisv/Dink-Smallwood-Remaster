@@ -149,15 +149,15 @@
       "ceiling_wall_class": "int_wall"
     },
     "dungeon": {
-      "exposure_ev": -2.4,
-      "ambient_intensity": 0.45,
+      "exposure_ev": -2.9,
+      "ambient_intensity": 1.125,
       "ambient_colour": [
         0.6,
         0.7,
         1.0
       ],
       "lamps_per_screen": 3,
-      "lamp_intensity": 9.0,
+      "lamp_intensity": 22.5,
       "lamp_radius_cm": 1000,
       "lamp_height_cm": 210,
       "lamp_colour": [
@@ -167,7 +167,7 @@
       ],
       "lamps_at_walls": true,
       "fog_density": 0.02,
-      "fill_intensity": 0.12,
+      "fill_intensity": 0.3,
       "fill_colour": [
         0.8,
         0.86,

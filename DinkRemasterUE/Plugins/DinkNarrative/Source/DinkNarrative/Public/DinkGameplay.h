@@ -389,6 +389,24 @@ public:
 	/** Copies map.dat's live-sprite fields onto a placement sprite (place_sprites_game, D:6080-6110). */
 	void InitPlacementSprite(FDinkSprite& Sprite) const;
 	/**
+	 * Presentation only, on every screen entry (legacy and tagged screens alike): a placement whose save holds an editor_type 2-5
+	 * shows the picture update_play_changes gives it (editor_seq / editor_frame, D:5829-5830), whether place_sprites_game then draws it
+	 * into the background (3, 5: D:6036-6054) or makes it a live sprite born with that picture (2, 4: D:6083ff). The placement actor's
+	 * card gets that picture's material at that picture's size and pivot, and its family mesh is looked up from that picture
+	 * (UDinkArtFamilySubsystem::SetPlacementPicture). A placement without such an override shows its imported picture again. Fitted
+	 * barrels publish their own released picture and are left alone. Nothing here touches hardness, collision or scripts.
+	 */
+	void PresentPlacementPictures(int32 Screen) const;
+	/** One placement actor of PresentPlacementPictures: Seq/Frame is the picture to show; bSaved when it comes from the save. */
+	bool PresentPlacementPicture(class ADinkPlaceholderActor& Actor, int32 Seq, int32 Frame, bool bSaved) const;
+	/**
+	 * Presentation only, during a visit: a placement sprite whose animation shows a new picture (pseq/pframe, ThinkSprite's animator,
+	 * D:16956-17060) gets that picture's family mesh when families.json binds that very picture (a sequence-and-frame row): the chest
+	 * a hit opens (ch1-*: sp_seq 175, D:hit) lifts its lid as its picture does, not only on the next visit. Pictures without such a
+	 * row change nothing (a barrel's break animation keeps its mesh). Hardness, collision and scripts are untouched.
+	 */
+	void PresentAnimatedPlacement(const FDinkSprite& Sprite) const;
+	/**
 	 * The DinkC init("load_sequence_now <file> <seq> <speed> <x> <y> <left> <top> <right> <bottom>") line, for a sequence the base data (dink.ini)
 	 * does not define: from now on its frames have that hardbox (FDinkGameplayData::AddInitSequence). False if the line defines nothing new.
 	 */

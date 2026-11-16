@@ -576,6 +576,82 @@
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card. Round 6: scripted crates included, like the barrel (a box script flattens the picture on a hit; placement cards are not redrawn from script state either)."
     },
     {
+      "family": "chest_small",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "Small treasure chest (15 Nov 2026, presentation fixes). The 14 placements of 175 chst1- frame 1 (ch1-* scripts: a hit opens it, makes the loot at its foot and saves editor_type 4 with 175/4 or 175/6). Rows per picture: frames 1-2 closed, 3-6 open (SM_Chest_Small_Open_PR, lid at 102 degrees, same pivot), so the mesh follows the animation the hit starts (UDinkGameplay::PresentAnimatedPlacement) and the saved picture on the next visit (PresentPlacementPictures). anchor_front 1: the front edge stands on the sprite foot, where the potion or gold appears; scale 1.25 (1.18 x 0.65 m) against Dink."
+    },
+    {
+      "family": "175 bonuses/chest/chst1-",
+      "frame": 1,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst1- frame 1: lid still down. See chest_small."
+    },
+    {
+      "family": "175 bonuses/chest/chst1-",
+      "frame": 2,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst1- frame 2: lid still down. See chest_small."
+    },
+    {
+      "family": "175 bonuses/chest/chst1-",
+      "frame": 3,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst1- frame 3: lid up. See chest_small."
+    },
+    {
+      "family": "175 bonuses/chest/chst1-",
+      "frame": 4,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst1- frame 4: lid up. See chest_small."
+    },
+    {
+      "family": "175 bonuses/chest/chst1-",
+      "frame": 5,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst1- frame 5: lid up. See chest_small."
+    },
+    {
+      "family": "175 bonuses/chest/chst1-",
+      "frame": 6,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst1- frame 6: lid up. See chest_small."
+    },
+    {
       "family": "jar_vase",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Jar_Vase_PR.SM_Jar_Vase_PR",
       "fit": "none",

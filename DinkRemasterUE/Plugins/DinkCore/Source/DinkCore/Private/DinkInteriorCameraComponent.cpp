@@ -23,8 +23,21 @@
 #include "Misc/Paths.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
+#include "Components/InstancedStaticMeshComponent.h"
+#include "Engine/CollisionProfile.h"
+#include "Engine/StaticMesh.h"
+#include "HAL/IConsoleManager.h"
+#include "Materials/Material.h"
+#include "UObject/UObjectIterator.h"
 
-namespace { const FName OpacityParameter(TEXT("DinkCameraOpacity")); }
+namespace
+{
+const FName OpacityParameter(TEXT("DinkCameraOpacity"));
+const FName FoliageProxyTag(TEXT("DinkCameraFoliageProxy"));
+TAutoConsoleVariable<int32> CVarDinkCameraFoliageFade(TEXT("dink.CameraFoliageFade"), 1,
+    TEXT("1: trees and tall bushes between the play camera and Dink fade (dithered, their shadows stay; DinkCameraFoliage.h). ")
+    TEXT("0: off, the look before 15 Nov 2026 (the camera may stand in a pine crown). Presentation only."));
+}
 
 UDinkInteriorCameraComponent::UDinkInteriorCameraComponent()
 {
@@ -52,6 +65,14 @@ void UDinkInteriorCameraComponent::BeginPlay()
             for (const auto& Pair : (*Variants)->Values)
             {
                 FString Path; if (Pair.Value->TryGetString(Path)) MaterialVariants.Add(FString(*Pair.Key).ToLower(), Path);
+            }
+        }
+        const TSharedPtr<FJsonObject>* Foliage=nullptr;
+        if (Schema==TEXT("dink-camera/1") && Config->TryGetObjectField(TEXT("foliage_variants"),Foliage))
+        {
+            for (const auto& Pair : (*Foliage)->Values)
+            {
+                FString Path; if (Pair.Value->TryGetString(Path)) FoliageVariants.Add(FString(*Pair.Key).ToLower(), Path);
             }
         }
         const TSharedPtr<FJsonObject>* Floors=nullptr;
@@ -406,6 +427,7 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
     if (!Pawn || !Pawn->IsLocallyControlled() || Pawn->GetController()!=GetWorld()->GetFirstPlayerController())
     {
         if (bInteriorMode || !Occluders.IsEmpty() || OutdoorHeadroomLift>0 || OutdoorPortalArmCap>0 || !bOutdoorPortalFramingFeasible) SelectScreen(nullptr);
+        if (!FoliageFades.IsEmpty()) RestoreFoliage();
         return;
     }
     UDinkGreyboxSubsystem* Grey=GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>();
@@ -416,6 +438,7 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
     UncappedOutdoorArm=Arm->TargetArmLength;
     if (bInteriorMode) { OutdoorHeadroomLift=0.f; UpdateFraming(DeltaTime); }
     else UpdateOutdoorHeadroom();
+    UpdateFoliage(DeltaTime);
     if (Occluders.IsEmpty()) return;
     const FRotator Rotation=Arm->GetTargetRotation();
     const FVector Pivot=Arm->GetComponentLocation()+Arm->TargetOffset;
@@ -475,7 +498,249 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
 
 void UDinkInteriorCameraComponent::EndPlay(const EEndPlayReason::Type Reason)
 {
-    RestoreOccluders(); RestoreCamera();
+    RestoreOccluders(); RestoreCamera(); RestoreFoliage();
     if (Arm) Arm->RemoveTickPrerequisiteComponent(this);
     Super::EndPlay(Reason);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Foliage between the camera and Dink (15 Nov 2026). Trees carry no collision, so the boom never shortens for them and
+// the view stays steady; instead a crown in the way fades through its material's camera variant (camera_materials.json
+// "foliage_variants": the same graph with DinkCameraOpacity on a dithered mask and the shadow pass left whole).
+
+bool UDinkInteriorCameraComponent::FoliageSupported(UStaticMeshComponent& Component)
+{
+    if (!Component.GetStaticMesh() || Component.GetNumMaterials()==0 || Component.ComponentHasTag(FoliageProxyTag)) return false;
+    for (int32 I=0; I<Component.GetNumMaterials(); ++I)
+    {
+        UMaterialInterface* Material=Component.GetMaterial(I);
+        if (!Material) return false;
+        if (const bool* Known=FoliageMaterialSupported.Find(Material)) { if (!*Known) return false; continue; }
+        bool bSupported=false;
+        if (UMaterial* Base=Material->GetMaterial())
+        {
+            if (const TObjectPtr<UMaterialInterface>* Variant=FoliageVariantByBase.Find(Base)) bSupported=*Variant!=nullptr;
+            else if (const FString* Path=FoliageVariants.Find(Base->GetPathName().ToLower()))
+            {
+                UMaterialInterface* Loaded=LoadObject<UMaterialInterface>(nullptr,**Path,nullptr,LOAD_NoWarn|LOAD_Quiet);
+                float Default=0.f;
+                if (Loaded && (Loaded->GetBlendMode()!=BLEND_Masked ||
+                    !Loaded->GetScalarParameterValue(FMaterialParameterInfo(OpacityParameter),Default) || !FMath::IsNearlyEqual(Default,1.f)))
+                {
+                    UE_LOG(LogDink,Warning,TEXT("Camera foliage fade: %s is not a masked variant with %s = 1; %s keeps blocking the view"),
+                        **Path,*OpacityParameter.ToString(),*Base->GetName());
+                    Loaded=nullptr;
+                }
+                FoliageVariantByBase.Add(Base,Loaded);
+                bSupported=Loaded!=nullptr;
+            }
+        }
+        FoliageMaterialSupported.Add(Material,bSupported);
+        if (!bSupported) return false;
+    }
+    return true;
+}
+
+void UDinkInteriorCameraComponent::GatherFoliage()
+{
+    FoliageCandidates.Reset();
+    UWorld* World=GetWorld();
+    if (!World || !GetOwner()) return;
+    const double Start=FPlatformTime::Seconds();
+    const FVector Here=GetOwner()->GetActorLocation();
+    constexpr double Range=3000.0;
+    const FBox Around(Here-FVector(Range,Range,Range),Here+FVector(Range,Range,Range));
+    for (TObjectIterator<UStaticMeshComponent> It; It; ++It)
+    {
+        UStaticMeshComponent* Component=*It;
+        if (!IsValid(Component) || Component->GetWorld()!=World || !Component->IsRegistered() || !Component->IsVisible() ||
+            Component->bHiddenInGame || Component->ComponentHasTag(FoliageProxyTag)) continue;
+        UStaticMesh* Mesh=Component->GetStaticMesh();
+        if (!Mesh || !Component->Bounds.GetBox().Intersect(Around)) continue;
+        if (const AActor* Owner=Component->GetOwner(); Owner && Owner->IsHidden()) continue;
+        const FBox Local=Mesh->GetBoundingBox();
+        UInstancedStaticMeshComponent* Instanced=Cast<UInstancedStaticMeshComponent>(Component);
+        // Instances scale about 0.85-1.2 (forest): a mesh far too low even at 1.5 x is grass or fern.
+        if (Local.GetSize().Z*Component->GetComponentScale().GetAbsMax()*(Instanced ? 1.5 : 1.0)<DinkCameraFoliage::MinimumHeightCm) continue;
+        if (!FoliageSupported(*Component)) continue;
+        if (Instanced)
+        {
+            for (int32 Index=0; Index<Instanced->GetInstanceCount(); ++Index)
+            {
+                FTransform Transform;
+                if (!Instanced->GetInstanceTransform(Index,Transform,true)) continue;
+                // A fading instance is shrunk to nothing: its crown is where it stood.
+                for (const FDinkFoliageFade& Fade : FoliageFades) if (Fade.Source==Component && Fade.Instance==Index) Transform=Fade.InstanceTransform;
+                if (FVector::DistSquaredXY(Transform.GetLocation(),Here)>Range*Range) continue;
+                DinkCameraFoliage::FCrown Crown;
+                if (DinkCameraFoliage::CrownFromBounds(Local,Transform,Crown)) FoliageCandidates.Add({Component,Index,Crown});
+            }
+        }
+        else
+        {
+            DinkCameraFoliage::FCrown Crown;
+            if (DinkCameraFoliage::CrownFromBounds(Local,Component->GetComponentTransform(),Crown)) FoliageCandidates.Add({Component,INDEX_NONE,Crown});
+        }
+    }
+    FoliageCandidateCount=FoliageCandidates.Num();
+    const double Ms=(FPlatformTime::Seconds()-Start)*1000.0;
+    UE_LOG(LogDink,Verbose,TEXT("Camera foliage: %d crowns near Dink (%.1f ms)"),FoliageCandidateCount,Ms);
+}
+
+bool UDinkInteriorCameraComponent::BeginFoliageFade(FDinkFoliageFade& Entry)
+{
+    UStaticMeshComponent* Target=Entry.Source;
+    UInstancedStaticMeshComponent* Instanced=Cast<UInstancedStaticMeshComponent>(Entry.Source.Get());
+    if (!IsValid(Target)) return false;
+    if (Entry.Instance!=INDEX_NONE)
+    {
+        AActor* Owner=Instanced ? Instanced->GetOwner() : nullptr;
+        if (!Owner || !Instanced->IsValidInstance(Entry.Instance) || !Instanced->GetInstanceTransform(Entry.Instance,Entry.InstanceTransform,true)) return false;
+        // The instance is drawn by a stand-in at its place while it fades (one instance cannot take its own material).
+        UStaticMeshComponent* Proxy=NewObject<UStaticMeshComponent>(Owner,NAME_None,RF_Transient);
+        Proxy->SetMobility(EComponentMobility::Movable);
+        Proxy->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
+        Proxy->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+        Proxy->SetGenerateOverlapEvents(false);
+        Proxy->SetCanEverAffectNavigation(false);
+        Proxy->ComponentTags.Add(FoliageProxyTag);
+        Proxy->SetStaticMesh(Instanced->GetStaticMesh());
+        Proxy->CastShadow=Instanced->CastShadow;
+        Proxy->bCastDynamicShadow=Instanced->bCastDynamicShadow;
+        Proxy->LightingChannels=Instanced->LightingChannels;
+        Proxy->SetUsingAbsoluteLocation(true); Proxy->SetUsingAbsoluteRotation(true); Proxy->SetUsingAbsoluteScale(true);
+        Proxy->SetWorldTransform(Entry.InstanceTransform);
+        for (int32 I=0; I<Instanced->GetNumMaterials(); ++I) Proxy->SetMaterial(I,Instanced->GetMaterial(I));
+        Proxy->RegisterComponent();
+        const TArray<float>& Data=Instanced->GetCustomPrimitiveData().Data;
+        for (int32 K=0; K<Data.Num(); ++K) Proxy->SetCustomPrimitiveDataFloat(K,Data[K]);
+        Entry.Proxy=Proxy;
+        Target=Proxy;
+    }
+    Entry.OriginalOverrides=Target->OverrideMaterials;
+    for (int32 I=0; I<Target->GetNumMaterials(); ++I)
+    {
+        UMaterialInterface* Original=Target->GetMaterial(I);
+        UMaterial* Base=Original ? Original->GetMaterial() : nullptr;
+        const TObjectPtr<UMaterialInterface>* Variant=Base ? FoliageVariantByBase.Find(Base) : nullptr;
+        if (!Variant || !*Variant)
+        {
+            if (Entry.Proxy) { Entry.Proxy->DestroyComponent(); Entry.Proxy=nullptr; }
+            Entry.FadeMaterials.Reset();
+            return false;
+        }
+        UMaterialInstanceDynamic* MID=UMaterialInstanceDynamic::Create(*Variant,this);
+        MID->CopyMaterialUniformParameters(Original);
+        MID->SetScalarParameterValue(OpacityParameter,1.f);
+        Entry.FadeMaterials.Add(MID);
+    }
+    for (int32 I=0; I<Entry.FadeMaterials.Num(); ++I) Target->SetMaterial(I,Entry.FadeMaterials[I]);
+    if (Entry.Proxy)
+    {
+        FTransform Gone=Entry.InstanceTransform;
+        Gone.SetScale3D(FVector(1.e-4));
+        Instanced->UpdateInstanceTransform(Entry.Instance,Gone,true,true,true);
+    }
+    Entry.Opacity=1.f;
+    return true;
+}
+
+void UDinkInteriorCameraComponent::EndFoliageFade(FDinkFoliageFade& Entry)
+{
+    if (Entry.Proxy)
+    {
+        if (UInstancedStaticMeshComponent* Instanced=Cast<UInstancedStaticMeshComponent>(Entry.Source.Get()); IsValid(Instanced) && Instanced->IsValidInstance(Entry.Instance))
+            Instanced->UpdateInstanceTransform(Entry.Instance,Entry.InstanceTransform,true,true,true);
+        Entry.Proxy->DestroyComponent();
+        Entry.Proxy=nullptr;
+    }
+    else if (IsValid(Entry.Source))
+    {
+        bool bChanged=false;
+        for (int32 I=0; I<Entry.FadeMaterials.Num(); ++I)
+        {
+            // Give back only the slots that still show this fade (another layer may have set its own material since).
+            if (!Entry.Source->OverrideMaterials.IsValidIndex(I) || Entry.Source->OverrideMaterials[I]!=Entry.FadeMaterials[I]) continue;
+            Entry.Source->OverrideMaterials[I]=Entry.OriginalOverrides.IsValidIndex(I) ? Entry.OriginalOverrides[I] : nullptr;
+            bChanged=true;
+        }
+        if (bChanged) Entry.Source->MarkRenderStateDirty();
+    }
+    Entry.FadeMaterials.Reset();
+}
+
+void UDinkInteriorCameraComponent::RestoreFoliage()
+{
+    for (FDinkFoliageFade& Entry : FoliageFades) EndFoliageFade(Entry);
+    FoliageFades.Reset();
+    FadingFoliageCount=0;
+}
+
+void UDinkInteriorCameraComponent::UpdateFoliage(float DeltaTime)
+{
+    FadingFoliageCount=0;
+    UWorld* World=GetWorld();
+    if (!World || !Camera || CVarDinkCameraFoliageFade.GetValueOnGameThread()==0 || FoliageVariants.IsEmpty())
+    {
+        if (!FoliageFades.IsEmpty()) RestoreFoliage();
+        return;
+    }
+    const double Now=World->GetTimeSeconds();
+    const FVector Body=GetOwner()->GetActorLocation();
+    constexpr double RefreshSeconds=5.0;
+    if (CurrentScreen.Get()!=FoliageGatherScreen.Get())
+    {
+        // Family art dresses a screen as it activates: gather again a moment after Dink changes screen.
+        FoliageGatherScreen=CurrentScreen;
+        FoliageGatherTime=FMath::Min(FoliageGatherTime,Now-RefreshSeconds+.3);
+    }
+    if (FoliageGatherTime<0 || Now-FoliageGatherTime>=RefreshSeconds || FVector::DistSquaredXY(Body,FoliageGatherOrigin)>FMath::Square(1000.))
+    {
+        GatherFoliage();
+        FoliageGatherTime=Now;
+        FoliageGatherOrigin=Body;
+    }
+    const UCapsuleComponent* Capsule=GetOwner()->FindComponentByClass<UCapsuleComponent>();
+    const double Half=Capsule ? Capsule->GetScaledCapsuleHalfHeight() : 90.0;
+    const FVector Eye=Camera->GetComponentLocation();
+    const FVector Side=FRotator(0.0,Camera->GetComponentRotation().Yaw,0.0).RotateVector(FVector(0,22,0));
+    const FVector Targets[]={Body+FVector(0,0,Half*.7),Body,Body-FVector(0,0,Half*.9),Body+Side,Body-Side};
+    for (const FFoliageCandidate& Candidate : FoliageCandidates)
+    {
+        UStaticMeshComponent* Component=Candidate.Component.Get();
+        if (!Component || !DinkCameraFoliage::Near(Candidate.Crown,Eye,Body,Candidate.Crown.Radius+200.0)) continue;
+        int32 Found=FoliageFades.IndexOfByPredicate([&](const FDinkFoliageFade& F){ return F.Source==Component && F.Instance==Candidate.Instance; });
+        if (!DinkCameraFoliage::Blocks(Candidate.Crown,Eye,Targets,Found!=INDEX_NONE ? DinkCameraFoliage::HoldMarginCm : 0.0)) continue;
+        if (Found==INDEX_NONE)
+        {
+            FDinkFoliageFade Entry;
+            Entry.Source=Component;
+            Entry.Instance=Candidate.Instance;
+            if (!BeginFoliageFade(Entry)) continue;
+            Found=FoliageFades.Add(MoveTemp(Entry));
+        }
+        FoliageFades[Found].bInTheWay=true;
+        FoliageFades[Found].HoldUntil=Now+DinkCameraFoliage::HoldSeconds;
+    }
+    for (int32 Index=FoliageFades.Num()-1; Index>=0; --Index)
+    {
+        FDinkFoliageFade& Entry=FoliageFades[Index];
+        if (!IsValid(Entry.Source) || (Entry.Instance!=INDEX_NONE && !IsValid(Entry.Proxy)))
+        {
+            EndFoliageFade(Entry);
+            FoliageFades.RemoveAt(Index);
+            continue;
+        }
+        const bool bInTheWay=Entry.bInTheWay || Now<Entry.HoldUntil;
+        Entry.bInTheWay=false;
+        Entry.Opacity=DinkCameraFoliage::StepOpacity(Entry.Opacity,bInTheWay,DeltaTime);
+        for (UMaterialInstanceDynamic* MID : Entry.FadeMaterials) if (MID) MID->SetScalarParameterValue(OpacityParameter,Entry.Opacity);
+        if (!bInTheWay && Entry.Opacity>=1.f)
+        {
+            EndFoliageFade(Entry);
+            FoliageFades.RemoveAt(Index);
+            continue;
+        }
+        ++FadingFoliageCount;
+    }
 }

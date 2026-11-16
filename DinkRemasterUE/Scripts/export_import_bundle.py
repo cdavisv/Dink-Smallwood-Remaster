@@ -30,7 +30,7 @@ Stdlib + numpy + Pillow (both on the dev machine).
 from __future__ import annotations
 
 from remaster_paths import default_data_repo
-from sync_gameplay_data import release_picture_keys
+from sync_gameplay_data import release_picture_keys, saved_picture_keys
 
 import argparse
 import csv
@@ -1356,6 +1356,12 @@ def main(argv=None) -> int:
     canonical_sequences = json.loads((dinkex / "sequences.json").read_text())["sequences"]
     for key, image in release_picture_keys(family_policy, placements_out, canonical_sequences).items():
         pic_keys.setdefault(key, image)
+    # Pictures a script saves for a placement (editor_seq / editor_frame: the flat barrel, the open chest) are shown on later
+    # visits (UDinkGameplay::PresentPlacementPictures); the importer builds their sprite materials whatever region it imports.
+    story = data / "bin/dink/story"
+    saved_pictures = saved_picture_keys({p.stem: p.read_text(errors="replace") for p in sorted(story.glob("*.c"))}, canonical_sequences)
+    for key, image in saved_pictures.items():
+        pic_keys.setdefault(key, image)
 
     # --- sprites
     sprites_out = {}
@@ -1387,6 +1393,8 @@ def main(argv=None) -> int:
         write_png_if_changed(out / "sprites" / f"{key}.png", out_img)
         sprites_out[key] = {"file": f"sprites/{key}.png", "source": image, "width": w, "height": h,
                             "tex_width": pw, "tex_height": ph, "hash": sha1_bytes(arr.tobytes())}
+        if key in saved_pictures:
+            sprites_out[key]["saved"] = True
 
     # --- warps
     warps_out = []
