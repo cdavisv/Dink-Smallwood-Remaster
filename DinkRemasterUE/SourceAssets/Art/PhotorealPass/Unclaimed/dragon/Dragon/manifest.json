@@ -105,7 +105,7 @@
   ],
   "bone_count": 38,
   "weights": {
-   "method": "bone heat",
+   "method": "inverse distance",
    "max_influences": 4,
    "unweighted_vertices": 0
   },
@@ -119,24 +119,24 @@
   "loose_verts": 0,
   "zero_area_faces": 0,
   "uv_range": [
-   0.0041,
-   0.9959
+   0.0042,
+   0.9958
   ],
   "transforms_applied": true
  },
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 78.1,
-   "p99": 150.4
+   "mean": 77.4,
+   "p99": 150.9
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.465,
+   "mean": 0.459,
    "p95": 0.619
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.648
+  "ao_mean": 0.638
  },
  "pivot": "feet: armature origin on the ground between the feet, front on -Y",
  "families": [
@@ -167,6 +167,6 @@
  "dresses": "dragon standing upright on its hind legs, 3.4 m at the head with a 6.7 m wingspan: orange-brown scaled hide with a dark back and pale belly plates, long neck, horned head, green veined wing membranes reddening to the trailing edge, long tail, dorsal spines",
  "third_party": [],
  "status": "source delivered; not imported into Unreal, not bound to any placement",
- "known_weaknesses": "NOT photoreal at 1 m: a lit maquette. Anatomy is a joint-graph blob with displaced belly plates; no modelled musculature, wing-finger joints, eyelids, nostrils or mouth interior (there is a jaw bone but no mouth opening). Wing membranes are 12 mm solid shells stretched between straight spars: opaque in the game material (no translucency map), with no folds when the wing bends. Game mesh is a decimation of the remeshed source (no edge loops at joints). Inverse-distance skin weights, checked in one pose; membranes follow the nearest finger bone and will stretch badly if the wings fold. No animation clips (the dragon of the game flies, breathes fire and dies: none of that is here), no Physics Asset. Scale is a guess from the sprite: 3.4 m at the head, 6.7 m wingspan.",
+ "known_weaknesses": "NOT photoreal at 1 m: a lit maquette. Anatomy is a joint-graph blob with displaced belly plates; no modelled musculature, wing-finger joints, eyelids, nostrils, tongue or mouth lining (the jaw hangs open on its bone, with teeth). Wing membranes are 6 mm solid shells stretched between straight spars: opaque in the game material (no translucency map), with no folds when the wing bends. Game mesh is a decimation of the remeshed source (no edge loops at joints). Inverse-distance skin weights, checked in one pose; membranes follow the nearest finger bone and will stretch badly if the wings fold. No animation clips (the dragon of the game flies, breathes fire and dies: none of that is here), no Physics Asset. Scale is a guess from the sprite: 3.4 m at the head, 6.7 m wingspan.",
  "contact_crop": 0.95
 }
