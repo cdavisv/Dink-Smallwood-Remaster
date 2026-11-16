@@ -584,10 +584,36 @@ def cpp_literals():
     return out
 
 
+OUT_KINDS = ("queued", "alternate", "deliberate")    # reviewed reasons that say the asset is out
+
+
+def stale_when_in(kind_k, kind, name, games, via, literals, roots):
+    """A reviewed reason that says the asset is out (OUT_KINDS) goes stale once the asset is in (review of #173/#174):
+    a queued or alternate one when a root binds the package (for a clip: a runtime caller plays it); a deliberate one
+    (a gore decision, say) on ANY sign of use, a binding of the package (C++ /Game path, manifest, montage) or a
+    runtime caller, even with the package itself unbound (a bare C++ role name). -> (flag, detail, how it is in) or
+    None. A deliberate asset that is in is a bug; a queued or alternate one a note to drop or update the reason."""
+    if kind_k not in OUT_KINDS:
+        return None
+    bound = [g for g in games if g in via]
+    played = clip_played(name, "", literals, roots, games) if kind == "clip" else ""
+    if kind_k == "deliberate":
+        how = played if played and not played.startswith("no (") else ("bound by " + via[bound[0]] if bound else "")
+    elif kind == "clip":
+        how = played if bound and not played.startswith("no (") else ""
+    else:
+        how = "bound by " + via[bound[0]] if bound else ""
+    if not how:
+        return None
+    return ("bug" if kind_k == "deliberate" else "note",
+            "stale reason: the %s reason no longer holds, the asset is in (%s)" % (kind_k, how), how)
+
+
 def clip_played(name, reason, literals, roots, games):
-    """-> "yes (...)" / "no (...)": does the runtime ever ask for this clip?"""
+    """-> "yes (...)" / "no (...)": does the runtime ever ask for this clip? With a reviewed reason the answer names
+    the reason's kind ("no (queued reason)"), unless stale_when_in finds the clip in."""
     if reason:
-        return "no (deliberate)"
+        return "no (%s reason)" % reason.split(":")[0]
     key = name[3:] if name.startswith("AN_") else name
     base = re.sub(r"_(Timid|Confident)$", "", key)
     if key in literals or base in literals:
@@ -1099,15 +1125,12 @@ def main():
             elif played.startswith("no (no runtime"):
                 flags.append("unbound")
                 details.append("bound by a manifest but no runtime caller plays it")
-        # a reviewed reason that says the asset is out (queued / alternate / deliberate) goes stale once the asset is in:
-        # a clip a runtime caller now plays, or a mesh a root now binds. A deliberate one (a gore decision, say) bound by
-        # mistake is a bug; a queued or alternate one is a note to drop or update the reason (review of #173)
-        if k and k[0] in ("queued", "alternate", "deliberate") and bound_games:
-            now_in = clip_played(name, "", literals, roots, games) if kind == "clip" else "bound by " + bound_where
-            if not now_in.startswith("no ("):
-                flags.append("bug" if k[0] == "deliberate" else "note")
-                details.append("stale reason: the %s reason no longer holds, the asset is in (%s)" % (k[0], now_in))
-                print("art_wiring_audit: warning: %s has a %s reason but is in (%s)" % (name, k[0], now_in), file=sys.stderr)
+        stale = stale_when_in(k[0] if k else None, kind, name, games, via, literals, roots)
+        if stale:
+            flags.append(stale[0])
+            details.append(stale[1])
+            played = stale[2] if kind == "clip" else played
+            print("art_wiring_audit: warning: %s has a %s reason but is in (%s)" % (name, k[0], stale[2]), file=sys.stderr)
         if cov and not reason and any(f in ("not_imported", "unbound") for f in flags):
             reason = "queued: " + cov
         rows.append({
@@ -1151,6 +1174,10 @@ def main():
             reason = reason or ("replaced: environment.json mesh_swaps" if not (missed or decided) else "")
         elif k and k[0] in ("replaced", "bug", "superseded"):
             flags.append(k[0])
+        elif k and stale_when_in(k[0], "mesh", n, [g], via, literals, roots):
+            st = stale_when_in(k[0], "mesh", n, [g], via, literals, roots)
+            flags.append(st[0])
+            details.append(st[1])
         elif g in HERO_MESHES:
             seen_s = "player pawn"
         elif not seen_s and seen and n.startswith("SM_") and a.sweep_commit and not in_commit(g, a.sweep_commit, via, roots):

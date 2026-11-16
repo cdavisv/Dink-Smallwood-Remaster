@@ -6,7 +6,7 @@ and, if not, why. It audits the wiring (import, binding, cook, draw, clip caller
 source is good enough to bind is an art decision for the Fable queue.
 
 Tree: master `9cc796b6`. Tool: `DinkRemasterUE/Scripts/art_wiring_audit.py` (read-only, standard library; unit tests in
-`Scripts/tests/test_art_wiring_audit.py`, 31 pass). Reviewed reasons for sources that do not reach the player:
+`Scripts/tests/test_art_wiring_audit.py`, 37 pass). Reviewed reasons for sources that do not reach the player:
 `Scripts/art_wiring_known.json` (52 rows; add a row when you decide, drop it when you bind). Two runs on the same inputs
 write byte-identical files.
 
@@ -202,4 +202,13 @@ card; its 3 placements are bound by no row whose reason changed). The `seen` col
 `meshes.csv`; the only mesh seen on 595 alone is its generated screen mesh, not a source row. The original file was
 read once for the salvage and is left as it is (it belongs to the visual-sweep stream);
 `art/stonebrook-mother-burnholes` belongs to the GP-Q5 stream. `test_c_only_runtime_modules_are_cpp_roots` reads
-the project's real `.uplugin`/`.uproject` files, so it needs a full checkout (or those files in a test snapshot).
+the project's real `.uplugin`/`.uproject` files and skips when a snapshot does not have them.
+
+**Stale-when-in check** (`stale_when_in`, PRs #174 and the follow-up): a reviewed reason that says an asset is out
+(`queued`, `alternate`, `deliberate`) is checked against the asset itself. A queued or alternate one goes stale when a
+root binds the package (for a clip, when a runtime caller plays it): flag `note`. A deliberate one (the gore-excluded
+death clips, say) goes stale on any sign of use, a binding of the package or a runtime caller, even a bare C++ role name
+with the package unbound: flag `bug`. The `seen` column then shows how the asset is in. The check only warns (a row
+flag and a line on stderr); **CI does not run the audit** (its unit tests run, the audit does not), so it catches a
+mistake only when someone reruns `art_wiring_audit.py` by hand on a full checkout with LFS objects (the package reads
+need them) after a binding change, as the rerun after anim-motion's `anim/creature-oneshots` will.

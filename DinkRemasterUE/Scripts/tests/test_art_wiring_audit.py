@@ -421,5 +421,43 @@ class AfterCommitNote(unittest.TestCase):
         self.assertIn('added after the cook (not in the tree at f00d)', A.after_commit_note('f00d', 'cook', '/Game/A/SM_New'))
 
 
+
+class StaleWhenIn(unittest.TestCase):
+    """Review of #173/#174: a reviewed 'out' reason goes stale once the asset is in."""
+    CLIP = '/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Death'
+    MESH = '/Game/Dink/Photoreal/Props/SM_Thing_PR'
+
+    def test_kinds_and_no_prefix_are_pinned(self):
+        self.assertEqual(A.OUT_KINDS, ('queued', 'alternate', 'deliberate'))
+        self.assertTrue(A.clip_played('AN_X', 'queued: owner', set(), {}, []).startswith('no ('))
+        self.assertEqual(A.clip_played('AN_X', 'queued: owner', set(), {}, []), 'no (queued reason)')
+
+    def test_deliberate_clip_bound_through_a_creatures_role_is_a_bug(self):
+        via = {self.CLIP: 'Content/Dink/Data/Art/creatures.json'}
+        roots = {self.CLIP: {'Content/Dink/Data/Art/creatures.json'}}
+        st = A.stale_when_in('deliberate', 'clip', 'AN_Dragon_Death', [self.CLIP], via, set(), roots)
+        self.assertEqual(st[0], 'bug')
+        self.assertIn('yes (creatures.json)', st[1])
+
+    def test_queued_clip_bound_the_same_way_is_a_note(self):
+        via = {self.CLIP: 'Content/Dink/Data/Art/creatures.json'}
+        roots = {self.CLIP: {'Content/Dink/Data/Art/creatures.json'}}
+        self.assertEqual(A.stale_when_in('queued', 'clip', 'AN_Dragon_Death', [self.CLIP], via, set(), roots)[0], 'note')
+
+    def test_deliberate_clip_not_bound_adds_nothing(self):
+        self.assertIsNone(A.stale_when_in('deliberate', 'clip', 'AN_Dragon_Death', [self.CLIP], {}, set(), {}))
+
+    def test_deliberate_clip_named_by_a_bare_cpp_literal_is_a_bug_even_unbound(self):
+        st = A.stale_when_in('deliberate', 'clip', 'AN_Dragon_Death', [self.CLIP], {}, {'Dragon_Death'}, {})
+        self.assertEqual(st[0], 'bug')
+        self.assertIsNone(A.stale_when_in('queued', 'clip', 'AN_Dragon_Death', [self.CLIP], {}, {'Dragon_Death'}, {}))
+
+    def test_alternate_mesh_bound_by_a_root_is_a_note(self):
+        st = A.stale_when_in('alternate', 'mesh', 'SM_Thing_PR', [self.MESH], {self.MESH: 'families.json'}, set(), {})
+        self.assertEqual(st[0], 'note')
+        self.assertIn('bound by families.json', st[1])
+        self.assertIsNone(A.stale_when_in('superseded', 'mesh', 'SM_Thing_PR', [self.MESH], {self.MESH: 'x'}, set(), {}))
+
+
 if __name__ == '__main__':
     unittest.main()
