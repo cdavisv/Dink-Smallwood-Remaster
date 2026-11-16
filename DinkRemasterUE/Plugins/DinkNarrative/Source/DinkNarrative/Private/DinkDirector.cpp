@@ -1473,7 +1473,7 @@ namespace
 
 	/**
 	 * Presentation only: a sprite made by create_sprite shows the family mesh of its picture when families.json has
-	 * one (dropped gold, hearts, potions), instead of the grey marker. The playing sequence when one is set, else the
+	 * one (dropped gold, hearts, potions), else its 1997 picture on a camera-facing card, instead of the grey marker. The playing sequence when one is set, else the
 	 * still picture (pseq, pframe), as the original draws it.
 	 *
 	 * Followed: the sprite this one rides on (brain 15, brain_parm: the twinkle a gold heap creates over itself), or null.
@@ -1490,7 +1490,10 @@ namespace
 		const int32 Sequence = Seq > 0 ? Seq : Still;
 		const int32 Frame = Sequence == Still ? FMath::Max(0, Sprite.GetProp(TEXT("pframe"))) : 0;
 		const int32 Size = Sprite.GetProp(TEXT("size"), 100);
-		if (Family->DressScriptSprite(Actor, Sequence, Frame, FVector(0.0, 0.0, -ScriptSpriteLiftCm), Size > 0 ? Size / 100.f : 1.f)) return;
+		// A twinkle riding a sprite that shows a family mesh (brain 15 on a gold heap) gets no picture card of its own.
+		const AActor* Rides = Followed && Sprite.GetProp(TEXT("brain")) == 15 ? Followed->Actor.Get() : nullptr;
+		const bool bRidesDressed = Rides && (Rides->FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag) || Rides->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag));
+		if (Family->DressScriptSprite(Actor, Sequence, Frame, FVector(0.0, 0.0, -ScriptSpriteLiftCm), Size > 0 ? Size / 100.f : 1.f, !bRidesDressed)) return;
 		// A sprite without a picture (seq and pseq 0: the invisible touch, hardness and warp sprites scripts make with
 		// create_sprite(x, y, brain, 0, 0)) is never drawn by the original: getpic returns 0 for pseq 0 and
 		// draw_sprite_game returns when getpic < 1 (dink.cpp:443-445, 5498). Its grey marker is hidden until a script

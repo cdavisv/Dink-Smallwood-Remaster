@@ -13,6 +13,7 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "AssetCompilingManager.h"
 #include "Components/StaticMeshComponent.h"
+#include "Materials/MaterialInterface.h"
 #include "Editor.h"
 #include "Engine/StaticMesh.h"
 #include "Engine/World.h"
@@ -27,6 +28,11 @@ namespace
 	UStaticMeshComponent* ScriptFamilyMesh(const AActor& Actor)
 	{
 		return Actor.FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptSpriteTag);
+	}
+
+	UStaticMeshComponent* PictureCard(const AActor& Actor)
+	{
+		return Actor.FindComponentByTag<UStaticMeshComponent>(UDinkArtFamilySubsystem::ScriptPictureTag);
 	}
 
 	class FDinkScriptSpriteFamilyCheck : public IAutomationLatentCommand
@@ -132,11 +138,13 @@ namespace
 				const int32 RiderHandle = Handle;
 				if (Test->TestNotNull(TEXT("a second sprite spawns on the heap"), Rider))
 				{
-					Test->TestFalse(TEXT("an unbound sprite that follows nothing keeps its marker"), Rider->Marker->bHiddenInGame);
+					Test->TestNotNull(TEXT("an unbound sprite that follows nothing shows its 1997 picture on a card"), PictureCard(*Rider));
+					Test->TestTrue(TEXT("and no grey marker"), Rider->Marker->bHiddenInGame);
 					Director->SpriteProperty(nullptr, TEXT("brain"), RiderHandle, 15);
 					Director->SpriteProperty(nullptr, TEXT("brain_parm"), RiderHandle, HeapHandle);
 					Test->TestTrue(TEXT("a rider on a dressed sprite hides its marker"), Rider->Marker->bHiddenInGame);
 					Test->TestNull(TEXT("the rider gets no mesh of its own"), ScriptFamilyMesh(*Rider));
+					Test->TestNull(TEXT("nor a picture card over the heap's mesh"), PictureCard(*Rider));
 				}
 			}
 
@@ -154,11 +162,13 @@ namespace
 			Director->SpriteProperty(nullptr, TEXT("pseq"), HeapHandle, FreeSeq);
 			Director->SpriteProperty(nullptr, TEXT("pframe"), HeapHandle, FreeFrame);
 			Test->TestNull(TEXT("a picture without a family row drops the mesh"), ScriptFamilyMesh(*Heap));
-			Test->TestFalse(TEXT("and shows the marker again"), Heap->Marker->bHiddenInGame);
+			Test->TestNotNull(TEXT("and shows its 1997 picture on a card instead (A53: never the grey marker)"), PictureCard(*Heap));
+			Test->TestTrue(TEXT("with the marker hidden"), Heap->Marker->bHiddenInGame);
 			Director->SpriteProperty(nullptr, TEXT("pseq"), HeapHandle, BoundSeq);
 			Director->SpriteProperty(nullptr, TEXT("pframe"), HeapHandle, BoundFrame);
 			Test->TestNotNull(TEXT("the bound picture brings the mesh back"), ScriptFamilyMesh(*Heap));
 			Test->TestTrue(TEXT("and hides the marker again"), Heap->Marker->bHiddenInGame);
+			Test->TestNull(TEXT("and drops the picture card"), PictureCard(*Heap));
 
 			// nodraw hides the whole actor, mesh included.
 			Director->SpriteProperty(nullptr, TEXT("nodraw"), HeapHandle, 1);
@@ -169,7 +179,18 @@ namespace
 			if (Test->TestNotNull(TEXT("create_sprite of an unbound picture spawns"), Plain))
 			{
 				Test->TestNull(TEXT("an unbound picture gets no family mesh"), ScriptFamilyMesh(*Plain));
-				Test->TestFalse(TEXT("an unbound picture keeps its marker"), Plain->Marker->bHiddenInGame);
+				UStaticMeshComponent* Card = PictureCard(*Plain);
+				if (Test->TestNotNull(TEXT("an unbound picture is drawn as its 1997 picture on a card"), Card))
+				{
+					const FString Expected = FString::Printf(TEXT("MI_Sprite_%d_%02d"), FreeSeq, FreeFrame);
+					Test->TestTrue(TEXT("the card carries that picture's material"), Card->GetMaterial(0) && Card->GetMaterial(0)->GetName() == Expected);
+					Test->TestTrue(TEXT("the card has no collision"), Card->GetCollisionEnabled() == ECollisionEnabled::NoCollision);
+					FIntVector4 Pic;
+					if (Test->TestTrue(TEXT("the picture's size is known"), UDinkArtFamilySubsystem::PictureInfo(FreeSeq, FreeFrame, Pic)))
+						Test->TestTrue(TEXT("the card has the picture's true size (0.025 m per pixel)"),
+							FMath::IsNearlyEqual(Card->GetComponentScale().X, Pic.X * 0.025, 0.01) && FMath::IsNearlyEqual(Card->GetComponentScale().Z, Pic.Y * 0.025, 0.01));
+				}
+				Test->TestTrue(TEXT("and no grey marker"), Plain->Marker->bHiddenInGame);
 				Test->TestTrue(TEXT("an unbound marker keeps its scale"), Plain->GetActorScale3D().Equals(FVector(.3, .3, .6), .001));
 			}
 
@@ -183,9 +204,11 @@ namespace
 				Test->TestFalse(TEXT("the actor itself stays (script, touch box)"), Blank->IsHidden());
 				Director->SpriteProperty(nullptr, TEXT("pseq"), BlankHandle, FreeSeq);
 				Director->SpriteProperty(nullptr, TEXT("pframe"), BlankHandle, FreeFrame);
-				Test->TestFalse(TEXT("a picture given later shows the marker of an unbound picture"), Blank->Marker->bHiddenInGame);
+				Test->TestNotNull(TEXT("a picture given later is drawn on a card"), PictureCard(*Blank));
+				Test->TestTrue(TEXT("still without the marker"), Blank->Marker->bHiddenInGame);
 				Director->SpriteProperty(nullptr, TEXT("pseq"), BlankHandle, 0);
 				Test->TestTrue(TEXT("pseq 0 hides it again"), Blank->Marker->bHiddenInGame);
+				Test->TestNull(TEXT("and removes the card"), PictureCard(*Blank));
 			}
 			return true;
 		}
