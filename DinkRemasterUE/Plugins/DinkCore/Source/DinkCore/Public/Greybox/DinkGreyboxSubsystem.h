@@ -110,6 +110,9 @@ public:
 	bool BeginWarp(APawn* Pawn);
 	void EndWarp(APawn* Pawn);
 	void NotifyWarped(APawn* Pawn, const UDinkWarpComponent& Warp);
+	/** Grows by one with every warp taken (NotifyWarped): the story tells a warp's screen load from an edge crossing by it. */
+	int32 GetWarpSerial() const { return WarpSerial; }
+	int32 WarpSerial = 0;
 
 	/** Seconds after a warp during which the same pawn cannot warp again. */
 	static constexpr double WarpCooldownSeconds = 0.75;

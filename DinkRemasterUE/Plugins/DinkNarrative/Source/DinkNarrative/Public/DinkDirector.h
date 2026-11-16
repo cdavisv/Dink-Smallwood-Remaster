@@ -10,6 +10,8 @@ class UDinkStorySubsystem;
 class UDinkInventoryComponent;
 class UDinkStatsComponent;
 class ADinkScreenVolume;
+class APlayerController;
+class UCharacterMovementComponent;
 struct FDinkScriptInstance;
 struct FDinkScreenCorners;
 class FDinkInkStory;
@@ -249,6 +251,33 @@ public:
 	bool IsDinkPlacedByScript() const { return bPlacingDink; }
 	/** Instant mode: finish every move now. */
 	void FinishAllMoves();
+	/**
+	 * The player controller's move input (SetIgnoreMoveInput is a counter) is held by this layer in ONE place, for two reasons: Dink is
+	 * frozen (freeze(1)), or the hardness loading gate is closed (UDinkGameplay::IsHardnessLoading). This recomputes the hold from those
+	 * reasons now: it takes one count when a reason holds and none is taken, gives it back when no reason holds any more, and moves it when
+	 * the controller changed. The controller it was taken on is remembered, so a reset, a load or a lost pawn link can never strand it.
+	 */
+	void UpdatePlayerMoveHold();
+	/** Whether UpdatePlayerMoveHold currently holds a controller's move input. */
+	bool HoldsPlayerMoveInput() const { return MoveHoldController.IsValid(); }
+	/**
+	 * 1997 load_map clears Dink's freeze on every screen load (dink.cpp:1013-1015): walking off an edge (14071-14151), a warp (15724) and
+	 * a script's load_screen (7874-7878). load_screen does it at once (the script may freeze him again before the screen is entered);
+	 * this tells OnScreenEntered that the screen it enters was loaded that way, so it does not clear a freeze the script took afterwards.
+	 */
+	bool ConsumeScriptLoadedScreen(int32 Screen) { const bool b = ScriptLoadedScreen == Screen; ScriptLoadedScreen = INDEX_NONE; return b; }
+	/**
+	 * What load_map does to Dink (dink.cpp:1013-1015): his scripted move stops (move_active, move_nohard false; a move_stop waiting
+	 * on it goes on) and his freeze is cleared. Returns true if anything changed.
+	 */
+	bool ApplyLoadMapToDink(int32 FreezeSerialLimit = MAX_int32, int32 MoveSerialLimit = MAX_int32);
+	/**
+	 * Grow by one with every new freeze of Dink and every scripted move of Dink. The greybox notices a new screen up to about 0.25 s
+	 * after the pawn crossed into it; a freeze or move started after the crossing (escape.c's freeze(1) on Esc, the death script, a
+	 * spell) is not one load_map would have cleared, so the screen entry passes the serials seen at the crossing as limits.
+	 */
+	int32 GetDinkFreezeSerial() const { return DinkFreezeSerial; }
+	int32 GetDinkMoveSerial() const { return DinkMoveSerial; }
 
 	/** Moves the actor of a sprite to its X/Y (keeps the actor's height). */
 	void SyncActorToSprite(FDinkSprite& Sprite);
@@ -311,6 +340,10 @@ private:
 	friend class UDinkStorySubsystem;
 	friend class UDinkGameplay;
 	friend class FDinkFreezeReleaseTest; // Dink.Input.FreezeReleasedByReset drives SetFrozen with a real controller
+	friend class FDinkMoveHoldTest; // Dink.Input.MoveHoldFollowsItsReasons
+	friend class FDinkFreezeFallbackGravityTest; // Dink.Input.ResetRestoresGravityWithoutPawnLink
+	friend class FDinkScreenLoadUnfreezeTest; // Dink.Input.ScreenLoadClearsFreeze
+	friend class FDinkScriptlessEntryOpensGateTest; // Dink.Input.ScriptlessScreenEntryOpensHardnessGate
 	void RegisterCommands();
 	void Register(const TCHAR* Name, EDinkCommandStatus Status, const TCHAR* Note, FDinkCommandHandler Handler);
 	/** Registers sp_<Prop> as a recorded property (stored on the sprite for the animation/AI layers). */
@@ -338,10 +371,21 @@ private:
 	TMap<TWeakObjectPtr<AActor>, int32> HandleByActor;
 	TMap<FDinkOriginId, TWeakObjectPtr<AActor>> OriginIndex;
 	TWeakObjectPtr<UWorld> OriginIndexWorld;
-	/** Whether freeze(1) currently holds the player controller's move input (SetIgnoreMoveInput is a counter). */
-	bool bDinkInputBlocked = false;
-	/** The pawn's gravity scale before a freeze took it away (see SetFrozen). */
+	/** The controller whose move input UpdatePlayerMoveHold holds (one count), null when none is held. */
+	TWeakObjectPtr<APlayerController> MoveHoldController;
+	/** The movement component whose gravity a freeze took away (see SetFrozen), and its scale before; null when none is taken. */
+	TWeakObjectPtr<UCharacterMovementComponent> GravityHeldMovement;
 	float DinkGravityScale = 1.f;
+	/** The screen a script's load_screen loaded (see ConsumeScriptLoadedScreen). */
+	int32 ScriptLoadedScreen = INDEX_NONE;
+	/** Dink's controller: his pawn's, else the world's first local player's. */
+	APlayerController* FindPlayerController() const;
+	/** Gives back the gravity a freeze took (on the component it was taken from, even when Dink's record or pawn link is gone). */
+	void RestoreDinkGravity();
+	/** Gravity follows the hold: taken from Dink's current pawn while he is frozen and his controller is held, else given back. */
+	void SyncDinkGravity();
+	int32 DinkFreezeSerial = 0;
+	int32 DinkMoveSerial = 0;
 
 public:
 	/** See GetSpriteResetSerial. */

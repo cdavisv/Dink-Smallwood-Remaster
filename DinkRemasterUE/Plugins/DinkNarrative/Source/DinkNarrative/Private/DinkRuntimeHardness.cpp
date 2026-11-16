@@ -90,15 +90,17 @@ struct FDinkRuntimeHardnessState
 
 void UDinkGameplay::SetHardnessLoading(bool Loading)
 {
+    const bool WasLoading=bHardnessLoading;
     bHardnessLoading=Loading;
-    APlayerController* PC=Story&&Story->GetWorld()?UGameplayStatics::GetPlayerController(Story->GetWorld(),0):nullptr;
-    if(HardnessBlockedController.IsValid()&&(!Loading||HardnessBlockedController.Get()!=PC))
-    {HardnessBlockedController->SetIgnoreMoveInput(false);HardnessBlockedController.Reset();}
-    if(Loading&&PC&&!HardnessBlockedController.IsValid())
-    {
-        PC->SetIgnoreMoveInput(true);HardnessBlockedController=PC;
-        if(APawn* Pawn=PC->GetPawn())if(auto* Movement=Pawn->GetMovementComponent())Movement->StopMovementImmediately();
-    }
+    // The gate does not hold the controller itself: the director keeps ONE hold for a freeze and this gate together and recomputes
+    // it from both reasons (UDinkDirector::UpdatePlayerMoveHold), so a gate that opens, a reset or a load can never strand a count.
+    UDinkDirector* D=Director();
+    if(!D)return;
+    const bool HeldBefore=D->HoldsPlayerMoveInput();
+    D->UpdatePlayerMoveHold();
+    if(Loading&&(!WasLoading||!HeldBefore)&&D->HoldsPlayerMoveInput())
+        if(APlayerController* PC=Story&&Story->GetWorld()?UGameplayStatics::GetPlayerController(Story->GetWorld(),0):nullptr)
+            if(APawn* Pawn=PC->GetPawn())if(auto* Movement=Pawn->GetMovementComponent())Movement->StopMovementImmediately();
 }
 
 bool UDinkGameplay::BeginOriginalHardnessScreen(int32 Screen,FString& Error,int32 InitialVision)
