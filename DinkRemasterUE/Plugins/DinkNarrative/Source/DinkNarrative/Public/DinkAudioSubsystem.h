@@ -31,6 +31,8 @@ struct DINKNARRATIVE_API FDinkAudioSelection
   */
  static bool ReplaysRepeat(bool bAssetLoops, int32 Repeat) { return Repeat != 0 && !bAssetLoops; }
  /** When a finished repeating one-shot may start again: a full played length (the sound's duration over its pitch, at least 0.1 s) after its last start. */
+ /** kill_repeat_sounds' rule (dink.cpp:6414): a full screen build stops a repeating cue that no sprite owns; one started in the same frame belongs to the new screen. */
+ static bool StopsOnScreenBuild(int32 Repeat, int32 OwnerSprite, bool bStartedThisFrame) { return Repeat != 0 && OwnerSprite == 0 && !bStartedThisFrame; }
  static bool ReplayDue(double NowSeconds, double LastStartSeconds, float DurationSeconds)
  { return NowSeconds - LastStartSeconds >= FMath::Max(0.1, double(DurationSeconds)); }
 };
@@ -94,6 +96,8 @@ public:
  virtual TStatId GetStatId() const override;
  void HandleCue(const FString& Cue, UDinkDirector* Director);
  void StopAll();
+ /** kill_repeat_sounds: stops the repeating cues no sprite owns (screen change, force_vision's rebuild). */
+ void StopOwnerlessRepeats();
  const FDinkAudioSelection& GetSelection() const { return Selection; }
  const FString& GetPlayingMusicAsset() const { return PlayingMusic; }
  int32 GetEffectCount() const { return Effects.Num(); }
@@ -124,8 +128,11 @@ private:
   * engine culls at once (out of range, inaudible) is not restarted every frame.
   */
  TMap<TObjectKey<UAudioComponent>, double> RepeatEffects;
+ /** Repeating cues no sprite owns (2D) -> frame they started; a full screen build stops them (StopOwnerlessRepeats). */
+ TMap<TObjectKey<UAudioComponent>, uint64> OwnerlessRepeats;
  void StopEffect(UAudioComponent* Effect);
  UPROPERTY(Transient) TObjectPtr<USoundAttenuation> VoiceAttenuation;
+ UPROPERTY(Transient) TObjectPtr<USoundAttenuation> EffectAttenuation;
  void EnterScreen(ADinkScreenVolume* Screen);
  void PlayMusic(const FDinkApprovedSound& Entry);
  bool CanPlay() const;

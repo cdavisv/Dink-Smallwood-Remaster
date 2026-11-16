@@ -588,6 +588,8 @@ void UDinkDirector::RegisterCommands()
 	Register(TEXT("editor_frame"), S::Implemented, TEXT("stored as the override's Variant (\"frame<N>\") when the placement has an override"), [EditorVariant](FDinkCommandContext& Ctx) { return EditorVariant(Ctx, TEXT("frame")); });
 	Register(TEXT("force_vision"), S::Implemented, TEXT("rebuilds admitted original hardness screens; legacy greybox retains its vision path"), [this](FDinkCommandContext& Ctx)
 	{
+        // force_vision rebuilds the whole screen (dink.cpp:8497 BuildScreenBackground -> 6750), which stops ownerless repeating sounds.
+        if (UWorld* World = GetWorld()) if (UDinkAudioSubsystem* Local = World->GetSubsystem<UDinkAudioSubsystem>()) Local->StopOwnerlessRepeats();
         if(Story->ForceOriginalHardnessVision(Ctx.Instance,Ctx.Int(0)))return FDinkCommandResult();
 		if (UDinkFactSubsystem* Facts = Story->GetFacts())
 		{

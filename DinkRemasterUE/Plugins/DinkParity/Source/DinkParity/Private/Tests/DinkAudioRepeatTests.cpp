@@ -22,10 +22,18 @@ bool FDinkAudioRepeatTest::RunTest(const FString&)
 	const float Played = 2.5f / FDinkAudioSelection::Pitch(44100);
 	TestTrue(TEXT("a pitch-2 repeat replays after its played 1.25 s"), FDinkAudioSelection::ReplayDue(11.25, 10.0, Played));
 	TestFalse(TEXT("and not before"), FDinkAudioSelection::ReplayDue(11.2, 10.0, Played));
+	// kill_repeat_sounds (dink.cpp:6410-6424, run by every full screen build at 6750 and by force_vision at 8497): a repeating cue
+	// that no sprite owns stops, whether or not its asset loops (the warp machines' sound 34 is a loop asset), unless the new
+	// screen itself started it in that frame; owned or one-shot cues are not touched.
+	TestTrue(TEXT("an ownerless repeat stops on a screen build"), FDinkAudioSelection::StopsOnScreenBuild(1, 0, false));
+	TestFalse(TEXT("a repeat a sprite owns does not"), FDinkAudioSelection::StopsOnScreenBuild(1, 23, false));
+	TestFalse(TEXT("a one-shot does not"), FDinkAudioSelection::StopsOnScreenBuild(0, 0, false));
+	TestFalse(TEXT("a repeat the new screen started in this frame does not"), FDinkAudioSelection::StopsOnScreenBuild(1, 0, true));
 	FString Source;
 	if (FFileHelper::LoadFileToString(Source, *(FPaths::ProjectPluginsDir() / TEXT("DinkNarrative/Source/DinkNarrative/Private/DinkAudioSubsystem.cpp"))))
 	{
 		TestFalse(TEXT("no SoundWave is duplicated at run time (cooked games cannot)"), Source.Contains(TEXT("DuplicateObject")));
+		TestTrue(TEXT("the screen build and force_vision run kill_repeat_sounds"), Source.Contains(TEXT("StopOwnerlessRepeats();")));
 	}
 	else
 	{
