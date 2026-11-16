@@ -35,37 +35,94 @@ TArray<TWeakObjectPtr<UStaticMeshComponent>>& UDinkArtFamilySubsystem::ScriptPic
 	return Cards;
 }
 
-bool UDinkArtFamilySubsystem::PictureInfo(int32 Sequence, int32 Frame, FIntVector4& Out)
+namespace
 {
-	static TMap<FString, FIntVector4> Pictures;
-	static bool bLoaded = false;
-	if (!bLoaded)
+	/** Data/Art/sprite_pictures.json, read once: key -> pixel width, height, origin x, origin y. */
+	const TMap<FString, FIntVector4>& DinkSpritePictureTable()
 	{
-		bLoaded = true;
-		FString Text;
-		TSharedPtr<FJsonObject> Root;
-		const FString Path = FPaths::ProjectContentDir() / TEXT("Dink/Data/Art/sprite_pictures.json");
-		if (FFileHelper::LoadFileToString(Text, *Path) && FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) && Root)
+		static TMap<FString, FIntVector4> Pictures;
+		static bool bLoaded = false;
+		if (!bLoaded)
 		{
-			const TSharedPtr<FJsonObject>* Rows = nullptr;
-			if (Root->TryGetObjectField(TEXT("pictures"), Rows) && Rows)
+			bLoaded = true;
+			FString Text;
+			TSharedPtr<FJsonObject> Root;
+			const FString Path = FPaths::ProjectContentDir() / TEXT("Dink/Data/Art/sprite_pictures.json");
+			if (FFileHelper::LoadFileToString(Text, *Path) && FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Text), Root) && Root)
 			{
-				for (const auto& Pair : (*Rows)->Values)
+				const TSharedPtr<FJsonObject>* Rows = nullptr;
+				if (Root->TryGetObjectField(TEXT("pictures"), Rows) && Rows)
 				{
-					const TArray<TSharedPtr<FJsonValue>>* V = nullptr;
-					if (Pair.Value->TryGetArray(V) && V && V->Num() == 4)
-						Pictures.Add(FString(Pair.Key.ToView()), FIntVector4(int32((*V)[0]->AsNumber()), int32((*V)[1]->AsNumber()), int32((*V)[2]->AsNumber()), int32((*V)[3]->AsNumber())));
+					for (const auto& Pair : (*Rows)->Values)
+					{
+						const TArray<TSharedPtr<FJsonValue>>* V = nullptr;
+						if (Pair.Value->TryGetArray(V) && V && V->Num() == 4)
+							Pictures.Add(FString(Pair.Key.ToView()), FIntVector4(int32((*V)[0]->AsNumber()), int32((*V)[1]->AsNumber()), int32((*V)[2]->AsNumber()), int32((*V)[3]->AsNumber())));
+					}
 				}
 			}
+			if (Pictures.IsEmpty()) UE_LOG(LogDink, Warning, TEXT("Script sprites: no picture sizes in %s; pictures without a mesh keep the marker"), *Path);
 		}
-		if (Pictures.IsEmpty()) UE_LOG(LogDink, Warning, TEXT("Script sprites: no picture sizes in %s; pictures without a mesh keep the marker"), *Path);
+		return Pictures;
 	}
-	if (const FIntVector4* Found = Pictures.Find(FString::Printf(TEXT("%d_%02d"), Sequence, Frame)))
+
+	TMap<int32, FString>& DinkInitSequencePictures()
+	{
+		static TMap<int32, FString> Map;
+		return Map;
+	}
+
+	/** The picture key a script sprite of Sequence shows at Frame: the init file's frame when an init line replaced the sequence. */
+	FString ScriptPictureKey(int32 Sequence, int32 Frame)
+	{
+		const FString* Init = DinkInitSequencePictures().Find(Sequence);
+		return Init ? FString::Printf(TEXT("%s_%02d"), **Init, Frame) : FString::Printf(TEXT("%d_%02d"), Sequence, Frame);
+	}
+}
+
+bool UDinkArtFamilySubsystem::PictureInfo(int32 Sequence, int32 Frame, FIntVector4& Out)
+{
+	return PictureInfoForKey(FString::Printf(TEXT("%d_%02d"), Sequence, Frame), Out);
+}
+
+bool UDinkArtFamilySubsystem::PictureInfoForKey(const FString& Key, FIntVector4& Out)
+{
+	if (const FIntVector4* Found = DinkSpritePictureTable().Find(Key))
 	{
 		Out = *Found;
 		return true;
 	}
 	return false;
+}
+
+bool UDinkArtFamilySubsystem::RegisterInitSequencePicture(const FString& Line)
+{
+	TArray<FString> W;
+	Line.ParseIntoArrayWS(W);
+	if (W.Num() < 3 || !(W[0].Equals(TEXT("load_sequence_now"), ESearchCase::IgnoreCase) || W[0].Equals(TEXT("load_sequence"), ESearchCase::IgnoreCase)))
+		return false;
+	const int32 Seq = FCString::Atoi(*W[2]);
+	FString Path = W[1].Replace(TEXT("\\"), TEXT("/")).ToLower();
+	if (Seq <= 0 || !W[2].IsNumeric() || Path.StartsWith(TEXT("graphics/dink/"))) return false;
+	FString File;
+	if (!Path.Split(TEXT("/"), nullptr, &File, ESearchCase::CaseSensitive, ESearchDir::FromEnd)) File = Path;
+	FString Stem;
+	for (const TCHAR C : File)
+		if (FChar::IsAlnum(C)) Stem.AppendChar(C);
+	if (Stem.IsEmpty()) return false;
+	DinkInitSequencePictures().Add(Seq, TEXT("init_") + Stem);
+	return true;
+}
+
+void UDinkArtFamilySubsystem::ClearInitSequencePictures()
+{
+	DinkInitSequencePictures().Reset();
+}
+
+FString UDinkArtFamilySubsystem::InitSequencePicture(int32 Sequence)
+{
+	const FString* Found = DinkInitSequencePictures().Find(Sequence);
+	return Found ? *Found : FString();
 }
 
 namespace
@@ -75,8 +132,8 @@ namespace
 	{
 		FIntVector4 Pic;
 		const int32 Shown = FMath::Max(1, Frame);
-		if (Sequence <= 0 || !UDinkArtFamilySubsystem::PictureInfo(Sequence, Shown, Pic) || Pic.X <= 0 || Pic.Y <= 0) return false;
-		const FString Key = FString::Printf(TEXT("%d_%02d"), Sequence, Shown);
+		const FString Key = ScriptPictureKey(Sequence, Shown);
+		if (Sequence <= 0 || !UDinkArtFamilySubsystem::PictureInfoForKey(Key, Pic) || Pic.X <= 0 || Pic.Y <= 0) return false;
 		UMaterialInterface* Material = LoadObject<UMaterialInterface>(nullptr,
 			*FString::Printf(TEXT("/Game/Dink/_Generated/Sprites/MI_Sprite_%s.MI_Sprite_%s"), *Key, *Key), nullptr, LOAD_NoWarn | LOAD_Quiet);
 		static TWeakObjectPtr<UStaticMesh> CardMesh;
@@ -651,7 +708,8 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 	const FVector Ground = Actor->GetActorLocation() + GroundOffset;
 	// No origin ID: the spot stands in for it, so heaps dropped side by side differ in variant and yaw, the same every run.
 	const FString Key = FString::Printf(TEXT("script:%d:%d:%d:%d"), Sequence, Frame, FMath::RoundToInt(Ground.X), FMath::RoundToInt(Ground.Y));
-	if (bReady && !bOtherLayer && Sequence > 0)
+	// A sequence an init line replaced (Seth over the green gnome, s7-mil.c) no longer shows dink.ini's picture: no family mesh of it.
+	if (bReady && !bOtherLayer && Sequence > 0 && !DinkInitSequencePictures().Contains(Sequence))
 	{
 		if (!bIndexed) BuildIndex(*World);
 		// A frame no placement of the world uses (an animation's other frames) takes the class of its sequence.

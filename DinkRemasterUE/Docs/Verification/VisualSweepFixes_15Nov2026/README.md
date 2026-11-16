@@ -24,9 +24,9 @@ now hides the marker while the sprite has no picture and shows it again when a s
 family mesh). Test lines in `Dink.Art.Family.ScriptSpriteShowsFamilyMesh`. Evidence: `pictureless_marker_before_after.jpg`
 (364, 408: the small grey cylinder in the overview is gone).
 
-**Most grey cylinders remain**: 33 of the 35 the sweep found are script **people** (the Terris bar wench and drinkers,
-the cave guide of `s2-cave`, townsfolk) whose scripts give them a picture but who have no character art; the marker
-stands in for a person and must stay until they have art. Queued as Fable row VS-16.
+33 of the 35 grey cylinders the sweep found were script **people** (the Terris bar wench and drinkers, the cave guide of
+`s2-cave`, townsfolk) whose scripts give them a picture but who have no character art: since section 4 they are drawn as
+their 1997 picture on a card; real character art stays Fable row VS-16.
 
 ## 3. Tried and dropped: scripted boulders
 
@@ -36,14 +36,45 @@ card under it and the Windemere bomb rock (S536_P15) shrinks to a pebble inside 
 faceting sweep had decided; queued as Fable row VS-15 with the sheet
 `../VisualSweep_15Nov2026/scripted_boulders_tried.jpg`.
 
+## 4. Script sprites with a 1997 picture: drawn as that picture (A53), Seth included
+
+A sprite a script creates whose picture has no family mesh (script people, effects, Seth) showed the grey placeholder cylinder.
+`UDinkArtFamilySubsystem::DressScriptSprite` now puts its 1997 picture on a camera-facing card (true size 0.025 m per pixel
+times `sp_size`, origin pixel on the ground point) and hides the marker. `Content/Dink/Data/Art/sprite_pictures.json`
+(`Scripts/export_sprite_pictures.py`) lists the 2,770 pictures; the bundle imports every one of them (regenerate the world with
+`--export` after merging). `script_sprite_cards_before_after.jpg`: 162 (the grey cylinder is now the 1997 picture), 193 (the
+woman in red), 034 (the bar person behind the counter); 579 unchanged at the play camera.
+
+Seth (16 Nov 2026): `s7-mil.c:9-13` loads his pose into 580 (not in dink.ini) and his walks over dink.ini's green gnome in
+581/583/587/589 with `init("load_sequence_now ...")`. `figure_out` reloads an active sequence from such a line
+(`dink.cpp:2343-2366`: ReadFromLoadSequenceString, FreeSequence, ReloadSequence), so in 1997 those are Seth's frames, never
+the gnome's. The exporter now reads the story's init lines (hero sequences excepted) and writes their frames from the 1997
+archive as `init_<file>_<frame>` (34 frames: pose 2, four walks of 8); the director's `init` command and a loaded game
+register the line (`RegisterInitSequencePicture`), and a card of that sequence then shows the init frame and no family mesh
+of the old picture. Tests: `Dink.Art.Family.ScriptSpriteShowsFamilyMesh` (init lines for 580 and 581: cards with
+`MI_Sprite_init_pose_01` / `MI_Sprite_init_seth1w_01`, no marker, no gnome; a hero line is ignored),
+`Scripts/tests/test_sprite_pictures.py` (init line parsing, the committed keys and pose origin 41,129). The gameplay side of
+the same lines (Seth's walk keeps the gnome's hardbox) is bug A96, not changed here.
+In the game (capture of 16 Nov: SCR_086, `dink.Run s7-mil talk`, "Refuse to leave without him", the lines skipped):
+`seth_scr086_card.jpg` right: Seth appears (`create_sprite(320, 150, 0, 580, 1)`, `s7-mil.c:97`) as his 1997 pose, arms
+crossed, on a card about 4 m tall; Milder lies in his pool beside him; no grey cylinder (the scene audit lists the
+`ScriptPictureCard` with `MI_Sprite_init_pose_01`). NOT seen in a frame: his walk cards (s7-boss walks on base 580; the first
+capture's frames of the walk faced away from him), the cast pose while he fights, the death. Seth is still a flat 1997
+picture: the model is Fable row PQ-Q1, the arena (grey slab walls, lava band) PQ-Q6.
+
 ## Checks
 
-- Build of the private copy (master + this change): 0 warnings.
-- `Scripts/test.sh "Dink.Art+Dink.AI.Screenlock+Dink.Gameplay.Probe"` on master `f92915fe` + this change (and the
-  boulder rows, since dropped): 95/95 in 638 s. The twenty probe md5s equal `Plugins/DinkParity/Docs/packaged_probe.md`
-  (Ch1 b4ad88c02c ... Ch10 23fd57dfdc, Ch11 0d70cebfcd ... Ch20 84f33687af). On master `0f1185b8` + this change the private copy builds (0 warnings); the test run on that tree is queued behind the Unreal lock (result in the PR when it lands).
-- The sweep's second capture run (121 screens, `Scripts/PhotorealQA/visual_sweep.py --screens=...`) on the same tree:
-  no LockBarrier primitive in any audit, no material/texture warning in the log.
+- 16 Nov 2026, the final tree (this branch rebased on master `3a7b4451c`, private copy built from it): build OK, 0 warnings;
+  `import_greybox.sh --region all --export` (2,775 sprites exported, 34 of them `init_*`) and `--region stonebrook` OK,
+  `Dink.Import` 23/23 each; `Scripts/test.sh "Dink.Art+Dink.AI.Screenlock+Dink.Gameplay.Probe+Dink.Input.FreezeReleasedByReset+Dink.Narrative.Director"`
+  **107/107** (678 s, 6 with warnings); **the twenty probe md5s equal the current baseline of `Plugins/DinkParity/Docs/packaged_probe.md`**
+  (Ch1 b4ad88c02c ... Ch10 23fd57dfdc, Ch11 0d70cebfcd ... Ch20 84f33687af).
+- `python3 -m unittest discover -s Scripts/tests`: 962/963 in the private copy; the one failure, `test_art_wiring_audit.OwnerIds`,
+  reads `doc/remaster/ALPHA_BUG_LIST.md` that a private copy does not have, and passes in the worktree (41/41 for that file).
+- Capture `cards5` (24 screens: lock screens and the people screens 34, 33, 35, 36, 162, 193, 579 ...) at the play camera and
+  from above: no grey slab, the people are 1997 picture cards (sheet `script_sprite_cards_before_after.jpg`).
+- 15 Nov: fixes 1-2 on master `f92915fe`: 95/95 and the probe md5s equal; the sweep's second capture run (121 screens): no
+  LockBarrier primitive in any audit, no material/texture warning.
 - No binding changed: `art_coverage.py` counts and `ALPHA_GATE2_BACKLOG.md` do not move.
 
 ## Not checked

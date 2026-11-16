@@ -821,6 +821,8 @@ void UDinkDirector::RegisterCommands()
 		{
 			Gameplay->ApplyInitLine(Ctx.Str(0));
 		}
+		// Presentation: picture cards of the sequence show the init file's frames (Seth's pose and walks, s7-mil.c:9-13).
+		UDinkArtFamilySubsystem::RegisterInitSequencePicture(Ctx.Str(0));
 		UE_LOG(LogDinkDirector, Verbose, TEXT("init \"%s\" recorded"), *Ctx.Str(0));
 		return FDinkCommandResult();
 	});
@@ -2266,12 +2268,14 @@ void UDinkDirector::LoadState(const TSharedPtr<FJsonObject>& State)
 	// Resume a saved explicit track without adding a new classic script cue.
 	if (!Audio.CurrentMusic.IsEmpty() && Audio.Playback) Audio.Playback(TEXT("music:") + Audio.CurrentMusic);
 	InitLines.Reset();
+	UDinkArtFamilySubsystem::ClearInitSequencePictures();
 	const TArray<TSharedPtr<FJsonValue>>* Inits = nullptr;
 	if (State->TryGetArrayField(TEXT("init"), Inits))
 	{
 		for (const TSharedPtr<FJsonValue>& V : *Inits)
 		{
 			InitLines.Add(V->AsString());
+			UDinkArtFamilySubsystem::RegisterInitSequencePicture(V->AsString());
 			if (UDinkGameplay* Gameplay = Story ? Story->GetGameplay() : nullptr)
 			{
 				Gameplay->ApplyInitLine(V->AsString()); // the sequences the saved game had loaded

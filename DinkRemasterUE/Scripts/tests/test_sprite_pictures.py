@@ -26,16 +26,25 @@ class SpritePictures(unittest.TestCase):
         data = json.loads(DATA.read_text())
         self.assertEqual(data['schema'], 'dink-sprite-pictures/1')
         pics = data['pictures']
-        # Seth (s7-boss walks on base 580) and the Terris bar people must have a picture to draw.
-        for key in ('581_01', '583_01', '587_01', '589_01'):
+        # The green gnome dink.ini puts in 581-589, and Seth's pose and walks that s7-mil.c's init lines load over it.
+        for key in ('581_01', '583_01', '587_01', '589_01', 'init_pose_01', 'init_seth1w_01', 'init_seth9w_08'):
             self.assertIn(key, pics)
+        self.assertEqual(pics['init_pose_01'], [66, 160, 41, 129])   # s7-mil.c:13: origin 41,129 from the line
         self.assertTrue(all(len(v) == 4 and v[0] > 0 and v[1] > 0 for v in pics.values()))
         self.assertFalse(any(k.split('_')[0] in ('10',) for k in pics))
+
+    def test_init_lines(self):
+        story = {'s7-mil': 'init("load_sequence_now graphics\\effects\\magic\\pose 580 75 41 129 -30 -16 31 10");\n'
+                           'init("load_sequence_now graphics\\dink\\idle\\ds-i2- 12 250 33 70 -12 -9 12 9");',
+                 'x': 'init("load_sequence_now graphics\\effects\\magic\\pose 580 75 41 129 -30 -16 31 10");'}
+        self.assertEqual(S.init_lines(story), [(580, 'graphics/effects/magic/pose', 41, 129, '')])
+        self.assertEqual(S.init_stem('graphics/effects/magic/seth1w'), 'init_seth1w')
 
     @unittest.skipUnless(DINKEX.exists(), 'tools/dinkex/out not extracted')
     def test_up_to_date(self):
         seqs = json.loads(DINKEX.read_text())['sequences']
-        self.assertEqual(json.loads(DATA.read_text())['pictures'], S.pictures(seqs))
+        pics = json.loads(DATA.read_text())['pictures']
+        self.assertEqual({k: v for k, v in pics.items() if not k.startswith('init_')}, S.pictures(seqs))
 
 
 if __name__ == '__main__':

@@ -1372,12 +1372,18 @@ def main(argv=None) -> int:
                 key = f"{sequence['seq']}_{frame['frame']:02d}"
                 if key in wanted and frame.get("image"):
                     pic_keys.setdefault(key, frame["image"])
+    # Sequences a script replaces with init("load_sequence_now ...") (Seth's pose and walks, s7-mil.c): their frames come from
+    # the 1997 archives, keyed "init_<file>_<frame>" (export_sprite_pictures.init_frames).
+    from export_sprite_pictures import init_frames
+    init_images = {}
+    for key, (image, _size) in init_frames(data / "bin/dink", {p.stem: p.read_text(errors="replace") for p in sorted(story.glob("*.c"))}).items():
+        init_images[key] = image
+        pic_keys.setdefault(key, f"init:{key}")
 
     # --- sprites
     sprites_out = {}
     for key, image in sorted(pic_keys.items()):
-        src = dinkex / image
-        img = Image.open(src).convert("RGBA")
+        img = init_images[key] if key in init_images else Image.open(dinkex / image).convert("RGBA")
         w, h = img.size
         pw, ph = min(next_pow2(w), SPRITE_MAX), min(next_pow2(h), SPRITE_MAX)
         arr = np.array(img)

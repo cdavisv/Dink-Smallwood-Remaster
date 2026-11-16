@@ -196,6 +196,20 @@ public:
 	static TArray<TWeakObjectPtr<class UStaticMeshComponent>>& ScriptPictureCards();
 	/** Pixel width, height and origin (x, y) of a 1997 picture "<seq>_<frame:02d>" from Data/Art/sprite_pictures.json. */
 	static bool PictureInfo(int32 Sequence, int32 Frame, FIntVector4& Out);
+	/** The same for a picture key ("<seq>_<frame:02d>" or "init_<file>_<frame:02d>"). */
+	static bool PictureInfoForKey(const FString& Key, FIntVector4& Out);
+	/**
+	 * A script's init("load_sequence_now <file> <seq> ...") line loads <file>'s frames into <seq>, replacing what dink.ini put
+	 * there (figure_out, dink.cpp:2335-2366: FreeSequence + ReloadSequence for an active sequence): Seth's pose 580 and walks
+	 * 581/583/587/589 (s7-mil.c:9-13) over the green gnome. Picture cards of that sequence then show "init_<file>_<frame>"
+	 * (sprite_pictures.json, imported by the bundle) and no family mesh of the old picture. Hero sequences
+	 * (graphics\dink\...) are skipped: the hero is drawn by his own mesh. Presentation only. False if the line defines nothing.
+	 */
+	static bool RegisterInitSequencePicture(const FString& Line);
+	/** Forgets every init picture (a loaded game registers its own lines again). */
+	static void ClearInitSequencePictures();
+	/** "init_<file>" for a sequence an init line replaced, else empty. */
+	static FString InitSequencePicture(int32 Sequence);
 
 	/**
 	 * Presentation of a sprite a script created (create_sprite: pickups, dropped gold and hearts). Such a sprite has no

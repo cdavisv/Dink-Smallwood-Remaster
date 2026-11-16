@@ -198,6 +198,28 @@ namespace
 				Test->TestTrue(TEXT("an unbound marker keeps its scale"), Plain->GetActorScale3D().Equals(FVector(.3, .3, .6), .001));
 			}
 
+			// Seth (A53): s7-mil.c:9-13 loads his pose into 580 (dink.ini has none) and his walks over the green gnome of 581-589
+			// with init("load_sequence_now ..."); figure_out reloads an active sequence (dink.cpp:2335-2366). His cards show
+			// the init file's frames, never the grey marker and never the gnome.
+			Director->Execute(Caller, FDinkStoryLine::Parse(TEXT(">> init \"load_sequence_now graphics\\effects\\magic\\pose 580 75 41 129 -30 -16 31 10\""), {TEXT("cmd"), TEXT("src:1")}));
+			Director->Execute(Caller, FDinkStoryLine::Parse(TEXT(">> init \"load_sequence_now graphics\\effects\\magic\\seth1w 581 75 43 133 -19 -16 23 16\""), {TEXT("cmd"), TEXT("src:1")}));
+			Test->TestEqual(TEXT("the init line names the picture of 580"), UDinkArtFamilySubsystem::InitSequencePicture(580), FString(TEXT("init_pose")));
+			Test->TestEqual(TEXT("and replaces the gnome's 581"), UDinkArtFamilySubsystem::InitSequencePicture(581), FString(TEXT("init_seth1w")));
+			Test->TestTrue(TEXT("a hero sequence is left to the hero"), UDinkArtFamilySubsystem::InitSequencePicture(79).IsEmpty() &&
+				!UDinkArtFamilySubsystem::RegisterInitSequencePicture(TEXT("load_sequence_now graphics\\dink\\walk\\ds-w9- 79 43 38 72 -14 -9 14 9")));
+			for (const TPair<int32, FString>& Seth : TArray<TPair<int32, FString>>{{580, TEXT("MI_Sprite_init_pose_01")}, {581, TEXT("MI_Sprite_init_seth1w_01")}})
+			{
+				ADinkScriptSpriteActor* S = Create(540 + Seth.Key - 580, Seth.Key, 1);
+				if (!Test->TestNotNull(*FString::Printf(TEXT("create_sprite of Seth's %d spawns"), Seth.Key), S)) continue;
+				UStaticMeshComponent* Card = PictureCard(*S);
+				Test->TestNull(*FString::Printf(TEXT("Seth's %d gets no family mesh of the old picture"), Seth.Key), ScriptFamilyMesh(*S));
+				if (Test->TestNotNull(*FString::Printf(TEXT("Seth's %d is drawn as his 1997 picture on a card"), Seth.Key), Card))
+					Test->TestTrue(*FString::Printf(TEXT("with %s"), *Seth.Value), Card->GetMaterial(0) && Card->GetMaterial(0)->GetName() == Seth.Value);
+				Test->TestTrue(TEXT("and no grey marker"), S->Marker->bHiddenInGame);
+			}
+			UDinkArtFamilySubsystem::ClearInitSequencePictures();
+			Director->InitLines.Reset();
+
 			// A sprite without a picture (create_sprite x, y, brain, 0, 0: touch, hardness and warp sprites) is never drawn
 			// by the original (getpic, draw_sprite_game, dink.cpp:443-445, 5498): no grey marker until it gets a picture.
 			ADinkScriptSpriteActor* Blank = Create(420, 0, 0);
