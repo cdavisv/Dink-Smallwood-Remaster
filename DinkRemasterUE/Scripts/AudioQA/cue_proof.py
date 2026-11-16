@@ -18,6 +18,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import audio_coverage as ac  # noqa: E402
 
 PLAY = re.compile(r'Playing approved sound (\S+) sprite=(-?\d+) pitch=([0-9.]+)')
+STEP = re.compile(r'Step [a-z] on SCR_\d+ at [^:]+: (\S+)')
+BED = re.compile(r'Ambience bed \S+: (\S+) volume=')
 SWEEP = re.compile(r'AUDIOQA sweep \d+/\d+ (\S+) (\S+) (\S+) volume=([0-9.]+) play=([0-9.]+)')
 DRIFT = 0.011   # the SDL disk driver writes about 1.1 % more audio than wall-clock time (see README)
 
@@ -35,12 +37,16 @@ def main():
     ap.add_argument('--log', required=True); ap.add_argument('--recording', required=True)
     ap.add_argument('--rate', type=int, default=48000); ap.add_argument('--channels', type=int, default=6)
     ap.add_argument('--assets', default=str(ac.PROJECT), help='checkout with SourceAssets/Audio (LFS-pulled)')
-    ap.add_argument('--asset', action='append', required=True, help='SoundWave name, e.g. SFX_09_punch (repeatable)')
+    ap.add_argument('--asset', action='append', required=True, help='SoundWave name, e.g. SFX_09_punch, or a prefix ending in * (Step_*); repeatable')
     ap.add_argument('--out')
     a = ap.parse_args()
     root = Path(a.assets)
     man = json.loads((root / 'SourceAssets/Audio/selection_manifest.json').read_text())
     src_of = {x['name']: root / x['source'] for x in man['assets']}
+    life = root / 'SourceAssets/Audio/Life'
+    src_of.update({w.stem: w for w in life.glob('*.wav')} if life.is_dir() else {})
+    want = lambda n: any(n == a or (a.endswith('*') and n.startswith(a[:-1])) for a in a_assets)
+    a_assets = a.asset
     rec = ac.Recording(a.recording, a.rate, a.channels)
     t_open = ac.device_open_seconds(Path(a.log))
     if t_open is None:
@@ -50,16 +56,17 @@ def main():
         t = ac.log_seconds(line)
         if t is None:
             continue
-        m = PLAY.search(line)
+        m = PLAY.search(line) or STEP.search(line) or BED.search(line)
         if m:
             name = m.group(1).rsplit('.', 1)[-1]
-            if name in a.asset:
-                events.append(dict(kind='game', name=name, t=t, sprite=int(m.group(2)), pitch=float(m.group(3))))
+            pitch = float(m.group(3)) if m.re is PLAY else 1.0
+            if want(name):
+                events.append(dict(kind='game', name=name, t=t, sprite=int(m.group(2)) if m.re is PLAY else 0, pitch=pitch))
             continue
         m = SWEEP.search(line)
         if m:
             name = m.group(3).rsplit('.', 1)[-1]
-            if name in a.asset:
+            if want(name):
                 events.append(dict(kind='sweep', name=name, t=t, sprite=None, pitch=1.0))
     rows = []
     for e in events:
@@ -85,7 +92,7 @@ def main():
                    f"{f(r['peak'])} | {'yes' if r['heard'] else 'NO'} |")
     text = '\n'.join(out) + '\n'
     print(text)
-    for n in a.asset:
+    for n in sorted({r['name'] for r in rows}):
         got = [r for r in rows if r['name'] == n]
         print(f"{n}: {len(got)} cue(s), heard {sum(r['heard'] for r in got)} ({sum(r['kind'] == 'game' for r in got)} in gameplay)")
     if a.out:
