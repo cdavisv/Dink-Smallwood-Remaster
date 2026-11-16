@@ -82,10 +82,13 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkOriginCommand(
 // ---------------------------------------------------------------------------------------------
 // dink.CaptureScript <file>: timed console-command runner for rendered lighting review without any
 // keyboard input. One instruction per line: `wait <seconds>`, `shot <png path>` (viewport without
-// UI), `fps <label>` (average frame rate since the previous instruction), or any console command.
+// UI), `fps <label>` (average frame rate since the previous instruction, plus the mean game-thread,
+// render-thread and GPU milliseconds of those frames as `stat unit` measures them), or any console command.
 #include "Containers/Ticker.h"
+#include "DynamicRHI.h"
 #include "Engine/Engine.h"
 #include "Misc/FileHelper.h"
+#include "RenderTimer.h"
 #include "UnrealClient.h"
 
 namespace
@@ -98,11 +101,27 @@ namespace
 		double MarkTime = 0.0;
 		uint64 MarkFrame = 0;
 		TWeakObjectPtr<UWorld> World;
+		/** Sums of the per-frame timings since the mark (ms) and the number of frames sampled. */
+		double GameMs = 0.0, RenderMs = 0.0, GpuMs = 0.0, GpuMaxMs = 0.0;
+		int32 Samples = 0;
+		uint64 LastSampledFrame = 0;
+		void ResetMark(double Now) { MarkTime = Now; MarkFrame = GFrameCounter; GameMs = RenderMs = GpuMs = GpuMaxMs = 0.0; Samples = 0; }
 	};
 
 	bool TickCaptureScript(TSharedRef<FDinkCaptureScript> S)
 	{
 		const double Now = FPlatformTime::Seconds();
+		if (S->LastSampledFrame != GFrameCounter)
+		{
+			// the timings `stat unit` shows: last completed frame of each thread and of the GPU
+			S->LastSampledFrame = GFrameCounter;
+			const double Gpu = FPlatformTime::ToMilliseconds(RHIGetGPUFrameCycles(0));
+			S->GameMs += FPlatformTime::ToMilliseconds(GGameThreadTime);
+			S->RenderMs += FPlatformTime::ToMilliseconds(GRenderThreadTime);
+			S->GpuMs += Gpu;
+			S->GpuMaxMs = FMath::Max(S->GpuMaxMs, Gpu);
+			++S->Samples;
+		}
 		while (S->Next < S->Lines.Num())
 		{
 			if (Now < S->WaitUntil) return true;
@@ -114,8 +133,7 @@ namespace
 			if (Line.Split(TEXT(" "), nullptr, &Rest) && Line.StartsWith(TEXT("wait ")))
 			{
 				S->WaitUntil = Now + FCString::Atod(*Rest);
-				S->MarkTime = Now;
-				S->MarkFrame = GFrameCounter;
+				S->ResetMark(Now);
 				return true;
 			}
 			if (Line.StartsWith(TEXT("shot ")))
@@ -129,8 +147,9 @@ namespace
 			{
 				const double Seconds = Now - S->MarkTime;
 				const uint64 Frames = GFrameCounter - S->MarkFrame;
-				UE_LOG(LogDink, Display, TEXT("DINK CAPTURE: fps %s %.1f (%llu frames in %.2fs)"), *Rest,
-					Seconds > 0.0 ? double(Frames) / Seconds : 0.0, Frames, Seconds);
+				const double N = FMath::Max(1, S->Samples);
+				UE_LOG(LogDink, Display, TEXT("DINK CAPTURE: fps %s %.1f (%llu frames in %.2fs) game %.2f ms render %.2f ms gpu %.2f ms (max %.2f)"), *Rest,
+					Seconds > 0.0 ? double(Frames) / Seconds : 0.0, Frames, Seconds, S->GameMs / N, S->RenderMs / N, S->GpuMs / N, S->GpuMaxMs);
 				continue;
 			}
 			UE_LOG(LogDink, Display, TEXT("DINK CAPTURE: exec %s"), *Line);
@@ -151,8 +170,7 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkCaptureScriptCommand(
 			return;
 		}
 		S->World = World;
-		S->MarkTime = FPlatformTime::Seconds();
-		S->MarkFrame = GFrameCounter;
+		S->ResetMark(FPlatformTime::Seconds());
 		FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([S](float) { return TickCaptureScript(S); }));
 	}));
 
@@ -170,13 +188,16 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkCaptureScriptCommand(
 #include "Engine/PostProcessVolume.h"
 #include "Engine/SkyLight.h"
 #include "Engine/StaticMesh.h"
+#include "Components/DirectionalLightComponent.h"
+#include "Components/SkyAtmosphereComponent.h"
+#include "UObject/UObjectIterator.h"
 #include "Materials/MaterialInterface.h"
 
 static FAutoConsoleCommandWithWorldAndArgs GDinkEnvPostCommand(
-	TEXT("dink.EnvPost"), TEXT("dink.EnvPost <minev|maxev|bias|shadow|highlight|detail|leak|toe|gather|sky|artbias|sunshadow|sunyaw|sunpitch> <value>: live lighting tweak for review captures."),
+	TEXT("dink.EnvPost"), TEXT("dink.EnvPost <minev|maxev|bias|shadow|highlight|detail|leak|toe|gather|sky|artbias|sunshadow|sunyaw|sunpitch|sunint|sunangle|suntemp|contactlen|contactnoncast|mie|mieaniso|aerial|rayleigh|skytint|fogdensity|fogfalloff|fog2|fogstart|fogvol|fogz|fogmax|slope|shoulder|whiteclip|blackclip|saturation|contrast|gain|vignette|bloom|whitetemp|lumendetail|reflq|scenelq> <value>: live lighting tweak for review captures (skytint takes r g b)."),
 	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
 	{
-		if (!World || Args.Num() != 2) return;
+		if (!World || Args.Num() < 2) return;
 		const float V = FCString::Atof(*Args[1]);
 		const FString& K = Args[0];
 		if (K == TEXT("sky"))
@@ -184,14 +205,40 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkEnvPostCommand(
 			for (TActorIterator<ASkyLight> It(World); It; ++It) It->GetLightComponent()->SetIntensity(V);
 			return;
 		}
-		if (K == TEXT("sunshadow") || K == TEXT("sunyaw") || K == TEXT("sunpitch"))
+		if (K == TEXT("skytint") && Args.Num() == 4)
+		{
+			for (TActorIterator<ASkyLight> It(World); It; ++It)
+				It->GetLightComponent()->SetLightColor(FLinearColor(V, FCString::Atof(*Args[2]), FCString::Atof(*Args[3])));
+			return;
+		}
+		if (K == TEXT("sunshadow") || K == TEXT("sunyaw") || K == TEXT("sunpitch") || K == TEXT("sunint") || K == TEXT("sunangle")
+			|| K == TEXT("suntemp") || K == TEXT("contactlen") || K == TEXT("contactnoncast"))
 		{
 			for (TActorIterator<ADirectionalLight> It(World); It; ++It)
 			{
-				if (K == TEXT("sunshadow")) { It->GetLightComponent()->SetCastShadows(V != 0.f); continue; }
+				ULightComponent* L = It->GetLightComponent();
+				UDirectionalLightComponent* D = Cast<UDirectionalLightComponent>(L);
+				if (K == TEXT("sunshadow")) { L->SetCastShadows(V != 0.f); continue; }
+				if (K == TEXT("sunint")) { L->SetIntensity(V); continue; }
+				if (K == TEXT("suntemp")) { L->SetTemperature(V); continue; }
+				if (K == TEXT("sunangle")) { if (D) D->SetLightSourceAngle(V); continue; }
+				if (K == TEXT("contactlen")) { L->ContactShadowLength = V; L->MarkRenderStateDirty(); continue; }
+				if (K == TEXT("contactnoncast")) { L->ContactShadowNonCastingIntensity = V; L->MarkRenderStateDirty(); continue; }
 				FRotator R = It->GetActorRotation();
 				(K == TEXT("sunyaw") ? R.Yaw : R.Pitch) = V;
 				It->SetActorRotation(R);
+			}
+			return;
+		}
+		if (K == TEXT("mie") || K == TEXT("mieaniso") || K == TEXT("aerial") || K == TEXT("rayleigh"))
+		{
+			for (TObjectIterator<USkyAtmosphereComponent> It; It; ++It)
+			{
+				if (It->GetWorld() != World) continue;
+				if (K == TEXT("mie")) It->SetMieScatteringScale(V);
+				else if (K == TEXT("mieaniso")) It->SetMieAnisotropy(V);
+				else if (K == TEXT("aerial")) It->SetAerialPespectiveViewDistanceScale(V);
+				else It->SetRayleighScatteringScale(V);
 			}
 			return;
 		}
@@ -201,6 +248,8 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkEnvPostCommand(
 			{
 				UExponentialHeightFogComponent* F = It->GetComponent();
 				if (K == TEXT("fogdensity")) F->SetFogDensity(V);
+				else if (K == TEXT("fogfalloff")) F->SetFogHeightFalloff(V);
+				else if (K == TEXT("fogmax")) F->SetFogMaxOpacity(V);
 				else if (K == TEXT("fog2")) F->SetSecondFogDensity(V);
 				else if (K == TEXT("fogstart")) F->SetStartDistance(V);
 				else if (K == TEXT("fogvol")) F->SetVolumetricFog(V != 0.f);
@@ -227,6 +276,19 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkEnvPostCommand(
 			else if (K == TEXT("leak")) { S.bOverride_LumenSkylightLeaking = true; S.LumenSkylightLeaking = V; }
 			else if (K == TEXT("toe")) { S.bOverride_FilmToe = true; S.FilmToe = V; }
 			else if (K == TEXT("gather")) { S.bOverride_LumenFinalGatherQuality = true; S.LumenFinalGatherQuality = V; }
+			else if (K == TEXT("lumendetail")) { S.bOverride_LumenSceneDetail = true; S.LumenSceneDetail = V; }
+			else if (K == TEXT("reflq")) { S.bOverride_LumenReflectionQuality = true; S.LumenReflectionQuality = V; }
+			else if (K == TEXT("scenelq")) { S.bOverride_LumenSceneLightingQuality = true; S.LumenSceneLightingQuality = V; }
+			else if (K == TEXT("slope")) { S.bOverride_FilmSlope = true; S.FilmSlope = V; }
+			else if (K == TEXT("shoulder")) { S.bOverride_FilmShoulder = true; S.FilmShoulder = V; }
+			else if (K == TEXT("whiteclip")) { S.bOverride_FilmWhiteClip = true; S.FilmWhiteClip = V; }
+			else if (K == TEXT("blackclip")) { S.bOverride_FilmBlackClip = true; S.FilmBlackClip = V; }
+			else if (K == TEXT("saturation")) { S.bOverride_ColorSaturation = true; S.ColorSaturation = FVector4(V, V, V, 1.0); }
+			else if (K == TEXT("contrast")) { S.bOverride_ColorContrast = true; S.ColorContrast = FVector4(V, V, V, 1.0); }
+			else if (K == TEXT("gain")) { S.bOverride_ColorGain = true; S.ColorGain = FVector4(V, V, V, 1.0); }
+			else if (K == TEXT("vignette")) { S.bOverride_VignetteIntensity = true; S.VignetteIntensity = V; }
+			else if (K == TEXT("bloom")) { S.bOverride_BloomIntensity = true; S.BloomIntensity = V; }
+			else if (K == TEXT("whitetemp")) { S.bOverride_WhiteTemp = true; S.WhiteTemp = V; }
 		}
 	}));
 
