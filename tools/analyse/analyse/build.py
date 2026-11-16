@@ -174,6 +174,17 @@ def analyse(ir_dir, table_path, story_dir=None, classes_dir=None, dinkc_dir=None
     except LY.LayoutError as e:
         raise SystemExit("layout: %s" % e)
     w.layout = L
+    # The hero's pace reference (regions.toml [pace], doc/remaster/WORLD_SCALE.md): the same layout solved at the scale the
+    # 6 m/s run was tuned at, so the export can give each screen the factor that keeps the run's pixels per second.
+    w.pace_layout = None
+    pace_ref = (table.get("pace") or {}).get("reference")
+    if pace_ref and pace_ref != table["scale"]:
+        ref_table = dict(table)
+        ref_table["scale"] = dict(pace_ref)
+        try:
+            w.pace_layout = LY.build(ir, ref_table, dict(screen_kind), dict(screen_sheet), interiors, reached=reached_screens)
+        except LY.LayoutError as e:
+            raise SystemExit("layout at the pace reference scale: %s" % e)
     for n in L.displaced:
         screen_sheet[n] = L.sheet_of[n]
         for r in rows:
@@ -405,6 +416,7 @@ def write_all(w, out, dinkc_dir=None, log=print):
                                     "sw": [r4(P[2][0]), r4(P[2][1])], "se": [r4(P[3][0]), r4(P[3][1])]},
                         "center": [r4(v) for v in L.to_world(n, W / 2, H / 2)],
                         "m_per_px_center": r4(sc["m_per_px"]), "scale_factor_center": r4(sc["m_per_px"] / base),
+                        "pace_m_per_px_reference": r4((w.pace_layout or L).local_scale(n, W / 2, H / 2)["m_per_px"]),
                         "area_m2": round(L.quad_area(n), 2),
                         "tile_centers": tiles, "placements": pls})
     _dump(os.path.join(out, "world_layout.json"), {
@@ -413,7 +425,7 @@ def write_all(w, out, dinkc_dir=None, log=print):
                      "placement x minus 20); P=(1-u)(1-v)nw+u(1-v)ne+(1-u)v sw+uv se. Metres, x east, y south.",
         "inverse": "Newton on the same map (analyse.layout.Layout.to_local); locate() finds the screen.",
         "base_m_per_px": base, "base_evidence": summary["base_evidence"],
-        "scale": w.table["scale"], "sheet_shift_m": {k: [r4(v) for v in s] for k, s in L.sheet_shift.items()},
+        "scale": w.table["scale"], "pace": w.table.get("pace", {}), "sheet_shift_m": {k: [r4(v) for v in s] for k, s in L.sheet_shift.items()},
         "summary": summary, "screens": scr_out}, expand=0)
 
     # encounters.json / vision_variants.json

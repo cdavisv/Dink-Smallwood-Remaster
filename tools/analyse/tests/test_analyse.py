@@ -218,7 +218,8 @@ class TestRealData(unittest.TestCase):
         for r in self.w.rows:
             if r["kind"] in by:
                 by[r["kind"]].append(L.local_scale(r["screen"], W / 2, H / 2)["m_per_px"])
-        self.assertGreater(np.mean(by["settlement"]), np.mean(by["wilderness"]) * 1.2)
+        # 15 Nov 2026 scales (settlement 4.6, wilderness 3.6: 1.28 nominal; the rubber sheet averages it to about 1.2)
+        self.assertGreater(np.mean(by["settlement"]), np.mean(by["wilderness"]) * 1.15)
         self.assertGreater(np.mean(by["wilderness"]), np.mean(by["interior"]))
 
     def test_interiors_do_not_overlap_outdoor_world(self):
@@ -741,18 +742,25 @@ class TestRealLayoutOverlaps(unittest.TestCase):
         self.assertEqual(LY.overlaps(self.w.layout.corners), [])
 
     def test_scr_299_is_parked_not_on_murkwood(self):
+        # At the 5-15 Nov scales (wilderness 2.75) the rubber sheet laid the unreached islet SCR_299 over Murkwood's
+        # SCR_333 and the build parked it (and its neighbour 298) on the fragments sheet. At the 15 Nov world scale
+        # (wilderness 3.6) it no longer overlaps and stays at its grid place; either way it never lies on SCR_333.
         L = self.w.layout
-        self.assertEqual(L.sheet_of[299], "fragments")
-        self.assertEqual(L.displaced[299]["overlapped"], ["SCR_333"])
-        self.assertEqual(L.displaced[299]["from_sheet"], "mainland")
         self.assertEqual(L.sheet_of[333], "mainland")
         self.assertNotIn(299, {n for n, _ in self.w.reached})
         row = next(r for r in self.w.rows if r["screen"] == 299)
-        self.assertEqual(row["sheet"], "fragments")
+        if 299 in L.displaced:
+            self.assertEqual(L.sheet_of[299], "fragments")
+            self.assertEqual(L.displaced[299]["overlapped"], ["SCR_333"])
+            self.assertEqual(L.displaced[299]["from_sheet"], "mainland")
+            self.assertEqual(row["sheet"], "fragments")
+        else:
+            self.assertEqual(row["sheet"], L.sheet_of[299])
+            self.assertFalse(any(299 in (a, b) for _, a, b in LY.overlaps(L.corners)))
 
     def test_only_unreached_screens_are_parked(self):
         reached = {n for n, _ in self.w.reached} | {n for n, _ in self.w.engine_seen}
-        self.assertEqual(sorted(self.w.layout.displaced), [298, 299])      # 298 is 299's grid neighbour
+        self.assertTrue(set(self.w.layout.displaced) <= {298, 299})      # 298 is 299's grid neighbour
         self.assertFalse(set(self.w.layout.displaced) & reached)
 
 
