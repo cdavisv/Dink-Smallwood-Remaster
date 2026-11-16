@@ -483,8 +483,11 @@ class StaleWhenInMore(unittest.TestCase):
 
 
 class MainRows(unittest.TestCase):
-    """main() call sites: a deliberate gore clip bound through a creatures.json role is a `bug` row, as a source row and
-    as a package-only row, even without a cook (the bug outranks the other flags)."""
+    """main() call sites (review of #177, adapted from the reviewer's probe): a deliberate gore clip that is in must come
+    out `bug` (a) as a source row bound through a creatures.json role while the cook misses it (not_cooked competes),
+    (b) as a package-only row bound the same way, and (c) as an unbound package-only clip named only by a Runtime C++
+    TEXT literal; the package-only warning names the asset. Fails on the script before #177 and with each of its three
+    changes reverted (severity order, package-only kind 'clip', the package-only warning)."""
 
     def test_bound_gore_clip_rows(self):
         with tempfile.TemporaryDirectory() as d:
@@ -498,27 +501,35 @@ class MainRows(unittest.TestCase):
             (root / 'doc' / 'remaster' / 'FABLE_ART_QUEUE.md').write_text('')
             (ue / 'Scripts' / 'art_wiring_audit.py').write_text(SCRIPT.read_text())
             (ue / 'Scripts' / 'art_wiring_known.json').write_text(json.dumps({'rows': [
-                {'match': '^AN_Gore(2)?$', 'kind': 'deliberate', 'why': 'A205: gore, stays unbound'}]}))
+                {'match': '^AN_Gore[23]?$', 'kind': 'deliberate', 'why': 'A205: gore, stays unbound'},
+                {'match': '^AN_Fidget$', 'kind': 'queued', 'why': 'A205: queued for the one-shots'}]}))
             (ue / 'DinkRemaster.uproject').write_text(json.dumps({'Modules': [{'Name': 'Game', 'Type': 'Runtime'}]}))
-            (ue / 'Source' / 'Game' / 'Load.cpp').write_text('auto F = TEXT("Dink/Data/Art/creatures.json");\n')
+            (ue / 'Source' / 'Game' / 'Load.cpp').write_text(
+                'auto F = TEXT("Dink/Data/Art/creatures.json");\nauto G = TEXT("Gore3");\n')
+            (ue / 'Content' / 'Dink' / 'Data' / 'Art' / 'extra.json').write_text(json.dumps({'schema': 'dink-art/1',
+                'elements': [{'mesh': '/Game/Dink/Photoreal/C/AN_Fidget.AN_Fidget'}]}))     # bound, but no caller plays it
             (ue / 'Content' / 'Dink' / 'Data' / 'Art' / 'creatures.json').write_text(json.dumps({'classes': [{'class': 'x', 'roles': {
-                'die': {'clip': '/Game/Dink/Photoreal/C/AN_Gore.AN_Gore'},
-                'die2': {'clip': '/Game/Dink/Photoreal/C/AN_Gore2.AN_Gore2'}}}]}))
-            for n in ('AN_Gore', 'AN_Gore2'):
+                    'die': {'clip': '/Game/Dink/Photoreal/C/AN_Gore.AN_Gore'},
+                    'die2': {'clip': '/Game/Dink/Photoreal/C/AN_Gore2.AN_Gore2'}}}]}))
+            for n in ('AN_Gore', 'AN_Gore2', 'AN_Gore3', 'AN_Fidget'):
                 (ue / 'Content' / 'Dink' / 'Photoreal' / 'C' / (n + '.uasset')).write_bytes(b'x')
             (ue / 'SourceAssets' / 'Art' / 'Creatures' / 'X' / 'Export' / 'A_Gore.fbx').write_bytes(b'x')
+            cooked = root / 'ReferencedSet.txt'
+            cooked.write_text('/Game/Other/Thing\n')        # a cook that misses the gore packages: not_cooked competes
             out = root / 'out.csv'
             r = subprocess.run([sys.executable, '-I', str(ue / 'Scripts' / 'art_wiring_audit.py'), '--out', str(out),
-                                '--seen', str(root / 'none.csv')], capture_output=True, text=True, cwd=ue)
+                                '--seen', str(root / 'none.csv'), '--cooked', str(cooked)],
+                               capture_output=True, text=True, cwd=ue)
             self.assertEqual(r.returncode, 0, r.stderr)
             with out.open() as h:
                 rows = {x['asset']: x for x in csv.DictReader(h)}
-            self.assertEqual(rows['AN_Gore']['flag'], 'bug')
-            self.assertEqual(rows['AN_Gore']['kind'], 'clip')
-            self.assertIn('yes (creatures.json)', rows['AN_Gore']['seen'])
-            self.assertEqual(rows['AN_Gore2']['kind'], 'package only')
-            self.assertEqual(rows['AN_Gore2']['flag'], 'bug')
-            self.assertIn('has a deliberate reason but is in', r.stderr)
+            self.assertEqual((rows['AN_Gore']['kind'], rows['AN_Gore']['flag']), ('clip', 'bug'), 'source row, not cooked')
+            self.assertEqual((rows['AN_Gore2']['kind'], rows['AN_Gore2']['flag']), ('package only', 'bug'), 'package-only, bound')
+            self.assertEqual(rows['AN_Gore3']['flag'], 'bug', 'package-only clip, unbound, named by a C++ literal')
+            self.assertIn('AN_Gore2 has a deliberate reason but is in', r.stderr)
+            self.assertIn('AN_Gore3 has a deliberate reason but is in', r.stderr)
+            # a queued package-only clip that is bound but never played says so instead of reading as fine
+            self.assertIn('no runtime caller plays it', rows['AN_Fidget']['detail'])
 
 
 if __name__ == '__main__':

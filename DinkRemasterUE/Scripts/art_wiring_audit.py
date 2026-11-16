@@ -1165,6 +1165,8 @@ def main():
                 details.append("stale reason: owner row %s %s" % (i, STALE_IDS[i]))
         pkind = "clip" if n.startswith("AN_") else "mesh"
         st = stale_when_in(k[0], pkind, n, [g], via, literals, roots) if k else None
+        if pkind == "clip" and bound_where and not st and clip_played(n, "", literals, roots, [g]).startswith("no ("):
+            details.append("bound by a manifest but no runtime caller plays it")
         if st:      # before the other branches, so a bound gore clip is never hidden behind not_cooked or unbound
             flags.append(st[0])
             details.append(st[1])
