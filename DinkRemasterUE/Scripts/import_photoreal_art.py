@@ -1329,7 +1329,7 @@ if 'slime' in ONLY:
             mesh, changed = import_static([SL / 'Export/SM_Slime_Splat.fbx'], folder, f'SM_Slime_Splat_{colour}', True)
             # thrown gel: one wet colour (the atlas of the living slime does not map onto these blobs)
             gel = new_material(folder, f'M_SlimeGel_{colour}')
-            tint = {'Blue': (0.006, 0.009, 0.045), 'Green': (0.12, 0.09, 0.008), 'Red': (0.06, 0.018, 0.010)}[colour]   # linear: the body colour of the sprite (red: the brown-red of 701/703)
+            tint = {'Blue': (0.02, 0.025, 0.12), 'Green': (0.12, 0.09, 0.008), 'Red': (0.06, 0.018, 0.010)}[colour]   # linear: the body colour of the sprite (red: the brown-red of 701/703)
             out(expr(gel, unreal.MaterialExpressionConstant3Vector, -400, 0, constant=unreal.LinearColor(tint[0], tint[1], tint[2], 1.0)), '', MP.MP_BASE_COLOR)
             out(expr(gel, unreal.MaterialExpressionConstant, -400, 200, r=0.12), '', MP.MP_ROUGHNESS)
             out(expr(gel, unreal.MaterialExpressionConstant, -400, 300, r=0.6), '', MP.MP_SPECULAR)
@@ -1339,8 +1339,10 @@ if 'slime' in ONLY:
             save(mesh)
             # the splash pictures are lighter than the 1997 splatters (661, 681, 701/703) and their outer spatter thin: each colour is
             # pulled to its sprite's mean (linear ratio sprite / picture, darkened a third for the remaster's sunlight) and the spatter
-            # made solid (15 Nov 2026 review; parameters of the same pictures, no new art)
-            look = {'Red': dict(tint=(0.42, 0.62, 0.42), opacity_gain=1.8), 'Blue': dict(tint=(0.21, 0.2, 0.33), opacity_gain=1.8),
+            # made solid (15 Nov 2026 review; parameters of the same pictures, no new art). Blue, second pass: on grass the stain only
+            # tinted the blade bases and read as a dark shadow, so it is lifted to the bright quarter of 661 (sRGB about 54,46,108) and
+            # every spatter piece made opaque (gain 3)
+            look = {'Red': dict(tint=(0.42, 0.62, 0.42), opacity_gain=1.8), 'Blue': dict(tint=(0.45, 0.4, 0.75), opacity_gain=3.0),
                     'Green': dict(tint=(0.43, 0.41, 0.06), opacity_gain=1.8)}[colour]
             decal = decal_material(folder, f'M_SlimeSplat_{colour}_Decal', import_texture(SL / f'Textures/T_SlimeSplat_{colour}_BC.png', tex_folder, 'BCA', wrap=False), roughness=0.5, **look)
             splats[colour] = {'mesh': folder + f'/SM_Slime_Splat_{colour}', 'decal': decal.get_path_name()}

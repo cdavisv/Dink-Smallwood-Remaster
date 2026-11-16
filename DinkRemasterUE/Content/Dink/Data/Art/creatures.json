@@ -1017,11 +1017,12 @@
           "decal": {
             "material": "/Game/Dink/Photoreal/Creatures/Slime/M_SlimeSplat_Blue_Decal.M_SlimeSplat_Blue_Decal",
             "size_cm": [
-              320,
-              320
+              214,
+              214
             ],
-            "depth_cm": 45
-          }
+            "depth_cm": 70
+          },
+          "scale": 1.5
         },
         {
           "sequences": [
@@ -1035,7 +1036,7 @@
               320,
               320
             ],
-            "depth_cm": 45
+            "depth_cm": 70
           }
         }
       ],
@@ -1075,7 +1076,7 @@
               320,
               320
             ],
-            "depth_cm": 45
+            "depth_cm": 70
           }
         },
         {
@@ -1090,7 +1091,7 @@
               320,
               320
             ],
-            "depth_cm": 45
+            "depth_cm": 70
           }
         }
       ],
@@ -1134,7 +1135,7 @@
               320,
               320
             ],
-            "depth_cm": 45
+            "depth_cm": 70
           }
         }
       ],
