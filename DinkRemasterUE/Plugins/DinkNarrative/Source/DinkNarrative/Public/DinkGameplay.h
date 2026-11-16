@@ -161,7 +161,17 @@ public:
 	/** Loads frames.csv and placements.csv from Content/Dink/Data/Gameplay. */
 	bool Load(FString* OutError = nullptr);
 	bool IsLoaded() const { return Frames.Num() > 0 && Placements.Num() > 0; }
+	/**
+	 * Content/Dink/Data/Gameplay/<File>. When that file does not exist and an extra data directory holds it, that one (DinkExpanded
+	 * content packs: their own screens' hardness). With no extra directory this is the 1997 path, unchanged.
+	 */
 	static FString GetDataPath(const TCHAR* File);
+	/**
+	 * Extra gameplay data directories (empty unless the DinkExpanded plugin's switch is on). Each may hold placements.csv and
+	 * screens.csv with the 1997 tables' exact header: their rows are appended after the 1997 rows (packs own screen numbers no
+	 * 1997 map record uses, so no 1997 row is replaced), and Hardness/ files for those screens. Set before Load.
+	 */
+	static TArray<FString>& ExtraDataDirs();
 
 	const FDinkFrameInfo* FindFrame(int32 Seq, int32 Frame) const;
 	/** g_seq[Seq].active: dink.ini defines the sequence. */

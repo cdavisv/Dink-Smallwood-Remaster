@@ -2062,6 +2062,18 @@ Native1 packet postflight also rejected19 files generated under its own RunDDC b
 - `Scripts/check_player_blockers.py <audit dir>`: with the audit's walk mask, no blocker may cut off a warp, script or creature from the ground the player reaches (pieces on a screen edge count as reached from the next screen). `skip_origins` in the table leaves a placement out (S524_P03 stands against the gold heart S524_P04).
 - Not covered (residual, art requests): curved dungeon wall modules, forest-edge strips of several trees and the town door modules (a convex hull would close the opening), scripted barrels (the fitted barrel lifecycle of `DinkFamilyCollisionFit` checks the barrel actor's components and is left alone).
 
+## DinkExpanded: content packs behind a switch (15 November 2026)
+
+- Design: `doc/remaster/EXPANDED_CONTENT.md`. `Plugins/DinkExpanded` is enabled in the uproject but INERT unless its switch is on
+  (`-DinkExpanded=1`, `DINK_EXPANDED=1`, or Game.ini `[DinkExpanded] Enabled=True`; default off). Off, it sets no hook and creates no subsystem.
+- Packs are `Plugins/DinkExpanded/Packs/<pack>/pack.toml` + `story/x<n>-*.c`; `cd tools/expanded && python3 -m expanded build` writes
+  `Plugins/DinkExpanded/Content/Data` (never hand-edit; `--check` and its unit tests fail when stale). Pack screens are UNUSED 1997 map
+  slots; give them no screen volumes in the 1997 importer.
+- Three small base hooks, all no-ops while off: `FDinkInkStory::StoryDataOverrideDir()`, `FDinkGameplayData::ExtraDataDirs()` (pack rows
+  appended to placements.csv / screens.csv; pack Hardness files), and `UDinkStorySubsystem::LoadStateFromJson` leaving out instances of
+  scripts the loaded story does not hold.
+- Parity: run `Dink` with `DINK_EXPANDED=0` and `=1` (`DINK_TEST_RUN=expanded_off|on`) and compare with `tools/expanded/probe_parity.py`.
+
 ## Art wiring audit (15 November 2026)
 
 - `python3 -I Scripts/art_wiring_audit.py --generated <_Generated> --cooked <ReferencedSet.txt> --cook-commit <sha> --scene-audit <audit.jsonl> --sweep-commit <sha> --coverage-csv <art_coverage csv> --placements <placements.json>` follows every delivered art source (FBX/GLB, clip manifests, flipbook/decal sets) to the screen: imported, bound, cooked, drawn in a `dink.SceneAudit` sweep, clip asked for at runtime; plus Nanite/LOD/material/texture checks. Read-only; reads `.uasset` bytes through the LFS store. Evidence and method: `Docs/Verification/ArtWiring_15Nov2026/README.md`.

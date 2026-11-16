@@ -1,0 +1,15 @@
+{
+ "base_names_sha256": "28971448a80c88d81c987e506861d845343f5f98e7502096448f82408cb6aa69",
+ "base_story_sha256": "57a591d527e9a050f787d729e337dd3f35f733bad0276180e61c88f9931382df",
+ "files": {
+  "Gameplay/placements.csv": "7becd089d26fd0411316bfca88019b0071c5a75f42d78ba5a4aaf9d93c59a9b7",
+  "Gameplay/screens.csv": "9ac909f3af1b6c258841224f9b95dc5c6cf0dc98a1128e254eea0c099cd0542e",
+  "lines.csv": "848f243c935086ccf2a19fb7f5cd9c663ce17c8ccb4516d2ba9755c8d1186551",
+  "packs.json": "153dccaf82f0037ce632a4a9218da801d7580bb7a13a5ed40fb1a44affb15db4"
+ },
+ "lines": 0,
+ "pack_knots": [],
+ "pack_vars": [],
+ "packs": {},
+ "schema": "dink-expanded/1"
+}

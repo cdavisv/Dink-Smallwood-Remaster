@@ -42,8 +42,14 @@ public:
 	/** Loads the compiled story (ink JSON format 21) and the names table. */
 	bool Load(const FString& StoryJson, const FString& NamesCsv, FString* OutError = nullptr);
 
-	/** Content/Dink/Data/Story/<File>. */
+	/**
+	 * Content/Dink/Data/Story/<File>, or <StoryDataOverrideDir()>/<File> when an override directory is set and holds that file.
+	 * The override is empty unless the DinkExpanded plugin's switch is on (its merged story: the 1997 story plus the active
+	 * content packs' scripts, doc/remaster/EXPANDED_CONTENT.md); with it empty this is the 1997 path, unchanged.
+	 */
 	static FString GetDataPath(const TCHAR* File);
+	/** Directory searched before Content/Dink/Data/Story (empty = none). Set before the story loads (game instance start). */
+	static FString& StoryDataOverrideDir();
 
 	bool IsLoaded() const { return Story.IsValid(); }
 	Ink::FStory& Ink() const { return *Story; }

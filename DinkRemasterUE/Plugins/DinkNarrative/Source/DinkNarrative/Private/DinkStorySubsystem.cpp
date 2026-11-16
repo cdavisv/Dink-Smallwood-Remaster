@@ -27,6 +27,7 @@
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 #include "Serialization/JsonWriter.h"
+#include "Policies/CondensedJsonPrintPolicy.h"
 
 namespace
 {
@@ -1742,7 +1743,44 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
 	}
     if(Gameplay&&Gameplay->RequiresOriginalHardnessScreen(Root->GetIntegerField(TEXT("lastScreen"))))Gameplay->GateOriginalHardnessTransition();
 	ResetRuntime();
-	if (!Story.LoadStateJson(Root->GetStringField(TEXT("ink"))))
+	// A save made with scripts this story does not hold (DinkExpanded content packs switched off since, or a story version that
+	// renamed a script): those instances, their Ink flows, texts and menu are left out, so the rest of the save loads as it was.
+	TSet<int32> UnknownInstances;
+	for (const TSharedPtr<FJsonValue>& V : Root->GetArrayField(TEXT("instances")))
+	{
+		const TSharedPtr<FJsonObject> O = V->AsObject();
+		if (O.IsValid() && !Story.Names().ScriptToKnot.Contains(FName(*O->GetStringField(TEXT("script")))))
+		{
+			UnknownInstances.Add(O->GetIntegerField(TEXT("id")));
+		}
+	}
+	FString InkState = Root->GetStringField(TEXT("ink"));
+	if (UnknownInstances.Num() > 0)
+	{
+		UE_LOG(LogDinkNarrative, Warning, TEXT("narrative save: %d script instance(s) of scripts this story does not hold are left out"), UnknownInstances.Num());
+		TSharedPtr<FJsonObject> Ink;
+		const TSharedPtr<FJsonObject>* Flows = nullptr;
+		if (FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(InkState), Ink) && Ink.IsValid() && Ink->TryGetObjectField(TEXT("flows"), Flows))
+		{
+			for (const int32 Id : UnknownInstances)
+			{
+				(*Flows)->RemoveField(FString::Printf(TEXT("i%d"), Id));
+			}
+			FString Current;
+			if (Ink->TryGetStringField(TEXT("currentFlowName"), Current) && !(*Flows)->HasField(Current))
+			{
+				TArray<FString> Left;
+				for (const auto& Flow : (*Flows)->Values)
+				{
+					Left.Add(FString(Flow.Key));
+				}
+				Ink->SetStringField(TEXT("currentFlowName"), Left.Contains(TEXT("DEFAULT_FLOW")) || Left.Num() == 0 ? FString(TEXT("DEFAULT_FLOW")) : Left[0]);
+			}
+			InkState.Reset();
+			FJsonSerializer::Serialize(Ink.ToSharedRef(), TJsonWriterFactory<TCHAR, TCondensedJsonPrintPolicy<TCHAR>>::Create(&InkState));
+		}
+	}
+	if (!Story.LoadStateJson(InkState))
 	{
 		ReportError(TEXT("narrative save: Ink state does not load"));
 		return false;
@@ -1775,6 +1813,10 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
 	for (const TSharedPtr<FJsonValue>& V : Root->GetArrayField(TEXT("instances")))
 	{
 		const TSharedPtr<FJsonObject> O = V->AsObject();
+		if (UnknownInstances.Contains(O->GetIntegerField(TEXT("id"))))
+		{
+			continue;
+		}
 		TUniquePtr<FDinkScriptInstance> New = MakeUnique<FDinkScriptInstance>();
 		FDinkScriptInstance& I = *New;
 		I.Id = O->GetIntegerField(TEXT("id"));
@@ -1815,6 +1857,10 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
 		T.Handle = O->GetIntegerField(TEXT("handle"));
 		T.Owner = O->GetIntegerField(TEXT("owner"));
 		T.InstanceId = O->GetIntegerField(TEXT("instance"));
+		if (UnknownInstances.Contains(T.InstanceId))
+		{
+			continue;
+		}
 		T.Text = O->GetStringField(TEXT("text"));
 		T.LineId = O->GetStringField(TEXT("lineId"));
 		T.Color = O->GetIntegerField(TEXT("color"));
