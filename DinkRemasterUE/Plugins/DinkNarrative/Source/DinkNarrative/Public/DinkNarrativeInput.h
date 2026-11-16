@@ -75,6 +75,8 @@ public:
 	bool ProcessWheel(float Delta);
 	/** Tick's release check: a key-up that outlived the repeat guard at Now, or the window lost (no key-up will come), lets the attack go. */
 	void UpdateRelease(double Now, bool bAppActive);
+	/** Tick's note of what is on screen (a menu, the newest blocking line by its ShownSerial) and since when; the click guard reads it. */
+	void ObserveScreen(double Now);
 	/** The attack input currently held (F, Left Ctrl or the left mouse button), invalid if none. */
 	const FKey& GetAttackKeyDown() const { return AttackKeyDown; }
 	/** Tick's focus note: did the game viewport (or a widget inside it) have focus in the active window this frame? */
@@ -93,7 +95,7 @@ private:
 	double PendingReleaseAt = -1.;
 	/** What was on screen last tick, and since when (for the click guard). */
 	int32 SeenMenuInstance = 0;
-	int32 SeenBlockingText = 0;
+	int32 SeenBlockingText = 0; // FDinkActiveText::ShownSerial, not the reused handle
 	double MenuSeenAt = -1.;
 	double BlockingTextSeenAt = -1.;
 	bool bViewportFocusedAtLastTick = false;
@@ -101,7 +103,6 @@ private:
 	bool PressAttack(const FKey& Key);
 	/** Story ready, a game world, the console closed. */
 	bool IsGameInputAllowed() const;
-	void ObserveScreen(double Now);
 	bool ClickGuarded(double SeenAt) const;
 	/** The running world's game viewport widget (null without a world or viewport). */
 	TSharedPtr<class SViewport> GameViewportWidget() const;

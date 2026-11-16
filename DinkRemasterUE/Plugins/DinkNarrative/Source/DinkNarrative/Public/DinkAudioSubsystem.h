@@ -110,7 +110,12 @@ public:
   * the story's timing is not touched (the text itself is gone from GetActiveTexts()).
   */
  bool IsVoiceTailPlaying(int32 Text, const FString& LineId) const;
+ /** Listens to Story's skips and item screen (UpdateVoices does this for the game's story; tests call it with theirs). */
+ void HookStory(UDinkStorySubsystem* Story);
+ /** True while the item screen holds the recordings paused. */
+ bool AreVoicesPaused() const { return bVoicesPaused; }
 private:
+ friend class FDinkInventoryPausesVoicesTest; // Dink.Audio.InventoryPausesEveryVoice
  FDinkAudioSelection Selection;
  FDinkVoiceTable Voices;
  FDinkVoiceTracker VoiceTracker;
@@ -140,6 +145,13 @@ private:
  void StopVoice(int32 Text);
  /** UDinkStorySubsystem::OnLineSkipped: the player skipped a line; its recording stops in the same frame. */
  void HandleLineSkipped(int32 Text);
+ /**
+  * UDinkStorySubsystem::OnInventoryToggled: the item screen pauses the game. The world pause stops positional recordings, but Dink's
+  * own lines and _xy texts play flat (SpawnSound2D makes UI sounds, which a paused game keeps playing): every recording is paused here.
+  */
+ void HandleInventoryToggled(bool bOpen);
  TWeakObjectPtr<UDinkStorySubsystem> HookedStory;
  FDelegateHandle LineSkippedHandle;
+ FDelegateHandle InventoryToggledHandle;
+ bool bVoicesPaused = false;
 };

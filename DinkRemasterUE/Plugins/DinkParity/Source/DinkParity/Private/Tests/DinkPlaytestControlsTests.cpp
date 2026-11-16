@@ -4,6 +4,9 @@
 
 #include "DinkTestHelpers.h"
 #include "DinkDirector.h"
+#include "DinkAudioSubsystem.h"
+#include "Components/AudioComponent.h"
+#include "HAL/PlatformProcess.h"
 #include "DinkGameplay.h"
 #include "DinkInventoryComponent.h"
 #include "DinkNarrativeInput.h"
@@ -258,6 +261,114 @@ bool FDinkControlsClickNeedsFocusedViewportTest::RunTest(const FString& Paramete
 	TestFalse(TEXT("viewport focused, click on an editor panel (PIE): not game input"), Input.AcceptsClick(false));
 	Input.NoteViewportFocus(false);
 	TestFalse(TEXT("focus lost again: the next click is a focusing click again"), Input.AcceptsClick(true));
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkControlsDoubleClickSkipsOneLineTest, "Dink.Gameplay.Controls.DoubleClickSkipsOneLine", DINK_TEST_FLAGS)
+bool FDinkControlsDoubleClickSkipsOneLineTest::RunTest(const FString& Parameters)
+{
+	// Mother's talk, "Ask about your father": say_stop, wait(200), say_stop... (s1-h1-m.c:109-115). A skipped line's text handle goes
+	// back to the pool and the next line takes it (UDinkDirector::AllocateHandle), so the click guard must tell lines apart by their
+	// ShownSerial: the second click of a fast double click lands within the guard of the line it would skip, and must not skip it.
+	FEnv M = Make(*this, /*bInstant*/ false);
+	if (!M.IsValid())
+	{
+		return false;
+	}
+	M.G->StartNewGame();
+	M.Story->bInstantMode = true;
+	Settle(M);
+	M.Story->bInstantMode = false;
+	const int32 Mom = M.D->CreateVirtualSprite(1, 300, 200);
+	M.Story->StartProcedure(TEXT("s1-h1-m"), TEXT("talk"), Mom);
+	M.Story->RunUntilIdle();
+	if (!TestNotNull(TEXT("mother's talk menu is up"), M.Story->GetActiveMenu())) return false;
+	M.Story->MoveMenuSelection(1); // "Ask about your father"
+	M.Story->ChooseSelected();
+	TestTrue(TEXT("Dink's question is a blocking line"), FramesUntil(M, [&M]() { return HasBlockingText(M.Story); }));
+	auto Newest = [&M]() { const FDinkActiveText* B = nullptr; for (const FDinkActiveText& T : M.Story->GetActiveTexts()) { if (T.bBlocking) B = &T; } return B ? *B : FDinkActiveText(); };
+	const FDinkActiveText First = Newest();
+
+	M.Input->MouseConfirmGuardSeconds = 0.3;
+	M.Input->ObserveScreen(FPlatformTime::Seconds());
+	FPlatformProcess::Sleep(0.35f); // the first line has been up longer than the guard
+	const int32 Skips = CountKind(M.Story, TEXT("skip"));
+	TestTrue(TEXT("first click: skips Dink's question"), M.Input->ProcessMouseDown(EKeys::LeftMouseButton));
+	M.Input->ProcessMouseUp(EKeys::LeftMouseButton);
+	TestEqual(TEXT("one skip"), CountKind(M.Story, TEXT("skip")), Skips + 1);
+	TestTrue(TEXT("Mother's answer comes up"), FramesUntil(M, [&M, &First]() { for (const FDinkActiveText& T : M.Story->GetActiveTexts()) { if (T.bBlocking && T.ShownSerial != First.ShownSerial) return true; } return false; }, 60));
+	const FDinkActiveText Second = Newest();
+	AddInfo(FString::Printf(TEXT("first line handle %d serial %d, second line handle %d serial %d"), First.Handle, First.ShownSerial, Second.Handle, Second.ShownSerial));
+	TestEqual(TEXT("the answer is Mother's"), Second.Text, FString(TEXT("He was a peasant like us.")));
+	TestEqual(TEXT("the answer took the skipped line's handle (why the guard cannot key on handles)"), Second.Handle, First.Handle);
+	TestTrue(TEXT("a new serial for the new line"), Second.ShownSerial > First.ShownSerial);
+
+	// The second click of the double click: within the guard of the line that just appeared (the same handle or not).
+	TestFalse(TEXT("second click: Mother's answer is not skipped"), M.Input->ProcessMouseDown(EKeys::LeftMouseButton));
+	M.Input->ProcessMouseUp(EKeys::LeftMouseButton);
+	TestEqual(TEXT("still one skip"), CountKind(M.Story, TEXT("skip")), Skips + 1);
+	FPlatformProcess::Sleep(0.35f);
+	TestTrue(TEXT("a click after the guard skips it"), M.Input->ProcessMouseDown(EKeys::LeftMouseButton));
+	M.Input->ProcessMouseUp(EKeys::LeftMouseButton);
+	TestEqual(TEXT("two skips"), CountKind(M.Story, TEXT("skip")), Skips + 2);
+
+	// A load in a fresh process: the saved texts have no serial and the new story's counter starts again. The restored line and
+	// the line after it must still differ, or the double click skips two lines again.
+	TestTrue(TEXT("Dink's next question is up"), FramesUntil(M, [&M]() { return HasBlockingText(M.Story); }, 120));
+	const FString Saved = M.Story->SaveStateToJson();
+	FEnv L = Make(*this, /*bInstant*/ false);
+	if (!L.IsValid() || !TestTrue(TEXT("the save loads into a fresh story"), L.Story->LoadStateFromJson(Saved)))
+	{
+		return false;
+	}
+	auto NewestIn = [](const UDinkStorySubsystem* S) { const FDinkActiveText* B = nullptr; for (const FDinkActiveText& T : S->GetActiveTexts()) { if (T.bBlocking) B = &T; } return B ? *B : FDinkActiveText(); };
+	const FDinkActiveText Restored = NewestIn(L.Story);
+	TestTrue(TEXT("the restored line is a blocking line with a serial"), Restored.bBlocking && Restored.ShownSerial > 0);
+	L.Input->MouseConfirmGuardSeconds = 0.3;
+	L.Input->ObserveScreen(FPlatformTime::Seconds());
+	FPlatformProcess::Sleep(0.35f);
+	const int32 LoadedSkips = CountKind(L.Story, TEXT("skip"));
+	TestTrue(TEXT("after the load, the first click skips the restored line"), L.Input->ProcessMouseDown(EKeys::LeftMouseButton));
+	L.Input->ProcessMouseUp(EKeys::LeftMouseButton);
+	TestTrue(TEXT("the next line comes up"), FramesUntil(L, [&L, &Restored]() { for (const FDinkActiveText& T : L.Story->GetActiveTexts()) { if (T.bBlocking && T.ShownSerial != Restored.ShownSerial) return true; } return false; }, 60));
+	TestTrue(TEXT("its serial differs from the restored line's"), NewestIn(L.Story).ShownSerial != Restored.ShownSerial);
+	TestFalse(TEXT("after the load, the second click of a double click does not skip it"), L.Input->ProcessMouseDown(EKeys::LeftMouseButton));
+	L.Input->ProcessMouseUp(EKeys::LeftMouseButton);
+	TestEqual(TEXT("after the load: one skip"), CountKind(L.Story, TEXT("skip")), LoadedSkips + 1);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkInventoryPausesVoicesTest, "Dink.Audio.InventoryPausesEveryVoice", DINK_TEST_FLAGS)
+bool FDinkInventoryPausesVoicesTest::RunTest(const FString& Parameters)
+{
+	// The item screen pauses the game (dink.cpp:17361). Positional recordings stop with the world pause; Dink's own lines and _xy
+	// texts play flat as UI sounds (SpawnSound2D), which a paused game keeps playing. The audio subsystem pauses every recording.
+	FEnv E = Make(*this, /*bInstant*/ true);
+	if (!E.IsValid())
+	{
+		return false;
+	}
+	E.G->StartNewGame();
+	Settle(E);
+	E.Story->OnScreenEntered(1);
+	Settle(E);
+	E.D->GetDink().bFrozen = false;
+
+	UDinkAudioSubsystem* Audio = NewObject<UDinkAudioSubsystem>(GetTransientPackage());
+	UAudioComponent* Flat = NewObject<UAudioComponent>(GetTransientPackage());       // Dink's own line (2D)
+	UAudioComponent* Positional = NewObject<UAudioComponent>(GetTransientPackage()); // Mother's line
+	Audio->VoiceComponents.Add(101, Flat);
+	Audio->VoiceComponents.Add(102, Positional);
+	Audio->HookStory(E.Story);
+	TestFalse(TEXT("item screen closed: recordings play"), Audio->AreVoicesPaused() || Flat->bIsPaused || Positional->bIsPaused);
+
+	TestTrue(TEXT("I opens the item screen"), E.Input->ProcessKeyDown(EKeys::I));
+	TestTrue(TEXT("open: the recordings are paused"), Audio->AreVoicesPaused());
+	TestTrue(TEXT("Dink's flat recording is paused"), static_cast<bool>(Flat->bIsPaused));
+	TestTrue(TEXT("the positional one too"), static_cast<bool>(Positional->bIsPaused));
+
+	TestTrue(TEXT("I closes it"), E.Input->ProcessKeyDown(EKeys::I));
+	TestFalse(TEXT("closed: the recordings play on"), Audio->AreVoicesPaused() || Flat->bIsPaused || Positional->bIsPaused);
 	return true;
 }
 

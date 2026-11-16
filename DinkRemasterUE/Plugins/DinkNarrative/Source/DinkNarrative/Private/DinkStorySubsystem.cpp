@@ -677,6 +677,7 @@ int32 UDinkStorySubsystem::ShowText(const FDinkStoryLine& Line, int32 Speaker, i
 	// strlen of the original string, which still had its 2-character colour code when it had a colour.
 	const int32 Length = Line.Text.Len() + (Line.Color != 14 ? 2 : 0);
 	T.ExpireMs = NowMs + DinkNarrative::TextDurationMs(Length);
+	T.ShownSerial = ++LastTextSerial;
     if(Gameplay)Gameplay->RecordOriginalHardnessBirth(T.Handle);
 	ActiveTexts.Add(T);
 	if (OnLineShown.IsBound())
@@ -1745,6 +1746,7 @@ bool UDinkStorySubsystem::LoadStateFromJson(const FString& Json)
 		T.bXY = O->GetBoolField(TEXT("xy"));
 		T.X = O->GetIntegerField(TEXT("x"));
 		T.Y = O->GetIntegerField(TEXT("y"));
+		T.ShownSerial = ++LastTextSerial; // not saved: a restored line is a new line to the click guard, and the next one differs from it
 		ActiveTexts.Add(T);
 	}
 	const int32 MenuInstance = Root->GetIntegerField(TEXT("menuInstance"));
