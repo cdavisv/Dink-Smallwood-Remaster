@@ -128,8 +128,11 @@ def build(packs_dir, out_dir, analyse_out, check=False, keep_work=None):
     buf = io.StringIO()
     w = csv.writer(buf, lineterminator="\n")
     w.writerow(["id", "kind", "script", "procedure", "speaker", "colour", "text", "status"])
+    by_number = {p.number: p for p in packs}
     for r in lines:
-        w.writerow([r["id"], r["kind"], r["script"], r["procedure"], r["speaker"], r["colour"], r["text"], "draft, owner to approve"])
+        p = by_number.get(int(r["script"][1])) if r["script"][:1] == "x" and r["script"][1:2].isdigit() else None
+        status = "approved by the owner %s" % p.approved if p is not None and not p.draft and p.approved else "draft, owner to approve"
+        w.writerow([r["id"], r["kind"], r["script"], r["procedure"], r["speaker"], r["colour"], r["text"], status])
     files["lines.csv"] = buf.getvalue()
     manifest = {
         "schema": SCHEMA,
@@ -182,7 +185,7 @@ def main(argv=None):
     except (P.PackError, S.StoryError) as e:
         print("EXPANDED BUILD FAILED: %s" % e)
         return 1
-    print("%d pack(s): %s; %d pack knot(s), %d pack VAR(s), %d draft line(s)%s" % (
+    print("%d pack(s): %s; %d pack knot(s), %d pack VAR(s), %d line(s)%s" % (
         len(packs), ", ".join("%s (x%d, %d screens)" % (p.id, p.number, len(p.screens)) for p in packs) or "none",
         len(manifest["pack_knots"]), len(manifest["pack_vars"]), manifest["lines"],
         "" if os.path.isdir(a.analyse) else "; tools/analyse/out missing: reach check skipped"))

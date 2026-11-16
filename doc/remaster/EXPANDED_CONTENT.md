@@ -6,7 +6,7 @@ expanded content is additive and lives in a separate plugin that can be switched
 beta gate, "Parity tests pass with `DinkExpanded` off".
 
 This document is the architecture of that plugin, the content slate per pack, and the first playable greybox slice
-(Murkwood Deep). Everything under section 6 that a character says is a **draft for the owner's approval**.
+(Murkwood Deep). Everything under section 6 that a character says was **approved by the owner on 16 Nov 2026** (lines, names, entry).
 
 ## 1. Rules
 
@@ -37,7 +37,7 @@ Plugins/DinkExpanded/
     Gameplay/screens.csv          the packs' screens and base scripts
     Gameplay/Hardness/SCR_nnn.txt the packs' screens' hardness (the 1997 RLE format)
     Story/dink.json, names.csv    the 1997 story plus the packs' knots and VARs
-    lines.csv                     every pack line, status "draft, owner to approve"
+    lines.csv                     every pack line, status "draft, owner to approve" or "approved by the owner <date>" (pack.toml draft / approved)
     manifest.json                 counts and hashes (incl. the 1997 story's sha256 the merge was made from)
   Source/DinkExpanded/            switch, registry, layout, world builder, joins, saves, tests (Dink.Expanded.*)
 tools/expanded/                   the pack builder (python3 -m expanded build) and its tests; probe_parity.py
@@ -183,7 +183,7 @@ The save's own `CurrentScreen` and `PlayerTransform` are rewritten to the 1997 r
 ### 2.9 Text and voice
 
 New lines are DinkC `say`/`say_stop` lines with the 1997 colour codes, ids like `x3-burt.talk.004`, all listed in
-`Content/Data/lines.csv` with the status "draft, owner to approve". Voice comes later through the same pipeline as the 1997
+`Content/Data/lines.csv` with the status "draft, owner to approve" until the owner approves the pack (`pack.toml` `draft = false`, `approved = "<date>"`). Voice comes later through the same pipeline as the 1997
 lines (the ids are stable). Dink's tone: he is rude, greedy, cowardly and pleased with himself; NPCs are blunt and a little
 mad; jokes land on the second line; death and body parts are played straight and then made worse.
 
@@ -318,42 +318,42 @@ Six screens on the sheet `deep` (west of the loaded world):
   `Dink.Expanded.Murkwood.Data` the tables on and off; `Dink.Expanded.Murkwood.SaveLoadsWithPacksOff` a mid-conversation
   pack save loading into the 1997 story.
 
-### Draft lines (draft, owner to approve)
+### Lines (approved by the owner, 16 Nov 2026)
 
 All 30 lines of the slice, from `Plugins/DinkExpanded/Content/Data/lines.csv` (speaker 1 = Dink, colour as in DinkC):
 
 | id | speaker | line | status |
 |---|---|---|---|
-| x3-thin.main.001 | Dink | Whoa. The air in here is all thick. Like Mom's porridge. | draft, owner to approve |
-| x3-thin.main.002 | Dink | So THIS is what King Daniel sealed shut. | draft, owner to approve |
-| x3-thin.main.003 | Dink | Nobody seals a forest unless there's something good in it. | draft, owner to approve |
-| x3-burt.talk.001 | Old Burt | Well I'll be. A visitor! Nobody visits. | draft, owner to approve |
-| x3-burt.talk.002 | Old Burt | Not since King Daniel sealed the forest. With me in it. | draft, owner to approve |
-| x3-burt.talk.003 | Dink | You've been stuck in here the whole time? | draft, owner to approve |
-| x3-burt.talk.004 | Old Burt | Went out for kindling. Came back, there's a magic wall. Nobody told me. | draft, owner to approve |
-| x3-burt.talk.005 | Dink | Uh, where's your other leg? | draft, owner to approve |
-| x3-burt.talk.006 | Old Burt | Boar ate it. Big ugly thing, up in the wallow north of the trail. | draft, owner to approve |
-| x3-burt.talk.007 | Old Burt | Had my good boot on, too. Bring 'em back and I'll make it worth your while. | draft, owner to approve |
-| x3-burt.talk.008 | Dink | You want me to fetch your leg. Out of a boar. | draft, owner to approve |
-| x3-burt.talk.009 | Old Burt | Leg AND boot. The boot's the important bit. | draft, owner to approve |
-| x3-burt.talk.010 | Old Burt | Isn't she lovely? Gonna hang her right over the fire. | draft, owner to approve |
-| x3-burt.talk.011 | Dink | It's a leg, Burt. | draft, owner to approve |
-| x3-burt.talk.c1.1 | (option) | Give Burt his leg | draft, owner to approve |
-| x3-burt.talk.c1.2 | (option) | Ask about the seal | draft, owner to approve |
-| x3-burt.talk.c1.3 | (option) | Leave | draft, owner to approve |
-| x3-burt.talk.012 | Dink | Here. One leg, slightly chewed. Boot included. | draft, owner to approve |
-| x3-burt.talk.013 | Old Burt | My boot! Still laced, too. Look at that. | draft, owner to approve |
-| x3-burt.talk.014 | Dink | Are you going to... put it back on? | draft, owner to approve |
-| x3-burt.talk.015 | Old Burt | Don't be daft, boy. I'm having it stuffed. Over the fireplace. | draft, owner to approve |
-| x3-burt.talk.016 | Old Burt | Here. Took this off a tax collector the boar didn't finish. | draft, owner to approve |
-| x3-burt.talk.017 | Dink | 150 gold! Your leg was worth every bite. | draft, owner to approve |
-| x3-burt.talk.018 | Dink | Why'd the King seal this place, anyway? | draft, owner to approve |
-| x3-burt.talk.019 | Old Burt | Folk say it's to keep people out. | draft, owner to approve |
-| x3-burt.talk.020 | Old Burt | Folk are idiots. You don't build a wall that strong to keep a thing OUT. | draft, owner to approve |
-| x3-burt.talk.021 | Dink | I'm going to pretend you didn't say that. | draft, owner to approve |
-| x3-boar.die.001 | Dink | Something fell out of it. With a boot on. | draft, owner to approve |
-| x3-leg.touch.001 | Dink | Burt's leg. Still warm. I'm not thinking about why. | draft, owner to approve |
-| x3-stone.talk.001 | sign | By decree of King Daniel this forest is SEALED. Do not enter. Do not feed it. | draft, owner to approve |
+| x3-thin.main.001 | Dink | Whoa. The air in here is all thick. Like Mom's porridge. | approved (owner, 16 Nov 2026) |
+| x3-thin.main.002 | Dink | So THIS is what King Daniel sealed shut. | approved (owner, 16 Nov 2026) |
+| x3-thin.main.003 | Dink | Nobody seals a forest unless there's something good in it. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.001 | Old Burt | Well I'll be. A visitor! Nobody visits. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.002 | Old Burt | Not since King Daniel sealed the forest. With me in it. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.003 | Dink | You've been stuck in here the whole time? | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.004 | Old Burt | Went out for kindling. Came back, there's a magic wall. Nobody told me. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.005 | Dink | Uh, where's your other leg? | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.006 | Old Burt | Boar ate it. Big ugly thing, up in the wallow north of the trail. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.007 | Old Burt | Had my good boot on, too. Bring 'em back and I'll make it worth your while. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.008 | Dink | You want me to fetch your leg. Out of a boar. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.009 | Old Burt | Leg AND boot. The boot's the important bit. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.010 | Old Burt | Isn't she lovely? Gonna hang her right over the fire. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.011 | Dink | It's a leg, Burt. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.c1.1 | (option) | Give Burt his leg | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.c1.2 | (option) | Ask about the seal | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.c1.3 | (option) | Leave | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.012 | Dink | Here. One leg, slightly chewed. Boot included. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.013 | Old Burt | My boot! Still laced, too. Look at that. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.014 | Dink | Are you going to... put it back on? | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.015 | Old Burt | Don't be daft, boy. I'm having it stuffed. Over the fireplace. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.016 | Old Burt | Here. Took this off a tax collector the boar didn't finish. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.017 | Dink | 150 gold! Your leg was worth every bite. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.018 | Dink | Why'd the King seal this place, anyway? | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.019 | Old Burt | Folk say it's to keep people out. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.020 | Old Burt | Folk are idiots. You don't build a wall that strong to keep a thing OUT. | approved (owner, 16 Nov 2026) |
+| x3-burt.talk.021 | Dink | I'm going to pretend you didn't say that. | approved (owner, 16 Nov 2026) |
+| x3-boar.die.001 | Dink | Something fell out of it. With a boot on. | approved (owner, 16 Nov 2026) |
+| x3-leg.touch.001 | Dink | Burt's leg. Still warm. I'm not thinking about why. | approved (owner, 16 Nov 2026) |
+| x3-stone.talk.001 | sign | By decree of King Daniel this forest is SEALED. Do not enter. Do not feed it. | approved (owner, 16 Nov 2026) |
 
 The greybox draws Burt as a cylinder, the boar as a red sphere, the leg as a yellow block until the `EX-` art exists. The
 boar dies with the 1997 bonca death sequence (550) as its placeholder; the art row asks for a death at the 1997 gore level.
@@ -361,8 +361,10 @@ boar dies with the 1997 bonca death sequence (550) as its placeholder; the art r
 ## 7. What the owner must approve
 
 Owner decisions of 16 Nov 2026: the framework (this document's architecture, the module and the switch, OFF by default)
-is merged; the Murkwood Deep pack (section 6) is HELD until the owner has read its draft lines and names; the East Wilds
-stay 1997 terrain for now (section 4). Items 1, 2 and 6 below are therefore decided; 3-5 remain open.
+is merged; the East Wilds stay 1997 terrain for now (section 4). Owner decision 15, 16 Nov 2026 (~14:25): the Murkwood
+Deep pack is APPROVED as drafted (the lines of section 6, the names Old Burt, the Murk boar, The Thin Place, the entry at
+the clearing's west treeline, the unused map slots); the switch stays OFF by default. Items 1-4 and 6 below are decided;
+5 (the rest of the slate and its order) remains open.
 
 
 1. The architecture rules of section 1, in particular rule 3 (packs do nothing in the 1997 world until a join is walked
@@ -370,7 +372,7 @@ stay 1997 terrain for now (section 4). Items 1, 2 and 6 below are therefore deci
 2. Unused 1997 map slots as pack screen numbers (2.3), and the claim on them against the world-scale stream.
 3. The first area: Murkwood Deep behind the clearing's west treeline (not through the sealed gate itself, which stays the
    1997 gate and still hurts).
-4. Every line in the table of section 6 (draft), the quest, and the names Old Burt, the Murk boar, The Thin Place.
+4. Every line in the table of section 6 (approved 16 Nov 2026), the quest, and the names Old Burt, the Murk boar, The Thin Place.
 5. The slate (section 4), its order (Pack 3 first, then 2, 1, 4) and the East Wilds choice (a) or (b).
 6. The switch default (OFF) and the enabling in `DinkRemaster.uproject` of the (inert) module.
 

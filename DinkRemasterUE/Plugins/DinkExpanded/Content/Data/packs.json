@@ -1,4 +1,524 @@
 {
  "schema": "dink-expanded/1",
- "packs": []
+ "packs": [
+  {
+   "id": "murkwood",
+   "number": 3,
+   "name": "Murkwood Forest",
+   "wave": "Pack 3",
+   "status": "greybox slice",
+   "draft": false,
+   "sheets": [
+    {
+     "id": "deep",
+     "kind": "wilderness",
+     "direction": [
+      -1.0,
+      -0.25
+     ],
+     "gap_m": 1500.0
+    }
+   ],
+   "screens": [
+    {
+     "screen": 332,
+     "grid": [
+      2,
+      1
+     ],
+     "sheet": "deep",
+     "name": "The Thin Place",
+     "kind": "wilderness",
+     "region": "murkwood_deep",
+     "base_script": "x3-thin",
+     "music": 1002,
+     "indoor": false,
+     "solids": [
+      [
+       0,
+       0,
+       250,
+       40
+      ],
+      [
+       350,
+       0,
+       600,
+       40
+      ],
+      [
+       0,
+       360,
+       600,
+       400
+      ],
+      [
+       560,
+       0,
+       600,
+       150
+      ],
+      [
+       560,
+       250,
+       600,
+       400
+      ],
+      [
+       0,
+       0,
+       40,
+       150
+      ],
+      [
+       0,
+       250,
+       40,
+       400
+      ],
+      [
+       380,
+       240,
+       470,
+       300
+      ]
+     ]
+    },
+    {
+     "screen": 331,
+     "grid": [
+      1,
+      1
+     ],
+     "sheet": "deep",
+     "name": "Burt's Camp",
+     "kind": "wilderness",
+     "region": "murkwood_deep",
+     "base_script": "",
+     "music": 1002,
+     "indoor": false,
+     "solids": [
+      [
+       0,
+       0,
+       600,
+       40
+      ],
+      [
+       0,
+       360,
+       600,
+       400
+      ],
+      [
+       0,
+       0,
+       40,
+       150
+      ],
+      [
+       0,
+       250,
+       40,
+       400
+      ],
+      [
+       560,
+       0,
+       600,
+       150
+      ],
+      [
+       560,
+       250,
+       600,
+       400
+      ],
+      [
+       240,
+       60,
+       360,
+       130
+      ]
+     ]
+    },
+    {
+     "screen": 330,
+     "grid": [
+      0,
+      1
+     ],
+     "sheet": "deep",
+     "name": "Bonepicker Trail",
+     "kind": "wilderness",
+     "region": "murkwood_deep",
+     "base_script": "",
+     "music": 1002,
+     "indoor": false,
+     "solids": [
+      [
+       0,
+       0,
+       250,
+       40
+      ],
+      [
+       350,
+       0,
+       600,
+       40
+      ],
+      [
+       0,
+       360,
+       600,
+       400
+      ],
+      [
+       0,
+       0,
+       40,
+       400
+      ],
+      [
+       560,
+       0,
+       600,
+       150
+      ],
+      [
+       560,
+       250,
+       600,
+       400
+      ],
+      [
+       150,
+       250,
+       210,
+       300
+      ],
+      [
+       420,
+       80,
+       470,
+       130
+      ]
+     ]
+    },
+    {
+     "screen": 267,
+     "grid": [
+      0,
+      0
+     ],
+     "sheet": "deep",
+     "name": "The Boar's Wallow",
+     "kind": "wilderness",
+     "region": "murkwood_deep",
+     "base_script": "x3-wallow",
+     "music": 1002,
+     "indoor": false,
+     "solids": [
+      [
+       0,
+       0,
+       600,
+       40
+      ],
+      [
+       0,
+       0,
+       40,
+       400
+      ],
+      [
+       0,
+       360,
+       250,
+       400
+      ],
+      [
+       350,
+       360,
+       600,
+       400
+      ],
+      [
+       560,
+       0,
+       600,
+       150
+      ],
+      [
+       560,
+       250,
+       600,
+       400
+      ]
+     ]
+    },
+    {
+     "screen": 268,
+     "grid": [
+      1,
+      0
+     ],
+     "sheet": "deep",
+     "name": "Rotting Hollow",
+     "kind": "wilderness",
+     "region": "murkwood_deep",
+     "base_script": "",
+     "music": 1002,
+     "indoor": false,
+     "solids": [
+      [
+       0,
+       0,
+       600,
+       40
+      ],
+      [
+       0,
+       360,
+       600,
+       400
+      ],
+      [
+       0,
+       0,
+       40,
+       150
+      ],
+      [
+       0,
+       250,
+       40,
+       400
+      ],
+      [
+       560,
+       0,
+       600,
+       150
+      ],
+      [
+       560,
+       250,
+       600,
+       400
+      ],
+      [
+       200,
+       110,
+       420,
+       140
+      ]
+     ]
+    },
+    {
+     "screen": 300,
+     "grid": [
+      2,
+      0
+     ],
+     "sheet": "deep",
+     "name": "Seal Stones",
+     "kind": "wilderness",
+     "region": "murkwood_deep",
+     "base_script": "",
+     "music": 1002,
+     "indoor": false,
+     "solids": [
+      [
+       0,
+       0,
+       600,
+       40
+      ],
+      [
+       560,
+       0,
+       600,
+       400
+      ],
+      [
+       0,
+       0,
+       40,
+       150
+      ],
+      [
+       0,
+       250,
+       40,
+       400
+      ],
+      [
+       0,
+       360,
+       250,
+       400
+      ],
+      [
+       350,
+       360,
+       600,
+       400
+      ],
+      [
+       250,
+       90,
+       275,
+       115
+      ],
+      [
+       325,
+       90,
+       350,
+       115
+      ]
+     ]
+    }
+   ],
+   "placements": [
+    {
+     "screen": 331,
+     "index": 1,
+     "x": 300,
+     "y": 180,
+     "seq": 331,
+     "frame": 1,
+     "brain": 0,
+     "size": 100,
+     "script": "x3-burt",
+     "kind": "npc",
+     "name": "Old Burt",
+     "hard": false
+    },
+    {
+     "screen": 267,
+     "index": 1,
+     "x": 300,
+     "y": 200,
+     "seq": 531,
+     "frame": 1,
+     "brain": 0,
+     "size": 100,
+     "script": "x3-boar",
+     "kind": "creature",
+     "name": "The Murk Boar",
+     "hard": false
+    },
+    {
+     "screen": 330,
+     "index": 1,
+     "x": 260,
+     "y": 170,
+     "seq": 131,
+     "frame": 1,
+     "brain": 0,
+     "size": 100,
+     "script": "en-pill1",
+     "kind": "creature",
+     "name": "Pillbug",
+     "hard": false
+    },
+    {
+     "screen": 330,
+     "index": 2,
+     "x": 380,
+     "y": 270,
+     "seq": 131,
+     "frame": 1,
+     "brain": 0,
+     "size": 100,
+     "script": "en-pill1",
+     "kind": "creature",
+     "name": "Pillbug",
+     "hard": false
+    },
+    {
+     "screen": 268,
+     "index": 1,
+     "x": 260,
+     "y": 250,
+     "seq": 131,
+     "frame": 1,
+     "brain": 0,
+     "size": 100,
+     "script": "en-pill1",
+     "kind": "creature",
+     "name": "Pillbug",
+     "hard": false
+    },
+    {
+     "screen": 268,
+     "index": 2,
+     "x": 430,
+     "y": 200,
+     "seq": 131,
+     "frame": 1,
+     "brain": 0,
+     "size": 100,
+     "script": "en-pill1",
+     "kind": "creature",
+     "name": "Pillbug",
+     "hard": false
+    },
+    {
+     "screen": 300,
+     "index": 1,
+     "x": 300,
+     "y": 150,
+     "seq": 186,
+     "frame": 7,
+     "brain": 0,
+     "size": 100,
+     "script": "x3-stone",
+     "kind": "prop",
+     "name": "Seal stone",
+     "hard": true
+    }
+   ],
+   "joins": [
+    {
+     "id": "murkwood_thin_place",
+     "from": {
+      "screen": 301,
+      "rect": [
+       252,
+       318,
+       292,
+       372
+      ]
+     },
+     "to": {
+      "screen": 332,
+      "point": [
+       520,
+       200
+      ]
+     },
+     "back": {
+      "screen": 332,
+      "rect": [
+       566,
+       158,
+       600,
+       242
+      ]
+     },
+     "return": {
+      "screen": 301,
+      "point": [
+       312,
+       345
+      ]
+     },
+     "requires": null
+    }
+   ]
+  }
+ ]
 }

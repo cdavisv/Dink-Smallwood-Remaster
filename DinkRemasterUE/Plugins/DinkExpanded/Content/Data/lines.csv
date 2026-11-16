@@ -1,1 +1,31 @@
 id,kind,script,procedure,speaker,colour,text,status
+x3-boar.die.001,spoken,x3-boar,die,1,14,Something fell out of it. With a boot on.,approved by the owner 16 Nov 2026
+x3-burt.talk.001,spoken,x3-burt,talk,&current_sprite,3,Well I'll be. A visitor! Nobody visits.,approved by the owner 16 Nov 2026
+x3-burt.talk.002,spoken,x3-burt,talk,&current_sprite,3,Not since King Daniel sealed the forest. With me in it.,approved by the owner 16 Nov 2026
+x3-burt.talk.003,spoken,x3-burt,talk,1,14,You've been stuck in here the whole time?,approved by the owner 16 Nov 2026
+x3-burt.talk.004,spoken,x3-burt,talk,&current_sprite,3,"Went out for kindling. Came back, there's a magic wall. Nobody told me.",approved by the owner 16 Nov 2026
+x3-burt.talk.005,spoken,x3-burt,talk,1,14,"Uh, where's your other leg?",approved by the owner 16 Nov 2026
+x3-burt.talk.006,spoken,x3-burt,talk,&current_sprite,3,"Boar ate it. Big ugly thing, up in the wallow north of the trail.",approved by the owner 16 Nov 2026
+x3-burt.talk.007,spoken,x3-burt,talk,&current_sprite,3,"Had my good boot on, too. Bring 'em back and I'll make it worth your while.",approved by the owner 16 Nov 2026
+x3-burt.talk.008,spoken,x3-burt,talk,1,14,You want me to fetch your leg. Out of a boar.,approved by the owner 16 Nov 2026
+x3-burt.talk.009,spoken,x3-burt,talk,&current_sprite,3,Leg AND boot. The boot's the important bit.,approved by the owner 16 Nov 2026
+x3-burt.talk.010,spoken,x3-burt,talk,&current_sprite,3,Isn't she lovely? Gonna hang her right over the fire.,approved by the owner 16 Nov 2026
+x3-burt.talk.011,spoken,x3-burt,talk,1,14,"It's a leg, Burt.",approved by the owner 16 Nov 2026
+x3-burt.talk.c1.1,option,x3-burt,talk,,,Give Burt his leg,approved by the owner 16 Nov 2026
+x3-burt.talk.c1.2,option,x3-burt,talk,,,Ask about the seal,approved by the owner 16 Nov 2026
+x3-burt.talk.c1.3,option,x3-burt,talk,,,Leave,approved by the owner 16 Nov 2026
+x3-burt.talk.012,spoken,x3-burt,talk,1,14,"Here. One leg, slightly chewed. Boot included.",approved by the owner 16 Nov 2026
+x3-burt.talk.013,spoken,x3-burt,talk,&current_sprite,3,"My boot! Still laced, too. Look at that.",approved by the owner 16 Nov 2026
+x3-burt.talk.014,spoken,x3-burt,talk,1,14,Are you going to... put it back on?,approved by the owner 16 Nov 2026
+x3-burt.talk.015,spoken,x3-burt,talk,&current_sprite,3,"Don't be daft, boy. I'm having it stuffed. Over the fireplace.",approved by the owner 16 Nov 2026
+x3-burt.talk.016,spoken,x3-burt,talk,&current_sprite,3,Here. Took this off a tax collector the boar didn't finish.,approved by the owner 16 Nov 2026
+x3-burt.talk.017,spoken,x3-burt,talk,1,14,150 gold! Your leg was worth every bite.,approved by the owner 16 Nov 2026
+x3-burt.talk.018,spoken,x3-burt,talk,1,14,"Why'd the King seal this place, anyway?",approved by the owner 16 Nov 2026
+x3-burt.talk.019,spoken,x3-burt,talk,&current_sprite,3,Folk say it's to keep people out.,approved by the owner 16 Nov 2026
+x3-burt.talk.020,spoken,x3-burt,talk,&current_sprite,3,Folk are idiots. You don't build a wall that strong to keep a thing OUT.,approved by the owner 16 Nov 2026
+x3-burt.talk.021,spoken,x3-burt,talk,1,14,I'm going to pretend you didn't say that.,approved by the owner 16 Nov 2026
+x3-leg.touch.001,spoken,x3-leg,touch,1,14,Burt's leg. Still warm. I'm not thinking about why.,approved by the owner 16 Nov 2026
+x3-stone.talk.001,spoken,x3-stone,talk,&current_sprite,15,By decree of King Daniel this forest is SEALED. Do not enter. Do not feed it.,approved by the owner 16 Nov 2026
+x3-thin.main.001,spoken,x3-thin,main,1,14,Whoa. The air in here is all thick. Like Mom's porridge.,approved by the owner 16 Nov 2026
+x3-thin.main.002,spoken,x3-thin,main,1,14,So THIS is what King Daniel sealed shut.,approved by the owner 16 Nov 2026
+x3-thin.main.003,spoken,x3-thin,main,1,14,Nobody seals a forest unless there's something good in it.,approved by the owner 16 Nov 2026

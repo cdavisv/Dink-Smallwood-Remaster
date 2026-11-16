@@ -1,0 +1,197 @@
+# DinkExpanded content pack 3, first slice: Murkwood Deep (greybox).
+# Design and lines: doc/remaster/EXPANDED_CONTENT.md section 6. The owner approved the lines, names and entry on 16 Nov 2026.
+# Coordinates are 1997 map pixels (600 x 400 per screen, without the 20 px status bar); DinkC scripts use the
+# engine's own x (map x + 20), as every 1997 script does.
+
+[pack]
+id = "murkwood"
+number = 3                      # namespace: scripts x3-*, globals &x3_*
+name = "Murkwood Forest"
+wave = "Pack 3"
+status = "greybox slice"
+draft = false
+approved = "16 Nov 2026"
+
+# One sheet: the deep forest King Daniel sealed, laid out beyond the loaded 1997 world, to the west
+# (the 1997 map leaves the cells west of the Murkwood clearing empty).
+[[sheet]]
+id = "deep"
+kind = "wilderness"
+direction = [-1.0, -0.25]
+gap_m = 1500.0
+
+# Screens: unused 1997 map slots (no map.dat record, no 1997 script names them). Grid on the sheet:
+#   (0,0) 267 Boar's Wallow   (1,0) 268 Rotting Hollow   (2,0) 300 Seal Stones
+#   (0,1) 330 Bonepicker Trail (1,1) 331 Burt's Camp     (2,1) 332 The Thin Place  <- join from SCR_301
+# Solids are greybox tree walls (hardness 1); gaps in them are the paths between screens.
+
+[[screen]]
+screen = 332
+sheet = "deep"
+grid = [2, 1]
+name = "The Thin Place"
+kind = "wilderness"
+region = "murkwood_deep"
+base_script = "x3-thin"
+music = 1002
+solids = [[0, 0, 250, 40], [350, 0, 600, 40], [0, 360, 600, 400], [560, 0, 600, 150], [560, 250, 600, 400],
+          [0, 0, 40, 150], [0, 250, 40, 400], [380, 240, 470, 300]]
+
+[[screen]]
+screen = 331
+sheet = "deep"
+grid = [1, 1]
+name = "Burt's Camp"
+kind = "wilderness"
+region = "murkwood_deep"
+music = 1002
+solids = [[0, 0, 600, 40], [0, 360, 600, 400], [0, 0, 40, 150], [0, 250, 40, 400], [560, 0, 600, 150],
+          [560, 250, 600, 400], [240, 60, 360, 130]]
+
+[[screen]]
+screen = 330
+sheet = "deep"
+grid = [0, 1]
+name = "Bonepicker Trail"
+kind = "wilderness"
+region = "murkwood_deep"
+music = 1002
+solids = [[0, 0, 250, 40], [350, 0, 600, 40], [0, 360, 600, 400], [0, 0, 40, 400], [560, 0, 600, 150],
+          [560, 250, 600, 400], [150, 250, 210, 300], [420, 80, 470, 130]]
+
+[[screen]]
+screen = 267
+sheet = "deep"
+grid = [0, 0]
+name = "The Boar's Wallow"
+kind = "wilderness"
+region = "murkwood_deep"
+base_script = "x3-wallow"
+music = 1002
+solids = [[0, 0, 600, 40], [0, 0, 40, 400], [0, 360, 250, 400], [350, 360, 600, 400], [560, 0, 600, 150],
+          [560, 250, 600, 400]]
+
+[[screen]]
+screen = 268
+sheet = "deep"
+grid = [1, 0]
+name = "Rotting Hollow"
+kind = "wilderness"
+region = "murkwood_deep"
+music = 1002
+solids = [[0, 0, 600, 40], [0, 360, 600, 400], [0, 0, 40, 150], [0, 250, 40, 400], [560, 0, 600, 150],
+          [560, 250, 600, 400], [200, 110, 420, 140]]
+
+[[screen]]
+screen = 300
+sheet = "deep"
+grid = [2, 0]
+name = "Seal Stones"
+kind = "wilderness"
+region = "murkwood_deep"
+music = 1002
+solids = [[0, 0, 600, 40], [560, 0, 600, 400], [0, 0, 40, 150], [0, 250, 40, 400], [0, 360, 250, 400],
+          [350, 360, 600, 400], [250, 90, 275, 115], [325, 90, 350, 115]]
+
+# Placements. Creatures reuse 1997 scripts where the 1997 creature fits (en-pill1, the pillbug);
+# new characters have pack scripts. seq/frame/base_walk pick the nearest 1997 picture for the greybox and
+# the art families; the real art is in doc/remaster/FABLE_ART_QUEUE.md (EX- rows).
+
+[[placement]]
+screen = 331
+index = 1
+x = 300
+y = 180
+seq = 331
+frame = 1
+base_walk = 330
+kind = "npc"
+name = "Old Burt"
+script = "x3-burt"
+
+[[placement]]
+screen = 267
+index = 1
+x = 300
+y = 200
+seq = 531
+frame = 1
+kind = "creature"
+name = "The Murk Boar"
+script = "x3-boar"
+nohit = 0
+
+[[placement]]
+screen = 330
+index = 1
+x = 260
+y = 170
+seq = 131
+frame = 1
+base_walk = 200
+nohit = 1
+kind = "creature"
+name = "Pillbug"
+script = "en-pill1"
+
+[[placement]]
+screen = 330
+index = 2
+x = 380
+y = 270
+seq = 131
+frame = 1
+base_walk = 200
+nohit = 1
+kind = "creature"
+name = "Pillbug"
+script = "en-pill1"
+
+[[placement]]
+screen = 268
+index = 1
+x = 260
+y = 250
+seq = 131
+frame = 1
+base_walk = 200
+nohit = 1
+kind = "creature"
+name = "Pillbug"
+script = "en-pill1"
+
+[[placement]]
+screen = 268
+index = 2
+x = 430
+y = 200
+seq = 131
+frame = 1
+base_walk = 200
+nohit = 1
+kind = "creature"
+name = "Pillbug"
+script = "en-pill1"
+
+[[placement]]
+screen = 300
+index = 1
+x = 300
+y = 150
+seq = 186
+frame = 7
+kind = "prop"
+name = "Seal stone"
+script = "x3-stone"
+hard = true
+
+# The join: a gap in the west treeline of the Murkwood clearing (SCR_301, the clearing behind the
+# sealed gate S366_P15 and the sign S366_P05 "Danger! Murkwood Forest - Has been magically sealed
+# shut by decree of King Daniel."). Overlay trigger only; SCR_301 itself is not changed.
+[[join]]
+id = "murkwood_thin_place"
+note = "west treeline of the 1997 Murkwood clearing -> The Thin Place"
+from = { screen = 301, rect = [252, 318, 292, 372] }
+to = { screen = 332, point = [520, 200] }
+back = { screen = 332, rect = [566, 158, 600, 242] }
+return = { screen = 301, point = [312, 345] }
