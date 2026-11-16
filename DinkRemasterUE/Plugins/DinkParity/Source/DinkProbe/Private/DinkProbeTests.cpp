@@ -861,8 +861,9 @@ namespace DinkProbeTest
 				const double Dy = FMath::Max3(HT - Y, 0.0, Y - HB);
 				return FMath::Max(Dx, Dy);
 			};
-			// Jack walks speed 2 per think at timing 33 (create_sprite's default): about 60 px/s, a third of Dink's pace.
-			const double SpeedRatio = 3.0;
+			// Jack walks speed 2 per think. create_sprite gives timing 0 (add_sprite_dumb D:3124; bug A41), so he thinks every 60 Hz
+			// frame: 120 px/s, two thirds of Dink's 180. (Before A41 the remake gave him timing 33: 60 px/s, a third.) UNTESTED re-tune.
+			const double SpeedRatio = 1.5;
 			TArray<double> DistJack, DistDink;
 			TArray<int32> Parent;
 			WalkDistances(CellAt(T->X, T->Y), 0.0, DistJack, nullptr);

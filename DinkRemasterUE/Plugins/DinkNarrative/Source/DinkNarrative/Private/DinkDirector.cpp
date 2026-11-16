@@ -502,7 +502,7 @@ void UDinkDirector::RegisterCommands()
 	{
 		const int32 Handle = CreateVirtualSprite(InstanceScreen(Ctx.Instance), Ctx.Int(0), Ctx.Int(1));
 		FDinkSprite& Sprite = Sprites[Handle];
-		InitCreatedSprite(Sprite); // A41: the engine uses add_sprite_dumb (D:9041-9051, InitDumbSprite); held back until the probe's Jack step is re-tuned
+		InitDumbSprite(Sprite); // create_sprite is add_sprite_dumb (D:9041-9051)
 		Sprite.Props.Add(TEXT("brain"), Ctx.Int(2));
 		Sprite.Props.Add(TEXT("pseq"), Ctx.Int(3));
 		Sprite.Props.Add(TEXT("pframe"), Ctx.Int(4));
@@ -938,7 +938,7 @@ void UDinkDirector::BindExternals(FDinkInkStory& InkStory)
 		const int32 Screen = Instance ? InstanceScreen(*Instance) : GetCurrentScreen();
 		const int32 Handle = CreateVirtualSprite(Screen, Arg(Args, 0), Arg(Args, 1));
 		FDinkSprite& Sprite = Sprites[Handle];
-		InitCreatedSprite(Sprite); // A41: the engine uses add_sprite_dumb (D:9041-9051, InitDumbSprite); held back until the probe's Jack step is re-tuned
+		InitDumbSprite(Sprite); // create_sprite is add_sprite_dumb (D:9041-9051)
 		Sprite.Props.Add(TEXT("brain"), Arg(Args, 2));
 		Sprite.Props.Add(TEXT("pseq"), Arg(Args, 3));
 		Sprite.Props.Add(TEXT("pframe"), Arg(Args, 4));
