@@ -1,0 +1,528 @@
+chapter	beat	kind	detail	screen	story	life	gold	frame	overview_sheet
+Ch1Stonebrook	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+Ch1Stonebrook	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+Ch1Stonebrook	3	ch1_step01	new game: fists armed, mother's opening scene on SCR_001 (&story 1)	1	1	10/10	0	0003_ch1_step01_new_game_fists_armed_mother_s_opening_.png	r_overview_1.jpg
+Ch1Stonebrook	4	ch1_step02	touch the sack of pig feed (S001_P52, s1-sack touch)	1	1	10/10	0	0004_ch1_step02_touch_the_sack_of_pig_feed_S001_P52_s1.png	-
+Ch1Stonebrook	5	story	0_to_1	1	1	10/10	0	0005_story_0_to_1.png	r_overview_1.jpg
+Ch1Stonebrook	6	ch1_step03	the sack's actor is gone (brain 12 vanish) and stays gone (editor_type 1)	1	1	10/10	0	0006_ch1_step03_the_sack_s_actor_is_gone_brain_12_vanis.png	-
+Ch1Stonebrook	7	ch1_step04	arm the feed (inventory)	1	1	10/10	0	0007_ch1_step04_arm_the_feed_inventory_.png	r_overview_1.jpg
+Ch1Stonebrook	8	ch1_step05	walk to the pig pen (SCR_407)	407	1	10/10	0	0008_ch1_step05_walk_to_the_pig_pen_SCR_407_.png	-
+Ch1Stonebrook	9	screen	407_from_1	407	1	10/10	0	0009_screen_407_from_1.png	-
+Ch1Stonebrook	10	music	playmidi "bullythe.mid"	407	1	10/10	0	0010_music_playmidi_bullythe_mid_.png	-
+Ch1Stonebrook	11	ch1_step06	throw feed in the pen (item-pig use) -> the bully's scene (&pig_story 1)	407	1	10/10	0	0011_ch1_step06_throw_feed_in_the_pen_item_pig_use_.png	r_overview_1.jpg
+Ch1Stonebrook	12	ch1_step07	walk to Ethel's house (SCR_002)	2	1	10/10	0	0012_ch1_step07_walk_to_Ethel_s_house_SCR_002_.png	-
+Ch1Stonebrook	13	screen	2_from_407	2	1	10/10	0	0013_screen_2_from_407.png	-
+Ch1Stonebrook	14	ch1_step08	talk to Ethel: ask after her pet, agree (&old_womans_duck 1)	2	1	10/10	0	0014_ch1_step08_talk_to_Ethel_ask_after_her_pet_agree_.png	r_overview_1.jpg
+Ch1Stonebrook	15	screen	440_from_2	440	1	10/10	0	0015_screen_440_from_2.png	-
+Ch1Stonebrook	16	screen	441_from_440	441	1	10/10	0	0016_screen_441_from_440.png	-
+Ch1Stonebrook	17	ch1_step09	search the woods for the duck (SCR_440/441, findduck: one visit in four)	441	1	10/10	0	0017_ch1_step09_search_the_woods_for_the_duck_SCR_440_4.png	-
+Ch1Stonebrook	18	ch1_step10	talk to the duck: yell at it (s1-oldd, &old_womans_duck 2)	441	1	10/10	0	0018_ch1_step10_talk_to_the_duck_yell_at_it_s1_oldd_.png	r_overview_1.jpg
+Ch1Stonebrook	19	ch1_step11	back to Ethel's: the duck is home (&old_womans_duck 4)	2	1	10/10	0	0019_ch1_step11_back_to_Ethel_s_the_duck_is_home_old_.png	-
+Ch1Stonebrook	20	story	1_to_2	1	2	10/10	0	0020_story_1_to_2.png	r_overview_1.jpg
+Ch1Stonebrook	21	ch1_step12	home: mother asks for AlkTree nuts (s1-h1-m main, &story 2)	1	2	10/10	0	0021_ch1_step12_home_mother_asks_for_AlkTree_nuts_s1_h.png	-
+Ch1Stonebrook	22	ch1_step13	arm the fists (inventory)	1	2	10/10	0	0022_ch1_step13_arm_the_fists_inventory_.png	r_overview_1.jpg
+Ch1Stonebrook	23	ch1_step14	walk to the AlkTree (SCR_474)	474	2	10/10	0	0023_ch1_step14_walk_to_the_AlkTree_SCR_474_.png	-
+Ch1Stonebrook	24	screen	474_from_1	474	2	10/10	0	0024_screen_474_from_1.png	-
+Ch1Stonebrook	25	ch1_step15	hit the AlkTree (S474_P01, s1-ntree hit) until a nut falls	474	3	10/10	0	0025_ch1_step15_hit_the_AlkTree_S474_P01_s1_ntree_hit_.png	r_overview_1.jpg
+Ch1Stonebrook	26	ch1_step16	pick up the nut (s1-nut touch: &story 3)	474	3	10/10	0	0026_ch1_step16_pick_up_the_nut_s1_nut_touch_story_3_.png	-
+Ch1Stonebrook	27	story	2_to_3	439	3	10/10	0	0027_story_2_to_3.png	r_overview_1.jpg
+Ch1Stonebrook	28	music	playmidi "insper.mid"	439	3	10/10	0	0028_music_playmidi_insper_mid_.png	-
+Ch1Stonebrook	29	screen	439_from_474	439	3	10/10	0	0029_screen_439_from_474.png	-
+Ch1Stonebrook	30	ch1_step17	outside the house: it burns (SCR_439, s1-h1-o main)	439	3	10/10	0	0030_ch1_step17_outside_the_house_it_burns_SCR_439_s1.png	-
+Ch1Stonebrook	31	story	3_to_4	1	4	10/10	0	0031_story_3_to_4.png	r_overview_1.jpg
+Ch1Stonebrook	32	story	4_to_5	439	5	10/10	0	0032_story_4_to_5.png	-
+Ch1Stonebrook	33	ch1_step18	into the burning house (SCR_001, s1-h1-s main: &story 4)	439	5	10/10	0	0033_ch1_step18_into_the_burning_house_SCR_001_s1_h1_s.png	r_overview_1.jpg
+Ch1Stonebrook	34	ch1_step19	outside: the villagers (SCR_439, s1-h1-o main: &story 5)	439	5	10/10	0	0034_ch1_step19_outside_the_villagers_SCR_439_s1_h1_o.png	-
+Ch1Stonebrook	35	ch1_step20	walk to the gravedigger (SCR_408)	408	5	10/10	0	0035_ch1_step20_walk_to_the_gravedigger_SCR_408_.png	r_overview_1.jpg
+Ch1Stonebrook	36	screen	408_from_439	408	5	10/10	0	0036_screen_408_from_439.png	-
+Ch1Stonebrook	37	ch1_step21	talk to him: a letter came (s1-gg talk: &letter 1)	408	5	10/10	0	0037_ch1_step21_talk_to_him_a_letter_came_s1_gg_talk_.png	-
+Ch1Stonebrook	38	story	5_to_6	1	6	10/10	0	0038_story_5_to_6.png	r_overview_1.jpg
+Ch1Stonebrook	39	ch1_step22	home: read the letter (s1-h1-s, s1-ltr: &story 6)	439	6	10/10	0	0039_ch1_step22_home_read_the_letter_s1_h1_s_s1_ltr_.png	-
+Ch1Stonebrook	40	music	playmidi "wanderer.mid"	376	6	10/10	0	0040_music_playmidi_wanderer_mid_.png	-
+Ch1Stonebrook	41	screen	376_from_439	376	6	10/10	0	0041_screen_376_from_439.png	-
+Ch1Stonebrook	42	periodic	376	376	6	10/10	0	0042_periodic_376.png	-
+Ch1Stonebrook	43	ch1_step23	walk into the apparition's clearing (SCR_376, s1-magic/s1-wiz scene: &wizard_again 1)	376	6	10/10	0	0043_ch1_step23_walk_into_the_apparition_s_clearing_SCR.png	r_overview_1.jpg
+Ch1Stonebrook	44	ch1_step24	walk to Martridge's hidden cabin (SCR_006)	6	6	10/10	0	0044_ch1_step24_walk_to_Martridge_s_hidden_cabin_SCR_00.png	-
+Ch1Stonebrook	45	screen	6_from_376	6	6	10/10	0	0045_screen_6_from_376.png	-
+Ch1Stonebrook	46	ch1_step25	talk to Martridge: tell him you're worthy (s1-mh-m talk: red potion, &wizard_see 2)	6	6	10/10	0	0046_ch1_step25_talk_to_Martridge_tell_him_you_re_worth.png	r_overview_1.jpg
+Ch1Stonebrook	47	ch1_step26	drink the red potion (rpotion touch: &strength + 1)	6	6	10/10	0	0047_ch1_step26_drink_the_red_potion_rpotion_touch_st.png	-
+Ch1Stonebrook	48	ch1_step27	walk into the Bonca's cave west of the hills (SCR_100, s1-cavem main)	100	6	10/10	0	0048_ch1_step27_walk_into_the_Bonca_s_cave_west_of_the_h.png	r_overview_1.jpg
+Ch1Stonebrook	49	music	playmidi "battle.mid"	100	6	10/10	0	0049_music_playmidi_battle_mid_.png	-
+Ch1Stonebrook	50	screen	100_from_6	100	6	10/10	0	0050_screen_100_from_6.png	-
+Ch1Stonebrook	51	levelup	level-up (lraise) at 100 exp	100	6	10/10	0	0051_levelup_level_up_lraise_at_100_exp.png	-
+Ch1Stonebrook	52	music	playmidi "wanderer.mid"	100	6	10/10	0	0052_music_playmidi_wanderer_mid_.png	-
+Ch1Stonebrook	53	ch1_step28	kill the Bonca with the fists, keeping its distance (s1-cavem die: &wizard_see 3)	100	6	10/13	0	0053_ch1_step28_kill_the_Bonca_with_the_fists_keeping_i.png	-
+Ch1Stonebrook	54	ch1_step29	back to the cabin: Martridge is gone, his scroll lies there (s1-mh-s main: &vision 1)	6	6	10/13	0	0054_ch1_step29_back_to_the_cabin_Martridge_is_gone_hi.png	r_overview_1.jpg
+Ch1Stonebrook	55	ch1_step30	read the scroll (s1-mh-f talk: 200 gold, +1 magic, fireball, &wizard_see 4)	6	6	10/13	200	0055_ch1_step30_read_the_scroll_s1_mh_f_talk_200_gold_.png	-
+Ch1Stonebrook	56	ch1_step31	walk to the toll bridge (SCR_404)	404	6	10/13	200	0056_ch1_step31_walk_to_the_toll_bridge_SCR_404_.png	r_overview_1.jpg
+Ch1Stonebrook	57	screen	404_from_6	404	6	10/13	200	0057_screen_404_from_6.png	-
+Ch1Stonebrook	58	ch1_step32	pay the toll (s1-brg2 talk, 100 gold: &story 7)	404	7	10/13	100	0058_ch1_step32_pay_the_toll_s1_brg2_talk_100_gold_s.png	-
+Ch1Stonebrook	59	story	6_to_7	404	7	10/13	100	0059_story_6_to_7.png	r_overview_1.jpg
+Ch1Stonebrook	60	screen	36_from_404	36	7	10/13	100	0060_screen_36_from_404.png	-
+Ch1Stonebrook	61	ch1_step33	over the bridge to Terris: Aunt Maria's house, Jack and Maria (SCR_036, s2-auntp main: &s2-aunt 1)	36	7	10/13	100	0061_ch1_step33_over_the_bridge_to_Terris_Aunt_Maria_s_.png	-
+Ch1Stonebrook	62	screen	37_from_36	37	7	10/13	100	0062_screen_37_from_36.png	-
+Ch1Stonebrook	63	ch1_step34	upstairs to the room she prepared (SCR_037, s2-h2-s main: &s2-aunt 2)	37	7	10/13	100	0063_ch1_step34_upstairs_to_the_room_she_prepared_SCR_0.png	r_overview_1.jpg
+Ch1Stonebrook	64	ch1_step35	back down: Jack beats Maria (s2-auntp main: &s2-aunt 3)	36	7	10/13	100	0064_ch1_step35_back_down_Jack_beats_Maria_s2_auntp_ma.png	-
+Ch1Stonebrook	65	ch1_step36	arm the fireball (inventory: magic slot 1)	36	7	10/13	100	0065_ch1_step36_arm_the_fireball_inventory_magic_slot_.png	r_overview_1.jpg
+Ch1Stonebrook	66	ch1_step37	kill Jack with fireballs from a distance (s2-jack: 50 hp; his hit makes him a brain-9 chaser with touch damage 10; die: &s2-aunt 4, +100 exp)	36	7	10/13	100	0066_ch1_step37_kill_Jack_with_fireballs_from_a_distance.png	-
+Ch1Stonebrook	67	screen	579_from_36	579	7	10/13	100	0067_screen_579_from_36.png	-
+Ch1Stonebrook	68	periodic	579	579	7	10/13	100	0068_periodic_579.png	-
+Ch1Stonebrook	69	ch1_step38	the prisoner's cave (SCR_579, s2-cave main: &caveguy 1)	579	7	10/13	100	0069_ch1_step38_the_prisoner_s_cave_SCR_579_s2_cave_ma.png	r_overview_1.jpg
+Ch1Stonebrook	70	screen	34_from_579	34	7	10/13	100	0070_screen_34_from_579.png	-
+Ch1Stonebrook	71	music	playmidi "battle.mid"	34	7	10/13	100	0071_music_playmidi_battle_mid_.png	-
+Ch1Stonebrook	72	screen	498_from_34	498	7	10/13	100	0072_screen_498_from_34.png	-
+Ch1Stonebrook	73	ch1_step39	the bar in Terris (SCR_034, s2-bar main: the cave cult scene, &caveguy 2)	34	7	10/13	100	0073_ch1_step39_the_bar_in_Terris_SCR_034_s2_bar_main_.png	-
+Ch1Stonebrook	74	screen	38_from_34	38	7	10/13	100	0074_screen_38_from_34.png	-
+Ch1Stonebrook	75	ch1_step40	the magic teacher (S038_P22, s2-mh-m talk: &caveguy 3, or 4 with Acid Rain at &magic 5)	38	7	10/13	100	0075_ch1_step40_the_magic_teacher_S038_P22_s2_mh_m_tal.png	r_overview_1.jpg
+Ch1Stonebrook	76	screen	273_from_38	273	7	10/13	100	0076_screen_273_from_38.png	-
+Ch1Stonebrook	77	ch1_step41	a potion of magic in the fields near Terris (SCR_273, ppotion touch: &magic 3)	273	7	10/13	100	0077_ch1_step41_a_potion_of_magic_in_the_fields_near_Ter.png	-
+Ch1Stonebrook	78	screen	597_from_273	597	7	10/13	100	0078_screen_597_from_273.png	-
+Ch1Stonebrook	79	ch1_step42	a potion of magic in the southern dam country (SCR_597, ppotion touch: &magic 4)	597	7	10/13	100	0079_ch1_step42_a_potion_of_magic_in_the_southern_dam_co.png	r_overview_1.jpg
+Ch1Stonebrook	80	screen	352_from_597	352	7	10/13	100	0080_screen_352_from_597.png	-
+Ch1Stonebrook	81	ch1_step43	a potion of magic in the cobbler's meadows (SCR_352, ppotion touch: &magic 5)	352	7	10/13	100	0081_ch1_step43_a_potion_of_magic_in_the_cobbler_s_meado.png	-
+Ch1Stonebrook	82	ch1_step44	learn Acid Rain from him (s2-mh-m talk needs &magic > 4: &caveguy 4)	38	7	10/13	100	0082_ch1_step44_learn_Acid_Rain_from_him_s2_mh_m_talk_n.png	r_overview_1.jpg
+Ch1Stonebrook	83	ch1_step45	arm Acid Rain (inventory: magic slot 2, item-ice: cost 1000)	38	7	10/13	100	0083_ch1_step45_arm_Acid_Rain_inventory_magic_slot_2_.png	-
+Ch1Stonebrook	84	ch1_step46	free the prisoner: cast Acid Rain at the idol in his cave (SCR_579, item-ice -> dam-ice -> dam-icee: &caveguy 5)	579	7	10/13	100	0084_ch1_step46_free_the_prisoner_cast_Acid_Rain_at_the.png	r_overview_1.jpg
+Ch1Stonebrook	85	music	playmidi "1004.mid"	578	7	10/13	100	0085_music_playmidi_1004_mid_.png	-
+Ch1Stonebrook	86	screen	578_from_579	578	7	10/13	100	0086_screen_578_from_579.png	-
+Ch1Stonebrook	87	periodic	578	578	7	10/13	100	0087_periodic_578.png	-
+Ch1Stonebrook	88	screen	625_from_578	625	7	10/13	100	0088_screen_625_from_578.png	-
+Ch1Stonebrook	89	ch1_step47	on into the next room (SCR_578, s2-cave2 main: the cult's ambush, the Mordavia scroll: &caveguy 6)	625	7	10/13	100	0089_ch1_step47_on_into_the_next_room_SCR_578_s2_cave2.png	-
+Ch2Terris	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+Ch2Terris	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+Ch2Terris	3	story	0_to_7	625	7	10/13	100	0003_story_0_to_7.png	r_overview_1.jpg
+Ch2Terris	4	screen	625_from_1	66	7	10/13	100	0004_screen_625_from_1.png	-
+Ch2Terris	5	screen	66_from_625	66	7	10/13	100	0005_screen_66_from_625.png	-
+Ch2Terris	6	ch2_step01	talk to Nadine: ask why her house is such a mess (SCR_066, s2-nadp talk: &s2-nad 1)	66	7	10/13	100	0006_ch2_step01_talk_to_Nadine_ask_why_her_house_is_suc.png	-
+Ch2Terris	7	ch2_step02	talk to Nadine again: offer to find her girl (&s2-nad 2)	66	7	10/13	100	0007_ch2_step02_talk_to_Nadine_again_offer_to_find_her_.png	r_overview_1.jpg
+Ch2Terris	8	ch2_step03	arm the fireball (inventory: magic slot 1, cost 100: 2 s of charge at magic 5)	66	7	10/13	100	0008_ch2_step03_arm_the_fireball_inventory_magic_slot_.png	-
+Ch2Terris	9	screen	238_from_66	238	7	10/13	100	0009_screen_238_from_66.png	-
+Ch2Terris	10	ch2_step04	the cult's backyard (SCR_238, s2-cult main: four girls, Bishop Nelson, Mary; screenlock)	238	7	10/13	100	0010_ch2_step04_the_cult_s_backyard_SCR_238_s2_cult_ma.png	r_overview_1.jpg
+Ch2Terris	11	screenlock	screenlock 1	238	7	10/13	100	0011_screenlock_screenlock_1.png	-
+Ch2Terris	12	music	playmidi "denube.mid"	238	7	10/13	100	0012_music_playmidi_denube_mid_.png	-
+Ch2Terris	13	periodic	238	238	7	10/13	100	0013_periodic_238.png	-
+Ch2Terris	14	periodic	238	238	7	10/13	155	0014_periodic_238.png	-
+Ch2Terris	15	ch2_step05	kill the four girls and Bishop Nelson, keeping clear of all of them (s2-cbon, s2-cslay die: screenlock(0))	238	7	10/13	155	0015_ch2_step05_kill_the_four_girls_and_Bishop_Nelson_k.png	-
+Ch2Terris	16	music	playmidi "love.mid"	238	7	10/13	155	0016_music_playmidi_love_mid_.png	-
+Ch2Terris	17	screenlock	screenlock 0	238	7	10/13	155	0017_screenlock_screenlock_0.png	-
+Ch2Terris	18	story	7_to_8	66	8	10/13	155	0018_story_7_to_8.png	r_overview_1.jpg
+Ch2Terris	19	ch2_step06	talk to Mary: rescue complete (s2-culg talk: scripted walk home to SCR_066, &s2-nad 3, &story 8)	66	8	10/13	155	0019_ch2_step06_talk_to_Mary_rescue_complete_s2_culg_t.png	-
+Ch3Roads	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+Ch3Roads	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+Ch3Roads	3	story	0_to_8	66	8	10/13	155	0003_story_0_to_8.png	r_overview_1.jpg
+Ch3Roads	4	screen	66_from_1	524	8	10/13	155	0004_screen_66_from_1.png	-
+Ch3Roads	5	screen	524_from_66	524	8	10/13	155	0005_screen_524_from_66.png	-
+Ch3Roads	6	ch3_step01	the road to KernSin: a gold heart (SCR_524, S524_P04 gheart touch: &lifemax + 10)	524	8	10/23	155	0006_ch3_step01_the_road_to_KernSin_a_gold_heart_SCR_5.png	-
+Ch3Roads	7	screen	5_from_524	5	8	10/23	155	0007_screen_5_from_524.png	-
+Ch3Roads	8	ch3_step02	open the chest S005_P28 with a punch (ch1-pap hit: the coins appear)	5	8	10/23	355	0008_ch3_step02_open_the_chest_S005_P28_with_a_punch_ch.png	r_overview_1.jpg
+Ch3Roads	9	ch3_step03	take the coins (papgold touch: &gold + 200)	5	8	10/23	355	0009_ch3_step03_take_the_coins_papgold_touch_gold_2.png	-
+Ch3Roads	10	screen	557_from_5	557	8	10/23	355	0010_screen_557_from_5.png	-
+Ch3Roads	11	ch3_step04	open the chest S557_P05 with a punch (ch1-pap hit: the coins appear)	557	8	10/23	555	0011_ch3_step04_open_the_chest_S557_P05_with_a_punch_ch.png	r_overview_1.jpg
+Ch3Roads	12	ch3_step05	take the coins (papgold touch: &gold + 200)	557	8	10/23	555	0012_ch3_step05_take_the_coins_papgold_touch_gold_2.png	-
+Ch3Roads	13	screen	747_from_557	747	8	10/23	555	0013_screen_747_from_557.png	-
+Ch3Roads	14	ch3_step06	open the chest S747_P01 with a punch (ch1-pap hit: the coins appear)	747	8	10/23	755	0014_ch3_step06_open_the_chest_S747_P01_with_a_punch_ch.png	r_overview_1.jpg
+Ch3Roads	15	ch3_step07	take the coins (papgold touch: &gold + 200)	747	8	10/23	755	0015_ch3_step07_take_the_coins_papgold_touch_gold_2.png	-
+Ch3Roads	16	screen	681_from_747	681	8	10/23	755	0016_screen_681_from_747.png	-
+Ch3Roads	17	ch3_step08	four strength potions beside the goblin camp (SCR_681, S681_P14-17 rpotion touch: &strength + 4)	681	8	10/23	755	0017_ch3_step08_four_strength_potions_beside_the_goblin_.png	r_overview_1.jpg
+Ch3Roads	18	screen	586_from_681	586	8	10/23	755	0018_screen_586_from_681.png	-
+Ch3Roads	19	ch3_step09	Christina at the fountain (SCR_586, s3-chick talk: tell her about the planned assault, &mayor 1)	586	8	10/23	755	0019_ch3_step09_Christina_at_the_fountain_SCR_586_s3_c.png	-
+Ch3Roads	20	screen	587_from_586	587	8	10/23	755	0020_screen_587_from_586.png	-
+Ch3Roads	21	ch3_step10	into the bookstore street: the girl leads him on (SCR_587, s3-st1o main: &mayor 2)	587	8	10/23	755	0021_ch3_step10_into_the_bookstore_street_the_girl_lead.png	r_overview_1.jpg
+Ch3Roads	22	screen	67_from_587	67	8	10/23	755	0022_screen_67_from_587.png	-
+Ch3Roads	23	ch3_step11	the Mayor in Hiram's Bookstore (SCR_067, s3-mayor talk: tell him about the planned assault, &mayor 3)	67	8	10/23	755	0023_ch3_step11_the_Mayor_in_Hiram_s_Bookstore_SCR_067_.png	-
+Ch3Roads	24	ch3_step12	to Arturous's shop (SCR_097), where chapter 4 begins	97	8	10/23	755	0024_ch3_step12_to_Arturous_s_shop_SCR_097_where_chap.png	r_overview_1.jpg
+Ch4Gold	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+Ch4Gold	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+Ch4Gold	3	story	0_to_8	97	8	10/23	755	0003_story_0_to_8.png	r_overview_1.jpg
+Ch4Gold	4	screen	97_from_1	583	8	10/23	755	0004_screen_97_from_1.png	-
+Ch4Gold	5	screen	583_from_97	583	8	10/23	755	0005_screen_583_from_97.png	-
+Ch4Gold	6	levelup	level-up (lraise) at 400 exp	583	8	10/23	845	0006_levelup_level_up_lraise_at_400_exp.png	-
+Ch4Gold	7	ch4_step01	round 1: SCR_583, Bong and Boncd fight, he waits, then takes the loot	583	8	10/26	845	0007_ch4_step01_round_1_SCR_583_Bong_and_Boncd_fight_.png	-
+Ch4Gold	8	screen	480_from_583	480	8	10/26	845	0008_screen_480_from_583.png	-
+Ch4Gold	9	ch4_step02	round 1: SCR_480, two Bongs	480	8	10/26	952	0009_ch4_step02_round_1_SCR_480_two_Bongs.png	r_overview_1.jpg
+Ch4Gold	10	screen	632_from_480	632	8	10/26	952	0010_screen_632_from_480.png	-
+Ch4Gold	11	periodic	632	632	8	10/26	952	0011_periodic_632.png	-
+Ch4Gold	12	ch4_step03	round 1: SCR_632, two Bongs	632	8	5/26	1017	0012_ch4_step03_round_1_SCR_632_two_Bongs.png	-
+Ch4Gold	13	ch4_step04	round 2: wait 5 minutes in the shop (8x), the screens' monsters come back (editor_type 6)	97	8	5/26	1017	0013_ch4_step04_round_2_wait_5_minutes_in_the_shop_8x_.png	r_overview_1.jpg
+Ch4Gold	14	ch4_step05	round 2: SCR_583, Bong and Boncd fight, he waits, then takes the loot	583	8	26/26	1017	0014_ch4_step05_round_2_SCR_583_Bong_and_Boncd_fight_.png	-
+Ch4Gold	15	ch4_step06	round 2: SCR_480, two Bongs	480	8	26/26	1072	0015_ch4_step06_round_2_SCR_480_two_Bongs.png	r_overview_1.jpg
+Ch4Gold	16	ch4_step07	round 2: SCR_632, two Bongs	480	8	26/26	1072	0016_ch4_step07_round_2_SCR_632_two_Bongs.png	-
+Ch4Gold	17	ch4_step08	round 3: wait 5 minutes in the shop (8x), the screens' monsters come back (editor_type 6)	480	8	26/26	1072	0017_ch4_step08_round_3_wait_5_minutes_in_the_shop_8x_.png	r_overview_1.jpg
+Ch4Gold	18	ch4_step09	round 3: SCR_583, Bong and Boncd fight, he waits, then takes the loot	480	8	26/26	1072	0018_ch4_step09_round_3_SCR_583_Bong_and_Boncd_fight_.png	-
+Ch4Gold	19	ch4_step10	round 3: SCR_480, two Bongs	480	8	26/26	1072	0019_ch4_step10_round_3_SCR_480_two_Bongs.png	r_overview_1.jpg
+Ch4Gold	20	ch4_step11	round 3: SCR_632, two Bongs	480	8	26/26	1072	0020_ch4_step11_round_3_SCR_632_two_Bongs.png	-
+Ch4Gold	21	ch4_step12	to Arturous's shop (SCR_097), gold counted	97	8	26/26	1072	0021_ch4_step12_to_Arturous_s_shop_SCR_097_gold_count.png	r_overview_1.jpg
+Ch5Bow	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+Ch5Bow	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+Ch5Bow	3	story	0_to_8	97	8	26/26	72	0003_story_0_to_8.png	r_overview_1.jpg
+Ch5Bow	4	screen	97_from_1	97	8	26/26	72	0004_screen_97_from_1.png	-
+Ch5Bow	5	ch5_step01	buy the bow from Arturous (SCR_097, s3-st2p talk: "Buy a Bow and some arrows for $1000": gold >= 1000, a free slot)	97	8	26/26	72	0005_ch5_step01_buy_the_bow_from_Arturous_SCR_097_s3_s.png	-
+Ch5Bow	6	ch5_step02	arm the bow (inventory: item-b1; the guard checks the armed weapon, s3-gobg.c:80)	97	8	26/26	72	0006_ch5_step02_arm_the_bow_inventory_item_b1_the_gua.png	r_overview_1.jpg
+Ch5Bow	7	screen	712_from_97	712	8	26/26	72	0007_screen_712_from_97.png	-
+Ch5Bow	8	ch5_step03	the goblin gate guard (SCR_712, s3-gobg talk: "Ask the Goblin guard to let you in": armed bow, &mayor 3, &gobpass 1)	712	8	26/26	72	0008_ch5_step03_the_goblin_gate_guard_SCR_712_s3_gobg_.png	-
+Ch6Goblins	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+Ch6Goblins	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+Ch6Goblins	3	ch6_step01	the healer in Terris (SCR_033, s2-healp talk: "Get healed": 1 gold per missing life)	712	8	26/26	72	0003_ch6_step01_the_healer_in_Terris_SCR_033_s2_healp_.png	r_overview_2.jpg
+Ch6Goblins	4	story	0_to_8	712	8	26/26	72	0004_story_0_to_8.png	-
+Ch6Goblins	5	screen	712_from_1	680	8	26/26	72	0005_screen_712_from_1.png	-
+Ch6Goblins	6	screen	680_from_712	680	8	26/26	72	0006_screen_680_from_712.png	-
+Ch6Goblins	7	periodic	680	680	8	18/26	72	0007_periodic_680.png	-
+Ch6Goblins	8	ch6_step02	goblin S680_P13 (s3-gh, 40 hp, 15 px/s): pulled by a fireball from the east end of the strip, killed (+150 exp, editor_type 6)	680	8	18/26	72	0008_ch6_step02_goblin_S680_P13_s3_gh_40_hp_15_px_s_.png	r_overview_2.jpg
+Ch6Goblins	9	ch6_step03	out of the sanctuary to the south gate (SCR_712): the other three goblins are still walking about	712	8	18/26	72	0009_ch6_step03_out_of_the_sanctuary_to_the_south_gate_.png	-
+Ch7Sanctuary	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+Ch7Sanctuary	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+Ch7Sanctuary	3	story	0_to_8	712	8	18/26	72	0003_story_0_to_8.png	r_overview_2.jpg
+Ch7Sanctuary	4	screen	712_from_1	680	8	18/26	72	0004_screen_712_from_1.png	-
+Ch7Sanctuary	5	screen	680_from_712	680	8	18/26	72	0005_screen_680_from_712.png	-
+Ch7Sanctuary	6	ch7_step01	goblin S680_P14 (s3-gh, 40 hp)	680	8	18/26	72	0006_ch7_step01_goblin_S680_P14_s3_gh_40_hp_.png	-
+Ch7Sanctuary	7	ch7_step02	the healer in Terris (1 gold per missing life)	33	8	26/26	64	0007_ch7_step02_the_healer_in_Terris_1_gold_per_missing.png	r_overview_2.jpg
+Ch7Sanctuary	8	screen	33_from_680	680	8	26/26	64	0008_screen_33_from_680.png	-
+Ch7Sanctuary	9	periodic	680	680	8	26/26	64	0009_periodic_680.png	-
+Ch7Sanctuary	10	ch7_step03	goblin S680_P11 (s3-gs, 60 hp)	680	8	26/26	64	0010_ch7_step03_goblin_S680_P11_s3_gs_60_hp_.png	-
+Ch7Sanctuary	11	ch7_step04	the healer in Terris (1 gold per missing life)	680	8	26/26	64	0011_ch7_step04_the_healer_in_Terris_1_gold_per_missing.png	r_overview_2.jpg
+Ch8Knights	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+Ch8Knights	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+Ch8Knights	3	story	0_to_8	680	8	26/26	64	0003_story_0_to_8.png	r_overview_2.jpg
+Ch8Knights	4	screen	680_from_1	680	8	26/26	64	0004_screen_680_from_1.png	-
+Ch8Knights	5	music	playmidi "1009.mid"	680	8	26/26	64	0005_music_playmidi_1009_mid_.png	-
+Ch8Knights	6	ch8_step01	goblin S680_P12 (s3-gs, 60 hp): the last, its death starts Mog (s3-gs.c:71)	680	8	26/26	64	0006_ch8_step01_goblin_S680_P12_s3_gs_60_hp_the_last.png	-
+Ch8Knights	7	levelup	level-up (lraise) at 900 exp	680	8	26/26	64	0007_levelup_level_up_lraise_at_900_exp.png	-
+Ch8Knights	8	screenlock	screenlock 1	680	8	26/26	64	0008_screenlock_screenlock_1.png	-
+Ch8Knights	9	screenlock	screenlock 0	680	8	26/29	64	0009_screenlock_screenlock_0.png	-
+Ch8Knights	10	ch8_step02	Mog (s3-mog.c scene, en-gmog.c: 50 hp, defense 4, range 45, screenlock): the duel; his death is the warp to SCR_489 (&gobpass 5)	489	8	26/29	64	0010_ch8_step02_Mog_s3_mog_c_scene_en_gmog_c_50_hp_d.png	r_overview_2.jpg
+Ch8Knights	11	screen	489_from_680	489	8	26/29	64	0011_screen_489_from_680.png	-
+Ch8Knights	12	periodic	489	489	8	26/29	64	0012_periodic_489.png	-
+Ch8Knights	13	ch8_step03	the Cast camp (SCR_489, s3-camp.c: Dink frozen, scripted walk and fade_down; the move over the screen's edge to SCR_521)	521	8	26/29	64	0013_ch8_step03_the_Cast_camp_SCR_489_s3_camp_c_Dink_.png	-
+Ch8Knights	14	screen	521_from_489	521	8	26/29	64	0014_screen_521_from_489.png	-
+Ch8Knights	15	music	playmidi "1004.mid"	521	8	26/29	64	0015_music_playmidi_1004_mid_.png	-
+Ch8Knights	16	screenlock	screenlock 1	521	8	26/29	64	0016_screenlock_screenlock_1.png	-
+Ch8Knights	17	ch8_step04	the ambush begins (SCR_521, s3-camps.c: fade_up, the scripted walk, dialogue, screenlock, three knights s3-dorks, &mayor 3 -> 4)	521	8	26/29	64	0017_ch8_step04_the_ambush_begins_SCR_521_s3_camps_c_.png	r_overview_2.jpg
+Ch8Knights	18	periodic	521	521	8	21/29	64	0018_periodic_521.png	-
+Ch8Knights	19	ch8_step05	the three knights (s3-dorks: 40 hp, defense 6, strength 12, touch 5): SquadFight	521	8	21/29	194	0019_ch8_step05_the_three_knights_s3_dorks_40_hp_defe.png	-
+Ch8Knights	20	screenlock	screenlock 0	521	8	21/29	194	0020_screenlock_screenlock_0.png	-
+Ch8Knights	21	ch8_step06	the knights' loot (emake.large: gold lying where each fell; the screen is unlocked)	521	8	21/29	251	0021_ch8_step06_the_knights_loot_emake_large_gold_lyi.png	r_overview_2.jpg
+Ch8Knights	22	screen	67_from_521	67	8	21/29	251	0022_screen_67_from_521.png	-
+Ch8Knights	23	music	playmidi "lovin.mid"	586	8	21/29	251	0023_music_playmidi_lovin_mid_.png	-
+Ch8Knights	24	screen	586_from_67	586	8	21/29	251	0024_screen_586_from_67.png	-
+Ch8Knights	25	ch8_step07	the Mayor in Hiram's Bookstore (SCR_067, s3-mayor talk at &mayor 4: "Show him the scroll with the plans": &mayor 5, the parade on SCR_586 (s3-tc.c): &story 10, &mayor 6)	586	10	21/29	251	0025_ch8_step07_the_Mayor_in_Hiram_s_Bookstore_SCR_067_.png	-
+Ch8Knights	26	ch8_step08	to Blistering Pete's in Windemere (SCR_196), where chapter 9 begins	196	10	21/29	251	0026_ch8_step08_to_Blistering_Pete_s_in_Windemere_SCR_1.png	r_overview_2.jpg
+Ch9Windemere	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+Ch9Windemere	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+Ch9Windemere	3	ch9_step01	Blistering Pete's (SCR_196, s4-st3p talk: "See what's for sale", "Bomb - $20": gold - 20, item-bom)	196	10	21/29	231	0003_ch9_step01_Blistering_Pete_s_SCR_196_s4_st3p_talk.png	r_overview_2.jpg
+Ch9Windemere	4	story	0_to_10	196	10	21/29	231	0004_story_0_to_10.png	-
+Ch9Windemere	5	screen	196_from_1	536	10	21/29	231	0005_screen_196_from_1.png	-
+Ch9Windemere	6	screen	536_from_196	536	10	21/29	231	0006_screen_536_from_196.png	-
+Ch9Windemere	7	ch9_step02	the all-potion chest S536_P31 (ch-ap hit: apotion appears; touch: magic, strength and defense +1)	536	10	21/29	231	0007_ch9_step02_the_all_potion_chest_S536_P31_ch_ap_hit.png	r_overview_2.jpg
+Ch9Windemere	8	ch9_step03	the all-potion chest S536_P29 (ch-ap hit: apotion appears; touch: magic, strength and defense +1)	536	10	21/29	231	0008_ch9_step03_the_all_potion_chest_S536_P29_ch_ap_hit.png	-
+Ch9Windemere	9	ch9_step04	plant the bomb by the cracked rock (SCR_536 S536_P15 s4-rock, vision 1): arm item-bom, attack: dam-bom is spawned and the bomb leaves the inventory	536	10	21/29	231	0009_ch9_step04_plant_the_bomb_by_the_cracked_rock_SCR_.png	r_overview_2.jpg
+Ch9Windemere	10	ch9_step05	walk away from the fuse (3 s): the explosion hits the rock (s4-rock hit, &missle_source dam-bomn): &s4-duck 1	536	10	21/29	231	0010_ch9_step05_walk_away_from_the_fuse_3_s_the_explo.png	-
+Ch9Windemere	11	story	10_to_11	536	11	21/29	231	0011_story_10_to_11.png	r_overview_2.jpg
+Ch9Windemere	12	ch9_step06	the 27 ducks of the enclosure (SCR_536, s4-duck: die, then duckdie each; the last one's duckdie reaches spawn("s4-end")): &s4-duck 2, &story 11	536	11	21/29	231	0012_ch9_step06_the_27_ducks_of_the_enclosure_SCR_536_.png	-
+Ch9Windemere	13	ch9_step07	to the healer's house in Windemere (SCR_195), where chapter 10 begins	195	11	21/29	231	0013_ch9_step07_to_the_healer_s_house_in_Windemere_SCR_.png	r_overview_2.jpg
+ChAJoppa	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChAJoppa	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChAJoppa	3	ch10_step01	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	195	11	29/29	223	0003_ch10_step01_the_healer_in_Windemere_SCR_195_s4_heal.png	r_overview_2.jpg
+ChAJoppa	4	story	0_to_11	195	11	29/29	223	0004_story_0_to_11.png	-
+ChAJoppa	5	screen	195_from_1	663	11	29/29	223	0005_screen_195_from_1.png	-
+ChAJoppa	6	screen	663_from_195	663	11	29/29	223	0006_screen_663_from_195.png	-
+ChAJoppa	7	ch10_step02	the strength potion of the Windemere wilds (SCR_663 S663_P06 rpotion: strength +1)	663	11	29/29	223	0007_ch10_step02_the_strength_potion_of_the_Windemere_wil.png	r_overview_2.jpg
+ChAJoppa	8	screen	603_from_663	603	11	29/29	223	0008_screen_603_from_663.png	-
+ChAJoppa	9	ch10_step03	the defense potion of the marshes (SCR_603 S603_P02 bpotion: defense +1)	603	11	29/29	223	0009_ch10_step03_the_defense_potion_of_the_marshes_SCR_6.png	-
+ChAJoppa	10	screen	742_from_603	742	11	29/29	223	0010_screen_742_from_603.png	-
+ChAJoppa	11	ch10_step04	the chest of the sanctuary village (SCR_742 S742_P16 box2-sp: a punch, then the potion it makes: strength +1)	742	11	29/29	223	0011_ch10_step04_the_chest_of_the_sanctuary_village_SCR_.png	r_overview_2.jpg
+ChAJoppa	12	ch10_step05	Joppa (SCR_419, s5-jops: &s5-jop 0 -> 1, "Weird.  This town looks deserted.")	419	11	29/29	223	0012_ch10_step05_Joppa_SCR_419_s5_jops_s5_jop_0_1_.png	-
+ChAJoppa	13	screen	419_from_742	229	11	29/29	223	0013_screen_419_from_742.png	-
+ChAJoppa	14	screen	229_from_419	229	11	29/29	223	0014_screen_229_from_419.png	-
+ChAJoppa	15	ch10_step06	the basement (SCR_229, s5-base creates s5-guy and s5-mom, the scene of the hiding parents): &s5-jop 1 -> 2	229	11	29/29	223	0015_ch10_step06_the_basement_SCR_229_s5_base_creates_s.png	r_overview_2.jpg
+ChBKit	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChBKit	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChBKit	3	story	0_to_11	229	11	29/29	223	0003_story_0_to_11.png	r_overview_3.jpg
+ChBKit	4	screen	229_from_1	583	11	29/29	223	0004_screen_229_from_1.png	-
+ChBKit	5	screen	583_from_229	583	11	29/29	223	0005_screen_583_from_229.png	-
+ChBKit	6	ch11_step01	round 1: SCR_583, Bong and Boncd fight, he waits, then takes the loot	583	11	29/29	315	0006_ch11_step01_round_1_SCR_583_Bong_and_Boncd_fight_.png	-
+ChBKit	7	screen	480_from_583	480	11	29/29	315	0007_screen_480_from_583.png	-
+ChBKit	8	ch11_step02	round 1: SCR_480, two Bongs	480	11	29/29	440	0008_ch11_step02_round_1_SCR_480_two_Bongs.png	r_overview_3.jpg
+ChBKit	9	screen	632_from_480	632	11	29/29	440	0009_screen_632_from_480.png	-
+ChBKit	10	ch11_step03	round 1: SCR_632, two Bongs	632	11	29/29	500	0010_ch11_step03_round_1_SCR_632_two_Bongs.png	-
+ChBKit	11	screen	97_from_632	97	11	29/29	500	0011_screen_97_from_632.png	-
+ChBKit	12	periodic	97	97	11	29/29	500	0012_periodic_97.png	-
+ChBKit	13	ch11_step04	round 2: wait 5 minutes in Arturous's shop (8x), the screens' monsters come back (editor_type 6)	97	11	29/29	500	0013_ch11_step04_round_2_wait_5_minutes_in_Arturous_s_sh.png	r_overview_3.jpg
+ChBKit	14	ch11_step05	round 2: SCR_583, Bong and Boncd fight, he waits, then takes the loot	583	11	29/29	512	0014_ch11_step05_round_2_SCR_583_Bong_and_Boncd_fight_.png	-
+ChBKit	15	periodic	480	480	11	29/29	512	0015_periodic_480.png	-
+ChBKit	16	ch11_step06	round 2: SCR_480, two Bongs	480	11	29/29	636	0016_ch11_step06_round_2_SCR_480_two_Bongs.png	r_overview_3.jpg
+ChBKit	17	ch11_step07	round 2: SCR_632, two Bongs	632	11	29/29	692	0017_ch11_step07_round_2_SCR_632_two_Bongs.png	-
+ChBKit	18	ch11_step08	round 3: wait 5 minutes in Arturous's shop (8x), the screens' monsters come back (editor_type 6)	97	11	29/29	692	0018_ch11_step08_round_3_wait_5_minutes_in_Arturous_s_sh.png	r_overview_3.jpg
+ChBKit	19	ch11_step09	round 3: SCR_583, Bong and Boncd fight, he waits, then takes the loot	583	11	29/29	718	0019_ch11_step09_round_3_SCR_583_Bong_and_Boncd_fight_.png	-
+ChBKit	20	periodic	480	480	11	29/29	718	0020_periodic_480.png	-
+ChBKit	21	ch11_step10	round 3: SCR_480, two Bongs	480	11	29/29	782	0021_ch11_step10_round_3_SCR_480_two_Bongs.png	r_overview_3.jpg
+ChBKit	22	ch11_step11	round 3: SCR_632, two Bongs	480	11	29/29	782	0022_ch11_step11_round_3_SCR_632_two_Bongs.png	-
+ChBKit	23	ch11_step12	round 4: wait 5 minutes in Arturous's shop (8x), the screens' monsters come back (editor_type 6)	480	11	29/29	782	0023_ch11_step12_round_4_wait_5_minutes_in_Arturous_s_sh.png	r_overview_3.jpg
+ChBKit	24	ch11_step13	round 4: SCR_583, Bong and Boncd fight, he waits, then takes the loot	480	11	29/29	782	0024_ch11_step13_round_4_SCR_583_Bong_and_Boncd_fight_.png	-
+ChBKit	25	ch11_step14	round 4: SCR_480, two Bongs	480	11	29/29	782	0025_ch11_step14_round_4_SCR_480_two_Bongs.png	r_overview_3.jpg
+ChBKit	26	ch11_step15	round 4: SCR_632, two Bongs	480	11	29/29	782	0026_ch11_step15_round_4_SCR_632_two_Bongs.png	-
+ChBKit	27	screen	395_from_480	395	11	29/29	782	0027_screen_395_from_480.png	-
+ChBKit	28	ch11_step16	the all-potion chest of Murkwood (SCR_395 S395_P03 ch1-ap: a punch, then the potion: strength, defense, magic +1)	395	11	29/29	782	0028_ch11_step16_the_all_potion_chest_of_Murkwood_SCR_39.png	r_overview_3.jpg
+ChBKit	29	screen	750_from_395	750	11	29/29	782	0029_screen_750_from_395.png	-
+ChBKit	30	ch11_step17	the all-potion of the south coast (SCR_750 S750_P02: strength, defense, magic +1)	750	11	29/29	782	0030_ch11_step17_the_all_potion_of_the_south_coast_SCR_7.png	-
+ChBKit	31	screen	196_from_750	196	11	29/29	782	0031_screen_196_from_750.png	-
+ChBKit	32	ch11_step18	Pete's (SCR_196, s4-st3p talk: "See what's for sale", "Longsword - $400": gold - 400, item-sw1)	196	11	29/29	382	0032_ch11_step18_Pete_s_SCR_196_s4_st3p_talk_See_what.png	r_overview_3.jpg
+ChBKit	33	screen	33_from_196	33	11	29/29	357	0033_screen_33_from_196.png	-
+ChBKit	34	ch11_step19	elixirs from the Terris healer (SCR_033 s2-healp: "Buy a bottle of elixer for $25", three or more, up to six; 20 gold kept)	33	11	29/29	232	0034_ch11_step19_elixirs_from_the_Terris_healer_SCR_033_.png	-
+ChBKit	35	ch11_step20	arm the longsword (item-sw1 arm: strength +4, sp_distance 50, sp_range 40)	33	11	29/29	232	0035_ch11_step20_arm_the_longsword_item_sw1_arm_strengt.png	r_overview_3.jpg
+ChCDragons	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChCDragons	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChCDragons	3	ch12_step01	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	33	11	29/29	232	0003_ch12_step01_the_healer_in_Windemere_SCR_195_s4_heal.png	r_overview_3.jpg
+ChCDragons	4	story	0_to_11	33	11	29/29	232	0004_story_0_to_11.png	-
+ChCDragons	5	screen	33_from_1	419	11	29/29	232	0005_screen_33_from_1.png	-
+ChCDragons	6	screen	419_from_33	419	11	29/29	232	0006_screen_419_from_33.png	-
+ChCDragons	7	ch12_step02	back to Joppa (SCR_419, s5-jops with &s5-jop 2: s5-fguy's scene, two dragons en-drag, screenlock): the fight can begin	419	11	29/29	232	0007_ch12_step02_back_to_Joppa_SCR_419_s5_jops_with_s5.png	r_overview_3.jpg
+ChCDragons	8	music	playmidi "1009"	419	11	29/29	232	0008_music_playmidi_1009_.png	-
+ChCDragons	9	screenlock	screenlock 1	419	11	29/29	232	0009_screenlock_screenlock_1.png	-
+ChCDragons	10	screenlock	screenlock 0	419	11	29/29	363	0010_screenlock_screenlock_0.png	-
+ChCDragons	11	ch12_step03	the two dragons (en-drag: 80 hp, defense 8, touch 10, harm 20 by cast): DuelFight with the sword, family alive; the last death spawns s5-end: &story 12	419	12	29/29	506	0011_ch12_step03_the_two_dragons_en_drag_80_hp_defense.png	-
+ChCDragons	12	levelup	level-up (lraise) at 1600 exp	419	12	29/29	506	0012_levelup_level_up_lraise_at_1600_exp.png	-
+ChCDragons	13	story	11_to_12	419	12	29/29	506	0013_story_11_to_12.png	r_overview_3.jpg
+ChCDragons	14	ch12_step04	the dragons' loot (emake.xlarge), and the level-up of the second 400 exp (level 5: Attack)	419	12	29/32	506	0014_ch12_step04_the_dragons_loot_emake_xlarge_and_th.png	-
+ChCDragons	15	ch12_step05	to the castle gate (SCR_402), where chapter 13 begins	402	12	29/32	506	0015_ch12_step05_to_the_castle_gate_SCR_402_where_chap.png	r_overview_3.jpg
+ChDCastle	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChDCastle	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChDCastle	3	story	0_to_12	402	12	29/32	506	0003_story_0_to_12.png	r_overview_3.jpg
+ChDCastle	4	screen	402_from_1	402	12	29/32	506	0004_screen_402_from_1.png	-
+ChDCastle	5	screen	102_from_402	102	12	29/32	506	0005_screen_102_from_402.png	-
+ChDCastle	6	ch13_step01	the castle gate (SCR_402, s2-ca-g talk at &story 12: "Request an audience with King Daniel": enter() -> SCR_102)	102	12	29/32	506	0006_ch13_step01_the_castle_gate_SCR_402_s2_ca_g_talk_a.png	-
+ChDCastle	7	screen	70_from_102	70	12	29/32	506	0007_screen_70_from_102.png	-
+ChDCastle	8	story	12_to_13	70	13	29/32	506	0008_story_12_to_13.png	r_overview_3.jpg
+ChDCastle	9	ch13_step02	the King (SCR_070, king.c talk at &story 12: the greeting sets 13, the menu: "Offer to help Milder": &story 14)	70	14	29/32	506	0009_ch13_step02_the_King_SCR_070_king_c_talk_at_story.png	-
+ChDCastle	10	story	13_to_14	70	14	29/32	506	0010_story_13_to_14.png	r_overview_3.jpg
+ChDCastle	11	ch13_step03	the defense potion of the King's hall (SCR_070 S070_P22 bpotion: defense +1)	70	14	29/32	506	0011_ch13_step03_the_defense_potion_of_the_King_s_hall_S.png	-
+ChDCastle	12	screen	69_from_70	69	14	29/32	506	0012_screen_69_from_70.png	-
+ChDCastle	13	ch13_step04	the magic chest of the castle's back rooms (SCR_069 S069_P02 ch1-mp: a punch, then the potion: magic +1)	69	14	29/32	506	0013_ch13_step04_the_magic_chest_of_the_castle_s_back_roo.png	r_overview_3.jpg
+ChDCastle	14	screen	101_from_69	101	14	32/32	506	0014_screen_101_from_69.png	-
+ChDCastle	15	ch13_step05	the gold-heart chest (SCR_101 S101_P02 ch1-gh: a punch, then the heart: lifemax +10)	101	14	32/42	506	0015_ch13_step05_the_gold_heart_chest_SCR_101_S101_P02_c.png	-
+ChDCastle	16	ch13_step06	to the Edge of the World (SCR_243), where chapter 14 begins	243	14	32/42	506	0016_ch13_step06_to_the_Edge_of_the_World_SCR_243_wher.png	r_overview_3.jpg
+ChEEdge	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChEEdge	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChEEdge	3	story	0_to_14	243	14	32/42	506	0003_story_0_to_14.png	r_overview_3.jpg
+ChEEdge	4	ch14_step01	the defense potion at the Edge's entrance (SCR_243 S243_P01 bpotion: defense +1)	243	14	32/42	506	0004_ch14_step01_the_defense_potion_at_the_Edge_s_entranc.png	-
+ChEEdge	5	screen	243_from_1	248	14	32/42	506	0005_screen_243_from_1.png	-
+ChEEdge	6	screen	248_from_243	248	14	32/42	506	0006_screen_248_from_243.png	-
+ChEEdge	7	ch14_step02	the strength potion on the way to the machine (SCR_248 S248_P03 rpotion: strength +1)	248	14	32/42	506	0007_ch14_step02_the_strength_potion_on_the_way_to_the_ma.png	r_overview_3.jpg
+ChEEdge	8	ch14_step03	the pit (SCR_243 S243_P13 s6-hole, there at &story > 13: touch: Dink falls, fade_down, &player_map = 182, load_screen)	182	14	32/42	506	0008_ch14_step03_the_pit_SCR_243_S243_P13_s6_hole_there.png	-
+ChEEdge	9	screen	182_from_243	253	14	32/42	506	0009_screen_182_from_243.png	-
+ChEEdge	10	screen	253_from_182	253	14	32/42	506	0010_screen_253_from_182.png	-
+ChEEdge	11	screen	154_from_253	154	14	32/42	506	0011_screen_154_from_253.png	-
+ChEEdge	12	ch14_step04	the machine (SCR_253 s6-warp talk: "Press the red button": the spinner, fade_down, &player_map = 154, load_screen): the Darklands	154	14	32/42	506	0012_ch14_step04_the_machine_SCR_253_s6_warp_talk_Pres.png	r_overview_3.jpg
+ChFDarklands	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChFDarklands	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChFDarklands	3	story	0_to_14	154	14	32/42	506	0003_story_0_to_14.png	r_overview_3.jpg
+ChFDarklands	4	screen	154_from_1	195	14	32/42	506	0004_screen_154_from_1.png	-
+ChFDarklands	5	ch15_step01	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	195	14	42/42	496	0005_ch15_step01_the_healer_in_Windemere_SCR_195_s4_heal.png	-
+ChFDarklands	6	screen	195_from_154	156	14	42/42	496	0006_screen_195_from_154.png	-
+ChFDarklands	7	screenlock	screenlock 1	156	14	42/42	496	0007_screenlock_screenlock_1.png	-
+ChFDarklands	8	screen	156_from_195	156	14	42/42	496	0008_screen_156_from_195.png	-
+ChFDarklands	9	ch15_step02	SCR_156 (s7-bong 40 hp, s7-slay 100 hp, s7-drag 80 hp with harm 30; screenlock): the dragon first (it casts at him half the time), then the slayer and the bong	156	14	36/42	566	0009_ch15_step02_SCR_156_s7_bong_40_hp_s7_slay_100_hp_.png	r_overview_3.jpg
+ChFDarklands	10	screenlock	screenlock 0	156	14	36/42	566	0010_screenlock_screenlock_0.png	-
+ChFDarklands	11	ch15_step03	SCR_156's loot (emake: the gold, the heart and the food where the monsters fell)	156	14	36/42	863	0011_ch15_step03_SCR_156_s_loot_emake_the_gold_the_hea.png	-
+ChGSlayers	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChGSlayers	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChGSlayers	3	story	0_to_14	156	14	36/42	863	0003_story_0_to_14.png	r_overview_4.jpg
+ChGSlayers	4	screen	156_from_1	195	14	36/42	863	0004_screen_156_from_1.png	-
+ChGSlayers	5	ch16_step01	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	195	14	42/42	857	0005_ch16_step01_the_healer_in_Windemere_SCR_195_s4_heal.png	-
+ChGSlayers	6	screen	195_from_156	157	14	42/42	857	0006_screen_195_from_156.png	-
+ChGSlayers	7	screenlock	screenlock 1	157	14	42/42	857	0007_screenlock_screenlock_1.png	-
+ChGSlayers	8	screen	157_from_195	157	14	42/42	857	0008_screen_157_from_195.png	-
+ChGSlayers	9	ch16_step02	SCR_157: the four slayers (s7-slay 100 hp, defense 5, strength 20, range 45; screenlock): SquadFight with the sword	157	14	33/42	1102	0009_ch16_step02_SCR_157_the_four_slayers_s7_slay_100_h.png	r_overview_4.jpg
+ChGSlayers	10	screenlock	screenlock 0	157	14	33/42	1102	0010_screenlock_screenlock_0.png	-
+ChGSlayers	11	ch16_step03	the slayers' loot (emake.xlarge x4) lying on SCR_157	157	14	33/42	1435	0011_ch16_step03_the_slayers_loot_emake_xlarge_x4_lyin.png	-
+ChHDucks	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChHDucks	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChHDucks	3	story	0_to_14	157	14	33/52	1435	0003_story_0_to_14.png	r_overview_4.jpg
+ChHDucks	4	screen	157_from_1	157	14	33/52	1435	0004_screen_157_from_1.png	-
+ChHDucks	5	ch17_step01	the gold heart of the locked room (SCR_157 S157_P09 gheart: lifemax +10)	157	14	33/52	1435	0005_ch17_step01_the_gold_heart_of_the_locked_room_SCR_1.png	-
+ChHDucks	6	ch17_step02	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	195	14	52/52	1416	0006_ch17_step02_the_healer_in_Windemere_SCR_195_s4_heal.png	r_overview_4.jpg
+ChHDucks	7	screen	195_from_157	190	14	52/52	1416	0007_screen_195_from_157.png	-
+ChHDucks	8	screenlock	screenlock 1	190	14	52/52	1416	0008_screenlock_screenlock_1.png	-
+ChHDucks	9	screen	190_from_195	190	14	52/52	1416	0009_screen_190_from_195.png	-
+ChHDucks	10	ch17_step03	SCR_190: the three duck-bugs (s7-duck 50 hp, no defense, touch 25; screenlock): SquadFight with the sword	190	14	52/52	1529	0010_ch17_step03_SCR_190_the_three_duck_bugs_s7_duck_50.png	-
+ChHDucks	11	screenlock	screenlock 0	190	14	52/52	1529	0011_screenlock_screenlock_0.png	-
+ChHDucks	12	ch17_step04	the ducks' loot and the full heart (SCR_190 S190_P10 heart: life = lifemax)	190	14	44/52	1593	0012_ch17_step04_the_ducks_loot_and_the_full_heart_SCR_.png	r_overview_4.jpg
+ChISeth	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChISeth	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChISeth	3	story	0_to_14	190	14	44/52	1593	0003_story_0_to_14.png	r_overview_4.jpg
+ChISeth	4	screen	190_from_1	195	14	44/52	1593	0004_screen_190_from_1.png	-
+ChISeth	5	ch18_step01	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	195	14	52/52	1585	0005_ch18_step01_the_healer_in_Windemere_SCR_195_s4_heal.png	-
+ChISeth	6	screen	195_from_190	86	14	52/52	1585	0006_screen_195_from_190.png	-
+ChISeth	7	screen	86_from_195	86	14	52/52	1585	0007_screen_86_from_195.png	-
+ChISeth	8	music	playmidi "1004"	86	14	52/52	1585	0008_music_playmidi_1004_.png	-
+ChISeth	9	ch18_step02	Milder (SCR_086 s7-mil talk at &story 14: "Take his advice", the dialogue, the explosion, Seth appears and gets s7-boss): the fight begins	86	14	52/52	1585	0009_ch18_step02_Milder_SCR_086_s7_mil_talk_at_story_14.png	r_overview_4.jpg
+ChISeth	10	ch18_step03	out of the Darklands to SCR_209, where chapter 19 begins	209	14	52/52	1585	0010_ch18_step03_out_of_the_Darklands_to_SCR_209_where_c.png	-
+ChJBowLore	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChJBowLore	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChJBowLore	3	ch19_step01	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	209	14	52/52	1585	0003_ch19_step01_the_healer_in_Windemere_SCR_195_s4_heal.png	r_overview_4.jpg
+ChJBowLore	4	story	0_to_14	209	14	52/52	1585	0004_story_0_to_14.png	-
+ChJBowLore	5	screen	209_from_1	33	14	52/52	1585	0005_screen_209_from_1.png	-
+ChJBowLore	6	ch19_step02	three elixirs for the fights of this chapter (SCR_033 s2-healp, $25 each)	33	14	52/52	1560	0006_ch19_step02_three_elixirs_for_the_fights_of_this_cha.png	r_overview_4.jpg
+ChJBowLore	7	screen	33_from_209	214	14	52/52	1560	0007_screen_33_from_209.png	-
+ChJBowLore	8	ch19_step03	the strength potion of SCR_214 (S214_P02 rpotion: strength +1)	214	14	52/52	1560	0008_ch19_step03_the_strength_potion_of_SCR_214_S214_P02.png	-
+ChJBowLore	9	screen	214_from_33	184	14	52/52	1560	0009_screen_214_from_33.png	-
+ChJBowLore	10	screen	184_from_214	184	14	52/52	1560	0010_screen_184_from_214.png	-
+ChJBowLore	11	ch19_step04	the chest of SCR_184 (S184_P02 ch1-sp: a blow, then make.rpotion: strength +1)	184	14	52/52	1560	0011_ch19_step04_the_chest_of_SCR_184_S184_P02_ch1_sp_a.png	r_overview_4.jpg
+ChJBowLore	12	ch19_step05	the hole of SCR_209 (S209_P04 s1-hole3: touch, a 2 s fall, &player_map 198)	198	14	52/52	1560	0012_ch19_step05_the_hole_of_SCR_209_S209_P04_s1_hole3_.png	-
+ChJBowLore	13	screen	198_from_209	198	14	52/52	1560	0013_screen_198_from_209.png	-
+ChJBowLore	14	ch19_step06	the two strength potions of the room below (SCR_198 S198_P20/P21 rpotion: strength +2)	198	14	52/52	1560	0014_ch19_step06_the_two_strength_potions_of_the_room_bel.png	r_overview_4.jpg
+ChJBowLore	15	ch19_step07	the chest of SCR_209's east side (S209_P05 ch1-sp: a blow, then make.rpotion: strength +1)	209	14	52/52	1560	0015_ch19_step07_the_chest_of_SCR_209_s_east_side_S209_P.png	-
+ChJBowLore	16	ch19_step08	the food barrel of SCR_209 (S209_P13 bar-f1: a blow from the north makes it flat and soft) and the potion behind it (S209_P10 rpotion: strength +1)	209	14	52/52	1560	0016_ch19_step08_the_food_barrel_of_SCR_209_S209_P13_bar.png	r_overview_4.jpg
+ChJBowLore	17	ch19_step09	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	209	14	52/52	1560	0017_ch19_step09_the_healer_in_Windemere_SCR_195_s4_heal.png	-
+ChJBowLore	18	ch19_step10	the hole of SCR_180 (S180_P01 s6-hole2: touch, a 2 s fall, &player_map 166)	166	14	52/52	1560	0018_ch19_step10_the_hole_of_SCR_180_S180_P01_s6_hole2_.png	r_overview_4.jpg
+ChJBowLore	19	screen	180_from_209	166	14	52/52	1560	0019_screen_180_from_209.png	-
+ChJBowLore	20	screen	166_from_180	166	14	52/52	1560	0020_screen_166_from_180.png	-
+ChJBowLore	21	ch19_step11	SCR_166, the room below: two slayers (en-slay: 100 hp, defense 5, strength 20, range 45): SquadFight with the sword	166	14	48/62	1560	0021_ch19_step11_SCR_166_the_room_below_two_slayers_en.png	-
+ChJBowLore	22	ch19_step12	SCR_166's potions (rpotion, apotion, ppotion, bpotion: strength +2, defense +2, magic +2), the gold heart (lifemax +10) and the slayers' loot	166	14	48/62	1792	0022_ch19_step12_SCR_166_s_potions_rpotion_apotion_ppo.png	r_overview_4.jpg
+ChJBowLore	23	screen	177_from_166	177	14	48/62	1792	0023_screen_177_from_166.png	-
+ChJBowLore	24	ch19_step13	the barrel of SCR_177 (S177_P03 bar-sp: a blow from the south, make.spotion) and its potion (rpotion: strength +1)	177	14	48/62	1792	0024_ch19_step13_the_barrel_of_SCR_177_S177_P03_bar_sp_.png	-
+ChJBowLore	25	screen	165_from_177	165	14	48/72	1792	0025_screen_165_from_177.png	-
+ChJBowLore	26	ch19_step14	the gold heart of SCR_165 (S165_P01 gheart: lifemax +10)	165	14	48/72	1792	0026_ch19_step14_the_gold_heart_of_SCR_165_S165_P01_ghea.png	r_overview_4.jpg
+ChJBowLore	27	screen	284_from_165	284	14	48/72	1792	0027_screen_284_from_165.png	-
+ChJBowLore	28	ch19_step15	the chest of SCR_284 (S284_P04 ch2-gh: a blow, then make.gheart: lifemax +10)	284	14	48/82	1792	0028_ch19_step15_the_chest_of_SCR_284_S284_P04_ch2_gh_a.png	-
+ChJBowLore	29	screen	352_from_284	352	14	48/82	1792	0029_screen_352_from_284.png	-
+ChJBowLore	30	ch19_step16	SCR_352's potions and gold heart (S352_P18-21: bpotion, rpotion, gheart, apotion: strength +2, defense +2, magic +1, lifemax +10; its ppotion P17 is chapter 1's; the gold is left)	352	14	48/92	1792	0030_ch19_step16_SCR_352_s_potions_and_gold_heart_S352_P.png	r_overview_4.jpg
+ChJBowLore	31	screen	195_from_352	195	14	92/92	1748	0031_screen_195_from_352.png	-
+ChJBowLore	32	ch19_step17	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	195	14	92/92	1748	0032_ch19_step17_the_healer_in_Windemere_SCR_195_s4_heal.png	-
+ChJBowLore	33	screen	159_from_195	159	14	91/92	1748	0033_screen_159_from_195.png	-
+ChJBowLore	34	ch19_step18	SCR_159's four magic potions (S159_P10-13 ppotion: magic +4) among four Darklands dragons (s7-drag, not fought)	159	14	31/92	1748	0034_ch19_step18_SCR_159_s_four_magic_potions_S159_P10_1.png	r_overview_4.jpg
+ChJBowLore	35	ch19_step19	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	195	14	92/92	1687	0035_ch19_step19_the_healer_in_Windemere_SCR_195_s4_heal.png	-
+ChJBowLore	36	periodic	195	195	14	92/92	1687	0036_periodic_195.png	-
+ChJBowLore	37	ch19_step20	visit 1: wait at the Windemere healer (8x) until the Darklands rooms are back (editor_type 6, 5 minutes)	195	14	92/92	1687	0037_ch19_step20_visit_1_wait_at_the_Windemere_healer_8.png	r_overview_4.jpg
+ChJBowLore	38	ch19_step21	before SCR_156: the healer in Windemere (SCR_195 s4-healp)	195	14	92/92	1687	0038_ch19_step21_before_SCR_156_the_healer_in_Windemere_.png	-
+ChJBowLore	39	screenlock	screenlock 1	156	14	92/92	1687	0039_screenlock_screenlock_1.png	-
+ChJBowLore	40	screen	156_from_195	156	14	92/92	1687	0040_screen_156_from_195.png	-
+ChJBowLore	41	levelup	level-up (lraise) at 2500 exp	156	14	54/92	1687	0041_levelup_level_up_lraise_at_2500_exp.png	-
+ChJBowLore	42	ch19_step22	visit 1: SCR_156 (s7-bong, s7-slay, s7-drag; screenlock): DuelFight with the sword, the dragon first	156	14	54/95	1737	0042_ch19_step22_visit_1_SCR_156_s7_bong_s7_slay_s7_d.png	r_overview_4.jpg
+ChJBowLore	43	screenlock	screenlock 0	156	14	54/95	1737	0043_screenlock_screenlock_0.png	-
+ChJBowLore	44	ch19_step23	the loot of SCR_156	156	14	57/95	1851	0044_ch19_step23_the_loot_of_SCR_156.png	-
+ChJBowLore	45	ch19_step24	before SCR_157: the healer in Windemere (SCR_195 s4-healp)	156	14	57/95	1851	0045_ch19_step24_before_SCR_157_the_healer_in_Windemere_.png	r_overview_4.jpg
+ChJBowLore	46	ch19_step25	visit 1: SCR_157, the four slayers (screenlock): SquadFight with the sword	156	14	57/95	1851	0046_ch19_step25_visit_1_SCR_157_the_four_slayers_scre.png	-
+ChJBowLore	47	ch19_step26	the loot of SCR_157	156	14	57/95	1851	0047_ch19_step26_the_loot_of_SCR_157.png	r_overview_4.jpg
+ChJBowLore	48	ch19_step27	before SCR_190: the healer in Windemere (SCR_195 s4-healp)	156	14	57/95	1851	0048_ch19_step27_before_SCR_190_the_healer_in_Windemere_.png	-
+ChJBowLore	49	ch19_step28	visit 1: SCR_190, the three duck-bugs (screenlock): SquadFight with the sword	156	14	57/95	1851	0049_ch19_step28_visit_1_SCR_190_the_three_duck_bugs_s.png	r_overview_4.jpg
+ChJBowLore	50	ch19_step29	the loot of SCR_190	156	14	57/95	1851	0050_ch19_step29_the_loot_of_SCR_190.png	-
+ChJBowLore	51	ch19_step30	visit 2 (if gold is short): wait at the Windemere healer (8x) for the rooms	156	14	57/95	1851	0051_ch19_step30_visit_2_if_gold_is_short_wait_at_the_.png	r_overview_4.jpg
+ChJBowLore	52	ch19_step31	before SCR_156: the healer in Windemere (SCR_195 s4-healp)	156	14	57/95	1851	0052_ch19_step31_before_SCR_156_the_healer_in_Windemere_.png	-
+ChJBowLore	53	ch19_step32	visit 2: SCR_156 (s7-bong, s7-slay, s7-drag; screenlock): DuelFight with the sword, the dragon first	156	14	57/95	1851	0053_ch19_step32_visit_2_SCR_156_s7_bong_s7_slay_s7_d.png	r_overview_4.jpg
+ChJBowLore	54	ch19_step33	the loot of SCR_156	156	14	57/95	1851	0054_ch19_step33_the_loot_of_SCR_156.png	-
+ChJBowLore	55	ch19_step34	before SCR_157: the healer in Windemere (SCR_195 s4-healp)	156	14	57/95	1851	0055_ch19_step34_before_SCR_157_the_healer_in_Windemere_.png	r_overview_4.jpg
+ChJBowLore	56	ch19_step35	visit 2: SCR_157, the four slayers (screenlock): SquadFight with the sword	156	14	57/95	1851	0056_ch19_step35_visit_2_SCR_157_the_four_slayers_scre.png	-
+ChJBowLore	57	ch19_step36	the loot of SCR_157	156	14	57/95	1851	0057_ch19_step36_the_loot_of_SCR_157.png	r_overview_4.jpg
+ChJBowLore	58	ch19_step37	before SCR_190: the healer in Windemere (SCR_195 s4-healp)	156	14	57/95	1851	0058_ch19_step37_before_SCR_190_the_healer_in_Windemere_.png	-
+ChJBowLore	59	ch19_step38	visit 2: SCR_190, the three duck-bugs (screenlock): SquadFight with the sword	156	14	57/95	1851	0059_ch19_step38_visit_2_SCR_190_the_three_duck_bugs_s.png	r_overview_4.jpg
+ChJBowLore	60	ch19_step39	the loot of SCR_190	156	14	57/95	1851	0060_ch19_step39_the_loot_of_SCR_190.png	-
+ChJBowLore	61	screen	710_from_156	710	14	57/95	1851	0061_screen_710_from_156.png	-
+ChJBowLore	62	ch19_step40	the secret tree (SCR_710 S710_P14 s3-sec1): a charged fireball from its row; dam-fire runs its `die`: it burns to a stump (touch -1)	227	14	57/95	1851	0062_ch19_step40_the_secret_tree_SCR_710_S710_P14_s3_sec.png	r_overview_4.jpg
+ChJBowLore	63	ch19_step41	the stump's touch (s3-sec1 touch: &player_map 227, the bow-lore hut)	227	14	57/95	1851	0063_ch19_step41_the_stump_s_touch_s3_sec1_touch_playe.png	-
+ChJBowLore	64	ch19_step42	bow lore (SCR_227 S227_P02 s3-bowl talk: "Learn bow lore": &bowlore 1, gold - 1500)	227	14	57/95	351	0064_ch19_step42_bow_lore_SCR_227_S227_P02_s3_bowl_talk_.png	r_overview_4.jpg
+ChJBowLore	65	screen	227_from_710	33	14	57/95	351	0065_screen_227_from_710.png	-
+ChJBowLore	66	ch19_step43	elixirs for Seth (SCR_033 s2-healp: up to eleven, every free item slot; gold kept for the healer)	33	14	57/95	151	0066_ch19_step43_elixirs_for_Seth_SCR_033_s2_healp_up_t.png	-
+ChJBowLore	67	ch19_step44	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	195	14	95/95	113	0067_ch19_step44_the_healer_in_Windemere_SCR_195_s4_heal.png	r_overview_4.jpg
+ChJBowLore	68	ch19_step45	arm the bow (item-b1 arm: the bow's pictures; the longsword's disarm takes its +4 strength back)	195	14	95/95	113	0068_ch19_step45_arm_the_bow_item_b1_arm_the_bow_s_pict.png	-
+ChKSeth	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+ChKSeth	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+ChKSeth	3	ch20_step01	the healer in Windemere (SCR_195 s4-healp, 1 gold per missing life)	195	14	95/95	113	0003_ch20_step01_the_healer_in_Windemere_SCR_195_s4_heal.png	r_overview_4.jpg
+ChKSeth	4	story	0_to_14	195	14	95/95	113	0004_story_0_to_14.png	-
+ChKSeth	5	screen	195_from_1	86	14	95/95	113	0005_screen_195_from_1.png	-
+ChKSeth	6	screen	86_from_195	86	14	95/95	113	0006_screen_86_from_195.png	-
+ChKSeth	7	music	playmidi "1004"	86	14	95/95	113	0007_music_playmidi_1004_.png	-
+ChKSeth	8	ch20_step02	Milder (SCR_086 s7-mil talk at &story 14: "Take his advice", the dialogue, the explosion, Seth appears and gets s7-boss)	86	14	95/95	113	0008_ch20_step02_Milder_SCR_086_s7_mil_talk_at_story_14.png	r_overview_4.jpg
+ChKSeth	9	periodic	86	86	14	39/95	113	0009_periodic_86.png	-
+ChKSeth	10	ch20_step03	Seth (s7-boss: 300 hp, defense 25, touch 30, bombs and greater harm): BowDuel with item-b1 and bow lore, elixirs at life 25; his `die`: &story 15	86	15	95/95	113	0010_ch20_step03_Seth_s7_boss_300_hp_defense_25_touch.png	-
+ChKSeth	11	story	14_to_15	86	15	95/95	113	0011_story_14_to_15.png	r_overview_4.jpg
+ChKSeth	12	levelup	level-up (lraise) at 3600 exp	86	15	95/95	113	0012_levelup_level_up_lraise_at_3600_exp.png	-
+ChKSeth	13	levelup	level-up (lraise) at 3600 exp	154	15	95/95	113	0013_levelup_level_up_lraise_at_3600_exp.png	-
+ChKSeth	14	screen	154_from_86	154	15	95/95	113	0014_screen_154_from_86.png	-
+ChKSeth	15	screen	253_from_154	253	15	95/101	113	0015_screen_253_from_154.png	-
+ChKSeth	16	ch20_step04	the machine (SCR_154 S154_P23 s7-warp talk: "Press the red button": the spinner, fade, &player_map 253)	253	15	95/101	113	0016_ch20_step04_the_machine_SCR_154_S154_P23_s7_warp_ta.png	-
+ChKSeth	17	screen	70_from_253	70	15	95/101	113	0017_screen_70_from_253.png	-
+ChKSeth	18	music	playmidi "1011"	70	15	95/101	113	0018_music_playmidi_1011_.png	-
+ChKSeth	19	ch20_step05	the King (SCR_070 king.c talk at &story 15: "SMALLWOOD HAS RETURNED!", the credits, &story 16)	70	16	95/101	113	0019_ch20_step05_the_King_SCR_070_king_c_talk_at_story_.png	r_overview_4.jpg
+session_a	1	music	playmidi "5.mid"	1	1	10/10	0	0001_music_playmidi_5_mid_.png	-
+session_a	2	screen	1_from_-1	1	1	10/10	0	0002_screen_1_from_1.png	-
+session_a	3	periodic	1	1	1	10/10	0	0003_periodic_1.png	-
+session_a	4	items	open	1	1	10/10	0	0004_items_open.png	-
+session_a	5	periodic	1	1	1	10/10	0	0005_periodic_1.png	-
+session_a	6	screen	439_from_1	439	1	10/10	0	0006_screen_439_from_1.png	-
+session_a	7	screen	407_from_1	407	1	10/10	0	0007_screen_407_from_1.png	-
+session_a	8	periodic	407	407	1	10/10	0	0008_periodic_407.png	-
+session_a	9	periodic	407	407	1	10/10	0	0009_periodic_407.png	-
+session_a	10	screen	408_from_407	408	1	10/10	0	0010_screen_408_from_407.png	-
+session_a	11	menu	Save your game	408	1	10/10	0	0011_menu_Save_your_game.png	-
+session_a	12	cmd	save_game 1	408	1	10/10	0	0012_cmd_save_game_1.png	-
+session_a	13	screen	409_from_408	409	1	10/10	0	0013_screen_409_from_408.png	-
+session_a	14	periodic	409	409	1	10/10	0	0014_periodic_409.png	-
+session_a	15	screen	278_from_409	278	1	10/10	0	0015_screen_278_from_409.png	-
+session_a	16	periodic	278	278	1	10/10	0	0016_periodic_278.png	-
+session_a	17	death	life_0	278	1	0/10	0	0017_death_life_0.png	-
+session_a	18	menu	Load a previously saved game	278	1	0/10	0	0018_menu_Load_a_previously_saved_game.png	-
+session_a	19	periodic	278	278	1	0/10	0	0019_periodic_278.png	-
+session_a	20	cmd	load_game 1	408	1	10/10	0	0020_cmd_load_game_1.png	-
+session_a	21	menu	Load a previously saved game	408	1	10/10	0	0021_menu_Load_a_previously_saved_game.png	-
+session_a	22	cmd	load_game 1	408	1	10/10	0	0022_cmd_load_game_1.png	-
+session_a	23	screen	277_from_408	277	1	10/10	0	0023_screen_277_from_408.png	-
+session_a	24	periodic	277	277	1	10/10	0	0024_periodic_277.png	-
+session_a	25	music	playmidi "insper.mid"	131	1	10/10	0	0025_music_playmidi_insper_mid_.png	-
+session_a	26	screen	131_from_277	131	1	10/10	0	0026_screen_131_from_277.png	-
+session_b	1	music	playmidi "5.mid"	1	1	10/10	0	0001_music_playmidi_5_mid_.png	-
+session_b	2	screen	1_from_-1	1	1	10/10	0	0002_screen_1_from_1.png	-
+session_b	3	menu	Load a previously saved game	1	1	10/10	0	0003_menu_Load_a_previously_saved_game.png	-
+session_b	4	cmd	load_game 2	196	10	21/29	251	0004_cmd_load_game_2.png	-
+session_b	5	story	1_to_10	196	10	21/29	251	0005_story_1_to_10.png	-
+session_b	6	screen	196_from_1	196	10	21/29	251	0006_screen_196_from_1.png	-
+session_b	7	load	10 instances, 0 texts	196	10	21/29	251	0007_load_10_instances_0_texts.png	-
+session_b	8	menu	Ask about the store	196	10	21/29	251	0008_menu_Ask_about_the_store.png	-
+session_b	9	items	open	196	10	21/29	231	0009_items_open.png	-
+session_b	10	periodic	196	196	10	21/29	231	0010_periodic_196.png	-
+session_b	11	screen	536_from_196	536	10	21/29	231	0011_screen_536_from_196.png	-
+session_b	12	periodic	536	536	10	21/29	231	0012_periodic_536.png	-
+session_b	13	items	open	536	10	21/29	231	0013_items_open.png	-
+session_c	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+session_c	2	story	0_to_1	1	1	10/10	0	0002_story_0_to_1.png	-
+session_c	3	screen	1_from_-1	1	1	10/10	0	0003_screen_1_from_1.png	-
+session_c	4	menu	Load a previously saved game	1	1	10/10	0	0004_menu_Load_a_previously_saved_game.png	-
+session_c	5	cmd	load_game 3	195	14	95/95	113	0005_cmd_load_game_3.png	-
+session_c	6	story	1_to_14	195	14	95/95	113	0006_story_1_to_14.png	-
+session_c	7	screen	195_from_1	195	14	95/95	113	0007_screen_195_from_1.png	-
+session_c	8	load	6 instances, 0 texts	195	14	95/95	113	0008_load_6_instances_0_texts.png	-
+session_c	9	screen	86_from_195	86	14	95/95	113	0009_screen_86_from_195.png	-
+session_c	10	periodic	86	86	14	95/95	113	0010_periodic_86.png	-
+session_c	11	menu	Refuse to leave without him	86	14	95/95	113	0011_menu_Refuse_to_leave_without_him.png	-
+session_c	12	music	playmidi "1004"	86	14	95/95	113	0012_music_playmidi_1004_.png	-
+session_c	13	story	14_to_15	86	15	95/95	113	0013_story_14_to_15.png	-
+session_c	14	screen	70_from_86	70	15	95/95	113	0014_screen_70_from_86.png	-
+session_c	15	music	playmidi "1011"	70	15	95/95	113	0015_music_playmidi_1011_.png	-
+session_c	16	periodic	70	70	15	95/95	113	0016_periodic_70.png	-
+session_c	17	periodic	70	70	15	95/95	113	0017_periodic_70.png	-
+session_c	18	story	15_to_16	70	16	95/95	113	0018_story_15_to_16.png	-
+session_d	1	music	playmidi "5.mid"	1	1	10/10	0	0001_music_playmidi_5_mid_.png	-
+session_d	2	screen	1_from_-1	1	1	10/10	0	0002_screen_1_from_1.png	-
+session_d	3	periodic	1	1	1	10/10	0	0003_periodic_1.png	-
+session_d	4	screen	409_from_1	409	1	10/10	0	0004_screen_409_from_1.png	-
+session_d	5	screen	2_from_409	2	1	10/10	0	0005_screen_2_from_409.png	-
+session_d	6	screen	278_from_2	278	1	10/10	0	0006_screen_278_from_2.png	-
+session_d	7	periodic	278	278	1	1/60	0	0007_periodic_278.png	-
+session_e	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+session_e	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+session_e	3	story	0_to_1	1	1	10/10	0	0003_story_0_to_1.png	-
+session_e	4	menu	Load a previously saved game	1	1	10/10	0	0004_menu_Load_a_previously_saved_game.png	-
+session_e	5	cmd	load_game 3	195	14	95/95	113	0005_cmd_load_game_3.png	-
+session_e	6	story	1_to_14	195	14	95/95	113	0006_story_1_to_14.png	-
+session_e	7	screen	195_from_1	195	14	95/95	113	0007_screen_195_from_1.png	-
+session_e	8	load	6 instances, 0 texts	195	14	95/95	113	0008_load_6_instances_0_texts.png	-
+session_e	9	screen	86_from_195	86	14	95/95	113	0009_screen_86_from_195.png	-
+session_e	10	periodic	86	86	14	95/95	113	0010_periodic_86.png	-
+session_e	11	menu	Refuse to leave without him	86	14	95/95	113	0011_menu_Refuse_to_leave_without_him.png	-
+session_e	12	music	playmidi "1004"	86	14	95/95	113	0012_music_playmidi_1004_.png	-
+session_e	13	periodic	86	86	14	95/95	113	0013_periodic_86.png	-
+session_e	14	death	life_0	86	14	0/95	113	0014_death_life_0.png	-
+session_e	15	menu	Load a previously saved game	86	14	0/95	113	0015_menu_Load_a_previously_saved_game.png	-
+session_e	16	periodic	86	86	14	0/95	113	0016_periodic_86.png	-
+session_f	1	music	playmidi "5.mid"	1	0	10/10	0	0001_music_playmidi_5_mid_.png	-
+session_f	2	screen	1_from_-1	1	0	10/10	0	0002_screen_1_from_1.png	-
+session_f	3	story	0_to_1	1	1	10/10	0	0003_story_0_to_1.png	-
