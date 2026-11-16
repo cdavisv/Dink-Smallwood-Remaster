@@ -16,7 +16,7 @@ slayer (645) and the stone giant (825) need.
 | a killed slayer | nothing | the body with its tail curled round, soaked red, in its pool with drops (decal 6.4 x 5.0 m) |
 | a killed stone giant | nothing | a heap of ten blocks of its own stone on dark grit; no blood (825 has none) |
 
-`art_coverage.py` (private copy, whole-world coverage report of 15 Nov): final 5,125 -> 5,201, placeholder 1,330 -> 1,254,
+`art_coverage.py` (private copy, whole-world coverage report of 15 Nov): final 5,125 -> 5,201, placeholder 1,330 -> 1,254 (on master of 16 Nov after the rebase: 5,139 -> 5,215),
 cut 152 (bonca_gray 21, slayer 21, stone_giant 14, bonca_brown 12, bonca_purple 9).
 
 ## Sheets (every frame is from the running game unless it says "source")
