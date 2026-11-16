@@ -194,6 +194,14 @@ namespace
 		TEXT("Review only. 0: normal; 1: every movement walks; 2: every movement runs."));
 	TAutoConsoleVariable<float> CVarHeroGaitChange(TEXT("dink.Hero.GaitChangeRate"), 900.f,
 		TEXT("How fast the player's top speed moves between walk and run when the run key changes, cm/s per second."));
+	TAutoConsoleVariable<float> CVarHeroTurnRate(TEXT("dink.Hero.TurnRate"), 900.f,
+		TEXT("How fast Dink turns to the player's direction keys, degrees per second (the original turns on the key's frame; 300 is the rate movement fed by the bot and scripts keeps)."));
+	TAutoConsoleVariable<int32> CVarHeroOriginalHold(TEXT("dink.Hero.OriginalInputHold"), 1,
+		TEXT("1: as in 1997, Dink stands still for an attack or a spell (sp_nocontrol), only turns while the bow is drawn, and a key diagonal is 0.943 of the straight walk; 0: the keys always walk at full speed."));
+	/** Yaw rate movement fed directly (bot, scripted moves, tests) has always turned the pawn at; it stays for them. */
+	constexpr float FedTurnRate = 300.f;
+	/** The original's diagonal against its straight walk: 2 + 2 px a frame against 3 (sqrt(8) / 3). */
+	constexpr float OriginalDiagonalScale = 0.9428090f;
 }
 
 void ADinkGreyboxCharacter::SetRunKeyHeld(bool bHeld)
@@ -226,6 +234,48 @@ void ADinkGreyboxCharacter::UpdateGait(float DeltaSeconds)
 	Movement->MaxWalkSpeed = IsHumanSteering() || CVarHeroGait.GetValueOnGameThread() != 0
 		? FMath::FInterpConstantTo(Movement->MaxWalkSpeed, Target, DeltaSeconds, CVarHeroGaitChange.GetValueOnGameThread())
 		: Target;
+	// The original's Dink faces the key's direction on its frame; the pawn turns quickly under the player's keys, and at the
+	// old rate for everything else (the bot's routes and timings were measured with it).
+	Movement->RotationRate.Yaw = IsHumanSteering() ? FMath::Max(FedTurnRate, CVarHeroTurnRate.GetValueOnGameThread()) : FedTurnRate;
+	// Something other than the player's keys moves him (the bot, a scripted move): the keys' direction is no longer his facing.
+	if (bPlayerFacing && !IsHumanSteering() && GetVelocity().Size2D() > 10.f) bPlayerFacing = false;
+}
+
+void ADinkGreyboxCharacter::SetPlayerHold(EDinkPlayerHold Hold)
+{
+	if (CVarHeroOriginalHold.GetValueOnGameThread() == 0) Hold = EDinkPlayerHold::None;
+	if (Hold == PlayerHold) return;
+	const EDinkPlayerHold Previous = PlayerHold;
+	PlayerHold = Hold;
+	// dink.cpp:14742: with nocontrol set human_brain returns before the movement keys; with the bow drawn it returns from
+	// process_bow (14761-14766). Dink stands where he is on that frame: the player's walk stops at once (not a slide).
+	if (Previous == EDinkPlayerHold::None && IsHumanSteering())
+		if (UCharacterMovementComponent* Movement = GetCharacterMovement(); Movement && Movement->IsMovingOnGround())
+		{
+			Movement->Velocity.X = 0.0; Movement->Velocity.Y = 0.0;
+			ConsumeMovementInputVector();
+		}
+}
+
+bool ADinkGreyboxCharacter::HasPlayerKeysThisFrame() const
+{
+	// This frame's input or the last frame's (input may be read before or after the world's clock moved this frame).
+	const UWorld* World = GetWorld();
+	return World && World->GetTimeSeconds() - LastHumanMoveSeconds <= World->GetDeltaSeconds() + 1.e-3;
+}
+
+bool ADinkGreyboxCharacter::GetPlayerFacing(FVector& OutDirection) const
+{
+	if (!bPlayerFacing) return false;
+	OutDirection = PlayerFacing;
+	return true;
+}
+
+void ADinkGreyboxCharacter::FaceDirectionNow(const FVector& Direction)
+{
+	const FVector Flat = FVector(Direction.X, Direction.Y, 0.0).GetSafeNormal();
+	if (Flat.IsNearlyZero()) return;
+	SetActorRotation(FRotator(0.0, Flat.Rotation().Yaw, 0.0));
 }
 
 void ADinkGreyboxCharacter::Jump()
@@ -444,8 +494,28 @@ void ADinkGreyboxCharacter::PlayerMoveInput(FVector2D Axis)
 	{
 		if (!Axis.IsNearlyZero() && GetWorld()) LastHumanMoveSeconds = GetWorld()->GetTimeSeconds();
 		const FRotator Yaw(0.f, Controller->GetControlRotation().Yaw, 0.f);
-		AddMovementInput(FRotationMatrix(Yaw).GetUnitAxis(EAxis::X), Axis.Y);
-		AddMovementInput(FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y), Axis.X);
+		const FVector Forward = FRotationMatrix(Yaw).GetUnitAxis(EAxis::X), Right = FRotationMatrix(Yaw).GetUnitAxis(EAxis::Y);
+		// The original ignores the direction keys while sp_nocontrol is set (an attack, a spell: dink.cpp:14742), and while a
+		// choice menu is open or Dink is frozen (goto freeze, 14744-14757): no step, no turn, no new facing.
+		if (PlayerHold == EDinkPlayerHold::Rooted || Controller->IsMoveInputIgnored()) return;
+		const FVector Wanted = FVector(Forward * Axis.Y + Right * Axis.X).GetSafeNormal2D();
+		if (!Wanted.IsNearlyZero())
+		{
+			PlayerFacing = Wanted;
+			bPlayerFacing = true;
+		}
+		// With the bow drawn the keys turn him on the spot (process_bow, dink.cpp:14568-14598).
+		if (PlayerHold == EDinkPlayerHold::TurnOnly)
+		{
+			if (!Wanted.IsNearlyZero()) FaceDirectionNow(Wanted);
+			return;
+		}
+		// A key or d-pad diagonal: the original moves speed - speed / 3 on each axis (dink.cpp:15044-15070, 2 + 2 px against
+		// 3 px straight), so the diagonal is 2.83 / 3 = 0.943 of the straight speed. Analog sticks keep their own magnitude.
+		const bool bDigitalDiagonal = FMath::IsNearlyEqual(FMath::Abs(Axis.X), 1.f, .01f) && FMath::IsNearlyEqual(FMath::Abs(Axis.Y), 1.f, .01f);
+		const float DiagonalScale = bDigitalDiagonal && CVarHeroOriginalHold.GetValueOnGameThread() != 0 ? OriginalDiagonalScale / UE_SQRT_2 : 1.f;
+		AddMovementInput(Forward, Axis.Y * DiagonalScale);
+		AddMovementInput(Right, Axis.X * DiagonalScale);
 	}
 }
 

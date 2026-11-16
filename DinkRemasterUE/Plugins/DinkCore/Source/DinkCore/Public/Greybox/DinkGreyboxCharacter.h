@@ -15,6 +15,17 @@ class UInputMappingContext;
 class USpringArmComponent;
 struct FInputActionValue;
 
+/** What the original's human_brain lets the player's direction keys do right now (set by the narrative layer every frame). */
+enum class EDinkPlayerHold : uint8
+{
+	/** Normal play: the keys move Dink. */
+	None,
+	/** sp_nocontrol during an attack or spell sequence (dink.cpp:14742, cleared at the sequence's end 16958): the keys do nothing. */
+	Rooted,
+	/** The bow is drawn (process_bow, dink.cpp:14568-14598, 14761-14766): the keys turn Dink, he does not walk. */
+	TurnOnly,
+};
+
 /**
  * Walk-around character for the greybox: the engine's third-person template behaviour (camera
  * boom, orient to movement, Enhanced Input) with the mannequin, animation blueprint and input
@@ -104,6 +115,25 @@ public:
 	float DesiredTopSpeed() const;
 	/** Movement from the player's own controls (stick or keys; X right, Y forward, relative to the camera). */
 	void PlayerMoveInput(FVector2D Axis);
+	/**
+	 * 1997 input rules for the player's own keys (alpha mechanics QA, 15 Nov 2026). Entering Rooted or TurnOnly while a person
+	 * steers stops the walk at once, as the original's Dink stands for the attack. Movement fed directly (the bot, scripted
+	 * moves, tests) never passes through PlayerMoveInput and is not affected, so probe traces cannot change.
+	 */
+	void SetPlayerHold(EDinkPlayerHold Hold);
+	EDinkPlayerHold GetPlayerHold() const { return PlayerHold; }
+	/**
+	 * The direction (world, unit, horizontal) of the player's last own movement input, while it is still Dink's facing: the
+	 * original's changedir sets dir on the frame of the key (dink.cpp:15013-15070) and the attack, spell and bow read it at once
+	 * (14812-14820, item-fst.c / item-fb.c sp_dir(1, -1)), whereas the pawn turns at RotationRate. Cleared when a script sets
+	 * Dink's dir or something other than the player's keys moves the pawn.
+	 */
+	bool GetPlayerFacing(FVector& OutDirection) const;
+	void ClearPlayerFacing() { bPlayerFacing = false; }
+	/** True when the player's own movement keys gave input on this frame or the last (the original's sjoy direction bits). */
+	bool HasPlayerKeysThisFrame() const;
+	/** Turns the pawn to Direction at once (the attack plays where it hits). */
+	void FaceDirectionNow(const FVector& Direction);
 	void ZoomCamera(float Steps);
 
 	/**
@@ -136,6 +166,9 @@ private:
 	void StopWalking() { SetRunKeyHeld(false); }
 	void UpdateGait(float DeltaSeconds);
 	double LastHumanMoveSeconds = -1.e9;
+	EDinkPlayerHold PlayerHold = EDinkPlayerHold::None;
+	FVector PlayerFacing = FVector::ForwardVector;
+	bool bPlayerFacing = false;
 	void Zoom(const FInputActionValue& Value);
 	UPROPERTY() TObjectPtr<UInputMappingContext> ThirdPersonMapping;
 	UPROPERTY() TObjectPtr<UInputAction> WalkInputAction;

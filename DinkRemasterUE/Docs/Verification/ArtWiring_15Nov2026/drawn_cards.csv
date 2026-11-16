@@ -1,0 +1,101 @@
+class,cards,with_origin,screens,final_origin_cards,family_row,mesh_available
+duck,87,87,100 161 162 190 194 196 307 374 397 405 504 521 532 535 536 537 564 570 585 604 652 656 699 700 711 762 764,,,
+slime_blue,63,63,32 64 123 191 347 458 599 633 652 672 695,,,
+slime_red,33,33,192 274 658 660 688,,,
+tree_fruit,32,32,442 474,,,SM_Acorn_Hanging_PR
+npc_knight_blue,24,24,70 102,,,
+slayer,22,22,28 35 106 137 138 156 157 166 448 652 663 695 696,,,SK_Slayer_PR
+bonca_gray,21,21,27 90 137 156 160 170 480 583 632 633 696 715,,,SK_Bonca_PR
+door_wood_single,21,21,188 219 251 274 409 418 419 497 498 499 500 501 506 530 539 585 587 617 619 734,,,SM_Door_Wood_Single_PR
+blood_splat,16,0,60 61 91 94 122 126 154 158 190 191,,,Decal_Blood_Drips_01 Decal_Blood_Drops_Large_01 Decal_Blood_Pool_01 Decal_Blood_Pool_02 Decal_Blood_Spurt_L_01 Decal_Blood_Spurt_L_02 Decal_Blood_Spurt_R_01 Decal_Blood_Spurt_R_02
+dragon,16,16,74 123 124 127 156 159 160 191,,,SK_Dragon_PR
+bridge_wood_deck,15,15,416 448 480 533 544 701,,,SM_Bridge_Wood_Deck_PR
+cottage_door,15,1,274 350 440 497 500 501 530 532 537 617 618 619 734,,,SM_Cottage_Door_PR
+cottage_thatched_small,14,7,274 497 501 532 537 619,,,SM_Cottage_Thatched_Small_PR
+fence_rail_diag_nw,14,14,409 437 568,,,
+stone_giant,14,14,178 182 183 209 211 212 213 215 242 245 246,,,SK_Stone_Giant_PR
+arrow_prop,13,10,97 663,,,SM_Arrow_PR
+chest_small,13,13,5 69 101 184 209 276 282 288 395 536 557 671 685,,,SM_Chest_Small_Open_PR SM_Chest_Small_PR
+door_wood_wide,13,13,350 440 497 498 501 504 505 532 537 538 585 618 619,,,SM_Door_Wood_Wide_PR
+fence_rail_ns,12,11,408 409 441 536,,,
+bonca_brown,11,11,29 302 306 562 583 648,,,SK_Bonca_PR
+castle_wall_diag,11,2,15 16 47 48 49 79 80 368 400 401,,,SM_Castle_Wall_8m
+cave_hole_warp,11,10,85 112 144 182 209 248 254 483 625 671,,,SM_Cave_Hole_PR
+slime_green,11,11,546 610,,,
+bonca_purple,9,9,514 515 547 577 609,,,SK_Bonca_PR
+island_totem_pole,9,9,100 366 713 716 762,,,SM_Island_TorchPole_PR
+log_cabin_window,9,8,251 274 409 440 500 501 530,,,SM_Cabin_Window_PR
+gold_coin,8,8,505 537 663,,,
+island_hut_round,7,7,680 712 762 763 764,,,SM_Island_Hut_Round_PR
+pig,7,7,31 587 636 694,,,
+stairs_wood,7,7,3 4 36 37 163 228 229,,,SM_Stairs_Wood_PR
+castle_tower_round,6,2,50 79 80 369 399 433,,,SM_Castle_Tower_Round
+cottage_thatched_two_storey,6,3,440 500 618,,,SM_Cottage_Thatched_TwoStorey_PR
+goblin_soldier,6,6,680 712 713,,,SK_Goblin_Soldier_PR
+fish,5,5,634 665,,,
+ground_crack,5,1,5 154,,,Decal_Crack_Diagonal_01 Decal_Crack_Long_01 Decal_Crack_Short_01 Decal_Crack_Wide_01
+island_fence_lattice,5,5,712 762 763 764,,,SM_Island_Fence_Lattice_PR
+island_torch,5,5,763 764,,,
+shop_sign,5,5,498 504 538 539,,,
+well_stone,5,5,408 432 497 600 766,,,SM_Well_Stone_PR
+boulder_flat,4,4,535 590,,yes,
+bridge_wood_rail_plank,4,4,404 693,,,SM_Bridge_Wood_Rail_Plank_PR
+bridge_wood_rail_rope,4,4,404 693,,,SM_Bridge_Wood_Rail_Rope_PR
+castle_wall_corner,4,2,16 17 369 370,,,SM_Castle_Wall_8m SM_Castle_Wall_Corner
+cottage_thatched_l_shape,4,2,350 734,,,SM_Cottage_Thatched_LShape_PR
+cottage_thatched_large,4,2,409 618,,,SM_Cottage_Thatched_Large_PR
+cottage_thatched_long,4,2,530 617,,,SM_Cottage_Thatched_Large_PR
+fence_rail_diag_ne,4,4,441,,,
+fish_flopping,4,0,734 760,,,SK_Fish_PR
+poster_hark,4,4,33 195 225 226,,,SM_Notice_Hark_PR
+chimney_stone,3,3,500 530 734,,,SM_Chimney_Stone_Short_PR SM_Chimney_Stone_Tall_PR
+church_stained_glass,3,3,188,,,SM_Window_Stained_Lancet_PR SM_Window_Stained_Twin_PR
+fireplace_brick,3,3,38 129 163,,,
+goblin_hammer,3,3,680 712,,,SK_Goblin_Hammer_PR
+ground_hole_dark,3,3,180 209 277,,,Decal_Hole_Dark_01
+island_hut_two_storey,3,3,680 681 763,,,SM_Island_Hut_TwoStorey_PR
+npc_girl,3,3,91 126,,,SK_Girl_PR
+boulder_large,2,2,277 590,,yes,
+boulder_red,2,2,536 590,,yes,
+burn_hole_decal,2,2,66,,,Decal_Burn_Scorch_01 Decal_Burn_Scorch_02 Decal_Burn_Scorch_03
+cabinet_wood,2,2,3,,yes,
+cellar_hatch,2,2,68,,,SM_Cellar_Hatch_PR
+chest_large,2,2,98 536,,,SM_Chest_Small_Open_PR SM_Chest_Small_PR
+chest_medium,2,2,26 284,,,SM_Chest_Small_Open_PR SM_Chest_Small_PR
+church,2,1,188,,,SM_Church_PR
+church_window_small,2,2,187,,,SM_Window_Church_Small_PR
+fireball_fx,2,2,366,,,FX_Fireball
+fountain_spray_fx,2,2,260 586,,,FX_Fountain_Spray
+log_cabin,2,1,251 270,,,SM_Log_Cabin_PR
+log_cabin_door,2,1,251 409,,,SM_Door_Cabin_PR
+npc_knight_red,2,0,149,,,
+npc_knight_silver,2,2,408 568,,,
+npc_merchant_green,2,2,164 227,,,SK_Merchant_PR
+npc_peasant,2,2,3 38,,,SK_Peasant_PR
+boulder_grey_tall,1,1,601,,yes,
+boulder_white_pair,1,1,590,,yes,
+castle_drawbridge,1,1,80,,,SM_Castle_Drawbridge_PR
+castle_gatehouse,1,1,80,,,SM_Castle_Gatehouse
+castle_wall_end,1,0,48,,,SM_Castle_Wall_End
+church_door,1,1,188,,,SM_Door_Church_PR
+corpse_soldier,1,1,86,,,SM_Corpse_Soldier_PR
+dink_dead,1,1,58,,,SM_Dink_Dead_PR
+dragon_corpse,1,1,238,,,
+duck_corpse,1,0,521,,,
+hearth_fire,1,1,163,,,FX_Hearth_Fire
+king_on_throne,1,1,70,,,SK_King_PR SM_King_On_Throne_PR
+npc_gnome_purple,1,1,6,,,SK_Gnome_Wizard_PR
+npc_maiden_blue,1,1,4,,,SK_Maiden_Blue_PR SK_Maiden_Brown_PR SK_Maiden_Red_PR
+npc_merchant_blue,1,1,290,,,
+npc_old_man,1,1,2,,,SK_Old_Man_PR
+ore_rock_blue,1,1,590,,,SM_Ore_Rock_Blue_PR
+poster_wanted,1,1,35,,,SM_Notice_Wanted_PR
+snow_house_door,1,1,149,,,SM_Door_Snow_House_PR
+snow_house_lower,1,0,149,,,SM_Snow_House_Lower_PR
+snow_house_roof,1,1,149,,,SM_Snow_House_Roof_PR
+snow_house_timber,1,0,149,,,SM_Snow_House_Timber_PR
+thorn_branch,1,1,192,,yes,
+tree_oak_large,1,1,693,,yes,
+tree_pine_large,1,1,534,,yes,
+tree_willow,1,1,446,,yes,
+tree_willow_large,1,1,474,,yes,

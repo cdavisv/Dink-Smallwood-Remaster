@@ -16,6 +16,7 @@
 #include "DinkStatsComponent.h"
 #include "DinkWorldStateSubsystem.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
+#include "Greybox/DinkGreyboxCharacter.h"
 #include "Greybox/DinkPlaceholderActor.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Greybox/DinkWarpComponent.h"
@@ -1698,6 +1699,10 @@ int32 UDinkDirector::SpriteProperty(FDinkScriptInstance* Instance, FName Prop, i
 			{
 				Sprite->bNoTouch = Value != 0;
 			}
+			else if (Prop == FName(TEXT("nocontrol")) && Handle == 1)
+			{
+				if (UDinkGameplay* Game = Story->GetGameplay()) Game->OnDinkNoControl(Value);
+			}
 			else if (Prop == Seq)
 			{
 				if (UDinkGameplay* Game = Story->GetGameplay())
@@ -1952,6 +1957,8 @@ void UDinkDirector::ApplyDir(FDinkSprite& Sprite, const FQuat* ValidatedAuthored
     else if (!GetSpriteFacingRotation(Sprite, Facing)) return;
 	MakeMovable(Actor);
 	Actor->SetActorRotation(Facing);
+	// A script set Dink's dir: that, not the player's last key, is his facing now (sp_dir, dink.cpp:9118).
+	if (ADinkGreyboxCharacter* Hero = Cast<ADinkGreyboxCharacter>(Actor)) Hero->ClearPlayerFacing();
 }
 
 void UDinkDirector::StartMove(FDinkSprite& Sprite, int32 Dir, int32 Stop, int32 NoHard)
