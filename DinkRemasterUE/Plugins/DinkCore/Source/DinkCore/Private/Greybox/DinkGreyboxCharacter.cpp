@@ -221,21 +221,21 @@ namespace
 			if (!FFileHelper::LoadFileToString(Text, *(FPaths::ProjectContentDir() / TEXT("Dink/Data/Gameplay/hero_pace.json")))) return;
 			const TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(Text);
 			if (!FJsonSerializer::Deserialize(Reader, Root) || !Root.IsValid()) return;
-			const auto Read = [&Root](const TCHAR* Field, TMap<FName, float>& Out)
+			const auto Read = [&Root](const TCHAR* Field)
 			{
+				TMap<FString, float> Out;
 				const TSharedPtr<FJsonObject>* Obj = nullptr;
-				if (!Root->TryGetObjectField(Field, Obj) || !Obj) return;
+				if (!Root->TryGetObjectField(Field, Obj) || !Obj || !Obj->IsValid()) return Out;
 				for (const TPair<FString, TSharedPtr<FJsonValue>>& KV : (*Obj)->Values)
 				{
 					double V = 0.0;
-					if (KV.Value.IsValid() && KV.Value->TryGetNumber(V) && V > 0.1 && V < 10.0) Out.Add(FName(*KV.Key), float(V));
+					if (KV.Value.IsValid() && KV.Value->TryGetNumber(V) && V > 0.1 && V < 10.0) Out.Add(KV.Key, float(V));
 				}
+				return Out;
 			};
-			Read(TEXT("run"), Run);
-			Read(TEXT("walk"), Walk);
-			TMap<FName, float> ByScreen;
-			Read(TEXT("screens"), ByScreen);
-			for (const TPair<FName, float>& KV : ByScreen) Screens.Add(FCString::Atoi(*KV.Key.ToString()), KV.Value);
+			for (const TPair<FString, float>& KV : Read(TEXT("run"))) Run.Add(FName(*KV.Key), KV.Value);
+			for (const TPair<FString, float>& KV : Read(TEXT("walk"))) Walk.Add(FName(*KV.Key), KV.Value);
+			for (const TPair<FString, float>& KV : Read(TEXT("screens"))) Screens.Add(FCString::Atoi(*KV.Key), KV.Value);
 		}
 	};
 	const FHeroPaceTable& HeroPace() { static const FHeroPaceTable Table; return Table; }
