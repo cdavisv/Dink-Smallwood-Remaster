@@ -106,7 +106,8 @@ Other checks:
 |---|---|---|
 | A200 | ten bound meshes with one LOD, Nanite off | perf-stutter (branch `perf/stutter-framerate` carries the LOD script) |
 | A201 = A55 / PQ-Q2 | north-south and diagonal fence cards. First bind the split-rail module per angle with `span`/`yaw_offset` (in-game fit check); PQ-Q2 new art only for angles that do not fit | art-wiring-audit sub-agent, branch `fix/fence-runs` |
-| A202 | scripted placements of bound classes still draw cards: thorn S192_P05, willows S414_P02/S446_P02, pine S534_P10, cabinets S003_P15/P16. S474_P01 (nut tree) and S693_P06 (giant oak) stay with VS-10 | branches `fix/art-wiring-scripted-static` (thorn, willows) and `fix/family-script-allowance` (pine, cabinets) |
+| A202 | scripted placements of bound classes still draw cards: thorn S192_P05, willows S414_P02/S446_P02, pine S534_P10, cabinets S003_P15/P16. S474_P01 (nut tree) and S693_P06 (giant oak) stay with VS-10 | branches `fix/art-wiring-scripted-static` (thorn; the willows wait for A208) and `fix/family-script-allowance` (pine, cabinets) |
+| A208 | one object placed on two screens is drawn as two family meshes (about 200 pairs drawn twice in the sweep: willows, pines, oaks, forest strips, dungeon walls, statues, boulders) | sub-agent branch `fix/family-duplicates` |
 | A203 / DS-04 | no weapon meshes. 1997 shows the armed weapon in idle, walk and attack, so the attach must show it in all three while armed | Fable (meshes), then code |
 | A204 | brazier and candle light props loaded but never placed | open: needs a placement rule |
 | A205 | duck Death/HeadlessDeath/Hit/Peck/Quack and slime Attack/Death clips imported, played by no role; `SM_Slime_Trail` not imported | creature stream / anim-motion |
