@@ -1,6 +1,6 @@
 {
  "schema": "dink-animation-natural/1",
- "note": "Motion-capture locomotion of the engine template mannequin (git-ignored engine content restored by Scripts/copy_template_content.sh), played on the shared skeleton. speed_cm_s is the speed the clip was captured at (its root travel over its length; the pose itself is played in place), stride_cm the ground the whole clip covers, cycles the gait cycles it holds, phase_start_s where the left foot first passes the right: see Dink.Animation.NaturalClipSurvey. These names replace the generated clips whose names begin with drop_prefixes. posture is a light layer in degrees (chest rounded forward, head lowered, shoulders drawn forward, upper arms brought in towards the body) for a timid and a confident body. slow_cadence_power says how a body walks slower than the walk clip: 1 keeps the clip's long stride and only slows the cadence, 0 keeps the cadence and only shortens the step (by mixing in the standing pose); Mother takes shorter, quicker steps than Dink.",
+ "note": "Motion-capture locomotion of the engine template mannequin (git-ignored engine content restored by Scripts/copy_template_content.sh), played on the shared skeleton. speed_cm_s is the speed the clip was captured at (its root travel over its length; the pose itself is played in place), stride_cm the ground the whole clip covers, cycles the gait cycles it holds, phase_start_s where the left foot first passes the right: see Dink.Animation.NaturalClipSurvey. These names replace the generated clips whose names begin with drop_prefixes. posture is a light layer in degrees (chest rounded forward, head lowered, shoulders drawn forward, upper arms brought in towards the body) for a timid and a confident body. slow_cadence_power says how a body walks slower than the walk clip: 1 keeps the clip's long stride and only slows the cadence, 0 keeps the cadence and only shortens the step (by mixing in the standing pose); Mother takes shorter, quicker steps than Dink. style: see style.note.",
  "drop_prefixes": [
   "Idle_",
   "Walk_",
@@ -134,5 +134,38 @@
   "Hero": 0.7,
   "NpcF": 0.45,
   "NpcM": 0.7
+ },
+ "style": {
+  "note": "How each body walks against the shared motion capture (DinkFootPlacement.h, FDinkGaitStyle): stride is the step length against the clip (the cadence rises by its inverse, so the speed is kept), width_cm sets each foot further out (+) or in (-), uneven makes one step of each pair longer (share of a step), step_time scales how quick the pivot steps of a turn on the spot are, chest_swing is the gain on the chest turning against the hips while walking. Hero: a timid lad takes short, quick, slightly uneven steps with his knees together and turns round in shuffles; with confidence his stride lengthens, steadies and widens. Mother: short brisk steps, narrow under the skirt. Milder: long heavy steps, a wide stance and a swagger of the shoulders.",
+  "Hero": {
+   "timid": {
+    "stride": 0.86,
+    "width_cm": -1.5,
+    "uneven": 0.07,
+    "step_time": 1.25,
+    "chest_swing": 0.8
+   },
+   "confident": {
+    "stride": 1.0,
+    "width_cm": 1.0,
+    "uneven": 0.0,
+    "step_time": 0.9,
+    "chest_swing": 1.1
+   }
+  },
+  "NpcF": {
+   "stride": 0.8,
+   "width_cm": -2.0,
+   "uneven": 0.0,
+   "step_time": 0.85,
+   "chest_swing": 0.85
+  },
+  "NpcM": {
+   "stride": 1.06,
+   "width_cm": 5.0,
+   "uneven": 0.0,
+   "step_time": 1.1,
+   "chest_swing": 1.7
+  }
  }
 }

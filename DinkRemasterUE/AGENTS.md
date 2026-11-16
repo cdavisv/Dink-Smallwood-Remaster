@@ -1,3 +1,10 @@
+## Leg layer: planted feet, stride warp, gait styles (16 November 2026)
+
+- `UDinkBodyAnimInstance` (hero, Mother, Milder) runs a presentation-only leg layer (`DinkFootPlacement.h`): foot lock with hysteresis, pivot steps on the spot, two-bone soft IK, ground adaptation, gait style (`animation_natural.json` `style`), stride warp (the stance foot travels back at the body's speed; walking only, < 320 cm/s), a hip rise of up to 2.8 cm for shorter steps. `dink.Anim.Legs 0` restores master's pose exactly (the identity test checks it); `dink.Anim.FootLock/GroundAdapt/Style/LookAt` switch the parts.
+- Pitfall: `UAnimInstance::UpdateAnimation` copies to the proxy (PreUpdate) BEFORE NativeUpdateAnimation; the frame is pushed again at the end of NativeUpdateAnimation (`PublishFrame`), or the proxy evaluates last frame's transform and pins lag a frame of travel.
+- Pitfall: the slow-walk cadence law (`slow_cadence_power`) makes the clip's stance foot outrun the body by 15-20 %; any foot-lock layer without a stride warp just moves that slide into a pin that has to be dragged.
+- Measuring: `Dink.Animation.Legs.*`, `dink.Motion.Trace`, `Scripts/AnimationQA/motion_audit.py` + `motion_report.py`; `mother_strip.py` films Mother with a following camera (`dink.CalAnchorNpc` + `dink.CalCam` before every shot). Evidence `Docs/Verification/MotionRealism_16Nov2026/`.
+
 ## Physical mapping audit: 1997 boxes against the drawn meshes (15 November 2026)
 
 - `dink.PhysAudit <first> <last> <out dir> [quit]` (DinkNarrative, review only) writes `phys_origins.csv` (per placement / live sprite: 1997 hardbox, stamped and bare pixels, the footprint of the meshes that draw that origin at body height, cover / overhang / offset, feet inside another drawn body), `phys_warps.csv`, `phys_tiles.csv`, `phys_screens.csv` and `phys_drawn_mask.csv`; 644 screens in about 8 minutes in an offscreen editor game. `python3 -I Scripts/summarise_phys_audit.py <dir> --walk-mask <walk_mask.csv> --repo <checkout with tools/dinkex/out>` ranks it (categories in `Docs/Verification/PhysicalMapping_15Nov2026/README.md`); `phys_audit_shots.py` / `phys_audit_sheet.py` make the rendered spot checks.

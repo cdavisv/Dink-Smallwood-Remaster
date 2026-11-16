@@ -2,6 +2,9 @@
 #include "Animation/AnimSingleNodeInstance.h"
 #include "Animation/BlendSpace.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/PlayerController.h"
+#include "GameFramework/Pawn.h"
+#include "Engine/World.h"
 #include "HAL/IConsoleManager.h"
 
 namespace
@@ -176,6 +179,7 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 			// The clips are the mannequin's size: a smaller body covers less ground per step.
 			Body->SetMotion(LocomotionSpeed / FMath::Max(.1f, float(GetComponentScale().Z)), false, 1.f);
 			Body->SetPosture(Posture);
+			UpdateLook(*Body, DeltaTime);
 		}
 	}
 	else if (Owner)
@@ -212,4 +216,31 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 void UDinkHumanoidComponent::SetSlowCadencePower(float Power)
 {
 	if (UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetAnimInstance())) Body->SetSlowCadencePower(Power);
+}
+
+void UDinkHumanoidComponent::UpdateLook(UDinkBodyAnimInstance& Body, float DeltaTime)
+{
+	// A townsperson turns the head to Dink when he comes near in front of them, and lets go when he walks behind or away.
+	const UWorld* World = GetWorld();
+	const APlayerController* PC = World ? World->GetFirstPlayerController() : nullptr;
+	const APawn* Hero = PC ? PC->GetPawn() : nullptr;
+	float Want = 0.f;
+	FVector Target = LookTarget;
+	if (Hero && !Hero->IsHidden())
+	{
+		Target = Hero->GetActorLocation() + FVector(0, 0, 62.f);
+		const FVector To = Target - GetComponentLocation();
+		// The body faces its component's +Y.
+		const FVector Forward = GetComponentTransform().TransformVectorNoScale(FVector::YAxisVector).GetSafeNormal2D();
+		const float Angle = FMath::RadiansToDegrees(FMath::Acos(FMath::Clamp(float(FVector::DotProduct(Forward, To.GetSafeNormal2D())), -1.f, 1.f)));
+		const float Dist = float(To.Size2D());
+		const bool bNear = bLooking ? (Dist < 560.f && Angle < 118.f) : (Dist < 430.f && Angle < 92.f);
+		bLooking = bNear && Dist > 30.f;
+		// Hurrying, the eyes stay on the way ahead.
+		Want = bLooking ? FMath::Clamp(1.2f - LocomotionSpeed / 250.f, 0.f, 1.f) : 0.f;
+	}
+	else bLooking = false;
+	LookTarget = FMath::VInterpTo(LookTarget.IsNearlyZero() ? Target : LookTarget, Target, DeltaTime, 6.f);
+	LookWeight = FMath::FInterpConstantTo(LookWeight, Want, DeltaTime, Want > LookWeight ? 1.6f : 1.1f);
+	Body.SetLookAt(LookTarget, FMath::SmoothStep(0.f, 1.f, LookWeight));
 }
