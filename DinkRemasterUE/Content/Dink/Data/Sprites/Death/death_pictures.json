@@ -1,0 +1,377 @@
+{
+ "animations": {
+  "164": {
+   "frames": [
+    {
+     "delay_ms": 50,
+     "frame": 1,
+     "height": 41,
+     "width": 62
+    },
+    {
+     "delay_ms": 50,
+     "frame": 2,
+     "height": 46,
+     "width": 66
+    },
+    {
+     "delay_ms": 50,
+     "frame": 3,
+     "height": 51,
+     "width": 70
+    },
+    {
+     "delay_ms": 50,
+     "frame": 4,
+     "height": 56,
+     "width": 75
+    },
+    {
+     "delay_ms": 50,
+     "frame": 5,
+     "height": 61,
+     "width": 79
+    },
+    {
+     "delay_ms": 50,
+     "frame": 6,
+     "height": 67,
+     "width": 83
+    },
+    {
+     "delay_ms": 50,
+     "frame": 7,
+     "height": 72,
+     "width": 87
+    },
+    {
+     "delay_ms": 50,
+     "frame": 8,
+     "height": 78,
+     "width": 91
+    },
+    {
+     "delay_ms": 50,
+     "frame": 9,
+     "height": 85,
+     "width": 95
+    },
+    {
+     "delay_ms": 50,
+     "frame": 10,
+     "height": 91,
+     "width": 100
+    },
+    {
+     "delay_ms": 50,
+     "frame": 11,
+     "height": 98,
+     "width": 104
+    },
+    {
+     "delay_ms": 50,
+     "frame": 12,
+     "height": 104,
+     "width": 108
+    },
+    {
+     "delay_ms": 50,
+     "frame": 13,
+     "height": 111,
+     "width": 111
+    },
+    {
+     "delay_ms": 50,
+     "frame": 14,
+     "height": 118,
+     "width": 115
+    }
+   ],
+   "source": "graphics/effects/magic/magc1-"
+  }
+ },
+ "note": "Last frame of each 1997 death sequence (Scripts/export_death_pictures.py); shown on a card by UDinkCorpsePresenter where a killed sprite has no class corpse. width/height/origin in 1997 pixels.",
+ "pictures": {
+  "141": {
+   "frame": 1,
+   "height": 35,
+   "origin_x": 22,
+   "origin_y": 27,
+   "source": "graphics/foes/pill/f1-x1-",
+   "width": 46
+  },
+  "143": {
+   "frame": 1,
+   "height": 36,
+   "origin_x": 22,
+   "origin_y": 27,
+   "source": "graphics/foes/pill/f1-x3-",
+   "width": 44
+  },
+  "212": {
+   "frame": 1,
+   "height": 122,
+   "origin_x": 42,
+   "origin_y": 90,
+   "source": "graphics/foes/dragon/f2-x3-",
+   "width": 105
+  },
+  "216": {
+   "frame": 1,
+   "height": 96,
+   "origin_x": 63,
+   "origin_y": 38,
+   "source": "graphics/foes/dragon/f2-x7-",
+   "width": 94
+  },
+  "225": {
+   "frame": 1,
+   "height": 47,
+   "origin_x": 32,
+   "origin_y": 59,
+   "source": "graphics/people/maiden/red/death-",
+   "width": 63
+  },
+  "245": {
+   "frame": 1,
+   "height": 47,
+   "origin_x": 32,
+   "origin_y": 59,
+   "source": "graphics/people/maiden/red/death-",
+   "width": 63
+  },
+  "255": {
+   "frame": 1,
+   "height": 47,
+   "origin_x": 32,
+   "origin_y": 59,
+   "source": "graphics/people/maiden/red/death-",
+   "width": 63
+  },
+  "275": {
+   "frame": 1,
+   "height": 55,
+   "origin_x": 54,
+   "origin_y": 11,
+   "source": "graphics/people/knight/red/death-",
+   "width": 81
+  },
+  "285": {
+   "frame": 1,
+   "height": 55,
+   "origin_x": 58,
+   "origin_y": 84,
+   "source": "graphics/people/knight/silver/death-",
+   "width": 81
+  },
+  "295": {
+   "frame": 1,
+   "height": 55,
+   "origin_x": 25,
+   "origin_y": 11,
+   "source": "graphics/people/knight/silver/death-",
+   "width": 81
+  },
+  "305": {
+   "frame": 1,
+   "height": 55,
+   "origin_x": 54,
+   "origin_y": 11,
+   "source": "graphics/people/knight/gold/death-",
+   "width": 81
+  },
+  "335": {
+   "frame": 1,
+   "height": 37,
+   "origin_x": 44,
+   "origin_y": 9,
+   "source": "graphics/people/girl/death-",
+   "width": 58
+  },
+  "345": {
+   "frame": 1,
+   "height": 53,
+   "origin_x": 59,
+   "origin_y": 11,
+   "source": "graphics/people/merchant/death-",
+   "width": 74
+  },
+  "355": {
+   "frame": 1,
+   "height": 50,
+   "origin_x": 54,
+   "origin_y": 9,
+   "source": "graphics/people/mom/death-",
+   "width": 68
+  },
+  "365": {
+   "frame": 1,
+   "height": 50,
+   "origin_x": 49,
+   "origin_y": 11,
+   "source": "graphics/people/mom/death-",
+   "width": 68
+  },
+  "375": {
+   "frame": 1,
+   "height": 53,
+   "origin_x": 56,
+   "origin_y": 13,
+   "source": "graphics/people/merchant/death-",
+   "width": 74
+  },
+  "385": {
+   "frame": 1,
+   "height": 53,
+   "origin_x": 12,
+   "origin_y": 12,
+   "source": "graphics/people/merchant/green/death-",
+   "width": 74
+  },
+  "395": {
+   "frame": 1,
+   "height": 53,
+   "origin_x": 61,
+   "origin_y": 9,
+   "source": "graphics/people/merchant/death-",
+   "width": 74
+  },
+  "405": {
+   "frame": 1,
+   "height": 57,
+   "origin_x": 49,
+   "origin_y": 11,
+   "source": "graphics/people/soldier/death-",
+   "width": 74
+  },
+  "415": {
+   "frame": 1,
+   "height": 59,
+   "origin_x": 91,
+   "origin_y": 40,
+   "source": "graphics/people/peasant2/death-",
+   "width": 114
+  },
+  "551": {
+   "frame": 1,
+   "height": 61,
+   "origin_x": 54,
+   "origin_y": 44,
+   "source": "graphics/foes/bonca/death/f03x1-",
+   "width": 81
+  },
+  "553": {
+   "frame": 1,
+   "height": 54,
+   "origin_x": 64,
+   "origin_y": 40,
+   "source": "graphics/foes/bonca/death/f03x3-",
+   "width": 96
+  },
+  "557": {
+   "frame": 1,
+   "height": 58,
+   "origin_x": 61,
+   "origin_y": 43,
+   "source": "graphics/foes/bonca/death/f03x7-",
+   "width": 92
+  },
+  "559": {
+   "frame": 1,
+   "height": 62,
+   "origin_x": 53,
+   "origin_y": 45,
+   "source": "graphics/foes/bonca/death/f03x9-",
+   "width": 79
+  },
+  "645": {
+   "frame": 1,
+   "height": 67,
+   "origin_x": 62,
+   "origin_y": 28,
+   "source": "graphics/foes/slayers/walk/death-",
+   "width": 94
+  },
+  "661": {
+   "frame": 1,
+   "height": 23,
+   "origin_x": 17,
+   "origin_y": 18,
+   "source": "graphics/foes/puddle/blue/death/f06x1-",
+   "width": 26
+  },
+  "663": {
+   "frame": 1,
+   "height": 23,
+   "origin_x": 17,
+   "origin_y": 18,
+   "source": "graphics/foes/puddle/blue/death/f06x3-",
+   "width": 26
+  },
+  "681": {
+   "frame": 1,
+   "height": 23,
+   "origin_x": 17,
+   "origin_y": 18,
+   "source": "graphics/foes/puddle/green/death/f06x1-",
+   "width": 26
+  },
+  "683": {
+   "frame": 1,
+   "height": 23,
+   "origin_x": 17,
+   "origin_y": 18,
+   "source": "graphics/foes/puddle/green/death/f06x3-",
+   "width": 26
+  },
+  "701": {
+   "frame": 1,
+   "height": 23,
+   "origin_x": 17,
+   "origin_y": 18,
+   "source": "graphics/foes/puddle/red/death/f06x1-",
+   "width": 26
+  },
+  "703": {
+   "frame": 1,
+   "height": 23,
+   "origin_x": 17,
+   "origin_y": 18,
+   "source": "graphics/foes/puddle/red/death/f06x3-",
+   "width": 26
+  },
+  "765": {
+   "frame": 1,
+   "height": 58,
+   "origin_x": 17,
+   "origin_y": 16,
+   "source": "graphics/foes/goblin/hammer/walk/death-",
+   "width": 73
+  },
+  "785": {
+   "frame": 1,
+   "height": 63,
+   "origin_x": 60,
+   "origin_y": 16,
+   "source": "graphics/foes/goblin/horns/walk/death-",
+   "width": 79
+  },
+  "805": {
+   "frame": 1,
+   "height": 67,
+   "origin_x": 97,
+   "origin_y": 19,
+   "source": "graphics/foes/goblin/soldier/walk/death-",
+   "width": 119
+  },
+  "825": {
+   "frame": 1,
+   "height": 67,
+   "origin_x": 25,
+   "origin_y": 36,
+   "source": "graphics/foes/stonegnt/walk/death-",
+   "width": 106
+  }
+ },
+ "schema": "dink-death-pictures/1"
+}
