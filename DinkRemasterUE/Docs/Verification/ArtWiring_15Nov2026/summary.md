@@ -5,8 +5,8 @@ rows: 880; unreadable packages (LFS object missing): 0
 
 | flag | rows |
 |---|---:|
-| lod | 13 |
 | bug | 8 |
+| lod | 13 |
 | queued | 114 |
 | alternate | 195 |
 | deliberate | 10 |
