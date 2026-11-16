@@ -43,9 +43,19 @@
       "why": "characters.json player mesh (SK_Dink_Hands); dink.PhotorealHero draws SK_Dink_Photoreal when the game renders"
     },
     {
-      "match": "^AN_(Duck_(Death|HeadlessDeath|Hit|Peck|Quack)|Slime_(Attack|Death))$",
-      "kind": "bug",
-      "why": "A205: imported with the creature classes of PR #113, but no creatures.json role plays them (duck: walk/headless locomotion only; slimes: walk only, death shows the splat corpse at once)"
+      "match": "^AN_(Dragon_Death|Slime_Death|Duck_Hit|Duck_Death|Duck_HeadlessDeath)$",
+      "kind": "deliberate",
+      "why": "not played by the event one-shots of anim/creature-oneshots (design agreed 16 Nov 2026), gore at the 1997 level: no intact dragon or slime body falls where 1997 shows remains, and the duck keeps its PR #113 head-pop and headless run (A205, A210)"
+    },
+    {
+      "match": "^AN_(Duck_(Peck|Quack)|Slime_Attack)$",
+      "kind": "queued",
+      "why": "A205: imported with the creature classes of PR #113 and not played by any creatures.json role; anim-motion plays them as presentation-only event one-shots on branch anim/creature-oneshots (duck peck and quack as idle fidgets, the slime attack), coordinator decision of 16 Nov 2026"
+    },
+    {
+      "match": "^AN_(Bonca_(Death|Hit)|Dragon_(Attack|Hit)|Slayer_(Death|Hit)|Stone_Giant_(Death|Hit))$",
+      "kind": "queued",
+      "why": "A210: authored and deliberately left unbound (monster IMPORT.md: 'Deaths are what 1997 does: no monster has a hit or death animation'; the dragon's attack likewise; the 1997 scripts never set sp_base_hit and add_kill_sprite D:12359-12412 spawns a separate corpse sprite); reversed by the coordinator decision of 16 Nov 2026: anim-motion plays them as presentation-only event one-shots on branch anim/creature-oneshots (a per-class death clip may still be switched off if its in-game seam check with the corpse fails: stone giant, bonca, slayer)"
     },
     {
       "match": "^SM_Slime_Trail$",
@@ -87,11 +97,6 @@
       "match": "^SM_(Cottage_Door|Cottage_Thatched_Large|Cottage_Thatched_Small|Fence_Gate|Fence_GatePost|Fence_SplitRail_4m_Broken|Well_Stone|Well_ShaftCap)_PR$",
       "kind": "queued",
       "why": "imported Structures/Stonebrook pieces for multi-sprite cottages, yards and wells: placed by the per-screen sets of art/gate2-static-structures (VS-01, VS-14), not by a family row"
-    },
-    {
-      "match": "^SM_Chest_Small(_Open)?_PR$",
-      "kind": "queued",
-      "why": "chest_small binding with its opened state: presentation-fixes stream (families.json chest rows) and VS-07"
     },
     {
       "match": "^SM_Barrel_Oak_PR$",
