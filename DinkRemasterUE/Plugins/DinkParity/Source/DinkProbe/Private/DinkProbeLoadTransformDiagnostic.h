@@ -4,6 +4,7 @@
 #include "DinkGameplay.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "Greybox/DinkScreenVolume.h"
+#include "DinkCollision.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
@@ -77,7 +78,7 @@ inline FBoundary Capture(APawn& Pawn,UDinkStorySubsystem& Story,UDinkGreyboxSubs
         O.SetNumberField(TEXT("cached_floor_distance"),M->CurrentFloor.FloorDist);O.SetStringField(TEXT("velocity"),M->Velocity.ToString());
     }
     FCollisionQueryParams Params(SCENE_QUERY_STAT(ProbeLoadGroundEvidence),true);Params.AddIgnoredActor(&Pawn);FHitResult Hit;
-    const bool Ground=Pawn.GetWorld()->LineTraceSingleByChannel(Hit,Pawn.GetActorLocation()+FVector(0,0,1),Pawn.GetActorLocation()-FVector(0,0,512),ECC_Pawn,Params);
+    const bool Ground=Pawn.GetWorld()->LineTraceSingleByChannel(Hit,Pawn.GetActorLocation()+FVector(0,0,1),Pawn.GetActorLocation()-FVector(0,0,512),ECC_Pawn,Params,DinkCollision::IgnorePlayerBlockers()); // the ground, not a player-only blocker
     O.SetBoolField(TEXT("readonly_ground_pawn_complex_hit"),Ground);O.SetStringField(TEXT("ground_component"),Hit.GetComponent()?Hit.GetComponent()->GetPathName():TEXT(""));
     O.SetStringField(TEXT("ground_impact"),Hit.ImpactPoint.ToString());O.SetNumberField(TEXT("ground_distance"),Hit.Distance);
     return B;

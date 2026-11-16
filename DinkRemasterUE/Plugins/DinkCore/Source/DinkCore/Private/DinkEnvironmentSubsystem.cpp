@@ -1,5 +1,7 @@
 #include "DinkEnvironmentSubsystem.h"
 #include "DinkCoreModule.h"
+#include "DinkCollision.h"
+#include "DinkPlayerBlockers.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "Greybox/DinkPlaceholderActor.h"
 #include "Greybox/DinkScreenVolume.h"
@@ -1183,7 +1185,11 @@ void UDinkEnvironmentSubsystem::ApplyTownHouses(int32 ScreenNumber, const FDinkS
 			Component->RegisterComponent();
 		}
 		const FVector At = DinkLayout::MapPixelToUnreal(Corners, M.Px.X, M.Px.Y) + M.OffsetCm;
-		Component->AddInstance(FTransform(FRotator(0.0, M.Yaw, 0.0), At, M.Scale), /*bWorldSpace*/ true);
+		const FTransform ModuleTransform(FRotator(0.0, M.Yaw, 0.0), At, M.Scale);
+		Component->AddInstance(ModuleTransform, /*bWorldSpace*/ true);
+		// a wall module drawn thicker than the 1997 house hardness stops the player at the drawn wall (player only; the
+		// component sits at the actor's identity, so the world transform is its relative one)
+		DinkPlayerBlockers::Add(*Actor, *Component, ModuleTransform, Component->GetStaticMesh());
 		++Placed;
 	}
 	if (Placed == 0 && !Town->Modules.IsEmpty()) return; // kit not imported: the sprite cards stay
@@ -1382,11 +1388,49 @@ void UDinkEnvironmentSubsystem::LoadForest()
 	UE_LOG(LogDink, Display, TEXT("DINK ENV: relief: %d rock points on %d screens, %d rock meshes; water tiles on %d screens"), ReliefCount, ReliefRocks.Num(), ReliefMeshes.Num(), WaterTileRects.Num());
 }
 
+const ADinkGreyboxScreen* UDinkEnvironmentSubsystem::FindGreyboxScreen(int32 ScreenNumber)
+{
+	const TWeakObjectPtr<ADinkGreyboxScreen>* Found = GreyboxScreens.Find(ScreenNumber);
+	if (Found && Found->IsValid()) return Found->Get();
+	// streaming levels add screens later: look again at most once a second
+	const double Now = FPlatformTime::Seconds();
+	if (Now - GreyboxScreensScan < 1.0) return nullptr;
+	GreyboxScreensScan = Now;
+	GreyboxScreens.Reset();
+	for (TActorIterator<ADinkGreyboxScreen> It(GetWorld()); It; ++It) GreyboxScreens.Add(It->ScreenNumber, *It);
+	Found = GreyboxScreens.Find(ScreenNumber);
+	return Found ? Found->Get() : nullptr;
+}
+
+bool UDinkEnvironmentSubsystem::ReliefDiscBlocked(const FVector& Centre, double RadiusCm) const
+{
+	// Blocked = the walker collision (DinkHardSolid / DinkHardLow prisms, 3 m tall) stands at the centre and on a ring at the
+	// rock's radius. A downward trace meets a prism's top; the open ground (the same trimesh's floor) is hit near Z 0.
+	FCollisionObjectQueryParams Hard;
+	Hard.AddObjectTypesToQuery(DinkCollision::HardSolid);
+	Hard.AddObjectTypesToQuery(DinkCollision::HardLow);
+	auto Blocked = [&](const FVector2D& XY)
+	{
+		FHitResult Hit;
+		return GetWorld()->LineTraceSingleByObjectType(Hit, FVector(XY.X, XY.Y, 450.0), FVector(XY.X, XY.Y, -50.0), Hard) && Hit.ImpactPoint.Z > 150.0;
+	};
+	if (!Blocked(FVector2D(Centre))) return false;
+	for (int32 K = 0; K < 12; ++K)
+	{
+		const double A = K * PI / 6.0;
+		if (!Blocked(FVector2D(Centre) + FVector2D(FMath::Cos(A), FMath::Sin(A)) * RadiusCm)) return false;
+	}
+	return true;
+}
+
 void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScreenCorners& Corners)
 {
 	const TArray<FDinkReliefRock>* Rocks = ReliefRocks.Find(ScreenNumber);
 	const TArray<FBox2D>* Water = WaterTileRects.Find(ScreenNumber);
 	if ((!Rocks && !Water) || ReliefApplied.Contains(ScreenNumber)) return;
+	// Rocks are fitted to the screen's walker collision (below): wait until that collision is in the world.
+	const ADinkGreyboxScreen* CollisionHost = FindGreyboxScreen(ScreenNumber);
+	if (Rocks && (!CollisionHost || !CollisionHost->CollisionSolid || !CollisionHost->CollisionSolid->IsRegistered())) return;
 	ReliefApplied.Add(ScreenNumber);
 	const int32 MaxTier = CVarDinkRelief.GetValueOnGameThread();
 	const bool bWater = Water && WaterTileMaterial && CVarDinkWaterTiles.GetValueOnGameThread() != 0;
@@ -1411,7 +1455,7 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 		C->SetGenerateOverlapEvents(false);
 		C->SetCanEverAffectNavigation(false);
 	};
-	int32 Placed = 0, Sheets = 0;
+	int32 Placed = 0, Sheets = 0, Dropped = 0;
 	if (bRocks)
 	{
 		// centimetres per map pixel on this screen (the settlement layout stretches screens: measure, do not assume)
@@ -1425,7 +1469,13 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 			UStaticMesh* Mesh = ReliefMeshes[int32(H % uint32(ReliefMeshes.Num()))];
 			const FBox Box = Mesh->GetBoundingBox();
 			const double Half = FMath::Max(FVector2D(Box.GetExtent()).Size(), 1.0);       // the footprint's corner: no yaw can push it past the disc
-			const float Scale = float(ReliefFill * Rock.ClearPx * CmPerPx / Half);
+			float Scale = float(ReliefFill * Rock.ClearPx * CmPerPx / Half);
+			// The disc was measured on the exported hardness; the player walks on the screen's collision, which can be
+			// open where the export counted a void as closed (14 Nov 2026, alpha QA: Dink walked into these rocks on
+			// SCR_177/184/188). Shrink the rock until its whole disc stands on blocked collision; drop it if it cannot.
+			const FVector Centre = DinkLayout::MapPixelToUnreal(Corners, Rock.Px.X, Rock.Px.Y);
+			while (Scale > 0.f && !ReliefDiscBlocked(Centre, Half * Scale)) Scale = Half * Scale > 60.0 ? Scale * 0.8f : 0.f;
+			if (Scale <= 0.f) { ++Dropped; continue; }
 			UInstancedStaticMeshComponent*& Component = ByMesh.FindOrAdd(Mesh);
 			if (!Component)
 			{
@@ -1510,13 +1560,16 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 			++Sheets;
 		}
 	}
-	UE_LOG(LogDink, Display, TEXT("DINK ENV: relief on screen %d: %d rocks of %d points (tier <= %d), %d water sheets"), ScreenNumber, Placed, Rocks ? Rocks->Num() : 0, MaxTier, Sheets);
+	UE_LOG(LogDink, Display, TEXT("DINK ENV: relief on screen %d: %d rocks of %d points (tier <= %d; %d dropped: open collision), %d water sheets"), ScreenNumber, Placed, Rocks ? Rocks->Num() : 0, MaxTier, Dropped, Sheets);
 }
 
 void UDinkEnvironmentSubsystem::ApplyForest(int32 ScreenNumber, const FDinkScreenCorners& Corners)
 {
 	const TArray<FDinkForestTree>* Trees = ForestTrees.Find(ScreenNumber);
 	if (!Trees || ForestMeshes.IsEmpty() || ForestApplied.Contains(ScreenNumber) || CVarDinkForest.GetValueOnGameThread() == 0) return;
+	// Trunks stand only where the walker collision blocks (see ReliefDiscBlocked): wait until it is in the world.
+	const ADinkGreyboxScreen* CollisionHost = FindGreyboxScreen(ScreenNumber);
+	if (!CollisionHost || !CollisionHost->CollisionSolid || !CollisionHost->CollisionSolid->IsRegistered()) return;
 	ForestApplied.Add(ScreenNumber);
 	// a screen an art manifest dresses keeps its own vegetation
 	const UDinkArtFamilySubsystem* Families = GetWorld()->GetSubsystem<UDinkArtFamilySubsystem>();
@@ -1547,7 +1600,7 @@ void UDinkEnvironmentSubsystem::ApplyForest(int32 ScreenNumber, const FDinkScree
 		}
 		Component->AddInstance(FTransform(FRotator(0.0, Yaw, 0.0), At, FVector(Scale)), /*bWorldSpace*/ true);
 	};
-	int32 Placed = 0, Under = 0;
+	int32 Placed = 0, Under = 0, Dropped = 0;
 	for (int32 I = 0; I < Trees->Num(); ++I)
 	{
 		const FDinkForestTree& Tree = (*Trees)[I];
@@ -1555,8 +1608,11 @@ void UDinkEnvironmentSubsystem::ApplyForest(int32 ScreenNumber, const FDinkScree
 		// the rows a player can see carry every tree; deeper in, where only a camera above the crowns would look, fewer
 		if (!Tree.bEdge && Unit(Hash3(H, 1u, 2u)) > ForestInteriorFill) continue;
 		const FVector At = DinkLayout::MapPixelToUnreal(Corners, Tree.Px.X, Tree.Px.Y);
-		Place(ForestMeshes[int32(H % uint32(ForestMeshes.Num()))], At, Unit(Hash3(H, 3u, 4u)) * 360.f,
-			FMath::Lerp(ForestScaleMin, ForestScaleMax, Unit(Hash3(H, 5u, 6u))));
+		const float TreeScale = FMath::Lerp(ForestScaleMin, ForestScaleMax, Unit(Hash3(H, 5u, 6u)));
+		// a trunk the player could walk into is not drawn (alpha QA, 14 Nov 2026: the exported points can lie on
+		// ground the collision leaves open); the trunk is about 45 cm round at scale 1
+		if (!ReliefDiscBlocked(At, 45.0 * TreeScale)) { ++Dropped; continue; }
+		Place(ForestMeshes[int32(H % uint32(ForestMeshes.Num()))], At, Unit(Hash3(H, 3u, 4u)) * 360.f, TreeScale);
 		++Placed;
 		if (Tree.bEdge && !ForestUnderMeshes.IsEmpty() && Unit(Hash3(H, 7u, 8u)) < ForestUnderShare)
 		{
@@ -1568,7 +1624,7 @@ void UDinkEnvironmentSubsystem::ApplyForest(int32 ScreenNumber, const FDinkScree
 			++Under;
 		}
 	}
-	UE_LOG(LogDink, Display, TEXT("DINK ENV: forest on screen %d: %d trees of %d points, %d understory plants"), ScreenNumber, Placed, Trees->Num(), Under);
+	UE_LOG(LogDink, Display, TEXT("DINK ENV: forest on screen %d: %d trees of %d points (%d dropped: open collision), %d understory plants"), ScreenNumber, Placed, Trees->Num(), Dropped, Under);
 }
 
 static FAutoConsoleCommandWithWorldAndArgs GDinkPillbugCarcassCommand(

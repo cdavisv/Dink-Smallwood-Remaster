@@ -1,0 +1,79 @@
+# rows 40870 on 558 screens; walls rows 2461
+# non-card items 40126; walk-in >= 20.0 cm (not soft): 1283
+
+## by mesh (count, max depth, screens)
+  260     29 environment      SM_Town_Wall_Plain                       solid 218 219 388 417 418 419 420 465 497 498 499 504
+  207     38 family           SM_Wall_Dungeon_Straight_A               solid 73 74 105 106 137 138 169 170 202 385 386 387
+  133     38 family           SM_Wall_Dungeon_Straight_B               solid 73 74 105 106 169 170 202 385 386 387 388 449
+   98     41 environment      SM_Town_Chimney_Stack                    other 219 388 417 418 419 420 465 497 498 499 504 505
+   96     66 family           SM_Veg_Willow_Large_01                   solid 237 249 270 275 301 303 305 307 308 333 334 342
+   57     56 family           SM_Veg_Willow_01                         solid 273 275 306 334 338 341 342 349 381 396 436 458
+   44     66 family           SM_Veg_Oak_Large_01                      solid 274 306 320 369 396 397 398 403 413 431 440 441
+   39     30 family           SM_Veg_PineForestEdge_V_01               solid 144 176 186 208 209 218 220 241 250 251 253 270
+   35     44 family           SM_Wall_Dungeon_Curve                    solid 73 74 105 137 169 170 202 385 417 449 452 546
+   24     38 family_instance  SM_Wall_Dungeon_Straight_B               solid 73 74 138 514 515
+   24     82 family           SM_Veg_Oak_Large_02                      solid 274 320 338 398 440 441 442 500 502 506 527 566
+   23     52 family           SM_Veg_DeadTree_Dark_01                  solid 31 59 60 62 63 91 95 96 156 158 160 190
+   23     38 family_instance  SM_Wall_Dungeon_Straight_A               solid 73 74 138 169 514 515 547 579
+   23     69 authored         SM_Boulder_Field_A_PR                    solid 407 438 471
+   20     29 environment      SM_Town_Corner_Quoin                     other 218 219 388 417 497 498 499 504 539 570 585 586
+   16     44 family_instance  SM_Wall_Dungeon_Curve                    solid 73 74 138 514 515 546 578 579 610
+   14     29 family           SM_Veg_DeadTree_Frosted_01               solid 28 32 58 123 189 192 217 270 271 302 303 333
+   10     46 family_instance  SM_Rubble_Pile_PR                        other 73 74 105 137 138 170 202 514 578 609
+   10     38 family           SM_Wall_Dungeon_Half                     solid 73 138 169 202
+    8     42 family           SM_Barrel_Oak_01                         solid 60 63 96 222 224
+    8     29 environment      SM_Town_Wall_Door                        solid 219 418 419 498 499 506 539 585
+    7     82 family           SM_Boulder_Red_PR                        solid 244 536 568
+    6     58 family           SM_Veg_DeadTree_DarkTall_01              solid 26 128 160 269 302 636
+    6     64 family_instance  SM_Veg_Oak_Large_01                      solid 320 441 502 503 535
+    6     56 family_instance  SM_Veg_Willow_01                         solid 667 668 699 765
+    5     28 family           SM_Heart_Gold_PR                         other 106 157 165 166 352
+    5     42 authored         SM_Boulder_Field_B_PR                    solid 407
+    4     22 family           SM_Shelf_Bottles_PR                      solid 33 195 225 226
+    4     38 family_instance  SM_Counter_Oak_PR                        solid 70
+    4     22 family_instance  SM_Veg_FallenLog_01                      solid 244 624 650 752
+    4     38 family_instance  SM_Wall_Dungeon_Half                     solid 547
+    3     34 family           SM_Gravestone_Broken_PR                  solid 35 228 290
+    3     82 environment      SM_Boulder_Field_B_PR                    solid 177 184 188
+    3     21 family           SM_Veg_PineForestEdge_H_01               solid 279 281 288
+    2     22 family_instance  SM_Shelf_Bottles_PR                      solid 34 196
+    2     26 family_instance  SM_Idol_Demon_PR                         solid 74 137
+    2     42 family           SM_Rubble_Pile_PR                        other 106
+    2     28 family_instance  SM_Veg_DeadTree_Frosted_01               solid 149
+    2     56 family           SM_Teleport_Machine_PR                   other 154 253
+    2     32 family           SM_Veg_Pine_Large_01                     solid 217 218
+    2     35 authored         SM_Veg_Oak_Large_02                      solid 438 439
+    2     76 family_instance  SM_Veg_Oak_Large_02                      solid 441 502
+    2     29 authored         SM_Veg_Pine_Large_01                     solid 503
+    2     28 family           SM_Sack_Grain_PR                         other 539
+    2     98 family           SM_Boulder_Large_PR                      solid 671
+    2     28 family           SM_Dungeon_Pillar_Twin_PR                solid 712
+    1     21 family           SM_Jar_Bowl_PR                           other 34
+    1     22 family           SM_Jar_Storage_PR                        other 36
+    1     36 environment      SM_Boulder_Field_C_PR                    solid 184
+    1     29 environment      SM_Boulder_Field_A_PR                    solid 188
+    1     22 family           SM_Heart_Red_PR                          other 190
+    1     46 family           SM_Ballista_PR                           other 196
+    1     32 family           SM_Veg_Stump_01                          solid 216
+    1     38 family           SM_Counter_Oak_PR                        solid 226
+    1     24 family_instance  SM_Sack_Grain_PR                         other 229
+    1     42 family_instance  SM_Boulder_Field_B_PR                    solid 244
+    1     82 family_instance  SM_Boulder_Flat_PR                       solid 244
+    1    101 family_instance  SM_Boulder_Large_PR                      solid 244
+    1     36 family_instance  SM_Boulder_Grey_Tall_PR                  solid 244
+    1     68 family           SM_Boulder_Field_A_PR                    solid 244
+    1     78 family           SM_Boulder_Flat_PR                       solid 244
+    1     48 family           SM_Fountain_Stone_PR                     solid 260
+    1     41 family           SM_Cabinet_Oak_PR                        solid 260
+    1     24 family_instance  SM_Gravestone_Broken_PR                  solid 274
+    1     21 family_instance  SM_Veg_PineForestEdge_H_01               solid 284
+    1     28 family_instance  SM_Veg_PineForestEdge_V_01               solid 315
+    1    463 authored         SM_Cottage_Stonebrook_PR                 solid 439
+    1     54 authored         SM_Veg_Oak_Large_01                      solid 503
+    1     22 authored         SM_Veg_Pine_Medium_01                    solid 503
+    1     22 family           SM_Veg_Pine_Medium_01                    solid 503
+    1     64 family           SM_Duck_Statue_Gold_PR                   solid 536
+    1     28 family           SM_Veg_Pine_Storm_01                     solid 553
+    1     51 family           SM_Gravestone_Round_PR                   solid 734
+
+## worst 60

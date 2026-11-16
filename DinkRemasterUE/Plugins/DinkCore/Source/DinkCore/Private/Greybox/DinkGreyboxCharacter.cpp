@@ -1,4 +1,5 @@
 #include "Greybox/DinkGreyboxCharacter.h"
+#include "DinkCollision.h"
 #include "DinkCoreModule.h"
 #include "DinkArtSubsystem.h"
 #include "DinkBodyAnimInstance.h"
@@ -35,6 +36,8 @@ ADinkGreyboxCharacter::ADinkGreyboxCharacter()
 	// A 56 cm shoulder width fits the original house's 61 cm diagonal clearance between
 	// the round table and bed. The template's 84 cm capsule seals that passage.
 	GetCapsuleComponent()->InitCapsuleSize(28.f, 96.f);
+	// Player-only blockers (DinkCollision::PlayerBlock) stop the player and nothing else.
+	GetCapsuleComponent()->SetCollisionResponseToChannel(DinkCollision::PlayerBlock, ECR_Block);
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
