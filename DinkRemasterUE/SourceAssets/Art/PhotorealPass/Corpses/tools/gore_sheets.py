@@ -100,7 +100,7 @@ def drop(cv, p, r, ang, stretch, rng, tail=True):
             q = L * rng.uniform(1.1, 1.9); cv.disc((p[0] + dx * q + rng.normal(0, r * 0.3), p[1] + dy * q + rng.normal(0, r * 0.3)), r * rng.uniform(0.18, 0.4))
 
 
-def sprite_red(path, width_m, height_m, depth=1.3):
+def sprite_red(path, width_m, height_m, depth=1.3, fill=0):
     """the blood of a 1997 picture as a ground stamp: (mask image, width m, depth m, centre xy m relative to the card centre, red area m2).
     The extracted picture is stretched to a power-of-two canvas, so the scale comes from the card (width_m x height_m of placements.json),
     not from the pixel count. Red = clearly red pixels; the picture looks down at an angle, so its height is stretched by `depth` on the ground."""
@@ -109,12 +109,32 @@ def sprite_red(path, width_m, height_m, depth=1.3):
     ys, xs = np.nonzero(op); x0, x1, y0, y1 = xs.min(), xs.max() + 1, ys.min(), ys.max() + 1; red = red[y0:y1, x0:x1]; h, w = red.shape
     mx = width_m / w; my = height_m / h
     mask = Image.fromarray((red * 255).astype(np.uint8), 'L').filter(ImageFilter.MaxFilter(3))
-    return mask, width_m, height_m * depth, (0.0, 0.0), float(red.sum()) * mx * my
+    pad = 0
+    if fill:                                         # close the gaps between the picture's red pixels (a body lay over them): one pool, not islands
+        pad = 4 * int(fill) + 6                      # room round the picture, or its frame cuts the grown pool off in a straight line
+        wide = Image.new('L', (mask.width + 2 * pad, mask.height + 2 * pad), 0); wide.paste(mask, (pad, pad)); mask = wide
+        mask = mask.filter(ImageFilter.MaxFilter(2 * int(fill) + 1)).filter(ImageFilter.MinFilter(2 * max(int(fill) - 1, 0) + 1))
+        # round the pixel stairs off: no blocky outline. The square dilation above leaves corners `fill` picture pixels wide, so the blur
+        # must be wider than that (9 px at x10 was under one picture pixel and the pool of 436 kept its stairs, seen in the 16 Nov render);
+        # the cut below the middle grey keeps the pool at least as large as the picture's red
+        r = 18 * (int(fill) + 1.5); big = mask.resize((mask.width * 10, mask.height * 10), Image.BICUBIC).filter(ImageFilter.GaussianBlur(r)); f = np.asarray(big, np.float32) / 255.0
+        # ... and a pool is not a polygon: the picture's red is a straight-sided patch of pixels, so the soft field is bent by two
+        # scales of noise before the cut (lobes about 30 cm and 10 cm across); the cut stays below the middle so no blood is lost
+        rng = np.random.default_rng(int(red.sum()) + 7)
+        def _n(cell):
+            small = rng.random((f.shape[0] // cell + 3, f.shape[1] // cell + 3)).astype(np.float32)
+            return np.asarray(Image.fromarray((small * 255).astype(np.uint8)).resize((f.shape[1] + 2 * cell, f.shape[0] + 2 * cell), Image.BICUBIC), np.float32)[:f.shape[0], :f.shape[1]] / 255.0
+        c1 = max(8, int(0.30 / mx * 10)); c2 = max(4, int(0.10 / mx * 10))
+        f = f + np.clip(f / 0.12, 0, 1) * (0.80 * (_n(c1) - 0.5) + 0.34 * (_n(c2) - 0.5))      # only where the pool's own edge is: no islands out of the noise alone
+        mask = Image.fromarray(((f > 0.36) * 255).astype(np.uint8), 'L').filter(ImageFilter.GaussianBlur(4))
+    ys2, xs2 = np.nonzero(red); cen = ((xs2.mean() / w - 0.5) * width_m, (0.5 - ys2.mean() / h) * height_m * depth) if len(xs2) else (0.0, 0.0)
+    sprite_red.centroid = cen                        # where the red lies relative to the card's middle (m, x east, y north)
+    return mask, width_m * (w + 2 * pad) / w, height_m * depth * (h + 2 * pad) / h, (0.0, 0.0), float(red.sum()) * mx * my
 
 
 def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, reach=0.55, drop_r=(0.004, 0.028), casts=5, mist=500,
                 edge_noise=0.2, thin=(60, 5, 4), mid=(40, 2, 2), deep=(17, 1, 1), dried=(44, 12, 8), smear=(54, 10, 7), damp=(40, 27, 21), soak_m=0.06,
-                centre=(0.0, 0.0), wet=0.05, stamp=None):
+                centre=(0.0, 0.0), wet=0.05, stamp=None, keep_fringe=False, meniscus=0.25):
     """pools = [(cx, cy, a, b, rot, runs)] in metres; foot = (n, 2) points the pool also spreads around (a body's outline), by `grow` metres.
     Drops are thrown out to `reach` metres beyond the pool. Returns dict BC (h, w, 4 uint8), N, ORM (h, w, 3 uint8) and `cover` (float mask)."""
     rng = np.random.default_rng(seed); cv = Canvas(px, size); k = cv.k
@@ -176,16 +196,19 @@ def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, rea
     col = col * (1 - thrown[..., None]) + _srgb(smear)[None, None, :] * thrown[..., None]
     col *= (0.88 + 0.24 * fine)[..., None]
     rough = wet + 0.03 * fine + 0.32 * rim + 0.22 * clot + 0.30 * thrown + 0.06 * (1 - sstep(0.2, 0.8, e2))
+    rough = rough + 0.55 * cover * (1 - sstep(0.5, 0.92, e1))      # the very edge is matt: a mirror-smooth meniscus caught the sky as a silver outline
     # the soaked fringe: damp earth, darker than the dry ground, ragged, reddish next to the pool
     fz = noise2(px, size / 0.035, rng, 4, 0.6); soak = blur(pool, soak_m * 0.5 * k)
     fringe = sstep(0.06, 0.22, soak + 0.16 * (fz - 0.5)) * (1 - cover)
+    if not keep_fringe:                                   # 16 Nov 2026 review: the damp fringe drew a pale grey rim round every pool on planks and dry earth ("a sticker")
+        fringe = fringe * 0.0
     near = sstep(0.25, 0.5, soak)
     fcol = _srgb(damp)[None, None, :] * (1 - 0.6 * near[..., None]) + _srgb(dried)[None, None, :] * 0.6 * near[..., None]
     fcol = fcol * (0.8 + 0.4 * fz)[..., None]
     col = col * (1 - fringe[..., None]) + fcol * fringe[..., None]
     rough = rough * (1 - fringe) + (0.50 + 0.25 * (1 - near)) * fringe
     # height in metres: a meniscus at every edge, a swell over the deep parts, clot skin; the open surface is smooth so it mirrors the sky
-    h = 0.0012 * np.sqrt(np.clip((e1 - 0.5) * 2, 0, 1)) + 0.0016 * sstep(0.5, 1.0, e2) + 0.0010 * deepf + 0.0005 * clot + 0.00005 * fine
+    h = meniscus * (0.0012 * np.sqrt(np.clip((e1 - 0.5) * 2, 0, 1)) + 0.0016 * sstep(0.5, 1.0, e2)) + 0.0010 * deepf + 0.0005 * clot + 0.00005 * fine
     gy, gx = np.gradient(h * k)                       # slope per metre along rows (down) and columns (right)
     n = np.dstack([-gx, gy, np.ones_like(h)]); n /= np.linalg.norm(n, axis=2, keepdims=True)
     alpha = np.maximum(sstep(0.30, 0.60, cover), sstep(0.35, 0.65, fringe))
@@ -240,14 +263,14 @@ def scorch_sheet(px, size, seed, r=0.35, spikes=22, spike_len=(0.5, 1.5), aspect
         grain = noise2(px, size / 0.006, rng, 2, 0.5); grain = blur(np.repeat(grain[:1], px, 0) * 0.6 + grain * 0.4, 0.6)   # split wood: streaks running down the face
         depth = sstep(0.0, 1.0, blur(hole, 0.07 * k)) * hole           # 0 at the rim, 1 in the middle
         void = np.broadcast_to(_srgb((3, 3, 3)), (px, px, 3)).copy()
-        void = void + _srgb((46, 15, 8))[None, None, :] * (0.55 * heart * sstep(0.45, 0.7, noise2(px, size / 0.05, rng, 3, 0.6)))[..., None]   # the picture's brown-red heart: rubble and dull embers far below
-        wcol = _srgb((52, 31, 18))[None, None, :] * (0.45 + 0.9 * grain)[..., None]; wcol = wcol * (1 - 0.6 * sstep(0.2, 0.9, np.roll(depth, -d_w // 2, axis=0)))[..., None]
-        wcol = wcol * (1 - lip[..., None]) + _srgb((110, 72, 44))[None, None, :] * lip[..., None] * (0.6 + 0.6 * grain)[..., None]
+        void = void + _srgb((30, 9, 5))[None, None, :] * (0.12 * heart * sstep(0.55, 0.7, noise2(px, size / 0.05, rng, 3, 0.6)))[..., None]   # barely a trace of the picture's brown-red heart (16 Nov review: jet black, as 158)
+        wcol = _srgb((24, 15, 9))[None, None, :] * (0.45 + 0.9 * grain)[..., None]; wcol = wcol * (1 - 0.6 * sstep(0.2, 0.9, np.roll(depth, -d_w // 2, axis=0)))[..., None]
+        wcol = wcol * (1 - lip[..., None]) + _srgb((58, 38, 24))[None, None, :] * lip[..., None] * (0.6 + 0.6 * grain)[..., None]
         inside = void * (1 - wall[..., None]) + wcol * wall[..., None]
         rimc = (1 - hole) * sstep(0.3, 0.6, cover)                      # what is left of the cover outside the void: charred plank tops, cracked, a little ash
-        col = col * 0.55
+        col = col * 0.32                                 # the rim: charred plank, nearly black
         col = col * (1 - hole[..., None]) + inside * hole[..., None]
-        h = -0.03 * blur(hole, 0.004 * k) - 0.0015 * crack * rimc + 0.0006 * fine
+        h = -0.0015 * crack * rimc + 0.0004 * fine        # no bevel into the void: the bevelled edge caught the light and read as a glossy patch
         gy, gx = np.gradient(h * k); n = np.dstack([-gx, gy, np.ones_like(h)]); n /= np.linalg.norm(n, axis=2, keepdims=True)
         n = n * (1 - (hole * (1 - wall))[..., None]) + np.array([0, 0, 1.0])[None, None, :] * (hole * (1 - wall))[..., None]
         bc = None; rough_t = np.clip(0.9 + 0.1 * fine + hole, 0, 1)
@@ -260,6 +283,86 @@ def scorch_sheet(px, size, seed, r=0.35, spikes=22, spike_len=(0.5, 1.5), aspect
     orm = np.dstack([1 - 0.5 * core * crack, rough_t if through else 0.82 + 0.15 * fine, np.zeros_like(h)])
     u8 = lambda a: (np.clip(a, 0, 1) * 255 + 0.5).astype(np.uint8)
     return {'BC': u8(bc), 'N': u8(n * 0.5 + 0.5), 'ORM': u8(orm), 'cover': cover}
+
+
+def _voronoi(px, ny, nx, rng, jitter=0.9):
+    """a jittered-grid Voronoi over the sheet: (f1, f2 - f1, random value per cell, cell row, cell column), ny x nx cells"""
+    pts = np.stack(np.meshgrid(np.arange(ny), np.arange(nx), indexing='ij'), -1) + 0.5 + (rng.random((ny, nx, 2)) - 0.5) * jitter; val = rng.random((ny, nx)).astype(np.float32)
+    y, x = np.mgrid[0:px, 0:px].astype(np.float32); y *= ny / px; x *= nx / px; ci = np.floor(y).astype(int); cj = np.floor(x).astype(int)
+    f1 = np.full((px, px), 9.0, np.float32); f2 = f1.copy(); bi = ci.copy(); bj = cj.copy()
+    for di in (-1, 0, 1):
+        for dj in (-1, 0, 1):
+            ii = np.clip(ci + di, 0, ny - 1); jj = np.clip(cj + dj, 0, nx - 1); p = pts[ii, jj]; d = np.hypot(p[..., 0] - y, p[..., 1] - x).astype(np.float32); closer = d < f1
+            f2 = np.where(closer, f1, np.minimum(f2, d)); bi = np.where(closer, ii, bi); bj = np.where(closer, jj, bj); f1 = np.where(closer, d, f1)
+    return f1, f2 - f1, val[bi, bj], bi, bj, pts
+
+
+def pit_sheet(px, size, seed, r=0.27, spikes=20, spike_len=(0.5, 1.5), aspect=1.0, rot=0.0, centres=None, wall=False, plume=0.0):
+    """A hole burnt THROUGH planks (picture 158), for the `pit` material of the kit importer (16 Nov 2026 rebuild).
+
+    The flat sheet carries what a hole in a floor is made of, and the importer's pit shader gives it its depth:
+      BC rgb   outside the void: charred wood broken into blocks (alligator char), pale ash in the cracks and round the rim,
+               brown scorch fading into the floor; inside the void: what lies below the floor (black, a few dull embers)
+      BC a     cover, 0..1: 1 on the char, falling off through the scorch (the shader dithers it, so the scorch fades out)
+      ORM r/g  occlusion (cracks, the rim) and roughness; ORM b is NOT metallic here: it is the void mask the shader reads
+               (1 = burnt through). The shader draws the far wall of the hole (the cut face of the planks) by parallax,
+               shades the void without any specular (a lit black sheet is grey: that was the 'tar' of the first version)
+    `wall` = burnt through a plastered wall: the same hole with a soot plume of `plume` metres rising above it (image up)."""
+    rng = np.random.default_rng(seed); cv = Canvas(px, size); k = cv.k; vc = Canvas(px, size)
+    centres = centres or [(0.0, 0.0, 1.0)]
+    for cx_, cy_, rk in centres:                      # the void: lobed, as the body of the 1997 blotch
+        pts_ = lobed((cx_, cy_), r * rk * aspect, r * rk, rot, rng, lobes=0.30); cv.poly(pts_); vc.poly(pts_)
+    for i_ in range(spikes * len(centres)):           # burn tongues: charred grooves running out, the spikes of the 1997 picture
+        cx_, cy_, rk = centres[i_ % len(centres)]; r_ = r * rk
+        a = rng.uniform(0, 2 * math.pi); Ln = r_ * rng.uniform(*spike_len); w = r_ * rng.uniform(0.07, 0.16); p = np.array([cx_, cy_]) + np.array([math.cos(a), math.sin(a)]) * r_ * 0.55; pl = []; pr = []; n = 7
+        for i in range(n + 1):
+            t = i / n; a += rng.normal(0, 0.16); p = p + np.array([math.cos(a), math.sin(a)]) * Ln / n; ww = w * (1 - t) ** 0.8 + 0.003; nx_, ny_ = -math.sin(a), math.cos(a)
+            pl.append((p[0] + nx_ * ww, p[1] + ny_ * ww)); pr.append((p[0] - nx_ * ww, p[1] - ny_ * ww))
+        cv.poly(pl + pr[::-1])
+    for _ in range(70):                               # cinders thrown out
+        a = rng.uniform(0, 2 * math.pi); d = r * rng.uniform(1.0, 2.3); cx_, cy_, rk = centres[rng.integers(len(centres))]; cv.disc((cx_ + math.cos(a) * d * rk, cy_ + math.sin(a) * d * rk), rng.uniform(0.004, 0.012))
+    nz = noise2(px, size / 0.05, rng, 4, 0.6); fine = noise2(px, size / 0.008, rng, 3, 0.6); med = noise2(px, size / 0.02, rng, 3, 0.6)
+    cover = sstep(-0.05, 0.05, blur(cv.arr(), 0.004 * k) - 0.5 - 0.35 * (nz - 0.5))            # all that is char: void, rim and tongues
+    # ---- alligator char: blocks longer along the grain (image up/down), broken by deep cracks
+    ny = max(4, int(round(size / 0.021))); nx = max(4, int(round(size / 0.013))); f1, edge, cval, bi, bj, pts = _voronoi(px, ny, nx, rng)
+    crack = 1 - sstep(0.02, 0.16, edge)                                                       # 1 in the crack between two blocks
+    # ---- the void: whole blocks have fallen in, so its outline runs along the cracks; a block goes when its middle lies well inside the lobes
+    vsoft = blur(vc.arr(), 0.014 * k) - 0.20 * (noise2(px, size / 0.07, rng, 3, 0.6) - 0.5) - 0.25 * (noise2(px, size / 0.018, rng, 2, 0.5) - 0.5)
+    cy_px = np.clip((pts[..., 0] * px / ny).astype(int), 0, px - 1); cx_px = np.clip((pts[..., 1] * px / nx).astype(int), 0, px - 1); gone = vsoft[cy_px, cx_px] > 0.62
+    void = blur(gone[bi, bj].astype(np.float32), 0.0012 * k); void = sstep(0.42, 0.58, void)
+    near = sstep(0.0, 1.0, blur(void, 0.022 * k) * 2.2) * (1 - void)                           # the rim: within a few centimetres of the void
+    char = cover * (1 - void)
+    # ---- colours
+    blockc = (0.007 + 0.016 * cval ** 2 + 0.005 * fine)[..., None] * np.array([1.0, 0.92, 0.84], np.float32)[None, None, :]        # charcoal: nearly black, a little brown
+    blockc = blockc * (1 - 0.92 * crack[..., None])
+    ashn = noise2(px, size / 0.035, rng, 4, 0.6); ash = sstep(0.60, 0.74, ashn + 0.20 * near - 0.06) * char * (0.28 + 0.4 * fine)            # pale ash lying on the char, most round the rim
+    ash = np.maximum(ash, 0.45 * crack * char * sstep(0.56, 0.7, noise2(px, size / 0.06, rng, 3, 0.6)))                                  # and blown into some of the cracks
+    ashc = _srgb((104, 100, 94))[None, None, :] * (0.40 + 0.6 * med)[..., None]
+    col = blockc * (1 - ash[..., None]) + ashc * ash[..., None]
+    soot_d = blur(cover, 0.06 * k); soot = sstep(0.03, 0.50, soot_d) * (0.55 + 0.45 * med) * (0.75 + 0.25 * fine)                              # scorch: brown-black, fading into the boards
+    if wall and plume > 0:                            # soot climbs a wall: the scorch is drawn out upwards (image up = up the wall), widening and thinning
+        up = np.zeros_like(cover); n_ = 28; step = plume * k / n_
+        for i in range(1, n_ + 1):
+            sh = np.roll(blur(cover, (0.03 + 0.10 * i / n_) * k), -int(round(i * step)), axis=0); sh[-int(round(i * step)) - 1:] = 0; up = np.maximum(up, sh * (1 - i / (n_ + 1)) ** 1.3)
+        soot = np.maximum(soot, sstep(0.03, 0.6, up) * (0.45 + 0.55 * noise2(px, size / 0.09, rng, 4, 0.6)) * (0.8 + 0.2 * fine))
+    scorch_c = _srgb((30, 17, 9))[None, None, :] * (0.5 + 0.7 * med)[..., None]
+    col = col * char[..., None] + scorch_c * (1 - char[..., None])
+    # ---- below the floor: black, with a few dull embers and fallen ash in the middle (the brown-red heart of the 1997 picture)
+    heart = sstep(0.5, 1.0, blur(void, 0.07 * k)); emb = sstep(0.66, 0.80, noise2(px, size / 0.03, rng, 3, 0.6)) * heart
+    below = np.broadcast_to(_srgb((2, 2, 2)), (px, px, 3)).copy() * (0.5 + fine)[..., None]
+    below = below * (1 - emb[..., None]) + (_srgb((40, 13, 5))[None, None, :] * (0.15 + 0.6 * med)[..., None]) * emb[..., None]
+    below = below + _srgb((40, 37, 33))[None, None, :] * (0.25 * heart * sstep(0.74, 0.86, noise2(px, size / 0.012, rng, 2, 0.5)))[..., None]
+    col = col * (1 - void[..., None]) + below * void[..., None]
+    alpha = np.clip(np.maximum(np.maximum(sstep(0.3, 0.6, cover), void), 0.92 * soot), 0, 1)
+    # ---- relief: blocks stand proud of their cracks, the rim is burnt thin and dips to the void, ash lies in low drifts
+    h = 0.0022 * sstep(0.02, 0.30, edge) * char * (0.7 + 0.6 * cval) - 0.0030 * near * char + 0.0009 * ash + 0.0003 * fine * (1 - void)
+    gy, gx = np.gradient(blur(h, 0.6) * k); n = np.dstack([-gx, gy, np.ones_like(h)]); n /= np.linalg.norm(n, axis=2, keepdims=True)
+    n = n * (1 - void[..., None]) + np.array([0, 0, 1.0], np.float32)[None, None, :] * void[..., None]
+    occ = np.clip(1 - 0.75 * crack * char - 0.35 * near - void, 0, 1)
+    rough = np.clip(0.88 + 0.10 * cval + 0.25 * ash + 0.3 * crack + (1 - char) * 0.2 + void, 0, 1)        # matt: glossy char read as grey scales in the sun
+    bc = np.dstack([_to_srgb(col), alpha]); bc[alpha < 0.004, :3] = np.asarray((30, 17, 9), np.float32) / 255.0
+    orm = np.dstack([occ, rough, void]); u8 = lambda a: (np.clip(a, 0, 1) * 255 + 0.5).astype(np.uint8)
+    return {'BC': u8(bc), 'N': u8(n * 0.5 + 0.5), 'ORM': u8(orm), 'cover': cover, 'void': void, 'char': char, 'near': near, 'ash': ash}
 
 
 def save(sheet, stem):

@@ -116,13 +116,13 @@
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 27.6,
-   "p99": 79.0
+   "mean": 33.3,
+   "p99": 78.2
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.392,
-   "p95": 0.527
+   "mean": 0.383,
+   "p95": 0.524
   },
   "metallic_mean": 0.0,
   "ao_mean": 0.336

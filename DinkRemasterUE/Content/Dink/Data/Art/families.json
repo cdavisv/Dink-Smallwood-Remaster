@@ -1500,6 +1500,13 @@
       "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). corpse_merchant, the blue merchant of screen 94: hacked down, chest split to the ribs, belly open, a forearm struck off. Posed from the rig as dead weight, opened as the 1997 picture shows, body and pool inside the picture's footprint; the pool, the drops and the soaked fringe are a ground card in the same mesh (no companion decal). yaw_from_sprite: the body lies as the picture shows it."
     },
     {
+      "family": "365 people/mom/death-",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Mother_Joppa_PR.SM_Corpse_Mother_Joppa_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 16 Nov 2026). The Joppa mother of screen 419 (s5-fmom, walk 360: a kill leaves base_walk + 5 = 365, dink.cpp:12371-12383; the same bitmap as 355): the Mother character in her brown dress, cut down, in a pool at the picture's footprint. No placement carries 365: the body is script-made, so this row shows nothing until killed people's pictures take their family rows (gore audit code item C1); it is delivered so that the code has a mesh to draw."
+    },
+    {
       "family": "385 people/merchant/green/death-",
       "mesh": "/Game/Dink/Photoreal/Corpses/SM_Corpse_Merchant_Green_PR.SM_Corpse_Merchant_Green_PR",
       "fit": "none",

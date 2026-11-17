@@ -1,0 +1,93 @@
+{
+ "name": "SM_Burn_Hole_Wall_PR",
+ "class": "prop_small",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_Wall/SM_Burn_Hole_Wall_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_Wall/SM_Burn_Hole_Wall_PR.blend",
+ "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Burn_Hole_Wall_PR",
+ "dimensions_m": [
+  2.0,
+  0.0641,
+  2.35
+ ],
+ "bounds_min_m": [
+  -1.0,
+  -0.004,
+  0.0
+ ],
+ "bounds_max_m": [
+  1.0,
+  0.0601,
+  2.35
+ ],
+ "lod0_triangles": 451,
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_Wall/T_Burn_Hole_Wall_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Burn_Hole_Wall",
+   "channels": "base colour sRGB + alpha (cover, dithered by the pit material)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_Wall/T_Burn_Hole_Wall_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Burn_Hole_Wall",
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_Wall/T_Burn_Hole_Wall_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "material": "MI_Burn_Hole_Wall",
+   "channels": "R occlusion, G roughness, B void mask of the pit material (not metallic)"
+  }
+ ],
+ "materials": [
+  "MI_Burn_Hole_Wall"
+ ],
+ "kit_materials": [
+  {
+   "name": "MI_Burn_Hole_Wall",
+   "kind": "pit",
+   "files": {
+    "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_Wall/T_Burn_Hole_Wall_BC.png",
+    "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_Wall/T_Burn_Hole_Wall_N.png",
+    "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_Wall/T_Burn_Hole_Wall_ORM.png"
+   },
+   "pit": {
+    "wall_uv": 0.05,
+    "floor_uv": 0.15
+   }
+  }
+ ],
+ "collision_hulls": 0,
+ "material_exception": "unique BC/N/ORM bakes private to this asset (not a row of ART_STANDARD.md section 2): remains are one-off set pieces",
+ "pivot": "bbox centre in X/Y, lowest point at z = 0; in Blender +X is screen right and +Y screen up (north) for a yaw_from_sprite row",
+ "families": [
+  "burn_hole_decal",
+  "158 struct/details/damage/hole-"
+ ],
+ "dresses": "two holes burnt through a plastered wall, run together (picture 3), soot climbing the wall above them",
+ "third_party": [
+  "park_dirt (render ground)"
+ ],
+ "known_weaknesses": "A flat alpha-tested card 6 mm above the wall face with modelled splinters on it: nothing is cut out of the wall itself. The depth (the cut face of the far side, the dark below) is drawn by the `pit` material of the kit importer from the view direction; it assumes one depth for the whole hole, and its far face has no texture of its own. The scorch fades by a per-frame dither (needs temporal anti-aliasing to look soft). The Blender renders show the flat sheet without that shader.",
+ "pool_card_m": 2.0,
+ "derived_from": "tools/gore_sheets.py pit_sheet (numpy and PIL, no scan)",
+ "pit": {
+  "wall_uv": 0.05,
+  "floor_uv": 0.15
+ },
+ "stands_on_wall": {
+  "centre_z": 1.35,
+  "depth": 0.1,
+  "below": 0.3
+ }
+}

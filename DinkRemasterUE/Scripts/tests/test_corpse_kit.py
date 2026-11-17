@@ -75,6 +75,30 @@ class CorpseKitTests(unittest.TestCase):
             self.assertIn(name, self.assets, 'replacement mesh is not in the kit: ' + name)
             self.assertEqual(sizes[mesh][:2], [round(v * 100, 2) for v in self.assets[name]['dimensions_m'][:2]], name)
 
+    def test_a_burn_hole_is_a_pit_with_a_void_and_its_depths(self):
+        # picture 158 is a hole burnt THROUGH: the kit row asks the importer for the pit material (far wall by parallax, void without
+        # specular) and gives it the two depths; the sheet's ORM blue is the void mask, and the void is at least the black of the picture
+        holes = [a for a in self.assets.values() if a['name'].startswith('SM_Burn_Hole_')]
+        self.assertEqual(sorted(a['name'] for a in holes), ['SM_Burn_Hole_A_PR', 'SM_Burn_Hole_B_PR', 'SM_Burn_Hole_C_PR', 'SM_Burn_Hole_Wall_PR'])
+        for asset in holes:
+            row = self.materials[asset['materials'][0]]
+            self.assertEqual(row['kind'], 'pit', asset['name'])
+            self.assertTrue(0.0 < row['pit']['wall_uv'] < row['pit']['floor_uv'] < 0.5, asset['name'])
+            orm = PROJECT.parent / row['files']['ORM']
+            if orm.stat().st_size < 300:              # an LFS pointer in a checkout made without the binaries
+                continue
+            try:
+                from PIL import Image
+            except ImportError:                       # the CI image has no Pillow (and no binaries): the rows above are what it checks
+                continue
+            im = Image.open(orm).convert('RGB'); void = sum(1 for v in im.getchannel('B').resize((256, 256)).getdata() if v > 127) / 65536.0
+            own = json.loads((PROJECT.parent / asset['folder'] / 'manifest.json').read_text()); side = own['pool_card_m']
+            # 1997: frame 1 is 185 black pixels of 2.5 cm (0.12 m2), frame 3 about three times that; the void alone must not be smaller than frame 1
+            self.assertGreaterEqual(void * side * side, 0.12, asset['name'])
+            bc = Image.open(PROJECT.parent / row['files']['BC']).convert('RGBA').resize((256, 256)); px = list(bc.getdata()); mask = list(im.getchannel('B').resize((256, 256)).getdata())
+            inside = [p for p, m in zip(px, mask) if m > 200]
+            self.assertLess(sum(max(p[:3]) for p in inside) / len(inside), 24, asset['name'] + ': the void is not black')
+
     def test_a_picture_decal_covers_at_least_the_ground_its_1997_picture_covered(self):
         decals = self.kit['decals']
         self.assertEqual(json.loads((KIT / 'Decals/decals.json').read_text()), decals)
