@@ -1,3 +1,9 @@
+## House stairs and the barred cellar doors (16 November 2026, art row DS-08)
+
+- Sequence 428 by frame: 1 and 3 are a flight going up in a ground-floor corner (`SM_Stair_Flight_L/_R_PR`: screens 3, 36, 229), 2 and 4 the railed opening in the upper floor (`SM_Stair_Well_L/_R_PR`: 4, 37, 163, 228), 5 the dark plank door with a barred light (`SM_Door_Barred_PR`: two on screen 68). Five sequence-frame rows in `families.json`; sources `SourceAssets/Art/PhotorealPass/FableF` (`tools/build_stairs.py`).
+- PITFALL, found in the game: the sort point of a flight or of a door lies in the 1997 wall band, north of where the room's wall is drawn (the wall modules stand on the wall hardbox's inner face: y = 100 px on screen 3, 57 on 36, 173 on 68). With the card anchor the meshes stood behind the wall and nobody saw them. Their rows carry `offset_cm` per placement (back against the wall, the flight's top in the corner). A new placement of these pictures needs its own offset.
+- The flights are drawn at `scale` 0.77: the 1997 picture is 3.4 m long at the interior scale, the mesh 4.4 m for a 3.5 m storey. They are scripted or warp placements, so they get no player blocker: Dink walks into the foot of the flight until he reaches the 1997 trigger box (its reachable part is the 0.65 m strip in front of the wall), which is the upper third of the drawn flight.
+- Presentation only: hardbox, warp, script and probe unchanged. Evidence: `Docs/Verification/FableF_Stairs_16Nov2026/`.
 ## Ground layers with natural outlines across screen borders (15 November 2026, VS-09)
 
 - The terrain mask's layer weights came from the 1997 tiles screen by screen (`terrain_mask`), so outlines were 50 px tile rectangles (pale rocky-grass squares, rows of dirt tiles, stepped sand edges) and the weights stepped at 568 of the 1,040 borders between outdoor screens.

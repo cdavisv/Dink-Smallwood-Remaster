@@ -1,0 +1,109 @@
+{
+ "name": "SM_Stair_Flight_R_PR",
+ "class": "prop_large",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R/SM_Stair_Flight_R_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R/SM_Stair_Flight_R_PR.blend",
+ "build": "blender -b --factory-startup -t 4 --python FableF/tools/build_stairs.py -- Stair_Flight_R final",
+ "dimensions_m": [
+  4.3694,
+  1.095,
+  4.5665
+ ],
+ "bounds_min_m": [
+  -2.1847,
+  -0.5475,
+  0.0
+ ],
+ "bounds_max_m": [
+  2.1847,
+  0.5475,
+  4.5665
+ ],
+ "lod0_triangles": 1056,
+ "triangle_budget": {
+  "soft": 20000,
+  "hard": 60000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R/T_Stair_Flight_R_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R/T_Stair_Flight_R_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R/T_Stair_Flight_R_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Stair_Flight_R_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset: the joinery needs its own ambient occlusion and wear",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0111,
+   0.9889
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 40.2,
+   "p99": 89.0
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.332,
+   "p95": 0.627
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.287
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "stairs_wood",
+  "428 inside/stairs/stair- frame 3"
+ ],
+ "origin_ids": {
+  "stairs_wood": [
+   "S003_P28",
+   "S003_P29",
+   "S004_P13",
+   "S036_P27",
+   "S037_P13",
+   "S163_P27",
+   "S163_P28",
+   "S228_P23",
+   "S229_P01"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "as Stair_Flight_L, going up to the right",
+ "third_party": [],
+ "status": "source delivered",
+ "known_weaknesses": "The flight ends at 3.5 m without a landing or a trimmed ceiling opening: in the room it runs into the ceiling. One convex hull would close the space under it, so no collision is exported. Boards are bevelled blocks butted together: no joints, pegs or nails are modelled, and the grain is procedural streaking, not a scan. Every board is 12 triangles in the game mesh, so edge rounding is in the normal map only.",
+ "source_note": "the .blend holds the game mesh with its baked set; the dense boards it was baked from are rebuilt by the script (they were removed after the bake to keep the file small)"
+}

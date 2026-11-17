@@ -1470,6 +1470,53 @@
       "note": "157 struct/details/damage: a smouldering burn patch of the burning house (screens 1 and 439, vision 1). All six placements of 155-157 are marks on a wall or on the roof, so the picture is a patch seen face-on, not a heap: charred, cracked wood with embers breathing in the cracks, small flames and a wisp of smoke (FableF/small_fire_fx/Embers_C, tools/build_burn_patch.py; 8 x 4 frames, translucent). effect_fit: the patch fills 0.54 x 0.52 of the frame, 0.12 above its bottom edge. offset_cm sets each one on its surface (the positions of SourceAssets/Art/StonebrookRuins/fire_emitters.json: the room's north and south walls, the cottage roof). Fable streams F and art-fx-props, 16 Nov 2026."
     },
     {
+      "family": "428 inside/stairs/stair- flight up left",
+      "frame": 1,
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Stair_Flight_L_PR.SM_Stair_Flight_L_PR",
+      "fit": "none",
+      "scale": 0.77,
+      "offset_cm": {"S003_P28": [83, 300, 0], "S003_P29": [83, 300, 0]},
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "428 frame 1: the flight going up to the left in a ground-floor corner. Scripted placements too: s1-h3-5 only switches the sprite off or walks Dink away, it never changes the picture. Fable stream F, 15 Nov 2026. Visual only: the placement keeps its hardbox, warp and script."
+    },
+    {
+      "family": "428 inside/stairs/stair- flight up right",
+      "frame": 3,
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Stair_Flight_R_PR.SM_Stair_Flight_R_PR",
+      "fit": "none",
+      "scale": 0.77,
+      "offset_cm": {"S036_P27": [-83, 256, 0], "S229_P01": [-44, 186, 0]},
+      "yaw_from_sprite": true,
+      "note": "428 frame 3: the flight going up to the right. Fable stream F, 15 Nov 2026. Visual only: the placement keeps its hardbox, warp and script."
+    },
+    {
+      "family": "428 inside/stairs/stair- well left",
+      "frame": 2,
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Stair_Well_L_PR.SM_Stair_Well_L_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "428 frame 2: the railed opening in the upper floor, flight going down. Scripted placements too: s4-not only talks and walks Dink away. Fable stream F, 15 Nov 2026. Visual only: the placement keeps its hardbox, warp and script."
+    },
+    {
+      "family": "428 inside/stairs/stair- well right",
+      "frame": 4,
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Stair_Well_R_PR.SM_Stair_Well_R_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "428 frame 4: the railed opening, mirrored. Fable stream F, 15 Nov 2026. Visual only: the placement keeps its hardbox, warp and script."
+    },
+    {
+      "family": "428 inside/stairs/stair- barred door",
+      "frame": 5,
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Door_Barred_PR.SM_Door_Barred_PR",
+      "fit": "none",
+      "offset_cm": {"S068_P24": [0, 178, 0], "S068_P25": [0, 178, 0]},
+      "yaw_from_sprite": true,
+      "note": "428 frame 5: the dark plank door with a barred light on the cellar wall (class cellar_hatch). Fable stream F, 15 Nov 2026. Visual only: the placement keeps its hardbox, warp and script."
+    },
+    {
       "family": "sparkle_fx",
       "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Sparkle.MI_FX_Sparkle",
       "effect_size_cm": 70,
