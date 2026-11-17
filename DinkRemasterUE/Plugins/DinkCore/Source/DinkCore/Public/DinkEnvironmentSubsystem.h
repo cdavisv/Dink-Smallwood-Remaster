@@ -379,6 +379,12 @@ private:
 	TObjectPtr<UMaterialInterface> WaterTileFallbackMaterial;
 	float ReliefFill = 0.95f, ReliefSink = 0.12f, ReliefCullCm = 26000.f, WaterTileHeightCm = 3.f, WaterTileFallbackHeightCm = 9.f;
 	TSet<int32> ReliefApplied;
+	// Player-only blockers along the drawn waterline (ground_classes.json `water_block`, map-pixel rects): the world export
+	// draws the water past the 1997 outline (natural shorelines) and blocks that band for the player only
+	// (DinkPlayerBlock), so Dink stops where the water is drawn. NPCs, creatures, missiles and the 1997 hardness are unchanged.
+	void ApplyWaterBlockers(int32 ScreenNumber, const FDinkScreenCorners& Corners);
+	TMap<int32, TArray<FBox2D>> WaterBlockRects;
+	TSet<int32> WaterBlockApplied;
 
 	// --- pillbug carcass (round 6, visual only): where a photoreal pillbug of the current screen is killed (its actor is
 	// hidden), SM_Pillbug_Corpse_PR lies until the player leaves the screen. Reads actor visibility; writes nothing.

@@ -9,10 +9,12 @@ sys.path.insert(0, str(PROJECT / 'Scripts'))
 try:
     import numpy as np
     from export_import_bundle import (RELIEF_MAX_CLEAR_PX, RELIEF_MIN_CLEAR_PX, fold_terrain_layers, forest_points,  # noqa: E402
-                                      map_neighbours, mark_sea_water, natural_water_shape, relief_points, water_is_sea,
+                                      map_neighbours, mark_sea_water, relief_points, water_is_sea,
                                       water_meets, water_sea_weights, water_tile_rects, water_links, water_sea_patches,
                                       capped_shore_distance, signed_shore_distance, shore_alpha, world_neighbours,
-                                      SHORE_PX_CM)
+                                      SHORE_PX_CM, SHAPE_CELL_PX, SHAPE_H, SHAPE_W, SHAPE_LAND_CORE_PX,
+                                      SHAPE_OFFSET_PX, map_noise, natural_shore, shape_cells, water_draw_rects,
+                                      shore_distance_cm, water_band_blockers, blocker_rects, wet_bed_follows_shore)
 except ImportError as error:    # the world export needs numpy and Pillow; a machine without them cannot run it either
     raise unittest.SkipTest('world export helpers need numpy and Pillow: %s' % error)
 
@@ -126,25 +128,74 @@ class ReliefPointsTests(unittest.TestCase):
         self.assertEqual(relief_points(9, rows, CLASSES, pocket, self.no_warp, indoor=True), [])
 
 
-class NaturalWaterShapeTests(unittest.TestCase):
-    def test_a_pond_is_rounded_and_stays_near_its_tiles(self):
-        shape = natural_water_shape(tiles(1, **{'3_5': 5, '3_6': 5, '4_5': 5, '4_6': 5}), CLASSES, 438)
-        self.assertEqual(shape.shape, (400, 600))
-        self.assertTrue(shape[200, 300])                                    # the middle of the pond is water
-        self.assertFalse(shape[:100].any() or shape[300:].any() or shape[:, :200].any() or shape[:, 400:].any())
-        squares = np.zeros((400, 600), bool); squares[150:250, 250:350] = True
-        self.assertTrue((shape != squares).any(), 'the outline is the tile squares')
-        self.assertTrue(0.5 < shape.sum() / squares.sum() < 1.5)
+class NaturalShoreTests(unittest.TestCase):
+    """The 1997 water outline smoothed in world space (natural_shore): no 50 px stairs, the same on both sides of a
+    screen border, never far from the 1997 outline, and a one-tile river is never cut."""
 
-    def test_same_screen_same_shape_and_no_water_no_shape(self):
-        a = natural_water_shape(tiles(1, **{'3_5': 5}), CLASSES, 465)
-        self.assertTrue((a == natural_water_shape(tiles(1, **{'3_5': 5}), CLASSES, 465)).all())
-        self.assertFalse(natural_water_shape(tiles(1), CLASSES, 465).any())
+    @staticmethod
+    def stair():
+        # a river running diagonally down a screen in 50 px steps (two tiles wide), as the 1997 tiles draw it
+        fine = np.zeros((400, 600), bool)
+        for k in range(8):
+            fine[k * 50:(k + 1) * 50, k * 50:k * 50 + 100] = True
+        return fine
 
-    def test_at_the_screen_rim_the_tile_outline_holds(self):
-        shape = natural_water_shape(tiles(1, **{'3_0': 5, '4_0': 5}), CLASSES, 7)
-        self.assertTrue(shape[160:240, 0].all())                            # water reaches the west rim over the tiles' span
-        self.assertFalse(shape[:120, 0].any() or shape[280:, 0].any())
+    def test_the_noise_is_a_function_of_the_map_position(self):
+        a = map_noise(465, SHAPE_H, SHAPE_W, 8, SHAPE_CELL_PX)
+        b = map_noise(466, SHAPE_H, SHAPE_W, 8, SHAPE_CELL_PX)
+        self.assertTrue(np.allclose(a[:, SHAPE_W + 8:], b[:, 8:16]))         # 465's east margin is 466's west edge
+        self.assertLessEqual(np.abs(a).max(), 0.5)
+
+    def test_a_stair_becomes_a_slope_near_its_outline(self):
+        base = shape_cells(self.stair())
+        alpha, shaped = natural_shore(465, {465: base}, {})
+        self.assertEqual(alpha.shape, (64, 96))
+        self.assertEqual(shaped.shape, (SHAPE_H, SHAPE_W))
+        self.assertTrue((shaped != base).any(), 'the outline is still the tiles')
+        sd = capped_shore_distance(base, SHAPE_CELL_PX, 12)                # map px from the 1997 outline
+        self.assertFalse((shaped & (sd >= SHAPE_LAND_CORE_PX)).any())      # never more than 25 px onto the land
+        self.assertFalse((base & ~shaped).any())                            # never back inside the 1997 water
+        self.assertFalse((~shaped & (sd < SHAPE_OFFSET_PX - SHAPE_CELL_PX)).any())   # at least the offset onto the land
+        # the inner corners of the stair fill in: water where the 1997 tiles had a land corner
+        self.assertTrue((shaped & ~base).any())
+
+    def test_a_one_tile_river_is_never_cut(self):
+        fine = np.zeros((400, 600), bool); fine[175:225, :] = True
+        _, shaped = natural_shore(300, {300: shape_cells(fine)}, {})
+        self.assertTrue(shaped[SHAPE_H // 2, :].all())
+
+    def test_two_screens_agree_on_their_border(self):
+        fine = self.stair()
+        a, b = shape_cells(fine), shape_cells(np.roll(fine, -300, axis=1) & (np.arange(600) < 300)[None, :])
+        base = {464: a, 465: b}
+        left, _ = natural_shore(464, base, {(1, 0): 465})
+        right, _ = natural_shore(465, base, {(-1, 0): 464})
+        self.assertTrue(np.allclose(left[:, -1], right[:, 0], atol=1e-6))
+
+    def test_the_drawn_water_covers_the_shaped_water(self):
+        _, shaped = natural_shore(465, {465: shape_cells(self.stair())}, {})
+        cover = np.zeros((400, 600), bool)
+        for x0, y0, x1, y1 in water_draw_rects(shaped):
+            self.assertTrue(0 <= x0 < x1 <= 600 and 0 <= y0 < y1 <= 400)
+            cover[y0:y1, x0:x1] = True
+        ys, xs = np.nonzero(shaped)
+        self.assertTrue(cover[(ys * SHAPE_CELL_PX).astype(int), (xs * SHAPE_CELL_PX).astype(int)].all())
+        self.assertEqual(water_draw_rects(np.zeros((SHAPE_H, SHAPE_W), bool)), [])
+
+    def test_the_shoreline_field_is_signed_and_runs_on_across_a_border(self):
+        fine = self.stair()
+        base = {464: shape_cells(fine), 465: shape_cells(np.roll(fine, -300, axis=1) & (np.arange(600) < 300)[None, :])}
+        left = shore_distance_cm(464, base, {(1, 0): 465})
+        right = shore_distance_cm(465, base, {(-1, 0): 464})
+        self.assertEqual(left.shape, (SHAPE_H, SHAPE_W))
+        self.assertLess(left[10, 25], 0)                                    # in the river
+        self.assertGreater(left[120, 10], 300)                              # far up the bank
+        # one cell either side of the border: neighbouring cells of one field differ by at most one cell's length
+        self.assertLessEqual(np.abs(left[:, -1] - right[:, 0]).max(), SHAPE_CELL_PX * 4.38 + 1e-6)
+
+    def test_no_water_no_shore(self):
+        alpha, shaped = natural_shore(7, {7: np.zeros((SHAPE_H, SHAPE_W), bool)}, {})
+        self.assertTrue((alpha == 1.0).all() and not shaped.any())
 
 
 EAST_EDGE = [[500, 100, 600, 300]]      # water reaching a screen's east edge
@@ -268,6 +319,62 @@ class ShoreAlphaTests(unittest.TestCase):
         alone = shore_alpha(465, cells, {})                                   # on its own 465 never saw that bank
         self.assertLess(alone[32, 0], right[32, 0] - 0.2)
         self.assertTrue((shore_alpha(465, {465: np.zeros((64, 96), bool)}, {}) == 1.0).all())
+
+
+class WetBedTests(unittest.TestCase):
+    def test_the_sand_under_the_water_ends_on_the_waterline(self):
+        # grass (layer 1) on a mask whose west half is water (alpha 0) and east half land (alpha 1), the waterline at x 48
+        rgba = np.zeros((64, 96, 4)); rgba[:, :, 0] = 1.0
+        rgba[:, :, 3] = np.clip(0.5 + (np.arange(96) - 47.5) * 0.02, 0, 1)[None, :]
+        out = wet_bed_follows_shore(rgba, ['MeadowTurf', 'WetSand', 'EarthPath'], 'WetSand')
+        self.assertTrue(np.allclose(out[:, :40, 1], 1.0) and np.allclose(out[:, :40, 0], 0.0))   # water: all wet sand
+        self.assertTrue(np.allclose(out[:, 70:, :3], rgba[:, 70:, :3]))                          # up the bank: unchanged
+        self.assertTrue((out[0, 48:55, 1] > 0).all() and (out[0, 48:55, 1] < 1).all())            # a short wet band
+        self.assertTrue(np.allclose(out[:, :, 3], rgba[:, :, 3]))                                  # the alpha stays
+        self.assertIs(wet_bed_follows_shore(rgba, ['MeadowTurf'], 'WetSand'), rgba)               # no bed layer: as it was
+
+
+class WaterBandTests(unittest.TestCase):
+    """Player-only blockers on the drawn water that covers 1997 walkable ground: never a passage closed."""
+
+    def ponds(self):
+        walk = np.ones((400, 600), bool)
+        water = np.zeros_like(walk)
+        water[100:300, 100:285] = True; water[100:300, 315:500] = True      # two ponds, a 30 px land bridge between
+        shaped = np.zeros_like(walk)
+        shaped[80:320, 80:305] = True; shaped[80:320, 295:520] = True       # drawn 20 px past both
+        return walk & ~water, shaped, water
+
+    def test_the_band_follows_the_drawn_water_on_wide_land(self):
+        walk, shaped, water = self.ponds()
+        band, back = water_band_blockers(shaped, walk, water, 4.4, [])
+        self.assertTrue(band[200, 500:520].all() and band[90, 120:220].all())
+        self.assertFalse((band & ~walk).any() or (band & ~shaped).any())
+
+    def test_a_land_bridge_between_two_waters_stays_open(self):
+        walk, shaped, water = self.ponds()
+        band, back = water_band_blockers(shaped, walk, water, 4.4, [])
+        # shrunk, not closed: a row across the bridge keeps a walkable gap of the capsule (6 px) and more
+        for y in (150, 200, 250):
+            self.assertGreaterEqual(int((~band[y, 285:315]).sum()), 12)
+        # and the player still gets from the north side to the south side through it
+        from export_import_bundle import band_problems
+        self.assertFalse(band_problems(walk, band, 6, [(300, 50), (300, 350)]).any())
+
+    def test_an_edge_crossing_is_never_closed(self):
+        walk = np.zeros((400, 600), bool); walk[:, 0:40] = True; walk[180:220, :] = True   # a path to the west edge
+        shaped = np.zeros_like(walk); shaped[:, 20:40] = True                # drawn water over half the path's mouth
+        band, _ = water_band_blockers(shaped, walk, ~walk, 4.4, [(300, 200)])
+        self.assertFalse(band[180:220, 0:40].all(axis=1).any())
+
+    def test_rects_cover_the_band_on_the_texel_grid(self):
+        walk, shaped, water = self.ponds()
+        band, _ = water_band_blockers(shaped, walk, water, 4.4, [])
+        cover = np.zeros_like(band)
+        for x0, y0, x1, y1 in blocker_rects(band):
+            cover[y0:y1, x0:x1] = True
+        self.assertGreater((cover & band).sum() / band.sum(), 0.9)
+        self.assertEqual(blocker_rects(np.zeros_like(band)), [])
 
 
 class WaterTileRectsTests(unittest.TestCase):

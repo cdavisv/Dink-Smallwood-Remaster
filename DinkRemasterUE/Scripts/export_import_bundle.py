@@ -45,7 +45,7 @@ import time
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 EXPORTER_VERSION = "dink-bundle/1"
 SPRITE_MAX = 1024
@@ -249,7 +249,7 @@ SHORE_MARGIN_CELLS = 12                          # texels of the neighbours' wat
 
 def water_cells(fill_water=None, shore_water=None) -> np.ndarray:
     """The 64 x 96 texel grid of a screen's drawn water (as terrain_mask's shore): the collision's water fill, or
-    where it has none the drawn water's shape (natural_water_shape)."""
+    where it has none the drawn water's shape (the water tiles, or the shaped water)."""
     if (fill_water is None or not fill_water.any()) and shore_water is not None:
         fill_water = shore_water
     if fill_water is None or not fill_water.any():
@@ -341,6 +341,361 @@ def shore_alpha(n: int, cells: dict, neighbours: dict) -> np.ndarray:
     bottom = sd[y0 + 1][:, x0] * (1 - fx) + sd[y0 + 1][:, x0 + 1] * fx
     d = top * (1 - fy)[:, None] + bottom * fy[:, None]
     return np.clip(0.5 + d / SHORE_RANGE_CM, 0.0, 1.0)
+
+
+# ---------------------------------------------------------------------------------------------
+# Natural shorelines (owner direction of 15 Nov 2026: water edges curve, they do not step like the 1997 tiles).
+# The 1997 water outline (the collision's water fill, or the water tiles where the runtime draws a sheet) is
+# smoothed in WORLD space: each screen is worked on a grid of SHAPE_CELL_PX cells with its world-adjacent
+# neighbours' water round it, blurred, bent by a low-frequency noise that is a function of the map position (so
+# two screens agree on their border), and held near the 1997 outline. Its signed distance gives the terrain mask's
+# alpha (the shore material's depth, the terrain's wet bank), the drawn water's extent and the grass cover.
+# Presentation only: the collision, the hardness and every probe trace stay 1997.
+SHAPE_CELL_PX = 600.0 / (TERRAIN_MASK_W * 2)      # 3.125 map px: half a mask texel
+SHAPE_H, SHAPE_W = TERRAIN_MASK_H * 2, TERRAIN_MASK_W * 2
+SHAPE_MARGIN = 40               # cells of the neighbours' water round a screen (blur reach + shore distance reach)
+SHAPE_SIGMA_PX = 24.0           # blur of the stepped outline: a 50 px stair becomes a slope
+SHAPE_NOISE = 0.22              # low-frequency bend of the outline (blurred-coverage units)
+SHAPE_NOISE_PX = 130.0          # its lattice in map px
+SHAPE_BIAS = 0.04               # a little onto the land
+SHAPE_OFFSET_PX = 10.0          # the drawn water reaches at least this far past the 1997 outline: its convex corners round
+                                # OUTWARD (radius 10 px, about 45 cm) instead of baring dry land inside the 1997 water
+SHAPE_LAND_CORE_PX = 25.0       # land this far outside it stays land: the drawn water never strays more than that
+
+
+def neighbour_window(n: int, grids: dict, neighbours: dict, margin: int) -> np.ndarray:
+    """Screen n's grid (`grids[n]`) with `margin` cells of its world-adjacent neighbours' grids round it (same shape;
+    a side without a neighbour repeats the screen's own edge)."""
+    own = grids[n]
+    h, w = own.shape
+    window = np.pad(own, margin, mode="edge")
+    for (dc, dr), other in neighbours.items():
+        grid = grids.get(other)
+        if grid is None:
+            continue
+        ys = slice(0, margin) if dr < 0 else slice(margin, margin + h) if dr == 0 else slice(margin + h, margin + h + margin)
+        xs = slice(0, margin) if dc < 0 else slice(margin, margin + w) if dc == 0 else slice(margin + w, margin + w + margin)
+        gy = slice(h - margin, h) if dr < 0 else slice(0, h) if dr == 0 else slice(0, margin)
+        gx = slice(w - margin, w) if dc < 0 else slice(0, w) if dc == 0 else slice(0, margin)
+        window[ys, xs] = grid[gy, gx]
+    # a corner without its diagonal screen continues the edge neighbour's strip (so screen n and that neighbour
+    # see the same thing there) instead of repeating n's own corner
+    for dc, dr in ((-1, -1), (1, -1), (-1, 1), (1, 1)):
+        if (dc, dr) in neighbours:
+            continue
+        ys = slice(0, margin) if dr < 0 else slice(margin + h, margin + h + margin)
+        xs = slice(0, margin) if dc < 0 else slice(margin + w, margin + w + margin)
+        if neighbours.get((0, dr)) in grids:
+            col = margin if dc < 0 else margin + w - 1                    # the north/south strip's end column, sideways
+            window[ys, xs] = window[ys, col:col + 1]
+        elif neighbours.get((dc, 0)) in grids:
+            row = margin if dr < 0 else margin + h - 1                    # the west/east strip's end row, up or down
+            window[ys, xs] = window[row:row + 1, xs]
+    return window
+
+
+def water_tiles_fine(tiles: list, tile_classes: dict) -> np.ndarray:
+    """400 x 600: the screen's water tiles as 50 px squares (the 1997 outline of water the runtime draws as a sheet)."""
+    out = np.zeros((400, 600), bool)
+    for t in tiles:
+        if (tile_classes.get(t["num"]) or {}).get("terrain") == "water":
+            out[t["row"] * 50:t["row"] * 50 + 50, t["col"] * 50:t["col"] * 50 + 50] = True
+    return out
+
+
+def shape_cells(water: np.ndarray) -> np.ndarray:
+    """SHAPE_H x SHAPE_W cells of a 400 x 600 water mask (more than half the cell's pixels)."""
+    if water is None or not water.any():
+        return np.zeros((SHAPE_H, SHAPE_W), bool)
+    return np.asarray(Image.fromarray(water.astype(np.uint8) * 255).resize((SHAPE_W, SHAPE_H), Image.BOX)) > 127
+
+
+def map_noise(n: int, h: int, w: int, margin: int, cell_px: float, lattice_px: float = SHAPE_NOISE_PX) -> np.ndarray:
+    """Value noise (-0.5..0.5, smooth) at the cells of screen n's window, as a function of the 1997 map position
+    (column * 600 + x, row * 400 + y), so neighbouring screens draw the same bend on their border."""
+    col, row = (n - 1) % MAP_COLUMNS, (n - 1) // MAP_COLUMNS
+    gx = col * 600.0 + (np.arange(w + 2 * margin) - margin + 0.5) * cell_px
+    gy = row * 400.0 + (np.arange(h + 2 * margin) - margin + 0.5) * cell_px
+    fx, fy = gx / lattice_px, gy / lattice_px
+    ix, iy = np.floor(fx).astype(np.int64), np.floor(fy).astype(np.int64)
+    tx, ty = fx - ix, fy - iy
+    tx, ty = tx * tx * (3 - 2 * tx), ty * ty * (3 - 2 * ty)
+
+    def lattice(a, b):
+        v = (a[None, :] * 374761393 + b[:, None] * 668265263) & 0xFFFFFFFF
+        v = ((v ^ (v >> 13)) * 1274126177) & 0xFFFFFFFF
+        return ((v ^ (v >> 16)) & 0xFFFF) / 65535.0 - 0.5
+
+    v00, v10, v01, v11 = lattice(ix, iy), lattice(ix + 1, iy), lattice(ix, iy + 1), lattice(ix + 1, iy + 1)
+    top = v00 * (1 - tx)[None, :] + v10 * tx[None, :]
+    bottom = v01 * (1 - tx)[None, :] + v11 * tx[None, :]
+    return top * (1 - ty)[:, None] + bottom * ty[:, None]
+
+
+def gaussian_blur(a: np.ndarray, sigma: float) -> np.ndarray:
+    """Separable Gaussian blur of a float array (edges repeat)."""
+    r = int(math.ceil(3 * sigma))
+    k = np.exp(-0.5 * (np.arange(-r, r + 1) / sigma) ** 2)
+    k /= k.sum()
+    p = np.pad(a, ((0, 0), (r, r)), mode="edge")
+    a = sum(k[i] * p[:, i:i + a.shape[1]] for i in range(2 * r + 1))
+    p = np.pad(a, ((r, r), (0, 0)), mode="edge")
+    return sum(k[i] * p[i:i + a.shape[0], :] for i in range(2 * r + 1))
+
+
+def smooth_water_window(n: int, window: np.ndarray, margin: int) -> np.ndarray:
+    """The natural water shape on screen n's window (cells of SHAPE_CELL_PX). It never retreats inside the 1997 water
+    (owner, 15 Nov 2026: the physical game follows the drawn objects, and Dink cannot enter the 1997 water): the 1997
+    outline grown by SHAPE_OFFSET_PX (rounded convex corners), with the concave steps filled by the outline blurred and
+    bent by map_noise, never more than SHAPE_LAND_CORE_PX onto the land. Where it covers ground Dink could walk in 1997,
+    the export lays player-only blockers along it (water_band_blockers)."""
+    if not window.any() or window.all():
+        return window.copy()
+    h, w = window.shape[0] - 2 * margin, window.shape[1] - 2 * margin
+    cover = gaussian_blur(window.astype(np.float64), SHAPE_SIGMA_PX / SHAPE_CELL_PX)
+    noise = map_noise(n, h, w, margin, SHAPE_CELL_PX)
+    shaped = cover + noise * SHAPE_NOISE + SHAPE_BIAS > 0.5
+    sd = signed_distance_cells(window, SHAPE_CELL_PX)                  # map px from the 1997 outline (+ land, - water)
+    shaped |= sd < SHAPE_OFFSET_PX
+    shaped &= sd < SHAPE_LAND_CORE_PX
+    return shaped
+
+
+def distance_cells(mask: np.ndarray) -> np.ndarray:
+    """Exact Euclidean distance (in cells, between cell centres) from every cell to the nearest True cell; inf when
+    there is none. Two passes: along each column, then the lower envelope along each row."""
+    h, w = mask.shape
+    big = float(h + w)
+    g = np.where(mask, 0.0, big)
+    for y in range(1, h):
+        g[y] = np.minimum(g[y], g[y - 1] + 1)
+    for y in range(h - 2, -1, -1):
+        g[y] = np.minimum(g[y], g[y + 1] + 1)
+    xs = np.arange(w, dtype=np.float64)
+    dx2 = (xs[:, None] - xs[None, :]) ** 2                               # (x, x')
+    out = np.empty((h, w))
+    for y0 in range(0, h, 32):
+        g2 = g[y0:y0 + 32] ** 2                                         # (rows, x')
+        out[y0:y0 + 32] = np.sqrt((dx2[None, :, :] + g2[:, None, :]).min(axis=2))
+    return np.where(out >= big, np.inf, out)
+
+
+def signed_distance_cells(water: np.ndarray, cell: float) -> np.ndarray:
+    """signed_shore_distance without a size limit: positive on land, negative in water, `cell` units per cell."""
+    if not water.any():
+        return np.full(water.shape, 1.0e4)
+    if water.all():
+        return np.full(water.shape, -1.0e4)
+    return np.where(water, -(distance_cells(~water) - 0.5), distance_cells(water) - 0.5) * cell
+
+
+def shaped_water_window(n: int, base: dict, neighbours: dict) -> np.ndarray:
+    """Screen n's window (SHAPE_MARGIN cells of the world-adjacent neighbours round it) of the natural water shape."""
+    return smooth_water_window(n, neighbour_window(n, base, neighbours, SHAPE_MARGIN), SHAPE_MARGIN)
+
+
+def shore_distance_cm(n: int, base: dict, neighbours: dict) -> np.ndarray:
+    """THE SHORELINE FIELD (for the water and for anything that follows the water, e.g. banks sloping into it):
+    signed distance in cm from the natural waterline, positive on land, negative in water, on screen n's
+    SHAPE_H x SHAPE_W cells (SHAPE_CELL_PX map px each; cell (i, j) centres at map x = (j + 0.5) * SHAPE_CELL_PX,
+    y = (i + 0.5) * SHAPE_CELL_PX). Continuous across screen borders; exact up to the window margin (SHAPE_MARGIN cells,
+    about 5 m) beyond the screen, +-1e4 where a whole window is land or water.
+    `base`: screen -> shape_cells of the 1997 water outline (the export's `shape_base`); `neighbours`: world_neighbours."""
+    m = SHAPE_MARGIN
+    sd = signed_distance_cells(shaped_water_window(n, base, neighbours), SHAPE_CELL_PX * 4.38)
+    return sd[m:m + SHAPE_H, m:m + SHAPE_W]
+
+
+def natural_shore(n: int, base: dict, neighbours: dict, take_back=None):
+    """-> (terrain mask alpha 64 x 96 as shore_alpha, the screen's shaped water SHAPE_H x SHAPE_W) for screen n.
+    `base`: screen -> shape_cells of its 1997 water outline; `neighbours`: world_neighbours of n; `take_back`: screen
+    cells where the drawn water goes back to the 1997 line (water_band_blockers could not block it)."""
+    m = SHAPE_MARGIN
+    shaped = shaped_water_window(n, base, neighbours)
+    if take_back is not None:
+        shaped[m:m + SHAPE_H, m:m + SHAPE_W] &= ~(take_back & ~base[n])
+    if not shaped.any():
+        return np.ones((TERRAIN_MASK_H, TERRAIN_MASK_W)), np.zeros((SHAPE_H, SHAPE_W), bool)
+    sd = signed_distance_cells(shaped, SHAPE_CELL_PX * 4.38)          # cm
+    # texel i of the mask holds the distance at x = i / 95 of the screen width (edge to edge, as shore_alpha)
+    cx = np.arange(TERRAIN_MASK_W) * (SHAPE_W / (TERRAIN_MASK_W - 1.0)) - 0.5 + m
+    cy = np.arange(TERRAIN_MASK_H) * (SHAPE_H / (TERRAIN_MASK_H - 1.0)) - 0.5 + m
+    x0 = np.floor(cx).astype(int); fx = cx - x0
+    y0 = np.floor(cy).astype(int); fy = cy - y0
+    top = sd[y0][:, x0] * (1 - fx) + sd[y0][:, x0 + 1] * fx
+    bottom = sd[y0 + 1][:, x0] * (1 - fx) + sd[y0 + 1][:, x0 + 1] * fx
+    d = top * (1 - fy)[:, None] + bottom * fy[:, None]
+    return np.clip(0.5 + d / SHORE_RANGE_CM, 0.0, 1.0), shaped[m:m + SHAPE_H, m:m + SHAPE_W]
+
+
+def water_draw_rects(shaped: np.ndarray, pad_cells: int = 3):
+    """Map-pixel rects [x0, y0, x1, y1) that cover the shaped water with `pad_cells` to spare: where the water
+    surface is laid (the shore material clears it at the waterline)."""
+    if not shaped.any():
+        return []
+    grown = np.asarray(Image.fromarray(shaped.astype(np.uint8) * 255).filter(ImageFilter.MaxFilter(2 * pad_cells + 1))) > 0
+    out = []
+    for x0, y0, x1, y1 in mask_to_rects(grown):
+        out.append([int(math.floor(x0 * SHAPE_CELL_PX)), int(math.floor(y0 * SHAPE_CELL_PX)),
+                    int(min(600, math.ceil(x1 * SHAPE_CELL_PX))), int(min(400, math.ceil(y1 * SHAPE_CELL_PX)))])
+    return out
+
+
+CAPSULE_CM = 28.0              # the player's capsule radius (ADinkGreyboxCharacter)
+BAND_CAPSULE_SLACK_PX = 3      # the checks take the capsule this much wider (map px: the layout stretches screens)
+BAND_REACH_PX = 12             # a talk, touch or pick-up reaches this far past the capsule (as check_player_blockers.py)
+BAND_REPAIR_PX = 16            # where the band would cut something off, it is taken back this far round the problem
+BAND_MIN_PIECE_PX = 25         # walkable scraps smaller than this are not places
+BAND_WIDTH_SHARE = 0.3         # on narrow land the band takes at most this share of the land's width per side
+BAND_KEEP_PX = 6               # and always leaves the capsule's width and this much to walk
+
+
+def disc_shift_any(mask: np.ndarray, r: int, want_all: bool) -> np.ndarray:
+    """Disc erosion (want_all: every pixel within r is set) or dilation (any pixel within r is set); edges count as set
+    for erosion (the next screen goes on) and as unset for dilation."""
+    if r <= 0:
+        return mask.copy()
+    h, w = mask.shape
+    pad = np.pad(mask, r, constant_values=want_all)
+    out = np.ones_like(mask) if want_all else np.zeros_like(mask)
+    for dy in range(-r, r + 1):
+        for dx in range(-r, r + 1):
+            if dx * dx + dy * dy > r * r:
+                continue
+            sl = pad[r + dy:r + dy + h, r + dx:r + dx + w]
+            if want_all:
+                out &= sl
+            else:
+                out |= sl
+    return out
+
+
+def band_problems(walk_ok: np.ndarray, band: np.ndarray, r: int, points) -> np.ndarray:
+    """Where blocking `band` (pixels the player could walk in 1997) for the player would cut something off: a mask of
+    the trouble spots (empty when there are none). The capsule centre may stand on walk_ok shrunk by r (the screen's
+    edges continue into the next screen). Trouble: a piece of a walkable area that loses its link to the area's largest
+    piece and to every screen edge; a stretch of a screen edge the player crossed that is closed; one of `points`
+    (map px of placements with a script, a brain or a warp, warp pixels, reached areas) the player reached before and no
+    longer reaches from the main pieces."""
+    before = disc_shift_any(walk_ok, r, True)
+    after = before & ~disc_shift_any(band, r, False)
+    trouble = np.zeros_like(walk_ok)
+    areas, n_areas = label_components(before)
+    pieces, _ = label_components(after)
+    main = np.zeros_like(walk_ok)
+    edge = np.zeros_like(walk_ok)
+    edge[0, :] = edge[-1, :] = True
+    edge[:, 0] = edge[:, -1] = True     # (a scrap on the edge is still entered from the next screen)
+    for k in range(1, n_areas + 1):
+        ids, counts = np.unique(pieces[areas == k], return_counts=True)
+        keep = sorted(((c, i) for i, c in zip(ids.tolist(), counts.tolist()) if i != 0), reverse=True)
+        if not keep:
+            if (areas == k).sum() >= BAND_MIN_PIECE_PX:
+                trouble |= areas == k                                   # the whole area is gone
+            continue
+        main |= pieces == keep[0][1]
+        for c, i in keep[1:]:
+            piece = pieces == i
+            if c >= BAND_MIN_PIECE_PX:
+                trouble |= piece                                        # a split: a passage closed (even if both ends
+            elif (piece & edge).any():                                  # still reach the next screen)
+                main |= piece
+    # each run of the edge the player could cross must keep a crossing
+    for side in range(4):
+        lb = (before[0, :], before[-1, :], before[:, 0], before[:, -1])[side]
+        la = (after[0, :], after[-1, :], after[:, 0], after[:, -1])[side]
+        d = np.diff(np.concatenate(([0], lb.astype(np.int8), [0])))
+        for a, b in zip(np.flatnonzero(d == 1).tolist(), np.flatnonzero(d == -1).tolist()):
+            if not la[a:b].any():
+                if side == 0: trouble[0, a:b] = True
+                elif side == 1: trouble[-1, a:b] = True
+                elif side == 2: trouble[a:b, 0] = True
+                else: trouble[a:b, -1] = True
+    reach = BAND_REACH_PX + r
+    for x, y in points:
+        x, y = int(x), int(y)
+        if not (0 <= x < 600 and 0 <= y < 400):
+            continue
+        win = (slice(max(0, y - reach), y + reach + 1), slice(max(0, x - reach), x + reach + 1))
+        if before[win].any() and not main[win].any():
+            trouble[win] = True
+    return trouble
+
+
+def water_band_blockers(shaped_px: np.ndarray, walk_ok: np.ndarray, water_px: np.ndarray, cm_per_px: float, points):
+    """-> (band, the drawn water given back): the drawn water over ground the player could walk in 1997 (`shaped_px` &
+    `walk_ok`, 400 x 600) that gets player-only blockers, so Dink stops at the drawn waterline. `water_px`: the 1997
+    water (the collision's water fill). On narrow land (a bridge between two waters, a beach under a cliff) the band is
+    shrunk: at most BAND_WIDTH_SHARE of the land's local width per side, and it always leaves the capsule's width
+    and BAND_KEEP_PX to walk. Where blocking it would still cut off a passage, an edge crossing, a placement or a warp
+    (band_problems), it is taken back round the trouble until nothing is; after six rounds, the whole band. The drawn
+    water follows the band (what is given back is drawn at the 1997 line)."""
+    band = shaped_px & walk_ok
+    if not band.any():
+        return band, np.zeros_like(band)
+    r = int(math.ceil(CAPSULE_CM / max(cm_per_px, 0.5))) + BAND_CAPSULE_SLACK_PX
+    full = band.copy()
+    # on 2 px cells, the screen's edges going on: the land's local width (twice the largest distance to anything not
+    # walkable within SHAPE_LAND_CORE_PX) and the distance from the 1997 water
+    pad = 40
+    walk_h = np.pad(walk_ok.reshape(200, 2, 300, 2).all(axis=(1, 3)), pad, mode="edge")
+    water_h = np.pad(water_px.reshape(200, 2, 300, 2).any(axis=(1, 3)), pad, mode="edge")
+    half_width = np.minimum(distance_cells(~walk_h), 255.0)
+    near_max = np.asarray(Image.fromarray(half_width.astype(np.uint8)).filter(ImageFilter.MaxFilter(2 * int(SHAPE_LAND_CORE_PX / 2) + 1)))
+    width_px = 4.0 * near_max[pad:-pad, pad:-pad]                      # cells -> px, half width -> width
+    from_water_px = 2.0 * distance_cells(water_h)[pad:-pad, pad:-pad]
+    allowed = np.minimum(np.minimum(SHAPE_LAND_CORE_PX, BAND_WIDTH_SHARE * width_px), (width_px - 2 * r - BAND_KEEP_PX) / 2.0)
+    band &= np.repeat(np.repeat(from_water_px <= allowed, 2, axis=0), 2, axis=1)
+    # nothing the player must reach (a script, a brain, a warp) gets new water round it: its 1997 surroundings stay
+    yy, xx = np.mgrid[0:400, 0:600]
+    for x, y in points:
+        band &= (xx - x) ** 2 + (yy - y) ** 2 > (BAND_REACH_PX + 2 * r) ** 2
+    for _ in range(6):
+        trouble = band_problems(walk_ok, rects_mask(blocker_rects(band)), r, points)     # what the blockers really cover
+        if not trouble.any():
+            return band, full & ~band
+        near = distance_cells(trouble.reshape(200, 2, 300, 2).any(axis=(1, 3))) <= (2 * r + BAND_REPAIR_PX) / 2.0
+        band &= ~np.repeat(np.repeat(near, 2, axis=0), 2, axis=1)
+    return np.zeros_like(band), full
+
+
+def rects_mask(rects, shape=(400, 600)) -> np.ndarray:
+    out = np.zeros(shape, bool)
+    for x0, y0, x1, y1 in rects:
+        out[y0:y1, x0:x1] = True
+    return out
+
+
+def blocker_rects(band: np.ndarray):
+    """Map-pixel rects [x0, y0, x1, y1) of the band on the mask's texel grid (6.25 px; a texel at least half band)."""
+    if not band.any():
+        return []
+    cells = np.asarray(Image.fromarray(band.astype(np.uint8) * 255).resize((TERRAIN_MASK_W, TERRAIN_MASK_H), Image.BOX)) >= 128
+    step = 600.0 / TERRAIN_MASK_W
+    return [[int(round(x0 * step)), int(round(y0 * step)), int(round(x1 * step)), int(round(y1 * step))] for x0, y0, x1, y1 in mask_to_rects(cells)]
+
+
+WET_BED_BAND_CM = 60.0      # the water bed's layer (WetSand) runs this far up the bank from the drawn waterline (shore-distance cm)
+
+
+def wet_bed_follows_shore(rgba: np.ndarray, names: list, bed: str) -> np.ndarray:
+    """The terrain mask (64 x 96 x 4, 0..1: RGB = weights of layers 1-3, the fourth layer what they leave, alpha = the
+    shore distance) with the water bed's layer (`bed`, the layer of the water tiles) laid exactly under the drawn
+    water and WET_BED_BAND_CM up the bank, fading into the layers already there: the sand under the water ends on the
+    waterline, not on the 1997 tiles. A mask that does not carry `bed` among its four layers comes back unchanged."""
+    if bed not in names[:4]:
+        return rgba
+    k = names.index(bed)
+    w = np.concatenate([rgba[:, :, :3], 1.0 - rgba[:, :, :3].sum(axis=2, keepdims=True)], axis=2)
+    w = np.clip(w, 0.0, 1.0)
+    d = (rgba[:, :, 3] - 0.5) * SHORE_RANGE_CM                         # cm from the waterline, + on land
+    t = 1.0 - np.clip(d / WET_BED_BAND_CM, 0.0, 1.0)
+    t = t * t * (3.0 - 2.0 * t)
+    one = np.zeros(4); one[k] = 1.0
+    w = w * (1.0 - t[:, :, None]) + one[None, None, :] * t[:, :, None]
+    out = rgba.copy()
+    out[:, :, :3] = w[:, :, :3]
+    return out
 
 
 def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict, means: dict, fill_water=None, indoor=False, facts=None, shore_water=None,
@@ -438,7 +793,7 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
     shore = np.full((TERRAIN_MASK_H, TERRAIN_MASK_W), 1.0)
     water_small = np.zeros((TERRAIN_MASK_H, TERRAIN_MASK_W), bool)
     if (fill_water is None or not fill_water.any()) and shore_water is not None:
-        fill_water = shore_water      # no water fill in the collision: the drawn water's shape (natural_water_shape) gives the shore
+        fill_water = shore_water      # no water fill in the collision: the drawn water's tiles give the shore (natural_shore reshapes it)
     if fill_water is not None and fill_water.any():
         fw = np.asarray(Image.fromarray(fill_water.astype(np.uint8) * 255).resize((TERRAIN_MASK_W, TERRAIN_MASK_H), Image.BOX))
         water_small = fw > 127
@@ -459,7 +814,7 @@ def terrain_mask(scr: dict, ground: "Image.Image", tile_classes: dict, cat: dict
 
 
 def naturalise_ground_masks(out: Path, cat: dict, ground_raw: dict, ground_masks: dict, corners: dict, ground_classes: dict,
-                            layer_cover: dict) -> dict:
+                            layer_cover: dict, shore_water_cells: dict = None) -> dict:
     """Replace the tile-shaped layer weights of every outdoor screen's terrain mask by natural outlines computed in
     world space with the screens round it (Scripts/ground_layer_fields.py: rounded, noise-bent within half a tile of
     the 1997 outline, feathered, continuous across screen borders), then write the masks. Indoor floors keep their
@@ -467,10 +822,15 @@ def naturalise_ground_masks(out: Path, cat: dict, ground_raw: dict, ground_masks
     M_Env_Terrain's clamped lookup shows on the border (ground_layer_fields.py). The alpha (shore distance) is left as terrain_mask made it.
     `ground_raw`: screen -> terrain_mask's raw_out plus `indoor`; `ground_masks`: screen -> (mask Image, layer rows,
     screens.json record), updated in place with the new layers and hash; `corners`: screen -> world corners;
-    `ground_classes` (facts) and `layer_cover` are updated for the screens whose layers change. -> counts."""
+    `ground_classes` (facts) and `layer_cover` are updated for the screens whose layers change.
+    `shore_water_cells`: screen -> the drawn (natural_shore) water on the mask's texels; where a screen has some, the
+    water bed follows the drawn waterline (wet_bed_follows_shore) and the grass cover keeps out of it. This is the one
+    writer of the masks. -> counts."""
     from ground_layer_fields import STRUCTURED_BEND, region_sources, connected_weights, connectivity_faults, edge_aligned_own, smooth_screen_layers
     layers = cat["resolved_layers"]
     grass = cat.get("grass_layer", "MeadowTurf")
+    bed = cat.get("classes", {}).get("water", "WetSand")
+    shore_water_cells = shore_water_cells or {}
     bend = {k: STRUCTURED_BEND for k, row in layers.items() if row.get("structured")}
     # patch size varies over a field for the layers the 1997 map scatters in small patches (not paths, ledges or
     # the ground round them)
@@ -539,7 +899,7 @@ def naturalise_ground_masks(out: Path, cat: dict, ground_raw: dict, ground_masks
             stats["bleed_folded"] += sum(1 for k in list(dropped) + list(merged) if k not in own)
             stats["own_folded"] += sum(1 for k in list(dropped) + list(merged) if k in own)
             if grass in names:
-                water = raw.get("water")
+                water = shore_water_cells.get(n, raw.get("water"))
                 g = weights[grass] * (~water if water is not None else 1.0)
                 g = g.reshape(TERRAIN_MASK_H // COVER_DIV, COVER_DIV, TERRAIN_MASK_W // COVER_DIV, COVER_DIV).mean(axis=(1, 3))
                 import base64
@@ -547,6 +907,9 @@ def naturalise_ground_masks(out: Path, cat: dict, ground_raw: dict, ground_masks
             else:
                 layer_cover.pop(str(n), None)
             stats["natural"] += 1
+        water = shore_water_cells.get(n)
+        if water is not None and water.any():
+            rgba = wet_bed_follows_shore(rgba, [r["name"] for r in rec["ground_layers"]], bed)
         mask = Image.fromarray((np.clip(rgba, 0.0, 1.0) * 255.0 + 0.5).astype(np.uint8), "RGBA")
         write_png_if_changed(out / "ground_mask" / f"{rec['id']}.png", mask)
         rec["ground_mask_hash"] = sha1_bytes(mask.tobytes() + json.dumps(rec["ground_layers"], sort_keys=True).encode())
@@ -626,29 +989,6 @@ def relief_points(screen: int, tiles: list, tile_classes: dict, walk_ok: np.ndar
                 points.append([x, y, clear, tier, RELIEF_CLASSES.index(terrain)])
                 break
     return points
-
-
-def natural_water_shape(tiles: list, tile_classes: dict, screen: int) -> np.ndarray:
-    """A 400 x 600 mask of where water is drawn on a screen whose water tiles have no water fill in the collision
-    (ponds and fords a player can stand in or that hardness outlines close): the tile squares rounded off and
-    their outline bent by low-frequency noise, so the surface ends on a shoreline and not on tile edges. Within
-    40 px of the screen's rim the noise fades out and the tile outline holds, so water meets the next screen's.
-    Visual only: it feeds the terrain mask's shore distance and the grass cover, never the collision."""
-    from PIL import ImageFilter
-    tile_water = np.zeros((400, 600), np.uint8)
-    for t in tiles:
-        if (tile_classes.get(t["num"]) or {}).get("terrain") == "water":
-            tile_water[t["row"] * 50:t["row"] * 50 + 50, t["col"] * 50:t["col"] * 50 + 50] = 255
-    if not tile_water.any():
-        return tile_water.astype(bool)
-    soft = np.asarray(Image.fromarray(tile_water).filter(ImageFilter.GaussianBlur(17))) / 255.0
-    core = np.asarray(Image.fromarray(tile_water).filter(ImageFilter.MinFilter(25))) > 0     # 12 px inside the tiles: a river is never cut
-    rng = random.Random(screen * 7919 + 17)
-    coarse = np.array([[rng.random() for _ in range(9)] for _ in range(7)])
-    noise = np.asarray(Image.fromarray((coarse * 255).astype(np.uint8)).resize((600, 400), Image.BICUBIC)) / 255.0
-    ys, xs = np.mgrid[0:400, 0:600]
-    rim = np.clip(np.minimum(np.minimum(xs, 599 - xs), np.minimum(ys, 399 - ys)) / 40.0, 0.0, 1.0)
-    return (soft + (noise - 0.5) * 0.8 * rim > 0.5) | core
 
 
 SEA_LAYERS = ("DrySand", "ShingleBeach")
@@ -1096,10 +1436,10 @@ def main(argv=None) -> int:
     terrain_means = None
     layer_cover = {}
     ground_classes = {}
-    shore_cells = {}      # screen -> water_cells (every screen, so each mask can see its neighbours' water)
-    screen_masks = {}     # screen -> (terrain mask, its layers, screens.json record): alpha filled in after the loop
+    shape_base = {}       # screen -> shape_cells of its 1997 water outline (every screen: each sees its neighbours')
+    shore_walk = {}       # screen with a water fill -> (1997 walkable ground without it, cm per map px, points to keep reaching)
     ground_raw = {}       # screen -> the 1997 tile weights of its terrain mask (terrain_mask raw_out), for naturalise_ground_masks
-    ground_masks = {}     # screen -> (terrain mask, its layers, screens.json record): written after the loop
+    ground_masks = {}     # screen -> (terrain mask, its layers, screens.json record): alpha after the loop, written by naturalise_ground_masks
     (out / "sprites").mkdir(exist_ok=True)
 
     layout = json.loads((analyse / "world_layout.json").read_text())
@@ -1255,11 +1595,13 @@ def main(argv=None) -> int:
             if terrain_means is None:
                 terrain_means = terrain_class_means(tile_classes, tileset)
             ground_classes[str(n)] = {}
-            shore_water = None if fill_water.any() or scr["indoor"] else natural_water_shape(scr["tiles"], tile_classes, n)
+            # the 1997 water outline: the collision's water fill, or the water tiles the runtime draws as a sheet;
+            # natural_shore smooths it with the neighbours' after the loop
+            shore_water = None if fill_water.any() or scr["indoor"] else water_tiles_fine(scr["tiles"], tile_classes)
             raw = {}
             ground_layers, ground_mask, cover = terrain_mask(scr, ground, tile_classes, terrain_cat, terrain_means, fill_water, bool(scr["indoor"]),
                                                              facts=ground_classes[str(n)], shore_water=shore_water, raw_out=raw)
-            shore_cells[n] = water_cells(fill_water, shore_water)
+            shape_base[n] = shape_cells(fill_water if fill_water.any() else shore_water)
             ground_raw[n] = dict(raw, indoor=bool(scr["indoor"]))
             if ground_mask is not None:
                 if cover is not None:
@@ -1279,6 +1621,13 @@ def main(argv=None) -> int:
                 ground_classes[str(n)]["trees"] = trees
             entries = [c["centroid"] for c in reached_centroids.get(sid, [])] + [(p.get("x", -1), p.get("y", -1)) for p in scr.get("placements") or []]
             relief = relief_points(n, scr["tiles"], tile_classes, walk_ok, hard == 200, entries, bool(scr["indoor"]))
+            if fill_water.any():
+                # what the player must keep reaching when the drawn water's edge gets player-only blockers (water_band_blockers)
+                must = [c["centroid"] for c in reached_centroids.get(sid, [])]
+                must += [(p.get("map_x", -1), p.get("map_y", -1)) for p in scr.get("placements") or []
+                         if p.get("script") or p.get("brain") not in (None, 0, "0", "") or p.get("is_warp") or p.get("warp_map")]
+                must += [((r[0] + r[2]) / 2, (r[1] + r[3]) / 2) for r in rects.get("warp", [])]
+                shore_walk[n] = (walk_ok, fill_water, float(lay["m_per_px_center"]) * 100.0, must)
             if relief:
                 ground_classes[str(n)]["relief"] = relief
             # water tiles the collision gives no water fill (their hardness blocks them, or the riverbed is ground a
@@ -1356,7 +1705,6 @@ def main(argv=None) -> int:
         if ground_mask is not None:
             screen_rec["ground_layers"] = ground_layers
             screen_rec["ground_mask"] = f"ground_mask/{sid}.png"
-            screen_masks[n] = (ground_mask, ground_layers, screen_rec)
             ground_masks[n] = (ground_mask, ground_layers, screen_rec)
         screens_out.append(screen_rec)
 
@@ -1448,15 +1796,41 @@ def main(argv=None) -> int:
             rec["hash"] = sha1_json(rec)
             placements_out.append(rec)
 
-    # --- terrain masks: the shore distance in the alpha runs across screen borders (shore_alpha), so water deepens
-    # and clears the same way on both sides of a border; presentation only (outside the screen hash, like the mask)
+    # --- natural shorelines (natural_shore): the 1997 water outline smoothed in world space with the neighbours'
+    # water round each screen. The terrain mask's alpha is the shaped water's shore distance (continuous across
+    # screen borders, so water deepens and clears the same way on both sides), the drawn water surface covers the
+    # shaped water (`water_draw`), and grass keeps out of it. Presentation only (outside the screen hash, like the mask).
     world_corners = {s["screen"]: s["corners"] for s in screens_out}
-    for n, (ground_mask, ground_layers, screen_rec) in sorted(screen_masks.items()):
-        alpha = shore_alpha(n, shore_cells, world_neighbours(n, world_corners))
+    water_band_report = []
+    shore_water_cells = {}    # screen -> the shaped water on the mask's 64 x 96 texels (grass cover, wet bed)
+    for n, (ground_mask, ground_layers, screen_rec) in sorted(ground_masks.items()):
+        near = world_neighbours(n, world_corners)
+        take_back = None
+        if n in shore_walk:
+            # Dink stops at the drawn waterline: player-only blockers over the drawn water that covers ground he could
+            # walk in 1997, except where they would cut something off (there the drawn water goes back to the 1997 line)
+            walk_ok, water_px, cm_per_px, must = shore_walk[n]
+            m = SHAPE_MARGIN
+            cells = shaped_water_window(n, shape_base, near)[m:m + SHAPE_H, m:m + SHAPE_W]
+            shaped_px = np.asarray(Image.fromarray(cells.astype(np.uint8) * 255).resize((600, 400), Image.NEAREST)) > 0
+            band, back = water_band_blockers(shaped_px, walk_ok, water_px, cm_per_px, must)
+            if band.any():
+                ground_classes[str(n)]["water_block"] = blocker_rects(band)
+            if back.any():
+                take_back = np.asarray(Image.fromarray(back.astype(np.uint8) * 255).resize((SHAPE_W, SHAPE_H), Image.BOX)) >= 128
+                water_band_report.append((n, int(band.sum()), int(back.sum())))
+        alpha, shaped = natural_shore(n, shape_base, near, take_back)
+        if collision_out.get(screen_rec["id"], {}).get("fill_water"):
+            screen_rec["water_draw"] = water_draw_rects(shaped)
+        # the mask keeps its layers here and takes the shore distance; naturalise_ground_masks writes it (one writer)
         rgba = np.asarray(ground_mask).copy()
         rgba[:, :, 3] = (alpha * 255.0 + 0.5).astype(np.uint8)
-        ground_mask = Image.fromarray(rgba, "RGBA")
-        ground_masks[n] = (ground_mask, ground_layers, screen_rec)   # RGB natural outlines and write: naturalise_ground_masks
+        ground_masks[n] = (Image.fromarray(rgba, "RGBA"), ground_layers, screen_rec)   # RGB natural outlines, wet bed and write: naturalise_ground_masks
+        shore_water_cells[n] = shaped.reshape(TERRAIN_MASK_H, 2, TERRAIN_MASK_W, 2).mean(axis=(1, 3)) > 0.5
+    blocked = {n: len(r["water_block"]) for n, r in ((int(k), v) for k, v in ground_classes.items()) if r.get("water_block")}
+    print(f"  water shapes: player-only blockers along the drawn waterline on {len(blocked)} screens ({sum(blocked.values())} rects); "
+          f"drawn water taken back to the 1997 line on {len(water_band_report)} screens: "
+          + ", ".join(f"{n} ({b} px kept, {k} px back)" for n, b, k in water_band_report))
 
     by_id = {p["id"]: p for p in placements_out}
     screen_by_num = {s["screen"]: s for s in screens_out}
@@ -1659,7 +2033,7 @@ def main(argv=None) -> int:
         # natural land-layer outlines across screen borders (after the sea colour, which reads the 1997 layers);
         # presentation only (outside the screen hash, like the mask)
         natural = naturalise_ground_masks(out, terrain_cat, ground_raw, ground_masks, {s["screen"]: s["corners"] for s in screens_out},
-                                          ground_classes, layer_cover)
+                                          ground_classes, layer_cover, shore_water_cells)
         print(f"terrain masks: {natural['natural']} outdoor screens with natural layer outlines, {natural['indoor']} kept tile-shaped "
               f"(indoor); folded for want of a mask channel: {natural['bleed_folded']} neighbour layers, {natural['own_folded']} own layers")
         print(f"terrain masks: 1997 layer regions split by the smoothing {natural['split_before']} -> {natural['split']}, joined "

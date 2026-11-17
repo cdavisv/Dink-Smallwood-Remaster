@@ -1,0 +1,17 @@
+# Scripts/check_player_blockers.py (PR #129) run on the water band: one polygon per ground_classes.json water_block rect
+# python3 Scripts/check_player_blockers.py <dir with walk_blockers.csv> --cm-per-px 4.4  (capsule 6 px: wider than the real 28 cm on every screen, the layout has 7-10 cm per px)
+# 'pockets only' are the inside of the 1997 water (code 0 in the 1997 hardness, closed by the remaster's water fill)
+SCR_308 pockets only: 1 px with nothing to reach (house interiors, niches)
+SCR_382 pockets only: 1239 px with nothing to reach (house interiors, niches)
+SCR_383 pockets only: 882 px with nothing to reach (house interiors, niches)
+SCR_449 pockets only: 10 px with nothing to reach (house interiors, niches)
+SCR_452 pockets only: 16 px with nothing to reach (house interiors, niches)
+SCR_479 pockets only: 57 px with nothing to reach (house interiors, niches)
+SCR_519 pockets only: 947 px with nothing to reach (house interiors, niches)
+SCR_597 pockets only: 1597 px with nothing to reach (house interiors, niches)
+SCR_602 pockets only: 157 px with nothing to reach (house interiors, niches)
+SCR_614 pockets only: 947 px with nothing to reach (house interiors, niches)
+SCR_670 pockets only: 38 px with nothing to reach (house interiors, niches)
+SCR_698 pockets only: 8 px with nothing to reach (house interiors, niches)
+SCR_704 pockets only: 943 px with nothing to reach (house interiors, niches)
+157 screens with blockers checked, 0 cut off something the player must reach
