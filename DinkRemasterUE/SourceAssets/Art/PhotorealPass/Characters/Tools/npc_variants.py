@@ -40,17 +40,21 @@ DRESS = {   # name: (base, slot stem, colour, pick, gain, hair tint, animation s
     'MatronGreen': ('Mother', (0.17, 0.24, 0.08), is_red, 3.4, (0.40, 0.36, 0.30), 'NpcF', None, 'older woman in a long green dress, greying brown hair'),
     'Soldier': ('Milder', (0.22, 0.13, 0.07), is_blue, 2.4, (0.40, 0.34, 0.28), 'NpcM', 'npc_soldier', 'soldier: Milder\'s harness with a brown gambeson, dark hair'),
 }
+# hair of the maidens as the 1997 pictures have it (221 and 251: bright yellow; 241: orange auburn), as the Tint of the twin's hair material (the maiden's atlas is yellow; HAIR_LOOK 'Maiden' in the importer has the base's)
+MAIDEN_HAIR = {'MaidenBlue': (1.25, 1.12, 0.85), 'MaidenRed': (1.25, 1.12, 0.85), 'MaidenBrown': (1.0, 0.50, 0.28)}
 variants = {}
 for name, (base, colour, pick, gain, hair, aset, fam, what) in DRESS.items():
     out = NPC / name / 'Textures' / f'T_{name}_PR_Outfit_BC.png'
     recolour(CHARS / base / 'Textures' / f'T_{base}_PR_Outfit_BC.png', out, colour, pick, gain=gain)
     variants[name] = {'base': base, 'base_asset': f'SK_{base}_Photoreal', 'animation_set': aset, 'families': [fam] if fam else [], 'what': what, 'placement_scale': 0.9 if base == 'Mother' else 1.0,
                       'materials': {f'MI_{base}_PR_Outfit': {'textures': {'BC': f'{name}/Textures/{out.name}'}}, f'MI_{base}_PR_Hair': {'tint': list(hair)}}}
-    if base == 'Mother' and name.startswith('Maiden'):
-        # a younger skin for the three women (one set for all): NPC/Maiden/cfg/skin.json is the Mother's with the age
-        # lines, broken capillaries and sun damage taken down; bake it with
-        #   blender -b -t 4 --python dink_05b_skin.py -- <abs path>/NPC/Maiden/cfg/skin.json
-        variants[name]['materials']['MI_Mother_PR_Skin'] = {'textures': {r: f'Maiden/Textures/T_Maiden_PR_Skin_{r}.png' for r in ('BC', 'N', 'ORM', 'SSS')}, 'tint': [0.80, 0.75, 0.72]}
+    if name.startswith('Maiden'):
+        # The three young women are twins of NPC/Maiden (Tools/maiden_manifest.py): the Mother's body and dress with a
+        # younger head, the young skin set and long loose hair. The dress map is the Mother's recoloured (same UVs);
+        # the hair tint is relative to the maiden's own yellow atlas.
+        variants[name].update(base='NPC/Maiden', base_asset='SK_Maiden_Photoreal', placement_scale=0.9,
+                              materials={'MI_Maiden_PR_Outfit': {'textures': {'BC': f'{name}/Textures/{out.name}'}}, 'MI_Maiden_PR_Hair': {'tint': list(MAIDEN_HAIR[name])},
+                                         'MI_Maiden_PR_Skin': {'tint': [0.80, 0.75, 0.72]}})
     print('recoloured', out.name)
 variants['KnightSilver'] = {'base': 'NPC/Knight', 'base_asset': 'SK_Knight_Photoreal', 'animation_set': 'NpcM', 'families': ['npc_knight_silver'], 'what': 'the knight in bright harness',
                             'materials': {'MI_Knight_PR_Outfit': {'textures': {'BC': f'{UNC}/npc_knight_blue/Knight/T_Knight_PR_Silver_BC.png'}, 'tint': [2.5, 2.3, 1.8]}}}   # the silver map is nearly as dark and blue as the blue one, and polished metal shows the blue of the sky light: in a hall both read blue
@@ -87,13 +91,7 @@ def is_olive(a): return (np.minimum(a[..., 0], a[..., 1]) - a[..., 2] - 0.05) * 
 def is_shirt(a): return (a[..., 2] - a[..., 0] - 0.04) * 10.0                                          # his blue shirt
 
 
-# Seth, the last enemy (s7-boss). Not a twin made by the importer: he has a mesh of his own (Tools/seth_build.py grows the
-# hero's head), so only his outfit map is made here. His 1997 pictures (graphics/effects/magic/seth1w..9w and pose, which
-# Milder's script s7-mil loads over 580-589) show the hero's body in a dark red tunic over slate-blue sleeves and trousers.
-out = NPC / 'Seth' / 'Textures' / 'T_Seth_PR_Outfit_BC.png'
-recolour_parts(CHARS / 'Dink/Textures/T_Dink_PR_Outfit_BC.png', out,
-               [(is_leather, (0.46, 0.055, 0.07), 3.3), (is_olive, (0.17, 0.26, 0.40), 3.8), (is_shirt, (0.30, 0.37, 0.46), 1.25)], size=4096)
-print('recoloured', out.name)
+# Seth (NPC/Seth) is no twin: he has a head, a skin and a groom of his own, and Tools/seth_outfit.py makes his outfit maps.
 for name, bases in WALK_BASE.items():
     variants[name]['walk_bases'] = bases
 (NPC / 'variants.json').write_text(json.dumps({'schema': 'dink-photoreal-npc-variants/1', 'variants': variants}, indent=1) + '\n')

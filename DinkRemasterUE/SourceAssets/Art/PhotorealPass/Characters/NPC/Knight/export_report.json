@@ -2,11 +2,42 @@
  "asset": "SK_Knight_Photoreal",
  "validation": {
   "assets": 1,
-  "assets_passed": 1,
-  "errors": 0,
-  "warnings": 0
+  "assets_passed": 0,
+  "errors": 1,
+  "warnings": 4
  },
- "findings": [],
+ "findings": [
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "340 non-manifold edges (340 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "340 non-manifold edges (340 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "340 non-manifold edges (340 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "340 non-manifold edges (340 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+  ],
+  [
+   "error",
+   "UV_OVERLAP",
+   "UV0 islands overlap (2895.0 % of UV area, 1832 triangles); class character_humanoid needs unique UVs"
+  ],
+  [
+   "info",
+   "UV_OVERLAP",
+   "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ]
+ ],
  "normals": [
   {
    "mesh": "SK_Knight_Photoreal_LOD0",
@@ -28,30 +59,30 @@
  "lods": [
   {
    "mesh": "SK_Knight_Photoreal_LOD0",
-   "triangles": 16008,
-   "vertices": 8096,
-   "max_influences": 1,
+   "triangles": 17788,
+   "vertices": 9156,
+   "max_influences": 2,
    "unweighted": 0
   },
   {
    "mesh": "SK_Knight_Photoreal_LOD1",
-   "triangles": 8004,
-   "vertices": 4094,
-   "max_influences": 1,
+   "triangles": 9784,
+   "vertices": 5154,
+   "max_influences": 2,
    "unweighted": 0
   },
   {
    "mesh": "SK_Knight_Photoreal_LOD2",
-   "triangles": 4002,
-   "vertices": 2093,
-   "max_influences": 1,
+   "triangles": 5782,
+   "vertices": 3153,
+   "max_influences": 2,
    "unweighted": 0
   },
   {
    "mesh": "SK_Knight_Photoreal_LOD3",
-   "triangles": 1920,
-   "vertices": 1052,
-   "max_influences": 1,
+   "triangles": 3700,
+   "vertices": 2112,
+   "max_influences": 2,
    "unweighted": 0
   }
  ],
@@ -157,10 +188,10 @@
  ],
  "uv_per_slot": {
   "MI_Knight_PR_Outfit": {
-   "uv_area": 0.4804,
-   "texels_used_1k": 444714,
-   "texels_overlapping_1k": 0,
-   "overlap_fraction": 0.0,
+   "uv_area": 3.0757,
+   "texels_used_1k": 445127,
+   "texels_overlapping_1k": 2807,
+   "overlap_fraction": 0.0063,
    "outside_0_1": 0
   }
  }

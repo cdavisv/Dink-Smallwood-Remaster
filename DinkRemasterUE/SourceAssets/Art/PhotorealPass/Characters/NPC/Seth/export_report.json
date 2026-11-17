@@ -10,32 +10,32 @@
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 60306 triangles, target for character_hero is 40000 (hard max 70000)"
+   "LOD0 has 66924 triangles, target for character_hero is 40000 (hard max 70000)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "12851 non-manifold edges (12850 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "19205 non-manifold edges (19204 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "12487 non-manifold edges (12486 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "18779 non-manifold edges (18778 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "10682 non-manifold edges (10681 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "17293 non-manifold edges (17292 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "6738 non-manifold edges (6737 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "9840 non-manifold edges (9839 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (141.9 % of UV area, 4059 triangles); class character_hero needs unique UVs"
+   "UV0 islands overlap (77.0 % of UV area, 4185 triangles); class character_hero needs unique UVs"
   ],
   [
    "warning",
@@ -50,62 +50,62 @@
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Outfit_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Outfit_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
@@ -144,39 +144,39 @@
   },
   {
    "mesh": "SK_Seth_Photoreal_LOD2",
-   "flat_faces_for_cancelled_normals": 6
+   "flat_faces_for_cancelled_normals": 10
   },
   {
    "mesh": "SK_Seth_Photoreal_LOD3",
-   "flat_faces_for_cancelled_normals": 10
+   "flat_faces_for_cancelled_normals": 12
   }
  ],
  "lods": [
   {
    "mesh": "SK_Seth_Photoreal_LOD0",
-   "triangles": 60306,
-   "vertices": 37925,
+   "triangles": 66924,
+   "vertices": 44460,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Seth_Photoreal_LOD1",
-   "triangles": 30152,
-   "vertices": 22666,
+   "triangles": 33462,
+   "vertices": 27516,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Seth_Photoreal_LOD2",
-   "triangles": 17783,
-   "vertices": 15345,
+   "triangles": 19872,
+   "vertices": 19808,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Seth_Photoreal_LOD3",
-   "triangles": 10727,
-   "vertices": 9376,
+   "triangles": 11403,
+   "vertices": 11327,
    "max_influences": 4,
    "unweighted": 0
   }
@@ -276,7 +276,7 @@
  "dimensions_m": [
   1.1003458499908447,
   0.5392696261405945,
-  2.1016488075256348
+  2.1975784301757812
  ],
  "materials": [
   "MI_Seth_PR_Skin",
@@ -288,23 +288,23 @@
  "uv_per_slot": {
   "MI_Seth_PR_Skin": {
    "uv_area": 0.4978,
-   "texels_used_1k": 461578,
+   "texels_used_1k": 461443,
    "texels_overlapping_1k": 0,
    "overlap_fraction": 0.0,
    "outside_0_1": 0
   },
   "MI_Seth_PR_Eyes": {
    "uv_area": 1.5143,
-   "texels_used_1k": 714875,
-   "texels_overlapping_1k": 686837,
-   "overlap_fraction": 0.9608,
+   "texels_used_1k": 716915,
+   "texels_overlapping_1k": 684856,
+   "overlap_fraction": 0.9553,
    "outside_0_1": 0
   },
   "MI_Seth_PR_Hair": {
-   "uv_area": 15.1945,
-   "texels_used_1k": 627120,
-   "texels_overlapping_1k": 358770,
-   "overlap_fraction": 0.5721,
+   "uv_area": 15.7079,
+   "texels_used_1k": 571742,
+   "texels_overlapping_1k": 343800,
+   "overlap_fraction": 0.6013,
    "outside_0_1": 0
   },
   "MI_Seth_PR_Outfit": {

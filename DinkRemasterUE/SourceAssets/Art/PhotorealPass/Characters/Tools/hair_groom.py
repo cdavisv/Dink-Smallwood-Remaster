@@ -11,7 +11,8 @@ import hairlib as hl; import matlib
 from hair_styles import STYLES
 a = args(); N = a[0]; steps = (a[1] if len(a) > 1 else 'atlas,strands,cards,save').split(','); tag = a[2] if len(a) > 2 else 'h1'
 n_ = N.lower(); S = STYLES[N]; rng = np.random.default_rng(S.get('seed', 1))
-head_blend = OUT / N / 'Work' / (n_ + '_head.blend'); TX = OUT / N / 'Textures'; PRE = TX / ('T_%s_PR' % N); REV = OUT / N / 'Review'
+DIR = OUT / S.get('dir', N)      # a character in a sub-folder names it in its style ('dir': 'NPC/Seth')
+head_blend = DIR / 'Work' / (n_ + '_head.blend'); TX = DIR / 'Textures'; PRE = TX / ('T_%s_PR' % N); REV = DIR / 'Review'
 bpy.ops.wm.open_mainfile(filepath=str(head_blend)); D = bpy.data.objects; sc = bpy.context.scene
 LM = json.load(open(str(head_blend) + '.json')); sk = D['Skin']
 H = hl.Head(sk, LM, S.get('hairline', (.50, .14, -.52)))
@@ -71,7 +72,102 @@ def guide_bun(root, r, kind='hair'):
     seg = np.linalg.norm(np.diff(g, axis=0), axis=1); last = int(np.nonzero(seg > 1e-6)[0].max()) + 1 if (seg > 1e-6).any() else 1
     g = g[:last + 1]; cum = np.r_[0, np.cumsum(np.linalg.norm(np.diff(g, axis=0), axis=1))]; K_ = S.get('K', 16); ti = np.linspace(0, cum[-1], K_)
     return np.stack([np.interp(ti, cum, g[:, a_]) for a_ in range(3)], 1)
-guide = guide_short if S['kind'] == 'short' else guide_bun
+def guide_crest(root, r, kind='hair'):
+    """A tall crest (Seth, pictures 580-589): the hair of the top of the head stands up from a high forehead and leans
+    back, every lock bending towards one ridge above the skull, so the mass narrows upward like a flame; the sides are
+    brushed back over the ears and the nape is short. Top strands are arcs from the root, out along the scalp normal,
+    to a point near the ridge; they do not fall (set hair)."""
+    loc, nrm = H.near(root); az, e = H.params(loc); d0 = hl.unit(loc - H.ctr); back = np.array([0.0, 1.0, 0.0])
+    # the top stands; over the forehead the hair stands from the hair line itself, at the sides only above the temples
+    ce = S.get('crest_e', (.86, .50)); fw = float(sstep(1.30, .80, abs(az)))
+    top_w = float(sstep(ce[0] + (1.06 - ce[0]) * fw, ce[1] + (.82 - ce[1]) * fw, e))
+    # the swept sides and the nape
+    flow = back + np.array([0, 0, S.get('side_up', .30)]); flow = hl.unit(flow - nrm * (flow @ nrm))
+    down = np.array([0, .25, -1.0]); down = hl.unit(down - nrm * (down @ nrm)); nape = float(sstep(.15, .55, d0[1])) * float(sstep(.55, .95, e))
+    flow = hl.unit(flow * (1 - nape) + down * nape)
+    ang = (hl.f1(loc, S.get('tousle_scale', 38), 77 + S.get('seed', 1)) - .5) * 2 * S['tousle'] * (.5 + .5 * JS) + r.normal(0, S.get('jit', .12)) * JS
+    around = np.cross(nrm, flow); flow = flow * math.cos(ang) + around * math.sin(ang)
+    Ls = (S['L_side'] + (S['L_nape'] - S['L_side']) * nape) * (.8 + .4 * hl.f1(loc, 60, 91)) * r.uniform(.9, 1.08)
+    el = math.radians(S['el_side'] + r.normal(0, S.get('el_jit', 6)))
+    K = S.get('K', 9)
+    if kind == 'wisp': Ls *= r.uniform(.3, .55)
+    side = hl.grow(H, loc + nrm * .0004, flow * math.cos(el) + nrm * math.sin(el), Ls, K=K, gravity=S['gravity'], minlift=(.0006, S['lift_tip']), wander=S.get('wander', .05), rng=r)
+    if top_w <= 0: return side
+    # the standing top
+    ridge = np.array([S.get('crest_x', 0.0), H.ctr[1] + S.get('crest_back', .035), H.top + S.get('crest_h', .085)])
+    lock = hl.f1(loc, S.get('lock_scale', 26), 211 + S.get('seed', 1))        # neighbouring strands share a lock: its length and its lean
+    tip = ridge + np.array([loc[0] * S.get('crest_w', .42), (loc[1] - H.ctr[1]) * S.get('crest_l', .55), 0.0])
+    tip[1] += S.get('crest_sweep', 0.0) * (.4 + .6 * max(0.0, -d0[1]))            # the tips are brushed back, the front ones most: a wave, not a spike
+    tip[2] -= S.get('crest_arc', .9) * max(0.0, loc[1] - H.ctr[1] + S.get('crest_peak', .02)) ** 1.3 + 2.2 * abs(loc[0]) ** 1.6       # highest above the forehead, falling to the back and the sides
+    tip = tip + (lock - .5) * np.array([.03, .05, .04]) * S.get('lock_var', 1.0) + r.normal(0, S.get('crest_jit', .004), 3) * JS
+    reach = np.linalg.norm(tip - loc); ctrl = loc + nrm * reach * S.get('crest_out', .48) + np.array([0, -.25, .25]) * reach * S.get('crest_fwd', .25) * max(0.0, -d0[1])
+    f = (S.get('crest_len', (.72, 1.0))[0] + (S.get('crest_len', (.72, 1.0))[1] - S.get('crest_len', (.72, 1.0))[0]) * lock) * r.uniform(.92, 1.04)
+    if kind == 'fly': f *= r.uniform(1.0, 1.12)
+    if kind == 'wisp': f *= r.uniform(.16, .34)          # short new hair along the hair line, so the crest does not start as a ruled edge
+    t = np.linspace(0, 1, K)[:, None] * min(f, 1.15)
+    up = (1 - t) ** 2 * (loc + nrm * .0004) + 2 * (1 - t) * t * ctrl + t ** 2 * tip
+    return side * (1 - top_w) + up * top_w
+def torso_push(p, clear):
+    """Keep a point of long hair outside the neck, the shoulders and the back: a rounded box measured on the assembled
+    body (style `torso`: top = where the neck leaves the collar, z_sh = shoulder line, a / b = half width and half depth
+    at the shoulder line and at the top)."""
+    T = S['torso']
+    if p[2] > T['top']: return p, None
+    t = float(sstep(T['top'], T['z_sh'], p[2]))
+    a = T['a'][1] + (T['a'][0] - T['a'][1]) * t + clear; b = T['b'][1] + (T['b'][0] - T['b'][1]) * t + clear
+    x, y = p[0] / a, (p[1] - T['y0']) / b; rr = (x ** 4 + y ** 4) ** .25
+    if rr >= 1: return p, None
+    q = p.copy()
+    if y > -.15:      # behind (and just in front of) the shoulder line the hair is laid back onto the back, not slid sideways down the arm
+        q[0] = float(np.clip(p[0], -a * .9, a * .9)); q[1] = T['y0'] + b * (1 - min(abs(q[0] / a), .999) ** 4) ** .25
+        return q, np.array([0.0, 1.0, 0.0])
+    k = 1 / max(rr, 1e-3); q[0] = p[0] * k; q[1] = T['y0'] + (p[1] - T['y0']) * k
+    out = hl.unit(np.array([x ** 3 / a, y ** 3 / b, 0.0]))
+    return q, out
+def guide_long(root, r, kind='hair'):
+    """Long loose hair (the maidens, pictures 221-259): parted in the middle, combed sideways over the crown, falling
+    behind the shoulders down the back to `z_end`, with a short fringe over the brow. kinds: 'under' lies on the back,
+    'hair' a little off it, 'over' loose outer locks, 'fringe', 'wisp' (short new hair along the hair line)."""
+    loc, nrm = H.near(root); az, e = H.params(loc); d0 = hl.unit(loc - H.ctr); sg = 1.0 if loc[0] >= 0 else -1.0; K = S.get('K', 22)
+    if kind == 'fringe':
+        d = np.array([sg * .45 * min(1.0, abs(loc[0]) / .03), -1.0, -.35]); d = hl.unit(hl.unit(d - nrm * (d @ nrm)) + nrm * .22)
+        L = S['L_fringe'] * r.uniform(.7, 1.1) * (.75 + .5 * hl.f1(loc, 40, 51))
+        return hl.grow(H, loc + nrm * .0004, d, L, K=K, gravity=1.5, minlift=(.0006, .0035), wander=.03, rng=r)
+    back = max(0.0, d0[1])
+    d = np.array([sg * (.95 - .6 * back), .45 + .5 * back, -.30]); d = hl.unit(d - nrm * (d @ nrm))
+    if kind == 'wisp':
+        return hl.grow(H, loc + nrm * .0004, d, r.uniform(.02, .045), K=K, gravity=.6, minlift=(.0005, .002), wander=.05, rng=r)
+    lift = {'under': 0.0, 'hair': .004, 'over': .010}.get(kind, .004)
+    lock = hl.f1(loc, S.get('lock_scale', 30), 311 + S.get('seed', 1))
+    L = max(.12, (loc[2] - S['z_end']) * 1.10 + .05 * float(sstep(.6, .1, e)) + (lock - .5) * S.get('len_lock', .07) + r.normal(0, .012))
+    if kind == 'over': L *= r.uniform(.92, 1.0)
+    step = L / (K - 1); p = loc + nrm * .0006; pts = [p.copy()]; ph = 6.283 * lock + r.uniform(0, 1.2)
+    for k in range(1, K):
+        t = k / (K - 1)
+        # falling; between the ears and the shoulders the side hair is drawn behind the shoulder
+        zs = S['torso']['z_sh']; pull = S.get('back_pull', .5) * float(sstep(zs + .24, zs + .10, p[2])) * float(p[2] > zs - .02) * float(sstep(.09, .02, p[1]))
+        fan = S.get('fan', 0.0) * float(p[2] < zs + .04) * float(p[1] > .04)          # on the back the hair spreads to the width of the shoulders
+        d = d + np.array([sg * fan, pull, -1.0]) * S['gravity'] * step * 14 * (.3 + .7 * t)
+        if S.get('tuck') and zs - .02 < p[2] < zs + .22 and p[1] < .07:      # tucked behind the shoulder: steered back before it lands on it
+            d = d + np.array([0.0, S['tuck'] * (.07 - p[1]) / .07 * float(sstep(zs + .22, zs + .12, p[2])), 0.0])
+        side = np.cross(d, [0.0, 0.0, 1.0]); side = hl.unit(side) if np.linalg.norm(side) > 1e-3 else np.array([1.0, 0.0, 0.0])
+        d = d + side * S.get('wave', .1) * math.sin(ph + t * S.get('wave_n', 6.0)) * step * 14 + r.normal(0, S.get('wander', .02), 3)
+        d = hl.unit(d); p = p + d * step
+        l2, n2 = H.near(p); h = (p - l2) @ n2; ml = .0008 + (lift + .003) * min(1.0, t * 4)
+        mx = ml + S.get('hug', .010) + lift
+        if h < ml:
+            p = l2 + n2 * ml; dn = d @ n2
+            if dn < 0: d = hl.unit(d - n2 * dn)
+        elif h > mx and p[2] > H.nose[2] - .06 and l2[2] > H.nose[2] - .08:      # combed: on the skull the hair lies on the head
+            p = l2 + n2 * mx; dn = d @ n2
+            if dn > 0: d = hl.unit(d - n2 * dn)
+        q, out = torso_push(p, .008 + lift * 1.6)
+        if out is not None:
+            p = q; dn = d @ out
+            if dn < 0: d = hl.unit(d - out * dn)
+        pts.append(p.copy())
+    return np.array(pts)
+guide = {'short': guide_short, 'crest': guide_crest, 'long': guide_long}.get(S['kind'], guide_bun)
 # ------------------------------------------------------------------ strand groom (hair Curves + procedural hair node groups)
 gr = np.random.default_rng(S.get('seed', 1) + 100)
 roots = RT.sample(S['guides'], 0, 1.0)
@@ -277,7 +373,7 @@ if 'strands' in steps or 'cards' in steps:
         if all(f.exists() for f in fs): rows.append(np.concatenate([np.asarray(Image.open(f).convert('RGB')) for f in fs], 1))
     if rows: Image.fromarray(np.concatenate(rows, 0)).save(REV / ('%s_hair_compare.png' % tag)); log('compare', REV / ('%s_hair_compare.png' % tag))
 if 'save' in steps:
-    save_blend(filepath=str(OUT / N / 'Work' / (n_ + '_groom.blend')), copy=True)
+    save_blend(filepath=str(DIR / 'Work' / (n_ + '_groom.blend')), copy=True)
     for o in [strands, scalp, brows] + extra: bpy.data.objects.remove(o, do_unlink=True)
     for nm in ('PR_GroundPlane', 'PR_Cam'):
         if nm in D: bpy.data.objects.remove(D[nm], do_unlink=True)

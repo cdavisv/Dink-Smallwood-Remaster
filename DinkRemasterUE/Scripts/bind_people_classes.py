@@ -56,6 +56,9 @@ PEOPLE = (
 # `pose`) and gives him his script and walk base only after his speech; with 580 in the row he stands there from the moment the
 # explosion leaves him.
 EXTRA_PICTURES = {'seth': [580]}
+# A standing picture with a pose of its own: (role name, picture, idle clip). Seth stands with his arms crossed (580, the
+# picture `pose`) from the moment Milder's scene makes him until s7-boss sends him walking (581-589).
+POSE_ROLES = {'seth': ('pose', 580, '/Game/Dink/Hero/Animations/Pass1/AN_Seth_Pose.AN_Seth_Pose')}
 # Pictures outside a walk set. (class id, figure, sequences, yaw added to the picture's facing, note)
 STILL = (
     # the red knight frozen in his swing (two placements, SCR_241/242): the figure stands; there is no swing clip
@@ -91,10 +94,16 @@ def loaded_sequences():
     return seqs
 
 
+# Figures that carry a polearm stood on the root bone (npc_port.py): their idle closes the right fist on the shaft
+# (AnimationPassV1 clips_people.py Guard_Stand; the shaft stands where the clip's POLE says). Twins of the knight too.
+GUARD_IDLE = '/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand'
+GUARDS = {'Knight', 'KnightRed', 'KnightSilver', 'KnightGold'}
+
+
 def row(class_id, name, sequences, scale, yaw, note):
     path = f'/Game/Dink/Photoreal/Characters/NPC/{name}/SK_{name}_Photoreal.SK_{name}_Photoreal'
     return {'class': class_id, 'mesh': path,
-            'locomotion': {'idle': IDLE, 'gaits': [{'clip': clip, 'speed_cm_s': round(speed * scale, 1), 'cycles': cycles} for clip, speed, cycles in GAITS]},
+            'locomotion': {'idle': GUARD_IDLE if name in GUARDS else IDLE, 'gaits': [{'clip': clip, 'speed_cm_s': round(speed * scale, 1), 'cycles': cycles} for clip, speed, cycles in GAITS]},
             # the figures face +Y (as the characters.json rows: yaw -90)
             'rotation_deg': [0, -90 + yaw, 0], 'scale': scale,
             'roles': {'walk': {'sequences': sequences, 'locomotion': True}}, 'note': note}
@@ -112,10 +121,16 @@ def main():
         if name not in known or not seqs:
             print(f'{class_id}: no figure {name} or no walk pictures at {base}; row not written')
             continue
-        rows.append(row(class_id, name, seqs, known[name][1], 0.0,
+        made = row(class_id, name, seqs, known[name][1], 0.0,
                         f'{what}. Walk pictures {seqs[0]}-{seqs[-1]}: every placement of the class and every sprite a script makes or dresses '
                         f'with them (sp_base_walk {base}). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. '
-                        'No hit or death clip: 1997 has none, a kill leaves the death picture.'))
+                        'No hit or death clip: 1997 has none, a kill leaves the death picture.')
+        if class_id in POSE_ROLES:      # the walk role stays first: a class figure whose picture has no role stands in the row's first role
+            role, picture, clip = POSE_ROLES[class_id]
+            walk = made['roles']['walk']; walk['sequences'] = [q for q in walk['sequences'] if q != picture]
+            made['roles'] = {'walk': walk, role: {'sequences': [picture], 'locomotion': dict(made['locomotion'], idle=clip)}}
+            made['note'] += f' Picture {picture} is the role `{role}`: the same walk set with the idle {clip.rsplit(".", 1)[1]}.'
+        rows.append(made)
     for class_id, name, seqs, yaw, note in STILL:
         if name in known:
             rows.append(row(class_id, name, seqs, known[name][1], yaw, note))

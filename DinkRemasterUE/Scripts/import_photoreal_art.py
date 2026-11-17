@@ -404,13 +404,15 @@ HAIR_LOOK = {
     'Dink': {'tint': (2.4, 1.5, 1.1), 'scalars': {'Scatter': 0.8, 'BrowGain': 1.6}},
     'Mother': {'tint': (0.72, 0.67, 0.6), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.3, 'StrandVariation': 0.12, 'DepthShade': 0.45, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12, 'BrowGain': 1.5}},
-    # Seth wears the hero's hair atlas: a plain mid brown as in his 1997 pictures, not the hero's red-gold
-    'Seth': {'tint': (1.5, 1.02, 0.74), 'scalars': {'Scatter': 0.6, 'BrowGain': 1.6}},
+    # the maidens' long yellow hair (hair_styles.py 'Maiden'); the twins set their own Tint (npc_variants.py MAIDEN_HAIR)
+    'Maiden': {'tint': (1.25, 1.12, 0.85), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.7, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
+    # Seth's own atlas (hair_styles.py 'Seth'): the dark brown crest of his 1997 pictures
+    'Seth': {'tint': (2.3, 1.55, 1.05), 'scalars': {'Scatter': 0.5, 'BrowGain': 1.4, 'RootShade': 0.9, 'DepthShade': 0.7, 'Specular': 0.2, 'RoughnessScale': 1.3}},      # a neutral tint read as grey hair under the dim sky of SCR_086
 }
 
 
 # Skin tint per character (multiplies the base colour). The Mother's fair skin was chalk in the window light of her house.
-SKIN_LOOK = {'Mother': (0.72, 0.66, 0.63), 'Seth': (0.80, 0.78, 0.76)}    # Seth: the pale grey-beige of his 1997 face
+SKIN_LOOK = {'Mother': (0.72, 0.66, 0.63), 'Seth': (0.84, 0.82, 0.79)}    # Seth: the pale grey-beige of his 1997 face (his own sallow skin set, taken down a little)
 
 
 def hair_material(folder, name, defaults, morph=False):

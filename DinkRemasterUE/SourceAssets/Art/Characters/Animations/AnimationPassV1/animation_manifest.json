@@ -249,6 +249,26 @@
    "asset_name": "AN_Fist_Swing_Timid",
    "sha256": "40bbae876050187db2f197dbc27198ab6dffc73da5d48bc32869081d8fac3199"
   },
+  "Guard_Stand": {
+   "frames": 241,
+   "fps": 30,
+   "duration_s": 8.0,
+   "speed_m_s": 0.0,
+   "stride_m": 0.0,
+   "planted_samples": 960,
+   "planted_drift_cm_per_frame_max": 0.0,
+   "planted_drift_cm_per_frame_mean": 0.0,
+   "planted_slide_cm_per_s_max": 0.0,
+   "ik_clamps": 0,
+   "lowest_sole_m": -0.0004,
+   "loop_seam_m": 0.0,
+   "loop": true,
+   "family": "people_pose",
+   "note": "a guard standing with a polearm upright in his right fist (the shaft stands on the root bone)",
+   "fbx": "Export/A_Guard_Stand.fbx",
+   "asset_name": "AN_Guard_Stand",
+   "sha256": "b34533f15c9627b970a08225c6d47fcfb979ac91ab539e665714b2d6385f8b1b"
+  },
   "Hurt": {
    "frames": 28,
    "fps": 60,
@@ -504,6 +524,26 @@
    "fbx": "Export/A_Run_Timid.fbx",
    "asset_name": "AN_Run_Timid",
    "sha256": "7343599445037272bf0f90f57cc2a263388c285abd5d53e9e057c94bc31a2b2c"
+  },
+  "Seth_Pose": {
+   "frames": 241,
+   "fps": 30,
+   "duration_s": 8.0,
+   "speed_m_s": 0.0,
+   "stride_m": 0.0,
+   "planted_samples": 960,
+   "planted_drift_cm_per_frame_max": 0.0,
+   "planted_drift_cm_per_frame_mean": 0.0,
+   "planted_slide_cm_per_s_max": 0.0,
+   "ik_clamps": 0,
+   "lowest_sole_m": -0.0004,
+   "loop_seam_m": 0.0,
+   "loop": true,
+   "family": "people_pose",
+   "note": "Seth standing, arms crossed (1997 picture pose, sequence 580)",
+   "fbx": "Export/A_Seth_Pose.fbx",
+   "asset_name": "AN_Seth_Pose",
+   "sha256": "0ba66aca74d4864973373189352876f4104cadccef6e551c42cb2a21f87f8486"
   },
   "Shuffle": {
    "frames": 31,

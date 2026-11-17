@@ -1,0 +1,63 @@
+{
+ "name": "Maiden",
+ "packed": "Mother/Work/mother_packed.blend",
+ "head": "NPC/Maiden/Work/maiden_head.blend",
+ "tex": "NPC/Maiden/Textures",
+ "prefix": "T_Maiden_PR",
+ "out": "NPC/Maiden/SK_Maiden_Photoreal.blend",
+ "rigid": {},
+ "lod_ratios": [
+  1.0,
+  0.55,
+  0.32,
+  0.18
+ ],
+ "wsrc": [
+  "Manny"
+ ],
+ "skin_cull": "none",
+ "smooth": [
+  "Bodice",
+  "CollarBand",
+  "Sleeve_l",
+  "Sleeve_r"
+ ],
+ "junk": [
+  "OldWardrobe",
+  "OldTopo0",
+  "OldTopo1"
+ ],
+ "clean_degenerate": true,
+ "skin_tuck_q": [
+  [
+   0,
+   -0.03,
+   1.525
+  ],
+  [
+   0.086,
+   0.093,
+   0.096
+  ],
+  0.95,
+  1.06,
+  0.013
+ ],
+ "hidden_cull": 0.022,
+ "eye_back_cull": 0.3,
+ "decimate": {
+  "Belt": 0.6,
+  "Buckle": 0.65
+ },
+ "tex_override": {
+  "_Eyes_BC.png": "Mother/Textures/T_Mother_PR_Eyes_BC.png",
+  "_Eyes_N.png": "Mother/Textures/T_Mother_PR_Eyes_N.png",
+  "_Eyes_ORM.png": "Mother/Textures/T_Mother_PR_Eyes_ORM.png",
+  "_Outfit_BC.png": "Mother/Textures/T_Mother_PR_Outfit_BC.png",
+  "_Outfit_N.png": "Mother/Textures/T_Mother_PR_Outfit_N.png",
+  "_Outfit_ORM.png": "Mother/Textures/T_Mother_PR_Outfit_ORM.png",
+  "_Gear_BC.png": "Mother/Textures/T_Mother_PR_Gear_BC.png",
+  "_Gear_N.png": "Mother/Textures/T_Mother_PR_Gear_N.png",
+  "_Gear_ORM.png": "Mother/Textures/T_Mother_PR_Gear_ORM.png"
+ }
+}

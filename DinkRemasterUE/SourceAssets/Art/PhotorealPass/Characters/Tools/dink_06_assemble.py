@@ -108,12 +108,16 @@ rigid(hair, 'head'); rigid(eyes, 'head')
 for o in (skin,):
     for m in list(o.modifiers): o.modifiers.remove(m)
 TX = OUT / CFG['tex']; P = CFG['prefix']
+def tx(name):
+    """A texture of the character's own set, or the file cfg `tex_override` names for it (a character that wears another's outfit: {"_Outfit_N.png": "Dink/Textures/T_Dink_PR_Outfit_N.png"})."""
+    o_ = CFG.get('tex_override', {}).get(name)
+    return OUT / o_ if o_ else TX / (P + name)
 mats = {
- 'Skin': matlib.game_material('MI_%s_PR_Skin' % N, TX / (P + '_Skin_BC.png'), TX / (P + '_Skin_N.png'), TX / (P + '_Skin_ORM.png'), sss=TX / (P + '_Skin_SSS.png'), ao_mix=.5),
- 'Eyes': matlib.game_material('MI_%s_PR_Eyes' % N, TX / (P + '_Eyes_BC.png'), TX / (P + '_Eyes_N.png'), TX / (P + '_Eyes_ORM.png'), ao_mix=.8, spec=.8),
- 'Hair': hairlib.card_material('MI_%s_PR_Hair' % N, TX / (P + '_Hair_BC.png'), TX / (P + '_Hair_N.png'), TX / (P + '_Hair_ORM.png'), **STYLES[N].get('card_mat', {})),
- 'Outfit': matlib.game_material('MI_%s_PR_Outfit' % N, TX / (P + '_Outfit_BC.png'), TX / (P + '_Outfit_N.png'), TX / (P + '_Outfit_ORM.png')),
- 'Gear': matlib.game_material('MI_%s_PR_Gear' % N, TX / (P + '_Gear_BC.png'), TX / (P + '_Gear_N.png'), TX / (P + '_Gear_ORM.png')),
+ 'Skin': matlib.game_material('MI_%s_PR_Skin' % N, tx('_Skin_BC.png'), tx('_Skin_N.png'), tx('_Skin_ORM.png'), sss=tx('_Skin_SSS.png'), ao_mix=.5),
+ 'Eyes': matlib.game_material('MI_%s_PR_Eyes' % N, tx('_Eyes_BC.png'), tx('_Eyes_N.png'), tx('_Eyes_ORM.png'), ao_mix=.8, spec=.8),
+ 'Hair': hairlib.card_material('MI_%s_PR_Hair' % N, tx('_Hair_BC.png'), tx('_Hair_N.png'), tx('_Hair_ORM.png'), **STYLES[N].get('card_mat', {})),
+ 'Outfit': matlib.game_material('MI_%s_PR_Outfit' % N, tx('_Outfit_BC.png'), tx('_Outfit_N.png'), tx('_Outfit_ORM.png')),
+ 'Gear': matlib.game_material('MI_%s_PR_Gear' % N, tx('_Gear_BC.png'), tx('_Gear_N.png'), tx('_Gear_ORM.png')),
 }
 order = ['Skin', 'Eyes', 'Hair', 'Outfit', 'Gear']
 def prep(o, slot):

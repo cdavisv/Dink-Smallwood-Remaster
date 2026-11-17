@@ -69,7 +69,8 @@ def follow_face(c_):
 def eyeball(sgn, nseg=20, nring=14):
     c, r = eyes[sgn]; r = r * 1.0
     verts = []; faces = []; uvs = []
-    fwd = np.array([-.03 * sgn * -1, -1, 0.0]); fwd /= np.linalg.norm(fwd)   # tiny divergence, as real eyes have
+    gz = CFG.get('gaze', (0.0, 0.0))      # where the eyes look in the rest pose, degrees (right, up): Seth looks down at his visitor
+    fwd = np.array([-.03 * sgn * -1 + math.tan(math.radians(gz[0])), -1, math.tan(math.radians(gz[1]))]); fwd /= np.linalg.norm(fwd)   # tiny divergence, as real eyes have
     xa = np.cross([0, 0, 1.0], fwd); xa /= np.linalg.norm(xa); za = np.cross(fwd, xa)
     for i in range(nring + 1):
         th = math.pi * (i / nring) ** 1.25 * .93           # denser at the front, open at the back
