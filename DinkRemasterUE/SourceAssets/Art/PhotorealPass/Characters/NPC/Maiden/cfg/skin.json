@@ -1,13 +1,13 @@
 {
- "head": "Mother/Work/mother_head.blend",
+ "head": "NPC/Maiden/Work/maiden_head.blend",
  "tex": "NPC/Maiden/Textures",
  "prefix": "T_Maiden_PR",
  "size": 4096,
  "skin": "ThirdParty/MakeHuman/skins/middleage_caucasian_female/middleage_lightskinned_female_diffuse.png",
  "hair_col": [
-  0.22,
-  0.15,
-  0.07
+  0.36,
+  0.26,
+  0.1
  ],
  "freckles": 0.45,
  "redness": 1.2,

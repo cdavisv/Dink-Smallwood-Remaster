@@ -3,7 +3,7 @@
  "asset": "SK_Seth_Photoreal",
  "class": "character_hero",
  "source_blend": "NPC/Seth/SK_Seth_Photoreal.blend",
- "build": "python3 -I Characters/Tools/npc_variants.py; blender -b -t 4 Characters/Dink/SK_Dink_Photoreal.blend --python Characters/Tools/seth_build.py; blender -b -t 4 Characters/NPC/Seth/SK_Seth_Photoreal.blend --python Characters/Tools/export_char.py -- <abs>/NPC/Seth/Export <abs>/NPC/Seth/export_report.json character_hero; python3 -I Characters/Tools/seth_manifest.py",
+ "build": "the stages listed at the top of Characters/Tools/seth_build.py, then python3 -I Characters/Tools/seth_manifest.py",
  "fbx": [
   "Export/SK_Seth_Photoreal_LOD0.fbx",
   "Export/SK_Seth_Photoreal_LOD1.fbx",
@@ -13,7 +13,7 @@
  "dimensions_m": [
   1.1003458499908447,
   0.5392696261405945,
-  2.1016488075256348
+  2.1975784301757812
  ],
  "bone_count": 89,
  "root_bone": "root",
@@ -21,34 +21,34 @@
  "lods": [
   {
    "mesh": "SK_Seth_Photoreal_LOD0",
-   "triangles": 60306,
-   "vertices": 37925,
+   "triangles": 66924,
+   "vertices": 44460,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Seth_Photoreal_LOD1",
-   "triangles": 30152,
-   "vertices": 22666,
+   "triangles": 33462,
+   "vertices": 27516,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Seth_Photoreal_LOD2",
-   "triangles": 17783,
-   "vertices": 15345,
+   "triangles": 19872,
+   "vertices": 19808,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Seth_Photoreal_LOD3",
-   "triangles": 10727,
-   "vertices": 9376,
+   "triangles": 11403,
+   "vertices": 11327,
    "max_influences": 4,
    "unweighted": 0
   }
  ],
- "lod0_triangles": 60306,
+ "lod0_triangles": 66924,
  "material_slots": [
   "MI_Seth_PR_Skin",
   "MI_Seth_PR_Eyes",
@@ -59,29 +59,29 @@
  "materials": {
   "MI_Seth_PR_Skin": {
    "textures": {
-    "BC": "../../Dink/Textures/T_Dink_PR_Skin_BC.png",
-    "N": "../../Dink/Textures/T_Dink_PR_Skin_N.png",
-    "ORM": "../../Dink/Textures/T_Dink_PR_Skin_ORM.png",
-    "SSS": "../../Dink/Textures/T_Dink_PR_Skin_SSS.png"
+    "BC": "Textures/T_Seth_PR_Skin_BC.png",
+    "N": "Textures/T_Seth_PR_Skin_N.png",
+    "ORM": "Textures/T_Seth_PR_Skin_ORM.png",
+    "SSS": "Textures/T_Seth_PR_Skin_SSS.png"
    },
    "shading": "subsurface profile / skin; SSS.rgb = scatter colour x thickness",
    "normal": "OpenGL (+Y), flip green for UE as the existing importer does"
   },
   "MI_Seth_PR_Eyes": {
    "textures": {
-    "BC": "../../Dink/Textures/T_Dink_PR_Eyes_BC.png",
-    "N": "../../Dink/Textures/T_Dink_PR_Eyes_N.png",
-    "ORM": "../../Dink/Textures/T_Dink_PR_Eyes_ORM.png"
+    "BC": "Textures/T_Seth_PR_Eyes_BC.png",
+    "N": "Textures/T_Seth_PR_Eyes_N.png",
+    "ORM": "Textures/T_Seth_PR_Eyes_ORM.png"
    },
    "shading": "default lit, low roughness from ORM.G; single-shell eye with modelled cornea bulge"
   },
   "MI_Seth_PR_Hair": {
    "textures": {
-    "BC": "../../Dink/Textures/T_Dink_PR_Hair_BC.png",
-    "N": "../../Dink/Textures/T_Dink_PR_Hair_N.png",
-    "ORM": "../../Dink/Textures/T_Dink_PR_Hair_ORM.png",
-    "FLOW": "../../Dink/Textures/T_Dink_PR_Hair_FLOW.png",
-    "MSK": "../../Dink/Textures/T_Dink_PR_Hair_MSK.png"
+    "BC": "Textures/T_Seth_PR_Hair_BC.png",
+    "N": "Textures/T_Seth_PR_Hair_N.png",
+    "ORM": "Textures/T_Seth_PR_Hair_ORM.png",
+    "FLOW": "Textures/T_Seth_PR_Hair_FLOW.png",
+    "MSK": "Textures/T_Seth_PR_Hair_MSK.png"
    },
    "shading": "hair shading model, MASKED (alpha in BC.a, clip about 0.33 with dithered opacity / TAA), two-sided; cap shell + lock cards + brow and lash cards in one slot",
    "anisotropy": "FLOW.rg = strand direction in UV space, encoded 0.5 + 0.5 * d (root to tip): world tangent = normalize(d.x * dP/du + d.y * dP/dv); use it as the hair tangent / anisotropy direction so highlights run along the hair. Baked from the strand groom (cap rect) and from the strand clumps (card tiles). N is the strand-relief normal (OpenGL), ORM.r = strand depth occlusion, ORM.g = roughness.",
@@ -92,8 +92,8 @@
   "MI_Seth_PR_Outfit": {
    "textures": {
     "BC": "Textures/T_Seth_PR_Outfit_BC.png",
-    "N": "../../Dink/Textures/T_Dink_PR_Outfit_N.png",
-    "ORM": "../../Dink/Textures/T_Dink_PR_Outfit_ORM.png"
+    "N": "Textures/T_Seth_PR_Outfit_N.png",
+    "ORM": "Textures/T_Seth_PR_Outfit_ORM.png"
    },
    "shading": "default lit"
   },
@@ -123,32 +123,32 @@
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 60306 triangles, target for character_hero is 40000 (hard max 70000)"
+   "LOD0 has 66924 triangles, target for character_hero is 40000 (hard max 70000)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "12851 non-manifold edges (12850 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "19205 non-manifold edges (19204 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "12487 non-manifold edges (12486 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "18779 non-manifold edges (18778 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "10682 non-manifold edges (10681 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "17293 non-manifold edges (17292 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "6738 non-manifold edges (6737 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+   "9840 non-manifold edges (9839 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (141.9 % of UV area, 4059 triangles); class character_hero needs unique UVs"
+   "UV0 islands overlap (77.0 % of UV area, 4185 triangles); class character_hero needs unique UVs"
   ],
   [
    "warning",
@@ -163,62 +163,62 @@
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
    "NAME_TEXTURE",
-   "image 'T_Dink_PR_Outfit_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+   "image 'T_Seth_PR_Outfit_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ],
   [
    "warning",
@@ -247,9 +247,9 @@
   ]
  ],
  "known_weaknesses": [
-  "The face is the hero kit's sculpted face grown with the head, a young man's; the 1997 picture carries a photograph of a grown man's face. No likeness of a real person was modelled.",
-  "The hair is the hero's groom with its cards turned up and back over a high forehead (seth_build.py sweep_hair), not a groom of its own: the forelock is a loose tuft from the side and the sides lack the 1997 picture's wave.",
-  "No crossed-arms pose (picture 580) and no red flash of the face (its second frame): he stands and walks with the mannequin clips.",
-  "Bare hands; the picture has brown gloves."
+  "The face is sculpted with the kit's face operations (cfg/head.json), a hard older man of no particular likeness; the 1997 picture carries a photograph of a real face, which was not copied.",
+  "The gloves are painted on the hand skin (cfg/skin.json `glove`): no seams, no cuff of their own; the hero's bracers close them at the wrist.",
+  "The mail of the sleeves is a texture (colour, normal, roughness) on the hero's shirt, not modelled rings.",
+  "No red flash of the face while he casts (second frame of the 1997 pose)."
  ]
 }

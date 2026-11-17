@@ -2,8 +2,8 @@
  "schema": "dink-photoreal-npc-variants/1",
  "variants": {
   "MaidenBlue": {
-   "base": "Mother",
-   "base_asset": "SK_Mother_Photoreal",
+   "base": "NPC/Maiden",
+   "base_asset": "SK_Maiden_Photoreal",
    "animation_set": "NpcF",
    "families": [
     "npc_maiden_blue"
@@ -11,25 +11,19 @@
    "what": "woman in a long blue dress, blonde hair",
    "placement_scale": 0.9,
    "materials": {
-    "MI_Mother_PR_Outfit": {
+    "MI_Maiden_PR_Outfit": {
      "textures": {
       "BC": "MaidenBlue/Textures/T_MaidenBlue_PR_Outfit_BC.png"
      }
     },
-    "MI_Mother_PR_Hair": {
+    "MI_Maiden_PR_Hair": {
      "tint": [
-      1.45,
-      1.15,
-      0.62
+      1.25,
+      1.12,
+      0.85
      ]
     },
-    "MI_Mother_PR_Skin": {
-     "textures": {
-      "BC": "Maiden/Textures/T_Maiden_PR_Skin_BC.png",
-      "N": "Maiden/Textures/T_Maiden_PR_Skin_N.png",
-      "ORM": "Maiden/Textures/T_Maiden_PR_Skin_ORM.png",
-      "SSS": "Maiden/Textures/T_Maiden_PR_Skin_SSS.png"
-     },
+    "MI_Maiden_PR_Skin": {
      "tint": [
       0.8,
       0.75,
@@ -42,8 +36,8 @@
    ]
   },
   "MaidenBrown": {
-   "base": "Mother",
-   "base_asset": "SK_Mother_Photoreal",
+   "base": "NPC/Maiden",
+   "base_asset": "SK_Maiden_Photoreal",
    "animation_set": "NpcF",
    "families": [
     "npc_maiden_brown"
@@ -51,25 +45,19 @@
    "what": "woman in a long brown dress, auburn hair",
    "placement_scale": 0.9,
    "materials": {
-    "MI_Mother_PR_Outfit": {
+    "MI_Maiden_PR_Outfit": {
      "textures": {
       "BC": "MaidenBrown/Textures/T_MaidenBrown_PR_Outfit_BC.png"
      }
     },
-    "MI_Mother_PR_Hair": {
+    "MI_Maiden_PR_Hair": {
      "tint": [
       1.0,
-      0.52,
-      0.24
+      0.5,
+      0.28
      ]
     },
-    "MI_Mother_PR_Skin": {
-     "textures": {
-      "BC": "Maiden/Textures/T_Maiden_PR_Skin_BC.png",
-      "N": "Maiden/Textures/T_Maiden_PR_Skin_N.png",
-      "ORM": "Maiden/Textures/T_Maiden_PR_Skin_ORM.png",
-      "SSS": "Maiden/Textures/T_Maiden_PR_Skin_SSS.png"
-     },
+    "MI_Maiden_PR_Skin": {
      "tint": [
       0.8,
       0.75,
@@ -82,8 +70,8 @@
    ]
   },
   "MaidenRed": {
-   "base": "Mother",
-   "base_asset": "SK_Mother_Photoreal",
+   "base": "NPC/Maiden",
+   "base_asset": "SK_Maiden_Photoreal",
    "animation_set": "NpcF",
    "families": [
     "npc_maiden_red"
@@ -91,25 +79,19 @@
    "what": "woman in a long crimson dress, blonde hair",
    "placement_scale": 0.9,
    "materials": {
-    "MI_Mother_PR_Outfit": {
+    "MI_Maiden_PR_Outfit": {
      "textures": {
       "BC": "MaidenRed/Textures/T_MaidenRed_PR_Outfit_BC.png"
      }
     },
-    "MI_Mother_PR_Hair": {
+    "MI_Maiden_PR_Hair": {
      "tint": [
-      1.45,
-      1.15,
-      0.62
+      1.25,
+      1.12,
+      0.85
      ]
     },
-    "MI_Mother_PR_Skin": {
-     "textures": {
-      "BC": "Maiden/Textures/T_Maiden_PR_Skin_BC.png",
-      "N": "Maiden/Textures/T_Maiden_PR_Skin_N.png",
-      "ORM": "Maiden/Textures/T_Maiden_PR_Skin_ORM.png",
-      "SSS": "Maiden/Textures/T_Maiden_PR_Skin_SSS.png"
-     },
+    "MI_Maiden_PR_Skin": {
      "tint": [
       0.8,
       0.75,

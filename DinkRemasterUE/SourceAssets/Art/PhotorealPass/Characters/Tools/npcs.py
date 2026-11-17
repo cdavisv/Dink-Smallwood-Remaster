@@ -1,9 +1,9 @@
 """The people ported from PhotorealPass/Unclaimed onto the mannequin rig (npc_port.py), and the colour variants the
 importer makes of them and of the Mother and Milder (Characters/NPC/variants.json)."""
 NPCS = {
-    'Knight': dict(src='npc_knight_blue/Knight', asset='SK_Knight_PR', set='NpcM', families=['npc_knight_blue'], pole_xy=(.36, -.10),
-                   weak=['Plate harness of clean swept plates, rigid on one bone each: nobody inside, no straps or rivets, mitten gauntlets.',
-                         'The halberd stands upright beside him on the root bone: his hand does not hold it.']),
+    'Knight': dict(src='npc_knight_blue/Knight', asset='SK_Knight_PR', set='NpcM', families=['npc_knight_blue'], pole_xy=(.30, -.10), body=dict(uv=(.193, .369), half=.027, inside=.90),
+                   weak=['Plate harness of clean swept plates, rigid on one bone each, no straps or rivets, mitten gauntlets; the body under it is tubes and a lofted trunk in the harness\'s mail (npc_port.py add_body), enough to close the joints, not an anatomy.',
+                         'The halberd stands upright beside him on the root bone; the idle clip Guard_Stand closes his right fist on it, a walking knight lets go of it.']),
     'Merchant': dict(src='npc_merchant_blue/Merchant', asset='SK_Merchant_PR', set='NpcM', families=['npc_merchant_blue']),
     'Peasant': dict(src='npc_peasant/Peasant', asset='SK_Peasant_PR', set='NpcM', families=['npc_peasant'],
                     weak=['The pole stands upright beside him on the root bone: his hand does not hold it.']),

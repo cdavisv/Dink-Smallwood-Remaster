@@ -23,28 +23,28 @@
    "mesh": "SK_Gnome_Photoreal_LOD0",
    "triangles": 29590,
    "vertices": 15323,
-   "max_influences": 4,
+   "max_influences": 5,
    "unweighted": 0
   },
   {
    "mesh": "SK_Gnome_Photoreal_LOD1",
    "triangles": 14795,
    "vertices": 7880,
-   "max_influences": 4,
+   "max_influences": 5,
    "unweighted": 0
   },
   {
    "mesh": "SK_Gnome_Photoreal_LOD2",
    "triangles": 7396,
    "vertices": 4092,
-   "max_influences": 4,
+   "max_influences": 5,
    "unweighted": 0
   },
   {
    "mesh": "SK_Gnome_Photoreal_LOD3",
    "triangles": 3549,
    "vertices": 2081,
-   "max_influences": 4,
+   "max_influences": 5,
    "unweighted": 0
   }
  ],
@@ -122,6 +122,12 @@
     "max_z": 2.1904
    }
   ],
+  "face_rigid_vertices": [
+   3728,
+   1308,
+   639,
+   325
+  ],
   "lift_m": 0.01
  },
  "placement_scale": 0.554,
@@ -133,7 +139,7 @@
   "assets": 1,
   "assets_passed": 0,
   "errors": 1,
-  "warnings": 7
+  "warnings": 11
  },
  "validator_findings": [
   [
@@ -180,6 +186,26 @@
    "info",
    "UV_OVERLAP",
    "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ],
+  [
+   "warning",
+   "SKIN_INFLUENCES",
+   "26 vertices have more than 4 influences (limit weights to 4 for the Deck)"
+  ],
+  [
+   "warning",
+   "SKIN_INFLUENCES",
+   "17 vertices have more than 4 influences (limit weights to 4 for the Deck)"
+  ],
+  [
+   "warning",
+   "SKIN_INFLUENCES",
+   "13 vertices have more than 4 influences (limit weights to 4 for the Deck)"
+  ],
+  [
+   "warning",
+   "SKIN_INFLUENCES",
+   "9 vertices have more than 4 influences (limit weights to 4 for the Deck)"
   ]
  ],
  "known_weaknesses": [

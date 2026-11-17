@@ -84,6 +84,12 @@
    "hit_s": 0.175,
    "lock_s": 0.4
   },
+  "Guard_Stand": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand",
+   "duration_s": 8.0,
+   "loop": true,
+   "fps": 30
+  },
   "Hurt": {
    "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Hurt.AN_Hurt",
    "duration_s": 0.45,
@@ -174,6 +180,12 @@
    "fps": 30,
    "speed_cm_s": 600.0,
    "stride_cm": 340.0
+  },
+  "Seth_Pose": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Seth_Pose.AN_Seth_Pose",
+   "duration_s": 8.0,
+   "loop": true,
+   "fps": 30
   },
   "Shuffle": {
    "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Shuffle.AN_Shuffle",

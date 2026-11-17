@@ -2161,7 +2161,7 @@
       "class": "npc_knight_red",
       "mesh": "/Game/Dink/Photoreal/Characters/NPC/KnightRed/SK_KnightRed_Photoreal.SK_KnightRed_Photoreal",
       "locomotion": {
-        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "idle": "/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand",
         "gaits": [
           {
             "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
@@ -2198,7 +2198,7 @@
       "class": "npc_knight_blue",
       "mesh": "/Game/Dink/Photoreal/Characters/NPC/Knight/SK_Knight_Photoreal.SK_Knight_Photoreal",
       "locomotion": {
-        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "idle": "/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand",
         "gaits": [
           {
             "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
@@ -2235,7 +2235,7 @@
       "class": "npc_knight_silver",
       "mesh": "/Game/Dink/Photoreal/Characters/NPC/KnightSilver/SK_KnightSilver_Photoreal.SK_KnightSilver_Photoreal",
       "locomotion": {
-        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "idle": "/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand",
         "gaits": [
           {
             "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
@@ -2272,7 +2272,7 @@
       "class": "npc_knight_gold",
       "mesh": "/Game/Dink/Photoreal/Characters/NPC/KnightGold/SK_KnightGold_Photoreal.SK_KnightGold_Photoreal",
       "locomotion": {
-        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "idle": "/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand",
         "gaits": [
           {
             "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
@@ -2665,22 +2665,41 @@
       "roles": {
         "walk": {
           "sequences": [
-            580,
             581,
             583,
             587,
             589
           ],
           "locomotion": true
+        },
+        "pose": {
+          "sequences": [
+            580
+          ],
+          "locomotion": {
+            "idle": "/Game/Dink/Hero/Animations/Pass1/AN_Seth_Pose.AN_Seth_Pose",
+            "gaits": [
+              {
+                "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
+                "speed_cm_s": 395.8,
+                "cycles": 2
+              },
+              {
+                "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
+                "speed_cm_s": 870.0,
+                "cycles": 3
+              }
+            ]
+          }
         }
       },
-      "note": "effects/magic/seth1w-9w and pose (loaded over 580-589 by s7-mil): Seth, the last enemy (s7-boss, made in Milder's scene on SCR_086). Walk pictures 580-589: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 580). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture."
+      "note": "effects/magic/seth1w-9w and pose (loaded over 580-589 by s7-mil): Seth, the last enemy (s7-boss, made in Milder's scene on SCR_086). Walk pictures 580-589: every placement of the class and every sprite a script makes or dresses with them (sp_base_walk 580). The figure on the mannequin skeleton with its walk and jog; it stands as its picture faces. No hit or death clip: 1997 has none, a kill leaves the death picture. Picture 580 is the role `pose`: the same walk set with the idle AN_Seth_Pose."
     },
     {
       "class": "npc_knight_red_attacking",
       "mesh": "/Game/Dink/Photoreal/Characters/NPC/KnightRed/SK_KnightRed_Photoreal.SK_KnightRed_Photoreal",
       "locomotion": {
-        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "idle": "/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand",
         "gaits": [
           {
             "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",

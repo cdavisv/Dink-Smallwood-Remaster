@@ -28,7 +28,46 @@ def narrow_short(k=1.0, w=1.0, seg=1, ls=1.0, lv=(.15, .2), taper=.3, fly=10, wi
     if over:
         sh.insert(2, dict(n=int(over * k), layer=3, tiles=('n_thin', 'n_wisp'), e0=0, e1=.97, width=(.004 * w, .007 * w), nseg=3 + seg, across=1, lift_scale=1.05 * ls, lift_off=.0032, roll=.35, len_var=lv[1] + .1, flare=(.002, .008), nblend=.6, taper=min(.8, taper + .15)))
     return sh
+def crest_shells(k=1.0, w=1.0):
+    """Seth's crest: long standing locks need more segments than a short cut; a dense inner layer carries the mass over
+    the cap, a thinner outer layer and the wisps break the outline."""
+    return [
+        dict(n=int(520 * k), layer=2, tiles=('n_dense', 'n_mid'), e0=0, e1=1.0, width=(.009 * w, .013 * w), nseg=7, seg_len=.014, across=1, lift_scale=.85, lift_off=.0016, roll=.10, len_var=.18, flare=(.0, .004), taper=.45),
+        dict(n=int(480 * k), layer=3, tiles=('n_mid', 'n_thin'), e0=0, e1=.99, width=(.007 * w, .011 * w), nseg=7, seg_len=.014, across=1, lift_scale=1.0, lift_off=.0024, roll=.24, len_var=.24, flare=(.001, .006), nblend=.75, taper=.55),
+        dict(n=int(190 * k), layer=3, tiles=('n_thin', 'n_wisp'), e0=0, e1=.97, width=(.005 * w, .008 * w), nseg=7, seg_len=.014, across=1, lift_scale=1.05, lift_off=.0034, roll=.35, len_var=.3, flare=(.002, .008), nblend=.6, taper=.7),
+        dict(n=int(170 * k), layer=5, tiles=('n_wisp', 'n_thin'), e0=.84, e1=1.0, width=(.005 * w, .008 * w), nseg=2, across=1, lift_scale=1.0, lift_off=.0008, kind='wisp'),
+    ]
+def long_shells(k=1.0, w=1.0):
+    """Long loose hair: wide dense cards on the back carry the mass, narrower ones over them, loose outer locks, a fringe."""
+    return [
+        dict(n=int(238 * k), layer=2, tiles=('n_dense', 'n_mid'), e0=0, e1=1.0, width=(.024 * w, .034 * w), nseg=7, seg_len=.072, across=1, lift_scale=1.0, lift_off=0.0, roll=.05, len_var=.06, taper=.2, kind='under'),
+        dict(n=int(212 * k), layer=3, tiles=('n_dense', 'n_mid'), e0=0, e1=1.0, width=(.016 * w, .024 * w), nseg=7, seg_len=.072, across=1, lift_scale=1.0, lift_off=0.0, roll=.14, len_var=.10, taper=.35, kind='hair'),
+        dict(n=int(60 * k), layer=3, tiles=('n_mid', 'n_thin'), e0=0, e1=.97, width=(.009 * w, .014 * w), nseg=7, seg_len=.072, across=1, lift_scale=1.0, lift_off=0.0, roll=.3, len_var=.2, taper=.6, nblend=.7, kind='over'),
+        dict(n=int(110 * k), layer=3, tiles=('n_mid', 'n_thin'), e0=.58, e1=1.0, azmax=1.0, width=(.008 * w, .013 * w), nseg=5, across=1, lift_scale=1.0, lift_off=.0015, roll=.12, len_var=.2, taper=.5, kind='fringe'),
+        dict(n=int(120 * k), layer=5, tiles=('n_wisp', 'n_thin'), e0=.86, e1=1.0, width=(.005 * w, .008 * w), nseg=2, across=1, lift_scale=1.0, lift_off=.0008, kind='wisp'),
+    ]
 STYLES = {
+ # The maidens (NPC/Maiden and its colour twins; 1997 pictures 221-259): long loose yellow hair with a fringe
+ 'Maiden': dict(dir='NPC/Maiden', kind='long', seed=33, hairline=(.46, .12, -.5), guides=1200, density=700000, interp=4, K=24, resample=30,
+                L_fringe=.062, z_end=1.21, gravity=1.1, back_pull=1.7, fan=.22, tuck=.9, hug=.010, wave=.06, wave_n=6.0, wander=.012, len_lock=.07,
+                torso=dict(top=1.515, z_sh=1.44, y0=0.0, a=(.200, .070), b=(.128, .088)),
+                clump=.5, clump_d=.010, noise_d=.0014, frizz_d=.0008, trim_rand=.02, tip_spread=.002,
+                strand=dict(melanin=.20, redness=.30, rough=.32, radial=.4, rand_col=.10),
+                albedo=(.36, .25, .085), col_var=.10, cap_tip=(.10, .22), cap_h=.5, cap_hmax=.006,
+                brow=dict(th=.0040, n=600, arch=.0070, inner_up=.0012), brow_rgb='128,98,58', lash_rgb='40,28,18', brow_melanin=.35, brow_dark=.5,
+                card_mat=dict(transl=.9, shadow=.2, spec=.006, spec2=10.0, ao=.45),
+                tile=dict(frizz=.006, wave=.02, clump=.6, stray=.012, tip_gain=.4, n_dense=750, n_mid=300, n_thin=100, n_wisp=30, n_fly=8, strand_px=2.0),
+                shells=long_shells()),
+ # Seth (NPC/Seth, the last enemy): dark brown hair standing in a tall crest from a high forehead (1997 pictures pose and seth1w-9w)
+ 'Seth': dict(dir='NPC/Seth', kind='crest', seed=13, hairline=(.62, .20, -.50), guides=1300, density=800000, interp=4, K=12, resample=18,
+              L_side=.048, L_nape=.030, el_side=9, el_jit=4, tousle=.35, jit=.10, gravity=.25, lift_tip=.006, wander=.03,
+              crest_e=(.72, .42), crest_h=.115, crest_back=-.012, crest_sweep=.040, crest_peak=.05, crest_w=.26, crest_l=.62, crest_out=.44, crest_arc=.62, lock_var=.5, crest_x=.012, crest_len=(.82, 1.0),
+              clump=.75, clump_d=.012, noise_d=.0014, frizz_d=.0007, trim_rand=.014, tip_spread=.001,
+              strand=dict(melanin=.84, redness=.75, rough=.30, radial=.4, rand_col=.12),
+              albedo=(.030, .016, .009), col_var=.22, brow_melanin=.10, brow=dict(th=.0056, n=760, inner_up=-.0016, z0=.0180, arch=.0042), brow_dark=.9, card_mat=dict(spec=.006, transl=.7, spec2=20.0), brow_rgb='48,28,18', lash_rgb='34,22,16',
+              cap_tip=(.45, .85), cap_h=.74, cap_hmax=.11, cap_rings=26, cap_segs=52,
+              tile=dict(frizz=.010, wave=.035, clump=1.0, stray=.03, tip_gain=.5, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0, rag_k=1.7),
+              shells=crest_shells()),
  'Dink': dict(kind='short', seed=5, hairline=(.50, .14, -.52), guides=1100, density=750000, interp=4,
               L_top=.075, L_side=.05, L_nape=.036, L_fringe=.066, el_top=18, el_side=6, el_jit=6, sweep=.95, tousle=.6, jit=.12, gravity=1.2, lift_tip=.003, wander=.05,
               clump=.7, clump_d=.010, noise_d=.0012, frizz_d=.0006, trim_rand=.012, tip_spread=.001,

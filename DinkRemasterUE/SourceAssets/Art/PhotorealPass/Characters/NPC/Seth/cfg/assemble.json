@@ -1,0 +1,5 @@
+{"name": "Seth", "packed": "Dink/Work/dink_packed.blend", "head": "NPC/Seth/Work/seth_head.blend", "tex": "NPC/Seth/Textures", "prefix": "T_Seth_PR",
+ "out": "NPC/Seth/SK_Seth_Photoreal.blend",
+ "tex_override": {"_Outfit_N.png": "Dink/Textures/T_Dink_PR_Outfit_N.png", "_Outfit_ORM.png": "Dink/Textures/T_Dink_PR_Outfit_ORM.png",
+                  "_Gear_BC.png": "Dink/Textures/T_Dink_PR_Gear_BC.png", "_Gear_N.png": "Dink/Textures/T_Dink_PR_Gear_N.png", "_Gear_ORM.png": "Dink/Textures/T_Dink_PR_Gear_ORM.png"},
+ "skin_cull_r": 0.066, "skin_tuck": 0.004, "smooth_it": 8, "clean_degenerate": true, "arm_to_clavicle": {"Jerkin": 0.75, "Shirt": 0.75}, "under": {"Shirt": [0.03, 0.06]}}

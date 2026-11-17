@@ -14,7 +14,7 @@ Writes Characters/NPC/<Name>/Work-free output: Export/SK_<Name>_Photoreal_LOD0-3
 filler textures under Textures/, manifest.json (schema dink-photoreal-character/1; the other textures stay where they
 are, under Unclaimed/, and the manifest points at them). The intermediate .blend goes to the work dir (default: the
 system temp folder) and is not kept: this script rebuilds it from the Unclaimed source."""
-import bpy, sys, os, json, subprocess, tempfile
+import bpy, sys, os, json, subprocess, tempfile, math
 import numpy as np
 from pathlib import Path
 from mathutils import Vector
@@ -75,6 +75,92 @@ def components(me):
     return np.array([find(i) for i in range(n)])
 
 
+LIMBS = (('upperarm', 'lowerarm', 'clavicle', .046), ('lowerarm', 'hand', None, .038), ('thigh', 'calf', 'pelvis', .074), ('calf', 'foot', None, .050))
+
+
+def add_body(lods, dst, cfg):
+    """A body under a harness of rigid plates (the knight): the source is plates only, so at the armpits, elbows,
+    knees, hips and neck one looked through the figure. Limbs are tubes from joint to joint with a ball at each joint,
+    the trunk a loft of ellipses from the hips to the neck, all sized from the plates around them (inside their inner
+    face) and skinned to the bones with blended rings at the joints. They wear the mail of the harness's own texture:
+    every quad shows the mail patch `uv` (centre) +- `half` of the atlas, mirrored from quad to quad so it tiles."""
+    import bmesh
+    o0 = lods[0]; me0 = o0.data; n = len(me0.vertices); co = np.empty(n * 3); me0.vertices.foreach_get('co', co); co = co.reshape(-1, 3)
+    names = [g.name for g in o0.vertex_groups]; W = np.zeros((n, len(names)))
+    for v in me0.vertices:
+        for ge in v.groups: W[v.index, ge.group] = ge.weight
+    def of(bone): return W[:, names.index(bone)] > .5 if bone in names else np.zeros(n, bool)
+    def radius(a, b, default):
+        A, B = dst[a], dst[b]; ax = (B - A) / np.linalg.norm(B - A); sel = co[of(a)]
+        if len(sel) < 12: return default
+        t = (sel - A) @ ax / np.linalg.norm(B - A); mid = sel[(t > .2) & (t < .8)]
+        if len(mid) < 8: return default
+        d = np.linalg.norm((mid - A) - np.outer((mid - A) @ ax, ax), axis=1)
+        return float(np.clip(np.percentile(d, 15) * cfg.get('inside', .90), default * .6, default * 1.5))
+    parts = []      # (rings: list of (centre, x axis, y axis, rx, ry, {bone: weight}))
+    def frame(ax):
+        ref = np.array([0.0, 1.0, 0.0]) if abs(ax[1]) < .9 else np.array([1.0, 0.0, 0.0])
+        x = np.cross(ref, ax); x /= np.linalg.norm(x); return x, np.cross(ax, x)
+    for base, child, parent, default in LIMBS:
+        for sd in 'lr':
+            a, b = f'{base}_{sd}', f'{child}_{sd}'; A, B = dst[a], dst[b]; ax = (B - A) / np.linalg.norm(B - A); x, y = frame(ax); r = radius(a, b, default)
+            par = (f'{parent}_{sd}' if parent == 'clavicle' else parent) if parent else None
+            rings = []
+            for k in range(7):
+                t = k / 6; w = {a: 1.0}
+                if k == 6: w = {a: .5, b: .5}
+                elif k == 0 and par: w = {a: .6, par: .4}
+                taper = 1.0 - .12 * t
+                rings.append((A + (B - A) * t, x, y, r * taper, r * taper, w))
+            parts.append(rings)
+            # the ball in the joint at the head of the segment (shoulder, elbow, hip, knee)
+            ball = []; w = {a: .5, par: .5} if par else {a: .5, {'lowerarm': f'upperarm_{sd}', 'calf': f'thigh_{sd}'}[base]: .5}
+            for k in range(1, 6):
+                th = math.pi * k / 6; ball.append((A + ax * math.cos(th) * -r * 1.08, x, y, r * 1.08 * math.sin(th), r * 1.08 * math.sin(th), w))
+            parts.append(ball)
+    # the trunk: ellipses through the spine, sized from the plates at each height
+    trunk = []; chain = ['pelvis', 'spine_01', 'spine_02', 'spine_03', 'spine_04', 'spine_05', 'neck_01', 'neck_02']
+    body = np.zeros(n, bool)
+    for bn in chain: body |= of(bn)
+    for i, bn in enumerate(chain):
+        c = dst[bn].copy(); sl = co[body & (np.abs(co[:, 2] - c[2]) < .05)]
+        if len(sl) >= 10 and not bn.startswith('neck'):
+            yc = float(np.median(sl[:, 1])); rx = float(np.percentile(np.abs(sl[:, 0]), 55)) * cfg.get('inside', .90); ry = float(np.percentile(np.abs(sl[:, 1] - yc), 55)) * cfg.get('inside', .90); c[1] = yc
+        else:
+            rx, ry = (.062, .060) if bn.startswith('neck') else (.15, .11)
+        trunk.append((c, np.array([1.0, 0, 0]), np.array([0, 1.0, 0]), rx, ry, {bn: 1.0}))
+    hip = trunk[0]; trunk.insert(0, (hip[0] - np.array([0, 0, .09]), hip[1], hip[2], hip[3] * .9, hip[4] * .9, {'pelvis': 1.0}))
+    head = dst['head']; trunk.append((head + np.array([0, 0, .03]), trunk[-1][1], trunk[-1][2], .058, .058, {'head': 1.0}))
+    parts.append(trunk)
+    U, Vc = cfg['uv']; H = cfg['half']; SIDES = 10; added = 0
+    for o in lods:
+        me = o.data; bm = bmesh.new(); bm.from_mesh(me); dl = bm.verts.layers.deform.verify(); uvl = bm.loops.layers.uv.verify()
+        gi = {g.name: g.index for g in o.vertex_groups}
+        for rings in parts:
+            rows = []
+            for c, x, y, rx, ry, w in rings:
+                row = []
+                for j in range(SIDES):
+                    ang = 2 * math.pi * j / SIDES; v = bm.verts.new(c + x * rx * math.cos(ang) + y * ry * math.sin(ang))
+                    for bone, wt in w.items():
+                        if bone not in gi: gi[bone] = o.vertex_groups.new(name=bone).index
+                        v[dl][gi[bone]] = wt
+                    row.append(v)
+                rows.append(row)
+            for i in range(len(rows) - 1):
+                for j in range(SIDES):
+                    quad = (rows[i][j], rows[i][(j + 1) % SIDES], rows[i + 1][(j + 1) % SIDES], rows[i + 1][j])
+                    try: f = bm.faces.new(quad)
+                    except ValueError: continue
+                    f.smooth = True; f.material_index = 0
+                    for loop, (du, dv) in zip(f.loops, ((0, 0), (1, 0), (1, 1), (0, 1))):
+                        uu = du if j % 2 == 0 else 1 - du; vv = dv if i % 2 == 0 else 1 - dv
+                        loop[uvl].uv = (U + (uu * 2 - 1) * H, Vc + (vv * 2 - 1) * H)
+                    added += 1
+        bm.normal_update(); bm.to_mesh(me); bm.free(); me.update()
+    return {'body_quads_per_lod': added // len(lods)}
+
+
 def port_static(name):
     """A set piece that never moves (the king on his throne): the whole mesh on the root bone, LODs by decimation.
     It goes through the character path only so that the same placement binding and material kinds apply."""
@@ -122,6 +208,20 @@ def port(name):
         if W.shape[1] > 4:      # four influences a vertex, as the main characters have (the decimated LODs carry up to seven)
             small = np.argsort(W, axis=1)[:, :-4]; np.put_along_axis(W, small, 0.0, axis=1)
         W /= np.maximum(W.sum(1, keepdims=True), 1e-9); newco = np.zeros((n, 3)); trimmed = True
+        # The face is rigid on the head bone. The source weights the skin of the face partly to the neck (a quarter at eye
+        # level) while the eyeballs are all head: when the mannequin's clips turn or nod the head, the eyeballs travelled
+        # centimetres behind the lids and the iris went under them (the "eyes without an iris" of the first import).
+        # Everything within 7 cm of an eye (skin, lids, brow and lash cards, the fringe) takes the head bone alone,
+        # fading out to the source weights at 12 cm.
+        eye_slots = [k for k, s_ in enumerate(o.material_slots) if s_.material and s_.material.name.endswith('_Eyes')]
+        if eye_slots and 'head' in gnames:
+            ev = sorted({v for p_ in me.polygons if p_.material_index in eye_slots for v in p_.vertices}); ec = co[ev]
+            centres = [ec[ec[:, 0] * sg > 0].mean(0) for sg in (1, -1) if (ec[:, 0] * sg > 0).any()]
+            if centres:
+                dist = np.min([np.linalg.norm(co - c_, axis=1) for c_ in centres], axis=0)
+                rigid = np.clip((.12 - dist) / .05, 0.0, 1.0); rigid = rigid * rigid * (3 - 2 * rigid)
+                hj = gnames.index('head'); W *= (1 - rigid)[:, None]; W[:, hj] += rigid
+                stats.setdefault('face_rigid_vertices', []).append(int((rigid > .999).sum()))
         for j, b in enumerate(gnames):
             A, t = M[b]; newco += W[:, j:j + 1] * (co @ A.T + t)
         # long things held in a hand: upright beside the body, bound to the root
@@ -153,6 +253,7 @@ def port(name):
         mod = o.modifiers.new('Armature', 'ARMATURE'); mod.object = arm
         o.name = f'{new_name}_LOD{i}'; me.name = o.name; o.hide_render = i != 0; o.hide_viewport = False
         stats['lods'].append({'vertices': n, 'pole_vertices': poles, 'min_z': round(float(newco[:, 2].min()), 4), 'max_z': round(float(newco[:, 2].max()), 4)})
+    if cfg.get('body'): stats.update(add_body(lods, dst, cfg['body']))
     lift = -min(l['min_z'] for l in stats['lods'][:1])     # soles on the ground
     for o in lods:
         for v in o.data.vertices: v.co.z += lift
