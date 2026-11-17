@@ -1,6 +1,7 @@
 #include "Greybox/DinkGreyboxCharacter.h"
 #include "DinkLandforms.h"
 #include "DinkCollision.h"
+#include "DinkPerfScope.h"
 #include "DinkCoreModule.h"
 #include "DinkArtSubsystem.h"
 #include "DinkBodyAnimInstance.h"
@@ -331,6 +332,7 @@ void ADinkGreyboxCharacter::ZoomCamera(float Steps)
 
 void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 {
+	DINK_PERF_SCOPE(Dink_Character_Tick);
 	if (APlayerController* PC = Cast<APlayerController>(Controller); PC && IsLocallyControlled())
 	{
 		// Poll held controls too: losing focus or a consumed menu key-up must never stick a gait/jump.

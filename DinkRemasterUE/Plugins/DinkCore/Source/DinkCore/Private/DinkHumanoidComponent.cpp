@@ -1,4 +1,5 @@
 #include "DinkHumanoidComponent.h"
+#include "DinkPerfScope.h"
 #include "Animation/AnimSingleNodeInstance.h"
 #include "Animation/BlendSpace.h"
 #include "GameFramework/Actor.h"
@@ -161,6 +162,7 @@ void UDinkHumanoidComponent::Configure(USkeletalMesh* Mesh, UBlendSpace* Locomot
 
 void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
+	DINK_PERF_SCOPE(Dink_Humanoid_Tick);
 	AActor* Owner = GetOwner();
 	if (Owner && bBodyAnimation)
 	{

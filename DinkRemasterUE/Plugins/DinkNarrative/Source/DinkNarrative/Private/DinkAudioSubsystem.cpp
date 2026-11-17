@@ -1,5 +1,6 @@
 #include "DinkAudioSubsystem.h"
 #include "DinkAudioLife.h"
+#include "DinkPerfScope.h"
 #include "DinkDirector.h"
 #include "DinkStorySubsystem.h"
 #include "Engine/GameInstance.h"
@@ -359,6 +360,7 @@ void UDinkAudioSubsystem::HandleCue(const FString& Cue, UDinkDirector* Director)
 }
 void UDinkAudioSubsystem::Tick(float DeltaTime)
 {
+	DINK_PERF_SCOPE(Dink_Audio_Tick);
  UDinkDirector* Director = BoundDirector.Get();
  if (!Director && GetWorld()->GetGameInstance())
   if (UDinkStorySubsystem* Story = GetWorld()->GetGameInstance()->GetSubsystem<UDinkStorySubsystem>()) Director = Story->GetDirector();

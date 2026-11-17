@@ -27,6 +27,10 @@ MP = unreal.MaterialProperty
 ST = unreal.MaterialSamplerType
 F1 = unreal.CustomMaterialOutputType.CMOT_FLOAT1
 F3 = unreal.CustomMaterialOutputType.CMOT_FLOAT3
+import importlib.util as _ilu
+_spec = _ilu.spec_from_file_location('add_kit_lods', str(ROOT / 'Scripts/add_kit_lods.py'))
+kit_lods = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(kit_lods)
 MESHES = (unreal.get_editor_subsystem(unreal.StaticMeshEditorSubsystem) or unreal.get_default_object(unreal.StaticMeshEditorSubsystem))
 report = {'materials': [], 'modules': [], 'warnings': [], 'lod_sections_remapped': []}
 REMAPPED = report['lod_sections_remapped']
@@ -445,6 +449,11 @@ for row in (manifest.get('modules') or manifest['assets']):
             raise RuntimeError(f"{row['name']}: slot {index} ({slot_name}) has no contract material")
         slot.set_editor_property('material_interface', materials[wanted])
     mesh.set_editor_property('static_materials', slots)
+    # A200: a re-imported single-LOD, non-Nanite mesh of more than 5,000 triangles gets engine-reduced LODs
+    # (Scripts/add_kit_lods.py: LOD0 untouched, LOD1/LOD2 from 10/20 m, every section kept)
+    if changed and MESHES.get_lod_count(mesh) == 1 and mesh.get_num_triangles(0) > kit_lods.MIN_TRIANGLES \
+            and not mesh.get_editor_property('nanite_settings').get_editor_property('enabled'):
+        kit_lods.ensure_lods(mesh)
     size = mesh.get_bounding_box().max - mesh.get_bounding_box().min
     got = [round(size.x / 100.0, 3), round(size.y / 100.0, 3), round(size.z / 100.0, 3)]
     want = row.get('dimensions_m') or got
