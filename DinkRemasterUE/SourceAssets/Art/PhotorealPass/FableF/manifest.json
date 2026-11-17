@@ -2,8 +2,104 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF",
  "generated_by": "FableF/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 5 effect flipbooks, 0 static meshes.",
- "assets": [],
+ "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 5 effect flipbooks, 5 static meshes.",
+ "assets": [
+  {
+   "name": "SM_Door_Barred_PR",
+   "class": "door",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/SM_Door_Barred_PR.fbx",
+   "materials": [
+    "MI_Door_Barred_PR"
+   ],
+   "dimensions_m": [
+    1.21,
+    0.145,
+    2.15
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "cellar_hatch",
+    "428 inside/stairs/stair- frame 5"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred"
+  },
+  {
+   "name": "SM_Stair_Flight_L_PR",
+   "class": "prop_large",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_L/SM_Stair_Flight_L_PR.fbx",
+   "materials": [
+    "MI_Stair_Flight_L_PR"
+   ],
+   "dimensions_m": [
+    4.3694,
+    1.095,
+    4.5665
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "stairs_wood",
+    "428 inside/stairs/stair- frame 1"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_L"
+  },
+  {
+   "name": "SM_Stair_Flight_R_PR",
+   "class": "prop_large",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R/SM_Stair_Flight_R_PR.fbx",
+   "materials": [
+    "MI_Stair_Flight_R_PR"
+   ],
+   "dimensions_m": [
+    4.3694,
+    1.095,
+    4.5665
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "stairs_wood",
+    "428 inside/stairs/stair- frame 3"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R"
+  },
+  {
+   "name": "SM_Stair_Well_L_PR",
+   "class": "prop_large",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_L/SM_Stair_Well_L_PR.fbx",
+   "materials": [
+    "MI_Stair_Well_L_PR"
+   ],
+   "dimensions_m": [
+    3.05,
+    1.43,
+    1.125
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "stairs_wood",
+    "428 inside/stairs/stair- frame 2"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_L"
+  },
+  {
+   "name": "SM_Stair_Well_R_PR",
+   "class": "prop_large",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_R/SM_Stair_Well_R_PR.fbx",
+   "materials": [
+    "MI_Stair_Well_R_PR"
+   ],
+   "dimensions_m": [
+    3.05,
+    1.43,
+    1.125
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "stairs_wood",
+    "428 inside/stairs/stair- frame 4"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_R"
+  }
+ ],
  "flipbooks": [
   {
    "name": "Fire_Wall",
@@ -111,6 +207,52 @@
    "uv": "UV0, unique bake, no tiling",
    "collision": "none imported; placements keep their hardbox"
   },
-  "materials": {}
+  "materials": {
+   "MI_Door_Barred_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/T_Door_Barred_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/T_Door_Barred_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/T_Door_Barred_PR_ORM.png"
+    }
+   },
+   "MI_Stair_Flight_L_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_L/T_Stair_Flight_L_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_L/T_Stair_Flight_L_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_L/T_Stair_Flight_L_PR_ORM.png"
+    }
+   },
+   "MI_Stair_Flight_R_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R/T_Stair_Flight_R_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R/T_Stair_Flight_R_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Flight_R/T_Stair_Flight_R_PR_ORM.png"
+    }
+   },
+   "MI_Stair_Well_L_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_L/T_Stair_Well_L_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_L/T_Stair_Well_L_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_L/T_Stair_Well_L_PR_ORM.png"
+    }
+   },
+   "MI_Stair_Well_R_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_R/T_Stair_Well_R_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_R/T_Stair_Well_R_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/stairs_wood/Stair_Well_R/T_Stair_Well_R_PR_ORM.png"
+    }
+   }
+  }
  }
 }
