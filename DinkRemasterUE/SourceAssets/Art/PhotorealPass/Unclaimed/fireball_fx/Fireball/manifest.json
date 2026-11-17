@@ -30,7 +30,17 @@
    2.4
   ],
   "blend": "additive (or alpha with emissive)",
-  "alpha_coverage": 0.107
+  "alpha_coverage": 0.107,
+  "variants": [
+   {
+    "suffix": "_W",
+    "roll": 0.75
+   },
+   {
+    "suffix": "_E",
+    "roll": 0.25
+   }
+  ]
  },
  "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fireball_fx/Fireball/frames_strip.png",
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fireball_fx/Fireball/FX_Fireball.blend",
@@ -38,7 +48,9 @@
  "build": "Unclaimed/tools/bl.sh build_fx.py Fireball",
  "families": [
   "fireball_fx",
-  "512 effects/comets/sm-comt2/fbal2- frame 1"
+  "512 effects/comets/sm-comt2/fbal2- frame 1",
+  "502, 504, 506, 508 effects/comets/sm-comt1 (the fireball spell)",
+  "514, 516, 518 effects/comets/sm-comt2 (hellfire)"
  ],
  "origin_ids": {
   "fireball_fx": [

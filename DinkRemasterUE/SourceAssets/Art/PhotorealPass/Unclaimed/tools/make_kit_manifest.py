@@ -65,10 +65,20 @@ def build(everything=False):
         folder = os.path.dirname(path)
         if m.get('flipbook') and ('MI_' + m['name']) in effects:
             fb = m['flipbook']
-            flipbooks.append({'name': m['name'][len('FX_'):] if m['name'].startswith('FX_') else m['name'], 'file': m['textures'][0]['file'],
-                              'grid': fb['grid'], 'fps': fb['fps'], 'glow': fb.get('glow', 6), 'loop': bool(fb.get('loop', True)),
-                              'blend': 'translucent' if fb.get('ue_blend') == 'alpha' else 'additive',
-                              'camera_offset_cm': fb.get('camera_offset_cm', 0), 'families': m['families'], **({'hot': fb['hot']} if fb.get('hot') else {})})
+            base = m['name'][len('FX_'):] if m['name'].startswith('FX_') else m['name']
+            # "variants": the same texture turned inside its card (a missile's other directions): {"suffix": "_W", "roll": 0.75}
+            for v in [{'suffix': '', 'roll': 0.0}] + list(fb.get('variants', [])):
+                if ('MI_FX_' + base + v['suffix']) not in effects:
+                    continue
+                row = {'name': base + v['suffix'], 'file': m['textures'][0]['file'],
+                       'grid': fb['grid'], 'fps': fb['fps'], 'glow': fb.get('glow', 6), 'loop': bool(fb.get('loop', True)),
+                       'blend': 'translucent' if fb.get('ue_blend') == 'alpha' else 'additive',
+                       'camera_offset_cm': fb.get('camera_offset_cm', 0), 'families': m['families']}
+                if v['roll']:
+                    row['roll'] = v['roll']
+                if fb.get('hot'):
+                    row['hot'] = fb['hot']
+                flipbooks.append(row)
             continue
         if m['class'] not in STATIC:
             skipped.append({'name': m['name'], 'class': m['class'].split(' (')[0], 'why': 'not a static mesh'})

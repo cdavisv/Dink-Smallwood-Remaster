@@ -441,7 +441,9 @@ if isinstance(manifest.get('flipbooks'), list) and manifest['flipbooks']:
         parts: fire with smoke, charred wood under its embers, blood, water; the frame's alpha is the opacity, pixels
         brighter than Hot.x glow by the Grid glow factor, the rest keep their colour times Hot.z).
         Scalars: StartTime (world seconds, set per card by UDinkArtFamilySubsystem), OneShot (1 = play once and hold the
-        last frame, 0 = loop), CameraOffset (cm the card is drawn towards the camera, so the ground does not cut it)."""
+        last frame, 0 = loop), CameraOffset (cm the card is drawn towards the camera, so the ground does not cut it),
+        Roll (turns the picture inside its square card, in whole turns: 0.25 puts the picture's bottom on the right,
+        0.5 on top, 0.75 on the left; a kit row's "roll": the fireball's four directions share one texture)."""
         name = 'M_FX_Flipbook_Blend' if blend == 'translucent' else 'M_FX_Flipbook'
         path = FOLDER + '/' + name
         mat = LIB.load_asset(path) if LIB.does_asset_exist(path) else None
@@ -457,14 +459,17 @@ if isinstance(manifest.get('flipbooks'), list) and manifest['flipbooks']:
         # Grid = (columns, rows, frames per second, glow); frames run row by row from the top left
         uv = custom(mat, -900, 0, 'float n = Grid.x * Grid.y; float t = max(T - Start, 0.0) * Grid.z; '
                     'float f = Once > 0.5 ? min(floor(t), n - 1.0) : floor(frac(t / n) * n); '
-                    'return (UV + float2(fmod(f, Grid.x), floor(f / Grid.x))) / Grid.xy;',
-                    unreal.CustomMaterialOutputType.CMOT_FLOAT2, ['UV', 'T', 'Grid', 'Start', 'Once'], 'Flipbook frame')
+                    'float2 p = UV - 0.5; float sn, cs; sincos(Roll * 6.2831853, sn, cs); '
+                    'float2 q = saturate(float2(cs * p.x - sn * p.y, sn * p.x + cs * p.y) + 0.5); '
+                    'return (q + float2(fmod(f, Grid.x), floor(f / Grid.x))) / Grid.xy;',
+                    unreal.CustomMaterialOutputType.CMOT_FLOAT2, ['UV', 'T', 'Grid', 'Start', 'Once', 'Roll'], 'Flipbook frame')
         link(expr(mat, unreal.MaterialExpressionTextureCoordinate, -1100, -100), '', uv, 'UV')
         link(expr(mat, unreal.MaterialExpressionTime, -1100, 0), '', uv, 'T')
         grid = expr(mat, unreal.MaterialExpressionVectorParameter, -1100, 100, parameter_name='Grid', default_value=unreal.LinearColor(8, 8, 24, 3))
         link(grid, '', uv, 'Grid')
         link(expr(mat, unreal.MaterialExpressionScalarParameter, -1100, 500, parameter_name='StartTime', default_value=0.0), '', uv, 'Start')
         link(expr(mat, unreal.MaterialExpressionScalarParameter, -1100, 600, parameter_name='OneShot', default_value=0.0), '', uv, 'Once')
+        link(expr(mat, unreal.MaterialExpressionScalarParameter, -1100, 700, parameter_name='Roll', default_value=0.0), '', uv, 'Roll')
         frames = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -600, 0, parameter_name='Flipbook', texture=tex, sampler_type=ST.SAMPLERTYPE_COLOR)
         link(uv, '', frames, 'UVs')
         if blend == 'translucent':
@@ -502,7 +507,8 @@ if isinstance(manifest.get('flipbooks'), list) and manifest['flipbooks']:
         if blend not in fx_parents:
             fx_parents[blend] = flipbook_master(blend, tex)
         mi = instance('MI_FX_' + row['name'], fx_parents[blend], {'Flipbook': tex},
-                      {'OneShot': 0.0 if row.get('loop', True) else 1.0, 'CameraOffset': float(row.get('camera_offset_cm', 0.0))}, {})
+                      {'OneShot': 0.0 if row.get('loop', True) else 1.0, 'CameraOffset': float(row.get('camera_offset_cm', 0.0)),
+                       'Roll': float(row.get('roll', 0.0))}, {})
         if blend == 'translucent' and isinstance(row.get('hot'), list) and len(row['hot']) == 3:
             EDIT.set_material_instance_vector_parameter_value(mi, 'Hot', unreal.LinearColor(float(row['hot'][0]), float(row['hot'][1]), float(row['hot'][2]), 0.0))
         g = row.get('grid', [8, 8])
