@@ -14,6 +14,7 @@
 #include "Greybox/DinkScreenVolume.h"
 #include "Components/InstancedStaticMeshComponent.h"
 #include "DinkPlayerBlockers.h"
+#include "DinkFamilyDuplicates.h"
 #include "Components/StaticMeshComponent.h"
 #include "Dom/JsonObject.h"
 #include "Engine/StaticMesh.h"
@@ -788,6 +789,7 @@ void UDinkArtFamilySubsystem::BuildIndex(UWorld& World)
 	for (TActorIterator<ADinkGreyboxScreen> It(&World); It; ++It)
 		if (It->InstanceOrigins)
 			for (const FDinkInstanceOrigin& Origin : It->InstanceOrigins->Origins) Learn(Origin.Sequence, Origin.Frame, Origin.ClassId);
+	UDinkFamilyDuplicatesSubsystem::Build(*this);  // A208: which copy of a cross-screen duplicate draws it, once, from placement data
 }
 
 FName UDinkArtFamilySubsystem::ClassOfPicture(int32 Sequence, int32 Frame) const
@@ -1101,6 +1103,7 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		if (Fx && Fx->bEffectPlaced && !Fx->Effect.IsEmpty() && (!P.bScripted || Fx->bScripted)) B = Fx;
 	}
 	if (B && !B->Effect.IsEmpty()) return B->bEffectPlaced && DressPlacedEffect(Actor, *B);
+	if (B && UDinkFamilyDuplicatesSubsystem::DropActor(*this, Actor, P.Origin)) return false;  // A208: another copy draws it
 	UStaticMesh* Mesh = B ? MeshFor(*B, P.Origin) : nullptr;
 	if (!Mesh) return false;
 
@@ -1285,6 +1288,7 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 		{
 			FTransform Card;
 			if (!Decor->GetInstanceTransform(O->InstanceIndex, Card, /*bWorldSpace*/ false)) continue;
+			if (UDinkFamilyDuplicatesSubsystem::IsDroppedInstance(*this, O->OriginId.ToString())) continue;  // A208: another copy draws it
 			UStaticMesh* MainMesh = MeshFor(*Shared, O->OriginId.ToString());
 			if (!MainMesh) continue;
 			TArray<DinkArtFamily::FSpanPiece> Pieces;
