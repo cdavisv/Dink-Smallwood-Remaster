@@ -163,6 +163,23 @@ Owner feedback of 13 Nov 2026: "fix blocky and polygon looking art". What was fo
 
 - **What binds at runtime**: a `families.json` row with `effect` (a material) and `effect_size_cm` instead of `mesh` is drawn on a camera-facing card for sprites that scripts create.
 
+## Fire of the burning house: FableF kit (16 Nov 2026)
+
+| What | Command | Reads | Writes |
+|---|---|---|---|
+| Wall of flame (427, placed 161 and 70), its smoke column and the three burn patches (155, 156, 157) | `python3 -I SourceAssets/Art/PhotorealPass/FableF/tools/make_kit_manifest.py`, then `DINK_KIT=FableF DINK_KIT_FOLDER=FableF Scripts/import_town_exteriors.sh` | `FableF/manifest.json` `flipbooks` | `/Game/Dink/Photoreal/FableF/M_FX_Flipbook_Blend`, `MI_FX_Fire_Wall`, `MI_FX_Smoke_Plume`, `MI_FX_Embers_A/B/C`, `Textures/T_FX_*_Flipbook` |
+| Rebuild the fire | `blender -b --factory-startup -t 4 --python SourceAssets/Art/PhotorealPass/FableF/tools/build_fire_fx.py -- Fire_Wall --res 150 --cache <scratch>` (set `DINK_FIRE_CPU=1` if the GPU back end faults on the volume). Stages: `sim`, `render` (HDR flame frames, kept in the cache), `atlas` (colour, opacity, smoke and sparks by `tools/fire_encode.py`: seconds, no simulation), `beauty`, `compact` | the script | `FableF/fire_fx/Fire_Wall` |
+| Rebuild the smoke column | `python3 -I SourceAssets/Art/PhotorealPass/FableF/tools/build_smoke_plume.py` (no Blender) | the script | `FableF/smoke_fx/Smoke_Plume` |
+| Rebuild the burn patches | `... build_fire_fx.py -- Fire_Wall --cache <scratch> --stage compact`, then `python3 -I SourceAssets/Art/PhotorealPass/FableF/tools/build_burn_patch.py <scratch>/compact_256.npy` (no Blender) | the scripts | `FableF/small_fire_fx/Embers_*` |
+
+- **The flames' foot and ends** are made in `tools/fire_encode.py` (`foot_px`, `foot_soft`: the flames thin towards the floor from a height that wanders along the fire; `ends_px`: the wall's two ends thin out behind a boundary that wanders with height). With them the row's `effect_sink` stays near 0.02; a floor that cuts an opaque flame shows a ruler line. `--stage atlas` re-encodes from the cached frames in about 25 s.
+- **The kit import runs `-nullrhi`**: under `Saved/Gate2Coord/unreal_turn.sh` export `DINK_GPU=0` for that step so it does not wait for the GPU lock.
+- **Own kit folder**: these sources live in `PhotorealPass/FableF` and import into `/Game/Dink/Photoreal/FableF`, so the import never rewrites the Unclaimed kit's `M_Struct_Baked` or its manifest.
+- **Flipbook rows** (manifest `flipbooks`): `"blend": "translucent"` hangs the instance off `M_FX_Flipbook_Blend` (unlit, translucent, alpha = opacity; texels brighter than `Hot.x` glow by `glow`; `"hot": [lo, hi, base]` sets the thresholds), anything else off the additive `M_FX_Flipbook`. `"loop": false` plays once and holds the last frame from the card's `StartTime`; `"camera_offset_cm"` draws the card that much nearer the camera. A kit builds only the masters its rows use.
+- **A material that fails to compile is silent in the import log.** After a change to the masters look for `Failed to compile Material` in the log of a rendered run (`Saved/PhotorealPass/lighting/tools/capture.log`).
+- **What binds at runtime**: a `families.json` effect row with `"effect_placed": true` also draws on PLACED sprites, on manifest-dressed screens too (screens 1 and 439): `UDinkArtFamilySubsystem::DressPlacedEffect` gives the sprite's own upright card the effect material, grows it by 1 / `effect_fit` about the middle of its bottom edge, stands it on the ground (`effect_ground`: a picture drawn above its sort point stands that far north), sinks it by `effect_sink`, moves and sizes it by the row's `offset_cm` for that placement (roof and wall fires), adds the `effect_plume` smoke card where the row names the placement, and adds the `effect_light` point light (no shadows; `effect_light_flicker` makes it waver). The card keeps facing the camera and keeps its vision and current-screen rules. Rows without `effect_placed` behave as before (script sprites only).
+- **Audit**: `art_coverage.py` counts actor placements of an `effect_placed` row as final by family (`placed_fx`), also on dressed screens; `hide_origins` still wins (S001_P21 was taken out of the Stonebrook room's list so its fire draws).
+
 ## Gate 2 static batch 1 (13 Nov 2026)
 
 Evidence: `Docs/Verification/Gate2StaticBatch1_13Nov2026/`.

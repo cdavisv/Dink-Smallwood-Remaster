@@ -1,0 +1,53 @@
+{
+ "name": "FX_Smoke_Plume",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  3.5,
+  7.0,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/smoke_fx/Smoke_Plume/T_FX_Smoke_Plume_Flipbook.png",
+   "size_px": [
+    2048,
+    4096
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha (opacity); 8 x 8 frames of 256 x 512 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 64,
+  "grid": [
+   8,
+   8
+  ],
+  "fps": 16,
+  "loop": true,
+  "billboard_size_m": [
+   3.5,
+   7.0
+  ],
+  "blend": "translucent",
+  "glow": 1.0,
+  "hot": [
+   0.9,
+   1.0,
+   1.0
+  ],
+  "alpha_coverage": 0.412,
+  "stands_on_bottom_edge": true
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/smoke_fx/Smoke_Plume/frames_strip.png",
+ "source_note": "made by code, no .blend: FableF/tools/build_smoke_plume.py (rising periodic noise in a widening, leaning column; orange underlight at its foot).",
+ "build": "python3 -I FableF/tools/build_smoke_plume.py Smoke_Plume",
+ "families": [
+  "fire_fx plume"
+ ],
+ "supersedes": "none",
+ "dresses": "the smoke column over a burning roof: 3 m wide where it leaves the fire, rolling up 7 m and thinning",
+ "third_party": [],
+ "status": "source delivered",
+ "known_weaknesses": "Noise, not a simulation: the billows roll but do not curl into vortices. Unlit: the smoke keeps its own brightness at night. A card: it does not bend with a wind and ends 7 m up."
+}

@@ -59,6 +59,17 @@ struct DINKCORE_API FDinkFamilyBinding
 	/** true: also dress placements that carry a DinkC script (default: scripted placements keep their card). */
 	bool bScripted = false;
 	/**
+	 * JSON "offset_cm": {"S439_P05": [x, y, z]}: the mesh or effect card of single placements moves by this in world axes
+	 * (cm; x east, y south, z up) after the anchor and every other rule. For the few placements whose 1997 point is not
+	 * where the thing stands in the built world: the fires the picture paints on the cottage roof (their points lie on
+	 * the ground north of the real-size cottage), flames and burn marks on a wall face, a flight of stairs against the
+	 * drawn wall. Presentation only. An optional fourth number is a size factor for that placement (actor placements):
+	 * the roof fires of screen 439 are 2.2 times their picture, as the cottage is real size on a layout four times the
+	 * picture's.
+	 */
+	TMap<FName, FVector> OffsetCm;
+	TMap<FName, double> OffsetScale;
+	/**
 	 * JSON "span": "width" (1) or "height" (2, edge-on strips): the module is repeated along its own X axis until it fills
 	 * that dimension of the layout-scaled card, each copy scaled along X only to close the run exactly (a 4.38 m interior
 	 * wall sprite takes two 2.5 m modules at 0.876). "stretch" (3): one module scaled along X to the card's width.
@@ -72,9 +83,37 @@ struct DINKCORE_API FDinkFamilyBinding
 	 * JSON "effect" instead of "mesh": object path of a material drawn on a camera-facing card of "effect_size_cm"
 	 * (default 50) for pictures that are light, not things: the twinkle over a gold heap. Used for sprites that scripts
 	 * create (DressScriptSprite); placed sprites of such a row keep their card.
+	 *
+	 * JSON "effect_placed": true (fire of the burning house): placed sprites of the row draw the effect too, also on
+	 * screens an art manifest dresses (no manifest draws effects). Their own upright card stays where the importer put
+	 * it (so it still faces the camera and follows the screen and vision rules of every card) but shows the effect
+	 * material. "effect_fit": [w, h] is the part of the flipbook frame the 1997 picture corresponds to (the flames fill
+	 * 0.73 of a frame that leaves room for their sway): the card grows by 1/w and 1/h about the middle of its bottom
+	 * edge, then sinks by "effect_sink" (fraction of the new height: the margin under the flames in the frame).
+	 * "effect_ground": true stands that bottom edge on the ground instead: a 1997 picture drawn above its sort point
+	 * (the flames, 21 px up) is a thing standing further north, so the card moves north by the height it floated at;
+	 * one drawn below it (the embers) moves south.
+	 * "effect_light": [r, g, b, candela, radius_cm] adds a point light without shadows at "effect_light_height"
+	 * (fraction of the new height, default 0.35), just in front of the card. "effect_light_flicker" (0 to 0.9,
+	 * default 0) is the part of that intensity that wavers, as firelight does.
+	 * "effect_plume": {"material": "/Game/...", "size_cm": [w, h], "origins": ["S439_P05", ...]} adds a second,
+	 * camera-facing card over the named placements: the smoke column of a fire under the open sky (its foot in the
+	 * upper flames). Only the named placements get it: under a roof the column would stand in the rafters.
 	 */
 	FString Effect;
 	double EffectSizeCm = 50.0;
+	bool bEffectPlaced = false;
+	FVector2D EffectFit = FVector2D(1.0, 1.0);
+	double EffectSink = 0.0;
+	bool bEffectGround = false;
+	FLinearColor EffectLight = FLinearColor::Black;
+	double EffectLightCandela = 0.0;
+	double EffectLightRadiusCm = 0.0;
+	double EffectLightHeight = 0.35;
+	double EffectLightFlicker = 0.0;
+	FString EffectPlume;
+	FVector2D EffectPlumeSizeCm = FVector2D(300.0, 600.0);
+	TSet<FName> EffectPlumeOrigins;
 	FString Note;
 };
 
@@ -123,6 +162,10 @@ namespace DinkArtFamily
 
 	/** The binding for a placement: a sequence-and-frame row wins over a class row, which wins over a plain sequence row. */
 	DINKCORE_API const FDinkFamilyBinding* Resolve(const TArray<FDinkFamilyBinding>& Bindings, int32 Sequence, FName ClassId, int32 Frame = 0);
+	/** The binding for a sprite a script created. As Resolve, but an "effect_placed" row (a fire sized from a placed
+	 *  sprite's own card) never takes it: the picture's own sequence row is tried instead, and nullptr when that is a
+	 *  placed-effect row too (the sprite then shows its 1997 picture). */
+	DINKCORE_API const FDinkFamilyBinding* ResolveScriptSprite(const TArray<FDinkFamilyBinding>& Bindings, int32 Sequence, FName ClassId, int32 Frame = 0);
 
 	/** Precedence, in order: hardness-only proxy, dressed screen, origin-bound, no binding, scripted (unless the row allows). */
 	DINKCORE_API EDinkFamilyDecision Decide(const FDinkFamilyPlacement& Placement, const FDinkFamilyPrecedence& Precedence,
@@ -290,6 +333,8 @@ private:
 	UStaticMesh* MeshFor(const FDinkFamilyBinding& Binding, const FString& Origin);
 	UStaticMesh* LoadFamilyMesh(const FString& Path, const FString& Family);
 	bool DressActor(ADinkPlaceholderActor& Actor);
+	/** A placed sprite of an "effect_placed" row: its card shows the effect material (and carries the row's light). */
+	bool DressPlacedEffect(ADinkPlaceholderActor& Actor, const FDinkFamilyBinding& Binding);
 	int32 DressInstances(ADinkGreyboxScreen& Screen);
 
 	TArray<FDinkFamilyBinding> Bindings;

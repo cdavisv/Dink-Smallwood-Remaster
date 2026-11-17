@@ -1,0 +1,116 @@
+{
+ "schema": "dink-props/1",
+ "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF",
+ "generated_by": "FableF/tools/make_kit_manifest.py (do not edit by hand)",
+ "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 5 effect flipbooks, 0 static meshes.",
+ "assets": [],
+ "flipbooks": [
+  {
+   "name": "Fire_Wall",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/fire_fx/Fire_Wall/T_FX_Fire_Wall_Flipbook.png",
+   "grid": [
+    8,
+    8
+   ],
+   "fps": 20,
+   "glow": 6.0,
+   "families": [
+    "fire_fx",
+    "427 effects/fire/fire1-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.45,
+    0.85,
+    1.0
+   ]
+  },
+  {
+   "name": "Embers_A",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/small_fire_fx/Embers_A/T_FX_Embers_A_Flipbook.png",
+   "grid": [
+    8,
+    4
+   ],
+   "fps": 14,
+   "glow": 2.6,
+   "families": [
+    "small_fire_fx",
+    "155 struct/details/damage/fire2-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.35,
+    0.8,
+    1.0
+   ]
+  },
+  {
+   "name": "Embers_B",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/small_fire_fx/Embers_B/T_FX_Embers_B_Flipbook.png",
+   "grid": [
+    8,
+    4
+   ],
+   "fps": 14,
+   "glow": 2.6,
+   "families": [
+    "small_fire_fx",
+    "156 struct/details/damage/fire3-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.35,
+    0.8,
+    1.0
+   ]
+  },
+  {
+   "name": "Embers_C",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/small_fire_fx/Embers_C/T_FX_Embers_C_Flipbook.png",
+   "grid": [
+    8,
+    4
+   ],
+   "fps": 14,
+   "glow": 2.6,
+   "families": [
+    "small_fire_fx",
+    "157 struct/details/damage/fire4-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.35,
+    0.8,
+    1.0
+   ]
+  },
+  {
+   "name": "Smoke_Plume",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/smoke_fx/Smoke_Plume/T_FX_Smoke_Plume_Flipbook.png",
+   "grid": [
+    8,
+    8
+   ],
+   "fps": 16,
+   "glow": 1.0,
+   "families": [
+    "fire_fx plume"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.9,
+    1.0,
+    1.0
+   ]
+  }
+ ],
+ "integration": {
+  "contract": {
+   "textures": "BC sRGB; N linear OpenGL (flip green on import); ORM linear (R occlusion, G roughness, B metallic)",
+   "uv": "UV0, unique bake, no tiling",
+   "collision": "none imported; placements keep their hardbox"
+  },
+  "materials": {}
+ }
+}

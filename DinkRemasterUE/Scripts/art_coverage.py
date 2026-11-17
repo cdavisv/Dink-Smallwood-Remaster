@@ -302,6 +302,10 @@ def load_families(assets, notes):
     if isinstance(fam, dict) and fam.get("schema") == "dink-art-families/1":
         seen = set()
         for r in fam.get("families") or []:
+            # an effect row that also draws on placed sprites (the fires of the burning house): its "mesh" is the material
+            placed_fx = isinstance(r, dict) and r.get("effect_placed") is True and "mesh" not in r and str(r.get("effect", "")).startswith("/Game/")
+            if placed_fx:
+                r = dict(r, mesh=r["effect"])
             if not isinstance(r, dict) or not str(r.get("family", "")).strip() or not str(r.get("mesh", "")).startswith("/Game/"):
                 notes.append("families.json: row without family or /Game/ mesh skipped")
                 continue
@@ -318,7 +322,7 @@ def load_families(assets, notes):
             if not ok:
                 notes.append("families.json: %s -> %s not bound at runtime (%s)" % (name, r["mesh"], why))
                 continue
-            rows.append({"family": name, "key": key, "mesh": r["mesh"], "scripted": bool(r.get("scripted", False))})
+            rows.append({"family": name, "key": key, "mesh": r["mesh"], "scripted": bool(r.get("scripted", False)), "placed_fx": placed_fx})
     for fn in sorted(os.listdir(art_dir)):
         if not fn.lower().endswith(".json") or fn.lower() == "families.json":
             continue
@@ -717,10 +721,13 @@ def classify(args):
         """-> family row if UDinkArtFamilySubsystem dresses this placement on its own merits, else None."""
         if not fam_rows or detail.startswith("hardness_only") or "no picture" in detail:
             return None
-        if screen_no in fam_screens or oid in fam_origins:
+        if oid in fam_origins:
             return None
         row = family_binding(fam_rows, seq_of.get(oid), cls, frame_of.get(oid))
         if row is None or (scripted_of.get(oid) and not row["scripted"]):
+            return None
+        # a manifest-dressed screen keeps its things, but only this layer draws effects (DressActor)
+        if screen_no in fam_screens and not row.get("placed_fx"):
             return None
         return row
 
@@ -833,7 +840,7 @@ def classify(args):
         # --- final: family binding (what no origin or screen binding handles) ------------------------
         row = family_decision(oid, screen_no, cls, r["detail"])
         if row is not None and not is_actor:
-            row = decor_ok.get((r["screen"], seq_of.get(oid), frame_of.get(oid)))
+            row = None if row.get("placed_fx") else decor_ok.get((r["screen"], seq_of.get(oid), frame_of.get(oid)))
         if row is not None:
             return finish(r, fam, art_kind, "final", "family-bound: %s -> %s; %s, card hidden at screen activation, collision and script unchanged; %s" % (
                 row["family"], row["mesh"], "actor" if is_actor else "instance", ledger_tag(row["mesh"])))

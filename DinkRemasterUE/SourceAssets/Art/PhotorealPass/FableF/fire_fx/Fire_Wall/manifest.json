@@ -1,0 +1,55 @@
+{
+ "name": "FX_Fire_Wall",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  2.6,
+  2.6,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/fire_fx/Fire_Wall/T_FX_Fire_Wall_Flipbook.png",
+   "size_px": [
+    4096,
+    4096
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha = opacity (flames nearly opaque where the fire is thick, smoke up to 0.55); 8 x 8 frames of 512 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 64,
+  "grid": [
+   8,
+   8
+  ],
+  "fps": 20,
+  "loop": true,
+  "billboard_size_m": [
+   2.6,
+   2.6
+  ],
+  "blend": "translucent",
+  "glow": 6.0,
+  "hot": [
+   0.45,
+   0.85,
+   1.0
+  ],
+  "alpha_coverage": 0.462,
+  "stands_on_bottom_edge": true
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/fire_fx/Fire_Wall/frames_strip.png",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/fire_fx/Fire_Wall/FX_Fire_Wall.blend",
+ "source_note": "a Mantaflow gas simulation (fire flows on a row of timbers, resolution 150) rendered by Cycles as an emitting volume, front view, one frame per step; the loop is closed by a 20-frame cross-fade. tools/fire_encode.py turns the HDR flame frames into colour and opacity and adds what the flame render does not hold: smoke built from the flames' own earlier frames (risen, spread, broken into billows by rising noise, lit from below) and sparks. The .blend holds the emitter, the domain settings and the review scene; the simulation cache is not kept (rebuild with the script).",
+ "build": "blender -b --factory-startup -t 4 --python FableF/tools/build_fire_fx.py -- Fire_Wall",
+ "families": [
+  "fire_fx",
+  "427 effects/fire/fire1-"
+ ],
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "the wall of flame of the burning house: 1.6 m wide and 1.6 m tall on a row of burning timbers, tongues tearing off the top",
+ "third_party": [],
+ "status": "source delivered",
+ "known_weaknesses": "A flipbook on a camera-facing card, not a volume in the game: it has no depth against the scene and from straight above it is still a side view. The smoke is made from the flame frames, not simulated, and ends at the top of the frame (1 m above the flames): it does not gather under a ceiling or trail off downwind. The material is unlit: the smoke keeps its own brightness in a dark room. One loop of 3.2 s."
+}
