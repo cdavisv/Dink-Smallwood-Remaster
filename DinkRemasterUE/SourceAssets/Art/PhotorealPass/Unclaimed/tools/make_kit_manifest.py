@@ -66,7 +66,9 @@ def build(everything=False):
         if m.get('flipbook') and ('MI_' + m['name']) in effects:
             fb = m['flipbook']
             flipbooks.append({'name': m['name'][len('FX_'):] if m['name'].startswith('FX_') else m['name'], 'file': m['textures'][0]['file'],
-                              'grid': fb['grid'], 'fps': fb['fps'], 'glow': 6, 'families': m['families']})
+                              'grid': fb['grid'], 'fps': fb['fps'], 'glow': fb.get('glow', 6), 'loop': bool(fb.get('loop', True)),
+                              'blend': 'translucent' if fb.get('ue_blend') == 'alpha' else 'additive',
+                              'camera_offset_cm': fb.get('camera_offset_cm', 0), 'families': m['families'], **({'hot': fb['hot']} if fb.get('hot') else {})})
             continue
         if m['class'] not in STATIC:
             skipped.append({'name': m['name'], 'class': m['class'].split(' (')[0], 'why': 'not a static mesh'})

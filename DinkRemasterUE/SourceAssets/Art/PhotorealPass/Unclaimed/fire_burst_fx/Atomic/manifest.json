@@ -1,0 +1,57 @@
+{
+ "name": "FX_Atomic",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  3.6,
+  3.6,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fire_burst_fx/Atomic/T_FX_Atomic_Flipbook.png",
+   "size_px": [
+    4096,
+    2048
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha; 8 x 4 frames of 512 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 32,
+  "grid": [
+   8,
+   4
+  ],
+  "fps": 24.62,
+  "loop": false,
+  "billboard_size_m": [
+   3.6,
+   3.6
+  ],
+  "blend": "alpha; hot texels glow",
+  "ue_blend": "alpha",
+  "glow": 1.6,
+  "life_s": 1.3,
+  "ground_line": "the sprite's ground point is 5 % of the frame above its bottom edge; side view at 18 degrees",
+  "graded": true,
+  "hot": [
+   0.55,
+   0.95,
+   1.0
+  ]
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fire_burst_fx/Atomic/frames_strip.png",
+ "source_note": "frames are computed by the build script (seeded, deterministic): numpy fields -> OpenVDB -> Cycles volume render; no .blend is kept",
+ "build": "blender -b --factory-startup -t 4 --python Unclaimed/tools/build_fx_vol.py -- Atomic",
+ "families": [
+  "fire_burst_fx",
+  "161 (sequence of the 1997 sprite)"
+ ],
+ "origin_ids": {},
+ "supersedes": "none (grey script-sprite marker)",
+ "dresses": "fire burst 161, 1.3 s: a mound of fire, a stem climbing to 3 m with a cap rolling over it, the collapse into a wide burning mass and grey smoke",
+ "third_party": [],
+ "status": "source delivered",
+ "known_weaknesses": "Analytic shapes and noise: the cap does not roll as a real thermal does. No light on the scene. A flipbook on a camera-facing card: it has no depth against the scene and casts no light."
+}

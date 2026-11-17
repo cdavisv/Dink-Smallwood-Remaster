@@ -389,6 +389,28 @@ kit asset (`families.json`). Every monster corpse gets three LODs at import (`co
 switching at about 10 m and 20 m); `corpse.json` beside each source gives where the corpse lies against the death clip's last
 frame.
 
+## Explosion, fire and blood-burst effects (16 Nov 2026, art rows GP-Q9 and CG-6)
+
+Sprites that scripts and the engine create with the pictures 167 (explosion), 164 (blood burst), 161 (fire burst), 70 (small
+explosion) and 512 (falling fireball) drew the grey script-sprite marker. Each now has an effect row in `families.json`
+(`"effect"`, as the gold twinkle): a camera-facing card with a flipbook.
+
+- Sources: `Unclaimed/explosion_fx/Shock` (167), `Unclaimed/explosion_small_fx/Splode` (70), `Unclaimed/fire_burst_fx/Atomic`
+  (161), `Unclaimed/blood_burst_fx/Blood_Burst` (164), built by `Unclaimed/tools/build_fx_vol.py` (numpy fields -> OpenVDB ->
+  Cycles volume render; the blood burst is 4,200 mesh drops in a red mist); 512 uses the older `fireball_fx/Fireball` loop.
+  `blender -b --factory-startup -t 4 --python Unclaimed/tools/build_fx_vol.py -- all` (about 25 minutes), then
+  `python3 -I Unclaimed/tools/make_kit_manifest.py` and the Unclaimed kit import
+  (`DINK_KIT=Unclaimed DINK_KIT_FOLDER=Unclaimed Scripts/import_town_exteriors.sh`).
+- A flipbook's manifest gives `grid`, `fps` (= frames / life of the 1997 sprite), `loop`, `glow` and `ue_blend`. `ue_blend: alpha`
+  goes to the new master `M_FX_Flipbook_Blend` (translucent, unlit; texels brighter than mid grey glow by `Grid.a`, dark ones keep
+  their colour: smoke, blood); everything else stays on the additive `M_FX_Flipbook`. Both masters have the scalars `StartTime`
+  (world seconds; `UDinkArtFamilySubsystem::DressScriptSprite` sets it on a dynamic instance when the card appears), `OneShot`
+  (1 = play once and hold the last frame) and `CameraOffset` (cm towards the camera, 0 by default).
+- After the render `build_fx_vol.py` grades every one-shot fire atlas with `tools/fx_grade.py` (orange fire, no veil of light round the shapes, colour spread under the transparent texels) and writes `glow` 1.6 and `hot` [0.55, 0.95, 1.0] into the manifest; `make_kit_manifest.py` passes `hot` on to the kit row. Atlases rendered before the tool existed were graded once with `python3 -I Unclaimed/tools/fx_grade.py Shock Splode Atomic` (the manifest's `graded` flag stops a second pass).
+- The build chooses the GPU by itself (`pplib`, `build_fx_vol.py`): set `DINK_CPU=1`, or run it through `Saved/Gate2Coord/gpu_turn.sh`. The kit import runs `-nullrhi` (`DINK_GPU=0` under `unreal_turn.sh`).
+- The tool also renders loops (`loop: true`: every noise field climbs a whole number of its periods over the loop, so it closes); the hearth fire of the follow-up change uses that.
+- The card lives exactly as long as the sprite (frames x frame delay of `dink.ini`): 167 0.42 s, 164 0.70 s, 161 1.30 s,
+  70 0.60 s. Effect rows dress script-created sprites only; placed effect sprites (screens 1 and 366) keep their cards.
 ## People: townsfolk, guards, the gnome wizard, the King, Seth (16 Nov 2026)
 
 | What | Command | Source | Unreal |

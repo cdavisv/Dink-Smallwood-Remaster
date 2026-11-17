@@ -1,0 +1,57 @@
+{
+ "name": "FX_Shock",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  4.2,
+  4.2,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/explosion_fx/Shock/T_FX_Shock_Flipbook.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha; 4 x 4 frames of 512 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 16,
+  "grid": [
+   4,
+   4
+  ],
+  "fps": 38.1,
+  "loop": false,
+  "billboard_size_m": [
+   4.2,
+   4.2
+  ],
+  "blend": "alpha; hot texels glow",
+  "ue_blend": "alpha",
+  "glow": 1.6,
+  "life_s": 0.42,
+  "ground_line": "the sprite's ground point is 5 % of the frame above its bottom edge; side view at 18 degrees",
+  "graded": true,
+  "hot": [
+   0.55,
+   0.95,
+   1.0
+  ]
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/explosion_fx/Shock/frames_strip.png",
+ "source_note": "frames are computed by the build script (seeded, deterministic): numpy fields -> OpenVDB -> Cycles volume render; no .blend is kept",
+ "build": "blender -b --factory-startup -t 4 --python Unclaimed/tools/build_fx_vol.py -- Shock",
+ "families": [
+  "explosion_fx",
+  "167 (sequence of the 1997 sprite)"
+ ],
+ "origin_ids": {},
+ "supersedes": "none (grey script-sprite marker)",
+ "dresses": "explosion 167, 0.42 s: a white-hot ball 2.6 m across that hollows into a ring of fire rolling out to 4 m over the ground and breaks into burning clumps with dark smoke",
+ "third_party": [],
+ "status": "source delivered",
+ "known_weaknesses": "The motion is an analytic shape pushed through noise, not a fluid simulation: the ring does not curl as a real vortex ring would and there is no ground flash, debris or light on the scene (a point light is runtime work). A flipbook on a camera-facing card: it has no depth against the scene and casts no light."
+}
