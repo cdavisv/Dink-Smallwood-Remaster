@@ -94,9 +94,9 @@ class Reasons(unittest.TestCase):
         rows = A.known_rows()
         self.assertTrue(rows)
         self.assertIsNone(A.known_reason('SK_Duck', '', rows))           # #113 merged: the duck is wired, no reason
-        self.assertEqual(A.known_reason('AN_Duck_Peck', '', rows)[0], 'queued')     # anim/creature-oneshots
-        for clip in ('AN_Duck_Death', 'AN_Duck_HeadlessDeath', 'AN_Duck_Hit', 'AN_Slime_Death', 'AN_Dragon_Death'):
-            self.assertEqual(A.known_reason(clip, '', rows)[0], 'deliberate', clip)   # gore decisions of 16 Nov
+        self.assertIsNone(A.known_reason('AN_Duck_Peck', '', rows))                   # anim/creature-oneshots plays it (idle fidget)
+        for clip in ('AN_Duck_Death', 'AN_Duck_HeadlessDeath', 'AN_Duck_Hit', 'AN_Slime_Death', 'AN_Dragon_Death', 'AN_Stone_Giant_Death'):
+            self.assertIsNone(A.known_reason(clip, '', rows), clip)   # owner decision 16 Nov 2026: no creature death or hit clip withheld
         self.assertEqual(A.known_reason('SM_Slime_Trail', '', rows)[0], 'bug')
         self.assertEqual(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/PhotorealPass/Structures/Castle/x.fbx', rows)[0], 'queued')
         self.assertIsNone(A.known_reason('SM_Castle_Wall_8m', 'SourceAssets/Art/Other/x.fbx', rows))

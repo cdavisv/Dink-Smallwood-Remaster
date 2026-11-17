@@ -22,7 +22,7 @@ void UDinkCreatureAnimInstance::SetLayers(TConstArrayView<FDinkCreaturePoseLayer
 void FDinkCreatureAnimProxy::PreUpdate(UAnimInstance* InAnimInstance, float DeltaSeconds)
 {
 	FAnimInstanceProxy::PreUpdate(InAnimInstance, DeltaSeconds);
-	if (const UDinkCreatureAnimInstance* Creature = Cast<UDinkCreatureAnimInstance>(InAnimInstance)) Layers = Creature->Layers;
+	if (const UDinkCreatureAnimInstance* Creature = Cast<UDinkCreatureAnimInstance>(InAnimInstance)) { Layers = Creature->Layers; Overlays = Creature->Overlays; }
 }
 
 bool FDinkCreatureAnimProxy::Evaluate(FPoseContext& Output)
@@ -61,6 +61,7 @@ bool FDinkCreatureAnimProxy::Evaluate(FPoseContext& Output)
 		return true;
 	}
 	for (FCompactPoseBoneIndex Bone(0); Bone.GetInt() < NumBones; ++Bone) Out[Bone].NormalizeRotation();
+	DinkCreatureOneShots::ApplyOverlays(Output, Overlays);
 	return true;
 }
 
@@ -317,7 +318,9 @@ void UDinkCreatureClassComponent::BuildLayers(float DeltaTime)
 	}
 	if (!bPhaseAdvanced) CyclesPerSecond = 0.f;
 	if (Total > KINDA_SMALL_NUMBER) for (FDinkCreaturePoseLayer& Layer : Layers) Layer.Weight /= Total;
-	if (UDinkCreatureAnimInstance* Animation = Cast<UDinkCreatureAnimInstance>(GetAnimInstance())) Animation->SetLayers(Layers);
+	TArray<FDinkCreatureOverlay, TInlineAllocator<2>> Overlays;
+	OneShots.Step(Binding.ClassId, DeltaTime, Speed <= Binding.StationarySpeedCmS, Overlays);
+	if (UDinkCreatureAnimInstance* Animation = Cast<UDinkCreatureAnimInstance>(GetAnimInstance())) { Animation->SetLayers(Layers); Animation->SetOverlays(Overlays); }
 }
 
 void UDinkCreatureClassComponent::Present(float DeltaTime)

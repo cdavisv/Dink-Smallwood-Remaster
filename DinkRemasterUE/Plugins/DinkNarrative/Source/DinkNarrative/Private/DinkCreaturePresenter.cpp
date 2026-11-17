@@ -1,5 +1,7 @@
 #include "DinkCreaturePresenter.h"
 #include "DinkCreatureClassComponent.h"
+#include "DinkCreatureEvents.h"
+#include "DinkCreatureOneShots.h"
 #include "DinkCreatureSubsystem.h"
 #include "DinkDirector.h"
 #include "DinkGameplay.h"
@@ -79,6 +81,7 @@ void UDinkCreaturePresenter::Present()
 		Seen.Reset();
 		Creatures->ClearCorpses();
 	}
+	if (UDinkCreatureEventSubsystem* Events = World->GetSubsystem<UDinkCreatureEventSubsystem>()) Events->Observe(*Director);
 	TSet<int32, DefaultKeyFuncs<int32>, TInlineSetAllocator<64>> Alive;
 	for (const TPair<int32, FDinkSprite>& Pair : Director->GetSprites())
 	{
@@ -113,6 +116,8 @@ void UDinkCreaturePresenter::Present()
 			State.FacingYawDeg = float(Facing.Rotator().Yaw);
 		}
 		Body->ApplySpriteState(State);
+		if (const FSeen* Before = Seen.Find(Pair.Key); Before && (UDinkCreatureEventSubsystem::CostsLife(Before->Hitpoints, Sprite.GetProp(C_Hitpoints)) ||
+			(!Before->bHeadless && Sprite.bHeadless))) Body->PlayOneShot(EDinkCreatureOneShot::Hit); // a hit that costs life, or the duck's head-pop
 		FSeen& Entry = Seen.FindOrAdd(Pair.Key);
 		Entry.ClassId = Body->GetClassId();
 		Entry.Ground = Body->GetShownLocation();
@@ -121,6 +126,7 @@ void UDinkCreaturePresenter::Present()
 		Entry.Brain = Sprite.GetProp(C_Brain);
 		Entry.Sequence = Seq > 0 ? Seq : PSeq;
 		Entry.SizePercent = State.SizePercent;
+		Entry.bHeadless = Sprite.bHeadless;
 		Alive.Add(Pair.Key);
 	}
 	for (auto It = Seen.CreateIterator(); It; ++It)
@@ -139,8 +145,9 @@ void UDinkCreaturePresenter::Present()
 			// Where the body is shown now: it moved once more after this step last read it (the bodies tick after the
 			// presenter), and it stays put once its actor is hidden. A sprite whose actor is gone keeps the last reading.
 			const UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(Sprite->Actor.Get());
-			Creatures->LeaveCorpse(Last.ClassId, Sprite->GetProp(C_BaseDeath, -1), DinkCreatureClass::KillDir(Last.Brain, Sprite->Dir),
-				Body ? Body->GetShownLocation() : Last.Ground, Body ? Body->GetShownYaw() : Last.Yaw, Last.SizePercent, Sprite->GetProp(C_BaseWalk, 0));
+			if (Creatures->LeaveCorpse(Last.ClassId, Sprite->GetProp(C_BaseDeath, -1), DinkCreatureClass::KillDir(Last.Brain, Sprite->Dir),
+				Body ? Body->GetShownLocation() : Last.Ground, Body ? Body->GetShownYaw() : Last.Yaw, Last.SizePercent, Sprite->GetProp(C_BaseWalk, 0)) && Body)
+				if (UDinkCreatureDeathSubsystem* Deaths = World->GetSubsystem<UDinkCreatureDeathSubsystem>()) Deaths->BeginDeath(*Body, Creatures->GetNewestCorpse());
 		}
 		else if (Sprite && !Sprite->bActive && Sprite->bBurstKill)
 		{
@@ -148,8 +155,20 @@ void UDinkCreaturePresenter::Present()
 			// burst of sequence 164. Only that kill path marks it (UDinkGameplay::ProcessDamage): a duck or pig a script
 			// removes (sp_active 0, sp_kill) bursts no more than in the original. The row decides by the picture and the
 			// brain the sprite had; a row without `bursts` leaves nothing.
+			// With a burst_death clip (owner decision 16 Nov 2026: no creature death is withheld) the body first falls where it
+			// stood and the same burst comes where the clip ends; without one (or dink.Creature.DeathClips 0) at once, as in 1997.
 			const UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(Sprite->Actor.Get());
-			Creatures->Burst(Last.ClassId, Last.Sequence, Last.Brain, Body ? Body->GetShownLocation() : Last.Ground, Last.SizePercent);
+			const FName ClassId = Last.ClassId;
+			const int32 Sequence = Last.Sequence, Brain = Last.Brain, SizePercent = Last.SizePercent;
+			TWeakObjectPtr<UDinkCreatureSubsystem> WeakCreatures(Creatures);
+			UDinkCreatureDeathSubsystem* Deaths = World->GetSubsystem<UDinkCreatureDeathSubsystem>();
+			if (!Body || !Deaths || !Deaths->BeginBurstDeath(*Body, [WeakCreatures, ClassId, Sequence, Brain, SizePercent](const FVector& Ground)
+				{
+					if (UDinkCreatureSubsystem* C = WeakCreatures.Get()) C->Burst(ClassId, Sequence, Brain, Ground, SizePercent);
+				}))
+			{
+				Creatures->Burst(ClassId, Sequence, Brain, Body ? Body->GetShownLocation() : Last.Ground, SizePercent);
+			}
 		}
 		It.RemoveCurrent();
 	}

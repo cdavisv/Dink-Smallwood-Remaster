@@ -59,6 +59,8 @@ private:
 		/** The sequence it showed (animating, else its picture). */
 		int32 Sequence = 0;
 		int32 SizePercent = 100;
+		/** duck_brain beheaded it (dink.cpp:12748-12775). */
+		bool bHeadless = false;
 	};
 	float SequenceDuration(const class UDinkGameplay& Game, int32 Sequence);
 	FDinkCreaturePresentTickFunction PresentTick;

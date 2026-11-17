@@ -304,7 +304,20 @@ The rigged monsters of `Unclaimed/` had no clips and were bound nowhere (cards).
   `FDinkCreatureClassBinding::CorpseFor` now follows). Bonca 551-559: the brown body soaked red in its pool (all three
   colours leave the brown body, as the original's one death set), decal 6.8 x 5.3 m. Slayer 645: the body with its tail
   curled, in its pool, decal 6.4 x 5.0 m. Stone giant 825: the heap of its stones on dark grit, no blood (the picture has
-  none). The Hit and Death clips are authored and not bound.
+  none). The Hit and Death clips are authored and, since 16 Nov 2026, played as presentation-only one-shots (see below).
+- **One-shots (coordinator decision of 16 Nov 2026, reversible by the owner)**: 1997 has no hit or death animation; the
+  remaster plays the authored clips over what the sprite shows, driven by simulation events (`one_shots` in each class row of
+  `creatures.json`, `DinkCreatureOneShots.h`): a hit that costs life plays `Hit`; a kill still leaves the corpse, its blood pool
+  and the hit blood at once (add_kill_sprite's moment), and a copy of the body plays `Death` from its last pose, wearing the
+  corpse's blood-soaked material where the corpse is that body frozen; the corpse mesh is shown when the clip ends, moved on the
+  ground by the export's death-last-frame-minus-corpse offset (`align_cm`, inside its pool). `dink.Creature.OneShots 0` restores
+  the 1997 instant swap exactly (`dink.Creature.DeathClips 0` only the deaths). Owner decision of 16 Nov 2026: no creature
+  hit or death clip is withheld. The stone giant's heap is reshaped against its death pose (broken into blocks), so its
+  hand-over is a visible cut until a transition is authored (Fable queue). Slimes play `AN_Slime_Death` before the splat (the
+  splat's stain is on the ground at the kill, its mesh shows at the clip's end). The duck: `AN_Duck_Hit` as the first hit
+  beheads it (head-pop gore unchanged), `AN_Duck_HeadlessDeath` (`burst_death`) when the headless body is hit again: it falls
+  and the burst of sequence 164 comes where it lies; `AN_Duck_Death` has no 1997 event (a duck always loses its head first)
+  and is shown by `dink.Creature.ShowDeath duck` only.
 
 ## Monster: dragon (16 Nov 2026)
 
@@ -312,7 +325,11 @@ Class row `dragon` (16 placements). `Unclaimed/tools/bl.sh build_dragon.py final
 finger spars, open jaw), then `clips_monsters.py dragon build review export` and `export_monster_ue.py dragon`; import with
 `DINK_PHOTOREAL_ONLY=dragon Scripts/import_photoreal_art.sh` -> `/Game/Dink/Photoreal/Creatures/Dragon` (two-sided
 material for the wings). Walk 201-209 is a locomotion role; there is no attack sequence (it spits fire while it treads),
-so `AN_Dragon_Attack` is authored and not bound. A kill leaves the corpse kit's `SM_Dragon_Corpse_PR` (212-218) at corpse
+so `AN_Dragon_Attack` plays as an upper-body one-shot (from `spine_02`) over the walk when its fireball (a missile sprite)
+appears beside it, and `AN_Dragon_Hit` as above (one-shots, `dink.Creature.OneShots`). `AN_Dragon_Death` plays (owner decision of 16 Nov 2026:
+no death withheld); since the dragon's own remains (below) are its death pose torn, the dying body wears their blood from the
+kill and they take over at the clip's end, moved by the export's offset (`corpse.json`, `align_cm`); the tears and the
+collapsed wing appear at that moment (the remains are reshaped). A kill leaves the corpse kit's `SM_Dragon_Corpse_PR` (212-218) at corpse
 `scale` 1.7, so the remains are about two thirds of the live dragon's width, as 212/216 against 202.
 ## Hero weapons (15 Nov 2026, art row DS-04, bug A203)
 
@@ -349,7 +366,8 @@ Class rows `goblin_hammer` (761-769, attack 751-759), `goblin_soldier` (801-809,
 export` (the knight's pose functions; the dead goblin's weapon comes to lie beside him), `export_monster_ue.py goblin_<kit>`,
 and `python3 -I corpse_blood.py`. Import: `DINK_PHOTOREAL_ONLY=goblins Scripts/import_photoreal_art.sh` ->
 `/Game/Dink/Photoreal/Creatures/Goblin{Hammer,Horned,Soldier}` (hit and death clips are delivered with the walk and attack
-clips; the creature one-shots play them). A kill leaves `base_walk + 5` (765 / 785 / 805): the body on
+clips; the creature one-shots play them: a hit that costs life plays `Hit`, a kill plays `Death` into the corpse, which is that
+body frozen, moved by `corpse.json`'s offset, `align_cm`). A kill leaves `base_walk + 5` (765 / 785 / 805): the body on
 its back, drenched, in a pool with thrown drops (`M_Goblin_<Kit>_BloodPool_Decal`, corpse `scale` = the row's `scale`).
 `corpse_blood.py` (all monster corpses, the bonca's and the slayer's too): a pool is dark where the blood stands (from a
 hand's width inside the rim, and in blotches) and bright only at its thin rim, with runs and drops in the drying tone; the

@@ -6,6 +6,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "DinkCreatureClass.h"
 #include "DinkHumanoidComponent.h"
+#include "DinkCreatureOneShots.h"
 #include "DinkCreatureClassComponent.generated.h"
 
 class UAnimSequence;
@@ -28,6 +29,7 @@ struct DINKCORE_API FDinkCreatureAnimProxy : public FAnimInstanceProxy
 	virtual void PreUpdate(UAnimInstance* InAnimInstance, float DeltaSeconds) override;
 	virtual bool Evaluate(FPoseContext& Output) override;
 	TArray<FDinkCreaturePoseLayer, TInlineAllocator<8>> Layers;
+	TArray<FDinkCreatureOverlay, TInlineAllocator<2>> Overlays;
 };
 
 /** Stateless native animation of a class-bound creature: blends the layers its component computed this frame. No blueprint. */
@@ -38,10 +40,13 @@ class DINKCORE_API UDinkCreatureAnimInstance : public UAnimInstance
 public:
 	void SetLayers(TConstArrayView<FDinkCreaturePoseLayer> InLayers);
 	const TArray<FDinkCreaturePoseLayer, TInlineAllocator<8>>& GetLayers() const { return Layers; }
+	/** One-shots over the layers (DinkCreatureOneShots.h). */
+	void SetOverlays(TConstArrayView<FDinkCreatureOverlay> InOverlays) { Overlays.Reset(); Overlays.Append(InOverlays.GetData(), InOverlays.Num()); }
 protected:
 	virtual FAnimInstanceProxy* CreateAnimInstanceProxy() override { return new FDinkCreatureAnimProxy(this); }
 private:
 	TArray<FDinkCreaturePoseLayer, TInlineAllocator<8>> Layers;
+	TArray<FDinkCreatureOverlay, TInlineAllocator<2>> Overlays;
 	friend struct FDinkCreatureAnimProxy;
 };
 
@@ -144,6 +149,9 @@ public:
 	const TArray<FDinkCreaturePoseLayer, TInlineAllocator<8>>& GetLayers() const { return Layers; }
 	/** Seconds into the newest track's clip, -1 for a locomotion track. */
 	float GetClipTime() const;
+	/** A flinch, a strike or a fidget over whatever the sprite shows (DinkCreatureOneShots.h). False when the class has none. */
+	bool PlayOneShot(EDinkCreatureOneShot Kind) { return Class.IsValid() && OneShots.Play(GetClassId(), Kind); }
+	const FDinkCreatureOneShotPlayer& GetOneShots() const { return OneShots; }
 
 private:
 	struct FTrack
@@ -173,6 +181,7 @@ private:
 	float DropDebt = 0.f, GoreTime = 0.f, TrailDistance = 0.f;
 	FVector LastGorePoint = FVector::ZeroVector;
 	bool bHasGorePoint = false;
+	FDinkCreatureOneShotPlayer OneShots;
 	/** Presentation steps since the presenter last handed over the sprite (it does every frame while the sprite is live on the current screen). */
 	int32 StepsSinceSprite = 1000;
 };
