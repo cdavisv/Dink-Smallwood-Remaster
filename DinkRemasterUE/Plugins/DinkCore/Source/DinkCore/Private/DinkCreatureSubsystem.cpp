@@ -551,6 +551,7 @@ bool UDinkCreatureSubsystem::LeaveCorpse(FName ClassId, int32 BaseDeath, int32 D
 
 void UDinkCreatureSubsystem::ClearCorpses()
 {
+	++ClearCount;
 	for (UStaticMeshComponent* Corpse : Corpses) if (Corpse) Corpse->DestroyComponent();
 	Corpses.Reset();
 	for (UDecalComponent* Decal : CorpseDecals) if (Decal) Decal->DestroyComponent();

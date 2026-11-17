@@ -53,7 +53,11 @@ class DINKCORE_API UDinkCreatureSubsystem : public UWorldSubsystem
 	bool LeaveCorpse(FName ClassId, int32 BaseDeath, int32 Dir, const FVector& Ground, float YawDeg, int32 SizePercent, int32 BaseWalk = 0);
 	/** The original drops its corpse sprites with the screen. */
 	void ClearCorpses();
+	/** Counts ClearCorpses calls: a death clip begun before the last one belongs to a screen that is gone. */
+	int32 GetClearCount() const { return ClearCount; }
 	int32 GetCorpseCount() const { return Corpses.Num(); }
+	/** The corpse LeaveCorpse made last (its death clip hands over to it, DinkCreatureOneShots.h). */
+	UStaticMeshComponent* GetNewestCorpse() const { return Corpses.Num() ? Corpses.Last().Get() : nullptr; }
 	/** Blood decals lying under the corpses. */
 	int32 GetCorpseDecalCount() const { return CorpseDecals.Num(); }
 
@@ -101,6 +105,7 @@ class DINKCORE_API UDinkCreatureSubsystem : public UWorldSubsystem
 	UPROPERTY(Transient) TArray<TObjectPtr<UObject>> ClassAssets;
 	UPROPERTY(Transient) TObjectPtr<AActor> CorpseHolder;
 	UPROPERTY(Transient) TArray<TObjectPtr<UStaticMeshComponent>> Corpses;
+	int32 ClearCount = 0;
 	UPROPERTY(Transient) TArray<TObjectPtr<class UDecalComponent>> CorpseDecals;
 	int32 ClassPlacements = 0;
 

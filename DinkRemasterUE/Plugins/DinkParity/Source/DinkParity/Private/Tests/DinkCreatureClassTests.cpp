@@ -4,6 +4,7 @@
 #include "DinkCreatureClass.h"
 #include "DinkCreatureClassComponent.h"
 #include "DinkCreatureComponent.h"
+#include "DinkCreatureOneShots.h"
 #include "DinkCreaturePresenter.h"
 #include "DinkCreatureSubsystem.h"
 #include "DinkDirector.h"
@@ -389,6 +390,8 @@ namespace
 				for (ADinkPlaceholderActor* Bug : Bugs)
 					if (UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(Bug)) Body->TickComponent(Dt, LEVELTICK_All, nullptr);
 				Creatures->StepGore(Dt);
+				// The death clips of the one-shot layer (a burst kill falls first, then bursts).
+				if (UDinkCreatureDeathSubsystem* Deaths = Creatures->GetWorld()->GetSubsystem<UDinkCreatureDeathSubsystem>()) Deaths->StepDeaths(Dt);
 			}
 		}
 
@@ -688,6 +691,14 @@ bool FDinkCreatureClassBurstOnKillTest::RunTest(const FString&)
 	TestFalse(TEXT("the simulation removed the duck"), Scene.D->FindSprite(Scene.Handles[0])->bActive);
 	TestTrue(TEXT("the kill path marked it"), Scene.D->FindSprite(Scene.Handles[0])->bBurstKill);
 	Run(2);
+	// With the one-shot layer the headless body first plays its fall (owner decision 16 Nov 2026: no death withheld) and the
+	// burst comes where it ends; with dink.Creature.DeathClips 0 at once, as in 1997.
+	const FDinkCreatureOneShotRow* Row = DinkCreatureOneShots::Find(TEXT("duck"));
+	if (const UAnimSequence* Fall = Row ? DinkCreatureOneShots::Load(Row->BurstDeath) : nullptr)
+	{
+		TestEqual(TEXT("no burst while the headless body falls"), Scene.Creatures->GetBurstCount(), 0);
+		Run(FMath::CeilToInt(Fall->GetPlayLength() / FMath::Max(Row->BurstDeath.Rate, .1f) / Dt));
+	}
 	TestEqual(TEXT("one burst"), Scene.Creatures->GetBurstCount(), 1);
 	Run(2);
 	TestEqual(TEXT("and only one"), Scene.Creatures->GetBurstCount(), 1);

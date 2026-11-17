@@ -984,7 +984,32 @@
       "scale": 1.5,
       "note": "White domestic duck. First hit: the head flies off and lies in its pool, the body runs on with blood spraying from the neck (dink.cpp duck_brain 12745-12775, sequences 111-129); second hit: the burst of sequence 164 (12728-12740). Keep all of it. Scale 1.5: the 1997 duck is 31 px long beside a hero of about 65 px, so 0.77 m beside the 1.8 m hero; at its modelled 0.51 m it is a speck at the play camera.",
       "blood_blob": "/Game/Dink/Photoreal/Creatures/Gore/SM_BloodBlob.SM_BloodBlob",
-      "feather": "/Game/Dink/Photoreal/Creatures/Gore/SM_Feather.SM_Feather"
+      "feather": "/Game/Dink/Photoreal/Creatures/Gore/SM_Feather.SM_Feather",
+      "one_shots": {
+        "idle": {
+          "clips": [
+            "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_Peck.AN_Duck_Peck",
+            "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_Quack.AN_Duck_Quack"
+          ],
+          "every_s": [
+            4,
+            10
+          ]
+        },
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_Hit.AN_Duck_Hit",
+          "blend_in_s": 0.03,
+          "blend_out_s": 0.15
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_Death.AN_Duck_Death",
+          "blend_in_s": 0.06
+        },
+        "burst_death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Duck/Animations/AN_Duck_HeadlessDeath.AN_Duck_HeadlessDeath",
+          "blend_in_s": 0.05
+        }
+      }
     },
     {
       "class": "slime_blue",
@@ -1040,7 +1065,20 @@
           }
         }
       ],
-      "note": "Blue slime (foes/puddle). Brain 9 with base_death 660: a kill leaves the splatter of sequences 661/663. The gel is opaque; the see-through material is not built. A slime of this colour that runs en-slim (sp_base_death 700: eleven green on SCR_546/610, one blue) leaves the red-brown splatter 701/703 in 1997, so the row carries that corpse too."
+      "note": "Blue slime (foes/puddle). Brain 9 with base_death 660: a kill leaves the splatter of sequences 661/663. The gel is opaque; the see-through material is not built. A slime of this colour that runs en-slim (sp_base_death 700: eleven green on SCR_546/610, one blue) leaves the red-brown splatter 701/703 in 1997, so the row carries that corpse too.",
+      "one_shots": {
+        "attack": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Attack.AN_Slime_Attack",
+          "blend_in_s": 0.05,
+          "blend_out_s": 0.2,
+          "trigger": "touch",
+          "radius_cm": 220
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Death.AN_Slime_Death",
+          "blend_in_s": 0.06
+        }
+      }
     },
     {
       "class": "slime_green",
@@ -1099,6 +1137,19 @@
       "materials": {
         "MI_Slime": "/Game/Dink/Photoreal/Creatures/Slime/MI_Slime_Green_PR.MI_Slime_Green_PR",
         "MI_Slime_Core": "/Game/Dink/Photoreal/Creatures/Slime/MI_Slime_Core_Green_PR.MI_Slime_Core_Green_PR"
+      },
+      "one_shots": {
+        "attack": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Attack.AN_Slime_Attack",
+          "blend_in_s": 0.05,
+          "blend_out_s": 0.2,
+          "trigger": "touch",
+          "radius_cm": 220
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Death.AN_Slime_Death",
+          "blend_in_s": 0.06
+        }
       }
     },
     {
@@ -1143,6 +1194,19 @@
       "materials": {
         "MI_Slime": "/Game/Dink/Photoreal/Creatures/Slime/MI_Slime_Red_PR.MI_Slime_Red_PR",
         "MI_Slime_Core": "/Game/Dink/Photoreal/Creatures/Slime/MI_Slime_Core_Red_PR.MI_Slime_Core_Red_PR"
+      },
+      "one_shots": {
+        "attack": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Attack.AN_Slime_Attack",
+          "blend_in_s": 0.05,
+          "blend_out_s": 0.2,
+          "trigger": "touch",
+          "radius_cm": 220
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Slime/Animations/AN_Slime_Death.AN_Slime_Death",
+          "blend_in_s": 0.06
+        }
       }
     },
     {
@@ -1265,7 +1329,24 @@
           }
         }
       ],
-      "note": "Grey bonca (en-bong, s7-bong; walk 601-609, attack 592-598). Brain 9, a kill leaves the body in its pool (base_death 550, sprites 551-559; add_kill_sprite dink.cpp:12359): the brown striped body frozen from the death pose, soaked red (all three colours leave the brown body, as the original's one death set), in a lobed pool that reaches past it on every side with a ring of thrown drops (decal 6.8 x 5.3 m: the pool itself about 3.4 m, 1.5 times the body). The original has no hit or death animation; those clips are authored and not bound."
+      "note": "Grey bonca (en-bong, s7-bong; walk 601-609, attack 592-598). Brain 9, a kill leaves the body in its pool (base_death 550, sprites 551-559; add_kill_sprite dink.cpp:12359): the brown striped body frozen from the death pose, soaked red (all three colours leave the brown body, as the original's one death set), in a lobed pool that reaches past it on every side with a ring of thrown drops (decal 6.8 x 5.3 m: the pool itself about 3.4 m, 1.5 times the body). The original has no hit or death animation: since 16 Nov 2026 (coordinator decision, reversible by the owner; dink.Creature.OneShots 0 restores the instant swap) the authored hit and death clips play as presentation-only one-shots driven by simulation events (one_shots, DinkCreatureOneShots.h): the corpse and its pool are left at the kill as before, the dying body wears the corpse's blood from that frame, and the corpse mesh is shown where the death clip ends.",
+      "one_shots": {
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Hit.AN_Bonca_Hit",
+          "blend_in_s": 0.04,
+          "blend_out_s": 0.2
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Death.AN_Bonca_Death",
+          "blend_in_s": 0.06,
+          "align_cm": [
+            -17.1,
+            -27.3,
+            -22.9
+          ],
+          "material_from_corpse": true
+        }
+      }
     },
     {
       "class": "bonca_brown",
@@ -1337,7 +1418,24 @@
       "materials": {
         "MI_Bonca_PR": "/Game/Dink/Photoreal/Creatures/Bonca/MI_Bonca_Brown_PR.MI_Bonca_Brown_PR"
       },
-      "note": "Brown bonca (en-bonc, en-boncd; walk 531-539, attack 542-548). Brain 9, a kill leaves the body in its pool (base_death 550, sprites 551-559; add_kill_sprite dink.cpp:12359): the brown striped body frozen from the death pose, soaked red (all three colours leave the brown body, as the original's one death set), in a lobed pool that reaches past it on every side with a ring of thrown drops (decal 6.8 x 5.3 m: the pool itself about 3.4 m, 1.5 times the body). The original has no hit or death animation; those clips are authored and not bound."
+      "note": "Brown bonca (en-bonc, en-boncd; walk 531-539, attack 542-548). Brain 9, a kill leaves the body in its pool (base_death 550, sprites 551-559; add_kill_sprite dink.cpp:12359): the brown striped body frozen from the death pose, soaked red (all three colours leave the brown body, as the original's one death set), in a lobed pool that reaches past it on every side with a ring of thrown drops (decal 6.8 x 5.3 m: the pool itself about 3.4 m, 1.5 times the body). The original has no hit or death animation: since 16 Nov 2026 (coordinator decision, reversible by the owner; dink.Creature.OneShots 0 restores the instant swap) the authored hit and death clips play as presentation-only one-shots driven by simulation events (one_shots, DinkCreatureOneShots.h): the corpse and its pool are left at the kill as before, the dying body wears the corpse's blood from that frame, and the corpse mesh is shown where the death clip ends.",
+      "one_shots": {
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Hit.AN_Bonca_Hit",
+          "blend_in_s": 0.04,
+          "blend_out_s": 0.2
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Death.AN_Bonca_Death",
+          "blend_in_s": 0.06,
+          "align_cm": [
+            -17.1,
+            -27.3,
+            -22.9
+          ],
+          "material_from_corpse": true
+        }
+      }
     },
     {
       "class": "bonca_purple",
@@ -1409,7 +1507,24 @@
       "materials": {
         "MI_Bonca_PR": "/Game/Dink/Photoreal/Creatures/Bonca/MI_Bonca_Purple_PR.MI_Bonca_Purple_PR"
       },
-      "note": "Purple bonca (en-pbon; walk 611-619, attack 622-628). Brain 9, a kill leaves the body in its pool (base_death 550, sprites 551-559; add_kill_sprite dink.cpp:12359): the brown striped body frozen from the death pose, soaked red (all three colours leave the brown body, as the original's one death set), in a lobed pool that reaches past it on every side with a ring of thrown drops (decal 6.8 x 5.3 m: the pool itself about 3.4 m, 1.5 times the body). The original has no hit or death animation; those clips are authored and not bound."
+      "note": "Purple bonca (en-pbon; walk 611-619, attack 622-628). Brain 9, a kill leaves the body in its pool (base_death 550, sprites 551-559; add_kill_sprite dink.cpp:12359): the brown striped body frozen from the death pose, soaked red (all three colours leave the brown body, as the original's one death set), in a lobed pool that reaches past it on every side with a ring of thrown drops (decal 6.8 x 5.3 m: the pool itself about 3.4 m, 1.5 times the body). The original has no hit or death animation: since 16 Nov 2026 (coordinator decision, reversible by the owner; dink.Creature.OneShots 0 restores the instant swap) the authored hit and death clips play as presentation-only one-shots driven by simulation events (one_shots, DinkCreatureOneShots.h): the corpse and its pool are left at the kill as before, the dying body wears the corpse's blood from that frame, and the corpse mesh is shown where the death clip ends.",
+      "one_shots": {
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Hit.AN_Bonca_Hit",
+          "blend_in_s": 0.04,
+          "blend_out_s": 0.2
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Bonca/Animations/AN_Bonca_Death.AN_Bonca_Death",
+          "blend_in_s": 0.06,
+          "align_cm": [
+            -17.1,
+            -27.3,
+            -22.9
+          ],
+          "material_from_corpse": true
+        }
+      }
     },
     {
       "class": "slayer",
@@ -1471,7 +1586,24 @@
           }
         }
       ],
-      "note": "Slayer (en-slay, sc-slay, s7-slay; walk 641-649, attack 632-638). It has no base_death: a kill leaves sequence 645 (base_walk + 5, add_kill_sprite dink.cpp:12372-12383), the body on its side in its blood: the mesh frozen from the death pose with the tail curled round it, blood-soaked, in a lobed pool with thrown drops (decal 6.4 x 5.0 m)."
+      "note": "Slayer (en-slay, sc-slay, s7-slay; walk 641-649, attack 632-638). It has no base_death: a kill leaves sequence 645 (base_walk + 5, add_kill_sprite dink.cpp:12372-12383), the body on its side in its blood: the mesh frozen from the death pose with the tail curled round it, blood-soaked, in a lobed pool with thrown drops (decal 6.4 x 5.0 m).",
+      "one_shots": {
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Slayer/Animations/AN_Slayer_Hit.AN_Slayer_Hit",
+          "blend_in_s": 0.04,
+          "blend_out_s": 0.2
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Slayer/Animations/AN_Slayer_Death.AN_Slayer_Death",
+          "blend_in_s": 0.06,
+          "align_cm": [
+            -72.1,
+            35.7,
+            4.1
+          ],
+          "material_from_corpse": true
+        }
+      }
     },
     {
       "class": "stone_giant",
@@ -1533,7 +1665,23 @@
           }
         }
       ],
-      "note": "Stone giant (en-stg; walk 821-829, attack 812-818). No base_death: a kill leaves sequence 825 (base_walk + 5): a heap of its own stones without blood, as the picture: the body of the death pose broken at the joints into ten blocks that lie a little apart, on dark grit (ground decal)."
+      "note": "Stone giant (en-stg; walk 821-829, attack 812-818). No base_death: a kill leaves sequence 825 (base_walk + 5): a heap of its own stones without blood, as the picture: the body of the death pose broken at the joints into ten blocks that lie a little apart, on dark grit (ground decal).",
+      "one_shots": {
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/StoneGiant/Animations/AN_Stone_Giant_Hit.AN_Stone_Giant_Hit",
+          "blend_in_s": 0.06,
+          "blend_out_s": 0.25
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/StoneGiant/Animations/AN_Stone_Giant_Death.AN_Stone_Giant_Death",
+          "blend_in_s": 0.08,
+          "align_cm": [
+            -5.0,
+            74.1,
+            -4.8
+          ]
+        }
+      }
     },
     {
       "class": "dragon",
@@ -1589,7 +1737,33 @@
           }
         }
       ],
-      "note": "Dragon (en-drag, sc-drag, s7-drag; brain 10, walk 202-208). It has no attack sequence: it spits fire while it treads, so no sequence selects the Attack clip (hit, death and attack clips are delivered for the creature one-shots). A kill leaves sprites 212-218: the brown body of the death pose lying on the ground, torn at the neck, a wing root, a hip and the tail, the tears raw red, soaked red almost all over, the wing under the body torn off and flat, the other still raised from the carcass as in 212, in a wide pool with a dark centre, drying rim and thrown drops (decal 12.5 x 10 m: the pool itself about 6 m, as long as the remains). It replaces the corpse kit's tan dragon for killed dragons (the placed 216 card keeps the kit asset)."
+      "note": "Dragon (en-drag, sc-drag, s7-drag; brain 10, walk 202-208). It has no attack sequence: it spits fire while it treads, so the authored Attack clip plays on the upper body over the walk when its fireball appears, and the hit and death clips play as one-shots (one_shots, DinkCreatureOneShots.h; owner decision of 16 Nov 2026: no death withheld). A kill leaves sprites 212-218: the brown body of the death pose lying on the ground, torn at the neck, a wing root, a hip and the tail, the tears raw red, soaked red almost all over, the wing under the body torn off and flat, the other still raised from the carcass as in 212, in a wide pool with a dark centre, drying rim and thrown drops (decal 12.5 x 10 m: the pool itself about 6 m, as long as the remains). It replaces the corpse kit's tan dragon for killed dragons (the placed 216 card keeps the kit asset).",
+      "one_shots": {
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Hit.AN_Dragon_Hit",
+          "blend_in_s": 0.05,
+          "blend_out_s": 0.25,
+          "mask": "spine_01"
+        },
+        "attack": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Attack.AN_Dragon_Attack",
+          "blend_in_s": 0.08,
+          "blend_out_s": 0.3,
+          "mask": "spine_02",
+          "trigger": "missile",
+          "radius_cm": 600
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/Dragon/Animations/AN_Dragon_Death.AN_Dragon_Death",
+          "blend_in_s": 0.08,
+          "align_cm": [
+            -58.6,
+            -60.0,
+            12.5
+          ],
+          "material_from_corpse": true
+        }
+      }
     },
     {
       "class": "goblin_hammer",
@@ -1653,7 +1827,24 @@
         }
       ],
       "scale": 1.4,
-      "note": "Goblin with the war hammer (en-gh, s3-gh, s3-gob; walk 761-769, attack 752-758). No base_death (commented out in en-gh.c): a kill leaves 765 (base_walk + 5, dink.cpp:12371-12383): the body on its back, drenched, the hammer beside it, in a pool with thrown drops. Scale 1.4: the 1997 goblin stands a head over Dink."
+      "note": "Goblin with the war hammer (en-gh, s3-gh, s3-gob; walk 761-769, attack 752-758). No base_death (commented out in en-gh.c): a kill leaves 765 (base_walk + 5, dink.cpp:12371-12383): the body on its back, drenched, the hammer beside it, in a pool with thrown drops. Scale 1.4: the 1997 goblin stands a head over Dink.",
+      "one_shots": {
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/GoblinHammer/Animations/AN_Goblin_Hammer_Hit.AN_Goblin_Hammer_Hit",
+          "blend_in_s": 0.04,
+          "blend_out_s": 0.2
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/GoblinHammer/Animations/AN_Goblin_Hammer_Death.AN_Goblin_Hammer_Death",
+          "blend_in_s": 0.06,
+          "align_cm": [
+            -3.4,
+            -63.1,
+            1.8
+          ],
+          "material_from_corpse": true
+        }
+      }
     },
     {
       "class": "goblin_horned",
@@ -1718,7 +1909,24 @@
         }
       ],
       "scale": 1.7,
-      "note": "Horned goblin, Mog (en-gmog, spawned by s3-mog; walk 781-789, attack 772-778 and the special 780). A kill leaves 785. No placement carries this class: the row binds the sprites the script creates. Scale 1.7: he is the biggest of them (781 is 135 px against the hammer goblin's 107)."
+      "note": "Horned goblin, Mog (en-gmog, spawned by s3-mog; walk 781-789, attack 772-778 and the special 780). A kill leaves 785. No placement carries this class: the row binds the sprites the script creates. Scale 1.7: he is the biggest of them (781 is 135 px against the hammer goblin's 107).",
+      "one_shots": {
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/GoblinHorned/Animations/AN_Goblin_Horned_Hit.AN_Goblin_Horned_Hit",
+          "blend_in_s": 0.04,
+          "blend_out_s": 0.2
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/GoblinHorned/Animations/AN_Goblin_Horned_Death.AN_Goblin_Horned_Death",
+          "blend_in_s": 0.06,
+          "align_cm": [
+            -2.1,
+            -71.0,
+            1.8
+          ],
+          "material_from_corpse": true
+        }
+      }
     },
     {
       "class": "goblin_soldier",
@@ -1782,7 +1990,24 @@
         }
       ],
       "scale": 1.45,
-      "note": "Goblin soldier (en-gs, s3-gs, s3-gobg; walk 801-809, attack 792-798): scale coat, helmet, shield, bill. A kill leaves 805: sprawled on his back with the bill beside him, the pool the length of the body."
+      "note": "Goblin soldier (en-gs, s3-gs, s3-gobg; walk 801-809, attack 792-798): scale coat, helmet, shield, bill. A kill leaves 805: sprawled on his back with the bill beside him, the pool the length of the body.",
+      "one_shots": {
+        "hit": {
+          "clip": "/Game/Dink/Photoreal/Creatures/GoblinSoldier/Animations/AN_Goblin_Soldier_Hit.AN_Goblin_Soldier_Hit",
+          "blend_in_s": 0.04,
+          "blend_out_s": 0.2
+        },
+        "death": {
+          "clip": "/Game/Dink/Photoreal/Creatures/GoblinSoldier/Animations/AN_Goblin_Soldier_Death.AN_Goblin_Soldier_Death",
+          "blend_in_s": 0.06,
+          "align_cm": [
+            -3.7,
+            -87.5,
+            1.8
+          ],
+          "material_from_corpse": true
+        }
+      }
     },
     {
       "class": "npc_maiden_red",
