@@ -1552,6 +1552,28 @@
       "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). dragon_corpse, picture 216 frame 1 (screen 158): the same remains turned half round, as the second picture is."
     },
     {
+      "family": "86 inside/details/fire-",
+      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Hearth.MI_FX_Hearth",
+      "effect_placed": true,
+      "scripted": true,
+      "effect_fit": [0.8, 0.8],
+      "offset_cm": {"S163_P24": [0, 0, 30, 1.5]},
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "The hearth fire (class hearth_fire: S001_P20 with script s1-h1-2, S163_P24). Fable stream art-fx-props, 16 Nov 2026, on the placed-effect path of the burning house's fires: the sprite's own card shows a looping flipbook made from the middle of the simulated wall of flame (FableF/hearth_fire/Hearth: 8 x 8 frames, 3.2 s, translucent, a compact fire tallest in the middle, a few sparks, nearly no smoke). scripted: S001_P20 carries a script that never changes its picture. No effect_light: environment.json indoor.fire already lights the class. S001_P20 was also taken out of the Stonebrook room's hide list (stonebrook.json, room_layout.json), so its card is drawn in the fire back of the authored fireplace."
+    },
+    {
+      "family": "fountain_spray_fx",
+      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Fountain_Spray.MI_FX_Fountain_Spray",
+      "effect_placed": true,
+      "effect_fit": [0.64, 0.5],
+      "effect_sink": 0.045,
+      "offset_cm": {"S586_P14": [0, 95, 128], "S260_P30": [0, 95, 128]},
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "94 lands/garden/spray-: the fountain's water (S586_P14 KernSin, S260_P30). Fable stream art-fx-props, 16 Nov 2026 (art row VS-11), on the placed-effect path: the sprite's card shows a looping translucent flipbook (FableF/fountain_spray_fx/Fountain_Spray, tools/build_fountain_spray.py: a jet 1 m high that breaks into 520 drops on ballistic arcs, 8 x 8 frames of 256 px). The spray fills 0.64 x 0.5 of the frame from its foot. offset_cm: the card stood on the ground 0.9 m behind the fountain mesh; it now rises from the bowl. No rings on the water and no wet stone yet."
+    },
+    {
       "family": "fire_fx",
       "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Fire_Wall.MI_FX_Fire_Wall",
       "effect_placed": true,

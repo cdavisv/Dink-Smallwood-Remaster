@@ -2,7 +2,7 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF",
  "generated_by": "FableF/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 5 effect flipbooks, 5 static meshes.",
+ "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 7 effect flipbooks, 5 static meshes.",
  "assets": [
   {
    "name": "SM_Door_Barred_PR",
@@ -113,6 +113,46 @@
    "families": [
     "fire_fx",
     "427 effects/fire/fire1-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.45,
+    0.85,
+    1.0
+   ]
+  },
+  {
+   "name": "Fountain_Spray",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/fountain_spray_fx/Fountain_Spray/T_FX_Fountain_Spray_Flipbook.png",
+   "grid": [
+    8,
+    8
+   ],
+   "fps": 24,
+   "glow": 1.0,
+   "families": [
+    "fountain_spray_fx",
+    "94 lands/garden/spray-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.98,
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "name": "Hearth",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/hearth_fire/Hearth/T_FX_Hearth_Flipbook.png",
+   "grid": [
+    8,
+    8
+   ],
+   "fps": 20,
+   "glow": 5.0,
+   "families": [
+    "hearth_fire",
+    "86 inside/details/fire-"
    ],
    "blend": "translucent",
    "hot": [

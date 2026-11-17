@@ -21,6 +21,8 @@ UNC = os.path.dirname(HERE)
 ROOT = 'DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF'
 SCRIPT = 'build_fire_fx.py'
 
+COMPACT_WINDOW = (96, 416, 190, 510)
+
 SETS = {
     # frame = the square the camera sees (m), fire stands on its bottom edge; logs = (x, y, radius) of the burning lumps
     'Fire_Wall': dict(family='fire_fx', folder='fire_fx', frame_m=2.6, grid=8, px=512, fps=20, warm=36, xfade=20,
@@ -29,6 +31,10 @@ SETS = {
                       fuel=1.5, time_scale=1.2, vort=0.35, flame_vort=0.75, noise=0.0, burn=0.5, strength=26.0, l0=2.6, seed=427,
                       glow=6.0, hot=(0.45, 0.85, 1.0), look={},
                       seqs=['427 effects/fire/fire1-'], dresses='the wall of flame of the burning house: 1.6 m wide and 1.6 m tall on a row of burning timbers, tongues tearing off the top'),
+    # the fire in a hearth: the compact fire cut from the wall of flame (no simulation of its own), nearly no smoke
+    'Hearth': dict(family='hearth_fire', folder='hearth_fire', from_set='Fire_Wall', window=COMPACT_WINDOW, frame_m=1.625, grid=8, px=256, fps=20, seed=86,
+                   glow=5.0, hot=(0.45, 0.85, 1.0), look=dict(smoke_max=0.22, smoke_density=2.2, rise_px=120.0, sigma0=2.0, sigma1=10.0, sway_px=8.0, wind_px=4.0, sparks=9),
+                   seqs=['86 inside/details/fire-'], dresses='the fire in the hearth: a compact fire 1.2 m wide and up to 1.4 m tall, tallest in the middle, with a few sparks'),
 }
 
 
@@ -274,7 +280,7 @@ def stage_render(S, o):
     print('FIRE rendered', n)
 
 
-COMPACT = dict(window=(96, 416, 190, 510), px=256)      # the middle of the wall of flame as a fire of its own (burn patches, hearth)
+COMPACT = dict(window=COMPACT_WINDOW, px=256)      # the middle of the wall of flame as a fire of its own (burn patches, hearth)
 
 
 def compact(S, frames):
@@ -294,6 +300,8 @@ def compact(S, frames):
 
 
 def loop_frames(S, o):
+    if S.get('from_set'):
+        return compact(S, loop_frames(SETS[S['from_set']], o))
     nf = S['grid'] ** 2
     xf = S['xfade']
     raw = [load_exr(os.path.join(o['cache'], 'frames', 'f_%03d.exr' % i))[..., :3] for i in range(nf + xf)]
@@ -427,8 +435,8 @@ def write_manifest(S, o, folder, cov):
         'flipbook': {'frames': g * g, 'grid': [g, g], 'fps': S['fps'], 'loop': True, 'billboard_size_m': [S['frame_m'], S['frame_m']],
                      'blend': 'translucent', 'glow': S['glow'], 'hot': list(S['hot']), 'alpha_coverage': round(cov, 3), 'stands_on_bottom_edge': True},
         'preview': rel + 'frames_strip.png',
-        'source_blend': rel + 'FX_%s.blend' % o['name'],
-        'source_note': 'a Mantaflow gas simulation (fire flows on a row of timbers, resolution %d) rendered by Cycles as an emitting volume, front view, one frame per step; the loop is closed by a %d-frame cross-fade. tools/fire_encode.py turns the HDR flame frames into colour and opacity and adds what the flame render does not hold: smoke built from the flames\' own earlier frames (risen, spread, broken into billows by rising noise, lit from below) and sparks. The .blend holds the emitter, the domain settings and the review scene; the simulation cache is not kept (rebuild with the script).' % (o['res'], S['xfade']),
+        'source_blend': (ROOT + '/' + SETS[S['from_set']]['folder'] + '/' + S['from_set'] + '/FX_%s.blend' % S['from_set']) if S.get('from_set') else rel + 'FX_%s.blend' % o['name'],
+        'source_note': 'a Mantaflow gas simulation (fire flows on a row of timbers, resolution %d) rendered by Cycles as an emitting volume, front view, one frame per step; the loop is closed by a %d-frame cross-fade. tools/fire_encode.py turns the HDR flame frames into colour and opacity and adds what the flame render does not hold: smoke built from the flames\' own earlier frames (risen, spread, broken into billows by rising noise, lit from below) and sparks. The .blend holds the emitter, the domain settings and the review scene; the simulation cache is not kept (rebuild with the script).' % (o['res'], S.get('xfade', 0)),
         'build': 'blender -b --factory-startup -t 4 --python FableF/tools/build_fire_fx.py -- ' + o['name'],
         'families': [S['family']] + S['seqs'],
         'supersedes': 'none (placeholder greybox cards)',
@@ -437,6 +445,10 @@ def write_manifest(S, o, folder, cov):
         'status': 'source delivered',
         'known_weaknesses': 'A flipbook on a camera-facing card, not a volume in the game: it has no depth against the scene and from straight above it is still a side view. The smoke is made from the flame frames, not simulated, and ends at the top of the frame (1 m above the flames): it does not gather under a ceiling or trail off downwind. The material is unlit: the smoke keeps its own brightness in a dark room. One loop of 3.2 s.',
     }
+    if S.get('from_set'):
+        m['source_note'] = 'made from the frames of %s (same simulation and render): the window %s of its %d px frame, the flames lowered towards the sides, scaled to %d px; colour, opacity, the little smoke and the sparks by tools/fire_encode.py. Needs the frame cache of %s (--cache); stage atlas only.' % (S['from_set'], list(S['window']), SETS[S['from_set']]['px'], S['px'], S['from_set'])
+        m['build'] = 'blender -b --factory-startup -t 4 --python FableF/tools/build_fire_fx.py -- %s --cache <cache of %s> --stage atlas' % (o['name'], S['from_set'])
+        m['known_weaknesses'] = 'A flipbook on a card in the fire back, not a volume. The same motion as the wall of flame of the burning house (its middle part). Unlit; the hearth light is the indoor light set, not this card. One loop of 3.2 s.'
     json.dump(m, open(os.path.join(folder, 'manifest.json'), 'w'), indent=1)
     open(os.path.join(folder, 'manifest.json'), 'a').write('\n')
 
@@ -445,6 +457,8 @@ def main():
     o = args()
     S = SETS[o['name']]
     st = o['stage']
+    if S.get('from_set') and st != 'atlas':
+        raise SystemExit('%s is made from the frames of %s: --stage atlas' % (o['name'], S['from_set']))
     if st in ('sim', 'all'):
         stage_sim(S, o)
     if st in ('render', 'all'):
