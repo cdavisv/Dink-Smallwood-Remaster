@@ -1,0 +1,104 @@
+{
+ "name": "SM_Hero_Axe_PR",
+ "class": "weapon",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Axe/SM_Hero_Axe_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Axe/SM_Hero_Axe_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_weapons.py Axe final",
+ "dimensions_m": [
+  0.6434,
+  0.332,
+  0.0404
+ ],
+ "bounds_min_m": [
+  -0.1284,
+  -0.166,
+  -0.0202
+ ],
+ "bounds_max_m": [
+  0.515,
+  0.166,
+  0.0202
+ ],
+ "lod0_triangles": 2448,
+ "triangle_budget": {
+  "soft": 3000,
+  "hard": 8000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Axe/T_Hero_Axe_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Axe/T_Hero_Axe_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Axe/T_Hero_Axe_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Hero_Axe_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0012,
+   0.9988
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 66.6,
+   "p99": 213.8
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.184,
+   "p95": 0.612
+  },
+  "metallic_mean": 0.264,
+  "ao_mean": 0.169
+ },
+ "pivot": "grip centre at the origin; +X to the tip; flats of the blade on +Z / -Z (see tools/build_weapons.py)",
+ "families": [
+  "hero weapon item-axe"
+ ],
+ "origin_ids": {},
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "double-bitted throwing axe, 0.59 m: two crescent bits of blue-cast steel 31 cm across, dark walnut haft with a swelling at the butt; grip centre 12.5 cm above the butt",
+ "third_party": [
+  "weathered_brown_planks (render floor)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Head and haft are two solids pushed together, no eye or wedge. This is the axe in the hand; the thrown axe in flight (sequence 85) stays an effect. Baked from a procedural source: no maker's marks, engraving or damage from use beyond stains and edge wear. Static (no cloth, tassel or scabbard). The grip transform was derived from the hand bone landmarks and checked in one idle and one attack frame only.",
+ "grip": {
+  "origin": "grip centre",
+  "x": "towards the tip (upper limb for a bow)",
+  "bone": "hand_r",
+  "item": "item-axe",
+  "picture_1997": "438/6"
+ }
+}

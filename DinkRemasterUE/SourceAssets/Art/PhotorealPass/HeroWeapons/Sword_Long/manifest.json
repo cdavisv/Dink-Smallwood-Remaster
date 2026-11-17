@@ -1,0 +1,104 @@
+{
+ "name": "SM_Hero_Sword_Long_PR",
+ "class": "weapon",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long/SM_Hero_Sword_Long_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long/SM_Hero_Sword_Long_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_weapons.py Sword_Long final",
+ "dimensions_m": [
+  0.9504,
+  0.2157,
+  0.0335
+ ],
+ "bounds_min_m": [
+  -0.0844,
+  -0.1078,
+  -0.0167
+ ],
+ "bounds_max_m": [
+  0.866,
+  0.1078,
+  0.0167
+ ],
+ "lod0_triangles": 1366,
+ "triangle_budget": {
+  "soft": 3000,
+  "hard": 8000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long/T_Hero_Sword_Long_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long/T_Hero_Sword_Long_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long/T_Hero_Sword_Long_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Hero_Sword_Long_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0014,
+   0.9986
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 54.7,
+   "p99": 229.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.114,
+   "p95": 0.531
+  },
+  "metallic_mean": 0.192,
+  "ao_mean": 0.283
+ },
+ "pivot": "grip centre at the origin; +X to the tip; flats of the blade on +Z / -Z (see tools/build_weapons.py)",
+ "families": [
+  "hero weapon item-sw1"
+ ],
+ "origin_ids": {},
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "longsword, 0.94 m over all, 0.80 m blade 5.4 cm wide at the guard with a fuller: blue-cast polished steel, bone cross-guard 21 cm with three garnets a side, red leather-bound grip, bone pommel",
+ "third_party": [
+  "weathered_brown_planks (render floor)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Guard and pommel are swept and scaled solids pushed together (no peened tang, no rain-guard). Baked from a procedural source: no maker's marks, engraving or damage from use beyond stains and edge wear. Static (no cloth, tassel or scabbard). The grip transform was derived from the hand bone landmarks and checked in one idle and one attack frame only.",
+ "grip": {
+  "origin": "grip centre",
+  "x": "towards the tip (upper limb for a bow)",
+  "bone": "hand_r",
+  "item": "item-sw1",
+  "picture_1997": "438/7"
+ }
+}
