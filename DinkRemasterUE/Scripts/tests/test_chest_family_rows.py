@@ -1,4 +1,4 @@
-"""Small treasure chest rows of families.json (15 Nov 2026): closed while the lid is down, open from frame 3 on.
+"""Treasure chest rows of families.json (15 and 16 Nov 2026): closed while the lid is down, open from frame 3 on.
 
 Resolved with Scripts/art_coverage.py's mirror of DinkArtFamily::Resolve (sequence-and-frame row, then class row, then
 plain sequence row), on the real families.json, with every mesh taken as present."""
@@ -47,10 +47,18 @@ class ChestFamilyRowTests(unittest.TestCase):
             self.assertEqual(row['mesh'], OPEN)
             self.assertTrue(row['scripted'])
 
-    def test_other_chests_are_not_bound_by_these_rows(self):
-        # chst2 (176) and chst3 (177) keep their cards; the large chest of 536 shows 175 only once its script plays it
-        self.assertIsNone(family_binding(self.rows, 176, 'chest_medium', 1))
-        self.assertIsNone(family_binding(self.rows, 177, 'chest_large', 1))
+    def test_the_front_and_mirrored_chest_pictures_are_the_same_chest(self):
+        # chst2 (176: the chest seen from the front, class chest_medium) and chst3 (177: turned the other way, class
+        # chest_large) are the small chest's pictures from other sides, 44 and 59 px wide: the same two meshes by frame
+        for seq, cls in ((176, 'chest_medium'), (177, 'chest_large')):
+            meshes = [family_binding(self.rows, seq, cls, f)['mesh'] for f in range(1, 7)]
+            self.assertEqual(meshes, [CLOSED, CLOSED, OPEN, OPEN, OPEN, OPEN], seq)
+            self.assertTrue(all(family_binding(self.rows, seq, cls, f)['scripted'] for f in range(1, 7)), seq)
+        # ch2-500 opens its 176 chest with the pictures of 177 and saves 177/6: open on the next visit
+        self.assertEqual(family_binding(self.rows, 177, None, 6)['mesh'], OPEN)
+        # no class row: a chest_medium or chest_large placement with a picture outside these frames keeps its card
+        self.assertIsNone(family_binding(self.rows, 176, 'chest_medium'))
+        self.assertIsNone(family_binding(self.rows, 177, 'chest_large'))
 
 
 if __name__ == '__main__':
