@@ -22,6 +22,14 @@
    "fps": 60,
    "cast_s": 0.0
   },
+  "Death_436": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Death_436.AN_Death_436",
+   "duration_s": 1.25,
+   "loop": false,
+   "fps": 60,
+   "knees_s": 0.68,
+   "chest_s": 0.92
+  },
   "Fall": {
    "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Fall.AN_Fall",
    "duration_s": 1.0,

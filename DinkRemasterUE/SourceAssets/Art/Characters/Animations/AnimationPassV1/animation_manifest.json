@@ -63,6 +63,29 @@
    "asset_name": "AN_Cast",
    "sha256": "4bfe1db4ede420e5adf48a361b48340ca2acd01673513b5cf08074e14121224b"
   },
+  "Death_436": {
+   "frames": 76,
+   "fps": 60,
+   "duration_s": 1.25,
+   "speed_m_s": 0.0,
+   "stride_m": 0.0,
+   "planted_samples": 127,
+   "planted_drift_cm_per_frame_max": 0.0052,
+   "planted_drift_cm_per_frame_mean": 0.0008,
+   "planted_slide_cm_per_s_max": 0.312,
+   "ik_clamps": 74,
+   "lowest_sole_m": -0.0005,
+   "loop_seam_m": 0.0,
+   "loop": false,
+   "events": {
+    "knees_s": 0.68,
+    "chest_s": 0.92
+   },
+   "family": "hero_death",
+   "fbx": "Export/A_Death_436.fbx",
+   "asset_name": "AN_Death_436",
+   "sha256": "149744ce1c84c90e698af518ee39f23b58415d7e63bbbf0cfe6a696b6c618d4d"
+  },
   "Fall": {
    "frames": 31,
    "fps": 30,

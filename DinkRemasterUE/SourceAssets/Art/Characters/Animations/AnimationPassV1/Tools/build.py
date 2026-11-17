@@ -185,6 +185,9 @@ def render_strip(scene, arm, clip, cam, ticks, marks, out, every, label):
     tmp.mkdir(parents=True, exist_ok=True)
     views = {'side': (Vector((6, -0.15, 0.93)), (math.radians(90), 0, math.radians(90)), 2.25, (225, 275)),
              'front': (Vector((0, -6, 0.93)), (math.radians(90), 0, 0), 2.25, (190, 275))}
+    if clip.get('family') == 'hero_death':     # he ends lying in front of the root: a wider side view and one from above
+        views = {'side': (Vector((6, -0.85, 0.93)), (math.radians(90), 0, math.radians(90)), 3.5, (350, 275)),
+                 'top': (Vector((0, -0.85, 6)), (0, 0, 0), 3.3, (250, 330))}
     files = {k: [] for k in views}
     for i in frames:
         scene.frame_set(i + 1)
@@ -204,7 +207,7 @@ def render_strip(scene, arm, clip, cam, ticks, marks, out, every, label):
             scene.render.filepath = str(path)
             bpy.ops.render.render(write_still=True)
             files[key].append((str(path), 'f%d %.2fs' % (i, t)))
-    spec = dict(out=str(out), title=label, rows=[files['side'], files['front']])
+    spec = dict(out=str(out), title=label, rows=[files[k] for k in views])
     spec_path = tmp / 'spec.json'
     spec_path.write_text(json.dumps(spec))
     subprocess.run(['python3', '-I', str(HERE / 'compose_strip.py'), str(spec_path)], check=True)
