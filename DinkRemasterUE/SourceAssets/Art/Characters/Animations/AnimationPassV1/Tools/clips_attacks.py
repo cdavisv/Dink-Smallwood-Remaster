@@ -215,6 +215,49 @@ def stumble(rig, name):
     return action_clip(rig, name, stand, K.rows, 0.80, events={'catch_s': 0.23}, family='hero_reaction', steps=K.steps)
 
 
+def death(rig, name):
+    """Sequence 436 (dinfo.c die), as its sixteen pictures: the blow doubles him over (436/04-08), his knees give and he
+    drops onto them (436/10-12), he pitches forward onto his chest and face with his heels kicking up (436/14) and lies
+    face down, one arm stretched past his head, the shins still half raised and crossed (436/16). His feet never leave
+    their spot, so the body ends in front of the root: chest about 1.2 m, head about 1.5 m ahead (the blood pool of 436/16
+    lies under the chest and head). The last frame is the dead pose and is held."""
+    stand, K = _keys(rig, 0.3)
+    b = K.base
+    gut_l = arm('l', 0.10, 0.22, -0.34, pole=(1.0, -0.4, -0.2), curl=0.7)
+    gut_r = arm('r', -0.08, 0.24, -0.30, pole=(-1.0, -0.4, -0.2), curl=0.7)
+    K.add(0.0)
+    # the blow: he folds over it
+    K.add(0.10, pel_f=-0.05, pel_drop=0.04, sp_pitch=b['sp_pitch'] + D(26), pel_pitch=b['pel_pitch'] + D(6), hd_pitch=D(18), hd_follow=0.5,
+          l_shrug=D(16), r_shrug=D(18), **gut_l, **gut_r)
+    K.add(0.30, pel_f=-0.02, pel_drop=0.11, pel_x=0.02, sp_pitch=b['sp_pitch'] + D(52), sp_roll=D(5), pel_pitch=b['pel_pitch'] + D(14),
+          hd_pitch=D(34), hd_roll=D(6), hd_follow=0.7, l_shrug=D(10), r_shrug=D(12),
+          **arm('l', 0.14, 0.30, -0.52, pole=(1.0, -0.4, -0.1), curl=0.4), **gut_r)
+    # he hangs there, swaying, and the knees start to go
+    K.add(0.50, pel_f=0.06, pel_drop=0.20, pel_x=-0.02, sp_pitch=b['sp_pitch'] + D(58), sp_roll=D(-4), pel_pitch=b['pel_pitch'] + D(16),
+          hd_pitch=D(40), hd_roll=D(-5), lf_pitch=D(-16), rf_pitch=D(-12), lf_knee=0.03, rf_knee=0.03,
+          **arm('l', 0.20, 0.34, -0.62, pole=(1.0, -0.3, 0.0), curl=0.2), **arm('r', -0.16, 0.34, -0.56, pole=(-1.0, -0.3, 0.0), curl=0.3))
+    # onto his knees: the shins go flat, the hips stay over the knees for a moment
+    K.add(0.68, pel_f=0.40, pel_drop=0.47, pel_x=0.0, pel_pitch=b['pel_pitch'] + D(30), sp_pitch=b['sp_pitch'] + D(36), sp_roll=0.0,
+          hd_pitch=D(30), hd_roll=0.0, hd_follow=0.5, lf_pitch=D(-92), rf_pitch=D(-92), lf_knee=0.02, rf_knee=0.02, l_shrug=D(4), r_shrug=D(4),
+          **arm('l', 0.30, 0.56, -0.40, pole=(1.0, -0.2, 0.2), curl=0.1), **arm('r', -0.26, 0.60, -0.36, pole=(-1.0, -0.2, 0.2), curl=0.1))
+    # he tips forward off his knees
+    K.add(0.80, pel_f=0.62, pel_drop=0.62, pel_pitch=b['pel_pitch'] + D(60), sp_pitch=D(8), hd_pitch=D(40), hd_follow=0.3,
+          lf_pitch=D(-96), rf_pitch=D(-96), lf_lift=0.10, rf_lift=0.06, lf_prone=0.5, rf_prone=0.5,
+          **arm('l', 0.34, 0.60, -0.36, pole=(1.0, -0.1, 0.4), curl=0.05), **arm('r', -0.30, 0.66, -0.30, pole=(-1.0, -0.1, 0.4), curl=0.05))
+    # chest and face hit; the heels kick up
+    flat = dict(pel_f=0.87, pel_drop=0.785, pel_pitch=b['pel_pitch'] + D(86), sp_pitch=D(-3), lf_pitch=D(-96), rf_pitch=D(-96), l_shrug=D(18), r_shrug=D(10))
+    K.add(0.92, _world={'l': (0.46, 1.22, 0.04), 'r': (-0.26, 1.80, 0.04)}, hd_pitch=D(74), hd_yaw=D(10), hd_roll=0.0, hd_follow=0.0, la_curl=0.1, ra_curl=0.05,
+          lf_lift=0.36, rf_lift=0.26, lf_prone=1.0, rf_prone=1.0, lf_f=b['lf_f'] + 0.10, rf_f=b['rf_f'] + 0.06,
+          **pole('l', 1.0, -0.3, 0.4), **pole('r', -1.0, 0.3, 0.3), **flat)
+    K.add(1.02, lf_lift=0.44, rf_lift=0.24, lf_f=b['lf_f'] + 0.14, rf_f=b['rf_f'] + 0.05, pel_drop=0.795, hd_pitch=D(66), hd_yaw=D(34))
+    # he lies still: the head rolled to one side, one arm stretched past it, the shins sinking, the right across the left
+    K.add(1.16, _world={'l': (0.33, 0.92, 0.05), 'r': (-0.16, 2.00, 0.04)}, lf_lift=0.30, rf_lift=0.14, lf_f=b['lf_f'] + 0.10, rf_f=b['rf_f'] + 0.02, lf_x=b['lf_x'] - 0.05, hd_pitch=D(62), hd_yaw=D(52), hd_roll=D(8),
+          la_curl=0.3, ra_curl=0.2, l_shrug=D(4), r_shrug=D(22), **pole('l', 1.0, -0.6, 0.2), **pole('r', -1.0, 0.4, 0.1))
+    K.add(1.22, lf_lift=0.28, rf_lift=0.13)
+    K.hold(1.25)
+    return action_clip(rig, name, stand, K.rows, 1.25, events={'knees_s': 0.68, 'chest_s': 0.92}, family='hero_death', steps=K.steps, blend_out=0.0)
+
+
 def sword(rig, name, kind):
     """One-handed cuts, right hand; the blade is imagined along the thumb side of the fist."""
     stand, K = _keys(rig, 0.6)
@@ -340,6 +383,7 @@ def makers(rig):
     m['Fist_Cross_Confident'] = lambda: cross(rig, 1.0, 'Fist_Cross_Confident')
     m['Fist_Swing_Timid'] = lambda: haymaker(rig, 'Fist_Swing_Timid')
     m['Fist_Swing_Confident'] = lambda: hook(rig, 'Fist_Swing_Confident')
+    m['Death_436'] = lambda: death(rig, 'Death_436')
     m['Sword_Slash_1'] = lambda: sword(rig, 'Sword_Slash_1', 'slash1')
     m['Sword_Slash_2'] = lambda: sword(rig, 'Sword_Slash_2', 'slash2')
     m['Sword_Chop'] = lambda: sword(rig, 'Sword_Chop', 'chop')

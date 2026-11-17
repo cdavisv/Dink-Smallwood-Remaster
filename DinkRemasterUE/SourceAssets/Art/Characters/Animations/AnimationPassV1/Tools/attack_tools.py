@@ -54,6 +54,7 @@ def state_from_pose(rig, pose):
         S[k + 'f_toe'] = 1.0
         S[k + 'f_knee'] = 0.0
         S[k + 'f_lift'] = 0.0
+        S[k + 'f_prone'] = 0.0
         S[k + 'f_pitch'] = 0.0
         sh, el, wr = (w[n + '_' + side].translation for n in ('upperarm', 'lowerarm', 'hand'))
         t = inv @ (wr - origin)
@@ -94,7 +95,7 @@ def place_foot(pose, side, S):
     ankle = flat + (rot(UP, s * yaw) @ FWD) * df
     ankle.z = z
     pose.foot(side, ankle, pitch=pitch, yaw=yaw, toe=(-pitch if pitch < 0 else 0.0) * S.get(k + 'f_toe', 1.0),
-              knee_out=S.get(k + 'f_knee', 0.0))
+              knee_out=S.get(k + 'f_knee', 0.0), prone=S.get(k + 'f_prone', 0.0))
 
 
 def build_pose(rig, S):

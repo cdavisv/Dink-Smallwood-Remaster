@@ -302,11 +302,13 @@ class Pose:
             q = qc.slerp(target, share)
             self.set_delta(n, q.to_matrix())
 
-    def foot(self, side, ankle, pitch=0.0, yaw=0.0, toe=0.0, roll=0.0, knee_out=0.0):
+    def foot(self, side, ankle, pitch=0.0, yaw=0.0, toe=0.0, roll=0.0, knee_out=0.0, prone=0.0):
         """Plant the leg: ankle position, foot pitch (toes up +), yaw (toes out +), toe bend (toes up +)."""
         s = 1.0 if side == 'l' else -1.0
         r3 = rot(UP, s * yaw) @ rot(FWD, -s * roll) @ rot(LEFT, -pitch)
         pole = rot(UP, s * (yaw * 0.6 + knee_out)) @ FWD
+        if prone > 0.0:      # lying face down the knee points at the ground, not ahead (the death clip)
+            pole = pole * (1.0 - prone) - UP * prone
         self.ik('leg', side, ankle, pole)
         self.set_delta('foot_' + side, r3)
         self.set_delta('ball_' + side, rot(UP, s * yaw) @ rot(LEFT, -(pitch + toe)))
