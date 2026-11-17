@@ -7,7 +7,7 @@
  "dimensions_m": [
   2.2,
   2.2,
-  0.006
+  0.0511
  ],
  "bounds_min_m": [
   -1.1,
@@ -17,24 +17,24 @@
  "bounds_max_m": [
   1.1,
   1.1,
-  0.006
+  0.0511
  ],
- "lod0_triangles": 3,
+ "lod0_triangles": 1561,
  "textures": [
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_BC.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "material": "MI_Burn_Hole_C",
-   "channels": "base colour sRGB + alpha (cut-out)"
+   "channels": "base colour sRGB + alpha (cover, dithered by the pit material)"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_N.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "material": "MI_Burn_Hole_C",
    "channels": "tangent normal, OpenGL (green up; flip green on import)"
@@ -42,11 +42,11 @@
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_ORM.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "material": "MI_Burn_Hole_C",
-   "channels": "R occlusion, G roughness, B metallic"
+   "channels": "R occlusion, G roughness, B void mask of the pit material (not metallic)"
   }
  ],
  "materials": [
@@ -55,11 +55,15 @@
  "kit_materials": [
   {
    "name": "MI_Burn_Hole_C",
-   "kind": "masked",
+   "kind": "pit",
    "files": {
     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_BC.png",
     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_N.png",
     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_C/T_Burn_Hole_C_ORM.png"
+   },
+   "pit": {
+    "wall_uv": 0.02045,
+    "floor_uv": 0.07273
    }
   }
  ],
@@ -70,11 +74,15 @@
   "burn_hole_decal",
   "158 struct/details/damage/hole-"
  ],
- "dresses": "two burnt holes run together (picture 3)",
+ "dresses": "two holes burnt through the floor, run together (picture 3)",
  "third_party": [
   "park_dirt (render ground)"
  ],
- "known_weaknesses": "A flat alpha-tested card 6 mm above the ground: the outline is a hard cut-out, nothing soaks into the ground or stains grass blades, and it does not follow uneven ground. Depth is painted for the fixed play camera (the far wall of the hole, the plank ends, the dark below): from the side or from the north it is flat.",
+ "known_weaknesses": "A flat alpha-tested card 6 mm above the floor with modelled splinters and charcoal lumps on it: nothing is cut out of the floor itself. The depth (the cut face of the far side, the dark below) is drawn by the `pit` material of the kit importer from the view direction; it assumes one depth for the whole hole, and its far face has no texture of its own. The scorch fades by a per-frame dither (needs temporal anti-aliasing to look soft). The Blender renders show the flat sheet without that shader.",
  "pool_card_m": 2.2,
- "derived_from": "tools/gore_sheets.py (numpy and PIL, no scan)"
+ "derived_from": "tools/gore_sheets.py pit_sheet (numpy and PIL, no scan)",
+ "pit": {
+  "wall_uv": 0.02045,
+  "floor_uv": 0.07273
+ }
 }

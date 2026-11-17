@@ -188,10 +188,46 @@ return lerp(0.3, 1.0, glass);''', F1, common, 'Town surface specular (glass is a
     return mat
 
 
+PIT_CODE = '''
+float3 Vt = mul(Parameters.TangentToWorld, Parameters.CameraVector);
+float2 dir = -Vt.xy / max(abs(Vt.z), 0.22);
+float4 c0 = Texture2DSample(BCt, BCtSampler, UV);
+float3 m0 = Texture2DSample(ORMt, ORMtSampler, UV).rgb;
+float3 col = c0.rgb;
+float spec = 0.12 * m0.r;
+if (m0.b > 0.5)
+{
+    float t = 1.0;
+    float found = 0.0;
+    for (int i = 1; i <= 12; i++)
+    {
+        float s = i / 12.0;
+        float h = Texture2DSampleLevel(ORMt, ORMtSampler, UV + dir * (WallUV * s), 0).b;
+        if (found < 0.5 && h < 0.5) { t = s; found = 1.0; }
+    }
+    if (found > 0.5)
+    {
+        float3 face = lerp(float3(0.075, 0.066, 0.058), float3(0.030, 0.019, 0.012), smoothstep(0.0, 0.3, t));
+        col = face * pow(1.0 - 0.9 * t, 1.6);
+    }
+    else
+    {
+        float2 qb = UV + dir * FloorUV;
+        col = Texture2DSampleLevel(BCt, BCtSampler, qb, 0).rgb * Texture2DSampleLevel(ORMt, ORMtSampler, qb, 0).b;
+    }
+    spec = 0.0;
+}
+return float4(col, spec);'''
+PIT_DITHER = '''
+float n = frac(52.9829189 * frac(dot(Parameters.SvPosition.xy + 5.588238 * float(View.StateFrameIndexMod8), float2(0.06711056, 0.00583715))));
+return A - n + 0.5;'''
+
+
 def baked_master(defaults, name='M_Struct_Baked', emissive=False, kind='opaque'):
     """A unique bake (the contract's `baked` materials): BC / N / ORM on UV0, no vertex colour. Round 2 of the props:
     ORM.B is real metallic; `emissive` adds the E map x EmissiveNits x EmissiveScale; kind 'subsurface' (wax) and
-    'translucent' (horn panes) change the shading only; 'masked' cuts the surface out by the alpha of BC."""
+    'translucent' (horn panes) change the shading only; 'masked' cuts the surface out by the alpha of BC; 'pit' is a
+    burnt-through hole (see below)."""
     path = FOLDER + '/' + name
     mat = LIB.load_asset(path) if LIB.does_asset_exist(path) else None
     if mat is None:
@@ -230,6 +266,32 @@ def baked_master(defaults, name='M_Struct_Baked', emissive=False, kind='opaque')
         mat.set_editor_property('two_sided', True)
         mat.set_editor_property('opacity_mask_clip_value', 0.4)
         EDIT.connect_material_property(bc, 'A', MP.MP_OPACITY_MASK)
+    elif kind == 'pit':
+        # A hole burnt through planks or a wall (corpse kit, picture 158; Corpses/tools/gore_sheets.py pit_sheet). The sheet is flat;
+        # ORM.b is not metallic here but the void mask. Inside the void the shader walks the view ray down through the thickness of
+        # the planks (PitWallUV, in UV units): where it leaves the void it shows the charred cut face of the far side, else what
+        # lies below (the BC of the void, read PitFloorUV deeper). The void has no specular at all: a lit black sheet is grey.
+        # The cover (BC alpha) is dithered against a per-frame noise, so the scorch fades into the floor instead of ending in a cut.
+        mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_MASKED)
+        mat.set_editor_property('two_sided', True)
+        mat.set_editor_property('opacity_mask_clip_value', 0.5)
+        uv = expr(mat, unreal.MaterialExpressionTextureCoordinate, -1500, -900)
+        bct = expr(mat, unreal.MaterialExpressionTextureObjectParameter, -1500, -800, parameter_name='PitBC', texture=defaults['BC'], sampler_type=ST.SAMPLERTYPE_COLOR)
+        ormt = expr(mat, unreal.MaterialExpressionTextureObjectParameter, -1500, -700, parameter_name='PitORM', texture=defaults['ORM'], sampler_type=ST.SAMPLERTYPE_MASKS)
+        wall = expr(mat, unreal.MaterialExpressionScalarParameter, -1500, -600, parameter_name='PitWallUV', default_value=0.03)
+        floor_ = expr(mat, unreal.MaterialExpressionScalarParameter, -1500, -520, parameter_name='PitFloorUV', default_value=0.10)
+        pit = custom(mat, -1100, -800, PIT_CODE, unreal.CustomMaterialOutputType.CMOT_FLOAT4, ['UV', 'BCt', 'ORMt', 'WallUV', 'FloorUV'], 'Burnt-through hole: far wall by parallax, void without specular')
+        for node, pin in ((uv, 'UV'), (bct, 'BCt'), (ormt, 'ORMt'), (wall, 'WallUV'), (floor_, 'FloorUV')):
+            link(node, '', pit, pin)
+        rgb = expr(mat, unreal.MaterialExpressionComponentMask, -800, -850, r=True, g=True, b=True, a=False)
+        spec = expr(mat, unreal.MaterialExpressionComponentMask, -800, -750, r=False, g=False, b=False, a=True)
+        link(pit, '', rgb, ''); link(pit, '', spec, '')
+        EDIT.connect_material_property(rgb, '', MP.MP_BASE_COLOR)
+        EDIT.connect_material_property(spec, '', MP.MP_SPECULAR)
+        EDIT.connect_material_property(expr(mat, unreal.MaterialExpressionConstant, -300, 420, r=0.0), '', MP.MP_METALLIC)
+        dith = custom(mat, -300, -560, PIT_DITHER, F1, ['A'], 'Cover dithered per frame (the scorch fades out)')
+        link(bc, 'A', dith, 'A')
+        EDIT.connect_material_property(dith, '', MP.MP_OPACITY_MASK)
     EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_INSTANCED_STATIC_MESHES, True)
     EDIT.recompile_material(mat)
     save(mat)
@@ -344,9 +406,13 @@ for mat_name, row in integration['materials'].items():
             tex['E'] = import_texture(REPO / row['files']['E'], 'BC')
         key = (kind, 'E' in tex)
         if key not in baked_parents:
-            baked_parents[key] = baked_master(tex, 'M_Struct_Baked' + {'opaque': '', 'subsurface': '_Wax', 'translucent': '_Pane', 'masked': '_Cut'}.get(kind, '') + ('_Glow' if 'E' in tex else ''), 'E' in tex, kind)
-        materials[mat_name] = instance(mat_name, baked_parents[key], {k: tex[k] for k in ('BC', 'N', 'ORM', 'E') if k in tex},
-                                       {'EmissiveNits': row.get('emissive_nits') or 0.0} if 'E' in tex else {}, {})
+            baked_parents[key] = baked_master(tex, 'M_Struct_Baked' + {'opaque': '', 'subsurface': '_Wax', 'translucent': '_Pane', 'masked': '_Cut', 'pit': '_Pit'}.get(kind, '') + ('_Glow' if 'E' in tex else ''), 'E' in tex, kind)
+        textures = {k: tex[k] for k in ('BC', 'N', 'ORM', 'E') if k in tex}
+        scalars = {'EmissiveNits': row.get('emissive_nits') or 0.0} if 'E' in tex else {}
+        if kind == 'pit':                             # the pit shader reads the same two maps as texture objects, and the depths of this hole
+            textures.update({'PitBC': tex['BC'], 'PitORM': tex['ORM']})
+            scalars.update({'PitWallUV': (row.get('pit') or {}).get('wall_uv', 0.03), 'PitFloorUV': (row.get('pit') or {}).get('floor_uv', 0.10)})
+        materials[mat_name] = instance(mat_name, baked_parents[key], textures, scalars, {})
         report['materials'].append(mat_name)
         continue
     missing = {'BC', 'N', 'ORM', 'H', 'Macro'} - set(tex)

@@ -101,6 +101,14 @@
 - All three bonca colours leave the brown body (the original has one death set, 551-559). The stone giant's remains carry no blood (825 has none): a heap of ten blocks on grit.
 - Traps: Blender needs the Poly Haven scans `forrest_ground_01` and `rock_boulder_dry` pulled from LFS; `tools/bl.sh` takes one machine-wide lock, so another session's long simulation blocks it; `pgrep -f X` / `pkill -f X` match the shell that runs them when its text contains X (kill by PID).
 
+## Corpse kit: review follow-ups of the starting-house remains (16 November 2026)
+
+- All fourteen corpse-kit assets rebuilt (`Corpses/tools/build_gore.py`, `gore_sheets.py`): pools without the pale damp fringe, matt edge; burn holes rebuilt as holes burnt THROUGH (`gore_sheets.pit_sheet`, `build_gore.pit_card`, importer kind `pit`; see below); the Mother's body the brightest red of screen 1; dead Dink's pool under him, bright, with a natural outline. `SM_Corpse_Mother_Joppa_PR` (picture 365) is delivered with a `families.json` row that shows nothing until killed people's pictures take their family rows (code item C1). Evidence: `Docs/Verification/GoreFollowups_16Nov2026/README.md`.
+- Burn holes (picture 158): the sheet's `ORM.b` is the void mask, not metallic. `M_Struct_Baked_Pit` (kit importer, material kind `pit`) walks the view ray through the plank thickness (`PitWallUV`) and draws the charred cut face of the far side, reads what lies below at `PitFloorUV`, gives the void no specular, and dithers the cover per frame so the scorch fades. The mesh carries modelled splinters over the rim and charcoal lumps. `SM_Burn_Hole_Wall_PR` is the upright variant with a soot plume: `S001_P49` stands on the room face of the south wall, where 1997 draws it (wall line y 393595.98 cm, room-side plaster about 18 cm north of it, posts to 19 cm; the card stands 2 mm in front of the posts).
+- Pitfall: a baked kit material without a Specular pin reflects 4 % of the sun and sky: a black base colour renders as a dark grey sheet (the 'tar' burn holes of the first version). Anything that must read as a void needs specular 0, not only a black texture.
+- Pitfall: a pool made from the red of a 1997 picture (`gore_sheets.sprite_red` with `fill`) keeps the picture's pixel stairs and straight sides unless the stamp is padded, blurred wider than the dilation and bent with noise before the cut; check the Cycles render from above before importing.
+- Pitfall: the play camera of an interior screen (anchor + 650 cm back, 520 cm up) is above the roof; review cameras for the starting house must stand inside the room (`room2_from_*` in the capture script) or below 330 cm.
+
 ## Presentation fixes of the visual sweep (15 November 2026)
 
 Evidence: `Docs/Verification/PresentationFixes_15Nov2026/`. Bug list A77 (carried), A78, A79. Presentation only: hardness, collision, scripts and the probe traces are untouched.

@@ -53,7 +53,7 @@ def build(everything=False):
                     raise SystemExit('%s: missing %s' % (m['name'], f))
             if k['name'] in materials:
                 raise SystemExit('material name used twice: ' + k['name'])
-            materials[k['name']] = {'baked': True, 'kind': k['kind'], 'files': k['files']}
+            materials[k['name']] = {'baked': True, 'kind': k['kind'], 'files': k['files'], **({'pit': k['pit']} if k.get('pit') else {})}
         assets.append({'name': m['name'], 'class': m['class'], 'fbx': m['fbx'], 'materials': m['materials'],
                        'dimensions_m': [round(float(v), 3) for v in m['dimensions_m']], 'collision_hulls': 0,
                        'families': m['families'], 'folder': os.path.relpath(os.path.dirname(path), REPO).replace(os.sep, '/')})

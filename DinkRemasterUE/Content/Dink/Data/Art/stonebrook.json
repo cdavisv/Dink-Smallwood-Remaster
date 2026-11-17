@@ -127,7 +127,7 @@
       "expected_size_cm": [
         150.0,
         150.0,
-        0.6
+        4.25
       ]
     },
     {
@@ -135,7 +135,7 @@
       "expected_size_cm": [
         150.0,
         150.0,
-        0.6
+        4.86
       ]
     },
     {
@@ -143,7 +143,15 @@
       "expected_size_cm": [
         220.0,
         220.0,
-        0.6
+        5.11
+      ]
+    },
+    {
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_Wall_PR.SM_Burn_Hole_Wall_PR",
+      "expected_size_cm": [
+        200.0,
+        6.4,
+        235.0
       ]
     }
   ],
@@ -305,7 +313,7 @@
       "origin": "S001_P45",
       "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_B_PR.SM_Burn_Hole_B_PR",
       "offset_cm": [
-        -15.3,
+        45.0,
         0.0,
         0.0
       ],
@@ -379,15 +387,15 @@
     },
     {
       "origin": "S001_P49",
-      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_C_PR.SM_Burn_Hole_C_PR",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_Wall_PR.SM_Burn_Hole_Wall_PR",
       "offset_cm": [
-        -30.7,
-        0.0,
+        55.4,
+        95.2,
         0.0
       ],
       "rotation_deg": [
         0,
-        180,
+        0,
         0
       ],
       "scale": [

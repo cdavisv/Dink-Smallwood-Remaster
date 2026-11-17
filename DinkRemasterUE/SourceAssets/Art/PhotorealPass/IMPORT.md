@@ -138,6 +138,14 @@ The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README
 - **Decal sheets**: `python3 -I Corpses/tools/build_decals.py` writes `Corpses/Decals` (three 2 x 2 atlases, one 1997 picture frame per cell: blood 187 / 188 / 189, burn holes 158); the kit import makes `/Game/Dink/Photoreal/Corpses/M_Decal_Sheet` and `MI_Decal_<Set>_0..3` from the manifest's `decals`. Not bound by `environment.json` yet.
 - **Checks and captures**: `Docs/Verification/CorpseGore_14Nov2026/`, `Docs/Verification/StonebrookMotherAndRemains_14Nov2026/`.
 
+- **Review follow-ups, 16 Nov 2026**: every kit asset rebuilt with `blood_sheet(keep_fringe=False)` (no pale damp ring), a matt
+  pool edge and brighter people; the burn holes as kind `pit` (`pit_sheet` + `pit_card`: void mask in `ORM.b`, depths in the kit row's `pit` block,
+  master `M_Struct_Baked_Pit`; `Burn_Hole_Wall` stands upright for `S001_P49`);
+  `Dink_Dead` with `pool_under`, `pool_fill` and the padded, noise-bent `sprite_red` stamp (the picture's red as one natural
+  pool under the body). `SM_Corpse_Mother_Joppa_PR` (365) is new; its `families.json` row waits for code item C1. Rebuild one
+  asset: `Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py <Name>`; then `git add` the outputs, run
+  `Scripts/scrub_private_paths.py --fix` on the folder (it only sees tracked files), and import the kit.
+
 ## Faceting sweep (13 Nov 2026)
 
 Owner feedback of 13 Nov 2026: "fix blocky and polygon looking art". What was found and changed is in `Docs/Verification/FacetingSweep_13Nov2026/`.

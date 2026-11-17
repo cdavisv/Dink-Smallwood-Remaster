@@ -23,7 +23,7 @@
      ],
      "cell_m": 0.92,
      "picture_area_m2": 0.136,
-     "decal_area_m2": 0.208
+     "decal_area_m2": 0.171
     },
     {
      "cell": 1,
@@ -34,7 +34,7 @@
      ],
      "cell_m": 0.609,
      "picture_area_m2": 0.052,
-     "decal_area_m2": 0.092
+     "decal_area_m2": 0.075
     },
     {
      "cell": 2,
@@ -45,7 +45,7 @@
      ],
      "cell_m": 1.61,
      "picture_area_m2": 0.206,
-     "decal_area_m2": 0.303
+     "decal_area_m2": 0.259
     },
     {
      "cell": 3,
@@ -56,7 +56,7 @@
      ],
      "cell_m": 1.092,
      "picture_area_m2": 0.104,
-     "decal_area_m2": 0.181
+     "decal_area_m2": 0.124
     }
    ],
    "material": "deferred decal, translucent: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G",
@@ -81,7 +81,7 @@
      ],
      "cell_m": 1.61,
      "picture_area_m2": 0.159,
-     "decal_area_m2": 0.278
+     "decal_area_m2": 0.211
     },
     {
      "cell": 1,
@@ -92,7 +92,7 @@
      ],
      "cell_m": 0.782,
      "picture_area_m2": 0.099,
-     "decal_area_m2": 0.168
+     "decal_area_m2": 0.119
     },
     {
      "cell": 2,
@@ -103,7 +103,7 @@
      ],
      "cell_m": 1.115,
      "picture_area_m2": 0.104,
-     "decal_area_m2": 0.178
+     "decal_area_m2": 0.124
     },
     {
      "cell": 3,
@@ -114,7 +114,7 @@
      ],
      "cell_m": 1.61,
      "picture_area_m2": 0.159,
-     "decal_area_m2": 0.281
+     "decal_area_m2": 0.213
     }
    ],
    "material": "deferred decal, translucent: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G",

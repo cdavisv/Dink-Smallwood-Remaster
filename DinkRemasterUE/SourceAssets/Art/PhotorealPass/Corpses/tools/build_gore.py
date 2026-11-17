@@ -477,7 +477,7 @@ def write_sheet(sheet, outdir, tname):
 
 
 def finish(asset, cls, outdir, families, dresses, weaknesses, body=None, hi=(), card=None, px=2048, ss=2, alpha=False, extrude=0.005, maxdist=0.02,
-           third_party=(), extra=None, beauty=None, close=None, ao_dist=None):
+           third_party=(), extra=None, beauty=None, close=None, ao_dist=None, card_kind='masked', card_pit=None):
     """bake the body atlas, join the ground card, export one FBX object named after the asset, save the .blend, renders and manifest.json"""
     from PIL import Image
     os.makedirs(outdir, exist_ok=True); name = asset[3:]; ac = L.coll(asset); ac['dink_class'] = cls; parts = []; kit = []; stats = None
@@ -487,7 +487,7 @@ def finish(asset, cls, outdir, families, dresses, weaknesses, body=None, hi=(), 
         L.assign(body, L.game_material('MI_' + name, files, alpha='CLIP' if alpha else None)); parts.append(body)
         kit.append({'name': 'MI_' + name, 'kind': 'masked' if alpha else 'opaque', 'files': {k: L.rel(p) for k, p in files.items()}})
     if card is not None:
-        ob, cfiles = card; L.link(ob, ac); parts.append(ob); kit.append({'name': ob.data.materials[0].name, 'kind': 'masked', 'files': {k: L.rel(p) for k, p in cfiles.items()}})
+        ob, cfiles = card; L.link(ob, ac); parts.append(ob); kit.append({'name': ob.data.materials[0].name, 'kind': card_kind, 'files': {k: L.rel(p) for k, p in cfiles.items()}, **({'pit': card_pit} if card_pit else {})})
     for o in parts:
         for l in o.data.uv_layers:
             l.name = 'UVMap'
@@ -508,7 +508,8 @@ def finish(asset, cls, outdir, families, dresses, weaknesses, body=None, hi=(), 
     if os.path.exists(blend + '1'):
         os.remove(blend + '1')
     tex = [{'file': f, 'size_px': list(Image.open(os.path.join(L.REPO, f)).size), 'material': k['name'],
-            'channels': {'BC': 'base colour sRGB' + (' + alpha (cut-out)' if k['kind'] == 'masked' else ''), 'N': 'tangent normal, OpenGL (green up; flip green on import)', 'ORM': 'R occlusion, G roughness, B metallic'}[r]}
+            'channels': {'BC': 'base colour sRGB' + (' + alpha (cut-out)' if k['kind'] == 'masked' else ' + alpha (cover, dithered by the pit material)' if k['kind'] == 'pit' else ''), 'N': 'tangent normal, OpenGL (green up; flip green on import)',
+                         'ORM': 'R occlusion, G roughness, B void mask of the pit material (not metallic)' if k['kind'] == 'pit' else 'R occlusion, G roughness, B metallic'}[r]}
            for k in kit for r, f in k['files'].items()]
     man = {'name': asset, 'class': cls, 'fbx': L.rel(fbx), 'source_blend': L.rel(blend), 'build': 'Unclaimed/tools/bl.sh ../../Corpses/tools/%s %s' % (SCRIPT, name),
            'dimensions_m': st['dimensions_m'], 'bounds_min_m': st['bounds_min_m'], 'bounds_max_m': st['bounds_max_m'], 'lod0_triangles': st['triangles'],
@@ -561,7 +562,7 @@ def fit_scale(obs, foot_m, margin=0.10):
     s = min(1.0, (foot_m - margin) / ext); print('FIT body extent %.2f m -> scale %.3f for a %.2f m footprint' % (ext, s, foot_m)); return s
 
 
-def person_pool(P, c, seed, pool=1.0, shift=(0.0, 0.0), reach=0.42, grow=0.11, extra_pts=None, fit_m=None, sprite=None, colours=None):
+def person_pool(P, c, seed, pool=1.0, shift=(0.0, 0.0), reach=0.42, grow=0.11, extra_pts=None, fit_m=None, sprite=None, colours=None, under=False, stamp_fill=0):
     """the blood sheet under a body: it hugs the body's outline, swells under the torso and throws drops outwards"""
     low = P[P[:, 2] < 0.30]; foot = low[::9, :2]
     if extra_pts is not None:
@@ -573,7 +574,10 @@ def person_pool(P, c, seed, pool=1.0, shift=(0.0, 0.0), reach=0.42, grow=0.11, e
         half = fit_m / 2.0; grow = 0.05; reach = 0.24; r = np.hypot(foot[:, 0] - cc[0], foot[:, 1] - cc[1]); foot = foot[r < half + 0.05]
         a = min(0.62 * pool, half * 0.62); b = min(0.42 * pool, half * 0.42); stamp = None; red_m2 = 0.0; sd = 0.0
         if sprite:
-            sim, sw, sd, sc, red_m2 = GS.sprite_red(os.path.join(L.REPO, 'DinkRemasterUE', 'ImportData', 'sprites', sprite + '.png'), fit_m, FOOT_H[sprite[:3]]); stamp = (sim, sw, sd, sc)
+            sim, sw, sd, sc, red_m2 = GS.sprite_red(os.path.join(L.REPO, 'DinkRemasterUE', 'ImportData', 'sprites', sprite + '.png'), fit_m, FOOT_H[sprite[:3]], fill=stamp_fill)
+            if under:                                # the picture's red laid under the body (its own middle on the pool's middle), not where the card had it
+                sc = (cc[0] - GS.sprite_red.centroid[0], cc[1] - GS.sprite_red.centroid[1])
+            stamp = (sim, sw, sd, sc)
         pools = [(cc[0], cc[1], a, b, rot, [(rng.uniform(0, 6.3), 0.3, 0.16 * a / 0.62), (rng.uniform(0, 6.3), 0.2, 0.2 * a / 0.62)])]
         size = round(max(fit_m, sd) + 2 * reach + 0.25, 1)
         sheet = GS.blood_sheet(2048, size, seed, pools=pools, foot=foot, grow=grow, n_drops=150, reach=reach, casts=5, mist=500, drop_r=(0.004, 0.022), centre=cc, stamp=stamp, **(colours or {}))
@@ -677,7 +681,7 @@ PEOPLE = {
                           arms=(((0.8, -0.6), (0.9, 0.4)), ((0.9, -0.42), (0.35, -0.93))), legs=(((0.14, -0.99), (0.0, -1.0)), ((0.26, -0.96), (-0.1, -1.0))),
                           open=[(0.10, 0.0, 0.24, 0.10, -0.1, 'ribs gut')], sever=[],
                           dresses='the woman in the crimson dress torn open from throat to belly, ribs bare, entrails pulled out onto the ground, in her blood'),
-    'Corpse_Mother': dict(rig=('..', 'Characters/Mother', 'SK_Mother_Photoreal'), who='mother', fams=['corpse_mom', '355 people/mom/death-'], spr='355_01', head=200, seed=355, turn=-35, skirt=0.3, drench=0.54, char=0.42, vivid=((0.028, 0.0015, 0.0015), (0.20, 0.009, 0.006)), pool_rgb=dict(thin=(150, 12, 8), mid=(108, 6, 5), deep=(58, 3, 3), dried=(92, 16, 10), smear=(122, 14, 9)),
+    'Corpse_Mother': dict(rig=('..', 'Characters/Mother', 'SK_Mother_Photoreal'), who='mother', fams=['corpse_mom', '355 people/mom/death-'], spr='355_01', head=200, seed=355, turn=-35, skirt=0.3, drench=0.62, char=0.22, vivid=((0.06, 0.003, 0.003), (0.40, 0.018, 0.012)), pool_rgb=dict(thin=(150, 12, 8), mid=(108, 6, 5), deep=(58, 3, 3), dried=(92, 16, 10), smear=(122, 14, 9)),
                          
                           arms=(((0.9, -0.42), (0.5, 0.87)), ((0.75, -0.66), (0.95, -0.3))), legs=(((0.16, -0.99), (0.0, -1.0)), ((0.30, -0.95), (-0.12, -1.0))),
                           open=[(0.16, 0.0, 0.20, 0.045, 0.6, 'ribs'), (-0.04, 0.0, 0.18, 0.055, -0.7, 'gut')], sever=[],
@@ -690,7 +694,7 @@ PEOPLE = {
                           dresses='the farm mother of Joppa killed by the player: red from head to foot as picture 365 (the same picture as 355), the chest split to the ribs, the belly cut open with entrails out, in her blood; not burnt'),
     'Dink_Dead': dict(rig=('..', 'Characters/Dink', 'SK_Dink_Photoreal'), who='hero (the body on screen 58 that "sort of looks like me")', fams=['dink_dead', '436 dink/die/ds-x3-'], spr='436_16', head=335, seed=436, turn=40, drench=0.05,
                       arms=(((0.85, -0.5), (0.9, 0.4)), ((0.6, -0.8), (0.9, -0.4))), legs=(((0.22, -0.97), (0.45, -0.9)), ((0.34, -0.94), (-0.1, -1.0))), knees=(0.30, 0.19),       # knees drawn up as picture 436 frame 16
-                      pool_rgb=dict(thin=(120, 9, 6), mid=(84, 5, 4), deep=(40, 2, 2), dried=(78, 14, 9), smear=(100, 12, 8)),
+                      pool_rgb=dict(thin=(196, 18, 11), mid=(162, 10, 7), deep=(108, 5, 4), dried=(112, 18, 11), smear=(160, 16, 10)), pool_under=True, pool_fill=3,
                       open=[(0.20, 0.0, 0.13, 0.040, 0.5, 'ribs')], sever=[],
                       dresses='a dead young man in the hero\'s clothes on his back, the chest split, his head and shoulders in a wide pool of blood'),
     'Corpse_Merchant': dict(rig=('npc_merchant_blue', 'Merchant', 'SK_Merchant_PR'), who='merchant', fams=['corpse_merchant', '345 people/merchant/death-'], head=205, spr='345_01', seed=345, turn=-30,
@@ -870,7 +874,7 @@ def person2(name, prev=False):
         preview(hi, name, [dict(az=0, el=52, fill=1.0, lens=60), dict(az=-35, el=24, fill=1.6, lens=70), dict(az=150, el=30, fill=1.6, lens=70)]); return
     lo_parts = [L.dup(p_, p_.name + '_lo') for p_ in parts]; lo = body_lo(body, lo_parts + lo_x, asset + '_lo', big=('Hair', 'Eyes'))
     allp = np.vstack([L.co(body)] + [L.co(p_) for p_ in parts]); xp = np.vstack([L.co(p_)[::7, :2] for p_ in parts] + ([extra_pts] if extra_pts is not None else [])) if (parts or extra_pts is not None) else None
-    sheet, size = person_pool(allp, c, v['seed'], pool=1.0, extra_pts=xp, fit_m=foot_m, sprite=v.get('spr'), colours=v.get('pool_rgb')); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
+    sheet, size = person_pool(allp, c, v['seed'], pool=1.0, extra_pts=xp, fit_m=foot_m, sprite=v.get('spr'), colours=v.get('pool_rgb'), under=v.get('pool_under', False), stamp_fill=v.get('pool_fill', 0)); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
     weak = ('The body is the rigged %s of PhotorealPass/Unclaimed posed by rule (limbs aimed into the plane of the back and sunk to the ground, no cloth simulation: the clothes follow the skin weights), baked again onto one %d px atlas, so face, hands and hair are softer than on the living character and the hair is a hard cut-out. '
             'The openings are cut by a ragged ellipse and their inside is a displaced lump of muscle with plain rib rods and three loops of gut: no organs, no anatomy beyond that; severed ends are a lump and a rod of bone. '
             'Scaled by %.2f to keep body and pool inside the %.2f m footprint of the 1997 picture. The pool, the drops and the soaked fringe are a flat alpha-tested card 6 mm above the ground. Static.' % (v['who'], 2048, s, foot_m))
@@ -990,14 +994,81 @@ SHEETS = {
                           dresses='blood thrown on the ground: scattered drops and cast-off lines, no pool'),
     'Blood_Drops_B': dict(kind='blood', size=1.6, fams=['blood_splat', '188 effects/spurt/sprtl-', '189 effects/spurt/sprtr-'], kw=dict(pools=[(0.05, -0.05, 0.09, 0.05, 2.0, [])], n_drops=210, reach=0.55, casts=11, mist=600, drop_r=(0.005, 0.036)), seed=1891,
                           dresses='blood thrown on the ground: scattered drops and cast-off lines, no pool'),
-    'Burn_Hole_A': dict(kind='scorch', size=1.5, fams=['burn_hole_decal', '158 struct/details/damage/hole-'], kw=dict(r=0.27, spikes=20, through=True), seed=1581, dresses='a hole burnt into the ground: charred, cracked centre, burn tongues running out, ash and cinders'),
-    'Burn_Hole_B': dict(kind='scorch', size=1.5, fams=['burn_hole_decal', '158 struct/details/damage/hole-'], kw=dict(r=0.25, spikes=24, aspect=1.2, rot=0.6, through=True), seed=1582, dresses='a hole burnt into the ground, slightly drawn out'),
-    'Burn_Hole_C': dict(kind='scorch', size=2.2, fams=['burn_hole_decal', '158 struct/details/damage/hole-'], kw=dict(r=0.30, spikes=20, centres=[(-0.26, 0.30, 1.0), (0.24, -0.28, 1.1)], spike_len=(0.5, 1.4), through=True), seed=1583, dresses='two burnt holes run together (picture 3)'),
+    # picture 158, rebuilt 16 Nov 2026 as holes burnt THROUGH (gore_sheets.pit_sheet + the importer's `pit` material + modelled splinters and charcoal)
+    'Burn_Hole_A': dict(kind='pit', size=1.5, fams=['burn_hole_decal', '158 struct/details/damage/hole-'], kw=dict(r=0.27, spikes=20), seed=1581, dresses='a hole burnt through the floor: black void, the charred cut face of the planks, alligator char, ash, burn tongues, scorch'),
+    'Burn_Hole_B': dict(kind='pit', size=1.5, fams=['burn_hole_decal', '158 struct/details/damage/hole-'], kw=dict(r=0.25, spikes=24, aspect=1.2, rot=0.6), seed=1582, dresses='a hole burnt through the floor, slightly drawn out'),
+    'Burn_Hole_C': dict(kind='pit', size=2.2, fams=['burn_hole_decal', '158 struct/details/damage/hole-'], kw=dict(r=0.30, spikes=20, centres=[(-0.26, 0.30, 1.0), (0.24, -0.28, 1.1)], spike_len=(0.5, 1.4)), seed=1583, dresses='two holes burnt through the floor, run together (picture 3)'),
+    # the same two holes burnt through a WALL (S001_P49: 1997 draws it on the front wall face): stands upright, pivot on the wall face at the floor, soot climbing above it
+    'Burn_Hole_Wall': dict(kind='pit', size=2.0, fams=['burn_hole_decal', '158 struct/details/damage/hole-'], kw=dict(r=0.21, spikes=18, centres=[(-0.17, -0.38, 1.0), (0.16, -0.62, 1.1)], spike_len=(0.4, 1.1), wall=True, plume=1.0), seed=1584,
+                           wall=dict(centre_z=1.35, depth=0.10, below=0.30), dresses='two holes burnt through a plastered wall, run together (picture 3), soot climbing the wall above them'),
 }
+
+
+def pit_card(name, size, files, sh, seed, z=0.006, wall=None):
+    """A burnt-through hole as one mesh: the sheet's card, and on it what is NOT flat: splintered, charred plank ends standing over the
+    void's rim and (on a floor) lumps of charcoal lying round it. All of it borrows its colour from charred texels of the sheet.
+    `wall` stands the whole thing upright (+Y is the room side, the sheet's up is +Z, pivot on the wall face at the floor)."""
+    rng = np.random.default_rng(seed); px = sh['void'].shape[0]; h = size / 2; V = []; F = []; UV = []
+    zc = wall['centre_z'] if wall else 0.0
+    P = (lambda x, y, zl: (x, zl, zc + y)) if wall else (lambda x, y, zl: (x, y, zl))
+
+    def add(verts, faces, uvs):
+        base = len(V); V.extend(P(*v) for v in verts); UV.extend(uvs); F.extend(tuple(base + i for i in (f[::-1] if wall else f)) for f in faces)      # upright: the mapping mirrors, so the winding turns
+    add([(-h, -h, z), (h, -h, z), (h, h, z), (-h, h, z)], [(0, 1, 2, 3)], [(0, 0), (1, 0), (1, 1), (0, 1)])
+    base = len(V); V.extend([(-0.004, -0.004, 0.0), (0.004, -0.004, 0.0), (0.0, 0.004, 0.0)]); UV.extend([(0.002, 0.002)] * 3); F.append((base, base + 1, base + 2))      # the anchor: lowest point at z = 0
+    xy = lambda i, j: (((j + 0.5) / px - 0.5) * size, (0.5 - (i + 0.5) / px) * size); uvof = lambda i, j: ((j + 0.5) / px, 1.0 - (i + 0.5) / px)
+    void = sh['void']; ci, cj = np.nonzero((sh['char'] > 0.95) & (sh['ash'] < 0.1) & (sh['near'] < 0.3)); k = px / size
+
+    def char_uv():
+        n = rng.integers(len(ci)); return uvof(ci[n], cj[n])
+    # ---- splinters: where the planks broke off, charred fibres stand out over the void, each a thin wedge rising a little
+    vb = GS.blur(void, 0.004 * k); gy, gx = np.gradient(GS.blur(void, 0.012 * k)); ei, ej = np.nonzero((vb > 0.40) & (vb < 0.60)); n_spl = int(60 * float(void.mean()) / 0.10 * (size / 1.5) ** 2 * 0.55) + 14
+    for n in rng.choice(len(ei), size=min(n_spl, len(ei)), replace=False):
+        i, j = ei[n], ej[n]; d = np.array([gx[i, j], -gy[i, j]]); nd = float(np.linalg.norm(d))
+        if nd < 1e-6:
+            continue
+        a = math.atan2(d[1], d[0]) + rng.normal(0, 0.45); d = np.array([math.cos(a), math.sin(a)]); sd = np.array([-d[1], d[0]])
+        Ls = rng.uniform(0.022, 0.075) * (1.6 if rng.random() < 0.15 else 1.0); w = rng.uniform(0.005, 0.014); t = rng.uniform(0.003, 0.007); tilt = math.radians(rng.uniform(3, 30))
+        b = np.array(xy(i, j)) - d * 0.012; tip = b + d * (0.012 + Ls * math.cos(tilt)); zt = z + Ls * math.sin(tilt); z0 = z + 0.0004
+        u0, v0 = char_uv(); du = 0.5 * Ls / size
+        add([(b[0] - sd[0] * w / 2, b[1] - sd[1] * w / 2, z0), (b[0] + sd[0] * w / 2, b[1] + sd[1] * w / 2, z0), (b[0] + sd[0] * w / 2, b[1] + sd[1] * w / 2, z0 + t), (b[0] - sd[0] * w / 2, b[1] - sd[1] * w / 2, z0 + t),
+             (tip[0], tip[1], zt), (tip[0], tip[1], zt + t * 0.3)],
+            [(3, 2, 5), (0, 4, 1), (0, 3, 5, 4), (1, 4, 5, 2), (0, 1, 2, 3)],
+            [(u0, v0), (u0, v0 + 0.004), (u0 + 0.002, v0 + 0.004), (u0 + 0.002, v0), (u0 + du, v0 + 0.002), (u0 + du, v0 + 0.003)])
+    # ---- charcoal: blocks broken off the rim, lying on the char and thrown a little way out (a floor only)
+    if not wall:
+        cover = sh['cover']; oi, oj = np.nonzero((cover > 0.5) & (void < 0.2)); made = 0
+        while made < int(46 * (size / 1.5) ** 2 * 0.6 + 12):
+            if rng.random() < 0.7:
+                n = rng.integers(len(oi)); x, y = xy(oi[n], oj[n]); x += rng.normal(0, 0.02); y += rng.normal(0, 0.02)
+            else:
+                n = rng.integers(len(oi)); x, y = xy(oi[n], oj[n]); a = rng.uniform(0, 2 * math.pi); r_ = rng.uniform(0.03, 0.16); x += math.cos(a) * r_; y += math.sin(a) * r_
+            i = int(np.clip((0.5 - y / size) * px, 0, px - 1)); j = int(np.clip((x / size + 0.5) * px, 0, px - 1))
+            if void[i, j] > 0.2 or abs(x) > h * 0.96 or abs(y) > h * 0.96:
+                continue
+            sx, sy, sz = rng.uniform(0.004, 0.013), rng.uniform(0.004, 0.010), rng.uniform(0.003, 0.009); yaw = rng.uniform(0, math.pi); c_, s_ = math.cos(yaw), math.sin(yaw); u0, v0 = char_uv(); vs = []; us = []
+            for q, (ax, ay, az) in enumerate([(-1, -1, 0), (1, -1, 0), (1, 1, 0), (-1, 1, 0), (-1, -1, 1), (1, -1, 1), (1, 1, 1), (-1, 1, 1)]):
+                jx, jy, jz = rng.uniform(0.7, 1.15, 3); px_, py_ = ax * sx * jx * (0.8 if az else 1.0), ay * sy * jy * (0.8 if az else 1.0)
+                vs.append((x + px_ * c_ - py_ * s_, y + px_ * s_ + py_ * c_, z + 0.0003 + az * sz * 2 * jz)); us.append((u0 + ax * 0.004, v0 + (ay + az) * 0.003))
+            add(vs, [(4, 5, 6, 7), (0, 1, 5, 4), (1, 2, 6, 5), (2, 3, 7, 6), (3, 0, 4, 7)], us); made += 1
+    ob = L.new_obj(name, V, F, smooth=False); uv = ob.data.uv_layers.new(name='UVMap')
+    for lp in ob.data.loops:
+        uv.data[lp.index].uv = UV[lp.vertex_index]
+    L.assign(ob, L.game_material('MI_' + name, files, alpha='CLIP')); return ob
 
 
 def sheet_asset(name):
     v = SHEETS[name]; asset = 'SM_%s_PR' % name; outdir = os.path.join(CORP, name); L.reset()
+    if v['kind'] == 'pit':
+        wall = v.get('wall'); sh = GS.pit_sheet(2048, v['size'], v['seed'], **v['kw']); files = write_sheet(sh, outdir, name); card = pit_card(name, v['size'], files, sh, v['seed'] + 7, wall=wall)
+        weak = ('A flat alpha-tested card 6 mm above the ' + ('wall face' if wall else 'floor') + ' with modelled splinters' + ('' if wall else ' and charcoal lumps') + ' on it: nothing is cut out of the ' + ('wall' if wall else 'floor')
+                + ' itself. The depth (the cut face of the far side, the dark below) is drawn by the `pit` material of the kit importer from the view direction; it assumes one depth for the whole hole, and its far face has no texture of its own. '
+                'The scorch fades by a per-frame dither (needs temporal anti-aliasing to look soft). The Blender renders show the flat sheet without that shader.')
+        pit = {'wall_uv': round((wall['depth'] if wall else 0.045) / v['size'], 5), 'floor_uv': round((wall['below'] if wall else 0.16) / v['size'], 5)}
+        finish(asset, 'prop_small', outdir, v['fams'], v['dresses'], weak, card=(card, files), card_kind='pit', card_pit=pit, third_party=('park_dirt (render ground)',),
+               beauty=dict(az=0, el=55 if not wall else 8, fill=1.0, lens=60), close=dict(az=-30, el=22 if not wall else 5, fill=1.8, lens=70),
+               extra={'pool_card_m': v['size'], 'derived_from': 'tools/gore_sheets.py pit_sheet (numpy and PIL, no scan)', 'pit': pit, **({'stands_on_wall': wall} if wall else {})})
+        return
     sh = GS.blood_sheet(1024, v['size'], v['seed'], **v['kw']) if v['kind'] == 'blood' else GS.scorch_sheet(1024, v['size'], v['seed'], **v['kw'])
     files = write_sheet(sh, outdir, name); card = sheet_card(name, v['size'], files, anchor=True)
     weak = ('A flat alpha-tested card 6 mm above the ground: the outline is a hard cut-out, nothing soaks into the ground or stains grass blades, and it does not follow uneven ground. '

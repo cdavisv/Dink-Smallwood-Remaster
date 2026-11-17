@@ -7,7 +7,7 @@
  "dimensions_m": [
   1.5,
   1.5,
-  0.006
+  0.0425
  ],
  "bounds_min_m": [
   -0.75,
@@ -17,24 +17,24 @@
  "bounds_max_m": [
   0.75,
   0.75,
-  0.006
+  0.0425
  ],
- "lod0_triangles": 3,
+ "lod0_triangles": 769,
  "textures": [
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/T_Burn_Hole_A_BC.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "material": "MI_Burn_Hole_A",
-   "channels": "base colour sRGB + alpha (cut-out)"
+   "channels": "base colour sRGB + alpha (cover, dithered by the pit material)"
   },
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/T_Burn_Hole_A_N.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "material": "MI_Burn_Hole_A",
    "channels": "tangent normal, OpenGL (green up; flip green on import)"
@@ -42,11 +42,11 @@
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/T_Burn_Hole_A_ORM.png",
    "size_px": [
-    1024,
-    1024
+    2048,
+    2048
    ],
    "material": "MI_Burn_Hole_A",
-   "channels": "R occlusion, G roughness, B metallic"
+   "channels": "R occlusion, G roughness, B void mask of the pit material (not metallic)"
   }
  ],
  "materials": [
@@ -55,11 +55,15 @@
  "kit_materials": [
   {
    "name": "MI_Burn_Hole_A",
-   "kind": "masked",
+   "kind": "pit",
    "files": {
     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/T_Burn_Hole_A_BC.png",
     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/T_Burn_Hole_A_N.png",
     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Burn_Hole_A/T_Burn_Hole_A_ORM.png"
+   },
+   "pit": {
+    "wall_uv": 0.03,
+    "floor_uv": 0.10667
    }
   }
  ],
@@ -70,11 +74,15 @@
   "burn_hole_decal",
   "158 struct/details/damage/hole-"
  ],
- "dresses": "a hole burnt into the ground: charred, cracked centre, burn tongues running out, ash and cinders",
+ "dresses": "a hole burnt through the floor: black void, the charred cut face of the planks, alligator char, ash, burn tongues, scorch",
  "third_party": [
   "park_dirt (render ground)"
  ],
- "known_weaknesses": "A flat alpha-tested card 6 mm above the ground: the outline is a hard cut-out, nothing soaks into the ground or stains grass blades, and it does not follow uneven ground. Depth is painted for the fixed play camera (the far wall of the hole, the plank ends, the dark below): from the side or from the north it is flat.",
+ "known_weaknesses": "A flat alpha-tested card 6 mm above the floor with modelled splinters and charcoal lumps on it: nothing is cut out of the floor itself. The depth (the cut face of the far side, the dark below) is drawn by the `pit` material of the kit importer from the view direction; it assumes one depth for the whole hole, and its far face has no texture of its own. The scorch fades by a per-frame dither (needs temporal anti-aliasing to look soft). The Blender renders show the flat sheet without that shader.",
  "pool_card_m": 1.5,
- "derived_from": "tools/gore_sheets.py (numpy and PIL, no scan)"
+ "derived_from": "tools/gore_sheets.py pit_sheet (numpy and PIL, no scan)",
+ "pit": {
+  "wall_uv": 0.03,
+  "floor_uv": 0.10667
+ }
 }
