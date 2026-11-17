@@ -65,6 +65,7 @@ class Pack:
         self.wave = p.get("wave", "")
         self.status = p.get("status", "greybox")
         self.draft = bool(p.get("draft", True))
+        self.approved = str(p.get("approved", ""))      # the date the owner approved the text (with draft = false)
         self.sheets = []
         for s in d.get("sheet", []):
             sid = str(s.get("id", "")).lower()

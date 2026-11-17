@@ -2,14 +2,67 @@
  "base_names_sha256": "28971448a80c88d81c987e506861d845343f5f98e7502096448f82408cb6aa69",
  "base_story_sha256": "57a591d527e9a050f787d729e337dd3f35f733bad0276180e61c88f9931382df",
  "files": {
-  "Gameplay/placements.csv": "7becd089d26fd0411316bfca88019b0071c5a75f42d78ba5a4aaf9d93c59a9b7",
-  "Gameplay/screens.csv": "9ac909f3af1b6c258841224f9b95dc5c6cf0dc98a1128e254eea0c099cd0542e",
-  "lines.csv": "848f243c935086ccf2a19fb7f5cd9c663ce17c8ccb4516d2ba9755c8d1186551",
-  "packs.json": "153dccaf82f0037ce632a4a9218da801d7580bb7a13a5ed40fb1a44affb15db4"
+  "Gameplay/Hardness/SCR_267.txt": "21a5a1aca47dc38535de43a3d1e7e86bbcd6d3631136a50b377a7e71e2f1f49e",
+  "Gameplay/Hardness/SCR_268.txt": "edb9b6879cd745e3243a33d8c3493e171d6c5c0bd204ee6b88fd02478e17269d",
+  "Gameplay/Hardness/SCR_300.txt": "badf021db4a4f41394ee3c8709452673d8c736d5f16a7d748100947e270e359e",
+  "Gameplay/Hardness/SCR_330.txt": "b36339311e299b2e1780d7fedb38ad356264faabcc1d050909a949bd5e4b9633",
+  "Gameplay/Hardness/SCR_331.txt": "cdeace39e32defe131aeee370bf07da64e5c0253affbf12f5040f2b7bfc9776d",
+  "Gameplay/Hardness/SCR_332.txt": "74b2d538302fb8f73b11b6d3ddfb7d200421ce854ceab5465f5bf4cd1a55a533",
+  "Gameplay/placements.csv": "eba84614193c4413af4f9eb4a15c6e139a82dedd390c40b8776c3f001e2eb206",
+  "Gameplay/screens.csv": "e9cf9ad320cb989f9739780cd8039fa68a597e0087f7639871828bd8c033cd52",
+  "Story/dink.json": "cd19d289d1b8803fbf5a006ef1c8dd214087dac89caf3fef5c90f70ef53089aa",
+  "Story/names.csv": "f7c090a74512c1ace175c12f6a7275375e4e574a11b1d92e5c207898a854b0b6",
+  "lines.csv": "64c5fb752fe61b4645712568dab4f961248f97d039666a88d8488db8caedfc01",
+  "packs.json": "03fbb21a7a6b7ea726d36955e618de610ca53d7f5ca4a4d50167cc1b26e83e07"
  },
- "lines": 0,
- "pack_knots": [],
- "pack_vars": [],
- "packs": {},
+ "lines": 30,
+ "pack_knots": [
+  "d_x3_boar",
+  "d_x3_burt",
+  "d_x3_glob",
+  "d_x3_leg",
+  "d_x3_stone",
+  "d_x3_thin",
+  "d_x3_wallow"
+ ],
+ "pack_vars": [
+  "x3_boar",
+  "x3_boar__bx",
+  "x3_boar__by",
+  "x3_boar__hold",
+  "x3_boar__leg",
+  "x3_boar__mcounter",
+  "x3_burt",
+  "x3_leg",
+  "x3_thin",
+  "x3_wallow__leg"
+ ],
+ "packs": {
+  "murkwood": {
+   "draft": false,
+   "joins": [
+    "murkwood_thin_place"
+   ],
+   "number": 3,
+   "placements": 7,
+   "screens": [
+    332,
+    331,
+    330,
+    267,
+    268,
+    300
+   ],
+   "scripts": [
+    "x3-boar",
+    "x3-burt",
+    "x3-glob",
+    "x3-leg",
+    "x3-stone",
+    "x3-thin",
+    "x3-wallow"
+   ]
+  }
+ },
  "schema": "dink-expanded/1"
 }

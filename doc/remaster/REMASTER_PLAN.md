@@ -199,8 +199,8 @@ Effort is in person-months (160 hours). Calendar: one person at 20 h/week takes 
 All in `DinkExpanded`, behind a switch, and not started before the alpha gate.
 
 Owner decision 16 Nov 2026: the DinkExpanded framework (content packs as data + DinkC behind the switch, OFF by default;
-`doc/remaster/EXPANDED_CONTENT.md`) is merged; the first pack, Murkwood Deep, is held until the owner has read its lines
-and names; the East Wilds stay 1997 terrain for now (revisit).
+`doc/remaster/EXPANDED_CONTENT.md`) is merged; the first pack, Murkwood Deep, was approved by the owner on 16 Nov 2026 (its lines
+and names, switch OFF by default); the East Wilds stay 1997 terrain for now (revisit).
 
 | Wave | Content | Grows from |
 |---|---|---|

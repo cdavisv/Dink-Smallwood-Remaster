@@ -238,7 +238,9 @@ class TestBuild(unittest.TestCase):
         self.assertEqual([p["id"] for p in reg["packs"]], [p.id for p in self.packs])
         lines = list(csv.DictReader(self.read("lines.csv").splitlines()))
         self.assertGreater(len(lines), 0)
-        self.assertTrue(all(r["status"] == "draft, owner to approve" for r in lines))
+        # a draft pack's lines are drafts; a pack the owner approved (draft = false, approved = <date>) says so
+        want = {p.number: ("approved by the owner %s" % p.approved if not p.draft and p.approved else "draft, owner to approve") for p in self.packs}
+        self.assertTrue(all(r["status"] == want[int(r["script"][1])] for r in lines))
 
     def test_check_mode_after_build(self):
         _packs, stale, _m = B.build(self.packs_dir, self.out, ANALYSE, check=True)
