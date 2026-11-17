@@ -13,7 +13,10 @@ import json
 import math
 import os
 from pathlib import Path
+import sys
 import unreal
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import world_life_wind  # noqa: E402  (shared foliage wind node)
 
 ROOT = Path(unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir()))
 PASS = ROOT / 'SourceAssets/Art/PhotorealPass'
@@ -376,43 +379,9 @@ return a * lerp(saturate(Depth), 1.0, d) * (Side < 0.0 ? saturate(Back) : 1.0) *
     if two_sided:
         mat.set_editor_property('two_sided', True)
     if wind is not None:
-        # Vertex colour "Wind": R trunk sway (0 ground .. 1 top), G branch phase, B leaf flutter, A branch bend.
-        vc = expr(mat, unreal.MaterialExpressionVertexColor, -700, 1000)
-        time = expr(mat, unreal.MaterialExpressionTime, -700, 1200)
-        obj = expr(mat, unreal.MaterialExpressionObjectPositionWS, -700, 1280)
-        amount = expr(mat, unreal.MaterialExpressionCollectionParameter, -700, 1360, collection=wind, parameter_name='Wind')
-        scale = expr(mat, unreal.MaterialExpressionScalarParameter, -700, 1440, parameter_name='WindScale', default_value=1.0)
-        wpo = custom(mat, -350, 1100, '''
-float ph = VC.g * 6.2832 + dot(Obj.xy, float2(0.0031, 0.0047));
-float sway = (sin(T * 0.62 + ph * 0.3) + 0.35 * sin(T * 1.37 + ph)) * VC.r * VC.r * 5.0;
-float bend = sin(T * 1.9 + ph) * VA * 4.0;
-float flutter = sin(T * 7.3 + ph * 3.1) * VC.b * 0.9;
-float3 dir = float3(0.8, 0.6, 0.0);
-// gusts: a slow value-noise field (about 14 m and 5 m) travelling down the wind, so a field leans in passing waves
-float2 gp = Obj.xy / 1400.0 - float2(0.92, 0.39) * T * 0.11;
-float2 gi = floor(gp); float2 gf = gp - gi; gf = gf * gf * (3.0 - 2.0 * gf);
-#define DINK_GH(c) frac(sin(dot(c, float2(127.1, 311.7))) * 43758.5453)
-float g1 = lerp(lerp(DINK_GH(gi), DINK_GH(gi + float2(1.0, 0.0)), gf.x), lerp(DINK_GH(gi + float2(0.0, 1.0)), DINK_GH(gi + float2(1.0, 1.0)), gf.x), gf.y);
-float2 hp = Obj.xy / 520.0 - float2(0.92, 0.39) * T * 0.23;
-float2 hi = floor(hp); float2 hf = hp - hi; hf = hf * hf * (3.0 - 2.0 * hf);
-float g2 = lerp(lerp(DINK_GH(hi), DINK_GH(hi + float2(1.0, 0.0)), hf.x), lerp(DINK_GH(hi + float2(0.0, 1.0)), DINK_GH(hi + float2(1.0, 1.0)), hf.x), hf.y);
-#undef DINK_GH
-float gust = 0.45 + 1.5 * smoothstep(0.35, 0.85, 0.65 * g1 + 0.35 * g2);
-float3 offset = (dir * (sway + bend) * gust + float3(0.0, 0.0, 1.0) * (bend * 0.3 + flutter * (0.6 + 0.4 * gust))) * Wind * Scale;
-// scatter thinning: beyond FadeNear an instance shrinks into its pivot once its random number exceeds the
-// share still kept at that distance; none are left at FadeFar
-float keep = saturate((FadeFar - distance(Cam, Obj)) / max(FadeFar - FadeNear, 1.0));
-float s = lerp(1.0, saturate((keep - Rnd * 0.85) * 6.0), saturate(Fade));
-return offset * s + (Obj - WP) * (1.0 - s);''', F3,
-                     ['VC', 'VA', 'T', 'Obj', 'Wind', 'Scale', 'Cam', 'WP', 'Rnd', 'Fade', 'FadeNear', 'FadeFar'], 'Wind offset (cm) and scatter thinning')
-        link(expr(mat, unreal.MaterialExpressionCameraPositionWS, -700, 1520), '', wpo, 'Cam')
-        link(expr(mat, unreal.MaterialExpressionWorldPosition, -700, 1600), '', wpo, 'WP')
-        link(expr(mat, unreal.MaterialExpressionPerInstanceRandom, -700, 1680), '', wpo, 'Rnd')
-        link(expr(mat, unreal.MaterialExpressionScalarParameter, -700, 1760, parameter_name='ScatterFade', default_value=0.0), '', wpo, 'Fade')
-        link(expr(mat, unreal.MaterialExpressionScalarParameter, -700, 1840, parameter_name='FadeNearCm', default_value=1200.0), '', wpo, 'FadeNear')
-        link(expr(mat, unreal.MaterialExpressionScalarParameter, -700, 1920, parameter_name='FadeFarCm', default_value=3700.0), '', wpo, 'FadeFar')
-        link(vc, '', wpo, 'VC'); link(vc, 'A', wpo, 'VA'); link(time, '', wpo, 'T'); link(obj, '', wpo, 'Obj'); link(amount, '', wpo, 'Wind'); link(scale, '', wpo, 'Scale')
-        out(wpo, '', MP.MP_WORLD_POSITION_OFFSET)
+        # Vertex colour "Wind": R trunk sway (0 ground .. 1 top), G branch phase, B leaf flutter, A branch bend. The node
+        # (shared wind direction, gusts and walk-through bend of MPC_Dink_World) lives in Scripts/world_life_wind.py.
+        world_life_wind.wire_wind(unreal, mat, expr, custom, link, out, wind, world_life_wind.ensure_world_mpc(unreal, save), push=foliage)
     EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_INSTANCED_STATIC_MESHES, True)
     if skeletal:
         EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_SKELETAL_MESH, True)
