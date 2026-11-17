@@ -1,0 +1,104 @@
+{
+ "name": "SM_Hero_Bow_Wood_PR",
+ "class": "weapon",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/SM_Hero_Bow_Wood_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/SM_Hero_Bow_Wood_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_weapons.py Bow_Wood final",
+ "dimensions_m": [
+  1.3216,
+  0.1813,
+  0.0356
+ ],
+ "bounds_min_m": [
+  -0.6608,
+  -0.1668,
+  -0.0178
+ ],
+ "bounds_max_m": [
+  0.6608,
+  0.0146,
+  0.0178
+ ],
+ "lod0_triangles": 1702,
+ "triangle_budget": {
+  "soft": 3000,
+  "hard": 8000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/T_Hero_Bow_Wood_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/T_Hero_Bow_Wood_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/T_Hero_Bow_Wood_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Hero_Bow_Wood_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0011,
+   0.9989
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 17.1,
+   "p99": 179.3
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.094,
+   "p95": 0.631
+  },
+  "metallic_mean": 0.0,
+  "ao_mean": 0.131
+ },
+ "pivot": "grip centre at the origin; +X to the tip; flats of the blade on +Z / -Z (see tools/build_weapons.py)",
+ "families": [
+  "hero weapon item-b1, item-b3"
+ ],
+ "origin_ids": {},
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "yew self bow, 1.30 m nock to nock, strung with 15 cm brace height: brown stave, pale grip binding, dark horn nocks, flax string",
+ "third_party": [
+  "weathered_brown_planks (render floor)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Strung and at rest only: the string is a straight static tube and the limbs do not bend with the draw clip (a drawn bow needs a skinned or morphing mesh, or a second mesh swapped at full draw). No arrow; item-b3's flame arrow is an effect. Baked from a procedural source: no maker's marks, engraving or damage from use beyond stains and edge wear. Static (no cloth, tassel or scabbard). The grip transform was derived from the hand bone landmarks and checked in one idle and one attack frame only.",
+ "grip": {
+  "origin": "grip centre",
+  "x": "towards the tip (upper limb for a bow)",
+  "bone": "hand_l",
+  "item": "item-b1, item-b3",
+  "picture_1997": "438/8, 438/13"
+ }
+}

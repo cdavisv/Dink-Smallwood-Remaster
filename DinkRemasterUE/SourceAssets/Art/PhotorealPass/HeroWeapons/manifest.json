@@ -1,0 +1,225 @@
+{
+ "schema": "dink-props/1",
+ "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons",
+ "generated_by": "HeroWeapons/tools/build_weapons.py --manifest (do not edit by hand)",
+ "summary": "6 hand-held weapons of the hero, one baked opaque set each (BC / N OpenGL / ORM, E for the light sword). Pivot at the grip centre, +X to the tip.",
+ "assets": [
+  {
+   "name": "SM_Hero_Axe_PR",
+   "class": "weapon",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Axe/SM_Hero_Axe_PR.fbx",
+   "materials": [
+    "MI_Hero_Axe_PR"
+   ],
+   "dimensions_m": [
+    0.643,
+    0.332,
+    0.04
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-axe"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Axe",
+   "grip": {
+    "origin": "grip centre",
+    "x": "towards the tip (upper limb for a bow)",
+    "bone": "hand_r",
+    "item": "item-axe",
+    "picture_1997": "438/6"
+   }
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_PR",
+   "class": "weapon",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/SM_Hero_Bow_Blue_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    1.322,
+    0.181,
+    0.036
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue",
+   "grip": {
+    "origin": "grip centre",
+    "x": "towards the tip (upper limb for a bow)",
+    "bone": "hand_l",
+    "item": "item-b2",
+    "picture_1997": "438/12"
+   }
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_PR",
+   "class": "weapon",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/SM_Hero_Bow_Wood_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    1.322,
+    0.181,
+    0.036
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood",
+   "grip": {
+    "origin": "grip centre",
+    "x": "towards the tip (upper limb for a bow)",
+    "bone": "hand_l",
+    "item": "item-b1, item-b3",
+    "picture_1997": "438/8, 438/13"
+   }
+  },
+  {
+   "name": "SM_Hero_Sword_Claw_PR",
+   "class": "weapon",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Claw/SM_Hero_Sword_Claw_PR.fbx",
+   "materials": [
+    "MI_Hero_Sword_Claw_PR"
+   ],
+   "dimensions_m": [
+    0.99,
+    0.2,
+    0.034
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-sw2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Claw",
+   "grip": {
+    "origin": "grip centre",
+    "x": "towards the tip (upper limb for a bow)",
+    "bone": "hand_r",
+    "item": "item-sw2",
+    "picture_1997": "438/20"
+   }
+  },
+  {
+   "name": "SM_Hero_Sword_Light_PR",
+   "class": "weapon",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Light/SM_Hero_Sword_Light_PR.fbx",
+   "materials": [
+    "MI_Hero_Sword_Light_PR"
+   ],
+   "dimensions_m": [
+    1.012,
+    0.207,
+    0.034
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-sw3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Light",
+   "grip": {
+    "origin": "grip centre",
+    "x": "towards the tip (upper limb for a bow)",
+    "bone": "hand_r",
+    "item": "item-sw3",
+    "picture_1997": "438/21"
+   }
+  },
+  {
+   "name": "SM_Hero_Sword_Long_PR",
+   "class": "weapon",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long/SM_Hero_Sword_Long_PR.fbx",
+   "materials": [
+    "MI_Hero_Sword_Long_PR"
+   ],
+   "dimensions_m": [
+    0.95,
+    0.216,
+    0.034
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-sw1"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long",
+   "grip": {
+    "origin": "grip centre",
+    "x": "towards the tip (upper limb for a bow)",
+    "bone": "hand_r",
+    "item": "item-sw1",
+    "picture_1997": "438/7"
+   }
+  }
+ ],
+ "flipbooks": [],
+ "not_imported": [],
+ "integration": {
+  "contract": {
+   "textures": "BC sRGB; N linear OpenGL (flip green on import); ORM linear (R occlusion, G roughness, B metallic); E sRGB emissive",
+   "uv": "UV0, unique bake, no tiling",
+   "collision": "none"
+  },
+  "materials": {
+   "MI_Hero_Axe_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Axe/T_Hero_Axe_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Axe/T_Hero_Axe_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Axe/T_Hero_Axe_PR_ORM.png"
+    }
+   },
+   "MI_Hero_Bow_Blue_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/T_Hero_Bow_Blue_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/T_Hero_Bow_Blue_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/T_Hero_Bow_Blue_PR_ORM.png"
+    }
+   },
+   "MI_Hero_Bow_Wood_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/T_Hero_Bow_Wood_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/T_Hero_Bow_Wood_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/T_Hero_Bow_Wood_PR_ORM.png"
+    }
+   },
+   "MI_Hero_Sword_Claw_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Claw/T_Hero_Sword_Claw_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Claw/T_Hero_Sword_Claw_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Claw/T_Hero_Sword_Claw_PR_ORM.png"
+    }
+   },
+   "MI_Hero_Sword_Light_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Light/T_Hero_Sword_Light_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Light/T_Hero_Sword_Light_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Light/T_Hero_Sword_Light_PR_ORM.png",
+     "E": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Light/T_Hero_Sword_Light_PR_E.png"
+    },
+    "emissive_nits": 0.9
+   },
+   "MI_Hero_Sword_Long_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long/T_Hero_Sword_Long_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long/T_Hero_Sword_Long_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Sword_Long/T_Hero_Sword_Long_PR_ORM.png"
+    }
+   }
+  }
+ }
+}

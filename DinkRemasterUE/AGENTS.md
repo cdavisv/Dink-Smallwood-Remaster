@@ -1,3 +1,10 @@
+## Hero weapon meshes (15 November 2026, art row DS-04, bug A203)
+
+- Kit `SourceAssets/Art/PhotorealPass/HeroWeapons` (source = `tools/build_weapons.py`; rebuild and import commands in `PhotorealPass/IMPORT.md` "Hero weapons"), imported to `/Game/Dink/Photoreal/Hero/Weapons`: `SM_Hero_Sword_Long_PR`, `SM_Hero_Sword_Claw_PR`, `SM_Hero_Sword_Light_PR` (emissive blade), `SM_Hero_Bow_Wood_PR` (item-b1 and item-b3), `SM_Hero_Bow_Blue_PR`, `SM_Hero_Axe_PR`. The Unclaimed `SM_Axe_Throwing_PR` is the ground prop of sequence 85, not the item picture 438/6.
+- Every mesh: origin at the grip centre, +X to the tip (bow: upper limb), flats on +-Z. Attach: swords and axe on bone `hand_r`, relative location (-7, 3, -0.5) cm, rotation pitch 90, yaw 0, roll 90 (seen in the game in the idle pose and in `Sword_Slash_1` / `Sword_Chop`: the blade leaves the thumb side of the fist, the claws of the claw sword are on the knuckle side); bows on `hand_l`, location (7, -3, 0.5), rotation pitch -90, yaw 0, roll 90, string hand `hand_r` (seen carried at his side and at full draw with `Bow_Draw`).
+- Art only: the runtime attach by armed item, a closed-fist pose while armed and a bending bow are code/animation (A203 stays open for them). `dink.Hero.Hold` (DinkCore `Greybox/DinkHeroHoldDebug.cpp`, not in shipping builds) attaches a mesh to a hero bone for review captures and logs the bone's frame.
+- The kit importer's own exit code is 1 on a clean run (its last `grep` for warnings finds none under `pipefail`): trust the `DINK TOWN IMPORT OK` line, not the code. `scrub_private_paths.py --fix` only looks at tracked files: `git add` new binaries first.
+- Evidence: `Docs/Verification/HeroWeapons_16Nov2026/README.md`.
 ## Tables, chests and the red wall hangings: pictures bound by what they show (16 November 2026)
 
 - The class table (`tools/data`) names some pictures wrongly, and a class row then draws the wrong thing. Read the picture (`tools/dinkex/out/sprites/<seq>/<frame>.png`) and the scripts before trusting a class id. Fixed here with sequence-and-frame rows in `families.json` (they win over class rows):

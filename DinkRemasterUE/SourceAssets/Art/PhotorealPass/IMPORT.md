@@ -314,6 +314,21 @@ finger spars, open jaw), then `clips_monsters.py dragon build review export` and
 material for the wings). Walk 201-209 is a locomotion role; there is no attack sequence (it spits fire while it treads),
 so `AN_Dragon_Attack` is authored and not bound. A kill leaves the corpse kit's `SM_Dragon_Corpse_PR` (212-218) at corpse
 `scale` 1.7, so the remains are about two thirds of the live dragon's width, as 212/216 against 202.
+## Hero weapons (15 Nov 2026, art row DS-04, bug A203)
+
+Six hand-held meshes for the hero, kit `PhotorealPass/HeroWeapons` (built by `HeroWeapons/tools/build_weapons.py`, one baked
+BC / N / ORM set each, the light sword also E): `SM_Hero_Sword_Long_PR` (item-sw1, 1997 picture 438/7), `SM_Hero_Sword_Claw_PR`
+(item-sw2, 438/20), `SM_Hero_Sword_Light_PR` (item-sw3, 438/21), `SM_Hero_Bow_Wood_PR` (item-b1 and item-b3: 438/8 and 438/13
+show the same bow, b3 only adds the flame arrow), `SM_Hero_Bow_Blue_PR` (item-b2, 438/12), `SM_Hero_Axe_PR` (item-axe, 438/6).
+
+    HeroWeapons/tools/bl.sh all final                       # Blender: sources, bakes, FBX, per-asset manifest
+    python3 -I HeroWeapons/tools/build_weapons.py --manifest  # kit manifest.json
+    DINK_KIT=HeroWeapons DINK_KIT_FOLDER=Hero/Weapons Scripts/import_town_exteriors.sh   # -> /Game/Dink/Photoreal/Hero/Weapons
+
+Grip convention (every mesh): origin at the grip centre, +X along the blade or haft to the tip (a bow: along its upper limb),
+the blade's flats on +Z and -Z. Attach: swords and axe on bone `hand_r`, relative location (-7, 3, -0.5) cm, rotation pitch 90, yaw 0, roll 90 (seen in the game in the idle pose and in `Sword_Slash_1` / `Sword_Chop`: the blade leaves the thumb side of the fist, the claws of the claw sword are on the knuckle side); bows on `hand_l`, location (7, -3, 0.5), rotation pitch -90, yaw 0, roll 90, string hand `hand_r` (seen carried at his side and at full draw with `Bow_Draw`).
+Nothing binds them at runtime yet: no families.json row, no attach by item (code, bug A203). `dink.Hero.Hold <mesh path | off>
+[bone] [x y z pitch yaw roll]` (review only, not in shipping builds) puts one in the hero's hand for a capture.
 ## Structure sets (14 Nov 2026)
 
 | What | Command | Reads | Writes |
