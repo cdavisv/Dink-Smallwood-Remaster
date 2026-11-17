@@ -2,7 +2,7 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed",
  "generated_by": "Unclaimed/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "38 static meshes of the unclaimed gate 2 families that families.json binds, each with one baked opaque set (BC / N OpenGL / ORM). Every FBX holds one object named after the asset (LOD0 only) and, where collision_hulls is 1, a UCX hull that the importer drops: the family layer is visual only.",
+ "summary": "39 static meshes of the unclaimed gate 2 families that families.json binds, each with one baked opaque set (BC / N OpenGL / ORM). Every FBX holds one object named after the asset (LOD0 only) and, where collision_hulls is 1, a UCX hull that the importer drops: the family layer is visual only.",
  "assets": [
   {
    "name": "SM_Axe_Throwing_PR",
@@ -726,6 +726,25 @@
     "159 struct/stone/mdink/monum- frame 7"
    ],
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass"
+  },
+  {
+   "name": "SM_Banner_Red_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red/SM_Banner_Red_PR.fbx",
+   "materials": [
+    "MI_Banner_Red_PR"
+   ],
+   "dimensions_m": [
+    1.368,
+    0.066,
+    0.879
+   ],
+   "collision_hulls": 1,
+   "families": [
+    "wall_stripe_red",
+    "450 inter/health/hm-br- frames 1, 2"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red"
   }
  ],
  "flipbooks": [
@@ -1164,11 +1183,6 @@
    "name": "SM_Acorn_Hanging_PR",
    "class": "prop_small",
    "why": "no families.json row uses it: the fruit hangs in the crown of a tree; on the ground a 7 cm acorn is hidden in the grass"
-  },
-  {
-   "name": "SM_Banner_Red_PR",
-   "class": "prop",
-   "why": "no families.json row uses it: seven pieces in a row at the top of screen 97: a stripe on the north wall. hangs on a wall in the sprite; the layer stands a mesh on the floor (Z 0), so it needs a per-screen placement"
   }
  ],
  "integration": {
@@ -1518,6 +1532,15 @@
      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass/T_Shrine_Glass_PR_BC.png",
      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass/T_Shrine_Glass_PR_N.png",
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/teleport_shrine/Shrine_Glass/T_Shrine_Glass_PR_ORM.png"
+    }
+   },
+   "MI_Banner_Red_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red/T_Banner_Red_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red/T_Banner_Red_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/wall_stripe_red/Banner_Red/T_Banner_Red_PR_ORM.png"
     }
    }
   }

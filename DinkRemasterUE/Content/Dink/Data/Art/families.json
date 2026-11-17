@@ -707,6 +707,138 @@
       "note": "chst1- frame 6: lid up. See chest_small."
     },
     {
+      "family": "176 bonuses/chest/chst2-",
+      "frame": 1,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst2- frame 1: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid down. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+    },
+    {
+      "family": "176 bonuses/chest/chst2-",
+      "frame": 2,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst2- frame 2: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid down. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+    },
+    {
+      "family": "176 bonuses/chest/chst2-",
+      "frame": 3,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst2- frame 3: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid up. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+    },
+    {
+      "family": "176 bonuses/chest/chst2-",
+      "frame": 4,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst2- frame 4: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid up. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+    },
+    {
+      "family": "176 bonuses/chest/chst2-",
+      "frame": 5,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst2- frame 5: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid up. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+    },
+    {
+      "family": "176 bonuses/chest/chst2-",
+      "frame": 6,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst2- frame 6: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid up. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+    },
+    {
+      "family": "177 bonuses/chest/chst3-",
+      "frame": 1,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst3- frame 1: the chest turned the other way (59 px wide with its shadow), lid down. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+    },
+    {
+      "family": "177 bonuses/chest/chst3-",
+      "frame": 2,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst3- frame 2: the chest turned the other way (59 px wide with its shadow), lid down. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+    },
+    {
+      "family": "177 bonuses/chest/chst3-",
+      "frame": 3,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst3- frame 3: the chest turned the other way (59 px wide with its shadow), lid up. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+    },
+    {
+      "family": "177 bonuses/chest/chst3-",
+      "frame": 4,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst3- frame 4: the chest turned the other way (59 px wide with its shadow), lid up. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+    },
+    {
+      "family": "177 bonuses/chest/chst3-",
+      "frame": 5,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst3- frame 5: the chest turned the other way (59 px wide with its shadow), lid up. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+    },
+    {
+      "family": "177 bonuses/chest/chst3-",
+      "frame": 6,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "anchor_front": 1.0,
+      "scale": 1.25,
+      "note": "chst3- frame 6: the chest turned the other way (59 px wide with its shadow), lid up. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+    },
+    {
       "family": "jar_vase",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Jar_Vase_PR.SM_Jar_Vase_PR",
       "fit": "none",
@@ -816,6 +948,45 @@
       "fit": "none",
       "yaw_from_sprite": true,
       "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
+    },
+    {
+      "family": "fireplace_brick",
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Fireplace_Fieldstone_PR.SM_Fireplace_Fieldstone_PR",
+      "fit": "footprint",
+      "anchor": "hardbox",
+      "yaw_from_sprite": true,
+      "note": "64 inside/details/inacc- frame 5, the fireplace against the north wall of the houses on screens 38, 129 and 163 (S038_P16, S129_P24, S163_P23): the fieldstone fireplace the props kit built for this picture (Props/Fireplace_Fieldstone/manifest.json names the family) and that screen 1 already shows through its room manifest; no row bound it, so the three drew the 1997 picture as a card. fit footprint: the room of screen 163 is drawn 2.25/1.75 larger and its fireplace with it. Screen 1 (S001_P19, same class) is dressed by the Stonebrook manifest and is not touched. Stream art-fx-props, 16 Nov 2026."
+    },
+    {
+      "family": "87 inside/details/table- long table from the front",
+      "frame": 1,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Table_Oak_Long_PR.SM_Table_Oak_Long_PR",
+      "fit": "none",
+      "anchor": "hardbox",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "note": "87 frame 1 is a long table seen from the front (94 x 58 px; s1-h3-1 says of S003_P16: \"A nice wooden table.\"). The class table calls it cabinet_wood, so it drew the oak cabinet. A sequence-and-frame row: wins over the class row. scripted: the three scripts on this frame (s1-h3-1 talk/hit lines, s2-fgate, which hides its sprite with sp_nodraw) never change the picture. Fable stream art-fx-props, 16 Nov 2026."
+    },
+    {
+      "family": "87 inside/details/table- long table end-on",
+      "frame": 7,
+      "mesh": "/Game/Dink/Photoreal/Props/SM_Table_Oak_Long_PR.SM_Table_Oak_Long_PR",
+      "fit": "none",
+      "anchor": "hardbox",
+      "yaw_from_sprite": true,
+      "yaw_offset": 90,
+      "scripted": true,
+      "note": "87 frame 7 is the same table seen end-on (57 x 79 px; s1-h3-4 says of S003_P15: \"A small table.\"): the oak table turned 90 degrees. Was the oak cabinet through class cabinet_wood. scripted: s1-h3-4 and soundoff never change the picture."
+    },
+    {
+      "family": "wall_stripe_red",
+      "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Banner_Red_PR.SM_Banner_Red_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "scripted": true,
+      "scale": 0.77,
+      "offset_cm": {"S097_P35": [0, 322, 175], "S097_P36": [0, 322, 175], "S097_P37": [0, 322, 175], "S097_P38": [0, 322, 175], "S097_P39": [0, 322, 175], "S097_P40": [0, 322, 175], "S097_P41": [0, 322, 175]},
+      "note": "450 inter/health/hm-br- on screen 97 (the bow shop of KernSin): seven segments of the red bar with a gold edge that the 1997 map hangs high on the north wall (health-bar art used as decoration; their script s3-fount only says a line). Each segment is one red wool hanging on a rod (SM_Banner_Red_PR at 0.77: 1.05 m, the segment's width), so the seven make one run. offset_cm: the segments' points lie in the 1997 wall band; the drawn wall stands 3.2 m further south, and the hangings sit 1.75 m up it. scripted: the script never changes the picture. Fable stream art-fx-props, 16 Nov 2026."
     },
     {
       "family": "cabinet_wood",
