@@ -3,6 +3,7 @@
 #include "Components/PointLightComponent.h"
 #include "DinkFlickerLightComponent.h"
 #include "Materials/MaterialInterface.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "DinkCoreModule.h"
 #include "DinkCreatureClassComponent.h"
 #include "DinkEnvironmentSubsystem.h"
@@ -836,8 +837,16 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 			Card->RegisterComponent();
 		}
 		const float Half = float(B->EffectSizeCm * 0.5 * FMath::Max(double(Size) * B->Scale, double(DinkArtFamily::MinScale)));
+		// A one-shot flipbook (an explosion) must start at its first frame when the sprite appears: the card draws a
+		// dynamic instance that knows its start time (scalar StartTime, read by M_FX_Flipbook*; world seconds).
+		UMaterialInstanceDynamic* Playing = Card->Elements.Num() == 1 ? Cast<UMaterialInstanceDynamic>(Card->Elements[0].Material) : nullptr;
+		if (!Playing || Playing->Parent != *Effect)
+		{
+			Playing = UMaterialInstanceDynamic::Create(*Effect, Card);
+			if (Playing) Playing->SetScalarParameterValue(TEXT("StartTime"), float(World->GetTimeSeconds()));
+		}
 		Card->SetElements({});
-		Card->AddElement(*Effect, nullptr, false, Half, Half, nullptr);
+		Card->AddElement(Playing ? static_cast<UMaterialInterface*>(Playing) : Effect->Get(), nullptr, false, Half, Half, nullptr);
 		Card->SetWorldLocation(Ground + FVector(0.0, 0.0, Half * 0.9));
 		if (Marker) Marker->SetHiddenInGame(true);
 		return true;

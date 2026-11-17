@@ -1694,6 +1694,46 @@
       "fit": "none",
       "yaw_from_sprite": false,
       "note": "165 effects/shiny/shiny- and 166 effects/sparks/spark-: the twinkle a gold heap's script creates over the heap (create_sprite, brain 15). An effect row: a camera-facing card with the sparkle flipbook (8 x 8 frames, additive), 70 cm. Script-created sprites only; the two placed sparkles keep their cards."
+    },
+    {
+      "family": "167 effects/splode/shock-",
+      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Shock.MI_FX_Shock",
+      "effect_size_cm": 420,
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "The explosion scripts create (bombs, Seth's death, the dragons, the wizards; 44 create_sprite calls): a one-shot flipbook card (4 x 4 frames over the sprite's 0.42 s, alpha blend with glowing fire), 4.2 m as the 1997 frames (up to 165 x 171 px). An effect row: script-created sprites only."
+    },
+    {
+      "family": "164 effects/magic/magc1-",
+      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Blood_Burst.MI_FX_Blood_Burst",
+      "effect_size_cm": 320,
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "The engine's burst for a killed sprite without a death picture and for the duck's second blow (dink.cpp:12384-12389, 12732): a dark red ball of blood drops that bursts into specks, 8 x 4 frames over 0.7 s, alpha blend, 3.2 m (the 1997 frames reach 115 x 118 px = 2.9 m). Gore bar: at least as red and as large as 164."
+    },
+    {
+      "family": "161 effects/atomic/atomc-",
+      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Atomic.MI_FX_Atomic",
+      "effect_size_cm": 360,
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "The fire burst scripts create (2 calls): mound, stem and cap of fire, collapse, smoke; 8 x 4 frames over 1.3 s, alpha blend, 3.6 m (1997: up to 114 x 143 px). Script-created sprites only; the two placed fire bursts of screen 1 take the class row fire_burst_fx (the burning house's flames)."
+    },
+    {
+      "family": "70 effects/splode/explo-",
+      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Splode.MI_FX_Splode",
+      "effect_size_cm": 240,
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "The small explosion scripts create (4 calls): fireball to smoke, 4 x 4 frames over 0.6 s, alpha blend, 2.4 m (1997: up to 96 x 92 px). Script-created sprites only; the two placed frames of screen 1 take the class row explosion_fx (small fires of the burning house)."
+    },
+    {
+      "family": "512 effects/comets/sm-comt2/fbal2-",
+      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Fireball.MI_FX_Fireball",
+      "effect_size_cm": 190,
+      "fit": "none",
+      "yaw_from_sprite": false,
+      "note": "The falling fireball a script creates (1 call): the looping fireball flipbook (8 x 8 frames, additive), 1.9 m as the 1997 frames (32 x 76 px). Script-created sprites only."
     }
   ],
   "collision_fit": {

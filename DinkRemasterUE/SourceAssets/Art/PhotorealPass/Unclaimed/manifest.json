@@ -749,6 +749,106 @@
  ],
  "flipbooks": [
   {
+   "name": "Blood_Burst",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/blood_burst_fx/Blood_Burst/T_FX_Blood_Burst_Flipbook.png",
+   "grid": [
+    8,
+    4
+   ],
+   "fps": 45.71,
+   "glow": 1.0,
+   "loop": false,
+   "blend": "translucent",
+   "camera_offset_cm": 0,
+   "families": [
+    "blood_burst_fx",
+    "164 (sequence of the 1997 sprite)"
+   ]
+  },
+  {
+   "name": "Shock",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/explosion_fx/Shock/T_FX_Shock_Flipbook.png",
+   "grid": [
+    4,
+    4
+   ],
+   "fps": 38.1,
+   "glow": 1.6,
+   "loop": false,
+   "blend": "translucent",
+   "camera_offset_cm": 0,
+   "families": [
+    "explosion_fx",
+    "167 (sequence of the 1997 sprite)"
+   ],
+   "hot": [
+    0.55,
+    0.95,
+    1.0
+   ]
+  },
+  {
+   "name": "Splode",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/explosion_small_fx/Splode/T_FX_Splode_Flipbook.png",
+   "grid": [
+    4,
+    4
+   ],
+   "fps": 26.67,
+   "glow": 1.6,
+   "loop": false,
+   "blend": "translucent",
+   "camera_offset_cm": 0,
+   "families": [
+    "explosion_small_fx",
+    "70 (sequence of the 1997 sprite)"
+   ],
+   "hot": [
+    0.55,
+    0.95,
+    1.0
+   ]
+  },
+  {
+   "name": "Atomic",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fire_burst_fx/Atomic/T_FX_Atomic_Flipbook.png",
+   "grid": [
+    8,
+    4
+   ],
+   "fps": 24.62,
+   "glow": 1.6,
+   "loop": false,
+   "blend": "translucent",
+   "camera_offset_cm": 0,
+   "families": [
+    "fire_burst_fx",
+    "161 (sequence of the 1997 sprite)"
+   ],
+   "hot": [
+    0.55,
+    0.95,
+    1.0
+   ]
+  },
+  {
+   "name": "Fireball",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fireball_fx/Fireball/T_FX_Fireball_Flipbook.png",
+   "grid": [
+    8,
+    8
+   ],
+   "fps": 24,
+   "glow": 6,
+   "loop": true,
+   "blend": "additive",
+   "camera_offset_cm": 0,
+   "families": [
+    "fireball_fx",
+    "512 effects/comets/sm-comt2/fbal2- frame 1"
+   ]
+  },
+  {
    "name": "Sparkle",
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/sparkle_fx/Sparkle/T_FX_Sparkle_Flipbook.png",
    "grid": [
@@ -757,6 +857,9 @@
    ],
    "fps": 24,
    "glow": 6,
+   "loop": true,
+   "blend": "additive",
+   "camera_offset_cm": 0,
    "families": [
     "sparkle_fx",
     "165 effects/shiny/shiny-, 166 effects/sparks/spark-"
@@ -955,11 +1058,6 @@
    "why": "not a static mesh"
   },
   {
-   "name": "FX_Fireball",
-   "class": "effect flipbook",
-   "why": "not a static mesh"
-  },
-  {
    "name": "SK_Fish_PR",
    "class": "creature",
    "why": "not a static mesh"
@@ -1011,6 +1109,11 @@
   },
   {
    "name": "SK_Goblin_Hammer_PR",
+   "class": "character_humanoid",
+   "why": "not a static mesh"
+  },
+  {
+   "name": "SK_Goblin_Horned_PR",
    "class": "character_humanoid",
    "why": "not a static mesh"
   },
