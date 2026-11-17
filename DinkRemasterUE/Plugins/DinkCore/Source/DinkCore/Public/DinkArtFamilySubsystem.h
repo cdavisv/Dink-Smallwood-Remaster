@@ -102,6 +102,11 @@ struct DINKCORE_API FDinkFamilyBinding
 	 */
 	FString Effect;
 	double EffectSizeCm = 50.0;
+	/** "effect_offset_cm": [x, y, z] moves the card of a script-created sprite (world axes: x east, y south, z up):
+	 *  a missile's picture hangs above and beside its sprite point (dink.ini's picture offsets), so its card does too.
+	 *  Script-created sprites only; placed effects use "offset_cm". On such a sprite "effect_light" is a light at the
+	 *  card's middle for as long as the sprite lives (a flying fireball, an explosion's flash). */
+	FVector EffectOffsetCm = FVector::ZeroVector;
 	bool bEffectPlaced = false;
 	FVector2D EffectFit = FVector2D(1.0, 1.0);
 	double EffectSink = 0.0;

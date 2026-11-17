@@ -165,7 +165,7 @@ bool FDinkArtFamilyPlacedEffectRowTest::RunTest(const FString&)
 	TArray<FDinkFamilyBinding> Rows;
 	TArray<FString> Errors;
 	TestTrue(TEXT("effect rows parse"), DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
-		{"family":"sparkle_fx","effect":"/Game/Dink/A/MI_A","effect_size_cm":70},
+		{"family":"sparkle_fx","effect":"/Game/Dink/A/MI_A","effect_size_cm":70,"effect_offset_cm":[77,0,-5]},
 		{"family":"fire_fx","effect":"/Game/Dink/A/MI_B","effect_placed":true,"effect_fit":[0.5,0.25],"effect_sink":0.03,"effect_ground":true,
 		 "effect_light":[1.0,0.5,0.1,300,600],"effect_light_height":0.4,"effect_light_flicker":0.3,"offset_cm":{"S439_P05":[10,-20,350],"S439_P09":[1,2],"S439_P11":[0,0,500,2.2]},
 		 "effect_plume":{"material":"/Game/Dink/A/MI_Smoke","size_cm":[350,700],"origins":["S439_P05"]}},
@@ -173,6 +173,7 @@ bool FDinkArtFamilyPlacedEffectRowTest::RunTest(const FString&)
 	TestEqual(TEXT("no errors"), Errors.Num(), 0);
 	if (Rows.Num() != 3) return false;
 	TestFalse(TEXT("a plain effect row stays off placed sprites"), Rows[0].bEffectPlaced);
+	TestTrue(TEXT("effect_offset_cm moves a script sprite's card"), Rows[0].EffectOffsetCm.Equals(FVector(77.0, 0.0, -5.0)) && Rows[1].EffectOffsetCm.IsZero());
 	TestTrue(TEXT("effect_placed is read"), Rows[1].bEffectPlaced && Rows[1].Mesh.IsEmpty());
 	TestEqual(TEXT("effect_fit width"), Rows[1].EffectFit.X, 0.5);
 	TestEqual(TEXT("effect_fit height"), Rows[1].EffectFit.Y, 0.25);

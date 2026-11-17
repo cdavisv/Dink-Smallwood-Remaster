@@ -845,8 +845,50 @@
    "camera_offset_cm": 0,
    "families": [
     "fireball_fx",
-    "512 effects/comets/sm-comt2/fbal2- frame 1"
+    "512 effects/comets/sm-comt2/fbal2- frame 1",
+    "502, 504, 506, 508 effects/comets/sm-comt1 (the fireball spell)",
+    "514, 516, 518 effects/comets/sm-comt2 (hellfire)"
    ]
+  },
+  {
+   "name": "Fireball_W",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fireball_fx/Fireball/T_FX_Fireball_Flipbook.png",
+   "grid": [
+    8,
+    8
+   ],
+   "fps": 24,
+   "glow": 6,
+   "loop": true,
+   "blend": "additive",
+   "camera_offset_cm": 0,
+   "families": [
+    "fireball_fx",
+    "512 effects/comets/sm-comt2/fbal2- frame 1",
+    "502, 504, 506, 508 effects/comets/sm-comt1 (the fireball spell)",
+    "514, 516, 518 effects/comets/sm-comt2 (hellfire)"
+   ],
+   "roll": 0.75
+  },
+  {
+   "name": "Fireball_E",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fireball_fx/Fireball/T_FX_Fireball_Flipbook.png",
+   "grid": [
+    8,
+    8
+   ],
+   "fps": 24,
+   "glow": 6,
+   "loop": true,
+   "blend": "additive",
+   "camera_offset_cm": 0,
+   "families": [
+    "fireball_fx",
+    "512 effects/comets/sm-comt2/fbal2- frame 1",
+    "502, 504, 506, 508 effects/comets/sm-comt1 (the fireball spell)",
+    "514, 516, 518 effects/comets/sm-comt2 (hellfire)"
+   ],
+   "roll": 0.25
   },
   {
    "name": "Sparkle",

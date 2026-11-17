@@ -409,6 +409,11 @@ explosion) and 512 (falling fireball) drew the grey script-sprite marker. Each n
 - After the render `build_fx_vol.py` grades every one-shot fire atlas with `tools/fx_grade.py` (orange fire, no veil of light round the shapes, colour spread under the transparent texels) and writes `glow` 1.6 and `hot` [0.55, 0.95, 1.0] into the manifest; `make_kit_manifest.py` passes `hot` on to the kit row. Atlases rendered before the tool existed were graded once with `python3 -I Unclaimed/tools/fx_grade.py Shock Splode Atomic` (the manifest's `graded` flag stops a second pass).
 - The build chooses the GPU by itself (`pplib`, `build_fx_vol.py`): set `DINK_CPU=1`, or run it through `Saved/Gate2Coord/gpu_turn.sh`. The kit import runs `-nullrhi` (`DINK_GPU=0` under `unreal_turn.sh`).
 - The tool also renders loops (`loop: true`: every noise field climbs a whole number of its periods over the loop, so it closes); the hearth fire of the follow-up change uses that.
+- Missiles (16 Nov 2026): the fireball spell (502, 504, 506, 508) and hellfire (512 to 518) fly as `MI_FX_Fireball` (south, north) and
+  `MI_FX_Fireball_W` / `_E` (west, east). The two side copies are kit rows with `"roll"` (0.75, 0.25: the flipbook scalar `Roll` turns
+  the picture inside its square card), listed as `flipbook.variants` in `fireball_fx/Fireball/manifest.json` (`build_fx.py` writes
+  them); `make_kit_manifest.py` emits a variant only when a `families.json` row names its material. No second texture, no rebuild of the
+  frames: after changing a roll run `make_kit_manifest.py` and the Unclaimed kit import (`-nullrhi`: under `unreal_turn.sh` set `DINK_GPU=0`).
 - The card lives exactly as long as the sprite (frames x frame delay of `dink.ini`): 167 0.42 s, 164 0.70 s, 161 1.30 s,
   70 0.60 s. Effect rows dress script-created sprites only; placed effect sprites (screens 1 and 366) keep their cards.
 ## People: townsfolk, guards, the gnome wizard, the King, Seth (16 Nov 2026)

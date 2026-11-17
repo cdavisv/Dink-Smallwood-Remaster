@@ -374,6 +374,11 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 			B.Effect = NormaliseObjectPath(B.Effect);
 			(*Row)->TryGetNumberField(TEXT("effect_size_cm"), B.EffectSizeCm);
 			B.EffectSizeCm = FMath::Clamp(B.EffectSizeCm, 1.0, 1000.0);
+			const TArray<TSharedPtr<FJsonValue>>* CardOffset = nullptr;
+			if ((*Row)->TryGetArrayField(TEXT("effect_offset_cm"), CardOffset) && CardOffset && CardOffset->Num() == 3)
+			{
+				B.EffectOffsetCm = FVector(FMath::Clamp((*CardOffset)[0]->AsNumber(), -1000.0, 1000.0), FMath::Clamp((*CardOffset)[1]->AsNumber(), -1000.0, 1000.0), FMath::Clamp((*CardOffset)[2]->AsNumber(), -1000.0, 1000.0));
+			}
 			(*Row)->TryGetBoolField(TEXT("effect_placed"), B.bEffectPlaced);
 			const TArray<TSharedPtr<FJsonValue>>* FitRow = nullptr;
 			if ((*Row)->TryGetArrayField(TEXT("effect_fit"), FitRow) && FitRow && FitRow->Num() == 2)
@@ -847,12 +852,45 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 		}
 		Card->SetElements({});
 		Card->AddElement(Playing ? static_cast<UMaterialInterface*>(Playing) : Effect->Get(), nullptr, false, Half, Half, nullptr);
-		Card->SetWorldLocation(Ground + FVector(0.0, 0.0, Half * 0.9));
+		Card->SetWorldLocation(Ground + FVector(0.0, 0.0, Half * 0.9) + B->EffectOffsetCm);
+		// "effect_light" on a script-created sprite: the fire lights what it passes (no shadows; gone with the sprite)
+		static const FName ScriptEffectLightTag(TEXT("DinkScriptFamilyEffectLight"));
+		UDinkFlickerLightComponent* Glow = Actor->FindComponentByTag<UDinkFlickerLightComponent>(ScriptEffectLightTag);
+		const bool bLit = B->EffectLightCandela > 0.0 && B->EffectLightRadiusCm > 0.0;
+		if (Glow && !bLit)
+		{
+			Glow->DestroyComponent();
+			Glow = nullptr;
+		}
+		if (bLit)
+		{
+			if (!Glow)
+			{
+				Glow = NewObject<UDinkFlickerLightComponent>(Actor, MakeUniqueObjectName(Actor, UDinkFlickerLightComponent::StaticClass(), TEXT("ScriptFamilyEffectLight")));
+				Glow->SetMobility(EComponentMobility::Movable);
+				Glow->SetupAttachment(Card);
+				Glow->SetUsingAbsoluteScale(true);
+				Glow->SetIntensityUnits(ELightUnits::Candelas);
+				Glow->SetCastShadows(false);
+				Glow->ComponentTags.Add(FamilyTag);
+				Glow->ComponentTags.Add(ScriptEffectLightTag);
+				Actor->AddInstanceComponent(Glow);
+				Glow->RegisterComponent();
+			}
+			Glow->SetIntensity(float(B->EffectLightCandela));
+			Glow->SetLightColor(B->EffectLight);
+			Glow->SetAttenuationRadius(float(B->EffectLightRadiusCm));
+			Glow->SetSourceRadius(Half * 0.15f);
+			Glow->SetSoftSourceRadius(Half * 0.25f);
+			Glow->SetFlicker(float(B->EffectLightCandela), float(B->EffectLightFlicker), float(FMath::Fmod(FMath::Abs(Ground.X * 0.013 + Ground.Y * 0.007), 97.0)));
+			Glow->SetWorldLocation(Card->GetComponentLocation());
+		}
 		if (Marker) Marker->SetHiddenInGame(true);
 		return true;
 	}
 	if (Card && Card->ComponentHasTag(ScriptEffectTag))
 	{
+		if (UDinkFlickerLightComponent* Glow = Actor->FindComponentByTag<UDinkFlickerLightComponent>(TEXT("DinkScriptFamilyEffectLight"))) Glow->DestroyComponent();
 		Card->DestroyComponent();
 		if (Marker && !bOtherLayer) Marker->SetHiddenInGame(false);
 	}
