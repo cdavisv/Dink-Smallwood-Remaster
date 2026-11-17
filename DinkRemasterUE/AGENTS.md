@@ -1,3 +1,10 @@
+## Hearth fire and fountain spray on the placed-effect path (16 November 2026; art rows VS-11, DS-06 and the hearth of S001_P20)
+
+- Two more `effect_placed` rows in `families.json`, both from the FableF kit: `86 inside/details/fire-` -> `MI_FX_Hearth` (the middle of the simulated wall of flame cut to a compact fire: set `Hearth` of `FableF/tools/build_fire_fx.py`, `--stage atlas` on the Fire_Wall frame cache) and `fountain_spray_fx` -> `MI_FX_Fountain_Spray` (`FableF/tools/build_fountain_spray.py`: a jet and 520 drops on ballistic arcs, translucent, 256 px frames). The Unclaimed kit is untouched; its older `fountain_spray_fx` (128 px, additive) and `hearth_fire` sources stay unimported.
+- The hearth needed more than the key: its row is `"scripted": true` (S001_P20 has the script `s1-h1-2`), and S001_P20 was removed from `hide_origins` of `stonebrook.json` and of `SourceAssets/Art/Stonebrook/room_layout.json` (the Stonebrook room manifest hid the 1997 fire card behind its fireplace mesh). The card sits in the firebox of the authored fireplace.
+- The fountain's card stood on the ground 0.9 m behind the fountain mesh: `offset_cm` lifts it onto the bowl (S586_P14, S260_P30).
+- Screen 163's hearth (S163_P24) draws the same fire, but its fireplace is still the 1997 picture card (class `fireplace_brick` has no mesh on 38, 129, 163): judge it again when that lands.
+- The two PLACED sparkles (165/166: S001_P37, S045_P01) both sit at map pixel (-20, 0), the screen's corner: stray editor sprites, not designed content. They keep no effect; proposed `cut` (art row DS-06).
 ## Hero weapon meshes (15 November 2026, art row DS-04, bug A203)
 
 - Kit `SourceAssets/Art/PhotorealPass/HeroWeapons` (source = `tools/build_weapons.py`; rebuild and import commands in `PhotorealPass/IMPORT.md` "Hero weapons"), imported to `/Game/Dink/Photoreal/Hero/Weapons`: `SM_Hero_Sword_Long_PR`, `SM_Hero_Sword_Claw_PR`, `SM_Hero_Sword_Light_PR` (emissive blade), `SM_Hero_Bow_Wood_PR` (item-b1 and item-b3), `SM_Hero_Bow_Blue_PR`, `SM_Hero_Axe_PR`. The Unclaimed `SM_Axe_Throwing_PR` is the ground prop of sequence 85, not the item picture 438/6.

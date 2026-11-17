@@ -1,0 +1,55 @@
+{
+ "name": "FX_Hearth",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  1.625,
+  1.625,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/hearth_fire/Hearth/T_FX_Hearth_Flipbook.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha = opacity (flames nearly opaque where the fire is thick, smoke up to 0.55); 8 x 8 frames of 256 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 64,
+  "grid": [
+   8,
+   8
+  ],
+  "fps": 20,
+  "loop": true,
+  "billboard_size_m": [
+   1.625,
+   1.625
+  ],
+  "blend": "translucent",
+  "glow": 5.0,
+  "hot": [
+   0.45,
+   0.85,
+   1.0
+  ],
+  "alpha_coverage": 0.489,
+  "stands_on_bottom_edge": true
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/hearth_fire/Hearth/frames_strip.png",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/fire_fx/Fire_Wall/FX_Fire_Wall.blend",
+ "source_note": "made from the frames of Fire_Wall (same simulation and render): the window [96, 416, 190, 510] of its 512 px frame, the flames lowered towards the sides, scaled to 256 px; colour, opacity, the little smoke and the sparks by tools/fire_encode.py. Needs the frame cache of Fire_Wall (--cache); stage atlas only.",
+ "build": "blender -b --factory-startup -t 4 --python FableF/tools/build_fire_fx.py -- Hearth --cache <cache of Fire_Wall> --stage atlas",
+ "families": [
+  "hearth_fire",
+  "86 inside/details/fire-"
+ ],
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "the fire in the hearth: a compact fire 1.2 m wide and up to 1.4 m tall, tallest in the middle, with a few sparks",
+ "third_party": [],
+ "status": "source delivered",
+ "known_weaknesses": "A flipbook on a card in the fire back, not a volume. The same motion as the wall of flame of the burning house (its middle part). Unlit; the hearth light is the indoor light set, not this card. One loop of 3.2 s."
+}

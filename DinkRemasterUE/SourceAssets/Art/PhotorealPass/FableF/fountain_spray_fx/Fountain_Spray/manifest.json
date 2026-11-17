@@ -1,0 +1,58 @@
+{
+ "name": "FX_Fountain_Spray",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  2.2,
+  2.2,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/fountain_spray_fx/Fountain_Spray/T_FX_Fountain_Spray_Flipbook.png",
+   "size_px": [
+    3072,
+    3072
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha (opacity); 8 x 8 frames of 384 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 64,
+  "grid": [
+   8,
+   8
+  ],
+  "fps": 24,
+  "loop": true,
+  "billboard_size_m": [
+   2.2,
+   2.2
+  ],
+  "blend": "translucent",
+  "glow": 1.0,
+  "hot": [
+   0.98,
+   1.0,
+   1.0
+  ],
+  "alpha_coverage": 0.122,
+  "stands_on_bottom_edge": true,
+  "nozzle": [
+   0.5,
+   0.955
+  ]
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/fountain_spray_fx/Fountain_Spray/frames_strip.png",
+ "source_note": "made by code, no .blend: FableF/tools/build_fountain_spray.py (1500 fine drops on ballistic arcs whose flight times divide the loop, drawn as streaks; a jet column, mist where it breaks).",
+ "build": "python3 -I FableF/tools/build_fountain_spray.py",
+ "families": [
+  "fountain_spray_fx",
+  "94 lands/garden/spray-"
+ ],
+ "supersedes": "Unclaimed/fountain_spray_fx/Fountain_Spray (128 px frames, additive: its drops were blocks at the play camera and it vanished on a bright ground)",
+ "dresses": "the fountain's spray: a jet 1 m high from the bowl, breaking into drops that fall back around it",
+ "third_party": [],
+ "status": "source delivered",
+ "known_weaknesses": "A card: the drops do not land on the water, make no rings and do not wet the bowl. Unlit: the water keeps its own brightness at night. Arcs only: no wind."
+}
