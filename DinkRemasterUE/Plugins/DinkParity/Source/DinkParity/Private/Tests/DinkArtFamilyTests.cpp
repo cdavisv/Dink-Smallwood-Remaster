@@ -3,6 +3,7 @@
 #include "DinkTestHelpers.h"
 #include "Materials/MaterialInterface.h"
 #include "DinkArtFamilySubsystem.h"
+#include "DinkFlickerLightComponent.h"
 #include "DinkOriginComponent.h"
 #include "DinkStorySubsystem.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
@@ -156,6 +157,65 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 	return true;
 }
 
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkArtFamilyPlacedEffectRowTest, "Dink.Art.Family.PlacedEffectRow", DINK_TEST_FLAGS)
+bool FDinkArtFamilyPlacedEffectRowTest::RunTest(const FString&)
+{
+	// An effect row draws on script sprites only, unless it says "effect_placed": then placed sprites take it too
+	// (the fires of the burning house), sized from their own card by "effect_fit".
+	TArray<FDinkFamilyBinding> Rows;
+	TArray<FString> Errors;
+	TestTrue(TEXT("effect rows parse"), DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
+		{"family":"sparkle_fx","effect":"/Game/Dink/A/MI_A","effect_size_cm":70},
+		{"family":"fire_fx","effect":"/Game/Dink/A/MI_B","effect_placed":true,"effect_fit":[0.5,0.25],"effect_sink":0.03,"effect_ground":true,
+		 "effect_light":[1.0,0.5,0.1,300,600],"effect_light_height":0.4,"effect_light_flicker":0.3,"offset_cm":{"S439_P05":[10,-20,350],"S439_P09":[1,2],"S439_P11":[0,0,500,2.2]},
+		 "effect_plume":{"material":"/Game/Dink/A/MI_Smoke","size_cm":[350,700],"origins":["S439_P05"]}},
+		{"family":"small_fire_fx","effect":"/Game/Dink/A/MI_C","effect_placed":true,"effect_fit":[7,-1],"effect_sink":9,"effect_light":[1,1,1]}]})"), Rows, Errors));
+	TestEqual(TEXT("no errors"), Errors.Num(), 0);
+	if (Rows.Num() != 3) return false;
+	TestFalse(TEXT("a plain effect row stays off placed sprites"), Rows[0].bEffectPlaced);
+	TestTrue(TEXT("effect_placed is read"), Rows[1].bEffectPlaced && Rows[1].Mesh.IsEmpty());
+	TestEqual(TEXT("effect_fit width"), Rows[1].EffectFit.X, 0.5);
+	TestEqual(TEXT("effect_fit height"), Rows[1].EffectFit.Y, 0.25);
+	TestEqual(TEXT("effect_sink"), Rows[1].EffectSink, 0.03);
+	TestTrue(TEXT("effect_ground"), Rows[1].bEffectGround && !Rows[2].bEffectGround);
+	TestEqual(TEXT("light candela"), Rows[1].EffectLightCandela, 300.0);
+	TestEqual(TEXT("light radius"), Rows[1].EffectLightRadiusCm, 600.0);
+	TestEqual(TEXT("light height"), Rows[1].EffectLightHeight, 0.4);
+	TestEqual(TEXT("light flicker"), Rows[1].EffectLightFlicker, 0.3);
+	TestEqual(TEXT("two placement offsets are read, the short one is dropped"), Rows[1].OffsetCm.Num(), 2);
+	TestTrue(TEXT("a fourth number is that placement's size factor"), Rows[1].OffsetScale.Num() == 1 && FMath::IsNearlyEqual(Rows[1].OffsetScale.FindRef(TEXT("S439_P11")), 2.2));
+	TestEqual(TEXT("plume material"), Rows[1].EffectPlume, FString(TEXT("/Game/Dink/A/MI_Smoke.MI_Smoke")));
+	TestTrue(TEXT("plume size and its one placement"), Rows[1].EffectPlumeSizeCm.Equals(FVector2D(350.0, 700.0)) && Rows[1].EffectPlumeOrigins.Num() == 1 && Rows[1].EffectPlumeOrigins.Contains(TEXT("S439_P05")));
+	TestTrue(TEXT("a row without a plume has none"), Rows[2].EffectPlume.IsEmpty());
+	const FVector* Lift = Rows[1].OffsetCm.Find(TEXT("S439_P05"));
+	TestTrue(TEXT("offset in cm, world axes"), Lift && Lift->Equals(FVector(10.0, -20.0, 350.0)));
+	TestEqual(TEXT("a row without flicker gives a steady light"), Rows[2].EffectLightFlicker, 0.0);
+	float Low = 10.f, High = -10.f;
+	for (int32 Step = 0; Step < 2000; ++Step)
+	{
+		const float F = UDinkFlickerLightComponent::Factor(Step * 0.013, 0.3f, 5.f);
+		Low = FMath::Min(Low, F);
+		High = FMath::Max(High, F);
+	}
+	TestTrue(TEXT("firelight wavers within its depth"), Low >= 0.7f - KINDA_SMALL_NUMBER && High <= 1.3f + KINDA_SMALL_NUMBER && High - Low > 0.2f);
+	TestEqual(TEXT("depth 0 is steady"), UDinkFlickerLightComponent::Factor(3.7, 0.f, 0.f), 1.f);
+	TestEqual(TEXT("fit width is clamped to the frame"), Rows[2].EffectFit.X, 1.0);
+	TestEqual(TEXT("fit height is clamped"), Rows[2].EffectFit.Y, 0.05);
+	TestEqual(TEXT("sink is clamped"), Rows[2].EffectSink, 0.5);
+	TestEqual(TEXT("a short light row gives no light"), Rows[2].EffectLightCandela, 0.0);
+	// A sprite a script creates never takes a placed-effect row: its picture's own row, or none (the 1997 picture).
+	TArray<FDinkFamilyBinding> Mixed;
+	TestTrue(TEXT("mixed rows parse"), DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
+		{"family":"fire_burst_fx","effect":"/Game/Dink/A/MI_Wall","effect_placed":true},
+		{"family":"161 effects/atomic/atomc-","effect":"/Game/Dink/A/MI_Burst","effect_size_cm":360},
+		{"family":"86 inside/details/fire-","effect":"/Game/Dink/A/MI_Hearth","effect_placed":true}]})"), Mixed, Errors) && Mixed.Num() == 3);
+	if (Mixed.Num() != 3) return false;
+	TestTrue(TEXT("a placed sprite of the class takes the placed-effect class row"), DinkArtFamily::Resolve(Mixed, 161, TEXT("fire_burst_fx"), 1) == &Mixed[0]);
+	TestTrue(TEXT("a script-created sprite of that picture takes the sequence row"), DinkArtFamily::ResolveScriptSprite(Mixed, 161, TEXT("fire_burst_fx"), 1) == &Mixed[1]);
+	TestTrue(TEXT("a script-created sprite whose only row is a placed effect takes none"), DinkArtFamily::ResolveScriptSprite(Mixed, 86, TEXT("hearth_fire"), 1) == nullptr);
+	return true;
+}
+
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkArtFamilyFitTest, "Dink.Art.Family.FootprintFitMaths", DINK_TEST_FLAGS)
 bool FDinkArtFamilyFitTest::RunTest(const FString&)
 {
@@ -298,6 +358,7 @@ namespace
 					P.bHardnessOnly = It->PlacementKind == TEXT("hardness_only");
 					const FDinkFamilyBinding* B = nullptr;
 					if (DinkArtFamily::Decide(P, Family->GetPrecedence(), Family->GetBindings(), B) != EDinkFamilyDecision::Bound) continue;
+					if (B && !B->Effect.IsEmpty()) continue;  // an effect row reskins the card instead of adding a mesh
 					if (!Target.IsValid() || It->ScreenNumber < Target->ScreenNumber || (It->ScreenNumber == Target->ScreenNumber && P.Origin < Target->Origin->OriginId.ToString()))
 					{
 						Target = *It;
@@ -344,11 +405,16 @@ namespace
 				Test->TestTrue(TEXT("screen solid hardness collision unchanged"), After.Solid == Before.Solid);
 				Test->TestTrue(TEXT("screen low hardness collision unchanged"), After.Low == Before.Low);
 				Test->TestTrue(TEXT("pawn blocking at the placement unchanged"), After.bBlocksPawn == Before.bBlocksPawn);
-				// A screen the art manifests dress gets nothing from this layer.
+				// A screen the art manifests dress gets nothing from this layer, except the cards of "effect_placed" rows
+				// (the fires of the burning house: no manifest draws effects).
 				Family->ApplyScreen(1);
 				for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
-					if (It->ScreenNumber == 1 && It->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag))
-						Test->AddError(FString::Printf(TEXT("%s on the dressed house screen got family art"), *It->Origin->OriginId.ToString()));
+				{
+					if (It->ScreenNumber != 1 || !It->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag)) continue;
+					const FDinkFamilyBinding* Fx = It->Origin ? DinkArtFamily::Resolve(Family->GetBindings(), It->Origin->Sequence, It->Origin->ClassId, It->Origin->Frame) : nullptr;
+					if (Fx && Fx->bEffectPlaced && !Fx->Effect.IsEmpty()) continue;
+					Test->AddError(FString::Printf(TEXT("%s on the dressed house screen got family art"), *It->Origin->OriginId.ToString()));
+				}
 				Test->TestTrue(TEXT("family art dressed at least the target"), Family->GetDressedCount() > 0);
 				return true;
 			}

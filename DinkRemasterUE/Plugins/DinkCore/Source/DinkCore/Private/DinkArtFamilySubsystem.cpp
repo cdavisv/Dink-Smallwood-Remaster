@@ -1,5 +1,7 @@
 #include "DinkArtFamilySubsystem.h"
 #include "Components/MaterialBillboardComponent.h"
+#include "Components/PointLightComponent.h"
+#include "DinkFlickerLightComponent.h"
 #include "Materials/MaterialInterface.h"
 #include "DinkCoreModule.h"
 #include "DinkCreatureClassComponent.h"
@@ -371,6 +373,43 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 			B.Effect = NormaliseObjectPath(B.Effect);
 			(*Row)->TryGetNumberField(TEXT("effect_size_cm"), B.EffectSizeCm);
 			B.EffectSizeCm = FMath::Clamp(B.EffectSizeCm, 1.0, 1000.0);
+			(*Row)->TryGetBoolField(TEXT("effect_placed"), B.bEffectPlaced);
+			const TArray<TSharedPtr<FJsonValue>>* FitRow = nullptr;
+			if ((*Row)->TryGetArrayField(TEXT("effect_fit"), FitRow) && FitRow && FitRow->Num() == 2)
+			{
+				B.EffectFit = FVector2D(FMath::Clamp((*FitRow)[0]->AsNumber(), 0.05, 1.0), FMath::Clamp((*FitRow)[1]->AsNumber(), 0.05, 1.0));
+			}
+			(*Row)->TryGetBoolField(TEXT("effect_ground"), B.bEffectGround);
+			(*Row)->TryGetNumberField(TEXT("effect_sink"), B.EffectSink);
+			B.EffectSink = FMath::Clamp(B.EffectSink, 0.0, 0.5);
+			(*Row)->TryGetNumberField(TEXT("effect_light_height"), B.EffectLightHeight);
+			B.EffectLightHeight = FMath::Clamp(B.EffectLightHeight, 0.0, 2.0);
+			(*Row)->TryGetNumberField(TEXT("effect_light_flicker"), B.EffectLightFlicker);
+			B.EffectLightFlicker = FMath::Clamp(B.EffectLightFlicker, 0.0, 0.9);
+			const TArray<TSharedPtr<FJsonValue>>* Light = nullptr;
+			if ((*Row)->TryGetArrayField(TEXT("effect_light"), Light) && Light && Light->Num() == 5)
+			{
+				B.EffectLight = FLinearColor(float((*Light)[0]->AsNumber()), float((*Light)[1]->AsNumber()), float((*Light)[2]->AsNumber()));
+				B.EffectLightCandela = FMath::Clamp((*Light)[3]->AsNumber(), 0.0, 100000.0);
+				B.EffectLightRadiusCm = FMath::Clamp((*Light)[4]->AsNumber(), 0.0, 5000.0);
+			}
+			const TSharedPtr<FJsonObject>* Plume = nullptr;
+			if ((*Row)->TryGetObjectField(TEXT("effect_plume"), Plume) && Plume && Plume->IsValid())
+			{
+				FString Material;
+				const TArray<TSharedPtr<FJsonValue>>* Size = nullptr;
+				const TArray<TSharedPtr<FJsonValue>>* Origins = nullptr;
+				if ((*Plume)->TryGetStringField(TEXT("material"), Material) && Material.StartsWith(TEXT("/Game/")) &&
+					(*Plume)->TryGetArrayField(TEXT("size_cm"), Size) && Size && Size->Num() == 2)
+				{
+					B.EffectPlume = NormaliseObjectPath(Material);
+					B.EffectPlumeSizeCm = FVector2D(FMath::Clamp((*Size)[0]->AsNumber(), 10.0, 3000.0), FMath::Clamp((*Size)[1]->AsNumber(), 10.0, 3000.0));
+					if ((*Plume)->TryGetArrayField(TEXT("origins"), Origins) && Origins)
+					{
+						for (const TSharedPtr<FJsonValue>& V : *Origins) if (V.IsValid() && !V->AsString().IsEmpty()) B.EffectPlumeOrigins.Add(FName(*V->AsString()));
+					}
+				}
+			}
 		}
 		else if (!(*Row)->TryGetStringField(TEXT("mesh"), B.Mesh) || !B.Mesh.StartsWith(TEXT("/Game/")))
 		{
@@ -404,6 +443,21 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 		{
 			Errors.Add(FString::Printf(TEXT("%s: fit must be footprint, height or none"), *B.Family));
 			continue;
+		}
+		// "offset_cm": {"S439_P05": [x, y, z]}: single placements moved in world axes after everything else
+		const TSharedPtr<FJsonObject>* Offsets = nullptr;
+		if ((*Row)->TryGetObjectField(TEXT("offset_cm"), Offsets) && Offsets && Offsets->IsValid())
+		{
+			for (const auto& Pair : (*Offsets)->Values)
+			{
+				const TArray<TSharedPtr<FJsonValue>>* V = nullptr;
+				if (Pair.Value.IsValid() && Pair.Value->TryGetArray(V) && V && (V->Num() == 3 || V->Num() == 4))
+				{
+					B.OffsetCm.Add(FName(*Pair.Key), FVector(FMath::Clamp((*V)[0]->AsNumber(), -2000.0, 2000.0),
+						FMath::Clamp((*V)[1]->AsNumber(), -2000.0, 2000.0), FMath::Clamp((*V)[2]->AsNumber(), -2000.0, 2000.0)));
+					if (V->Num() == 4) B.OffsetScale.Add(FName(*Pair.Key), FMath::Clamp((*V)[3]->AsNumber(), 0.1, 10.0));
+				}
+			}
 		}
 		(*Row)->TryGetBoolField(TEXT("yaw_from_sprite"), B.bYawFromSprite);
 		(*Row)->TryGetBoolField(TEXT("scripted"), B.bScripted);
@@ -498,6 +552,17 @@ EDinkFamilyDecision DinkArtFamily::Decide(const FDinkFamilyPlacement& P, const F
 	if (P.bScripted && !B->bScripted) return EDinkFamilyDecision::Scripted;
 	OutBinding = B;
 	return EDinkFamilyDecision::Bound;
+}
+
+const FDinkFamilyBinding* DinkArtFamily::ResolveScriptSprite(const TArray<FDinkFamilyBinding>& Bindings, int32 Sequence, FName ClassId, int32 Frame)
+{
+	const FDinkFamilyBinding* B = Resolve(Bindings, Sequence, ClassId, Frame);
+	if (B && B->bEffectPlaced)
+	{
+		B = Resolve(Bindings, Sequence, NAME_None, Frame);
+		if (B && B->bEffectPlaced) B = nullptr;
+	}
+	return B;
 }
 
 float DinkArtFamily::FitScale(EDinkFamilyFit Fit, double SpriteWidthCm, double SpriteHeightCm, const FVector& MeshSizeCm, bool bYawFromSprite)
@@ -654,6 +719,11 @@ void UDinkArtFamilySubsystem::OnWorldBeginPlay(UWorld& World)
 		{
 			if (UMaterialInterface* M = LoadObject<UMaterialInterface>(nullptr, *B.Effect, nullptr, LOAD_NoWarn | LOAD_Quiet)) Effects.Add(B.Effect, M);
 			else UE_LOG(LogDink, Warning, TEXT("Family art: missing effect material %s for %s"), *B.Effect, *B.Family);
+			if (!B.EffectPlume.IsEmpty() && !Effects.Contains(B.EffectPlume))
+			{
+				if (UMaterialInterface* M = LoadObject<UMaterialInterface>(nullptr, *B.EffectPlume, nullptr, LOAD_NoWarn | LOAD_Quiet)) Effects.Add(B.EffectPlume, M);
+				else UE_LOG(LogDink, Warning, TEXT("Family art: missing plume material %s for %s"), *B.EffectPlume, *B.Family);
+			}
 			continue;
 		}
 		MeshFor(B);
@@ -734,7 +804,9 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 		// A frame no placement of the world uses (an animation's other frames) takes the class of its sequence.
 		FName Class = ClassOfPicture(Sequence, Frame);
 		if (Class.IsNone()) Class = ClassOfPicture(Sequence, 0);
-		B = DinkArtFamily::Resolve(Bindings, Sequence, Class, Frame);
+		// never an "effect_placed" row: the class row of the burning house's placed fire bursts must not swallow the
+		// explosion a script creates with the same picture
+		B = DinkArtFamily::ResolveScriptSprite(Bindings, Sequence, Class, Frame);
 		Mesh = B ? MeshFor(*B, Key) : nullptr;
 	}
 	UStaticMeshComponent* Marker = Cast<UStaticMeshComponent>(Actor->GetRootComponent());
@@ -963,13 +1035,21 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	const FDinkFamilyBinding* B = nullptr;
 	const EDinkFamilyDecision Decision = DinkArtFamily::Decide(P, Precedence, Bindings, B);
 	DecisionCounts.FindOrAdd(Decision)++;
+	if (Decision == EDinkFamilyDecision::ScreenDressed && !Precedence.Origins.Contains(P.Origin))
+	{
+		// An art manifest dresses this screen's things; nothing but this layer draws effects (the fires of screen 1).
+		const FDinkFamilyBinding* Fx = DinkArtFamily::Resolve(Bindings, P.Sequence, P.ClassId, P.Frame);
+		if (Fx && Fx->bEffectPlaced && !Fx->Effect.IsEmpty() && (!P.bScripted || Fx->bScripted)) B = Fx;
+	}
+	if (B && !B->Effect.IsEmpty()) return B->bEffectPlaced && DressPlacedEffect(Actor, *B);
 	UStaticMesh* Mesh = B ? MeshFor(*B, P.Origin) : nullptr;
 	if (!Mesh) return false;
 
 	// The card is the sprite at its imported size: relative scale (width, 1, height) in metres of a 1 m unit card.
 	const FVector CardLocation = Card->GetRelativeLocation();
 	const FVector CardScale = Card->GetRelativeScale3D();
-	const float Scale = float(B->Scale) * DinkArtFamily::FitScale(B->Fit, CardScale.X * 100.0, CardScale.Z * 100.0, Mesh->GetBoundingBox().GetSize(), B->bYawFromSprite);
+	const double* Larger = B->OffsetScale.Find(FName(*P.Origin));      // "offset_cm" fourth number: this placement's size factor
+	const float Scale = float(B->Scale * (Larger ? *Larger : 1.0)) * DinkArtFamily::FitScale(B->Fit, CardScale.X * 100.0, CardScale.Z * 100.0, Mesh->GetBoundingBox().GetSize(), B->bYawFromSprite);
 	const double Yaw = (B->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(P.Origin)) + B->YawOffset;
 
 	// +Y is south, towards the original camera: a front-anchored mesh moves back by half its depth
@@ -991,6 +1071,14 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 			Stand = FVector2D(Local.X, Local.Y);
 		}
 	}
+	// families.json "offset_cm": this one placement stands elsewhere (a flight of stairs against the drawn wall)
+	double Lift = 0.0;
+	if (const FVector* Offset = B->OffsetCm.Find(FName(*P.Origin)))
+	{
+		const FVector Local = Actor.GetActorTransform().InverseTransformVector(*Offset);
+		Stand += FVector2D(Local.X, Local.Y);
+		Lift = Local.Z;
+	}
 	UStaticMeshComponent* Component = nullptr;
 	for (int32 Index = 0; Index < Pieces.Num(); ++Index)
 	{
@@ -1005,7 +1093,7 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		Part->SetGenerateOverlapEvents(false);
 		Part->ComponentTags.Add(FamilyTag);
 		Part->SetStaticMesh(PieceMesh);
-		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), FVector(Stand.X, Stand.Y, 0.0), Yaw, Scale, Pieces[Index]));
+		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), FVector(Stand.X, Stand.Y, Lift), Yaw, Scale, Pieces[Index]));
 		Actor.AddInstanceComponent(Part);
 		Part->RegisterComponent();
 		// A drawn solid body larger than the placement's 1997 hardbox stops the player (player only; unscripted placements,
@@ -1021,6 +1109,80 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		if (Env->GroundColourAt(FVector2D(Component->GetComponentLocation()), Soil)) Component->SetCustomPrimitiveDataVector3(0, FVector(Soil.R, Soil.G, Soil.B));
 	}
 	Card->SetHiddenInGame(true);
+	Actor.Tags.AddUnique(FamilyTag);
+	return true;
+}
+
+bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, const FDinkFamilyBinding& Binding)
+{
+	const TObjectPtr<UMaterialInterface>* Effect = Effects.Find(Binding.Effect);
+	UStaticMeshComponent* Card = Actor.Card;
+	if (!Effect || !*Effect || !Card || !Card->GetStaticMesh()) return false;
+	// The unit card scaled (width, 1, height) in metres: keep the middle of its bottom edge, change its size.
+	const FBox Unit = Card->GetStaticMesh()->GetBoundingBox();
+	const FVector OldScale = Card->GetRelativeScale3D();
+	const FVector OldLocation = Card->GetRelativeLocation();
+	const FName OriginName = Actor.Origin ? FName(*Actor.Origin->OriginId.ToString()) : NAME_None;
+	const double* Larger = Binding.OffsetScale.Find(OriginName);      // "offset_cm" fourth number: this placement's size factor
+	const double Grow = Larger ? *Larger : 1.0;
+	const FVector NewScale(OldScale.X / Binding.EffectFit.X * Grow, OldScale.Y, OldScale.Z / Binding.EffectFit.Y * Grow);
+	const double Width = Unit.GetSize().X * NewScale.X;
+	const double Height = Unit.GetSize().Z * NewScale.Z;
+	const double Bottom = OldLocation.Z + Unit.Min.Z * OldScale.Z;
+	const double CentreX = OldLocation.X + Unit.GetCenter().X * OldScale.X;
+	if (Card->Mobility != EComponentMobility::Movable) Card->SetMobility(EComponentMobility::Movable);
+	Card->SetRelativeScale3D(NewScale);
+	// +Y is south: what floated above its sort point stands that far to the north
+	const double NewBottom = Binding.bEffectGround ? 0.0 : Bottom;
+	const double NewY = Binding.bEffectGround ? OldLocation.Y - Bottom : OldLocation.Y;
+	Card->SetRelativeLocation(FVector(CentreX - Unit.GetCenter().X * NewScale.X, NewY, NewBottom - Height * Binding.EffectSink - Unit.Min.Z * NewScale.Z));
+	// A fire the 1997 picture paints on a roof stands on the ground point under that pixel; the row moves it onto the roof.
+	if (const FVector* Offset = Binding.OffsetCm.Find(OriginName)) Card->AddWorldOffset(*Offset);
+	for (int32 Slot = 0; Slot < Card->GetNumMaterials(); ++Slot) Card->SetMaterial(Slot, *Effect);
+	Card->SetCastShadow(false);
+	Card->ComponentTags.AddUnique(FamilyTag);
+	if (Binding.EffectLightCandela > 0.0 && Binding.EffectLightRadiusCm > 0.0)
+	{
+		UDinkFlickerLightComponent* Light = NewObject<UDinkFlickerLightComponent>(&Actor, TEXT("FamilyEffectLight"));
+		Light->SetMobility(EComponentMobility::Movable);
+		Light->SetupAttachment(Card);
+		Light->SetUsingAbsoluteScale(true);
+		Light->SetIntensityUnits(ELightUnits::Candelas);
+		Light->SetIntensity(float(Binding.EffectLightCandela));
+		Light->SetLightColor(Binding.EffectLight);
+		Light->SetAttenuationRadius(float(Binding.EffectLightRadiusCm));
+		Light->SetSourceRadius(float(Width * 0.2));
+		Light->SetSoftSourceRadius(float(Width * 0.3));
+		Light->SetCastShadows(false);
+		Light->ComponentTags.Add(FamilyTag);
+		Actor.AddInstanceComponent(Light);
+		Light->RegisterComponent();
+		// firelight wavers; the phase comes from where the fire stands, so neighbouring fires do not pulse together
+		Light->SetFlicker(float(Binding.EffectLightCandela), float(Binding.EffectLightFlicker), float(FMath::Fmod(FMath::Abs(Actor.GetActorLocation().X * 0.013 + Actor.GetActorLocation().Y * 0.007), 97.0)));
+		// in front of the card (the card's face normal is local +Y), so the card never shades its own light
+		Light->SetWorldLocation(Card->GetComponentLocation() + Card->GetComponentRotation().RotateVector(FVector(Unit.GetCenter().X * NewScale.X, 12.0, Unit.Min.Z * NewScale.Z + Height * (Binding.EffectSink + Binding.EffectLightHeight))));
+	}
+	// The smoke that rolls up from this one fire (outdoors: under a roof it would stand in the rafters): a camera-facing
+	// card of its own, its foot in the upper flames.
+	const TObjectPtr<UMaterialInterface>* Plume = Binding.EffectPlume.IsEmpty() || !Actor.Origin || !Binding.EffectPlumeOrigins.Contains(OriginName)
+		? nullptr : Effects.Find(Binding.EffectPlume);
+	if (Plume && *Plume)
+	{
+		UMaterialBillboardComponent* Smoke = NewObject<UMaterialBillboardComponent>(&Actor, TEXT("FamilyEffectPlume"));
+		Smoke->SetMobility(EComponentMobility::Movable);
+		Smoke->SetupAttachment(Card);
+		Smoke->SetUsingAbsoluteScale(true);
+		Smoke->SetCastShadow(false);
+		Smoke->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Smoke->ComponentTags.Add(FamilyTag);
+		Smoke->AddElement(*Plume, nullptr, false, float(Binding.EffectPlumeSizeCm.X * 0.5), float(Binding.EffectPlumeSizeCm.Y * 0.5), nullptr);
+		Actor.AddInstanceComponent(Smoke);
+		Smoke->RegisterComponent();
+		// the column's lit foot stands inside the flames' upper half (0.55 left a gap of sky between fire and smoke)
+		const double FlameTop = Height * Binding.EffectFit.Y * 0.28;
+		Smoke->SetWorldLocation(Card->GetComponentLocation() + Card->GetComponentRotation().RotateVector(
+			FVector(Unit.GetCenter().X * NewScale.X, -6.0, Unit.Min.Z * NewScale.Z + Height * Binding.EffectSink + FlameTop + Binding.EffectPlumeSizeCm.Y * 0.5)));
+	}
 	Actor.Tags.AddUnique(FamilyTag);
 	return true;
 }
@@ -1110,6 +1272,8 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 					Ground = FVector(Local.X, Local.Y, -Screen.GetActorLocation().Z);
 				}
 			}
+			// families.json "offset_cm": this one placement stands elsewhere (hangings on the drawn wall)
+			if (const FVector* Offset = Shared->OffsetCm.Find(FName(*O->OriginId.ToString()))) Ground += Screen.GetActorTransform().InverseTransformVector(*Offset);
 			const FTransform InstanceTransform = DinkArtFamily::SpanTransform(Bounds, Ground, Yaw, Scale, Pieces[PieceIndex]);
 			Family->AddInstance(InstanceTransform, /*bWorldSpace*/ false);
 			// instance transforms are relative to the screen root, as the family component is (player-only blocker, see above)

@@ -13,6 +13,16 @@
       "duration_s": 0.4,
       "impact_s": 0.175,
       "loop": false
+    },
+    {
+      "sequences": [
+        436
+      ],
+      "animation": "/Game/Dink/Hero/Animations/Pass1/AN_Death_436.AN_Death_436",
+      "duration_s": 1.25,
+      "loop": false,
+      "hold_last_frame": true,
+      "note": "dinfo.c die(): sp_seq(1, 436). 1997: 16 frames x 75 ms = 1.2 s, then 3 s still. The blow doubles him over, his knees give (on them at 0.68 s), he pitches forward onto chest and face (0.92 s) and lies face down with the shins half raised, as pictures 436/12 to 16; he ends in front of where he stood (chest about 1.2 m ahead). The clip name in animation_pass.json is Death_436 (dink.Hero.Play Death_436 hold)."
     }
   ],
   "gameplay_authority": "Original sp_seq/pending-hit timing; animation is cosmetic only"

@@ -1,0 +1,59 @@
+{
+ "name": "FX_Embers_A",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  0.6,
+  0.6,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/small_fire_fx/Embers_A/T_FX_Embers_A_Flipbook.png",
+   "size_px": [
+    2048,
+    1024
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha (opacity); 8 x 4 frames of 256 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 32,
+  "grid": [
+   8,
+   4
+  ],
+  "fps": 14,
+  "loop": true,
+  "billboard_size_m": [
+   0.6,
+   0.6
+  ],
+  "blend": "translucent",
+  "glow": 2.6,
+  "hot": [
+   0.35,
+   0.8,
+   1.0
+  ],
+  "alpha_coverage": 0.362,
+  "content_box": [
+   0.25,
+   0.38,
+   0.75,
+   0.88
+  ]
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/small_fire_fx/Embers_A/frames_strip.png",
+ "source_note": "made by code, no .blend: FableF/tools/build_burn_patch.py draws the charred patch (ragged outline, burnt runs, Voronoi cracks, embers that breathe by cell and by a slow noise) and sets small flames from the frames of the simulated fire (the Fire_Wall cache, cut as for Hearth) and their smoke on it with tools/fire_encode.py.",
+ "build": "python3 -I FableF/tools/build_burn_patch.py <Fire_Wall cache>/compact_256.npy Embers_A   (the .npy: build_fire_fx.py -- Fire_Wall --cache <cache> --stage compact)",
+ "families": [
+  "small_fire_fx",
+  "155 struct/details/damage/fire2-"
+ ],
+ "supersedes": "the charred timber heaps of 15 Nov 2026 (a heap is a thing on a floor; all six placements are marks on a wall or on the roof)",
+ "dresses": "a burn patch 0.45 m across: charred, cracked wood with embers in the cracks and one small flame",
+ "third_party": [],
+ "status": "source delivered",
+ "known_weaknesses": "A flat picture on a camera-facing card, not a decal on the surface: on the roof slope it stands a little off the thatch, and it does not follow a wall seen at an angle. Unlit: the char keeps its own darkness whatever the room light. The same flame motion as the wall of flame, smaller."
+}
