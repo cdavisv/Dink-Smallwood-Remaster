@@ -1,4 +1,5 @@
 #include "DinkGameplay.h"
+#include "DinkPerfScope.h"
 #include "Hardness/DinkRuntimeHardnessSource.h"
 #include "DinkCombat.h"
 #include "DinkDirector.h"
@@ -1534,6 +1535,7 @@ void UDinkGameplay::FlushPendingHits()
 
 void UDinkGameplay::Tick(double DeltaMs, double InNowMs)
 {
+	DINK_PERF_SCOPE(Dink_Gameplay_Tick);
 	UDinkDirector* D = Director();
 	if (!D || !Story)
 	{
