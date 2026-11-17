@@ -995,8 +995,7 @@
       "fit": "none",
       "anchor": "hardbox",
       "yaw_from_sprite": true,
-      "scripted_scripts": ["s1-h3-4", "s1-h3-1"],
-      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card, except `scripted_scripts` (the S003 tables: s1-h3-4/s1-h3-1 only talk; s2-fgate on S366 changes its picture and stays a card)."
+      "note": "Photoreal pass props kit (Props/manifest.json, 12 Nov 2026). Unscripted placements only: scripted ones (pickups, chests, things a script moves or kills) keep their card."
     },
     {
       "family": "cabinet_narrow",

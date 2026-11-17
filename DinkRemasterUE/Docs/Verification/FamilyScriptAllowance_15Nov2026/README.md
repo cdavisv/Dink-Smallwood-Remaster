@@ -1,5 +1,11 @@
 # Family art for scripted placements whose script never changes the picture (A202, rest), 15-16 Nov 2026
 
+**Update on master 5ccf38dd (16 Nov 2026):** PR #194 (merged) binds picture 87 frames 1 and 7 to the oak long table through
+`scripted: true` sequence-and-frame rows, which win over the class row; the two scripted tables of SCR_003 (S003_P15, S003_P16) are
+dressed by those rows as the oak table, like the unscripted ones. This branch therefore no longer lists `s1-h3-4` / `s1-h3-1` under
+`cabinet_wood` (that row is master's again); `scripted_scripts` now dresses the talking pine S534_P10 only. The table rows below are
+the 15 Nov state.
+
 ## Defect
 
 `DinkArtFamily::Decide` dresses a scripted placement only when its whole `families.json` row is `"scripted": true`. Two classes
@@ -82,6 +88,16 @@ Rebased on bd6d227a (structure sets with `families_yield`, people as class rows,
 (Ch1 cc2e12fb5c ... Ch20 be28390b9d). A capture of the rebased tree on 3ff8cd25 (`rebased_check.jpg`, looked at): the tables of
 SCR_003 (S003_P15 east, the overview) and the talking pine of 534 are drawn by their family meshes; the burnable pines of 307/659/710
 are unchanged by this branch. The same capture on bd6d227a (`rebased_check_bd6d227a.jpg`, looked at) shows the same: tables and the talking pine as meshes, the burnable pines unchanged.
+
+## Re-verified on master 5ccf38dd (16 Nov 2026, final head)
+
+Rebased on 5ccf38dd (#166 placed effects in `DinkArtFamilySubsystem.h` and `art_coverage.py` `placed_fx`, #194 table rows), conflicts
+resolved by keeping both (the `OffsetCm` block and `ScriptedScripts`; coverage rows carry `placed_fx` and `scripted_scripts`), copy
+synced with fresh timestamps (the build compiles `DinkArtFamilySubsystem.cpp`), built, world regenerated with `--export`.
+`Scripts/test.sh Dink.Art+Dink.Import+Dink.Gameplay.Probe` **122/122** (792 s); **all twenty probe md5s equal master's table**
+(Ch1 cc2e12fb5c ... Ch20 be28390b9d). `rebased_check_5ccf38dd.jpg` (looked at): S003_P15 and S003_P16 are the oak long table of
+#194's rows (end-on and from the front), the same as the unscripted ones; the talking pine of 534 is its family mesh; the burnable
+pines are unchanged.
 
 ## Not checked
 

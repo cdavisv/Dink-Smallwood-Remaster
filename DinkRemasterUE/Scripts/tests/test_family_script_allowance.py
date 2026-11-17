@@ -76,7 +76,8 @@ class ShippedLists(unittest.TestCase):
     def test_a202_rows(self):
         self.assertEqual(self.lists.get('tree_pine_large'), ['s2-sec2'])
         self.assertNotIn('tree_willow_large', self.lists, 'S149_P02 (`big`) draws no card at the play camera: left out')
-        self.assertEqual(self.lists.get('cabinet_wood'), ['s1-h3-4', 's1-h3-1'])
+        # the two scripted tables of SCR_003 are dressed by #194's sequence-and-frame rows (87 frames 1 and 7, the oak table)
+        self.assertNotIn('cabinet_wood', self.lists)
         for family, names in self.lists.items():
             for script in ('s2-sec1', 's2-sec3', 's3-sec1', 's1-ntree', 's4-tree', 's2-fgate'):
                 self.assertNotIn(script, names, '%s: %s changes its sprite or is owned by Fable packet VS-10' % (family, script))
