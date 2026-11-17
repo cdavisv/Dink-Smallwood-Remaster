@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Per-screen ground colour grid for the presentation layer (python3 -I Scripts/export_ground_colour.py).
 
-Reads ImportData/screens.json (each screen's terrain layers and ground_mask PNG: R/G/B = weight of layer 1/2/3)
+Reads ImportData/screens.json (each screen's terrain layers and ground_mask PNG: R/G/B = weight of layer 1/2/3, layer 4 the remainder)
 and the mean base colour of every terrain set (SourceAssets/Art/PhotorealPass/Terrain/<set>/T_Terrain_<set>_BC.png),
 and writes Content/Dink/Data/Environment/ground_colour.json: a W x H grid of sRGB bytes per screen (base64).
 UDinkEnvironmentSubsystem::GroundColourAt reads it so tree trunks can blend their foot toward the soil under
@@ -35,7 +35,9 @@ for s in screens:
     if any(c is None for c in cols):
         continue
     m = np.asarray(Image.open(HERE / 'ImportData' / mask).convert('RGBA').resize((W, H), Image.BOX), dtype=np.float64)[:, :, :3] / 255.0
-    lin = sum(m[:, :, i:i + 1] * cols[i] for i in range(len(cols))) / np.maximum(m[:, :, :len(cols)].sum(axis=2, keepdims=True), 1e-6)
+    # a fourth layer takes what R + G + B leave (M_Env_Terrain)
+    m = np.dstack([m, np.clip(1.0 - m.sum(axis=2), 0.0, 1.0)])
+    lin = sum(m[:, :, i:i + 1] * cols[i] for i in range(min(4, len(cols)))) / np.maximum(m[:, :, :len(cols)].sum(axis=2, keepdims=True), 1e-6)
     srgb = np.where(lin <= 0.0031308, lin * 12.92, 1.055 * np.power(np.maximum(lin, 0), 1 / 2.4) - 0.055)
     out[str(s['screen'])] = base64.b64encode((np.clip(srgb, 0, 1) * 255 + 0.5).astype(np.uint8).tobytes()).decode('ascii')
 dest = HERE / 'Content/Dink/Data/Environment/ground_colour.json'
