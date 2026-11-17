@@ -143,6 +143,43 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 	Check(TEXT("a scripted chair is dressed: its row allows scripts"), Placement(TEXT("S100_P05"), 100, 461, TEXT("chair"), true), EDinkFamilyDecision::Bound, &Bindings[2]);
 	Check(TEXT("an unbound family stays a card"), Placement(TEXT("S100_P06"), 100, 32, TEXT("tree_dead_dark")), EDinkFamilyDecision::NoBinding, nullptr);
 
+	// "scripted_scripts": a row that keeps scripted placements as cards may still dress the ones whose script is listed
+	// (read to never change its own picture: the talking pine s2-sec2), while the others (s2-sec1 burns the tree) keep theirs.
+	{
+		TArray<FDinkFamilyBinding> Allowed;
+		TArray<FString> AllowedErrors;
+		TestTrue(TEXT("scripted_scripts parses"), DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
+			{"family":"tree_pine_large","mesh":"/Game/A/SM_Pine","scripted_scripts":["s2-sec2"," big ",""]},
+			{"family":"cabinet_wood","mesh":"/Game/A/SM_Cabinet"}]})"), Allowed, AllowedErrors) && AllowedErrors.IsEmpty() && Allowed.Num() == 2);
+		if (Allowed.Num() == 2)
+		{
+			TestEqual(TEXT("empty names are dropped, names are trimmed"), Allowed[0].ScriptedScripts.Num(), 2);
+			TestTrue(TEXT("the row itself stays unscripted"), !Allowed[0].bScripted && Allowed[1].ScriptedScripts.IsEmpty());
+			auto Scripted = [](const TCHAR* Origin, const TCHAR* ClassId, const TCHAR* Script)
+			{
+				FDinkFamilyPlacement P = Placement(Origin, 534, 32, ClassId, true);
+				P.ScriptName = FName(Script);
+				return P;
+			};
+			auto CheckAllowed = [&](const TCHAR* What, const FDinkFamilyPlacement& P, EDinkFamilyDecision Expected, const FDinkFamilyBinding* ExpectedBinding)
+			{
+				const FDinkFamilyBinding* B = nullptr;
+				const EDinkFamilyDecision D = DinkArtFamily::Decide(P, Precedence, Allowed, B);
+				TestEqual(FString(What) + TEXT(": decision"), FString(DinkArtFamily::DecisionName(D)), FString(DinkArtFamily::DecisionName(Expected)));
+				TestTrue(FString(What) + TEXT(": binding"), B == ExpectedBinding);
+			};
+			CheckAllowed(TEXT("a placement whose script is listed is dressed"), Scripted(TEXT("S534_P10"), TEXT("tree_pine_large"), TEXT("s2-sec2")), EDinkFamilyDecision::Bound, &Allowed[0]);
+			CheckAllowed(TEXT("script names match without case"), Scripted(TEXT("S534_P11"), TEXT("tree_pine_large"), TEXT("S2-SEC2")), EDinkFamilyDecision::Bound, &Allowed[0]);
+			CheckAllowed(TEXT("a trimmed listed name matches"), Scripted(TEXT("S534_P13"), TEXT("tree_pine_large"), TEXT("big")), EDinkFamilyDecision::Bound, &Allowed[0]);
+			CheckAllowed(TEXT("a placement whose script is not listed keeps its card"), Scripted(TEXT("S307_P13"), TEXT("tree_pine_large"), TEXT("s2-sec1")), EDinkFamilyDecision::Scripted, nullptr);
+			CheckAllowed(TEXT("a listed script does not open another row"), Scripted(TEXT("S003_P15"), TEXT("cabinet_wood"), TEXT("s2-sec2")), EDinkFamilyDecision::Scripted, nullptr);
+			CheckAllowed(TEXT("an unscripted placement is dressed as before"), Placement(TEXT("S534_P12"), 534, 32, TEXT("tree_pine_large")), EDinkFamilyDecision::Bound, &Allowed[0]);
+			FDinkFamilyPlacement Dressed = Scripted(TEXT("S439_P51"), TEXT("tree_pine_large"), TEXT("s2-sec2"));
+			Dressed.Screen = 439;
+			CheckAllowed(TEXT("a dressed screen still wins over a listed script"), Dressed, EDinkFamilyDecision::ScreenDressed, nullptr);
+		}
+	}
+
 	// The shipped manifests: the screens and origins they dress are known to the family layer.
 	const FDinkFamilyPrecedence Shipped = FDinkFamilyPrecedence::LoadDirectory(FPaths::ProjectContentDir() / TEXT("Dink/Data/Art"), TEXT("families.json"));
 	if (Shipped.Screens.IsEmpty())

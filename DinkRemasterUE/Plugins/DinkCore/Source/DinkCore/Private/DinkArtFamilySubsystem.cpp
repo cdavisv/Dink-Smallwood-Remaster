@@ -461,6 +461,17 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 		}
 		(*Row)->TryGetBoolField(TEXT("yaw_from_sprite"), B.bYawFromSprite);
 		(*Row)->TryGetBoolField(TEXT("scripted"), B.bScripted);
+		{
+			const TArray<TSharedPtr<FJsonValue>>* Scripts = nullptr;
+			if ((*Row)->TryGetArrayField(TEXT("scripted_scripts"), Scripts) && Scripts)
+			{
+				for (const TSharedPtr<FJsonValue>& V : *Scripts)
+				{
+					FString Name;
+					if (V.IsValid() && V->TryGetString(Name) && !Name.TrimStartAndEnd().IsEmpty()) B.ScriptedScripts.AddUnique(FName(*Name.TrimStartAndEnd()));
+				}
+			}
+		}
 		(*Row)->TryGetNumberField(TEXT("yaw_offset"), B.YawOffset);
 		if ((*Row)->TryGetNumberField(TEXT("scale"), B.Scale) && (B.Scale < DinkArtFamily::MinScale || B.Scale > DinkArtFamily::MaxScale))
 		{
@@ -549,7 +560,7 @@ EDinkFamilyDecision DinkArtFamily::Decide(const FDinkFamilyPlacement& P, const F
 	if (Precedence.Origins.Contains(P.Origin)) return EDinkFamilyDecision::OriginHandled;
 	const FDinkFamilyBinding* B = Resolve(Bindings, P.Sequence, P.ClassId, P.Frame);
 	if (!B) return EDinkFamilyDecision::NoBinding;
-	if (P.bScripted && !B->bScripted) return EDinkFamilyDecision::Scripted;
+	if (P.bScripted && !B->bScripted && !B->ScriptedScripts.Contains(P.ScriptName)) return EDinkFamilyDecision::Scripted;
 	OutBinding = B;
 	return EDinkFamilyDecision::Bound;
 }
@@ -1023,6 +1034,7 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	P.Frame = Actor.Origin->Frame;
 	P.ClassId = Actor.Origin->ClassId;
 	P.bScripted = !Actor.Origin->ScriptName.IsNone();
+	P.ScriptName = Actor.Origin->ScriptName;
 	P.bHardnessOnly = Actor.PlacementKind == TEXT("hardness_only");
 	// The picture the save gave this placement (SetPlacementPicture), and with it its class and its (cleared) script.
 	if (const FPlacementPicture* Saved = PlacementPictures.Find(&Actor))
@@ -1212,6 +1224,7 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 			P.Frame = O->Frame;
 			P.ClassId = O->ClassId;
 			P.bScripted = !O->ScriptName.IsNone();
+			P.ScriptName = O->ScriptName;
 			const FDinkFamilyBinding* B = nullptr;
 			const EDinkFamilyDecision Decision = DinkArtFamily::Decide(P, Precedence, Bindings, B);
 			DecisionCounts.FindOrAdd(Decision)++;

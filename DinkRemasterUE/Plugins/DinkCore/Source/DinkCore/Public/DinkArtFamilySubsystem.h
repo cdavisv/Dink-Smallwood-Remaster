@@ -70,6 +70,12 @@ struct DINKCORE_API FDinkFamilyBinding
 	TMap<FName, FVector> OffsetCm;
 	TMap<FName, double> OffsetScale;
 	/**
+	 * JSON "scripted_scripts": DinkC script names whose placements are dressed like unscripted ones although the row is not
+	 * "scripted" (scripts read to never change, move or remove their own sprite's picture: a talking tree, a table that
+	 * says "Ouch, splinters"). Other scripted placements of the row keep their card.
+	 */
+	TArray<FName> ScriptedScripts;
+	/**
 	 * JSON "span": "width" (1) or "height" (2, edge-on strips): the module is repeated along its own X axis until it fills
 	 * that dimension of the layout-scaled card, each copy scaled along X only to close the run exactly (a 4.38 m interior
 	 * wall sprite takes two 2.5 m modules at 0.876). "stretch" (3): one module scaled along X to the card's width.
@@ -149,6 +155,8 @@ struct DINKCORE_API FDinkFamilyPlacement
 	int32 Frame = 0;
 	FName ClassId;
 	bool bScripted = false;
+	/** The placement's DinkC script (none when unscripted), matched against the row's ScriptedScripts. */
+	FName ScriptName;
 	bool bHardnessOnly = false;
 };
 

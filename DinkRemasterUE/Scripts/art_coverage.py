@@ -322,7 +322,8 @@ def load_families(assets, notes):
             if not ok:
                 notes.append("families.json: %s -> %s not bound at runtime (%s)" % (name, r["mesh"], why))
                 continue
-            rows.append({"family": name, "key": key, "mesh": r["mesh"], "scripted": bool(r.get("scripted", False)), "placed_fx": placed_fx})
+            rows.append({"family": name, "key": key, "mesh": r["mesh"], "scripted": bool(r.get("scripted", False)), "placed_fx": placed_fx,
+                         "scripted_scripts": scripted_scripts(r)})
     for fn in sorted(os.listdir(art_dir)):
         if not fn.lower().endswith(".json") or fn.lower() == "families.json":
             continue
@@ -516,6 +517,21 @@ def creature_class_binding(rows, cls, oid, precedence_origins, is_actor, detail)
     return row
 
 
+def scripted_scripts(row):
+    """families.json row -> lower-case set of its `scripted_scripts` (DinkC script names; FName compares without case)."""
+    names = row.get("scripted_scripts")
+    if not isinstance(names, list):
+        return frozenset()
+    return frozenset(n.strip().lower() for n in names if isinstance(n, str) and n.strip())
+
+
+def family_row_dresses_script(row, script):
+    """DinkArtFamily::Decide's script rule: unscripted placements always, scripted ones when the row is `scripted`
+    or lists the placement's script in `scripted_scripts`."""
+    script = (script or "").strip()
+    return not script or row["scripted"] or script.lower() in row.get("scripted_scripts", frozenset())
+
+
 def family_binding(rows, seq, cls, frame=None):
     """Sequence-and-frame row first, then class row, then plain sequence row (DinkArtFamily::Resolve)."""
     for r in rows:
@@ -706,7 +722,7 @@ def classify(args):
         for r in csv.DictReader(f):
             seq_of[r["origin"]] = int(r["seq"])
             frame_of[r["origin"]] = int(r["frame"])
-            scripted_of[r["origin"]] = bool(r["script"].strip())
+            scripted_of[r["origin"]] = r["script"].strip()
     fam_rows, fam_origins, fam_screens = load_families(assets, notes)
     manifests["families"] = fam_rows
     ground_facts, ground_review = load_ground(notes, getattr(args, "ground_rule", None))
@@ -724,7 +740,7 @@ def classify(args):
         if oid in fam_origins:
             return None
         row = family_binding(fam_rows, seq_of.get(oid), cls, frame_of.get(oid))
-        if row is None or (scripted_of.get(oid) and not row["scripted"]):
+        if row is None or not family_row_dresses_script(row, scripted_of.get(oid)):
             return None
         # a manifest-dressed screen keeps its things, but only this layer draws effects (DressActor)
         if screen_no in fam_screens and not row.get("placed_fx"):
