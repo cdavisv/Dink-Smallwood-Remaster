@@ -1,0 +1,104 @@
+{
+ "name": "SM_Door_Barred_PR",
+ "class": "door",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/SM_Door_Barred_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/SM_Door_Barred_PR.blend",
+ "build": "blender -b --factory-startup -t 4 --python FableF/tools/build_stairs.py -- Door_Barred final",
+ "dimensions_m": [
+  1.21,
+  0.145,
+  2.15
+ ],
+ "bounds_min_m": [
+  -0.605,
+  -0.0725,
+  0.0
+ ],
+ "bounds_max_m": [
+  0.605,
+  0.0725,
+  2.15
+ ],
+ "lod0_triangles": 300,
+ "triangle_budget": {
+  "soft": 4000,
+  "hard": 12000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/T_Door_Barred_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/T_Door_Barred_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/T_Door_Barred_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Door_Barred_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset: the joinery needs its own ambient occlusion and wear",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 0,
+  "open_edges": 0,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0106,
+   0.9894
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 47.4,
+   "p99": 73.0
+  },
+  "roughness": {
+   "p5": 0.173,
+   "mean": 0.602,
+   "p95": 0.85
+  },
+  "metallic_mean": 0.024,
+  "ao_mean": 0.581
+ },
+ "pivot": "base centre (bbox centre in X/Y, mesh bottom at z = 0), front on -Y",
+ "families": [
+  "cellar_hatch",
+  "428 inside/stairs/stair- frame 5"
+ ],
+ "origin_ids": {
+  "cellar_hatch": [
+   "S068_P24",
+   "S068_P25"
+  ]
+ },
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "dark ledged plank door in an oak frame with a barred light at head height, 0.95 x 2.0 m, standing against the wall",
+ "third_party": [
+  "rusty_metal_02"
+ ],
+ "status": "source delivered",
+ "known_weaknesses": "The light is a dark panel behind the bars, not an opening, and the door does not open. The 1997 picture shows blue glints in the grille that are not reproduced. Boards are bevelled blocks butted together: no joints, pegs or nails are modelled, and the grain is procedural streaking, not a scan. Every board is 12 triangles in the game mesh, so edge rounding is in the normal map only.",
+ "source_note": "the .blend holds the game mesh with its baked set; the dense boards it was baked from are rebuilt by the script (they were removed after the bake to keep the file small)"
+}
