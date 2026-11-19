@@ -1,0 +1,217 @@
+LogDinkAudio: audio cue music:5.mid
+LogDinkAudio: audio cue sound:22 speed=22050 random=0 sprite=0 repeat=0
+LogDink: Display: DINK CAPTURE: exec dink.Fact lifemax 900
+LogDink: Display: DINK CAPTURE: exec dink.Fact life 900
+LogDink: Display: DINK CAPTURE: exec dink.Npc.Hold 1
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlay 0
+LogDink: Display: DINK CAPTURE: exec dink.Goto 216 300 200
+LogDink: Display: DINK CAPTURE: exec dink.Goto 215 450 78
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 330 78 5
+LogDink: Display: DINK WALK: from X=97068.487 Y=12653.642 Z=98.000 toward X=96116.535 Y=12633.785 Z=0.000 on screen 215
+LogDink: Display: DINK WALK: timed out (blocked?); now on screen 215 at X=96772.389 Y=12656.176 Z=98.150, 656 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=215 map=412.545,81.662 world=96772.389,12656.176,98.150 yaw=180.000 pitch=0.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 700
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -40
+LogDink: Display: DINK CAPTURE: shot <scratch>/tree_off.png
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 400
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -12
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlay 1
+LogDink: Display: DINK CAPTURE: exec dink.Goto 216 300 200
+LogDink: Display: DINK CAPTURE: exec dink.Goto 215 450 78
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 330 78 5
+LogDink: Display: DINK WALK: from X=97068.487 Y=12653.642 Z=98.000 toward X=96116.535 Y=12633.785 Z=0.000 on screen 215
+LogDink: Display: DINK WALK: arrived; now on screen 215 at X=96122.339 Y=12637.309 Z=98.150, 7 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=215 map=327.112,77.118 world=96093.361,12627.286,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 700
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -40
+LogDink: Display: DINK CAPTURE: shot <scratch>/tree_on.png
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 400
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -12
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlay 0
+LogDink: Display: DINK CAPTURE: exec dink.Goto 535 300 200
+LogDink: Display: DINK CAPTURE: exec dink.Goto 536 579 290
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 579 150 5
+LogDink: Display: DINK WALK: from X=106558.548 Y=47769.218 Z=98.000 toward X=106563.039 Y=46380.818 Z=0.000 on screen 536
+LogDink: Display: DINK WALK: timed out (blocked?); now on screen 536 at X=106564.331 Y=47033.583 Z=98.150, 653 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=536 map=579.351,215.824 world=106564.331,47033.583,98.150 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 700
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -40
+LogDink: Display: DINK CAPTURE: shot <scratch>/rock_off.png
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 400
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -12
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlay 1
+LogDink: Display: DINK CAPTURE: exec dink.Goto 535 300 200
+LogDink: Display: DINK CAPTURE: exec dink.Goto 536 579 290
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 579 150 5
+LogDink: Display: DINK WALK: from X=106558.548 Y=47769.218 Z=98.000 toward X=106563.039 Y=46380.818 Z=0.000 on screen 536
+LogDink: Display: DINK WALK: arrived; now on screen 536 at X=106563.001 Y=46392.287 Z=98.000, 11 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=536 map=579.000,148.079 world=106563.100,46361.769,98.000 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 700
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -40
+LogDink: Display: DINK CAPTURE: shot <scratch>/rock_on.png
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 400
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -12
+LogDink: Display: DINK CAPTURE: exec dink.Goto 523 300 200
+LogDink: Display: DINK CAPTURE: exec dink.Goto 524 100 197
+LogDink: Display: DINK CAPTURE: exec dink.Fact gold
+LogDinkNarrative: Display: gold = 0
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 140 197 4
+LogDink: Display: DINK WALK: from X=40667.983 Y=44844.086 Z=98.000 toward X=41016.755 Y=44858.730 Z=0.000 on screen 524
+LogDink: Display: DINK WALK: arrived; now on screen 524 at X=41008.429 Y=44858.381 Z=98.000, 8 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=524 map=142.479,197.000 world=41038.371,44859.638,98.000 yaw=-90.000 pitch=-12.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.Fact gold
+LogDinkNarrative: Display: gold = 0
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 700
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -40
+LogDink: Display: DINK CAPTURE: shot <scratch>/heart_short_on.png
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 160 197 4
+LogDink: Display: DINK WALK: from X=41038.371 Y=44859.638 Z=98.000 toward X=41191.140 Y=44866.052 Z=0.000 on screen 524
+LogDinkAudio: audio cue sound:10 speed=22050 random=0 sprite=0 repeat=0
+LogDinkAudio: audio cue sound:22 speed=22050 random=0 sprite=0 repeat=0
+LogDink: Display: DINK WALK: arrived; now on screen 524 at X=41181.635 Y=44865.653 Z=98.000, 10 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=524 map=161.745,197.000 world=41206.352,44866.691,98.000 yaw=-90.000 pitch=-40.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.Fact gold
+LogDinkNarrative: Display: gold = 0
+LogDink: Display: DINK CAPTURE: shot <scratch>/heart_touch_on.png
+LogDink: Display: DINK CAPTURE: exec dink.CameraDistance 500
+LogDink: Display: DINK CAPTURE: exec dink.View -90 -30
+LogDink: Display: DINK CAPTURE: exec dink.Goto 277 300 250
+LogDink: Display: DINK CAPTURE: exec dink.Goto 278 200 250
+LogDink: Display: DINK CAPTURE: exec dink.Sprites
+LogDinkBeat: Display: DINK SPRITE: 1 script=- brain=1 map=200,250 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 6 script=en-pill brain=9 map=476,354 hp=8 origin=S278_P05
+LogDinkBeat: Display: DINK SPRITE: 5 script=en-pill brain=9 map=81,250 hp=8 origin=S278_P04
+LogDinkBeat: Display: DINK SPRITE: 4 script=bar-f1 brain=0 map=451,202 hp=0 origin=S278_P03
+LogDinkBeat: Display: DINK SPRITE: 3 script=- brain=0 map=210,278 hp=0 origin=S278_P02
+LogDinkBeat: Display: DINK SPRITE: 2 script=- brain=0 map=165,350 hp=0 origin=S278_P01
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayBodies
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 6 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 212 x 212 x 50 cm, bounds scale 1.00, Dink centre to box 2424 cm
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 5 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 212 x 212 x 50 cm, bounds scale 1.00, Dink centre to box 908 cm
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 60 250 4
+LogDink: Display: DINK WALK: from X=90503.516 Y=19668.159 Z=98.000 toward X=89318.555 Y=19635.217 Z=0.000 on screen 278
+LogDink: Display: DINK WALK: arrived; now on screen 278 at X=89330.458 Y=19635.548 Z=98.000, 12 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=278 map=57.733,250.000 world=89299.363,19634.683,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.Sprites
+LogDinkBeat: Display: DINK SPRITE: 1 script=- brain=1 map=58,250 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 6 script=en-pill brain=9 map=476,354 hp=8 origin=S278_P05
+LogDinkBeat: Display: DINK SPRITE: 5 script=en-pill brain=9 map=81,250 hp=8 origin=S278_P04
+LogDinkBeat: Display: DINK SPRITE: 4 script=bar-f1 brain=0 map=451,202 hp=0 origin=S278_P03
+LogDinkBeat: Display: DINK SPRITE: 3 script=- brain=0 map=210,278 hp=0 origin=S278_P02
+LogDinkBeat: Display: DINK SPRITE: 2 script=- brain=0 map=165,350 hp=0 origin=S278_P01
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayBodies
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 6 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 212 x 212 x 50 cm, bounds scale 1.00, Dink centre to box 3591 cm
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 5 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 212 x 212 x 50 cm, bounds scale 1.00, Dink centre to box 93 cm
+LogDink: Display: DINK CAPTURE: shot <scratch>/pill_stopped.png
+LogDink: Display: DINK CAPTURE: exec dink.Attack
+LogDinkAudio: audio cue sound:8 speed=8000 random=0 sprite=0 repeat=0
+LogDinkAudio: audio cue sound:9 speed=22050 hit
+LogDinkAudio: audio cue sound:30 speed=21050 random=4000 sprite=5 repeat=0
+LogDink: Display: DINK CAPTURE: exec dink.Sprites
+LogDinkBeat: Display: DINK SPRITE: 1 script=- brain=1 map=58,250 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 6 script=en-pill brain=9 map=476,354 hp=8 origin=S278_P05
+LogDinkBeat: Display: DINK SPRITE: 5 script=en-pill brain=9 map=81,250 hp=5 origin=S278_P04
+LogDinkBeat: Display: DINK SPRITE: 4 script=bar-f1 brain=0 map=451,202 hp=0 origin=S278_P03
+LogDinkBeat: Display: DINK SPRITE: 3 script=- brain=0 map=210,278 hp=0 origin=S278_P02
+LogDinkBeat: Display: DINK SPRITE: 2 script=- brain=0 map=165,350 hp=0 origin=S278_P01
+LogDink: Display: DINK CAPTURE: exec dink.Attack
+LogDinkAudio: audio cue sound:8 speed=8000 random=0 sprite=0 repeat=0
+LogDinkAudio: audio cue sound:9 speed=22050 hit
+LogDinkAudio: audio cue sound:30 speed=21050 random=4000 sprite=5 repeat=0
+LogDink: Display: DINK CAPTURE: exec dink.Sprites
+LogDinkBeat: Display: DINK SPRITE: 1 script=- brain=1 map=58,250 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 6 script=en-pill brain=9 map=476,354 hp=8 origin=S278_P05
+LogDinkBeat: Display: DINK SPRITE: 5 script=en-pill brain=9 map=81,250 hp=2 origin=S278_P04
+LogDinkBeat: Display: DINK SPRITE: 4 script=bar-f1 brain=0 map=451,202 hp=0 origin=S278_P03
+LogDinkBeat: Display: DINK SPRITE: 3 script=- brain=0 map=210,278 hp=0 origin=S278_P02
+LogDinkBeat: Display: DINK SPRITE: 2 script=- brain=0 map=165,350 hp=0 origin=S278_P01
+LogDink: Display: DINK CAPTURE: exec dink.Attack
+LogDinkAudio: audio cue sound:8 speed=8000 random=0 sprite=0 repeat=0
+LogDinkAudio: audio cue sound:9 speed=22050 hit
+LogDinkAudio: audio cue sound:30 speed=21050 random=4000 sprite=5 repeat=0
+LogDink: Display: DINK CAPTURE: exec dink.Sprites
+LogDinkBeat: Display: DINK SPRITE: 1 script=- brain=1 map=58,250 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 6 script=en-pill brain=9 map=476,354 hp=8 origin=S278_P05
+LogDinkBeat: Display: DINK SPRITE: 4 script=bar-f1 brain=0 map=451,202 hp=0 origin=S278_P03
+LogDinkBeat: Display: DINK SPRITE: 3 script=- brain=0 map=210,278 hp=0 origin=S278_P02
+LogDinkBeat: Display: DINK SPRITE: 2 script=- brain=0 map=165,350 hp=0 origin=S278_P01
+LogDink: Display: DINK CAPTURE: shot <scratch>/pill_punched.png
+LogDink: Display: DINK CAPTURE: exec dink.Npc.Hold 0
+LogDink: Display: DINK CAPTURE: exec dink.Goto 437 300 200
+LogDink: Display: DINK CAPTURE: exec dink.Goto 438 165 125
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=438 map=165.000,125.000 world=90013.974,35648.908,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.Sprites
+LogDinkBeat: Display: DINK SPRITE: 1 script=- brain=1 map=165,125 hp=0 origin=None
+LogDinkBeat: Display: DINK SPRITE: 5 script=en-pill brain=9 map=212,47 hp=8 origin=S438_P07
+LogDinkBeat: Display: DINK SPRITE: 4 script=en-pill brain=9 map=72,109 hp=8 origin=S438_P04
+LogDinkBeat: Display: DINK SPRITE: 3 script=en-pill brain=9 map=240,228 hp=8 origin=S438_P03
+LogDinkBeat: Display: DINK SPRITE: 2 script=- brain=0 map=236,197 hp=0 origin=S438_P01
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayBodies
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 5 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 212 x 212 x 50 cm, bounds scale 1.00, Dink centre to box 808 cm
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 4 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 212 x 212 x 50 cm, bounds scale 1.00, Dink centre to box 832 cm
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 3 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 212 x 213 x 50 cm, bounds scale 1.00, Dink centre to box 1176 cm
+LogDink: Display: DINK CAPTURE: shot <scratch>/pill_bitten.png
+LogDink: Display: DINK CAPTURE: exec dink.WalkTo 300 125 5
+LogDink: Display: DINK WALK: from X=90013.974 Y=35648.908 Z=98.000 toward X=91347.303 Y=35658.893 Z=0.000 on screen 438
+LogDink: Display: DINK WALK: arrived; now on screen 438 at X=91341.663 Y=35658.851 Z=98.000, 6 cm from the target
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=438 map=302.537,125.000 world=91372.359,35659.081,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayBodies
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 5 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 212 x 212 x 50 cm, bounds scale 1.00, Dink centre to box 1555 cm
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 4 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 212 x 213 x 50 cm, bounds scale 1.00, Dink centre to box 2506 cm
+LogDinkNarrative: Display: DINK PHYSICAL BODY: sprite 3 script=en-pill brain=9 hp=8 own box 185 x 115 x 50 cm, world bounds 213 x 211 x 50 cm, bounds scale 1.00, Dink centre to box 2808 cm
+LogDink: Display: DINK CAPTURE: shot <scratch>/pill_walked_away.png
+LogDink: Display: DINK CAPTURE: exec dink.Npc.Hold 1
+LogDink: Display: DINK CAPTURE: exec dink.Fact life 900
+LogDink: Display: DINK CAPTURE: exec dink.Goto 438 165 125
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=438 map=165.000,125.000 world=90013.974,35648.908,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 278 300 250
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=438 map=165.000,125.000 world=90013.974,35648.908,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 29 300 300
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=29 map=300.000,300.000 world=213237.360,-157395.600,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 302 300 300
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=302 map=300.000,300.000 world=49931.100,23155.633,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 713 400 250
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=713 map=400.007,248.141 world=26941.433,68567.504,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 712 250 250
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=712 map=249.986,252.832 world=19401.064,68656.194,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 166 320 330
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=712 map=249.986,252.832 world=19401.064,68656.194,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 178 300 300
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=178 map=300.000,300.000 world=71204.314,11424.450,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 124 300 330
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=124 map=300.000,330.000 world=209112.360,-148939.350,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 192 400 300
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=192 map=400.000,300.000 world=226299.860,-143645.600,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec dink.Goto 237 450 300
+LogDink: Display: DINK CAPTURE: exec dink.Player
+LogDink: Display: DINK PLAYER: screen=237 map=450.000,300.000 world=47667.880,17439.497,98.000 yaw=-90.000 pitch=-30.000 radius=28.0 move_ignored=0
+LogDink: Display: DINK CAPTURE: exec dink.PhysicalPlayReach
+LogDink: Display: DINK CAPTURE: exec quit
