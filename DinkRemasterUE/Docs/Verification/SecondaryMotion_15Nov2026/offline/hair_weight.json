@@ -1,0 +1,26 @@
+{
+ "Dink": {
+  "hair_vertices": 12493,
+  "moving (w>0.05)": 9697,
+  "w>=0.5": 2243,
+  "max w": 1.0,
+  "vertices whose corners disagree (uv seams)": 0,
+  "static cap/brow/wide-tile vertices": 2326
+ },
+ "Mother": {
+  "hair_vertices": 9369,
+  "moving (w>0.05)": 4303,
+  "w>=0.5": 200,
+  "max w": 1.0,
+  "vertices whose corners disagree (uv seams)": 0,
+  "static cap/brow/wide-tile vertices": 4538
+ },
+ "Milder": {
+  "hair_vertices": 10741,
+  "moving (w>0.05)": 7649,
+  "w>=0.5": 1323,
+  "max w": 1.0,
+  "vertices whose corners disagree (uv seams)": 0,
+  "static cap/brow/wide-tile vertices": 2496
+ }
+}
