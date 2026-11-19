@@ -93,6 +93,8 @@ struct FDinkLegInput
 	float StrideScale = 1.f;
 	FDinkGaitStyle Style;
 	float StepCycleCm = 0.f;
+	/** The cadence factor the game thread applied this frame (FDinkLegTelemetry::CadenceWarp of the last evaluation). */
+	float CadenceWarp = 1.f;
 };
 
 /** Head turned towards a point (component space), with a weight. */
@@ -114,6 +116,8 @@ struct FDinkLegTelemetry
 	/** Pins let go (both feet): lifted, ran off, too far from the pose. */
 	int32 Releases[3] = {0, 0, 0};
 	FVector FootWorld[2] = {FVector::ZeroVector, FVector::ZeroVector};
+	/** The cadence factor the stride warp asks the game thread for (the style's cadence share of the correction), 1: none. */
+	float CadenceWarp = 1.f;
 	bool bValid = false;
 };
 
@@ -154,7 +158,7 @@ private:
 	bool bPrevDesired = false;
 	/** Stride warp: the planted foot's step length scaled so it travels back under the body exactly at the body's speed
 	 * (the slow-walk cadence law and the clip's own stride leave it 15-20% off, which was the slide). Smoothed, 0.6-1.6. */
-	float StrideWarp = 1.f;
+	float StrideWarp = 1.f, CadenceWarp = 1.f;
 	float PrevStepY[2] = {0.f, 0.f};
 	float PelvisOffset = 0.f, PelvisVelocity = 0.f;
 	TArray<int32, TInlineAllocator<2>> LeanBones;
