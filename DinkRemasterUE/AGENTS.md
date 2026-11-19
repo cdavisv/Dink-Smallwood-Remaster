@@ -81,6 +81,7 @@
 
 - `UDinkBodyAnimInstance` (hero, Mother, Milder) runs a presentation-only leg layer (`DinkFootPlacement.h`): foot lock with hysteresis, pivot steps on the spot, two-bone soft IK, ground adaptation, gait style (`animation_natural.json` `style`), stride warp (the stance foot travels back at the body's speed; walking only, < 320 cm/s), a hip rise of up to 2.8 cm for shorter steps. `dink.Anim.Legs 0` restores master's pose exactly (the identity test checks it); `dink.Anim.FootLock/GroundAdapt/Style/LookAt` switch the parts.
 - Pitfall: `UAnimInstance::UpdateAnimation` copies to the proxy (PreUpdate) BEFORE NativeUpdateAnimation; the frame is pushed again at the end of NativeUpdateAnimation (`PublishFrame`), or the proxy evaluates last frame's transform and pins lag a frame of travel.
+- Cadence share (19 Nov 2026, A101): `animation_natural.json` `style` `cadence_share` splits the warp's correction between step length (0) and cadence (1); the game thread applies the cadence part from the leg telemetry (`CadenceWarp`).
 - Pitfall: the slow-walk cadence law (`slow_cadence_power`) makes the clip's stance foot outrun the body by 15-20 %; any foot-lock layer without a stride warp just moves that slide into a pin that has to be dragged.
 - Measuring: `Dink.Animation.Legs.*`, `dink.Motion.Trace`, `Scripts/AnimationQA/motion_audit.py` + `motion_report.py`; `mother_strip.py` films Mother with a following camera (`dink.CalAnchorNpc` + `dink.CalCam` before every shot). Evidence `Docs/Verification/MotionRealism_16Nov2026/`.
 
