@@ -4,6 +4,7 @@
 #include "Animation/AttributesRuntime.h"
 #include "BonePose.h"
 #include "DinkCollision.h"
+#include "DinkSecondaryMotion.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Engine/World.h"
 #include "GameFramework/Pawn.h"
@@ -516,6 +517,7 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 		bPrevDesired = false;
 		PelvisOffset = PelvisVelocity = 0.f;
 	}
+	FDinkSecondaryMotion::ApplyToPose(GetSkelMeshComponent(), Out);
 	return true;
 }
 

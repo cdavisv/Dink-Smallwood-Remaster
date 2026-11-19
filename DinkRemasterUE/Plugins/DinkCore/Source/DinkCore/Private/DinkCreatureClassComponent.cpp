@@ -1,5 +1,6 @@
 #include "DinkCreatureClassComponent.h"
 #include "DinkCreatureSubsystem.h"
+#include "DinkSecondaryMotion.h"
 #include "Engine/World.h"
 #include "Animation/AnimSequence.h"
 #include "Animation/AnimationPoseData.h"
@@ -62,6 +63,8 @@ bool FDinkCreatureAnimProxy::Evaluate(FPoseContext& Output)
 	}
 	for (FCompactPoseBoneIndex Bone(0); Bone.GetInt() < NumBones; ++Bone) Out[Bone].NormalizeRotation();
 	DinkCreatureOneShots::ApplyOverlays(Output, Overlays);
+	// Last: the loose parts (ears, tails, antennae) follow whatever pose the overlays left (phys/hair-cloth).
+	FDinkSecondaryMotion::ApplyToPose(GetSkelMeshComponent(), Out);
 	return true;
 }
 

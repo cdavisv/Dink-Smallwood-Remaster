@@ -1,0 +1,92 @@
+{
+ "idle": {
+  "skinned": {
+   "hem_stretch_max": 1.0,
+   "hem_stretch_p99": 1.0,
+   "edges_over_1.25": 0,
+   "edges_under_0.8": 0,
+   "leg_verts_outside": 0,
+   "leg_verts": 642
+  },
+  "bell": {
+   "hem_stretch_max": 1.004,
+   "hem_stretch_p99": 1.003,
+   "edges_over_1.25": 0,
+   "edges_under_0.8": 0,
+   "leg_verts_outside": 0,
+   "leg_verts": 676
+  }
+ },
+ "walk_contact": {
+  "skinned": {
+   "hem_stretch_max": 6.664,
+   "hem_stretch_p99": 4.87,
+   "edges_over_1.25": 286,
+   "edges_under_0.8": 96,
+   "leg_verts_outside": 0,
+   "leg_verts": 737
+  },
+  "bell": {
+   "hem_stretch_max": 1.71,
+   "hem_stretch_p99": 1.501,
+   "edges_over_1.25": 153,
+   "edges_under_0.8": 85,
+   "leg_verts_outside": 0,
+   "leg_verts": 679
+  }
+ },
+ "hurry_stride": {
+  "skinned": {
+   "hem_stretch_max": 8.639,
+   "hem_stretch_p99": 6.551,
+   "edges_over_1.25": 344,
+   "edges_under_0.8": 140,
+   "leg_verts_outside": 0,
+   "leg_verts": 710
+  },
+  "bell": {
+   "hem_stretch_max": 2.376,
+   "hem_stretch_p99": 1.936,
+   "edges_over_1.25": 457,
+   "edges_under_0.8": 86,
+   "leg_verts_outside": 9,
+   "leg_verts": 685
+  }
+ },
+ "swing_knee_up": {
+  "skinned": {
+   "hem_stretch_max": 4.453,
+   "hem_stretch_p99": 3.328,
+   "edges_over_1.25": 316,
+   "edges_under_0.8": 109,
+   "leg_verts_outside": 0,
+   "leg_verts": 716
+  },
+  "bell": {
+   "hem_stretch_max": 1.739,
+   "hem_stretch_p99": 1.48,
+   "edges_over_1.25": 96,
+   "edges_under_0.8": 48,
+   "leg_verts_outside": 0,
+   "leg_verts": 675
+  }
+ },
+ "side_step": {
+  "skinned": {
+   "hem_stretch_max": 3.869,
+   "hem_stretch_p99": 3.178,
+   "edges_over_1.25": 252,
+   "edges_under_0.8": 0,
+   "leg_verts_outside": 0,
+   "leg_verts": 724
+  },
+  "bell": {
+   "hem_stretch_max": 1.601,
+   "hem_stretch_p99": 1.384,
+   "edges_over_1.25": 76,
+   "edges_under_0.8": 48,
+   "leg_verts_outside": 35,
+   "leg_verts": 706
+  }
+ }
+}
