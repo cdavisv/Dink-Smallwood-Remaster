@@ -1,5 +1,6 @@
 #include "DinkDirector.h"
 #include "Misc/Crc.h"
+#include "DinkLandforms.h"
 #include "Hardness/DinkHardnessActivation.h"
 #include "DinkAudioSubsystem.h"
 #include "DinkCreatureSubsystem.h"
@@ -1883,6 +1884,8 @@ bool UDinkDirector::PixelToWorld(int32 Screen, double X, double Y, FVector& OutW
 		return false;
 	}
 	OutWorld = DinkLayout::MapPixelToUnreal(Corners, X - 20.0, Y);
+	// landforms: the ground under the pixel (0 on flat ground); presentation only, the hardness is in pixels
+	OutWorld.Z += DinkLandforms::HeightCm(GetWorld(), FVector2D(OutWorld), /*bBelowZero*/ false);
 	return true;
 }
 
@@ -1982,9 +1985,25 @@ void UDinkDirector::SyncActorToSprite(FDinkSprite& Sprite)
 	{
 		return;
 	}
-	World.Z = Actor->GetActorLocation().Z;
+	const FVector Was = Actor->GetActorLocation();
+	const bool bLandforms = DinkLandforms::IsActive(GetWorld());
+	if (!bLandforms || DinkLandforms::IsPlayerPawn(Actor))
+	{
+		// the player's capsule stays on the 1997 floor (landforms lift only his drawn body: ADinkGreyboxCharacter)
+		World.Z = Was.Z;
+		MakeMovable(Actor);
+		Actor->SetActorLocation(World, /*bSweep*/ false, nullptr, ETeleportType::TeleportPhysics);
+		return;
+	}
+	// landforms: drawn on the ground under the new pixel, keeping the actor's own height above it; its invisible collision
+	// (body shapes, blockers) stays on the flat floor the 1997 sweeps use
+	const float Before = DinkLandforms::HeightCm(GetWorld(), FVector2D(Was), /*bBelowZero*/ false);
+	const float After = DinkLandforms::HeightCm(GetWorld(), FVector2D(World), /*bBelowZero*/ false);
+	World.Z = Was.Z - Before + After;
 	MakeMovable(Actor);
 	Actor->SetActorLocation(World, /*bSweep*/ false, nullptr, ETeleportType::TeleportPhysics);
+	Actor->Tags.AddUnique(DinkLandforms::LiftedTag);
+	DinkLandforms::KeepCollisionFlat(*Actor, Before, After);
 }
 
 void UDinkDirector::SyncSpriteFromActor(FDinkSprite& Sprite)
@@ -2201,6 +2220,13 @@ AActor* UDinkDirector::SpawnSpriteActor(FDinkSprite& Sprite)
 		if (Actor->ActorHasTag(TEXT("DinkHumanoid"))) ApplyDir(Sprite);
 		if (UDinkCreatureSubsystem* Creatures=World->GetSubsystem<UDinkCreatureSubsystem>()) Creatures->NotifyScriptSprite(Actor,Sprite.GetProp(TEXT("seq")) > 0 ? Sprite.GetProp(TEXT("seq")) : Sprite.GetProp(TEXT("pseq")));
 		PresentScriptSprite(Actor, Sprite, FindSprite(Sprite.GetProp(TEXT("brain_parm"))));
+		if (DinkLandforms::IsActive(World))
+		{
+			// spawned on the landforms ground (PixelToWorld): its invisible collision goes back to the 1997 floor
+			const float Lift = DinkLandforms::HeightCm(World, FVector2D(Location), /*bBelowZero*/ false);
+			Actor->Tags.AddUnique(DinkLandforms::LiftedTag);
+			DinkLandforms::KeepCollisionFlat(*Actor, Lift, Lift);
+		}
 	}
 	return Actor;
 }

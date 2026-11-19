@@ -33,6 +33,18 @@ if [[ -n "$DINK_RUN_SUFFIX" ]]; then
 	ENGINE_LOG_NAME="DinkTest_${DINK_RUN_SUFFIX}.log"
 fi
 TIMEOUT_SECS="${DINK_TEST_TIMEOUT:-1800}"
+# Extra editor switches for a run (e.g. DINK_TEST_EXTRA_ARGS="-DinkLandforms=1" runs the probe with the landforms on).
+# Only -Name or -Name=value words of letters, digits, _ . - are accepted.
+EXTRA_ARGS=()
+if [[ -n "${DINK_TEST_EXTRA_ARGS:-}" ]]; then
+	read -r -a EXTRA_ARGS <<< "$DINK_TEST_EXTRA_ARGS"
+	for arg in "${EXTRA_ARGS[@]}"; do
+		if [[ ! "$arg" =~ ^-[A-Za-z][A-Za-z0-9_]*(=[A-Za-z0-9_.-]+)?$ ]]; then
+			echo "TESTS FAILED: DINK_TEST_EXTRA_ARGS accepts only -Name or -Name=value words (got '$arg')"
+			exit 2
+		fi
+	done
+fi
 
 if [[ ! -x "$EDITOR" ]]; then
 	echo "TESTS FAILED: editor not found at $EDITOR (set UE_ROOT)"
@@ -55,7 +67,7 @@ env -u WAYLAND_DISPLAY -u DISPLAY timeout "$TIMEOUT_SECS" "$EDITOR" "$UPROJECT" 
 	-ExecCmds="Automation RunTests $FILTER; Quit" \
 	-ReportExportPath="$REPORT_DIR" \
 	-nullrhi -unattended -nosplash -nopause -nosound -NoSound \
-	-stdout -FullStdOutLogOutput -log="$ENGINE_LOG_NAME" \
+	-stdout -FullStdOutLogOutput -log="$ENGINE_LOG_NAME" ${EXTRA_ARGS[@]+"${EXTRA_ARGS[@]}"} \
 	>"$LOG" 2>&1
 rc=$?
 secs=$(( $(date +%s) - start ))

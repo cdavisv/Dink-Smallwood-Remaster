@@ -1,6 +1,7 @@
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "DinkCreatureClassComponent.h"
 #include "DinkArtFamilySubsystem.h"
+#include "DinkLandforms.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Greybox/DinkPlaceholderActor.h"
 #include "DinkInstanceOriginsComponent.h"
@@ -114,6 +115,11 @@ bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float Map
 		HalfHeight = Capsule->GetScaledCapsuleHalfHeight();
 	}
 	const FVector Target = Screen->MapPixelToWorld(MapX, MapY) + FVector(0.0, 0.0, HalfHeight + 2.0);
+	// landforms (a visual layer): the capsule lands on the 1997 floor as always; have the drawn ground there before it arrives
+	if (UDinkLandformsSubsystem* Landforms = GetWorld()->GetSubsystem<UDinkLandformsSubsystem>())
+	{
+		Landforms->EnsureAround(Target);
+	}
 	return Pawn->TeleportTo(Target, Pawn->GetActorRotation());
 }
 

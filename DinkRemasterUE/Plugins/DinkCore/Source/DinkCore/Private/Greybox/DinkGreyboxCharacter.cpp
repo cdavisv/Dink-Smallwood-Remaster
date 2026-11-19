@@ -1,4 +1,5 @@
 #include "Greybox/DinkGreyboxCharacter.h"
+#include "DinkLandforms.h"
 #include "DinkCollision.h"
 #include "DinkCoreModule.h"
 #include "DinkArtSubsystem.h"
@@ -398,7 +399,15 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	// Wall clearance composes with the physicality offset: measure the mesh where the body
 	// layer puts it, then pull it back along the facing (actor-local -X) by the overlap. It
 	// rises at once (nothing shows through the wall) and releases over a few tenths of a second.
-	const FVector BodyOffset = FVector::ZeroVector;
+	// Landforms are a visual layer: the capsule keeps walking on the 1997 floor (the simulation reads its XY), the drawn
+	// body stands on the ground under it, and the camera boom rises with him so the framing is unchanged.
+	const float GroundLift = Cast<APlayerController>(Controller) != nullptr ? DinkLandforms::HeightCm(GetWorld(), FVector2D(GetActorLocation())) : 0.f;
+	const FVector BodyOffset(0.f, 0.f, GroundLift);
+	if (CameraBoom && !FMath::IsNearlyEqual(GroundLift, AppliedGroundLift, 0.01f))
+	{
+		CameraBoom->SetRelativeLocation(CameraBoom->GetRelativeLocation() + FVector(0.f, 0.f, GroundLift - AppliedGroundLift));
+		AppliedGroundLift = GroundLift;
+	}
 	const float WallNeeded = ShouldClearWalls() ? MeasureWallOverlap(FTransform(GetMesh()->GetRelativeRotation().Quaternion(),
 		BaseLocation + BodyOffset, BaseScale * AppliedPhysique)) : 0.f;
 	WallPullback = (Teleported || WallNeeded >= WallPullback) ? WallNeeded

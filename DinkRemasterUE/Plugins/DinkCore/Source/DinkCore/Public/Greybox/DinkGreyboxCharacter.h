@@ -185,6 +185,8 @@ private:
 	FDinkHeroPhysicality HeroPhysicality;
 	FVector PreviousBodyLocation = FVector::ZeroVector;
 	FVector AppliedBodyOffset = FVector::ZeroVector;
+	/** Landforms: how far the drawn body and the camera boom stand above the capsule's flat floor now (visual only). */
+	float AppliedGroundLift = 0.f;
 	FVector AppliedPhysique = FVector::OneVector;
 	FVector2f AppliedBuild = FVector2f(-1.f, -1.f);
 	TWeakObjectPtr<class USkeletalMesh> BuildMesh;
