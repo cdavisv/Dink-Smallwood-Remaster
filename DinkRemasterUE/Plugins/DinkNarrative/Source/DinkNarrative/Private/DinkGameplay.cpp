@@ -502,6 +502,7 @@ void UDinkGameplay::Init(UDinkStorySubsystem* InStory)
 	}
 	SetRandomSeed(Seed);
 	AuthoredInteraction.Load();
+	PhysicalPlay.Load();
 	LoadPace();
 	FString AdaptError;
 	if (!Adaptation.Load(FDinkAdaptationSettings::DefaultPath(), &AdaptError))
@@ -932,6 +933,50 @@ int32 UDinkGameplay::NewItemInstance(FName Script)
 // ---------------------------------------------------------------------------------------------
 // Hit, touch, push
 
+bool UDinkGameplay::LegacyHitBoxContains(const FDinkSprite& Target, int32 Ax, int32 Ay, int32 Dir, int32 Range) const
+{
+	// The 1997 blow box (D:15460-15527), as RunThroughTagList applies it when no drawn geometry decides.
+	const int32 Amount = Range == 0 ? 28 : Range;
+	const int32 AmountY = Range == 0 ? 36 : Range + Range / 6;
+	const int32 RangeAmount = Range / 8;
+	int32 L, Tp, R, B;
+	if (!GetHardbox(Target, L, Tp, R, B))
+	{
+		return false;
+	}
+	R += 5;
+	L -= 5;
+	Tp -= 5;
+	B += 10;
+	switch (Dir)
+	{
+	case 6:
+		Tp -= 10; B += 10;
+		if (Range != 0) { Tp -= RangeAmount; B += RangeAmount; }
+		L -= Amount;
+		break;
+	case 4:
+		R += Amount;
+		Tp -= 10; B += 10;
+		if (Range != 0) { Tp -= RangeAmount; B += RangeAmount; }
+		break;
+	case 2:
+		R += 10; L -= 10;
+		Tp -= AmountY;
+		if (Range != 0) { R += RangeAmount; L -= RangeAmount; }
+		break;
+	case 8:
+		R += 10; L -= 10;
+		B += AmountY;
+		// The original widens and narrows the right edge here (D:15521-15522): no net change. Kept.
+		if (Range != 0) { R += RangeAmount; R -= RangeAmount; }
+		break;
+	default:
+		break;
+	}
+	return Inside(Ax, Ay, L, Tp, R, B);
+}
+
 void UDinkGameplay::RunThroughTagList(int32 H)
 {
 	UDinkDirector* D = Director();
@@ -941,9 +986,6 @@ void UDinkGameplay::RunThroughTagList(int32 H)
 		return;
 	}
 	const int32 Range = A->GetProp(P_Range);
-	const int32 Amount = Range == 0 ? 28 : Range;
-	const int32 AmountY = Range == 0 ? 36 : Range + Range / 6;
-	const int32 RangeAmount = Range / 8;
 	const int32 Ax = FMath::RoundToInt32(A->X);
 	const int32 Ay = FMath::RoundToInt32(A->Y);
 	const int32 Dir = A->Dir;
@@ -964,51 +1006,15 @@ void UDinkGameplay::RunThroughTagList(int32 H)
 		{
 			continue;
 		}
-		if (UsesAuthoredGeometry(*A, *T))
+		// physical play layer (PHYSICAL_PLAY_LAYER.md), only with its part Hits (Dink's blows) or CreatureReach (blows at Dink) on, both
+		// off by default: then the blow lands where the reach touches the drawn body; otherwise the 1997 box below decides
+		if (UsesAuthoredGeometry(*A, *T) || UsesPhysicalPlay(*A, *T, EAuthoredInteraction::Hit))
 		{
 			if (!AuthoredGeometryMatches(*A, *T, EAuthoredInteraction::Hit)) { continue; }
 		}
-		else
+		else if (!LegacyHitBoxContains(*T, Ax, Ay, Dir, Range))
 		{
-			int32 L, Tp, R, B;
-			if (!GetHardbox(*T, L, Tp, R, B))
-			{
-				continue;
-			}
-			R += 5;
-			L -= 5;
-			Tp -= 5;
-			B += 10;
-			switch (Dir)
-			{
-			case 6:
-				Tp -= 10; B += 10;
-				if (Range != 0) { Tp -= RangeAmount; B += RangeAmount; }
-				L -= Amount;
-				break;
-			case 4:
-				R += Amount;
-				Tp -= 10; B += 10;
-				if (Range != 0) { Tp -= RangeAmount; B += RangeAmount; }
-				break;
-			case 2:
-				R += 10; L -= 10;
-				Tp -= AmountY;
-				if (Range != 0) { R += RangeAmount; L -= RangeAmount; }
-				break;
-			case 8:
-				R += 10; L -= 10;
-				B += AmountY;
-				// The original widens and narrows the right edge here (D:15521-15522): no net change. Kept.
-				if (Range != 0) { R += RangeAmount; R -= RangeAmount; }
-				break;
-			default:
-				break;
-			}
-			if (!Inside(Ax, Ay, L, Tp, R, B))
-			{
-				continue;
-			}
+			continue;
 		}
 		SetFact(TEXT("missle_source"), H);
 		const bool bTargets = T->GetProp(P_BaseAttack, -1) != -1 || T->GetProp(P_TouchDamage) > 0;
@@ -1078,7 +1084,7 @@ void UDinkGameplay::RunThroughTouchDamageList(int32 H)
 			return; // the original leaves the whole list here (D:15639)
 		}
 		int32 L, T, R, B;
-		if (UsesAuthoredGeometry(*Dink, *S)
+		if (UsesAuthoredGeometry(*Dink, *S) || UsesPhysicalPlay(*Dink, *S, EAuthoredInteraction::Touch) // physical play: Dink's body touches the drawn item
 			? !AuthoredGeometryMatches(*Dink, *S, EAuthoredInteraction::Touch)
 			: (!GetHardbox(*S, L, T, R, B) || !Inside(Hx, Hy, L - Margin, T - Margin, R + Margin, B + Margin)))
 		{
@@ -1601,6 +1607,7 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs)
 		NextStatusMs += 100.0;
 	}
 	UpdatePlayerHold();
+	UpdateCreatureBodyBlockers();
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -2769,7 +2776,7 @@ void UDinkGameplay::SyncGreyboxHardness(int32 Screen)
 	for (int32 i = 0; i < Changes.Num(); ++i)
 	{
 		const bool bWas = FDinkHardnessMap::IsSolidCode(Base[i]);
-		const bool bNow = FDinkHardnessMap::IsSolidCode(Now[i]) && !IsWalkThroughByProp(Screen, Now[i]);
+		const bool bNow = FDinkHardnessMap::IsSolidCode(Now[i]) && !IsWalkThroughByProp(Screen, Now[i]) && !IsRelaxedForPlayer(Screen, Now[i]);
 		if (bWas != bNow)
 		{
 			Changes[i] = bNow ? 1 : 2;

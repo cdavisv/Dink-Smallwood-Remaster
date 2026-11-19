@@ -7,6 +7,7 @@
 #include "Components/ShapeComponent.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/SkinnedMeshComponent.h"
 #include "Engine/World.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
@@ -51,6 +52,18 @@ bool UDinkGameplay::UsesAuthoredGeometry(const FDinkSprite& Attacker, const FDin
 	return From && To && From->GetWorld() && From->GetWorld() == To->GetWorld() && (To->ActorHasTag(TEXT("DinkAuthoredArt")) || HasHardnessFitInstance(Target));
 }
 
+FDinkDrawnBody UDinkGameplay::DrawnBodyBox(const UPrimitiveComponent& Component)
+{
+	// CalcBounds with the identity: the mesh's own bounds (a skeletal mesh: its asset bounds, not this frame's world box)
+	const FBoxSphereBounds Local = Component.CalcBounds(FTransform::Identity);
+	const FTransform T = Component.GetComponentTransform();
+	const FVector Scale = T.GetScale3D().GetAbs();
+	FDinkDrawnBody Body;
+	Body.Frame = FTransform(T.GetRotation(), T.TransformPosition(Local.Origin));
+	Body.Extent = Local.BoxExtent * Scale;
+	return Body;
+}
+
 bool UDinkGameplay::AuthoredGeometryMatches(const FDinkSprite& Attacker, const FDinkSprite& Target,
 	EAuthoredInteraction Kind, double* OutDistanceCm) const
 {
@@ -58,10 +71,29 @@ bool UDinkGameplay::AuthoredGeometryMatches(const FDinkSprite& Attacker, const F
 	AActor* TargetActor = Target.Actor.Get();
 	if (!FromActor || !TargetActor || TargetActor->IsHidden()) { return false; }
 	const UCapsuleComponent* Body = FromActor->FindComponentByClass<UCapsuleComponent>();
-	const float BodyRadius = Body ? Body->GetScaledCapsuleRadius() : 28.f;
+	float BodyRadius = Body ? Body->GetScaledCapsuleRadius() : 28.f;
 	const float BodyHalfHeight = Body ? Body->GetScaledCapsuleHalfHeight() : 96.f;
-	const FVector From = Body ? Body->GetComponentLocation() : FromActor->GetActorLocation();
-	const FVector Forward = FromActor->GetActorForwardVector().GetSafeNormal2D();
+	FVector From = Body ? Body->GetComponentLocation() : FromActor->GetActorLocation();
+	FVector Forward = FromActor->GetActorForwardVector().GetSafeNormal2D();
+	// Physical play layer, a creature's blow at Dink (review of PR #160: with Dink's reach drawn and the foes' 1997, a Bonca
+	// out-reached Dink's fist by metres): its reach starts at the front of its own drawn body, in the direction it faces (its 1997 dir).
+	if (Attacker.Handle != 1 && Target.Handle == 1 && UsesPhysicalPlay(Attacker, Target, Kind))
+	{
+		if (const USkinnedMeshComponent* Skin = FromActor->FindComponentByClass<USkinnedMeshComponent>(); Skin && Skin->IsVisible() && !Skin->bHiddenInGame)
+		{
+			const FDinkDrawnBody Own = DrawnBodyBox(*Skin);
+			From = FVector(Own.Frame.GetLocation().X, Own.Frame.GetLocation().Y, From.Z);
+			BodyRadius = float(FMath::Max(Own.Extent.X, Own.Extent.Y));
+		}
+		static const FIntPoint Step[10] = { {0,0}, {-1,1}, {0,1}, {1,1}, {-1,0}, {0,0}, {1,0}, {-1,-1}, {0,-1}, {1,-1} };
+		const int32 Dir = FMath::Clamp(Attacker.Dir, 0, 9);
+		FVector A, B;
+		if (UDinkDirector* D = Director(); D && Step[Dir] != FIntPoint::ZeroValue &&
+			D->PixelToWorld(Attacker.Screen, Attacker.X, Attacker.Y, A) && D->PixelToWorld(Attacker.Screen, Attacker.X + Step[Dir].X * 20.0, Attacker.Y + Step[Dir].Y * 20.0, B))
+		{
+			Forward = (B - A).GetSafeNormal2D();
+		}
+	}
 	FVector Start = From, End = From;
 	float Radius = BodyRadius, HalfHeight = BodyHalfHeight;
 	const bool bDirectional = Kind == EAuthoredInteraction::Hit || Kind == EAuthoredInteraction::Talk;
@@ -109,18 +141,43 @@ bool UDinkGameplay::AuthoredGeometryMatches(const FDinkSprite& Attacker, const F
 			{
 				Geometry.Add(Placeholder->Card);
 			}
+			else if (UsesPhysicalPlay(Attacker, Target, Kind))
+			{
+				// physical play layer: the card is hidden, the placement is drawn by family art or a creature's skinned body
+				for (UPrimitiveComponent* Component : Components)
+				{
+					if (Component->IsRegistered() && Component->IsVisible() && !Component->bHiddenInGame &&
+						((Cast<UStaticMeshComponent>(Component) && Cast<UStaticMeshComponent>(Component)->GetStaticMesh()) || Component->IsA<USkinnedMeshComponent>()))
+					{
+						Geometry.Add(Component);
+					}
+				}
+			}
 		}
 		else
 		{
+			// physical play layer (Codex review of PR #160): a class-bound script creature hides its markers and is drawn by its
+			// skinned body only, which must count too
+			const bool bSkinned = UsesPhysicalPlay(Attacker, Target, Kind);
 			for (UPrimitiveComponent* Component : Components)
 			{
 				if (UStaticMeshComponent* Mesh = Cast<UStaticMeshComponent>(Component); Mesh && Mesh->GetStaticMesh() && Mesh->IsVisible() && !Mesh->bHiddenInGame)
 				{
 					Geometry.Add(Mesh);
 				}
+				else if (bSkinned && Component->IsA<USkinnedMeshComponent>() && Component->IsRegistered() && Component->IsVisible() && !Component->bHiddenInGame)
+				{
+					Geometry.Add(Component);
+				}
 			}
 		}
 	}
+	// a creature's blow at Dink with the layer on: Dink's body is his capsule
+	if (Geometry.IsEmpty() && Target.Handle == 1 && UsesPhysicalPlay(Attacker, Target, Kind))
+	{
+		if (UCapsuleComponent* Capsule = TargetActor->FindComponentByClass<UCapsuleComponent>()) Geometry.Add(Capsule);
+	}
+	const bool bPhysicalPlay = UsesPhysicalPlay(Attacker, Target, Kind);
 	double BestDistance = TNumericLimits<double>::Max();
 	for (UPrimitiveComponent* Component : Geometry)
 	{
@@ -130,9 +187,28 @@ bool UDinkGameplay::AuthoredGeometryMatches(const FDinkSprite& Attacker, const F
 		// Extend a hand over furniture without extending vertical reach by the same amount.
 		const FCollisionShape Shape = FCollisionShape::MakeCapsule(QueryRadius, FMath::Max(HalfHeight, QueryRadius));
 		FHitResult Hit;
-		if (!Component->SweepComponent(Hit, Start, End, FQuat::Identity, Shape, Component->IsA<UStaticMeshComponent>())) { continue; }
-		FVector Surface = Hit.ImpactPoint;
-		if (Hit.bStartPenetrating) { Surface = Component->Bounds.GetBox().GetClosestPointTo(From); }
+		FVector Surface;
+		if (bPhysicalPlay && (Component->IsA<USkinnedMeshComponent>() || !Component->GetBodyInstance() || !Component->GetBodyInstance()->IsValidBodyInstance()))
+		{
+			// a skinned creature body or a mesh without physics (the physical play layer's drawn bodies): its OWN box (the mesh's
+			// local bounds in the component's frame, so it turns with the body; never the world bounds, which a turned, long body or
+			// an animation-extended skeletal bound makes metres too wide), grown by the query's radius, against the swept segment
+			const FDinkDrawnBody Drawn = DrawnBodyBox(*Component);
+			const FVector LocalStart = Drawn.Frame.InverseTransformPositionNoScale(Start);
+			const FVector LocalEnd = Drawn.Frame.InverseTransformPositionNoScale(End);
+			const FBox Grown = FBox(-Drawn.Extent, Drawn.Extent).ExpandBy(FVector(QueryRadius, QueryRadius, FMath::Max(HalfHeight, QueryRadius)));
+			FVector HitLocation, HitNormal;
+			float HitTime = 0.f;
+			const bool bInside = Grown.IsInside(LocalStart);
+			if (!bInside && !FMath::LineExtentBoxIntersection(Grown, LocalStart, LocalEnd, FVector::ZeroVector, HitLocation, HitNormal, HitTime)) { continue; }
+			Surface = Drawn.Frame.TransformPositionNoScale(FBox(-Drawn.Extent, Drawn.Extent).GetClosestPointTo(Drawn.Frame.InverseTransformPositionNoScale(From)));
+		}
+		else
+		{
+			if (!Component->SweepComponent(Hit, Start, End, FQuat::Identity, Shape, Component->IsA<UStaticMeshComponent>())) { continue; }
+			Surface = Hit.ImpactPoint;
+			if (Hit.bStartPenetrating) { Surface = Component->Bounds.GetBox().GetClosestPointTo(From); }
+		}
 		if (Kind == EAuthoredInteraction::Push && FVector::DotProduct((Surface - From).GetSafeNormal2D(), Forward) < 0.0) { continue; }
 		// A prop across a wall must not answer a nearby hit/talk or be collected through it.
 		FVector SightOrigin = From;
@@ -141,6 +217,13 @@ bool UDinkGameplay::AuthoredGeometryMatches(const FDinkSprite& Attacker, const F
 		FHitResult Blocker;
 		if (UWorld* World = FromActor->GetWorld(); World && World->LineTraceSingleByChannel(Blocker, SightOrigin, Surface, ECC_Visibility, Params) &&
 			Blocker.GetActor() != TargetActor && Blocker.GetComponent()!=Fitted && Blocker.Distance + 1.f < FVector::Distance(SightOrigin, Surface)) { continue; }
+		// physical play layer (Codex review of PR #160): a relaxed box no longer stands in the hard-solid mesh, so the drawn thing's
+		// player-only blocker (which ignores Visibility) is the wall a touch must not pass through
+		if (bPhysicalPlay)
+		{
+			if (UWorld* World = FromActor->GetWorld(); World && World->LineTraceSingleByObjectType(Blocker, SightOrigin, Surface, FCollisionObjectQueryParams(DinkCollision::PlayerBlock), Params) &&
+				Blocker.GetActor() != TargetActor && Blocker.Distance + 1.f < FVector::Distance(SightOrigin, Surface)) { continue; }
+		}
 		BestDistance = FMath::Min(BestDistance, FVector::Dist2D(From, Surface));
 	}
 	if (OutDistanceCm) { *OutDistanceCm = BestDistance; }
