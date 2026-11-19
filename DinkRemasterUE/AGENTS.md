@@ -1,3 +1,8 @@
+## The armed weapon in Dink's hand (19 November 2026, bug A203)
+
+- `Content/Dink/Data/Art/hero_weapons.json` maps the armed item's script to a mesh, hand bone and grip (the art kit's transforms); `UDinkHeroWeaponSubsystem` (DinkNarrative `DinkHeroWeapon.h`) keeps one tagged, collision-free static mesh component on the hero and re-aims it every frame from `UDinkGameplay::GetWeaponInstance`: empty for fists, a bomb, nothing armed or `&life` < 1. `dink.Hero.Weapons 0` off; `dink.Hero.GiveWeapon <item>` (review) adds and arms an item. Test `Dink.Art.HeroWeapon.RowsAndAttach`; capture `Scripts/AnimationQA/weapon_capture.py`.
+- Pitfall: `UDinkGameplay::AddItem` returns the 0-based slot, `ArmItemSlot` takes 1-16.
+
 ## Hearth fire and fountain spray on the placed-effect path (16 November 2026; art rows VS-11, DS-06 and the hearth of S001_P20)
 
 - Two more `effect_placed` rows in `families.json`, both from the FableF kit: `86 inside/details/fire-` -> `MI_FX_Hearth` (the middle of the simulated wall of flame cut to a compact fire: set `Hearth` of `FableF/tools/build_fire_fx.py`, `--stage atlas` on the Fire_Wall frame cache) and `fountain_spray_fx` -> `MI_FX_Fountain_Spray` (`FableF/tools/build_fountain_spray.py`: a jet and 520 drops on ballistic arcs, translucent, 256 px frames). The Unclaimed kit is untouched; its older `fountain_spray_fx` (128 px, additive) and `hearth_fire` sources stay unimported.
