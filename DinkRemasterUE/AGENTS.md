@@ -2274,3 +2274,13 @@ Native1 packet postflight also rejected19 files generated under its own RunDDC b
 - Switch: `dink.FamilyDuplicates 0` at launch (`-DPCVars=dink.FamilyDuplicates=0`) is master's behaviour; effect rows (placed fires, sparkles) are never merged; the log line `DINK FAMILY DUPLICATES: <copies> family copies, <n> dropped ...` reports the one-time build and its time.
 - `Scripts/art_coverage.py` mirrors nothing: both copies stay `final` there (each is a placement whose family is bound; only the drawing is shared). Evidence, the pair list with the copy kept (`pairs.csv`, made by `make_pairs_csv.py` from `ImportData/placements.json` and a visual-sweep scene audit) and before/after frames: `Docs/Verification/FamilyDuplicates_15Nov2026/`.
 - Tests: `Dink.Art.Family.Duplicates.Rule` (kept copy, ties, four-screen corner, 24 shuffles, the cases that stay two objects) and `Dink.Art.Family.Duplicates.DressOrder` (scratch world with the shipped `families.json`: screens dressed A then B and B then A through `ApplyScreen`, the same copy draws, exactly one object shows after every step; actor/actor and actor/instance pairs).
+
+## Physical play layer: parts (19 November 2026, PR #160)
+- `dink.PhysicalPlay` (0 off, 1 auto = on in a rendering game, off under automation, 2 on) with parts in
+  `Content/Dink/Data/Play/physical_play.ini` and console variables `dink.PhysicalPlay.<Part>` (-1 the ini): Collision, Touch, Bodies
+  on; Hits, CreatureReach OFF (owner's open choice, `doc/remaster/COMBAT_REACH_OPTIONS.md`). Off, every hit is the 1997 box test.
+- To run the probe with the layer: set `Mode=2` in the copy's ini (restore after). The bot (`FCtx::LayerAssist`) steps to the drawn
+  item only where the layer decides the interaction; `DINK PROBE LAYER UNREACHABLE` lines are defects.
+- Review commands: `dink.PhysicalPlayBodies` (skinned body sizes), `dink.PhysicalPlayReach` (1997 blow reach against drawn bodies, cm).
+- Creature body boxes use the `DinkPlayerBlock` profile like PR #129's mesh hulls and #150's water blockers; they are tagged
+  `DinkCreatureBodyBlocker` and only `UpdateCreatureBodyBlockers` makes or removes them.

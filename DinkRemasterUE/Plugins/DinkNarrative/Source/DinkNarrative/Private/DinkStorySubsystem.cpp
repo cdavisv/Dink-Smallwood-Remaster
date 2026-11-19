@@ -1394,6 +1394,7 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,
 		StepInstance(Id, MaxLinesPerStep);
 	}
 	EnterScreenPlacements(Screen);
+	if (Gameplay) Gameplay->ApplyPhysicalPlayCollision(Screen); // physical play layer only; a no-op when it is off
 	UE_LOG(LogTemp,Display,TEXT("HARDNESS_ENTRY_COMPLETE screen=%d required=%d projected=%d loading=%d"),Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading()));
 }
 
