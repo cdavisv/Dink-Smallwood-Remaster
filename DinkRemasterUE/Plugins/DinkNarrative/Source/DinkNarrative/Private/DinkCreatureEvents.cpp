@@ -11,6 +11,17 @@
 namespace
 {
 	const FName E_Brain(TEXT("brain"));
+	const FName E_BrainParm(TEXT("brain_parm"));
+	const FName E_AttackWait(TEXT("attack_wait"));
+	const FName T_Cast(TEXT("cast"));
+	const FName T_Missile(TEXT("missile"));
+	const FName T_Touch(TEXT("touch"));
+
+	const FDinkCreatureOneShotRow* AttackRow(const UDinkCreatureClassComponent* Body, FName Trigger)
+	{
+		const FDinkCreatureOneShotRow* Row = Body ? DinkCreatureOneShots::Find(Body->GetClassId()) : nullptr;
+		return Row && Row->AttackTrigger == Trigger && Row->Attack.IsSet() ? Row : nullptr;
+	}
 }
 
 bool UDinkCreatureEventSubsystem::DoesSupportWorldType(EWorldType::Type Type) const
@@ -28,8 +39,8 @@ UDinkCreatureClassComponent* UDinkCreatureEventSubsystem::NearestAttacker(const 
 		const FDinkSprite& S = Pair.Value;
 		if (Pair.Key == 1 || !S.bActive || (S.Screen > 0 && S.Screen != Screen)) continue;
 		UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(S.Actor.Get());
-		const FDinkCreatureOneShotRow* Row = Body ? DinkCreatureOneShots::Find(Body->GetClassId()) : nullptr;
-		if (!Row || Row->AttackTrigger != Trigger || !Row->Attack.IsSet()) continue;
+		const FDinkCreatureOneShotRow* Row = AttackRow(Body, Trigger);
+		if (!Row) continue;
 		const double D = FVector::Dist2D(Body->GetShownLocation(), At);
 		if (D <= Row->AttackRadiusCm && D < BestDist) { BestDist = D; Best = Body; }
 	}
@@ -43,29 +54,50 @@ void UDinkCreatureEventSubsystem::Observe(const UDinkDirector& Director)
 	{
 		LastScreen = Screen;
 		SeenMissiles.Reset();
+		LastAttackWait.Reset();
 		LastLife = -1;
 	}
-	// A missile that was not there last frame: whoever spat it strikes.
 	TSet<int32> Missiles;
+	TMap<int32, int32> AttackWaits;
 	for (const TPair<int32, FDinkSprite>& Pair : Director.GetSprites())
 	{
 		const FDinkSprite& S = Pair.Value;
+		if (!S.bActive || (S.Screen > 0 && S.Screen != Screen)) continue;
+		// A caster's ATTACK ran: its script set sp_attack_wait forward (en-drag.c attack(): random(5000,3000) ms on).
+		if (Pair.Key != 1)
+		{
+			if (UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(S.Actor.Get()); AttackRow(Body, T_Cast))
+			{
+				const int32 Wait = S.GetProp(E_AttackWait);
+				AttackWaits.Add(Pair.Key, Wait);
+				const int32* Before = LastAttackWait.Find(Pair.Key);
+				if (Before && Wait > *Before && Body->PlayOneShot(EDinkCreatureOneShot::Attack)) ++Attacks;
+			}
+		}
+		// A missile that was not there last frame, and not one of Dink's (brain_parm 1: it must not hit Dink): whoever
+		// spat it strikes.
 		const int32 Brain = S.GetProp(E_Brain);
-		if (!S.bActive || (Brain != 11 && Brain != 17) || (S.Screen > 0 && S.Screen != Screen)) continue;
+		if (Brain != 11 && Brain != 17) continue;
 		Missiles.Add(Pair.Key);
-		if (SeenMissiles.Contains(Pair.Key) || !S.Actor.IsValid()) continue;
-		if (UDinkCreatureClassComponent* Body = NearestAttacker(Director, S.Actor->GetActorLocation(), TEXT("missile")))
+		if (SeenMissiles.Contains(Pair.Key) || !S.Actor.IsValid() || S.GetProp(E_BrainParm) == 1) continue;
+		if (UDinkCreatureClassComponent* Body = NearestAttacker(Director, S.Actor->GetActorLocation(), T_Missile))
 			if (Body->PlayOneShot(EDinkCreatureOneShot::Attack)) ++Attacks;
 	}
 	SeenMissiles = MoveTemp(Missiles);
-	// Dink lost life with a biter beside him.
+	LastAttackWait = MoveTemp(AttackWaits);
+	// Dink lost life to a biter's touch: the touch damage list made that sprite his last_hit and started his touch
+	// immunity this frame (UDinkGameplay::RunThroughTouchDamageList). Any other loss of life (a hit, a spell, a load) is not
+	// a bite.
 	const UGameInstance* Instance = GetWorld() ? GetWorld()->GetGameInstance() : nullptr;
 	const UDinkFactSubsystem* Facts = Instance ? Instance->GetSubsystem<UDinkFactSubsystem>() : nullptr;
 	const int32 Life = Facts ? Facts->GetFact(TEXT("life")) : -1;
 	const FDinkSprite* Dink = Director.FindSprite(1);
-	if (LastLife >= 0 && Life >= 0 && Life < LastLife && Dink && Dink->Actor.IsValid())
-		if (UDinkCreatureClassComponent* Body = NearestAttacker(Director, Dink->Actor->GetActorLocation(), TEXT("touch")))
-			if (Body->PlayOneShot(EDinkCreatureOneShot::Attack)) ++Attacks;
+	if (LastLife >= 0 && Life >= 0 && Life < LastLife && Dink && Dink->bNoTouch && Dink->LastHit > 1)
+	{
+		const FDinkSprite* Biter = Director.FindSprite(Dink->LastHit);
+		UDinkCreatureClassComponent* Body = Biter && Biter->bActive ? UDinkCreatureSubsystem::FindClassBody(Biter->Actor.Get()) : nullptr;
+		if (AttackRow(Body, T_Touch) && Body->PlayOneShot(EDinkCreatureOneShot::Attack)) ++Attacks;
+	}
 	LastLife = Life;
 }
 

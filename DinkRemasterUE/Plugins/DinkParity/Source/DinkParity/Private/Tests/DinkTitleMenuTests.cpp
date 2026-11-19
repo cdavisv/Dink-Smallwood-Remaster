@@ -5,6 +5,7 @@
 #include "DinkTestHelpers.h"
 #include "DinkFactSubsystem.h"
 #include "DinkWorldStateSubsystem.h"
+#include "DinkDirector.h"
 #include "DinkNarrativeInput.h"
 #include "DinkStorySubsystem.h"
 #include "InputCoreTypes.h"
@@ -197,6 +198,103 @@ bool FDinkShowBmpMapTest::RunTest(const FString& Parameters)
 	return true;
 }
 
+namespace DinkTitleTest
+{
+	int32 BlockingTexts(const UDinkStorySubsystem* S)
+	{
+		int32 N = 0;
+		for (const FDinkActiveText& T : S->GetActiveTexts())
+		{
+			N += T.bBlocking ? 1 : 0;
+		}
+		return N;
+	}
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkShowBmpMapKeepsLineTest, "Dink.Narrative.Presentation.ShowBmpMapKeepsLine",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FDinkShowBmpMapKeepsLineTest::RunTest(const FString& Parameters)
+{
+	// ThinkShowBmp (dink.cpp:16722-16740): the button that closes the map runs on only the script that showed it. A say_stop
+	// line that was up when the map opened (Dink is free while an NPC talks, so M opens the map) keeps its text, its voice
+	// and its script's wait; closing the map by key or by click must not skip it (review R8, 19 Nov 2026).
+	DinkTitleTest::FEnv E = DinkTitleTest::Make(*this);
+	UDinkStorySubsystem* S = E.Story;
+	if (!S->IsReady())
+	{
+		return false;
+	}
+	S->bNewGamePending = false;
+	const int32 Mom = S->GetDirector()->CreateVirtualSprite(1, 300, 200);
+	const int32 MomTalk = S->StartProcedure(TEXT("s1-h1-m"), TEXT("talk"), Mom);
+	S->Advance(0.0);
+	TestNotNull(TEXT("Mother's talk menu"), S->GetActiveMenu());
+	S->Choose(1); // 'Ask about your father': wait(200), then say_stop lines (s1-h1-m.c:109-115)
+	S->Advance(0.0);
+	S->Advance(0.21);
+	const FDinkScriptInstance* Talk = S->FindInstance(MomTalk);
+	TestTrue(TEXT("Mother's script waits on a say_stop line"), Talk && Talk->State == EDinkInstanceState::Blocked && Talk->Block == EDinkBlock::Say);
+	TestEqual(TEXT("one blocking line on screen"), DinkTitleTest::BlockingTexts(S), 1);
+
+	E.Facts->SetFact(TEXT("s2-map"), 1);
+	for (const bool bClick : { false, true })
+	{
+		const int32 Map = S->StartProcedure(TEXT("button6"), TEXT("main"), 1);
+		S->RunUntilIdle();
+		TestNotNull(TEXT("the map is up over the line"), S->GetShownBitmap());
+		const bool bUsed = bClick ? E.Input->ProcessMouseDown(EKeys::LeftMouseButton) : E.Input->ProcessKeyDown(EKeys::M);
+		TestTrue(bClick ? TEXT("a click closes the map") : TEXT("M closes the map"), bUsed);
+		TestNull(TEXT("the map is closed"), S->GetShownBitmap());
+		TestEqual(TEXT("the say_stop line is still on screen"), DinkTitleTest::BlockingTexts(S), 1);
+		Talk = S->FindInstance(MomTalk);
+		TestTrue(TEXT("Mother's script still waits on its line"), Talk && Talk->State == EDinkInstanceState::Blocked && Talk->Block == EDinkBlock::Say);
+		S->RunUntilIdle();
+		TestTrue(TEXT("button6 ran on and ended"), !S->FindInstance(Map) || !S->FindInstance(Map)->IsAlive());
+		if (bClick)
+		{
+			E.Input->ProcessMouseUp(EKeys::LeftMouseButton);
+		}
+		else
+		{
+			E.Input->ProcessKeyUp(EKeys::M);
+		}
+	}
+	TestTrue(TEXT("the line is skipped by the skip key as before"), S->SkipDialogue());
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkAttackKeyMenuGuardTest, "Dink.Narrative.Presentation.AttackKeyMenuGuard",
+	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FDinkAttackKeyMenuGuardTest::RunTest(const FString& Parameters)
+{
+	// The attack key chooses in a menu, but not within MouseConfirmGuardSeconds of the menu appearing (a fight's level-up
+	// menu, lraise.c, opens while the player mashes attack). Slate delivers keys before the world ticks, so the key path must
+	// observe the screen itself; before review R7 (19 Nov 2026) a key in the menu's first frame chose at once.
+	DinkTitleTest::FEnv E = DinkTitleTest::Make(*this);
+	UDinkStorySubsystem* S = E.Story;
+	if (!S->IsReady())
+	{
+		return false;
+	}
+	S->bNewGamePending = false;
+	TestTrue(TEXT("escape.c runs"), S->StartProcedure(TEXT("escape"), TEXT("main"), 1000) > 0);
+	S->RunUntilIdle();
+	const FDinkMenu* M = S->GetActiveMenu();
+	TestTrue(TEXT("the main menu is up (no input tick has seen it yet)"), M && M->Choices.Num() == 6);
+	E.Input->MouseConfirmGuardSeconds = 30.; // a wide guard: the test cannot be late for it
+	TestTrue(TEXT("F in the menu's first frame is used"), E.Input->ProcessKeyDown(EKeys::F));
+	E.Input->ProcessKeyUp(EKeys::F);
+	S->RunUntilIdle();
+	M = S->GetActiveMenu();
+	TestTrue(TEXT("but chose nothing: still the main menu"), M && M->Choices.Num() == 6);
+	TestTrue(TEXT("Enter is not guarded"), E.Input->ProcessKeyDown(EKeys::Enter));
+	E.Input->ProcessKeyUp(EKeys::Enter);
+	S->RunUntilIdle();
+	M = S->GetActiveMenu();
+	TestTrue(TEXT("Enter chose the first option: the ten slots and Nevermind"), M && M->Choices.Num() == 11);
+	return true;
+}
+
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkEscapeMenuControlsTest, "Dink.Narrative.Presentation.EscapeMenuControls",
 	EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FDinkEscapeMenuControlsTest::RunTest(const FString& Parameters)
@@ -219,6 +317,7 @@ bool FDinkEscapeMenuControlsTest::RunTest(const FString& Parameters)
 		return false;
 	}
 	TestEqual(TEXT("six options"), M->Choices.Num(), 6);
+	E.Input->MouseConfirmGuardSeconds = 0.; // the 0.3 s guard after a menu appears: Dink.Narrative.Presentation.AttackKeyMenuGuard
 	TestTrue(TEXT("F is used by the menu"), E.Input->ProcessKeyDown(EKeys::F));
 	E.Input->ProcessKeyUp(EKeys::F);
 	S->RunUntilIdle();

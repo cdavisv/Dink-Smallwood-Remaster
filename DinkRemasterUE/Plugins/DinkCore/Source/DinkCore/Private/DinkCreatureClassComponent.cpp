@@ -319,6 +319,8 @@ void UDinkCreatureClassComponent::BuildLayers(float DeltaTime)
 	if (!bPhaseAdvanced) CyclesPerSecond = 0.f;
 	if (Total > KINDA_SMALL_NUMBER) for (FDinkCreaturePoseLayer& Layer : Layers) Layer.Weight /= Total;
 	TArray<FDinkCreatureOverlay, TInlineAllocator<2>> Overlays;
+	// Each body its own fidget timing and picks (by its actor's name, the same every run; never the simulation's stream).
+	if (const AActor* Owner = GetOwner()) OneShots.SeedOnce(FCrc::StrCrc32(*Owner->GetName()));
 	OneShots.Step(Binding.ClassId, DeltaTime, Speed <= Binding.StationarySpeedCmS, Overlays);
 	if (UDinkCreatureAnimInstance* Animation = Cast<UDinkCreatureAnimInstance>(GetAnimInstance())) { Animation->SetLayers(Layers); Animation->SetOverlays(Overlays); }
 }

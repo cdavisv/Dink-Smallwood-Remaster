@@ -230,19 +230,28 @@ bool FDinkExpandedPlayTest::RunTest(const FString& Parameters)
 	Saved->Story = FDinkInkStory::StoryDataOverrideDir();
 	Saved->Extra = FDinkGameplayData::ExtraDataDirs();
 	// The switch on with the built packs, before PIE creates its game instance and world (as -DinkExpanded=1 does at start).
-	FString Error;
-	if (!TestTrue(TEXT("packs on"), DinkExpanded::ApplySwitch(true, {}, &Error)) || !DinkExpanded::GetRegistry().FindPack(TEXT("murkwood")))
+	// Every early return puts the switch back as it was: later tests in this process (Dink.Gameplay.Probe.* sorts after
+	// Dink.Expanded.*) must never run with the packs on (review R10, 19 Nov 2026).
+	const auto RestoreSwitch = [Saved]()
 	{
-		AddError(FString::Printf(TEXT("Murkwood pack not available: %s"), *Error));
 		DinkExpanded::ApplySwitch(false);
 		if (Saved->bWas)
 		{
 			DinkExpanded::ApplyForTest(Saved->Registry, Saved->Story, Saved->Extra.Num() ? Saved->Extra.Last() : FString());
 		}
+		FDinkInkStory::StoryDataOverrideDir() = Saved->Story; // as FDinkExpandedPlayCheck::Finish
+		FDinkGameplayData::ExtraDataDirs() = Saved->Extra;
+	};
+	FString Error;
+	if (!TestTrue(TEXT("packs on"), DinkExpanded::ApplySwitch(true, {}, &Error)) || !DinkExpanded::GetRegistry().FindPack(TEXT("murkwood")))
+	{
+		AddError(FString::Printf(TEXT("Murkwood pack not available: %s"), *Error));
+		RestoreSwitch();
 		return false;
 	}
 	if (!TestNotNull(TEXT("generated world loads"), UEditorLoadingAndSavingUtils::LoadMap(File)))
 	{
+		RestoreSwitch();
 		return false;
 	}
 	FAssetCompilingManager::Get().FinishAllCompilation();

@@ -242,10 +242,16 @@ void UDinkGreyboxSubsystem::UpdateLegacyCardVisibility(int32 ActiveScreenNumber)
 {
 	// Keep this independent of actor-hidden/vision, component-hidden and collision state.
 	// Those layers belong to scripts and authored replacements and must never be restored by culling.
+	// The flicker light and smoke plume of a placed effect hang under its card (#166): they follow the card's flag, both ways
+	// (UDinkArtFamilySubsystem::FollowCardVisibility; SetVisibility below does not propagate, so other children keep theirs).
 	if (ActiveScreenNumber <= 0 || CVarDinkLegacyCardsCurrentScreen.GetValueOnGameThread() == 0)
 	{
 		for (const auto& Entry : LegacyCardVisibility)
-			if (UPrimitiveComponent* Component=Entry.Key.Get()) Component->SetVisibility(Entry.Value);
+			if (UPrimitiveComponent* Component=Entry.Key.Get())
+			{
+				Component->SetVisibility(Entry.Value);
+				UDinkArtFamilySubsystem::FollowCardVisibility(Component);
+			}
 		LegacyCardVisibility.Reset();
 		return;
 	}
@@ -267,7 +273,10 @@ void UDinkGreyboxSubsystem::UpdateLegacyCardVisibility(int32 ActiveScreenNumber)
 		if (Component->GetVisibleFlag()!=bVisible) Component->SetVisibility(bVisible);
 	};
 	for (TActorIterator<ADinkPlaceholderActor> It(GetWorld());It;++It)
+	{
 		Apply(It->Card,It->ScreenNumber,It->ActorHasTag(TEXT("DinkAuthoredArt")));
+		UDinkArtFamilySubsystem::FollowCardVisibility(It->Card);
+	}
 	for (TActorIterator<ADinkGreyboxScreen> It(GetWorld());It;++It)
 	{
 		// Use original instance origin metadata; do not touch arbitrary authored ISMs on this actor.

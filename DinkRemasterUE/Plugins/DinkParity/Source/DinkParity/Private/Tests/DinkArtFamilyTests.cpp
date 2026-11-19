@@ -1,16 +1,25 @@
 // Sprite-family art binding (UDinkArtFamilySubsystem, Content/Dink/Data/Art/families.json): the resolver's precedence,
-// the fit maths, the shipped manifest, and a PIE check that a bound placement gets its mesh with its collision unchanged.
+// the fit maths, the shipped manifest, a PIE check that a bound placement gets its mesh with its collision unchanged, and
+// a placed fire's light and smoke following its card off the current screen (EffectFollowsCard).
 #include "DinkTestHelpers.h"
 #include "Materials/MaterialInterface.h"
 #include "DinkArtFamilySubsystem.h"
 #include "DinkFlickerLightComponent.h"
 #include "DinkOriginComponent.h"
 #include "DinkStorySubsystem.h"
+#include "DinkWorldLifeSubsystem.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "Greybox/DinkPlaceholderActor.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "AssetCompilingManager.h"
+#include "Components/BoxComponent.h"
+#include "Components/MaterialBillboardComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Engine/Engine.h"
+#include "GameFramework/Pawn.h"
+#include "GameFramework/PlayerController.h"
+#include "HAL/IConsoleManager.h"
+#include "Misc/ScopeExit.h"
 #include "Dom/JsonObject.h"
 #include "Editor.h"
 #include "Engine/StaticMesh.h"
@@ -489,5 +498,148 @@ bool FDinkArtFamilyPIETest::RunTest(const FString&)
 	ADD_LATENT_AUTOMATION_COMMAND(FStartPIECommand(false));
 	ADD_LATENT_AUTOMATION_COMMAND(FDinkArtFamilyPIECheck(this));
 	ADD_LATENT_AUTOMATION_COMMAND(FEndPlayMapCommand());
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkArtFamilyEffectFollowsCardTest, "Dink.Art.Family.EffectFollowsCard", DINK_TEST_FLAGS)
+bool FDinkArtFamilyEffectFollowsCardTest::RunTest(const FString&)
+{
+	// Review R11/R12 of #166/#193: DressPlacedEffect hangs a placed fire's flicker light and smoke column under its card, and
+	// dink.LegacyCardsCurrentScreen renders cards only on the current screen without propagating to children. Seen from 438,
+	// 440, 407 or 471 the flames of 439 were gone but the 7 m smoke columns and every fire's light still drew over the roof, and
+	// the world-life layer took the fires for unowned and drew a second fire at their 1997 ground point.
+	if (!IFileManager::Get().FileExists(*DinkArtFamily::DefaultFamiliesPath()))
+	{
+		AddWarning(TEXT("skipped: no families.json"));
+		return true;
+	}
+	UStaticMesh* Plane = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Plane.Plane"));
+	if (!TestNotNull(TEXT("engine card mesh"), Plane)) return false;
+	if (!LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Dink/Photoreal/FableF/MI_FX_Fire_Wall.MI_FX_Fire_Wall"), nullptr, LOAD_NoWarn | LOAD_Quiet) ||
+		!LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Dink/Photoreal/FableF/MI_FX_Smoke_Plume.MI_FX_Smoke_Plume"), nullptr, LOAD_NoWarn | LOAD_Quiet))
+	{
+		AddWarning(TEXT("skipped: the fire_fx materials are not imported"));
+		return true;
+	}
+	IConsoleVariable* Rule = IConsoleManager::Get().FindConsoleVariable(TEXT("dink.LegacyCardsCurrentScreen"));
+	if (!TestNotNull(TEXT("card rule registered"), Rule)) return false;
+	const int32 Previous = Rule->GetInt();
+	Rule->SetWithCurrentPriority(1);
+	ON_SCOPE_EXIT { Rule->SetWithCurrentPriority(Previous); };
+	UGameInstance* GI = NewObject<UGameInstance>(GEngine);
+	GI->InitializeStandalone();
+	UWorld* World = GI->GetWorld();
+	UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>();
+	UDinkArtFamilySubsystem* Family = World->GetSubsystem<UDinkArtFamilySubsystem>();
+	TArray<ADinkScreenVolume*> Rooms;
+	ON_SCOPE_EXIT
+	{
+		for (ADinkScreenVolume* V : Rooms) if (Greybox) Greybox->UnregisterScreen(V);
+		GI->Shutdown();
+		GEngine->DestroyWorldContext(World);
+		World->DestroyWorld(false);
+	};
+	if (!TestNotNull(TEXT("greybox subsystem"), Greybox) || !TestNotNull(TEXT("family subsystem"), Family)) return false;
+	APlayerController* PC = World->GetFirstPlayerController();
+	if (!PC)
+	{
+		PC = World->SpawnActor<APlayerController>();
+		World->AddController(PC);
+	}
+	APawn* Pawn = World->SpawnActor<APawn>();
+	USceneComponent* PawnRoot = NewObject<USceneComponent>(Pawn);
+	Pawn->SetRootComponent(PawnRoot);
+	PawnRoot->RegisterComponent();
+	PC->Possess(Pawn);
+	auto Room = [&](int32 Number, double X)
+	{
+		ADinkScreenVolume* V = World->SpawnActor<ADinkScreenVolume>();
+		V->ScreenNumber = Number;
+		V->Corners.NW = FVector2D(X, 0);
+		V->Corners.NE = FVector2D(X + 6, 0);
+		V->Corners.SW = FVector2D(X, 4);
+		V->Corners.SE = FVector2D(X + 6, 4);
+		FBox Box(ForceInit);
+		Box += V->MapPixelToWorld(0, 0);
+		Box += V->MapPixelToWorld(600, 400);
+		V->Bounds->SetMobility(EComponentMobility::Movable);
+		V->SetActorLocation(Box.GetCenter());
+		V->Bounds->SetBoxExtent(Box.GetExtent() + FVector(0, 0, 1000));
+		V->Bounds->UpdateBounds();
+		Greybox->RegisterScreen(V);
+		Rooms.Add(V);
+		return V;
+	};
+	ADinkScreenVolume* House = Room(439, 0);
+	ADinkScreenVolume* West = Room(438, 10);
+	ADinkGreyboxScreen* Ground = World->SpawnActor<ADinkGreyboxScreen>();  // the family layer runs only in a world with greybox screens
+	Ground->ScreenNumber = 439;
+	auto Fire = [&](const ADinkScreenVolume& Screen, int32 Index)
+	{
+		ADinkPlaceholderActor* A = World->SpawnActor<ADinkPlaceholderActor>(Screen.MapPixelToWorld(300, 200), FRotator::ZeroRotator);
+		A->ScreenNumber = Screen.ScreenNumber;
+		A->Card->SetStaticMesh(Plane);
+		A->Card->SetRelativeLocation(FVector(0.0, 0.0, 50.0));
+		A->Origin->OriginId = FDinkOriginId(Screen.ScreenNumber, Index);
+		A->Origin->Sequence = 427;  // graphics/effects/fire, class fire_fx (sprite_classes.csv)
+		A->Origin->Frame = 1;
+		A->Origin->ClassId = TEXT("fire_fx");
+		return A;
+	};
+	ADinkPlaceholderActor* Roof = Fire(*House, 5);  // S439_P05: a roof fire with a smoke column (families.json effect_plume)
+	ADinkPlaceholderActor* Late = Fire(*West, 97);  // a fire of 438, dressed while its card is not rendered
+	Family->OnWorldBeginPlay(*World);
+	if (!TestTrue(TEXT("family layer ready with the shipped families.json"), Family->IsReady())) return false;
+	auto Stand = [&](const ADinkScreenVolume& Screen)
+	{
+		Pawn->SetActorLocation(Screen.MapPixelToWorld(300, 200));
+		Greybox->RefreshCurrentScreen();
+	};
+
+	Stand(*House);
+	if (!TestTrue(TEXT("Dink is on 439"), Greybox->GetCurrentScreen() == House)) return false;
+	UDinkFlickerLightComponent* Light = Roof->FindComponentByClass<UDinkFlickerLightComponent>();
+	UMaterialBillboardComponent* Plume = Roof->FindComponentByClass<UMaterialBillboardComponent>();
+	if (!TestNotNull(TEXT("the roof fire is dressed with its light"), Light) || !TestNotNull(TEXT("and with its smoke column"), Plume)) return false;
+	TestTrue(TEXT("on 439: card, light and smoke draw"), Roof->Card->GetVisibleFlag() && Light->GetVisibleFlag() && Plume->GetVisibleFlag());
+	TestTrue(TEXT("on 439: the art layer owns the fire"), DinkWorldLife::IsFamilyEffect(Roof));
+	// Children of a card that are not the effect's keep their own flag: one shown, one hidden by whoever made it.
+	auto Child = [&](const TCHAR* Name, bool bVisible)
+	{
+		UStaticMeshComponent* C = NewObject<UStaticMeshComponent>(Roof, Name);
+		C->SetMobility(EComponentMobility::Movable);
+		C->SetupAttachment(Roof->Card);
+		Roof->AddInstanceComponent(C);
+		C->RegisterComponent();
+		C->SetVisibility(bVisible);
+		return C;
+	};
+	UStaticMeshComponent* OtherShown = Child(TEXT("OtherShown"), true);
+	UStaticMeshComponent* OtherHidden = Child(TEXT("OtherHidden"), false);
+	TestFalse(TEXT("438's card is not rendered while Dink is on 439"), Late->Card->GetVisibleFlag());
+	Family->ApplyScreen(438);  // what the environment layer's neighbour dressing does
+	UDinkFlickerLightComponent* LateLight = Late->FindComponentByClass<UDinkFlickerLightComponent>();
+	if (!TestNotNull(TEXT("the 438 fire is dressed with its light"), LateLight)) return false;
+	TestFalse(TEXT("dressed off its screen: its light starts as its card is, not rendered"), LateLight->GetVisibleFlag());
+
+	Stand(*West);
+	TestFalse(TEXT("on 438: 439's card is not rendered"), Roof->Card->GetVisibleFlag());
+	TestFalse(TEXT("on 438: nor its light"), Light->GetVisibleFlag());
+	TestFalse(TEXT("on 438: nor its smoke column"), Plume->GetVisibleFlag());
+	TestTrue(TEXT("on 438: another child of the card keeps its flag (shown)"), OtherShown->GetVisibleFlag());
+	TestFalse(TEXT("on 438: another child of the card keeps its flag (hidden)"), OtherHidden->GetVisibleFlag());
+	TestTrue(TEXT("on 438: the art layer still owns 439's fire (the world-life layer adds none)"), DinkWorldLife::IsFamilyEffect(Roof));
+	TestTrue(TEXT("on 438: 438's fire and its light draw"), Late->Card->GetVisibleFlag() && LateLight->GetVisibleFlag());
+
+	Stand(*House);
+	TestTrue(TEXT("back on 439: card, light and smoke draw again"), Roof->Card->GetVisibleFlag() && Light->GetVisibleFlag() && Plume->GetVisibleFlag());
+	TestFalse(TEXT("back on 439: 438's light is not rendered"), LateLight->GetVisibleFlag());
+	TestTrue(TEXT("back on 439: the other children are as they were"), OtherShown->GetVisibleFlag() && !OtherHidden->GetVisibleFlag());
+
+	Rule->SetWithCurrentPriority(0);
+	Greybox->RefreshCurrentScreen();
+	TestTrue(TEXT("rule off: every fire, light and smoke column draws as dressed"),
+		Roof->Card->GetVisibleFlag() && Light->GetVisibleFlag() && Plume->GetVisibleFlag() && Late->Card->GetVisibleFlag() && LateLight->GetVisibleFlag());
+	TestTrue(TEXT("rule off: the other children are as they were"), OtherShown->GetVisibleFlag() && !OtherHidden->GetVisibleFlag());
 	return true;
 }

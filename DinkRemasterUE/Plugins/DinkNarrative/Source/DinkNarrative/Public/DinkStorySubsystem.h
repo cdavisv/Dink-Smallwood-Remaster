@@ -411,6 +411,8 @@ public:
 	void NoteShownBitmap(int32 InstanceId, const FString& Name);
 	/** The show_bmp picture the player is looking at (its script still waits for the key), null if none. */
 	const FDinkShownBitmap* GetShownBitmap() const;
+	/** Closes the show_bmp picture: only its script runs on (ThinkShowBmp); blocking lines stay. False if none is up. */
+	bool CloseShownBitmap();
 
 	/** Black-screen amount 0..1 (fade_down/fade_up). */
 	float GetFadeAlpha() const;

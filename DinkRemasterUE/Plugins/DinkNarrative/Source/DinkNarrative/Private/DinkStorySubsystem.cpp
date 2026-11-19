@@ -843,6 +843,27 @@ bool UDinkStorySubsystem::SkipDialogue()
 	return bSkipped;
 }
 
+bool UDinkStorySubsystem::CloseShownBitmap()
+{
+	// ThinkShowBmp (dink.cpp:16722-16740): a button closes the picture and runs on only the script that showed it.
+	// Blocking say_stop lines and other wait_for_button scripts are left alone (SkipDialogue would end them too).
+	if (ShownBitmap.InstanceId == 0)
+	{
+		return false;
+	}
+	for (const TUniquePtr<FDinkScriptInstance>& I : Instances)
+	{
+		if (I->Id == ShownBitmap.InstanceId && I->State == EDinkInstanceState::Blocked && I->Block == EDinkBlock::Button)
+		{
+			I->State = EDinkInstanceState::Running;
+			I->Block = EDinkBlock::None;
+			AddEvent(TEXT("skip"), FString());
+			return true;
+		}
+	}
+	return false;
+}
+
 void UDinkStorySubsystem::NoteShownBitmap(int32 InstanceId, const FString& Name)
 {
 	ShownBitmap.InstanceId = InstanceId;

@@ -22,7 +22,7 @@ struct FPoseContext;
  *
  * Data: `one_shots` inside a class row of Content/Dink/Data/Art/creatures.json:
  *   {"hit":    {"clip": path, "blend_in_s": .05, "blend_out_s": .2, "rate": 1, "mask": "spine_01"},
- *    "attack": {"clip": path, ..., "trigger": "missile" | "touch", "radius_cm": 400},
+ *    "attack": {"clip": path, ..., "trigger": "cast" | "missile" | "touch", "radius_cm": 400},
  *    "death":  {"clip": path, "blend_in_s": .08, "rate": 1},
  *    "burst_death": {"clip": path},
  *    "idle":   {"clips": [path, ...], "every_s": [5, 12]}}
@@ -69,7 +69,9 @@ struct DINKCORE_API FDinkCreatureOneShotRow
 	FDinkCreatureOneShotSpec BurstDeath;
 	TArray<FDinkCreatureOneShotSpec> Idle;
 	float IdleEveryMinS = 5.f, IdleEveryMaxS = 12.f;
-	/** "missile": a missile sprite (brain 11 or 17) appears within AttackRadiusCm; "touch": Dink loses life within it. */
+	/** "cast": the body's own ATTACK runs (its attack_wait jumps: the dragons' harm spell); "missile": a missile sprite
+	 *  (brain 11 or 17) not fired by Dink appears within AttackRadiusCm; "touch": Dink loses life to this body's touch
+	 *  damage (UDinkCreatureEventSubsystem). */
 	FName AttackTrigger;
 	float AttackRadiusCm = 350.f;
 };
@@ -98,6 +100,10 @@ struct DINKCORE_API FDinkCreatureOneShotPlayer
 	void Step(FName ClassId, float DeltaTime, bool bStanding, TArray<FDinkCreatureOverlay, TInlineAllocator<2>>& Out);
 	bool IsPlaying() const { return Active.Num() > 0; }
 	int32 GetPlayed() const { return Played; }
+	/** Seeds this body's own stream once (before its first step): bodies of one class must not fidget in step. */
+	void SeedOnce(uint32 Seed) { if (!bSeeded) { Random.Initialize(int32(Seed & 0x7fffffff)); bSeeded = true; } }
+	/** A shot that is cut (a new one of its kind, a hit over a fidget, a fidget when the body walks) fades out over this. */
+	static constexpr float CutFadeS = .12f;
 private:
 	struct FShot
 	{
@@ -105,12 +111,17 @@ private:
 		FDinkCreatureOneShotSpec Spec;
 		EDinkCreatureOneShot Kind = EDinkCreatureOneShot::Hit;
 		float Time = 0.f;
+		/** Fading out after a cut: seconds left of FadeTotal (negative: not fading). */
+		float FadeLeft = -1.f, FadeTotal = 0.f;
+		bool IsFading() const { return FadeLeft >= 0.f; }
 	};
-	TArray<FShot, TInlineAllocator<2>> Active;
+	void Cut(FShot& Shot, float FadeS);
+	TArray<FShot, TInlineAllocator<4>> Active;
 	float NextIdle = -1.f, StandTime = 0.f;
 	int32 Played = 0;
-	/** Its own numbers: nothing of the simulation's random stream is read or advanced. */
+	/** Its own numbers: nothing of the simulation's random stream is read or advanced (seeded per body: SeedOnce). */
 	FRandomStream Random{1997};
+	bool bSeeded = false;
 };
 
 /**
@@ -153,6 +164,8 @@ private:
 		const UAnimSequence* Clip = nullptr;
 		/** The body's layers when it was killed: faded out under the clip. */
 		TArray<FDinkCreatureLayerCopy> From;
+		/** The one-shots over them at the kill (a flinch, a strike): held at their kill frame and faded out with them. */
+		TArray<FDinkCreatureOverlay> FromOverlays;
 		float Time = 0.f, Rate = 1.f, BlendIn = .08f;
 		FVector AlignCm = FVector::ZeroVector;
 		/** Burst deaths and review copies have no corpse; a burst is made by AtEnd. */

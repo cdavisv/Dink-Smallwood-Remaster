@@ -768,7 +768,11 @@ void UDinkArtFamilySubsystem::Deinitialize()
 
 void UDinkArtFamilySubsystem::ScreenChanged(ADinkScreenVolume* Screen)
 {
-	if (Screen) ApplyScreen(Screen->ScreenNumber);
+	if (!Screen) return;  // between screens: Dink is still on the last one
+	CurrentScreen = Screen->ScreenNumber;
+	ApplyScreen(Screen->ScreenNumber);
+	// A208 copies showing different pictures (or a card): the copy of the screen Dink is on draws their object now.
+	UDinkFamilyDuplicatesSubsystem::ScreenChanged(*this);
 }
 
 void UDinkArtFamilySubsystem::BuildIndex(UWorld& World)
@@ -989,12 +993,15 @@ bool UDinkArtFamilySubsystem::SetPlacementPicture(ADinkPlaceholderActor& Actor, 
 	const bool bImported = Sequence <= 0 || (Sequence == Actor.Origin->Sequence && Frame == Actor.Origin->Frame && bScripted == !Actor.Origin->ScriptName.IsNone());
 	if (bImported ? !Known : (Known && Known->Sequence == Sequence && Known->Frame == Frame && Known->bScripted == bScripted))
 	{
-		return Actor.ActorHasTag(FamilyTag);
+		return Actor.ActorHasTag(FamilyTag) && !Actor.ActorHasTag(UDinkFamilyDuplicatesSubsystem::DroppedTag);
 	}
 	if (bImported) PlacementPictures.Remove(&Actor);
 	else PlacementPictures.Add(&Actor, FPlacementPicture{Sequence, Frame, bScripted});
 	if (!bReady) return false;
 	if (!bIndexed) BuildIndex(*World);
+	// A208 (review R5/R6 of #192): a copy of a cross-screen duplicate gets back what that rule hid on it, so it is undressed and
+	// dressed below like any placement; PictureChanged then decides again which copy draws the object.
+	UDinkFamilyDuplicatesSubsystem::Restore(*this, Actor);
 	// Undo what DressActor did for the old picture (its FamilyArt parts and the hidden card), then dress from the new one.
 	TInlineComponentArray<UStaticMeshComponent*> Parts(&Actor);
 	bool bUndressed = false;
@@ -1012,6 +1019,10 @@ bool UDinkArtFamilySubsystem::SetPlacementPicture(ADinkPlaceholderActor& Actor, 
 		Actor.Tags.Remove(FamilyTag);
 		if (Actor.Card) Actor.Card->SetHiddenInGame(false);
 	}
+	// Copies that showed one picture may show two now (1997 then draws the copy of the screen Dink is on, with its own picture),
+	// or one again: the duplicate rule hides every copy but the one that draws, and dresses that one if it was hidden undressed.
+	UDinkFamilyDuplicatesSubsystem::PictureChanged(*this, Actor);
+	if (Actor.ActorHasTag(UDinkFamilyDuplicatesSubsystem::DroppedTag)) return false;
 	// A screen not yet activated is dressed by ApplyScreen, from the picture registered above.
 	return AppliedScreens.Contains(Actor.ScreenNumber) && DressActor(Actor);
 }
@@ -1066,17 +1077,10 @@ int32 UDinkArtFamilySubsystem::ApplyScreen(int32 ScreenNumber)
 	return Count;
 }
 
-bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
+FDinkFamilyPlacement UDinkArtFamilySubsystem::PlacementOf(ADinkPlaceholderActor& Actor) const
 {
-	UStaticMeshComponent* Card = Actor.Card;
-	if (!Actor.Origin || !Card || !Card->GetStaticMesh() || !Actor.GetRootComponent()) return false;
-	// Whatever the art runtime already took over at play start, whatever this layer dressed before.
-	if (Actor.ActorHasTag(FamilyTag) || Actor.ActorHasTag(TEXT("DinkAuthoredArt")) || Actor.ActorHasTag(TEXT("DinkHumanoid")) ||
-		Actor.ActorHasTag(TEXT("DinkCreature")) || Card->bHiddenInGame)
-	{
-		return false;
-	}
 	FDinkFamilyPlacement P;
+	if (!Actor.Origin) return P;
 	P.Origin = Actor.Origin->OriginId.ToString();
 	P.Screen = Actor.ScreenNumber;
 	P.Sequence = Actor.Origin->Sequence;
@@ -1093,6 +1097,49 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		P.ClassId = ClassOfPicture(Saved->Sequence, Saved->Frame);
 		P.bScripted = Saved->bScripted;
 	}
+	return P;
+}
+
+void UDinkArtFamilySubsystem::ShownPicture(ADinkPlaceholderActor& Actor, int32& OutSequence, int32& OutFrame) const
+{
+	OutSequence = Actor.Origin ? Actor.Origin->Sequence : 0;
+	OutFrame = Actor.Origin ? Actor.Origin->Frame : 0;
+	if (const FPlacementPicture* Saved = PlacementPictures.Find(&Actor))
+	{
+		OutSequence = Saved->Sequence;
+		OutFrame = Saved->Frame;
+	}
+}
+
+bool UDinkArtFamilySubsystem::WouldDressMesh(ADinkPlaceholderActor& Actor) const
+{
+	if (!bReady || !Actor.Origin) return false;
+	const FDinkFamilyBinding* B = nullptr;
+	if (DinkArtFamily::Decide(PlacementOf(Actor), Precedence, Bindings, B) != EDinkFamilyDecision::Bound || !B || !B->Effect.IsEmpty() || B->Mesh.IsEmpty()) return false;
+	return Meshes.Contains(B->Mesh);  // every bound mesh was loaded at begin play; a missing one leaves the card
+}
+
+void UDinkArtFamilySubsystem::FollowCardVisibility(const USceneComponent* Card)
+{
+	if (!Card) return;
+	const bool bVisible = Card->GetVisibleFlag();
+	for (USceneComponent* Child : Card->GetAttachChildren())
+	{
+		if (Child && Child->ComponentHasTag(FamilyTag) && Child->GetVisibleFlag() != bVisible) Child->SetVisibility(bVisible);
+	}
+}
+
+bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
+{
+	UStaticMeshComponent* Card = Actor.Card;
+	if (!Actor.Origin || !Card || !Card->GetStaticMesh() || !Actor.GetRootComponent()) return false;
+	// Whatever the art runtime already took over at play start, whatever this layer dressed before.
+	if (Actor.ActorHasTag(FamilyTag) || Actor.ActorHasTag(TEXT("DinkAuthoredArt")) || Actor.ActorHasTag(TEXT("DinkHumanoid")) ||
+		Actor.ActorHasTag(TEXT("DinkCreature")) || Card->bHiddenInGame)
+	{
+		return false;
+	}
+	const FDinkFamilyPlacement P = PlacementOf(Actor);
 	const FDinkFamilyBinding* B = nullptr;
 	const EDinkFamilyDecision Decision = DinkArtFamily::Decide(P, Precedence, Bindings, B);
 	DecisionCounts.FindOrAdd(Decision)++;
@@ -1245,6 +1292,9 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 		Smoke->SetWorldLocation(Card->GetComponentLocation() + Card->GetComponentRotation().RotateVector(
 			FVector(Unit.GetCenter().X * NewScale.X, -6.0, Unit.Min.Z * NewScale.Z + Height * Binding.EffectSink + FlameTop + Binding.EffectPlumeSizeCm.Y * 0.5)));
 	}
+	// A neighbour screen is dressed while its cards are not rendered (dink.LegacyCardsCurrentScreen): the light and the smoke
+	// column start as the card is, never as a lit 7 m column over flames that are not drawn (review R11 of #166).
+	FollowCardVisibility(Card);
 	Actor.Tags.AddUnique(FamilyTag);
 	return true;
 }
