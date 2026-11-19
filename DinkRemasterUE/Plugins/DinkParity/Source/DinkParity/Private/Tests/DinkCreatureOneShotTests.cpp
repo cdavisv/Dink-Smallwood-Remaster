@@ -59,7 +59,7 @@ bool FDinkCreatureOneShotRowsTest::RunTest(const FString&)
 	const FDinkCreatureOneShotRow* Dragon = DinkCreatureOneShots::Find(TEXT("dragon"));
 	if (Dragon)
 	{
-		TestEqual(TEXT("the dragon strikes when its fire appears"), Dragon->AttackTrigger, FName(TEXT("missile")));
+		TestEqual(TEXT("the dragon strikes when it casts (its attack_wait jumps): it never fires a missile in 1997 (en-drag.c)"), Dragon->AttackTrigger, FName(TEXT("cast")));
 		TestEqual(TEXT("over its walk: chest, neck and head only"), Dragon->Attack.MaskRoot, FName(TEXT("spine_02")));
 	}
 	if (const FDinkCreatureOneShotRow* Slime = DinkCreatureOneShots::Find(TEXT("slime_red"))) TestEqual(TEXT("a slime bites when Dink loses life beside it"), Slime->AttackTrigger, FName(TEXT("touch")));
@@ -113,8 +113,51 @@ bool FDinkCreatureOneShotPlayerTest::RunTest(const FString&)
 	if (DinkCreatureOneShots::Find(TEXT("duck")) && DinkCreatureOneShots::Load(DinkCreatureOneShots::Find(TEXT("duck"))->Idle[0]))
 	{
 		TestTrue(TEXT("a standing duck pecks or quacks now and then (every 4 to 10 s)"), Duck.GetPlayed() >= 2 && Duck.GetPlayed() <= 7);
+		// Walking off lets the fidget go, faded out (a cut snapped the duck upright: review R3, 19 Nov 2026).
+		// Stand until a fidget is well under way (its weight past one half), then walk.
+		float Standing = 0.f;
+		for (int32 I = 0; I < 60 * 15 && Standing < .5f; ++I)
+		{
+			Duck.Step(TEXT("duck"), 1.f / 60.f, true, Out);
+			Standing = Out.Num() ? Out.Last().Weight : 0.f;
+		}
+		TestTrue(TEXT("a fidget plays at more than half weight"), Standing >= .5f);
 		Duck.Step(TEXT("duck"), 1.f / 60.f, false, Out);
-		TestEqual(TEXT("walking off ends a fidget at once"), Out.Num(), 0);
+		const float FirstWalking = Out.Num() ? Out.Last().Weight : 0.f;
+		TestTrue(FString::Printf(TEXT("walking off fades the fidget (%.3f -> %.3f), no pop"), Standing, FirstWalking), FirstWalking > .5f * Standing && FirstWalking <= Standing + .05f);
+		for (int32 I = 0; I < 60; ++I) Duck.Step(TEXT("duck"), 1.f / 60.f, false, Out);
+		TestEqual(TEXT("and it is gone within a second of walking"), Out.Num(), 0);
+		// Two ducks on one screen fidget on their own clocks (each body seeds its own stream: review R4).
+		auto FirstFidget = [&Out](FDinkCreatureOneShotPlayer& P)
+		{
+			for (int32 I = 0; I < 60 * 25; ++I) { P.Step(TEXT("duck"), 1.f / 60.f, true, Out); if (Out.Num()) return I; }
+			return -1;
+		};
+		FDinkCreatureOneShotPlayer A, B, C;
+		A.SeedOnce(FCrc::StrCrc32(TEXT("DinkPlaceholder_S029_P04")));
+		B.SeedOnce(FCrc::StrCrc32(TEXT("DinkPlaceholder_S029_P05")));
+		C.SeedOnce(FCrc::StrCrc32(TEXT("DinkPlaceholder_S029_P04")));
+		const int32 FA = FirstFidget(A), FB = FirstFidget(B), FC = FirstFidget(C);
+		AddInfo(FString::Printf(TEXT("SEEDS: first fidget at frame %d (P04), %d (P05), %d (P04 again)"), FA, FB, FC));
+		TestNotEqual(TEXT("two bodies do not peck in step"), FA, FB);
+		TestEqual(TEXT("the same body is the same every run"), FA, FC);
+	}
+	// A second hit restarts the flinch over the running one: the old one fades out under it (review R3).
+	{
+		FDinkCreatureOneShotPlayer Twice;
+		Twice.Play(TEXT("bonca_gray"), EDinkCreatureOneShot::Hit);
+		float Held = 0.f;
+		for (float T = 0.f; T < Length * .5f; T += 1.f / 60.f) { Twice.Step(TEXT("bonca_gray"), 1.f / 60.f, false, Out); Held = Out.Num() ? Out.Last().Weight : 0.f; }
+		TestTrue(TEXT("the second hit plays"), Twice.Play(TEXT("bonca_gray"), EDinkCreatureOneShot::Hit));
+		Twice.Step(TEXT("bonca_gray"), 1.f / 60.f, false, Out);
+		float Strongest = 0.f;
+		for (const FDinkCreatureOverlay& O : Out) Strongest = FMath::Max(Strongest, O.Weight);
+		AddInfo(FString::Printf(TEXT("REPEAT HIT: held %.3f, then %d overlays, strongest %.3f, newest at %.3f s"), Held, Out.Num(), Strongest, Out.Num() ? Out.Last().Time : -1.f));
+		TestEqual(TEXT("old and new flinch both blend in the first frame"), Out.Num(), 2);
+		TestTrue(TEXT("the body does not snap towards neutral"), Strongest > .8f * Held);
+		TestTrue(TEXT("the new flinch blends last (on top)"), Out.Num() == 2 && Out.Last().Time < Out[0].Time);
+		for (int32 I = 0; I < 10; ++I) Twice.Step(TEXT("bonca_gray"), 1.f / 60.f, false, Out);
+		TestEqual(TEXT("the cut flinch is gone after its fade (0.12 s)"), Out.Num(), 1);
 	}
 	// Switched off: nothing.
 	IConsoleVariable* Off = IConsoleManager::Get().FindConsoleVariable(TEXT("dink.Creature.OneShots"));
@@ -219,6 +262,96 @@ namespace DinkCreatureOneShotTest
 			World->DestroyWorld(false);
 		}
 	};
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkCreatureOneShotTriggersTest, "Dink.Creature.OneShots.AttackTriggers", DINK_TEST_FLAGS)
+bool FDinkCreatureOneShotTriggersTest::RunTest(const FString&)
+{
+	// Review R1/R2 (19 Nov 2026): the dragon strikes when its own ATTACK runs (en-drag.c attack() sets sp_attack_wait and casts
+	// harm; it never fires a missile), not when Dink's fireball or arrow appears beside it; a slime bites only when its own
+	// touch damage costs Dink life, not on any loss of life near it.
+	using namespace DinkCreatureOneShotTest;
+	DinkCreatureOneShots::Reload();
+	IConsoleVariable* Art = IConsoleManager::Get().FindConsoleVariable(TEXT("dink.CreatureClassArt"));
+	const int32 ArtBefore = Art->GetInt();
+	Art->Set(2, ECVF_SetByCode);
+	ON_SCOPE_EXIT { Art->Set(ArtBefore, ECVF_SetByCode); };
+	UStaticMesh* Plane = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Plane.Plane"));
+	int32 Checked = 0;
+	{
+		FBoncaScene Scene;
+		if (!TestTrue(TEXT("dragon scene starts"), Scene.Start(Plane, TEXT("dragon"), 201, nullptr, 1))) return false;
+		ON_SCOPE_EXIT { Scene.Stop(); };
+		for (int32 I = 0; I < 10; ++I) Scene.Step(1.f / 60.f);
+		UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(Scene.Boncas[0]);
+		UDinkCreatureEventSubsystem* Events = Scene.World->GetSubsystem<UDinkCreatureEventSubsystem>();
+		if (!Body || !Events || !DinkCreatureOneShots::Load(DinkCreatureOneShots::Find(TEXT("dragon"))->Attack))
+		{
+			AddWarning(TEXT("dragon part skipped: the photoreal dragon or its attack clip is not imported here"));
+		}
+		else
+		{
+			++Checked;
+			const int32 Before = Events->GetAttacksStarted();
+			// Dink's fireball (item-fb.c: brain 11, brain_parm 1) and then any other missile appear beside the dragon.
+			for (const int32 Parm : {1, 0})
+			{
+				const FDinkSprite* Dragon = Scene.D->FindSprite(Scene.Handles[0]);
+				const int32 Missile = Scene.D->CreateVirtualSprite(Scene.Screen, Dragon->X + 20, Dragon->Y);
+				FDinkSprite* M = Scene.D->FindSprite(Missile);
+				M->Props.Add(TEXT("brain"), 11);
+				M->Props.Add(TEXT("brain_parm"), Parm);
+				AActor* Ball = Scene.World->SpawnActor<AActor>();
+				USceneComponent* Root = NewObject<USceneComponent>(Ball);
+				Ball->SetRootComponent(Root); Root->RegisterComponent();
+				Ball->SetActorLocation(Body->GetShownLocation() + FVector(60, 0, 0));
+				M->Actor = Ball;
+				Scene.Step(1.f / 60.f);
+			}
+			TestEqual(TEXT("missiles beside the dragon do not make it strike (it casts, it does not spit)"), Events->GetAttacksStarted(), Before);
+			// Its ATTACK runs: the script sets sp_attack_wait forward.
+			FDinkSprite* Dragon = Scene.D->FindSprite(Scene.Handles[0]);
+			Dragon->Props.Add(TEXT("attack_wait"), Dragon->GetProp(TEXT("attack_wait")) + 4000);
+			Scene.Step(1.f / 60.f);
+			TestEqual(TEXT("its own attack makes it strike once"), Events->GetAttacksStarted(), Before + 1);
+			TestTrue(TEXT("the strike plays"), Body->GetOneShots().IsPlaying());
+			Scene.Step(1.f / 60.f);
+			TestEqual(TEXT("and only once for one attack"), Events->GetAttacksStarted(), Before + 1);
+		}
+	}
+	{
+		FBoncaScene Scene;
+		if (!TestTrue(TEXT("slime scene starts"), Scene.Start(Plane, TEXT("slime_red"), 691, nullptr, 1))) return false;
+		ON_SCOPE_EXIT { Scene.Stop(); };
+		for (int32 I = 0; I < 10; ++I) Scene.Step(1.f / 60.f);
+		UDinkCreatureClassComponent* Body = UDinkCreatureSubsystem::FindClassBody(Scene.Boncas[0]);
+		UDinkCreatureEventSubsystem* Events = Scene.World->GetSubsystem<UDinkCreatureEventSubsystem>();
+		if (!Body || !Events || !DinkCreatureOneShots::Load(DinkCreatureOneShots::Find(TEXT("slime_red"))->Attack))
+		{
+			AddWarning(TEXT("slime part skipped: the photoreal slime or its attack clip is not imported here"));
+		}
+		else
+		{
+			++Checked;
+			// Dink stands on the slime.
+			FDinkSprite& Dink = Scene.D->GetDink();
+			Dink.Actor->SetActorLocation(Body->GetShownLocation());
+			const int32 Before = Events->GetAttacksStarted();
+			UDinkFactSubsystem* Facts = Scene.Story->GetFacts();
+			// Life lost to something else (a pillbug's hit, a spell, a load): no bite.
+			Dink.bNoTouch = false; Dink.LastHit = 0;
+			Facts->SetFact(TEXT("life"), Facts->GetFact(TEXT("life")) - 5);
+			Scene.Step(1.f / 60.f);
+			TestEqual(TEXT("a loss of life that is not its touch: no bite"), Events->GetAttacksStarted(), Before);
+			// Its touch damage: the touch list makes it Dink's last_hit and starts his touch immunity (dink.cpp:15639-15660).
+			Dink.bNoTouch = true; Dink.NoTouchUntilMs = 1.0e12; Dink.LastHit = Scene.Handles[0];
+			Facts->SetFact(TEXT("life"), Facts->GetFact(TEXT("life")) - 5);
+			Scene.Step(1.f / 60.f);
+			TestEqual(TEXT("its own touch damage: it bites"), Events->GetAttacksStarted(), Before + 1);
+		}
+	}
+	AddInfo(FString::Printf(TEXT("ATTACK TRIGGERS: %d of 2 parts checked"), Checked));
+	return true;
 }
 
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkCreatureOneShotSceneTest, "Dink.Creature.OneShots.HitDeathAndCorpseHandover", DINK_TEST_FLAGS)

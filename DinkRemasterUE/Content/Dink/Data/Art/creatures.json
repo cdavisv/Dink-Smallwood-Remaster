@@ -1750,7 +1750,7 @@
           "blend_in_s": 0.08,
           "blend_out_s": 0.3,
           "mask": "spine_02",
-          "trigger": "missile",
+          "trigger": "cast",
           "radius_cm": 600
         },
         "death": {

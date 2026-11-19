@@ -191,21 +191,131 @@ void UDinkFamilyDuplicatesSubsystem::EnsureBuilt(UDinkArtFamilySubsystem& Famili
 		[&Families](const ADinkPlaceholderActor& A) { return A.Origin && Families.IsCollisionFitRequested(A.Origin->OriginId); }, All);
 	DinkFamilyDuplicates::Resolve(All, Dropped);
 	Copies = All.Num();
+	// Groups: the kept copy first, then its dropped copies (sorted, so the order never depends on the actor iteration).
+	TArray<FString> DroppedOrigins;
+	Dropped.GenerateKeyArray(DroppedOrigins);
+	DroppedOrigins.Sort();
+	for (const FString& Origin : DroppedOrigins)
+	{
+		const FString& Kept = Dropped[Origin];
+		int32 Index = GroupOf.FindRef(Kept, INDEX_NONE);
+		if (Index == INDEX_NONE)
+		{
+			Index = Groups.Num();
+			FGroup& Group = Groups.AddDefaulted_GetRef();
+			Group.Members.Add(Kept);
+			Group.Drawer = Kept;
+			GroupOf.Add(Kept, Index);
+		}
+		Groups[Index].Members.Add(Origin);
+		GroupOf.Add(Origin, Index);
+	}
+	for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
+	{
+		if (!It->Origin) continue;
+		const FString Origin = It->Origin->OriginId.ToString();
+		if (GroupOf.Contains(Origin)) MemberActors.Add(Origin, *It);
+	}
+	for (FGroup& Group : Groups)
+		for (const FString& Member : Group.Members) Group.bHasInstance |= !MemberActors.Contains(Member);
 	// Dropped placement actors lose their card now, whichever screen is dressed first: until the kept copy's screen is
 	// dressed the kept card shows the object, after that its mesh. (A dropped background instance belongs to a decor
 	// component that is hidden as a whole only when its own screen is dressed; until then that card shows too.)
-	int32 Hidden = 0;
-	for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
-		if (It->Origin && Dropped.Contains(It->Origin->OriginId.ToString()) && It->Card)
-		{
-			It->Card->SetHiddenInGame(true);
-			It->Tags.AddUnique(UDinkArtFamilySubsystem::FamilyTag);
-			It->Tags.AddUnique(DroppedTag);
-			++Hidden;
-		}
+	// Refresh applies the drawer rule (DinkFamilyDuplicates.h): pictures registered before this build count already.
+	for (FGroup& Group : Groups) Refresh(Families, Group);
 	BuildMs = (FPlatformTime::Seconds() - Start) * 1000.0;
-	UE_LOG(LogDink, Display, TEXT("DINK FAMILY DUPLICATES: %d family copies, %d dropped as the same object as a kept copy on a neighbour screen (%d placement-actor cards hidden now; %.1f ms, once)"),
-		Copies, Dropped.Num(), Hidden, BuildMs);
+	UE_LOG(LogDink, Display, TEXT("DINK FAMILY DUPLICATES: %d family copies, %d dropped as the same object as a kept copy on a neighbour screen (%d groups, %d placement-actor copies hidden now; %.1f ms, once)"),
+		Copies, Dropped.Num(), Groups.Num(), Hidden.Num(), BuildMs);
+}
+
+FString UDinkFamilyDuplicatesSubsystem::GetDrawer(const FString& Origin) const
+{
+	const int32* Index = GroupOf.Find(Origin);
+	return Index ? Groups[*Index].Drawer : Origin;
+}
+
+FString UDinkFamilyDuplicatesSubsystem::PickDrawer(UDinkArtFamilySubsystem& Families, const FGroup& Group) const
+{
+	const FString& Kept = Group.Members[0];
+	ADinkPlaceholderActor* KeptActor = MemberActors.FindRef(Kept).Get();
+	if (Group.bHasInstance || !KeptActor) return Kept;
+	// One object while every copy shows the kept copy's picture (the saved editor_seq/editor_frame of dink.cpp:5829-5830
+	// or an animation picture with its own row count; a picture no layer registered is the imported one).
+	int32 KeptSequence = 0, KeptFrame = 0;
+	Families.ShownPicture(*KeptActor, KeptSequence, KeptFrame);
+	bool bReleased = false;
+	for (int32 Index = 1; Index < Group.Members.Num() && !bReleased; ++Index)
+	{
+		if (ADinkPlaceholderActor* Copy = MemberActors.FindRef(Group.Members[Index]).Get())
+		{
+			int32 Sequence = 0, Frame = 0;
+			Families.ShownPicture(*Copy, Sequence, Frame);
+			bReleased = Sequence != KeptSequence || Frame != KeptFrame;
+		}
+	}
+	// The kept copy's mesh draws everywhere; a card renders only on the current screen (dink.LegacyCardsCurrentScreen).
+	if (!bReleased && Families.WouldDressMesh(*KeptActor)) return Kept;
+	// 1997 shows the copy of the screen Dink is on, with its own picture.
+	const int32 Here = Families.GetCurrentScreen();
+	for (const FString& Member : Group.Members)
+	{
+		const ADinkPlaceholderActor* Copy = MemberActors.FindRef(Member).Get();
+		if (Copy && Here > 0 && Copy->ScreenNumber == Here) return Member;
+	}
+	return Kept;
+}
+
+void UDinkFamilyDuplicatesSubsystem::Refresh(UDinkArtFamilySubsystem& Families, FGroup& Group)
+{
+	const FString Drawer = PickDrawer(Families, Group);
+	if (Drawer != Group.Drawer)
+	{
+		UE_LOG(LogDink, Log, TEXT("Family duplicates: %s draws the object of %s now (%s)"), *Drawer, *FString::Join(Group.Members, TEXT(" ")),
+			Drawer == Group.Members[0] ? TEXT("the kept copy") : TEXT("the copy of the current screen, its own picture"));
+	}
+	// The drawer is set first: DressActor (from Unsuppress) asks DropActor, which reads it.
+	Group.Drawer = Drawer;
+	for (const FString& Member : Group.Members)
+	{
+		if (Member == Drawer) continue;
+		if (ADinkPlaceholderActor* Copy = MemberActors.FindRef(Member).Get()) Suppress(*Copy, Member);
+	}
+	if (ADinkPlaceholderActor* Copy = MemberActors.FindRef(Drawer).Get()) Unsuppress(Families, *Copy, Drawer, /*bDress*/ true);
+}
+
+void UDinkFamilyDuplicatesSubsystem::Suppress(ADinkPlaceholderActor& Actor, const FString& Origin)
+{
+	// Idempotent: whatever of the copy draws now (its card, its family parts) is hidden in game and remembered. Hidden, never
+	// destroyed: the copy that draws again later shows exactly what it showed (its variant, its player blocker, which follows it).
+	FHidden& Record = Hidden.FindOrAdd(Origin);
+	Actor.Tags.AddUnique(DroppedTag);
+	if (!Actor.ActorHasTag(UDinkArtFamilySubsystem::FamilyTag))
+	{
+		Actor.Tags.Add(UDinkArtFamilySubsystem::FamilyTag);  // DressActor leaves it alone
+		Record.bTagged = true;
+	}
+	auto Hide = [&Record](USceneComponent* Component)
+	{
+		if (!Component || Component->bHiddenInGame) return;
+		Component->SetHiddenInGame(true);
+		Record.Components.AddUnique(Component);
+	};
+	Hide(Actor.Card);
+	TInlineComponentArray<USceneComponent*> Parts(&Actor);
+	for (USceneComponent* Part : Parts)
+		if (Part != Actor.Card && Part->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)) Hide(Part);
+}
+
+void UDinkFamilyDuplicatesSubsystem::Unsuppress(UDinkArtFamilySubsystem& Families, ADinkPlaceholderActor& Actor, const FString& Origin, bool bDress)
+{
+	Actor.Tags.Remove(DroppedTag);
+	FHidden Record;
+	if (!Hidden.RemoveAndCopyValue(Origin, Record)) return;
+	for (const TWeakObjectPtr<USceneComponent>& Component : Record.Components)
+		if (USceneComponent* Shown = Component.Get()) Shown->SetHiddenInGame(false);
+	if (Record.bTagged) Actor.Tags.Remove(UDinkArtFamilySubsystem::FamilyTag);
+	// A copy hidden before it was dressed (the dropped copy at the build) gets its family mesh now, from its own picture.
+	if (bDress && !Actor.ActorHasTag(UDinkArtFamilySubsystem::FamilyTag) && Families.IsScreenApplied(Actor.ScreenNumber)) Families.DressActor(Actor);
 }
 
 UDinkFamilyDuplicatesSubsystem* UDinkFamilyDuplicatesSubsystem::For(UDinkArtFamilySubsystem& Families)
@@ -225,11 +335,10 @@ void UDinkFamilyDuplicatesSubsystem::Build(UDinkArtFamilySubsystem& Families)
 bool UDinkFamilyDuplicatesSubsystem::DropActor(UDinkArtFamilySubsystem& Families, ADinkPlaceholderActor& Actor, const FString& Origin)
 {
 	UDinkFamilyDuplicatesSubsystem* Self = For(Families);
-	if (!Self || !Self->Dropped.Contains(Origin)) return false;
-	// The kept copy draws this object (its card until its own screen is dressed, then its mesh); this card stays hidden.
-	if (Actor.Card) Actor.Card->SetHiddenInGame(true);
-	Actor.Tags.AddUnique(UDinkArtFamilySubsystem::FamilyTag);
-	Actor.Tags.AddUnique(DroppedTag);
+	const int32* Index = Self ? Self->GroupOf.Find(Origin) : nullptr;
+	if (!Index || Self->Groups[*Index].Drawer == Origin) return false;
+	// Another copy draws this object now (the kept copy: its card until its own screen is dressed, then its mesh); this stays hidden.
+	Self->Suppress(Actor, Origin);
 	return true;
 }
 
@@ -237,4 +346,26 @@ bool UDinkFamilyDuplicatesSubsystem::IsDroppedInstance(UDinkArtFamilySubsystem& 
 {
 	UDinkFamilyDuplicatesSubsystem* Self = For(Families);
 	return Self && Self->Dropped.Contains(Origin);
+}
+
+void UDinkFamilyDuplicatesSubsystem::Restore(UDinkArtFamilySubsystem& Families, ADinkPlaceholderActor& Actor)
+{
+	UDinkFamilyDuplicatesSubsystem* Self = For(Families);
+	if (!Self || !Actor.Origin) return;
+	const FString Origin = Actor.Origin->OriginId.ToString();
+	if (Self->GroupOf.Contains(Origin)) Self->Unsuppress(Families, Actor, Origin, /*bDress*/ false);
+}
+
+void UDinkFamilyDuplicatesSubsystem::PictureChanged(UDinkArtFamilySubsystem& Families, ADinkPlaceholderActor& Actor)
+{
+	UDinkFamilyDuplicatesSubsystem* Self = For(Families);
+	if (!Self || !Actor.Origin) return;
+	if (const int32* Index = Self->GroupOf.Find(Actor.Origin->OriginId.ToString())) Self->Refresh(Families, Self->Groups[*Index]);
+}
+
+void UDinkFamilyDuplicatesSubsystem::ScreenChanged(UDinkArtFamilySubsystem& Families)
+{
+	// About 170 groups of two to four copies (the build log): no world iteration.
+	if (UDinkFamilyDuplicatesSubsystem* Self = For(Families))
+		for (FGroup& Group : Self->Groups) Self->Refresh(Families, Group);
 }

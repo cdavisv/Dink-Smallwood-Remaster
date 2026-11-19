@@ -2,11 +2,14 @@
 // dust, sprite roles) and its data file. The layer itself draws nothing in a process that cannot render (these tests,
 // the probe): Dink.World.Headless checks that, so the probe traces cannot move.
 #include "DinkTestHelpers.h"
+#include "DinkArtFamilySubsystem.h"
 #include "DinkWorldLifeSubsystem.h"
 #include "DinkWorldLifePresenter.h"
+#include "Components/StaticMeshComponent.h"
 #include "Dom/JsonObject.h"
 #include "Engine/Engine.h"
 #include "Engine/World.h"
+#include "Greybox/DinkPlaceholderActor.h"
 #include "Misc/App.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
@@ -172,5 +175,29 @@ bool FDinkWorldHeadlessTest::RunTest(const FString&)
 	TestEqual(TEXT("no particles"), Life->GetLiveParticles(), 0);
 	const UDinkWorldLifePresenter* Presenter = World->GetSubsystem<UDinkWorldLifePresenter>();
 	TestTrue(TEXT("presenter step not registered"), !Presenter || !Presenter->IsPresenting());
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkWorldLifeFamilyEffectTest, "Dink.World.Life.FamilyEffectOwnedOffScreen", DINK_TEST_FLAGS)
+bool FDinkWorldLifeFamilyEffectTest::RunTest(const FString&)
+{
+	// Review R12 of #193/#166: this layer adds its own fire, smoke and light to a placed fire only where the art layer does not
+	// dress one. A dressed fire whose card is merely not rendered (dink.LegacyCardsCurrentScreen: not Dink's screen) stays the art
+	// layer's; before, seen from 438, 439's roof fires got a second fire and a 160 cd light at their 1997 ground point.
+	UWorld* World = UWorld::CreateWorld(EWorldType::Game, false);
+	if (!TestNotNull(TEXT("scratch world"), World)) return false;
+	GEngine->CreateNewWorldContext(EWorldType::Game).SetCurrentWorld(World);
+	ON_SCOPE_EXIT { GEngine->DestroyWorldContext(World); World->DestroyWorld(false); };
+	ADinkPlaceholderActor* Fire = World->SpawnActor<ADinkPlaceholderActor>();
+	if (!TestNotNull(TEXT("a fire placement"), Fire) || !TestNotNull(TEXT("with its card"), Fire->Card.Get())) return false;
+	TestFalse(TEXT("no actor"), DinkWorldLife::IsFamilyEffect(nullptr));
+	TestFalse(TEXT("a fire placement the art layer does not dress is this layer's fire"), DinkWorldLife::IsFamilyEffect(Fire));
+	Fire->Card->ComponentTags.AddUnique(UDinkArtFamilySubsystem::FamilyTag);  // what UDinkArtFamilySubsystem::DressPlacedEffect does
+	TestTrue(TEXT("a dressed fire is the art layer's"), DinkWorldLife::IsFamilyEffect(Fire));
+	Fire->Card->SetVisibility(false);  // what UDinkGreyboxSubsystem does to a card off the current screen
+	TestTrue(TEXT("a dressed fire off the current screen stays the art layer's"), DinkWorldLife::IsFamilyEffect(Fire));
+	Fire->Card->SetVisibility(true);
+	Fire->Card->SetHiddenInGame(true);  // another layer took the card's drawing away
+	TestFalse(TEXT("a dressed fire whose card another layer hid in game no longer counts as drawn by the art layer"), DinkWorldLife::IsFamilyEffect(Fire));
 	return true;
 }

@@ -1,4 +1,5 @@
 #include "DinkCreatureOneShots.h"
+#include "Algo/Reverse.h"
 #include "DinkCreatureClassComponent.h"
 #include "DinkCreatureSubsystem.h"
 #include "DinkCoreModule.h"
@@ -172,6 +173,16 @@ void DinkCreatureOneShots::ApplyOverlays(FPoseContext& Output, TConstArrayView<F
 	}
 }
 
+namespace
+{
+	/** The one-shots the body shows this frame (its anim instance's overlays). */
+	void CopyOverlays(const UDinkCreatureClassComponent& Body, TArray<FDinkCreatureOverlay>& Out)
+	{
+		if (const UDinkCreatureAnimInstance* Animation = Cast<UDinkCreatureAnimInstance>(Body.GetAnimInstance()))
+			Out.Append(Animation->GetOverlays().GetData(), Animation->GetOverlays().Num());
+	}
+}
+
 bool FDinkCreatureOneShotPlayer::Play(FName ClassId, EDinkCreatureOneShot Kind)
 {
 	if (CVarCreatureOneShots.GetValueOnGameThread() == 0) return false;
@@ -185,11 +196,24 @@ bool FDinkCreatureOneShotPlayer::Play(FName ClassId, EDinkCreatureOneShot Kind)
 	Shot.Clip = DinkCreatureOneShots::Load(Shot.Spec);
 	if (!Shot.Clip) return false;
 	// One shot of a kind at a time: a second hit starts the flinch again; a hit or an attack cuts an idle fidget short.
-	Active.RemoveAll([Kind](const FShot& S) { return S.Kind == Kind || S.Kind == EDinkCreatureOneShot::Idle; });
-	if (Active.Num() >= 2) Active.RemoveAt(0);
+	// The cut one fades out under the new one as that eases in (a hard cut snapped the body towards neutral: review R3).
+	for (FShot& S : Active)
+		if (!S.IsFading() && (S.Kind == Kind || S.Kind == EDinkCreatureOneShot::Idle)) Cut(S, FMath::Max(Shot.Spec.BlendInS, CutFadeS));
+	// At most four at once: the oldest fading one goes first, then the oldest.
+	while (Active.Num() >= 4)
+	{
+		const int32 Fading = Active.IndexOfByPredicate([](const FShot& S) { return S.IsFading(); });
+		Active.RemoveAt(Fading != INDEX_NONE ? Fading : 0);
+	}
 	Active.Add(Shot);
 	++Played;
 	return true;
+}
+
+void FDinkCreatureOneShotPlayer::Cut(FShot& Shot, float FadeS)
+{
+	Shot.FadeTotal = FMath::Max(FadeS, .01f);
+	Shot.FadeLeft = Shot.FadeTotal;
 }
 
 void FDinkCreatureOneShotPlayer::Step(FName ClassId, float DeltaTime, bool bStanding, TArray<FDinkCreatureOverlay, TInlineAllocator<2>>& Out)
@@ -202,7 +226,7 @@ void FDinkCreatureOneShotPlayer::Step(FName ClassId, float DeltaTime, bool bStan
 	if (Row && Row->Idle.Num() > 0)
 	{
 		if (NextIdle < 0.f) NextIdle = Random.FRandRange(Row->IdleEveryMinS, Row->IdleEveryMaxS);
-		if (StandTime >= NextIdle && Active.IsEmpty())
+		if (StandTime >= NextIdle && !Active.ContainsByPredicate([](const FShot& S) { return !S.IsFading(); }))
 		{
 			Play(ClassId, EDinkCreatureOneShot::Idle);
 			StandTime = 0.f;
@@ -214,10 +238,16 @@ void FDinkCreatureOneShotPlayer::Step(FName ClassId, float DeltaTime, bool bStan
 		FShot& S = Active[i];
 		const float Length = FMath::Max(S.Clip->GetPlayLength(), .01f);
 		S.Time += DeltaTime * S.Spec.Rate;
-		// A fidget is let go the moment the body walks off.
-		if (S.Time >= Length || (S.Kind == EDinkCreatureOneShot::Idle && !bStanding)) { Active.RemoveAt(i); continue; }
-		Out.Add({S.Clip, S.Time, DinkCreatureOneShots::Envelope(S.Time, Length, S.Spec.BlendInS, S.Spec.BlendOutS), S.Spec.MaskRoot});
+		// A fidget is let go the moment the body walks off: it fades out over its blend-out (no pop upright).
+		if (S.Kind == EDinkCreatureOneShot::Idle && !bStanding && !S.IsFading()) Cut(S, FMath::Max(S.Spec.BlendOutS, CutFadeS));
+		if (S.IsFading()) S.FadeLeft -= DeltaTime;
+		if (S.Time >= Length || (S.IsFading() && S.FadeLeft <= 0.f)) { Active.RemoveAt(i); continue; }
+		float Weight = DinkCreatureOneShots::Envelope(S.Time, Length, S.Spec.BlendInS, S.Spec.BlendOutS);
+		if (S.IsFading()) Weight *= FMath::SmoothStep(0.f, 1.f, S.FadeLeft / S.FadeTotal);
+		if (Weight > .001f) Out.Add({S.Clip, FMath::Min(S.Time, Length - .001f), Weight, S.Spec.MaskRoot});
 	}
+	// Active runs oldest first; Out was filled newest first: the newest shot must blend last (on top).
+	Algo::Reverse(Out);
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -298,6 +328,7 @@ bool UDinkCreatureDeathSubsystem::BeginDeath(const UDinkCreatureClassComponent& 
 	Death.BlendIn = Row->Death.BlendInS;
 	Death.AlignCm = Row->Death.AlignCm;
 	for (const FDinkCreaturePoseLayer& Layer : Body.GetLayers()) Death.From.Add({Layer.Sequence, Layer.Time, Layer.Weight});
+	CopyOverlays(Body, Death.FromOverlays);
 	// The corpse (and its blood pool, a separate decal) is left now, as in 1997; its mesh is drawn when the clip ends.
 	Corpse->SetVisibility(false);
 	Deaths.Add(MoveTemp(Death));
@@ -324,6 +355,7 @@ bool UDinkCreatureDeathSubsystem::BeginBurstDeath(const UDinkCreatureClassCompon
 	Death.Ground = Body.GetShownLocation();
 	Death.Epoch = CurrentEpoch();
 	for (const FDinkCreaturePoseLayer& Layer : Body.GetLayers()) Death.From.Add({Layer.Sequence, Layer.Time, Layer.Weight});
+	CopyOverlays(Body, Death.FromOverlays);
 	Deaths.Add(MoveTemp(Death));
 	++Started;
 	StepDeaths(0.f);
@@ -347,6 +379,7 @@ bool UDinkCreatureDeathSubsystem::ShowDeath(const UDinkCreatureClassComponent& B
 	Death.bNoCorpse = true;
 	Death.Epoch = CurrentEpoch();
 	for (const FDinkCreaturePoseLayer& Layer : Body.GetLayers()) Death.From.Add({Layer.Sequence, Layer.Time, Layer.Weight});
+	CopyOverlays(Body, Death.FromOverlays);
 	Deaths.Add(MoveTemp(Death));
 	StepDeaths(0.f);
 	return true;
@@ -395,7 +428,10 @@ void UDinkCreatureDeathSubsystem::StepDeaths(float DeltaTime)
 		TArray<FDinkCreaturePoseLayer, TInlineAllocator<8>> Layers;
 		for (const FDinkCreatureLayerCopy& L : D.From) if (L.Sequence && L.Weight * (1.f - E) > .001f) Layers.Add({L.Sequence, L.Time, L.Weight * (1.f - E)});
 		Layers.Add({D.Clip, D.Time, E});
-		if (UDinkCreatureAnimInstance* Animation = Cast<UDinkCreatureAnimInstance>(D.Body->GetAnimInstance())) Animation->SetLayers(Layers);
+		// The flinch (or strike) the body was killed in fades out with its layers, from the frame it was at.
+		TArray<FDinkCreatureOverlay, TInlineAllocator<2>> Overlays;
+		for (const FDinkCreatureOverlay& O : D.FromOverlays) if (O.Sequence && O.Weight * (1.f - E) > .001f) Overlays.Add({O.Sequence, O.Time, O.Weight * (1.f - E), O.MaskRoot});
+		if (UDinkCreatureAnimInstance* Animation = Cast<UDinkCreatureAnimInstance>(D.Body->GetAnimInstance())) { Animation->SetLayers(Layers); Animation->SetOverlays(Overlays); }
 	}
 }
 

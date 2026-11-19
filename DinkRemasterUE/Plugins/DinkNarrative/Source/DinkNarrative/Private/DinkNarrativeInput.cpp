@@ -351,6 +351,9 @@ bool FDinkNarrativeInputProcessor::ProcessKeyDown(const FKey& Key, bool bRepeat)
 	{
 		return false;
 	}
+	// Slate runs this before the world ticks, so a menu that opened in the last world tick is not yet in MenuSeenAt
+	// unless the screen is observed here first (as ProcessMouseDown does): the attack key's guard then holds.
+	ObserveScreen(FPlatformTime::Seconds());
 	const bool bConfirm = IsConfirmKey(Key);
 	const int32 Digit = DigitIndex(Key);
 
@@ -361,12 +364,13 @@ bool FDinkNarrativeInputProcessor::ProcessKeyDown(const FKey& Key, bool bRepeat)
 	if (S->GetShownBitmap())
 	{
 		// A show_bmp picture (the map): any of the six game buttons closes it (ThinkShowBmp, dink.cpp:16722-16740); the
-		// script that showed it runs on. Other keys (the console key) pass.
+		// script that showed it runs on. Other keys (the console key) pass. Only the picture closes: a say_stop line that
+		// was up when the map opened keeps its text and voice (CloseShownBitmap, not SkipDialogue).
 		using DinkInput::EAction;
 		if (bConfirm || IsAttackKey(Key) || DinkInput::IsBound(Key, EAction::Talk) || DinkInput::IsBound(Key, EAction::Magic)
 			|| DinkInput::IsBound(Key, EAction::Inventory) || DinkInput::IsBound(Key, EAction::MainMenu) || DinkInput::IsBound(Key, EAction::Map))
 		{
-			S->SkipDialogue();
+			S->CloseShownBitmap();
 			return true;
 		}
 		return false;
@@ -503,6 +507,12 @@ bool FDinkNarrativeInputProcessor::ProcessMouseDown(const FKey& Button)
 	if (S->IsInventoryOpen())
 	{
 		S->ArmInventorySelection(); // the item screen's attack button
+		return true;
+	}
+	// A click on the map (show_bmp) closes only the picture, as a key does (ThinkShowBmp, dink.cpp:16722-16740).
+	if (S->GetShownBitmap())
+	{
+		S->CloseShownBitmap();
 		return true;
 	}
 	// A left click confirms what is on screen as Enter does; only when nothing waits for it is it the attack.
