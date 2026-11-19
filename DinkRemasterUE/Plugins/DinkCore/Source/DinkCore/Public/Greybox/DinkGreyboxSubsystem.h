@@ -138,6 +138,21 @@ private:
     uint64 DoorMovementFrame=MAX_uint64;
 	void UpdateLegacyCardVisibility(int32 ActiveScreenNumber);
 	TMap<TWeakObjectPtr<UPrimitiveComponent>, bool> LegacyCardVisibility;
+	// perf-stutter (dink.Perf.Fixes): billboard only the cards near the camera, gathered twice a second; the legacy card
+	// pass runs in full when the screen changes and every 2 s, not every 0.25 s.
+	void FaceNearbyCardsToCamera(UWorld& World);
+	TArray<TWeakObjectPtr<class ADinkPlaceholderActor>> BillboardCards;
+	FVector BillboardGatherAt = FVector(1e30);
+	double NextBillboardGather = 0.0;
+	int32 LastLegacyScreen = INDEX_NONE;
+	TWeakObjectPtr<const class ADinkScreenVolume> LastWallScreen;
+	FName LastWallSheet, LastWallInterior;
+	bool bLastWallIndoor = false;
+	int32 WallScreenCount = -1;
+	// the caches above apply only to the 0.25 s refresh from Tick; an explicit RefreshCurrentScreen (tests, save restore)
+	// always walks everything, as before
+	bool bTickRefresh = false;
+	double NextLegacyFullPass = 0.0;
 	TArray<TWeakObjectPtr<ADinkScreenVolume>> Screens;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkPlaceholderActor>>> VisionPlaceholders;
 	TMap<TWeakObjectPtr<const APawn>, double> LastWarpTime;

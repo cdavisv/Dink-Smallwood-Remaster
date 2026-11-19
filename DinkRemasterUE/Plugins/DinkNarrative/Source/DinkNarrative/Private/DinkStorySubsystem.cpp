@@ -1,4 +1,5 @@
 #include "DinkStorySubsystem.h"
+#include "DinkPerfScope.h"
 #include "Hardness/DinkFamilyCollisionFit.h"
 #include "DinkDirector.h"
 #include "DinkAudioSubsystem.h"
@@ -922,6 +923,7 @@ bool UDinkStorySubsystem::UpdateBlocks()
 
 void UDinkStorySubsystem::Tick(float DeltaTime)
 {
+	DINK_PERF_SCOPE(Dink_Story_Tick);
 	EnsureOverlay();
 	Advance(DeltaTime);
 	SyncUiMoveHold();

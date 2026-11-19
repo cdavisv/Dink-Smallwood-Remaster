@@ -1,4 +1,6 @@
 #include "DinkInteriorCameraComponent.h"
+#include "DinkPerfScope.h"
+#include "UObject/StrongObjectPtr.h"
 #include "DinkCoreModule.h"
 #include "DinkArtSubsystem.h"
 #include "DinkCameraFraming.h"
@@ -73,6 +75,15 @@ void UDinkInteriorCameraComponent::BeginPlay()
             for (const auto& Pair : (*Foliage)->Values)
             {
                 FString Path; if (Pair.Value->TryGetString(Path)) FoliageVariants.Add(FString(*Pair.Key).ToLower(), Path);
+            }
+            // perf-stutter: the camera-fade variants loaded synchronously the first time a tree came between camera and Dink
+            // (on screen entry, Dink.Perf.ScreenEntry.NoSyncLoads); load them here, at begin play, and keep them resident
+            if (DinkPerf::FixesEnabled())
+            {
+                static TArray<TStrongObjectPtr<UMaterialInterface>> Resident;
+                for (const TPair<FString, FString>& Pair : FoliageVariants)
+                    if (UMaterialInterface* M = LoadObject<UMaterialInterface>(nullptr, *Pair.Value, nullptr, LOAD_NoWarn | LOAD_Quiet))
+                        Resident.Add(TStrongObjectPtr<UMaterialInterface>(M));
             }
         }
         const TSharedPtr<FJsonObject>* Floors=nullptr;
@@ -421,6 +432,7 @@ void UDinkInteriorCameraComponent::UpdateOutdoorHeadroom()
 
 void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* TickFunction)
 {
+	DINK_PERF_SCOPE(Dink_InteriorCamera_Tick);
     Super::TickComponent(DeltaTime,TickType,TickFunction);
     if (!Arm || !Camera) return;
     const APawn* Pawn=Cast<APawn>(GetOwner());

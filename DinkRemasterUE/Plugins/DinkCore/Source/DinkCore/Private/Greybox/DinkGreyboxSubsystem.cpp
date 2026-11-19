@@ -1,6 +1,8 @@
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "DinkCreatureClassComponent.h"
 #include "DinkArtFamilySubsystem.h"
+#include "DinkPerfScope.h"
+#include "DinkScreenIndex.h"
 #include "Greybox/DinkScreenVolume.h"
 #include "Greybox/DinkPlaceholderActor.h"
 #include "DinkInstanceOriginsComponent.h"
@@ -173,6 +175,7 @@ namespace
 	/** Presentation only: gameplay works in screen pixels and never reads a card's rotation. */
 	void FaceCardsToCamera(UWorld& World)
 	{
+	DINK_PERF_SCOPE(Dink_Greybox_FaceCards);
 		// Nothing draws under -nullrhi (the headless tests and probe): do not walk 5,846 actors every frame for it.
 		if (CVarDinkBillboard.GetValueOnGameThread() == 0 || World.GetNetMode() == NM_DedicatedServer || !FApp::CanEverRender())
 		{
@@ -238,8 +241,56 @@ namespace
 	}
 }
 
+void UDinkGreyboxSubsystem::FaceNearbyCardsToCamera(UWorld& World)
+{
+	DINK_PERF_SCOPE(Dink_Greybox_FaceNearbyCards);
+	// The same rule as FaceCardsToCamera, over the cards within reach instead of the whole world's 5,800 placements.
+	if (CVarDinkBillboard.GetValueOnGameThread() == 0 || World.GetNetMode() == NM_DedicatedServer || !FApp::CanEverRender()) return;
+	const APlayerController* PC = World.GetFirstPlayerController();
+	if (!PC || !PC->PlayerCameraManager) return;
+	const FVector Camera = PC->PlayerCameraManager->GetCameraLocation();
+	const double Range = double(CVarDinkBillboardRange.GetValueOnGameThread());
+	const double RangeSq = FMath::Square(Range);
+	constexpr double MoveCm = 500.0;   // regather before the camera has moved this far: no card can enter the range unseen
+	const double Now = World.GetTimeSeconds();
+	if (Now >= NextBillboardGather || FVector::DistSquared2D(Camera, BillboardGatherAt) > FMath::Square(MoveCm))
+	{
+		NextBillboardGather = Now + 0.5;
+		BillboardGatherAt = Camera;
+		BillboardCards.Reset();
+		const double ReachSq = FMath::Square(Range + MoveCm);
+		if (UDinkScreenIndexSubsystem* Index = UDinkScreenIndexSubsystem::Get(&World))
+			for (const TWeakObjectPtr<ADinkPlaceholderActor>& Weak : Index->AllPlaceholders())
+			{
+				const ADinkPlaceholderActor* P = Weak.Get();
+				if (P && P->Card && FVector::DistSquared2D(P->Card->GetComponentLocation(), Camera) <= ReachSq) BillboardCards.Add(Weak);
+			}
+	}
+	for (const TWeakObjectPtr<ADinkPlaceholderActor>& Weak : BillboardCards)
+	{
+		ADinkPlaceholderActor* P = Weak.Get();
+		UStaticMeshComponent* Card = P ? P->Card.Get() : nullptr;
+		static const FName AuthoredTag(TEXT("DinkAuthoredArt"));
+		if (!Card || !Card->IsVisible() || !Card->GetStaticMesh() || P->IsHidden() || P->ActorHasTag(AuthoredTag)) continue;
+		const FVector To = (Camera - Card->GetComponentLocation()) * FVector(1, 1, 0);
+		if (To.SizeSquared() > RangeSq || To.SizeSquared() < 1.0) continue;
+		const double Yaw = FMath::RadiansToDegrees(FMath::Atan2(-To.X, To.Y));
+		if (FMath::Abs(FRotator::NormalizeAxis(Card->GetComponentRotation().Yaw - Yaw)) < 0.5) continue;
+		if (Card->Mobility != EComponentMobility::Movable) Card->SetMobility(EComponentMobility::Movable);
+		Card->SetWorldRotation(FRotator(0.0, Yaw, 0.0));
+	}
+}
+
 void UDinkGreyboxSubsystem::UpdateLegacyCardVisibility(int32 ActiveScreenNumber)
 {
+	DINK_PERF_SCOPE(Dink_Greybox_LegacyCards);
+	if (DinkPerf::FixesEnabled() && bTickRefresh && ActiveScreenNumber > 0 && ActiveScreenNumber == LastLegacyScreen && GetWorld()->GetTimeSeconds() < NextLegacyFullPass
+		&& CVarDinkLegacyCardsCurrentScreen.GetValueOnGameThread() != 0)
+	{
+		return;   // same screen: the cards' visibility is what the last pass left (authored tags settle at play start)
+	}
+	LastLegacyScreen = ActiveScreenNumber;
+	NextLegacyFullPass = GetWorld()->GetTimeSeconds() + 2.0;
 	// Keep this independent of actor-hidden/vision, component-hidden and collision state.
 	// Those layers belong to scripts and authored replacements and must never be restored by culling.
 	if (ActiveScreenNumber <= 0 || CVarDinkLegacyCardsCurrentScreen.GetValueOnGameThread() == 0)
@@ -282,12 +333,15 @@ void UDinkGreyboxSubsystem::UpdateLegacyCardVisibility(int32 ActiveScreenNumber)
 
 void UDinkGreyboxSubsystem::RefreshCurrentScreen()
 {
+	DINK_PERF_SCOPE(Dink_Greybox_RefreshScreen);
 	UWorld* World = GetWorld();
 	APlayerController* PC = World ? World->GetFirstPlayerController() : nullptr;
 	APawn* Pawn = PC ? PC->GetPawn() : nullptr;
 	if (!Pawn)
 	{
 		for (const auto& Weak : Screens) if (ADinkScreenVolume* Volume = Weak.Get()) Volume->RefreshInteriorWallVisuals(nullptr);
+		LastWallScreen = nullptr;
+		WallScreenCount = -1;
 		UpdateLegacyCardVisibility(0);
 		return;
 	}
@@ -301,7 +355,17 @@ void UDinkGreyboxSubsystem::RefreshCurrentScreen()
 	// Screen-entry callbacks can move the pawn synchronously. Use its actual
 	// physical screen now, not a cached room or the room before those callbacks.
 	const ADinkScreenVolume* Physical = FindScreenAt(Pawn->GetActorLocation());
-	for (const auto& Weak : Screens) if (ADinkScreenVolume* Volume = Weak.Get()) Volume->RefreshInteriorWallVisuals(Physical);
+	// the 644 volumes' wall visuals depend only on the physical screen: walk them when it (or the set) changes
+	if (!DinkPerf::FixesEnabled() || !bTickRefresh || !Physical || Physical != LastWallScreen.Get() || Screens.Num() != WallScreenCount
+		|| Physical->Sheet != LastWallSheet || Physical->InteriorId != LastWallInterior || Physical->bIndoor != bLastWallIndoor)
+	{
+		LastWallScreen = Physical;
+		LastWallSheet = Physical ? Physical->Sheet : NAME_None;
+		LastWallInterior = Physical ? Physical->InteriorId : NAME_None;
+		bLastWallIndoor = Physical && Physical->bIndoor;
+		WallScreenCount = Screens.Num();
+		for (const auto& Weak : Screens) if (ADinkScreenVolume* Volume = Weak.Get()) Volume->RefreshInteriorWallVisuals(Physical);
+	}
 	UpdateLegacyCardVisibility(Screen ? Screen->ScreenNumber : 0);
 }
 
@@ -366,8 +430,9 @@ void UDinkGreyboxSubsystem::RetryOverlappingDoor()
 
 void UDinkGreyboxSubsystem::Tick(float DeltaTime)
 {
+	DINK_PERF_SCOPE(Dink_Greybox_Tick);
 	UWorld* World = GetWorld();
-	FaceCardsToCamera(*World);
+	if (DinkPerf::FixesEnabled()) FaceNearbyCardsToCamera(*World); else FaceCardsToCamera(*World);
     APlayerController* IntentPC=World->GetFirstPlayerController();
     ObserveDoorMovement(IntentPC ? Cast<ACharacter>(IntentPC->GetPawn()) : nullptr);
 	const double Now = World->GetTimeSeconds();
@@ -376,7 +441,9 @@ void UDinkGreyboxSubsystem::Tick(float DeltaTime)
 		return;
 	}
 	NextScreenCheck = Now + 0.25;
+	bTickRefresh = true;
 	RefreshCurrentScreen();
+	bTickRefresh = false;
     // UWorld ticks tickable subsystems after actor movement. Only an actual movement
     // callback from THIS frame supplies intent; no stale LastInput/velocity fallback.
     if (DeltaTime>SMALL_NUMBER) RetryOverlappingDoor();

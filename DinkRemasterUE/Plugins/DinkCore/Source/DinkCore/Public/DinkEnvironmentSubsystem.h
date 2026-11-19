@@ -423,4 +423,29 @@ private:
 	TSet<int32> TownApplied;
 	UPROPERTY(Transient)
 	TArray<TObjectPtr<AActor>> TownActors;
+
+	// perf-stutter (dink.Perf.Fixes, DinkEnvironmentNeighbours.cpp): the screens around a newly entered one are dressed
+	// nearest first within a per-frame time budget instead of all in the entry frame, and a screen waits (up to
+	// 2 s) until the water mask and town meshes it needs have been loaded in the background.
+	struct FPendingNeighbour { int32 ScreenIndex = 0; double DistSq = 0.0; double Since = 0.0; };
+	void QueueNeighbourScreens(const FVector& Around, int32 CurrentNumber);
+	void DrainNeighbourScreens();
+	bool IsNeighbourReady(int32 ScreenNumber) const;
+	void ApplyNeighbourScreen(const FScreenInfo& Screen, double DistSq);
+	void PrefetchTownMeshes();
+	TArray<FPendingNeighbour> PendingNeighbours;
+	int32 PendingCurrentScreen = -1;
+	bool bNeighbourFollowUp = false;
+	uint64 NeighbourQueueFrame = 0;   // the frame QueueNeighbourScreens ran in
+	TMap<int32, TSharedPtr<struct FStreamableHandle>> MaskPrefetch;
+	TSharedPtr<struct FStreamableHandle> TownPrefetch;
+	bool bCompileFlushed = false;
+	// screen indices whose bounds overlap a 25 m world cell, ascending: point lookups (grass samples, ground colour) test
+	// these instead of all 644 screens, in the same order, so the first match is the same
+	const TArray<int32>& ScreensNear(const FVector2D& WorldXY) const;
+	mutable TMap<FIntPoint, TArray<int32>> ScreenGrid;
+	mutable int32 ScreenGridCount = -1;
+	// grass: cells are built within a time budget per frame; the "_Scatter" twin materials are loaded before play
+	void PreloadScatterMaterials();
+	bool bScatterPreloaded = false;
 };

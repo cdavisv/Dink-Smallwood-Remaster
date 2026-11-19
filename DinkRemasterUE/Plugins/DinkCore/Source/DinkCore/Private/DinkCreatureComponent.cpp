@@ -1,4 +1,5 @@
 #include "DinkCreatureComponent.h"
+#include "DinkPerfScope.h"
 #include "DinkCreatureSubsystem.h"
 #include "DinkCoreModule.h"
 #include "DinkOriginComponent.h"
@@ -95,6 +96,7 @@ bool UDinkCreatureComponent::TryFeed(AActor* FoodActor)
 void UDinkCreatureComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 										   FActorComponentTickFunction* ThisTickFunction)
 {
+	DINK_PERF_SCOPE(Dink_Creature_Tick);
 	if (AActor* Owner = GetOwner())
 	{
 		const FVector At = Owner->GetActorLocation();
