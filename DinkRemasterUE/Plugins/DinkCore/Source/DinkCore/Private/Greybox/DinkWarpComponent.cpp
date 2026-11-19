@@ -1,4 +1,5 @@
 #include "Greybox/DinkWarpComponent.h"
+#include "DinkLandforms.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
 #include "DinkCollision.h"
 #include "DinkCoreModule.h"
@@ -89,6 +90,11 @@ bool UDinkWarpComponent::TryWarp(APawn* Pawn)
 		HalfHeight = Capsule->GetScaledCapsuleHalfHeight();
 	}
 	const FVector Target = DestLocation + FVector(0.0, 0.0, HalfHeight + 2.0);
+	// landforms (a visual layer): the capsule arrives on the 1997 floor; the drawn ground there is built before the teleport
+	if (UDinkLandformsSubsystem* Landforms = World ? World->GetSubsystem<UDinkLandformsSubsystem>() : nullptr)
+	{
+		Landforms->EnsureAround(Target);
+	}
 	const bool bMoved = Pawn->TeleportTo(Target, FRotator(0.0, Pawn->GetActorRotation().Yaw, 0.0));
 	UE_LOG(LogDink, Log, TEXT("Warp %s (%s) SCR_%03d -> SCR_%03d (%.0f, %.0f): %s"), *WarpId, *Kind.ToString(), SourceScreen,
 		DestScreen, DestMapPixel.X, DestMapPixel.Y, bMoved ? TEXT("moved") : TEXT("blocked at destination"));

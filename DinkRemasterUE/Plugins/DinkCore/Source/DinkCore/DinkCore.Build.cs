@@ -9,6 +9,6 @@ public class DinkCore : ModuleRules
 		// ProceduralMeshComponent (public: UDinkPlayerBlockerComponent): PR41 runtime screen collision. PhysicsCore/Chaos:
 		// read-only cooked family-fit descriptors; no second physical authority.
 		// RenderCore/RHI: frame timings (game, render, GPU ms) of dink.CaptureScript `fps` lines (review only).
-		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "EnhancedInput", "InputCore", "PhysicsCore", "Chaos", "RenderCore", "RHI" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Json", "EnhancedInput", "InputCore", "PhysicsCore", "Chaos", "RenderCore", "RHI", "ImageWrapper" });
 	}
 }

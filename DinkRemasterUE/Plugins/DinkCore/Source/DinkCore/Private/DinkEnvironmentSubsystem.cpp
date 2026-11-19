@@ -1,4 +1,5 @@
 #include "DinkEnvironmentSubsystem.h"
+#include "DinkLandforms.h"
 #include "DinkCoreModule.h"
 #include "DinkCollision.h"
 #include "DinkPlayerBlockers.h"
@@ -1198,7 +1199,10 @@ void UDinkEnvironmentSubsystem::ApplyTownHouses(int32 ScreenNumber, const FDinkS
 		}
 		const FVector At = DinkLayout::MapPixelToUnreal(Corners, M.Px.X, M.Px.Y) + M.OffsetCm;
 		const FTransform ModuleTransform(FRotator(0.0, M.Yaw, 0.0), At, M.Scale);
-		Component->AddInstance(ModuleTransform, /*bWorldSpace*/ true);
+		// landforms (a visual layer): the module is drawn on the ground under its pivot (never below 0); its player-only
+		// blocker stays on the flat floor the player's capsule walks on
+		const FVector Ground(0.0, 0.0, DinkLandforms::HeightCm(World, FVector2D(At), /*bBelowZero*/ false));
+		Component->AddInstance(FTransform(ModuleTransform.GetRotation(), At + Ground, M.Scale), /*bWorldSpace*/ true);
 		// a wall module drawn thicker than the 1997 house hardness stops the player at the drawn wall (player only; the
 		// component sits at the actor's identity, so the world transform is its relative one)
 		DinkPlayerBlockers::Add(*Actor, *Component, ModuleTransform, Component->GetStaticMesh());
@@ -1508,6 +1512,7 @@ void UDinkEnvironmentSubsystem::ApplyRelief(int32 ScreenNumber, const FDinkScree
 				Component->RegisterComponent();
 			}
 			FVector At = DinkLayout::MapPixelToUnreal(Corners, Rock.Px.X, Rock.Px.Y);
+			At.Z += DinkLandforms::HeightCm(GetWorld(), FVector2D(At));
 			// the mesh's pivot may sit anywhere: stand its base on the ground, sunk a little so no edge floats
 			At.Z += -Box.Min.Z * Scale - ReliefSink * Box.GetSize().Z * Scale;
 			Component->AddInstance(FTransform(FRotator(0.0, Unit(Hash3(H, 3u, 4u)) * 360.f, 0.0), At, FVector(Scale)), /*bWorldSpace*/ true);
@@ -1670,7 +1675,8 @@ void UDinkEnvironmentSubsystem::ApplyForest(int32 ScreenNumber, const FDinkScree
 		const uint32 H = Hash3(uint32(ScreenNumber), uint32(I), 0x7F0E57u);
 		// the rows a player can see carry every tree; deeper in, where only a camera above the crowns would look, fewer
 		if (!Tree.bEdge && Unit(Hash3(H, 1u, 2u)) > ForestInteriorFill) continue;
-		const FVector At = DinkLayout::MapPixelToUnreal(Corners, Tree.Px.X, Tree.Px.Y);
+		FVector At = DinkLayout::MapPixelToUnreal(Corners, Tree.Px.X, Tree.Px.Y);
+		At.Z += DinkLandforms::HeightCm(GetWorld(), FVector2D(At));
 		const float TreeScale = FMath::Lerp(ForestScaleMin, ForestScaleMax, Unit(Hash3(H, 5u, 6u)));
 		// a trunk the player could walk into is not drawn (alpha QA, 14 Nov 2026: the exported points can lie on
 		// ground the collision leaves open); the trunk is about 45 cm round at scale 1
@@ -1845,7 +1851,7 @@ bool UDinkEnvironmentSubsystem::GroundAt(const FVector2D& WorldXY, uint32 Hash, 
 		const TArray<uint8>* Mask = Cover.Find(Screen.Number);
 		if (!Mask) return false;
 		// noisy edge: the threshold wanders per point, so the carpet ends in a ragged line, not on the mask grid
-		OutZ = 0.f;
+		OutZ = DinkLandforms::HeightCm(GetWorld(), WorldXY);
 		LastCover = CoverAt(*Mask, MapX, MapY);
 		return LastCover > GrassMinCover + (Unit(Hash3(Hash, 77u, 5u)) - 0.5f) * 0.5f;
 	}

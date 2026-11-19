@@ -1,4 +1,5 @@
 #include "DinkWorldLifeSubsystem.h"
+#include "DinkLandforms.h"
 #include "DinkCoreModule.h"
 #include "DinkArtFamilySubsystem.h"
 #include "DinkEnvironmentSubsystem.h"
@@ -423,17 +424,22 @@ float UDinkWorldLifeSubsystem::GroundZ(const FVector& At, float Fallback) const
 	if (const APlayerController* PC = World->GetFirstPlayerController(); PC && PC->GetPawn()) Q.AddIgnoredActor(PC->GetPawn());
 	// the hidden 1997 hardness prisms and player blockers block Visibility too: the first visible surface is the ground
 	static const FName P_HardSolid(TEXT("DinkHardSolid")), P_HardLow(TEXT("DinkHardLow")), P_PlayerBlock(TEXT("DinkPlayerBlock"));
+	// landforms are drawn only (no collision): their surface is the ground unless something drawn stands higher on it
+	float Land = 0.f;
+	FVector LandNormal;
+	const bool bLand = DinkLandforms::GroundAt(World, FVector2D(At), Land, LandNormal);
 	for (int32 Try = 0; Try < 6; ++Try)
 	{
 		FHitResult Hit;
 		if (!World->LineTraceSingleByChannel(Hit, At + FVector(0, 0, 150), At - FVector(0, 0, 1500), ECC_Visibility, Q)) break;
 		const UPrimitiveComponent* C = Hit.GetComponent();
 		const FName Profile = C ? C->GetCollisionProfileName() : NAME_None;
-		if (C && C->IsVisible() && !C->bHiddenInGame && Profile != P_HardSolid && Profile != P_HardLow && Profile != P_PlayerBlock) return float(Hit.ImpactPoint.Z);
+		if (C && C->IsVisible() && !C->bHiddenInGame && Profile != P_HardSolid && Profile != P_HardLow && Profile != P_PlayerBlock)
+			return bLand ? FMath::Max(Land, float(Hit.ImpactPoint.Z)) : float(Hit.ImpactPoint.Z);
 		if (!C) break;
 		Q.AddIgnoredComponent(C);
 	}
-	return Fallback;
+	return bLand ? Land : Fallback;
 }
 
 FVector UDinkWorldLifeSubsystem::GetWindVelocityAt(const FVector& At) const

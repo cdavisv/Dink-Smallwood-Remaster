@@ -2,6 +2,7 @@
 #include "DinkDirector.h"
 #include "Greybox/DinkPlaceholderActor.h"
 #include "DinkCollision.h"
+#include "DinkLandforms.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/BoxComponent.h"
 #include "Components/ShapeComponent.h"
@@ -122,26 +123,33 @@ bool UDinkGameplay::AuthoredGeometryMatches(const FDinkSprite& Attacker, const F
 		}
 	}
 	double BestDistance = TNumericLimits<double>::Max();
+	// Landforms are a visual layer: a drawn target stands on the ground, the body's collision (the player's capsule, held
+	// body shapes) on the 1997 floor. Query each target in its own frame (the body raised by the target's lift) so the
+	// result is the flat world's.
+	const float FromLift = Body ? DinkLandforms::GeometryLiftCm(Body) : DinkLandforms::ActorLiftCm(FromActor);
+	const FVector FlatFrom = From, FlatStart = Start, FlatEnd = End;
 	for (UPrimitiveComponent* Component : Geometry)
 	{
+		const FVector Lift(0.0, 0.0, DinkLandforms::GeometryLiftCm(Component) - FromLift);
+		const FVector QFrom = FlatFrom + Lift, QStart = FlatStart + Lift, QEnd = FlatEnd + Lift;
 		const bool bElevatedPickup = Kind == EAuthoredInteraction::Touch && Target.GetProp(TEXT("touch_damage")) == -1 &&
-			Component->Bounds.GetBox().Min.Z - (From.Z - BodyHalfHeight) >= AuthoredInteraction.ElevatedPickupMinHeightCm;
+			Component->Bounds.GetBox().Min.Z - (QFrom.Z - BodyHalfHeight) >= AuthoredInteraction.ElevatedPickupMinHeightCm;
 		const float QueryRadius = bElevatedPickup ? BodyRadius + float(AuthoredInteraction.ElevatedPickupReachCm) : Radius;
 		// Extend a hand over furniture without extending vertical reach by the same amount.
 		const FCollisionShape Shape = FCollisionShape::MakeCapsule(QueryRadius, FMath::Max(HalfHeight, QueryRadius));
 		FHitResult Hit;
-		if (!Component->SweepComponent(Hit, Start, End, FQuat::Identity, Shape, Component->IsA<UStaticMeshComponent>())) { continue; }
+		if (!Component->SweepComponent(Hit, QStart, QEnd, FQuat::Identity, Shape, Component->IsA<UStaticMeshComponent>())) { continue; }
 		FVector Surface = Hit.ImpactPoint;
-		if (Hit.bStartPenetrating) { Surface = Component->Bounds.GetBox().GetClosestPointTo(From); }
-		if (Kind == EAuthoredInteraction::Push && FVector::DotProduct((Surface - From).GetSafeNormal2D(), Forward) < 0.0) { continue; }
+		if (Hit.bStartPenetrating) { Surface = Component->Bounds.GetBox().GetClosestPointTo(QFrom); }
+		if (Kind == EAuthoredInteraction::Push && FVector::DotProduct((Surface - QFrom).GetSafeNormal2D(), Forward) < 0.0) { continue; }
 		// A prop across a wall must not answer a nearby hit/talk or be collected through it.
-		FVector SightOrigin = From;
-		if (bElevatedPickup) { SightOrigin.Z = From.Z - BodyHalfHeight + AuthoredInteraction.PickupShoulderHeightCm; }
+		FVector SightOrigin = QFrom;
+		if (bElevatedPickup) { SightOrigin.Z = QFrom.Z - BodyHalfHeight + AuthoredInteraction.PickupShoulderHeightCm; }
 		FCollisionQueryParams Params(TEXT("DinkAuthoredInteraction"), true, FromActor);
 		FHitResult Blocker;
 		if (UWorld* World = FromActor->GetWorld(); World && World->LineTraceSingleByChannel(Blocker, SightOrigin, Surface, ECC_Visibility, Params) &&
 			Blocker.GetActor() != TargetActor && Blocker.GetComponent()!=Fitted && Blocker.Distance + 1.f < FVector::Distance(SightOrigin, Surface)) { continue; }
-		BestDistance = FMath::Min(BestDistance, FVector::Dist2D(From, Surface));
+		BestDistance = FMath::Min(BestDistance, FVector::Dist2D(QFrom, Surface));
 	}
 	if (OutDistanceCm) { *OutDistanceCm = BestDistance; }
 	return BestDistance < TNumericLimits<double>::Max();
@@ -241,6 +249,7 @@ bool UDinkGameplay::FittedMissileMatches(const FDinkSprite& Missile,const FDinkS
     if(!D||!D->PixelToWorld(Missile.Screen,Missile.X,Missile.Y,A)||
         !D->PixelToWorld(Missile.Screen,Missile.X+FMath::Max(0,Range),Missile.Y,B))return false;
     const float Radius=FMath::Max(1.f,float(FVector::Dist2D(A,B)));
-    const FVector Start=Actor->GetActorLocation();FHitResult Hit;
+    // landforms: the missile and the fitted geometry in one frame (visual layer: the flat world's answer)
+    const FVector Start=Actor->GetActorLocation()+FVector(0,0,DinkLandforms::GeometryLiftCm(Fitted)-DinkLandforms::ActorLiftCm(Actor));FHitResult Hit;
     return Fitted->SweepComponent(Hit,Start,Start+FVector(0,0,.1),FQuat::Identity,FCollisionShape::MakeSphere(Radius),true);
 }

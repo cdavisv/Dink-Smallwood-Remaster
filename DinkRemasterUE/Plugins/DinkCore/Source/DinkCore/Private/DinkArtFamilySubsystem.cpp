@@ -7,6 +7,7 @@
 #include "DinkCoreModule.h"
 #include "DinkCreatureClassComponent.h"
 #include "DinkEnvironmentSubsystem.h"
+#include "DinkLandforms.h"
 #include "DinkInstanceOriginsComponent.h"
 #include "DinkOriginComponent.h"
 #include "Greybox/DinkGreyboxSubsystem.h"
@@ -1058,7 +1059,10 @@ int32 UDinkArtFamilySubsystem::ApplyScreen(int32 ScreenNumber)
 	{
 		for (const TWeakObjectPtr<ADinkGreyboxScreen>& Screen : *Screens)
 		{
-			if (Screen.IsValid()) Count += DressInstances(*Screen.Get());
+			if (!Screen.IsValid()) continue;
+			Count += DressInstances(*Screen.Get());
+			// the family meshes and their player-only blockers are made at the flat ground: on the landforms' ground with the rest
+			if (UDinkLandformsSubsystem* Landforms = World->GetSubsystem<UDinkLandformsSubsystem>()) Landforms->SnapScreenDecor(*Screen.Get());
 		}
 	}
 	Dressed += Count;

@@ -1,4 +1,5 @@
 #include "DinkFootPlacement.h"
+#include "DinkLandforms.h"
 #include "DinkCollision.h"
 #include "Components/PrimitiveComponent.h"
 #include "Components/SkinnedMeshComponent.h"
@@ -244,6 +245,11 @@ bool FDinkFootGround::Trace(UWorld* World, const FVector& At, float FloorZ, cons
 	Responses.CollisionResponse.SetResponse(DinkCollision::HardLow, ECR_Ignore);
 	Responses.CollisionResponse.SetResponse(DinkCollision::PlayerBlock, ECR_Ignore);
 	const FVector Start(At.X, At.Y, FloorZ + 45.f), End(At.X, At.Y, FloorZ - 50.f);
+	// Landforms are drawn only (no collision): where they lie, their surface is the ground unless something drawn stands
+	// higher on it (a step, a bridge plank, a prop).
+	float LandZ = 0.f;
+	FVector LandNormal = FVector::UpVector;
+	const bool bLand = DinkLandforms::GroundAt(World, FVector2D(At), LandZ, LandNormal) && LandZ <= Start.Z && LandZ >= End.Z;
 	for (int32 Try = 0; Try < 3; ++Try)
 	{
 		FHitResult Hit;
@@ -252,6 +258,7 @@ bool FDinkFootGround::Trace(UWorld* World, const FVector& At, float FloorZ, cons
 		const AActor* A = Hit.GetActor();
 		if (C && !Hit.bStartPenetrating && C->IsVisible() && !C->bHiddenInGame && !(A && (A->IsHidden() || Cast<APawn>(A))) && !Cast<USkinnedMeshComponent>(C))
 		{
+			if (bLand && Hit.ImpactPoint.Z < LandZ + 1.f) break;   // under the drawn ground
 			OutZ = float(Hit.ImpactPoint.Z);
 			OutNormal = Hit.ImpactNormal;
 			if (OutWhat) *OutWhat = A ? A->GetName() : C->GetName();
@@ -259,6 +266,13 @@ bool FDinkFootGround::Trace(UWorld* World, const FVector& At, float FloorZ, cons
 		}
 		if (!C) break;
 		Params.AddIgnoredComponent(C);
+	}
+	if (bLand)
+	{
+		OutZ = LandZ;
+		OutNormal = LandNormal;
+		if (OutWhat) *OutWhat = TEXT("landforms");
+		return true;
 	}
 	if (OutWhat) *OutWhat = TEXT("-");
 	return false;
