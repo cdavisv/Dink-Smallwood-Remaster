@@ -172,6 +172,7 @@ FDinkGaitStyle FDinkGaitStyle::Lerp(const FDinkGaitStyle& A, const FDinkGaitStyl
 	R.Uneven = FMath::Lerp(A.Uneven, B.Uneven, T);
 	R.StepTime = FMath::Lerp(A.StepTime, B.StepTime, T);
 	R.ChestSwing = FMath::Lerp(A.ChestSwing, B.ChestSwing, T);
+	R.CadenceShare = FMath::Lerp(A.CadenceShare, B.CadenceShare, T);
 	return R;
 }
 
@@ -197,6 +198,7 @@ namespace
 		if (O->TryGetNumberField(TEXT("uneven"), N)) S.Uneven = FMath::Clamp(float(N), 0.f, .15f);
 		if (O->TryGetNumberField(TEXT("step_time"), N)) S.StepTime = FMath::Clamp(float(N), .5f, 2.f);
 		if (O->TryGetNumberField(TEXT("chest_swing"), N)) S.ChestSwing = FMath::Clamp(float(N), 0.f, 3.f);
+		if (O->TryGetNumberField(TEXT("cadence_share"), N)) S.CadenceShare = FMath::Clamp(float(N), 0.f, 1.f);
 		return S;
 	}
 }

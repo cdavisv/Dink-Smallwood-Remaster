@@ -118,6 +118,10 @@ struct DINKCORE_API FDinkGaitStyle
 	float StepTime = 1.f;
 	/** Gain on the chest's turn against the hips while walking (1: as captured; >1 a swagger). */
 	float ChestSwing = 1.f;
+	/** How the walk is kept from skating when the clip's planted foot travels back faster or slower than the body: 0 by the
+	 * step length (shorter steps, a quicker shuffle: the timid lad), 1 by the cadence (the capture's full stride, played
+	 * slower: a confident walk with the clip's straight stance leg), between: shared. */
+	float CadenceShare = 0.f;
 	static FDinkGaitStyle Lerp(const FDinkGaitStyle& A, const FDinkGaitStyle& B, float T);
 	/** Style of an animation set ("Hero", "NpcF", "NpcM") at a confidence, from animation_natural.json `style`; neutral when absent. */
 	static FDinkGaitStyle For(FName Set, float Confidence);

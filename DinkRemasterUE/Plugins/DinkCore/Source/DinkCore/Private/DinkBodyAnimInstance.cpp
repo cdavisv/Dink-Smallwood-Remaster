@@ -234,6 +234,10 @@ void UDinkBodyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		IdleShown = IdleWeight;
 		LastGait.Reset();
 	}
+	// The stride warp's cadence share (FDinkGaitStyle::CadenceShare), measured by the last evaluation: walking only.
+	const float CadenceWarpApplied = bLegs && CVarDinkStyle.GetValueOnGameThread() != 0 && Speed < 320.f && LegTelemetry.bValid ? FMath::Clamp(LegTelemetry.CadenceWarp, .6f, 1.6f) : 1.f;
+	CyclesPerSecond *= CadenceWarpApplied;
+	Frame.Legs.CadenceWarp = CadenceWarpApplied;
 	BlendedStride = CyclesPerSecond > 0.f ? Speed / CyclesPerSecond : 0.f;
 	Phase = FMath::Fmod(Phase + CyclesPerSecond * Dt, 12.f); // whole cycles of clips holding 1, 2, 3 or 4
 	IdleTime += Dt;
@@ -548,7 +552,7 @@ void FDinkBodyAnimProxy::ApplyLegs(FCompactPose& Out)
 	const float Dt = FMath::Clamp(L.DeltaTime, 0.f, .1f);
 	if (L.bTeleport)
 	{
-		StrideWarp = 1.f;
+		StrideWarp = CadenceWarp = 1.f;
 		for (FDinkFootLock& Lock : Locks) Lock.Reset();
 		bPrevDesired = false;
 		PelvisOffset = PelvisVelocity = 0.f;
@@ -579,12 +583,21 @@ void FDinkBodyAnimProxy::ApplyLegs(FCompactPose& Out)
 		bool bMeasure = false;
 		if (CVarDinkStyle.GetValueOnAnyThread() != 0 && bPrevDesired && Dt > 0.f && !L.bStanding && !L.bAirborne && BodySpeed > 30.f && BodySpeed < 320.f && NearPlanted < 2.f)
 		{
-			const float Back = -(StepY - PrevStepY[Low]) * Scale / Dt; // cm/s backwards in the body (+Y is forward)
+			// cm/s backwards in the body (+Y is forward), at the cadence the clip would have without this layer's own share
+			const float Back = -(StepY - PrevStepY[Low]) * Scale / Dt / FMath::Max(L.CadenceWarp, .1f);
 			if (Back > 20.f) { WarpTarget = FMath::Clamp(BodySpeed / Back, .6f, 1.6f); bMeasure = true; }
 		}
+		// The correction is shared between the step length and the cadence by the style (A101: confident Dink's warp made
+		// short steps on a folded knee; he now keeps the capture's stride and plays it slower). Their product is the target.
+		const float Share = FMath::Clamp(L.Style.CadenceShare, 0.f, 1.f);
+		const float StrideTarget = FMath::Pow(WarpTarget, 1.f - Share), CadenceTarget = FMath::Pow(WarpTarget, Share);
 		// Walking only: warping a run (its stance short, its feet often both off the ground) made its slide twice as bad.
 		if (bMeasure || L.bStanding || BodySpeed <= 30.f || BodySpeed >= 320.f)
-			StrideWarp = FMath::FInterpTo(StrideWarp, WarpTarget, Dt, bMeasure ? 4.f : 6.f);
+		{
+			StrideWarp = FMath::FInterpTo(StrideWarp, StrideTarget, Dt, bMeasure ? 4.f : 6.f);
+			CadenceWarp = FMath::FInterpTo(CadenceWarp, CadenceTarget, Dt, bMeasure ? 4.f : 6.f);
+		}
+		Telemetry.CadenceWarp = CadenceWarp;
 		for (int32 S = 0; S < 2; ++S) PrevStepY[S] = float(FootCS[S].GetLocation().Y) * L.StrideScale;
 	}
 	for (int32 S = 0; S < 2; ++S)

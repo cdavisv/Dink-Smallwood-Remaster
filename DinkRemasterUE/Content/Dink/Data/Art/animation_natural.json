@@ -136,21 +136,23 @@
   "NpcM": 0.7
  },
  "style": {
-  "note": "How each body walks against the shared motion capture (DinkFootPlacement.h, FDinkGaitStyle): stride is the step length against the clip (the cadence rises by its inverse, so the speed is kept), width_cm sets each foot further out (+) or in (-), uneven makes one step of each pair longer (share of a step), step_time scales how quick the pivot steps of a turn on the spot are, chest_swing is the gain on the chest turning against the hips while walking. Hero: a timid lad takes short, quick, slightly uneven steps with his knees together and turns round in shuffles; with confidence his stride lengthens, steadies and widens. Mother: short brisk steps, narrow under the skirt. Milder: long heavy steps, a wide stance and a swagger of the shoulders.",
+  "note": "How each body walks against the shared motion capture (DinkFootPlacement.h, FDinkGaitStyle): stride is the step length against the clip (the cadence rises by its inverse, so the speed is kept), width_cm sets each foot further out (+) or in (-), uneven makes one step of each pair longer (share of a step), step_time scales how quick the pivot steps of a turn on the spot are, chest_swing is the gain on the chest turning against the hips while walking. Hero: a timid lad takes short, quick, slightly uneven steps with his knees together and turns round in shuffles; with confidence his stride lengthens, steadies and widens. Mother: short brisk steps, narrow under the skirt. Milder: long heavy steps, a wide stance and a swagger of the shoulders. cadence_share (A101): how the stride warp keeps a planted foot from skating, 0 by shorter steps (the timid lad's quick shuffle), 1 by a slower cadence of the capture's full stride (confident Dink, Milder: the stance leg as straight as the clip's), between: shared (Mother).",
   "Hero": {
    "timid": {
     "stride": 0.86,
     "width_cm": -1.5,
     "uneven": 0.07,
     "step_time": 1.25,
-    "chest_swing": 0.8
+    "chest_swing": 0.8,
+    "cadence_share": 0.0
    },
    "confident": {
     "stride": 1.0,
     "width_cm": 1.0,
     "uneven": 0.0,
     "step_time": 0.9,
-    "chest_swing": 1.1
+    "chest_swing": 1.1,
+    "cadence_share": 1.0
    }
   },
   "NpcF": {
@@ -158,14 +160,16 @@
    "width_cm": -2.0,
    "uneven": 0.0,
    "step_time": 0.85,
-   "chest_swing": 0.85
+   "chest_swing": 0.85,
+   "cadence_share": 0.5
   },
   "NpcM": {
    "stride": 1.06,
    "width_cm": 5.0,
    "uneven": 0.0,
    "step_time": 1.1,
-   "chest_swing": 1.7
+   "chest_swing": 1.7,
+   "cadence_share": 1.0
   }
  }
 }
