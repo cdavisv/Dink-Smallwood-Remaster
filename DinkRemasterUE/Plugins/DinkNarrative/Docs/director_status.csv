@@ -117,7 +117,7 @@ stopmidi,audio,3,command,implemented,audio stub: logs the music stop
 =lifemax,fact-write,2,fact write,implemented,Ink VAR mirrored into UDinkFactSubsystem (and from there into the player's UDinkStatsComponent for stats)
 add_exp,stats,2,command,implemented,"experience for the player whoever dealt the last hit (add_exp(num, sprite, true), D:615), capped at 99,999"
 arm_weapon,inventory,2,command,implemented,"`disarm` of the armed item, then `arm` of the item in slot &cur_weapon (1-based) in a new instance (D:7850)"
-dink_can_walk_off_screen,world,2,command,recorded,flag kept; screen edges are not walls in 3D
+dink_can_walk_off_screen,world,2,command,implemented,while set an edge crossing loads no screen (D:14056); load_screen places Dink even into a wall
 force_vision,world,2,command,implemented,rebuilds admitted original hardness screens; legacy greybox retains its vision path
 get_burn,other,2,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 inside_box,other,2,external,implemented,EXTERNAL function bound with lookaheadSafe = false

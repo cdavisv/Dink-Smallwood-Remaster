@@ -54,7 +54,9 @@ public:
 
 	/** Teleports the first local player's pawn to a map pixel of a screen. */
 	UFUNCTION(BlueprintCallable, Category = "Dink|Greybox")
-	bool GotoScreen(int32 ScreenNumber, float MapX = 300.f, float MapY = 200.f);
+	/** Teleports the pawn to a map pixel of a screen. bEvenIntoWalls (a script's load_screen): when the checked teleport refuses the spot
+	 *  (the capsule overlaps a wall), the pawn is placed there anyway, as the original places Dink wherever a script puts him. */
+	bool GotoScreen(int32 ScreenNumber, float MapX = 300.f, float MapY = 200.f, bool bEvenIntoWalls = false);
 
 	UFUNCTION(BlueprintPure, Category = "Dink|Greybox")
 	ADinkScreenVolume* GetCurrentScreen() const { return CurrentScreen.Get(); }

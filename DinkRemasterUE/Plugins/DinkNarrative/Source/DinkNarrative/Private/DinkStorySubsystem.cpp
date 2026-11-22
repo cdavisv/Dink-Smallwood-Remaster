@@ -1284,6 +1284,18 @@ void UDinkStorySubsystem::PollScreenChange()
 		};
 	}
 	const ADinkScreenVolume* Screen = Greybox ? Greybox->GetCurrentScreen() : nullptr;
+	if (Screen && Screen->ScreenNumber != LastScreen && LastScreen > 0 && Director
+		&& IsHeldWalkOff(Director->bDinkCanWalkOffScreen, Greybox->GetWarpSerial() != SeenWarpSerial, Director->GetScriptLoadedScreen() == Screen->ScreenNumber))
+	{
+		// dink_can_walk_off_screen: walking over an edge loads no screen (did_player_cross_screen, dink.cpp:14056). Dink stays on LastScreen.
+		// (Once held, the hold stays: a load_screen may have moved it to the loaded screen before the greybox reports that one.)
+		if (Director->WalkOffHeldScreen <= 0)
+		{
+			Director->WalkOffHeldScreen = LastScreen;
+			AddEvent(TEXT("game"), FString::Printf(TEXT("walk off screen: past SCR_%d's edge onto %d's ground, no screen load"), LastScreen, Screen->ScreenNumber));
+		}
+		return;
+	}
 	if (Screen && Screen->ScreenNumber != LastScreen)
 	{
 		if (bNewGamePending && bRunScreenScripts)
@@ -1324,6 +1336,10 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,
     }
 	const int32 Previous = LastScreen;
 	LastScreen = Screen;
+	if (Director)
+	{
+		Director->WalkOffHeldScreen = INDEX_NONE;
+	}
 	// The map's dot (the original's last_map: the last screen that is not indoor).
 	if (UWorld* W = GetWorld())
 	{

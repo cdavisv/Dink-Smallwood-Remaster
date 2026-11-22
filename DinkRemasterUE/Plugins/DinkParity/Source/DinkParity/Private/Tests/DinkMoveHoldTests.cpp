@@ -260,3 +260,39 @@ bool FDinkScriptlessEntryOpensGateTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("and load_map cleared Dink's freeze"), D->GetDink().bFrozen);
 	return true;
 }
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkWalkOffScreenHoldTest, "Dink.Input.WalkOffScreenLoadsNoScreen", DINK_TEST_FLAGS)
+bool FDinkWalkOffScreenHoldTest::RunTest(const FString& Parameters)
+{
+	// dink_can_walk_off_screen(1): did_player_cross_screen returns at once (dink.cpp:14056), so walking over an edge loads no screen.
+	// s2-culg.c:37-43 walks Dink 700 px south off SCR_238 while the screen fades, then load_screen's Nadine's house (SCR_066); the
+	// remaster entered the screen south of 238 (SCR_270: its scripts ran, its screenlock came on, Dink's pixels moved to it).
+	TestTrue(TEXT("an edge crossing while walking off: not entered"), UDinkStorySubsystem::IsHeldWalkOff(true, false, false));
+	TestFalse(TEXT("a warp while walking off: entered (dink.cpp:15724)"), UDinkStorySubsystem::IsHeldWalkOff(true, true, false));
+	TestFalse(TEXT("the screen a script's load_screen loaded: entered"), UDinkStorySubsystem::IsHeldWalkOff(true, false, true));
+	TestFalse(TEXT("an edge crossing without the flag: entered"), UDinkStorySubsystem::IsHeldWalkOff(false, false, false));
+
+	UDinkStorySubsystem* Story = DinkMoveHoldTest::MakeStory(*this);
+	if (!Story) return false;
+	UDinkDirector* D = Story->GetDirector();
+	Story->OnScreenEntered(238);
+	FDinkScriptInstance Caller;
+	Caller.Sprite = UDinkDirector::HandleNoSprite;
+	D->Execute(Caller, FDinkStoryLine::Parse(TEXT(">> dink_can_walk_off_screen 1"), { TEXT("cmd"), TEXT("src:1") }));
+	TestTrue(TEXT("the flag is set"), D->bDinkCanWalkOffScreen);
+	// What PollScreenChange does when the pawn's ground is SCR_270's: Dink stays on 238.
+	D->WalkOffHeldScreen = 238;
+	TestEqual(TEXT("held past the edge: the current screen is still 238"), D->GetCurrentScreen(), 238);
+	// s2-culg.c:42-43: &player_map = 66; load_screen(66). The screen he is on is now the loaded one, before the greybox reports it.
+	Story->GetFacts()->SetFact(TEXT("player_map"), 66);
+	D->Execute(Caller, FDinkStoryLine::Parse(TEXT(">> load_screen"), { TEXT("cmd"), TEXT("src:1") }));
+	TestEqual(TEXT("load_screen while held: Dink is on the loaded screen"), D->GetCurrentScreen(), 66);
+	TestFalse(TEXT("the loaded screen is entered, not held (a script's load_screen)"), UDinkStorySubsystem::IsHeldWalkOff(D->bDinkCanWalkOffScreen, false, D->GetScriptLoadedScreen() == 66));
+	D->WalkOffHeldScreen = 238;
+	D->Execute(Caller, FDinkStoryLine::Parse(TEXT(">> dink_can_walk_off_screen 0"), { TEXT("cmd"), TEXT("src:1") }));
+	TestEqual(TEXT("dink_can_walk_off_screen(0) lets the next crossing check load the screen"), D->WalkOffHeldScreen, int32(INDEX_NONE));
+	D->WalkOffHeldScreen = 238;
+	Story->OnScreenEntered(66);
+	TestEqual(TEXT("a screen entry ends the hold"), D->WalkOffHeldScreen, int32(INDEX_NONE));
+	return true;
+}

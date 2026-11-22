@@ -271,6 +271,8 @@ public:
 	 * this tells OnScreenEntered that the screen it enters was loaded that way, so it does not clear a freeze the script took afterwards.
 	 */
 	bool ConsumeScriptLoadedScreen(int32 Screen) { const bool b = ScriptLoadedScreen == Screen; ScriptLoadedScreen = INDEX_NONE; return b; }
+	/** The screen a script's load_screen loaded and the story has not yet entered (INDEX_NONE if none). */
+	int32 GetScriptLoadedScreen() const { return ScriptLoadedScreen; }
 	/**
 	 * What load_map does to Dink (dink.cpp:1013-1015): his scripted move stops (move_active, move_nohard false; a move_stop waiting
 	 * on it goes on) and his freeze is cleared. Returns true if anything changed.
@@ -322,6 +324,14 @@ public:
 	/** dink.ini lines scripts ran with init() (sequence redefinitions), in order, for the animation layer. */
 	TArray<FString> InitLines;
 	bool bDinkCanWalkOffScreen = false;
+	/**
+	 * The screen Dink is still on while dink_can_walk_off_screen holds him past its edge (INDEX_NONE otherwise). The original loads
+	 * no screen then (did_player_cross_screen returns at once, dink.cpp:14056): his x and y run past the screen's edge (s2-culg.c:37-43
+	 * walks him 700 px south and then load_screen's Nadine's house). The 3D pawn is on the next screen's ground; this keeps the story,
+	 * GetCurrentScreen and Dink's pixels on the old one. Set by UDinkStorySubsystem::PollScreenChange, cleared by a screen entry and by
+	 * dink_can_walk_off_screen(0).
+	 */
+	int32 WalkOffHeldScreen = INDEX_NONE;
 	/** stop_entire_game(1) (D:10099-10108): no sprite thinks or animates while a menu is up; cleared on the first frame without one (D:17431-17440). */
 	bool bStopEntireGame = false;
 	/** load_screen is moving the pawn (IsDinkPlacedByScript). */
