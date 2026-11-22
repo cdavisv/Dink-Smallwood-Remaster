@@ -1,0 +1,13 @@
+{
+  "schema": "dink-hero-weapons/1",
+  "note": "The armed weapon in Dink's hand (bug A203): 1997 reloads Dink's idle, walk and attack sequences with the weapon's pictures while it is armed (item-sw1.c graphics\\dink\\sword\\..., item-b1.c graphics\\dink\\bow\\...), so the remaster attaches the weapon mesh to his hand for as long as the item's script is the armed weapon. Meshes and grip transforms from the art kit HeroWeapons (PR #157; origin at the grip centre, +X to the tip): swords and axe on hand_r at (-7, 3, -0.5) cm, pitch 90 yaw 0 roll 90; bows on hand_l at (7, -3, 0.5) cm, pitch -90 yaw 0 roll 90. Fists (item-fst) and the bomb carry nothing. Read by UDinkHeroWeaponSubsystem (DinkHeroWeapon.h).",
+  "items": {
+    "item-sw1": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Sword_Long_PR.SM_Hero_Sword_Long_PR", "bone": "hand_r", "location_cm": [-7, 3, -0.5], "rotation_deg": [90, 0, 90]},
+    "item-sw2": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Sword_Claw_PR.SM_Hero_Sword_Claw_PR", "bone": "hand_r", "location_cm": [-7, 3, -0.5], "rotation_deg": [90, 0, 90]},
+    "item-sw3": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Sword_Light_PR.SM_Hero_Sword_Light_PR", "bone": "hand_r", "location_cm": [-7, 3, -0.5], "rotation_deg": [90, 0, 90]},
+    "item-axe": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Axe_PR.SM_Hero_Axe_PR", "bone": "hand_r", "location_cm": [-7, 3, -0.5], "rotation_deg": [90, 0, 90]},
+    "item-b1": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Wood_PR.SM_Hero_Bow_Wood_PR", "bone": "hand_l", "location_cm": [7, -3, 0.5], "rotation_deg": [-90, 0, 90]},
+    "item-b2": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Blue_PR.SM_Hero_Bow_Blue_PR", "bone": "hand_l", "location_cm": [7, -3, 0.5], "rotation_deg": [-90, 0, 90]},
+    "item-b3": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Wood_PR.SM_Hero_Bow_Wood_PR", "bone": "hand_l", "location_cm": [7, -3, 0.5], "rotation_deg": [-90, 0, 90]}
+  }
+}
