@@ -237,7 +237,8 @@ public:
 	// ---- Movement and time ----
 
 	/** Advances movement, sp_kill timers and fades. */
-	void Tick(double DeltaMs, double NowMs);
+	/** bGameStopped (stop_entire_game): kill timers still run (D:16811-16833, before the get_frame branch), moves do not (they run in the brain). */
+	void Tick(double DeltaMs, double NowMs, bool bGameStopped = false);
 	bool IsMoving(int32 Handle) const;
 	/** move / move_stop: walks the sprite in numpad direction Dir until x (or y for 2/8) passes Stop. */
 	void StartMove(FDinkSprite& Sprite, int32 Dir, int32 Stop, int32 NoHard = 0);
@@ -321,6 +322,8 @@ public:
 	/** dink.ini lines scripts ran with init() (sequence redefinitions), in order, for the animation layer. */
 	TArray<FString> InitLines;
 	bool bDinkCanWalkOffScreen = false;
+	/** stop_entire_game(1) (D:10099-10108): no sprite thinks or animates while a menu is up; cleared on the first frame without one (D:17431-17440). */
+	bool bStopEntireGame = false;
 	/** load_screen is moving the pawn (IsDinkPlacedByScript). */
 	bool bPlacingDink = false;
 	FDinkAudioStub Audio;

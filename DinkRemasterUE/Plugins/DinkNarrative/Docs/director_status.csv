@@ -1,6 +1,6 @@
 command,category,uses,form,status,note
 (line) say_stop,dialogue,1702,spoken line,implemented,"shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); blocks until timed out (strlen x 77 ms, min 2700) or skipped"
-wait,timing,1550,command,implemented,suspends this script instance for ms of game time (others keep running)
+wait,timing,1550,command,implemented,"suspends this script instance for ms of game time (others keep running); ends its set_callback_random timer (kill_returning_stuff, D:8043)"
 unfreeze,control,378,command,implemented,undoes freeze
 create_sprite,sprites,342,external,implemented,EXTERNAL function bound with lookaheadSafe = false
 (line) say,dialogue,339,spoken line,implemented,shown in the dialogue box (bubble or caption: DinkNarrativeOverlay); does not block
@@ -136,7 +136,7 @@ scripts_used,other,1,external,implemented,EXTERNAL function bound with lookahead
 set_button,ui,1,command,recorded,engine/menu mode switch of the 2D title and escape screens; no equivalent yet
 show_bmp,screen,1,command,implemented,full-screen picture until the skip key (D:7693); tiles\map1.bmp is drawn as the remaster's world map from the layout
 sp_base_idle,sprites,1,command,recorded,"2D idle sequence base, recorded for the animation layer"
-stop_entire_game,system,1,command,recorded,engine/menu mode switch of the 2D title and escape screens; no equivalent yet
+stop_entire_game,system,1,command,implemented,"stop_entire_game(1) (D:10099-10108): while a menu is up no brain, move, touch damage or wait runs; kill timers and texts do (ThinkSprite with get_frame, D:16811-16833, 17423); cleared on the first frame without a menu, which runs nothing else (D:17431-17444)"
 stopcd,audio,1,command,implemented,audio stub: logs the (legacy CD) music stop
 debug,other,59,comment (engine no-op),recorded,"engine no-op (dev log / asset preload); the converter writes it as an Ink comment, so it never arrives"
 load_sound,other,49,comment (engine no-op),recorded,"engine no-op (dev log / asset preload); the converter writes it as an Ink comment, so it never arrives"

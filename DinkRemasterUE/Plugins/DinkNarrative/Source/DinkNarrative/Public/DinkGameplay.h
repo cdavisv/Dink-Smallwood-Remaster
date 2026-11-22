@@ -665,8 +665,9 @@ public:
 
 	// ---- Time ----
 
-	/** Called by the story subsystem every tick before scripts step. */
-	void Tick(double DeltaMs, double NowMs);
+	/** Called by the story subsystem every tick before scripts step. bGameStopped (stop_entire_game, A44): only the 100 ms status timer
+	 *  runs (D:17339-17346 come before the ThinkSprite loop, D:17414-17423). */
+	void Tick(double DeltaMs, double NowMs, bool bGameStopped = false);
 	/** Lands every pending hit now (instant mode). */
 	void FlushPendingHits();
 

@@ -1,5 +1,21 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
+> **Re-baselined with A40 + A44 (DinkC parity, PR `fix/dinkc-a40-a44`; 21 Nov 2026, PIE, master 7eccb89ff + the branch, private copy,
+> clean build).** A40: `set_callback_random` timers end on wait / the say_stop family / say_xy and before talk, hit and damage
+> (kill_returning_stuff, dink.cpp:5049-5070); A44: `stop_entire_game` pauses brains, moves, touch damage and waits under the level-up menu
+> (10099-10108, 17414-17444). `Dink.Gameplay.Probe` 29/29 chained from a new game, and again inside the full `Dink` suite: all twenty md5s equal in both runs (suite 385/386 on a clean build; the one failure, `Dink.Narrative.Director.Vocabulary`, was the A44 commit's stale `load_screen` row in director_status.csv, regenerated, and passed alone).
+> Ch1 1c7c0d3550, Ch2 35edbed6ab, Ch3 16cbda06dc, Ch4 452ef566e5, Ch5 364f07321b, Ch6 b81f06f63a, Ch7 f85c1cb51b, Ch8 1b7883106e,
+> Ch9 471f21740b, Ch10 be33c8b030, Ch11 4625e5426e, Ch12 797e2a29bd, Ch13 de90b5299c, Ch14 eda28fe3e2, Ch15 8923f64d60, Ch16 6a6b7a391c,
+> Ch17 5f513c49f2, Ch18 0a29e2c831, Ch19 19588a9355, Ch20 f3f762dafd.
+> - Every chapter moved, and the cause is the intended fix: from chapter 1 on, A40 ends set_callback_random timers where the engine does
+>   (s1-caves stops roaring after its first wait), so fewer callbacks fire and fewer `rand()` draws are made; A44 freezes the world under
+>   every level-up menu.
+> - Bot tactics for the new stream (probe code only): chapter 7 ends only after a late level-up is answered (its save would otherwise hold
+>   an open menu); chapter 8 first collects gold on chapter 4's feud screens until 110 (this stream reached it with 44, one elixir, and
+>   lost to Mog), and a feud screen without its pair is skipped after 6 s; on SCR_156 (chapters 15 and 19) a slayer or bong within 70 px
+>   is fought before the dragon (the bong pinned Dink at the west edge while he waited for the dragon).
+> - A41 (`create_sprite` = add_sprite_dumb) is still held back: with it every created chaser walks 2-3x faster (Jack, the cult girls).
+
 > **Re-baselined with PR #140 (gore parity, owner decision A25; 21 Nov 2026, PIE, private copy, world regenerated with
 > `import_greybox.sh --region all --export` and `--region stonebrook`).** The simulation now draws as 1997 does: random_blood's `rand() % 3`
 > after every damaging hit (dink.cpp:6693), the headless duck's 1-in-100 bleed roll (12798-12802) and human_brain's hurt-sound `rand() % 2`
