@@ -562,7 +562,7 @@ void UDinkGameplay::SyncDinkFromActor()
 	{
 		// The pawn's own screen: right after a teleport the greybox's current screen is still the old one,
 		// and pixels computed against the wrong screen's corners would fling Dink away on his next move.
-		Dink.Screen = D->ScreenAt(Actor->GetActorLocation());
+		Dink.Screen = D->WalkOffHeldScreen > 0 ? D->WalkOffHeldScreen : D->ScreenAt(Actor->GetActorLocation()); // past an edge: still the old screen
 		D->SyncSpriteFromActor(Dink);
 	}
 }

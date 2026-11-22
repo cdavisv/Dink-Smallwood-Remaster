@@ -181,7 +181,7 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 | `arm_weapon` | 2 | newgame, start-1 | E | 7851-7860 | Gameplay::ArmWeapon |  |
 | `force_vision` | 2 | s1-brg2, s1-h1-o | E | 8490-8505 | ForceOriginalHardnessVision |  |
 | `show_popup` | 2 | s1-h1-m, s1-sack | R | 8938-8956 | recorded | HD mobile tip |
-| `dink_can_walk_off_screen` | 2 | s2-culg | R | 10122-10133 | flag kept | screen edges are not walls in 3D |
+| `dink_can_walk_off_screen` | 2 | s2-culg | F | 10122-10133, 14056 | Director WalkOffHeldScreen + PollScreenChange | while set, crossing an edge loads no screen (A353, 22 Nov 2026): Dink stays on the old screen past its edge until load_screen |
 | `sp_prop` | 2 | s5-end, s5-fguy | X | - | owner decision OD1 | not an engine command; behind fix switches that stay false |
 | `get_burn` | 2 | s7-hell, s7-mil | E | 8974-8980 | EXTERNAL 0 |  |
 | `show_bmp` | 1 | button6 | d | 7693-7706 | waits for a key, shows nothing | button6.c's map (tiles\map1.bmp) is not shown (A48) |

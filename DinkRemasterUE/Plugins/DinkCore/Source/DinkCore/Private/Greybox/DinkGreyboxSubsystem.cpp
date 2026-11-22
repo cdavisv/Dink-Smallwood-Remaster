@@ -100,7 +100,7 @@ int32 UDinkGreyboxSubsystem::SetScreenVision(int32 ScreenNumber, int32 Value)
 	return Shown;
 }
 
-bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float MapY)
+bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float MapY, bool bEvenIntoWalls)
 {
 	ADinkScreenVolume* Screen = FindScreen(ScreenNumber);
 	APlayerController* PC = GetWorld()->GetFirstPlayerController();
@@ -122,7 +122,15 @@ bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float Map
 	{
 		Landforms->EnsureAround(Target);
 	}
-	return Pawn->TeleportTo(Target, Pawn->GetActorRotation());
+	if (const bool bPlaced = Pawn->TeleportTo(Target, Pawn->GetActorRotation()); bPlaced || !bEvenIntoWalls)
+	{
+		return bPlaced;
+	}
+	// The original puts Dink where it is told, walls or not (load_screen keeps his x and y, sp_x/sp_y set them). The checked teleport
+	// refuses a spot whose capsule overlaps a wall (s2-culg.c:43: Dink walked off SCR_238's bottom, load_screen'd onto Nadine's house's
+	// bottom wall row): the pawn stayed on the old screen and the script's scene played on the wrong one. Placed without the check.
+	UE_LOG(LogDink, Log, TEXT("dink.Goto: SCR_%03d %.0f,%.0f overlaps a wall; placed there unchecked"), ScreenNumber, MapX, MapY);
+	return Pawn->TeleportTo(Target, Pawn->GetActorRotation(), false, true);
 }
 
 void UDinkGreyboxSubsystem::SetSpriteWarpOn(const FString& WarpId, bool bOn)

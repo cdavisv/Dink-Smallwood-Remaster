@@ -620,6 +620,11 @@ void UDinkDirector::RegisterCommands()
 		// may move or freeze him again.
 		ApplyLoadMapToDink();
 		ScriptLoadedScreen = Target;
+		// Held past an edge (dink_can_walk_off_screen): the screen he is on is now the loaded one, until the story enters it.
+		if (WalkOffHeldScreen > 0)
+		{
+			WalkOffHeldScreen = Target;
+		}
 		if (UWorld* World = GetWorld())
 		{
 			if (UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>())
@@ -627,7 +632,10 @@ void UDinkDirector::RegisterCommands()
 				// The placement is no walk: a warp trigger the pawn lands in must not fire (special_block, dink.cpp:15337, runs only from the walk
 				// code; s3-sec1.c:40-42 puts Dink at 515,383 of SCR_227, inside the hut's exit S227_P01, and the original leaves him there).
 				TGuardValue<bool> Placing(bPlacingDink, true);
-				Greybox->GotoScreen(Target, Dink.X - 20.0, Dink.Y);
+				// Walked past the old screen's edge (dink_can_walk_off_screen): the original keeps his x and y, off the new screen too. The
+				// pawn is put on the new screen's edge row so that the greybox reports the screen the script loaded; the script places him next.
+				const bool bPastEdge = bDinkCanWalkOffScreen && (Dink.X < 20.0 || Dink.X > 620.0 || Dink.Y < 0.0 || Dink.Y > 400.0);
+				Greybox->GotoScreen(Target, bPastEdge ? FMath::Clamp(Dink.X - 20.0, 0.0, 599.0) : Dink.X - 20.0, bPastEdge ? FMath::Clamp(Dink.Y, 0.0, 399.0) : Dink.Y, true);
 			}
 		}
 		return FDinkCommandResult();
@@ -645,9 +653,13 @@ void UDinkDirector::RegisterCommands()
 		}
 		return FDinkCommandResult();
 	});
-	Register(TEXT("dink_can_walk_off_screen"), S::Recorded, TEXT("flag kept; screen edges are not walls in 3D"), [this](FDinkCommandContext& Ctx)
+	Register(TEXT("dink_can_walk_off_screen"), S::Implemented, TEXT("while set an edge crossing loads no screen (D:14056); load_screen places Dink even into a wall"), [this](FDinkCommandContext& Ctx)
 	{
 		bDinkCanWalkOffScreen = Ctx.Int(0) != 0;
+		if (!bDinkCanWalkOffScreen)
+		{
+			WalkOffHeldScreen = INDEX_NONE; // the next crossing check loads the screen he is on (did_player_cross_screen, dink.cpp:14058-14151)
+		}
 		return FDinkCommandResult();
 	});
 	Register(TEXT("draw_hard_map"), S::Implemented, TEXT("rebuilds the screen's hardness as dink.cpp:8224-8232 does (tile layer, then the hardboxes of active sprites and background placements whose flag is 0); the greybox's solid collision follows"), [this](FDinkCommandContext& Ctx)
@@ -1897,6 +1909,10 @@ bool UDinkDirector::PixelToWorld(int32 Screen, double X, double Y, FVector& OutW
 
 int32 UDinkDirector::GetCurrentScreen() const
 {
+	if (WalkOffHeldScreen > 0)
+	{
+		return WalkOffHeldScreen;
+	}
 	if (UWorld* World = GetWorld())
 	{
 		if (const UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>())

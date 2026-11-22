@@ -708,6 +708,12 @@ public:
 	{
 		return !bForceVisionRebuild && !bScriptLoaded && (bWarped || !bWalkOffScreen);
 	}
+	/** Whether the pawn's new screen is NOT entered: an edge crossing while dink_can_walk_off_screen is set loads no screen
+	 *  (did_player_cross_screen returns at once, dink.cpp:14056). A warp (15724) and the screen a script's load_screen loaded are entered. */
+	static bool IsHeldWalkOff(bool bWalkOffScreen, bool bWarped, bool bScriptLoaded)
+	{
+		return bWalkOffScreen && !bWarped && !bScriptLoaded;
+	}
 private:
 	int32 LastOutdoorScreen = 0;
 };
