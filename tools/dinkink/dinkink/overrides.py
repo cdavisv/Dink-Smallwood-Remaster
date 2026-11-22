@@ -65,4 +65,30 @@ OWNER_DECISIONS = {
         "dink_cpp": "a { after a statement opens a block; the == 2 and == 3 tests nest inside "
                     "the == 1 block and a false if skips to the matching } (dink.cpp:7289-7360)",
     },
+    # Decision of 16 Nov 2026 (bug A50): not a typo but a softlock the author left. s3-st2p.c `buy`
+    # (reached by `goto buy` from `talk`, both frozen at lines 72-73) shows "You are carrying too
+    # much." and `return`s at line 42 without the unfreeze(1) / unfreeze(&current_sprite) that
+    # every other way out of the shop has (lines 50-51, 65-66, 101-102, 125-126). The switch adds
+    # those two commands before that return (OWNER_ADDITIONS below).
+    "fix_s3_st2p_l42": {
+        "value": True,
+        "decided": "2026-11-16",
+        "reason": "softlock: buying the bow with 16 items carried leaves Dink and Arturous "
+                  "frozen at s3-st2p.c:42; both are unfrozen before that return",
+        "dink_cpp": "return ends the script (dink.cpp:7434-7451, 10604-10614) and nothing "
+                    "clears a sprite's freeze but unfreeze (7380-7403) or a screen load "
+                    "(1013-1015 for Dink only)",
+    },
+}
+
+# OWNER_ADDITIONS: commands the owner had added where the author left a softlock (no typo to
+# repair). (script, line of the statement) -> the fix switch (it must be in OWNER_DECISIONS)
+# and the director commands emitted before that statement behind the switch, as `>> ... #cmd`
+# lines with the statement's #src line.
+OWNER_ADDITIONS = {
+    ("s3-st2p", 42): {
+        "const": "fix_s3_st2p_l42",
+        "commands": ["unfreeze 1", "unfreeze {current_sprite}"],
+        "comment": "softlock: return without unfreeze (owner decision 16 Nov 2026, A50)",
+    },
 }

@@ -1360,6 +1360,7 @@ local,s3-st2p:&junk,s3_st2p__junk,local,s3-st2p
 local,s3-st2p:&mom,s3_st2p__mom,local,s3-st2p
 local,s3-st2p:&rcrap,s3_st2p__rcrap,local,s3-st2p
 local,s3-st2p:&scrap,s3_st2p__scrap,local,s3-st2p
+fix,s3-st2p:line 42,fix_s3_st2p_l42,const,s3-st2p
 knot,s3-st3,d_s3_st3,script,s3-st3
 entry,s3-st3:main,d_s3_st3.on_main,procedure,s3-st3
 local,s3-st3:&pep,s3_st3__pep,local,s3-st3

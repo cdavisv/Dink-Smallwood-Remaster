@@ -265,6 +265,7 @@ to brain 0, D:6036-6046) / scripts that set the brain.
 | Row | Decided | What the remaster does instead | Where |
 |-----|---------|--------------------------------|-------|
 | A47 | owner, 16 Nov 2026 | Martridge's scroll (s1-mh-f.c:33-40) shrinks away after it is read, as its author wrote; the 1997 binary sent those sp_* to sprite 1000 (D:8075-8087, 5396-5403) and left it on the floor. Only s1-mh-f keeps its own sprite after `script_attach(1000)`. | `UDinkStorySubsystem::CurrentSpriteField` |
+| A50 | owner, 16 Nov 2026 | Arturous's bow shop (s3-st2p.c:35-42) with all 16 item slots full: after "You are carrying too much." Dink and Arturous are unfrozen before the `return`; the 1997 script left both frozen for good (return ends the script, D:7434-7451; only unfreeze clears a freeze, 7380-7403). | converter switch `fix_s3_st2p_l42` (tools/dinkink/dinkink/overrides.py `OWNER_ADDITIONS`) |
 
 ## Defects (bug list rows A40-A50)
 
@@ -280,7 +281,7 @@ to brain 0, D:6036-6046) / scripts that set the brain.
 | A47 | S3 | `script_attach(1000)` left `&current_sprite` on the old sprite. In the engine it becomes 1000 and later sp_* on it are ignored (s1-ltr.c:9-10 says so in a comment). Martridge's scroll (s1-mh-f.c:37-40) stays on the floor after it is read in the engine; in the remaster it shrank away. | 8075-8087, 5396-5403 | closed: owner decision 16 Nov 2026, the scroll shrinks (approved deviation, see below): s1-mh-f keeps its sprite after `script_attach(1000)` (`UDinkStorySubsystem::CurrentSpriteField`); every other script follows the engine; test `Dink.Parity.DinkC.ScriptAttachMovesCurrentSprite` |
 | A48 | S3 | `show_bmp` waits for a key but shows nothing. button6.c's map (`tiles\map1.bmp`, the map key) appears as a blank pause. | 7693-7706 | open (UI: show the picture) |
 | A49 | S3 | Brain details. The pig's death skips its seq-164 death animation under brain 7 (D:13378-13381). Pig damage is not held during a scripted move (D:13360). The duck's first death skips the D:12744 `pseq` in base_walk check. | 12744, 13360, 13378-13381 | open (cosmetic) |
-| A50 | S2 | 1997 softlock kept. s3-st2p.c:30-42: buying the bow with 16 items carried leaves Dink and Arturous frozen (`return` without `unfreeze`). | - (script) | open: owner decision (a fix switch would be a deviation from 1997) |
+| A50 | S2 | 1997 softlock kept. s3-st2p.c:30-42: buying the bow with 16 items carried leaves Dink and Arturous frozen (`return` without `unfreeze`). | - (script) | fixed by owner decision 16 Nov 2026 (approved deviation, see the table above): `fix_s3_st2p_l42` unfreezes both before the return |
 
 ## Scripts the probe does not run
 

@@ -12,6 +12,7 @@
 
 #include "DinkTestHelpers.h"
 #include "DinkDirector.h"
+#include "DinkInventoryComponent.h"
 #include "DinkNarrativeTypes.h"
 #include "DinkStorySubsystem.h"
 #include "HAL/FileManager.h"
@@ -181,5 +182,48 @@ bool FDinkOwnerDecisionTypoLinesTest::RunTest(const FString& Parameters)
 		TestTrue(TEXT("Libby's bed, looks lonely. (s1-h3-8.c:20)"), Heard.Contains(TEXT("Libby's bed, looks lonely.")));
 		AddInfo(FString::Printf(TEXT("all three bed lines within %d talks"), Talks));
 	}
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkOwnerDecisionBowShopTest, "Dink.Narrative.OwnerDecisions.BowShopFullInventoryUnfreezes", DINK_TEST_FLAGS)
+bool FDinkOwnerDecisionBowShopTest::RunTest(const FString& Parameters)
+{
+	// Bug A50, owner decision of 16 Nov 2026 (switch fix_s3_st2p_l42, tools/dinkink overrides.py OWNER_ADDITIONS): s3-st2p.c `talk` freezes
+	// Dink and Arturous (lines 72-73) and `goto buy`; with all 16 item slots full `buy` shows "You are carrying too much." and returns at
+	// line 42 without unfreezing anyone (return ends the script, dink.cpp:7434-7451; only unfreeze clears a freeze, 7380-7403): the 1997
+	// softlock. With the switch both are unfrozen before that return; nothing is bought.
+	using namespace DinkOwnerDecisionTest;
+	FEnv E = Make(*this);
+	if (!E.IsValid())
+	{
+		return false;
+	}
+	UDinkStorySubsystem* S = E.Story;
+	UDinkDirector* D = S->GetDirector();
+	UDinkInventoryComponent* Inv = D->GetInventory();
+	if (!TestNotNull(TEXT("an inventory"), Inv)) return false;
+	while (Inv->NumFreeItemSlots() > 0 && Inv->AddItem(TEXT("item-nut")) >= 0) {}
+	if (!TestEqual(TEXT("all 16 item slots full"), Inv->NumFreeItemSlots(), 0)) return false;
+	E.Facts->SetFact(TEXT("gold"), 2000);
+
+	const int32 Arturous = D->CreateVirtualSprite(97, 300, 200);
+	S->bInstantMode = false;
+	TestTrue(TEXT("s3-st2p talk starts"), S->StartProcedure(TEXT("s3-st2p"), TEXT("talk"), Arturous) != 0);
+	S->RunUntilIdle();
+	const FDinkMenu* Menu = S->GetActiveMenu();
+	if (!TestTrue(TEXT("the shop menu opens"), Menu && Menu->Choices.Num() == 3)) return false;
+	TestTrue(TEXT("talk froze Dink"), D->GetDink().bFrozen);
+	const int32 From = S->Events.Num();
+	TestTrue(TEXT("choose \"Buy a Bow and some arrows for $1000\""), S->Choose(1));
+	S->bInstantMode = true;
+	S->AutoChooser = [](const FDinkMenu&) { return 0; }; // "Ok" under "You are carrying too much."
+	S->RunUntilIdle();
+	const TArray<TPair<FString, FString>> Lines = Said(S, From);
+	TestTrue(TEXT("Dink asks for the bow"), Lines.Num() > 0 && Lines[0].Key == TEXT("Well, despite the highway robbery, I'd like to get a bow."));
+	TestFalse(TEXT("A50: Dink is not left frozen"), D->GetDink().bFrozen);
+	const FDinkSprite* A = D->FindSprite(Arturous);
+	TestTrue(TEXT("A50: Arturous is not left frozen"), A && !A->bFrozen);
+	TestEqual(TEXT("nothing bought: gold unchanged"), E.Facts->GetFact(TEXT("gold")), 2000);
+	CheckOriginal(*this, TEXT("s3-st2p"), TEXT("You are carrying too much."));
 	return true;
 }
