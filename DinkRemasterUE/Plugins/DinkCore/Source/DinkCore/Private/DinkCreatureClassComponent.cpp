@@ -2,6 +2,7 @@
 #include "DinkCreatureSubsystem.h"
 #include "DinkSecondaryMotion.h"
 #include "Engine/World.h"
+#include "DinkPerfScope.h"
 #include "Animation/AnimSequence.h"
 #include "Animation/AnimationPoseData.h"
 #include "Animation/AttributesRuntime.h"
@@ -365,6 +366,25 @@ void UDinkCreatureClassComponent::Present(float DeltaTime)
 
 void UDinkCreatureClassComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
+	DINK_PERF_SCOPE(Dink_CreatureClass_Tick);
+	// dink.Perf.Fixes: about 160 of these stand on the 644 screens at once. One that is not being drawn and has settled
+	// where its (unmoving) sprite stands skips the frame: no transform, layer or pose update until it is drawn again.
+	if (DinkPerf::FixesEnabled() && bPlaced && Class.IsValid() && !WasRecentlyRendered(0.5f))
+	{
+		const AActor* Owner = GetOwner();
+		const bool bBlendsSettled = !Tracks.ContainsByPredicate([](const FTrack& T) { return T.bFadingOut || (T.Weight > 0.f && T.Weight < 1.f); });
+		const double Scale = Class->Binding.Scale * SizePercent / 100.0;
+		if (Owner && !Owner->IsHidden() && bBlendsSettled && Smoother.GetSpeed() < KINDA_SMALL_NUMBER
+			&& FMath::IsNearlyEqual(double(GetComponentScale().X), Scale, 1e-4)
+			&& FVector::DistSquared(Owner->GetActorLocation() + FVector(0.0, 0.0, GroundOffset), Shown) < 0.01
+			&& FMath::Abs(FRotator::NormalizeAxis(Smoother.GetYaw() - TargetYaw)) < 0.1f)
+		{
+			// the gore still runs: a body killed just out of view keeps its fountain and trail, and the live-sprite count stays true
+			++StepsSinceSprite;
+			PresentGore(DeltaTime);
+			return;
+		}
+	}
 	Present(DeltaTime);
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }

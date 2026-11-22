@@ -1,5 +1,11 @@
 #include "DinkEnvironmentSubsystem.h"
 #include "DinkLandforms.h"
+#include "DinkPerfScope.h"
+#include "DinkScreenIndex.h"
+#if WITH_EDITOR
+#include "AssetCompilingManager.h"
+#endif
+#include "Misc/App.h"
 #include "DinkCoreModule.h"
 #include "DinkCollision.h"
 #include "DinkPlayerBlockers.h"
@@ -14,6 +20,8 @@
 #include "Components/LocalFogVolumeComponent.h"
 #include "Components/ExponentialHeightFogComponent.h"
 #include "Engine/ExponentialHeightFog.h"
+#include "Components/VolumetricCloudComponent.h"
+#include "UObject/UObjectIterator.h"
 #include "Engine/SkyLight.h"
 #include "Components/SkyLightComponent.h"
 #include "DinkInstanceOriginsComponent.h"
@@ -495,8 +503,10 @@ bool UDinkEnvironmentSubsystem::GroundColourAt(const FVector2D& WorldXY, FLinear
 	if (!bGroundLoaded) LoadGroundColour();
 	if (GroundColour.IsEmpty()) return false;
 	GatherScreens(*GetWorld());
-	for (int32 Index = 0; Index < Screens.Num(); ++Index)
+	const TArray<int32>* NearScreens = DinkPerf::FixesEnabled() ? &ScreensNear(WorldXY) : nullptr;
+	for (int32 K = 0, N = NearScreens ? NearScreens->Num() : Screens.Num(); K < N; ++K)
 	{
+		const int32 Index = NearScreens ? (*NearScreens)[K] : K;
 		if (!ScreenBounds[Index].IsInside(WorldXY)) continue;
 		const FScreenInfo& Screen = Screens[Index];
 		double MapX = 0.0, MapY = 0.0;
@@ -523,6 +533,12 @@ void UDinkEnvironmentSubsystem::ClearIndoor()
 		IndoorSet->Destroy();
 		// the outdoor height fog comes back with the sky
 		for (TActorIterator<AExponentialHeightFog> It(GetWorld()); It; ++It) if (It->GetComponent()) It->GetComponent()->SetVisibility(true);
+		// and the clouds (perf-stutter: hidden indoors, where no sky is seen; 2.5-3 ms of cloud and cloud-shadow GPU time)
+		for (TObjectIterator<UVolumetricCloudComponent> It; It; ++It) if (It->GetWorld() == GetWorld() && It->ComponentHasTag(TEXT("DinkHiddenIndoors")))
+		{
+			It->SetVisibility(true);
+			It->ComponentTags.Remove(TEXT("DinkHiddenIndoors"));
+		}
 	}
 	for (const auto& Pair : IndoorCardRestore)
 	{
@@ -575,6 +591,14 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 	Root->RegisterComponent();
 	// the outdoor height fog would paint its sky-blue inscatter over the black backdrop: off while inside
 	for (TActorIterator<AExponentialHeightFog> It(World); It; ++It) if (It->GetComponent()) It->GetComponent()->SetVisibility(false);
+	// the volumetric clouds and their shadow map cost 2.5-3 ms of GPU time with no sky in view (15 Nov GPU breakdown)
+	if (DinkPerf::FixesEnabled())
+		for (TObjectIterator<UVolumetricCloudComponent> It; It; ++It)
+			if (It->GetWorld() == World && It->IsVisible())
+			{
+				It->SetVisibility(false);
+				It->ComponentTags.AddUnique(TEXT("DinkHiddenIndoors"));
+			}
 	UStaticMesh* Cube = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Cube.Cube"));
 	UStaticMesh* Plane = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Plane.Plane"));
 	const FVector2D Min = Bounds.Min - FVector2D(IndoorMarginCm), Max = Bounds.Max + FVector2D(IndoorMarginCm);
@@ -819,6 +843,7 @@ void UDinkEnvironmentSubsystem::BuildIndoor(const ADinkScreenVolume& Current)
 
 void UDinkEnvironmentSubsystem::UpdateIndoor(const ADinkScreenVolume* Current, float DeltaTime)
 {
+	DINK_PERF_SCOPE(Dink_Env_UpdateIndoor);
 	bool bWanted = Current && Current->bIndoor && CVarDinkIndoorEnv.GetValueOnGameThread() != 0 && !IndoorSkipScreens.Contains(Current->ScreenNumber);
 	if (bWanted)
 	{
@@ -907,7 +932,11 @@ namespace
 
 void UDinkEnvironmentSubsystem::FindBurnables()
 {
+	DINK_PERF_SCOPE(Dink_Env_FindBurnables);
 	if (BurnClass.IsNone() || !BurnBeforeMesh || !BurnAfterMesh) return;
+	// The placements are all loaded at play start and only ever lose eligibility (family/authored tags), so a second
+	// world walk finds nothing the first did not: once one burnable is known, the screen change skips the walk.
+	if (DinkPerf::FixesEnabled() && !Burnables.IsEmpty()) return;
 	for (TActorIterator<ADinkPlaceholderActor> It(GetWorld()); It; ++It)
 	{
 		ADinkPlaceholderActor* Actor = *It;
@@ -941,6 +970,7 @@ void UDinkEnvironmentSubsystem::FindBurnables()
 
 void UDinkEnvironmentSubsystem::UpdateBurnables()
 {
+	DINK_PERF_SCOPE(Dink_Env_UpdateBurnables);
 	for (FDinkBurnable& B : Burnables)
 	{
 		ADinkPlaceholderActor* Actor = B.Actor.Get();
@@ -1015,7 +1045,21 @@ void UDinkEnvironmentSubsystem::RelightIndoorCards(const TSet<int32>& ScreenNumb
 		Kept.FindOrAdd(ClassId)++;
 		++Count;
 	};
-	for (TActorIterator<ADinkPlaceholderActor> It(GetWorld()); It; ++It)
+	TArray<ADinkPlaceholderActor*> Placements;
+	TArray<ADinkGreyboxScreen*> Grounds;
+	if (DinkPerf::FixesEnabled())
+	{
+		// the interior's own screens from the index (sorted, so the result does not depend on the set's order)
+		TArray<int32> Numbers = ScreenNumbers.Array();
+		Numbers.Sort();
+		for (const int32 Number : Numbers) { Placements.Append(DinkScreenIndex::Placeholders(GetWorld(), Number)); Grounds.Append(DinkScreenIndex::Greybox(GetWorld(), Number)); }
+	}
+	else
+	{
+		for (TActorIterator<ADinkPlaceholderActor> It(GetWorld()); It; ++It) Placements.Add(*It);
+		for (TActorIterator<ADinkGreyboxScreen> It(GetWorld()); It; ++It) Grounds.Add(*It);
+	}
+	for (ADinkPlaceholderActor* It : Placements)
 	{
 		if (!ScreenNumbers.Contains(It->ScreenNumber) || !It->Origin || !It->Card || It->IsHidden()) continue;
 		// things that move, animate or get replaced by a script keep the importer's material (their frames are swapped under us otherwise)
@@ -1028,10 +1072,10 @@ void UDinkEnvironmentSubsystem::RelightIndoorCards(const TSet<int32>& ScreenNumb
 		}
 		Relight(It->Card, It->Origin->ClassId);
 	}
-	for (TActorIterator<ADinkGreyboxScreen> It(GetWorld()); It; ++It)
+	for (ADinkGreyboxScreen* It : Grounds)
 	{
 		if (!ScreenNumbers.Contains(It->ScreenNumber) || !It->InstanceOrigins) continue;
-		TInlineComponentArray<UInstancedStaticMeshComponent*> Components(*It);
+		TInlineComponentArray<UInstancedStaticMeshComponent*> Components(It);
 		for (UInstancedStaticMeshComponent* C : Components)
 		{
 			FName ClassId;
@@ -1053,13 +1097,14 @@ void UDinkEnvironmentSubsystem::RelightIndoorCards(const TSet<int32>& ScreenNumb
 
 void UDinkEnvironmentSubsystem::UpdateStateSwaps()
 {
+	DINK_PERF_SCOPE(Dink_Env_StateSwaps);
 	if (StateSwaps.IsEmpty() || CVarDinkStateSwaps.GetValueOnGameThread() == 0) return;
 	UWorld* World = GetWorld();
 	for (FDinkStateSwap& S : StateSwaps)
 	{
 		// the state is on when a placement gated by that vision value is shown (SetScreenVision un-hides its actor)
 		bool bOn = false;
-		for (TActorIterator<ADinkPlaceholderActor> It(World); It && !bOn; ++It) bOn = It->ScreenNumber == S.Screen && It->Vision == S.Vision && !It->IsHidden();
+		for (ADinkPlaceholderActor* It : DinkScreenIndex::Placeholders(World, S.Screen)) { bOn = It->ScreenNumber == S.Screen && It->Vision == S.Vision && !It->IsHidden(); if (bOn) break; }
 		if (int32(bOn) == S.State) continue;
 		const FName ScreenTag(*FString::Printf(TEXT("DinkArtScreen_%d"), S.Screen));
 		int32 Changed = 0;
@@ -1084,7 +1129,7 @@ void UDinkEnvironmentSubsystem::UpdateStateSwaps()
 		if (bOn)
 		{
 			// the burn holes and floor holes the original paints over the intact house are modelled in the burnt mesh
-			for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
+			for (ADinkPlaceholderActor* It : DinkScreenIndex::Placeholders(World, S.Screen))
 			{
 				if (It->ScreenNumber != S.Screen || It->Vision != S.Vision || !It->Origin || !It->Card || !S.HideClasses.Contains(It->Origin->ClassId)) continue;
 				It->Card->SetHiddenInGame(true);
@@ -1223,16 +1268,16 @@ void UDinkEnvironmentSubsystem::ApplyTownHouses(int32 ScreenNumber, const FDinkS
 	if (!Town->Footprints.IsEmpty()) bGrassSourcesStale = true;
 	// the sprite cards the modules stand for (cards only: hardness, warps and scripts are other components and stay)
 	int32 Hidden = 0;
-	for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
+	for (ADinkPlaceholderActor* It : DinkScreenIndex::Placeholders(World, ScreenNumber))
 	{
 		if (It->ScreenNumber != ScreenNumber || !It->Origin || !It->Card || !Town->Hide.Contains(It->Origin->OriginId.ToString())) continue;
 		It->Card->SetHiddenInGame(true);
 		++Hidden;
 	}
-	for (TActorIterator<ADinkGreyboxScreen> It(World); It; ++It)
+	for (ADinkGreyboxScreen* It : DinkScreenIndex::Greybox(World, ScreenNumber))
 	{
 		if (It->ScreenNumber != ScreenNumber || !It->InstanceOrigins) continue;
-		TInlineComponentArray<UInstancedStaticMeshComponent*> Components(*It);
+		TInlineComponentArray<UInstancedStaticMeshComponent*> Components(It);
 		for (const FDinkInstanceOrigin& O : It->InstanceOrigins->Origins)
 		{
 			if (!Town->Hide.Contains(O.OriginId.ToString())) continue;
@@ -1664,6 +1709,8 @@ void UDinkEnvironmentSubsystem::ApplyForest(int32 ScreenNumber, const FDinkScree
 			Component->SetGenerateOverlapEvents(false);
 			Component->SetCanEverAffectNavigation(false);
 			Component->SetCullDistances(0, int32(ForestCullCm));
+			// wind-swayed trees: cached rest-pose shadow pages (dink.Perf.StaticForestShadows; the trees still sway)
+			DinkPerf::CacheVegetationShadows(*Component, Mesh);
 			Component->RegisterComponent();
 		}
 		Component->AddInstance(FTransform(FRotator(0.0, Yaw, 0.0), At, FVector(Scale)), /*bWorldSpace*/ true);
@@ -1711,7 +1758,7 @@ void UDinkEnvironmentSubsystem::ApplyDecals(int32 ScreenNumber)
 	const UDinkArtFamilySubsystem* Families = GetWorld()->GetSubsystem<UDinkArtFamilySubsystem>();
 	if (Families && Families->GetPrecedence().Screens.Contains(ScreenNumber)) return;
 	int32 Count = 0;
-	for (TActorIterator<ADinkPlaceholderActor> It(GetWorld()); It; ++It)
+	for (ADinkPlaceholderActor* It : DinkScreenIndex::Placeholders(GetWorld(), ScreenNumber))
 	{
 		if (It->ScreenNumber != ScreenNumber || !It->Origin || !It->Card || !It->GetRootComponent()) continue;
 		const FDinkDecalClass* Decal = DecalClasses.Find(It->Origin->ClassId);
@@ -1722,7 +1769,7 @@ void UDinkEnvironmentSubsystem::ApplyDecals(int32 ScreenNumber)
 			|| It->ActorHasTag(UDinkArtFamilySubsystem::FamilyTag) || It->ActorHasTag(TEXT("DinkAuthoredArt"))) continue;
 		const FString Origin = It->Origin->OriginId.ToString();
 		if (Families && Families->GetPrecedence().Origins.Contains(Origin)) continue;
-		UDecalComponent* C = NewObject<UDecalComponent>(*It, TEXT("EnvDecal"));
+		UDecalComponent* C = NewObject<UDecalComponent>(It, TEXT("EnvDecal"));
 		C->SetupAttachment(It->GetRootComponent());
 		C->SetDecalMaterial(Decal->Materials[int32(FCrc::StrCrc32(*Origin) % uint32(Decal->Materials.Num()))]);
 		// the decal box: X is the projection depth (down), Y and Z the footprint
@@ -1739,6 +1786,7 @@ void UDinkEnvironmentSubsystem::ApplyDecals(int32 ScreenNumber)
 
 void UDinkEnvironmentSubsystem::UpdateCorpses(int32 CurrentScreen)
 {
+	DINK_PERF_SCOPE(Dink_Env_UpdateCorpses);
 	if (!bCorpsesGathered)
 	{
 		bCorpsesGathered = true;
@@ -1811,8 +1859,10 @@ void UDinkEnvironmentSubsystem::ClearGrass()
 
 bool UDinkEnvironmentSubsystem::GroundAt(const FVector2D& WorldXY, uint32 Hash, float& OutZ) const
 {
-	for (int32 Index = 0; Index < Screens.Num(); ++Index)
+	const TArray<int32>* NearScreens = DinkPerf::FixesEnabled() ? &ScreensNear(WorldXY) : nullptr;
+	for (int32 K = 0, N = NearScreens ? NearScreens->Num() : Screens.Num(); K < N; ++K)
 	{
+		const int32 Index = NearScreens ? (*NearScreens)[K] : K;
 		if (!ScreenBounds[Index].IsInside(WorldXY)) continue;
 		const FScreenInfo& Screen = Screens[Index];
 		double MapX = 0.0, MapY = 0.0;
@@ -1861,8 +1911,10 @@ bool UDinkEnvironmentSubsystem::GroundAt(const FVector2D& WorldXY, uint32 Hash, 
 float UDinkEnvironmentSubsystem::MaskCoverAt(const FVector2D& WorldXY) const
 {
 	// meadow cover of the tile mask under a point, 0..1; -1 where there is no mask (authored or indoor screens, off the grid)
-	for (int32 Index = 0; Index < Screens.Num(); ++Index)
+	const TArray<int32>* NearScreens = DinkPerf::FixesEnabled() ? &ScreensNear(WorldXY) : nullptr;
+	for (int32 K = 0, N = NearScreens ? NearScreens->Num() : Screens.Num(); K < N; ++K)
 	{
+		const int32 Index = NearScreens ? (*NearScreens)[K] : K;
 		if (!ScreenBounds[Index].IsInside(WorldXY)) continue;
 		const FScreenInfo& Screen = Screens[Index];
 		double MapX = 0.0, MapY = 0.0;
@@ -1932,6 +1984,7 @@ void UDinkEnvironmentSubsystem::TintMeadowGround()
 
 void UDinkEnvironmentSubsystem::GatherGrassClears()
 {
+	DINK_PERF_SCOPE(Dink_Env_GatherGrassClears);
 	// Low things the carpet would bury: family props (tools, pebbles, mushrooms, bones, corpses), small authored props and
 	// ground decals. Each gets a clearing over its footprint with a soft rim; the lower the thing, the wider the rim.
 	// Tall or long things (trees, barrels above the grass, fence runs, walls) stand in the grass as before.
@@ -1982,12 +2035,31 @@ void UDinkEnvironmentSubsystem::GatherGrassClears()
 					// props only: never the ground, the water or vegetation (weeds, ferns, flowers and bushes are family meshes too
 					// and grow in the grass)
 					const UMaterialInterface* Material = M->GetNumMaterials() > 0 ? M->GetMaterial(0) : nullptr;
-					const FString MaterialName = Material ? Material->GetName() : FString();
-					const FString Name = M->GetStaticMesh()->GetName();
-					if (M->GetFName() == TEXT("EnvSwapVisual") || MaterialName.Contains(TEXT("Terrain")) || MaterialName.Contains(TEXT("Meadow")) || MaterialName.Contains(TEXT("Earth"))
-						|| MaterialName.Contains(TEXT("Water")) || MaterialName.Contains(TEXT("Veg")) || Name.Contains(TEXT("Grass")) || Name.Contains(TEXT("Veg_"))
-						|| Name.Contains(TEXT("Weed")) || Name.Contains(TEXT("Fern")) || Name.Contains(TEXT("Flower")) || Name.Contains(TEXT("Reed")) || Name.Contains(TEXT("Bush"))
-						|| Name.Contains(TEXT("Thorn")) || Name.Contains(TEXT("Vine")) || Name.Contains(TEXT("Stump")) || Name.Contains(TEXT("Tree"))) continue;
+					// the same name tests, decided once per material and mesh asset (a gather sees thousands of components)
+					auto MaterialExcluded = [](const UMaterialInterface* Mat)
+					{
+						const FString MaterialName = Mat ? Mat->GetName() : FString();
+						return MaterialName.Contains(TEXT("Terrain")) || MaterialName.Contains(TEXT("Meadow")) || MaterialName.Contains(TEXT("Earth"))
+							|| MaterialName.Contains(TEXT("Water")) || MaterialName.Contains(TEXT("Veg"));
+					};
+					auto MeshExcluded = [](const UStaticMesh* Mesh)
+					{
+						const FString Name = Mesh->GetName();
+						return Name.Contains(TEXT("Grass")) || Name.Contains(TEXT("Veg_"))
+							|| Name.Contains(TEXT("Weed")) || Name.Contains(TEXT("Fern")) || Name.Contains(TEXT("Flower")) || Name.Contains(TEXT("Reed")) || Name.Contains(TEXT("Bush"))
+							|| Name.Contains(TEXT("Thorn")) || Name.Contains(TEXT("Vine")) || Name.Contains(TEXT("Stump")) || Name.Contains(TEXT("Tree"));
+					};
+					bool bExcluded = M->GetFName() == TEXT("EnvSwapVisual");
+					if (!bExcluded && DinkPerf::FixesEnabled())
+					{
+						static TMap<TWeakObjectPtr<const UObject>, bool> Decided;   // names never change; weak keys survive GC
+						const bool* MatDecision = Decided.Find(Material);
+						const bool bMat = MatDecision ? *MatDecision : Decided.Add(Material, MaterialExcluded(Material));
+						const bool* MeshDecision = bMat ? nullptr : Decided.Find(M->GetStaticMesh());
+						bExcluded = bMat || (MeshDecision ? *MeshDecision : Decided.Add(M->GetStaticMesh(), MeshExcluded(M->GetStaticMesh())));
+					}
+					else if (!bExcluded) bExcluded = MaterialExcluded(Material) || MeshExcluded(M->GetStaticMesh());
+					if (bExcluded) continue;
 				}
 				if (const UInstancedStaticMeshComponent* Instanced = Cast<UInstancedStaticMeshComponent>(M))
 				{
@@ -2057,6 +2129,7 @@ float UDinkEnvironmentSubsystem::GrassClearAt(const FVector2D& At, const TArray<
 
 void UDinkEnvironmentSubsystem::GatherGrassSources()
 {
+	DINK_PERF_SCOPE(Dink_Env_GatherGrassSources);
 	GrassSources.Reset();
 	UWorld* World = GetWorld();
 	if (!World) return;
@@ -2171,6 +2244,7 @@ void UDinkEnvironmentSubsystem::GrassInfluence(const FVector2D& At, const TArray
 
 void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Density)
 {
+	DINK_PERF_SCOPE(Dink_Env_BuildGrassCell);
 	FDinkGrassCell& Entry = GrassCells.Add(Cell);
 	if (!Holder || GrassMeshes.IsEmpty()) return;
 	const FVector2D Origin(Cell.X * GrassCellCm, Cell.Y * GrassCellCm);
@@ -2371,6 +2445,7 @@ void UDinkEnvironmentSubsystem::BuildGrassCell(const FIntPoint& Cell, float Dens
 
 void UDinkEnvironmentSubsystem::UpdateGrass(const FVector& Camera, float Density)
 {
+	DINK_PERF_SCOPE(Dink_Env_UpdateGrass);
 	if (!FMath::IsNearlyEqual(Density, LastGrassDensity))
 	{
 		ClearGrass();
@@ -2387,6 +2462,10 @@ void UDinkEnvironmentSubsystem::UpdateGrass(const FVector& Camera, float Density
 		It.RemoveCurrent();
 	}
 	int32 Budget = 6;
+	// dink.Perf.Fixes: also stop once ~2 ms went into cells this frame (at least one cell; never more than the six of before)
+	const bool bTimed = DinkPerf::FixesEnabled();
+	if (bTimed) PreloadScatterMaterials();
+	const double BudgetEnd = FPlatformTime::Seconds() + 0.002;
 	for (int32 Ring = 0; Ring <= Radius && Budget > 0; ++Ring)
 		for (int32 DY = -Ring; DY <= Ring && Budget > 0; ++DY)
 			for (int32 DX = -Ring; DX <= Ring && Budget > 0; ++DX)
@@ -2397,6 +2476,9 @@ void UDinkEnvironmentSubsystem::UpdateGrass(const FVector& Camera, float Density
 				if (FVector2D::Distance(Mid, FVector2D(Camera)) > GrassFarCm + GrassCellCm * 0.75f || GrassCells.Contains(Cell)) continue;
 				BuildGrassCell(Cell, Density);
 				--Budget;
+				// the near rings (about 56 m around the camera) keep master's six cells a frame, so a screen just entered is not
+				// shown without its grass (the 19 Nov lap: SCR_438 bare for the first half second); the time cap thins only the far rings
+				if (bTimed && Ring >= 3 && FPlatformTime::Seconds() > BudgetEnd) Budget = 0;
 			}
 	// only the cells around the camera cast shadows; no contact shadows anywhere (ambient occlusion grounds the rest)
 	for (auto& Pair : GrassCells)
@@ -2411,6 +2493,7 @@ void UDinkEnvironmentSubsystem::UpdateGrass(const FVector& Camera, float Density
 
 void UDinkEnvironmentSubsystem::ApplyNeighbourFamilies(const FVector& Around)
 {
+	DINK_PERF_SCOPE(Dink_Env_ApplyNeighbours);
 	// The family layer dresses a screen when the player enters it; the screens in view would still show their
 	// sprite cards. Dress everything within sight of the current screen as well (idempotent per screen).
 	for (const FScreenInfo& Screen : Screens)
@@ -2434,6 +2517,18 @@ void UDinkEnvironmentSubsystem::ApplyNeighbourFamilies(const FVector& Around)
 
 void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 {
+	DINK_PERF_SCOPE(Dink_Env_Tick);
+#if WITH_EDITOR
+	// Editor game (A15): meshes and textures loaded at play start compile in the background, and the first frame that
+	// draws one waits for it ("Waiting on static mesh ... being ready", 104-200 ms at screen entry). Wait for all of
+	// them once, here, on the first tick after every begin-play load, instead of in the middle of play.
+	if (!bCompileFlushed && DinkPerf::FixesEnabled() && FApp::CanEverRender())
+	{
+		bCompileFlushed = true;
+		DINK_PERF_SCOPE(Dink_Env_FinishCompilation);
+		FAssetCompilingManager::Get().FinishAllCompilation();
+	}
+#endif
 	Super::Tick(DeltaTime);
 	UWorld* World = GetWorld();
 	if (!bActive || !World) return;
@@ -2478,6 +2573,7 @@ void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 	const double Now = World->GetTimeSeconds();
 	if (Now >= NextDressedCheck)
 	{
+		DINK_PERF_SCOPE(Dink_Env_DressedCheck);
 		NextDressedCheck = Now + 2.0;
 		TSet<int32> Dressed;
 		for (TActorIterator<ADinkGreyboxScreen> It(World); It; ++It)
@@ -2507,10 +2603,15 @@ void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 	if (ScreenNumber != LastFamilyScreen && Current)
 	{
 		LastFamilyScreen = ScreenNumber;
-		ApplyNeighbourFamilies(DinkLayout::MapPixelToUnreal(Current->Corners, 300.0, 200.0));
-		FindBurnables();
-		if (!bGrassSourcesStale) GatherGrassClears();   // the screens dressed just now bring their low props
+		if (DinkPerf::FixesEnabled()) QueueNeighbourScreens(DinkLayout::MapPixelToUnreal(Current->Corners, 300.0, 200.0), ScreenNumber);
+		else
+		{
+			ApplyNeighbourFamilies(DinkLayout::MapPixelToUnreal(Current->Corners, 300.0, 200.0));
+			FindBurnables();
+			if (!bGrassSourcesStale) GatherGrassClears();   // the screens dressed just now bring their low props
+		}
 	}
+	DrainNeighbourScreens();
 	if (Now >= NextBurnCheck)
 	{
 		NextBurnCheck = Now + 0.1;

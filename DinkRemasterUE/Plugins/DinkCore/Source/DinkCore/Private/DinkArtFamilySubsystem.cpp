@@ -1,4 +1,5 @@
 #include "DinkArtFamilySubsystem.h"
+#include "DinkPerfScope.h"
 #include "Components/MaterialBillboardComponent.h"
 #include "Components/PointLightComponent.h"
 #include "DinkFlickerLightComponent.h"
@@ -778,6 +779,7 @@ void UDinkArtFamilySubsystem::ScreenChanged(ADinkScreenVolume* Screen)
 
 void UDinkArtFamilySubsystem::BuildIndex(UWorld& World)
 {
+	DINK_PERF_SCOPE(Dink_Family_BuildIndex);
 	bIndexed = true;
 	for (TActorIterator<ADinkPlaceholderActor> It(&World); It; ++It) ActorsByScreen.FindOrAdd(It->ScreenNumber).Add(*It);
 	for (TActorIterator<ADinkGreyboxScreen> It(&World); It; ++It) GreyboxByScreen.FindOrAdd(It->ScreenNumber).Add(*It);
@@ -1054,6 +1056,7 @@ bool UDinkArtFamilySubsystem::FollowPlacementPicture(ADinkPlaceholderActor& Acto
 
 int32 UDinkArtFamilySubsystem::ApplyScreen(int32 ScreenNumber)
 {
+	DINK_PERF_SCOPE(Dink_Family_ApplyScreen);
 	UWorld* World = GetWorld();
 	if (!bReady || !World || AppliedScreens.Contains(ScreenNumber)) return 0;
 	AppliedScreens.Add(ScreenNumber);
@@ -1135,6 +1138,7 @@ void UDinkArtFamilySubsystem::FollowCardVisibility(const USceneComponent* Card)
 
 bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 {
+	DINK_PERF_SCOPE(Dink_Family_DressActor);
 	UStaticMeshComponent* Card = Actor.Card;
 	if (!Actor.Origin || !Card || !Card->GetStaticMesh() || !Actor.GetRootComponent()) return false;
 	// Whatever the art runtime already took over at play start, whatever this layer dressed before.
@@ -1206,6 +1210,7 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		Part->SetGenerateOverlapEvents(false);
 		Part->ComponentTags.Add(FamilyTag);
 		Part->SetStaticMesh(PieceMesh);
+		DinkPerf::CacheVegetationShadows(*Part, PieceMesh);   // perf-stutter: wind-swayed trees and bushes keep cached rest-pose shadows
 		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), FVector(Stand.X, Stand.Y, Lift), Yaw, Scale, Pieces[Index]));
 		Actor.AddInstanceComponent(Part);
 		Part->RegisterComponent();
@@ -1305,6 +1310,7 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 
 int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 {
+	DINK_PERF_SCOPE(Dink_Family_DressInstances);
 	if (!Screen.InstanceOrigins || Screen.ActorHasTag(TEXT("DinkAuthoredArt")) || !Screen.GetRootComponent()) return 0;
 	TMap<FName, TArray<const FDinkInstanceOrigin*>> ByComponent;
 	for (const FDinkInstanceOrigin& Origin : Screen.InstanceOrigins->Origins) ByComponent.FindOrAdd(Origin.ComponentName).Add(&Origin);
@@ -1366,6 +1372,7 @@ int32 UDinkArtFamilySubsystem::DressInstances(ADinkGreyboxScreen& Screen)
 				Family->SetGenerateOverlapEvents(false);
 				Family->ComponentTags.Add(FamilyTag);
 				Family->SetStaticMesh(Mesh);
+				DinkPerf::CacheVegetationShadows(*Family, Mesh);   // perf-stutter: as above
 				Screen.AddInstanceComponent(Family);
 				Family->RegisterComponent();
 			}

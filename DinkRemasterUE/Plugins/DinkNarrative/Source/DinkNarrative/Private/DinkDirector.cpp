@@ -1,6 +1,7 @@
 #include "DinkDirector.h"
 #include "Misc/Crc.h"
 #include "DinkLandforms.h"
+#include "DinkPerfScope.h"
 #include "Hardness/DinkHardnessActivation.h"
 #include "DinkAudioSubsystem.h"
 #include "DinkCreatureSubsystem.h"
@@ -2161,6 +2162,7 @@ void UDinkDirector::FinishAllMoves()
 
 void UDinkDirector::Tick(double DeltaMs, double NowMs)
 {
+	DINK_PERF_SCOPE(Dink_Director_Tick);
 	TArray<int32> ToKill;
 	if (PresentedPicture.Num() > Sprites.Num() * 2 + 64) PresentedPicture.Reset();
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
