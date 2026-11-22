@@ -1610,7 +1610,7 @@ void UDinkGameplay::FlushPendingHits()
 	}
 }
 
-void UDinkGameplay::Tick(double DeltaMs, double InNowMs)
+void UDinkGameplay::Tick(double DeltaMs, double InNowMs, bool bGameStopped)
 {
 	DINK_PERF_SCOPE(Dink_Gameplay_Tick);
 	UDinkDirector* D = Director();
@@ -1623,47 +1623,52 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs)
 	{
 		D->MovePaceScale = [this](const FDinkSprite& S) { return PaceScale(S); };
 	}
-	SyncDinkFromActor();
-	for (TPair<int32, FDinkSprite>& Pair : D->Sprites)
+	// stop_entire_game (lraise.c's level-up menu): the engine thinks every sprite with get_frame (D:17414-17423): no brain, hit, touch
+	// damage or attack. The 100 ms status timer below runs before that loop (D:17339-17346) and so goes on (A44).
+	if (!bGameStopped)
 	{
-		if (Pair.Value.bNoTouch && NowMs > Pair.Value.NoTouchUntilMs)
+		SyncDinkFromActor();
+		for (TPair<int32, FDinkSprite>& Pair : D->Sprites)
 		{
-			Pair.Value.bNoTouch = false;
+			if (Pair.Value.bNoTouch && NowMs > Pair.Value.NoTouchUntilMs)
+			{
+				Pair.Value.bNoTouch = false;
+			}
 		}
-	}
-	// Attacks that reach their hit frame.
-	TArray<FDinkPendingHit> Due;
-	for (int32 i = PendingHits.Num() - 1; i >= 0; --i)
-	{
-		if (PendingHits[i].AtMs <= NowMs)
+		// Attacks that reach their hit frame.
+		TArray<FDinkPendingHit> Due;
+		for (int32 i = PendingHits.Num() - 1; i >= 0; --i)
 		{
-			Due.Insert(PendingHits[i], 0);
-			PendingHits.RemoveAt(i);
+			if (PendingHits[i].AtMs <= NowMs)
+			{
+				Due.Insert(PendingHits[i], 0);
+				PendingHits.RemoveAt(i);
+			}
 		}
-	}
-	for (const FDinkPendingHit& Hit : Due)
-	{
-		const FDinkSprite* S = D->FindSprite(Hit.Sprite);
-		if (S && S->bActive && S->GetProp(P_Seq) == Hit.Seq)
+		for (const FDinkPendingHit& Hit : Due)
 		{
-			RunThroughTagList(Hit.Sprite);
+			const FDinkSprite* S = D->FindSprite(Hit.Sprite);
+			if (S && S->bActive && S->GetProp(P_Seq) == Hit.Seq)
+			{
+				RunThroughTagList(Hit.Sprite);
+			}
 		}
+		// Dink's brain (1) runs the touch list every frame (D:16852).
+		if (D->GetDink().GetProp(P_Brain, 1) == 1)
+		{
+			RunThroughTouchDamageList(1);
+		}
+		// A player's remembered attack press (never set by the bot or the console: those call PlayerAttack directly).
+		if (AttackGate.TakeBuffered(NowMs))
+		{
+			StartGatedAttack();
+		}
+		if (bBrainsEnabled)
+		{
+			TickBrains(DeltaMs);
+		}
+		ProcessDamage();
 	}
-	// Dink's brain (1) runs the touch list every frame (D:16852).
-	if (D->GetDink().GetProp(P_Brain, 1) == 1)
-	{
-		RunThroughTouchDamageList(1);
-	}
-	// A player's remembered attack press (never set by the bot or the console: those call PlayerAttack directly).
-	if (AttackGate.TakeBuffered(NowMs))
-	{
-		StartGatedAttack();
-	}
-	if (bBrainsEnabled)
-	{
-		TickBrains(DeltaMs);
-	}
-	ProcessDamage();
 	if (NextStatusMs > NowMs + 1000.0)
 	{
 		NextStatusMs = NowMs + 100.0; // clock went back (load)

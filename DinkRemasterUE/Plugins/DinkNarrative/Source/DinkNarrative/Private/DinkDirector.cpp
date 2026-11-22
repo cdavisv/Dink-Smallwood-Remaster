@@ -186,10 +186,10 @@ void UDinkDirector::RegisterCommands()
 	};
 
 	// ---- Timing and control ----
-	Register(TEXT("wait"), S::Implemented, TEXT("suspends this script instance for ms of game time (others keep running)"), [this, Block](FDinkCommandContext& Ctx)
+	Register(TEXT("wait"), S::Implemented, TEXT("suspends this script instance for ms of game time (others keep running); ends its set_callback_random timer (kill_returning_stuff, D:8043)"), [this, Block](FDinkCommandContext& Ctx)
 	{
-		// dink.cpp:8034-8053 also calls kill_returning_stuff(script) here: bug A40, held back (branch fix/dinkc-callbacks) until the probe's
-		// dragon fight is re-tuned.
+		// dink.cpp:8034-8053: kill_returning_stuff(script), then a one-shot callback that runs the script on after ms.
+		UDinkStorySubsystem::KillReturningStuff(Ctx.Instance);
 		return Block(EDinkBlock::Time, Story->GetNowMs() + FMath::Max(0, Ctx.Int(0)));
 	});
 	Register(TEXT("freeze"), S::Implemented, TEXT("sprite frozen; for Dink (1) player movement input is ignored"), [this](FDinkCommandContext& Ctx)
@@ -838,7 +838,12 @@ void UDinkDirector::RegisterCommands()
 		UE_LOG(LogDinkDirector, Verbose, TEXT("init \"%s\" recorded"), *Ctx.Str(0));
 		return FDinkCommandResult();
 	});
-	for (const TCHAR* Name : { TEXT("set_mode"), TEXT("stop_entire_game"), TEXT("reset_timer"), TEXT("set_button") })
+	Register(TEXT("stop_entire_game"), S::Implemented, TEXT("stop_entire_game(1) (D:10099-10108): while a menu is up no brain, move, touch damage or wait runs; kill timers and texts do (ThinkSprite with get_frame, D:16811-16833, 17423); cleared on the first frame without a menu, which runs nothing else (D:17431-17444)"), [this](FDinkCommandContext& Ctx)
+	{
+		bStopEntireGame = Ctx.Int(0) == 1;
+		return FDinkCommandResult();
+	});
+	for (const TCHAR* Name : { TEXT("set_mode"), TEXT("reset_timer"), TEXT("set_button") })
 	{
 		Register(Name, S::Recorded, TEXT("engine/menu mode switch of the 2D title and escape screens; no equivalent yet"), [this](FDinkCommandContext& Ctx) { return RecordOnly(Ctx); });
 	}
@@ -2160,14 +2165,17 @@ void UDinkDirector::FinishAllMoves()
 	}
 }
 
-void UDinkDirector::Tick(double DeltaMs, double NowMs)
+void UDinkDirector::Tick(double DeltaMs, double NowMs, bool bGameStopped)
 {
 	DINK_PERF_SCOPE(Dink_Director_Tick);
 	TArray<int32> ToKill;
 	if (PresentedPicture.Num() > Sprites.Num() * 2 + 64) PresentedPicture.Reset();
 	for (TPair<int32, FDinkSprite>& Pair : Sprites)
 	{
-		StepMove(Pair.Value, DeltaMs);
+		if (!bGameStopped)
+		{
+			StepMove(Pair.Value, DeltaMs);
+		}
 		// A created sprite's drawn picture can change without a script command (changedir while it walks, brains):
 		// present it again whenever its picture changes, so a sprite born without a picture (create_sprite x, y, 9, 0, 0
 		// then sp_base_walk, as the Terris guards of s2-ryan3.c and s2-bar.c) shows up as soon as it has one.

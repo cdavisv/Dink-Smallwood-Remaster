@@ -129,7 +129,7 @@ V = {
  'show_bmp': ('d', '7693-7706', 'waits for a key, shows nothing', 'button6.c\'s map (tiles\\map1.bmp) is not shown (A48)'),
  'sp_base_idle': ('R', '9530-9546', 'recorded', ''),
  'set_button': ('R', '9745-9759', 'recorded', 'key binding menu'),
- 'stop_entire_game': ('D', '10099-10120, 16811-16833, 17423-17444', 'recorded', 'under its menu no brain, move, touch damage or wait runs, kill timers and texts do; the remake only records it. Fix written but held back (branch fix/dinkc-stop-entire-game): its level-up pauses shift the rand() stream and probe chapter 8 (the knights) then loses (A44)'),
+ 'stop_entire_game': ('F', '10099-10120, 17423-17440', 'bStopEntireGame + Advance', 'no sprite thinks while the level-up menu is up; the remake only recorded it: monsters kept hitting Dink in lraise\'s menu: fixed (A44)'),
  'scripts_used': ('E', '10281-10292', 'EXTERNAL (live instances)', ''),
  'count_magic': ('E', '10191-10212', 'EXTERNAL', ''),
  'free_magic': ('E', '7815-7827', 'EXTERNAL', ''),

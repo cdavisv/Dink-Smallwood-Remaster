@@ -173,6 +173,8 @@ namespace DinkProbeTest
 						bool bSawDrop = false;
 						/** Game time (ms) the loot of the current sweep began to lie there; -1 = none. */
 						double LootSinceMs = -1.0;
+						/** AddFeud: when Dink came onto the feud's screen (game ms; -1 off it). */
+						double FeudSinceMs = -1.0;
 		/** BowDuel: game time (ms) Seth's bomb wind-up was first seen (-1 = none), the draw began (-1 = not drawing), arrows let go, draws given up. */
 		double BombStartMs = -1.0;
 		double DrawStartMs = -1.0;
@@ -4229,7 +4231,8 @@ namespace DinkProbeTest
 				[this, Screen, X, Y, Expected, bPen, GoldTarget, ExpTarget](FCtx& C)
 				{
 					if (C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("exp")) >= ExpTarget) { return; }
-					if (!C.OnScreen(Screen)) { C.P->Mark = -1; C.P->bSawDrop = false; C.P->LootSinceMs = -1.0; C.Goto(Screen, X, Y); return; }
+					if (!C.OnScreen(Screen)) { C.P->Mark = -1; C.P->bSawDrop = false; C.P->LootSinceMs = -1.0; C.P->FeudSinceMs = -1.0; C.Goto(Screen, X, Y); return; }
+					if (C.P->FeudSinceMs < 0.0) { C.P->FeudSinceMs = C.S->GetNowMs(); }
 					const int32 Alive = C.Hostiles(Screen);
 					if (C.P->Mark < 0 && Alive >= Expected) { C.P->Mark = Alive; } // all of them have run their main
 					FFightOpts O;
@@ -4287,9 +4290,12 @@ namespace DinkProbeTest
 					// A fenced survivor with no line at it (21 Nov 2026, A25's stream: a Bong stood at y 16 in SCR_480's pen, against the top edge,
 					// for 140 s) is left, with the loot by it, once nothing has been hurt for 20 s; the next round comes back for it.
 					const bool bPenStall = bPen && C.OnScreen(Screen) && C.StalledMs(Screen) > 20000.0;
+					// Fewer than the pair on the screen (21 Nov 2026: SCR_583's Boncd had not come back): no feud to wait for, the step is skipped.
+					const bool bNoFeud = C.OnScreen(Screen) && C.P->Mark < 0 && C.P->FeudSinceMs >= 0.0 && C.S->GetNowMs() - C.P->FeudSinceMs > 6000.0;
 					const bool bDone = bGold || (C.OnScreen(Screen) && C.P->Mark >= 0 && C.P->bSawDrop && C.Hostiles(Screen) < C.P->Mark && Drops(C) == 0 && (C.Hostiles(Screen) == 0 || (!bPen && C.MostHp(Screen) > 6)))
-						|| (bPenStall && C.P->Mark >= 0 && C.Hostiles(Screen) < C.P->Mark); // its loot lies by it in the pen and stays there
-					if (bDone && C.Idle() && !C.Busy()) { C.P->Mark = -1; return true; }
+						|| (bPenStall && C.P->Mark >= 0 && C.Hostiles(Screen) < C.P->Mark) // its loot lies by it in the pen and stays there
+						|| bNoFeud;
+					if (bDone && C.Idle() && !C.Busy()) { C.P->Mark = -1; C.P->FeudSinceMs = -1.0; return true; }
 					return false;
 				}, 150.0, LevelUps, 0.001, true);
 		}
@@ -4452,6 +4458,18 @@ namespace DinkProbeTest
 			AddTerrisHeal(TEXT("the healer in Terris (1 gold per missing life)"));
 			AddSanctuaryGoblin(TEXT("goblin S680_P11 (s3-gs, 60 hp)"), 11);
 			AddTerrisHeal(TEXT("the healer in Terris (1 gold per missing life)"));
+			// A level-up can open there a moment later (21 Nov 2026, A40's stream: lraise at 900 exp after the heal): answered, and the chapter
+			// ends only when nothing is in flight.
+			Add(TEXT("nothing in flight (a late level-up answered)"), nullptr,
+				[](FCtx& C)
+				{
+					const double Now = C.S->GetNowMs();
+					if (C.P->WaitUntilMs < 0.0) { C.P->WaitUntilMs = Now + 2500.0; }
+					const bool bOk = Now >= C.P->WaitUntilMs && C.Quiet();
+					if (bOk) { C.P->WaitUntilMs = -1.0; }
+					return bOk;
+				}, 20.0,
+				{ TEXT("Increase Attack"), TEXT("Increase Attack") }, 1.5);
 			// Chapter 7 ends here, healed in Terris with nothing in flight: the last goblin's death starts Mog (s3-gs.c:71), his death the warp
 			// to the Cast camp (s3-camp.c) and the camp walks Dink over the screen's edge into the ambush (s3-camps.c) in one scene, so no
 			// later point before the knights is one a 1997 load resumes (load_game restarts the screen, dink.cpp:1308). Chapter 8 plays it.
@@ -4465,6 +4483,14 @@ namespace DinkProbeTest
 			// the knights hit 7-12 a blow against Dink's 29 (strength 12, defense 0), and in A25's random stream two blows land together
 			// (19 Nov 2026: four discovery runs lost the fight). 10 gold kept. Up to four (21 Nov 2026: A25's stream ends chapter 7 with
 			// 128 gold; with two, both went in Mog's duel and Dink met the knights with none).
+			// Gold for them first when chapter 7 ended poor (21 Nov 2026, A40's stream: 44 gold, one elixir, Mog won): chapter 4's feud
+			// screens once, until 110 gold (skipped when it is already there).
+			{
+				const TArray<FString> FeudLevelUps = { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") };
+				AddFeud(TEXT("gold for elixirs: SCR_632, two Bongs"), 632, 60, 380, 2, false, 110, FeudLevelUps);
+				AddFeud(TEXT("gold for elixirs: SCR_480, two Bongs"), 480, 570, 60, 2, true, 110, FeudLevelUps);
+				AddFeud(TEXT("gold for elixirs: SCR_583, Bong and Boncd fight, he waits, then takes the loot"), 583, 570, 60, 2, false, 110, FeudLevelUps);
+			}
 			AddElixirs(TEXT("up to four elixirs for Mog and the ambush (SCR_033 s2-healp, $25 each)"), 4, 10);
 			AddSanctuaryGoblin(TEXT("goblin S680_P12 (s3-gs, 60 hp): the last, its death starts Mog (s3-gs.c:71)"), 12, true);
 			Add(TEXT("Mog (s3-mog.c scene, en-gmog.c: 50 hp, defense 4, range 45, screenlock): the duel; his death is the warp to SCR_489 (&gobpass 5)"),
@@ -4912,6 +4938,15 @@ namespace DinkProbeTest
 						const FDinkSprite* T = H ? C.D->FindSprite(H) : nullptr;
 						if (T && T->GetProp(TEXT("hitpoints")) > 0) { Target = H; break; }
 					}
+					// One that is at him first (21 Nov 2026, A40's stream: the dragon walked off east and the bong touched Dink, pinned on
+					// the west edge, every 400 ms while he waited for the dragon).
+					for (const TCHAR* Script : { TEXT("s7-slay"), TEXT("s7-bong") })
+					{
+						const int32 H = C.SpriteWithScript(Script);
+						const FDinkSprite* T = H ? C.D->FindSprite(H) : nullptr;
+						const FDinkSprite& Dk = C.D->GetDink();
+						if (T && T->GetProp(TEXT("hitpoints")) > 0 && FMath::Max(FMath::Abs(T->X - Dk.X), FMath::Abs(T->Y - Dk.Y)) < 70.0) { Target = H; break; }
+					}
 					if (!Target) { return; }
 					FDuelOpts O;
 					O.bCaster = C.D->FindSprite(Target)->GetProp(TEXT("brain")) == 10;
@@ -5249,6 +5284,15 @@ namespace DinkProbeTest
 						const int32 H = C.SpriteWithScript(Script);
 						const FDinkSprite* T = H ? C.D->FindSprite(H) : nullptr;
 						if (T && T->GetProp(TEXT("hitpoints")) > 0) { Target = H; break; }
+					}
+					// One that is at him first (21 Nov 2026, A40's stream: the dragon walked off east and the bong touched Dink, pinned on
+					// the west edge, every 400 ms while he waited for the dragon).
+					for (const TCHAR* Script : { TEXT("s7-slay"), TEXT("s7-bong") })
+					{
+						const int32 H = C.SpriteWithScript(Script);
+						const FDinkSprite* T = H ? C.D->FindSprite(H) : nullptr;
+						const FDinkSprite& Dk = C.D->GetDink();
+						if (T && T->GetProp(TEXT("hitpoints")) > 0 && FMath::Max(FMath::Abs(T->X - Dk.X), FMath::Abs(T->Y - Dk.Y)) < 70.0) { Target = H; break; }
 					}
 					if (!Target) { return; }
 					FDuelOpts O;

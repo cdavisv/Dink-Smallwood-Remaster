@@ -499,6 +499,12 @@ public:
 
 	// ---- Interaction ----
 
+	/**
+	 * kill_returning_stuff (D:5049-5070): ends the instance's set_callback_random timer. The engine calls it from wait, say_stop,
+	 * say_stop_npc, say_stop_xy, say_xy (D:7916, 7948, 7973, 7997, 8043) and when it runs a script's `talk`, `hit` or `damage`
+	 * (D:14217, 14266, 14277, 14415, 15541, 15582) or `hit` from hurt() (D:9968).
+	 */
+	static void KillReturningStuff(FDinkScriptInstance& I);
 	/** script_attach (D:8075-8087) rewrites the instance's sprite: &current_sprite follows AttachedTo at once, in the running line too. */
 	void SetLiveCurrentSprite(FDinkScriptInstance& I);
 	/**
@@ -601,7 +607,8 @@ private:
 	int32 StepInstance(int32 InstanceId, int32 MaxLines);
 	void HandleSpokenLine(FDinkScriptInstance& Instance, const FDinkStoryLine& Line);
 	/** Unblocks instances whose wait is over. Returns true if any changed. */
-	bool UpdateBlocks();
+	/** bGameStopped (stop_entire_game): only says and children end; waits, moves and frames hold (no process_callbacks, no brains). */
+	bool UpdateBlocks(bool bGameStopped = false);
 	void FinishInstance(FDinkScriptInstance& Instance, const TCHAR* Reason);
 	void RemoveFinishedInstances();
 	void OpenMenu(FDinkScriptInstance& Instance);

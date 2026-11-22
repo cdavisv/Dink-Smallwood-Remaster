@@ -311,6 +311,14 @@ int32 UDinkStorySubsystem::StartProcedure(FName Script, FName Procedure, int32 S
 		return 0;
 	}
 	FDinkScriptInstance* I = bNewInstance ? nullptr : FindInstanceForSprite(Sprite, Script);
+	// The engine runs `talk`, `hit` and `damage` in the sprite's script after kill_returning_stuff (D:14215-14217, 14264-14266, 14275-14277,
+	// 14413-14415, 15539-15541, 15580-15582, hurt D:9958-9968): a monster's set_callback_random retargeting (en-bong.c, s7-drag.c `target`)
+	// stops when Dink hits it, and its `hit` locks it onto him.
+	static const FName ProcTalk(TEXT("talk")), ProcHit(TEXT("hit")), ProcDamage(TEXT("damage"));
+	if (I && (Procedure == ProcTalk || Procedure == ProcHit || Procedure == ProcDamage))
+	{
+		KillReturningStuff(*I);
+	}
 	if (!I)
 	{
 		int32 InstanceScreen = Screen;
@@ -342,6 +350,15 @@ void UDinkStorySubsystem::SetLiveCurrentSprite(FDinkScriptInstance& I)
 		TGuardValue<bool> Guard(bSyncingFacts, true);
 		Story.SetInt(TEXT("current_sprite"), Current);
 	}
+}
+
+void UDinkStorySubsystem::KillReturningStuff(FDinkScriptInstance& I)
+{
+	// kill_returning_stuff (D:5049-5070): every callback the script owns goes. Here an instance has at most one set_callback_random timer; a
+	// wait or a say_stop is the instance's own Block, which the next procedure start resets (BeginProcedure), as the engine's relocated script
+	// never comes back to the old line either.
+	I.CallbackProc = NAME_None;
+	I.NextCallbackMs = 0.0;
 }
 
 void UDinkStorySubsystem::BeginProcedure(FDinkScriptInstance& I, FName Procedure, const FString& Path, const TArray<int32>& Args)
@@ -643,6 +660,14 @@ void UDinkStorySubsystem::HandleSpokenLine(FDinkScriptInstance& I, const FDinkSt
 			}
 		}
 	}
+	static const FName SayStopXY(TEXT("say_stop_xy")), SayXY(TEXT("say_xy"));
+	if (Line.SayCall == SayStop || Line.SayCall == SayStopNpc || Line.SayCall == SayStopXY || Line.SayCall == SayXY)
+	{
+		// say_stop, say_stop_npc, say_stop_xy and say_xy call kill_returning_stuff(script) (D:7916, 7948, 7973, 7997) once the speaker
+		// passed their checks (sprite 0, say_stop_npc's text_owned_by): the script's set_callback_random timer ends. s1-caves.c's `noise`
+		// (wait(4000), then a say_stop) so roars twice in the original, not every 5-15 s.
+		KillReturningStuff(I);
+	}
 	if (Line.SayCall == SayStop)
 	{
 		// kill_text_owned_by(speaker) and kill_text_owned_by(1) (D:7914).
@@ -897,13 +922,17 @@ float UDinkStorySubsystem::GetFadeAlpha() const
 // ---------------------------------------------------------------------------------------------
 // Time
 
-bool UDinkStorySubsystem::UpdateBlocks()
+bool UDinkStorySubsystem::UpdateBlocks(bool bGameStopped)
 {
 	bool bChanged = false;
 	for (const TUniquePtr<FDinkScriptInstance>& Ptr : Instances)
 	{
 		FDinkScriptInstance& I = *Ptr;
 		if (I.State != EDinkInstanceState::Blocked)
+		{
+			continue;
+		}
+		if (bGameStopped && I.Block != EDinkBlock::Say && I.Block != EDinkBlock::Child)
 		{
 			continue;
 		}
@@ -1081,11 +1110,22 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 	}
 	PollScreenChange();
     if(Gameplay&&Gameplay->IsHardnessLoading())return;
-	Director->Tick(DeltaMs, NowMs);
-	UpdatePlayerPush();
-	Gameplay->Tick(DeltaMs, NowMs);
+	// stop_entire_game(1) (lraise.c's level-up menu, D:10099-10108). Every sprite is thought with get_frame (D:17423): its kill timer and
+	// that timer's callback still run (D:16811-16833: so texts expire and a say_stop goes on), but no brain, animation, move or touch damage
+	// (D:16850-16883). The 100 ms status update runs before (D:17339-17346). The frame then runs only the menu (process_talk,
+	// D:17431-17436): no process_callbacks, so no wait ends. On the first frame without a menu the flag clears, and that frame too ends
+	// there (goto flip, D:17437-17444).
+	const bool bGameStopped = Director->bStopEntireGame;
+	const bool bClearStop = bGameStopped && Menu.InstanceId == 0 &&
+		!Instances.ContainsByPredicate([](const TUniquePtr<FDinkScriptInstance>& I) { return I->State == EDinkInstanceState::Choosing; });
+	Director->Tick(DeltaMs, NowMs, bGameStopped);
+	if (!bGameStopped)
+	{
+		UpdatePlayerPush();
+	}
+	Gameplay->Tick(DeltaMs, NowMs, bGameStopped);
 
-	// Texts time out.
+	// Texts time out (a text is a sprite with a kill timer).
 	for (int32 T = ActiveTexts.Num() - 1; T >= 0; --T)
 	{
 		if (ActiveTexts[T].ExpireMs <= NowMs)
@@ -1094,11 +1134,18 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 			ActiveTexts.RemoveAt(T);
 		}
 	}
+	if (bClearStop)
+	{
+		// The first frame without a menu clears the flag and still ends at flip (D:17437-17444): no process_callbacks, so no wait ends
+		// (bGameStopped stays true for the rest of this frame). What update_status_all started this frame (dinfo `die`, D:17346) runs
+		// at once, as run_script does in the engine.
+		Director->bStopEntireGame = false;
+	}
 
-	// set_callback_random: fires into an idle instance (D:11639).
+	// set_callback_random: fires into an idle instance (D:11639); not while the game is stopped (the engine skips process_callbacks then).
 	for (const TUniquePtr<FDinkScriptInstance>& I : Instances)
 	{
-		if (!I->CallbackProc.IsNone() && I->State == EDinkInstanceState::Idle && NowMs >= I->NextCallbackMs)
+		if (!bGameStopped && !I->CallbackProc.IsNone() && I->State == EDinkInstanceState::Idle && NowMs >= I->NextCallbackMs)
 		{
 			I->NextCallbackMs = NowMs + I->CallbackMinMs + (I->CallbackRandomMs > 0 ? Gameplay->RandomModulo(I->CallbackRandomMs) : 0);
 			StartProcedure(I->Script, I->CallbackProc, I->Sprite);
@@ -1107,7 +1154,8 @@ void UDinkStorySubsystem::Advance(double DeltaSeconds)
 
 	for (int32 Pass = 0; Pass < 8; ++Pass)
 	{
-		bool bProgress = UpdateBlocks();
+		// While the game is stopped no wait, move or frame ends; says and children do, and the menu's script goes on.
+		bool bProgress = UpdateBlocks(bGameStopped);
 		TArray<int32> Ids;
 		for (const TUniquePtr<FDinkScriptInstance>& I : Instances)
 		{
