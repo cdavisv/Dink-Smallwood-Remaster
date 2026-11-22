@@ -148,6 +148,13 @@ namespace DinkProbeTest
 		/** Game time of Dink's last walking step, and the end of the cast animation (sp_nocontrol). */
 		double LastWalkMs = -1.0;
 		double HoldUntilMs = 0.0;
+		/** KiteAndCast: where the target last moved and since when it has stood there (a chaser that stands still). */
+		FVector2D KiteTargetAt = FVector2D(-1.0, -1.0);
+		/** The duck step: the duck chased now, its hit points and since when neither changed (one that cannot be reached is stood by). */
+		int32 DuckTarget = 0;
+		int32 DuckTargetHp = -1;
+		double DuckTargetSinceMs = 0.0;
+		double KiteTargetStillSinceMs = 0.0;
 		/** Walkable cells of the fight screen: Cell px apart, no hardness within WalkRadius px. */
 		int32 GridScreen = 0;
 		int32 GridVision = -1;
@@ -304,6 +311,10 @@ namespace DinkProbeTest
 		double BaitCheb = 58.0;
 		/** Strike at all (fists); false = only bait, dodge and cast. */
 		bool bStrike = true;
+		/** Walks keep this far (Chebyshev px) from every monster unless Dink is already nearer (0 = only the touch boxes). */
+		double PathCheb = 0.0;
+		/** Below this share of lifemax (0 = never) Dink runs from the squad instead of baiting or striking. */
+		double KiteBelow = 0.0;
 		int32 Range = 0;
 		/** Log the choice every this many ms. */
 		double LogMs = 100.0;
@@ -855,7 +866,9 @@ namespace DinkProbeTest
 			// Touch: Jack's hardbox + 2 px + the capsule radius holds Dink (RunThroughTouchDamageList); keep 20 px more
 			// (6 while he stands still).
 			const double TouchPx = 2.0 + CapsulePx(Screen, Dk.X, Dk.Y);
-			const double Reach = TouchPx + (bStalled ? 6.0 : 20.0);
+			// 34 px while he walks: paths are planned against where he stands now, and he closes in at a third of Dink's pace while
+			// Dink walks round him (20 was enough for one random stream and not for the one A25's hit-blood draws give, 16 Nov 2026).
+			const double Reach = TouchPx + (bStalled ? 6.0 : 34.0);
 			auto Clearance = [&](double X, double Y)
 			{
 				const double Dx = FMath::Max3(HL - X, 0.0, X - HR);
@@ -882,22 +895,33 @@ namespace DinkProbeTest
 				WalkDistances(DinkCell, 0.0, DistDink, &Parent);
 				P->Free = Walkable;
 			}
+			// A chaser that has stood on one spot for 3 s does not race Dink to a cell (it stands until a script or a hit moves it again).
+			if (FVector2D::Distance(P->KiteTargetAt, FVector2D(T->X, T->Y)) > 1.0)
+			{
+				P->KiteTargetAt = FVector2D(T->X, T->Y);
+				P->KiteTargetStillSinceMs = Now;
+			}
+			const bool bStandingStill = Now - P->KiteTargetStillSinceMs > 3000.0;
 			auto Safe = [&](int32 I)
 			{
 				const FIntPoint C = CellCentre(I);
 				return P->Free[I] && DistDink[I] >= 0.0 && Clearance(C.X, C.Y) >= Reach
-					&& (!bChasing || bStalled || DistJack[I] < 0.0 || DistDink[I] / SpeedRatio + 30.0 < DistJack[I]);
+					&& (!bChasing || bStalled || bStandingStill || DistJack[I] < 0.0 || DistDink[I] / SpeedRatio + 30.0 < DistJack[I]);
 			};
 			const bool bCharged = Fact(TEXT("magic_cost")) > 0 && Fact(TEXT("magic_level")) >= Fact(TEXT("magic_cost"));
 			int32 Goal = INDEX_NONE;
 			int32 FireDir = 0;
 			const TArray<FIntRect> Obstacles = MissileObstacles(Screen, Handle);
-			if (bCharged)
+			// Two passes: open ground first; if no such cell is level with him (16 Nov 2026: Jack stood in a narrow part of the house and
+			// Dink waited, charged, for the rest of the step), any walkable cell will do.
+			// A third pass, only at a chaser that has stood still for 3 s: 60 px (50 stalled) past his touch box; seen 16 Nov 2026 with Jack
+			// standing in SCR_036's south-east corner, where no level cell 90 px off had a clear line.
+			for (int32 Pass = 0; bCharged && Goal == INDEX_NONE && Pass < (bStandingStill ? 3 : 2); ++Pass)
 			{
 				double Best = 0.0;
 				for (int32 I = 0; I < Cols * Rows; ++I)
 				{
-					if (!Safe(I) || Open[I] < 0.4f)
+					if (!Safe(I) || Open[I] < (Pass == 0 ? 0.4f : 0.0f))
 					{
 						continue;
 					}
@@ -913,9 +937,10 @@ namespace DinkProbeTest
 						Dir = Dy > 0 ? 2 : 8;
 					}
 					// The fireball makes him a chaser (or wakes him, or sets a stalled one walking again for a cycle): fire from
-					// far enough away to walk off before he arrives (70 px past his touch box; 40 when he stands stalled, who
-					// covers a walk cycle at a third of Dink's pace).
-					if (Dir == 0 || Clearance(C.X, C.Y) < TouchPx + (bStalled ? 40.0 : 70.0) || !LineClear(Screen, C.X, C.Y, Dir, Handle, Obstacles))
+					// far enough away to walk off before he arrives: 90 px past his touch box, 80 when he stands stalled. (Was 70/40:
+					// with A25's draws a stalled Jack woke by the fireball touched Dink 130 ms later, during the cast, 16 Nov 2026.)
+					const double FireFrom = Pass < 2 ? (bStalled ? 80.0 : 90.0) : (bStalled ? 50.0 : 60.0);
+					if (Dir == 0 || Clearance(C.X, C.Y) < TouchPx + FireFrom || !LineClear(Screen, C.X, C.Y, Dir, Handle, Obstacles))
 					{
 						continue;
 					}
@@ -963,11 +988,25 @@ namespace DinkProbeTest
 			if (Goal == INDEX_NONE)
 			{
 				// Keep away: the spot Dink reaches first that is farthest (by walking) from the chaser, up to 200 px.
+				// Not past him: the straight way there keeps 30 px more than his reach while he walks (16 Nov 2026: the farthest spot
+				// lay behind Jack and the walk there passed within his touch).
+				auto WayClear = [&](const FIntPoint& To)
+				{
+					if (!bChasing || bStalled) return true;
+					const double Len = FVector2D::Distance(FVector2D(Dk.X, Dk.Y), FVector2D(To));
+					const int32 N = FMath::Max(1, FMath::CeilToInt32(Len / 4.0));
+					for (int32 K = 1; K <= N; ++K)
+					{
+						const double A = double(K) / N;
+						if (Clearance(Dk.X + (To.X - Dk.X) * A, Dk.Y + (To.Y - Dk.Y) * A) < Reach + 30.0 && Clearance(Dk.X + (To.X - Dk.X) * A, Dk.Y + (To.Y - Dk.Y) * A) < Clearance(Dk.X, Dk.Y)) return false;
+					}
+					return true;
+				};
 				double Best = -1e9;
 				FireDir = 0;
 				for (int32 I = 0; I < Cols * Rows; ++I)
 				{
-					if (!Safe(I))
+					if (!Safe(I) || !WayClear(CellCentre(I)))
 					{
 						continue;
 					}
@@ -2302,11 +2341,18 @@ namespace DinkProbeTest
 					if (P->Free[I] && I != DinkCell)
 					{
 						const FIntPoint C = CellCentre(I);
-						if (InTouch(C.X, C.Y)) { P->Free[I] = 0; }
+						// Opt.PathCheb: the walk keeps this far (Chebyshev px) from every monster too, so no goal is reached past them
+						// (19 Nov 2026: "leave" walked between the knights to a cell behind them and all three swung at once).
+						if (InTouch(C.X, C.Y) || (Opt.PathCheb > 0.0 && NearestCheb(C.X, C.Y) < Opt.PathCheb && NearestCheb(C.X, C.Y) < NearestCheb(Dk.X, Dk.Y))) { P->Free[I] = 0; }
 					}
 				}
 				WalkDistances(DinkCell, 0.0, DistDink, &Parent);
 				P->Free = Walkable;
+				// Walled in by those rules (21 Nov 2026: at the south edge with a knight 30 px off, Dink's own cell was the only one left and he
+				// stood in the knight's touch): plan on the walkable ground alone.
+				int32 Reachable = 0;
+				for (int32 I = 0; I < Cols * Rows && Reachable < 8; ++I) { Reachable += DistDink[I] >= 0.0 ? 1 : 0; }
+				if (Reachable < 8) { WalkDistances(DinkCell, 0.0, DistDink, &Parent); }
 			}
 			const double WalkSecPerPx = 1.0 / (WalkPxPerMs * 1000.0);
 			// A charged fireball along a clear row or column at the nearest monster that has one, when no monster is close.
@@ -2331,7 +2377,10 @@ namespace DinkProbeTest
 					}
 				}
 			}
-			auto Isolation = [&](int32 I, const FIntPoint& C) { return 120.0 * FMath::Max(0.0, 1.0 - FoeTime(C.X, C.Y)) + 200.0 * FMath::Max(0.0, 0.6 - double(Open[I])); };
+			auto Isolation = [&](int32 I, const FIntPoint& C) { return 120.0 * FMath::Max(0.0, 1.0 - FoeTime(C.X, C.Y)) + 200.0 * FMath::Max(0.0, 0.6 - double(Open[I]))
+				// the screen's edge is a wall three knights pin him against (seen 16 Nov 2026: dodged to y 15 on SCR_521 and cut down there)
+				// (150 within 45 px was too weak: "leave" still walked him into the north-east corner, 19 Nov 2026)
+				+ 600.0 * FMath::Max(0.0, 1.0 - FMath::Min(FMath::Min(C.X - 20.0, 619.0 - C.X), FMath::Min<double>(C.Y, 399.0 - C.Y)) / 80.0); };
 			const auto NoExtra = [](int32, const FIntPoint&) { return 0.0; };
 			auto Nearest = [&](TFunctionRef<bool(int32, const FIntPoint&)> Ok, TFunctionRef<double(int32, const FIntPoint&)> Extra)
 			{
@@ -2367,6 +2416,36 @@ namespace DinkProbeTest
 					Goal = Nearest([&](int32, const FIntPoint& C) { return !TouchSoon(C.X, C.Y, Opt.TouchSec, 4.0) && !Pending(C.X, C.Y); }, Isolation);
 				}
 			}
+			// Hurt (below 60 % of lifemax) with the squad near: run, not strike. The cell within 150 px of walking that is farthest from the
+			// nearest monster, away from the screen's edge; a charged fireball is still thrown from the cast check above once they are
+			// 90 px off. (19 Nov 2026: in A25's random stream the knights wore an 18-life Dink down while he stood to strike.)
+			if (Goal == INDEX_NONE && Opt.KiteBelow > 0.0 && Fact(TEXT("life")) < Opt.KiteBelow * Fact(TEXT("lifemax")) && MinCheb < 150.0)
+			{
+				Mode = TEXT("kite");
+				double BestK = -1e9;
+				const bool bKiteCharged = Opt.CastFrom > 0.0 && Fact(TEXT("magic_cost")) > 0 && Fact(TEXT("magic_level")) >= Fact(TEXT("magic_cost"));
+				for (int32 I = 0; I < Cols * Rows; ++I)
+				{
+					if (DistDink[I] < 0.0 || DistDink[I] > 150.0) { continue; }
+					const FIntPoint C = CellCentre(I);
+					if (Pending(C.X, C.Y)) { continue; }
+					const double Edge = FMath::Min(FMath::Min(C.X - 20.0, 619.0 - C.X), FMath::Min<double>(C.Y, 399.0 - C.Y));
+					// 120 px from the nearest is far enough; past that the open middle counts as much (21 Nov 2026: with 200 / 0.8 x 80 the
+					// kite ran into the west edge again and again and the knights caught Dink there)
+					double Score = 1.5 * FMath::Min(NearestCheb(C.X, C.Y), 120.0) + FMath::Min(Edge, 100.0) - 0.15 * DistDink[I];
+					// charged: a cell in a row or column with a monster 90-260 px off, where the cast check above throws (21 Nov 2026: the
+					// last two knights stood and Dink kited at 8 life for 80 s without a line of fire)
+					if (bKiteCharged && NearestCheb(C.X, C.Y) >= FMath::Max(Opt.CastFrom, 90.0))
+					{
+						for (const FFoe& Fo : Foes)
+						{
+							const double Ax = FMath::Abs(Fo.X - C.X), Ay = FMath::Abs(Fo.Y - C.Y);
+							if ((Ay <= 4.0 && Ax <= 260.0) || (Ax <= 4.0 && Ay <= 260.0)) { Score += 80.0; break; }
+						}
+					}
+					if (Score > BestK) { BestK = Score; Goal = I; }
+				}
+			}
 			if (Goal == INDEX_NONE && Potential(Dk.X, Dk.Y))
 			{
 				Mode = TEXT("leave");
@@ -2397,8 +2476,14 @@ namespace DinkProbeTest
 					Goal = Nearest([&](int32, const FIntPoint& C) { return !Pending(C.X, C.Y) && !Potential(C.X, C.Y) && !TouchSoon(C.X, C.Y, Opt.TouchSec, 8.0) && NearestCheb(C.X, C.Y) >= Opt.BaitCheb; }, Isolation);
 					if (Goal == INDEX_NONE)
 					{
+						// Out of a touch that is coming first (21 Nov 2026: with only "not in a blow's box" the nearest such cell was Dink's own,
+						// and he stood at the screen's south edge while a knight walked into him, touch 5 every 400 ms).
 						Mode = TEXT("evade");
-						Goal = Nearest([&](int32, const FIntPoint& C) { return !Pending(C.X, C.Y); }, Isolation);
+						Goal = Nearest([&](int32, const FIntPoint& C) { return !Pending(C.X, C.Y) && !TouchSoon(C.X, C.Y, Opt.TouchSec, 4.0); }, Isolation);
+						if (Goal == INDEX_NONE)
+						{
+							Goal = Nearest([&](int32, const FIntPoint& C) { return !Pending(C.X, C.Y); }, Isolation);
+						}
 					}
 				}
 			}
@@ -2440,8 +2525,10 @@ namespace DinkProbeTest
 				{
 					FoeText += FString::Printf(TEXT(" [%d %.0f,%.0f hp %d %s wait %.0f blow %.0f]"), Fo.H, Fo.X, Fo.Y, Fo.Hp, Fo.bAttacking ? TEXT("atk") : (Fo.bGate ? TEXT("gate") : TEXT("rdy")), Fo.WaitAhead, Fo.BlowInMs);
 				}
-				S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: squad %s Dink %.0f,%.0f life %d;%s goal %d,%d step %.1f,%.1f hold %d"),
-					Mode, Dk2.X, Dk2.Y, Fact(TEXT("life")), *FoeText, GoalC.X, GoalC.Y, X, Y, int32(P->HoldUntilMs - Now)));
+				int32 Reach = 0, Walk = 0;
+				for (int32 I = 0; I < Cols * Rows; ++I) { Reach += DistDink[I] >= 0.0 ? 1 : 0; Walk += P->Free[I] ? 1 : 0; }
+				S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: squad %s Dink %.0f,%.0f life %d;%s goal %d,%d step %.1f,%.1f hold %d cells %d/%d"),
+					Mode, Dk2.X, Dk2.Y, Fact(TEXT("life")), *FoeText, GoalC.X, GoalC.Y, X, Y, int32(P->HoldUntilMs - Now), Reach, Walk));
 			}
 			if (FCString::Strcmp(Mode, TEXT("strike")) != 0 || FMath::Abs(Dk2.X - GoalC.X) > 3.5 || FMath::Abs(Dk2.Y - GoalC.Y) > 3.5)
 			{
@@ -2683,6 +2770,25 @@ namespace DinkProbeTest
 		 * elixir (item-eli, life +20, Terris 25 gold) as soon as one more cast would kill him (life <= Damage), and takes up the sword again afterwards.
 		 * Returns true when this frame was spent on the elixir.
 		 */
+		/** An elixir at this life or less (item-eli: +20), then the item armed before it (the fists by default) once it is drunk. */
+		bool DrinkAndRearm(int32 DrinkAt, const TCHAR* Keep = TEXT("item-fst")) const
+		{
+			const double NowMs = S->GetNowMs();
+			if (Fact(TEXT("life")) > 0 && Fact(TEXT("life")) <= DrinkAt && NowMs - P->LastDrinkMs > 500.0)
+			{
+				if (const int32 Eli = Slot(TEXT("item-eli")))
+				{
+					G->ArmItemSlot(Eli);
+					if (G->PlayerAttack()) { P->LastDrinkMs = NowMs; }
+					return true;
+				}
+			}
+			if (D->GetInventory()->GetArmedItem() != Keep && NowMs - P->LastDrinkMs > 200.0 && NowMs - P->LastDrinkMs < 5000.0)
+			{
+				if (const int32 Item = Slot(Keep)) { G->ArmItemSlot(Item); }
+			}
+			return false;
+		}
 		bool DrinkAndKeepSword(int32 CastStrength) const
 		{
 			const double NowMs = S->GetNowMs();
@@ -3156,6 +3262,20 @@ namespace DinkProbeTest
 		 * south-east corner (screen edge, diagonal wander) for 200 s. With one monster left and its hit points unchanged for 8 s, Dink
 		 * stands level with it and strikes (KiteAndPunch, 46 px: the sword's reach). Returns true when it acted this frame.
 		 */
+		/** Game ms since the monsters' summed hit points on Screen last changed (StallBreak's clock; 0 when none is left). */
+		double StalledMs(int32 Screen) const
+		{
+			int32 Sum = 0, N = 0;
+			for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
+			{
+				const FDinkSprite& O = Pair.Value;
+				const int32 Brain = O.GetProp(TEXT("brain"));
+				if (Pair.Key != 1 && O.bActive && !O.bText && O.Screen == Screen && (Brain == 9 || Brain == 10) && O.GetProp(TEXT("hitpoints")) > 0) { Sum += O.GetProp(TEXT("hitpoints")); ++N; }
+			}
+			const double Now = S->GetNowMs();
+			if (N == 0 || Sum != P->StallHp) { P->StallHp = N == 0 ? -1 : Sum; P->StallSinceMs = Now; return 0.0; }
+			return Now - P->StallSinceMs;
+		}
 		bool StallBreak(int32 Screen) const
 		{
 			int32 Sum = 0, Last = 0, N = 0;
@@ -3340,7 +3460,11 @@ namespace DinkProbeTest
 		FChapterSpec C;
 		C.Number = Number;
 		C.Title = Title;
-		C.LoadSlot = Number > 1 ? FString::Printf(TEXT("probe_ch%d"), Number - 1) : FString();
+		// Discovery mode (DINK_PROBE_SEEDS=1 in the environment): every chapter starts from its seed save seed_ch<N-1> (copies of a passing
+		// run's probe_ch<N-1>.sav and its state/census files), so one run shows every chapter whose tactics fail, not only the first.
+		// For finding bot weaknesses only: the seeds carry another build's random stream, so these md5s are not a baseline.
+		static const bool bSeeds = !FPlatformMisc::GetEnvironmentVariable(TEXT("DINK_PROBE_SEEDS")).IsEmpty();
+		C.LoadSlot = Number > 1 ? (bSeeds ? TEXT("seed_ch") : TEXT("probe_ch")) + FString::FromInt(Number - 1) : FString();
 		C.SaveSlot = FString::Printf(TEXT("probe_ch%d"), Number);
 		C.Stem = Number == 1 ? FString(TEXT("stonebrook_probe")) : FString::Printf(TEXT("probe_ch%d"), Number);
 		return C;
@@ -3592,7 +3716,7 @@ namespace DinkProbeTest
                 if (!OriginalLoad)
                 {
                 // What was loaded must be what was saved: the same state dump, taken before a frame runs.
-				const FString Before = FPaths::ProjectSavedDir() / FString::Printf(TEXT("Narrative/probe_ch%d_state.txt"), Spec.Number - 1);
+				const FString Before = FPaths::ProjectSavedDir() / FString::Printf(TEXT("Narrative/%s_state.txt"), *Spec.LoadSlot);
 				FString Expected;
 				if (FFileHelper::LoadFileToString(Expected, *Before))
 				{
@@ -3719,7 +3843,7 @@ namespace DinkProbeTest
 		 * crowd) is not there after a 1997 load, so a chapter must not end with one the next chapter needs. */
 		void CheckBoundaryCensus(FCtx& C)
 		{
-			const FString File = FPaths::ProjectSavedDir() / FString::Printf(TEXT("Narrative/probe_ch%d_census.txt"), Spec.Number - 1);
+			const FString File = FPaths::ProjectSavedDir() / FString::Printf(TEXT("Narrative/%s_census.txt"), *Spec.LoadSlot);
 			TArray<FString> Lines;
 			if (!FFileHelper::LoadFileToStringArray(Lines, *File))
 			{
@@ -3972,6 +4096,17 @@ namespace DinkProbeTest
 			Add(TEXT("pay the toll (s1-brg2 talk, 100 gold: &story 7)"),
 				[](FCtx& C) { const int32 Guard = C.SpriteWithScript(TEXT("s1-brg2")); if (Guard) { C.StandBy(Guard, 25); } C.S->TryTalk(C.Pawn); },
 				[](FCtx& C) { return C.Fact(TEXT("story")) >= 7 && C.Idle(); }, 40.0, { TEXT("Pay the toll") }, 6.0);
+			// Healed before Jack (coordinator review, 16 Nov 2026): Dink comes here with life 10 of 13 in either random stream (his level-up
+			// raised lifemax, not life), and Jack's touch is 10, so one touch killed him. At 13 he lives through one. The Terris healer
+			// (SCR_033 s2-healp: "Get healed", 1 gold per missing life, s2-healp.c:113-132) costs 3 of his 100 gold.
+			Add(TEXT("the healer in Terris before Jack (SCR_033, s2-healp talk: \"Get healed\": 1 gold per missing life)"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax"))) { return; }
+					if (!C.OnScreen(33)) { C.Goto(33, 300, 250); return; }
+					if (const int32 Healer = C.Placement(33, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+				},
+				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, { TEXT("Get healed") }, 0.5, true);
 			// Terris (s2-aunt, s2-auntp, s2-h2-s, s2-jack).
 			Add(TEXT("over the bridge to Terris: Aunt Maria's house, Jack and Maria (SCR_036, s2-auntp main: &s2-aunt 1)"),
 				[](FCtx& C) { C.Goto(36, 300, 230); /* inside, clear of the door warp S036_P18 */ },
@@ -4054,6 +4189,27 @@ namespace DinkProbeTest
 
 		// ---- Chapter 4: gold for the bow (Act B step 15's missing 227): monsters that kill each other, collected after 5-minute waits ----
 		/** The loot a monster leaves (emake: mgold, lgold, gold200, sgold, 1gold, small heart, full heart, food) lying on the screen, or 0. A food drop (1 in 20 of a large one) pays nothing, but a sweep that waited for gold that never came stood in a corner for 130 s (chapter 11). */
+		/** Drops(C) without one that lies within 50 px of a standing thing that hurts by touch (a thorn bush: touch 15, no hit points). */
+		static int32 SafeDrops(FCtx& C)
+		{
+			for (const TCHAR* Script : { TEXT("mgold"), TEXT("lgold"), TEXT("gold200"), TEXT("sgold"), TEXT("1gold"), TEXT("sheart"), TEXT("heart"), TEXT("sfood") })
+			{
+				for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites())
+				{
+					const FDinkSprite& Dr = Pair.Value;
+					if (!Dr.bActive || Dr.Script != FName(Script)) { continue; }
+					bool bThorn = false;
+					for (const TPair<int32, FDinkSprite>& O : C.D->GetSprites())
+					{
+						const FDinkSprite& T = O.Value;
+						bThorn = bThorn || (O.Key != 1 && T.bActive && T.Screen == Dr.Screen && T.GetProp(TEXT("touch_damage")) > 0 && T.GetProp(TEXT("brain")) != 9
+							&& T.GetProp(TEXT("brain")) != 10 && FMath::Max(FMath::Abs(T.X - Dr.X), FMath::Abs(T.Y - Dr.Y)) < 50.0);
+					}
+					if (!bThorn) { return Pair.Key; }
+				}
+			}
+			return 0;
+		}
 		static int32 Drops(FCtx& C)
 		{
 			for (const TCHAR* Script : { TEXT("mgold"), TEXT("lgold"), TEXT("gold200"), TEXT("sgold"), TEXT("1gold"), TEXT("sheart"), TEXT("heart"), TEXT("sfood") })
@@ -4128,7 +4284,11 @@ namespace DinkProbeTest
 				[Screen, bPen, GoldTarget, ExpTarget](FCtx& C)
 				{
 					const bool bGold = C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("exp")) >= ExpTarget;
-					const bool bDone = bGold || (C.OnScreen(Screen) && C.P->Mark >= 0 && C.P->bSawDrop && C.Hostiles(Screen) < C.P->Mark && Drops(C) == 0 && (C.Hostiles(Screen) == 0 || (!bPen && C.MostHp(Screen) > 6)));
+					// A fenced survivor with no line at it (21 Nov 2026, A25's stream: a Bong stood at y 16 in SCR_480's pen, against the top edge,
+					// for 140 s) is left, with the loot by it, once nothing has been hurt for 20 s; the next round comes back for it.
+					const bool bPenStall = bPen && C.OnScreen(Screen) && C.StalledMs(Screen) > 20000.0;
+					const bool bDone = bGold || (C.OnScreen(Screen) && C.P->Mark >= 0 && C.P->bSawDrop && C.Hostiles(Screen) < C.P->Mark && Drops(C) == 0 && (C.Hostiles(Screen) == 0 || (!bPen && C.MostHp(Screen) > 6)))
+						|| (bPenStall && C.P->Mark >= 0 && C.Hostiles(Screen) < C.P->Mark); // its loot lies by it in the pen and stays there
 					if (bDone && C.Idle() && !C.Busy()) { C.P->Mark = -1; return true; }
 					return false;
 				}, 150.0, LevelUps, 0.001, true);
@@ -4301,13 +4461,33 @@ namespace DinkProbeTest
 		void BuildChapter8()
 		{
 			// The last goblin, Mog, the Cast camp and the ambush are one scene from the goblin's death to the knights' attack (see chapter 7).
+			// Two elixirs first, at the Terris healer where chapter 7 ends (s2-healp: "Buy a bottle of elixer for $25", item-eli life +20):
+			// the knights hit 7-12 a blow against Dink's 29 (strength 12, defense 0), and in A25's random stream two blows land together
+			// (19 Nov 2026: four discovery runs lost the fight). 10 gold kept. Up to four (21 Nov 2026: A25's stream ends chapter 7 with
+			// 128 gold; with two, both went in Mog's duel and Dink met the knights with none).
+			AddElixirs(TEXT("up to four elixirs for Mog and the ambush (SCR_033 s2-healp, $25 each)"), 4, 10);
 			AddSanctuaryGoblin(TEXT("goblin S680_P12 (s3-gs, 60 hp): the last, its death starts Mog (s3-gs.c:71)"), 12, true);
 			Add(TEXT("Mog (s3-mog.c scene, en-gmog.c: 50 hp, defense 4, range 45, screenlock): the duel; his death is the warp to SCR_489 (&gobpass 5)"),
 				[](FCtx& C)
 				{
 					if (C.OnScreen(489)) { return; }
+					// Mog's `die` (en-gmog.c): freeze, two lines, fade_down, &gobpass 5, load_screen(489). Hands off from his death on: a
+					// fireball cast in the frame of that load pulled Dink's sprite back onto 680 through SyncDinkFromActor before the
+					// greybox moved the pawn, and the step waited 120 s on a screen the story had left (21 Nov 2026).
+					if (C.Fact(TEXT("gobpass")) == 5 || C.Fact(TEXT("player_map")) == 489) { return; }
 					if (const int32 Mog = C.SpriteWithScript(TEXT("en-gmog")))
 					{
+						if (const FDinkSprite* Dead = C.D->FindSprite(Mog); Dead && Dead->GetProp(TEXT("hitpoints")) < 1) { return; }
+						// the elixirs bought at the start of the chapter: Mog's blow takes up to 18 (19 Nov 2026, A25's stream)
+						if (C.DrinkAndRearm(19)) { return; }
+						// Nearly dead Mog (20 hp or less, a fireball's worth): keep away and throw (KiteAndCast) instead of standing in his
+						// touch (19 Nov 2026: Dink stood on the sanctuary's south edge with Mog at 10 hp and took his touch every 400 ms).
+						if (const FDinkSprite* M = C.D->FindSprite(Mog); M && M->GetProp(TEXT("hitpoints")) <= 20 && C.Fact(TEXT("magic")) > 0)
+						{
+							if (C.D->GetInventory()->GetArmedMagic() != TEXT("item-fb")) { if (const int32 Fb = C.MagicSlot(TEXT("item-fb"))) { C.G->ArmMagicSlot(Fb); } }
+							C.KiteAndCast(Mog);
+							return;
+						}
 						FDuelOpts O;
 						O.CastFrom = 90.0;
 						C.DuelFight(Mog, O);
@@ -4332,6 +4512,13 @@ namespace DinkProbeTest
 				{
 					FSquadOpts O;
 					O.CastFrom = 90.0;
+					// 8 px from the blows' and touch boxes (was the default 3): in A25's random stream the knights' blows caught Dink five
+					// times in 2.4 s at the 3 px margin (16 Nov 2026).
+					O.Margin = 8.0;
+					O.KiteBelow = 0.6;
+					O.PathCheb = 70.0;
+					// An elixir when one more blow (12) could kill, then the fists again.
+					if (C.DrinkAndRearm(12)) { return; }
 					C.SquadFight(O);
 				},
 				[](FCtx& C) { return C.SpriteWithScript(TEXT("s3-dorks")) == 0 && !C.D->bScreenLocked && C.Idle(); }, 150.0, { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") }, 0.001, true);
@@ -4422,9 +4609,65 @@ namespace DinkProbeTest
 					}
 					// Since the rock's hardness goes with it (s4-rock.c: sp_hard 1, draw_hard_map; pitfall 77), ducks wander out of the pen through the gap and
 					// one can jitter against the screen's north-west corner: Dink holds his spot (4 px) instead of following it pixel by pixel.
-					if (Target) { C.KiteAndPunch(Target, 30, true, 4); }
+					if (Target)
+					{
+						// A duck the walk cannot reach (A25's stream, 16 Nov 2026: two of the 27 stood where KiteAndPunch found no cell and the
+						// step waited 600 s): after 20 s on the same duck with its hit points unchanged, stand by it and strike.
+						const FDinkSprite* Tg = C.D->FindSprite(Target);
+						const int32 Hp = Tg ? Tg->GetProp(TEXT("hitpoints")) : -1;
+						const double NowMs = C.S->GetNowMs();
+						if (Target != C.P->DuckTarget || Hp != C.P->DuckTargetHp)
+						{
+							C.P->DuckTarget = Target;
+							C.P->DuckTargetHp = Hp;
+							C.P->DuckTargetSinceMs = NowMs;
+						}
+						if (NowMs - C.P->DuckTargetSinceMs > 20000.0 && Tg)
+						{
+							if (NowMs - C.P->LastLogMs > 5000.0)
+							{
+								C.P->LastLogMs = NowMs;
+								C.S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: duck %d out of reach at %.0f,%.0f hp %d brain %d: stand by it"), Target, Tg->X, Tg->Y, Hp, Tg->GetProp(TEXT("brain"))));
+							}
+							C.StandBy(Target, 22);
+							// one blow at a time: a new attack every frame restarted the swing before its hit frame (19 Nov 2026)
+							if (NowMs >= C.P->NextPunchMs && C.G->PlayerAttack()) { C.P->NextPunchMs = NowMs + 900.0; }
+							return;
+						}
+						C.KiteAndPunch(Target, 30, true, 4);
+						return;
+					}
+					// None left in the pen but the story is not done: a duck can be on another screen or have lost brain 3 before its
+					// hit (16 Nov 2026, A25's stream: two of the 27 were never found). Go to any s4-duck still alive.
+					for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites())
+					{
+						const FDinkSprite& O = Pair.Value;
+						if (Pair.Key != 1 && O.bActive && !O.bText && O.Script == FName(TEXT("s4-duck")) && O.GetProp(TEXT("hitpoints")) > 0)
+						{
+							if (O.Screen > 0 && O.Screen != Dk.Screen) { C.Goto(O.Screen, O.X, O.Y); }
+							else { C.KiteAndPunch(Pair.Key, 30, true, 4); }
+							C.S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: stray duck %d on screen %d at %.0f,%.0f brain %d"), Pair.Key, O.Screen, O.X, O.Y, O.GetProp(TEXT("brain"))));
+							return;
+						}
+					}
+					// Nothing to hit and the story not done: say every sprite that ran s4-duck's main, every 10 s (a diagnosis for the probe log).
+					if (C.S->GetNowMs() - C.P->LastLogMs > 10000.0)
+					{
+						C.P->LastLogMs = C.S->GetNowMs();
+						FString Seen;
+						for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites())
+						{
+							const FDinkSprite& O = Pair.Value;
+							if (O.Script == FName(TEXT("s4-duck")) || O.GetProp(TEXT("brain")) == 3)
+							{
+								Seen += FString::Printf(TEXT(" [%d act %d scr %d %.0f,%.0f brain %d hp %d %s]"), Pair.Key, O.bActive ? 1 : 0, O.Screen, O.X, O.Y, O.GetProp(TEXT("brain")),
+									O.GetProp(TEXT("hitpoints")), *O.Script.ToString());
+							}
+						}
+						C.S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: no duck to hit; s4-duck %d story %d;%s"), C.Fact(TEXT("s4-duck")), C.Fact(TEXT("story")), *Seen));
+					}
 				},
-				[](FCtx& C) { return C.Fact(TEXT("s4-duck")) == 2 && C.Fact(TEXT("story")) == 11 && C.Idle() && !C.Busy(); }, 400.0, {}, 0.001, true);
+				[](FCtx& C) { return C.Fact(TEXT("s4-duck")) == 2 && C.Fact(TEXT("story")) == 11 && C.Idle() && !C.Busy(); }, 700.0, {}, 0.001, true);
 			// Chapter 10 starts at the healer of Windemere: the chapter ends there, not beside the duck pen's chests and the ducks' scene
 			// (found while the legacy placement path still kept an opened chest's script; update_play_changes clears it, dink.cpp:5831).
 			Add(TEXT("to the healer's house in Windemere (SCR_195), where chapter 10 begins"),
@@ -4681,7 +4924,9 @@ namespace DinkProbeTest
 			// The room's loot is made by scripts (emake) and a load does not make it again: it is taken before the chapter ends.
 			Add(TEXT("SCR_156's loot (emake: the gold, the heart and the food where the monsters fell)"),
 				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
-				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 30.0, {}, 0.5);
+				// The kill's level-up can open after the fight's step is done (21 Nov 2026, A25's stream: level 5 came here, and with no answer
+				// the menu took "Increase Magic"; one strength short, Seth's arrows did 0 against his defense 25 in chapter 20).
+				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 30.0, { TEXT("Increase Attack") }, 0.5);
 		}
 
 		// ---- Chapter 16 (test `ChGSlayers`): SCR_157, the four Slayers and the gold heart (Act F step 48) ----
@@ -4699,7 +4944,9 @@ namespace DinkProbeTest
 				[](FCtx& C)
 				{
 					if (!C.OnScreen(157)) { C.Goto(157, 60, 250); return; }
-					if (C.DrinkAndKeepSword(27)) { return; }
+					// StallBreak as on the chapter 19 visits: with A25's hit-blood draws the last slayer wandered in the south-east corner
+					// out of the squad's reach for the whole 200 s (16 Nov 2026).
+					if (C.DrinkAndKeepSword(27) || C.StallBreak(C.D->GetDink().Screen)) { return; }
 					FSquadOpts O;
 					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
 					C.SquadFight(O);
@@ -4983,10 +5230,12 @@ namespace DinkProbeTest
 			auto Loot = [this, Rich, LevelUps](int32 Room)
 			{
 				Add(*FString::Printf(TEXT("the loot of SCR_%03d"), Room),
-					[Rich, Room](FCtx& C) { if (!Rich(C) || C.OnScreen(Room)) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } } },
+					// a drop by a thorn bush is left there (21 Nov 2026, A25's stream: the slayer's gold200 fell by SCR_156's thorn, touch 15,
+					// and Dink stood on it until he was dead)
+					[Rich, Room](FCtx& C) { if (!Rich(C) || C.OnScreen(Room)) { if (const int32 Drop = SafeDrops(C)) { C.StandBy(Drop, 0, true); } } },
 					// Skipped once rich, as the visit is: Dink then never entered the room, and a script left busy elsewhere (the Windemere
 					// healer's talk loops on wait) must not hold the step (seen 16 Nov 2026 after A45 moved the gold earned before chapter 19).
-					[Rich, Room](FCtx& C) { return (Rich(C) && C.Idle()) || ((!C.OnScreen(Room) || Drops(C) == 0) && C.Idle() && !C.Busy()); }, 40.0, LevelUps, 0.5);
+					[Rich, Room](FCtx& C) { return (Rich(C) && C.Idle()) || ((!C.OnScreen(Room) || SafeDrops(C) == 0) && C.Idle() && !C.Busy()); }, 40.0, LevelUps, 0.5);
 			};
 			Heal(156);
 			Add(*FString::Printf(TEXT("visit %d: SCR_156 (s7-bong, s7-slay, s7-drag; screenlock): DuelFight with the sword, the dragon first"), Visit),

@@ -239,7 +239,19 @@ public:
 	void ReviewCarcasses() { bCorpseReview = true; }
 	/** Live sky light colour (review; dink.SkyTint r g b). */
 	void SetSkyTint(const FLinearColor& Colour);
+	/** Component tag of a gore decal (corpse pool, hit blood, Dink's death pool) that opens the grass carpet over its footprint, as a
+	 *  placed ground decal does; the 1997 picture shows the blood on the ground, not under the grass. */
+	static const FName GrassClearTag;
+	/** Tags Decal with GrassClearTag and has the clearings gathered again on the next tick (null-safe). */
+	static void OpenGrassUnder(class UDecalComponent* Decal);
+	/** A tagged decal appeared or went: the clearings are gathered again on the next tick. */
+	void NoteGroundDecalsChanged() { bClearsDirty = true; }
+	/** The clearings now in force (tests). */
+	int32 NumGrassClears() const { return GrassClears.Num(); }
+	/** Gathers the clearings now (tests). */
+	void GatherGrassClearsNow() { GatherGrassClears(); }
 private:
+	bool bClearsDirty = false;
 	// --- round 7: clearings round low family props, authored props and ground decals; feathered carpet edge ---
 	struct FGrassClear
 	{
@@ -406,6 +418,16 @@ private:
 		TArray<TObjectPtr<class UMaterialInterface>> Materials;
 		float SizeCm = 100.f;
 	};
+public:
+	/**
+	 * Ground square of a sprite-class decal that replaces a placement's card (15 Nov 2026, gore parity): never smaller than
+	 * the 1997 picture. The greybox card is a standing quad: pivot in the middle of its bottom edge, world scale = (width m,
+	 * 1, height m), local X = the screen's east. Lying on the ground the picture reaches "up" the screen, which is the card's
+	 * -Y, so its middle lies (card bottom above the ground + half its height) that way. OutHalfCm = the larger of
+	 * MinSideCm / 2 and half the card's longer side times Margin; OutYaw = the card's yaw (the screen's turn).
+	 */
+	static void CardDecalSquare(const FTransform& CardWorld, double GroundZ, double MinSideCm, double Margin, FVector& OutCentre, double& OutHalfCm, double& OutYaw);
+private:
 	void ApplyDecals(int32 ScreenNumber);
 	TMap<FName, FDinkDecalClass> DecalClasses;
 	UPROPERTY(Transient)

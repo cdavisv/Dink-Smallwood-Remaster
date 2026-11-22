@@ -102,6 +102,25 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkRunCommand(
 			Id ? *FString::Printf(TEXT("instance %d started"), Id) : TEXT("no such entry point in the converted story"));
 	}));
 
+static FAutoConsoleCommandWithWorldAndArgs GDinkGoreHurtCommand(
+	TEXT("dink.GoreHurt"),
+	TEXT("dink.GoreHurt <S029_P04 | handle> <damage>: review only (captures of blood and corpses): the DinkC hurt on that sprite, hurt_thing then random_blood when it hurt (dink.cpp:9953); the kill, if any, follows on the next tick."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		UDinkStorySubsystem* S = GetStory(World);
+		if (!S || Args.Num() < 2 || !S->GetGameplay())
+		{
+			UE_LOG(LogDinkNarrative, Display, TEXT("usage: dink.GoreHurt <origin id | handle> <damage>"));
+			return;
+		}
+		int32 Handle = 0;
+		FDinkOriginId Origin;
+		if (FDinkOriginId::Parse(Args[0], Origin)) Handle = S->GetDirector()->HandleForPlacement(Origin.Screen, Origin.Placement);
+		else if (Args[0].IsNumeric()) Handle = FCString::Atoi(*Args[0]);
+		const int32 Dealt = Handle ? S->GetGameplay()->HurtAndBleed(Handle, FCString::Atoi(*Args[1])) : 0;
+		UE_LOG(LogDinkNarrative, Display, TEXT("dink.GoreHurt sprite %d: %d damage"), Handle, Dealt);
+	}));
+
 static FAutoConsoleCommandWithWorldAndArgs GDinkSayCommand(
 	TEXT("dink.Say"),
 	TEXT("dink.Say <text>: Dink says the text (non-blocking, like DinkC say)."),

@@ -515,7 +515,10 @@ bool FDinkAIBoncaKillsIdleDinkTest::RunTest(const FString& Parameters)
 	// Walk: 30 px at 30 px/s, at most twice that (it re-aims only every 200 ms and wanders in between);
 	// two hits always kill (5 + 5 >= 10), the second at most attack wait 4 s + the hit frame after the first.
 	const double Walk = (80.0 - 50.0) / 30.0;
-	const double Bound = 2.0 * Walk + 0.35 + 4.0 + 0.35 + 1.0;
+	// One more attack wait (4 s) for the case where the first hit leaves him at 1-2 life and the Bonca is out of reach when its wait ends:
+	// it closes in again on its next aims (move_wait 10..309 ms, rand() % 300, D:12967). Since the hit blood draws of A25 (random_blood's
+	// rand() % 3 after every damaging hit, D:6693, 15568) the seeded stream gives that case: 8 from the hit, then a touch at 10.5 s.
+	const double Bound = 2.0 * Walk + 0.35 + 4.0 + 0.35 + 1.0 + 4.0;
 	for (const FString& Ev : E.G->Events)
 	{
 		if (Ev.StartsWith(TEXT("hit 1 by")) || Ev.StartsWith(TEXT("touch damage")) || Ev.StartsWith(TEXT("dink -")))
