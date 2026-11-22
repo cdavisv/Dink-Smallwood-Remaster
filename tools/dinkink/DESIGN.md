@@ -375,6 +375,7 @@ Unreal (the lines are spoken by the right speaker in the right procedure).
 | `fix_s4_sign3_l17` | 9 Nov 2026 (OD2) | "Long live the ducks." (the sign's `talk`, `&story` <= 10) | missing `)`: the speaker reads 0 (4141-4186), rejected (7908-7913) |
 | `fix_s3_chick_l42` | 9 Nov 2026 (OD2) | "Hello Dink, I'm Christina." (her `talk`, "Say hi") | missing comma: `get_parms` returns early (4206-4225), rejected (7908-7913) |
 | `fix_s1_h3_8_l13` | 9 Nov 2026 (OD2) | "Libby's bed, to dream the impossible dream..." and "Libby's bed, looks lonely." (one of three at random) | `{` for `}`: the `== 2` and `== 3` tests nest inside the `== 1` block (7289-7360) |
+| `fix_s3_st2p_l42` | 16 Nov 2026 (bug A50) | nothing new is spoken: after "You are carrying too much." (Arturous's bow, 16 items carried) Dink and Arturous are unfrozen before the `return` (`OWNER_ADDITIONS`) | not a typo but the author's softlock: `return` ends the script (7434-7451) and only `unfreeze` clears a freeze (7380-7403) |
 
 Every other switch stays `false`, among them `fix_s5_fguy_l6` and `fix_s5_end_l33` (OD1: the
 director defines `sp_prop <sprite> <0|1>` as setting the placement's map `prop` flag, the

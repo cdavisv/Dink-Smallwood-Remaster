@@ -1,20 +1,21 @@
 {
   "generated_by": "Scripts/sync_story.py (do not hand-edit anything in this directory)",
-  "data_repo_commit": "051b866+dirty",
+  "data_repo_commit": "267ae45c4",
   "inklecate": "v1.2.1",
   "ink_version": 21,
   "knots": 377,
   "entry_points": 930,
-  "fix_switches": 16,
+  "fix_switches": 17,
   "fix_switches_enabled_by_owner": [
     "fix_s1_h3_8_l13",
     "fix_s2_jack_l171",
     "fix_s3_chick_l42",
+    "fix_s3_st2p_l42",
     "fix_s4_sign3_l17"
   ],
   "files": {
-    "dink.json": "57a591d527e9a050f787d729e337dd3f35f733bad0276180e61c88f9931382df",
+    "dink.json": "c94f882340a47617b262eede6e96ebd26ab7693f174a62982a915e694cae0d16",
     "director_vocabulary.csv": "3ed14dd765f82142026c2bf92979bdf3dba128d399cba352362025456dee2f8b",
-    "names.csv": "c08bb45d9d54e641ec37f8fb11e6b1dc711296ab1b14aa19420e647eff2c4363"
+    "names.csv": "98e595a968fe3f6b4d65483bd9df0835dfc9e6f113204d6ca42964bd9d4c6d1e"
   }
 }

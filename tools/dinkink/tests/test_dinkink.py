@@ -924,10 +924,13 @@ class TestVerbatimFixes(unittest.TestCase):
 
 class TestOwnerDecisions(unittest.TestCase):
     """Owner decision OD2 (doc/remaster/verbatim_review.md, 9 Nov 2026): the four pure-typo
-    switches are on in the shipped build, every other `fix_` switch stays false. Each enabled
+    switches are on in the shipped build, and since 16 Nov 2026 the bow shop's softlock switch
+    (bug A50, overrides.OWNER_ADDITIONS); every other `fix_` switch stays false. Each enabled
     switch carries its dink.cpp citation (overrides.OWNER_DECISIONS)."""
 
-    ENABLED = {"fix_s2_jack_l171", "fix_s4_sign3_l17", "fix_s3_chick_l42", "fix_s1_h3_8_l13"}
+    TYPOS = {"fix_s2_jack_l171", "fix_s4_sign3_l17", "fix_s3_chick_l42", "fix_s1_h3_8_l13"}
+    SOFTLOCKS = {"fix_s3_st2p_l42"}
+    ENABLED = TYPOS | SOFTLOCKS
 
     def consts(self):
         got = {}
@@ -941,9 +944,13 @@ class TestOwnerDecisions(unittest.TestCase):
         self.assertEqual(set(OWNER_DECISIONS), self.ENABLED)
         for name, d in OWNER_DECISIONS.items():
             self.assertIs(d["value"], True, name)
-            self.assertEqual(d["decided"], "2026-11-09", name)
             self.assertRegex(d["dink_cpp"], r"dink\.cpp:\d+", name)
-            self.assertTrue(d["reason"].startswith("typo: "), name)
+            if name in self.TYPOS:
+                self.assertEqual(d["decided"], "2026-11-09", name)
+                self.assertTrue(d["reason"].startswith("typo: "), name)
+            else:
+                self.assertEqual(d["decided"], "2026-11-16", name)
+                self.assertTrue(d["reason"].startswith("softlock: "), name)
 
     def test_the_four_are_true_and_every_other_false(self):
         got = self.consts()
@@ -951,7 +958,9 @@ class TestOwnerDecisions(unittest.TestCase):
         for name, (value, comment, script) in got.items():
             if name in self.ENABLED:
                 self.assertEqual(value, "true", name)
-                self.assertTrue(comment.startswith(" // owner decision 9 Nov 2026: typo: "),
+                self.assertTrue(comment.startswith(" // owner decision 9 Nov 2026: typo: ")
+                                if name in self.TYPOS else
+                                comment.startswith(" // owner decision 16 Nov 2026: softlock: "),
                                 comment)
                 self.assertIn("dink.cpp: ", comment)
             else:
@@ -1018,7 +1027,22 @@ class TestOwnerDecisions(unittest.TestCase):
                            capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         off = json.dumps(json.loads((OUT / "t_false.json").read_text(encoding="utf-8-sig")))
-        self.assertEqual(story.count("true") - off.count("true"), 4)
+        self.assertEqual(story.count("true") - off.count("true"), len(self.ENABLED))
+
+    def test_a50_bow_shop_unfreezes_before_the_full_inventory_return(self):
+        # s3-st2p.c:35-42: "You are carrying too much." then `return` with Dink and Arturous
+        # frozen (talk, lines 72-73). The owner's switch unfreezes both before that return.
+        self.assertIn("CONST fix_s3_st2p_l42 = true // owner decision 16 Nov 2026: softlock: ",
+                      ink_src("s3-st2p"))
+        b = self.block("s3-st2p", "lbl_buy")
+        i = b.index("{ fix_s3_st2p_l42:")
+        self.assertEqual(b[i + 1:i + 5], [">> unfreeze 1 #cmd #src:42",
+                                          ">> unfreeze {current_sprite} #cmd #src:42", "}", "->->"])
+        self.assertTrue(b[i - 1].startswith("-> m35 ->"), b[i - 1])
+        r = [x for x in rows(OUT / "review_queue.csv")
+             if x["script"] == "s3-st2p" and x["line"] == "42"]
+        self.assertEqual([(x["code"], x["fix_const"]) for x in r],
+                         [("owner_addition", "fix_s3_st2p_l42")])
 
 
 if __name__ == "__main__":

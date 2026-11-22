@@ -112,6 +112,7 @@
 - Held back (A44): `stop_entire_game` (branch `fix/dinkc-stop-entire-game`): its level-up pauses shift the probe's rand() stream and chapter 8's knights win.
 - Held back (A40): `set_callback_random` timers should end on wait / say_stop* / say_xy and before talk/hit/damage (kill_returning_stuff D:5049; branch `fix/dinkc-callbacks`). With it the Joppa dragons stay locked on Dink after his first hit and probe chapter 12 dies; re-tune `DuelFight` first.
 - Held back (A41): `create_sprite` should use add_sprite_dumb's defaults (`UDinkDirector::InitDumbSprite`: speed 0, timing 0, base_* -1, D:3089-3135; branch `fix/dinkc-create-sprite-dumb`). The probe's Jack step (`KiteAndCast`) was tuned to the wrong defaults and dies with the right ones; re-tune it first.
+- Owner deviation A50 (16 Nov 2026): the bow shop (s3-st2p.c:42) unfreezes Dink and Arturous after "You are carrying too much." through the converter switch `fix_s3_st2p_l42` (`tools/dinkink/dinkink/overrides.py` `OWNER_ADDITIONS`: commands added before a statement behind a switch; `sync_story.py` accepts it as the fifth owner switch). Test `Dink.Narrative.OwnerDecisions.BowShopFullInventoryUnfreezes`.
 - Pitfall: dink.cpp:569-575 is inside `get_hard_play` (Dink's walk, D:548-580), not `get_hard` (D:527-546). Check which function a cited line belongs to.
 
 ## Leg layer: planted feet, stride warp, gait styles (16 November 2026)

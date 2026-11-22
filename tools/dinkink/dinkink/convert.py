@@ -8,7 +8,7 @@ import re
 
 from . import names as N
 from . import text as T
-from .overrides import BRACE_TYPOS, OWNER_DECISIONS
+from .overrides import BRACE_TYPOS, OWNER_ADDITIONS, OWNER_DECISIONS
 from .vocab import NOOP, SAY_CALLS, SAY_BLOCKS, BLOCKING
 
 PSEUDO = {"&current_sprite": "current_sprite", "&current_script": "current_script",
@@ -415,6 +415,24 @@ class ScriptEmitter:
                 out.append(ind + "// (empty if: %s)" % cond)
         return out
 
+    def owner_addition(self, s, depth):
+        """Commands the owner had added before a statement (overrides.OWNER_ADDITIONS), behind
+        their fix switch; [] for every other statement."""
+        add = OWNER_ADDITIONS.get((self.script, s["line"]))
+        if not add:
+            return []
+        const = self.new_fix(s["line"], add["comment"])
+        if const != add["const"]:
+            raise ValueError("%s:%d: OWNER_ADDITIONS names %s, the converter made %s"
+                             % (self.script, s["line"], add["const"], const))
+        self.review(s["line"], "owner_addition", "high", "engine-differs",
+                    "the engine runs the statement as written: " + add["comment"],
+                    " / ".join(add["commands"]),
+                    "engine live (nothing added); the additions behind " + const, const)
+        intent = [INDENT * (depth + 1) + ">> %s #cmd #src:%d" % (c, s["line"])
+                  for c in add["commands"]]
+        return self.gate(const, intent, [], depth)
+
     def gate(self, const, intent, engine, depth):
         """{ fix: intent - else: engine }"""
         return self.emit_if(const, intent, engine, depth)
@@ -646,7 +664,7 @@ class ScriptEmitter:
             self.var_writes.append(target)
             return [ind + "~ %s = %s" % (target, val)]
         if t == "return":
-            out = []
+            out = self.owner_addition(s, depth)
             if s.get("value"):
                 out.append(ind + "~ v_return = %s" % self.expr(s["value"]))
             return out + [ind + "->->"]
