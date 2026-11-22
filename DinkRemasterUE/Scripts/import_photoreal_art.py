@@ -155,7 +155,7 @@ def instance(folder, name, parent, textures=None, scalars=None):
 
 
 def surface_material(folder, name, defaults, foliage=False, wind=None, skeletal=False, shading='lit', two_sided=False, masked=False, profile=None,
-                     scatter=False, blend=None, blend_channel='r', ground_blend=False, timber=False, morph=False, vertex_tint=False):
+                     scatter=False, blend=None, blend_channel='r', ground_blend=False, timber=False, morph=False, vertex_tint=False, skirt=False):
     """One parent material: BC/N/ORM (+SSS) texture parameters, optional alpha mask, optional wind offset."""
     mat = new_material(folder, name)
     bc = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -700, -300, parameter_name='BC', texture=defaults['BC'], sampler_type=ST.SAMPLERTYPE_COLOR)
@@ -382,6 +382,8 @@ return a * lerp(saturate(Depth), 1.0, d) * (Side < 0.0 ? saturate(Back) : 1.0) *
         # Vertex colour "Wind": R trunk sway (0 ground .. 1 top), G branch phase, B leaf flutter, A branch bend. The node
         # (shared wind direction, gusts and walk-through bend of MPC_Dink_World) lives in Scripts/world_life_wind.py.
         world_life_wind.wire_wind(unreal, mat, expr, custom, link, out, wind, world_life_wind.ensure_world_mpc(unreal, save), push=foliage)
+    if skirt:
+        skirt_motion(mat)
     EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_INSTANCED_STATIC_MESHES, True)
     if skeletal:
         EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_SKELETAL_MESH, True)
@@ -393,6 +395,172 @@ return a * lerp(saturate(Depth), 1.0, d) * (Side < 0.0 ? saturate(Back) : 1.0) *
     return mat
 
 
+
+# ------------------------------------------------------------------ secondary motion (15 Nov 2026, hair-cloth-physics)
+# UDinkSecondaryMotionSubsystem (DinkCore, DinkSecondaryMotion.h) runs a damped spring per hair and skirt and writes its
+# state into the body's custom primitive data, in component space (mesh units); these offsets turn it into motion.
+# The characters have no hair or skirt bones and no clothing data (89 mannequin bones each), so this is the motion.
+# Off at material quality Low (quality switch) and whenever the subsystem writes zeros (dink.Hair.Physics 0 etc.).
+
+def cpd_vector(mat, x, y, index, name):
+    node = expr(mat, unreal.MaterialExpressionVectorParameter, x, y, parameter_name=name, default_value=unreal.LinearColor(0, 0, 0, 0))
+    node.set_editor_property('use_custom_primitive_data', True)
+    node.set_editor_property('primitive_data_index', index)
+    return node
+
+
+def motion_space(mat, x, y):
+    """(skinned position in component space, mesh units, and a node turning a component-space offset into the world
+    offset the WPO pin wants). Object Position would be the bounds centre, not the component origin: the position is
+    taken through the primitive's own world-to-local transform."""
+    to_local = expr(mat, unreal.MaterialExpressionTransformPosition, x + 150, y,
+                    transform_source_type=unreal.MaterialPositionTransformSource.TRANSFORMPOSSOURCE_WORLD,
+                    transform_type=unreal.MaterialPositionTransformSource.TRANSFORMPOSSOURCE_LOCAL)
+    link(expr(mat, unreal.MaterialExpressionWorldPosition, x - 250, y), '', to_local, '')   # the engine names this pin 'Input' but shortens it to none: '' is the first input
+    to_world = expr(mat, unreal.MaterialExpressionTransform, x + 900, y,
+                    transform_source_type=unreal.MaterialVectorCoordTransformSource.TRANSFORMSOURCE_LOCAL,
+                    transform_type=unreal.MaterialVectorCoordTransform.TRANSFORM_WORLD)
+    return to_local, to_world
+
+
+def motion_out(mat, offset_node, to_world, x, y):
+    """offset (component space) -> world -> WPO, with nothing at material quality Low."""
+    link(offset_node, '', to_world, '')
+    result = to_world
+    try:
+        switch = expr(mat, unreal.MaterialExpressionQualitySwitch, x, y)
+        link(to_world, '', switch, 'Default')
+        link(expr(mat, unreal.MaterialExpressionConstant3Vector, x - 200, y + 100, constant=unreal.LinearColor(0, 0, 0, 0)), '', switch, 'Low')
+        result = switch
+    except Exception as error:
+        warn(f'{mat.get_name()}: no quality switch on the motion offset ({error}); it also runs at Low')
+    out(result, '', MP.MP_WORLD_POSITION_OFFSET)
+
+
+HAIR_MOTION_HLSL = '''
+float u = UV.x, v = UV.y;
+float w = 0.0;
+if (u >= 0.5 && v <= 0.7505)
+{
+    // two rows of 16 tiles, each 0.375 tall, root at the top; a vertex exactly on the row seam is either the tip of an
+    // upper card or the root of a lower one: give it a little, so that neither a root lifts nor a tip sticks
+    float edge = step(abs(v - 0.375), 0.0008);
+    float row = step(0.375, v);
+    float t = lerp(saturate((v - row * 0.375) / 0.375), Seam, edge);
+    float tile = row * 16.0 + clamp(floor((u - 0.5) * 32.0), 0.0, 15.0);
+    // default tile kinds (hair_groom.py NT): 0-8 dense, 9-18 mid, 19-25 thin, 26-29 wisp, 30-31 fly
+    float kind = tile < 8.5 ? 0.3 : (tile < 18.5 ? 0.55 : (tile < 25.5 ? 0.8 : 1.0));
+    w = kind * pow(t, 1.5);
+}
+// hair held in a bun or a tie does not move where it is held: fade to nothing within PinRadius of PinCentre (bind pose)
+w *= PinRadius > 0.0 ? smoothstep(PinRadius, PinRadius + 4.0, distance(Pre, PinCentre)) : 1.0;
+float3 r = Rel - Head.xyz;
+float3 off = (Tip.xyz + cross(float3(0.0, 0.0, 1.0), float3(r.xy, 0.0)) * Tip.w) * (w * saturate(Head.w) * Amount);
+// never into the head (a sphere about its centre): the inward part of the offset is dropped
+float3 n = r / max(length(r), 0.001);
+off -= n * min(dot(off, n), 0.0);
+float len = length(off);
+return off * min(1.0, MaxCm / max(len, 0.0001));'''
+
+
+def hair_motion(mat):
+    """Lock cards lag, swing and settle (CPD 0-7). The atlas tells cap, cards and brows apart and how far along a card a
+    vertex lies (Characters/Tools/hairlib.py tile_rect: engine v runs down the atlas): the opaque cap shell, the brow and
+    lash band and the wide tiles (Dink's under-layer, the Mother's bun core) never move; on the 32 narrow lock tiles the
+    offset grows to the tip, and wisps and flyaways (tiles 26-31) move most."""
+    rel, to_world = motion_space(mat, -1700, 1300)
+    uv = expr(mat, unreal.MaterialExpressionTextureCoordinate, -1500, 1450, coordinate_index=0)
+    tip = cpd_vector(mat, -1500, 1530, 0, 'HairTip')
+    head = cpd_vector(mat, -1500, 1610, 4, 'HairHead')
+    move = custom(mat, -1000, 1300, HAIR_MOTION_HLSL, F3, ['Rel', 'UV', 'Tip', 'Head', 'Seam', 'Amount', 'MaxCm', 'Pre', 'PinCentre', 'PinRadius'], 'Hair motion (component space)')
+    link(expr(mat, unreal.MaterialExpressionPreSkinnedPosition, -1500, 1930), '', move, 'Pre')
+    link(expr(mat, unreal.MaterialExpressionVectorParameter, -1500, 2010, parameter_name='HairPinCentre', default_value=unreal.LinearColor(0, 0, 0, 0)), '', move, 'PinCentre')
+    link(expr(mat, unreal.MaterialExpressionScalarParameter, -1500, 2090, parameter_name='HairPinRadius', default_value=0.0), '', move, 'PinRadius')
+    link(rel, '', move, 'Rel'); link(uv, '', move, 'UV')
+    link(tip, 'RGBA', move, 'Tip'); link(head, 'RGBA', move, 'Head')
+    link(expr(mat, unreal.MaterialExpressionScalarParameter, -1500, 1690, parameter_name='HairMotionSeam', default_value=0.2), '', move, 'Seam')
+    link(expr(mat, unreal.MaterialExpressionScalarParameter, -1500, 1770, parameter_name='HairMotion', default_value=1.0), '', move, 'Amount')
+    link(expr(mat, unreal.MaterialExpressionScalarParameter, -1500, 1850, parameter_name='HairMotionMaxCm', default_value=2.0), '', move, 'MaxCm')
+    motion_out(mat, move, to_world, -300, 1300)
+
+
+SKIRT_MOTION_HLSL = '''
+// custom primitive data 8-35 (DinkSecondaryMotion.h) read as seven aligned float4s: rotation, translation, hip, knee
+// and ankle of each leg, sway
+float4 q = V0;
+float3 T = V1.xyz, HL = float3(V1.w, V2.x, V2.y), KL = float3(V2.z, V2.w, V3.x), AL = V3.yzw;
+float3 HR = V4.xyz, KR = float3(V4.w, V5.x, V5.y), AR = float3(V5.z, V5.w, V6.x), Sway = V6.yzw;
+if (dot(q, q) < 0.5 || Amount <= 0.0) return float3(0.0, 0.0, 0.0);
+float4 qi = float4(-q.xyz, q.w);
+#define DINK_ROT(qq, p) ((p) + 2.0 * cross((qq).xyz, cross((qq).xyz, (p)) + (qq).w * (p)))
+// legs in the bind frame of the pelvis
+float3 hl = DINK_ROT(qi, HL.xyz - T.xyz), kl = DINK_ROT(qi, KL.xyz - T.xyz), al = DINK_ROT(qi, AL.xyz - T.xyz);
+float3 hr = DINK_ROT(qi, HR.xyz - T.xyz), kr = DINK_ROT(qi, KR.xyz - T.xyz), ar = DINK_ROT(qi, AR.xyz - T.xyz);
+float3 P = Pre;
+float hipZ = 0.5 * (hl.z + hr.z), kneeZ = 0.5 * (kl.z + kr.z), ankZ = 0.5 * (al.z + ar.z);
+float w = smoothstep(hipZ + Top, lerp(hipZ, kneeZ, Full), P.z);
+if (w <= 0.0) return float3(0.0, 0.0, 0.0);
+float2 A = 0.5 * (hl.xy + hr.xy);
+float2 d = P.xy - A;
+float rho = length(d);
+float2 u = d / max(rho, 0.001);
+float need = 0.0;
+for (int i = 0; i < 2; i++)
+{
+    float3 h = i == 0 ? hl : hr;
+    float3 k = i == 0 ? kl : kr;
+    float3 a = i == 0 ? al : ar;
+    // nine points down the leg, hip to knee to ankle. Below a point the fabric hangs from it (a curtain); above it,
+    // it runs straight up to the waist (a tent line), so a heel kicked back lifts the whole back panel, not a fold
+    for (int j = 0; j <= 8; j++)
+    {
+        float f = j / 4.0;
+        float3 Ls = f <= 1.0 ? lerp(h, k, f) : lerp(k, a, f - 1.0);
+        float rl = (f <= 1.0 ? RKnee : lerp(RKnee, RAnkle, f - 1.0)) + Clear;
+        float hang = P.z <= Ls.z ? 1.0 : saturate((hipZ - P.z) / max(hipZ - Ls.z, 1.0));
+        float2 g = Ls.xy - A;
+        float along = dot(g, u);
+        float across = abs(g.x * u.y - g.y * u.x);
+        float s = saturate(across / (rl * Spread));
+        // a soft tent wider than the leg (zero slope at its edge): the fabric drapes over a knee, it does not dent round it
+        float cover = rl * (1.0 - s * s) * (1.0 - s * s);
+        need = max(need, (along + cover) * hang);
+    }
+}
+// smooth maximum of the bell radius and what the legs need (2 cm knee)
+float rho2 = 0.5 * (rho + need + sqrt((rho - need) * (rho - need) + 4.0));
+float push = max(rho2 - rho, 0.0);
+// cloth pushed outward rises by the length the push takes up (a pendulum from the hips)
+float3 Pb = float3(A + u * rho2, P.z + push * push / (2.0 * max(hipZ - P.z, 10.0)));
+float3 S = DINK_ROT(qi, Rel - T.xyz);
+float3 B = lerp(S, Pb, w);
+float hem = saturate((hipZ - P.z) / max(hipZ - ankZ, 10.0));
+float3 target = DINK_ROT(q, B) + T.xyz + Sway.xyz * (hem * hem * w);
+#undef DINK_ROT
+return (target - Rel) * Amount;'''
+
+
+def skirt_motion(mat):
+    """A floor-length skirt as a bell hung from the pelvis (CPD 8-35). Below the hips the skinned skirt is replaced by
+    its bind shape carried rigidly by the pelvis, pushed out wherever a leg would come through it (each leg a capsule
+    hip-knee-ankle, with a wider soft tent so the fabric drapes over a knee instead of denting round it), lifted by the
+    length that push takes up, and swung behind the hips by the spring. The skinned skirt followed whichever thigh or
+    calf it was weighted to, so the hem stretched between the forward and the trailing leg (AnimationPass NOTES 8)."""
+    rel, to_world = motion_space(mat, -1700, 1300)
+    pre = expr(mat, unreal.MaterialExpressionPreSkinnedPosition, -1500, 1450)
+    ins = [('V%d' % i, 8 + 4 * i) for i in range(7)]   # a vector parameter reads 4 floats from an index <= 32
+    move = custom(mat, -1000, 1300, SKIRT_MOTION_HLSL, F3,
+                  ['Rel', 'Pre', 'V0', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'RKnee', 'RAnkle', 'Clear', 'Spread', 'Top', 'Full', 'Amount'],
+                  'Skirt bell (component space)')
+    link(rel, '', move, 'Rel'); link(pre, '', move, 'Pre')
+    for i, (pin, index) in enumerate(ins):
+        link(cpd_vector(mat, -1500, 1530 + 80 * i, index, 'Skirt' + pin), 'RGBA', move, pin)
+    for i, (pin, pname, value) in enumerate([('RKnee', 'SkirtKneeRadius', 7.0), ('RAnkle', 'SkirtAnkleRadius', 6.0), ('Clear', 'SkirtClearance', 1.5),
+                                             ('Spread', 'SkirtSpread', 2.5), ('Top', 'SkirtTopCm', 2.0), ('Full', 'SkirtFull', 0.55), ('Amount', 'SkirtMotion', 1.0)]):
+        link(expr(mat, unreal.MaterialExpressionScalarParameter, -1500, 2300 + 80 * i, parameter_name=pname, default_value=value), '', move, pin)
+    motion_out(mat, move, to_world, -300, 1300)
+
+
 HAIR_MODEL = os.environ.get('DINK_HAIR_MODEL', 'hair')   # 'lit' builds the previous default-lit anisotropic card material (comparison)
 # Per-character trim of the hair material instance: 'tint' multiplies the atlas colour, 'scalars' are instance values
 # of the parameters hair_material() declares.
@@ -402,13 +570,19 @@ HAIR_MODEL = os.environ.get('DINK_HAIR_MODEL', 'hair')   # 'lit' builds the prev
 # her pulled-back hair as a separate shingle, so she has none.
 HAIR_LOOK = {
     'Dink': {'tint': (2.4, 1.5, 1.1), 'scalars': {'Scatter': 0.8, 'BrowGain': 1.6}},
-    'Mother': {'tint': (0.72, 0.67, 0.6), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.3, 'StrandVariation': 0.12, 'DepthShade': 0.45, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
+    # HairPin*: the bun core (wide atlas tile 32 in SK_Mother_Photoreal_LOD0.fbx: centre (-0.1, 10.0, 165.7) cm in Blender
+    # axes, radius 4.6 cm; the engine's import negates y), so the cards drawn into it stay held (secondary motion)
+    'Mother': {'tint': (0.72, 0.67, 0.6), 'vectors': {'HairPinCentre': (-0.13, -9.99, 165.72)}, 'scalars': {'HairPinRadius': 5.5, 'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.3, 'StrandVariation': 0.12, 'DepthShade': 0.45, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12, 'BrowGain': 1.5}},
     # the maidens' long yellow hair (hair_styles.py 'Maiden'); the twins set their own Tint (npc_variants.py MAIDEN_HAIR)
     'Maiden': {'tint': (1.25, 1.12, 0.85), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.7, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     # Seth's own atlas (hair_styles.py 'Seth'): the dark brown crest of his 1997 pictures
     'Seth': {'tint': (2.3, 1.55, 1.05), 'scalars': {'Scatter': 0.5, 'BrowGain': 1.4, 'RootShade': 0.9, 'DepthShade': 0.7, 'Specular': 0.2, 'RoughnessScale': 1.3}},      # a neutral tint read as grey hair under the dim sky of SCR_086
 }
+
+
+# Characters whose outfit carries a floor-length skirt (skirt_motion, bound from the pelvis).
+SKIRTS = {'Mother'}
 
 
 # Skin tint per character (multiplies the base colour). The Mother's fair skin was chalk in the window light of her house.
@@ -514,6 +688,7 @@ return saturate((c - cut) / max(1.0 - cut, 0.01));''', F1, ['A', 'M', 'Gain', 'T
     mat.set_editor_property('opacity_mask_clip_value', 0.5)
     mat.set_editor_property('dither_opacity_mask', True)
     mat.set_editor_property('two_sided', True)
+    hair_motion(mat)
     EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_SKELETAL_MESH, True)
     if morph:
         EDIT.set_base_material_usage(mat, unreal.MaterialUsage.MATUSAGE_MORPH_TARGETS, True)
@@ -935,7 +1110,8 @@ def import_character(CHAR, HERO, folder):
             parent = hair_material(folder, 'M_' + mat_name[3:], tex, morph=has_shapes)
         else:
             parent = surface_material(folder, 'M_' + mat_name[3:], tex, skeletal=True, shading=kind, masked=masked, two_sided=masked,
-                                      profile=profile if kind == 'skin' else None, morph=has_shapes)
+                                      profile=profile if kind == 'skin' else None, morph=has_shapes,
+                                      skirt=CHAR in SKIRTS and mat_name.endswith('_Outfit'))
         # NormalStrength 0.6 on skin (14 Nov 2026): at full strength the pore and crease relief, right in the Blender
         # renders, read as orange peel and goose flesh under the game's sun and window light
         materials[mat_name] = instance(folder, mat_name, parent, tex, {'ScatterAmount': 0.35, 'NormalStrength': 0.6} if kind == 'skin' else None)
@@ -955,6 +1131,8 @@ def import_character(CHAR, HERO, folder):
                 scal[item.split('=')[0]] = float(item.split('=')[1])
             for k, v in scal.items():
                 EDIT.set_material_instance_scalar_parameter_value(materials[mat_name], k, float(v))
+            for k, v in HAIR_LOOK.get(CHAR, {}).get('vectors', {}).items():
+                EDIT.set_material_instance_vector_parameter_value(materials[mat_name], k, unreal.LinearColor(v[0], v[1], v[2], 1.0))
         if look:
             EDIT.set_material_instance_vector_parameter_value(materials[mat_name], 'Tint', unreal.LinearColor(look[0], look[1], look[2], 1.0))
             EDIT.update_material_instance(materials[mat_name])
