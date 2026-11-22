@@ -1,4 +1,5 @@
 #include "DinkCreatureSubsystem.h"
+#include "DinkEnvironmentSubsystem.h"
 #include "DinkCreatureComponent.h"
 #include "DinkCreatureClassComponent.h"
 #include "DinkArtFamilySubsystem.h"
@@ -544,6 +545,7 @@ bool UDinkCreatureSubsystem::LeaveCorpse(FName ClassId, int32 BaseDeath, int32 D
 		Decal->RegisterComponent();
 		Decal->SetWorldLocationAndRotation(Ground - FVector(0.0, 0.0, DecalSinkCm), FRotator(-90.0, YawDeg + Corpse->YawOffset, 0.0)); // sunk: the grass tips and soles, not the legs of whoever stands in it
 		CorpseDecals.Add(Decal);
+		UDinkEnvironmentSubsystem::OpenGrassUnder(Decal); // the pool on the ground, as the 1997 death picture draws it, not under the carpet
 	}
 	UE_LOG(LogDink, Display, TEXT("DINK CREATURE CLASS: %s corpse at %s (death sequence base %d, dir %d)"), *ClassId.ToString(), *Ground.ToCompactString(), BaseDeath, Dir);
 	return true;

@@ -270,6 +270,7 @@ bool FDinkBowDamageTest::RunTest(const FString& Parameters)
 	//   no lore:             25 / 2 + rand() % 12 + 1 - 25 = -12 .. -1, so 0 (probe_route.md 2.6: "never");
 	//   lore, power shot:    75 / 2 + rand() % 37 + 1 - 25 = 13 .. 49;
 	//   lore, no power shot: 25 as without lore.
+	// A missile that hurts draws random_blood's rand() % 3 after its damage roll (dink.cpp:14398-14403, 6693; A25): the third modulus.
 	struct FCase
 	{
 		const TCHAR* Name;
@@ -281,8 +282,8 @@ bool FDinkBowDamageTest::RunTest(const FString& Parameters)
 	};
 	const TArray<FCase> Cases = {
 		{ TEXT("no bow lore, best roll"), 0, { 11 }, 25, 0, { 12 } },
-		{ TEXT("bow lore, power shot (random(3,1) = 1), worst roll"), 1, { 0, 0 }, 75, 13, { 3, 37 } },
-		{ TEXT("bow lore, power shot, best roll"), 1, { 0, 36 }, 75, 49, { 3, 37 } },
+		{ TEXT("bow lore, power shot (random(3,1) = 1), worst roll"), 1, { 0, 0 }, 75, 13, { 3, 37, 3 } },
+		{ TEXT("bow lore, power shot, best roll"), 1, { 0, 36 }, 75, 49, { 3, 37, 3 } },
 		{ TEXT("bow lore, no power shot (random(3,1) = 2)"), 1, { 1, 11 }, 25, 0, { 3, 12 } },
 	};
 	for (const FCase& Case : Cases)
@@ -306,7 +307,7 @@ bool FDinkBowDamageTest::RunTest(const FString& Parameters)
 		TestEqual(FString::Printf(TEXT("%s: Seth-like target (defense 25) loses %d"), Case.Name, Case.Damage), T ? 300 - T->GetProp(TEXT("hitpoints")) : -1, Case.Damage);
 		TestTrue(FString::Printf(TEXT("%s: the arrow is gone (dam-a1 damage: sp_active 0)"), Case.Name), FindByScript(E, TEXT("dam-a1")) == 0);
 		auto Join = [](const TArray<int32>& V) { FString Out; for (const int32 X : V) { Out += FString::Printf(TEXT("%d "), X); } return Out; };
-		TestEqual(FString::Printf(TEXT("%s: the draws are the lottery's and the missile's, in that order"), Case.Name), Join(Rolls->RequestedModuli), Join(Case.Moduli));
+		TestEqual(FString::Printf(TEXT("%s: the draws are the lottery's, the missile's and, when it hurts, random_blood's, in that order"), Case.Name), Join(Rolls->RequestedModuli), Join(Case.Moduli));
 	}
 	// A weaker target and Dink's strength 9 (as in chapter 7): (500 / 100) * (9 / 5) = 5, against defense 0: 2 + rand() % 2 + 1.
 	{

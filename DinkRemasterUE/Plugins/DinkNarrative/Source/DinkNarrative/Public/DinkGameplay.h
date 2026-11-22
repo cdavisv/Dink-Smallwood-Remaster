@@ -20,6 +20,28 @@ class UDinkDirector;
 class FJsonObject;
 struct FDinkSprite;
 
+/**
+ * One call of the original's random_blood (dink.cpp:6675-6700): a damaging hit leaves a blood spurt, sequence 187 + rand() % 3
+ * (or the sprite's sp_blood_seq / sp_blood_num), played once by brain 5 and then drawn into the background, where it stays
+ * until the screen is drawn again (one_time_brain, D:15741-15768). Making one draws the original's rand() for the spurt
+ * (D:6693), as 1997 does, and writes nothing to the event trace; the picture is drawn by UDinkBloodPresenter.
+ */
+struct DINKNARRATIVE_API FDinkBloodEvent
+{
+	/** Sprite that bled (1 = Dink). */
+	int32 Sprite = 0;
+	int32 Screen = 0;
+	/** The hit sprite's position in engine pixels (x includes the 20 px status bar), and the original's spurt point y - YOffset. */
+	double X = 0.0, Y = 0.0;
+	int32 YOffset = 40;
+	/** sp_blood_seq / sp_blood_num of the sprite, 0 when unset (the engine then uses 187 and 3). */
+	int32 BloodSeq = 0, BloodNum = 0;
+	/** The spurt sequence the original's draw chose (BloodSeq or 187, plus rand() % BloodNum or 3). */
+	int32 Seq = 0;
+	/** Increases by one with every event (never reset), so a reader can tell new ones. */
+	uint32 Serial = 0;
+};
+
 /** One frame of dink.ini (Content/Dink/Data/Gameplay/frames.csv). */
 struct DINKNARRATIVE_API FDinkFrameInfo
 {
@@ -526,6 +548,17 @@ public:
 	int32 FindTalkTarget(int32 H);
 	/** hurt_thing: defense rule, adds to the sprite's pending damage. Returns the damage added. */
 	int32 HurtThing(int32 Target, int32 Damage);
+	/**
+	 * hurt_thing followed by the original's "if (hurt_thing(...) > 0) random_blood(x, y - 40, h)" (the DinkC hurt command
+	 * D:9953-9954, touch damage D:15672-15673). Returns the damage added.
+	 */
+	int32 HurtAndBleed(int32 Target, int32 Damage);
+	/** A random_blood call (see FDinkBloodEvent): one draw from the random stream, as the original's, and no trace line. */
+	void NoteBlood(int32 Handle, int32 YOffset = 40);
+	/** The latest blood events, oldest first (at most MaxBloodEvents). */
+	const TArray<FDinkBloodEvent>& GetBloodEvents() const { return BloodEvents; }
+	uint32 GetBloodSerial() const { return BloodSerial; }
+	static constexpr int32 MaxBloodEvents = 256;
 	/** add_exp: only when Dink dealt the last hit unless bAlways (the add_exp command). */
 	void AddExp(int32 Amount, int32 Sprite, bool bAlways = false);
 	/** Applies pending damage the way each sprite's brain does on its next think. */
@@ -649,6 +682,8 @@ public:
 
 
 private:
+	TArray<FDinkBloodEvent> BloodEvents;
+	uint32 BloodSerial = 0;
 	UDinkDirector* Director() const;
 	TArray<int32> LiveSprites(int32 Screen) const;
 	void RunProc(int32 Handle, FName Proc);

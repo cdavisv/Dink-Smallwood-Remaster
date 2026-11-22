@@ -1,5 +1,19 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
+> **Re-baselined with PR #140 (gore parity, owner decision A25; 21 Nov 2026, PIE, private copy, world regenerated with
+> `import_greybox.sh --region all --export` and `--region stonebrook`).** The simulation now draws as 1997 does: random_blood's `rand() % 3`
+> after every damaging hit (dink.cpp:6693), the headless duck's 1-in-100 bleed roll (12798-12802) and human_brain's hurt-sound `rand() % 2`
+> (14706). `Dink.Gameplay.Probe` 29/29 on master 9d044b61b + #140 and again on master 7bc37ca1f + #140 (rebased), and a third time inside the full
+> `Dink` suite (383/383): all twenty md5s equal in all three runs. Packaged parity was not run for this PR. Ch1 63c006c4c0, Ch2 b2e258c5c8, Ch3 80900b0e93, Ch4 3d675ccbae, Ch5 feed0cabe0,
+> Ch6 0cf3be48b3, Ch7 01ac8b0b86, Ch8 aa03a84772, Ch9 d2702b28d8, Ch10 3ae72a786e, Ch11 2f777bf3d5, Ch12 7955dee2bf, Ch13 04ef7b1e78,
+> Ch14 961becb5cf, Ch15 24c8599d7f, Ch16 1ff0ee43c6, Ch17 341f81a0f7, Ch18 20f045e7e2, Ch19 fb9c69e245, Ch20 174759fb0b.
+> - Every chapter moved (Ch1 was cc2e12fb5c): the first damaging hit draws one more `rand()`, and from there the shared stream is the 1997 one.
+> - The bot's tactics were fixed where the new stream broke a chapter (probe code only, game rules untouched; details in
+>   `Docs/Verification/GoreParity_21Nov2026/README.md`): Ch8 (Mog's step hands off after his death; four elixirs; SquadFight walled-in
+>   fallback, evade from a coming touch, kite to the open middle and to lines of fire), Ch11 (a fenced feud survivor with no line is left
+>   after 20 s), Ch15 (a late level-up answered "Increase Attack": one strength short, the bow did 0 to Seth), Ch19 (a drop by the thorn
+>   bush of SCR_156 is left). The SquadFight log line gains `cells reachable/walkable`. Chapter 20 ends with `&story` 16.
+
 > **Re-baselined with PR #141 (DinkC parity A43, A45, A47; 16 Nov 2026, master 84e045b0 + #141, PIE, private copy, world regenerated with
 > `import_greybox.sh --region all --export` and `--region stonebrook`).** `Scripts/test.sh Dink` 320/320, then `Dink.Gameplay.Probe`
 > 29/29 again: all twenty md5s equal in both runs (and equal to a third and fourth run on master 5d8a4a1f + #141). Packaged parity was not

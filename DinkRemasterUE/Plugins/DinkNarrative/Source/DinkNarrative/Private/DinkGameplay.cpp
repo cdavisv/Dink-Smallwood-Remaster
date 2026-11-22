@@ -1034,6 +1034,11 @@ void UDinkGameplay::RunThroughTagList(int32 H)
 		{
 			T->LastHit = H;
 			Dealt = HurtThing(I, DinkRules::MeleeBaseDamage(Strength, Rng()));
+			// run_through_tag_list: "if (hurt_thing(...) > 0) random_blood(spr[i].x, spr[i].y-40, i)" (D:15567-15568)
+			if (Dealt > 0)
+			{
+				NoteBlood(I, 40);
+			}
 		}
 		Note(FString::Printf(TEXT("hit %d by %d strength %d damage %d"), I, H, Strength, Dealt));
 		if (bScript)
@@ -1106,7 +1111,7 @@ void UDinkGameplay::RunThroughTouchDamageList(int32 H)
 		{
 			RunProc(I, NAME_Touch);
 		}
-		HurtThing(H, Touch);
+		HurtAndBleed(H, Touch); // D:15672-15673
 	}
 }
 
@@ -1294,6 +1299,45 @@ int32 UDinkGameplay::HurtThing(int32 Target, int32 Damage)
 	return Num;
 }
 
+int32 UDinkGameplay::HurtAndBleed(int32 Target, int32 Damage)
+{
+	const int32 Num = HurtThing(Target, Damage);
+	if (Num > 0)
+	{
+		NoteBlood(Target, 40);
+	}
+	return Num;
+}
+
+void UDinkGameplay::NoteBlood(int32 Handle, int32 YOffset)
+{
+	UDinkDirector* D = Director();
+	const FDinkSprite* S = D ? D->FindSprite(Handle) : nullptr;
+	if (!S)
+	{
+		return;
+	}
+	FDinkBloodEvent E;
+	E.Sprite = Handle;
+	E.Screen = S->Screen > 0 ? S->Screen : D->GetCurrentScreen();
+	E.X = S->X;
+	E.Y = S->Y;
+	E.YOffset = YOffset;
+	E.BloodSeq = S->GetProp(TEXT("blood_seq"));
+	E.BloodNum = S->GetProp(TEXT("blood_num"));
+	// random_blood (D:6680-6695): "myseq += (rand() % randy)", 187 and 3 unless the sprite sets sp_blood_seq and
+	// sp_blood_num. This draw is the original's: it moves the shared random stream exactly where 1997 moved it
+	// (bug list A25, owner decision 15 Nov 2026; probe chapters re-baselined in packaged_probe.md).
+	const bool bOwn = E.BloodSeq > 0 && E.BloodNum > 0;
+	E.Seq = (bOwn ? E.BloodSeq : 187) + RandomModulo(bOwn ? E.BloodNum : 3);
+	E.Serial = ++BloodSerial;
+	if (BloodEvents.Num() >= MaxBloodEvents)
+	{
+		BloodEvents.RemoveAt(0, BloodEvents.Num() - MaxBloodEvents + 1, EAllowShrinking::No);
+	}
+	BloodEvents.Add(E);
+}
+
 void UDinkGameplay::AddExp(int32 Amount, int32 Sprite, bool bAlways)
 {
 	UDinkDirector* D = Director();
@@ -1337,8 +1381,38 @@ void UDinkGameplay::AddKillSprite(int32 Handle)
 	{
 		return;
 	}
-	// add_kill_sprite (D:12359): a corpse sprite (not shown in the greybox) and add_exp.
-	AddExp(S->GetProp(P_Exp), Handle);
+	// add_kill_sprite (D:12359-12420). With a death base, or base_walk + 5 defined in dink.ini, the corpse picture: add_exp, then a
+	// brain-5 sprite (D:12371-12383) that the remaster draws as a card (UDinkCorpsePresenter) and does not make in the simulation.
+	// Without either the engine makes the blood burst: add_sprite(x, y, 5, 164 + 0, 1) in the first free slot, speed 0, base_walk 0,
+	// seq 164, brain 7 (plays once and goes), the dead sprite's size, then add_exp (D:12385-12419). No rand(), no sound. The burst is
+	// a real sprite here so its slot is taken as in 1997 (handles of later sprites follow) and the placed-effect layer draws picture 164.
+	const int32 BaseDeath = S->GetProp(TEXT("base_death"), -1);
+	const int32 BaseWalk = S->GetProp(P_BaseWalk, -1);
+	if (BaseDeath == -1 && !(BaseWalk + 5 > 0 && (Data.SeqExists(BaseWalk + 5) || Data.FindInitSequence(BaseWalk + 5))))
+	{
+		const int32 Screen = S->Screen;
+		const double X = S->X, Y = S->Y;
+		const int32 Size = S->GetProp(P_Size, 100);
+		const int32 Burst = D->CreateVirtualSprite(Screen, X, Y);
+		if (FDinkSprite* B = D->FindSprite(Burst))
+		{
+			UDinkDirector::InitCreatedSprite(*B);
+			B->Props.Add(P_Brain, 7);
+			B->Props.Add(P_PSeq, 164);
+			B->Props.Add(P_PFrame, 1);
+			B->Props.Add(P_Seq, 164);
+			B->Props.Add(P_Frame, 1);
+			B->Props.Add(TEXT("speed"), 0);
+			B->Props.Add(P_BaseWalk, 0);
+			B->Props.Add(P_Size, Size);
+			Note(FString::Printf(TEXT("kill burst %d for %d (seq 164)"), Burst, Handle));
+		}
+		S = D->FindSprite(Handle);
+	}
+	if (S)
+	{
+		AddExp(S->GetProp(P_Exp), Handle);
+	}
 	D->DeactivateSprite(Handle, 0, /*bEndScripts*/ false);
 	Note(FString::Printf(TEXT("killed %d"), Handle));
 }
@@ -1378,6 +1452,9 @@ void UDinkGameplay::ProcessDamage()
 			ShowFloatingNumber(H, Dmg, false);
 			SetFact(TEXT("life"), FMath::Max(0, GetFact(TEXT("life")) - Dmg));
 			Note(FString::Printf(TEXT("dink -%d life"), Dmg));
+			// "int hurt = (rand() % 2)+1;" and the hurt sound 15 or 16 at 25050 (human_brain, D:14706-14709): drawn on every
+			// damage Dink takes, as in 1997 (bug list A25)
+			D->Audio.Cue(FString::Printf(TEXT("sound:%d speed=25050 hurt"), RandomModulo(2) + 1 == 1 ? 15 : 16));
 			continue;
 		}
 		const int32 Brain = S->GetProp(P_Brain);

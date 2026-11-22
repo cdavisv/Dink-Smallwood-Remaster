@@ -1750,6 +1750,19 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkPillbugCarcassCommand(
 		if (UDinkEnvironmentSubsystem* Env = World ? World->GetSubsystem<UDinkEnvironmentSubsystem>() : nullptr) Env->ReviewCarcasses();
 	}));
 
+static TAutoConsoleVariable<int32> CVarDinkDecalFromCard(TEXT("dink.DecalFromCard"), 1,
+	TEXT("1 (default): a sprite-class ground decal is at least as large as the 1997 card it replaces. 0: the class's fixed size (the old look, for before/after captures). Read when a screen's decals are made."));
+
+void UDinkEnvironmentSubsystem::CardDecalSquare(const FTransform& CardWorld, double GroundZ, double MinSideCm, double Margin, FVector& OutCentre, double& OutHalfCm, double& OutYaw)
+{
+	const FVector Scale = CardWorld.GetScale3D(), At = CardWorld.GetLocation();
+	const double WidthCm = FMath::Abs(Scale.X) * 100.0, HeightCm = FMath::Abs(Scale.Z) * 100.0;
+	OutYaw = CardWorld.Rotator().Yaw;
+	const FVector North = FRotator(0.0, OutYaw, 0.0).RotateVector(FVector(0.0, -1.0, 0.0));
+	OutCentre = FVector(At.X, At.Y, GroundZ) + North * ((At.Z - GroundZ) + 0.5 * HeightCm);
+	OutHalfCm = 0.5 * FMath::Max(MinSideCm, FMath::Max(WidthCm, HeightCm) * FMath::Max(1.0, Margin));
+}
+
 void UDinkEnvironmentSubsystem::ApplyDecals(int32 ScreenNumber)
 {
 	if (DecalClasses.IsEmpty() || DecalScreens.Contains(ScreenNumber)) return;
@@ -1772,10 +1785,21 @@ void UDinkEnvironmentSubsystem::ApplyDecals(int32 ScreenNumber)
 		UDecalComponent* C = NewObject<UDecalComponent>(It, TEXT("EnvDecal"));
 		C->SetupAttachment(It->GetRootComponent());
 		C->SetDecalMaterial(Decal->Materials[int32(FCrc::StrCrc32(*Origin) % uint32(Decal->Materials.Num()))]);
-		// the decal box: X is the projection depth (down), Y and Z the footprint
-		C->DecalSize = FVector(40.0, Decal->SizeCm * 0.5, Decal->SizeCm * 0.5);
-		const FVector Card = It->Card->GetComponentLocation();
-		C->SetWorldLocationAndRotation(FVector(Card.X, Card.Y, It->GetActorLocation().Z), FRotator(-90.0, DinkArtFamily::StableYaw(Origin), 0.0));
+		// the decal box: X is the projection depth (down), Y and Z the footprint. At least the card the decal replaces
+		// (the 1997 picture: burn holes of screens 533/536 are 2.2-4.0 m, the class size was a fixed 1.2 m).
+		FVector Centre;
+		double Half = 0.0, CardYaw = 0.0;
+		// the screen's turn from the actor (a card may be billboarded towards the camera; its actor is not)
+		const FTransform CardWorld(It->GetActorRotation(), It->Card->GetComponentLocation(), It->Card->GetComponentScale());
+		CardDecalSquare(CardWorld, It->GetActorLocation().Z, Decal->SizeCm, 1.15, Centre, Half, CardYaw);
+		if (CVarDinkDecalFromCard.GetValueOnGameThread() == 0)
+		{
+			const FVector Card = It->Card->GetComponentLocation();
+			Centre = FVector(Card.X, Card.Y, It->GetActorLocation().Z);
+			Half = Decal->SizeCm * 0.5;
+		}
+		C->DecalSize = FVector(40.0, Half, Half);
+		C->SetWorldLocationAndRotation(Centre, FRotator(-90.0, DinkArtFamily::StableYaw(Origin), 0.0));
 		It->AddInstanceComponent(C);
 		C->RegisterComponent();
 		It->Card->SetHiddenInGame(true);
@@ -1982,6 +2006,18 @@ void UDinkEnvironmentSubsystem::TintMeadowGround()
 	UE_LOG(LogDink, Display, TEXT("DINK ENV: meadow ground tinted on %d terrain instances"), Count);
 }
 
+const FName UDinkEnvironmentSubsystem::GrassClearTag(TEXT("DinkGrassClear"));
+
+void UDinkEnvironmentSubsystem::OpenGrassUnder(UDecalComponent* Decal)
+{
+	if (!Decal) return;
+	Decal->ComponentTags.AddUnique(GrassClearTag);
+	if (UWorld* World = Decal->GetWorld())
+	{
+		if (UDinkEnvironmentSubsystem* Env = World->GetSubsystem<UDinkEnvironmentSubsystem>()) Env->NoteGroundDecalsChanged();
+	}
+}
+
 void UDinkEnvironmentSubsystem::GatherGrassClears()
 {
 	DINK_PERF_SCOPE(Dink_Env_GatherGrassClears);
@@ -2078,6 +2114,18 @@ void UDinkEnvironmentSubsystem::GatherGrassClears()
 				if (D->GetFName() != TEXT("EnvDecal")) continue;
 				const double Half = FMath::Max(D->DecalSize.Y, D->DecalSize.Z) * 0.7;
 				Add(FTransform(D->GetComponentLocation()), FBox(FVector(-Half, -Half, -1.0), FVector(Half, Half, 1.0)), ClearReachCm);
+			}
+		}
+		// gore decals (a killed creature's pool, hit blood, Dink's death pool) on whatever actor holds them: the blood shows on the bare
+		// ground as the 1997 death and spurt pictures draw it, instead of only tinting the grass tips
+		for (TActorIterator<AActor> It(World); It; ++It)
+		{
+			TInlineComponentArray<UDecalComponent*> Decals(*It);
+			for (const UDecalComponent* D : Decals)
+			{
+				if (!D->ComponentHasTag(GrassClearTag) || !D->IsRegistered()) continue;
+				const double Half = FMath::Max(D->DecalSize.Y, D->DecalSize.Z) * 0.7;
+				Add(FTransform(D->GetComponentLocation()), FBox(FVector(-Half, -Half, -1.0), FVector(Half, Half, 1.0)), ClearReachCm * 0.5f);
 			}
 		}
 		for (TActorIterator<ADinkPlaceholderActor> It(World); It; ++It)
@@ -2631,6 +2679,12 @@ void UDinkEnvironmentSubsystem::Tick(float DeltaTime)
 		GatherGrassSources();
 		GatherGrassClears();
 		ClearGrass();
+	}
+	if (bClearsDirty && !bGrassSourcesStale)
+	{
+		// a gore decal came or went (corpse pool, hit blood): new clearings rebuild the cells they touch
+		bClearsDirty = false;
+		GatherGrassClears();
 	}
 	const float Density = Current && Current->bIndoor ? 0.f : GrassDensityPerM2 * FMath::Max(CVarDinkGrassDensity.GetValueOnGameThread(), 0.f);
 	UpdateGrass(Camera, Density);

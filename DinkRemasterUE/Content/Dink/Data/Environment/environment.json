@@ -358,5 +358,19 @@
         "/Game/Dink/Photoreal/Props/MI_Decal_BurnHole_3.MI_Decal_BurnHole_3"
       ]
     }
+  },
+  "hit_blood": {
+    "note": "Hit blood (15 Nov 2026): every call of the original's random_blood (dink.cpp:6675; a damaging melee blow either way, a missile, touch damage, the DinkC hurt command) leaves a blood decal on the ground under the hit sprite until the screen changes, as the 1997 spurt sprite drawn into the background (one_time_brain, D:15741). Its side is the longer side of the spurt's last 1997 frame (last_frame_px, sequences 187-189) at cm_per_px (the placed blood splats' card scale) times margin. UDinkBloodPresenter; presentation only (dink.HitBlood 0 turns it off).",
+    "materials": [
+      "/Game/Dink/Photoreal/Props/MI_Decal_BloodSplat_0.MI_Decal_BloodSplat_0",
+      "/Game/Dink/Photoreal/Props/MI_Decal_BloodSplat_1.MI_Decal_BloodSplat_1",
+      "/Game/Dink/Photoreal/Props/MI_Decal_BloodSplat_2.MI_Decal_BloodSplat_2",
+      "/Game/Dink/Photoreal/Props/MI_Decal_BloodSplat_3.MI_Decal_BloodSplat_3"
+    ],
+    "last_frame_px": {"187": [39, 56], "188": [39, 56], "189": [51, 56]},
+    "cm_per_px": 2.5,
+    "margin": 1.15,
+    "depth_cm": 20,
+    "spread_s": 0.25
   }
 }
