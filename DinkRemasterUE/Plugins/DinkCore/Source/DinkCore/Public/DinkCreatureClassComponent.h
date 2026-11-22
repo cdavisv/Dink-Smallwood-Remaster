@@ -42,6 +42,7 @@ public:
 	const TArray<FDinkCreaturePoseLayer, TInlineAllocator<8>>& GetLayers() const { return Layers; }
 	/** One-shots over the layers (DinkCreatureOneShots.h). */
 	void SetOverlays(TConstArrayView<FDinkCreatureOverlay> InOverlays) { Overlays.Reset(); Overlays.Append(InOverlays.GetData(), InOverlays.Num()); }
+	const TArray<FDinkCreatureOverlay, TInlineAllocator<2>>& GetOverlays() const { return Overlays; }
 protected:
 	virtual FAnimInstanceProxy* CreateAnimInstanceProxy() override { return new FDinkCreatureAnimProxy(this); }
 private:

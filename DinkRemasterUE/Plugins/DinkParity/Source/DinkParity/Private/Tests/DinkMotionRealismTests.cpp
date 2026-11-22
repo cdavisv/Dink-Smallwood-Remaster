@@ -280,7 +280,7 @@ bool FDinkLegLayerEngineTest::RunTest(const FString&)
 	for (const float Confidence : {0.f, 1.f})
 		for (const float Speed : {120.f, 170.f, 600.f})
 		{
-			double Median[2], Mean[2], Cadence[2];
+			double Median[2], Mean[2], Cadence[2], KneeMedian[2] = {0, 0};
 			int32 Skims[2] = {0, 0};
 			for (int32 On = 0; On < 2; ++On)
 			{
@@ -289,6 +289,7 @@ bool FDinkLegLayerEngineTest::RunTest(const FString&)
 				FWorldSlide Probe; Probe.Init(Mesh);
 				double MinKnee = 1e9, PelvisMin = 1e9, PelvisMax = -1e9, Offset = 0;
 				TArray<FDinkLegTelemetry> Seen;
+				TArray<double> Knees;
 				for (int32 I = 0; I < 30; ++I) Step(0.f, Confidence, FVector::ZeroVector, 0.f);
 				for (int32 I = 0; I < 240; ++I)
 				{
@@ -302,9 +303,17 @@ bool FDinkLegLayerEngineTest::RunTest(const FString&)
 						const FDinkLegTelemetry& T = Body->GetLegTelemetry();
 						if (T.bValid) { MinKnee = FMath::Min3(MinKnee, double(T.KneeFlexDeg[0]), double(T.KneeFlexDeg[1])); Offset = FMath::Max(Offset, double(FMath::Abs(T.PelvisOffsetCm))); }
 					}
+					{
+						// The left knee's flexion as drawn (the knee bones, not the layer's telemetry), with the layer on and off.
+						const FReferenceSkeleton& R = Hero->GetRefSkeleton();
+						static const FName KT(TEXT("thigh_l")), KC(TEXT("calf_l")), KF(TEXT("foot_l"));
+						const FVector Hp = Mesh->GetBoneTransform(R.FindBoneIndex(KT)).GetLocation(), Kp = Mesh->GetBoneTransform(R.FindBoneIndex(KC)).GetLocation(), Fp = Mesh->GetBoneTransform(R.FindBoneIndex(KF)).GetLocation();
+						Knees.Add(FDinkTwoBoneIK::Flexion(Hp, Kp, Fp, Mesh->GetComponentTransform().TransformVectorNoScale(FVector::YAxisVector)));
+					}
 					const double Z = Mesh->GetBoneTransform(Pelvis).GetLocation().Z;
 					PelvisMin = FMath::Min(PelvisMin, Z); PelvisMax = FMath::Max(PelvisMax, Z);
 				}
+				if (Knees.Num()) { Knees.Sort(); KneeMedian[On] = Knees[Knees.Num() / 2]; }
 				Median[On] = Probe.Median(); Mean[On] = Probe.Mean(); Cadence[On] = Body->GetCyclesPerSecond(); Skims[On] = Probe.Skims();
 				if (On && Seen.Num() > 0)
 				{
@@ -339,6 +348,9 @@ bool FDinkLegLayerEngineTest::RunTest(const FString&)
 			TestTrue(TEXT("no more feet brushing the floor with the layer than without"), Skims[1] <= Skims[0] + 2);
 			if (Speed < 300.f) TestTrue(TEXT("a walking planted foot holds (mean below 0.25 cm/frame)"), Mean[1] < .25);
 			if (Confidence == 0.f && Speed == 170.f) TestTrue(TEXT("a timid Dink steps quicker than the clip at the same speed"), Cadence[1] > Cadence[0] * 1.05);
+			AddInfo(FString::Printf(TEXT("KNEE confidence %.0f speed %.0f: median left-knee flexion off %.1f, on %.1f deg"), Confidence, Speed, KneeMedian[0], KneeMedian[1]));
+			// A101: a confident walk keeps the capture's stride (the warp goes into the cadence), so its knee bends as the clip's.
+			if (Confidence == 1.f && Speed < 300.f) TestTrue(TEXT("a confident Dink's walking knee bends no deeper than the clip's (within 4 deg; at 120 cm/s the walk is half blended with the standing pose)"), KneeMedian[1] <= KneeMedian[0] + 4.0);
 		}
 	// Identity: with nothing to change (flat ground, no pin, no style) the layer shows the clip as it is.
 	{

@@ -8,6 +8,7 @@ struct FDinkFamilyBinding;
 struct FDinkFamilyPrecedence;
 class ADinkPlaceholderActor;
 class UDinkArtFamilySubsystem;
+class USceneComponent;
 
 /**
  * Bug A208: 1997 maps often place the same object on two (or four) neighbouring screens, one copy inside its screen and
@@ -32,6 +33,22 @@ class UDinkArtFamilySubsystem;
  * instance's card when its decor component is dressed. Presentation only: hardness, collision, scripts, warps and
  * origin IDs are untouched. Placements under a collision-fit rule (barrels) and placements gated by &vision (which
  * copy shows depends on story state) are never copies. `dink.FamilyDuplicates 0` before play = master behaviour.
+ *
+ * Copies are one object only while they show the same picture (review R5/R6 of #192). A copy's picture changes when the
+ * save gives it its editor_seq/editor_frame (update_play_changes, dink.cpp:5829-5830: dam-fire.c burns an unscripted
+ * pine to 20/29 with editor_type 4) or its animation reaches a picture with its own family row
+ * (UDinkArtFamilySubsystem::SetPlacementPicture). 1997 draws only the copy of the screen Dink is on, so the copy that
+ * draws a group (its "drawer") is:
+ *   - the kept copy, while every copy shows the kept copy's picture and that picture has a family mesh (one mesh,
+ *     never a different variant or yaw when Dink crosses the seam);
+ *   - else (pictures differ, or the shared picture is drawn by a card, which renders only on the current screen:
+ *     dink.LegacyCardsCurrentScreen) the copy on the screen Dink is on, with ITS OWN picture (its family mesh if that
+ *     picture has one, else its card); on any other screen the kept copy.
+ * Every other copy of the group is hidden (card and family parts hidden in game, never destroyed) and given back exactly
+ * when it draws again, so two copies never draw at once. The drawer is decided anew on every picture change and every
+ * screen change; pictures equal again join the copies again. A group with a background instance keeps its kept copy
+ * (instances never change picture, and one instance cannot be hidden alone); no such group has a scripted or burnable
+ * copy in the 1997 maps.
  */
 struct DINKCORE_API FDinkFamilyCopy
 {
@@ -83,18 +100,26 @@ class DINKCORE_API UDinkFamilyDuplicatesSubsystem : public UWorldSubsystem
 	GENERATED_BODY()
 
 public:
-	/** Tag on a placement actor whose object another copy draws (it also carries the family tag). */
+	/** Tag on a placement actor whose object another copy draws now (it also carries the family tag). */
 	static const FName DroppedTag;
 
 	/** Hook at the end of UDinkArtFamilySubsystem::BuildIndex (the first ApplyScreen: the start screen at play start). */
 	static void Build(UDinkArtFamilySubsystem& Families);
-	/** Hook of DressActor: true when the actor is a dropped copy (its card is hidden and it is tagged; dress nothing). */
+	/** Hook of DressActor: true when another copy draws the actor's object now (its card is hidden and it is tagged; dress nothing). */
 	static bool DropActor(UDinkArtFamilySubsystem& Families, ADinkPlaceholderActor& Actor, const FString& Origin);
 	/** Hook of DressInstances: true when the background instance is a dropped copy (add no family instance for it). */
 	static bool IsDroppedInstance(UDinkArtFamilySubsystem& Families, const FString& Origin);
+	/** Hook of SetPlacementPicture before it undresses the actor: what this rule hid on it is shown again (not dressed). */
+	static void Restore(UDinkArtFamilySubsystem& Families, ADinkPlaceholderActor& Actor);
+	/** Hook of SetPlacementPicture after the new picture is registered: the copies of the actor's object pick their drawer anew. */
+	static void PictureChanged(UDinkArtFamilySubsystem& Families, ADinkPlaceholderActor& Actor);
+	/** Hook of the family layer's screen change (after ApplyScreen): every group picks its drawer anew. */
+	static void ScreenChanged(UDinkArtFamilySubsystem& Families);
 
-	/** Dropped origin -> kept origin (empty until the first query). */
+	/** Dropped origin -> kept origin (empty until the first query). The static decision; GetDrawer says who draws now. */
 	const TMap<FString, FString>& GetDropped() const { return Dropped; }
+	/** The copy that draws Origin's object now; Origin itself when it is no copy. */
+	FString GetDrawer(const FString& Origin) const;
 	int32 GetCopyCount() const { return Copies; }
 	/** Builds the decision now if it was not built yet (Build normally did; a query before it builds it then). */
 	void EnsureBuilt(UDinkArtFamilySubsystem& Families);
@@ -106,7 +131,33 @@ protected:
 
 private:
 	static UDinkFamilyDuplicatesSubsystem* For(UDinkArtFamilySubsystem& Families);
+	/** The copies of one object: the kept copy first, then the dropped ones (by origin). */
+	struct FGroup
+	{
+		TArray<FString> Members;
+		/** A member is a background instance: the kept copy always draws. */
+		bool bHasInstance = false;
+		/** The member that draws the object now. */
+		FString Drawer;
+	};
+	/** What Suppress hid on one copy, to give back exactly that. */
+	struct FHidden
+	{
+		TArray<TWeakObjectPtr<USceneComponent>> Components;
+		/** The family tag was added by this rule (the copy was not dressed). */
+		bool bTagged = false;
+	};
+	FString PickDrawer(UDinkArtFamilySubsystem& Families, const FGroup& Group) const;
+	void Refresh(UDinkArtFamilySubsystem& Families, FGroup& Group);
+	void Suppress(ADinkPlaceholderActor& Actor, const FString& Origin);
+	void Unsuppress(UDinkArtFamilySubsystem& Families, ADinkPlaceholderActor& Actor, const FString& Origin, bool bDress);
 	TMap<FString, FString> Dropped;
+	TArray<FGroup> Groups;
+	/** Every copy's origin -> its group (index into Groups). */
+	TMap<FString, int32> GroupOf;
+	/** Copies that are placement actors (the others are background instances). */
+	TMap<FString, TWeakObjectPtr<ADinkPlaceholderActor>> MemberActors;
+	TMap<FString, FHidden> Hidden;
 	int32 Copies = 0;
 	double BuildMs = 0.0;
 	bool bBuilt = false;

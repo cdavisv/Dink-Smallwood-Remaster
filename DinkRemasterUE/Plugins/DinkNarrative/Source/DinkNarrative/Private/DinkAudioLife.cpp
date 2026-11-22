@@ -277,6 +277,13 @@ void UDinkAudioLifeSubsystem::Deinitialize()
 	for (UAudioComponent* C : Fading) if (IsValid(C)) C->Stop();
 	if (SweepComponent) SweepComponent->Stop();
 	Bed = nullptr; Fading.Reset(); SweepComponent = nullptr;
+	// The limiter sits on the shared audio device's master submix, which outlives this world: take it off again, or every
+	// restart_game (OpenLevel) stacks one more limiter on the master bus (GC of the preset only clears its pointer).
+	if (Limiter)
+	{
+		UAudioMixerBlueprintLibrary::RemoveMasterSubmixEffect(this, Limiter);
+		Limiter = nullptr;
+	}
 	Super::Deinitialize();
 }
 

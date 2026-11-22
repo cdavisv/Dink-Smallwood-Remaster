@@ -10,6 +10,7 @@ class ADinkGreyboxScreen;
 class ADinkPlaceholderActor;
 class ADinkScreenVolume;
 class FJsonObject;
+class USceneComponent;
 class UStaticMesh;
 
 /**
@@ -294,6 +295,8 @@ public:
 	 * family row is then looked up from that picture (a row with its sequence and frame, else its class, else its sequence; a
 	 * scripted-only restriction reads bScripted) and a placement this layer dressed already is dressed again from it. Sequence <= 0
 	 * forgets the picture: the imported one again. Placements with a fitted collision body are left to that layer. Visual only.
+	 * A copy of a cross-screen duplicate (A208) then lets UDinkFamilyDuplicatesSubsystem decide again which copy draws the
+	 * object (DinkFamilyDuplicates.h: copies showing different pictures are drawn by the copy of the screen Dink is on).
 	 * Returns true when a family mesh shows for the placement.
 	 */
 	bool SetPlacementPicture(ADinkPlaceholderActor& Actor, int32 Sequence, int32 Frame, bool bScripted);
@@ -305,9 +308,20 @@ public:
 	 */
 	bool FollowPlacementPicture(ADinkPlaceholderActor& Actor, int32 Sequence, int32 Frame);
 
+	/**
+	 * Review R11 of #166: the flicker light and smoke plume of a placed effect (DressPlacedEffect) hang under the
+	 * placement's card and are part of its picture, so they take the card's visible flag (both ways). Called by
+	 * DressPlacedEffect and by UDinkGreyboxSubsystem whenever it changes a card's visible flag (dink.LegacyCardsCurrentScreen
+	 * renders cards only on the current screen; SetVisibility does not propagate). Only children carrying FamilyTag follow:
+	 * any other child of a card keeps its own flag.
+	 */
+	static void FollowCardVisibility(const USceneComponent* Card);
+
 	/** Dresses one screen (idempotent; called on screen activation). Returns the placements dressed by this call. */
 	int32 ApplyScreen(int32 ScreenNumber);
 	bool IsScreenApplied(int32 ScreenNumber) const { return AppliedScreens.Contains(ScreenNumber); }
+	/** The screen Dink was last seen on (the greybox's screen change), 0 before the first. */
+	int32 GetCurrentScreen() const { return CurrentScreen; }
 	bool IsReady() const { return bReady; }
 	const TArray<FDinkFamilyBinding>& GetBindings() const { return Bindings; }
     /** Typed producer for the single marked-world authority.
@@ -335,6 +349,7 @@ protected:
 
 private:
     friend class FDinkHardnessFittedLifecycle; // native scratch-policy fixture; no public bypass
+	friend class UDinkFamilyDuplicatesSubsystem; // A208 copies: their pictures, DressActor when a copy draws again
     static UStaticMeshComponent* MakeUnpublishedReleasedVisual(ADinkPlaceholderActor& Actor,UStaticMesh& Mesh);
     bool LoadCollisionFitPolicy(const FString& File,FString& Text,FString& Error);
     bool PrepareCollisionFitImpl(const FDinkOriginId& Origin,const FDinkFamilyFitSpriteState& Sprite,
@@ -346,6 +361,12 @@ private:
 	UStaticMesh* MeshFor(const FDinkFamilyBinding& Binding, const FString& Origin);
 	UStaticMesh* LoadFamilyMesh(const FString& Path, const FString& Family);
 	bool DressActor(ADinkPlaceholderActor& Actor);
+	/** What the resolver is told about a placement actor: its imported picture, or the one SetPlacementPicture registered. */
+	FDinkFamilyPlacement PlacementOf(ADinkPlaceholderActor& Actor) const;
+	/** The picture the placement shows: registered by SetPlacementPicture, else the imported one. */
+	void ShownPicture(ADinkPlaceholderActor& Actor, int32& OutSequence, int32& OutFrame) const;
+	/** DressActor would give the placement a family mesh for the picture it shows (a bound mesh row whose mesh loaded). */
+	bool WouldDressMesh(ADinkPlaceholderActor& Actor) const;
 	/** A placed sprite of an "effect_placed" row: its card shows the effect material (and carries the row's light). */
 	bool DressPlacedEffect(ADinkPlaceholderActor& Actor, const FDinkFamilyBinding& Binding);
 	int32 DressInstances(ADinkGreyboxScreen& Screen);
@@ -372,6 +393,7 @@ private:
 	FDelegateHandle ScreenHandle;
 	TWeakObjectPtr<class UDinkGreyboxSubsystem> Greybox;
 	int32 Dressed = 0;
+	int32 CurrentScreen = 0;
 	bool bReady = false;
 	bool bIndexed = false;
 };

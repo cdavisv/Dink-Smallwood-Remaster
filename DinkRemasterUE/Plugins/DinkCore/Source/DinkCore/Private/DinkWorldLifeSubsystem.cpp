@@ -134,7 +134,11 @@ bool DinkWorldLife::IsFamilyEffect(const AActor* Actor)
 	if (!Actor) return false;
 	if (const ADinkPlaceholderActor* P = Cast<ADinkPlaceholderActor>(Actor))
 	{
-		if (P->Card && P->Card->IsVisible() && P->Card->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)) return true;
+		// Owned while the art layer dresses it (DressPlacedEffect tags the card) and no layer took the card away (bHiddenInGame).
+		// Not the visible flag: dink.LegacyCardsCurrentScreen clears that on every screen but the current one, and this layer
+		// then drew a second fire, smoke and 160 cd light at the 1997 ground point of 439's roof fires (review R12 of #193/#166).
+		// An effect placement the art layer does not dress (no tagged card) stays this layer's fire.
+		if (P->Card && !P->Card->bHiddenInGame && P->Card->ComponentHasTag(UDinkArtFamilySubsystem::FamilyTag)) return true;
 	}
 	TInlineComponentArray<UPrimitiveComponent*> Parts(Actor);
 	for (const UPrimitiveComponent* Part : Parts)
