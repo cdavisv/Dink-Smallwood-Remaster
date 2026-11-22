@@ -125,6 +125,54 @@ bool FDinkCParityCallbackKilledTest::RunTest(const FString& Parameters)
 	return true;
 }
 
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkCParityCreateSpriteDumbTest, "Dink.Parity.DinkC.CreateSpriteUsesAddSpriteDumb", DINK_TEST_FLAGS)
+bool FDinkCParityCreateSpriteDumbTest::RunTest(const FString& Parameters)
+{
+	// create_sprite calls add_sprite_dumb (dink.cpp:9041-9051), whose sprite has speed 0, timer (sp_timing) 0, size 100, hard 1 and every
+	// base_* -1 (D:3089-3135); add_sprite's speed 1 / timer 33 / bases 0 (D:4299-4330) belong to engine-made sprites (text, blood, missiles).
+	FEnv E = Make(*this, true);
+	if (!E.IsValid()) return false;
+	const int32 Caller = E.D->CreateVirtualSprite(12, 100, 100);
+	const int32 Id = E.Story->StartProcedure(TEXT("s1-brg2"), TEXT("hit"), Caller, {}, 12);
+	E.Story->RunUntilIdle();
+	FDinkScriptInstance* I = E.Story->FindInstance(Id);
+	if (!TestNotNull(TEXT("a caller instance"), I)) return false;
+
+	TArray<int32> Before;
+	E.D->GetSprites().GetKeys(Before);
+	Run(E, *I, TEXT("create_sprite 300 200 9 331 4")); // s1-gate.c:12: Chealse, brain 9, no sp_base_attack
+	int32 Made = 0;
+	for (const TPair<int32, FDinkSprite>& P : E.D->GetSprites())
+	{
+		if (!Before.Contains(P.Key)) Made = P.Key;
+	}
+	const FDinkSprite* S = E.D->FindSprite(Made);
+	if (!TestNotNull(TEXT("create_sprite made a sprite"), S)) return false;
+	TestEqual(TEXT("speed 0 (add_sprite_dumb D:3115)"), S->GetProp(TEXT("speed"), 99), 0);
+	TestEqual(TEXT("timing 0 (D:3124)"), S->GetProp(TEXT("timing"), 99), 0);
+	TestEqual(TEXT("base_attack -1 (D:3133): a hit does not make it target the attacker (D:15556)"), S->GetProp(TEXT("base_attack"), 99), -1);
+	TestEqual(TEXT("base_walk -1 (D:3130)"), S->GetProp(TEXT("base_walk"), 99), -1);
+	TestEqual(TEXT("base_death -1 (D:3131)"), S->GetProp(TEXT("base_death"), 99), -1);
+	TestEqual(TEXT("size 100"), S->GetProp(TEXT("size"), 0), 100);
+	TestEqual(TEXT("hard 1 (no hardbox)"), S->GetProp(TEXT("hard"), 0), 1);
+	TestEqual(TEXT("the arguments: brain 9"), S->GetProp(TEXT("brain")), 9);
+
+	// The value form (an Ink EXTERNAL): make.c `sheart`, `int &crap = create_sprite(&save_x, &save_y, 6, 54, 1); sp_script(&crap, "sheart")`.
+	E.Facts->SetFact(TEXT("save_x"), 200);
+	E.Facts->SetFact(TEXT("save_y"), 100);
+	E.D->GetSprites().GetKeys(Before);
+	Run(E, *I, TEXT("external \"make\" \"sheart\""));
+	const FDinkSprite* Heart = nullptr;
+	for (const TPair<int32, FDinkSprite>& P : E.D->GetSprites())
+	{
+		if (!Before.Contains(P.Key) && P.Value.GetProp(TEXT("pseq")) == 54) Heart = &P.Value;
+	}
+	if (!TestNotNull(TEXT("make.sheart made its heart (seq 54)"), Heart)) return false;
+	TestEqual(TEXT("value form: base_attack -1"), Heart->GetProp(TEXT("base_attack"), 99), -1);
+	TestEqual(TEXT("value form: speed 0"), Heart->GetProp(TEXT("speed"), 99), 0);
+	return true;
+}
+
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkCParityStopEntireGameTest, "Dink.Parity.DinkC.StopEntireGamePausesSprites", DINK_TEST_FLAGS)
 bool FDinkCParityStopEntireGameTest::RunTest(const FString& Parameters)
 {

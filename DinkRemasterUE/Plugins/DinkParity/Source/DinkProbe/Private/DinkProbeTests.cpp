@@ -877,8 +877,9 @@ namespace DinkProbeTest
 				const double Dy = FMath::Max3(HT - Y, 0.0, Y - HB);
 				return FMath::Max(Dx, Dy);
 			};
-			// Jack walks speed 2 per think at timing 33 (create_sprite's default): about 60 px/s, a third of Dink's pace.
-			const double SpeedRatio = 3.0;
+			// Jack walks speed 2 per think. create_sprite gives timing 0 (add_sprite_dumb D:3124; bug A41), so he thinks every 60 Hz
+			// frame: 120 px/s, two thirds of Dink's 180. (Before A41 the remake gave him timing 33: 60 px/s, a third.) The probe now fights Jack with the sword (chapter 11).
+			const double SpeedRatio = 1.5;
 			TArray<double> DistJack, DistDink;
 			TArray<int32> Parent;
 			WalkDistances(CellAt(T->X, T->Y), 0.0, DistJack, nullptr);
@@ -4122,12 +4123,9 @@ namespace DinkProbeTest
 			Add(TEXT("arm the fireball (inventory: magic slot 1)"),
 				[](FCtx& C) { C.G->ArmMagicSlot(1); },
 				[](FCtx& C) { return C.D->GetInventory()->GetArmedMagic() == TEXT("item-fb"); }, 10.0);
-			Add(TEXT("kill Jack with fireballs from a distance (s2-jack: 50 hp; his hit makes him a brain-9 chaser with touch damage 10; die: &s2-aunt 4, +100 exp)"),
-			// Jack's touch (10) kills a 10-life Dink at once. The player keeps away on foot (Dink walks three times Jack's
-			// pace), and with the spell charged (5 s at magic 2) steps level with him where the line is clear (no wall,
-			// no Maria or furniture in between) and throws a fireball.
-			[](FCtx& C) { C.KiteAndCast(C.SpriteWithScript(TEXT("s2-jack"))); },
-			[](FCtx& C) { return C.Fact(TEXT("s2-aunt")) >= 4 && C.Idle() && !C.Busy(); }, 300.0, {}, 0.001, true);
+			// Jack is fought later in the route (chapter 11, with the longsword): since A41 (create_sprite = add_sprite_dumb, timing 0; 21 Nov
+			// 2026) he chases at 120 px/s straight and 170 px/s on diagonals, and a level-2 Dink with 13 life cannot kite him in SCR_036.
+			// Nothing in the story reads &s2-aunt 4 (probe_route.md).
 		Add(TEXT("the prisoner's cave (SCR_579, s2-cave main: &caveguy 1)"),
 				[](FCtx& C) { C.Goto(579, 300, 300); },
 				[](FCtx& C) { return C.Fact(TEXT("caveguy")) >= 1 && C.Idle() && !C.Busy(); }, 60.0, {}, 4.0);
@@ -4231,6 +4229,14 @@ namespace DinkProbeTest
 				[this, Screen, X, Y, Expected, bPen, GoldTarget, ExpTarget](FCtx& C)
 				{
 					if (C.Fact(TEXT("gold")) >= GoldTarget && C.Fact(TEXT("exp")) >= ExpTarget) { return; }
+					// Hurt below 40 %: healed in Terris first (21 Nov 2026, A41's stream: a pen Bong of SCR_480 wore Dink down to 3 life and killed him).
+					if (C.Fact(TEXT("life")) * 10 < C.Fact(TEXT("lifemax")) * 4 || (C.OnScreen(33) && C.Fact(TEXT("life")) < C.Fact(TEXT("lifemax"))))
+					{
+						C.P->Mark = -1; C.P->bSawDrop = false; C.P->LootSinceMs = -1.0; C.P->FeudSinceMs = -1.0;
+						if (!C.OnScreen(33)) { C.Goto(33, 300, 250); return; }
+						if (const int32 Healer = C.Placement(33, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
+						return;
+					}
 					if (!C.OnScreen(Screen)) { C.P->Mark = -1; C.P->bSawDrop = false; C.P->LootSinceMs = -1.0; C.P->FeudSinceMs = -1.0; C.Goto(Screen, X, Y); return; }
 					if (C.P->FeudSinceMs < 0.0) { C.P->FeudSinceMs = C.S->GetNowMs(); }
 					const int32 Alive = C.Hostiles(Screen);
@@ -4297,7 +4303,7 @@ namespace DinkProbeTest
 						|| bNoFeud;
 					if (bDone && C.Idle() && !C.Busy()) { C.P->Mark = -1; C.P->FeudSinceMs = -1.0; return true; }
 					return false;
-				}, 150.0, LevelUps, 0.001, true);
+				}, 240.0, [LevelUps]() { TArray<FString> A = LevelUps; A.Add(TEXT("Get healed")); return A; }(), 0.001, true);
 		}
 
 		// Waits in Arturous's shop (nothing there to hurt him) at 8x time dilation: game time is what the respawn clock counts, and
@@ -4326,8 +4332,12 @@ namespace DinkProbeTest
 
 		void BuildChapter4()
 		{
-			// 1000 for the bow (s3-st2p.c:45) and 60 for the healer before the goblins (1 gold per missing life, s2-healp.c:132).
-			const int32 GoldTarget = 1060;
+			// 1000 for the bow (s3-st2p.c:45) and 60 for the healer before the goblins (1 gold per missing life, s2-healp.c:132), and 80 more
+			// for chapter 8's elixirs (22 Nov 2026, A41: the route skips Jack in chapter 1, so this stream reaches chapter 8 only ~120 s after
+			// chapter 4's last feud round and its feud screens are empty; a 5-minute wait there would bring the sanctuary goblins back too,
+			// editor_type 6, and the last goblin's death would not spawn Mog, s3-gs.c:64-71).
+			const int32 GoldTarget = 1140;
+			const int32 GoldNeeded = 1060;
 			// Dink is stronger now (strength 8) and the level-up menu is answered "Increase Attack" (probe_route.md 2.4).
 			const TArray<FString> LevelUps = { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") };
 			// en-bong.c and en-boncd.c main: each targets get_sprite_with_this_brain(9), the other monster of the screen, so the pair fights
@@ -4354,7 +4364,7 @@ namespace DinkProbeTest
 			}
 			Add(TEXT("to Arturous's shop (SCR_097), gold counted"),
 				[](FCtx& C) { if (!C.OnScreen(97)) { C.Goto(97, 300, 230); } },
-				[GoldTarget](FCtx& C) { return C.OnScreen(97) && C.Idle() && !C.Busy() && C.Fact(TEXT("gold")) >= GoldTarget; }, 10.0, {}, 1.0);
+				[GoldNeeded](FCtx& C) { return C.OnScreen(97) && C.Idle() && !C.Busy() && C.Fact(TEXT("gold")) >= GoldNeeded; }, 10.0, {}, 1.0);
 		}
 
 		// ---- Chapter 5: the bow (Act B steps 15, 16, 20): Arturous, arm it, the goblin gate guard ----
@@ -4789,6 +4799,24 @@ namespace DinkProbeTest
 			Add(TEXT("arm the longsword (item-sw1 arm: strength +4, sp_distance 50, sp_range 40)"),
 				[](FCtx& C) { if (C.P->Mark < 0) { C.P->Mark = C.Fact(TEXT("strength")); } C.G->ArmItemSlot(C.Slot(TEXT("item-sw1"))); },
 				[](FCtx& C) { const bool bOk = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") && C.P->Mark >= 0 && C.Fact(TEXT("strength")) == C.P->Mark + 4 && C.Idle(); if (bOk) { C.P->Mark = -1; } return bOk; }, 10.0);
+			// Jack (route step 13, moved here on 21 Nov 2026): since A41 he chases at the 1997 pace (create_sprite = add_sprite_dumb, timing 0), which a
+			// level-2 Dink cannot kite in chapter 1; with the longsword (strength 20+) he is a duel. s2-jack: 50 hp, touch 10; die: &s2-aunt 4, +100 exp.
+			Add(TEXT("Jack in Aunt Maria's house (SCR_036, s2-jack: 50 hp, touch 10 once hit): DuelFight with the longsword"),
+				[](FCtx& C)
+				{
+					if (C.Fact(TEXT("s2-aunt")) >= 4) { return; }
+					if (!C.OnScreen(36)) { C.Goto(36, 300, 230); return; }
+					const int32 Jack = C.SpriteWithScript(TEXT("s2-jack"));
+					if (!Jack) { return; }
+					FDuelOpts O;
+					O.bPull = false;
+					O.Range = 40; // item-sw1: sp_range 40
+					O.StageCheb = 60.0;
+					C.DuelFight(Jack, O);
+				},
+				[](FCtx& C) { return (C.Fact(TEXT("s2-aunt")) >= 4 || (C.OnScreen(36) && C.SpriteWithScript(TEXT("s2-jack")) == 0)) && C.Fact(TEXT("life")) > 0 && C.Idle() && !C.Busy(); },
+				150.0, { TEXT("Increase Attack"), TEXT("Increase Attack") }, 0.001, true);
+			AddTerrisHeal(TEXT("the healer in Terris after Jack (1 gold per missing life)"));
 		}
 
 		// ---- Chapter 12 (test `ChCDragons`): the two dragons of Joppa (Act D step 36) and the epilogue (37, &story 12) ----
@@ -5623,7 +5651,25 @@ namespace DinkProbeTest
 				},
 				[](FCtx& C) { return !C.D->bScreenLocked && C.Idle() && !C.Busy(); }, 300.0, {}, 0.001, true);
 			Add(TEXT("talk to Mary: rescue complete (s2-culg talk: scripted walk home to SCR_066, &s2-nad 3, &story 8)"),
-				[](FCtx& C) { if (const int32 Mary = C.SpriteWithScript(TEXT("s2-culg"))) { C.StandBy(Mary, 25); C.S->TryTalk(C.Pawn); } },
+				[](FCtx& C)
+				{
+					// The scene walks Dink 700 px south while the screen fades (s2-culg.c: move(1, 2, 700, 1), fade_down, load_screen(66)): started low on
+					// SCR_238 he crossed the south edge into SCR_270 before the load (21 Nov 2026, A41's stream: the fight ended with Dink at y 267).
+					// He talks to her from the north half of the screen.
+					if (const int32 Mary = C.SpriteWithScript(TEXT("s2-culg")))
+					{
+						const FDinkSprite* M = C.D->FindSprite(Mary);
+						const FDinkSprite& Dk = C.D->GetDink();
+						if (M && C.OnScreen(238) && C.Fact(TEXT("story")) < 8 && !C.S->GetActiveMenu() && (Dk.Y > M->Y - 20.0 || FMath::Abs(Dk.X - M->X) > 8.0))
+						{
+							C.S->AddEvent(TEXT("game"), FString::Printf(TEXT("probe: Mary at %.0f,%.0f, Dink to her north"), M->X, M->Y));
+							C.Goto(238, M->X, FMath::Max(40.0, M->Y - 30.0));
+							return;
+						}
+						C.Face(238, Dk.X, Dk.Y, 2);
+						C.S->TryTalk(C.Pawn);
+					}
+				},
 				// Dink walked up through the exit door's warp during the scene (S066_P16 at y 439) and was sent outside to SCR_497: the scene must
 								// end in Nadine's house (a script that holds Dink never triggers a warp, D:15337).
 								[](FCtx& C) { return C.Fact(TEXT("story")) >= 8 && C.OnScreen(66) && C.Idle() && !C.Busy(); }, 120.0, { TEXT("A friend of the land.") }, 4.0);

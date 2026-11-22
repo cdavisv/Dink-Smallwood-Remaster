@@ -1,5 +1,21 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
+> **Re-baselined with A41 (DinkC parity, PR `fix/dinkc-a41`; 22 Nov 2026, PIE, master 11290aa3e + the branch, private copy,
+> clean build).** A41: `create_sprite` gives add_sprite_dumb's defaults (speed 0, timing 0, base_* -1; dink.cpp:9041-9051, 3089-3135), so
+> every script-made sprite thinks every frame as in 1997 (Jack chases at 120 px/s straight, 170 on diagonals). `Dink.Gameplay.Probe` 29/29
+> chained from a new game, and again inside the full `Dink` suite (387/387 on a clean build, 0 warnings): all twenty md5s equal in both runs.
+> Ch1 cff64df9d1, Ch2 cd7b944503, Ch3 b8d36c7e33, Ch4 31dc2e4cdf, Ch5 520a520c60, Ch6 9348377915, Ch7 bce737d38b, Ch8 1cb5418715,
+> Ch9 a1a6ffebb9, Ch10 01eebeee82, Ch11 13291066e1, Ch12 e860cb9d4c, Ch13 5722adefab, Ch14 4f5aaa0069, Ch15 bd8d0e2734, Ch16 0556293b76,
+> Ch17 439d45f04f, Ch18 c1c94903e0, Ch19 0ed879a446, Ch20 b27010b31e.
+> - Every chapter moved: from chapter 1 on, created sprites (shadows, pickups, Jack, the cult girls, missiles) run at the 1997 timing, and the
+>   route changed with it.
+> - The game rule was not weakened; only the bot's route and tactics changed (probe code): Jack (optional, nothing reads `&s2-aunt` 4) is no
+>   longer fought in chapter 1, where a level-2 Dink with 13 life cannot kite him, but at the end of chapter 11 with the longsword (DuelFight);
+>   Mary is talked to from her north side (the scripted walk home then starts high on SCR_238); feuds heal in Terris below 40 % life (a pen
+>   Bong of SCR_480 wore Dink down in chapter 4); chapter 4 collects 1140 gold instead of 1060, so chapter 8 buys its four elixirs without
+>   feuds (its feud screens were last swept ~120 s of game time before, and a 5-minute wait there brings the sanctuary goblins back too,
+>   editor_type 6, so the last goblin's death spawns no Mog, s3-gs.c:64-71).
+
 > **Re-baselined with A40 + A44 (DinkC parity, PR `fix/dinkc-a40-a44`; 21 Nov 2026, PIE, master 7eccb89ff + the branch, private copy,
 > clean build).** A40: `set_callback_random` timers end on wait / the say_stop family / say_xy and before talk, hit and damage
 > (kill_returning_stuff, dink.cpp:5049-5070); A44: `stop_entire_game` pauses brains, moves, touch damage and waits under the level-up menu
@@ -14,7 +30,7 @@
 >   an open menu); chapter 8 first collects gold on chapter 4's feud screens until 110 (this stream reached it with 44, one elixir, and
 >   lost to Mog), and a feud screen without its pair is skipped after 6 s; on SCR_156 (chapters 15 and 19) a slayer or bong within 70 px
 >   is fought before the dragon (the bong pinned Dink at the west edge while he waited for the dragon).
-> - A41 (`create_sprite` = add_sprite_dumb) is still held back: with it every created chaser walks 2-3x faster (Jack, the cult girls).
+> - A41 (`create_sprite` = add_sprite_dumb) was then still held back (merged 22 Nov 2026, entry above).
 
 > **Re-baselined with PR #140 (gore parity, owner decision A25; 21 Nov 2026, PIE, private copy, world regenerated with
 > `import_greybox.sh --region all --export` and `--region stonebrook`).** The simulation now draws as 1997 does: random_blood's `rand() % 3`
