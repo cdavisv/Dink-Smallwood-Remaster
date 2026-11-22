@@ -17,7 +17,7 @@ is a later safety fix over undefined 1997 behaviour, the row says so.
 | Engine commands and functions audited | 129 |
 | Equal to dink.cpp | 85 |
 | Divergent, fixed in the fix PR (`fix/dinkc-parity`) | 3 commands, in 4 defects (A43-A45, A47); `load_screen` (A42) is fixed by PR #137 |
-| Divergent, open | 1 with a fix written but held back until the probe is re-tuned: `create_sprite` (A41); wait / the say_stop family / say_xy / set_callback_random (A40) fixed 21 Nov 2026; and 9 minor or latent (`d` below); two of the latent ones have rows (A46 move timing/hardness, A48 `show_bmp`) |
+| Divergent, open | 0 major: `create_sprite` (A41) fixed 22 Nov 2026; wait / the say_stop family / say_xy / set_callback_random (A40) fixed 21 Nov 2026; and 9 minor or latent (`d` below); two of the latent ones have rows (A46 move timing/hardness, A48 `show_bmp`) |
 | Recorded only | 17. These are 2D presentation (draw order, clipping, palette, death sequence, idle sequence), audio, or the title/escape UI that the remaster replaces. |
 | Engine no-ops (`preload_seq`, `debug`, `load_sound`, `make_global_int`) | 4 |
 | Not engine commands (`sp_prop` = owner decision OD1, the misspellings `freeeze`/`unfreeeze`) | 3 |
@@ -70,7 +70,7 @@ engine command. "D:" is the dink.cpp line range of the command's branch.
 | `wait` | 1549 | 149 scripts | D | 8034-8057 | DinkDirector wait | a one-shot callback after ms: equal; kill_returning_stuff (D:8043) missing until A40: fixed (A40, 21 Nov 2026) |
 | `preload_seq` | 681 | 142 scripts | N | 8059 | converter comment | asset preload |
 | `unfreeze` | 377 | 104 scripts | E | 7380-7404 | SetFrozen | active sprites only; Dink: move input back |
-| `create_sprite` | 340 | 95 scripts | D | 9041-9056, 3089-3135 | DinkDirector create_sprite + EXTERNAL | add_sprite_dumb: speed 0, timing 0, base_* -1; the remake uses add_sprite (speed 1, timing 33, bases 0). Fix written but held back: the probe's Jack step relies on the old defaults (A41) |
+| `create_sprite` | 340 | 95 scripts | F | 9041-9056, 3089-3135 | DinkDirector create_sprite + EXTERNAL | add_sprite_dumb: speed 0, timing 0, base_* -1 (`UDinkDirector::InitDumbSprite`, both create_sprite paths). Fixed 22 Nov 2026 (A41); the remake had used add_sprite (speed 1, timing 33, bases 0) |
 | `say` | 339 | 161 scripts | E | 7742-7765 | HandleSpokenLine | sprite 0 skipped, kill_text_owned_by(speaker) unless 1000, no block |
 | `playsound` | 298 | 136 scripts | E | 8395-8411 | UDinkAudioSubsystem (cue) | audio routing, not script semantics |
 | `init` | 289 | 17 scripts | R | 10400-10411, 2335-2460 | ApplyInitLine | dink.ini line; hardbox of a missing sequence applied (parity), the 2D frames are not |
@@ -248,12 +248,12 @@ to brain 0, D:6036-6046) / scripts that set the brain.
 | 5 / 7 play once | 0 / 17 files + 80 creates | E | - | - |
 | 6 repeat | 28 / 21 files + 47 creates | E | - | weak |
 | 8 text | engine (say) | story subsystem texts | timing strlen x 77 ms, min 2700 | Talk tests |
-| 9 monster | 31 / 38 files + 8 creates | E in parity mode. Created ones get add_sprite defaults: **D (A41, fix held back)**. Door boxes: **F (A45)** | targeting, attack, recal, screen edges match D:12887-13046; the 3D adaptation layer (wind-up, two attackers at most) is a deliberate play-mode change | Dink.AI.Monster.* |
+| 9 monster | 31 / 38 files + 8 creates | E in parity mode. Created ones get add_sprite_dumb's defaults: **F (A41)**. Door boxes: **F (A45)** | targeting, attack, recal, screen edges match D:12887-13046; the 3D adaptation layer (wind-up, two attackers at most) is a deliberate play-mode change | Dink.AI.Monster.* |
 | 10 dragon | 7 / en-drag, s7-boss, s7-drag, sc-drag | E | D:13234-13353 | bow target only |
 | 11 missile | 0 / 56 creates, dam-ice | **F (A45)** | it crossed map.dat warp boxes (doors) | Missile tests + Dink.Parity.DinkC.WarpBoxIsHardForBrains |
-| 12 scale | 0 / 25 files + 2 creates | E (created ones run at timing 33: A41, open) | D:15798 | gold shrink |
+| 12 scale | 0 / 25 files + 2 creates | E (created ones run at timing 0 since A41, 22 Nov 2026) | D:15798 | gold shrink |
 | 13 / 14 mouse, button | title screens (start*.c) | R | the remaster's own menus | - |
-| 15 shadow | 0 / 12 creates | E (lags at timing 33: A41, open) | D:13218 | - |
+| 15 shadow | 0 / 12 creates | E (created ones at timing 0 since A41, 22 Nov 2026) | D:13218 | - |
 | 16 people | 5 / 41 files | E in parity mode | find_action, edges, reverse match D:13048-13197; the NPC pace setting is a play-mode change | People tests |
 | 17 missile, expires | 0 / dam-bom, dam-bom2 | E | D:14426 | - |
 | all, while `stop_entire_game` | lraise.c | **F (A44)** | ThinkSprite(h, true) D:17423 | Dink.Parity.DinkC.StopEntireGamePausesSprites |
@@ -271,7 +271,7 @@ to brain 0, D:6036-6046) / scripts that set the brain.
 | id | sev | defect | dink.cpp | status |
 |---|---|---|---|---|
 | A40 | S2 | `set_callback_random` timers were never ended. The engine ends them on `wait`, the say_stop family and `say_xy`, and when it runs `talk`, `hit` or `damage`. In the remaster, s1-caves roared and Dink complained every 5-15 s for as long as he stayed in the cave (in the original: at most twice). Dragons (s7-drag: 50 % chance to pick a random monster) and Boncas kept re-picking targets after Dink hit them, where the original stays locked on Dink. | 5049-5070, 7916, 7948, 7973, 7997, 8043, 9968, 14217, 14266, 14277, 14415, 15541, 15582 | open: the fix (`UDinkStorySubsystem::KillReturningStuff`, test `Dink.Parity.DinkC.CallbackEndsOnWaitSayAndHit`, passing) was merged on 21 Nov 2026 (PR `fix/dinkc-a40-a44`) with the probe re-tuned (the dragons that stay on Dink after his first hit are fought as before; chapter tactics in `Docs/Verification/DinkCParity_21Nov2026`). |
-| A41 | S2 | `create_sprite` gave add_sprite's defaults (speed 1, timing 33, bases 0) instead of add_sprite_dumb's (speed 0, timing 0, bases -1). If Dink hits s1-gate's Chealse, she takes him as her target (base_attack 0 is not -1, D:15556) and then stands still for good (`in_this_base(seq, 0)`). Script fireballs without `sp_timing` (s2-cave2, s4-h1p, s8-da) fly at half speed. Created shadows and pickups lag, and created people walk at half pace. | 9041-9051, 3089-3135 | open: the fix is on branch `fix/dinkc-create-sprite-dumb`, with test `Dink.Parity.DinkC.CreateSpriteUsesAddSpriteDumb`. It is held back because probe chapter 1 then dies at step 37: Jack is one of s2-auntp's created sprites and chases at 120 px/s, and the probe's KiteAndCast was tuned to the wrong defaults (a 1:3 pace, and a chaser that stalls on base_attack 0) |
+| A41 | S2 | `create_sprite` gave add_sprite's defaults (speed 1, timing 33, bases 0) instead of add_sprite_dumb's (speed 0, timing 0, bases -1). If Dink hits s1-gate's Chealse, she takes him as her target (base_attack 0 is not -1, D:15556) and then stands still for good (`in_this_base(seq, 0)`). Script fireballs without `sp_timing` (s2-cave2, s4-h1p, s8-da) fly at half speed. Created shadows and pickups lag, and created people walk at half pace. | 9041-9051, 3089-3135 | fixed 22 Nov 2026: `UDinkDirector::InitDumbSprite` in both create_sprite paths, test `Dink.Parity.DinkC.CreateSpriteUsesAddSpriteDumb`. Created chasers now think every frame as in 1997 (Jack 120 px/s straight, 170 on diagonals). The probe bot was re-routed, not the game: Jack is fought in chapter 11 with the longsword, Mary is talked to from her north side, feuds heal in Terris below 40 % life, chapter 4 collects 80 more gold for chapter 8's elixirs |
 | A42 | S2 | Softlock: Dink stays frozen. `load_screen` is load_map, which ends Dink's freeze and move. The pits (s1-hole, s1-hole3, s6-hole, s6-hole2) and the cutscenes s2-mdoor, s8-duck2, s3-mayor and en-gmog freeze Dink, attach to 1000, load a screen and end without `unfreeze(1)`. In the remaster the screen change was noticed while that script still ran (fade_up), so Dink was not released. On 198, 182, 166 and 131 nothing else frees him (on 38, s2-mh-m's `main` does; on 586, 489 and 731 the next scene does). The probe never takes these routes: it reaches the rooms below through the pit warps. | 7874-7884, 1013-1015 | fixed by PR #137 (fix/unfreeze-followup), which owns A42: load_map clears Dink's freeze and move. This PR's own version was dropped |
 | A43 | S2 | `set_dink_speed` was only recorded, so Herb's boots (item-bt, sold in s1-boot) did nothing. dinkspeed 2 doubles Dink's walk speed (12/6/3 px per frame for 1/2/3). | 7563-7575, 17311-17321 | fixed: `ADinkGreyboxCharacter::DinkSpeedScale`; a load or restart puts it back to dinkspeed 3 (load_game D:1423; the loaded weapon's arm sets it again); test `Dink.Parity.DinkC.SetDinkSpeedScalesWalk` |
 | A44 | S2 | `stop_entire_game` was only recorded. In the original, while lraise.c's level-up menu is up, every sprite is thought with get_frame: kill timers and their callbacks still run (texts expire, say_stop goes on), but no brain, animation, move or touch damage, and no process_callbacks, so no wait ends. The first frame without the menu clears the flag and runs nothing else. In the remaster, monsters kept walking and hitting while the player chose an attribute after a kill. | 10099-10108, 16811-16833, 16850-16883, 17423, 17431-17444 | fixed: `UDinkDirector::bStopEntireGame`, `UDinkDirector::Tick(.., bGameStopped)`, `UDinkStorySubsystem::UpdateBlocks(bGameStopped)`; test `Dink.Parity.DinkC.StopEntireGamePausesSprites` |
@@ -328,8 +328,8 @@ are dead (no map placement and no script loads them). The rest:
 ## Probe traces
 
 The fixes change what scripts and brains do on the probe's route, so trace md5s move. A40 (merged 21 Nov 2026) moves the
-Bonca and dragon fights and every callback's `rand()` draw; the probe was re-tuned and re-baselined with it. A41 (held back) would move every created sprite's timing, and chapter 1's
-Jack step fails with it. A44: every level-up. A45: missiles and monsters at doors. A42 and A43 only touch screens and items the
+Bonca and dragon fights and every callback's `rand()` draw; the probe was re-tuned and re-baselined with it. A41 (merged 22 Nov 2026) moves every created sprite's timing;
+the probe's route was re-ordered for it (Jack in chapter 11). A44: every level-up. A45: missiles and monsters at doors. A42 and A43 only touch screens and items the
 probe does not use. The fix PR records the new table and these reasons in
 `DinkRemasterUE/Plugins/DinkParity/Docs/packaged_probe.md`.
 
