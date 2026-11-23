@@ -2332,3 +2332,7 @@ Native1 packet postflight also rejected19 files generated under its own RunDDC b
 - Review commands: `dink.PhysicalPlayBodies` (skinned body sizes), `dink.PhysicalPlayReach` (1997 blow reach against drawn bodies, cm).
 - Creature body boxes use the `DinkPlayerBlock` profile like PR #129's mesh hulls and #150's water blockers; they are tagged
   `DinkCreatureBodyBlocker` and only `UpdateCreatureBodyBlockers` makes or removes them.
+
+## Posture W and the arm fade (23 November 2026)
+
+- `animation_natural.json` `posture.<set>` W (upper arms in) is scaled in `UDinkBodyAnimInstance` by (1 - X * action weight) x (1 - Y * run share); X, Y = `arm_fade` of the row, default [1.0, 0.7]; [0, 0] = W in every state. The run share is the gaits above the slowest. Lets #217's W go to 9-11 without hands on the belly in the jog. Tests Dink.Animation.Posture.*; evidence Docs/Verification/PostureArmFade_23Nov2026.

@@ -369,7 +369,10 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 		// A light posture layer over the motion-capture clips: an unsure lad rounds his shoulders
 		// and carries his head a little low; it fades as he earns confidence.
 		if (UDinkArtSubsystem* Art = GetWorld()->GetSubsystem<UDinkArtSubsystem>())
+		{
 			Body->SetPosture(Art->GetAnimationPosture(TEXT("Hero"), HeroPhysicality.GetConfidence()) * (1.f - .8f * WallLeanDamping));
+			Body->SetArmFade(Art->GetAnimationArmFade(TEXT("Hero")));
+		}
 		float Impact = 0.f;
 		if (HeroPhysicality.ConsumeLanding(Impact) && Allowed) Body->PlayAction(TEXT("Land"), false, FMath::Lerp(.45f, 1.f, Impact), .05f, .25f);
 		if (HeroPhysicality.ConsumeStumbleStart() && Allowed) Body->PlayAction(TEXT("Stumble"), false, 1.f, .08f, .25f);

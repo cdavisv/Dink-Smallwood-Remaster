@@ -97,6 +97,8 @@ public:
 	/** Posture layer in degrees (chest, head, shoulders) shown on this body. */
 	void SetPosture(FVector4f Degrees) { Posture = Degrees; }
 	void SetSlowCadencePower(float Power);
+	/** UDinkBodyAnimInstance::SetArmFade on this body. */
+	void SetArmFade(FVector2f Fade);
 	/** How much the head is turned towards Dink now, 0..1 (eased). */
 	float GetLookWeight() const { return LookWeight; }
 protected:
@@ -111,6 +113,7 @@ private:
 	FDinkBodyDynamics BodyDynamics;
 	FDinkBodySmoother Smoother;
 	FVector4f Posture = FVector4f(0, 0, 0, 0);
+	FVector2f ArmFade = FVector2f(UDinkBodyAnimInstance::DefaultArmFadeAction, UDinkBodyAnimInstance::DefaultArmFadeRun);
 	FQuat AppliedBodyRotation = FQuat::Identity;
 	FQuat LastBodyRotation = FQuat::Identity;
 	FVector AppliedLag = FVector::ZeroVector, LastLocation = FVector::ZeroVector;
