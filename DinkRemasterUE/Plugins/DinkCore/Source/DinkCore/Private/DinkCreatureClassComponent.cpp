@@ -360,8 +360,21 @@ void UDinkCreatureClassComponent::Present(float DeltaTime)
 	SetWorldLocationAndRotation(Location, FRotator(Binding.RotationDeg.X, Yaw + Binding.RotationDeg.Y, Binding.RotationDeg.Z));
 	SetWorldScale3D(FVector(Scale));
 	BuildLayers(DeltaTime);
+	PresentFlash(DeltaTime);
 	++StepsSinceSprite;
 	PresentGore(DeltaTime);
+}
+
+void UDinkCreatureClassComponent::PresentFlash(float DeltaTime)
+{
+	const FDinkCreatureFlash& Flash = Class->Binding.Flash;
+	if (!Flash.IsValid()) return;
+	// A sprite the presenter no longer hands over (gone from the screen) shows no flash.
+	const bool bLive = bHasSprite && StepsSinceSprite <= 2;
+	const float Level = DinkCreatureClass::StepFlash(Flash, bLive ? Sprite.Seq : -1, Sprite.PSeq, Sprite.PFrame, FlashLevel, DeltaTime);
+	if (Level == FlashLevel) return;
+	FlashLevel = Level;
+	SetScalarParameterValueOnMaterials(Flash.Parameter, FlashLevel);
 }
 
 void UDinkCreatureClassComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)

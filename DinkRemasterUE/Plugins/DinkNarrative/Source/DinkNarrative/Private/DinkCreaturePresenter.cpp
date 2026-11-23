@@ -12,6 +12,7 @@
 
 namespace
 {
+	const FName C_PFrame(TEXT("pframe"));
 	const FName C_Seq(TEXT("seq")), C_PSeq(TEXT("pseq")), C_Frame(TEXT("frame")), C_BaseWalk(TEXT("base_walk")), C_BaseDeath(TEXT("base_death")),
 		C_Size(TEXT("size")), C_Hitpoints(TEXT("hitpoints")), C_Brain(TEXT("brain"));
 }
@@ -106,6 +107,7 @@ void UDinkCreaturePresenter::Present()
 		State.Seq = Seq;
 		State.PSeq = PSeq;
 		State.Frame = Sprite.GetProp(C_Frame);
+		State.PFrame = Sprite.GetProp(C_PFrame);
 		State.Dir = Sprite.Dir;
 		State.SizePercent = Size > 0 ? Size : 100;
 		State.SequenceDurationS = SequenceDuration(*Game, Seq);

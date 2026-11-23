@@ -2333,6 +2333,9 @@ Native1 packet postflight also rejected19 files generated under its own RunDDC b
 - Creature body boxes use the `DinkPlayerBlock` profile like PR #129's mesh hulls and #150's water blockers; they are tagged
   `DinkCreatureBodyBlocker` and only `UpdateCreatureBodyBlockers` makes or removes them.
 
+## Class-row material flash (23 November 2026)
+
+- creatures.json class rows may carry `flash` {parameter, pseq, pframe, rise_s, fall_s}: the class body sets that scalar (0..1) on its materials while its sprite stands still on that picture/frame (FDinkCreatureFlash, UDinkCreatureClassComponent::PresentFlash; the presenter hands over sp_pframe). Seth: CastFlash on 580/2 (s7-boss.c:46-66), from `Scripts/bind_people_classes.py` FLASH. The materials that read CastFlash are art (Seth second pass). Evidence Docs/Verification/SethCastFlash_23Nov2026.
 ## Posture W and the arm fade (23 November 2026)
 
 - `animation_natural.json` `posture.<set>` W (upper arms in) is scaled in `UDinkBodyAnimInstance` by (1 - X * action weight) x (1 - Y * run share); X, Y = `arm_fade` of the row, default [1.0, 0.7]; [0, 0] = W in every state. The run share is the gaits above the slowest. Lets #217's W go to 9-11 without hands on the belly in the jog. Tests Dink.Animation.Posture.*; evidence Docs/Verification/PostureArmFade_23Nov2026.

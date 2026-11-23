@@ -127,6 +127,21 @@ struct DINKCORE_API FDinkCreatureCorpse
 	double DecalDepthCm = 45.0;
 };
 
+/**
+ * A material pulse while the sprite shows one still picture (JSON `flash`: {"parameter", "pseq", "pframe", "rise_s",
+ * "fall_s"}). Seth's cast (s7-boss.c:46-66): his standing picture 580 flickers between frame 1 and frame 2, which shows
+ * his face and hands lit red; the class body sets the scalar `parameter` (0..1) on its materials, rising while the sprite
+ * stands on that frame (sp_seq 0, sp_pseq / sp_pframe the row's) and falling otherwise. A material without the parameter
+ * ignores it. Presentation only: nothing flows back to the sprite.
+ */
+struct DINKCORE_API FDinkCreatureFlash
+{
+	FName Parameter;
+	int32 PSeq = 0, PFrame = 0;
+	float RiseS = 0.08f, FallS = 0.25f;
+	bool IsValid() const { return !Parameter.IsNone() && PSeq > 0 && PFrame > 0; }
+};
+
 /** One row of `classes`. */
 struct DINKCORE_API FDinkCreatureClassBinding
 {
@@ -148,6 +163,8 @@ struct DINKCORE_API FDinkCreatureClassBinding
 	/** Pitch, yaw, roll added to the facing (degrees), as the origin rows' rotation_deg. */
 	FVector RotationDeg = FVector::ZeroVector;
 	double Scale = 1.0;
+	/** Optional material pulse (see FDinkCreatureFlash). */
+	FDinkCreatureFlash Flash;
 	/** Below this measured speed the creature stands (idle clip only), cm/s. */
 	float StationarySpeedCmS = 5.f;
 	/** Cross-fade between roles and between two plays of a clip, s. */
@@ -222,6 +239,12 @@ namespace DinkCreatureClass
 
 	/** Numpad direction of a walk sequence (131 -> 1), 0 when the last digit is not a direction. */
 	DINKCORE_API int32 DirOfSequence(int32 Sequence);
+
+	/**
+	 * The flash's level after DeltaS: towards 1 at 1/RiseS per second while the sprite stands on the flash picture (Seq 0,
+	 * PSeq and PFrame the row's), else towards 0 at 1/FallS. Pure maths.
+	 */
+	DINKCORE_API float StepFlash(const FDinkCreatureFlash& Flash, int32 Seq, int32 PSeq, int32 PFrame, float Current, float DeltaS);
 
 	/** Screen-space angle of a numpad direction, degrees from east towards south (the director's DirAngle). */
 	DINKCORE_API double DirYawDegrees(int32 Dir);

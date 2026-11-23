@@ -100,6 +100,8 @@ struct DINKCORE_API FDinkCreatureSpriteState
 	int32 PSeq = 0;
 	/** Animation frame of Seq (sp_frame), 0 before its first frame. */
 	int32 Frame = 0;
+	/** Picture frame (sp_pframe): what a still sprite shows of PSeq. */
+	int32 PFrame = 0;
 	/** Numpad direction 1-9. */
 	int32 Dir = 0;
 	/** World yaw of that direction on the sprite's screen (the director's facing); false: unknown. */
@@ -153,6 +155,8 @@ public:
 	/** A flinch, a strike or a fidget over whatever the sprite shows (DinkCreatureOneShots.h). False when the class has none. */
 	bool PlayOneShot(EDinkCreatureOneShot Kind) { return Class.IsValid() && OneShots.Play(GetClassId(), Kind); }
 	const FDinkCreatureOneShotPlayer& GetOneShots() const { return OneShots; }
+	/** The row's flash level now, 0..1 (FDinkCreatureFlash); 0 for a row without one. */
+	float GetFlashLevel() const { return FlashLevel; }
 
 private:
 	struct FTrack
@@ -166,6 +170,8 @@ private:
 	void BuildLayers(float DeltaTime);
 	/** The role's blood this frame: the fountain from its bone and the stains along the way. */
 	void PresentGore(float DeltaTime);
+	/** The row's flash: its scalar parameter on the materials, eased towards the sprite's picture. */
+	void PresentFlash(float DeltaTime);
 
 	TSharedPtr<const FDinkCreatureLoadedClass> Class;
 	/** Keeps the clips and meshes of the row alive for as long as this component shows them. */
@@ -185,4 +191,5 @@ private:
 	FDinkCreatureOneShotPlayer OneShots;
 	/** Presentation steps since the presenter last handed over the sprite (it does every frame while the sprite is live on the current screen). */
 	int32 StepsSinceSprite = 1000;
+	float FlashLevel = 0.f;
 };
