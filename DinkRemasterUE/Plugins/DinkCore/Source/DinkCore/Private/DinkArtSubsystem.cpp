@@ -615,6 +615,7 @@ void UDinkArtSubsystem::ApplyCharacters(UWorld& World)
 		Human->Configure(Mesh, Locomotion, CVarDinkBodyAnimation.GetValueOnGameThread() != 0 ? &GetAnimationLibrary() : nullptr, AnimationSetOf(Row));
 		Human->SetPosture(GetAnimationPosture(AnimationSetOf(Row), 1.f));
 		Human->SetSlowCadencePower(GetAnimationSlowCadence(AnimationSetOf(Row)));
+		Human->SetArmFade(GetAnimationArmFade(AnimationSetOf(Row)));
 		UCapsuleComponent* Body = NewObject<UCapsuleComponent>(A, TEXT("AuthoredBody"));
 		Body->SetupAttachment(A->GetRootComponent());
 		Body->SetMobility(EComponentMobility::Movable);
@@ -756,6 +757,7 @@ bool UDinkArtSubsystem::ApplyScriptCharacter(AActor* Actor, FName Script, float 
 	Human->Configure(Mesh, Locomotion, CVarDinkBodyAnimation.GetValueOnGameThread() != 0 ? &GetAnimationLibrary() : nullptr, AnimationSetOf(*Row));
 	Human->SetPosture(GetAnimationPosture(AnimationSetOf(*Row), 1.f));
 	Human->SetSlowCadencePower(GetAnimationSlowCadence(AnimationSetOf(*Row)));
+	Human->SetArmFade(GetAnimationArmFade(AnimationSetOf(*Row)));
 	UCapsuleComponent* Body = FindObject<UCapsuleComponent>(Actor, TEXT("ScriptHumanoidBody"));
 	if (!Body)
 	{
@@ -868,6 +870,9 @@ const TMap<FName, FDinkBodyClip>& UDinkArtSubsystem::GetAnimationLibrary()
                             ? FVector4f(float((*A)[0]->AsNumber()), float((*A)[1]->AsNumber()), float((*A)[2]->AsNumber()), A->Num() > 3 ? float((*A)[3]->AsNumber()) : 0.f) : FVector4f(0, 0, 0, 0);
                     };
                     AnimationPostures.Add(FName(*Pair.Key), {Read(TEXT("timid")), Read(TEXT("confident"))});
+                    const TArray<TSharedPtr<FJsonValue>>* Fade = nullptr;
+                    if ((*Row)->TryGetArrayField(TEXT("arm_fade"), Fade) && Fade->Num() == 2)
+                        AnimationArmFade.Add(FName(*Pair.Key), FVector2f(float((*Fade)[0]->AsNumber()), float((*Fade)[1]->AsNumber())));
                 }
             const TSharedPtr<FJsonObject>* Cadences = nullptr;
             if (Natural->TryGetObjectField(TEXT("slow_cadence_power"), Cadences) && Cadences)
@@ -896,6 +901,13 @@ FVector4f UDinkArtSubsystem::GetAnimationPosture(FName Set, float Confidence)
     GetAnimationLibrary();
     const TPair<FVector4f, FVector4f>* Row = AnimationPostures.Find(Set);
     return Row ? FMath::Lerp(Row->Key, Row->Value, FMath::Clamp(Confidence, 0.f, 1.f)) : FVector4f(0, 0, 0, 0);
+}
+
+FVector2f UDinkArtSubsystem::GetAnimationArmFade(FName Set)
+{
+    GetAnimationLibrary();
+    const FVector2f* Fade = AnimationArmFade.Find(Set);
+    return Fade ? *Fade : FVector2f(UDinkBodyAnimInstance::DefaultArmFadeAction, UDinkBodyAnimInstance::DefaultArmFadeRun);
 }
 
 float UDinkArtSubsystem::GetAnimationSlowCadence(FName Set)

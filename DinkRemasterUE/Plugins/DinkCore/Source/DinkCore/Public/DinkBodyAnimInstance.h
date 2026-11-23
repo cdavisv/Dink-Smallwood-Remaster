@@ -192,6 +192,19 @@ public:
 	bool PlayAction(FName Name, bool bFullBody = false, float Scale = 1.f, float BlendIn = .07f, float BlendOut = .2f, bool bHoldLastFrame = false);
 	/** Chest slouch, head drop and shoulder rounding in degrees (see FDinkBodyFrame::Posture). */
 	void SetPosture(FVector4f Degrees) { Posture = Degrees; }
+	/**
+	 * How much of the posture's W (upper arms brought in) gives way while an action clip plays (X, times its weight)
+	 * and while the body runs (Y, times the run gaits' share of the base pose): W x (1 - X a) x (1 - Y r). The run and
+	 * the wind-ups already carry the hands in front of the belly; at full W they lay both hands on it (A102, 23 Nov).
+	 * Default (1, 0.7); posture.<set>.arm_fade in animation_natural.json overrides it, [0, 0] keeps W in every state.
+	 */
+	void SetArmFade(FVector2f Fade) { ArmFade = FVector2f(FMath::Clamp(Fade.X, 0.f, 1.f), FMath::Clamp(Fade.Y, 0.f, 1.f)); }
+	FVector2f GetArmFade() const { return ArmFade; }
+	static constexpr float DefaultArmFadeAction = 1.f, DefaultArmFadeRun = .7f;
+	/** W's factor for an action weight and a run share, both 0..1 (see SetArmFade). */
+	static float ArmPostureScale(float ActionWeight, float RunShare, FVector2f Fade);
+	/** The factor the last update applied to W (1 when nothing faded it). */
+	float GetArmPostureScale() const { return LastArmScale; }
 	/** How this body walks slower than its walk clip (see FDinkGaitBlend): 1 long slow steps, 0 short quick ones. */
 	void SetSlowCadencePower(float Power) { SlowCadence = FMath::Clamp(Power, 0.f, 1.f); }
 	void StopActions();
@@ -234,6 +247,8 @@ private:
 	float CyclesPerSecond = 0.f, BlendedStride = 0.f, MoveAlpha = 0.f;
 	FVector2f Lean = FVector2f::ZeroVector;
 	FVector4f Posture = FVector4f(0, 0, 0, 0);
+	FVector2f ArmFade = FVector2f(DefaultArmFadeAction, DefaultArmFadeRun);
+	float LastArmScale = 1.f;
 	float SlowCadence = FDinkGaitBlend::SlowCadencePower;
 	bool bAirborne = false, bWasAirborne = false, bLegsReady = false;
 	FName SetName;

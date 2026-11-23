@@ -39,6 +39,8 @@ public:
     FVector4f GetAnimationPosture(FName Set, float Confidence);
     /** How a set walks slower than its walk clip (UDinkBodyAnimInstance::SetSlowCadencePower). */
     float GetAnimationSlowCadence(FName Set);
+    /** posture.<Set>.arm_fade of animation_natural.json (action, run), else UDinkBodyAnimInstance's default. */
+    FVector2f GetAnimationArmFade(FName Set);
     /** Cosmetic only: plays one named action clip on the player (bow draw/release, spell cast). */
     bool PlayPlayerClip(AActor* Actor, FName Clip, bool bHoldLastFrame = false);
 	/** Present dynamically scripted actors (such as Milder) without replacing their gameplay identity. */
@@ -66,4 +68,5 @@ private:
     bool bAnimationLibraryLoaded = false;
     TMap<FName, TPair<FVector4f, FVector4f>> AnimationPostures;
     TMap<FName, float> AnimationSlowCadence;
+    TMap<FName, FVector2f> AnimationArmFade;
 };
