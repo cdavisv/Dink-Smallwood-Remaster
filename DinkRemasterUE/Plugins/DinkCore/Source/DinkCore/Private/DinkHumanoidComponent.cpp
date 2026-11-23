@@ -181,6 +181,7 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 			// The clips are the mannequin's size: a smaller body covers less ground per step.
 			Body->SetMotion(LocomotionSpeed / FMath::Max(.1f, float(GetComponentScale().Z)), false, 1.f);
 			Body->SetPosture(Posture);
+			Body->SetArmFade(ArmFade);
 			UpdateLook(*Body, DeltaTime);
 		}
 	}
@@ -213,6 +214,12 @@ void UDinkHumanoidComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 		}
 	}
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}
+
+void UDinkHumanoidComponent::SetArmFade(FVector2f Fade)
+{
+	ArmFade = Fade;
+	if (UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetAnimInstance())) Body->SetArmFade(Fade);
 }
 
 void UDinkHumanoidComponent::SetSlowCadencePower(float Power)
