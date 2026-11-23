@@ -11,7 +11,7 @@
  ],
  "freckles": 0.25,
  "redness": 1.8,
- "age": 1.3,
+ "age": 1.7,
  "tan": [
   0.95,
   0.86,
@@ -27,18 +27,30 @@
  ],
  "capillary": 0.95,
  "sun": 0.8,
- "moles": 7,
+ "moles": 5,
  "veins": 0.5,
  "scalp_mix": 0.9,
- "micro": 1.3,
+ "micro": 1.1,
  "nrm_k": 0.19,
  "rough_micro": 0.1,
  "rough_meso": 0.04,
  "rim_wet": 0.25,
  "brow_paint": 0.0,
  "brow_shadow": 0.06,
- "line_k": 1.8,
+ "line_k": 2.0,
  "fore_period": 0.0115,
  "fore_warp": 7.0,
- "fore_k": 0.2
+ "fore_k": 0.22,
+ "neck_lo": 1.5,
+ "neck_k": 0.45,
+ "lip_k": 1.8,
+ "lip_pct": [
+  38,
+  78
+ ],
+ "micro_lo": [
+  1.49,
+  1.56,
+  0.22
+ ]
 }

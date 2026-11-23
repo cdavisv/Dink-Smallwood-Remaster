@@ -124,22 +124,24 @@ def torso_push(p, clear):
     k = 1 / max(rr, 1e-3); q[0] = p[0] * k; q[1] = T['y0'] + (p[1] - T['y0']) * k
     out = hl.unit(np.array([x ** 3 / a, y ** 3 / b, 0.0]))
     return q, out
+PUFF = S.get('puff', 0.0)
 def guide_long(root, r, kind='hair'):
     """Long loose hair (the maidens, pictures 221-259): parted in the middle, combed sideways over the crown, falling
     behind the shoulders down the back to `z_end`, with a short fringe over the brow. kinds: 'under' lies on the back,
     'hair' a little off it, 'over' loose outer locks, 'fringe', 'wisp' (short new hair along the hair line)."""
     loc, nrm = H.near(root); az, e = H.params(loc); d0 = hl.unit(loc - H.ctr); sg = 1.0 if loc[0] >= 0 else -1.0; K = S.get('K', 22)
+    if kind == 'cross': sg = -sg      # a lock combed over the parting from the other side, so the parting is not a ruled line of scalp
     if kind == 'fringe':
         d = np.array([sg * .45 * min(1.0, abs(loc[0]) / .03), -1.0, -.35]); d = hl.unit(hl.unit(d - nrm * (d @ nrm)) + nrm * .22)
         L = S['L_fringe'] * r.uniform(.7, 1.1) * (.75 + .5 * hl.f1(loc, 40, 51))
         return hl.grow(H, loc + nrm * .0004, d, L, K=K, gravity=1.5, minlift=(.0006, .0035), wander=.03, rng=r)
     back = max(0.0, d0[1])
-    d = np.array([sg * (.95 - .6 * back), .45 + .5 * back, -.30]); d = hl.unit(d - nrm * (d @ nrm))
+    d = np.array([sg * (.95 - S.get('part_back', .6) * back), .45 + .5 * back, -.30]); d = hl.unit(d - nrm * (d @ nrm))      # part_back: how far the middle parting closes towards the back of the head
     if kind == 'wisp':
         return hl.grow(H, loc + nrm * .0004, d, r.uniform(.02, .045), K=K, gravity=.6, minlift=(.0005, .002), wander=.05, rng=r)
-    lift = {'under': 0.0, 'hair': .004, 'over': .010}.get(kind, .004)
+    lift = {'under': 0.0, 'hair': .004, 'over': S.get('over_lift', .010)}.get(kind, .004)
     lock = hl.f1(loc, S.get('lock_scale', 30), 311 + S.get('seed', 1))
-    L = max(.12, (loc[2] - S['z_end']) * 1.10 + .05 * float(sstep(.6, .1, e)) + (lock - .5) * S.get('len_lock', .07) + r.normal(0, .012))
+    L = max(.12, (loc[2] - S['z_end'] - S.get('z_back', 0.0) * back) * 1.10 + .05 * float(sstep(.6, .1, e)) + (lock - .5) * S.get('len_lock', .07) + r.normal(0, .012))
     if kind == 'over': L *= r.uniform(.92, 1.0)
     step = L / (K - 1); p = loc + nrm * .0006; pts = [p.copy()]; ph = 6.283 * lock + r.uniform(0, 1.2)
     for k in range(1, K):
@@ -154,6 +156,9 @@ def guide_long(root, r, kind='hair'):
         d = d + side * S.get('wave', .1) * math.sin(ph + t * S.get('wave_n', 6.0)) * step * 14 + r.normal(0, S.get('wander', .02), 3)
         d = hl.unit(d); p = p + d * step
         l2, n2 = H.near(p); h = (p - l2) @ n2; ml = .0008 + (lift + .003) * min(1.0, t * 4)
+        if PUFF:      # a full head of hair (the Mother's bob, pictures 351-359): the hair stands off the skull and the cheeks, more so further down, and turns under at the tips
+            ml += PUFF * (.35 + .65 * lock) * float(sstep(0.0, .45, t)) * (1 - .55 * float(sstep(.82, 1.0, t)))
+            if t > .8: d = hl.unit(d - n2 * S.get('curl', 0.0) * (t - .8) * 5 * step * 14)
         mx = ml + S.get('hug', .010) + lift
         if h < ml:
             p = l2 + n2 * ml; dn = d @ n2
@@ -166,7 +171,10 @@ def guide_long(root, r, kind='hair'):
             p = q; dn = d @ out
             if dn < 0: d = hl.unit(d - out * dn)
         pts.append(p.copy())
-    return np.array(pts)
+    pts = np.array(pts)
+    for _ in range(S.get('guide_smooth', 0)):      # a brushed head of hair: the kinks the skull, ear and collar clamps leave are combed out
+        pts[1:-1] = (pts[:-2] + 2 * pts[1:-1] + pts[2:]) / 4
+    return pts
 guide = {'short': guide_short, 'crest': guide_crest, 'long': guide_long}.get(S['kind'], guide_bun)
 # ------------------------------------------------------------------ strand groom (hair Curves + procedural hair node groups)
 gr = np.random.default_rng(S.get('seed', 1) + 100)
