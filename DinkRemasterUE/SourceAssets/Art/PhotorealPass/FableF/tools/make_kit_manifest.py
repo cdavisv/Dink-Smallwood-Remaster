@@ -4,7 +4,8 @@
     DINK_KIT=FableF DINK_KIT_FOLDER=FableF Scripts/import_town_exteriors.sh
 
 Reads every <family>/<Asset>/manifest.json of this folder: effect flipbooks become `flipbooks` rows (additive
-M_FX_Flipbook, or the translucent M_FX_Flipbook_Blend when the flipbook says "blend": "translucent"), static meshes
+M_FX_Flipbook, the translucent M_FX_Flipbook_Blend when the flipbook says "blend": "translucent", the lit
+M_FX_Flipbook_Lit for "blend": "lit"), static meshes
 with one baked BC / N / ORM set become `assets` rows. Everything lands in /Game/Dink/Photoreal/FableF.
 """
 import glob
@@ -26,18 +27,20 @@ def build():
             fb = m['flipbook']
             row = {'name': m['name'][len('FX_'):], 'file': m['textures'][0]['file'], 'grid': fb['grid'], 'fps': fb['fps'],
                    'glow': fb.get('glow', 6), 'families': m['families']}
-            if fb.get('blend') == 'translucent':
-                row['blend'] = 'translucent'
+            if fb.get('blend') in ('translucent', 'lit', 'decal'):
+                row['blend'] = fb['blend']
             if fb.get('hot'):
                 row['hot'] = fb['hot']
             flipbooks.append(row)
             continue
-        mat = 'MI_' + m['name'][len('SM_'):]
-        files = {}
+        mat = m.get('material_name') or 'MI_' + m['name'][len('SM_'):]      # states of one thing share one material
+        files = dict(m.get('textures_shared') or {})                       # maps another kit has imported, by /Game/ path
         for t in m['textures']:
             files[os.path.splitext(os.path.basename(t['file']))[0].rsplit('_', 1)[1]] = t['file']
         materials[mat] = {'baked': True, 'kind': m.get('material_kind', 'opaque'), 'files': files}
-        assets.append({'name': m['name'], 'class': m['class'], 'fbx': rel + '/' + m['name'] + '.fbx', 'materials': [mat],
+        # further slots that are not bakes (the stair opening's pit: a material the importer builds from numbers)
+        materials.update(m.get('extra_materials') or {})
+        assets.append({'name': m['name'], 'class': m['class'], 'fbx': rel + '/' + m['name'] + '.fbx', 'materials': [mat] + sorted(m.get('extra_materials') or {}),
                        'dimensions_m': m['dimensions_m'], 'collision_hulls': m.get('collision_hulls', 0), 'families': m['families'], 'folder': rel})
     return {
         'schema': 'dink-props/1',

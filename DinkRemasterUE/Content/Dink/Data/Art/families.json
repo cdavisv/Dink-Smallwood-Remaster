@@ -1574,12 +1574,11 @@
       "family": "fountain_spray_fx",
       "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Fountain_Spray.MI_FX_Fountain_Spray",
       "effect_placed": true,
-      "effect_fit": [0.64, 0.5],
-      "effect_sink": 0.045,
-      "offset_cm": {"S586_P14": [0, 95, 128], "S260_P30": [0, 95, 128]},
+      "effect_fit": [0.714, 0.75],
+      "offset_cm": {"S586_P14": [0, 210, 33], "S260_P30": [0, 95, 33]},
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "94 lands/garden/spray-: the fountain's water (S586_P14 KernSin, S260_P30). Fable stream art-fx-props, 16 Nov 2026 (art row VS-11), on the placed-effect path: the sprite's card shows a looping translucent flipbook (FableF/fountain_spray_fx/Fountain_Spray, tools/build_fountain_spray.py: a jet 1 m high that breaks into 520 drops on ballistic arcs, 8 x 8 frames of 256 px). The spray fills 0.64 x 0.5 of the frame from its foot. offset_cm: the card stood on the ground 0.9 m behind the fountain mesh; it now rises from the bowl. No rings on the water and no wet stone yet."
+      "note": "94 lands/garden/spray-: the fountain's water (S586_P14 KernSin, S260_P30) on the placed-effect path. Since 17 Nov 2026 (Fable stream art-fx-2) the 1997 dome: water thrown from the bowl all round into the basin, 2.2 m across, blue-white, on a LIT flipbook (kit row \"blend\": \"lit\" -> M_FX_Flipbook_Lit: the scene's light, so it is bright by day and dim in the dungeon of 260). The frame is 2.8 m square (effect_fit maps the 2.0 x 2.1 m sprite card to it), the bowl's rim 0.95 m above its bottom edge: offset_cm lifts that onto the rim of SM_Fountain_Stone_PR (1.2 m) and moves the card south onto the fountain's middle. The two fountains do not stand alike on their placement points: on 586 (seen in the game on 23 Nov 2026: the spray stood 1.15 m north of the bowl) the card goes 2.10 m south, on 260 0.95 m."
     },
     {
       "family": "fire_fx",

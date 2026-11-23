@@ -1,3 +1,8 @@
+## The fountain's spray is lit (23 November 2026, stream art-fx-2; picture 94, art row VS-11)
+
+- `FableF/tools/build_fountain_spray.py` now draws the 1997 dome: 13000 drops on 3D ballistic arcs in 44 strands from the bowl into the basin (2.2 m across), a crown that falls back on the bowl, splashes and a band of mist on the basin; frame 2.8 m, bowl rim 0.95 m above its bottom edge.
+- New flipbook kind `"blend": "lit"` in a kit manifest: the kit importer builds `M_FX_Flipbook_Lit` (translucent, default lit, `TLM_VOLUMETRIC_NON_DIRECTIONAL`, base colour = the frame, no emissive). Water has no light of its own: the unlit card was faint against sunlit ground and glowed in the dungeon of 260. `Grid.w` scales the colour.
+- Row `fountain_spray_fx`: `effect_fit` [0.714, 0.75] (the 2.0 x 2.1 m sprite card becomes the 2.8 m frame), no `effect_sink`, `offset_cm` [0, 95, 33] for S586_P14 and S260_P30 (the rim of `SM_Fountain_Stone_PR` is 1.2 m up).
 ## Milder's harness: what the build script learned (23 November 2026, art row SP-07)
 
 - `Characters/Tools/milder_02_build.py`. The padded collar is laid ONCE on a 72 x 24 control grid (`cowl_lay`) and read at the game and the bake resolution (`cowl`): laid separately, the 288 x 96 bake source kept folds that the same relaxing passes had combed out of the game mesh, and they were baked into its normal map (a crumpled knot behind the neck on a smooth mesh). The cape lies on tabard, body volume AND skin (inside the tabard's neck opening the body volume is 3 cm under the trapezius); the neck band's radius is measured per height (`ring_r`).
