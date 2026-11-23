@@ -75,6 +75,18 @@ class CorpseKitTests(unittest.TestCase):
             self.assertIn(name, self.assets, 'replacement mesh is not in the kit: ' + name)
             self.assertEqual(sizes[mesh][:2], [round(v * 100, 2) for v in self.assets[name]['dimensions_m'][:2]], name)
 
+    def test_the_mother_is_as_tall_as_her_source_with_room_for_a_generated_lod(self):
+        # 23 Nov 2026: the source body is 26.8 cm tall lying down (FBX and manifest agree). A kit import in another copy re-imports
+        # every mesh (the importer's stamp holds the FBX's mtime) and gives each one generated LODs; the Mother's LOD1 has part
+        # of her underside 2.5 cm below LOD0's lowest point (under the floor), and Unreal's bounds cover every LOD: 29.5 cm.
+        # The row keeps the SOURCE height and allows 3 cm, so Dink.Art.ImportedAssetScaleAndMaterials holds with and without LODs.
+        doc = json.loads((PROJECT / 'Content/Dink/Data/Art/stonebrook.json').read_text())
+        row = next(a for a in doc['assets'] if a['mesh'].endswith('.SM_Corpse_Mother_PR'))
+        source = self.assets['SM_Corpse_Mother_PR']['dimensions_m']
+        self.assertEqual(row['expected_size_cm'], [round(v * 100, 1) for v in source])
+        self.assertGreaterEqual(row.get('bounds_tolerance_cm', 1.0), 29.5 - 26.8 + 0.2)       # the measured LOD chain, with a little room
+        self.assertLessEqual(row['bounds_tolerance_cm'], 5.0)                                   # still far below any unit or scale error
+
     def test_a_burn_hole_is_a_pit_with_a_void_and_its_depths(self):
         # picture 158 is a hole burnt THROUGH: the kit row asks the importer for the pit material (far wall by parallax, void without
         # specular) and gives it the two depths; the sheet's ORM blue is the void mask, and the void is at least the black of the picture

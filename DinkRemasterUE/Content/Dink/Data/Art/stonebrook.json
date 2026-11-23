@@ -120,7 +120,8 @@
         240.0,
         240.0,
         26.8
-      ]
+      ],
+      "bounds_tolerance_cm": 3.0
     },
     {
       "mesh": "/Game/Dink/Photoreal/Corpses/SM_Burn_Hole_A_PR.SM_Burn_Hole_A_PR",
