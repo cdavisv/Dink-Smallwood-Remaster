@@ -19,6 +19,14 @@ Re-runnable: a mesh carries the metadata tag DinkLods (settings + LOD0 triangle 
 matches is left alone. import_town_exteriors.py calls ensure_lods() for every single-LOD mesh it has
 just re-imported with more than MIN_TRIANGLES triangles, so a kit re-import keeps generated LODs.
 Report: Saved/PhotorealPass/kit_lods.json.
+
+Bounds (23 Nov 2026): a static mesh's bounds are the union of ALL its LODs (StaticMeshBuilder.cpp: MeshBoundsBuilder +=
+each LOD's SourceMeshBounds), and a reduced LOD can stand a little outside LOD0 (the corpse of the Mother, 26.8 cm tall
+as imported, measured 29.5 cm once LOD1/LOD2 were generated, so Dink.Art.ImportedAssetScaleAndMaterials failed after any
+corpse kit import). The section check above allows 3 % of the extent per LOD; the mesh's bounds may not move more than
+BOUNDS_TOLERANCE_CM on any side. A mesh whose generated LODs would move them keeps its one LOD (tag DinkLods
+'<tag>:single', left alone on later runs), except the A200 TARGETS, which keep their LODs (a warning names the move;
+the corpse Maiden's is 4.2 cm, as on master since #154).
 """
 import json
 import unreal
@@ -31,6 +39,7 @@ LOD_PERCENTS = (1.0, 0.5, 0.25)
 LOD1_DISTANCE_CM = 1000.0
 LOD2_DISTANCE_CM = 2000.0
 SCREEN_MULTIPLE = 0.5 * 16.0 / 9.0  # 0.5 * max(P[0][0], P[1][1]), horizontal FOV 90 at 16:9
+BOUNDS_TOLERANCE_CM = 0.5  # the art test allows 1 cm on the whole size (Dink.Art.ImportedAssetScaleAndMaterials)
 
 # the A200 rows (PR #154, art_wiring.csv `lod`)
 TARGETS = [
@@ -115,6 +124,18 @@ def check(info):
     return problems
 
 
+def bounds_box(mesh):
+    """(min x, min y, min z, max x, max y, max z) of the mesh's bounds, cm (the union of its LODs)."""
+    b = mesh.get_bounds()
+    o, e = b.origin, b.box_extent
+    return [o.x - e.x, o.y - e.y, o.z - e.z, o.x + e.x, o.y + e.y, o.z + e.z]
+
+
+def bounds_moved(before, after):
+    """Largest move of any side of the bounds box, cm."""
+    return max(abs(a - b) for a, b in zip(after, before))
+
+
 def ensure_lods(mesh, force=False):
     """Generated LOD1/LOD2 on a single-object kit mesh. Returns (changed, info). Nanite stays as it is (off)."""
     lods = MESHES.get_lod_count(mesh)
@@ -122,11 +143,14 @@ def ensure_lods(mesh, force=False):
     tag = tag_for(mesh, lod0)
     if not force and LIB.get_metadata_tag(mesh, 'DinkLods') == tag and lods == len(LOD_PERCENTS):
         return False, None
+    if not force and LIB.get_metadata_tag(mesh, 'DinkLods') == tag + ':single' and lods == 1:
+        return False, None
     if lods > 1 and not LIB.get_metadata_tag(mesh, 'DinkLods'):
         # LODs from the FBX (TownExteriors _LOD1/_LOD2 objects): those are art, leave them
         return False, None
     if lods > 1:
         MESHES.remove_lods(mesh)
+    before = bounds_box(mesh)
     options_cls = _struct('StaticMeshReductionOptions', 'EditorScriptingMeshReductionOptions')
     settings_cls = _struct('StaticMeshReductionSettings', 'EditorScriptingMeshReductionSettings')
     sizes = screen_sizes(mesh)
@@ -155,6 +179,20 @@ def ensure_lods(mesh, force=False):
     nanite = mesh.get_editor_property('nanite_settings')
     if nanite.get_editor_property('enabled'):
         raise RuntimeError(f'{mesh.get_name()}: Nanite is on (alpha-tested sections): not touched')
+    moved = bounds_moved(before, bounds_box(mesh))
+    path = mesh.get_path_name().split('.')[0]
+    if moved > BOUNDS_TOLERANCE_CM:
+        if path in TARGETS:
+            # the A200 rows keep their LODs (decided for the frame rate); their bounds carry the reduced LODs' reach
+            unreal.log_warning(f'DINK KIT LODS: {path}: generated LODs moved its bounds by {moved:.1f} cm (A200 target: LODs kept)')
+            moved = 0.0
+    if moved > BOUNDS_TOLERANCE_CM:
+        # the imported size is the art's: one LOD rather than a mesh that measures bigger than its FBX
+        MESHES.remove_lods(mesh)
+        LIB.set_metadata_tag(mesh, 'DinkLods', tag + ':single')
+        unreal.log_warning(f'DINK KIT LODS: {path}: generated LODs moved its bounds by {moved:.1f} cm '
+                           f'({before} -> union of the LODs); kept as one LOD')
+        return True, describe(mesh)
     LIB.set_metadata_tag(mesh, 'DinkLods', tag)
     info = describe(mesh)
     problems = check(info)
