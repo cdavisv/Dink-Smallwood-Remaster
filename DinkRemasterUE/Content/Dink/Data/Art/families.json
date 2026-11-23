@@ -1811,25 +1811,25 @@
     },
     {
       "family": "512 effects/comets/sm-comt2/fbal2-",
-      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Fireball.MI_FX_Fireball",
+      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Hellfire_Front.MI_FX_Hellfire_Front",
       "effect_size_cm": 190,
-      "effect_offset_cm": [0, 0, 45],
+      "effect_offset_cm": [0, 0, 32],
       "effect_light": [1.0, 0.5, 0.15, 4.0, 450],
       "effect_light_flicker": 0.25,
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "Hellfire flying south and the falling fireball a script creates: the looping fireball flipbook (8 x 8 frames, additive), 1.9 m as the 1997 frames (32 x 76 px), lifted 45 cm (dink.ini draws the picture 18 px above the sprite point) and with a light that travels with it. Script-created sprites only."
+      "note": "Hellfire flying south, at the camera, and the falling fireball a script creates: a fat ball of fire seen from ahead that sheds clumps of flame (FableF/missile_fx/Hellfire_Front, tools/build_fireball_fx.py; 1997: a chain of fire balls, 32 x 76 px). Fable stream art-fx-2."
     },
     {
       "family": "502 effects/comets/sm-comt1/comt2-",
-      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Fireball.MI_FX_Fireball",
-      "effect_size_cm": 220,
-      "effect_offset_cm": [0, 0, 64],
+      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Fireball_Front.MI_FX_Fireball_Front",
+      "effect_size_cm": 130,
+      "effect_offset_cm": [0, 0, 67],
       "effect_light": [1.0, 0.5, 0.15, 4.0, 450],
       "effect_light_flicker": 0.25,
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "The fireball spell flying south, towards the camera (item-fb, create_sprite + sp_seq 500 + direction): the looping fireball flipbook, head low and its flames above it, 2.2 m as the 1997 frames (31 x 88 px). effect_offset_cm: dink.ini draws the picture 30 px above the sprite point (the missile flies at chest height), so the card is lifted until the head is 1.1 m up. A light travels with it. Script-created sprites only. Stream art-fx-props, 16 Nov 2026."
+      "note": "The fireball spell flying south, at the camera (item-fb): a ball of fire seen from ahead, flames wrapped round it and its short trail rising behind it (FableF/missile_fx/Fireball_Front: a simulated ball of burning fuel in a head wind, tools/build_fireball_fx.py). Before 17 Nov 2026 this was the upright side-view card, a tall flame that read as Dink burning. effect_offset_cm puts the ball (0.17 of the frame below its middle) at chest height on the sprite point. Fable stream art-fx-2."
     },
     {
       "family": "504 effects/comets/sm-comt1/comt4-",
@@ -1855,14 +1855,14 @@
     },
     {
       "family": "508 effects/comets/sm-comt1/comt8-",
-      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Fireball.MI_FX_Fireball",
-      "effect_size_cm": 220,
-      "effect_offset_cm": [0, 0, 34],
+      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Fireball_Back.MI_FX_Fireball_Back",
+      "effect_size_cm": 130,
+      "effect_offset_cm": [0, 0, 24],
       "effect_light": [1.0, 0.5, 0.15, 4.0, 450],
       "effect_light_flicker": 0.25,
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "The fireball spell flying north, away from the camera: the upright card as for the south (from behind, a ball of fire with its flames above it; the 1997 picture trails its tail down the screen, which in the round would hang to the ground), head 0.8 m up."
+      "note": "The fireball spell flying north, away from the camera: the same simulated ball seen from behind, its trail hanging towards the camera below it (FableF/missile_fx/Fireball_Back). The ball is 0.17 of the frame above the card's middle. Fable stream art-fx-2."
     },
     {
       "family": "514 effects/comets/sm-comt2/fbal4-",
@@ -1888,14 +1888,14 @@
     },
     {
       "family": "518 effects/comets/sm-comt2/fbal8-",
-      "effect": "/Game/Dink/Photoreal/Unclaimed/MI_FX_Fireball.MI_FX_Fireball",
+      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Hellfire_Back.MI_FX_Hellfire_Back",
       "effect_size_cm": 190,
-      "effect_offset_cm": [0, 0, 40],
+      "effect_offset_cm": [0, 0, -32],
       "effect_light": [1.0, 0.5, 0.15, 4.0, 450],
       "effect_light_flicker": 0.25,
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "Hellfire flying north: the upright card, head 0.8 m up."
+      "note": "Hellfire flying north: the same ball seen from behind (FableF/missile_fx/Hellfire_Back). Fable stream art-fx-2."
     }
   ],
   "collision_fit": {

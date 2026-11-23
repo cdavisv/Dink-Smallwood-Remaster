@@ -2,7 +2,7 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF",
  "generated_by": "FableF/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 7 effect flipbooks, 10 static meshes.",
+ "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 11 effect flipbooks, 10 static meshes.",
  "assets": [
   {
    "name": "SM_Door_Barred_PR",
@@ -253,6 +253,86 @@
    "hot": [
     0.45,
     0.85,
+    1.0
+   ]
+  },
+  {
+   "name": "Fireball_Back",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Fireball_Back/T_FX_Fireball_Back_Flipbook.png",
+   "grid": [
+    6,
+    6
+   ],
+   "fps": 24,
+   "glow": 2.2,
+   "families": [
+    "missile_fx",
+    "508 effects/comets/sm-comt1/comt8-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.55,
+    0.95,
+    1.0
+   ]
+  },
+  {
+   "name": "Fireball_Front",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Fireball_Front/T_FX_Fireball_Front_Flipbook.png",
+   "grid": [
+    6,
+    6
+   ],
+   "fps": 24,
+   "glow": 2.2,
+   "families": [
+    "missile_fx",
+    "502 effects/comets/sm-comt1/comt2-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.55,
+    0.95,
+    1.0
+   ]
+  },
+  {
+   "name": "Hellfire_Back",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Hellfire_Back/T_FX_Hellfire_Back_Flipbook.png",
+   "grid": [
+    6,
+    6
+   ],
+   "fps": 24,
+   "glow": 1.8,
+   "families": [
+    "missile_fx",
+    "518 effects/comets/sm-comt2/fbal8-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.55,
+    0.95,
+    1.0
+   ]
+  },
+  {
+   "name": "Hellfire_Front",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Hellfire_Front/T_FX_Hellfire_Front_Flipbook.png",
+   "grid": [
+    6,
+    6
+   ],
+   "fps": 24,
+   "glow": 1.8,
+   "families": [
+    "missile_fx",
+    "512 effects/comets/sm-comt2/fbal2-"
+   ],
+   "blend": "translucent",
+   "hot": [
+    0.55,
+    0.95,
     1.0
    ]
   },
