@@ -1,4 +1,5 @@
 """Per-character hair styles for hair_groom.py. Lengths in metres, angles in degrees."""
+import math
 def short_shells(k=1.0):
     return [
         dict(n=int(430 * k), layer=1, tiles='dense', e0=0, e1=.92, width=(.026, .034), nseg=3, across=1, lift_scale=.35, lift_off=.0012, roll=.02, len_var=.2, t_range=(0.0, .8)),
@@ -46,6 +47,19 @@ def long_shells(k=1.0, w=1.0):
         dict(n=int(110 * k), layer=3, tiles=('n_mid', 'n_thin'), e0=.58, e1=1.0, azmax=1.0, width=(.008 * w, .013 * w), nseg=5, across=1, lift_scale=1.0, lift_off=.0015, roll=.12, len_var=.2, taper=.5, kind='fringe'),
         dict(n=int(120 * k), layer=5, tiles=('n_wisp', 'n_thin'), e0=.86, e1=1.0, width=(.005 * w, .008 * w), nseg=2, across=1, lift_scale=1.0, lift_off=.0008, kind='wisp'),
     ]
+def bob_shells(k=1.0, w=1.0, wv=1.0, tp=0.0, rl=1.0):
+    """A full bob to the jaw and nape (the Mother): short cards in many segments so the bell curves, a fringe, wisps at the hair line.
+    wv: width of the cards one SEES (the under layers keep w); tp: added to every taper (a card narrows to a point instead of ending
+    square); rl: gain on the roll of the seen cards about their own length (locks that do not lie in parallel bands)."""
+    return [
+        dict(n=int(270 * k), layer=2, tiles=('n_dense', 'n_mid'), e0=0, e1=1.0, width=(.025 * w, .033 * w), nseg=6, seg_len=.040, across=1, lift_scale=1.0, lift_off=0.0, roll=.05, len_var=.05, taper=min(.9, .2 + tp), kind='under'),
+        dict(n=int(262 * k), layer=3, tiles=('n_dense', 'n_mid'), e0=0, e1=1.0, width=(.015 * w * wv, .022 * w * wv), nseg=6, seg_len=.040, across=1, lift_scale=1.0, lift_off=0.0, roll=.10 * rl, len_var=.08 + .1 * (rl - 1), taper=min(.9, .4 + tp), kind='hair'),
+        dict(n=int(56 * k), layer=3, tiles=('n_mid', 'n_thin'), e0=0, e1=.97, width=(.008 * w * wv, .012 * w * wv), nseg=6, seg_len=.040, across=1, lift_scale=1.0, lift_off=0.0, roll=.2 * rl, len_var=.15, taper=min(.9, .7 + tp), nblend=.7, kind='over'),
+        dict(n=int(150 * k), layer=2, tiles=('n_dense',), e0=.2, e1=1.0, azmin=2.0, width=(.022 * w, .030 * w), nseg=6, seg_len=.040, across=1, lift_scale=1.0, lift_off=0.0, roll=.04, len_var=.04, taper=min(.9, .15 + tp), kind='under'),      # the back of the head and the nape closed: between the two sides of the parting the cap's rim showed as dark specks
+        dict(n=int(130 * k), layer=3, tiles=('n_mid', 'n_thin'), e0=.55, e1=1.0, azmax=1.0, width=(.008 * w * wv, .013 * w * wv), nseg=4, across=1, lift_scale=1.0, lift_off=.0015, roll=.12 * rl, len_var=.2, taper=min(.9, .5 + tp), kind='fringe'),
+        dict(n=int(70 * k), layer=3, tiles=('n_mid', 'n_thin'), e0=0, e1=.62, wfun=lambda az, e: math.exp(-((math.sin(az) * max(e, .05)) / .06) ** 2), width=(.011 * w * wv, .015 * w * wv), nseg=6, seg_len=.040, across=1, lift_scale=1.0, lift_off=.0012, roll=.10 * rl, len_var=.1, taper=min(.9, .4 + tp), t_range=(0.0, .6), kind='cross'),      # locks rooted beside the parting and combed over it, so the scalp does not show as a dark jagged line
+        dict(n=int(140 * k), layer=5, tiles=('n_wisp', 'n_thin'), e0=.86, e1=1.0, width=(.005 * w, .008 * w), nseg=2, across=1, lift_scale=1.0, lift_off=.0008, kind='wisp'),
+    ]
 STYLES = {
  # The maidens (NPC/Maiden and its colour twins; 1997 pictures 221-259): long loose yellow hair with a fringe
  'Maiden': dict(dir='NPC/Maiden', kind='long', seed=33, hairline=(.46, .12, -.5), guides=1200, density=700000, interp=4, K=24, resample=30,
@@ -83,20 +97,18 @@ STYLES = {
                 strand=dict(melanin=.58, redness=.8, rough=.3, radial=.4, rand_col=.10),
                 albedo=(.105, .042, .017), col_var=.2, cap_h=.45, brow=dict(th=.0054, n=600), brow_dark=.85, brow_px=2.3, brow_melanin=.2, card_mat=dict(spec=.005, spec2=20.0, transl=.8), brow_rgb='70,40,26', lash_rgb='46,28,20',
                 tile=dict(frizz=.008, wave=.012, clump=.5, stray=.015, tip_gain=.2, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0), shells=narrow_short(1.35, .62, 0, .8, fly=4), edge_narrow=.3, cap_rings=17, cap_segs=38),
- 'Mother': dict(kind='bun', seed=21, hairline=(.46, .12, -.5), part_split=.06, guides=1100, density=700000, interp=4, K=16, resample=24,
-                bun_dir=(0, .93, -.28), bun_r=(.040, .036, .030), bun_bundles=7, lift_tip=.005, jit=.04, wander=.008, wisps=3, wisps_nape=5, card_wisps=5, card_wisps_nape=8,   # in the game a loose strand across the temple or cheek is a thin dark line on the face: few, and mostly at the nape
-               
-                clump=.35, clump_d=.007, noise_d=.0012, noise_s=10.0, frizz_d=.0009, trim_rand=.01, streak_scale=45.0,
-                strand=dict(melanin=.42, redness=.30, rough=.34, radial=.4, rand_col=.12, grey=.16),
-                albedo=(.20, .115, .046), col_var=.08, grey=.05, cap_tip=(.92, 1.0), cap_h=.15, cap_hmax=.002, bun_strips=0, bun_ribbons=False, bun_core=1.06, bun_core_res=(48, 22), bun_coil=.085,   # ribbons wound round a coil are polygons with bright edges at any affordable segment count: the bun is the modelled core alone
-                grey_col=(.33, .27, .19), brow=dict(th=.0040, n=600, arch=.0078, x0=-.016, inner_up=.0020), brow_rgb='122,102,74', lash_rgb='30,21,14', brow_melanin=.5, brow_dark=.42,
+ # The Mother (pictures 351-359: a full golden head of hair to the jaw, a fringe, the ears covered). Until 16 Nov 2026 she wore a tight bun
+ # over a painted cap, which read as a helmet with a ruled hair line in every close-up (queue row SP-07): kind 'long' cut to a bob.
+ 'Mother': dict(kind='long', seed=21, hairline=(.46, .12, -.5), guides=1200, density=700000, interp=4, K=22, resample=26,
+                L_fringe=.048, z_end=1.545, z_back=-.02, gravity=1.0, back_pull=.3, fan=0.0, hug=.020, puff=.016, curl=.25, wave=.05, wave_n=5.0, wander=.011, len_lock=.035, lock_scale=26, part_back=.93, guide_smooth=4, over_lift=.007,
+                torso=dict(top=1.515, z_sh=1.44, y0=0.0, a=(.200, .070), b=(.128, .088)),
+                clump=.5, clump_d=.010, noise_d=.0016, frizz_d=.0010, trim_rand=.02, tip_spread=.002,
+                strand=dict(melanin=.30, redness=.32, rough=.34, radial=.4, rand_col=.20, grey=.14),
+                albedo=(.215, .132, .042), col_var=.22, grey=.05, grey_col=(.36, .30, .21), cap_tip=(.10, .22), cap_h=.5, cap_hmax=.008,
+                brow=dict(th=.0042, n=360, arch=.0066, x0=-.019, inner_up=.0006, len=(.0100, .0065)), brow_px=2.2, brow_rgb='122,102,74', lash_rgb='30,21,14', brow_melanin=.42, brow_dark=.45,   # sparse single hairs, light brown: darker than her hair, with skin showing between them
                 card_mat=dict(transl=.9, shadow=.2, spec=.006, spec2=10.0, ao=.45),
-                tile=dict(frizz=.004, wave=.006, clump=.3, stray=.008, smooth=.5, narrow_k=1.5, nn_dense=85, nn_mid=55, nn_thin=30, n_dense=750, n_mid=300, n_thin=100, n_wisp=30, n_fly=8, strand_px=2.0),
-                shells=[
-                    # Over the painted cap the cards only add loose strands and a broken outline. Dense tiles here read as
-                    # overlapping planks with square ends (the "straw shingles" of 13 Nov 2026): thin and wisp tiles, narrower.
-                    dict(n=300, layer=2, tiles=('n_thin', 'n_wisp'), e0=0, e1=1.0, width=(.007, .010), nseg=8, seg_len=.026, across=1, lift_scale=.8, lift_off=.0014, roll=.04, taper=.35),
-                    dict(n=200, layer=3, tiles=('n_wisp', 'n_thin'), e0=0, e1=.99, width=(.006, .009), nseg=8, seg_len=.026, across=1, lift_scale=1.0, lift_off=.0022, roll=.08, taper=.35),
-                    dict(n=110, layer=5, tiles=('n_wisp', 'n_thin'), e0=.9, e1=1.0, width=(.005, .008), nseg=2, across=1, lift_scale=1.0, lift_off=.0008, t_range=(0.0, .2)),
-                ]),
+                # in the game (23 Nov 2026) the bob read as straw thatch: wide flat strips with square ends in parallel bands. Feathered tips (rag_k), cards that
+                # narrow to a point (tp), narrower seen cards (wv), locks rolled out of the common plane (rl), more colour from strand to strand, a darker gold.
+                tile=dict(frizz=.010, wave=.026, clump=.6, stray=.020, tip_gain=.4, n_dense=750, n_mid=300, n_thin=100, n_wisp=30, n_fly=8, strand_px=2.0, rag_k=2.4),
+                shells=bob_shells(1.0, 1.0, wv=.80, tp=.30, rl=2.2)),
 }

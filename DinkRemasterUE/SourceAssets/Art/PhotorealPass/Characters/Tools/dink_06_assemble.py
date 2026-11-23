@@ -152,6 +152,31 @@ if CFG.get('skin_tuck_q'):   # open neckline: the skin just outside the dress op
     qc, qr, q0, q1, dep = CFG['skin_tuck_q']; skin.data.update(); c_ = co_np(skin.data); n_ = normals_np(skin.data)
     q_ = np.sqrt((((c_ - np.array(qc)) / np.array(qr)) ** 2).sum(1)); w_ = sstep(q0, q1, q_) * (c_[:, 2] > 1.30) * (c_[:, 2] < 1.56) * (np.abs(c_[:, 0]) < .19) * sstep(.070, .082, np.sqrt(c_[:, 0] ** 2 + (c_[:, 1] - .008) ** 2))
     set_co(skin.data, c_ - n_ * (w_ * dep)[:, None]); log('skin tucked under the neckline', int((w_ > 0).sum()))
+if CFG.get('skin_tuck_cover'):   # open neckline, by what the dress really covers: skin with cloth over it sinks, skin the opening shows stays (the ellipsoid of skin_tuck_q was narrower than the Mother's scoop: a sunk patch with a ragged edge showed on her chest)
+    dep = CFG['skin_tuck_cover']; skin.data.update(); c_ = co_np(skin.data); n_ = normals_np(skin.data); ob_ = bvh_of([o for o in parts if o['mat'] == 'outfit'])
+    zone = (c_[:, 2] > 1.30) & (c_[:, 2] < 1.56) & (np.abs(c_[:, 0]) < .19) & (np.sqrt(c_[:, 0] ** 2 + (c_[:, 1] - .008) ** 2) > .070)
+    w_ = np.zeros(len(c_))
+    for i_ in np.nonzero(zone)[0]:
+        hit = ob_.ray_cast(Vector(c_[i_] + n_[i_] * .0005), Vector(n_[i_]), .04)
+        if hit[0] is not None: w_[i_] = 1.0
+        else:      # at the rim of the opening the normal looks past the hem: cloth lying within 8 mm over the vertex covers it too
+            loc_, _, _, dist_ = ob_.find_nearest(Vector(c_[i_]), .008)
+            if loc_ is not None and abs(float((np.array(loc_) - c_[i_]) @ n_[i_])) > .0015: w_[i_] = 1.0      # under the cloth, or through it (a flake of skin lay on the shoulder of the dress)
+    nb_ = [[] for _ in c_]
+    for e_ in skin.data.edges: a_, b_ = e_.vertices; nb_[a_].append(b_); nb_[b_].append(a_)
+    for _ in range(2):      # the edge of the sunk zone is a slope under the hem, not a step; a vertex the opening shows never sinks
+        w_ = np.array([min(w_[i_], (w_[i_] + sum(w_[j_] for j_ in nb_[i_])) / (1 + len(nb_[i_]))) if nb_[i_] else w_[i_] for i_ in range(len(c_))])
+    set_co(skin.data, c_ - n_ * (w_ * dep)[:, None]); log('skin tucked under the cloth that covers it', int((w_ > 0).sum()), 'of zone', int(zone.sum()))
+if CFG.get('skin_decimate'):   # budget for a figure that stands several to a screen: {"hands": share kept}. The hero's fingered hands are 3.3k triangles each; the head is not touched
+    hr_ = float(CFG['skin_decimate'].get('hands', 1.0)); skin.data.update(); c_ = co_np(skin.data); m_ = c_.copy(); m_[:, 0] = np.abs(m_[:, 0])
+    Eh_, Wh_ = np.array(arm.data.bones['lowerarm_l'].head_local), np.array(arm.data.bones['hand_l'].head_local); LF_ = np.linalg.norm(Wh_ - Eh_)
+    sel_ = (c_[:, 2] < 1.40) & (((m_ - Eh_) @ ((Wh_ - Eh_) / LF_)) > LF_ - .012)
+    vg_ = skin.vertex_groups.new(name='_dec'); vg_.add([int(i_) for i_ in np.nonzero(sel_)[0]], 1.0, 'REPLACE'); t0_ = tri_count(skin)
+    skin.data.calc_loop_triangles(); ht_ = sum(1 for t_ in skin.data.loop_triangles if all(sel_[v_] for v_ in t_.vertices))
+    if ht_ and hr_ < 1.0:
+        d_ = skin.modifiers.new('dec', 'DECIMATE'); d_.ratio = 1 - ht_ * (1 - hr_) / t0_; d_.vertex_group = '_dec'
+        activate(skin); bpy.ops.object.modifier_apply(modifier='dec'); log('skin: hands decimated', ht_, 'of', t0_, '->', tri_count(skin))
+    skin.vertex_groups.remove(skin.vertex_groups['_dec'])
 prep(skin, 'Skin'); prep(eyes, 'Eyes'); prep(hair, 'Hair')
 for o in parts: prep(o, 'Outfit' if o['mat'] == 'outfit' else 'Gear')
 allp = [skin, eyes, hair] + parts
@@ -252,6 +277,9 @@ def make_lod(i, ratio):
     hl2 = np.zeros(len(me.vertices), np.float32)
     if me.attributes.get('hl') is not None: me.attributes['hl'].data.foreach_get('value', hl2)
     vg.add([int(j) for j in np.nonzero(hl2 < .5)[0]], 1.0, 'REPLACE')
+    if CFG.get('lod_body'):      # the share is of the BODY's triangles. The modifier counts the whole mesh, hair cards included, which it may not collapse: on a figure whose hair is a third of the mesh a plain .32 left 138 triangles of body under 10,900 of hair
+        nt_ = sum(len(p_.vertices) - 2 for p_ in me.polygons); nh_ = sum(len(p_.vertices) - 2 for p_ in me.polygons if all(hl2[v_] > .5 for v_ in p_.vertices))
+        ratio = (nh_ + ratio * (nt_ - nh_)) / max(nt_, 1)
     d = o.modifiers.new('dec', 'DECIMATE'); d.ratio = ratio; d.vertex_group = '_dec'; d.use_collapse_triangulate = True
     activate(o); bpy.ops.object.modifier_move_to_index(modifier='dec', index=0); bpy.ops.object.modifier_apply(modifier='dec')
     o.vertex_groups.remove(o.vertex_groups['_dec'])

@@ -570,9 +570,9 @@ HAIR_MODEL = os.environ.get('DINK_HAIR_MODEL', 'hair')   # 'lit' builds the prev
 # her pulled-back hair as a separate shingle, so she has none.
 HAIR_LOOK = {
     'Dink': {'tint': (2.4, 1.5, 1.1), 'scalars': {'Scatter': 0.8, 'BrowGain': 1.6}},
-    # HairPin*: the bun core (wide atlas tile 32 in SK_Mother_Photoreal_LOD0.fbx: centre (-0.1, 10.0, 165.7) cm in Blender
-    # axes, radius 4.6 cm; the engine's import negates y), so the cards drawn into it stay held (secondary motion)
-    'Mother': {'tint': (0.72, 0.67, 0.6), 'vectors': {'HairPinCentre': (-0.13, -9.99, 165.72)}, 'scalars': {'HairPinRadius': 5.5, 'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.3, 'StrandVariation': 0.12, 'DepthShade': 0.45, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
+    # the Mother's full golden bob (hair_styles.py 'Mother', pictures 351-359); until 17 Nov 2026 a bun over a painted cap with tint .72/.67/.6.
+    # HairPinRadius 0: she has no bun any more, nothing is pinned (the material skips the pin at a radius <= 0; stream motion, Master log 19 Nov 2026)
+    'Mother': {'tint': (0.98, 0.86, 0.62), 'vectors': {'HairPinCentre': (0.0, 0.0, 0.0)}, 'scalars': {'HairPinRadius': 0.0, 'RootShade': 1.0, 'TipLight': 0.6, 'Scatter': 0.45, 'StrandVariation': 0.22, 'DepthShade': 0.7, 'Specular': 0.12, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12, 'BrowGain': 1.5}},
     # the maidens' long yellow hair (hair_styles.py 'Maiden'); the twins set their own Tint (npc_variants.py MAIDEN_HAIR)
     'Maiden': {'tint': (1.25, 1.12, 0.85), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.7, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
