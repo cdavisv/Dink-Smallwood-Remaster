@@ -255,9 +255,10 @@ UStaticMeshComponent* UDinkCorpsePresenter::LeaveCard(UTexture2D* Texture, FVect
 	return C;
 }
 
-bool UDinkCorpsePresenter::CreatureDrawsCorpse(const AActor* Actor, int32 BaseDeath, int32 KillDir) const
+bool UDinkCorpsePresenter::CreatureDrawsCorpse(const AActor* Actor, int32 BaseDeath, int32 KillDir, int32 BaseWalk) const
 {
 	// an origin row draws its creature's death itself; a creature class draws the corpses it has art for (its corpse rows)
+	// (the same lookup as UDinkCreaturePresenter's LeaveCorpse: with base_death -1 the row of base_walk + 5, e.g. the slayer's 645)
 	if (!Actor) return false;
 	if (Actor->FindComponentByClass<UDinkCreatureComponent>()) return true;
 	const UDinkCreatureClassComponent* Body = Actor->FindComponentByClass<UDinkCreatureClassComponent>();
@@ -265,7 +266,7 @@ bool UDinkCorpsePresenter::CreatureDrawsCorpse(const AActor* Actor, int32 BaseDe
 	const UDinkCreatureSubsystem* Creatures = GetWorld() ? GetWorld()->GetSubsystem<UDinkCreatureSubsystem>() : nullptr;
 	const FDinkCreatureClassBinding* Binding = Creatures ? Creatures->GetClassBindings().FindByPredicate(
 		[Body](const FDinkCreatureClassBinding& B) { return B.ClassId == Body->GetClassId(); }) : nullptr;
-	return Binding && Binding->CorpseFor(BaseDeath, KillDir);
+	return Binding && Binding->CorpseFor(BaseDeath, KillDir, BaseWalk);
 }
 
 int32 UDinkCorpsePresenter::Present(float DeltaTime)
@@ -302,7 +303,8 @@ int32 UDinkCorpsePresenter::Present(float DeltaTime)
 			if ((Brain == 9 || Brain == 10 || Brain == 16) && Hp >= 1)
 			{
 				// decided while it lives: a script-made sprite's actor is destroyed before its kill is seen here
-				const bool bDraws = CreatureDrawsCorpse(S.Actor.Get(), S.GetProp(K_BaseDeath, -1), DinkCreatureClass::KillDir(Brain, S.Dir));
+				const bool bDraws = CreatureDrawsCorpse(S.Actor.Get(), S.GetProp(K_BaseDeath, -1), DinkCreatureClass::KillDir(Brain, S.Dir),
+					S.GetProp(K_BaseWalk, 0));
 				FSeen& Entry = Seen.FindOrAdd(Pair.Key);
 				Entry.Brain = Brain;
 				Entry.Hitpoints = Hp;

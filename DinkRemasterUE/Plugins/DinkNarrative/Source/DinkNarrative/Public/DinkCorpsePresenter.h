@@ -116,7 +116,7 @@ private:
 	void Clear();
 	UStaticMeshComponent* LeaveCard(UTexture2D* Texture, FVector2D SizeCm, int32 Screen, double X, double Y, const AActor* Ignore,
 		UMaterialInstanceDynamic** OutMaterial = nullptr);
-	bool CreatureDrawsCorpse(const AActor* Actor, int32 BaseDeath, int32 KillDir) const;
+	bool CreatureDrawsCorpse(const AActor* Actor, int32 BaseDeath, int32 KillDir, int32 BaseWalk) const;
 	void LayDownKinematic(USkeletalMeshComponent& Mesh, class UCapsuleComponent& Capsule);
 	void EnsureHolder();
 
