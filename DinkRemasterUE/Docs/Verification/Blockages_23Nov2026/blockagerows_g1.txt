@@ -1,0 +1,53 @@
+A20: after dink.Goto 471 300 200 Dink stands at screen 471 (220,200), feet 2 cm from the screen's level
+A61: 0.2 s after the warp, screen 2 (292,372): camera 244 cm from Dink's head (arm 250 of 240), sight to his head clear
+A61: 0.6 s after the warp, screen 2 (292,372): camera 244 cm from Dink's head (arm 250 of 240), sight to his head clear
+A61: 1.2 s after the warp, screen 2 (292,372): camera 244 cm from Dink's head (arm 250 of 240), sight to his head clear
+A61: 2.5 s after the warp, screen 2 (292,372): camera 244 cm from Dink's head (arm 250 of 240), sight to his head clear
+A61: walking into Ethel's door: screen 2 (292,373)
+A62 SCR_001 north-east corner by the sack (layer on): start screen 1 (440,150)
+A62 SCR_001 north-east corner by the sack (layer on): stopped at screen 1 (462,108); camera 18 cm from Dink's head (arm 54 of 240), sight to his head clear
+A62 SCR_001 room centre (comparison) (layer on): start screen 407 (300,200)
+A62 SCR_001 room centre (comparison) (layer on): stopped at screen 407 (300,160); camera 404 cm from Dink's head (arm 400 of 400), sight to his head clear
+A71 S003_P01 plaster corner post, box y 152-207, drawn y 202-206, from the north (layer off): start screen 3 (350,140)
+A71 S003_P01 plaster corner post, box y 152-207, drawn y 202-206, from the north (layer off): stopped at screen 3 (350,146); body front 219 cm from the drawn edge
+A71 S003_P01 plaster corner post, box y 152-207, drawn y 202-206, from the north (layer on): start screen 3 (350,140)
+A71 S003_P01 plaster corner post, box y 152-207, drawn y 202-206, from the north (layer on): stopped at screen 3 (350,179); body front 0 cm from the drawn edge
+A71 S003_P01 plaster corner post, box y 152-207, drawn y 202-206, from the north: the wall strip measured at entry faces Dink at y 185 (audit 202)
+A71 S003_P19 plaster door jamb, box y 152-207, drawn y 177-181, from the south (layer off): start screen 3 (423,216)
+A71 S003_P19 plaster door jamb, box y 152-207, drawn y 177-181, from the south (layer off): stopped at screen 3 (423,213); body front 114 cm from the drawn edge
+A71 S003_P19 plaster door jamb, box y 152-207, drawn y 177-181, from the south (layer on): start screen 3 (423,216)
+A71 S003_P19 plaster door jamb, box y 152-207, drawn y 177-181, from the south (layer on): stopped at screen 3 (423,198); body front 4 cm from the drawn edge
+A71 S003_P19 plaster door jamb, box y 152-207, drawn y 177-181, from the south: the wall strip measured at entry faces Dink at y 191 (audit 181)
+A71 S577_P09 dungeon wall, box y 33-94, drawn y 78-93, from the north (layer off): start screen 577 (341,22)
+A71 S577_P09 dungeon wall, box y 33-94, drawn y 78-93, from the north (layer off): stopped at screen 577 (341,28); body front 253 cm from the drawn edge
+A71 S577_P09 dungeon wall, box y 33-94, drawn y 78-93, from the north (layer on): start screen 577 (341,22)
+A71 S577_P09 dungeon wall, box y 33-94, drawn y 78-93, from the north (layer on): stopped at screen 577 (341,28); body front 253 cm from the drawn edge
+A71 S713_P06 dungeon wall, box y 190-251, drawn y 190-198, from the south (layer off): start screen 713 (208,258)
+A71 S713_P06 dungeon wall, box y 190-251, drawn y 190-198, from the south (layer off): stopped at screen 713 (208,254); body front 535 cm from the drawn edge
+A71 S713_P06 dungeon wall, box y 190-251, drawn y 190-198, from the south (layer on): start screen 713 (208,258)
+A71 S713_P06 dungeon wall, box y 190-251, drawn y 190-198, from the south (layer on): stopped at screen 713 (208,235); body front 11 cm from the drawn edge
+A71 S713_P06 dungeon wall, box y 190-251, drawn y 190-198, from the south: the wall strip measured at entry faces Dink at y 231 (audit 198)
+A92 SCR_126 low rock x 365-426 at y 253, walked east (layer off): farthest x on its line 390 (rock ends at 426), now screen 126 (390,253)
+A92 SCR_126 low rock x 365-426 at y 253, walked east (layer off): start screen 126 (325,253)
+A92 SCR_126 low rock x 365-426 at y 253, walked east (layer on): farthest x on its line 594 (rock ends at 426), now screen 126 (594,253)
+A92 SCR_126 low rock x 365-426 at y 253, walked east (layer on): start screen 126 (325,253)
+finding 5: SCR_130: 2 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 9 trimmed walls
+finding 5: SCR_134 not entered (Dink on 503, volume yes): skipped
+finding 5: SCR_161: 1 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 13 trimmed walls
+finding 5: SCR_162: 3 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 16 trimmed walls
+finding 5: SCR_193: 1 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 8 trimmed walls
+finding 5: SCR_194: 2 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 15 trimmed walls
+finding 5: SCR_196: 2 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 16 trimmed walls
+finding 5: SCR_228: 2 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 14 trimmed walls
+finding 5: SCR_261: 2 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 12 trimmed walls
+finding 5: SCR_34: 3 relaxed placements, 2 without a blocker over their footprint P28 P31 (kept as 1997 boxes); 7 trimmed walls
+finding 5: SCR_36: 1 relaxed placements, 1 without a blocker over their footprint P23 (kept as 1997 boxes); 21 trimmed walls
+finding 5: SCR_503: 10 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 0 trimmed walls
+finding 5: SCR_536: 21 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 0 trimmed walls
+finding 5: SCR_6: 1 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 11 trimmed walls
+finding 5: SCR_66: 2 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 9 trimmed walls
+finding 5: SCR_97: 2 relaxed placements, 0 without a blocker over their footprint (kept as 1997 boxes); 8 trimmed walls
+P8 SCR_070 the King, from the south (layer off): start screen 70 (333,280)
+P8 SCR_070 the King, from the south (layer off): stopped at screen 70 (333,209); King actor 116 cm away, his drawn bounds 315 x 206 cm, Dink's capsule inside them (0 cm from the box); camera 244 cm from Dink's head (arm 250 of 240), sight to his head clear
+P8 SCR_070 the King, from the south (layer on): start screen 70 (333,280)
+P8 SCR_070 the King, from the south (layer on): stopped at screen 70 (333,216); King actor 135 cm away, his drawn bounds 315 x 206 cm, Dink's capsule inside them (25 cm from the box); camera 244 cm from Dink's head (arm 250 of 240), sight to his head clear

@@ -17,6 +17,7 @@
 #include "Greybox/DinkPlaceholderActor.h"
 #include "DinkCollision.h"
 #include "DinkCreatureSubsystem.h"
+#include "DinkCreatureClassComponent.h"
 #include "DinkLandforms.h"
 #include "DinkPlayerBlockers.h"
 #include "DinkArtFamilySubsystem.h"
@@ -27,6 +28,9 @@
 #include "Components/PrimitiveComponent.h"
 #include "Components/SkinnedMeshComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
+#include "Engine/StaticMesh.h"
+#include "StaticMeshResources.h"
 #include "Dom/JsonObject.h"
 #include "HAL/IConsoleManager.h"
 #include "Misc/App.h"
@@ -76,6 +80,13 @@ void FDinkPhysicalPlaySettings::Load()
 			else if (Key == TEXT("Bodies")) bBodies = FCString::Atoi(*Value) != 0;
 			else if (Key == TEXT("Hits")) bHits = FCString::Atoi(*Value) != 0;
 			else if (Key == TEXT("CreatureReach")) bCreatureReach = FCString::Atoi(*Value) != 0;
+			else if (Key == TEXT("StillBodies"))
+			{
+				TArray<FString> Ids;
+				Value.ParseIntoArray(Ids, TEXT(","));
+				StillBodies.Reset();
+				for (FString& Id : Ids) { Id.TrimStartAndEndInline(); if (!Id.IsEmpty()) StillBodies.Add(FName(*Id)); }
+			}
 		}
 		Source = DefaultIniPath();
 	}
@@ -116,6 +127,27 @@ bool FDinkPhysicalPlaySettings::ParseRelaxed(const FString& Json)
 				if (!Pair.Value->TryGetArray(R) || R->Num() != 4) continue;
 				Feet.Add(FCString::Atoi(*ScreenPair.Key) * 1000 + FCString::Atoi(*Pair.Key),
 					FIntRect(int32((*R)[0]->AsNumber()), int32((*R)[1]->AsNumber()), int32((*R)[2]->AsNumber()), int32((*R)[3]->AsNumber())));
+			}
+		}
+	}
+	Trimmed.Reset();
+	TrimAlongX.Reset();
+	const TSharedPtr<FJsonObject>* TrimmedObject = nullptr;
+	if (Root->TryGetObjectField(TEXT("trimmed"), TrimmedObject))
+	{
+		// {screen: {placement: [box l, t, r, b]}}
+		for (const auto& ScreenPair : (*TrimmedObject)->Values)
+		{
+			const TSharedPtr<FJsonObject>* ByPlacement = nullptr;
+			if (!ScreenPair.Value->TryGetObject(ByPlacement)) continue;
+			for (const auto& Pair : (*ByPlacement)->Values)
+			{
+				const TArray<TSharedPtr<FJsonValue>>* R = nullptr;
+				if (!Pair.Value->TryGetArray(R) || R->Num() != 4) continue;
+				const int32 Key = FCString::Atoi(*ScreenPair.Key) * 1000 + FCString::Atoi(*Pair.Key);
+				Trimmed.Add(Key, FIntRect(int32((*R)[0]->AsNumber()), int32((*R)[1]->AsNumber()), int32((*R)[2]->AsNumber()), int32((*R)[3]->AsNumber())));
+				// the wall's run: along x unless the generator says y ("across" of schema: the trim rect's long side)
+				if (const FIntRect* F = Feet.Find(Key); !F || F->Width() >= F->Height()) TrimAlongX.Add(Key);
 			}
 		}
 	}
@@ -235,12 +267,26 @@ void UDinkGameplay::CheckRelaxedBlockers(int32 Screen)
 	// the screen's art first (idempotent: its family meshes and their player-only hulls), then every hull's plan
 	if (UDinkArtFamilySubsystem* Families = World->GetSubsystem<UDinkArtFamilySubsystem>()) Families->ApplyScreen(Screen);
 	TArray<FBox, TInlineAllocator<64>> Hulls;
+	TArray<UStaticMeshComponent*, TInlineAllocator<64>> Walls;
 	for (TObjectIterator<UPrimitiveComponent> It; It; ++It)
 	{
-		if (It->GetWorld() == World && It->IsRegistered() && It->ComponentHasTag(DinkPlayerBlockers::Tag)) Hulls.Add(It->Bounds.GetBox());
+		if (It->GetWorld() != World || !It->IsRegistered()) continue;
+		if (It->ComponentHasTag(DinkPlayerBlockers::Tag)) Hulls.Add(It->Bounds.GetBox());
+		// A71: a trimmed wall needs its drawn wall module there (it keeps its box inside the drawn strip, no hull; shown or not: the
+		// interior camera hides walls between it and Dink)
+		if (UStaticMeshComponent* M = Cast<UStaticMeshComponent>(*It); M && M->GetStaticMesh() && M->GetStaticMesh()->GetName().Contains(TEXT("Wall"))) Walls.Add(M);
 	}
 	for (const int32 N : *Set)
 	{
+		if (const FIntRect* WallBox = PhysicalPlay.Trimmed.Find(Screen * 1000 + N))
+		{
+			if (!MeasureWallStrip(Screen, N, *WallBox, PhysicalPlay.TrimAlongX.Contains(Screen * 1000 + N), Walls))
+			{
+				RelaxedWithoutBlocker.Add(Screen * 1000 + N);
+				UE_LOG(LogDinkNarrative, Display, TEXT("DINK PHYSICAL PLAY: wall S%03d_P%02d keeps its 1997 box (no drawn wall module across it)"), Screen, N);
+			}
+			continue;
+		}
 		const FIntRect* Foot = PhysicalPlay.Feet.Find(Screen * 1000 + N);
 		if (!Foot) continue;
 		FBox Plan(ForceInit);
@@ -261,6 +307,69 @@ void UDinkGameplay::CheckRelaxedBlockers(int32 Screen)
 			UE_LOG(LogDinkNarrative, Display, TEXT("DINK PHYSICAL PLAY: S%03d_P%02d keeps its 1997 box (no player-only blocker over its drawn footprint)"), Screen, N);
 		}
 	}
+}
+
+bool UDinkGameplay::MeasureWallStrip(int32 Screen, int32 N, const FIntRect& Box, bool bAlongX, const TArray<UStaticMeshComponent*, TInlineAllocator<64>>& Walls)
+{
+	// A71: the drawn strip of a trimmed wall, measured on the wall meshes as the world stands: the vertices of their lowest 1.2 m (LOD 0,
+	// mesh space: the wall's faces where they meet the floor; a cornice or an arch overhead does not count) that fall inside its 1997
+	// box give the strip's extent across the wall; the strip runs on along the wall to the box's ends. Map pixels from world by the
+	// box's own corners (an affine fit over one box). Family meshes have no collision of their own, so no trace can find them.
+	UDinkDirector* D = Director();
+	FVector P00, P10, P01;
+	if (!D || !D->PixelToWorld(Screen, Box.Min.X + 20.0, Box.Min.Y, P00) || !D->PixelToWorld(Screen, Box.Max.X + 20.0, Box.Min.Y, P10) ||
+		!D->PixelToWorld(Screen, Box.Min.X + 20.0, Box.Max.Y, P01)) return false;
+	const FVector2D Ex(FVector2D(P10 - P00) / FMath::Max(1, Box.Width())), Ey(FVector2D(P01 - P00) / FMath::Max(1, Box.Height()));
+	const double Det = Ex.X * Ey.Y - Ex.Y * Ey.X;
+	if (FMath::Abs(Det) < 1e-6) return false;
+	const auto ToPixel = [&](const FVector& W) { const FVector2D R = FVector2D(W) - FVector2D(P00); return FVector2D(Box.Min.X + (R.X * Ey.Y - R.Y * Ey.X) / Det, Box.Min.Y + (Ex.X * R.Y - Ex.Y * R.X) / Det); };
+	FBox Plan(ForceInit);
+	for (const FVector& C : { P00, P10, P01, P10 + (P01 - P00) }) Plan += C;
+	Plan = Plan.ExpandBy(FVector(20.0, 20.0, 1e5));
+	const double A0 = bAlongX ? Box.Min.X : Box.Min.Y, A1 = bAlongX ? Box.Max.X : Box.Max.Y; // along the wall
+	const double C0 = bAlongX ? Box.Min.Y : Box.Min.X, C1 = bAlongX ? Box.Max.Y : Box.Max.X; // across it
+	double Lo = TNumericLimits<double>::Max(), Hi = TNumericLimits<double>::Lowest(), ALo = Lo, AHi = Hi;
+	const auto Take = [&](const UStaticMesh& Mesh, const FTransform& T)
+	{
+		const double Floor = Mesh.GetBounds().Origin.Z - Mesh.GetBounds().BoxExtent.Z; // the mesh's foot, wherever its pivot is
+		const FStaticMeshRenderData* RD = Mesh.GetRenderData();
+		if (!RD || RD->LODResources.Num() == 0) return;
+		const FPositionVertexBuffer& PB = RD->LODResources[0].VertexBuffers.PositionVertexBuffer;
+		if (!PB.GetVertexData()) return;
+		for (uint32 I = 0; I < PB.GetNumVertices(); ++I)
+		{
+			const FVector V(PB.VertexPosition(I));
+			if (V.Z > Floor + 120.0) continue;
+			const FVector2D Px = ToPixel(T.TransformPosition(V));
+			const double A = bAlongX ? Px.X : Px.Y, C = bAlongX ? Px.Y : Px.X;
+			if (A < A0 || A > A1 || C < C0 - 2 || C > C1 + 2) continue;
+			Lo = FMath::Min(Lo, C); Hi = FMath::Max(Hi, C); ALo = FMath::Min(ALo, A); AHi = FMath::Max(AHi, A);
+		}
+	};
+	for (UStaticMeshComponent* M : Walls)
+	{
+		if (!M || !M->GetStaticMesh() || !M->Bounds.GetBox().Intersect(Plan)) continue;
+		if (const UInstancedStaticMeshComponent* I = Cast<UInstancedStaticMeshComponent>(M))
+		{
+			for (int32 K = 0; K < I->GetInstanceCount(); ++K)
+			{
+				FTransform T;
+				if (I->GetInstanceTransform(K, T, true) && M->GetStaticMesh()->GetBounds().GetBox().TransformBy(T).Intersect(Plan)) Take(*M->GetStaticMesh(), T);
+			}
+		}
+		else Take(*M->GetStaticMesh(), M->GetComponentTransform());
+	}
+	// a wall that runs at least 40 % of the box (a module drawn shorter than its box still closes the line: the strip runs on); a wall
+	// module over the box whose vertices cannot be read (no CPU copy, a cooked build) keeps the generator's strip (the 15 Nov audit slice)
+	if (Hi < Lo || AHi - ALo < 0.4 * (A1 - A0))
+	{
+		bool bModule = false;
+		for (UStaticMeshComponent* M : Walls) bModule |= M && M->Bounds.GetBox().Intersect(Plan);
+		return bModule && PhysicalPlay.Feet.Contains(Screen * 1000 + N);
+	}
+	const int32 L = FMath::Clamp(FMath::FloorToInt(Lo), int32(C0), int32(C1)), R = FMath::Clamp(FMath::CeilToInt(Hi), int32(C0), int32(C1));
+	PhysicalPlay.Feet.Add(Screen * 1000 + N, bAlongX ? FIntRect(Box.Min.X, L, Box.Max.X, R) : FIntRect(L, Box.Min.Y, R, Box.Max.Y));
+	return true;
 }
 
 int32 UDinkGameplay::PlayHardness(int32 Screen, int32 MapX, int32 MapY, int32 Code) const
@@ -615,18 +724,24 @@ void UDinkGameplay::UpdateCreatureBodyBlockers()
 			AActor* A = S.Actor.Get();
 			// living, drawn creatures only: a dead one (brain 0, its corpse), a hidden one or an untouchable one (nohit: a frozen
 			// cut-scene body that must not seal a doorway) blocks nothing
-			if (Pair.Key == 1 || !A || !S.bActive || A->IsHidden() || S.GetProp(TEXT("brain")) == 0 || S.GetProp(TEXT("nohit")) != 0) continue;
+			// P8 (playtest 20 Nov 2026): a still class-bound body that is solid in 1997 (brain 0, sp_hard 0: the seated King of the
+			// ending, S070_P03) blocks at its drawn body too; its 1997 box is smaller than the drawn King and throne, so Dink walked into him
+			// (only the class rows listed in physical_play.ini StillBodies: a still cut-scene body elsewhere must not stand in Dink's way)
+			const UDinkCreatureClassComponent* StillClass = A && S.GetProp(TEXT("brain")) == 0 && S.GetProp(TEXT("hard"), 1) == 0 ? UDinkCreatureSubsystem::FindClassBody(A) : nullptr;
+			const bool bStillSolid = StillClass && PhysicalPlay.StillBodies.Contains(StillClass->GetClassId());
+			if (Pair.Key == 1 || !A || !S.bActive || A->IsHidden() || (S.GetProp(TEXT("brain")) == 0 && !bStillSolid) || S.GetProp(TEXT("nohit")) != 0) continue;
 			// Review of PR #160, finding 1: the creatures of creatures.json's placement rows (tag DinkCreature) AND every class-bound
 			// creature (its UDinkCreatureClassComponent: script-made and placed foes, ducks, pigs), but not people (brain 16, the
 			// smart people of dink.cpp; their 1997 boxes are their own) nor a placement row whose authored body boxes (Pawn profile,
 			// DinkAuthoredInteraction: what its touches and hits use) already stop Dink at its drawn body (finding 4).
 			const bool bClassBody = UDinkCreatureSubsystem::FindClassBody(A) != nullptr;
 			if (!bClassBody && !A->ActorHasTag(TEXT("DinkCreature"))) continue;
+			if (bStillSolid && !bClassBody) continue;
 			if (S.GetProp(TEXT("brain")) == 16 || HasAuthoredPawnBody(*A)) continue;
 			// Review of 22 Nov 2026, finding 7: a body that may stand still in a doorway or on a bridge for good blocks nothing: a frozen
 			// one (sp_freeze, a cut-scene) and a harmless one (no touch damage, no attack, not after Dink: a duck, a pig). A foe
 			// moves on to fight him, so its body never seals a way.
-			if (S.bFrozen || (S.GetProp(TEXT("touch_damage")) <= 0 && S.GetProp(TEXT("base_attack"), -1) == -1 && S.GetProp(TEXT("target")) != 1)) continue;
+			if (!bStillSolid && (S.bFrozen || (S.GetProp(TEXT("touch_damage")) <= 0 && S.GetProp(TEXT("base_attack"), -1) == -1 && S.GetProp(TEXT("target")) != 1))) continue;
 			UPrimitiveComponent* Body = DrawnCreatureBody(*A);
 			if (!Body) continue;
 			UBoxComponent* Box = FindCreatureBodyBlocker(A);

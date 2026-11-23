@@ -286,12 +286,19 @@ public:
 			{
 				if (It->GetWorld() == W && It->IsRegistered() && It->ComponentHasTag(DinkPlayerBlockers::Tag) && It->IsCollisionEnabled()) Hulls.Add(It->Bounds.GetBox());
 			}
-			int32 Checked = 0, Missing = 0, Unsafe = 0;
+			int32 Checked = 0, Missing = 0, Unsafe = 0, Walls = 0;
 			FString Which;
 			for (const int32 N : G->GetPhysicalPlaySettings().Relaxed.FindRef(Screen))
 			{
 				const FIntRect* Foot = G->GetPhysicalPlaySettings().Feet.Find(Screen * 1000 + N);
 				if (!Foot || !V) continue;
+				// A71: a trimmed wall has no hull; its box stays inside its drawn strip (measured on the wall mesh at entry)
+				if (G->GetPhysicalPlaySettings().Trimmed.Contains(Screen * 1000 + N))
+				{
+					++Walls;
+					if (G->PlayHardness(Screen, (Foot->Min.X + Foot->Max.X) / 2, (Foot->Min.Y + Foot->Max.Y) / 2, 100 + N) != 100 + N) { ++Unsafe; Which += FString::Printf(TEXT(" wall P%02d open at its strip"), N); }
+					continue;
+				}
 				FBox Plan(ForceInit);
 				for (const FIntPoint C : { Foot->Min, Foot->Max, FIntPoint(Foot->Min.X, Foot->Max.Y), FIntPoint(Foot->Max.X, Foot->Min.Y) }) Plan += V->MapPixelToWorld(C.X, C.Y);
 				Plan = Plan.ExpandBy(FVector(15.0, 15.0, 1e6));
@@ -307,7 +314,7 @@ public:
 					if (AtSide != Code) ++Unsafe;
 				}
 			}
-			Test->AddInfo(FString::Printf(TEXT("finding 5: SCR_%d: %d relaxed placements, %d without a blocker over their footprint%s (kept as 1997 boxes)"), Screen, Checked, Missing, *Which));
+			Test->AddInfo(FString::Printf(TEXT("finding 5: SCR_%d: %d relaxed placements, %d without a blocker over their footprint%s (kept as 1997 boxes); %d trimmed walls"), Screen, Checked, Missing, *Which, Walls));
 			Test->TestEqual(FString::Printf(TEXT("finding 5: SCR_%d: a relaxed placement without its drawn blocker keeps its 1997 box"), Screen), Unsafe, 0);
 			Next(Phase + 1); return false;
 		}

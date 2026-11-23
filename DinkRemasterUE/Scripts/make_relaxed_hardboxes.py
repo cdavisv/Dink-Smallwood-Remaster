@@ -18,6 +18,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -145,6 +146,166 @@ def open_tile_cells(repo, screen, open_classes, tile_classes):
     return {t['row'] * 12 + t['col'] for t in scr.get('tiles') or [] if tile_classes.get(int(t['num'])) in open_classes}
 
 
+def read_audit_tiles(audit, share):
+    """A92: screen -> tile cells the dink.PhysAudit summary (phys_mismatches.csv) lists as an invisible wall of low tile hardness (on
+    open grass, sand, snow, stone floors) with nothing drawn on at least `share` of the tile's contact edge."""
+    path = os.path.join(audit, 'phys_mismatches.csv')
+    out = {}
+    if not os.path.exists(path):
+        return out
+    with open(path, newline='', encoding='utf-8') as f:
+        for r in csv.DictReader(f):
+            # low (2) only: a painted rock, ledge or boulder line like grass_rocky's (projectiles cross it in 1997 too); a solid tile
+            # line (a fence, a wall base, a structure outline under a sprite) stays for the art row PM-05 to draw
+            if not r['category'].startswith('1 invisible wall (tile low'):
+                continue
+            m = re.search(r'on (\d+)% of', r['detail'])
+            t = re.match(r'tile (\d+),(\d+)', r['subject'])
+            if not m or not t or int(m.group(1)) < share * 100:
+                continue
+            out.setdefault(int(r['screen']), set()).add(int(t.group(2)) * 12 + int(t.group(1)))
+    return out
+
+
+BLOB_MAX_PX = 60
+
+
+def tile_is_blobs(repo, screen, cell, cache={}):
+    """A92: every piece of hard tile pixels (codes 1-3, 8-connected, followed into the neighbouring tiles) that reaches into the tile
+    is a blob no wider and no taller than BLOB_MAX_PX: a painted rock or boulder, not a line (a fence, hedge, ledge or bank)."""
+    from PIL import Image
+    if screen not in cache:
+        path = os.path.join(repo, 'tools', 'dinkex', 'out', 'hardness', f'SCR_{screen:03d}.png')
+        cache.clear()
+        cache[screen] = Image.open(path).load() if os.path.exists(path) else None
+    px = cache[screen]
+    if px is None:
+        return False
+    hard = lambda x, y: 0 <= x < 600 and 0 <= y < 400 and px[x, y] in (1, 2, 3)
+    tx, ty = (cell % 12) * 50, (cell // 12) * 50
+    seen = set()
+    for y0 in range(ty, ty + 50):
+        for x0 in range(tx, tx + 50):
+            if (x0, y0) in seen or not hard(x0, y0):
+                continue
+            stack, l, t, r, b = [(x0, y0)], x0, y0, x0, y0
+            seen.add((x0, y0))
+            while stack:
+                x, y = stack.pop()
+                l, t, r, b = min(l, x), min(t, y), max(r, x), max(b, y)
+                if r - l > BLOB_MAX_PX or b - t > BLOB_MAX_PX:
+                    return False
+                for nx in (x - 1, x, x + 1):
+                    for ny in (y - 1, y, y + 1):
+                        if (nx, ny) not in seen and hard(nx, ny):
+                            seen.add((nx, ny))
+                            stack.append((nx, ny))
+    return True
+
+
+def read_fills(path):
+    """screen -> 3 px cells of the export's water and void fills (collision.json fill_water, fill_solid): 1997 hardness 0 that the
+    remaster closes for everyone (open sea, canopy interiors, the black void round rooms)."""
+    with open(path, encoding='utf-8') as f:
+        coll = json.load(f)['screens']
+    out = {}
+    for sid, c in coll.items():
+        cells = set()
+        for l, t, r, b in (c.get('fill_water') or []) + (c.get('fill_solid') or []):
+            for y in range(max(0, t) // CELL, min(GH, (b + CELL - 1) // CELL)):
+                for x in range(max(0, l) // CELL, min(GW, (r + CELL - 1) // CELL)):
+                    if l <= x * CELL + 1 < r and t <= y * CELL + 1 < b:
+                        cells.add((x, y))
+        out[int(sid[4:])] = cells
+    return out
+
+
+WALL_MESHES = ('Wall_Plaster', 'Wall_Dungeon')
+
+
+def wall_candidates(rows, screen):
+    """A71: interior and dungeon wall modules (family meshes, unscripted, no warp) whose drawn body-height footprint is a thin strip:
+    the wall is drawn on one line of its thick 1997 box (often the room-side face, but door jambs, corner posts and short modules
+    stand inside it). -> [(placement, trim rect l, t, r, b inclusive map px)]: the drawn strip, run on along its length to the box's
+    ends so the wall line stays closed where the module is drawn shorter than its box."""
+    out = []
+    for r in rows:
+        if r['kinds'] not in ('family', 'family_instance') or not any(w in r['mesh'] for w in WALL_MESHES):
+            continue
+        if r['script'] or r['warp'] == '1' or r['type'] == '2' or int(r['stamped_px']) <= 0 or not r['origin'].startswith(f'S{screen:03d}_P'):
+            continue
+        l, t, rr, b = (float(r[k]) for k in ('own_l', 'own_t', 'own_r', 'own_b'))
+        bl, bt, br, bb = (float(r[k]) for k in ('box_l', 'box_t', 'box_r', 'box_b'))
+        if rr <= l and b <= t:
+            continue
+        w, h = rr - l, b - t
+        if min(w, h) > 0.35 * max(w, h) or max(w, h) < 10:
+            continue  # not a straight strip (a curve, an arch, a post): its box stays
+        if w >= h:   # runs east-west: the drawn rows, the box's columns
+            rect = (max(0, int(bl)), int(t), min(599, int(br) - 1), max(int(b), int(t) + 2))
+        else:        # runs north-south
+            rect = (int(l), max(0, int(bt)), max(int(rr), int(l) + 2), min(399, int(bb) - 1))
+        box = (max(0, int(bl)), max(0, int(bt)), min(599, int(br) - 1), min(399, int(bb) - 1))
+        out.append((int(r['origin'].split('_P')[1]), rect, box))
+    return out
+
+
+def trim_walls(screen, walls, free, owners, fill_cells, relaxed, feet, trimmed, kept):
+    """Trims each wall box to its drawn strip when no passage opens: on the 1997 hardness at 3 px less the export's fills (nobody walks
+    the void or the sea), every 4-connected piece of the freed box cells touches at most one walkable region (a room on each side of a
+    partition stays two rooms: the strip still parts them)."""
+    fill_cells = fill_cells or set()
+    ground = [[free[y][x] and (x, y) not in fill_cells for x in range(GW)] for y in range(GH)]
+    lab, sizes = label_free(ground)
+    for n, (l, t, r, b), box in walls:
+        keep = lambda x, y: x * CELL + CELL > l and x * CELL <= r and y * CELL + CELL > t and y * CELL <= b
+        cells = [(x, y) for x, y in owners.get(n, []) if not keep(x, y)]
+        if not cells:
+            continue
+        # pieces of the freed cells
+        todo, pieces = set(cells), []
+        while todo:
+            seed = todo.pop()
+            piece, stack = [seed], [seed]
+            while stack:
+                x, y = stack.pop()
+                for q in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                    if q in todo:
+                        todo.discard(q)
+                        piece.append(q)
+                        stack.append(q)
+            pieces.append(piece)
+        bad, useful = False, False
+        for piece in pieces:
+            touched = set()
+            for x, y in piece:
+                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                    if 0 <= nx < GW and 0 <= ny < GH and lab[ny][nx] and sizes.get(lab[ny][nx], 0) >= MIN_REGION:
+                        touched.add(lab[ny][nx])
+            bad |= len(touched) >= 2
+            useful |= len(touched) == 1
+        if bad:
+            kept.append({'origin': f'S{screen:03d}_P{n:02d}', 'mesh': 'wall', 'reason': 'passage: a freed piece of the wall box joins two walkable regions'})
+            continue
+        if not useful:
+            continue  # nobody can reach the freed part: nothing to gain
+        for piece in pieces:
+            k = None
+            for x, y in piece:
+                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                    if 0 <= nx < GW and 0 <= ny < GH and lab[ny][nx] and sizes.get(lab[ny][nx], 0) >= MIN_REGION:
+                        k = lab[ny][nx]
+            if k is None:
+                continue
+            for x, y in piece:
+                ground[y][x] = True
+                lab[y][x] = k
+                sizes[k] += 1
+        relaxed.setdefault(str(screen), []).append(n)
+        feet.setdefault(str(screen), {})[str(n)] = [l, t, r, b]
+        trimmed.setdefault(str(screen), {})[str(n)] = list(box)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument('audit')
@@ -155,6 +316,12 @@ def main(argv=None):
     ap.add_argument('--tile-classes', default=None, help='tools/data/tile_classes.csv (default: under --repo)')
     ap.add_argument('--open-terrain', default='grass_rocky', help='comma list of tile terrains drawn as open ground')
     ap.add_argument('--skip-screens', default='', help='comma list of screens left out of open tiles')
+    ap.add_argument('--audit-tiles', type=float, default=0.9,
+                    help='A92: also open the tiles the audit lists as invisible low walls (phys_mismatches.csv category 1, tile low) when nothing is '
+                         'drawn on at least this share of their contact edge; 0 = off')
+    ap.add_argument('--collision', default=None,
+                    help='A71: the export\'s collision.json (ImportData/collision.json of a generated copy): its water and void fills are '
+                         'nobody\'s ground in the wall passage test. Without it no wall is trimmed')
     a = ap.parse_args(argv)
     tile_classes = {}
     with open(a.tile_classes or os.path.join(a.repo, 'tools', 'data', 'tile_classes.csv'), newline='', encoding='utf-8') as f:
@@ -170,7 +337,9 @@ def main(argv=None):
     with open(os.path.join(a.audit, 'phys_origins.csv'), newline='', encoding='utf-8') as f:
         for r in csv.DictReader(f):
             rows.setdefault(int(r['screen']), []).append(r)
-    relaxed, kept, feet, open_tiles, kept_tiles = {}, [], {}, {}, []
+    relaxed, kept, feet, open_tiles, kept_tiles, trimmed = {}, [], {}, {}, [], {}
+    audit_tiles = read_audit_tiles(a.audit, a.audit_tiles) if a.audit_tiles > 0 else {}
+    fills = read_fills(a.collision) if a.collision else None
     world = World(a.repo, sorted({int(fn[4:7]) for fn in os.listdir(os.path.join(a.repo, 'tools', 'dinkex', 'out', 'screens'))
                                   if fn.startswith('SCR_') and fn.endswith('.json') and fn[4:7].isdigit()}))
     screens_all = sorted(set(rows) | {int(fn[4:7]) for fn in os.listdir(os.path.join(a.repo, 'tools', 'dinkex', 'out', 'screens'))
@@ -187,7 +356,14 @@ def main(argv=None):
                 continue
             cands.append(r)
         cells_open = set() if screen in skip_screens else open_tile_cells(a.repo, screen, open_classes, tile_classes)
-        if not cands and not cells_open:
+        # A92: the audit's other low tiles; these open only where they join nothing (no shortcut rule: a long low line can be an
+        # undrawn fence or hedge that routes the player, art row PM-05)
+        audit_only = set() if screen in skip_screens else audit_tiles.get(screen, set()) - cells_open
+        if audit_only:
+            audit_only = {c for c in audit_only if tile_is_blobs(a.repo, screen, c)}
+        cells_open |= audit_only
+        walls = wall_candidates(rows.get(screen, []), screen) if fills is not None else []
+        if not cands and not cells_open and not walls:
             continue
         free, owners, tilehard = screen_grids(a.repo, screen)
         if free is None:
@@ -235,7 +411,8 @@ def main(argv=None):
                 scripted = {base_lab[min(GH - 1, max(0, int(float(r['sprite_y'])) // CELL))][min(GW - 1, max(0, int(float(r['sprite_x'])) // CELL))]
                             for r in rows.get(screen, []) if r['script']}
                 base = {k for k in base if k in edge or k in scripted}
-                bad = not world.same(screen, base)
+                # (A92's audit tiles: no shortcut at all, only the pocket inside a blob's own outline)
+                bad = len(base) >= 2 if cell in audit_only else not world.same(screen, base)
             if bad:
                 kept_tiles.append({'screen': screen, 'cell': cell, 'reason': 'passage: the tile closes a way between %d walkable regions' % len(touched)})
                 continue
@@ -250,6 +427,9 @@ def main(argv=None):
                 lab[y][x] = k
                 sizes[k] += 1
             open_tiles.setdefault(str(screen), []).append(cell)
+        # walls (A71), after the boxes and tiles so that their results do not depend on this step
+        if walls:
+            trim_walls(screen, walls, free, owners, fills.get(screen), relaxed, feet, trimmed, kept)
     out = {
         'schema': 'dink-relaxed-hardboxes/2',
         'about': 'Placements whose 1997 hardbox the player may enter while the physical play layer is on (doc/remaster/PHYSICAL_PLAY_LAYER.md); '
@@ -259,13 +439,15 @@ def main(argv=None):
         'feet': {k: v for k, v in sorted(feet.items(), key=lambda kv: int(kv[0]))},
         'open_tiles': {k: sorted(v) for k, v in sorted(open_tiles.items(), key=lambda kv: int(kv[0]))},
         'kept_tiles': kept_tiles,
+        'trimmed': {k: v for k, v in sorted(trimmed.items(), key=lambda kv: int(kv[0]))},
     }
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     with open(a.out, 'w', encoding='utf-8') as f:
         json.dump(out, f, indent=1)
         f.write('\n')
     print(f'{a.out}: {sum(len(v) for v in relaxed.values())} boxes relaxed on {len(relaxed)} screens, {len(kept)} kept (passage); '
-          f'{sum(len(v) for v in open_tiles.values())} open tiles on {len(open_tiles)} screens, {len(kept_tiles)} kept (passage)')
+          f'{sum(len(v) for v in open_tiles.values())} open tiles on {len(open_tiles)} screens, {len(kept_tiles)} kept (passage); '
+          f'{sum(len(v) for v in trimmed.values())} walls trimmed to their drawn face on {len(trimmed)} screens')
     return 0
 
 

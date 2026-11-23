@@ -152,6 +152,8 @@ struct DINKNARRATIVE_API FDinkPhysicalPlaySettings
 	bool bBodies = true;
 	bool bHits = true;
 	bool bCreatureReach = true;
+	/** Class ids whose still, 1997-solid bodies (brain 0, sp_hard 0) part Bodies boxes too (A354, the seated King). */
+	TSet<FName> StillBodies;
 	/** Placement indices per screen whose 1997 hardbox the player may enter (the drawn mesh's player-only blocker still stops him). */
 	TMap<int32, TSet<int32>> Relaxed;
 	/**
@@ -165,6 +167,14 @@ struct DINKNARRATIVE_API FDinkPhysicalPlaySettings
 	 * boulders of the grass_rocky tiles, playtest 20 Nov P1). With part Collision on, neither Dink nor the simulation meets it.
 	 */
 	TMap<int32, TSet<int32>> OpenTiles;
+	/**
+	 * A71 (23 Nov 2026): relaxed placements that are interior or dungeon wall modules, keyed screen * 1000 + placement, with their
+	 * 1997 box (map pixels, inclusive). Their walls have no player-only hull: instead Dink's own collision keeps the box inside its Feet
+	 * (the drawn wall strip, run on to the box's ends), measured on the wall mesh at each screen entry, so he walks up to the drawn wall.
+	 */
+	TMap<int32, FIntRect> Trimmed;
+	/** The trimmed walls that run east-west (the generator's strip is wider than tall); the others run north-south. */
+	TSet<int32> TrimAlongX;
 	FString Source;
 	static FString DefaultIniPath();
 	static FString DefaultRelaxedPath();
@@ -867,6 +877,8 @@ public:
 private:
 	/** Code 100 + n of a placement whose box the player may enter (relaxed_hardboxes.json), with the layer on. */
 	bool IsRelaxedForPlayer(int32 Screen, int32 Code) const;
+	/** A relaxed wall (PhysicalPlay.Trimmed): Dink's collision keeps its box inside its drawn strip. */
+	bool IsTrimmedForPlayer(int32 Screen, int32 Code) const { return Code > 100 && PhysicalPlay.Trimmed.Contains(Screen * 1000 + Code - 100) && IsRelaxedForPlayer(Screen, Code); }
 	/**
 	 * Review of 22 Nov 2026, finding 5: relaxed_hardboxes.json predates later art changes, so at each screen entry (with the screen's
 	 * art in place) a relaxed placement whose drawn footprint has no player-only blocker over it (PR #129's hull: nothing would stop
@@ -874,6 +886,8 @@ private:
 	 */
 	TSet<int32> RelaxedWithoutBlocker;
 	void CheckRelaxedBlockers(int32 Screen);
+	/** A71: a trimmed wall's drawn strip (PhysicalPlay.Feet) from its wall mesh; false if no wall module runs across its 1997 box. */
+	bool MeasureWallStrip(int32 Screen, int32 N, const FIntRect& Box, bool bAlongX, const TArray<class UStaticMeshComponent*, TInlineAllocator<64>>& Walls);
 public:
 	/**
 	 * Physical play layer, part Collision: the 1997 hardness Code at map pixel (MapX, MapY) as play reads it. A relaxed placement's
