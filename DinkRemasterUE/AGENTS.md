@@ -2332,3 +2332,7 @@ Native1 packet postflight also rejected19 files generated under its own RunDDC b
 - Review commands: `dink.PhysicalPlayBodies` (skinned body sizes), `dink.PhysicalPlayReach` (1997 blow reach against drawn bodies, cm).
 - Creature body boxes use the `DinkPlayerBlock` profile like PR #129's mesh hulls and #150's water blockers; they are tagged
   `DinkCreatureBodyBlocker` and only `UpdateCreatureBodyBlockers` makes or removes them.
+
+## Review command dink.HurtSprite (23 November 2026)
+
+- `dink.HurtSprite <S680_P12 | handle | script | nearest> <damage>` (review only, 23 Nov 2026): one of Dink's blows with that damage (`UDinkGameplay::ReviewBlow`, the tail of run_through_tag_list: hurt_thing, random_blood, the sprite's `hit` with &enemy_sprite 1). Finds script-made sprites (Mog of s3-mog) by script name or handle (`UDinkGameplay::FindReviewSprite`); `dink.Hurt` still takes only an origin. Evidence Docs/Verification/HurtSprite_23Nov2026.

@@ -602,6 +602,20 @@ public:
 	 * D:9953-9954, touch damage D:15672-15673). Returns the damage added.
 	 */
 	int32 HurtAndBleed(int32 Target, int32 Damage);
+	/**
+	 * Review only (console dink.HurtSprite): what one of Dink's melee blows does to Target in run_through_tag_list
+	 * (D:15520-15590), with Damage in place of the strength roll: hit sound, target set when the sprite attacks,
+	 * last_hit 1, hurt_thing, random_blood when it hurt, then the sprite's `hit` procedure with &enemy_sprite 1.
+	 * A nohit sprite with a script only gets its `hit`. The kill, if any, follows when its brain thinks. Returns the
+	 * damage added; -1 when Target is not a live sprite.
+	 */
+	int32 ReviewBlow(int32 Target, int32 Damage);
+	/**
+	 * Review only (dink.HurtSprite): the live sprite an argument names. A placement origin (S680_P12), a handle (17), a
+	 * script name (s3-mog: the live sprite carrying it, the one nearest Dink on his screen first) or `nearest` (the live
+	 * sprite with hitpoints nearest Dink on his screen). Script-made sprites have no origin; this finds them. 0 if none.
+	 */
+	int32 FindReviewSprite(const FString& Arg) const;
 	/** A random_blood call (see FDinkBloodEvent): one draw from the random stream, as the original's, and no trace line. */
 	void NoteBlood(int32 Handle, int32 YOffset = 40);
 	/** The latest blood events, oldest first (at most MaxBloodEvents). */
