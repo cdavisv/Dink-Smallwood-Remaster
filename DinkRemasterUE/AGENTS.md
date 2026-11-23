@@ -1,3 +1,10 @@
+## Milder's harness: what the build script learned (23 November 2026, art row SP-07)
+
+- `Characters/Tools/milder_02_build.py`. The padded collar is laid ONCE on a 72 x 24 control grid (`cowl_lay`) and read at the game and the bake resolution (`cowl`): laid separately, the 288 x 96 bake source kept folds that the same relaxing passes had combed out of the game mesh, and they were baked into its normal map (a crumpled knot behind the neck on a smooth mesh). The cape lies on tabard, body volume AND skin (inside the tabard's neck opening the body volume is 3 cm under the trapezius); the neck band's radius is measured per height (`ring_r`).
+- `ring_strap` casts three rays across the strap's width (a band of one radius sank 4 mm into a sloping calf at one edge) and never goes under the raw radius; `smooth_tube(dilate=(rows, cols))` makes a plate a shell over what is under it (boot top, hose folds); the knee cop is fitted on its middle rows, width and depth apart, wings to 72 degrees.
+- Under a pauldron (and only there) tabard and collar are pressed below the steel, and lifted again where that would put them under what they lie on (leather 4 mm above the body, collar 3 mm above the leather). Pressing beside the plate brought the skin through the leather in patches.
+- `cfg/tex.env` `METAL_K` (`post_tex.py`): the share of metalness the metal parts keep; Milder .82. `cfg/assemble.json` `decimate` shares were rebalanced to stay under 35,000 triangles with the two knee straps.
+- The soldier (`NPC/Soldier`) is Milder's twin: re-import `npcs` after him. Evidence `Docs/Verification/Milder_23Nov2026/` (Blender only; not yet seen in the running game).
 ## Dink's arms at the trunk: posture row W (23 November 2026, bug A102, art row AN-01)
 
 - `Content/Dink/Data/Art/animation_natural.json` `posture.<set>` is `[chest, head, shoulders, W]` in degrees; W turns each upper arm about its joint towards the trunk in mesh space (`DinkBodyAnimInstance.cpp`); since PR #226 it gives way to action clips and to the run (`posture.<set>.arm_fade`, default [1.0, 0.7]). Hero is 9 for timid and confident (was 0), NpcF 12.

@@ -95,7 +95,7 @@ STYLES = {
                 L_top=.042, L_side=.020, L_nape=.014, L_fringe=.022, el_top=30, el_side=14, sweep=-.5, tousle=.3, jit=.08, gravity=.3, lift_tip=.002, wander=.03,
                 clump=.35, clump_d=.006, noise_d=.0015, frizz_d=.0008, trim_rand=.006,
                 strand=dict(melanin=.58, redness=.8, rough=.3, radial=.4, rand_col=.10),
-                albedo=(.105, .042, .017), col_var=.2, cap_h=.45, brow=dict(th=.0054, n=600), brow_dark=.85, brow_px=2.3, brow_melanin=.2, card_mat=dict(spec=.005, spec2=20.0, transl=.8), brow_rgb='70,40,26', lash_rgb='46,28,20',
+                albedo=(.105, .042, .017), col_var=.2, cap_h=.45, brow=dict(th=.0044, n=560, arch=.0064, x0=-.018, inner_up=.0010), brow_dark=.85, brow_px=2.3, brow_melanin=.2, card_mat=dict(spec=.005, spec2=20.0, transl=.8), brow_rgb='70,40,26', lash_rgb='46,28,20',   # g5 (15 Nov 2026): a thinner, arched brow, lifted a little at the nose
                 tile=dict(frizz=.008, wave=.012, clump=.5, stray=.015, tip_gain=.2, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0), shells=narrow_short(1.35, .62, 0, .8, fly=4), edge_narrow=.3, cap_rings=17, cap_segs=38),
  # The Mother (pictures 351-359: a full golden head of hair to the jaw, a fringe, the ears covered). Until 16 Nov 2026 she wore a tight bun
  # over a painted cap, which read as a helmet with a ruled hair line in every close-up (queue row SP-07): kind 'long' cut to a bob.

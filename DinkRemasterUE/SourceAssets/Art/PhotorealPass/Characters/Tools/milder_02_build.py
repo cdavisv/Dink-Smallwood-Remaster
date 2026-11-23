@@ -69,31 +69,65 @@ tab, tab_hi = G.finish(jk, tab_fold, 1900, tab_class, tab_charts, 'leather_tabar
 made += [tab, tab_hi]
 
 # ------------------------------------------------------------------ BLUE PADDED COLLAR
-cow_bvh = bvh_of([tab, bv]); sbvh = bvh_of(D['Skin'])
-def cowl(nu, nr, name, fine):
+cow_bvh = bvh_of([tab, bv, D['Skin']]); sbvh = bvh_of(D['Skin'])      # the skin too: inside the tabard's neck opening the body volume lies up to three centimetres under the trapezius, and the cape laid on it was thrown out again through the skin
+def cowl_lay(nu, nr):
     ph = np.linspace(0, 2 * np.pi, nu, endpoint=False) + 2.6; dirs = np.stack([np.sin(ph), -np.cos(ph), np.zeros(nu)], 1); front = (.5 + .5 * np.cos(ph)) ** 2
-    NA = 72; pa = np.linspace(0, 2 * np.pi, NA, endpoint=False); rt = []
-    for a_ in pa:
-        ax = np.array((0, .008 + .25 * (1.530 - 1.5), 1.530)); d = np.array([math.sin(a_), -math.cos(a_), 0]); hit = sbvh.ray_cast(Vector(ax + d * .2), Vector(-d), .2)
-        rt.append(float(np.linalg.norm(np.array(hit[0]) - ax)) if hit[0] is not None else .062)
-    rt = np.array(rt)
-    for _ in range(8): rt = (np.roll(rt, 1) + 2 * rt + np.roll(rt, -1)) / 4
-    rt = np.minimum(np.interp(ph % (2 * np.pi), np.concatenate([pa, [2 * np.pi]]), np.concatenate([rt, rt[:1]])), .085)
-    kk = np.linspace(0, 1, nr); P = np.zeros((nr, nu, 3))
+    NA = 72; pa = np.linspace(0, 2 * np.pi, NA, endpoint=False)
+    def ring_r(zt):      # the neck's radius round the band's axis AT THIS HEIGHT: measured once at 1.53 and capped, the foot of the band lay three centimetres inside the trapezius behind the neck and was thrown out again in a crumpled knot
+        rt = []
+        for a_ in pa:
+            ax = np.array((0, .008 + .25 * (zt - 1.5), zt)); d = np.array([math.sin(a_), -math.cos(a_), 0]); hit = sbvh.ray_cast(Vector(ax + d * .2), Vector(-d), .2)
+            rt.append(float(np.linalg.norm(np.array(hit[0]) - ax)) if hit[0] is not None else .062)
+        rt = np.array(rt)
+        for _ in range(8): rt = (np.roll(rt, 1) + 2 * rt + np.roll(rt, -1)) / 4
+        return np.minimum(np.interp(ph % (2 * np.pi), np.concatenate([pa, [2 * np.pi]]), np.concatenate([rt, rt[:1]])), .125)
+    kk = np.linspace(0, 1, nr); P = np.zeros((nr, nu, 3)); NEED = np.zeros((nr, nu))
     for i, k in enumerate(kk):
         if k < .62:      # the cape part lying on the shoulders and chest
             t = k / .62; rho = .134 + (.082 - .134) * t ** .9
+            # over the shoulders the cape reaches out under the pauldrons (bare skin showed between the two in the game)
+            wide = .052 * (1 - t) ** 1.2
             for j in range(nu):
-                g = np.array([0, .006, 1.505]) + dirs[j] * rho * (1 + .22 * front[j] * (1 - t)) + np.array([0, 0, -(rho - .08) * 1.15 - .075 * front[j] * (1 - t) ** 1.3])
+                bk_ = (.5 - .5 * math.cos(ph[j])) ** 3      # behind, the cape hangs a little lower: the tabard's back neck opening showed under its hem as a black notch
+                g = np.array([0, .006, 1.505]) + dirs[j] * (rho + wide * abs(dirs[j][0]) ** 1.5) * (1 + .22 * front[j] * (1 - t) + .05 * bk_ * (1 - t)) + np.array([0, 0, -(rho - .08) * 1.15 - .075 * front[j] * (1 - t) ** 1.3 - .030 * bk_ * (1 - t) ** 1.3])
                 loc, nrm, _, _ = cow_bvh.find_nearest(Vector(g)); nrm = np.array(nrm)
-                P[i, j] = np.array(loc) + nrm * (.0135 - .004 * t + .0035 * math.exp(-(t / .12) ** 2))
+                back_ = (.5 - .5 * math.cos(ph[j])) ** 2      # behind the neck the cape rides over the tabard's rolled edge and the baldric: lower, they came through it as torn holes
+                NEED[i, j] = .0135 - .004 * t + .0035 * math.exp(-(t / .12) ** 2) + .011 * back_ * (1 - t) ** .6
+                P[i, j] = np.array(loc) + nrm * NEED[i, j]
         else:            # the standing neck band
             t = (k - .62) / .38; zt = 1.492 + (1.545 - 1.492) * min(t / .8, 1.0); ax = np.array((0, .008 + .25 * (zt - 1.5), zt))
             off = .0095 - .004 * min(t / .8, 1) if t <= .8 else .0055 - .0045 * (t - .8) / .2
             if t > .8: ax = ax + np.array([0, 0, -.006 * (t - .8) / .2])
-            P[i] = ax + dirs * (rt + off)[:, None]
-    for _ in range(2):   # relax the cape rows
-        m = int(nr * .62); P[1:m - 1] = (P[:m - 2] + 2 * P[1:m - 1] + P[2:m]) / 4; P[:m] = (np.roll(P[:m], 1, 1) + 2 * P[:m] + np.roll(P[:m], -1, 1)) / 4
+            P[i] = ax + dirs * (ring_r(zt) + off)[:, None]
+    m_ = int(np.searchsorted(kk, .62)); P[m_] = P[m_ - 1] * .5 + P[m_] * .5; P[m_ - 1] = P[m_ - 1] * .75 + P[m_] * .25      # the foot of the band and the cape's inner row meet (black slits showed between them)
+    # The cape is laid, not snapped: every row was put on the nearest point of tabard and body, and behind the neck the
+    # nearest point jumps over the tabard's rolled neck edge and the baldric, so the rows folded over each other (a
+    # crumpled patch with holes, seen in the game). Relaxing and clearing in turns combs the folds out and still keeps
+    # the cloth above whatever lies under it.
+    m = int(nr * .62)
+    for it in range(14):
+        P[1:m - 1] = (P[:m - 2] + 2 * P[1:m - 1] + P[2:m]) / 4; P[:m] = (np.roll(P[:m], 1, 1) + 2 * P[:m] + np.roll(P[:m], -1, 1)) / 4
+        for i in range(1, m - 1):
+            for j in range(nu):
+                loc, nrm, _, _ = cow_bvh.find_nearest(Vector(P[i, j])); nrm = np.array(nrm); sd_ = float((P[i, j] - np.array(loc)) @ nrm)
+                if sd_ < NEED[i, j]: P[i, j] = P[i, j] + nrm * (NEED[i, j] - sd_)
+                elif sd_ > NEED[i, j] + .003 and it < 10: P[i, j] = P[i, j] - nrm * (sd_ - NEED[i, j] - .003) * .5
+    for _ in range(2):   # a last light pass so no vertex stands alone
+        P[1:m - 1] = (P[:m - 2] + 2 * P[1:m - 1] + P[2:m]) / 4; P[:m] = (np.roll(P[:m], 1, 1) + 2 * P[:m] + np.roll(P[:m], -1, 1)) / 4
+    return P
+_COWL = {}
+def cowl(nu, nr, name, fine):
+    # One surface for the game mesh and its bake source: laid on a 72 x 24 grid and read off at either resolution. Laid
+    # at 288 x 96 the same number of relaxing passes left the folds in the high mesh, and they were baked into the
+    # normal map of a game mesh that was smooth (the crumpled patch behind the neck, seen again on 23 Nov 2026).
+    if 'P' not in _COWL: _COWL['P'] = cowl_lay(72, 24)
+    Pc = _COWL['P']; nrc, nuc = Pc.shape[:2]
+    ph = np.linspace(0, 2 * np.pi, nu, endpoint=False) + 2.6; kk = np.linspace(0, 1, nr); P = np.zeros((nr, nu, 3))
+    for i, k in enumerate(kk):
+        fi = k * (nrc - 1); i0 = min(int(fi), nrc - 2); ti = fi - i0
+        for j in range(nu):
+            fj = j * nuc / nu; j0 = int(fj) % nuc; j1 = (j0 + 1) % nuc; tj = fj - int(fj)
+            P[i, j] = (Pc[i0, j0] * (1 - tj) + Pc[i0, j1] * tj) * (1 - ti) + (Pc[i0 + 1, j0] * (1 - tj) + Pc[i0 + 1, j1] * tj) * ti
     flat = P.reshape(-1, 3); phf = np.tile(ph, nr); kf = np.repeat(kk, nu); cape = sstep(.66, .5, kf)
     d = .0022 * ridge(phf * 20 + 2 * vnoise(flat, 9, 321), 1.2) * cape + .0018 * (fbm(flat, 10, 3, 322) - .5)
     if fine: d += .0009 * (fbm(flat, 45, 3, 323) - .5) + .0008 * ridge(phf * 61 + 8 * vnoise(flat, 15, 324), 1.5) * sstep(.4, .7, vnoise(flat, 9, 325))
@@ -183,17 +217,19 @@ def small_buckle(q, nrm, tan, rigid, w=.0105, h=.0085, wire=.0013):
         fr.append(q + nrm * .0016 + tan * r_ * cx_ + bt * r_ * cz_)
     b1 = G.tube('bk', fr, wire, 3, closed=True); b2 = G.tube('bkt', [q + nrm * .0022 - tan * w, q + nrm * .0028 + tan * w * 1.05], wire * .8, 3)
     b = join([b1, b2], 'bk%d' % len(buckles)); G.set_chart(b, nci()); G.tag(b, 'iron', 'gear', scale=1.5); b['rigidw'] = rigid; buckles.append(b)
-def ring_strap(name, bvh, c, axis, rigid, hw=.0085, t=.0022, n=16, n_hi=88, buckle_at=None, far=.12, fabric='leather_belt'):
+def ring_strap(name, bvh, c, axis, rigid, hw=.0085, t=.0022, n=16, n_hi=88, buckle_at=None, far=.12, fabric='leather_belt', off=.0004):
     axis = np.asarray(axis, float); axis /= np.linalg.norm(axis); x = np.cross(axis, [0, 0, 1.0])
     if np.linalg.norm(x) < .2: x = np.cross(axis, [0, 1.0, 0])
     x /= np.linalg.norm(x); y = np.cross(axis, x); res = None
     for hi in (False, True):
         m = n_hi if hi else n; rs = []; ds = []
-        for k in range(m):
-            a_ = 2 * np.pi * k / m; d = x * math.cos(a_) + y * math.sin(a_); ds.append(d); rs.append(rr(bvh, c, d, far))
-        rs = np.array(rs)
-        for _ in range(2): rs = (np.roll(rs, 1) + 2 * rs + np.roll(rs, -1)) / 4
-        rings = [[tuple(c + d * (r + a_) + axis * b_) for a_, b_ in ((.0004, -hw), (t, -hw * .9), (t, hw * .9), (.0004, hw))] for d, r in zip(ds, rs)]
+        for k in range(m):      # three rays across the width: on a calf or a forearm the surface slopes, and a band of one radius sank into it at one edge
+            a_ = 2 * np.pi * k / m; d = x * math.cos(a_) + y * math.sin(a_); ds.append(d); rs.append([rr(bvh, c + axis * b_, d, far) for b_ in (-hw, 0.0, hw)])
+        rs = np.array(rs); raw = rs.copy()
+        for _ in range(2): rs = (np.roll(rs, 1, 0) + 2 * rs + np.roll(rs, -1, 0)) / 4
+        rs = np.maximum(rs, np.maximum(raw, np.maximum(np.roll(raw, 1, 0), np.roll(raw, -1, 0)) - .0006))      # smoothing may not take the band under a corner of the plate
+        mid = np.maximum(rs[:, 1], (rs[:, 0] + rs[:, 2]) / 2); lo_ = np.maximum(rs[:, 0], 2 * mid - np.maximum(rs[:, 2], mid)); hi_ = np.maximum(rs[:, 2], 2 * mid - np.maximum(rs[:, 0], mid))
+        rings = [[tuple(c + d * (r_ + a_) + axis * b_) for a_, b_, r_ in ((off, -hw, r0_), (t, -hw * .9, r0_ * .95 + r1_ * .05), (t, hw * .9, r0_ * .05 + r1_ * .95), (off, hw, r1_))] for d, r0_, r1_ in zip(ds, lo_, hi_)]
         rings.append(rings[0])
         o = loft(name + ('_HI' if hi else ''), rings, closed=False)
         G.put_lat(o, [-hw, -hw * .9, hw * .9, hw] * len(rings), hw - .0028)
@@ -202,7 +238,7 @@ def ring_strap(name, bvh, c, axis, rigid, hw=.0085, t=.0022, n=16, n_hi=88, buck
         if not hi:
             o['rigidw'] = rigid; res = o
             if buckle_at is not None:
-                d = x * math.cos(buckle_at) + y * math.sin(buckle_at); r = rr(bvh, c, d, far)
+                d = x * math.cos(buckle_at) + y * math.sin(buckle_at); r = max(rr(bvh, c + axis * b_, d, far) for b_ in (-hw, 0.0, hw))
                 small_buckle(c + d * (r + t), d, np.cross(axis, d), rigid)
     return res
 
@@ -225,11 +261,24 @@ for sg, sd in ((1, 'l'), (-1, 'r')):
     arm_bvh = body_bvh
     # main shoulder cop: an ellipsoidal dome over the deltoid
     Cd = Sx - upv * .004
-    def dome(u, v, Rr=.076, Ra=.088):
+    def dome(u, v, Rr=.085, Ra=.097):
         a_ = (u - .5) * 2 * 1.75; la = -.80 + 1.42 * v
         return Cd + (upv * math.cos(a_) + fw * math.sin(a_)) * Rr * math.cos(la) * (1 + .05 * math.cos(a_)) + du_ * Ra * math.sin(la)
     p1 = plate_pair('Pauldron_%s' % sd, dome, (15, 9), (150, 96), nci(), seed=1 + (sg < 0), rigid='upperarm_%s:.55,clavicle_%s:.45' % (sd, sd))
     orient_out(p1, Sx); orient_out(D['Pauldron_%s_HI' % sd], Sx)
+    # Leather and wool are pressed flat under the plate: the tabard stands a centimetre off the body and came through the
+    # top and the back of both pauldrons as brown patches. Under the dome (and a little past its rim, fading) nothing soft
+    # stands higher than `gap` below the steel.
+    for o_, gap in ((tab, .0070), (tab_hi, .0070), (col, .0050), (col_hi, .0050)):
+        c_ = co_np(o_.data); q_ = c_ - Cd; xa_ = q_ @ du_; rd_ = q_ - np.outer(xa_, du_); ru_ = rd_ @ upv; rf_ = rd_ @ fw; an_ = np.arctan2(rf_, ru_); rn_ = np.hypot(ru_, rf_)
+        Rr_ = .085 * (1 + .05 * np.cos(an_)); f_ = np.sqrt((rn_ / Rr_) ** 2 + (xa_ / .097) ** 2); la_ = np.arctan2(xa_ / .097, np.maximum(rn_ / Rr_, 1e-6))
+        cover = sstep(1.75 + .14, 1.75 + .02, np.abs(an_)) * sstep(-.80 - .12, -.80 - .01, la_) * sstep(.62 + .12, .62 + .01, la_) * (f_ < 1.6)      # only what the plate hides is pressed: beside it the leather keeps its body (pressed there, the skin came through it in patches)
+        lim = 1 - gap / .085; k_ = np.where(f_ > lim, lim / np.maximum(f_, 1e-6), 1.0); k_ = 1 + (k_ - 1) * cover
+        c2_ = Cd + q_ * k_[:, None]; base_ = body_bvh if o_ in (tab, tab_hi) else bvh_of([tab, bv, D['Skin']]); need_ = .0040 if o_ in (tab, tab_hi) else .0030; lifted = 0
+        for i_ in np.nonzero(k_ < .9995)[0]:      # pressed cloth still lies ON what is under it: the leather on the body, the collar on the leather
+            loc_, nrm_, _, _ = base_.find_nearest(Vector(c2_[i_])); nrm_ = np.array(nrm_); sd_ = float((c2_[i_] - np.array(loc_)) @ nrm_)
+            if sd_ < need_: c2_[i_] = c2_[i_] + nrm_ * (need_ - sd_); lifted += 1
+        set_co(o_.data, c2_); o_.data.update(); print('[PR] pressed under pauldron', sd, o_.name, int((k_ < .999).sum()), 'kept above what lies under', lifted)
     def lame(b0, b1, r0, r1, Aw):
         def f(u, v):
             a_ = (u - .5) * 2 * Aw; b = b0 + (b1 - b0) * v; r = r0 + (r1 - r0) * v + .004 * math.sin(math.pi * v)
@@ -246,8 +295,14 @@ for sg, sd in ((1, 'l'), (-1, 'r')):
         f = .080 + .182 * v; a_ = 2 * np.pi * u; d = xv * math.cos(a_) + yv * math.sin(a_); c = Ex + df_ * f
         r = rr(arm_bvh, c, d, .10, .04) + .0058 + .006 * float(sstep(.16, 0, v)) + .002 * float(sstep(.9, 1, v))
         return c + d * r
-    def smooth_tube(fn, nu, nv):
+    def smooth_tube(fn, nu, nv, dilate=None):
         Pg = np.array([[fn(u, v) for u in np.linspace(0, 1, nu, endpoint=False)] for v in np.linspace(0, 1, nv)])
+        if dilate:      # a rigid plate bridges what lies under it: each ring takes the widest radius of its neighbourhood (the coarse game plate cut through the boot top and the hose folds between its rows)
+            cen = Pg.mean(1, keepdims=True); rad = np.linalg.norm(Pg - cen, axis=2); dirs_ = (Pg - cen) / rad[..., None]; r2 = rad.copy()
+            for dv_ in range(-dilate[0], dilate[0] + 1):
+                for du__ in range(-dilate[1], dilate[1] + 1):
+                    i0, i1 = max(0, dv_), min(nv, nv + dv_); r2[i0 - dv_:i1 - dv_] = np.maximum(r2[i0 - dv_:i1 - dv_], np.roll(rad, du__, 1)[i0:i1])
+            Pg = cen + dirs_ * r2[..., None]
         for _ in range(3): Pg = (np.roll(Pg, 1, 1) + 2 * Pg + np.roll(Pg, -1, 1)) / 4
         Pg[1:-1] = (Pg[:-2] + 2 * Pg[1:-1] + Pg[2:]) / 4
         def g(u, v):
@@ -281,27 +336,41 @@ for sg, sd in ((1, 'l'), (-1, 'r')):
     orient_out(hp_, HB['hand'] + hx * Lh * .5 - hn_ * .02); orient_out(D['HandPlate_%s_HI' % sd], HB['hand'] + hx * Lh * .5 - hn_ * .02)
     for f_ in (.125, .225): ring_strap('VamStrap%d_%s' % (int(f_ * 1000), sd), vbvh, Ex + df_ * f_, df_, 'lowerarm_%s:1' % sd, hw=.0075, buckle_at=3.5, far=.10)
     # greave over the boot shaft
-    gb = bvh_of([bv] + [b for b in boots if b.name.endswith('_' + sd)])
+    gb = bvh_of([bv, tro] + [b for b in boots if b.name.endswith('_' + sd)])      # the hose too: fitted to the body alone, the rim of the greave cut through the folds of the hose (a saw edge behind the knee)
     dk = (Ax - Kx); Lk = np.linalg.norm(dk); dk /= Lk; xg = np.array([sg * 1.0, 0, 0]); xg = xg - dk * (xg @ dk); xg /= np.linalg.norm(xg); yg = np.cross(dk, xg)
     def grv(u, v):
         s_ = .050 + (.345 - .050) * v; a_ = 2 * np.pi * u; d = xg * math.cos(a_) + yg * math.sin(a_); c = Kx + dk * s_
         front = max(0.0, -d[1])
         r = rr(gb, c, d, .12, .05) + .0062 + .0035 * front ** 4 + .004 * float(sstep(.9, 1, v)) + .003 * float(sstep(.08, 0, v))
         return c + d * r
-    gg = smooth_tube(grv, 96, 48)
+    gg = smooth_tube(grv, 96, 48, dilate=(3, 3))
     ga = plate('Greave_%s' % sd, gg, 22, 10, False, nci(), True, 21 + (sg < 0)); gh = plate('Greave_%s_HI' % sd, gg, 96, 48, True, ga.data.attributes['chart'].data[0].value, True, 21 + (sg < 0))
     for o in (ga, gh): orient_out(o, Kx + dk * .2)
     add_lips(ga, .0022, .010); ga['rigidw'] = 'calf_%s:1' % sd; made += [ga, gh]
     gbv = bvh_of(ga)
-    for s_ in (.11, .29): ring_strap('GreaveStrap%d_%s' % (int(s_ * 100), sd), gbv, Kx + dk * s_, dk, 'calf_%s:1' % sd, hw=.008, buckle_at=(0.25 if sg > 0 else math.pi - .25), far=.12)
+    for s_ in (.11, .29): ring_strap('GreaveStrap%d_%s' % (int(s_ * 100), sd), gbv, Kx + dk * s_, dk, 'calf_%s:1' % sd, hw=.008, n=20, buckle_at=(0.25 if sg > 0 else math.pi - .25), far=.12, off=.0026, t=.0052)      # clear of the coarse greave: at 0.4 mm the 16-sided strap and the 22-sided plate cut through each other in saw teeth
     # knee cop
     Ck = Kx + np.array([0, .006, -.004])
-    def cop(u, v):
-        a_ = (u - .5) * 2 * 1.55; la = -.80 + 1.60 * v
-        return Ck + np.array([math.sin(a_) * .066 * math.cos(la), -math.cos(a_) * .078 * math.cos(la) * (1 + .10 * math.cos(a_) ** 6), .072 * math.sin(la)])
+    kb = bvh_of([bv, tro])
+    def cop0(u, v):
+        a_ = (u - .5) * 2 * 1.25; la = -.80 + 1.60 * v      # the wings stop short of the widest part of the knee: at 1.55 their hollow inside showed from behind
+        return np.array([math.sin(a_) * .066 * math.cos(la), -math.cos(a_) * .078 * math.cos(la) * (1 + .10 * math.cos(a_) ** 6), .072 * math.sin(la)])
+    # The cop clears the hose as the greave does: an ellipsoid about the joint alone lay under the folds of the hose at
+    # its rims (the hose came through it in saw teeth). It is grown as a whole, by the most the hose asks of it (a short
+    # ray: a long one finds the other leg), so it stays a smooth plate; following the folds point by point dented it.
+    # Width and depth are fitted apart: grown by one factor, the cop that cleared the kneecap stood two centimetres off the
+    # sides of the leg, and from behind its hollow inside showed as a dark disc on each side of the knee.
+    need = {0: [1.0], 1: [1.0]}
+    for iu in range(13):
+        for iv in range(2, 7):      # the middle of the cop: towards its upper and lower rim a ray from the joint runs along the leg and asks for any size
+            e_ = cop0(iu / 12, iv / 8); r0 = float(np.linalg.norm(e_)); d_ = e_ / r0
+            need[0 if abs(d_[0]) > abs(d_[1]) else 1].append((rr(kb, Ck, d_, r0 + .03, 0.0) + .0065) / r0)
+    gx = float(min(max(need[0]), 1.30)); gy = float(min(max(need[1]), 1.30)); grow = np.array([gx, gy, (gx + gy) / 2])
+    print('[PR] knee cop grown', sd, round(gx, 3), round(gy, 3))
+    def cop(u, v): return Ck + cop0(u, v) * grow
     kc = plate_pair('KneeCop_%s' % sd, cop, (13, 8), (130, 84), nci(), seed=31 + (sg < 0), rigid='calf_%s:.6,thigh_%s:.4' % (sd, sd))
     orient_out(kc, Kx); orient_out(D['KneeCop_%s_HI' % sd], Kx)
-    if False: ring_strap('KneeStrap_%s' % sd, bvh_of([bv]), Kx + np.array([0, 0, .0]), dk, 'calf_%s:.6,thigh_%s:.4' % (sd, sd), hw=.008, far=.12)
+    ring_strap('KneeStrap_%s' % sd, kb, Ck + np.array([0, 0, -.012]), dk, 'calf_%s:.6,thigh_%s:.4' % (sd, sd), hw=.007, n=18, far=.12, off=.0014, t=.0034)      # what holds the cop: a strap round the back of the knee
 
 # ------------------------------------------------------------------ BELT, BUCKLE, BALDRIC
 torso_bvh = bvh_of([tab, ml])
