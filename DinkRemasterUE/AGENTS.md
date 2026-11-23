@@ -2332,3 +2332,7 @@ Native1 packet postflight also rejected19 files generated under its own RunDDC b
 - Review commands: `dink.PhysicalPlayBodies` (skinned body sizes), `dink.PhysicalPlayReach` (1997 blow reach against drawn bodies, cm).
 - Creature body boxes use the `DinkPlayerBlock` profile like PR #129's mesh hulls and #150's water blockers; they are tagged
   `DinkCreatureBodyBlocker` and only `UpdateCreatureBodyBlockers` makes or removes them.
+
+## Class-row material flash (23 November 2026)
+
+- creatures.json class rows may carry `flash` {parameter, pseq, pframe, rise_s, fall_s}: the class body sets that scalar (0..1) on its materials while its sprite stands still on that picture/frame (FDinkCreatureFlash, UDinkCreatureClassComponent::PresentFlash; the presenter hands over sp_pframe). Seth: CastFlash on 580/2 (s7-boss.c:46-66), from `Scripts/bind_people_classes.py` FLASH. The materials that read CastFlash are art (Seth second pass). Evidence Docs/Verification/SethCastFlash_23Nov2026.

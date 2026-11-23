@@ -59,6 +59,10 @@ EXTRA_PICTURES = {'seth': [580]}
 # A standing picture with a pose of its own: (role name, picture, idle clip). Seth stands with his arms crossed (580, the
 # picture `pose`) from the moment Milder's scene makes him until s7-boss sends him walking (581-589).
 POSE_ROLES = {'seth': ('pose', 580, '/Game/Dink/Hero/Animations/Pass1/AN_Seth_Pose.AN_Seth_Pose')}
+# A material pulse while the sprite stands on one still picture (FDinkCreatureFlash). Seth's cast (s7-boss.c:46-66) flickers
+# his standing picture 580 between frame 1 and frame 2, and frame 2 shows his face and hands lit red: the figure's materials
+# get the scalar CastFlash (0..1; the Seth skin and crest materials read it, others ignore it), up in 0.08 s, down in 0.25 s.
+FLASH = {'seth': {'parameter': 'CastFlash', 'pseq': 580, 'pframe': 2, 'rise_s': 0.08, 'fall_s': 0.25}}
 # Pictures outside a walk set. (class id, figure, sequences, yaw added to the picture's facing, note)
 STILL = (
     # the red knight frozen in his swing (two placements, SCR_241/242): the figure stands; there is no swing clip
@@ -130,6 +134,10 @@ def main():
             walk = made['roles']['walk']; walk['sequences'] = [q for q in walk['sequences'] if q != picture]
             made['roles'] = {'walk': walk, role: {'sequences': [picture], 'locomotion': dict(made['locomotion'], idle=clip)}}
             made['note'] += f' Picture {picture} is the role `{role}`: the same walk set with the idle {clip.rsplit(".", 1)[1]}.'
+        if class_id in FLASH:
+            made['flash'] = dict(FLASH[class_id])
+            made['note'] += (f" While the sprite stands on picture {FLASH[class_id]['pseq']} frame {FLASH[class_id]['pframe']} (the cast) the "
+                             f"materials' {FLASH[class_id]['parameter']} rises to 1.")
         rows.append(made)
     for class_id, name, seqs, yaw, note in STILL:
         if name in known:

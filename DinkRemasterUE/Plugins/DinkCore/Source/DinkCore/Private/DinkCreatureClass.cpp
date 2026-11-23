@@ -127,6 +127,22 @@ namespace
 		B.SmoothTimeS = float(ClassNumber(*Row, TEXT("smooth_time_s"), 0.1));
 		B.TurnRateDegS = float(ClassNumber(*Row, TEXT("turn_rate_deg_s"), 540.0));
 		B.CullDistanceCm = float(ClassNumber(*Row, TEXT("cull_distance_cm"), 15000.0));
+		const TSharedPtr<FJsonObject>* Flash = nullptr;
+		if (Row->TryGetObjectField(TEXT("flash"), Flash) && Flash)
+		{
+			FString Parameter;
+			(*Flash)->TryGetStringField(TEXT("parameter"), Parameter);
+			B.Flash.Parameter = Parameter.IsEmpty() ? NAME_None : FName(*Parameter);
+			B.Flash.PSeq = int32(ClassNumber(**Flash, TEXT("pseq"), 0.0));
+			B.Flash.PFrame = int32(ClassNumber(**Flash, TEXT("pframe"), 0.0));
+			B.Flash.RiseS = float(ClassNumber(**Flash, TEXT("rise_s"), 0.08));
+			B.Flash.FallS = float(ClassNumber(**Flash, TEXT("fall_s"), 0.25));
+			if (!B.Flash.IsValid() || B.Flash.RiseS < 0.f || B.Flash.FallS < 0.f)
+			{
+				Problem(FString::Printf(TEXT("classes: %s flash needs a parameter, a pseq and a pframe above 0 and times not below 0"), *ClassId));
+				bValid = false;
+			}
+		}
 		if (B.Scale <= 0.0)
 		{
 			Problem(FString::Printf(TEXT("classes: %s scale is not positive"), *ClassId));
@@ -421,6 +437,15 @@ int32 DinkCreatureClass::KillDir(int32 Brain, int32 Dir)
 	case 6: return 9;
 	default: return Dir;
 	}
+}
+
+float DinkCreatureClass::StepFlash(const FDinkCreatureFlash& Flash, int32 Seq, int32 PSeq, int32 PFrame, float Current, float DeltaS)
+{
+	if (!Flash.IsValid()) return 0.f;
+	const bool bOn = Seq == 0 && PSeq == Flash.PSeq && PFrame == Flash.PFrame;
+	const float Seconds = bOn ? Flash.RiseS : Flash.FallS;
+	if (Seconds <= 0.f) return bOn ? 1.f : 0.f;
+	return FMath::FInterpConstantTo(FMath::Clamp(Current, 0.f, 1.f), bOn ? 1.f : 0.f, FMath::Max(0.f, DeltaS), 1.f / Seconds);
 }
 
 int32 DinkCreatureClass::DirOfSequence(int32 Sequence)
