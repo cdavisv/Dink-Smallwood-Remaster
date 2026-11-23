@@ -355,6 +355,18 @@ public:
 	/** The screen Dink was last seen on (the greybox's screen change), 0 before the first. */
 	int32 GetCurrentScreen() const { return CurrentScreen; }
 	bool IsReady() const { return bReady; }
+	/**
+	 * Readies every effect material of the rows (the one-shot flipbooks scripts create: 161, 167, 70, 164, the fireballs)
+	 * before its first use; called at each screen entry. Uncooked (the editor, `-game` from the project): a material
+	 * whose shader map is still compiling is drawn with the engine's default material (FMaterial::GetShaders marks the
+	 * shader missing, MaterialShared.cpp; FMaterialRenderProxy falls back), the white card of the 161 burst at its first
+	 * use on SCR_086 (s7-mil.c:125): such compiles are finished here. Cooked: a card waits for its PSOs before it is drawn
+	 * (r.PSOPrecache.ProxyCreationStrategy 1), which would skip a one-shot's first frames: one hidden card holding every
+	 * effect material requests them once. Presentation only. Returns the materials whose compile it had to finish.
+	 */
+	int32 WarmEffects();
+	/** The hidden warm-up card (its elements are the effect materials), nullptr before the first screen entry. */
+	const class UMaterialBillboardComponent* GetWarmCard() const { return WarmCard; }
 	const TArray<FDinkFamilyBinding>& GetBindings() const { return Bindings; }
     /** Typed producer for the single marked-world authority.
      * Absence of policy preserves PR40/41. */
@@ -413,6 +425,9 @@ private:
 	TSet<FString> MissingMeshes;
 	UPROPERTY(Transient)
 	TMap<FString, TObjectPtr<class UMaterialInterface>> Effects;
+	/** WarmEffects: a hidden card holding every effect material (its PSO requests), on a transient holder actor. */
+	UPROPERTY(Transient)
+	TObjectPtr<class UMaterialBillboardComponent> WarmCard;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkPlaceholderActor>>> ActorsByScreen;
 	TMap<int32, TArray<TWeakObjectPtr<ADinkGreyboxScreen>>> GreyboxByScreen;
 	/** SetPlacementPicture: the picture DressActor looks the family row up from, per placement (the imported one when absent). */

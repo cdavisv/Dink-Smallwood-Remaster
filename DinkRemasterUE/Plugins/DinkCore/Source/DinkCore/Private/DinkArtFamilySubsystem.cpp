@@ -6,6 +6,9 @@
 #include "DinkFlickerLightComponent.h"
 #include "Materials/MaterialInterface.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "MaterialShared.h"
+#include "RHIShaderPlatform.h"
+#include "Misc/App.h"
 #include "DinkCoreModule.h"
 #include "DinkCreatureClassComponent.h"
 #include "DinkEnvironmentSubsystem.h"
@@ -821,9 +824,59 @@ void UDinkArtFamilySubsystem::ScreenChanged(ADinkScreenVolume* Screen)
 {
 	if (!Screen) return;  // between screens: Dink is still on the last one
 	CurrentScreen = Screen->ScreenNumber;
+	WarmEffects();
 	ApplyScreen(Screen->ScreenNumber);
 	// A208 copies showing different pictures (or a card): the copy of the screen Dink is on draws their object now.
 	UDinkFamilyDuplicatesSubsystem::ScreenChanged(*this);
+}
+
+int32 UDinkArtFamilySubsystem::WarmEffects()
+{
+	UWorld* World = GetWorld();
+	if (!World || !bReady || Effects.IsEmpty()) return 0;
+	DINK_PERF_SCOPE(Dink_Family_WarmEffects);
+	int32 Finished = 0;
+	if (FApp::CanEverRender())
+	{
+		// Uncooked: finish the shader maps still compiling (a cooked game has them all; IsCompilationFinished is then true).
+		TArray<FMaterial*> Compiling;
+		for (const TPair<FString, TObjectPtr<UMaterialInterface>>& Pair : Effects)
+			if (UMaterialInterface* Material = Pair.Value.Get())
+				if (FMaterialResource* Resource = Material->GetMaterialResource(GMaxRHIShaderPlatform))
+					if (!Resource->IsCompilationFinished()) Compiling.AddUnique(Resource);
+		if (Compiling.Num())
+		{
+			FMaterial::FinishCompilation(TEXT("Dink effect warm-up"), Compiling);
+			Finished = Compiling.Num();
+			UE_LOG(LogDink, Display, TEXT("Family art: finished the shader compile of %d effect materials before their first use"), Finished);
+		}
+	}
+	if (!WarmCard)
+	{
+		// The same component and vertex factory as the effect cards (DressScriptSprite), so the same PSOs; never drawn.
+		FActorSpawnParameters Params;
+		Params.Name = MakeUniqueObjectName(World->PersistentLevel, AActor::StaticClass(), TEXT("DinkEffectWarmup"));
+		Params.ObjectFlags |= RF_Transient;
+		AActor* Holder = World->SpawnActor<AActor>(AActor::StaticClass(), FTransform::Identity, Params);
+		if (!Holder) return Finished;
+		Holder->SetActorHiddenInGame(true);
+		WarmCard = NewObject<UMaterialBillboardComponent>(Holder, TEXT("EffectWarmupCard"));
+		Holder->SetRootComponent(WarmCard);
+		WarmCard->SetMobility(EComponentMobility::Movable);
+		WarmCard->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		WarmCard->SetCanEverAffectNavigation(false);
+		WarmCard->SetGenerateOverlapEvents(false);
+		WarmCard->SetCastShadow(false);
+		WarmCard->SetHiddenInGame(true);
+		WarmCard->SetVisibility(false);
+		WarmCard->RegisterComponent();
+		TArray<FString> Keys;
+		Effects.GetKeys(Keys);
+		Keys.Sort();
+		for (const FString& Key : Keys)
+			if (UMaterialInterface* Material = Effects[Key].Get()) WarmCard->AddElement(Material, nullptr, false, 1.f, 1.f, nullptr);
+	}
+	return Finished;
 }
 
 void UDinkArtFamilySubsystem::BuildIndex(UWorld& World)
