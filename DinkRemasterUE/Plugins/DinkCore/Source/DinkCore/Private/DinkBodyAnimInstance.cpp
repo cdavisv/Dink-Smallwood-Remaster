@@ -284,8 +284,25 @@ void UDinkBodyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		if (A.Weight > .0005f) Frame.Actions.Add(A);
 	}
 	if (!Slots[0].bActive) ActionName = NAME_None;
+	{
+		// W gives way to the action clips and the run (SetArmFade): their own arm carriage stays clear of the belly.
+		float ActionWeight = 0.f;
+		for (const FDinkBodyActionFrame& A : Frame.Actions) ActionWeight = FMath::Max(ActionWeight, A.Weight);
+		float Total = 0.f;
+		for (const FDinkBodyLayer& Layer : Frame.Base) Total += Layer.Weight;
+		float Run = 0.f;
+		for (int32 i = 1; i < Gaits.Num(); ++i) Run += Weights[i] * Ground; // Gaits are sorted by speed: [0] is the walk
+		LastArmScale = ArmPostureScale(ActionWeight, Total > KINDA_SMALL_NUMBER ? Run / Total : 0.f, ArmFade);
+		Frame.Posture.W *= LastArmScale;
+	}
 	UpdateLegInput(Dt);
 	PublishFrame();
+}
+
+float UDinkBodyAnimInstance::ArmPostureScale(float ActionWeight, float RunShare, FVector2f Fade)
+{
+	return (1.f - FMath::Clamp(Fade.X, 0.f, 1.f) * FMath::Clamp(ActionWeight, 0.f, 1.f)) *
+		(1.f - FMath::Clamp(Fade.Y, 0.f, 1.f) * FMath::Clamp(RunShare, 0.f, 1.f));
 }
 
 void UDinkBodyAnimInstance::PublishFrame()
