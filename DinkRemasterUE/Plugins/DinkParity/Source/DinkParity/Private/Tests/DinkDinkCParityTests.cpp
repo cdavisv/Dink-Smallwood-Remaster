@@ -281,7 +281,7 @@ bool FDinkCParitySetDinkSpeedTest::RunTest(const FString& Parameters)
 		E.Story->StartProcedure(TEXT("item-bt"), TEXT("arm"), UDinkDirector::HandleNoSprite, {}, 12, true);
 		E.Story->RunUntilIdle();
 		TestEqual(TEXT("item-bt arm: the boots double Dink's top speed"), Hero->DinkSpeedScale, 2.f);
-		TestEqual(TEXT("and his run speed with no person steering is 12 m/s"), Hero->DesiredTopSpeed(), ADinkGreyboxCharacter::RunSpeed * 2.f);
+		TestEqual(TEXT("and his run speed with no person steering is twice the run (times the world-scale pace)"), Hero->DesiredTopSpeed(), ADinkGreyboxCharacter::RunSpeed * Hero->PaceScale() * 2.f, 0.01f);
 		Run(E, *I, TEXT("set_dink_speed 0"));
 		TestEqual(TEXT("set_dink_speed(0) is ignored (D:7568)"), Hero->DinkSpeedScale, 2.f);
 		E.Story->StartProcedure(TEXT("item-bt"), TEXT("disarm"), UDinkDirector::HandleNoSprite, {}, 12, true);

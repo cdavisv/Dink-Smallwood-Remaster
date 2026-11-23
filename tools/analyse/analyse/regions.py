@@ -17,6 +17,11 @@ def load_table(path):
     t.setdefault("stretch", [])
     t.setdefault("sheets", {})
     t.setdefault("join", [])
+    # World scale switch (doc/remaster/WORLD_SCALE.md): [world_scale] enlarged lays the world out at [scale_enlarged].
+    if (t.get("world_scale") or {}).get("enlarged"):
+        if set(t.get("scale_enlarged", {})) != set(t["scale"]):
+            raise ValueError("[scale_enlarged] must name the same kinds as [scale]")
+        t["scale"] = dict(t["scale_enlarged"])
     for a in t["area"]:
         a.setdefault("cells", [])
         a.setdefault("screens", [])

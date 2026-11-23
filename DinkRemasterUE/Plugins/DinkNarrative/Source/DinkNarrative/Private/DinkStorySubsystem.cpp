@@ -27,6 +27,7 @@
 #include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
 #include "Kismet/GameplayStatics.h"
+#include "HAL/IConsoleManager.h"
 #include "Misc/FileHelper.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
@@ -2139,6 +2140,9 @@ void UDinkStorySubsystem::CaptureToSave(UDinkSaveGame* Save)
 	}
 }
 
+static TAutoConsoleVariable<int32> CVarDinkSaveRelocate(TEXT("dink.Save.RelocateToPixel"), 1,
+	TEXT("1: loading a save whose pawn transform is more than 1 m from Dink's saved 1997 pixel (a save from another world scale, WORLD_SCALE.md) stands the pawn on that pixel; 0: the saved transform as it is."));
+
 void UDinkStorySubsystem::RestoreFromSave(const UDinkSaveGame* Save)
 {
 	if (!Save || !IsReady())
@@ -2149,6 +2153,23 @@ void UDinkStorySubsystem::RestoreFromSave(const UDinkSaveGame* Save)
 	if (const FString* State = Save->SubsystemState.Find(NAME_Narrative))
 	{
 		LoadStateFromJson(*State);
+		// World scale (doc/remaster/WORLD_SCALE.md): the save holds the pawn's absolute transform, which belongs to the layout
+		// it was written in; Dink's 1997 pixel and screen are the authority. Within one layout both agree to a fraction of a
+		// pixel; a save from another layout scale is more than a metre off: stand the pawn on his saved pixel.
+		if (Director && CVarDinkSaveRelocate.GetValueOnGameThread() != 0)
+		{
+			FDinkSprite& Dk = Director->GetDink();
+			APawn* Pawn = GetWorld() ? UGameplayStatics::GetPlayerPawn(GetWorld(), 0) : nullptr;
+			FVector Want;
+			if (Pawn && Dk.Screen > 0 && Director->PixelToWorld(Dk.Screen, Dk.X, Dk.Y, Want) &&
+				FVector::Dist2D(Pawn->GetActorLocation(), Want) > 100.0)
+			{
+				UE_LOG(LogDinkNarrative, Display, TEXT("save from another world scale: Dink stood %.0f cm from his saved pixel (%d: %.0f, %.0f); moved onto it"),
+					FVector::Dist2D(Pawn->GetActorLocation(), Want), Dk.Screen, Dk.X, Dk.Y);
+				Want.Z = Pawn->GetActorLocation().Z;
+				Pawn->SetActorLocation(Want, false, nullptr, ETeleportType::TeleportPhysics);
+			}
+		}
 	}
 	else
 	{

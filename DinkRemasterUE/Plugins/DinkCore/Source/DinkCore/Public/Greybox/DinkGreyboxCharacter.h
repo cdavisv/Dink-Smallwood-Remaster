@@ -119,7 +119,7 @@ public:
 	bool IsRunKeyHeld() const { return bRunKeyHeld; }
 	/** True while movement input from the player's own controls arrived within the grace time. */
 	bool IsHumanSteering() const;
-	/** Top ground speed wanted now: WalkSpeed or RunSpeed, times DinkSpeedScale. */
+	/** Top ground speed wanted now: WalkSpeed or RunSpeed (the run times PaceScale()), times DinkSpeedScale. */
 	float DesiredTopSpeed() const;
 	/**
 	 * set_dink_speed (dink.cpp:7563-7575, read every frame at D:17311-17321): Dink's walk speed in 2D pixels per frame is 12 for
@@ -127,6 +127,16 @@ public:
 	 * arm with set_dink_speed(2): twice as fast). Set by the director's set_dink_speed.
 	 */
 	float DinkSpeedScale = 1.f;
+	/**
+	 * World-scale pace (WORLD_SCALE.md, 15 Nov 2026): the run speed's factor on the screen Dink is on, from
+	 * Content/Dink/Data/Gameplay/hero_pace.json (written by the export from regions.toml: the kind's scale over the
+	 * reference scale the 6 m/s run was tuned at). Monsters move in 1997 pixels, so their world speed grows with the
+	 * layout scale; the run (and its acceleration) grows with it and keeps the margin over the monsters and the pace in
+	 * pixels the bot's routes were measured with. 1 when dink.Hero.WorldScalePace is 0 or no table/screen is known.
+	 */
+	float PaceScale() const;
+	/** The walk's factor (hero_pace.json "walk"; 1: a human walking pace whatever the world scale). */
+	float WalkPaceScale() const;
 	/** Movement from the player's own controls (stick or keys; X right, Y forward, relative to the camera). */
 	void PlayerMoveInput(FVector2D Axis);
 	/**

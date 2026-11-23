@@ -71,7 +71,7 @@ Findings that shape the plan:
 
 ## 3. World conversion
 
-- **One continuous outdoor world with per-region scale:** about 4x in settlements, 2.5-3x in wilderness, 1.5-2x for interiors. A table (`regions.toml`) sets scale, offset and rotation per region and is tuned by running the greybox.
+- **One continuous outdoor world with per-region scale:** 4x in settlements, 2.75x in wilderness and sea, 2.25x in dungeons, 1.75x for interiors; the owner-approved enlargement (4.6 / 3.6 / 2.7 / 2.0, 16 Nov 2026) is behind the `[world_scale] enlarged` switch, off until its parity question is decided (`doc/remaster/WORLD_SCALE.md`). A table (`regions.toml`) sets scale, offset and rotation per region and is tuned by running the greybox.
 - **Regions are pulled apart.** Joppa, Koka Isle, the Darklands and the snow castle move out to sea or behind mountains; the 124 unused grid cells become sea and mountain. The cliff escarpment, tree-lines, relief and fog block long sightlines.
 - **Elevation is hand-authored**; the original has none.
 - **Interiors** are streamed sub-levels behind doors, built from one modular 2 m kit with 3.5 m ceilings and a shortened camera arm.
