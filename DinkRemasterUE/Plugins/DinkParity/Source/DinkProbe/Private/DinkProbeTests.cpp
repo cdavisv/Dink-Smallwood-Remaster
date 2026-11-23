@@ -17,6 +17,7 @@
 #include "Engine/GameInstance.h"
 #include "Engine/Engine.h"
 #include "Engine/World.h"
+#include "Engine/OverlapResult.h"
 #include "DinkDirector.h"
 #include "DinkGameplay.h"
 #include "DinkInventoryComponent.h"
@@ -147,6 +148,13 @@ namespace DinkProbeTest
 		double NextPunchMs = 0.0;
 		/** Game time of Dink's last walking step, and the end of the cast animation (sp_nocontrol). */
 		double LastWalkMs = -1.0;
+		/** KiteAndCast with the physical play layer on: where the chaser last moved and when (a chaser that stands still is stalled). */
+		FVector2D ChaserAt = FVector2D(-1.0, -1.0);
+		/** DuelFight with the physical play layer on: the foe of the duel and since when it has given no gate. */
+		int32 DuelTarget = 0;
+		TMap<int32, double> SquadQuietSinceMs;
+		double DuelQuietSinceMs = 0.0;
+		double ChaserMovedMs = 0.0;
 		double HoldUntilMs = 0.0;
 		/** KiteAndCast: where the target last moved and since when it has stood there (a chaser that stands still). */
 		FVector2D KiteTargetAt = FVector2D(-1.0, -1.0);
@@ -485,6 +493,187 @@ namespace DinkProbeTest
 				Pawn->SetActorRotation(FRotator(0.0, (B - A).Rotation().Yaw, 0.0));
 			}
 		}
+		/**
+		 * Physical play layer on (review of PR #160): the bot aims by the 1997 boxes, the layer lands a blow or a pickup only at the
+		 * drawn body. Every frame, while Dink's blow is pending (between the key and its hit frame) and the 1997 blow box holds a
+		 * target, or Dink stands in a pickup's 1997 touch box, and the layer's own test would not pass, Dink steps to that drawn body
+		 * (the closest point AuthoredGeometryMatches uses): his capsule 40 cm off it for a blow (in his reach, out of a foe's touch damage), against it for a pickup, facing it, on
+		 * free walkable ground (the side he came from first, then the seven others). A target with no free spot next to its drawn body
+		 * is logged once as DINK PROBE LAYER UNREACHABLE (a defect for a human player too). With the layer off this does nothing.
+		 */
+		void LayerAssist() const
+		{
+			if (!Pawn || !G->IsPhysicalPlayActive()) return;
+			const UCapsuleComponent* Capsule = Pawn->FindComponentByClass<UCapsuleComponent>();
+			if (!Capsule) return;
+			const FDinkSprite& Me = D->GetDink();
+			const bool bSwing = G->HasPendingHit(1);
+			// A blow is a lunge: once its hit frame has passed, Dink steps back to the spot the bot chose (its plan, its 1997 grid),
+			// unless the bot has moved him since.
+			if (bLunged && !G->HasPendingHit(1))
+			{
+				bLunged = false;
+				if (FVector::Dist2D(Pawn->GetActorLocation(), LungeTo) < 30.0)
+				{
+					Pawn->SetActorLocation(LungeFrom, false, nullptr, ETeleportType::TeleportPhysics);
+				}
+			}
+			const FVector From = Pawn->GetActorLocation();
+			// Drawn contact for both (part CreatureReach): a foe that is swinging at Dink (its attack sequence, or its wind-up) while he
+			// stands in its drawn reach is dodged: Dink steps straight back out of its reach, as a player would, and does not lunge in.
+			auto Swinging = [](const FDinkSprite& Foe)
+			{
+				const int32 BA = Foe.GetProp(TEXT("base_attack"), -1), Seq = Foe.GetProp(TEXT("seq"));
+				return BA > 0 && (Foe.bWindingUp || (Seq > BA && Seq < BA + 10));
+			};
+			for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
+			{
+				const FDinkSprite& Foe = Pair.Value;
+				FDinkDrawnBody Body;
+				if (Pair.Key == 1 || !Foe.bActive || Foe.Screen != Me.Screen || !Foe.Actor.IsValid() || !UDinkGameplay::CreatureDrawnBody(*Foe.Actor, Body)) continue;
+				FVector Away;
+				double Need = 0.0;
+				FVector Near;
+				if (Foe.GetProp(TEXT("target")) == 1 && Swinging(Foe) && G->CreatureReachesDink(Foe, Foe.Dir))
+				{
+					Away = (From - Body.Frame.GetLocation()).GetSafeNormal2D();
+					Need = G->CreatureReachRadiusCm(Foe) + 20.0 - FVector::Dist2D(From, Body.Frame.GetLocation());
+				}
+				// a body that hurts by touch walking into him (a dragon): out of its drawn touch (21 Nov 2026, chapter 12)
+				else if (Foe.GetProp(TEXT("touch_damage")) > 0 && Foe.GetProp(TEXT("hitpoints")) > 0 && G->DrawnClosestPoint(Pair.Key, From, Near) &&
+					FVector::Dist2D(From, Near) < Capsule->GetScaledCapsuleRadius() + 25.0)
+				{
+					Away = (From - Near).GetSafeNormal2D();
+					if (Away.IsNearlyZero()) Away = (From - Body.Frame.GetLocation()).GetSafeNormal2D();
+					Need = Capsule->GetScaledCapsuleRadius() + 70.0 - FVector::Dist2D(From, Near);
+				}
+				else continue;
+				FCollisionQueryParams DodgeParams(SCENE_QUERY_STAT(DinkProbeLayerDodge), false, Pawn);
+				DodgeParams.AddIgnoredActor(Foe.Actor.Get());
+				for (const int32 K : { 0, 1, -1, 2, -2 })
+				{
+					const FVector Spot = From + Away.RotateAngleAxis(30.0 * K, FVector::UpVector) * FMath::Max(Need, 20.0);
+					FHitResult Block;
+					if (World->SweepSingleByChannel(Block, From, Spot, Capsule->GetComponentQuat(), ECC_Pawn, FCollisionShape::MakeCapsule(Capsule->GetScaledCapsuleRadius() - 2.0, Capsule->GetScaledCapsuleHalfHeight() - 2.0), DodgeParams) && Block.bBlockingHit) continue;
+					Pawn->SetActorLocation(Spot, false, nullptr, ETeleportType::TeleportPhysics);
+					bLunged = false;
+					UE_LOG(LogTemp, Display, TEXT("DINK PROBE LAYER DODGE: sprite %d (%s) swings on screen %d: %.0f cm back"), Pair.Key, *Foe.Script.ToString(), Me.Screen, FMath::Max(Need, 20.0));
+					return;
+				}
+			}
+			const int32 Ax = FMath::RoundToInt32(Me.X), Ay = FMath::RoundToInt32(Me.Y);
+			int32 Best = 0;
+			bool bBestHit = false;
+			double BestDist = TNumericLimits<double>::Max();
+			FVector BestPoint = FVector::ZeroVector;
+			for (const TPair<int32, FDinkSprite>& Pair : D->GetSprites())
+			{
+				const FDinkSprite& T = Pair.Value;
+				if (Pair.Key == 1 || !T.bActive || T.Screen != Me.Screen) continue;
+				// a foe with a drawn reach: the bot waits outside it (KiteAndPunch), beyond the 1997 fist box, so a swing at it while
+				// facing it from there is aimed at it too
+				bool bAimed = false;
+				if (bSwing && T.Actor.IsValid() && T.GetProp(TEXT("base_attack"), -1) != -1)
+				{
+					const double Reach = G->CreatureReachRadiusCm(T);
+					const FVector To = (T.Actor->GetActorLocation() - From) * FVector(1, 1, 0);
+					bAimed = Reach > 0.0 && To.Size() < Reach + 120.0 && FVector::DotProduct(To.GetSafeNormal(), Pawn->GetActorForwardVector().GetSafeNormal2D()) > 0.5;
+				}
+				// (a sprite with no script and no hit points, a fence or a rock in the 1997 blow box, is nothing a blow does anything to)
+				const bool bHit = bSwing && (T.GetProp(TEXT("nohit")) != 1 || !T.Script.IsNone()) && (!T.Script.IsNone() || T.GetProp(TEXT("hitpoints")) > 0) &&
+					(bAimed || G->LegacyHitBoxContains(T, Ax, Ay, Me.Dir, Me.GetProp(TEXT("range"))));
+				bool bTouch = false;
+				int32 L = 0, Tp = 0, R = 0, B = 0;
+				if (!bHit && T.GetProp(TEXT("touch_damage")) == -1 && !T.Script.IsNone() && G->GetHardbox(T, L, Tp, R, B))
+					bTouch = Ax >= L - 8 && Ax <= R + 8 && Ay >= Tp - 8 && Ay <= B + 8;
+				if ((!bHit && !bTouch) || G->DrawnInteractionLands(Pair.Key, bHit) || (bHit && Swinging(T))) continue;
+				FVector Near;
+				if (!G->DrawnClosestPoint(Pair.Key, From, Near)) continue;
+				// a living foe first (the bot swings at the monster; a script sprite in the same 1997 box, e.g. a cave's controller, is
+				// not what it aims at), then the nearest
+				// a foe (brain 9/10 or one with an attack) first, then anything living, then the rest: the family of the Joppa
+				// dragon fight stands in the same 1997 box and is not what the bot swings at
+				const int32 Brain = T.GetProp(TEXT("brain"));
+				const bool bFoe = Brain == 9 || Brain == 10 || T.GetProp(TEXT("base_attack"), -1) != -1;
+				const double Dist = FVector::DistSquared2D(Near, From) + (bHit ? (bFoe ? 0.0 : T.GetProp(TEXT("hitpoints")) > 0 ? 1.0e12 : 2.0e12) : 0.0);
+				if (Dist < BestDist) { BestDist = Dist; Best = Pair.Key; bBestHit = bHit; BestPoint = Near; }
+			}
+			if (!Best) return;
+			const FDinkSprite* T = D->FindSprite(Best);
+			FVector N = (From - BestPoint).GetSafeNormal2D();
+			if (N.IsNearlyZero()) N = -Pawn->GetActorForwardVector().GetSafeNormal2D();
+			const double Radius = Capsule->GetScaledCapsuleRadius();
+			FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkProbeLayerAssist), false, Pawn);
+			if (T && T->Actor.IsValid()) Params.AddIgnoredActor(T->Actor.Get());
+			const FCollisionShape Shape = FCollisionShape::MakeCapsule(Radius - 2.0, Capsule->GetScaledCapsuleHalfHeight() - 2.0);
+			static const int32 Order[8] = { 0, 1, -1, 2, -2, 3, -3, 4 };
+			// a blow from 40 cm: inside the fist reach (85 cm), outside a foe's touch (5 cm); from 65 cm at a foe with touch damage,
+			// which walks on into Dink while his blow is in the air (21 Nov 2026: the cave Bonca bit him at 23-33 cm). Where no spot
+			// that far is free (a body pinned in a corner, 22 Nov 2026: SCR_190's duck-bugs), nearer ones, as a player would stand.
+			const double FirstGap = T && T->GetProp(TEXT("touch_damage")) > 0 ? 65.0 : 40.0;
+			TArray<double> Gaps;
+			if (bBestHit) { Gaps = { FirstGap, 40.0, 20.0, 8.0 }; } else { Gaps = { 1.0 }; }
+			FString Blocked; // the unreachable report: what stops the nearest spot in each direction
+			for (int32 Slot = 0; Slot < Gaps.Num() * 8; ++Slot)
+			{
+				const double Gap = Gaps[Slot / 8];
+				if (Slot >= 8 && Gap >= Gaps[Slot / 8 - 1]) continue;
+				const int32 K = Order[Slot % 8];
+				const FVector Side = N.RotateAngleAxis(45.0 * K, FVector::UpVector);
+				FVector Spot = BestPoint + Side * (Radius + Gap);
+				Spot.Z = From.Z;
+				const bool bLast = Slot / 8 == Gaps.Num() - 1;
+				if (World->OverlapBlockingTestByChannel(Spot, Capsule->GetComponentQuat(), ECC_Pawn, Shape, Params))
+				{
+					if (bLast)
+					{
+						TArray<FOverlapResult> Overs;
+						World->OverlapMultiByChannel(Overs, Spot, Capsule->GetComponentQuat(), ECC_Pawn, Shape, Params);
+						FString What;
+						for (const FOverlapResult& O : Overs) if (O.bBlockingHit && O.GetComponent()) What += FString::Printf(TEXT("%s%s.%s"), What.IsEmpty() ? TEXT("") : TEXT("+"), O.GetActor() ? *O.GetActor()->GetName() : TEXT("-"), *O.GetComponent()->GetName());
+						Blocked += FString::Printf(TEXT(" %d:%s"), K * 45, What.IsEmpty() ? TEXT("?") : *What);
+					}
+					continue;
+				}
+				// walk there, as a player would: the capsule swept from where Dink stands must reach the spot (an overlap test
+				// does not see the screen's hardness trimesh; a sweep does, as the character's own moves do)
+				FHitResult Block;
+				if (World->SweepSingleByChannel(Block, From, Spot, Capsule->GetComponentQuat(), ECC_Pawn, Shape, Params) && Block.bBlockingHit)
+				{
+					const FVector Reached = Block.bStartPenetrating ? From : Block.Location;
+					if (FVector::Dist2D(Reached, BestPoint) > Radius + (bBestHit ? 80.0 : 25.0)) // stopped out of reach
+					{
+						if (bLast) Blocked += FString::Printf(TEXT(" %d:walk(%s)"), K * 45, Block.GetComponent() ? *FString::Printf(TEXT("%s.%s"), Block.GetActor() ? *Block.GetActor()->GetName() : TEXT("-"), *Block.GetComponent()->GetName()) : TEXT("?"));
+						continue;
+					}
+					Spot = FVector(Reached.X, Reached.Y, From.Z);
+				}
+				if (bBestHit)
+				{
+					if (!bLunged) LungeFrom = From;
+					bLunged = true;
+					LungeTo = Spot;
+				}
+				Pawn->SetActorLocation(Spot, false, nullptr, ETeleportType::TeleportPhysics);
+				Pawn->SetActorRotation(FRotator(0.0, (BestPoint - Spot).Rotation().Yaw, 0.0));
+				UE_LOG(LogTemp, Display, TEXT("DINK PROBE LAYER ASSIST: %s sprite %d (%s) on screen %d: %.0f cm -> %.0f cm from its drawn body"),
+					bBestHit ? TEXT("blow at") : TEXT("pickup of"), Best, T ? *T->Script.ToString() : TEXT("-"), Me.Screen,
+					FVector::Dist2D(From, BestPoint), FVector::Dist2D(Spot, BestPoint));
+				return;
+			}
+			const FString Key = FString::Printf(TEXT("%d:%d"), Me.Screen, Best);
+			if (!LayerUnreachable.Contains(Key))
+			{
+				LayerUnreachable.Add(Key);
+				UE_LOG(LogTemp, Warning, TEXT("DINK PROBE LAYER UNREACHABLE: screen %d sprite %d script %s origin %s (%s): no free spot beside its drawn body"),
+					Me.Screen, Best, T ? *T->Script.ToString() : TEXT("-"), T ? *T->Origin.ToString() : TEXT("-"), bBestHit ? TEXT("blow") : TEXT("pickup"));
+				UE_LOG(LogTemp, Display, TEXT("DINK PROBE LAYER UNREACHABLE DETAIL: Dink px %.0f,%.0f at %s; sprite px %.0f,%.0f; drawn point %s; at %.0f cm:%s"),
+					Me.X, Me.Y, *From.ToCompactString(), T ? T->X : 0.0, T ? T->Y : 0.0, *BestPoint.ToCompactString(), Radius + Gaps.Last(), *Blocked);
+			}
+		}
+		mutable TSet<FString> LayerUnreachable;
+		mutable bool bLunged = false;
+		mutable FVector LungeFrom = FVector::ZeroVector, LungeTo = FVector::ZeroVector;
 		/** Stands Gap px west of the sprite's hardbox (or on it), facing east (6). */
 		bool StandBy(int32 Handle, int32 Gap, bool bOnIt = false) const
 		{
@@ -515,6 +704,20 @@ namespace DinkProbeTest
 				return false;
 			}
 			const int32 X = FMath::RoundToInt32(T->X), Y = FMath::RoundToInt32(T->Y);
+			// Physical play layer, part CreatureReach (drawn contact for both): a foe's blow reaches as far as its drawn body plus its
+			// weapon, which for a long Bonca is more than the 1997 spacing. Wait outside that reach; the blow itself is a lunge to
+			// the drawn body (LayerAssist) and back. Layer off: the 1997 spacing, unchanged.
+			if (const double Reach = T->GetProp(TEXT("base_attack"), -1) != -1 ? G->CreatureReachRadiusCm(*T) : 0.0; Reach > 0.0)
+			{
+				FVector A, B;
+				if (D->PixelToWorld(T->Screen, X, Y, A) && D->PixelToWorld(T->Screen, X + 10, Y, B) && FVector::Dist2D(A, B) > 1.0)
+				{
+					const int32 Was = Gap;
+					Gap = FMath::Max(Gap, FMath::CeilToInt32((Reach + 30.0) / (FVector::Dist2D(A, B) / 10.0)));
+					static int32 LastGapLogged = -1;
+					if (LastGapLogged != Handle * 1000 + Gap) { LastGapLogged = Handle * 1000 + Gap; UE_LOG(LogTemp, Display, TEXT("DINK PROBE LAYER GAP: sprite %d reach %.0f cm, %.1f cm/px: gap %d -> %d px"), Handle, Reach, FVector::Dist2D(A, B) / 10.0, Was, Gap); }
+				}
+			}
 			// West, east, then (cornered) the far side of the screen: never within its touch box.
 			bool bPlaced = false;
 			bool bWest = true;
@@ -573,6 +776,16 @@ namespace DinkProbeTest
 			if (!bPunch)
 			{
 				return true;
+			}
+			// Physical play layer (drawn contact for both): a blow is a lunge into the foe's reach, so a player strikes between its
+			// swings: not while it is swinging (its attack sequence) or winding up, so its blow meets air outside its reach.
+			if (const int32 BaseAttack = T->GetProp(TEXT("base_attack"), -1); BaseAttack > 0 && G->CreatureReachRadiusCm(*T) > 0.0)
+			{
+				const int32 Seq = T->GetProp(TEXT("seq"));
+				if (T->bWindingUp || (Seq > BaseAttack && Seq < BaseAttack + 10))
+				{
+					return true;
+				}
 			}
 			if (S->GetNowMs() >= P->NextPunchMs && ArmFists())
 			{
@@ -860,11 +1073,42 @@ namespace DinkProbeTest
 			OpennessMap(Open);
 			int32 HL = 0, HT = 0, HR = 0, HB = 0;
 			G->GetHardbox(*T, HL, HT, HR, HB);
+			const int32 HL0 = HL, HT0 = HT, HR0 = HR, HB0 = HB; // the 1997 box: where a fireball is aimed from
+			// Physical play layer (part Touch): his touch is his drawn body, which on this screen's layout scale stands out of his
+			// 1997 box (21 Nov 2026: he touched Dink 17 px below his sprite point). Keep clear of the larger of the two.
+			if (G->IsPhysicalPlayActive() && T->Actor.IsValid())
+			{
+				FDinkDrawnBody Body;
+				FVector A, B;
+				if (UDinkGameplay::CreatureDrawnBody(*T->Actor, Body) && D->PixelToWorld(T->Screen, T->X, T->Y, A) && D->PixelToWorld(T->Screen, T->X + 10, T->Y, B) && FVector::Dist2D(A, B) > 1.0)
+				{
+					const double CmPerPx = FVector::Dist2D(A, B) / 10.0;
+					const FVector Off = Body.Frame.GetLocation() - A;
+					const double Half = FMath::Max(Body.Extent.X, Body.Extent.Y) / CmPerPx;
+					const FVector Px = (B - A).GetSafeNormal2D();
+					const double Cx = T->X + FVector::DotProduct(Off, Px) / CmPerPx;
+					const double Cy = T->Y + FVector::DotProduct(Off, FVector(-Px.Y, Px.X, 0.0)) / CmPerPx * (D->PixelToWorld(T->Screen, T->X, T->Y + 10, B) && FVector::DotProduct(B - A, FVector(-Px.Y, Px.X, 0.0)) < 0 ? -1.0 : 1.0);
+					HL = FMath::Min(HL, FMath::FloorToInt32(Cx - Half)); HR = FMath::Max(HR, FMath::CeilToInt32(Cx + Half));
+					HT = FMath::Min(HT, FMath::FloorToInt32(Cy - Half)); HB = FMath::Max(HB, FMath::CeilToInt32(Cy + Half));
+					static FIntRect LastLogged;
+					if (LastLogged != FIntRect(HL, HT, HR, HB)) { LastLogged = FIntRect(HL, HT, HR, HB);
+						UE_LOG(LogTemp, Display, TEXT("DINK PROBE LAYER CLEARANCE: sprite %d at %.0f,%.0f: 1997 box %d,%d-%d,%d, with its drawn body (%.0f x %.0f cm, %.1f cm/px) %d,%d-%d,%d"),
+							Handle, T->X, T->Y, HL0, HT0, HR0, HB0, Body.Extent.X * 2, Body.Extent.Y * 2, CmPerPx, HL, HT, HR, HB); }
+				}
+			}
 			const bool bChasing = T->GetProp(TEXT("brain")) == 9;
 			// A chaser made by create_sprite has base_attack 0, and pill_brain (D:12933) treats seq 0 as "still attacking":
 			// when his walk cycle ends he stands still until a script changes his sequence again (his `hit` does). The
 			// original's behaviour, kept; a player can walk past him then.
-			const bool bStalled = bChasing && T->GetProp(TEXT("seq")) == 0 && T->GetProp(TEXT("base_attack"), -1) == 0;
+			bool bStalled = bChasing && T->GetProp(TEXT("seq")) == 0 && T->GetProp(TEXT("base_attack"), -1) == 0;
+			// Physical play layer on: a chaser that has not moved for 3 s stands as still as a stalled one (21 Nov 2026: Jack stood at
+			// 155,173 for 280 s walking into a wall while the bot waited for him to come)
+			if (G->IsPhysicalPlayActive() && bChasing)
+			{
+				const FVector2D At2(T->X, T->Y);
+				if (FVector2D::Distance(At2, P->ChaserAt) > 2.0) { P->ChaserAt = At2; P->ChaserMovedMs = S->GetNowMs(); }
+				else if (S->GetNowMs() - P->ChaserMovedMs > 3000.0) bStalled = true;
+			}
 			// Touch: Jack's hardbox + 2 px + the capsule radius holds Dink (RunThroughTouchDamageList); keep 20 px more
 			// (6 while he stands still).
 			const double TouchPx = 2.0 + CapsulePx(Screen, Dk.X, Dk.Y);
@@ -931,19 +1175,26 @@ namespace DinkProbeTest
 					const FIntPoint C = CellCentre(I);
 					const double Dx = T->X - C.X, Dy = T->Y - C.Y;
 					int32 Dir = 0;
-					if (FMath::Abs(Dy) <= 6.0 && FMath::Abs(Dx) <= 260.0)
+					// with the layer on (its drawn touch keeps fewer cells safe) any line through his 1997 box, which the fireball hits
+					const double AlignY = G->IsPhysicalPlayActive() ? FMath::Max(6.0, (HB0 - HT0) * 0.5 - 2.0) : 6.0;
+					const double AlignX = G->IsPhysicalPlayActive() ? FMath::Max(6.0, (HR0 - HL0) * 0.5 - 2.0) : 6.0;
+					if (FMath::Abs(Dy) <= AlignY && FMath::Abs(Dx) <= 260.0)
 					{
 						Dir = Dx > 0 ? 6 : 4;
 					}
-					else if (FMath::Abs(Dx) <= 6.0 && FMath::Abs(Dy) <= 260.0)
+					else if (FMath::Abs(Dx) <= AlignX && FMath::Abs(Dy) <= 260.0)
 					{
 						Dir = Dy > 0 ? 2 : 8;
 					}
 					// The fireball makes him a chaser (or wakes him, or sets a stalled one walking again for a cycle): fire from
 					// far enough away to walk off before he arrives: 90 px past his touch box, 80 when he stands stalled. (Was 70/40:
 					// with A25's draws a stalled Jack woke by the fireball touched Dink 130 ms later, during the cast, 16 Nov 2026.)
-					const double FireFrom = Pass < 2 ? (bStalled ? 80.0 : 90.0) : (bStalled ? 50.0 : 60.0);
-					if (Dir == 0 || Clearance(C.X, C.Y) < TouchPx + FireFrom || !LineClear(Screen, C.X, C.Y, Dir, Handle, Obstacles))
+					double FireFrom = Pass < 2 ? (bStalled ? 80.0 : 90.0) : (bStalled ? 50.0 : 60.0);
+					// layer on: a chaser stuck for 15 s (no spot that far has a clear line) is fired at from nearer
+					if (G->IsPhysicalPlayActive() && bStalled && Now - P->ChaserMovedMs > 15000.0) FireFrom = 25.0;
+					// layer on: the 1997 box decides where a fireball is aimed from, his drawn body (Clearance) where Dink may stand
+					const double Box1997 = FMath::Max(FMath::Max3(double(HL0 - C.X), 0.0, double(C.X - HR0)), FMath::Max3(double(HT0 - C.Y), 0.0, double(C.Y - HB0)));
+					if (Dir == 0 || Box1997 < TouchPx + FireFrom || Clearance(C.X, C.Y) < Reach || !LineClear(Screen, C.X, C.Y, Dir, Handle, Obstacles))
 					{
 						continue;
 					}
@@ -956,7 +1207,8 @@ namespace DinkProbeTest
 				}
 			}
 			bool bPunch = false;
-			if (Goal == INDEX_NONE && !bChasing && bCharged)
+			// layer on: a chaser stuck where no fireball line reaches him (against a wall) is woken with the fists too
+			if (Goal == INDEX_NONE && (!bChasing || (G->IsPhysicalPlayActive() && bStalled && S->GetNowMs() - P->ChaserMovedMs > 8000.0)) && bCharged)
 			{
 				// Start the fight with the fists: level with him, 26 px off his hardbox (the fist reaches 28 px + 5).
 				double Best = 0.0;
@@ -973,6 +1225,27 @@ namespace DinkProbeTest
 						Goal = I;
 						Best = DistDink[I];
 						FireDir = bWest ? 6 : 4;
+						bPunch = true;
+					}
+				}
+			}
+			// Physical play layer on: a chaser stuck where neither a fireball line nor the side punch spots reach him (against
+			// furniture) is punched from any free cell beside him on his row or column; LayerAssist lunges to his drawn body.
+			if (Goal == INDEX_NONE && G->IsPhysicalPlayActive() && bStalled && S->GetNowMs() - P->ChaserMovedMs > 8000.0)
+			{
+				double BestNear = 0.0;
+				for (int32 I = 0; I < Cols * Rows; ++I)
+				{
+					const FIntPoint C = CellCentre(I);
+					const double Dx = T->X - C.X, Dy = T->Y - C.Y;
+					const bool bRow = FMath::Abs(Dy) <= 4.0 && FMath::Abs(Dx) >= 18.0 && FMath::Abs(Dx) <= 45.0;
+					const bool bCol = FMath::Abs(Dx) <= 4.0 && FMath::Abs(Dy) >= 14.0 && FMath::Abs(Dy) <= 35.0;
+					if (!P->Free[I] || DistDink[I] < 0.0 || !(bRow || bCol)) continue;
+					if (Goal == INDEX_NONE || DistDink[I] < BestNear)
+					{
+						Goal = I;
+						BestNear = DistDink[I];
+						FireDir = bRow ? (Dx > 0 ? 6 : 4) : (Dy > 0 ? 2 : 8);
 						bPunch = true;
 					}
 				}
@@ -1711,6 +1984,27 @@ namespace DinkProbeTest
 		 * any other sprite that hurts by touch); with none, the nearest cell out of the blow's box; and the blow already under way is dodged
 		 * by the shortest walk out of its box. Walks at 180 px/s on a 6 px grid like KiteFight.
 		 */
+		/**
+		 * Physical play layer on: a sprite's 1997 box grown to hold its drawn body (pixels of its screen), so a player who keeps out of
+		 * its touch keeps out of the drawn one (a dragon's or a knight's drawn body stands out of its 1997 box). Layer off: unchanged.
+		 */
+		void GrowByDrawnBody(const FDinkSprite& O, int32& L, int32& Tp, int32& R, int32& B) const
+		{
+			FDinkDrawnBody Body;
+			FVector A, Bx, By;
+			if (!G->IsPhysicalPlayActive() || !O.Actor.IsValid() || !UDinkGameplay::CreatureDrawnBody(*O.Actor, Body) ||
+				!D->PixelToWorld(O.Screen, O.X, O.Y, A) || !D->PixelToWorld(O.Screen, O.X + 10, O.Y, Bx) || !D->PixelToWorld(O.Screen, O.X, O.Y + 10, By)) return;
+			const FVector Ux = (Bx - A) / 10.0, Uy = (By - A) / 10.0; // world cm per pixel along x and y
+			if (Ux.SizeSquared2D() < 1e-4 || Uy.SizeSquared2D() < 1e-4) return;
+			for (int32 I = 0; I < 4; ++I)
+			{
+				const FVector Corner = Body.Frame.TransformPositionNoScale(FVector(I & 1 ? Body.Extent.X : -Body.Extent.X, I & 2 ? Body.Extent.Y : -Body.Extent.Y, 0.0)) - A;
+				const double Px = O.X + FVector::DotProduct(Corner, Ux) / Ux.SizeSquared2D();
+				const double Py = O.Y + FVector::DotProduct(Corner, Uy) / Uy.SizeSquared2D();
+				L = FMath::Min(L, FMath::FloorToInt32(Px)); R = FMath::Max(R, FMath::CeilToInt32(Px));
+				Tp = FMath::Min(Tp, FMath::FloorToInt32(Py)); B = FMath::Max(B, FMath::CeilToInt32(Py));
+			}
+		}
 		void DuelFight(int32 Handle, const FDuelOpts& Opt = FDuelOpts()) const
 		{
 			G->SyncDinkFromActor();
@@ -1773,7 +2067,12 @@ namespace DinkProbeTest
 				}
 			}
 			const double GateMs = Opt.GateMs > 0.0 ? Opt.GateMs : 660.0 - BlowDelayMs;
-			const bool bGate = !bAttacking && WaitAhead >= GateMs;
+			// Physical play layer, part CreatureReach: its blow starts only at drawn contact, so from the 1997 spacing it never swings
+			// and attack_wait never opens the gate; the strike is a lunge to its drawn body (LayerAssist), dodged while it swings.
+			// So with the layer on, a duel that has had no gate for 8 s (the foe neither swings nor waits) opens one.
+			const bool bGate1997 = !bAttacking && WaitAhead >= GateMs;
+			if (bGate1997 || bAttacking || P->DuelTarget != Handle) { P->DuelTarget = Handle; P->DuelQuietSinceMs = Now; }
+			const bool bGate = bGate1997 || (!bAttacking && G->CreatureReachRadiusCm(*T) > 0.0 && Now - P->DuelQuietSinceMs > 8000.0);
 			// Touch boxes (Dink's point + capsule inside the hardbox + 2): the monster's, and every other sprite that hurts by touch.
 			TArray<FReach> Touch;
 			TArray<FReach> Others;
@@ -1797,6 +2096,7 @@ namespace DinkProbeTest
 				{
 					continue;
 				}
+				GrowByDrawnBody(O, L, Tp, R, B); // its touch is its drawn body with the layer on
 				if (Pair.Key != Handle)
 				{
 					Others.Add(FReach{ double(L), double(Tp), double(R), double(B) });
@@ -1825,6 +2125,8 @@ namespace DinkProbeTest
 			const double Vx = T->GetProp(TEXT("mx")) * 1000.0 / ThinkMs, Vy = T->GetProp(TEXT("my")) * 1000.0 / ThinkMs;
 			const double StillMs = bAttacking ? (BlowInMs >= 0.0 ? BlowInMs + 80.0 : 80.0) : 0.0;
 			const double TouchTM = TouchM; // capsule + 2 + margin: the touch box of the monster
+			int32 GrL = TL, GrT = TT, GrR = TR, GrB = TB; // its touch box, grown to its drawn body with the layer on
+			GrowByDrawnBody(*T, GrL, GrT, GrR, GrB);
 			// Would the monster, walking on, touch q within Sec seconds? (its hardbox now, moved along its heading)
 			auto TouchSoon = [&](double Qx, double Qy, double Sec, double Extra = 0.0)
 			{
@@ -1832,7 +2134,7 @@ namespace DinkProbeTest
 				{
 					const double Run = FMath::Max(0.0, Tau * 1000.0 - StillMs) / 1000.0;
 					const double Mx = Vx * Run, My = Vy * Run;
-					if (Qx >= TL + Mx - TouchTM - Extra && Qx <= TR + Mx + TouchTM + Extra && Qy >= TT + My - TouchTM - Extra && Qy <= TB + My + TouchTM + Extra) { return true; }
+					if (Qx >= GrL + Mx - TouchTM - Extra && Qx <= GrR + Mx + TouchTM + Extra && Qy >= GrT + My - TouchTM - Extra && Qy <= GrB + My + TouchTM + Extra) { return true; }
 				}
 				return false;
 			};
@@ -2055,6 +2357,10 @@ namespace DinkProbeTest
 						if (Score > Best) { Best = Score; Goal = I; }
 					}
 				}
+				// Physical play layer on (drawn touch bodies are larger than the 1997 boxes): a flee that finds no better cell than his own
+				// is no move at all; the other modes decide instead (22 Nov 2026, chapter 12: Dink stood 30 s "fleeing" next to the
+				// second dragon while the first had 3 hit points left, and the family died meanwhile).
+				if (Goal == DinkCell && G->IsPhysicalPlayActive()) { Goal = INDEX_NONE; Mode = TEXT("stand"); }
 			}
 			if (Goal == INDEX_NONE && TouchSoon(Dk.X, Dk.Y, Opt.TouchSec))
 			{
@@ -2248,6 +2554,12 @@ namespace DinkProbeTest
 				}
 				const double GateMs = Opt.GateMs > 0.0 ? Opt.GateMs : 660.0 - BlowDelayMs;
 				Fo.bGate = !Fo.bAttacking && Fo.WaitAhead >= GateMs;
+				// physical play layer on (part CreatureReach): a foe that has given no gate for 8 s opens one (see DuelFight)
+				{
+					double& Quiet = P->SquadQuietSinceMs.FindOrAdd(Fo.H, Now);
+					if (Fo.bGate || Fo.bAttacking) Quiet = Now;
+					else if (Now - Quiet > 8000.0 && G->CreatureReachRadiusCm(T) > 0.0) Fo.bGate = true;
+				}
 				const double ThinkMs = FMath::Max<double>(T.GetProp(TEXT("timing")), 1000.0 / 60.0);
 				Fo.Vx = T.GetProp(TEXT("mx")) * 1000.0 / ThinkMs;
 				Fo.Vy = T.GetProp(TEXT("my")) * 1000.0 / ThinkMs;
@@ -3769,6 +4081,14 @@ namespace DinkProbeTest
 				{
 					C.G->SetRandomSeed(1997); // a loaded chapter continues the saved stream (the save holds the generator's state)
 				}
+				// Robustness runs (DINK_PROBE_RESEED=<n> in the environment, never in the probe proper): the chapter from its save on
+				// another random stream, so one chapter can be played several different ways (22 Nov 2026, the Joppa dragons)
+				const FString Reseed = FPlatformMisc::GetEnvironmentVariable(TEXT("DINK_PROBE_RESEED"));
+				if (!Reseed.IsEmpty() && FCString::Atoi(*Reseed) > 0)
+				{
+					C.G->SetRandomSeed(FCString::Atoi(*Reseed));
+					Test->AddInfo(FString::Printf(TEXT("robustness run: random stream reseeded with %d"), FCString::Atoi(*Reseed)));
+				}
 				C.S->MaxEvents = 2000000; // keep every event for the trace
 				StepStart = Now;
 				StartedWall = Wall;
@@ -3803,6 +4123,7 @@ namespace DinkProbeTest
 				}
 				return Finish(C, TEXT("every step done"));
 			}
+			C.LayerAssist(); // physical play layer on: step to the drawn body the 1997 box aims at (no-op with the layer off)
 			FStep& Step = Steps[Current];
 			const double Elapsed = Now - StepStart;
 			if (!bActed || (Step.Retry > 0.0 && Now - LastAct >= Step.Retry && C.Idle() && (Step.bFight || !C.Busy())))
@@ -3810,6 +4131,7 @@ namespace DinkProbeTest
 				if (Step.Act && (C.Idle() || !bActed))
 				{
 					Step.Act(C);
+					C.LayerAssist(); // the act may have put Dink back on its 1997 spot: the drawn body again before the hit frame
 				}
 				bActed = true;
 				LastAct = Now;
@@ -3834,9 +4156,12 @@ namespace DinkProbeTest
 				}
 				return false;
 			}
-			if (Elapsed > Step.Timeout)
+			// Physical play layer on: a fight at drawn contact is a lunge-and-dodge brawl, slower than the 1997 spacing (the knights of
+			// chapter 8 fall in about 200 s), so a fight gets twice its time. Layer off: the 1997 timeouts.
+			const double Timeout = Step.Timeout * (Step.bFight && C.G->IsPhysicalPlayActive() ? 2.0 : 1.0);
+			if (Elapsed > Timeout)
 			{
-				return Finish(C, FString::Printf(TEXT("step %d \"%s\" did not complete in %.0f s of game time. %s"), Current + 1, *Step.Name, Step.Timeout, *C.State()));
+				return Finish(C, FString::Printf(TEXT("step %d \"%s\" did not complete in %.0f s of game time. %s"), Current + 1, *Step.Name, Timeout, *C.State()));
 			}
 			return false;
 		}
@@ -4843,7 +5168,21 @@ namespace DinkProbeTest
 					// The dragon in front of him until it is dead, then the other.
 					int32 Target = C.P->Mark;
 					const FDinkSprite* T = Target > 0 ? C.D->FindSprite(Target) : nullptr;
-					if (!T || !T->bActive || T->GetProp(TEXT("hitpoints")) <= 0)
+					// Physical play layer on: the other dragon walking into him (its drawn touch keeps him off the first) becomes the target
+					// once it is much nearer (22 Nov 2026: a 30 s stalemate beside it, the first dragon at 3 hit points out of reach)
+					bool bNearer = false;
+					if (T && C.G->IsPhysicalPlayActive())
+					{
+						const FDinkSprite& Dk = C.D->GetDink();
+						const double Mine = FMath::Max(FMath::Abs(T->X - Dk.X), FMath::Abs(T->Y - Dk.Y));
+						for (const TPair<int32, FDinkSprite>& Pair : C.D->GetSprites())
+						{
+							const FDinkSprite& O = Pair.Value;
+							if (Pair.Key != Target && O.bActive && O.Script == FName(TEXT("en-drag")) && O.GetProp(TEXT("hitpoints")) > 0 &&
+								FMath::Max(FMath::Abs(O.X - Dk.X), FMath::Abs(O.Y - Dk.Y)) + 50.0 < Mine) { bNearer = true; }
+						}
+					}
+					if (!T || !T->bActive || T->GetProp(TEXT("hitpoints")) <= 0 || bNearer)
 					{
 						Target = 0;
 						double Best = 1e18;

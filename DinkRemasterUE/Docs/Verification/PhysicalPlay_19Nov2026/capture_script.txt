@@ -1,0 +1,169 @@
+wait 25
+dink.Fact lifemax 900
+dink.Fact life 900
+dink.Npc.Hold 1
+# 1. relaxed pine S215_P05 (box right edge x 409, drawn right edge x 365), from the east along y 78: layer off, then on (auto)
+dink.PhysicalPlay 0
+dink.Goto 216 300 200
+wait 2
+dink.Goto 215 450 78
+wait 3
+dink.WalkTo 330 78 5
+wait 6
+dink.Player
+dink.CameraDistance 700
+dink.View -90 -40
+wait 1
+shot <scratch>/tree_off.png
+dink.CameraDistance 400
+dink.View -90 -12
+dink.PhysicalPlay 1
+dink.Goto 216 300 200
+wait 2
+dink.Goto 215 450 78
+wait 3
+dink.WalkTo 330 78 5
+wait 6
+dink.Player
+dink.CameraDistance 700
+dink.View -90 -40
+wait 1
+shot <scratch>/tree_on.png
+# 2. relaxed boulder S536_P09 (sprite 579,164; 1997 box 103 x 37 px; Dink stopped up to 5 m off): from the south along x 579
+dink.CameraDistance 400
+dink.View -90 -12
+dink.PhysicalPlay 0
+dink.Goto 535 300 200
+wait 2
+dink.Goto 536 579 290
+wait 3
+dink.WalkTo 579 150 5
+wait 6
+dink.Player
+dink.CameraDistance 700
+dink.View -90 -40
+wait 1
+shot <scratch>/rock_off.png
+dink.CameraDistance 400
+dink.View -90 -12
+dink.PhysicalPlay 1
+dink.Goto 535 300 200
+wait 2
+dink.Goto 536 579 290
+wait 3
+dink.WalkTo 579 150 5
+wait 6
+dink.Player
+dink.CameraDistance 700
+dink.View -90 -40
+wait 1
+shot <scratch>/rock_on.png
+# 3. gold heart S524_P04 (1997 touch box from x 133, drawn heart x 154-164) from the west along y 197, layer on
+dink.CameraDistance 400
+dink.View -90 -12
+dink.Goto 523 300 200
+wait 2
+dink.Goto 524 100 197
+wait 3
+dink.Fact gold
+dink.WalkTo 140 197 4
+wait 5
+dink.Player
+dink.Fact gold
+dink.CameraDistance 700
+dink.View -90 -40
+wait 1
+shot <scratch>/heart_short_on.png
+dink.WalkTo 160 197 4
+wait 5
+dink.Player
+dink.Fact gold
+shot <scratch>/heart_touch_on.png
+# 4. pillbug S278_P04 (held at map x 81), layer on: Dink walks onto it and is stopped at its body; punches (1997 hit rule)
+dink.CameraDistance 500
+dink.View -90 -30
+dink.Goto 277 300 250
+wait 2
+dink.Goto 278 200 250
+wait 3
+dink.Sprites
+dink.PhysicalPlayBodies
+dink.WalkTo 60 250 4
+wait 5
+dink.Player
+dink.Sprites
+dink.PhysicalPlayBodies
+shot <scratch>/pill_stopped.png
+dink.Attack
+wait 1
+dink.Sprites
+dink.Attack
+wait 1
+dink.Sprites
+dink.Attack
+wait 1
+dink.Sprites
+shot <scratch>/pill_punched.png
+# 5. the pillbugs of SCR_438 crawl into Dink (holds off): he is bitten, then walks away (not trapped)
+dink.Npc.Hold 0
+dink.Goto 437 300 200
+wait 2
+dink.Goto 438 165 125
+wait 8
+dink.Player
+dink.Sprites
+dink.PhysicalPlayBodies
+shot <scratch>/pill_bitten.png
+dink.WalkTo 300 125 5
+wait 6
+dink.Player
+dink.PhysicalPlayBodies
+shot <scratch>/pill_walked_away.png
+# 6. reach review (COMBAT_REACH_OPTIONS.md): creatures held, 1997 blow reach against their drawn bodies
+dink.Npc.Hold 1
+dink.Fact life 900
+dink.Goto 438 165 125
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 278 300 250
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 29 300 300
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 302 300 300
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 713 400 250
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 712 250 250
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 166 320 330
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 178 300 300
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 124 300 330
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 192 400 300
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+dink.Goto 237 450 300
+wait 3
+dink.Player
+dink.PhysicalPlayReach
+quit

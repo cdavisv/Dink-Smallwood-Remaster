@@ -134,6 +134,45 @@ struct DINKNARRATIVE_API FDinkAuthoredInteractionSettings
 	void Load();
 };
 
+/** Physical play layer settings (Content/Dink/Data/Play/physical_play.ini and relaxed_hardboxes.json; PHYSICAL_PLAY_LAYER.md). */
+struct DINKNARRATIVE_API FDinkPhysicalPlaySettings
+{
+	/** The ini's Mode: 0 off, 1 auto, 2 on (the console variable dink.PhysicalPlay, when set, wins). */
+	int32 Mode = 1;
+	/**
+	 * The layer's parts (coordinator decision on PR #160, 16 Nov 2026), each also a console variable dink.PhysicalPlay.<Part>
+	 * (-1 the ini, 0 off, 1 on), all inert while the layer itself is off. Collision: relaxed hardboxes (Dink walks up to the drawn
+	 * object). Touch: pickups and touch scripts at the drawn item. Bodies: bug A21's player-only box on living creatures. Hits:
+	 * Dink's blows land at drawn contact. CreatureReach: creature blows and missiles at Dink by his drawn body and the creature's
+	 * drawn reach. All five are ON (Hits and CreatureReach: owner decision of 19 Nov 2026, drawn contact for both sides, option (c)
+	 * of doc/remaster/COMBAT_REACH_OPTIONS.md); a part switched off, or the layer off, leaves its decisions to the 1997 code path.
+	 */
+	bool bCollision = true;
+	bool bTouch = true;
+	bool bBodies = true;
+	bool bHits = true;
+	bool bCreatureReach = true;
+	/** Placement indices per screen whose 1997 hardbox the player may enter (the drawn mesh's player-only blocker still stops him). */
+	TMap<int32, TSet<int32>> Relaxed;
+	/**
+	 * The drawn footprint of each relaxed placement (map pixels, inclusive: the dink.PhysAudit body-height slice of its mesh), keyed by
+	 * screen * 1000 + placement. With part Collision on, the 1997 hardness the simulation reads (get_hard: missiles, brains, pushes)
+	 * keeps a relaxed box only inside its drawn footprint (review of PR #160, finding 2: no safe pocket, no fireball dying in the air).
+	 */
+	TMap<int32, FIntRect> Feet;
+	/**
+	 * Tile cells (row * 12 + column, 50 px tiles) per screen whose 1997 tile hardness draws as open ground in the remaster (painted
+	 * boulders of the grass_rocky tiles, playtest 20 Nov P1). With part Collision on, neither Dink nor the simulation meets it.
+	 */
+	TMap<int32, TSet<int32>> OpenTiles;
+	FString Source;
+	static FString DefaultIniPath();
+	static FString DefaultRelaxedPath();
+	void Load();
+	/** Parses relaxed_hardboxes.json text (tests). */
+	bool ParseRelaxed(const FString& Json);
+};
+
 /** One map.dat placement (Content/Dink/Data/Gameplay/placements.csv). */
 struct DINKNARRATIVE_API FDinkPlacementInfo
 {
@@ -176,7 +215,17 @@ struct DINKNARRATIVE_API FDinkPlacementInfo
 	int32 WarpMap = 0;
 };
 
+/** A drawn body's own box in the world: centre and rotation (Frame, no scale) and half size (cm). */
+struct FDinkDrawnBody
+{
+	FTransform Frame;
+	FVector Extent = FVector::ZeroVector;
+	/** How far the landforms lift the component the body came from (0 for flat-held authored body boxes): Frame less this is the flat floor's frame. */
+	float LiftCm = 0.f;
+};
+
 /** The original's per-frame and per-placement data (Scripts/sync_gameplay_data.py; never hand-edited). */
+
 class DINKNARRATIVE_API FDinkGameplayData
 {
 public:
@@ -632,6 +681,29 @@ public:
 	/** A screen load (load_map + place_sprites_game build g_hitmap anew, D:5966): drops the redrawn maps and the visit's sp_hard and sp_prop flags. */
 	void OnScreenLoaded();
 	/**
+	 * Physical play layer (doc/remaster/PHYSICAL_PLAY_LAYER.md): in play, Dink's collision, hits and touches follow the drawn 3D
+	 * shapes; the 1997 boxes stay for everything else. dink.PhysicalPlay 0 off, 1 auto (on in a rendering game that is not an
+	 * automation test), 2 on. Off in the probe and parity tests.
+	 */
+	bool IsPhysicalPlayActive() const;
+	/** One part of the layer (FDinkPhysicalPlaySettings): the layer is active and that part is on (its console variable, else the ini). */
+	enum class EPhysicalPlayPart : uint8 { Collision, Touch, Bodies, Hits, CreatureReach };
+	bool IsPhysicalPlayPartOn(EPhysicalPlayPart Part) const;
+	/** After a screen's entry: with the layer on, the screen's solid collision drops the relaxed hardboxes (Data/Play/relaxed_hardboxes.json). */
+	void ApplyPhysicalPlayCollision(int32 Screen);
+	FDinkPhysicalPlaySettings& GetPhysicalPlaySettings() { return PhysicalPlay; }
+	/**
+	 * Creature bodies (bug A21, owner decision of 16 Nov 2026): with the layer on, every living creature body (an actor tagged
+	 * DinkCreature whose sprite is active, has a brain and is drawn) carries a player-only blocker (profile DinkPlayerBlock, a box
+	 * inside its drawn body), so Dink cannot stand on or inside a pillbug. Only the player capsule meets it: the creature's own moves,
+	 * its 1997 touch and hit boxes, missiles and the simulation are unchanged, so it still reaches and bites Dink. While Dink already
+	 * overlaps a body (it walked into him) that blocker is off until he is clear, so a body never traps him. With the layer off every
+	 * blocker is removed (the probe and parity tests never see one). Called every gameplay tick.
+	 */
+	void UpdateCreatureBodyBlockers();
+	/** The creature-body blocker of an actor, or null (tests, review). */
+	static class UBoxComponent* FindCreatureBodyBlocker(const AActor* Actor);
+	/**
 	 * place_sprites_game (D:5966-6140) after the base script's main: it runs update_play_changes first (D:5974), so the save's editor_type of
 	 * each placement decides whether its hardbox is stamped (removed: no; 2/3: no; 4/5: yes) and with which picture. Where that differs from
 	 * map.dat's loaded map, the screen gets that map for GetHard (as a live map whose Base is the baked map) and the greybox's solid collision
@@ -720,6 +792,86 @@ private:
 	bool AuthoredActorMoveBlocked(const FDinkSprite& Sprite, const FIntPoint& From, const FIntPoint& To, FQuat* OutFacing = nullptr) const;
 	bool AuthoredGeometryMatches(const FDinkSprite& Attacker, const FDinkSprite& Target, EAuthoredInteraction Kind, double* OutDistanceCm = nullptr) const;
 	FDinkAuthoredInteractionSettings AuthoredInteraction;
+	FDinkPhysicalPlaySettings PhysicalPlay;
+	/** Blockers made by UpdateCreatureBodyBlockers (removed when their creature dies or leaves, or the layer goes off). */
+	TArray<TWeakObjectPtr<class UBoxComponent>> CreatureBodyBlockers;
+	/**
+	 * The physical play layer decides this interaction by the drawn shapes: Dink's touch, talk or push (part Touch), Dink's blow (part
+	 * Hits) or a creature's blow at Dink (part CreatureReach), against a target with drawn geometry. False: the 1997 boxes decide.
+	 */
+	bool UsesPhysicalPlay(const FDinkSprite& Attacker, const FDinkSprite& Target, EAuthoredInteraction Kind) const;
+public:
+	/** The physical play layer's box of a drawn body without usable physics (a skinned creature): its mesh's own bounds, turned with it. */
+	static FDinkDrawnBody DrawnBodyBox(const UPrimitiveComponent& Component);
+	/** A creature's drawn body for the layer: the union of its authored body boxes, else its skinned body's own box, else a visible mesh's. */
+	static bool CreatureDrawnBody(const AActor& Actor, FDinkDrawnBody& Out);
+	/** Part CreatureReach: a creature's blow at Dink lands at drawn contact (AuthoredGeometryMatches delegates here). */
+	bool CreatureReachMatches(const FDinkSprite& Attacker, const FDinkSprite& Target, double* OutDistanceCm = nullptr, bool* OutSightBlocked = nullptr) const;
+	/**
+	 * missile_brain's overlap test (D:14316-14330): the missile's pixel inside Target's hardbox grown by the missile's sp_range, or a
+	 * fitted target's own geometry (FittedMissileMatches). Physical play layer, part CreatureReach (drawn contact for both, owner
+	 * decision 19 Nov 2026): a missile at Dink meets his drawn body instead, his capsule grown by sp_range in cm (his 1997 box,
+	 * 28 x 18 px plus the range, is about twice the drawn Dink: a fireball that flew past him on screen still burnt him).
+	 */
+	bool MissileHitsTarget(const FDinkSprite& Missile, const FDinkSprite& Target, int32 Range) const;
+	/**
+	 * Part CreatureReach: a creature pursuing Dink starts its blow when its drawn reach meets him (facing Dir), not at its 1997
+	 * sp_distance (50-60 px: metres in the drawn world, where the blow could only miss). Read by pill_brain's attack test.
+	 */
+	bool CreatureReachesDink(const FDinkSprite& Creature, int32 Dir, bool* OutSightBlocked = nullptr) const;
+	/**
+	 * Part CreatureReach on: how far (cm, from its drawn body's centre, in any facing) a creature's blow can reach Dink's capsule's
+	 * centre; 0 with the part off or nothing drawn. For a player who keeps out of a foe's reach (the probe bot).
+	 */
+	double CreatureReachRadiusCm(const FDinkSprite& Creature) const;
+	/**
+	 * For a player that aims by the 1997 boxes (the probe bot) while the layer is on. LegacyHitBoxContains: the 1997 blow box of an
+	 * attacker at pixel (Ax, Ay) facing Dir with sp_range Range contains the target (the box test of RunThroughTagList, D:15460-15527).
+	 * DrawnInteractionLands: the layer's test for Dink against Target (a blow if bHit, else a touch) passes now, or the layer does not
+	 * decide that interaction (its part is off, or the target keeps its 1997 box), so the 1997 box the bot aimed by decides.
+	 * DrawnClosestPoint: the point of Target's drawn geometry closest to From (cm); false if nothing is drawn.
+	 * HasPendingHit: Sprite's blow is between its key press and its hit frame. None of these changes any state.
+	 */
+	bool LegacyHitBoxContains(const FDinkSprite& Target, int32 Ax, int32 Ay, int32 Dir, int32 Range) const;
+	bool DrawnInteractionLands(int32 Target, bool bHit) const;
+	/**
+	 * Physical play layer, part Touch (review of PR #160, 22 Nov 2026, finding 1): no spot for Dink's capsule at the drawn pickup (16
+	 * directions, against it and half its pickup reach off, each free of blocking geometry and with nothing solid between it and the
+	 * pickup), e.g. a potion drawn against a decoration's player-only hull. Such a pickup is collected by its 1997 touch box.
+	 */
+	bool PickupUnreachableInPlay(const FDinkSprite& Pickup) const;
+	/**
+	 * The same for any drawn target, with capsule spots up to MaxGapCm off its drawn body. Dink's blow (part Hits) at a target no
+	 * capsule spot within his reach can see (22 Nov 2026: SCR_190's duck-bugs sitting in the low ditch, 2.7 m from the bank) lands by
+	 * the 1997 blow box, as without the layer.
+	 */
+	bool DrawnTargetUnreachableInPlay(const FDinkSprite& Target, double MaxGapCm) const;
+	bool DrawnClosestPoint(int32 Target, const FVector& From, FVector& Out) const;
+	bool HasPendingHit(int32 Sprite) const { for (const FDinkPendingHit& P : PendingHits) if (P.Sprite == Sprite) return true; return false; }
+	/** Milliseconds until Sprite's pending blow reaches its hit frame (negative: none pending). */
+	double PendingHitInMs(int32 Sprite) const { double Best = -1.0; for (const FDinkPendingHit& P : PendingHits) if (P.Sprite == Sprite && (Best < 0.0 || P.AtMs - NowMs < Best)) Best = FMath::Max(0.0, P.AtMs - NowMs); return Best; }
+private:
+	/** Code 100 + n of a placement whose box the player may enter (relaxed_hardboxes.json), with the layer on. */
+	bool IsRelaxedForPlayer(int32 Screen, int32 Code) const;
+	/**
+	 * Review of 22 Nov 2026, finding 5: relaxed_hardboxes.json predates later art changes, so at each screen entry (with the screen's
+	 * art in place) a relaxed placement whose drawn footprint has no player-only blocker over it (PR #129's hull: nothing would stop
+	 * Dink at the drawn thing) keeps its 1997 box. Keyed screen * 1000 + placement; filled by ApplyPhysicalPlayCollision.
+	 */
+	TSet<int32> RelaxedWithoutBlocker;
+	void CheckRelaxedBlockers(int32 Screen);
+public:
+	/**
+	 * Physical play layer, part Collision: the 1997 hardness Code at map pixel (MapX, MapY) as play reads it. A relaxed placement's
+	 * code counts only inside its drawn footprint, a tile code only outside the screen's open tiles (PhysicalPlay.Feet / OpenTiles).
+	 * The code itself when the part is off, so the 1997 path is untouched.
+	 */
+	int32 PlayHardness(int32 Screen, int32 MapX, int32 MapY, int32 Code) const;
+	/** An original-hardness screen's source (FDinkRuntimeHardnessSource::Load) with the open tiles cleared from its tile base in play. */
+	bool LoadPlayHardnessSource(int32 Screen, const FString& File, int32 Vision, struct FDinkRuntimeHardnessSource& Out, FString& Error) const;
+	/** The screen has open tiles (playtest P1) with part Collision on: its low collision is rebuilt without them. */
+	bool HasOpenTilesForPlayer(int32 Screen) const;
+private:
 	int32 CapsuleMarginPixels(const FDinkSprite& Dink) const;
 	void Note(const FString& E);
 	// Hardness redrawing (DinkGameplay.cpp, "Hardness the scripts change")
@@ -739,6 +891,8 @@ private:
 	void FillHardSprites(FDinkHardnessMap& Map, int32 Screen) const;
 	/** The greybox's solid collision of Screen follows the live map (UDinkGreyboxSubsystem::ApplyScreenSolidChanges); no-op without a world. */
 	void SyncGreyboxHardness(int32 Screen);
+	/** Physical play layer: the screen's low collision without the low hardness of its open tiles (PhysicalPlay.OpenTiles). */
+	void SyncGreyboxLowHardness(int32 Screen);
 	void RestoreGreyboxHardness();
 	TMap<int32, FLiveHardness> LiveHardness;
 	/** sp_hard on placement sprites in this screen visit: g_smallMap.sprite[n].hard (D:9997). */

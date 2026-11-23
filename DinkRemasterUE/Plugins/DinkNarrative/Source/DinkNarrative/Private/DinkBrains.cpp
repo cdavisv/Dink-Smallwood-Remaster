@@ -26,6 +26,7 @@
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
 #include "HAL/IConsoleManager.h"
+#include "Components/CapsuleComponent.h"
 
 // The wind-up's red wireframe ball was the greybox's telegraph; with photoreal creatures it drew a debug sphere over every
 // attacker in play (playthrough QA, 15 Nov 2026: over Seth and the pillbugs). Off by default; the wind-up itself is unchanged.
@@ -312,7 +313,7 @@ int32 UDinkGameplay::GetHard(int32 Screen, int32 X, int32 Y) const
 		// A script redrew the map in this screen visit (draw_hard_sprite / draw_hard_map): g_hitmap as they left it.
 		const int32 Code = Live->Map->Get(X1, Y1);
 		// sp_prop made the placement walk-through (get_hard D:569-575 reads the flag at every call).
-		return IsWalkThroughByProp(Screen, Code) ? 0 : Code;
+		return IsWalkThroughByProp(Screen, Code) ? 0 : PlayHardness(Screen, X1, Y1, Code);
 	}
 	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
     int32 RuntimeCode = 0;
@@ -335,7 +336,9 @@ int32 UDinkGameplay::GetHard(int32 Screen, int32 X, int32 Y) const
 			return 0;
 		}
 	}
-	return Code;
+	// physical play layer (part Collision; review of PR #160, finding 2): a relaxed box stands only at its drawn mesh, an open tile's
+	// painted boulder nowhere, for the simulation as for Dink. The code itself with the layer off.
+	return PlayHardness(Screen, X1, Y1, Code);
 }
 
 int32 UDinkGameplay::GetDistanceAndDir(int32 H, int32 H1, int32& OutDir) const
@@ -550,7 +553,17 @@ void UDinkGameplay::ProcessTarget(FDinkSprite& S)
 		return;
 	}
 	int32 Dir = S.Dir;
-	if (GetDistanceAndDir(S.Handle, Target, Dir) < S.GetProp(B_Distance))
+	bool bClose = GetDistanceAndDir(S.Handle, Target, Dir) < S.GetProp(B_Distance);
+	// physical play layer, part CreatureReach: a creature closing on Dink stops where its drawn reach meets him, not at its 1997
+	// sp_distance (from there it would wait for ever: it attacks only at drawn contact; review of PR #160)
+	// Review of 22 Nov 2026, finding 3: when a drawn wall or tree stands between them it stops at its 1997 sp_distance, as in 1997,
+	// and does not walk on into the drawn obstacle.
+	if (bClose && Target == 1 && S.GetProp(B_BaseAttack, -1) != -1 && UsesPhysicalPlay(S, *T, EAuthoredInteraction::Hit))
+	{
+		bool bSightBlocked = false;
+		bClose = CreatureReachesDink(S, Dir, &bSightBlocked) || bSightBlocked;
+	}
+	if (bClose)
 	{
 		return;
 	}
@@ -931,7 +944,15 @@ void UDinkGameplay::PillBrain(FDinkSprite& S, double Tick)
 		}
 		int32 Dir = S.Dir;
 		const int32 Distance = GetDistanceAndDir(S.Handle, Target, Dir);
-		if (Distance < S.GetProp(B_Distance) && S.GetProp(B_AttackWait) < Tick && BaseAttack != -1)
+		bool bInReach = Distance < S.GetProp(B_Distance);
+		// physical play layer, part CreatureReach (owner decision 19 Nov 2026, drawn contact for both): at Dink, the blow starts when
+		// the creature's drawn reach meets him; from its 1997 sp_distance it could only swing at air (review of PR #160). Off: 1997.
+		if (Target == 1 && BaseAttack != -1)
+		{
+			const FDinkSprite* Dink = Director() ? Director()->FindSprite(1) : nullptr;
+			if (Dink && UsesPhysicalPlay(S, *Dink, EAuthoredInteraction::Hit)) bInReach = CreatureReachesDink(S, Dir);
+		}
+		if (bInReach && S.GetProp(B_AttackWait) < Tick && BaseAttack != -1)
 		{
 			int32 AttackDir = Dir; // get_distance_and_dir with smooth_follow off: the same cardinal direction
 			if (!AdaptationAllowsAttack(S, Target, AttackDir, Tick))
@@ -1230,10 +1251,7 @@ void UDinkGameplay::MissileBrain(FDinkSprite& S, bool bRepeat)
 		{
 			continue;
 		}
-		int32 L, Tp, R, B;
-		const int32 Range = M->GetProp(B_Range);
-		if (HasHardnessFitInstance(*T) ? !FittedMissileMatches(*M,*T,Range) :
-            (!GetHardbox(*T, L, Tp, R, B) || !Inside(Px(M->X), Px(M->Y), L - Range, Tp - Range, R + Range, B + Range)))
+		if (!MissileHitsTarget(*M, *T, M->GetProp(B_Range)))
 		{
 			continue;
 		}
@@ -1272,6 +1290,29 @@ void UDinkGameplay::MissileBrain(FDinkSprite& S, bool bRepeat)
 			RunProc(J, Proc_Hit);
 		}
 	}
+}
+
+bool UDinkGameplay::MissileHitsTarget(const FDinkSprite& Missile, const FDinkSprite& Target, int32 Range) const
+{
+	if (HasHardnessFitInstance(Target))
+	{
+		return FittedMissileMatches(Missile, Target, Range);
+	}
+	// physical play layer, part CreatureReach: a missile at Dink meets his drawn body (his capsule, grown by sp_range in cm); without
+	// a capsule or the screen's corners the 1997 box below decides
+	if (Target.Handle == 1 && IsPhysicalPlayPartOn(EPhysicalPlayPart::CreatureReach))
+	{
+		const AActor* DinkActor = Target.Actor.Get();
+		const UCapsuleComponent* Capsule = DinkActor ? DinkActor->FindComponentByClass<UCapsuleComponent>() : nullptr;
+		const UDinkDirector* D = Director();
+		FVector A, B;
+		if (Capsule && D && D->PixelToWorld(Missile.Screen, Missile.X, Missile.Y, A) && D->PixelToWorld(Missile.Screen, Missile.X + FMath::Max(0, Range), Missile.Y, B))
+		{
+			return FVector::Dist2D(A, Capsule->GetComponentLocation()) <= Capsule->GetScaledCapsuleRadius() + FVector::Dist2D(A, B);
+		}
+	}
+	int32 L, Tp, R, B;
+	return GetHardbox(Target, L, Tp, R, B) && Inside(Px(Missile.X), Px(Missile.Y), L - Range, Tp - Range, R + Range, B + Range);
 }
 
 // ---------------------------------------------------------------------------------------------

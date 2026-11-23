@@ -83,16 +83,17 @@ ADinkGreyboxScreen* UDinkGreyboxSubsystem::FindGreyboxScreen(int32 ScreenNumber)
 	return nullptr;
 }
 
-const TBitArray<>* UDinkGreyboxSubsystem::BakedSolidMask(int32 ScreenNumber)
+const TBitArray<>* UDinkGreyboxSubsystem::BakedMask(int32 ScreenNumber, bool bLow)
 {
-	if (const TBitArray<>* Found = BakedSolidMasks.Find(ScreenNumber))
+	TMap<int32, TBitArray<>>& Masks = bLow ? BakedLowMasks : BakedSolidMasks;
+	if (const TBitArray<>* Found = Masks.Find(ScreenNumber))
 	{
 		return Found;
 	}
 	const ADinkGreyboxScreen* Screen = FindGreyboxScreen(ScreenNumber);
 	const ADinkScreenVolume* Volume = FindScreen(ScreenNumber);
-	UPrimitiveComponent* Baked = Screen ? Screen->CollisionSolid.Get() : nullptr;
-	if (!Volume || !Baked || Baked->GetCollisionEnabled() == ECollisionEnabled::NoCollision)
+	UStaticMeshComponent* Baked = Screen ? (bLow ? Screen->CollisionLow.Get() : Screen->CollisionSolid.Get()) : nullptr;
+	if (!Volume || !Baked || (bLow && !Baked->GetStaticMesh()) || Baked->GetCollisionEnabled() == ECollisionEnabled::NoCollision)
 	{
 		return nullptr;
 	}
@@ -116,11 +117,21 @@ const TBitArray<>* UDinkGreyboxSubsystem::BakedSolidMask(int32 ScreenNumber)
 			}
 		}
 	}
-	UE_LOG(LogDink, Log, TEXT("SCR_%03d: baked solid collision read, %d solid pixels (%.0f ms)"), ScreenNumber, Solid, (FPlatformTime::Seconds() - Started) * 1000.0);
-	return &BakedSolidMasks.Add(ScreenNumber, MoveTemp(Mask));
+	UE_LOG(LogDink, Log, TEXT("SCR_%03d: baked %s collision read, %d pixels (%.0f ms)"), ScreenNumber, bLow ? TEXT("low") : TEXT("solid"), Solid, (FPlatformTime::Seconds() - Started) * 1000.0);
+	return &Masks.Add(ScreenNumber, MoveTemp(Mask));
 }
 
 bool UDinkGreyboxSubsystem::ApplyScreenSolidChanges(int32 ScreenNumber, const TArray<uint8>& Changes)
+{
+	return ApplyScreenChanges(ScreenNumber, Changes, false);
+}
+
+bool UDinkGreyboxSubsystem::ApplyScreenLowChanges(int32 ScreenNumber, const TArray<uint8>& Changes)
+{
+	return ApplyScreenChanges(ScreenNumber, Changes, true);
+}
+
+bool UDinkGreyboxSubsystem::ApplyScreenChanges(int32 ScreenNumber, const TArray<uint8>& Changes, bool bLow)
 {
 	if (Changes.Num() != MapW * MapH)
 	{
@@ -128,13 +139,15 @@ bool UDinkGreyboxSubsystem::ApplyScreenSolidChanges(int32 ScreenNumber, const TA
 	}
 	ADinkGreyboxScreen* Screen = FindGreyboxScreen(ScreenNumber);
 	const ADinkScreenVolume* Volume = FindScreen(ScreenNumber);
-	FRuntimeSolid* Runtime = RuntimeSolids.Find(ScreenNumber);
-	if (!Screen || !Volume || (!Runtime && Screen->CollisionSolid && Screen->CollisionSolid->GetCollisionEnabled() == ECollisionEnabled::NoCollision))
+	TMap<int32, FRuntimeSolid>& Runtimes = bLow ? RuntimeLows : RuntimeSolids;
+	FRuntimeSolid* Runtime = Runtimes.Find(ScreenNumber);
+	UStaticMeshComponent* BakedComponent = Screen ? (bLow ? Screen->CollisionLow.Get() : Screen->CollisionSolid.Get()) : nullptr;
+	if (!Screen || !Volume || !BakedComponent || (!Runtime && BakedComponent->GetCollisionEnabled() == ECollisionEnabled::NoCollision))
 	{
 		// Not in this world, or its land collision is authored (UDinkArtSubsystem switched the baked mesh off): nothing to follow.
 		return false;
 	}
-	const TBitArray<>* Baked = BakedSolidMask(ScreenNumber);
+	const TBitArray<>* Baked = BakedMask(ScreenNumber, bLow);
 	if (!Baked)
 	{
 		return false;
@@ -157,7 +170,11 @@ bool UDinkGreyboxSubsystem::ApplyScreenSolidChanges(int32 ScreenNumber, const TA
 	const FVector Up(0.0, 0.0, SolidPrismHeightCm);
 	TArray<FVector> Vertices;
 	TArray<int32> Triangles;
-	AddQuad(Vertices, Triangles, At(0, 0), At(MapW, 0), At(MapW, MapH), At(0, MapH), FVector::UpVector);
+	if (!bLow)
+	{
+		// the low mesh (importer: "low" and "fill_water" prisms) has no ground
+		AddQuad(Vertices, Triangles, At(0, 0), At(MapW, 0), At(MapW, MapH), At(0, MapH), FVector::UpVector);
+	}
 	const TArray<FIntRect> Rects = MergeRects(Solid);
 	for (const FIntRect& R : Rects)
 	{
@@ -175,7 +192,7 @@ bool UDinkGreyboxSubsystem::ApplyScreenSolidChanges(int32 ScreenNumber, const TA
 	}
 	if (!Runtime)
 	{
-		Runtime = &RuntimeSolids.Add(ScreenNumber);
+		Runtime = &Runtimes.Add(ScreenNumber);
 		UProceduralMeshComponent* Mesh = NewObject<UProceduralMeshComponent>(Screen, NAME_None, RF_Transient);
 		Mesh->bUseComplexAsSimpleCollision = true;
 		Mesh->bUseAsyncCooking = false;
@@ -185,7 +202,7 @@ bool UDinkGreyboxSubsystem::ApplyScreenSolidChanges(int32 ScreenNumber, const TA
 		Mesh->SetUsingAbsoluteRotation(true);
 		Mesh->SetUsingAbsoluteScale(true);
 		Mesh->SetWorldTransform(FTransform::Identity);
-		Mesh->SetCollisionProfileName(DinkCollision::ProfileHardSolid);
+		Mesh->SetCollisionProfileName(bLow ? DinkCollision::ProfileHardLow : DinkCollision::ProfileHardSolid);
 		Mesh->SetHiddenInGame(true);
 		Mesh->SetVisibility(false);
 		Mesh->SetCastShadow(false);
@@ -193,8 +210,8 @@ bool UDinkGreyboxSubsystem::ApplyScreenSolidChanges(int32 ScreenNumber, const TA
 		Mesh->SetCanEverAffectNavigation(false);
 		Mesh->RegisterComponent();
 		Runtime->Mesh = Mesh;
-		Runtime->Baked = Screen->CollisionSolid.Get();
-		Screen->CollisionSolid->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Runtime->Baked = BakedComponent;
+		BakedComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 	UProceduralMeshComponent* Mesh = Runtime->Mesh.Get();
 	if (!Mesh)
@@ -208,13 +225,23 @@ bool UDinkGreyboxSubsystem::ApplyScreenSolidChanges(int32 ScreenNumber, const TA
 		Added += C == 1;
 		Removed += C == 2;
 	}
-	UE_LOG(LogDink, Log, TEXT("SCR_%03d: runtime solid collision, %d rectangles (%d pixels now solid, %d no longer)"), ScreenNumber, Rects.Num(), Added, Removed);
+	UE_LOG(LogDink, Log, TEXT("SCR_%03d: runtime %s collision, %d rectangles (%d pixels now set, %d no longer)"), ScreenNumber, bLow ? TEXT("low") : TEXT("solid"), Rects.Num(), Added, Removed);
 	return true;
 }
 
 void UDinkGreyboxSubsystem::RestoreScreenSolidCollision(int32 ScreenNumber)
 {
-	for (auto It = RuntimeSolids.CreateIterator(); It; ++It)
+	RestoreScreenCollision(ScreenNumber, false);
+}
+
+void UDinkGreyboxSubsystem::RestoreScreenLowCollision(int32 ScreenNumber)
+{
+	RestoreScreenCollision(ScreenNumber, true);
+}
+
+void UDinkGreyboxSubsystem::RestoreScreenCollision(int32 ScreenNumber, bool bLow)
+{
+	for (auto It = (bLow ? RuntimeLows : RuntimeSolids).CreateIterator(); It; ++It)
 	{
 		if (ScreenNumber != 0 && It->Key != ScreenNumber)
 		{
@@ -229,9 +256,15 @@ void UDinkGreyboxSubsystem::RestoreScreenSolidCollision(int32 ScreenNumber)
 			// ADinkGreyboxScreen's CollisionSolid is query and physics (its profile, DinkHardSolid).
 			Baked->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 		}
-		UE_LOG(LogDink, Log, TEXT("SCR_%03d: baked solid collision back"), It->Key);
+		UE_LOG(LogDink, Log, TEXT("SCR_%03d: baked %s collision back"), It->Key, bLow ? TEXT("low") : TEXT("solid"));
 		It.RemoveCurrent();
 	}
+}
+
+UPrimitiveComponent* UDinkGreyboxSubsystem::GetRuntimeLowCollision(int32 ScreenNumber) const
+{
+	const FRuntimeSolid* Runtime = RuntimeLows.Find(ScreenNumber);
+	return Runtime ? Runtime->Mesh.Get() : nullptr;
 }
 
 UPrimitiveComponent* UDinkGreyboxSubsystem::GetRuntimeSolidCollision(int32 ScreenNumber) const

@@ -97,6 +97,13 @@ public:
 	void RestoreScreenSolidCollision(int32 ScreenNumber);
 	/** The runtime solid collision of a screen, if ApplyScreenSolidChanges made one (tests). */
 	UPrimitiveComponent* GetRuntimeSolidCollision(int32 ScreenNumber) const;
+	/**
+	 * The same for the screen's low collision (CollisionLow: prisms of low hardness 2 and open-water fills, profile DinkHardLow), used by
+	 * the physical play layer to drop the painted boulders of open tiles (playtest 20 Nov P1). Changes as above (2: no longer low).
+	 */
+	bool ApplyScreenLowChanges(int32 ScreenNumber, const TArray<uint8>& Changes);
+	void RestoreScreenLowCollision(int32 ScreenNumber);
+	UPrimitiveComponent* GetRuntimeLowCollision(int32 ScreenNumber) const;
 	/** Height of the solid prisms (DinkImport's CollisionHeightM, 3 m), cm. */
 	static constexpr float SolidPrismHeightCm = 300.f;
 
@@ -167,7 +174,11 @@ private:
 
 	ADinkGreyboxScreen* FindGreyboxScreen(int32 ScreenNumber) const;
 	/** Which map pixels the baked CollisionSolid covers with a prism, by line traces at the pixel centres (computed once per screen). */
-	const TBitArray<>* BakedSolidMask(int32 ScreenNumber);
+	const TBitArray<>* BakedSolidMask(int32 ScreenNumber) { return BakedMask(ScreenNumber, false); }
+	/** BakedSolidMask, or the same of CollisionLow (bLow). */
+	const TBitArray<>* BakedMask(int32 ScreenNumber, bool bLow);
+	bool ApplyScreenChanges(int32 ScreenNumber, const TArray<uint8>& Changes, bool bLow);
+	void RestoreScreenCollision(int32 ScreenNumber, bool bLow);
 	struct FRuntimeSolid
 	{
 		TWeakObjectPtr<UProceduralMeshComponent> Mesh;
@@ -175,4 +186,6 @@ private:
 	};
 	TMap<int32, FRuntimeSolid> RuntimeSolids;
 	TMap<int32, TBitArray<>> BakedSolidMasks;
+	TMap<int32, FRuntimeSolid> RuntimeLows;
+	TMap<int32, TBitArray<>> BakedLowMasks;
 };
