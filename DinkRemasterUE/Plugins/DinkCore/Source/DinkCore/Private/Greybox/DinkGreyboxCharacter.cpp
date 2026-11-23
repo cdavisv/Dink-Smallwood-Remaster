@@ -290,7 +290,7 @@ void ADinkGreyboxCharacter::Landed(const FHitResult& Hit)
 	const bool Allowed = Controller && !Controller->IsMoveInputIgnored() && !Stats->IsDead();
 	// Clumsy landings become rare as Dink grows into a hero.
 	if (Allowed) HeroPhysicality.Land(FMath::Max(0.f, -GetVelocity().Z), AirSeconds,
-		HeroPhysicality.ScaleChance(LandingStumbleChance, .08f));
+		FDinkHeroPhysicality::BotchChance(HeroPhysicality.GetConfidence(), LandingStumbleChance));
 	AirSeconds = 0.f;
 	Super::Landed(Hit);
 }
@@ -300,6 +300,107 @@ void ADinkGreyboxCharacter::OnJumped_Implementation()
 	Super::OnJumped_Implementation();
 	if (UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetMesh()->GetAnimInstance()))
 		Body->PlayAction(TEXT("Jump"), true, 1.f, .06f, .25f);
+}
+
+namespace
+{
+	bool IsAttackClip(FName Name)
+	{
+		const FString Text = Name.ToString();
+		return Text.StartsWith(TEXT("Fist_")) || Text.StartsWith(TEXT("Sword_")) || Text.StartsWith(TEXT("Bow_")) || Text == TEXT("Cast");
+	}
+	FAutoConsoleCommandWithWorldAndArgs CmdHeroMannerism(TEXT("dink.Hero.Mannerism"),
+		TEXT("Review tool: dink.Hero.Mannerism trip|stagger|faceplant|scratch|scuff|nose|proud|wobble|jump|jumpclean|jumpstagger|jumpfaceplant plays that moment on the hero now, whatever the dice say. Cosmetic."),
+		FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+		{
+			APlayerController* PC = World ? World->GetFirstPlayerController() : nullptr;
+			ADinkGreyboxCharacter* Hero = PC ? Cast<ADinkGreyboxCharacter>(PC->GetPawn()) : nullptr;
+			const bool bDone = Hero && Args.Num() > 0 && Hero->ForceMannerism(FName(*Args[0].ToLower()));
+			UE_LOG(LogDink, Display, TEXT("DINK MANNERISM %s: %s"), Args.Num() > 0 ? *Args[0] : TEXT("?"), bDone ? TEXT("played") : TEXT("refused"));
+		}));
+}
+
+void ADinkGreyboxCharacter::PlayBotch(UDinkBodyAnimInstance& Body, FDinkHeroPhysicality::EBotch Kind)
+{
+	if (Kind == FDinkHeroPhysicality::EBotch::Faceplant && Body.PlayAction(TEXT("Botch_Faceplant"), true, 1.f, .04f, .25f))
+	{
+		// The capsule stays his to steer: if the player walks off he scrambles up instead of sliding.
+		Body.SetActionRushWhenMoving(2.5f);
+		return;
+	}
+	if (Kind != FDinkHeroPhysicality::EBotch::None && Body.PlayAction(TEXT("Botch_Stagger"), false, 1.f, .05f, .25f)) return;
+	// A toe catch: the upper body lurches while the legs hang a step and hurry two.
+	const bool bRunning = GetVelocity().Size2D() > FDinkHeroPhysicality::RunTripSpeed;
+	if (Kind == FDinkHeroPhysicality::EBotch::None && Body.PlayAction(bRunning ? TEXT("Trip_Run") : TEXT("Trip_Walk"), false, 1.f, .07f, .25f))
+	{
+		Body.TriggerCatchStep();
+		return;
+	}
+	Body.PlayAction(TEXT("Stumble"), false, 1.f, .08f, .25f);
+}
+
+bool ADinkGreyboxCharacter::ForceMannerism(FName Kind)
+{
+	UDinkBodyAnimInstance* Body = Cast<UDinkBodyAnimInstance>(GetMesh()->GetAnimInstance());
+	if (!Body) return false;
+	if (Kind == TEXT("trip")) { PlayBotch(*Body, FDinkHeroPhysicality::EBotch::None); return true; }
+	if (Kind == TEXT("stagger")) { PlayBotch(*Body, FDinkHeroPhysicality::EBotch::Stagger); return true; }
+	if (Kind == TEXT("faceplant")) { PlayBotch(*Body, FDinkHeroPhysicality::EBotch::Faceplant); return true; }
+	if (Kind == TEXT("wobble")) { HeroPhysicality.KickWobble(1.f); return true; }
+	// jump, jumpclean, jumpstagger, jumpfaceplant: a real jump of the capsule, with the landing chosen.
+	if (Kind.ToString().StartsWith(TEXT("jump")))
+	{
+		const FString How = Kind.ToString().Mid(4);
+		if (How == TEXT("clean")) HeroPhysicality.ForceNextLanding(FDinkHeroPhysicality::EBotch::None);
+		else if (How == TEXT("stagger")) HeroPhysicality.ForceNextLanding(FDinkHeroPhysicality::EBotch::Stagger);
+		else if (How == TEXT("faceplant")) HeroPhysicality.ForceNextLanding(FDinkHeroPhysicality::EBotch::Faceplant);
+		Jump();
+		bReviewJump = bPressedJump;
+		return bPressedJump;
+	}
+	static const TPair<const TCHAR*, const TCHAR*> Fidgets[] = {{TEXT("scratch"), TEXT("Fidget_Scratch")}, {TEXT("scuff"), TEXT("Fidget_Scuff")},
+		{TEXT("nose"), TEXT("Fidget_Nose")}, {TEXT("proud"), TEXT("Fidget_Proud")}};
+	for (const auto& Row : Fidgets)
+		if (Kind == Row.Key && Body->PlayAction(Row.Value, false, 1.f, .2f, .3f)) { FidgetClip = Row.Value; return true; }
+	return false;
+}
+
+void ADinkGreyboxCharacter::UpdateMannerisms(UDinkBodyAnimInstance& Body, bool bAllowed, bool bTeleported, bool bGrounded)
+{
+	float Impact = 0.f;
+	if (HeroPhysicality.ConsumeLanding(Impact) && bAllowed) Body.PlayAction(TEXT("Land"), false, FMath::Lerp(.45f, 1.f, Impact), .05f, .25f);
+	if (HeroPhysicality.ConsumeStumbleStart() && bAllowed) PlayBotch(Body, HeroPhysicality.GetBotch());
+	const int32 Life = Stats->Stats.Life;
+	if (bAllowed && !bTeleported && PreviousLife > 0 && Life < PreviousLife && Life > 0)
+	{
+		// A blow keeps anything clumsy away for a while: a fight is never hidden by a pratfall.
+		HeroPhysicality.NotifyCombat();
+		if (!Body.IsActionActive() || !IsAttackClip(Body.GetActionName())) Body.PlayAction(TEXT("Hurt"), false, 1.f, .04f, .2f);
+	}
+	PreviousLife = Life;
+	// His own attacks count as a fight too; an unsure Dink rocks on his feet as the swing ends.
+	const bool bAttacking = Body.IsActionActive() && IsAttackClip(Body.GetActionName());
+	const float AttackTime = bAttacking ? Body.GetActionTime() : 0.f;
+	if (bAttacking)
+	{
+		HeroPhysicality.NotifyCombat();
+		if (PreviousAttackTime < .3f && AttackTime >= .3f) HeroPhysicality.KickWobble(Body.GetActionName().ToString().Contains(TEXT("Slash_2")) ? -1.f : 1.f);
+	}
+	PreviousAttackTime = AttackTime;
+	// Standing about. The lad scratches, scuffs a toe and wipes his nose on his sleeve every few
+	// seconds; the hero stands planted and now and then squares his shoulders.
+	FVector2f Roll;
+	if (HeroPhysicality.ConsumeFidget(Roll) && bAllowed && !Body.IsActionActive())
+	{
+		static const FName Timid[] = {TEXT("Fidget_Scratch"), TEXT("Fidget_Scuff"), TEXT("Fidget_Nose")};
+		const FName Clip = Roll.X < HeroPhysicality.GetConfidence() ? FName(TEXT("Fidget_Proud")) : Timid[FMath::Min(2, int32(Roll.Y * 3.f))];
+		FidgetClip = Body.PlayAction(Clip, false, 1.f, .2f, .3f) ? Clip : FName();
+	}
+	if (!FidgetClip.IsNone())
+	{
+		if (Body.GetActionName() != FidgetClip || !Body.IsActionActive()) FidgetClip = NAME_None;
+		else if (!bAllowed || !bGrounded || GetVelocity().Size2D() > 15.f) { Body.FadeOutAction(.2f); FidgetClip = NAME_None; }
+	}
 }
 
 void ADinkGreyboxCharacter::UpdateConfidence(bool bSnap)
@@ -338,8 +439,9 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 		// Poll held controls too: losing focus or a consumed menu key-up must never stick a gait/jump.
 		const bool Held = PC->IsInputKeyDown(EKeys::LeftShift) || PC->IsInputKeyDown(EKeys::Gamepad_LeftShoulder);
 		if (Held != bRunKeyHeld) SetRunKeyHeld(Held);
+		if (bReviewJump && GetCharacterMovement()->IsFalling()) bReviewJump = false; // the review command's jump has left the ground
 		if (PC->IsMoveInputIgnored() || Stats->IsDead() ||
-			(!PC->IsInputKeyDown(EKeys::SpaceBar) && !PC->IsInputKeyDown(EKeys::Gamepad_FaceButton_Bottom))) StopJumping();
+			(!bReviewJump && !PC->IsInputKeyDown(EKeys::SpaceBar) && !PC->IsInputKeyDown(EKeys::Gamepad_FaceButton_Bottom))) StopJumping();
 	}
 	UpdateGait(DeltaSeconds);
 	Super::Tick(DeltaSeconds);
@@ -356,7 +458,7 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	const float TurnRate = !Teleported && DeltaSeconds > SMALL_NUMBER
         ? FMath::FindDeltaAngleDegrees(PreviousBodyYaw, GetActorRotation().Yaw) / DeltaSeconds : 0.f;
     HeroPhysicality.Update(DeltaSeconds, GetVelocity().Size2D(), Grounded, Allowed && !Teleported, TurnRate,
-        RunTripsPerSecond);
+        RunTripsPerSecond, WalkTripsPerSecond);
     PreviousBodyYaw = GetActorRotation().Yaw;
 	PreviousBodyLocation = Location; bBodyLocationReady = true;
 	// Body language is bone-level: the animation instance mixes timid and confident clips and
@@ -366,20 +468,19 @@ void ADinkGreyboxCharacter::Tick(float DeltaSeconds)
 	{
 		Body->SetMotion(GetVelocity().Size2D(), !Grounded, HeroPhysicality.GetConfidence(),
 			HeroPhysicality.GetLean() * (1.f - .8f * WallLeanDamping));
-		// A light posture layer over the motion-capture clips: an unsure lad rounds his shoulders
-		// and carries his head a little low; it fades as he earns confidence.
+		// With the additive posture poses imported the slump is theirs (rounded back, head down
+		// and forward, shoulders in, arms turned in, toes in; chest open and chin level for the
+		// hero); without them the old three-angle layer stands in.
+		Body->SetMannerScale(1.f - .8f * WallLeanDamping);
+		// The posture row's W (upper arms brought in, A102) is kept either way: the additive poses own only the stoop.
 		if (UDinkArtSubsystem* Art = GetWorld()->GetSubsystem<UDinkArtSubsystem>())
 		{
-			Body->SetPosture(Art->GetAnimationPosture(TEXT("Hero"), HeroPhysicality.GetConfidence()) * (1.f - .8f * WallLeanDamping));
+			FVector4f Row = Art->GetAnimationPosture(TEXT("Hero"), HeroPhysicality.GetConfidence()) * (1.f - .8f * WallLeanDamping);
+			if (Body->HasMannerisms()) Row = FVector4f(0.f, 0.f, 0.f, Row.W);
+			Body->SetPosture(Row);
 			Body->SetArmFade(Art->GetAnimationArmFade(TEXT("Hero")));
 		}
-		float Impact = 0.f;
-		if (HeroPhysicality.ConsumeLanding(Impact) && Allowed) Body->PlayAction(TEXT("Land"), false, FMath::Lerp(.45f, 1.f, Impact), .05f, .25f);
-		if (HeroPhysicality.ConsumeStumbleStart() && Allowed) Body->PlayAction(TEXT("Stumble"), false, 1.f, .08f, .25f);
-		const int32 Life = Stats->Stats.Life;
-		if (Allowed && !Teleported && PreviousLife > 0 && Life < PreviousLife && Life > 0 && !Body->IsActionActive())
-			Body->PlayAction(TEXT("Hurt"), false, 1.f, .04f, .2f);
-		PreviousLife = Life;
+		UpdateMannerisms(*Body, Allowed, Teleported, Grounded);
 	}
 	const FVector BaseLocation = GetMesh()->GetRelativeLocation() - AppliedBodyOffset;
 	// His build grows with confidence. A hero mesh that carries the two build shapes changes

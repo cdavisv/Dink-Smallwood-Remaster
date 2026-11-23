@@ -23,6 +23,9 @@ struct DINKCORE_API FDinkBodyClip
 	/** Gait cycles (left + right step) the clip holds, and the time of its first left-foot lead. */
 	float Cycles = 1.f, PhaseStart = 0.f;
 	bool bLoop = false;
+	/** An action that leaves the standing posture for a while (he is flat on the ground): the
+	 * additive posture layer is faded out between these two times, seconds; 0, 0 = never. */
+	float PostureOffS = 0.f, PostureOnS = 0.f;
 	/** Seconds into the clip for a gait phase counted in cycles. */
 	float TimeAtPhase(float Phase) const
 	{
@@ -121,6 +124,32 @@ struct FDinkLegTelemetry
 	bool bValid = false;
 };
 
+/**
+ * The hero's mannerism layer: how his confidence shows in the bones, on top of whatever clips
+ * are playing. Posture is a pair of additive poses (Posture_Timid, Posture_Confident: bone
+ * rotations away from the reference pose, applied in each bone's own frame) mixed by
+ * confidence. The gait part belongs to the unsure lad only and fades to nothing with
+ * confidence: arms that hang instead of swinging (one more than the other), a trunk that
+ * rocks unevenly over the steps, a head that bobs, elbows that stick out when he runs. None of
+ * it touches the pelvis or the legs' timing, so the feet stay where the gait put them.
+ */
+struct FDinkBodyMannerFrame
+{
+	const UAnimSequence* PostureTimid = nullptr;
+	const UAnimSequence* PostureConfident = nullptr;
+	const UAnimSequence* RunArms = nullptr;
+	/** Standing pose the arms are pulled towards while he walks (their swing is damped). */
+	FDinkBodyLayer ArmRest;
+	float Confidence = 0.f;
+	/** 0..1: share of the posture layer shown (an action authored with its own posture lowers it). */
+	float PostureWeight = 0.f;
+	/** Gait cycles (as FDinkBodyClip::TimeAtPhase counts them), 0..1 moving, 0..1 running. */
+	float Phase = 0.f, MoveAlpha = 0.f, RunAlpha = 0.f;
+	/** 0..1 after the actions' share is taken out: how much of the timid gait layer shows. */
+	float Gait = 0.f;
+	bool IsActive() const { return PostureTimid && PostureConfident; }
+};
+
 /** Snapshot the worker thread evaluates. */
 struct FDinkBodyFrame
 {
@@ -133,6 +162,27 @@ struct FDinkBodyFrame
 	/** Light posture layer over the motion-capture clips, degrees: chest rounded forward, head
 	 * lowered, shoulders drawn forward, upper arms brought in (W). Zero is the clip as captured. */
 	FVector4f Posture = FVector4f(0, 0, 0, 0);
+	FDinkBodyMannerFrame Manner;
+};
+
+/** Pure numbers of the mannerism layer, shared by the runtime and its tests. */
+struct DINKCORE_API FDinkMannerMaths
+{
+	/** Trunk roll of the timid gait, degrees, to the character's left: he rocks over each
+	 * step, and further over one foot than the other. Zero when standing and for the hero. */
+	static float GaitRoll(float Phase, float Timid, float MoveAlpha, float RunAlpha);
+	/** Share of the arm swing taken away (X left arm, Y right arm): 0 = the clip's swing. */
+	static FVector2f ArmSwingDamping(float Timid, float MoveAlpha, float RunAlpha);
+	/** Cadence multiplier during a toe catch that began Seconds ago: the foot hangs, then two
+	 * quick steps make the lost ground up. Its integral over CatchSeconds is CatchSeconds. */
+	static float CatchCadence(float Seconds);
+	static constexpr float CatchHang = .14f, CatchSeconds = .36f, CatchHangRate = .15f;
+	/** How a walk slower than the walk clip is taken (FDinkGaitBlend's cadence power): the lad
+	 * shuffles in short quick steps, the hero strides. Base is the body's own setting. */
+	static float CadencePower(float Base, float Confidence) { return FMath::Clamp(Base + FMath::Lerp(-.3f, .15f, FMath::Clamp(Confidence, 0.f, 1.f)), 0.f, 1.f); }
+	/** Share of the posture layer kept under an action clip of this name (older clips were
+	 * authored with their own hunched stand). */
+	static float PostureShareFor(FName Action);
 };
 
 struct DINKCORE_API FDinkBodyAnimProxy : public FAnimInstanceProxy
@@ -165,6 +215,15 @@ private:
 	int32 ChestBone = INDEX_NONE, HeadBone = INDEX_NONE, ClavicleL = INDEX_NONE, ClavicleR = INDEX_NONE, UpperArmL = INDEX_NONE, UpperArmR = INDEX_NONE;
 	uint16 MaskSerial = 0;
 	bool bMaskReady = false;
+	/** Additive rotations of the mannerism poses, cached per bone container. */
+	struct FAdditive { int32 Bone; FQuat Timid, Confident, RunArms; };
+	TArray<FAdditive> Additives;
+	TArray<int32, TInlineAllocator<6>> ArmBonesL, ArmBonesR;
+	const UAnimSequence* CachedTimid = nullptr;
+	const UAnimSequence* CachedConfident = nullptr;
+	const UAnimSequence* CachedRunArms = nullptr;
+	uint16 AdditiveSerial = 0;
+	void BuildAdditives(FPoseContext& Output);
 };
 
 /** A foot set down (the leg layer pinned it): owner actor, foot bone (foot_l / foot_r), where, world. Game thread. */
@@ -216,6 +275,17 @@ public:
 	/** Every body running this animation: broadcast once each time a foot is set down (a gait step, a pivot step, a
 	 * landing), at most once per 0.18 s per foot; nothing while dink.Anim.Legs or dink.Anim.FootLock is 0. For footsteps. */
 	static FDinkFootPlant& OnFootPlant();
+	/** Lets the current action go over Seconds (he starts walking in the middle of a fidget). */
+	void FadeOutAction(float Seconds = .2f);
+	/** The current action plays Rate times faster while the body is moving (a pratfall he
+	 * scrambles out of instead of sliding along the ground). */
+	void SetActionRushWhenMoving(float Rate) { Slots[0].RushRate = FMath::Max(1.f, Rate); }
+	/** A toe catches: the step hangs and two quick ones follow (see FDinkMannerMaths::CatchCadence). */
+	void TriggerCatchStep() { CatchTime = 0.f; }
+	/** True when the hero's additive posture clips are loaded: the bone-level mannerism layer is on. */
+	bool HasMannerisms() const { return bMannerisms; }
+	/** 0..1 scale of the mannerism layer (a wall in front of him takes most of the slump away). */
+	void SetMannerScale(float Scale) { MannerScale = FMath::Clamp(Scale, 0.f, 1.f); }
 	bool HasClip(FName Name) const;
 	bool IsActionActive() const;
 	FName GetActionName() const { return ActionName; }
@@ -232,7 +302,7 @@ private:
 	struct FSlot
 	{
 		FDinkBodyClipPair Clips;
-		float Time = 0.f, BlendIn = .07f, BlendOut = .2f, Scale = 1.f, Fade = 1.f;
+		float Time = 0.f, BlendIn = .07f, BlendOut = .2f, Scale = 1.f, Fade = 1.f, FadeSeconds = .09f, RushRate = 1.f, PostureShare = 1.f;
 		bool bFullBody = false, bActive = false, bFading = false, bHold = false;
 	};
 	bool FindPair(const TMap<FName, FDinkBodyClip>& Library, FName Name, FDinkBodyClipPair& Out) const;
@@ -265,5 +335,10 @@ private:
 	static constexpr float StandBlendSeconds = .22f;
 	void UpdateLegInput(float Dt);
 	void PublishFrame();
+	float CatchTime = 1.e9f, MannerScale = 1.f;
+	UPROPERTY(Transient) FDinkBodyClip PostureTimid;
+	UPROPERTY(Transient) FDinkBodyClip PostureConfident;
+	UPROPERTY(Transient) FDinkBodyClip RunArms;
+	bool bMannerisms = false;
 	friend struct FDinkBodyAnimProxy;
 };
