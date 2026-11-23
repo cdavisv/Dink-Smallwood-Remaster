@@ -270,6 +270,28 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkHurtCommand(
 		UE_LOG(LogDinkNarrative, Display, TEXT("dink.Hurt: %s handle %d, %d dealt"), *Args[0], Handle, Dealt);
 	}));
 
+static FAutoConsoleCommandWithWorldAndArgs GDinkHurtSpriteCommand(
+	TEXT("dink.HurtSprite"),
+	TEXT("dink.HurtSprite <S680_P12 | handle | script | nearest> <damage>: review only (captures of deaths and what they leave): one of Dink's blows on that sprite with this damage, as run_through_tag_list deals it (hurt_thing, random_blood, then its `hit` with &enemy_sprite 1). Finds script-made sprites by their script name (e.g. s3-mog) or handle (dink.Sprites lists them); the kill follows when its brain thinks."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		UDinkStorySubsystem* S = GetStory(World);
+		if (!S || Args.Num() < 2 || !S->GetGameplay() || !Args[1].IsNumeric())
+		{
+			UE_LOG(LogDinkNarrative, Display, TEXT("usage: dink.HurtSprite <origin id | handle | script | nearest> <damage>"));
+			return;
+		}
+		UDinkGameplay* G = S->GetGameplay();
+		const int32 Handle = G->FindReviewSprite(Args[0]);
+		if (Handle <= 0)
+		{
+			UE_LOG(LogDinkNarrative, Display, TEXT("dink.HurtSprite: no live sprite for '%s'"), *Args[0]);
+			return;
+		}
+		const int32 Dealt = G->ReviewBlow(Handle, FCString::Atoi(*Args[1]));
+		UE_LOG(LogDinkNarrative, Display, TEXT("dink.HurtSprite: %s = sprite %d, %d dealt"), *Args[0], Handle, Dealt);
+	}));
+
 static FAutoConsoleCommandWithWorld GDinkMagicCommand(
 	TEXT("dink.Magic"),
 	TEXT("dink.Magic: the magic key (Q): casts the armed spell if &magic_level >= &magic_cost."),

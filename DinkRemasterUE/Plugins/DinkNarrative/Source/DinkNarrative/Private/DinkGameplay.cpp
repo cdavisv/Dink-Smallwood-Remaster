@@ -1339,6 +1339,103 @@ int32 UDinkGameplay::HurtAndBleed(int32 Target, int32 Damage)
 	return Num;
 }
 
+int32 UDinkGameplay::FindReviewSprite(const FString& Arg) const
+{
+	const UDinkDirector* D = Director();
+	if (!D || Arg.IsEmpty())
+	{
+		return 0;
+	}
+	const TMap<int32, FDinkSprite>& All = D->GetSprites();
+	auto Live = [](const FDinkSprite& S) { return S.bActive && !S.bText && S.Handle != 1; };
+	FDinkOriginId Origin;
+	if (FDinkOriginId::Parse(Arg, Origin))
+	{
+		for (const TPair<int32, FDinkSprite>& P : All)
+		{
+			if (Live(P.Value) && P.Value.Origin == Origin) { return P.Key; }
+		}
+		return 0;
+	}
+	if (Arg.IsNumeric())
+	{
+		const int32 H = FCString::Atoi(*Arg);
+		const FDinkSprite* S = D->FindSprite(H);
+		return S && Live(*S) ? H : 0;
+	}
+	const bool bNearest = Arg.Equals(TEXT("nearest"), ESearchCase::IgnoreCase);
+	const FName Script(*Arg);
+	const FDinkSprite* Dink = D->FindSprite(1);
+	const int32 Here = Dink ? Dink->Screen : 0;
+	int32 Best = 0;
+	double BestScore = TNumericLimits<double>::Max();
+	for (const TPair<int32, FDinkSprite>& P : All)
+	{
+		const FDinkSprite& S = P.Value;
+		if (!Live(S)) { continue; }
+		if (bNearest ? (S.GetProp(P_Hitpoints) <= 0 || S.Screen != Here) : S.Script != Script) { continue; }
+		// FName compares without case, as DinkC script names do. Dink's screen first, then the distance to him.
+		const double Dist = Dink ? FMath::Sqrt(FMath::Square(S.X - Dink->X) + FMath::Square(S.Y - Dink->Y)) : 0.0;
+		const double Score = (S.Screen == Here ? 0.0 : 1.0e9) + Dist;
+		if (Score < BestScore || (Score == BestScore && P.Key < Best))
+		{
+			BestScore = Score;
+			Best = P.Key;
+		}
+	}
+	return Best;
+}
+
+int32 UDinkGameplay::ReviewBlow(int32 Target, int32 Damage)
+{
+	UDinkDirector* D = Director();
+	FDinkSprite* T = D ? D->FindSprite(Target) : nullptr;
+	if (!T || !T->bActive || Target == 1)
+	{
+		return -1;
+	}
+	// The tail of RunThroughTagList for attacker 1 (Dink), once, on this target only.
+	const bool bScript = !T->Script.IsNone();
+	const bool bNoHit = T->GetProp(P_NoHit) == 1;
+	if (bNoHit && !bScript)
+	{
+		return 0;
+	}
+	SetFact(TEXT("missle_source"), 1);
+	const bool bTargets = T->GetProp(P_BaseAttack, -1) != -1 || T->GetProp(P_TouchDamage) > 0;
+	if (bTargets)
+	{
+		T->Props.Add(P_Target, 1);
+	}
+	int32 Dealt = 0;
+	if (!bNoHit)
+	{
+		const FDinkSprite* Dink = D->FindSprite(1);
+		const int32 HitSound = Dink ? Dink->GetProp(TEXT("attack_hit_sound")) : 0;
+		D->Audio.Cue(FString::Printf(TEXT("sound:%d speed=22050 hit"), HitSound == 0 ? 9 : HitSound));
+		if (Damage != 0 && T->GetProp(P_Hitpoints) > 0)
+		{
+			T->LastHit = 1;
+			Dealt = HurtThing(Target, Damage);
+			if (Dealt > 0)
+			{
+				NoteBlood(Target, 40);
+			}
+		}
+	}
+	Note(FString::Printf(TEXT("review blow on %d damage %d dealt %d"), Target, Damage, Dealt));
+	if (bScript)
+	{
+		if (FDinkSprite* T2 = D->FindSprite(Target))
+		{
+			T2->LastHit = 1;
+		}
+		SetFact(TEXT("enemy_sprite"), 1);
+		RunProc(Target, NAME_Hit);
+	}
+	return Dealt;
+}
+
 void UDinkGameplay::NoteBlood(int32 Handle, int32 YOffset)
 {
 	UDinkDirector* D = Director();
