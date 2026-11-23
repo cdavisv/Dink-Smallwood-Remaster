@@ -118,7 +118,7 @@ bool UDinkGameplay::BeginOriginalHardnessScreen(int32 Screen,FString& Error,int3
     auto Fail=[&](const TCHAR* Why){Error=Why;RefuseOriginalHardnessProjection();return false;};
     if(!HasData())return Fail(TEXT("marked hardness world has no gameplay data"));
     FDinkRuntimeHardnessSource Source;
-    if(!FDinkRuntimeHardnessSource::Load(FDinkGameplayData::GetDataPath(*LayerFile(Screen,InitialVision)),InitialVision,Source,Error))return false;
+    if(!LoadPlayHardnessSource(Screen,FDinkGameplayData::GetDataPath(*LayerFile(Screen,InitialVision)),InitialVision,Source,Error))return false;
     for(const auto* P:Data.GetPlacementsOnScreen(Screen))if(!P->bHasQueSource)return Fail(TEXT("marked hardness world lacks original que source"));
     auto Map=DinkHardness::Layers::Create(Source.TileBase,{});if(!Map)return Fail(TEXT("invalid tile-only hardness baseline"));
     if(!HasOriginalIdentityOnScreen(Screen))BeginOriginalIdentityScreen(Screen);
@@ -130,6 +130,22 @@ bool UDinkGameplay::BeginOriginalHardnessScreen(int32 Screen,FString& Error,int3
     if(!Owner.IsValid()||!AdmitRuntimeHardness(Screen,InitialVision,Owner,Error))
     {RefuseOriginalHardnessProjection();return false;}
     SetHardnessLoading(false);Error.Reset();return true;
+}
+
+bool UDinkGameplay::LoadPlayHardnessSource(int32 Screen,const FString& File,int32 Vision,FDinkRuntimeHardnessSource& Out,FString& Error) const
+{
+    // Physical play layer, part Collision (playtest 20 Nov P1): on an original-hardness screen the open tiles' painted boulders
+    // leave the tile base, so neither the projected bodies (Dink's collision) nor get_hard meet them. Every load of a screen's
+    // source takes the same path, so the baseline comparisons between loads stay exact. Off: the 1997 tile base unchanged.
+    if(!FDinkRuntimeHardnessSource::Load(File,Vision,Out,Error))return false;
+    const TSet<int32>* Open=PhysicalPlay.OpenTiles.Find(Screen);
+    if(Open&&Out.TileBase.size()==600u*400u&&IsPhysicalPlayPartOn(EPhysicalPlayPart::Collision))
+        for(int32 I=0;I<600*400;++I)
+        {
+            const uint8 Code=Out.TileBase[I];
+            if((Code==1||Code==2||Code==3)&&Open->Contains(((I/600)/50)*12+(I%600)/50))Out.TileBase[I]=0;
+        }
+    return true;
 }
 
 bool UDinkGameplay::RequiresOriginalHardnessScreen(int32 Screen) const
@@ -152,7 +168,7 @@ bool UDinkGameplay::ValidateOriginalEditorCarry(int32 Screen,int32 Vision,FStrin
         if(Pair.Value.bActive&&Pair.Value.GetProp(TEXT("live"))&&Pair.Value.Origin.IsValid())NeedsEditorFlags=true;
     if(!NeedsEditorFlags)return true;
     FDinkRuntimeHardnessSource Source;
-    return FDinkRuntimeHardnessSource::Load(FDinkGameplayData::GetDataPath(*LayerFile(Screen,Vision)),Vision,Source,Error);
+    return LoadPlayHardnessSource(Screen,FDinkGameplayData::GetDataPath(*LayerFile(Screen,Vision)),Vision,Source,Error);
 }
 
 bool UDinkGameplay::OriginalEditorHardFlag(int32 Screen,int32 Index,int32& Hard) const
@@ -227,7 +243,7 @@ bool UDinkGameplay::PrepareOriginalHardnessPlacements(int32 Screen,FString& Erro
     if(P.Phase!=EOriginalHardnessPhase::BaseMain||!P.Identity->Slots.Valid())return Fail(TEXT("original screen birth phase unavailable"));
     const int32 Vision=Story&&Story->GetFacts()?Story->GetFacts()->GetFact(TEXT("vision")):0;
     FDinkRuntimeHardnessSource Source;
-    if(!FDinkRuntimeHardnessSource::Load(FDinkGameplayData::GetDataPath(*LayerFile(Screen,Vision)),Vision,Source,Error)||(Source.TileBase!=P.TileBase||Source.EditorHard!=P.RawEditorHard))
+    if(!LoadPlayHardnessSource(Screen,FDinkGameplayData::GetDataPath(*LayerFile(Screen,Vision)),Vision,Source,Error)||(Source.TileBase!=P.TileBase||Source.EditorHard!=P.RawEditorHard))
         return Fail(TEXT("selected vision tile base differs or is unsupported"));
     P.Vision=Vision;
     const auto* World=Story?Story->GetWorldState():nullptr;
@@ -418,7 +434,7 @@ void UDinkGameplay::OriginalHardnessVisionChanged(int32 Vision)
         SetHardnessLoading(true);RuntimeHardness.Reset();
         auto* Provider=Story&&Story->GetWorld()?Story->GetWorld()->GetSubsystem<UDinkRuntimeHardnessWorldSubsystem>():nullptr;
         FString Error;FDinkRuntimeHardnessSource Source;
-        if(!Provider||!FDinkRuntimeHardnessSource::Load(FDinkGameplayData::GetDataPath(*LayerFile(HardnessProjection->Screen,Vision)),Vision,Source,Error)||
+        if(!Provider||!LoadPlayHardnessSource(HardnessProjection->Screen,FDinkGameplayData::GetDataPath(*LayerFile(HardnessProjection->Screen,Vision)),Vision,Source,Error)||
             (Source.TileBase!=HardnessProjection->TileBase||Source.EditorHard!=HardnessProjection->RawEditorHard))
         {RefuseOriginalHardnessProjection();return;}
         HardnessProjection->Vision=Vision;
@@ -452,7 +468,7 @@ bool UDinkGameplay::AdmitRuntimeHardnessFromSourceFile(int32 Screen,int32 Vision
         return Fail(TEXT("complete original phase/slots/projection required before publication; rebuild under loading gate"));
     if(HardnessProjection->Phase==EOriginalHardnessPhase::InitialPlacements)return Fail(TEXT("initial slot binding in progress"));
     FDinkRuntimeHardnessSource Selected;
-    if(!FDinkRuntimeHardnessSource::Load(SourceFile,Vision,Selected,Error)||
+    if(!LoadPlayHardnessSource(Screen,SourceFile,Vision,Selected,Error)||
         (Selected.TileBase!=HardnessProjection->TileBase||Selected.EditorHard!=HardnessProjection->RawEditorHard))return Fail(TEXT("selected source tile baseline unavailable/drifted"));
     const int64 Key=RuntimeHardnessKey(Screen,Vision);
     if(RuntimeHardness.Contains(Key))return Fail(TEXT("screen/vision already admitted"));

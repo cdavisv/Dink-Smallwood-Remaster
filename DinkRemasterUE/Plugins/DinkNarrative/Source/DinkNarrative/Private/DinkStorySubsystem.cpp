@@ -1,9 +1,11 @@
 #include "DinkStorySubsystem.h"
 #include "DinkPerfScope.h"
+#include "Components/PrimitiveComponent.h"
 #include "Hardness/DinkFamilyCollisionFit.h"
 #include "DinkDirector.h"
 #include "DinkAudioSubsystem.h"
 #include "DinkGameplay.h"
+#include "DinkCollision.h"
 #include "Hardness/DinkHardnessActivation.h"
 #include "DinkNarrativeInput.h"
 #include "DinkNarrativeOverlay.h"
@@ -1481,6 +1483,7 @@ void UDinkStorySubsystem::OnScreenEntered(int32 Screen,bool bForceVisionRebuild,
 		StepInstance(Id, MaxLinesPerStep);
 	}
 	EnterScreenPlacements(Screen);
+	if (Gameplay) Gameplay->ApplyPhysicalPlayCollision(Screen); // physical play layer only; a no-op when it is off
 	UE_LOG(LogTemp,Display,TEXT("HARDNESS_ENTRY_COMPLETE screen=%d required=%d projected=%d loading=%d"),Screen,int32(Gameplay->RequiresOriginalHardnessScreen(Screen)),int32(Gameplay->UsesOriginalHardnessProjection(Screen)),int32(Gameplay->IsHardnessLoading()));
 }
 
@@ -1666,12 +1669,41 @@ bool UDinkStorySubsystem::TryTalk(APawn* Pawn)
 		// Placements, and sprites scripts created (create_sprite + sp_script: the letter, the bridge guard...).
 		// Authored targets already used physical geometry above; the legacy 3.5 m
 		// fallback must not reopen their old origin-based interaction range.
-		if ((!Origin && !Director->HandleByActor.Contains(Actor)) || Actor->IsHidden() || Actor == Pawn || Actor->ActorHasTag(TEXT("DinkAuthoredArt")))
+		if ((!Origin && !Director->HandleByActor.Contains(Actor)) || Actor->IsHidden() || Actor == Pawn)
 		{
 			continue;
 		}
-		const FVector Delta = (Actor->GetActorLocation() - From) * FVector(1, 1, 0);
-		const double Distance = Delta.Size();
+		FVector Delta = (Actor->GetActorLocation() - From) * FVector(1, 1, 0);
+		double Distance = Delta.Size();
+		if (Actor->ActorHasTag(TEXT("DinkAuthoredArt")))
+		{
+			// Bug A66 (playtest 20 Nov 2026): the mother could not be talked to while Dink stood against her. In play (physical play
+			// layer on) an authored character also answers the fallback, but only by her drawn body: within TalkReachCm + 50 cm of its
+			// interaction body (never her old origin's 3.5 m). Off (the probe, parity tests): skipped as before.
+			// Review of 22 Nov 2026, nit 11: part Touch (the talk is one of Dink's touches), on his screen, and not through a wall.
+			if (!Gameplay || !Gameplay->IsPhysicalPlayPartOn(UDinkGameplay::EPhysicalPlayPart::Touch)) continue;
+			const int32* Own = Director->HandleByActor.Find(Actor);
+			const FDinkSprite* OwnSprite = Own ? Director->FindSprite(*Own) : nullptr;
+			if (OwnSprite && OwnSprite->Screen != Director->GetDink().Screen) continue;
+			double Body = TNumericLimits<double>::Max();
+			FVector BodyNear = FVector::ZeroVector;
+			TInlineComponentArray<UPrimitiveComponent*> Parts(Actor);
+			for (const UPrimitiveComponent* Part : Parts)
+			{
+				if (!Part->IsRegistered() || !Part->ComponentHasTag(TEXT("DinkAuthoredInteraction"))) continue;
+				const FVector Near = Part->Bounds.GetBox().GetClosestPointTo(From);
+				if (FVector::Dist2D(Near, From) < Body) { Body = FVector::Dist2D(Near, From); BodyNear = Near; }
+			}
+			if (Body > 200.0) continue;
+			FCollisionQueryParams WallParams(SCENE_QUERY_STAT(DinkA66TalkWall), false, Pawn);
+			WallParams.AddIgnoredActor(Actor);
+			FHitResult Wall;
+			const FVector WallTo(BodyNear.X, BodyNear.Y, From.Z);
+			if (World->LineTraceSingleByChannel(Wall, From, WallTo, ECC_Visibility, WallParams) ||
+				World->LineTraceSingleByObjectType(Wall, From, WallTo, FCollisionObjectQueryParams(DinkCollision::PlayerBlock), WallParams)) continue;
+			Delta = (Actor->GetActorLocation() - From) * FVector(1, 1, 0);
+			Distance = Body;
+		}
 		if (Distance >= BestDistance || FVector::DotProduct(Delta.GetSafeNormal(), Forward) < -0.2)
 		{
 			continue;

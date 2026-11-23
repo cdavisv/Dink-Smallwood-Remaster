@@ -503,6 +503,7 @@ void UDinkGameplay::Init(UDinkStorySubsystem* InStory)
 	}
 	SetRandomSeed(Seed);
 	AuthoredInteraction.Load();
+	PhysicalPlay.Load();
 	LoadPace();
 	FString AdaptError;
 	if (!Adaptation.Load(FDinkAdaptationSettings::DefaultPath(), &AdaptError))
@@ -933,6 +934,50 @@ int32 UDinkGameplay::NewItemInstance(FName Script)
 // ---------------------------------------------------------------------------------------------
 // Hit, touch, push
 
+bool UDinkGameplay::LegacyHitBoxContains(const FDinkSprite& Target, int32 Ax, int32 Ay, int32 Dir, int32 Range) const
+{
+	// The 1997 blow box (D:15460-15527), as RunThroughTagList applies it when no drawn geometry decides.
+	const int32 Amount = Range == 0 ? 28 : Range;
+	const int32 AmountY = Range == 0 ? 36 : Range + Range / 6;
+	const int32 RangeAmount = Range / 8;
+	int32 L, Tp, R, B;
+	if (!GetHardbox(Target, L, Tp, R, B))
+	{
+		return false;
+	}
+	R += 5;
+	L -= 5;
+	Tp -= 5;
+	B += 10;
+	switch (Dir)
+	{
+	case 6:
+		Tp -= 10; B += 10;
+		if (Range != 0) { Tp -= RangeAmount; B += RangeAmount; }
+		L -= Amount;
+		break;
+	case 4:
+		R += Amount;
+		Tp -= 10; B += 10;
+		if (Range != 0) { Tp -= RangeAmount; B += RangeAmount; }
+		break;
+	case 2:
+		R += 10; L -= 10;
+		Tp -= AmountY;
+		if (Range != 0) { R += RangeAmount; L -= RangeAmount; }
+		break;
+	case 8:
+		R += 10; L -= 10;
+		B += AmountY;
+		// The original widens and narrows the right edge here (D:15521-15522): no net change. Kept.
+		if (Range != 0) { R += RangeAmount; R -= RangeAmount; }
+		break;
+	default:
+		break;
+	}
+	return Inside(Ax, Ay, L, Tp, R, B);
+}
+
 void UDinkGameplay::RunThroughTagList(int32 H)
 {
 	UDinkDirector* D = Director();
@@ -942,9 +987,6 @@ void UDinkGameplay::RunThroughTagList(int32 H)
 		return;
 	}
 	const int32 Range = A->GetProp(P_Range);
-	const int32 Amount = Range == 0 ? 28 : Range;
-	const int32 AmountY = Range == 0 ? 36 : Range + Range / 6;
-	const int32 RangeAmount = Range / 8;
 	const int32 Ax = FMath::RoundToInt32(A->X);
 	const int32 Ay = FMath::RoundToInt32(A->Y);
 	const int32 Dir = A->Dir;
@@ -965,51 +1007,22 @@ void UDinkGameplay::RunThroughTagList(int32 H)
 		{
 			continue;
 		}
+		// physical play layer (PHYSICAL_PLAY_LAYER.md), with its part Hits (Dink's blows) or CreatureReach (blows at Dink) on, both on
+		// in play: then the blow lands where the reach touches the drawn body; otherwise the 1997 box below decides
 		if (UsesAuthoredGeometry(*A, *T))
 		{
 			if (!AuthoredGeometryMatches(*A, *T, EAuthoredInteraction::Hit)) { continue; }
 		}
-		else
+		else if (UsesPhysicalPlay(*A, *T, EAuthoredInteraction::Hit))
 		{
-			int32 L, Tp, R, B;
-			if (!GetHardbox(*T, L, Tp, R, B))
-			{
-				continue;
-			}
-			R += 5;
-			L -= 5;
-			Tp -= 5;
-			B += 10;
-			switch (Dir)
-			{
-			case 6:
-				Tp -= 10; B += 10;
-				if (Range != 0) { Tp -= RangeAmount; B += RangeAmount; }
-				L -= Amount;
-				break;
-			case 4:
-				R += Amount;
-				Tp -= 10; B += 10;
-				if (Range != 0) { Tp -= RangeAmount; B += RangeAmount; }
-				break;
-			case 2:
-				R += 10; L -= 10;
-				Tp -= AmountY;
-				if (Range != 0) { R += RangeAmount; L -= RangeAmount; }
-				break;
-			case 8:
-				R += 10; L -= 10;
-				B += AmountY;
-				// The original widens and narrows the right edge here (D:15521-15522): no net change. Kept.
-				if (Range != 0) { R += RangeAmount; R -= RangeAmount; }
-				break;
-			default:
-				break;
-			}
-			if (!Inside(Ax, Ay, L, Tp, R, B))
-			{
-				continue;
-			}
+			// Dink's blow at a drawn target no one can stand within reach of (it sits in a ditch Dink cannot enter) lands by the 1997
+			// box, as without the layer (DrawnTargetUnreachableInPlay)
+			if (!AuthoredGeometryMatches(*A, *T, EAuthoredInteraction::Hit) &&
+				!(H == 1 && LegacyHitBoxContains(*T, Ax, Ay, Dir, Range) && DrawnTargetUnreachableInPlay(*T, AuthoredInteraction.AttackReachCm * FMath::Max(Range, 28) / 28.0 * 0.8))) { continue; }
+		}
+		else if (!LegacyHitBoxContains(*T, Ax, Ay, Dir, Range))
+		{
+			continue;
 		}
 		SetFact(TEXT("missle_source"), H);
 		const bool bTargets = T->GetProp(P_BaseAttack, -1) != -1 || T->GetProp(P_TouchDamage) > 0;
@@ -1084,9 +1097,18 @@ void UDinkGameplay::RunThroughTouchDamageList(int32 H)
 			return; // the original leaves the whole list here (D:15639)
 		}
 		int32 L, T, R, B;
-		if (UsesAuthoredGeometry(*Dink, *S)
-			? !AuthoredGeometryMatches(*Dink, *S, EAuthoredInteraction::Touch)
-			: (!GetHardbox(*S, L, T, R, B) || !Inside(Hx, Hy, L - Margin, T - Margin, R + Margin, B + Margin)))
+		const auto In1997Box = [&]() { return GetHardbox(*S, L, T, R, B) && Inside(Hx, Hy, L - Margin, T - Margin, R + Margin, B + Margin); };
+		if (UsesAuthoredGeometry(*Dink, *S))
+		{
+			if (!AuthoredGeometryMatches(*Dink, *S, EAuthoredInteraction::Touch)) continue;
+		}
+		else if (UsesPhysicalPlay(*Dink, *S, EAuthoredInteraction::Touch)) // physical play: Dink's body touches the drawn item
+		{
+			// a pickup no capsule can stand at (drawn against a decoration's player-only hull: review of PR #160 22 Nov, finding 1)
+			// is collected by its 1997 box, as without the layer
+			if (!AuthoredGeometryMatches(*Dink, *S, EAuthoredInteraction::Touch) && !(Touch == -1 && In1997Box() && PickupUnreachableInPlay(*S))) continue;
+		}
+		else if (!In1997Box())
 		{
 			continue;
 		}
@@ -1107,6 +1129,14 @@ void UDinkGameplay::RunThroughTouchDamageList(int32 H)
 			Dink->LastHit = I;
 		}
 		Note(FString::Printf(TEXT("touch damage %d from %d"), Touch, I));
+		if (IsPhysicalPlayActive())
+		{
+			double Dist = -1.0;
+			const bool bLayer = UsesPhysicalPlay(*Dink, *S, EAuthoredInteraction::Touch);
+			if (bLayer) AuthoredGeometryMatches(*Dink, *S, EAuthoredInteraction::Touch, &Dist);
+			UE_LOG(LogTemp, Log, TEXT("DINK PHYSICAL TOUCH: damage %d from sprite %d by %s, distance %.0f cm, Dink %.0f,%.0f, it %.0f,%.0f"),
+				Touch, I, bLayer ? TEXT("the drawn body") : TEXT("the 1997 box"), Dist, Dink->X, Dink->Y, S->X, S->Y);
+		}
 		if (bScript)
 		{
 			RunProc(I, NAME_Touch);
@@ -1685,6 +1715,7 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs, bool bGameStopped)
 		NextStatusMs += 100.0;
 	}
 	UpdatePlayerHold();
+	UpdateCreatureBodyBlockers();
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -2853,7 +2884,9 @@ void UDinkGameplay::SyncGreyboxHardness(int32 Screen)
 	for (int32 i = 0; i < Changes.Num(); ++i)
 	{
 		const bool bWas = FDinkHardnessMap::IsSolidCode(Base[i]);
-		const bool bNow = FDinkHardnessMap::IsSolidCode(Now[i]) && !IsWalkThroughByProp(Screen, Now[i]);
+		// physical play layer: a relaxed box is left to its drawn mesh's player-only blocker, an open tile's painted boulder to nothing
+		const bool bNow = FDinkHardnessMap::IsSolidCode(Now[i]) && !IsWalkThroughByProp(Screen, Now[i]) && !IsRelaxedForPlayer(Screen, Now[i]) &&
+			(Now[i] > 100 || PlayHardness(Screen, i % FDinkHardnessMap::Width, i / FDinkHardnessMap::Width, Now[i]) != 0);
 		if (bWas != bNow)
 		{
 			Changes[i] = bNow ? 1 : 2;
@@ -2870,12 +2903,37 @@ void UDinkGameplay::SyncGreyboxHardness(int32 Screen)
 	}
 }
 
+void UDinkGameplay::SyncGreyboxLowHardness(int32 Screen)
+{
+	// Physical play layer, part Collision (playtest 20 Nov P1): the painted boulders of open tiles keep a low (2) outline in the 1997
+	// hardness while the remaster draws open ground there. Their pixels leave the screen's low collision; water fills stay.
+	if (!HasOpenTilesForPlayer(Screen)) return;
+	UWorld* World = Story ? Story->GetWorld() : nullptr;
+	UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
+	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
+	const FDinkHardnessMap* Map = Data.GetHardness(Screen, Facts ? Facts->GetFact(TEXT("vision")) : 0);
+	if (!Greybox || !Map || Map->Codes.Num() != FDinkHardnessMap::Width * FDinkHardnessMap::Height) return;
+	TArray<uint8> Changes;
+	Changes.SetNumZeroed(Map->Codes.Num());
+	int32 Removed = 0;
+	for (int32 i = 0; i < Changes.Num(); ++i)
+	{
+		if (Map->Codes[i] == 2 && PlayHardness(Screen, i % FDinkHardnessMap::Width, i / FDinkHardnessMap::Width, 2) == 0)
+		{
+			Changes[i] = 2;
+			++Removed;
+		}
+	}
+	if (Removed > 0) Greybox->ApplyScreenLowChanges(Screen, Changes);
+}
+
 void UDinkGameplay::RestoreGreyboxHardness()
 {
 	UWorld* World = Story ? Story->GetWorld() : nullptr;
 	if (UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr)
 	{
 		Greybox->RestoreScreenSolidCollision(0);
+		Greybox->RestoreScreenLowCollision(0);
 		// sp_prop's switched-off sprite warps are on again: load_map reads map.dat's prop anew.
 		Greybox->RestoreSpriteWarps();
 	}

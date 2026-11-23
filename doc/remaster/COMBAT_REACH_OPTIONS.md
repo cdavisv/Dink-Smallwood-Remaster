@@ -50,7 +50,10 @@ between Dink and each creature because both sides keep the 1997 test and both lo
 in the creatures' favour and (c) turns fights into brawls the bot already loses in four chapters. The dragon shows the reverse
 problem: its drawn body is larger than its 1997 box, so under (b)-(d) its reach is not cut, only the small creatures' is.
 
-## Decision needed (owner)
+## Decision (owner, 19 Nov 2026): (c), drawn contact for both. Built in PR #160 (21 Nov 2026): parts Hits and CreatureReach on;
+the layer-on probe bot completes the chapters as listed in `DinkRemasterUE/Docs/Verification/PhysicalPlay_21Nov2026/README.md`.
+
+## Decision needed (owner) (as asked on 19 Nov)
 1. Keep (a), 1997 reach for everyone?
 2. Or build (d) (a middle rule) and decide after its probe and rendered fights?
 3. (b) and (c) are measured and not recommended.

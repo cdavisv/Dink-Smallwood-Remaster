@@ -2314,3 +2314,21 @@ Native1 packet postflight also rejected19 files generated under its own RunDDC b
 - Tests: `Dink.Art.Family.Duplicates.Rule` (kept copy, ties, four-screen corner, 24 shuffles, the cases that stay two objects) and `Dink.Art.Family.Duplicates.DressOrder` (scratch world with the shipped `families.json`: screens dressed A then B and B then A through `ApplyScreen`, the same copy draws, exactly one object shows after every step; actor/actor and actor/instance pairs).
 - Picture changes (review A344/A345, 19 Nov 2026): copies count as one object only while they show the same picture. When a copy's own picture changes (live, or a saved editor_type 2-5 picture on entry: burnable edge pines S217_P01/S216_P04, S502_P04/P05, S632_P02, S213_P09, S443_P03) the copy on Dink's screen draws its own picture and the others are hidden, never destroyed, and given back exactly; the drawer is decided again on every picture change and screen change (`UDinkFamilyDuplicatesSubsystem::PictureChanged`/`ScreenChanged`). Tests `Dink.Art.Family.DuplicatePictureChange.*`.
 - Pitfall (19 Nov 2026): a private copy reflinked from the shared checkout carries its old `Content/Dink/_Generated`, and `import_greybox.sh --region all` keeps existing immutable barrel targets, so on such a world every barrel hit is refused ("original hardness placement phase refused: missing/mismatched immutable imported card/picture baseline"), 12 barrel tests fail and the probe hangs for ever at Ch19 step 8 (S209_P13). `rm -rf <copy>/Content/Dink/_Generated` before every `--region all` import.
+
+## Physical play layer: parts (19 November 2026, PR #160)
+- `dink.PhysicalPlay` (0 off, 1 auto = on in a rendering game, off under automation, 2 on) with parts in
+  `Content/Dink/Data/Play/physical_play.ini` and console variables `dink.PhysicalPlay.<Part>` (-1 the ini): Collision, Touch, Bodies,
+  Hits, CreatureReach all ON (owner decision 19 Nov 2026: drawn contact for both). Layer off (automation default): every hit is the
+  1997 box test and the probe md5s equal `packaged_probe.md`.
+- To run the probe with the layer: set `Mode=2` in the copy's ini AND add `[ConsoleVariables] dink.CreatureClassArt=2` to the copy's
+  `Config/DefaultEngine.ini` (class-bound creatures drawn by their bodies headless, as in play); restore both after. A failing chapter
+  deletes its save, so later chapters need saves from a layer-off run (restore them before each chapter run).
+  The bot (`FCtx::LayerAssist`) lunges to the drawn body for a blow or pickup, dodges a swinging foe or a touching body
+  (`DINK PROBE LAYER DODGE`), waits outside a foe's drawn reach (`CreatureReachRadiusCm`); fights get twice their timeout with the
+  layer on. `DINK PROBE LAYER UNREACHABLE` lines are defects.
+- relaxed_hardboxes.json schema 2 (`Scripts/make_relaxed_hardboxes.py <phys audit dir> --repo <checkout>`): `feet` (drawn footprints:
+  get_hard keeps a relaxed box only there) and `open_tiles` (grass_rocky painted boulders freed in play, playtest P1; `kept_tiles`
+  fail the passage rule). Original-hardness projection screens take open tiles through `LoadPlayHardnessSource`.
+- Review commands: `dink.PhysicalPlayBodies` (skinned body sizes), `dink.PhysicalPlayReach` (1997 blow reach against drawn bodies, cm).
+- Creature body boxes use the `DinkPlayerBlock` profile like PR #129's mesh hulls and #150's water blockers; they are tagged
+  `DinkCreatureBodyBlocker` and only `UpdateCreatureBodyBlockers` makes or removes them.
