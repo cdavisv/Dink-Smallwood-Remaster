@@ -773,7 +773,7 @@ namespace DinkImportTest
 			{
 				const FVector2D At = DinkLayout::UnrealToMetres(Hero->GetActorLocation());
 				Test->TestTrue(TEXT("spawned at the new-game start"), (At - StartMetres).Size() < 1.0);
-				Test->TestEqual(TEXT("run speed 6 m/s"), Hero->GetCharacterMovement()->MaxWalkSpeed, 600.f);
+				Test->TestEqual(TEXT("run speed 6 m/s times the world-scale pace of the start screen"), Hero->GetCharacterMovement()->MaxWalkSpeed, ADinkGreyboxCharacter::RunSpeed * Hero->PaceScale(), 0.5f);
 				Test->TestNotNull(TEXT("template mannequin mesh loaded"), Hero->GetMesh()->GetSkeletalMeshAsset());
 				// Exposure volumes need a real query shape; a NoCollision parent makes
 				// EncompassesPoint fail even when the component is enabled and correctly placed.

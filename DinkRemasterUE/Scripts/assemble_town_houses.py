@@ -140,6 +140,11 @@ for screen in sorted(by_screen):
         kinds, review = [], []
         for p in r['bays']:
             n = 2 if p['frame'] in NARROW else 4
+            # World scale (doc/remaster/WORLD_SCALE.md): the kit bay is a real 2.5 m. A sprite bay was ~10-11 m at the
+            # 0.1 m/px settlements; at a larger layout scale it takes more kit bays instead of stretching them (doors and
+            # windows keep their real width): more bays once four would stretch by more than 20 %.
+            seg_cm = (25.0 if p['frame'] in NARROW else 50.0) * 2.0 * math.hypot(1.0, r['dy']) * 100.0 * p['m_per_px']
+            if seg_cm / (n * BAY) > 1.2: n = max(n, int(round(seg_cm / BAY)))
             window = 0.3 if p['frame'] in BLANK else 0.62
             k = []
             for j in range(n):
@@ -152,7 +157,8 @@ for screen in sorted(by_screen):
                     cx, cy = centre(p)
                     w = min(warps, key=lambda q: abs((q['hardness']['rect'][0] + q['hardness']['rect'][2]) / 2 - cx) + abs(q['hardness']['rect'][3] - cy))
                     wx = (w['hardness']['rect'][0] + w['hardness']['rect'][2]) / 2
-                    if abs(wx - cx) < 70: i = max(0, min(n - 1, int((wx - (cx - 50.0)) / 25.0)))
+                    half = 25.0 if p['frame'] in NARROW else 50.0
+                    if abs(wx - cx) < 70: i = max(0, min(n - 1, int((wx - (cx - half)) / (2.0 * half / n))))
                 k[i] = 'SM_Town_Wall_Door'
             review.append({'origin': p['id'], 'frame': p['frame'], 'kit_bays': k})
             kinds += k
