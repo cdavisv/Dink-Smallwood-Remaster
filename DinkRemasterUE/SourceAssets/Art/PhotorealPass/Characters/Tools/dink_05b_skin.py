@@ -161,8 +161,9 @@ for e in (eyeL, eyeR):
     col = col * (1 - k_[..., None]) + hc[None, None, :] * k_[..., None]
 # lips: a real colour break against the skin; stubble shadow on a young man's lip, chin and jaw
 ratio = base3[..., 0] / np.maximum(base3[..., 1], 1e-4)
-lipm = sstep(float(np.percentile(ratio[lips_zone & headm], 55)) if (lips_zone & headm).any() else 1.5, float(np.percentile(ratio[lips_zone & headm], 92)) if (lips_zone & headm).any() else 1.8, ratio) * (lips_zone & headm)
-col = col * (1 - lipm[..., None] * np.array([.10, .30, .26])[None, None, :])
+LP = CFG.get('lip_pct', (55, 92))      # which share of the mouth zone, by its redness in the photograph, counts as lip: lower numbers = a fuller painted mouth
+lipm = sstep(float(np.percentile(ratio[lips_zone & headm], LP[0])) if (lips_zone & headm).any() else 1.5, float(np.percentile(ratio[lips_zone & headm], LP[1])) if (lips_zone & headm).any() else 1.8, ratio) * (lips_zone & headm)
+col = col * (1 - lipm[..., None] * np.minimum(np.array([.10, .30, .26]) * CFG.get('lip_k', 1.0), .8)[None, None, :])      # lip_k: a deeper lip colour (the Mother's red mouth of pictures 351-359)
 stb = np.clip(blob((0, nose[1] + .022, nose[2] - .020), .017, 1.7) + blob((0, nose[1] + .03, nose[2] - .075), .028, 1.4) + blob((.05, nose[1] + .07, nose[2] - .07), .03) + blob((-.05, nose[1] + .07, nose[2] - .07), .03), 0, 1) * headm * (1 - lipm) * CFG.get('stubble', .16)
 col = col * (1 - stb[..., None]) + np.array([.16, .12, .10])[None, None, :] * stb[..., None] * (.6 + .8 * n3(2200, 61))[..., None]
 # worked hands: grime in creases and round the nails
@@ -219,8 +220,8 @@ if CFG['age'] > 0:   # authored lines of a lived-in face: nasolabial and marione
     fore = (.5 + .5 * np.cos(2 * np.pi * z / FP + FW * n3(60, 71) + 1.5 * np.cos(ax / .03))) ** 5 * forehead * sstep(.062, .035, ax) * sstep(ez + .024, ez + .034, z) * sstep(.45, .7, n3(35, 72, 2) + .25)
     bagl = np.exp(-((z - (ez - .0185 + .22 * np.abs(ax - ex) ** 1.3 * 6)) / .0013) ** 2) * (np.abs(ax - ex) < .017) * frontm
     glab = np.exp(-((ax - .0045) / .0012) ** 2) * sstep(ez + .004, ez + .012, z) * sstep(ez + .030, ez + .020, z) * frontm
-    neckl = (.5 + .5 * np.cos(2 * np.pi * z / .016 + 2 * n3(40, 73))) ** 6 * sstep(nz_ - .095, nz_ - .110, z) * headm * (y < ctr[1] + .02) * sstep(.3, .6, n3(30, 74, 2) + .2)
-    lines = np.clip(naso * 1.0 + mario * .75 + crow * .55 + fore * CFG.get('fore_k', .30) + bagl * .7 + glab * .5 + neckl * .5, 0, 1.2) * AG
+    neckl = (.5 + .5 * np.cos(2 * np.pi * z / .016 + 2 * n3(40, 73))) ** 6 * sstep(nz_ - .095, nz_ - .110, z) * headm * (y < ctr[1] + .02) * sstep(.3, .6, n3(30, 74, 2) + .2) * sstep(CFG.get('neck_lo', -9.0) - .02, CFG.get('neck_lo', -9.0), z)      # neck_lo: the rings stop where the neck meets the chest (on an open neckline they ran on as stripes across the chest)
+    lines = np.clip(naso * 1.0 + mario * .75 + crow * .55 + fore * CFG.get('fore_k', .30) + bagl * .7 + glab * .5 + neckl * .5 * CFG.get('neck_k', 1.0), 0, 1.2) * AG
     age_h = -(lines * 1.5).astype(np.float32)
     LK = CFG.get('line_k', 1.0)   # how dark the lines and the under-eye are in the albedo: at 1 they vanish at the play distance of a room
     col = col * (1 - np.clip(lines * LK, 0, 1)[..., None] * np.array([.16, .22, .22])[None, None, :])
@@ -260,9 +261,13 @@ ageF = CFG['age']
 lipF = up(lipm.astype(np.float32), S); xF = up(x.astype(np.float32), S)
 cheekF = up(np.clip(cheeks + nosem, 0, 1).astype(np.float32), S); MK = CFG.get('micro', 1.0)
 micro = -(fu1 * .55 + pi1 * .9) * (1 - .6 * cheekF) - (fu2 * .35 + pi2 * 1.5) * (.25 + .75 * cheekF) * (.6 + .5 * tzF)
+LO = 1.0
+if CFG.get('micro_lo'):      # (z0, z1, k): the fine relief fades to the share k below the jaw. Neck and chest lie on few texels of the sheet, so the pores and furrows drawn per texel come out several times their size there: an open neckline showed sandy goose flesh beside a smooth face (the Mother in the game, 23 Nov 2026). Hands keep theirs.
+    z0_, z1_, k_ = CFG['micro_lo']; zF_ = up(z.astype(np.float32), S); LO = 1 - (1 - k_) * (1 - sstep(z0_, z1_, zF_)) * (zF_ > 1.40)
+    micro = micro * LO
 lip_cr = -(1 - np.abs(np.sin(xF * (2 * np.pi / .0026) + 5 * blur(tex2, 6)))) ** 3 * 1.6 + tex2 * .25
 rimF = up(rim, S); carF = up(car, S)
-height = micro * (.34 + .20 * ageF) * MK * (1 - scalpF) * (1 - lipF) * (1 - .8 * rimF) + tex2 * .05 + lipF * lip_cr + hp * (14 + 40 * ageF) * (1 - .55 * handF) + sx * (.06 + .12 * handF + .3 * ageF) + up(age_h, S) + pore_dip * .03
+height = micro * (.34 + .20 * ageF) * MK * (1 - scalpF) * (1 - lipF) * (1 - .8 * rimF) + tex2 * .05 * LO + lipF * lip_cr + hp * LO * (14 + 40 * ageF) * (1 - .55 * handF) + sx * LO * (.06 + .12 * handF + .3 * ageF) + up(age_h, S) + pore_dip * .03 * LO
 height = height * (1 - scalpF * .6) + scalpF * blur(rng.random((SIZE, SIZE), dtype=np.float32), 1) * 1.2   # stubbly scalp
 # meso-scale breakup (2-6 mm): uneven skin surface and oil, by zone; strongest on the T-zone, cheeks and with age
 r4 = rng.random((SIZE, SIZE), dtype=np.float32); meso = blur(r4, 6) - blur(r4, 18); meso /= (meso.std() + 1e-6); RM = CFG.get('rough_meso', 0.0)
