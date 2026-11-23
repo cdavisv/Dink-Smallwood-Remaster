@@ -79,6 +79,19 @@ ORIGIN_RE = re.compile(r"^S\d{3}_P\d{2}$")
 LFS_MAGIC = b"version https://git-lfs"
 
 
+
+# Placements the 1997 engine never drew: the whole picture lies under the window's left border. get_box (dink.cpp:3170)
+# clips a sprite to the play field, which starts 20 px in (mplayl), and skips it when its right edge is left of that
+# (dink.cpp:3317, `goto nodraw`). Both are sparkles left at editor position (0, 0), i.e. map pixel (-20, 0), by the map's
+# author: 165 frame 5 is 20 px wide with its origin at x 8 (right edge at window x 11), 166 frame 1 is 23 px wide with its
+# origin at x 12 (right edge at x 10). They have no script, no vision and no brain: nothing ever moves them into view.
+# Art row DS-06, decided 17 Nov 2026 (stream art-fx-2) under the owner's rule of 9 Nov 2026 for placements that can never
+# become final.
+NEVER_DRAWN = {
+    "S001_P37": "never drawn in 1997: sparkle 165/5 at editor (0, 0), wholly under the left border (get_box clip, dink.cpp:3170 and 3317)",
+    "S045_P01": "never drawn in 1997: sparkle 166/1 at editor (0, 0), wholly under the left border (get_box clip, dink.cpp:3170 and 3317)",
+}
+
 def rel(path):
     return os.path.relpath(path, PROJECT)
 
@@ -827,6 +840,8 @@ def classify(args):
             flags.append("REVIEW-CUT no sprite art expected for a hardness-only proxy")
         if cls == "empty_placement":
             flags.append("REVIEW-CUT empty placement (data repo treatment not_needed)")
+        if oid in NEVER_DRAWN:
+            flags.append("REVIEW-CUT " + NEVER_DRAWN[oid])
         if "unknown: no script found" in r["detail"]:
             flags.append("REVIEW-CUT vision-gated by a variable no script sets, never visible in play")
         elif "vision" in r["detail"]:
