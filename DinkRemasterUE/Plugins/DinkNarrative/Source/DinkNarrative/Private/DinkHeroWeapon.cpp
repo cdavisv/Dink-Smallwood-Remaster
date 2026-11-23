@@ -1,4 +1,5 @@
 #include "DinkHeroWeapon.h"
+#include "DinkBodyAnimInstance.h"
 #include "DinkDirector.h"
 #include "DinkFactSubsystem.h"
 #include "DinkGameplay.h"
@@ -21,6 +22,13 @@ namespace
 TAutoConsoleVariable<int32> CVarHeroWeapons(TEXT("dink.Hero.Weapons"), 1,
 	TEXT("Presentation only. 1: the armed weapon's mesh is in Dink's hand while it is armed (hero_weapons.json, bug A203); 0: empty hands."));
 const FName HeldTag(TEXT("DinkHeroWeapon"));
+
+// The hand that holds the mesh closes round its grip (art row AN-05): told to the body's animation, which owns the pose.
+void SetGrip(USceneComponent* Body, FName Hand)
+{
+	const USkeletalMeshComponent* Mesh = Cast<USkeletalMeshComponent>(Body);
+	if (UDinkBodyAnimInstance* Anim = Mesh ? Cast<UDinkBodyAnimInstance>(Mesh->GetAnimInstance()) : nullptr) Anim->SetGrip(Hand);
+}
 
 struct FWeaponTable
 {
@@ -104,7 +112,11 @@ UStaticMeshComponent* DinkHeroWeapons::Apply(AActor* Hero, FName ItemScript, boo
 	USkeletalMeshComponent* Body = Mesh ? FindBody(Hero, Row->Bone) : nullptr;
 	if (!Body)
 	{
-		if (Held) Held->SetVisibility(false);
+		if (Held)
+		{
+			SetGrip(Held->GetAttachParent(), NAME_None);
+			Held->SetVisibility(false);
+		}
 		return nullptr;
 	}
 	if (!Held)
@@ -120,7 +132,11 @@ UStaticMeshComponent* DinkHeroWeapons::Apply(AActor* Hero, FName ItemScript, boo
 		Held->RegisterComponent();
 	}
 	if (Held->GetAttachParent() != Body || Held->GetAttachSocketName() != Row->Bone)
+	{
+		SetGrip(Held->GetAttachParent(), NAME_None);
 		Held->AttachToComponent(Body, FAttachmentTransformRules::KeepRelativeTransform, Row->Bone);
+	}
+	SetGrip(Body, Row->Bone);
 	if (Held->GetStaticMesh() != Mesh) Held->SetStaticMesh(Mesh);
 	Held->SetRelativeLocationAndRotation(Row->Location, Row->Rotation);
 	Held->SetVisibility(true);

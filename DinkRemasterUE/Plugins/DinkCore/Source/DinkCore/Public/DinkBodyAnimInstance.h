@@ -162,6 +162,11 @@ struct FDinkBodyFrame
 	/** Light posture layer over the motion-capture clips, degrees: chest rounded forward, head
 	 * lowered, shoulders drawn forward, upper arms brought in (W). Zero is the clip as captured. */
 	FVector4f Posture = FVector4f(0, 0, 0, 0);
+	/** The hand that holds a weapon (0 left, 1 right): the grip pose (Grip_L / Grip_R, its held last frame) and how far
+	 * the fingers of that hand have closed into it, 0..1. */
+	FDinkBodyLayer Grip[2];
+	/** 1: that arm also takes the grip pose (the weapon carried on guard) while no action plays; 0: the fingers only. */
+	float Carry = 1.f;
 	FDinkBodyMannerFrame Manner;
 };
 
@@ -213,6 +218,10 @@ private:
 	float PelvisOffset = 0.f, PelvisVelocity = 0.f;
 	TArray<int32, TInlineAllocator<2>> LeanBones;
 	int32 ChestBone = INDEX_NONE, HeadBone = INDEX_NONE, ClavicleL = INDEX_NONE, ClavicleR = INDEX_NONE, UpperArmL = INDEX_NONE, UpperArmR = INDEX_NONE;
+	/** The finger bones below each hand (0 left, 1 right): what the grip pose replaces. */
+	TArray<int32, TInlineAllocator<16>> GripBones[2];
+	/** The arm of each side (upper arm, forearm, hand and their twist bones): what carries the weapon on guard. */
+	TArray<int32, TInlineAllocator<8>> CarryBones[2];
 	uint16 MaskSerial = 0;
 	bool bMaskReady = false;
 	/** Additive rotations of the mannerism poses, cached per bone container. */
@@ -267,6 +276,16 @@ public:
 	/** How this body walks slower than its walk clip (see FDinkGaitBlend): 1 long slow steps, 0 short quick ones. */
 	void SetSlowCadencePower(float Power) { SlowCadence = FMath::Clamp(Power, 0.f, 1.f); }
 	void StopActions();
+	/**
+	 * The hand that holds an item (hand_r, hand_l; NAME_None: neither), art row AN-05. While it is set the finger bones
+	 * of that hand take the last frame of the pose clip Grip_R / Grip_L, eased in and out over GripBlendSeconds, under
+	 * every clip the body plays. While no action plays that arm takes the pose too: the weapon is carried on guard, as
+	 * the armed Dink's 1997 idle and walk pictures show it (dink.Anim.WeaponCarry 0: fingers only); an action has its
+	 * own arm and wrist back for as long as it is blended in. Nothing happens when the library has no such clip.
+	 * Presentation only.
+	 */
+	void SetGrip(FName HandBone) { GripHand = HandBone; }
+	FName GetGrip() const { return GripHand; }
 	/** Turns the head towards a world point (NPCs looking at Dink), Weight 0..1; limited to what a neck can turn. */
 	void SetLookAt(const FVector& WorldTarget, float Weight) { LookWorld = WorldTarget; LookWeight = FMath::Clamp(Weight, 0.f, 1.f); }
 	/** The leg layer's state on the last evaluated frame (game thread). */
@@ -333,6 +352,9 @@ private:
 	bool bSnapStand = true;
 	TArray<float, TInlineAllocator<4>> LastGait;
 	static constexpr float StandBlendSeconds = .22f;
+	FName GripHand;
+	float GripShown[2] = {0.f, 0.f};
+	static constexpr float GripBlendSeconds = .12f;
 	void UpdateLegInput(float Dt);
 	void PublishFrame();
 	float CatchTime = 1.e9f, MannerScale = 1.f;

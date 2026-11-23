@@ -35,6 +35,7 @@ Scripts/import_animation_pass.sh
 - Locomotion loops start at the left heel strike, so the runtime can blend them in phase. `speed_m_s` and `stride_m` in the manifest are what makes the feet stick: the runtime advances the cycle by distance covered over the blended stride.
 - Every attack has its contact pose at 0.175 s (the original hit frame) and is back near a guard by 0.4 s (the original lock). These times are documentary: gameplay keeps its own clock and the clips carry no notifies.
 - `_Timid` and `_Confident` variants of a clip are blended by the hero's confidence.
+- `Grip_R` and `Grip_L` (family `hero_pose`) are POSES: the runtime uses only their last frame, on the finger bones of the hand that holds a weapon and, while no action plays, on that arm (`UDinkBodyAnimInstance::SetGrip`). The finger angles (`rig.py` `GRIP`) are fitted to the handle where `Content/Dink/Data/Art/hero_weapons.json` puts the weapon; the arm (`clips_attacks.py` `CARRY`) is the guard of the armed Dink's 1997 idle pictures. Rebuild both after changing either, and check with `Dink.Art.HeroWeapon.GripClosesTheHand`.
 
 ## Known weaknesses (from the last review of the strips)
 

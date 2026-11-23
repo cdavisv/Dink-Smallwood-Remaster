@@ -67,6 +67,7 @@ def state_from_pose(rig, pose):
         S[k + 'a_pron'] = 0.0
         S[k + 'a_bend'] = 0.0
         S[k + 'a_curl'] = 0.3
+        S[k + 'a_grip'] = 0.0
         S[k + '_shrug'] = 0.0
         S[k + '_protract'] = 0.0
     return S
@@ -127,6 +128,8 @@ def build_pose(rig, S):
             pose._w = None
         pose.forearm_twist(side)
         pose.fingers(side, S[k + 'a_curl'], thumb=min(1.0, S[k + 'a_curl']) * 0.9)
+        if S.get(k + 'a_grip'):
+            pose.grip(side, min(1.0, S[k + 'a_grip']))
     pose.head_world(yaw=S['hd_yaw'], pitch=S['hd_pitch'], roll=S['hd_roll'], follow=S['hd_follow'])
     return pose.finish()
 
