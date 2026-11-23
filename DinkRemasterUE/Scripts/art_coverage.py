@@ -562,6 +562,66 @@ def family_binding(rows, seq, cls, frame=None):
 TOWN_KIT = "/Game/Dink/Photoreal/TownExteriors/"
 
 
+def env_decal_cards(env, placements, is_actor, fam_screens, fam_origins, resolve):
+    """environment.json `decals` -> {origin: evidence} for every placement UDinkEnvironmentSubsystem::ApplyDecals shows as
+    a ground decal instead of its card. Mirrors the runtime: the placement's class has a decal row with something to show
+    for its picture (a `pictures` entry <sequence>_<frame> whose material exists, else any of `materials` that exists);
+    no script; an actor placement has brain 0; the screen and the origin are not an art manifest's; no state swap of that
+    screen hides the class; and a background (instanced) placement only when every placement of its decor component
+    (same screen, sequence and frame) qualifies.
+    placements: rows with origin, screen, seq, frame, brain, script, class_id. is_actor: {origin: bool}."""
+    out = {}
+    classes = {}
+    for cls, row in ((env or {}).get("decals") or {}).items():
+        if not isinstance(row, dict):
+            continue
+        mats = [m for m in row.get("materials") or [] if isinstance(m, str) and resolve(m)[0]]
+        pics = {k: m for k, m in (row.get("pictures") or {}).items() if isinstance(m, str) and resolve(m)[0]}
+        if mats or pics:
+            classes[cls] = (mats, pics)
+    if not classes:
+        return out
+    swapped = {(int(s["screen"]), c) for s in (env.get("state_swaps") or []) if isinstance(s, dict) and "screen" in s
+               for c in s.get("hide_classes") or []}
+
+    def shown(p):
+        """what the runtime lays for this placement: (material, how) or None"""
+        mats, pics = classes[p["class_id"]]
+        pic = pics.get("%d_%d" % (int(p["seq"]), int(p["frame"])))
+        if pic:
+            return pic, "the decal drawn from its own 1997 picture, on the square of its card x 1.15, unturned"
+        if mats:
+            return mats[0], "one of %d cells by a stable hash of the origin, on the square of its card x 1.15 (at least %s cm)" % (
+                len(mats), (env["decals"][p["class_id"]]).get("size_cm", 100))
+        return None
+
+    def ok(p):
+        if p["class_id"] not in classes or str(p.get("script") or "").strip() or shown(p) is None:
+            return False
+        screen = int(p["screen"])
+        if screen in fam_screens or p["origin"] in fam_origins or (screen, p["class_id"]) in swapped:
+            return False
+        return (not is_actor.get(p["origin"])) or int(p.get("brain") or 0) == 0
+
+    groups = collections.defaultdict(list)
+    for p in placements:
+        if p["origin"] not in is_actor:
+            continue
+        if is_actor[p["origin"]]:
+            if ok(p):
+                out[p["origin"]] = p
+        else:
+            groups[(int(p["screen"]), int(p["seq"]), int(p["frame"]))].append(p)
+    for group in groups.values():
+        if all(ok(p) for p in group) and len({p["class_id"] for p in group}) == 1:
+            for p in group:
+                out[p["origin"]] = p
+    return {o: "env-decal: environment.json decals %s -> %s (%s); %s, card hidden at screen activation and a deferred decal laid on the "
+               "ground under it, collision and script unchanged" % (
+                   p["class_id"], shown(p)[0].split(".")[-1], shown(p)[1], "actor" if is_actor[o] else "instance")
+            for o, p in out.items()}
+
+
 def town_house_cards(data, resolve, source="town_houses.json", label="town-house", what="town house"):
     """town_houses.json -> {origin: (state, evidence)} for every card the file names, mirroring
     UDinkEnvironmentSubsystem::LoadTownHouses / ApplyTownHouses.
@@ -729,10 +789,11 @@ def classify(args):
     with open(cov_path, newline="", encoding="utf-8") as f:
         cov = list(csv.DictReader(f))
 
-    seq_of, frame_of, scripted_of = {}, {}, {}
+    seq_of, frame_of, scripted_of, gameplay_rows = {}, {}, {}, {}
     gp = os.path.join(PROJECT, "Content", "Dink", "Data", "Gameplay", "placements.csv")
     with open(gp, newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
+            gameplay_rows[r["origin"]] = r
             seq_of[r["origin"]] = int(r["seq"])
             frame_of[r["origin"]] = int(r["frame"])
             scripted_of[r["origin"]] = r["script"].strip()
@@ -745,6 +806,15 @@ def classify(args):
                                        source="structure_sets.json", label="structure-set", what="structure set")
     class_rows = creature_class_rows(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Art", "creatures.json")), assets.resolve, notes)
     manifests["creature_classes"] = class_rows
+
+    decal_rows = []
+    for r in cov:
+        g = gameplay_rows.get(r["origin_id"])
+        if r["type"] == "placement" and g and "no picture" not in r["detail"] and not r["detail"].startswith("hardness_only"):
+            decal_rows.append(dict(g, class_id=parse_detail(r["detail"])[1]))
+    decal_cards = env_decal_cards(read_json(os.path.join(PROJECT, "Content", "Dink", "Data", "Environment", "environment.json")), decal_rows,
+                                  {r["origin_id"]: r["became"].startswith("actor") for r in cov if r["type"] == "placement"},
+                                  fam_screens, fam_origins, assets.resolve)
 
     def family_decision(oid, screen_no, cls, detail):
         """-> family row if UDinkArtFamilySubsystem dresses this placement on its own merits, else None."""
@@ -875,6 +945,9 @@ def classify(args):
         if row is not None:
             return finish(r, fam, art_kind, "final", "family-bound: %s -> %s; %s, card hidden at screen activation, collision and script unchanged; %s" % (
                 row["family"], row["mesh"], "actor" if is_actor else "instance", ledger_tag(row["mesh"])))
+        # --- final: ground decal (environment.json decals: blood splats, burn holes) -----------------
+        if oid in decal_cards:
+            return finish(r, fam, art_kind, "final", decal_cards[oid])
         return finish(r, fam, art_kind, "placeholder", "; ".join([base + " (%s)" % cls] + flags))
 
     # placements first (warps inherit their host)

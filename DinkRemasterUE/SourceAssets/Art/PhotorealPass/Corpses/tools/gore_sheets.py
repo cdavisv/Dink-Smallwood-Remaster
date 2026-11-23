@@ -132,9 +132,17 @@ def sprite_red(path, width_m, height_m, depth=1.3, fill=0):
     return mask, width_m * (w + 2 * pad) / w, height_m * depth * (h + 2 * pad) / h, (0.0, 0.0), float(red.sum()) * mx * my
 
 
+# The one blood look of the remains and the placed splats (23 Nov 2026): the bright red of the 1997 pictures where the blood is thin,
+# deep crimson where it is thick. Pass with look='fresh'. The numbers are set by the running game, not by a render: in the sun of
+# an outdoor screen the bodies of a pool at sRGB 162, 132 and 100 were all drawn as one clipped poster red (three rounds, seen), while
+# the hit-blood sheets of Props/tools/decals.py (thin 148 at the rim only, body 90 mixed with a crust of 74) read as blood. So the
+# body sits at 80, the 1997 red is kept for the thin film at every edge, and the thick middle goes to 38.
+FRESH_1997 = dict(thin=(128, 10, 7), mid=(80, 5, 4), deep=(38, 2, 2), dried=(66, 10, 7), smear=(92, 8, 6))
+
+
 def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, reach=0.55, drop_r=(0.004, 0.028), casts=5, mist=500,
                 edge_noise=0.2, thin=(60, 5, 4), mid=(40, 2, 2), deep=(17, 1, 1), dried=(44, 12, 8), smear=(54, 10, 7), damp=(40, 27, 21), soak_m=0.06,
-                centre=(0.0, 0.0), wet=0.05, stamp=None, keep_fringe=False, meniscus=0.25):
+                centre=(0.0, 0.0), wet=0.05, stamp=None, keep_fringe=False, meniscus=0.25, look=None, deep_m=0.05):
     """pools = [(cx, cy, a, b, rot, runs)] in metres; foot = (n, 2) points the pool also spreads around (a body's outline), by `grow` metres.
     Drops are thrown out to `reach` metres beyond the pool. Returns dict BC (h, w, 4 uint8), N, ORM (h, w, 3 uint8) and `cover` (float mask)."""
     rng = np.random.default_rng(seed); cv = Canvas(px, size); k = cv.k
@@ -150,7 +158,15 @@ def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, rea
         cv.im = ImageChops.lighter(cv.im, layer); cv.d = ImageDraw.Draw(cv.im)
     base = blur(cv.arr(), 0.018 * k)
     nz = noise2(px, size / 0.16, rng, 4, 0.55)
-    pool = sstep(-0.012, 0.012, base - 0.5 - edge_noise * (nz - 0.5))
+    fray = 0.0
+    if look == 'fresh':
+        # the outline is bent by a few centimetres (no straight side or square corner of a 1997 pixel survives) and wicks into the ground in small tongues
+        amp = 0.028 * k; wy = (noise2(px, size / 0.08, rng, 3, 0.6) - 0.5) * 2 * amp; wx = (noise2(px, size / 0.08, rng, 3, 0.6) - 0.5) * 2 * amp
+        yy, xx = np.mgrid[0:px, 0:px]
+        base = base[np.clip((yy + wy).round().astype(int), 0, px - 1), np.clip((xx + wx).round().astype(int), 0, px - 1)]
+        base = blur(base, 0.004 * k)
+        fray = 0.16 * (noise2(px, size / 0.022, rng, 3, 0.6) - 0.5)
+    pool = sstep(-0.012, 0.012, base - 0.5 - edge_noise * (nz - 0.5) - fray)
     # the mask without the fine noise gives each direction's pool radius for throwing drops
     ys, xs = np.nonzero(base > 0.5)
     if len(xs):
@@ -197,6 +213,31 @@ def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, rea
     col *= (0.88 + 0.24 * fine)[..., None]
     rough = wet + 0.03 * fine + 0.32 * rim + 0.22 * clot + 0.30 * thrown + 0.06 * (1 - sstep(0.2, 0.8, e2))
     rough = rough + 0.55 * cover * (1 - sstep(0.5, 0.92, e1))      # the very edge is matt: a mirror-smooth meniscus caught the sky as a silver outline
+    if look == 'fresh':
+        # 23 Nov 2026, judged in the game (PRs #216, #224): one flat bright red read as spilled paint. Blood has depth: a thin film at
+        # every edge is the bright red of the 1997 pictures, the body of a pool or a large drop is darker the thicker it lies, the
+        # thickest parts are deep crimson with clots; the surface is wet (a domed, smooth core that catches the sun), only the very
+        # rim has begun to dry. `thick` 0..1 drives colour, roughness and height together.
+        body = sstep(0.70, 0.99, blur(pool, deep_m * k)) * pool
+        core = sstep(0.50, 0.95, e1) * cover
+        mott = np.clip(0.55 + 0.9 * clotn, 0.0, 1.5)
+        thick = np.clip(np.maximum(pool * core * (0.16 + 0.24 * sstep(0.6, 1.0, e2) + 0.60 * body), thrown * 0.55 * sstep(0.70, 1.0, e1)) * mott, 0.0, 1.0)
+        lo_ = sstep(0.0, 0.30, thick)[..., None]; hi_ = sstep(0.40, 1.0, thick)[..., None]
+        col = _srgb(thin)[None, None, :] * (1 - lo_) + _srgb(mid)[None, None, :] * lo_
+        col = col * (1 - hi_) + _srgb(deep)[None, None, :] * hi_
+        clot = sstep(0.66, 0.74, clotn) * sstep(0.55, 0.9, thick)
+        col = col * (1 - 0.6 * clot[..., None]) + _srgb((16, 1, 1))[None, None, :] * 0.6 * clot[..., None]
+        dry = rim * (1 - sstep(0.15, 0.5, thick))
+        col = col * (1 - 0.45 * dry[..., None]) + _srgb(dried)[None, None, :] * 0.45 * dry[..., None]
+        speck = thrown * (1 - sstep(0.25, 0.7, e1))                                # mist and the finest drops: a stain, not a bead
+        col = col * (1 - 0.7 * speck[..., None]) + _srgb(smear)[None, None, :] * 0.7 * speck[..., None]
+        col *= (0.86 + 0.28 * fine)[..., None]
+        # wet, but not a mirror: at 0.05 a splat seen at a low angle was a pale pink film of sky (game, 23 Nov)
+        rough = wet + 0.05 + 0.10 * fine + 0.22 * dry + 0.20 * clot + 0.30 * speck + 0.30 * cover * (1 - sstep(0.5, 0.92, e1))
+        deepf = np.maximum(deepf, sstep(0.5, 1.0, thick) * cover)                  # the swell of the height map follows the thickness
+        dome = 0.0010 * core * thrown
+    else:
+        dome = 0.0
     # the soaked fringe: damp earth, darker than the dry ground, ragged, reddish next to the pool
     fz = noise2(px, size / 0.035, rng, 4, 0.6); soak = blur(pool, soak_m * 0.5 * k)
     fringe = sstep(0.06, 0.22, soak + 0.16 * (fz - 0.5)) * (1 - cover)
@@ -208,7 +249,7 @@ def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, rea
     col = col * (1 - fringe[..., None]) + fcol * fringe[..., None]
     rough = rough * (1 - fringe) + (0.50 + 0.25 * (1 - near)) * fringe
     # height in metres: a meniscus at every edge, a swell over the deep parts, clot skin; the open surface is smooth so it mirrors the sky
-    h = meniscus * (0.0012 * np.sqrt(np.clip((e1 - 0.5) * 2, 0, 1)) + 0.0016 * sstep(0.5, 1.0, e2)) + 0.0010 * deepf + 0.0005 * clot + 0.00005 * fine
+    h = meniscus * (0.0012 * np.sqrt(np.clip((e1 - 0.5) * 2, 0, 1)) + 0.0016 * sstep(0.5, 1.0, e2)) + 0.0010 * deepf + 0.0005 * clot + 0.00005 * fine + dome
     gy, gx = np.gradient(h * k)                       # slope per metre along rows (down) and columns (right)
     n = np.dstack([-gx, gy, np.ones_like(h)]); n /= np.linalg.norm(n, axis=2, keepdims=True)
     alpha = np.maximum(sstep(0.30, 0.60, cover), sstep(0.35, 0.65, fringe))

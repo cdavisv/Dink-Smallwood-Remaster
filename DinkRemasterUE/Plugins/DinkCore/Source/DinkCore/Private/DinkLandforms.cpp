@@ -510,6 +510,15 @@ int32 UDinkLandformsSubsystem::LiftScreenDecor(ADinkGreyboxScreen& Screen)
 	return Instances;
 }
 
+float UDinkLandformsSubsystem::DecorLiftCm(const UInstancedStaticMeshComponent* Component, int32 InstanceIndex) const
+{
+	for (const auto& Pair : DecorLift)
+	{
+		if (Pair.Key.Get() == Component) return Pair.Value.IsValidIndex(InstanceIndex) ? Pair.Value[InstanceIndex] : 0.f;
+	}
+	return 0.f;
+}
+
 int32 UDinkLandformsSubsystem::SnapScreenDecor(ADinkGreyboxScreen& Screen)
 {
 	// before the first snap SnapPlacedActors takes the whole world (this decor included)

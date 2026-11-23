@@ -303,7 +303,20 @@ void UDinkEnvironmentSubsystem::LoadConfig()
 						if (UMaterialInterface* M = LoadObject<UMaterialInterface>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet)) { Decal.Materials.Add(M); DecalMaterials.Add(M); }
 					}
 				}
-				if (!Decal.Materials.IsEmpty()) DecalClasses.Add(FName(*FString(Pair.Key.ToView())), MoveTemp(Decal));
+				const TSharedPtr<FJsonObject>* Pictures = nullptr;
+				if ((*Row)->TryGetObjectField(TEXT("pictures"), Pictures) && Pictures)
+				{
+					for (const auto& Pic : (*Pictures)->Values)
+					{
+						// key "<sequence>_<frame>"
+						FString Seq, Frame;
+						const FString Key(Pic.Key.ToView());
+						const FString Path = Pic.Value->AsString();
+						if (!Key.Split(TEXT("_"), &Seq, &Frame) || !FPackageName::DoesPackageExist(Path.Left(Path.Find(TEXT("."))))) continue;
+						if (UMaterialInterface* M = LoadObject<UMaterialInterface>(nullptr, *Path, nullptr, LOAD_NoWarn | LOAD_Quiet)) { Decal.Pictures.Add(FCString::Atoi(*Seq) * 100 + FCString::Atoi(*Frame), M); DecalMaterials.Add(M); }
+					}
+				}
+				if (!Decal.Materials.IsEmpty() || !Decal.Pictures.IsEmpty()) DecalClasses.Add(FName(*FString(Pair.Key.ToView())), MoveTemp(Decal));
 			}
 		}
 		const TSharedPtr<FJsonObject>* SkyObject = nullptr;
@@ -1763,14 +1776,89 @@ void UDinkEnvironmentSubsystem::CardDecalSquare(const FTransform& CardWorld, dou
 	OutHalfCm = 0.5 * FMath::Max(MinSideCm, FMath::Max(WidthCm, HeightCm) * FMath::Max(1.0, Margin));
 }
 
+void UDinkEnvironmentSubsystem::DecalGroundFit(TFunctionRef<double(const FVector2D&)> GroundCm, const FVector& Centre, double HalfNorthCm, double HalfEastCm, double YawDeg, double MinHalfDepthCm, double& OutLiftCm, double& OutHalfDepthCm, FVector* OutNormal, double MaxTiltDeg)
+{
+	// the ground under the middle, the corners and the edge middles of the footprint
+	const FRotator Turn(0.0, YawDeg, 0.0);
+	OutLiftCm = GroundCm(FVector2D(Centre));
+	auto At = [&](int32 I, int32 J) { return GroundCm(FVector2D(Centre + Turn.RotateVector(FVector(J * HalfEastCm, I * HalfNorthCm, 0.0)))); };
+	// the slope of the footprint (cm per cm along the footprint's own two axes), 0 when the decal is laid level
+	double SlopeJ = 0.0, SlopeI = 0.0;
+	if (OutNormal)
+	{
+		SlopeJ = HalfEastCm > 1.0 ? (At(0, 1) - At(0, -1)) / (2.0 * HalfEastCm) : 0.0;
+		SlopeI = HalfNorthCm > 1.0 ? (At(1, 0) - At(-1, 0)) / (2.0 * HalfNorthCm) : 0.0;
+		const double Steep = FMath::Sqrt(SlopeJ * SlopeJ + SlopeI * SlopeI), MaxSteep = FMath::Tan(FMath::DegreesToRadians(FMath::Clamp(MaxTiltDeg, 0.0, 80.0)));
+		if (Steep > MaxSteep) { SlopeJ *= MaxSteep / Steep; SlopeI *= MaxSteep / Steep; }
+		*OutNormal = Turn.RotateVector(FVector(-SlopeJ, -SlopeI, 1.0).GetSafeNormal());
+	}
+	double Off = 0.0;
+	for (int32 I = -1; I <= 1; ++I) for (int32 J = -1; J <= 1; ++J)
+	{
+		if (I == 0 && J == 0) continue;
+		Off = FMath::Max(Off, FMath::Abs(At(I, J) - (OutLiftCm + SlopeJ * J * HalfEastCm + SlopeI * I * HalfNorthCm)));
+	}
+	if (OutNormal) Off *= OutNormal->Z;      // measured along the tilted box's own depth
+	// deep enough to reach the highest and the lowest ground under it; capped, so a decal at the foot of a cliff does not paint the face
+	OutHalfDepthCm = FMath::Clamp(Off + MinHalfDepthCm, MinHalfDepthCm, FMath::Max(MinHalfDepthCm, 90.0));
+}
+
 void UDinkEnvironmentSubsystem::ApplyDecals(int32 ScreenNumber)
 {
+	// Half the depth of a decal's box on flat ground: 40 cm drew the blood up the root flare of a tree that stood beside a
+	// splat (screen 91), in long stretched streaks. On the landforms the box lies on the ground under its middle and deepens by
+	// the largest height difference under its footprint (DecalGroundFit).
+	static constexpr double DecalDepthCm = 18.0;
 	if (DecalClasses.IsEmpty() || DecalScreens.Contains(ScreenNumber)) return;
 	DecalScreens.Add(ScreenNumber);
 	// screens and origins the authored-art manifests handle keep their own treatment
 	const UDinkArtFamilySubsystem* Families = GetWorld()->GetSubsystem<UDinkArtFamilySubsystem>();
 	if (Families && Families->GetPrecedence().Screens.Contains(ScreenNumber)) return;
 	int32 Count = 0;
+	const bool bFromCard = CVarDinkDecalFromCard.GetValueOnGameThread() != 0;
+	// One rule for the size (CardDecalSquare): a decal is never smaller than the 1997 card it replaces.
+	//  - a picture decal (the decal drawn from this very picture frame): the card's square, not turned, so every drop lies
+	//    where the picture had it (the screen's own turn: pitched down, the sheet's left-right runs east-west and its top is north; seen in game 16 Nov);
+	//  - else one cell of the class atlas at the card's square (or the class size if that is larger), turned by a stable hash.
+	// Returns false when the class has nothing to show for this picture (pictures only, and this frame is not among them).
+	// CardFlat and FlatGroundZ are the card and its ground on the importer's flat floor (the landforms' lift taken off);
+	// HolderLiftCm is what the landforms add (or will add) to the component the decal hangs on, at that component's own point.
+	const UWorld* World = GetWorld();
+	auto Place = [bFromCard, World](UDecalComponent* C, const FDinkDecalClass& Decal, int32 Sequence, int32 Frame, const FTransform& CardFlat, double FlatGroundZ, double HolderLiftCm, double HolderLiftNowCm, const FString& Origin) -> bool
+	{
+		FVector Centre;
+		double Half = 0.0, CardYaw = 0.0;
+		// the decal on the raised ground (#153): the height under its middle, the box deep enough for the slope.
+		// The holder rises by its own height (now or when the layer snaps it), so the decal is set that much lower here.
+		auto Lay = [&](double HalfNorth, double HalfEast, double Yaw)
+		{
+			double Lift = 0.0, Depth = DecalDepthCm;
+			FVector Normal = FVector::UpVector;
+			// clamped at 0 as every drawn thing but the wading player (SnapPlacedActors)
+			DecalGroundFit([World](const FVector2D& P) { return double(DinkLandforms::HeightCm(World, P, /*bBelowZero*/ false)); }, Centre, HalfNorth, HalfEast, CardYaw, DecalDepthCm, Lift, Depth, &Normal);
+			C->DecalSize = FVector(Depth, HalfNorth, HalfEast);
+			// laid on the slope: the level decal turned by the smallest turn that brings up onto the ground's normal, so a drop keeps its shape on a bank
+			C->SetWorldLocationAndRotation(Centre + FVector(0.0, 0.0, Lift - HolderLiftCm + HolderLiftNowCm), FQuat::FindBetweenNormals(FVector::UpVector, Normal) * FRotator(-90.0, Yaw, 0.0).Quaternion());
+		};
+		if (const TObjectPtr<UMaterialInterface>* Picture = Decal.Pictures.Find(Sequence * 100 + Frame))
+		{
+			CardDecalSquare(CardFlat, FlatGroundZ, 0.0, 1.15, Centre, Half, CardYaw);
+			C->SetDecalMaterial(*Picture);
+			Lay(Half, Half, CardYaw);
+			return true;
+		}
+		if (Decal.Materials.IsEmpty()) return false;
+		C->SetDecalMaterial(Decal.Materials[int32(FCrc::StrCrc32(*Origin) % uint32(Decal.Materials.Num()))]);
+		CardDecalSquare(CardFlat, FlatGroundZ, Decal.SizeCm, 1.15, Centre, Half, CardYaw);
+		if (!bFromCard)
+		{
+			// the old look, for before/after captures: the class's fixed size at the card's foot
+			Centre = FVector(CardFlat.GetLocation().X, CardFlat.GetLocation().Y, FlatGroundZ);
+			Half = Decal.SizeCm * 0.5;
+		}
+		Lay(Half, Half, DinkArtFamily::StableYaw(Origin));
+		return true;
+	};
 	for (ADinkPlaceholderActor* It : DinkScreenIndex::Placeholders(GetWorld(), ScreenNumber))
 	{
 		if (It->ScreenNumber != ScreenNumber || !It->Origin || !It->Card || !It->GetRootComponent()) continue;
@@ -1784,26 +1872,69 @@ void UDinkEnvironmentSubsystem::ApplyDecals(int32 ScreenNumber)
 		if (Families && Families->GetPrecedence().Origins.Contains(Origin)) continue;
 		UDecalComponent* C = NewObject<UDecalComponent>(It, TEXT("EnvDecal"));
 		C->SetupAttachment(It->GetRootComponent());
-		C->SetDecalMaterial(Decal->Materials[int32(FCrc::StrCrc32(*Origin) % uint32(Decal->Materials.Num()))]);
-		// the decal box: X is the projection depth (down), Y and Z the footprint. At least the card the decal replaces
-		// (the 1997 picture: burn holes of screens 533/536 are 2.2-4.0 m, the class size was a fixed 1.2 m).
-		FVector Centre;
-		double Half = 0.0, CardYaw = 0.0;
-		// the screen's turn from the actor (a card may be billboarded towards the camera; its actor is not)
-		const FTransform CardWorld(It->GetActorRotation(), It->Card->GetComponentLocation(), It->Card->GetComponentScale());
-		CardDecalSquare(CardWorld, It->GetActorLocation().Z, Decal->SizeCm, 1.15, Centre, Half, CardYaw);
-		if (CVarDinkDecalFromCard.GetValueOnGameThread() == 0)
-		{
-			const FVector Card = It->Card->GetComponentLocation();
-			Centre = FVector(Card.X, Card.Y, It->GetActorLocation().Z);
-			Half = Decal->SizeCm * 0.5;
-		}
-		C->DecalSize = FVector(40.0, Half, Half);
-		C->SetWorldLocationAndRotation(Centre, FRotator(-90.0, DinkArtFamily::StableYaw(Origin), 0.0));
+		// the screen's turn from the actor (a card may be billboarded towards the camera; its actor is not). The landforms
+		// lift a placement by the height at its own point (SnapPlacedActors): taken off here, the decal's own ground put on.
+		const double LiftNow = DinkLandforms::ActorLiftCm(It);
+		const double LiftDue = DinkLandforms::HeightCm(World, FVector2D(It->GetActorLocation()), /*bBelowZero*/ false);
+		const FTransform CardFlat(It->GetActorRotation(), It->Card->GetComponentLocation() - FVector(0.0, 0.0, LiftNow), It->Card->GetComponentScale());
+		if (!Place(C, *Decal, It->Origin->Sequence, It->Origin->Frame, CardFlat, It->GetActorLocation().Z - LiftNow, LiftDue, LiftNow, Origin)) { C->DestroyComponent(); continue; }
 		It->AddInstanceComponent(C);
 		C->RegisterComponent();
 		It->Card->SetHiddenInGame(true);
 		++Count;
+	}
+	// Background placements (the original's type 0, baked into the screen as instances; all 46 placed blood splats are such):
+	// one decor component draws one sprite frame. It is replaced only when every instance in it may be (hiding single
+	// instances would mean editing the greybox's instance data), the same rule the family layer follows.
+	const UDinkLandformsSubsystem* Landforms = World->GetSubsystem<UDinkLandformsSubsystem>();
+	for (ADinkGreyboxScreen* It : DinkScreenIndex::Greybox(GetWorld(), ScreenNumber))
+	{
+		if (It->ScreenNumber != ScreenNumber || !It->InstanceOrigins || !It->GetRootComponent() || It->ActorHasTag(TEXT("DinkAuthoredArt"))) continue;
+		TMap<FName, TArray<const FDinkInstanceOrigin*>> ByComponent;
+		for (const FDinkInstanceOrigin& O : It->InstanceOrigins->Origins) ByComponent.FindOrAdd(O.ComponentName).Add(&O);
+		TInlineComponentArray<UInstancedStaticMeshComponent*> Components(It);
+		for (const auto& Pair : ByComponent)
+		{
+			UInstancedStaticMeshComponent* Decor = nullptr;
+			for (UInstancedStaticMeshComponent* IC : Components) if (IC->GetFName() == Pair.Key) Decor = IC;
+			if (!Decor || Decor->bHiddenInGame) continue;
+			const FDinkDecalClass* Decal = nullptr;
+			bool bAll = true;
+			for (const FDinkInstanceOrigin* O : Pair.Value)
+			{
+				const FDinkDecalClass* D = DecalClasses.Find(O->ClassId);
+				if (!D || (Decal && D != Decal) || !O->ScriptName.IsNone() || (Families && Families->GetPrecedence().Origins.Contains(O->OriginId.ToString()))
+					|| (D->Materials.IsEmpty() && !D->Pictures.Contains(O->Sequence * 100 + O->Frame))
+					|| StateSwaps.ContainsByPredicate([&](const FDinkStateSwap& S) { return S.Screen == ScreenNumber && S.HideClasses.Contains(O->ClassId); }))
+				{
+					bAll = false;
+					break;
+				}
+				Decal = D;
+			}
+			if (!bAll || !Decal) continue;
+			int32 Made = 0;
+			for (const FDinkInstanceOrigin* O : Pair.Value)
+			{
+				FTransform Card;
+				if (!Decor->GetInstanceTransform(O->InstanceIndex, Card, /*bWorldSpace*/ true)) continue;
+				const FString Origin = O->OriginId.ToString();
+				UDecalComponent* C = NewObject<UDecalComponent>(It, FName(*FString::Printf(TEXT("EnvDecal_%s"), *Origin)));
+				C->SetupAttachment(It->GetRootComponent());
+				// the greybox ground is world Z 0 (the family layer stands its instances on the same plane) and its actor is
+				// never lifted; the landforms lift the instance itself (LiftScreenDecor): taken off. The screen's turn from its actor.
+				const double Lifted = Landforms ? Landforms->DecorLiftCm(Decor, O->InstanceIndex) : 0.0;
+				const FTransform CardFlat(It->GetActorRotation(), Card.GetLocation() - FVector(0.0, 0.0, Lifted), Card.GetScale3D());
+				if (!Place(C, *Decal, O->Sequence, O->Frame, CardFlat, 0.0, 0.0, 0.0, Origin)) { C->DestroyComponent(); continue; }
+				It->AddInstanceComponent(C);
+				C->RegisterComponent();
+				// a hidden instance leaves no card for the carpet to open round: the decal asks for its clearing itself
+				OpenGrassUnder(C);
+				++Made;
+			}
+			if (Made > 0) Decor->SetHiddenInGame(true);
+			Count += Made;
+		}
 	}
 	if (Count > 0) UE_LOG(LogDink, Display, TEXT("DINK ENV: %d ground decals on screen %d"), Count, ScreenNumber);
 }
