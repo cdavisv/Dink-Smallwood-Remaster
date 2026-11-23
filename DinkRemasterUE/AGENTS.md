@@ -2332,3 +2332,7 @@ Native1 packet postflight also rejected19 files generated under its own RunDDC b
 - Review commands: `dink.PhysicalPlayBodies` (skinned body sizes), `dink.PhysicalPlayReach` (1997 blow reach against drawn bodies, cm).
 - Creature body boxes use the `DinkPlayerBlock` profile like PR #129's mesh hulls and #150's water blockers; they are tagged
   `DinkCreatureBodyBlocker` and only `UpdateCreatureBodyBlockers` makes or removes them.
+
+## Kit LODs and mesh size (23 November 2026)
+
+- A static mesh's bounds are the union of all its LODs (StaticMeshBuilder.cpp). `Scripts/add_kit_lods.py` ensure_lods now keeps a kit mesh at one LOD (DinkLods tag `<tag>:single`) when generated LODs would move its bounds by more than 0.5 cm (the Mother corpse: 2.6 cm); the A200 TARGETS keep their LODs with a warning. Evidence Docs/Verification/KitLodsBounds_23Nov2026.
