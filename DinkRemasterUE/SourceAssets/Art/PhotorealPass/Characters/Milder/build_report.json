@@ -5,23 +5,23 @@
  "lods": [
   {
    "mesh": "SK_Milder_Photoreal_LOD0",
-   "moved_vertices": 8852,
-   "max_mm": 36.6
+   "moved_vertices": 8936,
+   "max_mm": 38.5
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD1",
-   "moved_vertices": 4957,
-   "max_mm": 36.6
+   "moved_vertices": 5044,
+   "max_mm": 38.5
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD2",
-   "moved_vertices": 1804,
+   "moved_vertices": 1839,
    "max_mm": 36.6
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD3",
-   "moved_vertices": 381,
-   "max_mm": 36.6
+   "moved_vertices": 389,
+   "max_mm": 40.6
   }
  ]
 }

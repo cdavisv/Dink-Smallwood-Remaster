@@ -10,37 +10,37 @@
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 34836 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "LOD0 has 34964 triangles, target for character_humanoid is 20000 (hard max 35000)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "12458 non-manifold edges (12448 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "12506 non-manifold edges (12496 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "12194 non-manifold edges (12184 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "12273 non-manifold edges (12263 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "10026 non-manifold edges (10016 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "10053 non-manifold edges (10043 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "5313 non-manifold edges (5303 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "5337 non-manifold edges (5327 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (3.8 % of UV area, 5654 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (3.9 % of UV area, 5727 triangles); class character_humanoid needs unique UVs"
   ],
   [
    "warning",
    "UV_DEGENERATE",
-   "2873 triangles are collapsed in UV space"
+   "2819 triangles are collapsed in UV space"
   ],
   [
    "info",
@@ -136,7 +136,7 @@
  "normals": [
   {
    "mesh": "SK_Milder_Photoreal_LOD0",
-   "flat_faces_for_cancelled_normals": 0
+   "flat_faces_for_cancelled_normals": 6
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD1",
@@ -154,29 +154,29 @@
  "lods": [
   {
    "mesh": "SK_Milder_Photoreal_LOD0",
-   "triangles": 34836,
-   "vertices": 25043,
+   "triangles": 34964,
+   "vertices": 25127,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD1",
-   "triangles": 19158,
-   "vertices": 17075,
+   "triangles": 19229,
+   "vertices": 17146,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD2",
-   "triangles": 10878,
-   "vertices": 11669,
+   "triangles": 10919,
+   "vertices": 11703,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Milder_Photoreal_LOD3",
-   "triangles": 5663,
-   "vertices": 6098,
+   "triangles": 5685,
+   "vertices": 6110,
    "max_influences": 4,
    "unweighted": 0
   }
@@ -275,7 +275,7 @@
  "bone_count": 89,
  "dimensions_m": [
   1.1510167121887207,
-  0.5159661769866943,
+  0.5182441473007202,
   1.8523708581924438
  ],
  "materials": [
@@ -287,8 +287,8 @@
  ],
  "uv_per_slot": {
   "MI_Milder_PR_Skin": {
-   "uv_area": 0.3792,
-   "texels_used_1k": 350842,
+   "uv_area": 0.3782,
+   "texels_used_1k": 349924,
    "texels_overlapping_1k": 482,
    "overlap_fraction": 0.0014,
    "outside_0_1": 0
@@ -308,17 +308,17 @@
    "outside_0_1": 0
   },
   "MI_Milder_PR_Outfit": {
-   "uv_area": 0.3429,
-   "texels_used_1k": 305479,
-   "texels_overlapping_1k": 8618,
-   "overlap_fraction": 0.0282,
+   "uv_area": 0.3552,
+   "texels_used_1k": 317657,
+   "texels_overlapping_1k": 8249,
+   "overlap_fraction": 0.026,
    "outside_0_1": 0
   },
   "MI_Milder_PR_Gear": {
-   "uv_area": 0.7243,
-   "texels_used_1k": 672539,
-   "texels_overlapping_1k": 1600,
-   "overlap_fraction": 0.0024,
+   "uv_area": 0.8212,
+   "texels_used_1k": 762203,
+   "texels_overlapping_1k": 1730,
+   "overlap_fraction": 0.0023,
    "outside_0_1": 0
   }
  }
