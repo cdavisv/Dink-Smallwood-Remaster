@@ -302,6 +302,56 @@ def baked_master(defaults, name='M_Struct_Baked', emissive=False, kind='opaque')
     return mat
 
 
+STAIRWELL_CODE = (
+    # UV: 0..1 over the opening, U along the flight (down towards U = 1). V: camera vector in tangent space (towards the
+    # camera). Size = (length m, width m, rise m, going m). A stepped box under the quad is marched from the quad down.
+    'float3 d = -normalize(V); d.z = min(d.z, -0.08); '
+    'float3 p = float3(UV.x * Size.x, UV.y * Size.y, 0.0); float3 q = p; float3 prev = p; float hit = 0.0; '
+    'for (int i = 0; i < 64; i++) { prev = q; q = p + d * (0.05 * (i + 1)); '
+    'if (q.x < 0.0 || q.x > Size.x || q.y < 0.0 || q.y > Size.y) { hit = 2.0; break; } '
+    'if (q.z < -(floor(q.x / Size.w) + 1.0) * Size.z) { hit = 1.0; break; } } '
+    'float depth = max(-q.z, 0.0); float fade = exp(-depth * 1.15); float3 col = float3(0.0, 0.0, 0.0); '
+    'if (hit > 0.5 && hit < 1.5) { '
+    'bool riser = floor(prev.x / Size.w) != floor(q.x / Size.w) && prev.z >= -(floor(prev.x / Size.w) + 1.0) * Size.z; '
+    'float nosing = 1.0 - smoothstep(0.0, 0.10, frac(q.x / Size.w)); '
+    'float grain = 0.85 + 0.15 * sin(q.y * 37.0 + floor(q.x / Size.w) * 5.0); '
+    'col = Wood * (riser ? 0.45 : 0.8 + 0.5 * nosing) * grain * fade; } '
+    'else if (hit > 1.5) { col = Wood * 0.55 * (0.8 + 0.2 * step(0.5, frac(depth / 0.22))) * fade; } '
+    'return col;')
+
+
+def stairwell_material(name, row):
+    """A stair opening in a floor that cannot be cut (materials row "procedural": "stairwell"; FableF/tools/build_stair_pit.py):
+    the quad that closes the opening shows the flight going down under it: a stepped box marched along the view ray in
+    tangent space, treads lighter at their nosing, risers and the well's walls darker, everything sinking into the dark."""
+    path = FOLDER + '/' + name
+    mat = LIB.load_asset(path) if LIB.does_asset_exist(path) else None
+    if mat is None:
+        mat = TOOLS.create_asset(name, FOLDER, unreal.Material, unreal.MaterialFactoryNew())
+    for _ in range(64):
+        if EDIT.get_num_material_expressions(mat) == 0:
+            break
+        EDIT.delete_all_material_expressions(mat)
+    cam = expr(mat, unreal.MaterialExpressionCameraVectorWS, -1100, 0)
+    ts = expr(mat, unreal.MaterialExpressionTransform, -900, 0, transform_source_type=unreal.MaterialVectorCoordTransformSource.TRANSFORMSOURCE_WORLD,
+              transform_type=unreal.MaterialVectorCoordTransform.TRANSFORM_TANGENT)
+    link(cam, '', ts, '')
+    size = row.get('size_m', [2.9, 1.2])
+    wood = row.get('wood', [0.165, 0.092, 0.04])
+    pit = custom(mat, -500, 0, STAIRWELL_CODE, F3, ['UV', 'V', 'Size', 'Wood'], 'Stair flight under the floor')
+    link(expr(mat, unreal.MaterialExpressionTextureCoordinate, -900, -200), '', pit, 'UV')
+    link(ts, '', pit, 'V')
+    link(expr(mat, unreal.MaterialExpressionVectorParameter, -900, 200, parameter_name='Size',
+              default_value=unreal.LinearColor(float(size[0]), float(size[1]), float(row.get('rise_m', 0.1944)), float(row.get('going_m', 0.235)))), '', pit, 'Size')
+    link(expr(mat, unreal.MaterialExpressionVectorParameter, -900, 400, parameter_name='Wood', default_value=unreal.LinearColor(float(wood[0]), float(wood[1]), float(wood[2]), 1.0)), '', pit, 'Wood')
+    EDIT.connect_material_property(pit, '', MP.MP_BASE_COLOR)
+    EDIT.connect_material_property(expr(mat, unreal.MaterialExpressionConstant, -300, 200, r=0.9), '', MP.MP_ROUGHNESS)
+    EDIT.connect_material_property(expr(mat, unreal.MaterialExpressionConstant, -300, 280, r=0.1), '', MP.MP_SPECULAR)
+    EDIT.recompile_material(mat)
+    save(mat)
+    return mat
+
+
 def instance(name, parent, textures, scalars, vectors):
     path = FOLDER + '/' + name
     mi = LIB.load_asset(path) if LIB.does_asset_exist(path) else None
@@ -403,7 +453,19 @@ materials = {}
 parent = None
 baked_parents = {}
 for mat_name, row in integration['materials'].items():
-    tex = {role: import_texture(REPO / rel, role) for role, rel in row['files'].items() if role in ('BC', 'N', 'ORM', 'H', 'Macro')}
+    if row.get('procedural') == 'stairwell':
+        try:
+            materials[mat_name] = stairwell_material(mat_name, row)
+            report['materials'].append(mat_name)
+        except Exception as error:      # never lose the whole kit to one drawn hole: the slot takes a baked material and the report says so
+            warn(f'{mat_name}: stairwell material not built ({error})')
+            if materials:
+                materials[mat_name] = next(iter(materials.values()))
+        continue
+    # a file is a source path, or the /Game/ path of a map another kit has imported (states of a prop that keep its normal and ORM maps)
+    tex = {role: (LIB.load_asset(rel) if str(rel).startswith('/Game/') else import_texture(REPO / rel, role)) for role, rel in row['files'].items() if role in ('BC', 'N', 'ORM', 'H', 'Macro')}
+    if any(t is None for t in tex.values()):
+        raise RuntimeError(f"{mat_name}: a /Game/ texture of its contract does not exist (import its kit first)")
     if row.get('baked'):
         kind = row.get('kind') or 'opaque'
         if 'E' in row['files']:
@@ -504,7 +566,8 @@ if isinstance(manifest.get('decals'), dict) and manifest['decals'].get('sets'):
 
 # Effect flipbooks of a kit (manifest `flipbooks`): an atlas of frames played by the material itself, unlit; additive for
 # pictures that are light rather than things (the twinkle on gold), translucent (row "blend": "translucent") for the ones
-# with dark parts (fire with smoke, embers on charred wood, blood). Masters M_FX_Flipbook and M_FX_Flipbook_Blend, one
+# with dark parts (fire with smoke, embers on charred wood, blood), lit translucent (row "blend": "lit") for water, which
+# has no light of its own. Masters M_FX_Flipbook, M_FX_Flipbook_Blend and M_FX_Flipbook_Lit, one
 # MI_FX_<name> per row; a row's "hot": [lo, hi, base] sets where the glow of a translucent flipbook starts.
 # UDinkArtFamilySubsystem draws it on a camera-facing card for families.json rows with `effect`.
 if isinstance(manifest.get('flipbooks'), list) and manifest['flipbooks']:
@@ -519,7 +582,7 @@ if isinstance(manifest.get('flipbooks'), list) and manifest['flipbooks']:
         last frame, 0 = loop), CameraOffset (cm the card is drawn towards the camera, so the ground does not cut it),
         Roll (turns the picture inside its square card, in whole turns: 0.25 puts the picture's bottom on the right,
         0.5 on top, 0.75 on the left; a kit row's "roll": the fireball's four directions share one texture)."""
-        name = 'M_FX_Flipbook_Blend' if blend == 'translucent' else 'M_FX_Flipbook'
+        name = {'translucent': 'M_FX_Flipbook_Blend', 'lit': 'M_FX_Flipbook_Lit', 'decal': 'M_FX_Flipbook_Decal'}.get(blend, 'M_FX_Flipbook')
         path = FOLDER + '/' + name
         mat = LIB.load_asset(path) if LIB.does_asset_exist(path) else None
         if mat is None:
@@ -528,9 +591,18 @@ if isinstance(manifest.get('flipbooks'), list) and manifest['flipbooks']:
             if EDIT.get_num_material_expressions(mat) == 0:
                 break
             EDIT.delete_all_material_expressions(mat)
-        mat.set_editor_property('shading_model', unreal.MaterialShadingModel.MSM_UNLIT)
-        mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_TRANSLUCENT if blend == 'translucent' else unreal.BlendMode.BLEND_ADDITIVE)
+        mat.set_editor_property('shading_model', unreal.MaterialShadingModel.MSM_DEFAULT_LIT if blend == 'lit' else unreal.MaterialShadingModel.MSM_UNLIT)
+        mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_ADDITIVE if blend == 'additive' else unreal.BlendMode.BLEND_TRANSLUCENT)
+        if blend == 'lit':
+            # water spray: lit by the scene from every side (the translucency lighting volume: sun, sky and lamps), so it
+            # is bright in daylight and dim in a dungeon; no normal, no highlight of its own
+            mat.set_editor_property('translucency_lighting_mode', unreal.TranslucencyLightingMode.TLM_VOLUMETRIC_NON_DIRECTIONAL)
         mat.set_editor_property('two_sided', True)
+        if blend == 'decal':
+            # a burn on a wall or a roof (UDinkArtFamilySubsystem "effect_decal"): the frames are projected onto the surface
+            mat.set_editor_property('material_domain', unreal.MaterialDomain.MD_DEFERRED_DECAL)
+            mat.set_editor_property('shading_model', unreal.MaterialShadingModel.MSM_DEFAULT_LIT)
+            mat.set_editor_property('two_sided', False)
         # Grid = (columns, rows, frames per second, glow); frames run row by row from the top left
         uv = custom(mat, -900, 0, 'float n = Grid.x * Grid.y; float t = max(T - Start, 0.0) * Grid.z; '
                     'float f = Once > 0.5 ? min(floor(t), n - 1.0) : floor(frac(t / n) * n); '
@@ -547,7 +619,29 @@ if isinstance(manifest.get('flipbooks'), list) and manifest['flipbooks']:
         link(expr(mat, unreal.MaterialExpressionScalarParameter, -1100, 700, parameter_name='Roll', default_value=0.0), '', uv, 'Roll')
         frames = expr(mat, unreal.MaterialExpressionTextureSampleParameter2D, -600, 0, parameter_name='Flipbook', texture=tex, sampler_type=ST.SAMPLERTYPE_COLOR)
         link(uv, '', frames, 'UVs')
-        if blend == 'translucent':
+        if blend == 'lit':
+            # Grid.w ("glow") scales the water's own colour (1 = as painted); roughness 1, no specular: a card has no shape to shine on
+            tint = expr(mat, unreal.MaterialExpressionMultiply, -300, 0)
+            link(frames, 'RGB', tint, 'A')
+            link(grid, 'A', tint, 'B')
+            EDIT.connect_material_property(tint, '', MP.MP_BASE_COLOR)
+            EDIT.connect_material_property(frames, 'A', MP.MP_OPACITY)
+            EDIT.connect_material_property(expr(mat, unreal.MaterialExpressionConstant, -300, 150, r=1.0), '', MP.MP_ROUGHNESS)
+            EDIT.connect_material_property(expr(mat, unreal.MaterialExpressionConstant, -300, 220, r=0.0), '', MP.MP_SPECULAR)
+        elif blend == 'decal':
+            # char keeps its own colour and takes the scene's light; what is brighter than Hot.x is fire and glows
+            hot = expr(mat, unreal.MaterialExpressionVectorParameter, -1100, 300, parameter_name='Hot', default_value=unreal.LinearColor(0.16, 0.5, 1.0, 0.0))
+            glow = custom(mat, -300, 0, 'float m = max(C.r, max(C.g, C.b)); float h = smoothstep(Hot.x, Hot.y, m); return C * Glow * Scale * h;',
+                          unreal.CustomMaterialOutputType.CMOT_FLOAT3, ['C', 'Hot', 'Glow', 'Scale'], 'Fire glow')
+            link(frames, 'RGB', glow, 'C')
+            link(hot, '', glow, 'Hot')
+            link(grid, 'A', glow, 'Glow')
+            link(expr(mat, unreal.MaterialExpressionScalarParameter, -600, 250, parameter_name='GlowScale', default_value=1.0), '', glow, 'Scale')
+            EDIT.connect_material_property(frames, 'RGB', MP.MP_BASE_COLOR)
+            EDIT.connect_material_property(glow, '', MP.MP_EMISSIVE_COLOR)
+            EDIT.connect_material_property(frames, 'A', MP.MP_OPACITY)
+            EDIT.connect_material_property(expr(mat, unreal.MaterialExpressionConstant, -300, 150, r=0.92), '', MP.MP_ROUGHNESS)
+        elif blend == 'translucent':
             hot = expr(mat, unreal.MaterialExpressionVectorParameter, -1100, 300, parameter_name='Hot', default_value=unreal.LinearColor(0.25, 0.6, 1.0, 0.0))
             # GlowScale (review: `dink.MatParam MI_FX_<name> GlowScale 2`) multiplies the row's glow at run time
             glow = custom(mat, -300, 0, 'float m = max(C.r, max(C.g, C.b)); float h = smoothstep(Hot.x, Hot.y, m); return C * lerp(Hot.z, Glow * Scale, h);',
@@ -566,25 +660,30 @@ if isinstance(manifest.get('flipbooks'), list) and manifest['flipbooks']:
             link(lit, '', glow, 'A')
             link(grid, 'A', glow, 'B')
             EDIT.connect_material_property(glow, '', MP.MP_EMISSIVE_COLOR)
-        # towards the camera, worked out per vertex (the camera vector node exists only in the pixel shader)
-        pull = custom(mat, -300, 500, 'return normalize(Cam - Pos) * Off;', unreal.CustomMaterialOutputType.CMOT_FLOAT3, ['Cam', 'Pos', 'Off'], 'Towards the camera')
-        link(expr(mat, unreal.MaterialExpressionCameraPositionWS, -600, 420), '', pull, 'Cam')
-        link(expr(mat, unreal.MaterialExpressionWorldPosition, -600, 520), '', pull, 'Pos')
-        link(expr(mat, unreal.MaterialExpressionScalarParameter, -600, 620, parameter_name='CameraOffset', default_value=0.0), '', pull, 'Off')
-        EDIT.connect_material_property(pull, '', MP.MP_WORLD_POSITION_OFFSET)
+        if blend != 'decal':
+            # towards the camera, worked out per vertex (the camera vector node exists only in the pixel shader)
+            pull = custom(mat, -300, 500, 'return normalize(Cam - Pos) * Off;', unreal.CustomMaterialOutputType.CMOT_FLOAT3, ['Cam', 'Pos', 'Off'], 'Towards the camera')
+            link(expr(mat, unreal.MaterialExpressionCameraPositionWS, -600, 420), '', pull, 'Cam')
+            link(expr(mat, unreal.MaterialExpressionWorldPosition, -600, 520), '', pull, 'Pos')
+            link(expr(mat, unreal.MaterialExpressionScalarParameter, -600, 620, parameter_name='CameraOffset', default_value=0.0), '', pull, 'Off')
+            EDIT.connect_material_property(pull, '', MP.MP_WORLD_POSITION_OFFSET)
         EDIT.recompile_material(mat)
         save(mat)
         return mat
 
     for row in manifest['flipbooks']:
         tex = import_texture(REPO / row['file'], 'BC')
-        blend = 'translucent' if row.get('blend') in ('translucent', 'alpha') else 'additive'
+        blend = 'translucent' if row.get('blend') in ('translucent', 'alpha') else row['blend'] if row.get('blend') in ('lit', 'decal') else 'additive'
+        if blend == 'decal' and not tex.get_editor_property('never_stream'):
+            # texture streaming does not see a decal's size on screen: the sheet stayed at a coarse mip (blocks) on a far roof
+            tex.set_editor_property('never_stream', True)
+            save(tex)
         if blend not in fx_parents:
             fx_parents[blend] = flipbook_master(blend, tex)
         mi = instance('MI_FX_' + row['name'], fx_parents[blend], {'Flipbook': tex},
                       {'OneShot': 0.0 if row.get('loop', True) else 1.0, 'CameraOffset': float(row.get('camera_offset_cm', 0.0)),
                        'Roll': float(row.get('roll', 0.0))}, {})
-        if blend == 'translucent' and isinstance(row.get('hot'), list) and len(row['hot']) == 3:
+        if blend in ('translucent', 'decal') and isinstance(row.get('hot'), list) and len(row['hot']) == 3:
             EDIT.set_material_instance_vector_parameter_value(mi, 'Hot', unreal.LinearColor(float(row['hot'][0]), float(row['hot'][1]), float(row['hot'][2]), 0.0))
         g = row.get('grid', [8, 8])
         EDIT.set_material_instance_vector_parameter_value(mi, 'Grid', unreal.LinearColor(float(g[0]), float(g[1]), float(row.get('fps', 24)), float(row.get('glow', 3))))

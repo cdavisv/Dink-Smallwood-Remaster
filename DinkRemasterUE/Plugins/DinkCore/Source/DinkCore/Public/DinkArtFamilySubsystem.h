@@ -42,6 +42,13 @@ struct DINKCORE_API FDinkFamilyBinding
 	FString Mesh;
 	/** Optional further meshes of the same family (JSON "variants"); a placement picks one by a stable hash of its origin ID. */
 	TArray<FString> Variants;
+	/** "stands_as": "/Game/...": the mesh is placed by that mesh's bounds instead of its own (size fit, front anchor, the
+	 *  middle it stands on). For the states of one thing that share a pivot (a chest and the same chest with its lid up):
+	 *  an open lid widens the bounds, and a mesh placed by its own bounds would step aside as the lid goes up. Such a row
+	 *  also stands on the card of the placement's own (imported) picture and takes the "yaw_offset" of that picture's
+	 *  row, whatever picture the script shows or the save holds (the 1997 scripts open a 177 chest with the pictures of
+	 *  175: the same chest seen from its other side). */
+	FString StandsAs;
 	EDinkFamilyFit Fit = EDinkFamilyFit::None;
 	/** true: the mesh front faces the sprite's view (south, the original camera); false: a stable per-origin yaw. */
 	bool bYawFromSprite = false;

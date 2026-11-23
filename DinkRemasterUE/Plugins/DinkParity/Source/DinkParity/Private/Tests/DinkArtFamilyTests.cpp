@@ -63,12 +63,15 @@ bool FDinkArtFamilyPrecedenceTest::RunTest(const FString&)
 	TArray<FString> Errors;
 	const bool bParsed = DinkArtFamily::ParseFamilies(TEXT(R"({"schema":"dink-art-families/1","families":[
 		{"family":"173 bonuses/barrels/barel-","mesh":"/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01","fit":"footprint"},
-		{"family":"barrel_broken","mesh":"/Game/Dink/Test/SM_Broken.SM_Broken","fit":"none","yaw_from_sprite":true},
+		{"family":"barrel_broken","mesh":"/Game/Dink/Test/SM_Broken.SM_Broken","fit":"none","yaw_from_sprite":true,"stands_as":"/Game/Dink/Test/SM_Whole"},
 		{"family":"chair","mesh":"/Game/Dink/Test/SM_Chair","fit":"height","scripted":true}]})"), Bindings, Errors);
 	TestTrue(TEXT("test families parse without errors"), bParsed && Errors.IsEmpty());
 	if (!TestEqual(TEXT("three bindings"), Bindings.Num(), 3)) return false;
 	TestEqual(TEXT("a sequence family keys on its leading number"), Bindings[0].Sequence, 173);
 	TestTrue(TEXT("a sequence family has no class"), Bindings[0].ClassId.IsNone());
+	// "stands_as": a state mesh is placed by its base mesh's bounds (a chest with its lid up stands where the closed one stands)
+	TestEqual(TEXT("stands_as is read as an object path"), Bindings[1].StandsAs, FString(TEXT("/Game/Dink/Test/SM_Whole.SM_Whole")));
+	TestTrue(TEXT("a row without stands_as stands by its own bounds"), Bindings[0].StandsAs.IsEmpty());
 	TestEqual(TEXT("a package path gets its object name"), Bindings[0].Mesh, FString(TEXT("/Game/Dink/Kits/Stonebrook/SM_Barrel_Oak_01.SM_Barrel_Oak_01")));
 	TestEqual(TEXT("an object path is kept"), Bindings[1].Mesh, FString(TEXT("/Game/Dink/Test/SM_Broken.SM_Broken")));
 	TestEqual(TEXT("a class family keys on its class id"), Bindings[1].ClassId, FName(TEXT("barrel_broken")));
