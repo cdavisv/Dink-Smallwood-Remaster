@@ -1,3 +1,9 @@
+## Dink's arms at the trunk: posture row W (23 November 2026, bug A102, art row AN-01)
+
+- `Content/Dink/Data/Art/animation_natural.json` `posture.<set>` is `[chest, head, shoulders, W]` in degrees; W turns each upper arm about its joint towards the trunk in mesh space (`DinkBodyAnimInstance.cpp`); since PR #226 it gives way to action clips and to the run (`posture.<set>.arm_fade`, default [1.0, 0.7]). Hero is 9 for timid and confident (was 0), NpcF 12.
+- Why not more: at 11 the idle and the walk were right in the game (16 Nov) but the hands touch the thighs by the traces' count (hand 1 cm off at 9-10, in the thigh at 11). Before the fade existed the row was 6: the jog's bent forearms and the attack wind-ups put the hands on the belly at higher values.
+- Choosing a value without a rendered game: `Scripts/AnimationQA/arm_clearance.py <dink.Motion.Trace csv> <trunk.json> [W,...] --scale 0.975` prints elbow, wrist and hand clearance per state; `trunk_profile.py` makes trunk.json from the character's Blender source; `trace_pose.py` poses the source from a trace frame and renders it (Cycles CPU). The hero is drawn at 0.975 of his source (bone lengths of the trace). Pitfall: an assembled `SK_*_Photoreal.blend` opens with the armature in REST position; set `pose_position = 'POSE'` or pose bones do nothing.
+- Evidence `Docs/Verification/DinkArmpit_23Nov2026/` (W 0, W 6 without the fade and W 9 with it, seen in the running game on 23 Nov 2026).
 ## Gore parity with 1997: hit blood, corpse cards, card-sized decals, Dink's fall (15 November 2026)
 
 - Audit: `doc/remaster/GORE_STORY_PARITY.md` (story text 2,552 lines, 0 differ; 18 gore items graded). Art that needs Blender: `doc/remaster/FABLE_ART_QUEUE.md`.

@@ -1,0 +1,80 @@
+idle                     frames 2076
+   W  0.0  elbow mean   9.1 min   8.2 | wrist min   8.7 | hand min   9.1 | frames with a wrist or hand in the trunk  0.0% | hands apart min  57.4
+   W  6.0  elbow mean   6.7 min   5.7 | wrist min   3.1 | hand min   2.6 | frames with a wrist or hand in the trunk  0.0% | hands apart min  46.0
+   W  8.0  elbow mean   5.9 min   4.8 | wrist min   1.2 | hand min   0.4 | frames with a wrist or hand in the trunk  0.0% | hands apart min  42.4
+   W 11.0  elbow mean   4.7 min   3.5 | wrist min  -1.6 | hand min  -2.9 | frames with a wrist or hand in the trunk 56.5% | hands apart min  37.1
+run                      frames 199
+   W  0.0  elbow mean  14.6 min   8.5 | wrist min   3.7 | hand min   5.1 | frames with a wrist or hand in the trunk  0.0% | hands apart min  34.5
+   W  6.0  elbow mean  12.9 min   6.0 | wrist min   1.1 | hand min   2.4 | frames with a wrist or hand in the trunk  0.0% | hands apart min  26.9
+   W  8.0  elbow mean  12.4 min   5.2 | wrist min   0.3 | hand min   1.6 | frames with a wrist or hand in the trunk  0.0% | hands apart min  24.4
+   W 11.0  elbow mean  11.6 min   4.0 | wrist min  -0.8 | hand min  -0.7 | frames with a wrist or hand in the trunk  1.5% | hands apart min  20.4
+walk                     frames 966
+   W  0.0  elbow mean  10.4 min   7.7 | wrist min   9.0 | hand min   9.4 | frames with a wrist or hand in the trunk  0.0% | hands apart min  58.1
+   W  6.0  elbow mean   8.1 min   5.1 | wrist min   3.3 | hand min   3.0 | frames with a wrist or hand in the trunk  0.0% | hands apart min  46.6
+   W  8.0  elbow mean   7.3 min   4.2 | wrist min   1.4 | hand min   0.8 | frames with a wrist or hand in the trunk  0.0% | hands apart min  42.9
+   W 11.0  elbow mean   6.1 min   2.7 | wrist min  -1.4 | hand min  -2.5 | frames with a wrist or hand in the trunk  0.4% | hands apart min  37.4
+act:Bow_Draw             frames 104
+   W  0.0  elbow mean   9.0 min -26.2 | wrist min  -7.2 | hand min  -2.1 | frames with a wrist or hand in the trunk 69.2% | hands apart min  16.8
+   W  6.0  elbow mean   9.3 min -28.4 | wrist min  -6.4 | hand min  -2.3 | frames with a wrist or hand in the trunk 71.2% | hands apart min  16.7
+   W  8.0  elbow mean   9.5 min -28.5 | wrist min  -5.7 | hand min  -2.3 | frames with a wrist or hand in the trunk 72.1% | hands apart min  16.7
+   W 11.0  elbow mean   9.7 min -24.7 | wrist min  -7.3 | hand min  -5.9 | frames with a wrist or hand in the trunk 76.9% | hands apart min  16.7
+act:Bow_Release          frames 39
+   W  0.0  elbow mean  15.6 min   2.9 | wrist min -11.8 | hand min -18.3 | frames with a wrist or hand in the trunk 56.4% | hands apart min  49.3
+   W  6.0  elbow mean  14.9 min   5.4 | wrist min -12.5 | hand min -18.5 | frames with a wrist or hand in the trunk 61.5% | hands apart min  43.9
+   W  8.0  elbow mean  14.6 min   5.3 | wrist min -12.7 | hand min -18.6 | frames with a wrist or hand in the trunk 71.8% | hands apart min  40.3
+   W 11.0  elbow mean  14.2 min   3.9 | wrist min -13.1 | hand min -18.7 | frames with a wrist or hand in the trunk 87.2% | hands apart min  35.0
+act:Cast                 frames 60
+   W  0.0  elbow mean  11.4 min   7.4 | wrist min  -0.8 | hand min  -4.7 | frames with a wrist or hand in the trunk  5.0% | hands apart min  24.3
+   W  6.0  elbow mean   9.7 min   4.7 | wrist min  -2.2 | hand min  -7.0 | frames with a wrist or hand in the trunk  6.7% | hands apart min  20.3
+   W  8.0  elbow mean   9.1 min   3.8 | wrist min  -2.9 | hand min  -7.5 | frames with a wrist or hand in the trunk  6.7% | hands apart min  18.8
+   W 11.0  elbow mean   8.3 min   2.4 | wrist min  -4.4 | hand min  -8.1 | frames with a wrist or hand in the trunk 41.7% | hands apart min  16.7
+act:Fist_Cross           frames 38
+   W  0.0  elbow mean   8.7 min   2.3 | wrist min  -4.3 | hand min  -3.8 | frames with a wrist or hand in the trunk 18.4% | hands apart min  18.3
+   W  6.0  elbow mean   6.9 min   0.4 | wrist min  -4.8 | hand min  -5.0 | frames with a wrist or hand in the trunk 21.1% | hands apart min  20.0
+   W  8.0  elbow mean   6.2 min  -0.3 | wrist min  -5.0 | hand min  -5.4 | frames with a wrist or hand in the trunk 23.7% | hands apart min  20.7
+   W 11.0  elbow mean   5.3 min  -1.1 | wrist min  -5.4 | hand min  -6.1 | frames with a wrist or hand in the trunk 26.3% | hands apart min  19.5
+act:Fist_Jab             frames 107
+   W  0.0  elbow mean   8.7 min   3.3 | wrist min  -4.4 | hand min  -4.5 | frames with a wrist or hand in the trunk 15.0% | hands apart min  23.2
+   W  6.0  elbow mean   6.7 min   1.1 | wrist min  -5.1 | hand min  -5.2 | frames with a wrist or hand in the trunk 15.9% | hands apart min  24.2
+   W  8.0  elbow mean   6.0 min   0.5 | wrist min  -5.4 | hand min  -5.5 | frames with a wrist or hand in the trunk 20.6% | hands apart min  23.6
+   W 11.0  elbow mean   4.9 min  -0.8 | wrist min  -5.9 | hand min  -6.4 | frames with a wrist or hand in the trunk 43.0% | hands apart min  21.6
+act:Fist_Swing           frames 76
+   W  0.0  elbow mean   9.8 min   1.6 | wrist min  -5.4 | hand min  -5.4 | frames with a wrist or hand in the trunk 22.4% | hands apart min  13.8
+   W  6.0  elbow mean   8.1 min  -0.6 | wrist min  -6.1 | hand min  -6.3 | frames with a wrist or hand in the trunk 22.4% | hands apart min   9.6
+   W  8.0  elbow mean   7.5 min  -1.4 | wrist min  -6.3 | hand min  -6.7 | frames with a wrist or hand in the trunk 39.5% | hands apart min   8.3
+   W 11.0  elbow mean   6.6 min  -3.0 | wrist min  -7.0 | hand min  -7.6 | frames with a wrist or hand in the trunk 52.6% | hands apart min   6.7
+act:Hurt                 frames 39
+   W  0.0  elbow mean  16.0 min   8.5 | wrist min -11.9 | hand min -13.4 | frames with a wrist or hand in the trunk 48.7% | hands apart min  31.4
+   W  6.0  elbow mean  14.3 min   6.4 | wrist min -10.9 | hand min -12.8 | frames with a wrist or hand in the trunk 48.7% | hands apart min  28.8
+   W  8.0  elbow mean  13.8 min   5.4 | wrist min -10.6 | hand min -12.8 | frames with a wrist or hand in the trunk 48.7% | hands apart min  28.0
+   W 11.0  elbow mean  12.9 min   4.0 | wrist min -10.5 | hand min -12.6 | frames with a wrist or hand in the trunk 53.8% | hands apart min  26.8
+act:Jump                 frames 80
+   W  0.0  elbow mean  18.2 min   9.4 | wrist min   8.1 | hand min   7.3 | frames with a wrist or hand in the trunk  0.0% | hands apart min  59.8
+   W  6.0  elbow mean  16.9 min   7.2 | wrist min   4.5 | hand min   4.1 | frames with a wrist or hand in the trunk  0.0% | hands apart min  49.1
+   W  8.0  elbow mean  16.5 min   6.3 | wrist min   2.6 | hand min   2.0 | frames with a wrist or hand in the trunk  0.0% | hands apart min  45.7
+   W 11.0  elbow mean  15.8 min   4.9 | wrist min  -0.1 | hand min  -1.3 | frames with a wrist or hand in the trunk  2.5% | hands apart min  41.0
+act:Land                 frames 146
+   W  0.0  elbow mean  11.8 min   8.6 | wrist min  10.3 | hand min  11.1 | frames with a wrist or hand in the trunk  0.0% | hands apart min  58.2
+   W  6.0  elbow mean   9.7 min   6.2 | wrist min   4.7 | hand min   4.6 | frames with a wrist or hand in the trunk  0.0% | hands apart min  46.8
+   W  8.0  elbow mean   8.9 min   5.3 | wrist min   2.8 | hand min   2.5 | frames with a wrist or hand in the trunk  0.0% | hands apart min  43.2
+   W 11.0  elbow mean   7.8 min   3.9 | wrist min  -0.1 | hand min  -0.8 | frames with a wrist or hand in the trunk 15.8% | hands apart min  38.0
+act:Stumble              frames 68
+   W  0.0  elbow mean  17.3 min   7.2 | wrist min   7.6 | hand min   8.2 | frames with a wrist or hand in the trunk  0.0% | hands apart min  48.0
+   W  6.0  elbow mean  16.1 min   4.8 | wrist min   2.2 | hand min   2.2 | frames with a wrist or hand in the trunk  0.0% | hands apart min  36.6
+   W  8.0  elbow mean  15.6 min   3.8 | wrist min   0.4 | hand min   0.3 | frames with a wrist or hand in the trunk  0.0% | hands apart min  32.9
+   W 11.0  elbow mean  14.9 min   2.4 | wrist min  -2.3 | hand min  -2.7 | frames with a wrist or hand in the trunk 22.1% | hands apart min  27.3
+act:Sword_Chop           frames 70
+   W  0.0  elbow mean  15.0 min   7.2 | wrist min   5.1 | hand min  -1.1 | frames with a wrist or hand in the trunk  1.4% | hands apart min  39.5
+   W  6.0  elbow mean  13.4 min   4.3 | wrist min   2.4 | hand min  -0.2 | frames with a wrist or hand in the trunk  2.9% | hands apart min  30.1
+   W  8.0  elbow mean  12.8 min   3.5 | wrist min   0.8 | hand min  -1.5 | frames with a wrist or hand in the trunk 14.3% | hands apart min  26.7
+   W 11.0  elbow mean  11.9 min   2.1 | wrist min  -1.6 | hand min  -3.4 | frames with a wrist or hand in the trunk 35.7% | hands apart min  21.6
+act:Sword_Slash_1        frames 70
+   W  0.0  elbow mean  13.4 min  -0.8 | wrist min  -1.4 | hand min  -0.3 | frames with a wrist or hand in the trunk  7.1% | hands apart min  24.5
+   W  6.0  elbow mean  11.7 min  -1.4 | wrist min  -2.0 | hand min   0.4 | frames with a wrist or hand in the trunk 10.0% | hands apart min  23.8
+   W  8.0  elbow mean  11.2 min  -1.6 | wrist min  -2.5 | hand min  -0.6 | frames with a wrist or hand in the trunk 18.6% | hands apart min  21.7
+   W 11.0  elbow mean  10.4 min  -1.7 | wrist min  -3.1 | hand min  -3.3 | frames with a wrist or hand in the trunk 41.4% | hands apart min  17.7
+act:Sword_Slash_2        frames 70
+   W  0.0  elbow mean  14.1 min -18.5 | wrist min  -6.9 | hand min  -1.0 | frames with a wrist or hand in the trunk  2.9% | hands apart min  30.1
+   W  6.0  elbow mean  12.5 min -17.6 | wrist min  -7.1 | hand min   0.5 | frames with a wrist or hand in the trunk  2.9% | hands apart min  29.0
+   W  8.0  elbow mean  12.0 min -17.0 | wrist min  -9.1 | hand min  -0.5 | frames with a wrist or hand in the trunk  2.9% | hands apart min  26.6
+   W 11.0  elbow mean  11.3 min -16.2 | wrist min  -6.3 | hand min  -2.5 | frames with a wrist or hand in the trunk 27.1% | hands apart min  21.2
