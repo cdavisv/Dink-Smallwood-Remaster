@@ -139,6 +139,8 @@ The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README
 - **Decal sheets**: `python3 -I Corpses/tools/build_decals.py` writes `Corpses/Decals` (three 2 x 2 atlases, one 1997 picture frame per cell: blood 187 / 188 / 189, burn holes 158); the kit import makes `/Game/Dink/Photoreal/Corpses/M_Decal_Sheet` and `MI_Decal_<Set>_0..3` from the manifest's `decals`. Not bound by `environment.json` yet.
 - **Checks and captures**: `Docs/Verification/CorpseGore_14Nov2026/`, `Docs/Verification/StonebrookMotherAndRemains_14Nov2026/`.
 
+- **GP-Q7 part 1, 23 Nov 2026**: the pool of `Corpse_Knight` in the one blood look (`gore_sheets.blood_sheet(look='fresh', **FRESH_1997)`: bright 1997 red where thin, deep where thick; colours set by the running game). `DINK_CPU=1 DINK_POOL_ONLY=1 ../Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Corpse_Knight` rebuilds the pool sheet alone (no bake, 20 s); then the corpse kit import. The kit builds read
+  `DinkRemasterUE/ImportData/sprites/<seq>_<frame>.png` (git-ignored: a worktree needs it linked or exported).
 - **Review follow-ups, 16 Nov 2026**: every kit asset rebuilt with `blood_sheet(keep_fringe=False)` (no pale damp ring), a matt
   pool edge and brighter people; the burn holes as kind `pit` (`pit_sheet` + `pit_card`: void mask in `ORM.b`, depths in the kit row's `pit` block,
   master `M_Struct_Baked_Pit`; `Burn_Hole_Wall` stands upright for `S001_P49`);
