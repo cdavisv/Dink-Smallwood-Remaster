@@ -84,12 +84,20 @@ public:
 	virtual void Jump() override;
 	virtual void Landed(const FHitResult& Hit) override;
 	virtual void OnJumped_Implementation() override;
+	/** New-game chance that a real jump ends in a botched landing: a stagger, or (two in five
+	 * of them at level 1) flat on his face. It falls with confidence to nothing for the hero
+	 * (FDinkHeroPhysicality::BotchChance). Cosmetic: the capsule and the controls are untouched. */
 	UPROPERTY(EditAnywhere, Category="Dink|Physicality", meta=(ClampMin="0", ClampMax="1"))
-	float LandingStumbleChance = .2f;
+	float LandingStumbleChance = .3f;
 	/** Level-1 rate of catching a toe while running flat out (about once in two minutes of
 	 * running; fades with confidence). A catch-step he recovers from, never a fall. */
 	UPROPERTY(EditAnywhere, Category="Dink|Physicality", meta=(ClampMin="0", ClampMax="1"))
 	float RunTripsPerSecond = .008f;
+	/** The same at a walk (about once in three minutes of walking at level 1). */
+	UPROPERTY(EditAnywhere, Category="Dink|Physicality", meta=(ClampMin="0", ClampMax="1"))
+	float WalkTripsPerSecond = .006f;
+	/** Review tool behind dink.Hero.Mannerism: plays one of the clumsy moments now, whatever the dice say. */
+	bool ForceMannerism(FName Kind);
 	/** Launch speed and air control of a timid (level 1) and a fully confident Dink. */
 	static constexpr float TimidJumpZ = 280.f, ConfidentJumpZ = 340.f;
 	static constexpr float TimidAirControl = .2f, ConfidentAirControl = .35f;
@@ -196,7 +204,14 @@ private:
     float PreviousBodyYaw = 0.f;
 	bool bBodyLocationReady = false;
 	void UpdateConfidence(bool bSnap);
+	/** Shows what the physicality decided this frame on the body: catch-steps, botched landings,
+	 * fidgets, the after-swing wobble. Cosmetic. */
+	void UpdateMannerisms(class UDinkBodyAnimInstance& Body, bool bAllowed, bool bTeleported, bool bGrounded);
+	void PlayBotch(UDinkBodyAnimInstance& Body, FDinkHeroPhysicality::EBotch Kind);
 	int32 PreviousLife = 0;
+	float PreviousAttackTime = 0.f;
+	FName FidgetClip;
+	bool bReviewJump = false;
 	float WallPullback = 0.f;
 	float WallLeanDamping = 0.f;
 	bool ShouldClearWalls() const;

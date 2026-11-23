@@ -83,8 +83,10 @@ bool UDinkBodyAnimInstance::FindPair(const TMap<FName, FDinkBodyClip>& Library, 
 	const FDinkBodyClip* Timid = Library.Find(FName(*(Base + TEXT("_Timid"))));
 	const FDinkBodyClip* Confident = Library.Find(FName(*(Base + TEXT("_Confident"))));
 	const FDinkBodyClip* Plain = Library.Find(Name);
-	if (!Timid) Timid = Confident ? Confident : Plain;
-	if (!Confident) Confident = Timid;
+	// A missing variant is the plain clip if there is one (Jump_Timid beside the motion-capture
+	// Jump; Sword_Chop_Timid beside Sword_Chop), else the other variant.
+	if (!Timid) Timid = Plain ? Plain : Confident;
+	if (!Confident) Confident = Plain ? Plain : Timid;
 	if (!Timid || !Timid->IsValid() || !Confident->IsValid()) return false;
 	Out.Timid = *Timid;
 	Out.Confident = *Confident;
@@ -122,9 +124,47 @@ bool UDinkBodyAnimInstance::Configure(const TMap<FName, FDinkBodyClip>& Library,
 	Clips.Reset();
 	for (const auto& Pair : Library)
 		if (Pair.Value.IsValid() && (!Skeleton || Pair.Value.Sequence->GetSkeleton() == Skeleton)) Clips.Add(Pair.Key, Pair.Value);
+	// The hero's bone-level mannerisms need both additive posture poses.
+	const FDinkBodyClip* Slump = Set == TEXT("Hero") ? Clips.Find(TEXT("Posture_Timid")) : nullptr;
+	const FDinkBodyClip* Proud = Set == TEXT("Hero") ? Clips.Find(TEXT("Posture_Confident")) : nullptr;
+	const FDinkBodyClip* Wings = Set == TEXT("Hero") ? Clips.Find(TEXT("RunArms_Timid")) : nullptr;
+	bMannerisms = Slump && Proud;
+	PostureTimid = bMannerisms ? *Slump : FDinkBodyClip();
+	PostureConfident = bMannerisms ? *Proud : FDinkBodyClip();
+	RunArms = bMannerisms && Wings ? *Wings : FDinkBodyClip();
 	StopActions();
 	Phase = IdleTime = FallTime = AirAlpha = 0.f;
+	CatchTime = 1.e9f;
 	return true;
+}
+
+float FDinkMannerMaths::GaitRoll(float Phase, float Timid, float MoveAlpha, float RunAlpha)
+{
+	const float A = 2.f * UE_PI * Phase;
+	return FMath::Clamp(Timid, 0.f, 1.f) * FMath::Clamp(MoveAlpha, 0.f, 1.f) * FMath::Lerp(2.4f, 3.6f, FMath::Clamp(RunAlpha, 0.f, 1.f)) *
+		(FMath::Sin(A) + .35f * FMath::Cos(2.f * A));
+}
+
+FVector2f FDinkMannerMaths::ArmSwingDamping(float Timid, float MoveAlpha, float RunAlpha)
+{
+	const float W = FMath::Clamp(Timid, 0.f, 1.f) * FMath::Clamp(MoveAlpha, 0.f, 1.f) * (1.f - .65f * FMath::Clamp(RunAlpha, 0.f, 1.f));
+	return FVector2f(.6f, .3f) * W;
+}
+
+float FDinkMannerMaths::CatchCadence(float Seconds)
+{
+	if (Seconds < 0.f || Seconds >= CatchSeconds) return 1.f;
+	if (Seconds < CatchHang) return CatchHangRate;
+	return 1.f + (1.f - CatchHangRate) * CatchHang / (CatchSeconds - CatchHang);
+}
+
+float FDinkMannerMaths::PostureShareFor(FName Action)
+{
+	const FString Name = Action.ToString();
+	// Pass 1 to 3 action clips start and end in their own hunched or squared stand.
+	for (const TCHAR* Prefix : {TEXT("Fist_"), TEXT("Sword_"), TEXT("Hurt"), TEXT("Stumble"), TEXT("Bow_"), TEXT("Cast")})
+		if (Name.StartsWith(Prefix)) return .4f;
+	return 1.f;
 }
 
 void UDinkBodyAnimInstance::SetMotion(float SpeedCm, bool bInAirborne, float InConfidence, FVector2f LeanDegrees)
@@ -156,6 +196,7 @@ bool UDinkBodyAnimInstance::PlayAction(FName Name, bool bFullBody, float Scale, 
 	S.Scale = FMath::Clamp(Scale, 0.f, 1.f);
 	S.bFullBody = bFullBody;
 	S.bHold = bHoldLastFrame;
+	S.PostureShare = FDinkMannerMaths::PostureShareFor(Name);
 	S.bActive = true;
 	ActionName = Name;
 	return true;
@@ -167,7 +208,14 @@ void UDinkBodyAnimInstance::StopActions()
 	ActionName = NAME_None;
 }
 
-bool UDinkBodyAnimInstance::IsActionActive() const { return Slots[0].bActive; }
+void UDinkBodyAnimInstance::FadeOutAction(float Seconds)
+{
+	if (!Slots[0].bActive) return;
+	Slots[0].bFading = true;
+	Slots[0].FadeSeconds = FMath::Max(.02f, Seconds);
+}
+
+bool UDinkBodyAnimInstance::IsActionActive() const { return Slots[0].bActive && !Slots[0].bFading; }
 float UDinkBodyAnimInstance::GetActionTime() const { return Slots[0].bActive ? Slots[0].Time : 0.f; }
 
 void UDinkBodyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
@@ -210,6 +258,8 @@ void UDinkBodyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	TArray<float, TInlineAllocator<4>> Speeds, Strides, Weights;
 	for (const FDinkBodyClipPair& Gait : Gaits) { Speeds.Add(Gait.Speed()); Strides.Add(Gait.Stride(C) * StrideScale); }
 	float IdleWeight = 1.f;
+	// The lad's shorter, quicker step is the leg layer's gait style now (FDinkGaitStyle::For by confidence, #205); the
+	// mannerisms' own cadence power (FDinkMannerMaths::CadencePower, 14 Nov) on top of it made planted feet slide.
 	FDinkGaitBlend::Solve(Speed, Speeds, Strides, IdleWeight, Weights, CyclesPerSecond, SlowCadence);
 	if (bLegs)
 	{
@@ -240,7 +290,10 @@ void UDinkBodyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	CyclesPerSecond *= CadenceWarpApplied;
 	Frame.Legs.CadenceWarp = CadenceWarpApplied;
 	BlendedStride = CyclesPerSecond > 0.f ? Speed / CyclesPerSecond : 0.f;
-	Phase = FMath::Fmod(Phase + CyclesPerSecond * Dt, 12.f); // whole cycles of clips holding 1, 2, 3 or 4
+	// A toe catch holds the step back and then hurries two: the same ground covered in the end.
+	const float Catch = FDinkMannerMaths::CatchCadence(CatchTime);
+	CatchTime = FMath::Min(CatchTime + Dt, 1.e9f);
+	Phase = FMath::Fmod(Phase + CyclesPerSecond * Catch * Dt, 12.f); // whole cycles of clips holding 1, 2, 3 or 4
 	IdleTime += Dt;
 	Frame.Legs.Style = Style;
 	// Like the stride, the uneven pair of steps is a walk's: at a run's 3.5 m cycle it pushed a foot 6 cm past the leg's reach.
@@ -266,11 +319,12 @@ void UDinkBodyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	for (int32 i = 0; i < Gaits.Num(); ++i) AddPair(Gaits[i], Phase, Weights[i] * Ground, true);
 	if (bFallReady) AddPair(Fall, FallTime, AirAlpha, false);
 
+	float ActionShare = 0.f, PostureKeep = 1.f;
 	for (FSlot& S : Slots)
 	{
 		if (!S.bActive) continue;
-		S.Time += Dt;
-		if (S.bFading) S.Fade = FMath::Max(0.f, S.Fade - Dt / .09f);
+		S.Time += Dt * (Speed > 40.f ? S.RushRate : 1.f);
+		if (S.bFading) S.Fade = FMath::Max(0.f, S.Fade - Dt / S.FadeSeconds);
 		const float Length = S.Clips.Length();
 		if (S.bHold) S.Time = FMath::Min(S.Time, Length - .001f); // waits on its last frame until replaced or stopped
 		if (S.Time >= Length || S.Fade <= 0.f) { S = FSlot(); continue; }
@@ -282,8 +336,28 @@ void UDinkBodyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		A.Weight = FMath::Min(In, Out) * S.Scale * S.Fade;
 		A.LowerBodyWeight = S.bFullBody ? 1.f : 1.f - MoveAlpha;
 		if (A.Weight > .0005f) Frame.Actions.Add(A);
+		ActionShare = FMath::Max(ActionShare, A.Weight);
+		float Share = S.PostureShare;
+		if (const FDinkBodyClip& Clip = S.Clips.Timid; Clip.PostureOnS > Clip.PostureOffS)
+			Share *= 1.f - FMath::SmoothStep(Clip.PostureOffS, Clip.PostureOffS + .15f, S.Time) * (1.f - FMath::SmoothStep(Clip.PostureOnS - .25f, Clip.PostureOnS, S.Time));
+		PostureKeep = FMath::Min(PostureKeep, FMath::Lerp(1.f, Share, A.Weight));
 	}
 	if (!Slots[0].bActive) ActionName = NAME_None;
+	Frame.Manner = FDinkBodyMannerFrame();
+	if (bMannerisms)
+	{
+		FDinkBodyMannerFrame& M = Frame.Manner;
+		M.PostureTimid = PostureTimid.Sequence;
+		M.PostureConfident = PostureConfident.Sequence;
+		M.RunArms = RunArms.Sequence;
+		M.Confidence = C;
+		M.PostureWeight = PostureKeep * MannerScale;
+		M.Phase = Phase;
+		M.MoveAlpha = MoveAlpha * Ground;
+		M.RunAlpha = FMath::Clamp((Speed - 250.f) / 300.f, 0.f, 1.f);
+		M.Gait = (1.f - C) * (1.f - ActionShare) * MannerScale;
+		if (M.Gait * M.MoveAlpha > .001f) M.ArmRest = {Idle.Timid.Sequence, FMath::Fmod(IdleTime, Idle.Timid.Duration), 1.f};
+	}
 	{
 		// W gives way to the action clips and the run (SetArmFade): their own arm carriage stays clear of the belly.
 		float ActionWeight = 0.f;
@@ -406,6 +480,31 @@ namespace
 	}
 }
 
+void FDinkBodyAnimProxy::BuildAdditives(FPoseContext& Output)
+{
+	const FDinkBodyMannerFrame& M = Frame.Manner;
+	const FBoneContainer& Bones = Output.Pose.GetBoneContainer();
+	Additives.Reset();
+	CachedTimid = M.PostureTimid; CachedConfident = M.PostureConfident; CachedRunArms = M.RunArms;
+	AdditiveSerial = Bones.GetSerialNumber();
+	if (!M.IsActive()) return;
+	FCompactPose Timid, Confident, Wings;
+	Sample({M.PostureTimid, 0.f, 1.f}, Output, Timid);
+	Sample({M.PostureConfident, 0.f, 1.f}, Output, Confident);
+	if (M.RunArms) Sample({M.RunArms, 0.f, 1.f}, Output, Wings);
+	const int32 NumBones = Output.Pose.GetNumBones();
+	// Bone 0 is the root: the capsule owns it.
+	for (FCompactPoseBoneIndex Bone(1); Bone.GetInt() < NumBones; ++Bone)
+	{
+		// The clip's rotation away from the reference pose, in the bone's own frame.
+		const FQuat Reference = Bones.GetRefPoseTransform(Bone).GetRotation().Inverse();
+		FAdditive A{Bone.GetInt(), (Reference * Timid[Bone].GetRotation()).GetNormalized(), (Reference * Confident[Bone].GetRotation()).GetNormalized(),
+			M.RunArms ? (Reference * Wings[Bone].GetRotation()).GetNormalized() : FQuat::Identity};
+		const double Smallest = FMath::DegreesToRadians(.05);
+		if (A.Timid.GetAngle() > Smallest || A.Confident.GetAngle() > Smallest || A.RunArms.GetAngle() > Smallest) Additives.Add(A);
+	}
+}
+
 bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 {
 	float Total = 0.f;
@@ -438,6 +537,7 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 	{
 		LowerBody.Init(false, NumBones);
 		LeanBones.Reset();
+		ArmBonesL.Reset(); ArmBonesR.Reset();
 		ChestBone = HeadBone = ClavicleL = ClavicleR = UpperArmL = UpperArmR = INDEX_NONE;
 		PelvisBone = NeckBone = Spine3Bone = INDEX_NONE;
 		for (int32 S = 0; S < 2; ++S) Thigh[S] = Calf[S] = Foot[S] = INDEX_NONE;
@@ -454,6 +554,8 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 			if (Name == TEXT("clavicle_r")) ClavicleR = Bone.GetInt();
 			if (Name == TEXT("upperarm_l")) UpperArmL = Bone.GetInt();
 			if (Name == TEXT("upperarm_r")) UpperArmR = Bone.GetInt();
+			if (Name == TEXT("upperarm_l") || Name == TEXT("lowerarm_l") || Name == TEXT("hand_l")) ArmBonesL.Add(Bone.GetInt());
+			if (Name == TEXT("upperarm_r") || Name == TEXT("lowerarm_r") || Name == TEXT("hand_r")) ArmBonesR.Add(Bone.GetInt());
 			if (Name == TEXT("pelvis")) PelvisBone = Bone.GetInt();
 			if (Name == TEXT("neck_01")) NeckBone = Bone.GetInt();
 			if (Name == TEXT("spine_03")) Spine3Bone = Bone.GetInt();
@@ -509,6 +611,40 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 		const FVector To = (From + Forward * FMath::Tan(FMath::DegreesToRadians(ForwardDeg)) + Side * FMath::Tan(FMath::DegreesToRadians(SideDeg))).GetSafeNormal();
 		return FQuat::FindBetweenNormals(From, To);
 	};
+	// The hero's mannerism layer (see FDinkBodyMannerFrame).
+	FVector2f Lean = Frame.Lean;
+	if (const FDinkBodyMannerFrame& M = Frame.Manner; M.IsActive())
+	{
+		if (CachedTimid != M.PostureTimid || CachedConfident != M.PostureConfident || CachedRunArms != M.RunArms || AdditiveSerial != Bones.GetSerialNumber())
+			BuildAdditives(Output);
+		const float GaitShown = M.Gait * M.MoveAlpha;
+		// Arms that hang instead of swinging: pulled towards the standing pose, the left more than the right.
+		if (GaitShown > .001f && M.ArmRest.Sequence)
+		{
+			const FVector2f Damping = FDinkMannerMaths::ArmSwingDamping(M.Gait, M.MoveAlpha, M.RunAlpha);
+			FCompactPose Rest;
+			Sample(M.ArmRest, Output, Rest);
+			for (const int32 Index : ArmBonesL) { FCompactPoseBoneIndex B(Index); Out[B].SetRotation(FQuat::Slerp(Out[B].GetRotation(), Rest[B].GetRotation(), Damping.X)); }
+			for (const int32 Index : ArmBonesR) { FCompactPoseBoneIndex B(Index); Out[B].SetRotation(FQuat::Slerp(Out[B].GetRotation(), Rest[B].GetRotation(), Damping.Y)); }
+		}
+		const float Wings = M.Gait * M.MoveAlpha * M.RunAlpha;
+		for (const FAdditive& A : Additives)
+		{
+			FTransform& Bone = Out[FCompactPoseBoneIndex(A.Bone)];
+			FQuat Delta = FQuat::Slerp(FQuat::Identity, FQuat::Slerp(A.Timid, A.Confident, M.Confidence), M.PostureWeight);
+			if (Wings > .001f) Delta = Delta * FQuat::Slerp(FQuat::Identity, A.RunArms, Wings);
+			Bone.SetRotation((Bone.GetRotation() * Delta).GetNormalized());
+		}
+		if (GaitShown > .001f)
+		{
+			// The trunk rocks over each step, unevenly; the head rolls against it and nods at a run.
+			const float Roll = FDinkMannerMaths::GaitRoll(M.Phase, M.Gait, M.MoveAlpha, M.RunAlpha);
+			Lean.Y += Roll;
+			const float A = 2.f * UE_PI * M.Phase;
+			RotateInMeshSpace(Out, HeadBone, FQuat(FVector::YAxisVector, FMath::DegreesToRadians(-.5f * Roll + 3.f * Wings * FMath::Sin(A + .9f))) *
+				FQuat(FVector::XAxisVector, FMath::DegreesToRadians(2.5f * Wings * FMath::Cos(2.f * A))));
+		}
+	}
 	if (!Frame.Posture.IsNearlyZero3(.01f) || FMath::Abs(Frame.Posture.W) > .01f)
 	{
 		// The upper arms come in towards the body (a narrower carriage than the captured mannequin's).
@@ -520,10 +656,10 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 		RotateInMeshSpace(Out, ClavicleL, Tilt(FVector::XAxisVector, Frame.Posture.Z, 0.f, FVector::YAxisVector, FVector::UpVector));
 		RotateInMeshSpace(Out, ClavicleR, Tilt(-FVector::XAxisVector, Frame.Posture.Z, 0.f, FVector::YAxisVector, FVector::UpVector));
 	}
-	if (!Frame.Lean.IsNearlyZero(.01f) && LeanBones.Num() > 0)
+	if (!Lean.IsNearlyZero(.01f) && LeanBones.Num() > 0)
 	{
 		for (const int32 Index : LeanBones)
-			RotateInMeshSpace(Out, Index, Tilt(FVector::UpVector, Frame.Lean.X / LeanBones.Num(), Frame.Lean.Y / LeanBones.Num(), FVector::YAxisVector, FVector::XAxisVector));
+			RotateInMeshSpace(Out, Index, Tilt(FVector::UpVector, Lean.X / LeanBones.Num(), Lean.Y / LeanBones.Num(), FVector::YAxisVector, FVector::XAxisVector));
 	}
 	if (Frame.Legs.bEnabled)
 	{

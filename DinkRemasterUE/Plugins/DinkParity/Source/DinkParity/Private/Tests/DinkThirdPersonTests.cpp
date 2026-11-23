@@ -93,7 +93,10 @@ bool FDinkClumsyHeroTest::RunTest(const FString&)
     A.Update(0,200,true,true);
     TestTrue(TEXT("paused game time cannot advance the recovery"),A.IsStumbling());
     TestFalse(TEXT("bounce contacts cannot retrigger a stumble"),A.Land(300,.4f,1));
-    A.Update(.8f,0,true,true); TestFalse(TEXT("Dink recovers within one second"),A.IsStumbling());
+    const bool bFlat=A.GetBotch()==FDinkHeroPhysicality::EBotch::Faceplant;
+    A.Update(.8f,0,true,true);
+    TestEqual(TEXT("a stagger is over within one second; flat on his face he is still getting up"),A.IsStumbling(),bFlat);
+    A.Update(FDinkHeroPhysicality::FaceplantDuration,0,true,true); TestFalse(TEXT("Dink always gets up again"),A.IsStumbling());
     A.Update(2,0,true,true); A.Land(300,.4f,1); A.Update(.1f,200,true,false);
     TestFalse(TEXT("cutscene freeze cancels recovery"),A.IsStumbling());
     TestTrue(TEXT("freeze removes the lean"),A.GetLean().IsNearlyZero());

@@ -817,6 +817,8 @@ const TMap<FName, FDinkBodyClip>& UDinkArtSubsystem::GetAnimationLibrary()
         if ((*Row)->TryGetNumberField(TEXT("stride_cm"), Number)) Clip.StrideCm = float(Number);
         if ((*Row)->TryGetNumberField(TEXT("hit_s"), Number)) Clip.HitS = float(Number);
         if ((*Row)->TryGetNumberField(TEXT("lock_s"), Number)) Clip.LockS = float(Number);
+        if ((*Row)->TryGetNumberField(TEXT("posture_off_s"), Number)) Clip.PostureOffS = float(Number);
+        if ((*Row)->TryGetNumberField(TEXT("posture_on_s"), Number)) Clip.PostureOnS = float(Number);
         (*Row)->TryGetBoolField(TEXT("loop"), Clip.bLoop);
         if (Clip.IsValid()) AnimationLibrary.Add(FName(*Pair.Key), Clip);
     }

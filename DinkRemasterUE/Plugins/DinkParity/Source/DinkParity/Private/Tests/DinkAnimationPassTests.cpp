@@ -2,6 +2,8 @@
 #include "DinkBodyAnimInstance.h"
 #include "DinkGameplay.h"
 #include "DinkHumanoidComponent.h"
+#include "DinkHeroPhysicality.h"
+#include "Greybox/DinkGreyboxCharacter.h"
 #include "DinkPlayerActionComponent.h"
 #include "DinkMotionEstimate.h"
 
@@ -295,5 +297,165 @@ bool FDinkNaturalClipSurveyTest::RunTest(const FString&)
 		AddInfo(FString::Printf(TEXT("NATURAL %s: length %.4f s, planted-foot ground speed %.1f cm/s, stride %.1f cm, left heel strike at %.3f s (phase %.3f), left strides %d, root travel %.1f cm, root motion %d, hand reach L %.0f cm at %.2f s, R %.0f cm at %.2f s"),
 			*Leaf, Length, Speed, Speed * Length, LeftStrike, LeftStrike >= 0 ? LeftStrike / Length : -1., Strikes, RootTravel, Seq->HasRootMotion() ? 1 : 0, ReachL, ReachLT, ReachR, ReachRT));
 	}
+	return true;
+}
+
+// The growth arc as numbers: every clumsy chance and rate falls with confidence and is nothing for the
+// finished hero; nothing clumsy starts in a fight; the layers that touch the gait add up to no net motion.
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkHeroMannerismsTest, "Dink.Animation.HeroMannerisms", DINK_TEST_FLAGS)
+bool FDinkHeroMannerismsTest::RunTest(const FString&)
+{
+	using P = FDinkHeroPhysicality;
+	const ADinkGreyboxCharacter* Defaults = GetDefault<ADinkGreyboxCharacter>();
+	const float RunRate = Defaults->RunTripsPerSecond, WalkRate = Defaults->WalkTripsPerSecond, Botch = Defaults->LandingStumbleChance;
+	TestTrue(TEXT("the shipped rates are rare events, not a tic"), RunRate > 0.f && RunRate <= .02f && WalkRate > 0.f && WalkRate <= .01f && Botch >= .15f && Botch <= .4f);
+	float Previous[6] = {2.f, 2.f, 2.f, 2.f, 2.f, -1.f};
+	for (int32 I = 0; I <= 100; ++I)
+	{
+		const float C = I / 100.f;
+		const float Now[6] = {P::Clumsiness(C), P::TripsPerSecond(600.f, C, RunRate, WalkRate), P::TripsPerSecond(170.f, C, RunRate, WalkRate),
+			P::BotchChance(C, Botch), P::FaceplantShare(C), P::FidgetGap(C, .5f)};
+		for (int32 K = 0; K < 5; ++K)
+			TestTrue(FString::Printf(TEXT("clumsiness %d never rises with confidence (at %.2f)"), K, C), Now[K] <= Previous[K] && Now[K] >= 0.f);
+		TestTrue(TEXT("the surer he is the longer he stands still between fidgets"), Now[5] >= Previous[5]);
+		FMemory::Memcpy(Previous, Now, sizeof(Now));
+	}
+	TestEqual(TEXT("new-game Dink is fully clumsy"), P::Clumsiness(0.f), 1.f);
+	TestEqual(TEXT("the finished hero never trips running"), P::TripsPerSecond(600.f, 1.f, RunRate, WalkRate), 0.f);
+	TestEqual(TEXT("the finished hero never trips walking"), P::TripsPerSecond(170.f, 1.f, RunRate, WalkRate), 0.f);
+	TestEqual(TEXT("the finished hero never botches a landing"), P::BotchChance(1.f, 1.f), 0.f);
+	TestEqual(TEXT("nobody trips standing still"), P::TripsPerSecond(0.f, 0.f, 1.f, 1.f), 0.f);
+	TestTrue(TEXT("the lad trips at a walk and at a run"), P::TripsPerSecond(170.f, 0.f, RunRate, WalkRate) == WalkRate && P::TripsPerSecond(600.f, 0.f, RunRate, WalkRate) == RunRate);
+	TestTrue(TEXT("bad input counts as the lad, not as a crash"), P::Clumsiness(NAN) == 1.f && P::BotchChance(NAN, .3f) == .3f);
+	TestTrue(TEXT("half-way he is already much steadier"), P::Clumsiness(.5f) < .4f && P::Clumsiness(.5f) > .2f);
+
+	// Simulated walking: an hour at each confidence, at an exaggerated rate so the counts mean something.
+	int32 LastTrips = MAX_int32;
+	for (const float C : {0.f, .25f, .5f, .75f, 1.f})
+	{
+		P Walker; Walker.SetTargetConfidence(C, true);
+		int32 Trips = 0; float Gap = 1.e9f, SinceLast = 1.e9f;
+		for (int32 I = 0; I < 60 * 3600; ++I)
+		{
+			const bool Was = Walker.IsStumbling();
+			Walker.Update(1.f / 60.f, 170.f, true, true, 0.f, .05f, .05f);
+			SinceLast += 1.f / 60.f;
+			if (!Was && Walker.IsStumbling()) { ++Trips; Gap = FMath::Min(Gap, SinceLast); SinceLast = 0.f; }
+		}
+		AddInfo(FString::Printf(TEXT("confidence %.2f: %d toe catches in an hour of walking at ten times the shipped rate"), C, Trips));
+		TestTrue(TEXT("fewer toe catches at every stage"), Trips <= LastTrips);
+		if (Trips > 1) TestTrue(TEXT("never two in quick succession"), Gap >= P::TripCooldown);
+		if (C == 0.f) TestTrue(TEXT("the lad does catch a toe walking"), Trips > 20);
+		if (C == 1.f) TestEqual(TEXT("the hero never does"), Trips, 0);
+		LastTrips = Trips;
+	}
+	// In a fight: an attack or a blow every few seconds keeps every clumsy moment away.
+	{
+		P Fighter;
+		int32 Trips = 0, Botches = 0, Fidgets = 0;
+		FVector2f Roll;
+		for (int32 I = 0; I < 60 * 600; ++I)
+		{
+			if (I % 240 == 0) Fighter.NotifyCombat();
+			Fighter.Update(1.f / 60.f, I % 1200 < 600 ? 600.f : 0.f, true, true, 0.f, 1.f, 1.f);
+			Trips += Fighter.ConsumeStumbleStart();
+			if (I % 90 == 0) Botches += Fighter.Land(400.f, .4f, 1.f);
+			Fidgets += Fighter.ConsumeFidget(Roll);
+		}
+		TestEqual(TEXT("no toe catch during a fight, whatever the rate"), Trips, 0);
+		TestEqual(TEXT("no botched landing during a fight, whatever the chance"), Botches, 0);
+		TestEqual(TEXT("no fidget during a fight"), Fidgets, 0);
+		for (int32 I = 0; I < 60 * 7; ++I) Fighter.Update(1.f / 60.f, 0.f, true, true);
+		TestFalse(TEXT("the quiet ends a few seconds after the fight"), Fighter.IsCombatQuiet());
+	}
+	// Landings: 2000 jumps at each confidence.
+	int32 LastBotches = MAX_int32, LastFlat = MAX_int32 - 16;
+	for (const float C : {0.f, .25f, .5f, .75f, 1.f})
+	{
+		P Jumper; Jumper.SetTargetConfidence(C, true);
+		int32 Botches = 0, Flat = 0;
+		for (int32 I = 0; I < 2000; ++I)
+		{
+			if (Jumper.Land(400.f, .4f, P::BotchChance(C, Botch))) { ++Botches; Flat += Jumper.GetBotch() == P::EBotch::Faceplant; }
+			Jumper.Update(6.f, 0.f, true, true);
+		}
+		AddInfo(FString::Printf(TEXT("confidence %.2f: %d of 2000 landings botched, %d of them flat on his face"), C, Botches, Flat));
+		TestTrue(TEXT("fewer botched landings at every stage"), Botches <= LastBotches && Flat <= LastFlat + 5);
+		if (C == 0.f) TestTrue(TEXT("the lad botches some landings, and most of those are staggers"), Botches > 400 && Botches < 800 && Flat > 100 && Flat < Botches / 2 + 40);
+		if (C == 1.f) TestEqual(TEXT("the hero lands clean every time"), Botches, 0);
+		LastBotches = Botches; LastFlat = Flat;
+	}
+	// Fidgets: a minute and a half of standing about.
+	int32 LadFidgets = 0, HeroFidgets = 0, MovingFidgets = 0;
+	{
+		P Lad, Hero, Walker; Hero.SetTargetConfidence(1.f, true);
+		FVector2f Roll;
+		for (int32 I = 0; I < 60 * 90; ++I)
+		{
+			Lad.Update(1.f / 60.f, 0.f, true, true); Hero.Update(1.f / 60.f, 0.f, true, true); Walker.Update(1.f / 60.f, 170.f, true, true);
+			LadFidgets += Lad.ConsumeFidget(Roll); HeroFidgets += Hero.ConsumeFidget(Roll); MovingFidgets += Walker.ConsumeFidget(Roll);
+			TestTrue(TEXT("fidget draws are 0..1"), Roll.X >= 0.f && Roll.X <= 1.f && Roll.Y >= 0.f && Roll.Y <= 1.f);
+		}
+	}
+	AddInfo(FString::Printf(TEXT("90 s standing: the lad fidgets %d times, the hero %d"), LadFidgets, HeroFidgets));
+	TestTrue(TEXT("the lad cannot stand still"), LadFidgets >= 7 && LadFidgets <= 19);
+	TestTrue(TEXT("the hero stands planted"), HeroFidgets >= 1 && HeroFidgets <= 5);
+	TestEqual(TEXT("nobody fidgets while walking"), MovingFidgets, 0);
+	// The after-swing wobble.
+	{
+		P Lad, Hero; Hero.SetTargetConfidence(1.f, true);
+		Lad.Update(1.f / 60.f, 0.f, true, true); Hero.Update(1.f / 60.f, 0.f, true, true);
+		Lad.KickWobble(1.f); Hero.KickWobble(1.f);
+		float Peak = 0.f, HeroPeak = 0.f; int32 Swings = 0; float LastSign = 0.f;
+		for (int32 I = 0; I < 150; ++I)
+		{
+			Lad.Update(1.f / 60.f, 0.f, true, true); Hero.Update(1.f / 60.f, 0.f, true, true);
+			Peak = FMath::Max(Peak, Lad.GetWobble().Size()); HeroPeak = FMath::Max(HeroPeak, Hero.GetWobble().Size());
+			const float Sign = FMath::Sign(Lad.GetWobble().X);
+			if (Sign != 0.f && Sign != LastSign) { ++Swings; LastSign = Sign; }
+		}
+		AddInfo(FString::Printf(TEXT("after-swing wobble of the lad: peak %.1f degrees, %d swings, %.2f degrees left after 2.5 s"), Peak, Swings, Lad.GetWobble().Size()));
+		TestTrue(TEXT("the lad rocks visibly but not wildly after a swing"), Peak > 2.5f && Peak < 8.f && Swings >= 3);
+		TestTrue(TEXT("and has settled within a few seconds"), Lad.GetWobble().Size() < .15f);
+		TestEqual(TEXT("the hero does not rock at all"), HeroPeak, 0.f);
+	}
+	// The gait layer: no net change of the step, nothing for the hero, nothing standing.
+	double Covered = 0.;
+	for (int32 I = 0; I < 3600; ++I) Covered += FDinkMannerMaths::CatchCadence((I + .5f) / 3600.f) / 3600.;
+	TestTrue(FString::Printf(TEXT("a toe catch loses no ground in the end (%.4f of a second of cadence in one second)"), Covered), FMath::IsNearlyEqual(Covered, 1., 1e-3));
+	TestTrue(TEXT("the foot hangs first, then hurries"), FDinkMannerMaths::CatchCadence(.05f) < .3f && FDinkMannerMaths::CatchCadence(.25f) > 1.3f && FDinkMannerMaths::CatchCadence(1.f) == 1.f);
+	float Left = 0.f, Right = 0.f, Mean = 0.f;
+	for (int32 I = 0; I < 360; ++I)
+	{
+		const float Roll = FDinkMannerMaths::GaitRoll(I / 360.f, 1.f, 1.f, 0.f);
+		Left = FMath::Max(Left, Roll); Right = FMath::Max(Right, -Roll); Mean += Roll / 360.f;
+		TestEqual(TEXT("the hero's trunk does not rock"), FDinkMannerMaths::GaitRoll(I / 360.f, 0.f, 1.f, 1.f), 0.f);
+		TestEqual(TEXT("nor does anyone's standing still"), FDinkMannerMaths::GaitRoll(I / 360.f, 1.f, 0.f, 0.f), 0.f);
+	}
+	AddInfo(FString::Printf(TEXT("timid walk trunk rock: %.1f degrees one way, %.1f the other"), Left, Right));
+	TestTrue(TEXT("the lad rocks further over one foot than the other, a few degrees"), Left > 1.5f && Right > 1.5f && Left < 5.f && Right < 5.f && FMath::Abs(Left - Right) > .8f && FMath::Abs(Mean) < .01f);
+	TestTrue(TEXT("his arms hang, the left more than the right, less so at a run; the hero's swing"),
+		FDinkMannerMaths::ArmSwingDamping(1.f, 1.f, 0.f).X > FDinkMannerMaths::ArmSwingDamping(1.f, 1.f, 0.f).Y &&
+		FDinkMannerMaths::ArmSwingDamping(1.f, 1.f, 1.f).X < FDinkMannerMaths::ArmSwingDamping(1.f, 1.f, 0.f).X &&
+		FDinkMannerMaths::ArmSwingDamping(0.f, 1.f, 0.f).IsNearlyZero() && FDinkMannerMaths::ArmSwingDamping(1.f, 1.f, 0.f).X <= .7f);
+	TestTrue(TEXT("the lad takes shorter, quicker steps at a walk than the hero"),
+		FDinkMannerMaths::CadencePower(.7f, 0.f) < FDinkMannerMaths::CadencePower(.7f, .5f) && FDinkMannerMaths::CadencePower(.7f, .5f) < FDinkMannerMaths::CadencePower(.7f, 1.f));
+	{
+		// The same walk, 170 cm/s, taken by the lad and by the hero: stride times cadence is the speed for both.
+		const float Speeds[] = {273.f}, Strides[] = {204.75f};
+		float Stride[2];
+		for (int32 K = 0; K < 2; ++K)
+		{
+			float Idle = 0.f, Cycles = 0.f; TArray<float, TInlineAllocator<4>> W;
+			FDinkGaitBlend::Solve(170.f, Speeds, Strides, Idle, W, Cycles, FDinkMannerMaths::CadencePower(.7f, float(K)));
+			Stride[K] = FMath::Pow(W[0], FDinkGaitBlend::SlowStridePower) * Strides[0];
+			TestTrue(TEXT("no sliding at either end of the arc"), FMath::IsNearlyEqual(Stride[K] * Cycles, 170.f, .5f));
+		}
+		AddInfo(FString::Printf(TEXT("walking at 170 cm/s: the lad's gait cycle covers %.0f cm, the hero's %.0f cm"), Stride[0], Stride[1]));
+		TestTrue(TEXT("the lad's step is clearly shorter"), Stride[0] < Stride[1] - 12.f);
+	}
+	TestTrue(TEXT("older action clips keep only part of the posture layer, new ones all of it"),
+		FDinkMannerMaths::PostureShareFor(TEXT("Fist_Jab")) < 1.f && FDinkMannerMaths::PostureShareFor(TEXT("Sword_Chop")) < 1.f &&
+		FDinkMannerMaths::PostureShareFor(TEXT("Fidget_Scuff")) == 1.f && FDinkMannerMaths::PostureShareFor(TEXT("Botch_Stagger")) == 1.f);
 	return true;
 }
