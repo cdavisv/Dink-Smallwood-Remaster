@@ -443,6 +443,15 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 				Errors.Add(FString::Printf(TEXT("%s: variants must be /Game/ object paths"), *B.Family));
 				continue;
 			}
+			if ((*Row)->TryGetStringField(TEXT("stands_as"), B.StandsAs))
+			{
+				if (!B.StandsAs.StartsWith(TEXT("/Game/")))
+				{
+					Errors.Add(FString::Printf(TEXT("%s: stands_as must be a /Game/ object path"), *B.Family));
+					continue;
+				}
+				B.StandsAs = NormaliseObjectPath(B.StandsAs);
+			}
 		}
 		(*Row)->TryGetStringField(TEXT("fit"), Fit);
 		if (Fit == TEXT("footprint")) B.Fit = EDinkFamilyFit::Footprint;
@@ -748,6 +757,7 @@ void UDinkArtFamilySubsystem::OnWorldBeginPlay(UWorld& World)
 		}
 		MeshFor(B);
 		for (const FString& Variant : B.Variants) LoadFamilyMesh(Variant, B.Family);
+		if (!B.StandsAs.IsEmpty()) LoadFamilyMesh(B.StandsAs, B.Family);
 		if (!B.SpanFill.IsEmpty()) LoadFamilyMesh(B.SpanFill, B.Family);
 	}
 	bReady = true;
@@ -1163,17 +1173,38 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 	if (!Mesh) return false;
 
 	// The card is the sprite at its imported size: relative scale (width, 1, height) in metres of a 1 m unit card.
-	const FVector CardLocation = Card->GetRelativeLocation();
-	const FVector CardScale = Card->GetRelativeScale3D();
+	FVector CardLocation = Card->GetRelativeLocation();
+	FVector CardScale = Card->GetRelativeScale3D();
+	// "stands_as": the states of one thing stand where its base mesh stands (same pivot), whatever their own bounds are
+	UStaticMesh* StandsAs = B->StandsAs.IsEmpty() ? nullptr : LoadFamilyMesh(B->StandsAs, B->Family);
+	const FBox PlaceBounds = StandsAs ? StandsAs->GetBoundingBox() : Mesh->GetBoundingBox();
+	// ... and where and how the placement's OWN picture stands, not the picture of the moment: the script that opens a 177
+	// chest plays the pictures of 175 (the chest seen from its other side, another width and origin) and saves one of
+	// them; in 3D the opened chest must be the closed one with its lid up, on the same spot, turned the same way.
+	int32 AnchorSequence = P.Sequence, AnchorFrame = P.Frame;
+	double YawOffset = B->YawOffset;
+	FVector CardWorld = Card->GetComponentLocation();
+	if (StandsAs)
+	{
+		if (Actor.bHasImportedCardBaseline)
+		{
+			CardLocation = Actor.ImportedCardRelativeTransform.GetLocation();
+			CardScale = Actor.ImportedCardRelativeTransform.GetScale3D();
+			CardWorld = Actor.GetActorTransform().TransformPosition(CardLocation);
+		}
+		AnchorSequence = Actor.Origin->Sequence;
+		AnchorFrame = Actor.Origin->Frame;
+		if (const FDinkFamilyBinding* Own = DinkArtFamily::Resolve(Bindings, Actor.Origin->Sequence, Actor.Origin->ClassId, Actor.Origin->Frame)) YawOffset = Own->YawOffset;
+	}
 	const double* Larger = B->OffsetScale.Find(FName(*P.Origin));      // "offset_cm" fourth number: this placement's size factor
-	const float Scale = float(B->Scale * (Larger ? *Larger : 1.0)) * DinkArtFamily::FitScale(B->Fit, CardScale.X * 100.0, CardScale.Z * 100.0, Mesh->GetBoundingBox().GetSize(), B->bYawFromSprite);
-	const double Yaw = (B->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(P.Origin)) + B->YawOffset;
+	const float Scale = float(B->Scale * (Larger ? *Larger : 1.0)) * DinkArtFamily::FitScale(B->Fit, CardScale.X * 100.0, CardScale.Z * 100.0, PlaceBounds.GetSize(), B->bYawFromSprite);
+	const double Yaw = (B->bYawFromSprite ? 0.0 : DinkArtFamily::StableYaw(P.Origin)) + YawOffset;
 
 	// +Y is south, towards the original camera: a front-anchored mesh moves back by half its depth
-	const double Back = B->AnchorFront * 0.5 * DinkArtFamily::DepthAfterYaw(Mesh->GetBoundingBox().GetSize(), Yaw, Scale);
+	const double Back = B->AnchorFront * 0.5 * DinkArtFamily::DepthAfterYaw(PlaceBounds.GetSize(), Yaw, Scale);
 	// a spanning module (interior wall runs) is repeated along its run until it fills the layout-scaled card
 	TArray<DinkArtFamily::FSpanPiece> Pieces;
-	DinkArtFamily::SpanPieces(*B, (B->Span == 2 ? CardScale.Z : CardScale.X) * 100.0, Mesh->GetBoundingBox().GetSize().X * Scale, Pieces);
+	DinkArtFamily::SpanPieces(*B, (B->Span == 2 ? CardScale.Z : CardScale.X) * 100.0, PlaceBounds.GetSize().X * Scale, Pieces);
 	// families.json "anchor": stand the mesh on the placement's 1997 hardbox (presentation only, DinkFamilyAnchor.h)
 	FVector2D Stand(CardLocation.X, CardLocation.Y - Back);
 	if (B->Anchor != EDinkFamilyAnchor::Card)
@@ -1181,8 +1212,8 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		const UDinkGreyboxSubsystem* Grey = Actor.GetWorld() ? Actor.GetWorld()->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
 		const ADinkScreenVolume* Volume = Grey ? Grey->FindScreen(Actor.ScreenNumber) : nullptr;
 		FVector Target;
-		if (Volume && DinkFamilyAnchor::AnchorWorld(*Volume, B->Anchor, P.Sequence, P.Frame, Card->GetComponentLocation(), CardScale.X * 100.0,
-			Actor.GetActorRotation().Yaw - Volume->GetActorRotation().Yaw + Yaw, Mesh->GetBoundingBox().GetSize() * Scale, Target))
+		if (Volume && DinkFamilyAnchor::AnchorWorld(*Volume, B->Anchor, AnchorSequence, AnchorFrame, CardWorld, CardScale.X * 100.0,
+			Actor.GetActorRotation().Yaw - Volume->GetActorRotation().Yaw + Yaw, PlaceBounds.GetSize() * Scale, Target))
 		{
 			const FVector Local = Actor.GetActorTransform().InverseTransformPosition(Target);
 			Stand = FVector2D(Local.X, Local.Y);
@@ -1211,7 +1242,7 @@ bool UDinkArtFamilySubsystem::DressActor(ADinkPlaceholderActor& Actor)
 		Part->ComponentTags.Add(FamilyTag);
 		Part->SetStaticMesh(PieceMesh);
 		DinkPerf::CacheVegetationShadows(*Part, PieceMesh);   // perf-stutter: wind-swayed trees and bushes keep cached rest-pose shadows
-		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(PieceMesh->GetBoundingBox(), FVector(Stand.X, Stand.Y, Lift), Yaw, Scale, Pieces[Index]));
+		Part->SetRelativeTransform(DinkArtFamily::SpanTransform(StandsAs && PieceMesh == Mesh ? PlaceBounds : PieceMesh->GetBoundingBox(), FVector(Stand.X, Stand.Y, Lift), Yaw, Scale, Pieces[Index]));
 		Actor.AddInstanceComponent(Part);
 		Part->RegisterComponent();
 		// A drawn solid body larger than the placement's 1997 hardbox stops the player (player only; unscripted placements,
