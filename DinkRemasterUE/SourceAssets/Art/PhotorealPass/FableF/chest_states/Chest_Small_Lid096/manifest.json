@@ -1,0 +1,56 @@
+{
+ "name": "SM_Chest_Small_Lid096_PR",
+ "class": "prop",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid096/SM_Chest_Small_Lid096_PR.fbx",
+ "material_name": "MI_Chest_Small_Open",
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/T_Chest_Open_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "the Props chest's colour map with the inside of body and lid darkened"
+  }
+ ],
+ "textures_shared": {
+  "N": "/Game/Dink/Photoreal/Props/Textures/T_Chest_Small_PR_N",
+  "ORM": "/Game/Dink/Photoreal/Props/Textures/T_Chest_Small_PR_ORM"
+ },
+ "lod0_triangles": 1448,
+ "lod1_triangles": 809,
+ "lod2_triangles": 414,
+ "bounds_min_m": [
+  -0.47,
+  -0.26,
+  -0.0
+ ],
+ "bounds_max_m": [
+  0.47,
+  0.454,
+  0.885
+ ],
+ "dimensions_m": [
+  0.94,
+  0.714,
+  0.885
+ ],
+ "collision_hulls": 0,
+ "lid_angle_deg": 96.0,
+ "picture_frame": 5,
+ "families": [
+  "175 bonuses/chest/chst1- frame 5",
+  "176 bonuses/chest/chst2- frame 5",
+  "177 bonuses/chest/chst3- frame 5"
+ ],
+ "supersedes": "SM_Chest_Small_Open_PR (lid at 102 degrees) on this frame",
+ "dresses": "the iron-bound chest of the Props kit with its lid at 96 degrees: the same vertices, normal and ORM maps (Props T_Chest_Small_PR_*), the lid turned about its back hinges; its own colour map only to make the inside dark",
+ "source_note": "FableF/tools/build_chest_states.py from Props/Chest_Small/SM_Chest_Small_PR.fbx and Props/Chest_Small_Open/SM_Chest_Small_Open_PR.fbx (the lid = the vertices that differ between the two); no new bake",
+ "build": "DINK_CPU=1 blender -b --factory-startup -t 4 --python FableF/tools/build_chest_states.py -- <repository root>",
+ "fit": {
+  "pivot": "base centre, identical to SM_Chest_Small_PR: swap the mesh in place",
+  "hinge": "axis along X through (y 0.257, z 0.36) m"
+ },
+ "third_party": [],
+ "status": "source delivered"
+}
