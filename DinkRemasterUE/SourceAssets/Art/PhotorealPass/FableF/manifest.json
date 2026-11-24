@@ -234,12 +234,7 @@
     "fountain_spray_fx",
     "94 lands/garden/spray-"
    ],
-   "blend": "translucent",
-   "hot": [
-    0.98,
-    1.0,
-    1.0
-   ]
+   "blend": "lit"
   },
   {
    "name": "Hearth",
