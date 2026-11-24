@@ -970,7 +970,12 @@ def knight(prev=False):
         preview(hi, name, [dict(az=0, el=52, fill=1.0, lens=60), dict(az=-35, el=24, fill=1.6, lens=70)]); return
     hl = L.dup(hpart, 'head_lo'); lo = body_lo(skin, [hl] + lo_x, asset + '_lo')
     foot_x = np.vstack([np.array([tgt[:2] + dgo[:2] * q for q in np.linspace(-0.6, 0.25, 12)])])
-    sheet, size = person_pool(L.co(skin), c, 275, pool=1.0, extra_pts=foot_x, fit_m=FOOT['Corpse_Knight'], sprite='275_01'); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
+    # 16 Nov: the pool in the bright red of picture 275 (the default pool colours were darker than 1997). 23 Nov: one flat bright red read as
+    # paint in the game; GS.FRESH_1997 with look 'fresh' keeps that red where the blood is thin and goes deep where it is thick.
+    sheet, size = person_pool(L.co(skin), c, 275, pool=1.0, extra_pts=foot_x, fit_m=FOOT['Corpse_Knight'], sprite='275_01',
+                              colours=dict(GS.FRESH_1997, look='fresh', deep_m=0.11)); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
+    if os.environ.get('DINK_POOL_ONLY'):             # look iterations: the pool sheet alone (same body, same card, no bake)
+        print('POOL ONLY: wrote', cfiles); return
     weak = ('The knight is the plate harness of Unclaimed/npc_knight_blue (silver set) with procedural wear (grime, scratches, dents as a bump): swept plates without straps or rivets and nobody inside, so there is no flesh to see at the joints; the wound is a ring of raw flesh round the shaft. '
             'The halberd head is the knight\'s own, laid flat; the shafts are plain turned poles with a tapered break, not splintered wood. The pool, drops and mist are a flat alpha-tested card 6 mm above the ground. Static.')
     finish(asset, 'prop', outdir, ['corpse_knight', '275 people/knight/red/death-'], 'the knight dead on his back in worn steel plate, lying in his blood, drops thrown round it, the snapped shaft of his halberd standing in his chest and its head lying in the blood beside him',
