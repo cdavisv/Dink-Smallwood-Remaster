@@ -1082,51 +1082,163 @@ def sheet_asset(name):
            extra={'pool_card_m': v['size'], 'derived_from': 'tools/gore_sheets.py (numpy and PIL, no scan)'})
 
 
+def vattr(ob, name, arr=None):
+    """a per-vertex number that survives cuts, splits and subdivision (the skin weights do not: vertex groups are cleared by posed_copy)"""
+    a = ob.data.attributes.get(name)
+    if arr is not None:
+        a = a or ob.data.attributes.new(name, 'FLOAT', 'POINT'); a.data.foreach_set('value', np.asarray(arr, dtype=np.float32)); return None
+    out = np.zeros(len(ob.data.vertices), dtype=np.float32)
+    if a is not None:
+        a.data.foreach_get('value', out)
+    return out
+
+
+def membrane(mat, root, tip):
+    """the wing lying on the ground: the membrane (the greener part of the baked colour) keeps its grey-green at the root and goes to the
+    flesh tan of picture 216 towards the tip, dark in the creases (vertex attribute `crease` of the dense wing), veined. Leaves the result
+    on Base Color for bloody(use_link=True)."""
+    nt = mat.node_tree; Lk = nt.links; b = next(n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED'); bc = next(n for n in nt.nodes if n.type == 'TEX_IMAGE' and n.image and n.image.name.upper().split('.')[0].endswith('_BC'))
+
+    def node(typ, **kw):
+        n = nt.nodes.new(typ)
+        for k_, v in kw.items():
+            setattr(n, k_, v)
+        return n
+
+    def mth(op, a, b_=None, clamp=False):
+        n = node('ShaderNodeMath', operation=op, use_clamp=clamp)
+        for i, v in enumerate((a, b_)):
+            if v is None:
+                continue
+            if isinstance(v, (int, float)):
+                n.inputs[i].default_value = v
+            else:
+                Lk.new(v, n.inputs[i])
+        return n.outputs[0]
+
+    def mixc(fac, a, c2):
+        n = node('ShaderNodeMix', data_type='RGBA')
+        for i, v in ((0, fac), (6, a), (7, c2)):
+            if isinstance(v, tuple):
+                n.inputs[i].default_value = v + (1,)
+            elif isinstance(v, (int, float)):
+                n.inputs[i].default_value = v
+            else:
+                Lk.new(v, n.inputs[i])
+        return n.outputs[2]
+    geo = node('ShaderNodeNewGeometry'); sc = node('ShaderNodeSeparateColor'); Lk.new(bc.outputs[0], sc.inputs[0])
+    green = mth('MULTIPLY', mth('SUBTRACT', sc.outputs[1], mth('MULTIPLY', sc.outputs[0], 1.04)), 14.0, clamp=True)          # 1 on the membrane, 0 on the brown arm and fingers
+    d = np.asarray(tip, float) - np.asarray(root, float); ln = float(np.linalg.norm(d)); d /= ln
+    sub = node('ShaderNodeVectorMath', operation='SUBTRACT'); Lk.new(geo.outputs['Position'], sub.inputs[0]); sub.inputs[1].default_value = tuple(float(v) for v in root)
+    dot = node('ShaderNodeVectorMath', operation='DOT_PRODUCT'); Lk.new(sub.outputs[0], dot.inputs[0]); dot.inputs[1].default_value = tuple(float(v) for v in d)
+    t = mth('DIVIDE', dot.outputs['Value'], ln, clamp=True)
+    big = node('ShaderNodeTexNoise'); big.inputs['Scale'].default_value = 5.0; big.inputs['Detail'].default_value = 5.0; Lk.new(geo.outputs['Position'], big.inputs['Vector'])
+    towards = mth('MULTIPLY', mth('ADD', mth('SUBTRACT', t, 0.36), mth('MULTIPLY', mth('SUBTRACT', big.outputs['Fac'], 0.5), 0.5)), 2.6, clamp=True)
+    col = mixc(mth('MULTIPLY', towards, mth('ADD', mth('MULTIPLY', green, 0.6), 0.3)), bc.outputs[0], (0.50, 0.26, 0.17))                      # tan and pink towards the tip (216: 190, 150, 120)
+    vor = node('ShaderNodeTexVoronoi', feature='DISTANCE_TO_EDGE'); vor.inputs['Scale'].default_value = 16.0; Lk.new(geo.outputs['Position'], vor.inputs['Vector'])
+    vein = mth('MULTIPLY', mth('MULTIPLY', mth('SUBTRACT', 0.05, vor.outputs['Distance']), 22.0, clamp=True), green)
+    col = mixc(mth('MULTIPLY', vein, 0.42), col, (0.10, 0.045, 0.035))
+    cr = node('ShaderNodeAttribute'); cr.attribute_name = 'crease'
+    col = mixc(mth('MULTIPLY', mth('MULTIPLY', cr.outputs['Fac'], green), 0.78), col, (0.035, 0.040, 0.028))                   # the folds are dark at the bottom
+    # 23 Nov 2026, seen in the game on 158 and 238: with the baked colour as it is (sRGB 111, 127, 98) the wing is a cream-white kite in the sun; the dry-earth
+    # screens are exposed about two stops up (the brown hide of sRGB 93, 68, 44 shows as orange). The membrane is laid in at 0.16 of its colour and matt (0.3 still showed sRGB 170-185 for the picture's 125-140)
+    dk = node('ShaderNodeVectorMath', operation='SCALE'); Lk.new(col, dk.inputs[0]); dk.inputs['Scale'].default_value = 0.16
+    col = mixc(green, col, dk.outputs[0]); Lk.new(col, b.inputs['Base Color'])
+    r = b.inputs['Roughness']; m2 = node('ShaderNodeMix', data_type='FLOAT'); Lk.new(mth('MULTIPLY', green, 0.9), m2.inputs[0])
+    if r.links:
+        Lk.new(r.links[0].from_socket, m2.inputs[2])
+    else:
+        m2.inputs[2].default_value = r.default_value
+    m2.inputs[3].default_value = 0.82; Lk.new(m2.outputs[0], r); return mat
+
+
 # ================================================================================================ the dragon
 def dragon(prev=False):
+    """v4 (23 Nov 2026), laid out as picture 216 shows the remains: the dragon on its side, back to the north, the belly torn open towards the
+    camera, neck and head along the ground to the west, the long tail curled round from the east to the south, ONE wing lying on the ground
+    to the south. The hide keeps its own brown and orange: blood only at the wounds and where the body lies in the pool."""
     name = 'Dragon_Corpse'; asset = 'SM_%s_PR' % name; outdir = os.path.join(CORP, name)
     arm, _ = open_src(('dragon', 'Dragon'), 'SK_Dragon_PR.blend'); src = bpy.data.objects['SK_Dragon_PR_LOD1']
-    # ---- pose: pitched forward onto its belly, one wing still up, tail arched over the back, neck along the ground, legs splayed
-    for b, ax, deg in [('pelvis', 'X', 64), ('thigh_l', 'Y', -78), ('thigh_r', 'Y', 78), ('calf_l', 'Z', 25), ('calf_r', 'Z', -25),
-                       ('tail_01', 'X', 38), ('tail_02', 'X', 20), ('tail_03', 'X', 26), ('tail_04', 'X', 32), ('tail_05', 'X', 40), ('tail_06', 'X', 46), ('tail_07', 'X', 40), ('tail_03', 'Z', 14),
-                       ('neck_01', 'Z', -52), ('neck_02', 'X', -22), ('neck_02', 'Z', -46), ('neck_03', 'X', -24), ('neck_03', 'Z', -40), ('head', 'X', -16), ('head', 'Y', 62),
-                       ('upperarm_l', 'Y', -60), ('upperarm_r', 'Y', 60)]:
-        world_rot(arm, b, ax, deg)
-    aim(arm, 'wing_01_l', (0.45, 0.25, 1.0))            # the left wing still stands, turned as a whole so its fan stays a fan
-    J = {b: bone_pos(arm, b) for b in ('pelvis', 'spine_01', 'spine_02', 'neck_01', 'neck_02', 'head', 'wing_01_r', 'wing_01_l', 'tail_01')}; J['neck_end'] = bone_pos(arm, 'neck_01', tail=True)
-    skin, W = posed_copy(src, 'hide'); drop_everything_but([skin]); mat = skin.data.materials[0]
-    torso_w = W['pelvis'] + W['spine_01'] + W['spine_02']; wing_r = W['wing_01_r'] + W['wing_02_r'] + W['wing_f1_r'] + W['wing_f2_r'] + W['wing_f3_r']
-    # ---- rest it on the ground: the belly line becomes z = 0 and what hangs below it is pressed flat
-    P = L.co(skin); g = float(np.percentile(P[torso_w > 0.6, 2], 6)); z = P[:, 2] - g; P[:, 2] = np.where(z < 0.05, 0.05 * np.exp((z - 0.05) / 0.05 * 0.35) + 0.0, z); P[:, 2] -= P[:, 2].min(); L.set_co(skin, P)
-    for k in J:
-        J[k] = J[k] - np.array([0, 0, g])
-    A0 = J['pelvis']; B0 = J['neck_end']; ax0 = (B0 - A0) / np.linalg.norm(B0 - A0); r0 = P - A0; al0 = r0 @ ax0; len0 = float(np.linalg.norm(B0 - A0))
-    core_native = float(np.median(np.linalg.norm(r0 - np.outer(al0, ax0), axis=1)[(torso_w > 0.7) & (al0 > 0.2 * len0) & (al0 < 0.8 * len0)]))
-    # ---- the right wing is torn off: only a rag of membrane with a piece of its arm is left, lying flat beside the body
-    wing = split_verts(skin, wing_r > 0.5, 'wing_off'); Pw = L.co(wing); Pw -= Pw.mean(0)
-    u, s_, vt = np.linalg.svd(Pw, full_matrices=False); nrm = vt[2] * (1 if vt[2][2] > 0 else -1); ax = np.cross(nrm, (0, 0, 1.0)); an = math.acos(float(np.clip(nrm[2], -1, 1)))
-    Rm = np.array(Matrix.Rotation(an, 3, Vector(ax / (np.linalg.norm(ax) + 1e-9)))) if np.linalg.norm(ax) > 1e-6 else np.eye(3); Pw = Pw @ Rm.T; Pw[:, 2] = (Pw[:, 2] - Pw[:, 2].min()) * 0.5; L.set_co(wing, Pw)
-    e_ = float(max(np.ptp(Pw[:, 0]), np.ptp(Pw[:, 1]))); c_ = Pw[np.argmax(Pw[:, 2])][:2] * 0.5
-    delete_faces(wing, lambda C: np.linalg.norm(C[:, :2] - c_, axis=1) > e_ * (0.24 + 0.12 * L.fbm(C * 1.3, 31, 1.0, 3))); drop_small_islands(wing, 12); Pw = L.co(wing); Pw[:, :2] -= Pw[:, :2].mean(0); L.set_co(wing, Pw)
-    # ---- final size: body, neck and tail about as wide as the sprite card (2.6 m)
-    Pb = L.co(skin); ext = float(max(np.ptp(Pb[:, 0]), np.ptp(Pb[:, 1]))); S = 2.45 / ext; scale_all([skin, wing], S); J = {k: v * S for k, v in J.items()}; stump = J['wing_01_r']
-    # ---- tear the torso open: the whole back and the right flank are gone, hide is left in rags on the left and round the hips and shoulders
-    A = J['pelvis']; B = J['neck_end']; axis = (B - A) / np.linalg.norm(B - A); length = float(np.linalg.norm(B - A)); core_r = core_native * S
+    arm.data.pose_position = 'POSE'                  # the source is saved in its rest position: a pose would not show
+    if arm.animation_data:
+        arm.animation_data.action = None
+    for pb in arm.pose.bones:
+        pb.matrix_basis.identity()
+    bpy.context.view_layer.update()
 
-    def torn(C):
-        r_ = C - A; al = r_ @ axis; rd = r_ - np.outer(al, axis); t = al / length; inside = (t > -0.12) & (t < 1.08) & (np.linalg.norm(rd, axis=1) < core_r * 1.9)
-        up = rd[:, 2] / (core_r + 1e-9); side = rd[:, 0] / (core_r + 1e-9); n = L.fbm(C * 4.2, 11, 1.0, 4)
-        open_ = (up > 0.30 + 0.5 * n) | (side < 0.10 + 0.6 * n) | (n > 0.42)
-        return inside & open_ & (C[:, 2] > 0.02)
-    delete_faces(skin, torn)
-    nA = J['neck_02']; delete_faces(skin, lambda C: (np.linalg.norm(C - nA, axis=1) < core_r * (0.55 + 0.35 * L.fbm(C * 6.0, 23, 1.0, 3))) & (C[:, 2] > nA[2] - 0.02))      # the throat is ripped out
+    def flat(a, z=0.0):                              # a direction on the ground, degrees from the tail's side towards the belly's
+        a = math.radians(a); return (math.sin(a), math.cos(a), z)
+    arm.pose.bones['wing_01_l'].scale = (1.1, 1.1, 1.1)                        # the wing that is left is as large as the body in picture 216
+    world_rot(arm, 'pelvis', 'X', 65); world_rot(arm, 'pelvis', 'Y', -104)       # down on its right side, the belly a little towards the sky
+    world_rot(arm, 'tail_01', 'Y', 100); world_rot(arm, 'neck_01', 'Y', 55)      # the tail lies back up (brown, its spines up), the neck half way: only the trunk shows its belly
+    for b, a in zip(['tail_0%d' % i for i in range(1, 8)], (0, 10, 28, 52, 82, 112, 142)):
+        aim(arm, b, flat(a))
+    for b, a in zip(('neck_01', 'neck_02', 'neck_03', 'head'), (178, 170, 158, 142)):
+        aim(arm, b, flat(a))
+    for b, a, z in (('wing_01_l', 64, -0.40), ('wing_02_l', 92, 0.0), ('wing_f1_l', 120, 0.0), ('wing_f2_l', 98, 0.0), ('wing_f3_l', 76, 0.0),
+                    ('thigh_l', 40, -0.30), ('calf_l', 8, 0.0), ('thigh_r', 62, 0.0), ('calf_r', 28, 0.0), ('upperarm_l', 118, -0.3), ('upperarm_r', 140, 0.0)):
+        aim(arm, b, flat(a, z))
+    J = {b: bone_pos(arm, b) for b in ('pelvis', 'neck_02', 'head', 'wing_01_r', 'wing_01_l', 'wing_f1_l')}; J['neck_end'] = bone_pos(arm, 'neck_01', tail=True)
+    J['tip'] = bone_pos(arm, 'wing_f2_l', tail=True); J['head_end'] = bone_pos(arm, 'head', tail=True)
+    seg = (bone_pos(arm, 'wing_01_l'), bone_pos(arm, 'wing_01_l', tail=True))
+    skin, W = posed_copy(src, 'hide'); drop_everything_but([skin]); mat = skin.data.materials[0]; names = list(W); Wm = np.stack([W[n] for n in names], 1); dom = Wm.argmax(1)
+    torso_w = W['pelvis'] + W['spine_01'] + W['spine_02']; wl = sum(W[n] for n in names if n.startswith('wing') and n.endswith('_l')); wr = sum(W[n] for n in names if n.startswith('wing') and n.endswith('_r'))
+    # ---- on the ground: the trunk's lowest side is z = 0; the neck, the tail and every limb sink until they lie on it too (each bone by its own
+    #      lowest point, blended by the skin weights), except the three bones that run down from the upper side; the wing is a sheet and lies flat
+    P = L.co(skin); ab = seg[1] - seg[0]; tt = np.clip(((P - seg[0]) @ ab) / (ab @ ab), 0, 1); m1 = (W['wing_01_l'] > 0.45) & (np.linalg.norm(P - (seg[0] + np.outer(tt, ab)), axis=1) > 0.085)
+    g = float(np.percentile(P[torso_w > 0.6, 2], 2)); P[:, 2] -= g; drop = np.zeros(len(P))
+    for i, n in enumerate(names):
+        m = dom == i
+        if m.sum() < 8 or n in ('root', 'pelvis', 'spine_01', 'spine_02', 'wing_01_l', 'thigh_l', 'upperarm_l'):
+            continue
+        drop += Wm[:, i] * (-float(np.percentile(P[m, 2], 3)))
+    P[:, 2] += drop; lying = np.clip((wl - W['wing_01_l'] * 0.9 - 0.3) / 0.4, 0, 1); P[:, 2] = P[:, 2] * (1 - lying) + np.minimum(P[:, 2], 0.045 + 0.22 * P[:, 2]) * lying; P[:, 2] = np.maximum(P[:, 2], 0.0)
+    # ---- turned as the picture: head to the west (-X), tail to the east, belly to the south (-Y)
+    turn = lambda p: np.stack([p[..., 1], -p[..., 0], p[..., 2]], -1); P = turn(P); L.set_co(skin, P); J = {k: turn(v - np.array([0, 0, g])) for k, v in J.items()}
+    for n_, a_ in (('wl', wl), ('wr', np.maximum(wr, m1)), ('tw', torso_w)):
+        vattr(skin, n_, a_)
+    off = split_verts(skin, vattr(skin, 'wr') > 0.5, 'wing_off'); bpy.data.objects.remove(off, do_unlink=True)                # the right wing is gone: torn off at the shoulder
     drop_small_islands(skin, 10)
-    side_ = np.cross(axis, (0, 0, 1.0)); side_ /= np.linalg.norm(side_); right = side_ if side_[0] < 0 else -side_; Pw = L.co(wing); ang_ = math.radians(35); c2, s2 = math.cos(ang_), math.sin(ang_)
-    Pw[:, :2] = Pw[:, :2] @ np.array([[c2, s2], [-s2, c2]]); Pw[:, :2] += (A + axis * 0.15 * length + right * core_r * 3.4)[:2]; Pw[:, 2] += 0.012; L.set_co(wing, Pw)
-    flesh = m_flesh(); skin.data.materials.append(flesh); wing.data.materials.append(flesh); torn_rim(skin, 0.05, 1); torn_rim(wing, 0.04, 1)
-    bloody(mat, [((A + B) / 2 + np.array([0, 0, core_r * 0.5]), core_r * 3.0), (nA, core_r * 1.5), (stump, core_r * 1.6), (L.co(wing).mean(0), core_r * 1.6)], ground=0.11, amount=1.0, spatter=0.58)
-    # ---- what is inside: the carcass core along the spine, heaps of torn muscle, the rib cage broken open, entrails run out on the right
-    bone = m_bone(); gut = m_gut(); blood = m_blood(); hi = [skin, wing]; lo = []
+    # ---- final size: neck, body and curled tail about as wide as the sprite card
+    Pb = L.co(skin); ext = float(max(np.ptp(Pb[:, 0]), np.ptp(Pb[:, 1]))); S = 2.70 / ext; scale_all([skin], S); Pb = L.co(skin); d = -np.array([(Pb[:, 0].min() + Pb[:, 0].max()) / 2, (Pb[:, 1].min() + Pb[:, 1].max()) / 2, 0.0]); shift_all([skin], d)
+    J = {k: v * S + d for k, v in J.items()}; stump = J['wing_01_r']                # in the final frame from here on: the remains in the middle of the pool card
+    # ---- the trunk's frame: its middle line on the ground plan, the belly's side (south) and up
+    Pb = L.co(skin); tw = vattr(skin, 'tw'); Pt = Pb[tw > 0.7]; c0 = Pt.mean(0); axis = J['neck_end'] - J['pelvis']; axis[2] = 0.0; length = float(np.linalg.norm(axis)) * 1.25; axis /= np.linalg.norm(axis)
+    A = c0 - axis * length / 2; B = c0 + axis * length / 2; right = np.array([0.0, -1.0, 0.0]); right = right - axis * (right @ axis); right /= np.linalg.norm(right); upv = np.array([0, 0, 1.0])
+    r0 = Pt - A; al0 = r0 @ axis; core_r = float(np.median(np.linalg.norm(r0 - np.outer(al0, axis), axis=1)[(al0 > 0.2 * length) & (al0 < 0.8 * length)])); cz = float(c0[2])
+    belly = right * 0.94 + upv * 0.34
+
+    def torn(C):                                     # the belly and the lower chest are open from hip to shoulder; the back and the upper flank keep their hide
+        r_ = C - A; al = r_ @ axis; rd = r_ - np.outer(al, axis); t = al / length; inside = (t > 0.02) & (t < 0.98) & (np.linalg.norm(rd, axis=1) < core_r * 2.0)
+        n = L.fbm(C * 4.2, 11, 1.0, 4); edge = 0.5 - np.abs(t - 0.5); fr = (rd @ belly) / (core_r + 1e-9)
+        open_ = (fr > 0.42 + 0.55 * n + 0.6 * np.clip(0.12 - edge, 0, 1) * 8) | ((n > 0.50) & (fr > 0.05))
+        return inside & open_ & (C[:, 2] > 0.015)
+    delete_faces(skin, torn)
+    nA = J['neck_02'].copy(); Pn = L.co(skin); nn = np.linalg.norm(Pn[:, :2] - nA[:2], axis=1) < core_r * 0.5; nA[2] = float(np.percentile(Pn[nn, 2], 80)) if nn.any() else 0.1      # the neck sank to the ground: its upper side there
+    delete_faces(skin, lambda C: (np.linalg.norm(C - nA, axis=1) < core_r * (0.50 + 0.35 * L.fbm(C * 6.0, 23, 1.0, 3))) & (C[:, 2] > 0.03))      # the throat is ripped out
+    drop_small_islands(skin, 10)
+    wing = split_verts(skin, vattr(skin, 'wl') > 0.5, 'wing'); Pw = L.co(wing); root = Pw[np.argmax(Pw[:, 2])].copy(); far = Pw[np.argmax(np.linalg.norm(Pw[:, :2] - root[:2], axis=1))].copy()
+    reach_ = float(np.linalg.norm(far[:2] - root[:2]))
+    delete_faces(wing, lambda C: (np.linalg.norm(C[:, :2] - root[:2], axis=1) > reach_ * (0.84 + 0.30 * L.fbm(C * 4.0, 31, 1.0, 4))) | ((L.fbm(C * 2.6, 37, 1.0, 3) > 0.47) & (C[:, 2] < 0.05)))     # the far edge in rags, holes in the membrane
+    drop_small_islands(wing, 12)
+    flesh = m_flesh(); mwing = mat.copy(); mwing.name = 'hide_wing'; wing.data.materials.clear(); wing.data.materials.append(mwing)
+    skin.data.materials.append(flesh); wing.data.materials.append(flesh); torn_rim(skin, 0.05, 1); torn_rim(wing, 0.012, 1)
+    fresh = ((0.019, 0.0015, 0.0015), (0.085, 0.005, 0.004))            # the game's own blood numbers (FRESH_1997 body and deep): brighter reds clip to poster red in the sun
+    wound = (A + B) / 2 + belly * core_r * 0.9
+    bloody(mat, [(wound, core_r * 1.9), (nA, core_r * 1.2), (stump, core_r * 1.1)], ground=0.035, amount=1.0, spatter=0.70, drench=0.0, vivid=fresh)     # the hide keeps its brown: no drench
+    wrist = J['wing_f1_l'].copy(); wrist[2] = 0.0; tip = J['tip'].copy(); tip[2] = 0.0
+    membrane(mwing, root, far); bloody(mwing, [(far, 0.42), (root, core_r * 0.9)], ground=0.004, amount=1.0, spatter=0.66, drench=0.0, vivid=fresh, use_link=True)
+    # dense wing for the bake: the membrane sags in folds that run out from the wrist (a normal map and dark creases on the flat game wing)
+    wing_hi = L.dup(wing, 'wing_hi'); L.mod(wing_hi, 'SUBSURF', subdivision_type='SIMPLE', levels=2); L.apply_mods(wing_hi); Pw = L.co(wing_hi); mem = np.clip((vattr(wing_hi, 'wl') - 0.5) * 4, 0, 1) * (Pw[:, 2] < 0.06)
+    dx = Pw[:, 0] - wrist[0]; dy = Pw[:, 1] - wrist[1]; th = np.arctan2(dy, dx); rr_ = np.hypot(dx, dy); wob = 2.2 * L.fbm(Pw * 3.0, 51, 1.0, 3)
+    ridge = (0.5 + 0.5 * np.cos(th * 58.0 + 2.5 * wob)) ** 1.4 * (0.55 + 0.9 * (L.fbm(Pw * 4.0, 57, 1.0, 3) + 0.5)); ramp_ = np.clip(rr_ / 0.22, 0, 1) * mem      # about eight folds across the fan (15 per turn gave two: flat in the game)
+    topside = L.vnormals(wing_hi)[:, 2] > 0; Pw[:, 2] -= (0.014 * (1 - ridge) * ramp_ + 0.004 * (L.fbm(Pw * 7.0, 53, 1.0, 3) + 0.5) * mem) * topside        # valleys below the flat game wing: inside the bake's reach (raised folds baked black)
+    Pw[:, 2] = np.where(topside & (mem > 0), np.maximum(Pw[:, 2], 0.006), Pw[:, 2]); L.set_co(wing_hi, Pw); vattr(wing_hi, 'crease', np.clip(1 - ridge, 0, 1) ** 2.2 * ramp_)
+    bm = bmesh.new(); bm.from_mesh(wing_hi.data); bm.normal_update(); lay = bm.verts.layers.float.get('wl')
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if f.normal.z < -0.2 and f.calc_center_median().z < 0.05 and all(v[lay] > 0.6 for v in f.verts)], context='FACES'); bm.to_mesh(wing_hi.data); bm.free()   # the membrane's underside: in the valleys it would lie above the upper side and the bake would see its back
+    wing_hi.data.polygons.foreach_set('use_smooth', [True] * len(wing_hi.data.polygons))
+    # ---- what is inside: the carcass core along the spine, heaps of torn muscle, the rib cage standing over the opened belly, entrails run out to the south
+    bone = m_bone(); gut = m_gut(); hi = [skin, wing_hi]; lo = []
 
     def both(fn, mat_, top=False):                   # build a gore part twice: dense for the bake, light for the game
         h = fn(True); l = fn(False)
@@ -1135,22 +1247,19 @@ def dragon(prev=False):
         for o in (l if isinstance(l, list) else [l]):
             unwrap(o, top=top); lo.append(o)
 
-    spine = [A - axis * 0.10 * length, A, (A + B) / 2 + np.array([0, 0, 0.02]), B, B + axis * 0.06 * length]; cz = core_r * 0.80
-
     def core(dense):
-        n = 40 if dense else 10; pts = np.array([spine[0] + (spine[-1] - spine[0]) * t for t in np.linspace(0, 1, n)]); pts[:, 2] = np.maximum(pts[:, 2] * 0.0 + cz * 0.95, 0.0)
-        rr = cz * (0.12 + 0.88 * np.sin(np.linspace(0.03, 0.97, n) * math.pi) ** 0.7); ob = L.tube('core', pts, rr, sides=48 if dense else 14)
+        n = 40 if dense else 10; pts = np.array([A + (B - A) * t for t in np.linspace(0.04, 0.96, n)]); pts[:, 2] = cz * 0.92
+        rr = core_r * 0.62 * (0.14 + 0.86 * np.sin(np.linspace(0.03, 0.97, n) * math.pi) ** 0.7); ob = L.tube('core', pts, rr, sides=48 if dense else 14)
         if dense:
             L.subsurf(ob, 1)
         Pc = L.co(ob); N = L.vnormals(ob); Pc = Pc + N * (0.035 * L.fbm(Pc * 7.0, 3, 1.0, 4))[:, None]; Pc[:, 2] = np.maximum(Pc[:, 2], 0.004); L.set_co(ob, Pc); return ob
     both(core, flesh)
-    rng = np.random.default_rng(212); mid = (A + B) / 2
-    heaps = []
-    for i in range(15):
-        t = rng.uniform(0.05, 0.95); off = rng.normal(0, 0.45); up_ = rng.uniform(0.55, 1.15); c = A + axis * length * t + right * core_r * (0.25 + off * 0.9) + np.array([0, 0, cz * up_]); r = core_r * rng.uniform(0.30, 0.55)
+    rng = np.random.default_rng(216); heaps = []
+    for i in range(13):                              # in the opened belly
+        t = rng.uniform(0.10, 0.90); c = A + axis * length * t + right * core_r * rng.uniform(0.35, 1.0); c[2] = cz * rng.uniform(0.35, 0.95); r = core_r * rng.uniform(0.28, 0.48)
         heaps.append((c, (r * rng.uniform(0.9, 1.5), r, r * rng.uniform(0.55, 0.85)), 40 + i, rng.uniform(0, 3.1)))
-    for i in range(7):                               # the heap slumps down the open right side onto the ground
-        t = rng.uniform(0.15, 0.85); d = rng.uniform(1.0, 2.1); r = core_r * rng.uniform(0.22, 0.42); c = A + axis * length * t + right * core_r * d; c[2] = r * 0.45
+    for i in range(9):                               # slumped out of it onto the ground
+        t = rng.uniform(0.12, 0.88); d = rng.uniform(1.1, 2.3); r = core_r * rng.uniform(0.22, 0.40); c = A + axis * length * t + right * core_r * d; c[2] = r * 0.45
         heaps.append((c, (r * 1.4, r, r * 0.6), 70 + i, rng.uniform(0, 3.1)))
 
     def meat(dense):                                 # one torn mass, not a heap of separate lumps: the union of the heaps under one skin
@@ -1163,54 +1272,65 @@ def dragon(prev=False):
         ob.data.polygons.foreach_set('use_smooth', [True] * len(ob.data.polygons)); return ob
     both(meat, flesh)
 
-    def ribs(dense):
-        out = []; n = 7
+    def ribs(dense):                                 # the backbone runs along the back (north); the upper ribs stand in an arch over the open belly, the lower ones lie broken on the ground
+        out = []; n = 7; back = -right
         for i in range(n):
-            t = 0.16 + 0.70 * i / (n - 1); base = A + axis * length * t; base[2] = cz * 1.55; rr = core_r * (0.78 + 0.30 * math.sin(t * math.pi))
+            t = 0.16 + 0.70 * i / (n - 1); base = A + axis * length * t + back * core_r * 0.62; base[2] = cz; rr = core_r * (0.80 + 0.30 * math.sin(t * math.pi))
             for sgn in (1, -1):
-                broken = sgn < 0 or i in (2, 5); a1 = math.radians(64 if broken else 118) * (0.8 + 0.4 * L._hash(i, sgn + 2, 0, 5)); splay = (0.55 if sgn < 0 else 0.12) + 0.25 * L._hash(i, sgn + 2, 1, 5); m = 16 if dense else 6; pts = []
+                broken = sgn < 0 or i in (2, 5); a1 = math.radians(52 if sgn < 0 else (84 if broken else 132)) * (0.85 + 0.3 * L._hash(i, sgn + 2, 0, 5)); splay = (0.10 if sgn > 0 else 0.5) + 0.25 * L._hash(i, sgn + 2, 1, 5); m = 16 if dense else 6; pts = []
                 for a in np.linspace(math.radians(8), a1, m):
-                    rad_ = rr * (1.0 + splay * (a / a1) ** 2); p = base + (-right * sgn) * math.sin(a) * rad_ + np.array([0, 0, 1.0]) * (math.cos(a) * rad_ - rr * 0.92) + axis * 0.05 * length * (a / a1) * (L._hash(i, sgn + 2, 2, 5) - 0.3); pts.append(p)
+                    rad_ = rr * (1.0 + splay * (a / a1) ** 2); p = base + upv * sgn * math.sin(a) * rad_ + back * (math.cos(a) * rad_ - rr * 0.92) + axis * 0.05 * length * (a / a1) * (L._hash(i, sgn + 2, 2, 5) - 0.3); pts.append(p)
                 pts = np.array(pts); pts[:, 2] = np.maximum(pts[:, 2], 0.012); th_ = np.linspace(0.030, 0.014, m) * (core_r / 0.3) ** 0.5
-                ob = L.tube('rib_%d_%d' % (i, sgn), pts, th_, sides=10 if dense else 5); out.append(ob)
-        m = 30 if dense else 8; pts = np.array([A + axis * length * t for t in np.linspace(0.08, 0.92, m)]); pts[:, 2] = cz * 1.50 + 0.012 * np.sin(np.linspace(0, 16 * math.pi, m)) * (1 if dense else 0)
+                out.append(L.tube('rib_%d_%d' % (i, sgn), pts, th_, sides=10 if dense else 5))
+        m = 30 if dense else 8; pts = np.array([A + axis * length * t + back * core_r * 0.66 for t in np.linspace(0.08, 0.92, m)]); pts[:, 2] = cz + 0.012 * np.sin(np.linspace(0, 16 * math.pi, m)) * (1 if dense else 0)
         out.append(L.tube('backbone', pts, 0.034 * (core_r / 0.3) ** 0.5, sides=10 if dense else 6)); return out
     both(ribs, bone)
 
     def guts(dense):
         out = []
-        for j, (t0, reach, ph) in enumerate(((0.30, 2.6, 0.0), (0.45, 3.2, 1.7), (0.58, 2.2, 3.1))):
-            m = 90 if dense else 22; u = np.linspace(0, 1, m); st = A + axis * length * t0 + right * core_r * 0.4; st[2] = cz * 0.9
+        for j, (t0, reach, ph) in enumerate(((0.30, 2.4, 0.0), (0.46, 3.0, 1.7), (0.60, 2.1, 3.1))):
+            m = 90 if dense else 22; u = np.linspace(0, 1, m); st = A + axis * length * t0 + right * core_r * 0.5; st[2] = cz * 0.8
             path = st[None, :] + np.outer(u * reach * core_r, right) + np.outer(np.sin(u * 9.0 + ph) * 0.34 * core_r * u ** 0.5 + (j - 1) * 0.25 * core_r * u, axis)
-            path[:, 2] = np.maximum(cz * 0.9 * (1 - np.clip(u * 3.2, 0, 1)) ** 2, 0.0) + 0.036 * (core_r / 0.3) + 0.012 * np.sin(u * 40 + ph); rr = 0.036 * (core_r / 0.3) * (1 + 0.18 * np.sin(u * 55 + ph))
+            path[:, 2] = np.maximum(cz * 0.8 * (1 - np.clip(u * 3.2, 0, 1)) ** 2, 0.0) + 0.036 * (core_r / 0.3) + 0.012 * np.sin(u * 40 + ph); rr = 0.036 * (core_r / 0.3) * (1 + 0.18 * np.sin(u * 55 + ph))
             out.append(L.tube('gut_%d' % j, path, rr, sides=12 if dense else 6))
         return out
     both(guts, gut)
-    # ---- the pool the carcass lies in, chunks thrown clear of it, splashes beyond
-    ctr = (mid + axis * 0.22 * length)[:2]; ea = 0.80 * length + core_r; eb = 2.3 * core_r; phi = math.atan2(axis[1], axis[0]); rang = math.atan2(right[1], right[0])
-
-    def ell(th):
-        d = th - phi; return ea * eb / np.sqrt((eb * np.cos(d)) ** 2 + (ea * np.sin(d)) ** 2)
-    chunks = []
-    for i in range(16):
-        a = rng.uniform(0, 2 * math.pi); d = float(ell(np.array([a]))[0]) * rng.uniform(1.08, 1.75); r = rng.uniform(0.04, 0.085) * (1.5 if i < 4 else 1.0); chunks.append(((ctr[0] + math.cos(a) * d, ctr[1] + math.sin(a) * d, r * 0.42), (r * rng.uniform(1.0, 1.7), r, r * 0.62), 100 + i, a))
+    # ---- flesh thrown clear of it (the red blocks round picture 216)
+    ctr = ((A + B) / 2 + right * core_r * 1.0)[:2]; chunks = []
+    for i in range(14):
+        a = rng.uniform(0, 2 * math.pi); d = rng.uniform(0.75, 1.30) * (1.0 if math.sin(a) < 0.3 else 0.8); r = rng.uniform(0.035, 0.07) * (1.5 if i < 4 else 1.0)
+        chunks.append(((ctr[0] + math.cos(a) * d * 1.05, ctr[1] + math.sin(a) * d * 0.9, r * 0.42), (r * rng.uniform(1.0, 1.7), r, r * 0.62), 100 + i, a))
     both(lambda dense: [lump('chunk_%02d' % i, c, (r[0] * 1.25, r[1], r[2] * 0.55), sd, 4 if dense else 2, amp=0.55, freq=2.9, rot=ro, flat=0.002) for i, (c, r, sd, ro) in enumerate(chunks)], flesh)
+    # ---- everything on its final place: the remains in the middle of a pool card of 3.1 m (the grass clearing opens only under props up to 3.2 m)
+    size = 3.1
+    keep_in = size / 2 - 0.05; chunks_ok = [o for o in hi + lo if not o.name.startswith('chunk') or np.abs(L.co(o)[:, :2]).max() < keep_in]
+    for o in [o for o in hi + lo if o not in chunks_ok]:
+        (hi if o in hi else lo).remove(o); bpy.data.objects.remove(o, do_unlink=True)
+    cc = (float(ctr[0]), float(ctr[1])); wound2 = wound[:2]
+    foot = np.vstack([L.co(skin)[::25, :2], L.co(wing)[::10, :2]]); foot = foot[(np.linalg.norm(foot - wound2, axis=1) < 0.95) & (np.abs(foot).max(1) < keep_in - 0.25)]
+    sheet = GS.blood_sheet(2048, size, 216, pools=[(cc[0], cc[1], 0.80, 0.50, 0.0, [(-1.4, 0.40, 0.30), (-2.5, 0.22, 0.32), (0.5, 0.2, 0.25)])], foot=foot, grow=0.09,
+                           n_drops=260, reach=0.42, casts=9, mist=900, drop_r=(0.006, 0.04), centre=cc,
+                           look='fresh', deep_m=0.14, **GS.FRESH_1997)      # the one blood look of the pools and decals (23 Nov): bright where thin, deep where thick
+    cfiles = write_sheet(sheet, outdir if not prev else REVIEW, name + '_Pool')
+    card = sheet_card(name + '_Pool', size, cfiles, z=0.02)      # 2 cm up: at 6 mm the 3.1 m card lay under the ground's own relief on screen 158 (seen in the game)
+    if os.environ.get('DINK_POOL_ONLY'):             # look iterations: the pool sheet alone (same carcass, same card, no bake)
+        print('POOL ONLY: wrote', cfiles); return
     if prev:
-        preview(hi, 'dragon_hi', [dict(az=25, el=38, fill=1.0, lens=60), dict(az=205, el=30, fill=1.0, lens=60), dict(az=-60, el=22, fill=1.25, lens=70), dict(az=100, el=40, fill=1.0, lens=60)]); return
-    sk = L.dup(skin, 'hide_lo'); wg = L.dup(wing, 'wing_lo'); unwrap(sk); unwrap(wg); game = game_mesh([sk, wg] + lo, asset)
-    c = L.co(game); d = -np.array([(c[:, 0].min() + c[:, 0].max()) / 2, (c[:, 1].min() + c[:, 1].max()) / 2, c[:, 2].min()]); shift_all(hi + [game], d)
-    foot = np.vstack([L.co(skin)[::25, :2], L.co(wing)[::6, :2]]); cc = (float(ctr[0] + d[0]), float(ctr[1] + d[1]))
-    ext = float(np.abs(foot).max()) + 0.75; size = round(2 * ext + 0.049, 1)
-    sheet = GS.blood_sheet(2048, size, 212, pools=[(cc[0], cc[1], ea * 1.02, eb * 1.05, phi, [(rang, 0.45, 1.5 * core_r), (rang + 2.2, 0.16, 0.9 * core_r), (rang - 2.6, 0.2, 0.7 * core_r)])], foot=foot[np.linalg.norm(foot - np.array(cc), axis=1) < ea * 1.5], grow=0.10,
-                           n_drops=260, reach=0.6, casts=9, mist=900, drop_r=(0.006, 0.04), centre=cc)
-    cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
-    weak = ('The hide is the rigged dragon of Unclaimed/dragon (its baked LOD1) posed, pressed onto the ground and cut by rule, so the torn edges follow its triangles and the flesh behind them is one procedural muscle material: '
-            'no anatomy beyond a rib cage, a backbone and three loops of gut; the raw mass is a displaced union of lumps, not modelled muscle groups. The wing panels are the flat opaque panels of the source. '
-            'The pool, the drops and the mist are a flat alpha-tested card 6 mm above the ground. Built to the size of the sprite card (about 2.6 m), far smaller than the living dragon of the source (6.7 m). Static, as the sprite.')
+        for o in lo:                                 # the game parts would shine through the dense ones
+            o.hide_render = True
+        shots = [dict(az=0, el=50, fill=0.95, lens=60), dict(az=0, el=28, fill=1.25, lens=70), dict(az=-62, el=20, fill=1.2, lens=70), dict(az=150, el=35, fill=1.0, lens=60)]
+        sel = os.environ.get('DINK_SHOTS'); shots = [shots[int(i)] for i in sel.split(',')] if sel else shots
+        preview(hi + [card], os.environ.get('DINK_TAG', 'dragon_hi'), shots); return
+    sk = L.dup(skin, 'hide_lo'); unwrap(sk); wg = wing; wg.name = 'wing_lo'; unwrap(wg); game = game_mesh([sk, wg] + lo, asset)
+    c = L.co(game); c[:, 2] = np.maximum(c[:, 2], 0.0); L.set_co(game, c)      # nothing under the ground: the family layer stands a mesh on its lowest point (ribs and rims reached 1.3 cm below)
+    weak = ('The hide is the rigged dragon of Unclaimed/dragon (its baked LOD1) posed, laid on the ground bone by bone and cut by rule, so the torn edges follow its triangles and the flesh behind them is one procedural muscle material: '
+            'no anatomy beyond a rib cage, a backbone and three loops of gut; the raw mass is a displaced union of lumps, not modelled muscle groups. The wing is the flat panel of the source; its folds are a normal map and dark creases. '
+            'The second wing is simply gone. The pool, the drops and the mist are a flat alpha-tested card 2 cm above the ground. Built to the size of the sprite card (about 2.7 m; the pool card 3.1 m), far smaller than the living dragon of the source (6.7 m). Static, as the sprite.')
     finish(asset, 'prop_large', outdir, ['dragon_corpse', '212 foes/dragon/f2-x3-', '216 foes/dragon/f2-x7-'],
-           'the dragon torn open on its belly: the back and one flank gone, ribs, backbone and raw muscle laid bare, entrails run out on the ground, one wing torn off beside it, the other still raised, the tail arched over, flesh thrown around, all of it in a pool of its own blood with drops thrown round it',
-           weak, body=game, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=False, extrude=0.006, maxdist=0.03, third_party=('park_dirt (render ground)',), beauty=dict(az=0, el=48, fill=1.0, lens=60), close=dict(az=-50, el=22, fill=1.5, lens=70),
-           extra={'derived_from': 'Unclaimed/dragon/Dragon (SK_Dragon_PR, LOD1), posed, cut and baked again with the gore', 'gore_in_mesh': 'torn hide with flesh rims, carcass core, raw muscle mass, ribs, backbone, entrails, severed wing, thrown chunks; pool card with drops and mist (no companion decal)', 'pool_card_m': size})
+           'the dragon dead on its side as picture 216 shows it: back to the north with the hide still brown and orange, the belly torn open towards the camera with ribs standing over raw muscle and entrails run out on the ground, neck and head along the ground to the west, the long tail curled round from the east to the south, one grey-green wing lying on the ground to the south, the other torn off, flesh thrown around, all of it in a pool of its own blood',
+           weak, body=game, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=False, extrude=0.006, maxdist=0.03, third_party=('park_dirt (render ground)',), beauty=dict(az=0, el=50, fill=1.0, lens=60), close=dict(az=-50, el=22, fill=1.5, lens=70),
+           extra={'derived_from': 'Unclaimed/dragon/Dragon (SK_Dragon_PR, LOD1), posed, cut and baked again with the gore', 'gore_in_mesh': 'torn hide with flesh rims, carcass core, raw muscle mass, ribs, backbone, entrails, thrown chunks; pool card with drops and mist (no companion decal)', 'pool_card_m': size,
+                  'layout': 'as picture 216 (+X screen right, +Y north): the 216 row needs no turn, the 212 row turns it half round'})
 
 
 if __name__ == '__main__':
