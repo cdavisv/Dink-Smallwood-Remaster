@@ -1,3 +1,12 @@
+## The armed hand: closed round the grip, weapon carried on guard (23 November 2026, art row AN-05; IN-GAME LOOK PENDING)
+
+- `UDinkBodyAnimInstance::SetGrip(hand_r | hand_l | NAME_None)`: the hand that holds an item. `DinkHeroWeapons::Apply` calls it for as long as a weapon mesh is in Dink's hand (and clears it when the hand empties or the mesh moves to the other hand). The body's animation then layers the LAST FRAME of the pose clip `Grip_R` / `Grip_L` (animation pass, family `hero_pose`): on the fifteen finger bones of that hand under every clip, and on that arm (upper arm, forearm, hand, twist bones) while no action plays (weight x (1 - the strongest action's weight)), eased over 0.12 s. `dink.Anim.WeaponCarry 0`: fingers only. Presentation only.
+- The pose is fitted, not a fist: `AnimationPassV1/Tools/rig.py` `GRIP` / `GRIP_THUMB` (per-joint angles; `Pose.grip`, clip state key `<side>a_grip`) wrap the fingers round a handle where `hero_weapons.json` puts it, every joint 2.3 to 3.1 cm from the grip's axis. A fist (`fingers()` curl 0.9) puts the last finger joints INSIDE the handle. If a weapon row's location or rotation changes, or a handle gets thicker than 3.4 cm, refit (the test `Dink.Art.HeroWeapon.GripClosesTheHand` fails when a joint leaves 1.9 to 3.4 cm).
+- The carry (`clips_attacks.py` `CARRY`) is the 1997 one: the armed Dink of `graphics/dink/sword/idle` and `bow/idle` stands on guard, forearm raised, blade up and out, bow upright in the left hand. He does NOT carry the sword low (the queue row said so; the pictures do not).
+- The weapon's +X (to the tip) is the hand bone's +Z: the blade stands at right angles to the forearm, so the forearm's direction and roll set where it points.
+- To place a weapon in Blender as the engine does: world = bone (pose, armature space) @ S @ M @ S, with S = diag(1, -1, 1) and M the row's FRotator (pitch, yaw, roll) and location / 100. Checked against the engine: the test logs the same finger distances and blade direction as Blender.
+- 1997 also shows a quiver on Dink's back and an arrow on the bow while a bow is armed: not made.
+
 ## The fountain's spray is lit (23 November 2026, stream art-fx-2; picture 94, art row VS-11)
 
 - `FableF/tools/build_fountain_spray.py` now draws the 1997 dome: 13000 drops on 3D ballistic arcs in 44 strands from the bowl into the basin (2.2 m across), a crown that falls back on the bowl, splashes and a band of mist on the basin; frame 2.8 m, bowl rim 0.95 m above its bottom edge.

@@ -84,6 +84,20 @@
    "hit_s": 0.175,
    "lock_s": 0.4
   },
+  "Grip_L": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Grip_L.AN_Grip_L",
+   "duration_s": 0.3,
+   "loop": false,
+   "fps": 60,
+   "hold_s": 0.2
+  },
+  "Grip_R": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Grip_R.AN_Grip_R",
+   "duration_s": 0.3,
+   "loop": false,
+   "fps": 60,
+   "hold_s": 0.2
+  },
   "Guard_Stand": {
    "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand",
    "duration_s": 8.0,

@@ -375,6 +375,33 @@ def cast(rig, name):
     return action_clip(rig, name, stand, K.rows, 0.70, events={'cast_s': 0.0}, steps=K.steps)
 
 
+# The carry of an armed weapon (art row AN-05): where the hand that holds it is while no action plays, as the 1997 idle and
+# walk pictures of the armed Dink have it (graphics/dink/sword/idle and bow/idle: he stands on guard, the forearm raised and
+# the blade up and out to his side; the bow upright in the left hand). Wrist in the chest frame (out to the side, forward,
+# up; metres), forearm roll, and the elbow's pole (out, forward, up): the forearm is about level at the waist, the upper
+# arm hangs, and the blade (the hand's +Z, see hero_weapons.json) stands 61 degrees up, leaning 0.42 outward and 0.23
+# forward. From the hanging arm of the idle the blade lay level at the hip, pointing forward and across the body.
+CARRY = dict(side=0.26, forward=0.222, up=-0.303, roll=-1.05, pole=(0.2, -0.6, -0.8))
+
+
+def grip(rig, name, side):
+    """The stand with one hand closed round a handle and that arm on guard: a sword or the axe in the right hand (Grip_R),
+    a bow in the left (Grip_L). A POSE, not an action: the hand closes and the arm rises over the first 0.1 s and the clip
+    ends held (no blend out). The runtime layers its last frame under every clip the body plays
+    (UDinkBodyAnimInstance::SetGrip): on the fifteen finger bones of the hand that holds a weapon always, and on that arm
+    (upper arm, forearm, hand, twist bones) while no action plays, so a cut keeps its own arm and wrist. The fingers wrap
+    the handle where hero_weapons.json puts it (rig.GRIP), they do not close into a fist: the attack clips' fist put the
+    last finger joints inside the handle. Without it the idle hand lay open round every weapon (art row AN-05, bug A203)."""
+    stand, K = _keys(rig, 0.5)
+    K.add(0.0)
+    sign = 1.0 if side == 'l' else -1.0
+    px, pf, pz = CARRY['pole']
+    K.add(0.10, **{side + 'a_grip': 1.0},
+          **arm(side, sign * CARRY['side'], CARRY['forward'], CARRY['up'], pron=CARRY['roll'], pole=(sign * px, pf, pz)))
+    K.add(0.30)
+    return action_clip(rig, name, stand, K.rows, 0.30, family='hero_pose', events={'hold_s': 0.2}, blend_out=0.0)
+
+
 def makers(rig):
     m = {}
     m['Fist_Jab_Timid'] = lambda: jab(rig, 0.0, 'Fist_Jab_Timid')
@@ -390,6 +417,8 @@ def makers(rig):
     m['Bow_Draw'] = lambda: bow_draw(rig, 'Bow_Draw')
     m['Bow_Release'] = lambda: bow_release(rig, 'Bow_Release')
     m['Cast'] = lambda: cast(rig, 'Cast')
+    m['Grip_R'] = lambda: grip(rig, 'Grip_R', 'r')
+    m['Grip_L'] = lambda: grip(rig, 'Grip_L', 'l')
     m['Hurt'] = lambda: hurt(rig, 'Hurt')
     m['Stumble'] = lambda: stumble(rig, 'Stumble')
     return m

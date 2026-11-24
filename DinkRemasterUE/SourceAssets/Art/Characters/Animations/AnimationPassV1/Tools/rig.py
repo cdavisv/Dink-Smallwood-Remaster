@@ -97,6 +97,16 @@ class Rig:
         return (self.head[b] - self.head[a]).length
 
 
+# The hand closed round a weapon's handle as Content/Dink/Data/Art/hero_weapons.json places it (a grip 3 to 3.3 cm
+# thick lying across the palm about 2 cm short of the knuckles): flexion of each finger joint about its local Z, radians,
+# and for the thumb the swing of its base out of the palm (about Z, Y, X) and the flexion of its two joints. Fitted on
+# the longsword in the right hand so that every joint and finger tip lies a finger's half thickness off the handle (2.2
+# to 2.8 cm from its axis; the fist of fingers() put the last joints 0.7 cm from the axis, inside the handle, and left
+# the thumb's knuckle in it). The two sides of the skeleton mirror, so the left hand takes the same numbers for a bow.
+GRIP = {'index': (1.10, 0.75, 0.75), 'middle': (1.05, 0.70, 0.70), 'ring': (1.00, 0.75, 0.75), 'pinky': (0.80, 0.85, 0.60)}
+GRIP_THUMB = ((0.45, 0.45, 0.45), 0.75, 0.45)
+
+
 class Pose:
     def __init__(self, rig):
         self.rig = rig
@@ -262,6 +272,22 @@ class Pose:
         for joint, angle in ((1, 0.45), (2, 0.55), (3, 0.75)):
             n = 'thumb_%02d_%s' % (joint, side)
             self.basis[n] = Matrix.Rotation(s * angle * t, 4, 'Z')
+        self._w = None
+
+    def grip(self, side, weight=1.0):
+        """The hand closed round a weapon's handle (weight 0..1 from whatever fingers() left). See GRIP."""
+        s = self.finger_sign(side)
+
+        def mix(name, m):
+            q = self.basis.get(name, Matrix.Identity(4)).to_quaternion().slerp(m.to_quaternion(), weight)
+            self.basis[name] = q.to_matrix().to_4x4()
+        for finger, angles in GRIP.items():
+            for joint, angle in zip((1, 2, 3), angles):
+                mix('%s_%02d_%s' % (finger, joint, side), Matrix.Rotation(s * angle, 4, 'Z'))
+        (z, y, x), a2, a3 = GRIP_THUMB
+        mix('thumb_01_' + side, Matrix.Rotation(s * z, 4, 'Z') @ Matrix.Rotation(y, 4, 'Y') @ Matrix.Rotation(x, 4, 'X'))
+        mix('thumb_02_' + side, Matrix.Rotation(s * a2, 4, 'Z'))
+        mix('thumb_03_' + side, Matrix.Rotation(s * a3, 4, 'Z'))
         self._w = None
 
     def finger_sign(self, side):

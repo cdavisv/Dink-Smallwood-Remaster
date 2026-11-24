@@ -23,6 +23,9 @@ TAutoConsoleVariable<int32> CVarDinkStyle(TEXT("dink.Anim.Style"), 1,
 TAutoConsoleVariable<int32> CVarDinkLookAt(TEXT("dink.Anim.LookAt"), 1,
 	TEXT("Presentation only. 1: NPC heads turn towards Dink when he is near and in front of them (limited angles); 0: off."));
 
+TAutoConsoleVariable<int32> CVarDinkWeaponCarry(TEXT("dink.Anim.WeaponCarry"), 1,
+	TEXT("Presentation only. 1: while no action plays, the arm that holds a weapon carries it on guard (the arm of the pose clips Grip_R / Grip_L: forearm level at the waist, blade up and out, as the armed Dink of 1997 stands and walks); 0: the hand only closes round the grip and the arm is the clip's."));
+
 	// Rotates one bone by a mesh-space rotation (the mesh faces +Y, +X is the character's left), worked out from the
 	// posed chain so that no bone-axis convention is assumed.
 	void RotateInMeshSpace(FCompactPose& Out, int32 Index, const FQuat& Delta)
@@ -35,6 +38,9 @@ TAutoConsoleVariable<int32> CVarDinkLookAt(TEXT("dink.Anim.LookAt"), 1,
 		Bone.SetRotation((ParentSpace.Inverse() * Delta * ParentSpace * Bone.GetRotation()).GetNormalized());
 	}
 	float YawOf(const FVector& V) { return FMath::RadiansToDegrees(FMath::Atan2(V.Y, V.X)); }
+	// The grip pose of each hand (0 left, 1 right) and the bone its fingers hang on.
+	const FName GripClipNames[2] = {TEXT("Grip_L"), TEXT("Grip_R")};
+	const FName GripHandNames[2] = {TEXT("hand_l"), TEXT("hand_r")};
 }
 
 void FDinkGaitBlend::Solve(float Speed, TConstArrayView<float> GaitSpeeds, TConstArrayView<float> GaitStrides,
@@ -225,6 +231,17 @@ void UDinkBodyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	Frame.Actions.Reset();
 	Frame.Lean = Lean;
 	Frame.Posture = Posture;
+	// The hand that holds a weapon closes round its grip (AN-05): the weight eases, the pose is the clip's held last frame.
+	for (int32 S = 0; S < 2; ++S)
+	{
+		const FDinkBodyClip* Clip = Clips.Find(GripClipNames[S]);
+		const bool bHeld = Clip && Clip->IsValid() && GripHand == GripHandNames[S];
+		const float Step = FMath::IsFinite(DeltaSeconds) ? FMath::Max(DeltaSeconds, 0.f) / GripBlendSeconds : 0.f;
+		GripShown[S] = bHeld ? FMath::Min(1.f, GripShown[S] + Step) : FMath::Max(0.f, GripShown[S] - Step);
+		Frame.Grip[S] = FDinkBodyLayer();
+		if (Clip && Clip->IsValid() && GripShown[S] > 0.f) Frame.Grip[S] = {Clip->Sequence.Get(), Clip->Duration, GripShown[S]};
+	}
+	Frame.Carry = CVarDinkWeaponCarry.GetValueOnGameThread() != 0 ? 1.f : 0.f;
 	if (!IsConfigured()) { PublishFrame(); return; }
 	const float Dt = FMath::IsFinite(DeltaSeconds) ? FMath::Clamp(DeltaSeconds, 0.f, .25f) : 0.f;
 	{
@@ -540,7 +557,7 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 		ArmBonesL.Reset(); ArmBonesR.Reset();
 		ChestBone = HeadBone = ClavicleL = ClavicleR = UpperArmL = UpperArmR = INDEX_NONE;
 		PelvisBone = NeckBone = Spine3Bone = INDEX_NONE;
-		for (int32 S = 0; S < 2; ++S) Thigh[S] = Calf[S] = Foot[S] = INDEX_NONE;
+		for (int32 S = 0; S < 2; ++S) { Thigh[S] = Calf[S] = Foot[S] = INDEX_NONE; GripBones[S].Reset(); CarryBones[S].Reset(); }
 		const FReferenceSkeleton& Reference = Bones.GetReferenceSkeleton();
 		for (FCompactPoseBoneIndex Bone(0); Bone.GetInt() < NumBones; ++Bone)
 		{
@@ -559,6 +576,22 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 			if (Name == TEXT("pelvis")) PelvisBone = Bone.GetInt();
 			if (Name == TEXT("neck_01")) NeckBone = Bone.GetInt();
 			if (Name == TEXT("spine_03")) Spine3Bone = Bone.GetInt();
+			// The arm of a side: upper arm, forearm, hand and the twist bones along them.
+			for (int32 S = 0; S < 2; ++S)
+			{
+				const TCHAR* Side = S == 0 ? TEXT("_l") : TEXT("_r");
+				if (Name.EndsWith(Side) && (Name.StartsWith(TEXT("upperarm")) || Name.StartsWith(TEXT("lowerarm")) || Name.StartsWith(TEXT("hand_")))) CarryBones[S].Add(Bone.GetInt());
+			}
+			// The finger bones of a hand: thumb, index, middle, ring and pinky joints anywhere below hand_l / hand_r.
+			if (Name.StartsWith(TEXT("thumb_")) || Name.StartsWith(TEXT("index_")) || Name.StartsWith(TEXT("middle_")) || Name.StartsWith(TEXT("ring_")) || Name.StartsWith(TEXT("pinky_")))
+			{
+				for (FCompactPoseBoneIndex P = Out.GetParentBoneIndex(Bone); P.GetInt() != INDEX_NONE; P = Out.GetParentBoneIndex(P))
+				{
+					const FName Parent = Reference.GetBoneName(Bones.MakeMeshPoseIndex(P).GetInt());
+					if (Parent == GripHandNames[0]) { GripBones[0].Add(Bone.GetInt()); break; }
+					if (Parent == GripHandNames[1]) { GripBones[1].Add(Bone.GetInt()); break; }
+				}
+			}
 			for (int32 S = 0; S < 2; ++S)
 			{
 				const TCHAR* Side = S == 0 ? TEXT("_l") : TEXT("_r");
@@ -602,6 +635,35 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 			if (bBoth) { Pose.Blend(Timid[Bone], Confident[Bone], Action.Confident.Weight); }
 			FTransform Base = Out[Bone];
 			Out[Bone].Blend(Base, Pose, W);
+		}
+	}
+	// A hand that holds a weapon stays closed round its grip whatever the body plays (AN-05): its finger bones take the
+	// grip pose. While no action plays, that arm takes the pose too and carries the weapon on guard; an action has its
+	// own arm and wrist for as long as it is blended in. The other arm is left to the clips.
+	float NoAction = 1.f;
+	for (const FDinkBodyActionFrame& Action : Frame.Actions)
+		if (Action.Timid.Sequence && Action.Confident.Sequence) NoAction = FMath::Min(NoAction, 1.f - FMath::Clamp(Action.Weight, 0.f, 1.f));
+	for (int32 S = 0; S < 2; ++S)
+	{
+		const FDinkBodyLayer& Grip = Frame.Grip[S];
+		if (!Grip.Sequence || Grip.Weight <= .0005f || GripBones[S].IsEmpty()) continue;
+		FCompactPose Closed;
+		Sample(Grip, Output, Closed);
+		const float Hold = FMath::Min(Grip.Weight, 1.f), Carry = Hold * NoAction * FMath::Clamp(Frame.Carry, 0.f, 1.f);
+		for (const int32 Index : GripBones[S])
+		{
+			const FCompactPoseBoneIndex Bone(Index);
+			const FTransform Open = Out[Bone];
+			Out[Bone].Blend(Open, Closed[Bone], Hold);
+		}
+		if (Carry > .0005f)
+		{
+			for (const int32 Index : CarryBones[S])
+			{
+				const FCompactPoseBoneIndex Bone(Index);
+				const FTransform Hanging = Out[Bone];
+				Out[Bone].Blend(Hanging, Closed[Bone], Carry);
+			}
 		}
 	}
 	// The pose never carries the clip's travel: the capsule owns where the character is.
