@@ -20,6 +20,7 @@
 #include "Engine/OverlapResult.h"
 #include "DinkDirector.h"
 #include "DinkGameplay.h"
+#include "HAL/IConsoleManager.h"
 #include "DinkInventoryComponent.h"
 #include "DinkSaveSubsystem.h"
 #include "DinkStatsComponent.h"
@@ -4883,9 +4884,14 @@ namespace DinkProbeTest
 					C.SquadFight(O);
 				},
 				[](FCtx& C) { return C.SpriteWithScript(TEXT("s3-dorks")) == 0 && !C.D->bScreenLocked && C.Idle(); }, 150.0, { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") }, 0.001, true);
+			// The layer-on run only (probe_on.sh: physical_play.ini Mode=2 or dink.PhysicalPlay 2; bot tactics, no game rule): there the last
+			// knight's kill (exp 900, lraise) opened the level-up menu 50 ms after the fight's step was done, and with no answer here the menu
+			// took its last line, "Increase Magic" (23 Nov 2026, PR #233). One strength short (29: item-b1.c's arrow is power/100 * strength/5
+			// = 25 against Seth's defense 25), chapter 20's arrows did nothing but the power shots and Dink died with Seth at 181/300.
+			// The layer-off step list, and so its twenty md5s, stay as they are.
 			Add(TEXT("the knights' loot (emake.large: gold lying where each fell; the screen is unlocked)"),
 				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
-				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 30.0, {}, 0.5);
+				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 30.0, LayerForcedOn() ? TArray<FString>{ TEXT("Increase Attack") } : TArray<FString>{}, 0.5);
 			Add(TEXT("the Mayor in Hiram's Bookstore (SCR_067, s3-mayor talk at &mayor 4: \"Show him the scroll with the plans\": &mayor 5, the parade on SCR_586 (s3-tc.c): &story 10, &mayor 6)"),
 				[](FCtx& C)
 				{
@@ -5438,6 +5444,16 @@ namespace DinkProbeTest
 					if (const int32 Healer = C.Placement(195, 19)) { C.StandBy(Healer, 25); C.S->TryTalk(C.Pawn); }
 				},
 				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, Answers, 0.5, true);
+		}
+
+		/** The probe runs with the physical play layer forced on (probe_on.sh): the ini's Mode 2 or the console variable at 2. */
+		static bool LayerForcedOn()
+		{
+			const IConsoleVariable* V = IConsoleManager::Get().FindConsoleVariable(TEXT("dink.PhysicalPlay"));
+			if (V && V->GetInt() >= 0) return V->GetInt() == 2;
+			FDinkPhysicalPlaySettings Settings;
+			Settings.Load();
+			return Settings.Mode == 2;
 		}
 
 		/** Elixirs (item-eli, life +20) from the Terris healer (SCR_033 s2-healp: "Buy a bottle of elixer for $25") until Dink holds Count, or gold would fall below Keep. */
