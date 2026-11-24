@@ -2,7 +2,7 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF",
  "generated_by": "FableF/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 11 effect flipbooks, 10 static meshes.",
+ "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 14 effect flipbooks, 10 static meshes.",
  "assets": [
   {
    "name": "SM_Door_Barred_PR",
@@ -201,6 +201,66 @@
   }
  ],
  "flipbooks": [
+  {
+   "name": "Burn_Mark_A",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/burn_mark_fx/Burn_Mark_A/T_FX_Burn_Mark_A_Flipbook.png",
+   "grid": [
+    8,
+    4
+   ],
+   "fps": 12,
+   "glow": 5.0,
+   "families": [
+    "small_fire_fx",
+    "155 struct/details/damage/fire2-"
+   ],
+   "blend": "decal",
+   "hot": [
+    0.16,
+    0.5,
+    1.0
+   ]
+  },
+  {
+   "name": "Burn_Mark_B",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/burn_mark_fx/Burn_Mark_B/T_FX_Burn_Mark_B_Flipbook.png",
+   "grid": [
+    8,
+    4
+   ],
+   "fps": 12,
+   "glow": 5.0,
+   "families": [
+    "small_fire_fx",
+    "156 struct/details/damage/fire3-"
+   ],
+   "blend": "decal",
+   "hot": [
+    0.16,
+    0.5,
+    1.0
+   ]
+  },
+  {
+   "name": "Burn_Mark_C",
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/burn_mark_fx/Burn_Mark_C/T_FX_Burn_Mark_C_Flipbook.png",
+   "grid": [
+    8,
+    4
+   ],
+   "fps": 12,
+   "glow": 5.0,
+   "families": [
+    "small_fire_fx",
+    "157 struct/details/damage/fire4-"
+   ],
+   "blend": "decal",
+   "hot": [
+    0.16,
+    0.5,
+    1.0
+   ]
+  },
   {
    "name": "Fire_Wall",
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/fire_fx/Fire_Wall/T_FX_Fire_Wall_Flipbook.png",

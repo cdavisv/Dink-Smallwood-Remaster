@@ -1,0 +1,52 @@
+{
+ "name": "FX_Burn_Mark_C",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  1.85,
+  1.85,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/burn_mark_fx/Burn_Mark_C/T_FX_Burn_Mark_C_Flipbook.png",
+   "size_px": [
+    2048,
+    1024
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha (opacity of the soot and the break); 8 x 4 frames of 256 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 32,
+  "grid": [
+   8,
+   4
+  ],
+  "fps": 12,
+  "loop": true,
+  "billboard_size_m": [
+   1.85,
+   1.85
+  ],
+  "blend": "decal",
+  "glow": 5.0,
+  "hot": [
+   0.16,
+   0.5,
+   1.0
+  ]
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/burn_mark_fx/Burn_Mark_C/frames_strip.png",
+ "source_note": "made by code, no .blend: FableF/tools/build_burn_mark.py (a torn outline with rays, charred laths, a periodic rising noise as the fire behind them).",
+ "build": "python3 -I FableF/tools/build_burn_mark.py",
+ "families": [
+  "small_fire_fx",
+  "157 struct/details/damage/fire4-"
+ ],
+ "supersedes": "FableF/small_fire_fx/Embers_* on a camera-facing card (a glowing heap floating in front of the wall)",
+ "dresses": "the long burn: two breaks run together along a diagonal, 1.3 m long in a 1.85 m sheet",
+ "third_party": [],
+ "status": "source delivered",
+ "known_weaknesses": "Flat: a decal has no depth, the laths do not stand in front of the fire. The wall or thatch behind the break is not cut (the roof hole itself is the burning cottage of DS-01)."
+}

@@ -1,5 +1,6 @@
 #include "DinkArtFamilySubsystem.h"
 #include "DinkPerfScope.h"
+#include "Components/DecalComponent.h"
 #include "Components/MaterialBillboardComponent.h"
 #include "Components/PointLightComponent.h"
 #include "DinkFlickerLightComponent.h"
@@ -432,6 +433,29 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 					Layer.PhaseSeconds = FMath::Clamp((*L)[4]->AsNumber(), 0.0, 60.0);
 					Layer.bMirror = L->Num() > 5 && (*L)[5]->AsNumber() != 0.0;
 					B.EffectLayers.Add(Layer);
+				}
+			}
+			const TSharedPtr<FJsonObject>* Decal = nullptr;
+			if ((*Row)->TryGetObjectField(TEXT("effect_decal"), Decal) && Decal && Decal->IsValid())
+			{
+				static const TSet<FName> Directions = {TEXT("down"), TEXT("north"), TEXT("south"), TEXT("east"), TEXT("west")};
+				const TArray<TSharedPtr<FJsonValue>>* Size = nullptr;
+				if ((*Decal)->TryGetArrayField(TEXT("size_cm"), Size) && Size && Size->Num() == 2)
+				{
+					B.bEffectDecal = true;
+					B.EffectDecalSizeCm = FVector2D(FMath::Clamp((*Size)[0]->AsNumber(), 5.0, 3000.0), FMath::Clamp((*Size)[1]->AsNumber(), 5.0, 3000.0));
+					(*Decal)->TryGetNumberField(TEXT("depth_cm"), B.EffectDecalDepthCm);
+					B.EffectDecalDepthCm = FMath::Clamp(B.EffectDecalDepthCm, 5.0, 1000.0);
+					FString Towards;
+					if ((*Decal)->TryGetStringField(TEXT("towards"), Towards) && Directions.Contains(FName(*Towards))) B.EffectDecalTowards = FName(*Towards);
+					const TSharedPtr<FJsonObject>* Single = nullptr;
+					if ((*Decal)->TryGetObjectField(TEXT("origins"), Single) && Single && Single->IsValid())
+					{
+						for (const auto& Pair : (*Single)->Values)
+						{
+							if (Pair.Value.IsValid() && Directions.Contains(FName(*Pair.Value->AsString()))) B.EffectDecalOrigins.Add(FName(*Pair.Key), FName(*Pair.Value->AsString()));
+						}
+					}
 				}
 			}
 		}
@@ -1304,33 +1328,69 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 	if (const FVector* Offset = Binding.OffsetCm.Find(OriginName)) Card->AddWorldOffset(*Offset);
 	Card->SetCastShadow(false);
 	Card->ComponentTags.AddUnique(FamilyTag);
-	for (int32 Slot = 0; Slot < Card->GetNumMaterials(); ++Slot) Card->SetMaterial(Slot, *Effect);
-	// "effect_layers": the same flipbook again, behind and in front, each at another place in its loop
-	for (int32 Index = 0; Index < Binding.EffectLayers.Num(); ++Index)
+	if (Binding.bEffectDecal)
 	{
-		const FDinkFamilyEffectLayer& L = Binding.EffectLayers[Index];
-		UStaticMeshComponent* Layer = NewObject<UStaticMeshComponent>(&Actor, FName(*FString::Printf(TEXT("FamilyEffectLayer_%d"), Index)));
-		Layer->SetMobility(EComponentMobility::Movable);
-		Layer->SetupAttachment(Card);
-		Layer->SetStaticMesh(Card->GetStaticMesh());
-		Layer->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
-		Layer->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		Layer->SetCanEverAffectNavigation(false);
-		Layer->SetGenerateOverlapEvents(false);
-		Layer->SetCastShadow(false);
-		Layer->ComponentTags.Add(FamilyTag);
-		// The card's own scale is (width, 1, height): offsets in cm are divided by it. The layer keeps the card's
-		// bottom middle (plus its offset) whatever its size; the card's face normal is local +Y.
-		const double Side = L.bMirror ? -L.Scale : L.Scale;
-		Layer->SetRelativeScale3D(FVector(Side, 1.0, L.Scale));
-		// (a placement's size factor, "offset_cm" fourth number, spreads its layers too)
-		Layer->SetRelativeLocation(FVector(Unit.GetCenter().X * (1.0 - Side) + L.OffsetCm.X * Grow / FMath::Max(NewScale.X, 1e-3), L.OffsetCm.Y * Grow,
-			Unit.Min.Z * (1.0 - L.Scale) + L.OffsetCm.Z * Grow / FMath::Max(NewScale.Z, 1e-3)));
-		UMaterialInstanceDynamic* Playing = UMaterialInstanceDynamic::Create(*Effect, Layer);
-		if (Playing) Playing->SetScalarParameterValue(TEXT("StartTime"), -float(L.PhaseSeconds));
-		for (int32 Slot = 0; Slot < Card->GetNumMaterials(); ++Slot) Layer->SetMaterial(Slot, Playing ? static_cast<UMaterialInterface*>(Playing) : Effect->Get());
-		Actor.AddInstanceComponent(Layer);
-		Layer->RegisterComponent();
+		// A burn on a roof or a wall: the effect is projected onto what stands there; the camera-facing card is not drawn.
+		// The card stays the placement's card and keeps its visible flag and bHiddenInGame: both belong to the screen and
+		// vision rules (UDinkGreyboxSubsystem::UpdateLegacyCardVisibility records the flag at first sight and sets it again
+		// on the card's own screen, so a SetVisibility(false) here was undone: the magnified 1997 picture stood upright in
+		// front of the roof with the decal smeared down it). It is taken out of the render passes instead, and the decal
+		// and the light follow its flag as its children (FollowCardVisibility).
+		const FName* Single = Binding.EffectDecalOrigins.Find(OriginName);
+		const FName Towards = Single ? *Single : Binding.EffectDecalTowards;
+		// a decal projects along its local +X; the texture's top is the decal's +Z
+		const FRotator Aim = Towards == TEXT("north") ? FRotator(0.0, -90.0, 0.0) : Towards == TEXT("south") ? FRotator(0.0, 90.0, 0.0) :
+			Towards == TEXT("east") ? FRotator(0.0, 0.0, 0.0) : Towards == TEXT("west") ? FRotator(0.0, 180.0, 0.0) : FRotator(-90.0, 90.0, 0.0);
+		UDecalComponent* Decal = NewObject<UDecalComponent>(&Actor, TEXT("FamilyEffectDecal"));
+		Decal->SetMobility(EComponentMobility::Movable);
+		Decal->SetupAttachment(Card);
+		Decal->SetUsingAbsoluteLocation(true);   // the card turns to the camera; the mark stays where it is
+		Decal->SetUsingAbsoluteRotation(true);
+		Decal->SetUsingAbsoluteScale(true);
+		Decal->SetDecalMaterial(*Effect);
+		Decal->DecalSize = FVector(Binding.EffectDecalDepthCm, Binding.EffectDecalSizeCm.X * 0.5 * Grow, Binding.EffectDecalSizeCm.Y * 0.5 * Grow);
+		Decal->SetFadeScreenSize(0.f);
+		Decal->ComponentTags.Add(FamilyTag);
+		Actor.AddInstanceComponent(Decal);
+		Decal->RegisterComponent();
+		Decal->SetWorldLocationAndRotation(Card->GetComponentLocation() + Card->GetComponentRotation().RotateVector(
+			FVector(Unit.GetCenter().X * NewScale.X, 0.0, Unit.GetCenter().Z * NewScale.Z)), Aim);
+		Card->SetRenderInMainPass(false);
+		Card->SetRenderInDepthPass(false);
+		Card->SetReceivesDecals(false);
+		Card->SetAffectDynamicIndirectLighting(false);
+		Card->SetVisibleInRayTracing(false);
+	}
+	else
+	{
+		for (int32 Slot = 0; Slot < Card->GetNumMaterials(); ++Slot) Card->SetMaterial(Slot, *Effect);
+		// "effect_layers": the same flipbook again, behind and in front, each at another place in its loop
+		for (int32 Index = 0; Index < Binding.EffectLayers.Num(); ++Index)
+		{
+			const FDinkFamilyEffectLayer& L = Binding.EffectLayers[Index];
+			UStaticMeshComponent* Layer = NewObject<UStaticMeshComponent>(&Actor, FName(*FString::Printf(TEXT("FamilyEffectLayer_%d"), Index)));
+			Layer->SetMobility(EComponentMobility::Movable);
+			Layer->SetupAttachment(Card);
+			Layer->SetStaticMesh(Card->GetStaticMesh());
+			Layer->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
+			Layer->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+			Layer->SetCanEverAffectNavigation(false);
+			Layer->SetGenerateOverlapEvents(false);
+			Layer->SetCastShadow(false);
+			Layer->ComponentTags.Add(FamilyTag);
+			// The card's own scale is (width, 1, height): offsets in cm are divided by it. The layer keeps the card's
+			// bottom middle (plus its offset) whatever its size; the card's face normal is local +Y.
+			const double Side = L.bMirror ? -L.Scale : L.Scale;
+			Layer->SetRelativeScale3D(FVector(Side, 1.0, L.Scale));
+			// (a placement's size factor, "offset_cm" fourth number, spreads its layers too)
+			Layer->SetRelativeLocation(FVector(Unit.GetCenter().X * (1.0 - Side) + L.OffsetCm.X * Grow / FMath::Max(NewScale.X, 1e-3), L.OffsetCm.Y * Grow,
+				Unit.Min.Z * (1.0 - L.Scale) + L.OffsetCm.Z * Grow / FMath::Max(NewScale.Z, 1e-3)));
+			UMaterialInstanceDynamic* Playing = UMaterialInstanceDynamic::Create(*Effect, Layer);
+			if (Playing) Playing->SetScalarParameterValue(TEXT("StartTime"), -float(L.PhaseSeconds));
+			for (int32 Slot = 0; Slot < Card->GetNumMaterials(); ++Slot) Layer->SetMaterial(Slot, Playing ? static_cast<UMaterialInterface*>(Playing) : Effect->Get());
+			Actor.AddInstanceComponent(Layer);
+			Layer->RegisterComponent();
+		}
 	}
 	if (Binding.EffectLightCandela > 0.0 && Binding.EffectLightRadiusCm > 0.0)
 	{

@@ -149,6 +149,15 @@ struct DINKCORE_API FDinkFamilyBinding
 	 *  optionally mirrored, so a fire is a depth of flames that part as the camera moves and never one picture. They
 	 *  are attached to the placement's card: they face the camera with it and follow its screen and vision rules. */
 	TArray<FDinkFamilyEffectLayer> EffectLayers;
+	/** "effect_decal": {"size_cm": [w, h], "depth_cm": d, "towards": "down"|"north"|"south"|"east"|"west",
+	 *  "origins": {"S001_P35": "north"}} (placed effects): the row's effect material is a deferred-decal material and is
+	 *  projected onto what stands there (a burn on a roof or a wall) instead of being drawn on the camera-facing card,
+	 *  which is hidden. "origins" gives single placements another direction. */
+	bool bEffectDecal = false;
+	FVector2D EffectDecalSizeCm = FVector2D(100.0, 100.0);
+	double EffectDecalDepthCm = 120.0;
+	FName EffectDecalTowards = TEXT("down");
+	TMap<FName, FName> EffectDecalOrigins;
 	FString Note;
 };
 
