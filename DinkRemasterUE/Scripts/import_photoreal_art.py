@@ -578,6 +578,10 @@ HAIR_LOOK = {
     'Maiden': {'tint': (1.25, 1.12, 0.85), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.7, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     # Seth's own atlas (hair_styles.py 'Seth'): the dark brown crest of his 1997 pictures
     'Seth': {'tint': (2.3, 1.55, 1.05), 'scalars': {'Scatter': 0.5, 'BrowGain': 1.4, 'RootShade': 0.9, 'DepthShade': 0.7, 'Specular': 0.2, 'RoughnessScale': 1.3}},      # a neutral tint read as grey hair under the dim sky of SCR_086
+    # the countryman's dark hair going grey (hair_styles.py 'Peasant'); the tint follows Seth's dark atlas and has NOT been calibrated in the running game yet
+    'Peasant': {'tint': (1.9, 1.5, 1.2), 'scalars': {'Scatter': 0.5, 'BrowGain': 1.4, 'RootShade': 0.9, 'DepthShade': 0.7, 'Specular': 0.2, 'RoughnessScale': 1.3}},
+    # the old man's grey-white hair and beard (hair_styles.py 'OldMan'): a near-neutral tint on a light atlas, NOT calibrated in the running game yet
+    'OldMan': {'tint': (1.5, 1.48, 1.42), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.6, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
 }
 
 
@@ -586,7 +590,7 @@ SKIRTS = {'Mother'}
 
 
 # Skin tint per character (multiplies the base colour). The Mother's fair skin was chalk in the window light of her house.
-SKIN_LOOK = {'Mother': (0.72, 0.66, 0.63), 'Seth': (0.84, 0.82, 0.79)}    # Seth: the pale grey-beige of his 1997 face (his own sallow skin set, taken down a little)
+SKIN_LOOK = {'Mother': (0.72, 0.66, 0.63), 'Seth': (0.84, 0.82, 0.79), 'Peasant': (0.84, 0.80, 0.76)}    # Seth: the pale grey-beige of his 1997 face (his own sallow skin set, taken down a little)
 
 
 def hair_material(folder, name, defaults, morph=False):

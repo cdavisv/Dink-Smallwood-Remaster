@@ -23,7 +23,7 @@ sys.path.insert(0, str(HERE))
 from npcs import NPCS
 CHARS = HERE.parent; PASS = CHARS.parent; UNC = PASS / 'Unclaimed'; OUT = CHARS / 'NPC'
 argv = sys.argv[sys.argv.index('--') + 1:]
-names = list(NPCS) if argv[0] == 'all' else argv[0].split(',')
+names = [n for n in NPCS if not NPCS[n].get('townsfolk')] if argv[0] == 'all' else argv[0].split(',')      # a `townsfolk` row is only an input of townsfolk_port_pack.py
 WORK = Path(argv[1]) if len(argv) > 1 else Path(tempfile.gettempdir())
 CHILD = {'pelvis': 'spine_01', 'spine_01': 'spine_02', 'spine_02': 'spine_03', 'spine_03': 'spine_04', 'spine_04': 'spine_05', 'spine_05': 'neck_01',
          'neck_01': 'neck_02', 'neck_02': 'head'}
@@ -331,5 +331,7 @@ def finish(name, blend, slots, stats):
 
 
 for nm in names:
-    b, s, st = port(nm); finish(nm, b, s, st)
+    b, s, st = port(nm)
+    if os.environ.get('NPC_PORT_ONLY') or NPCS[nm].get('townsfolk'): print('[PR] port only (no export):', b, flush=True); continue      # the ported file as an input of townsfolk_pack.py
+    finish(nm, b, s, st)
 print('NPC_PORT_DONE', names)

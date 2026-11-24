@@ -609,6 +609,26 @@
    "asset_name": "AN_Shuffle",
    "sha256": "d42c4dc357e13847b4737e0895a25f9f2c4c9ae07836d19334b2b27bcfa75ea7"
   },
+  "Stoop_Stand": {
+   "frames": 241,
+   "fps": 30,
+   "duration_s": 8.0,
+   "speed_m_s": 0.0,
+   "stride_m": 0.0,
+   "planted_samples": 960,
+   "planted_drift_cm_per_frame_max": 0.0,
+   "planted_drift_cm_per_frame_mean": 0.0,
+   "planted_slide_cm_per_s_max": 0.0,
+   "ik_clamps": 0,
+   "lowest_sole_m": -0.0004,
+   "loop_seam_m": 0.0,
+   "loop": true,
+   "family": "people_pose",
+   "note": "an old man standing bent over his cane, right fist on it (1997 pictures 231-239; the cane stands on the root bone)",
+   "fbx": "Export/A_Stoop_Stand.fbx",
+   "asset_name": "AN_Stoop_Stand",
+   "sha256": "23703de4a1ae1593710fe19ec77aa1011e567c1d627023e40c679cd1b1177713"
+  },
   "Stumble": {
    "frames": 49,
    "fps": 60,

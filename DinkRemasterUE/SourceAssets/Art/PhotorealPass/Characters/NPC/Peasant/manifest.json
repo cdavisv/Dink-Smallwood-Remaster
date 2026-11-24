@@ -1,9 +1,9 @@
 {
  "schema": "dink-photoreal-character/1",
  "asset": "SK_Peasant_Photoreal",
- "class": "character_humanoid",
- "source_blend": "Unclaimed/npc_peasant/Peasant/SK_Peasant_PR.blend",
- "build": "blender -b -t 4 --python Characters/Tools/npc_port.py -- Peasant",
+ "class": "character_hero",
+ "source_blend": "NPC/Peasant/SK_Peasant_Photoreal.blend",
+ "build": "Characters/Tools/run_townsfolk.sh Peasant (the stages are listed in that file)",
  "fbx": [
   "Export/SK_Peasant_Photoreal_LOD0.fbx",
   "Export/SK_Peasant_Photoreal_LOD1.fbx",
@@ -11,60 +11,61 @@
   "Export/SK_Peasant_Photoreal_LOD3.fbx"
  ],
  "dimensions_m": [
-  1.059553861618042,
-  0.5291539430618286,
-  2.202022075653076
+  1.100469946861267,
+  0.530701220035553,
+  2.0215001106262207
  ],
  "bone_count": 89,
  "root_bone": "root",
- "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones; armature of Characters/Milder)",
+ "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones, names/hierarchy/rest pose unchanged from Characters/Dink/HandBindingV2)",
  "lods": [
   {
    "mesh": "SK_Peasant_Photoreal_LOD0",
-   "triangles": 27144,
-   "vertices": 14044,
+   "triangles": 33739,
+   "vertices": 22130,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Peasant_Photoreal_LOD1",
-   "triangles": 13572,
-   "vertices": 7221,
+   "triangles": 20713,
+   "vertices": 15563,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Peasant_Photoreal_LOD2",
-   "triangles": 6786,
-   "vertices": 3746,
+   "triangles": 15050,
+   "vertices": 12194,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Peasant_Photoreal_LOD3",
-   "triangles": 3256,
-   "vertices": 1893,
+   "triangles": 10114,
+   "vertices": 7936,
    "max_influences": 4,
    "unweighted": 0
   }
  ],
- "lod0_triangles": 27144,
+ "lod0_triangles": 33739,
  "material_slots": [
   "MI_Peasant_PR_Skin",
   "MI_Peasant_PR_Eyes",
   "MI_Peasant_PR_Hair",
-  "MI_Peasant_PR_Outfit"
+  "MI_Peasant_PR_Outfit",
+  "MI_Peasant_PR_Gear"
  ],
  "materials": {
   "MI_Peasant_PR_Skin": {
    "textures": {
-    "BC": "../../../Unclaimed/npc_peasant/Peasant/T_Peasant_PR_Skin_BC.png",
-    "N": "../../../Unclaimed/npc_peasant/Peasant/T_Peasant_PR_Skin_N.png",
-    "ORM": "../../../Unclaimed/npc_peasant/Peasant/T_Peasant_PR_Skin_ORM.png",
+    "BC": "Textures/T_Peasant_PR_Skin_BC.png",
+    "N": "Textures/T_Peasant_PR_Skin_N.png",
+    "ORM": "Textures/T_Peasant_PR_Skin_ORM.png",
     "SSS": "Textures/T_Peasant_PR_Skin_SSS.png"
    },
-   "shading": "subsurface profile / skin; SSS is a flat scatter colour (the source has no thickness map)",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "subsurface profile / skin; SSS.rgb = scatter colour x thickness",
+   "normal": "OpenGL (+Y), flip green for UE as the existing importer does"
   },
   "MI_Peasant_PR_Eyes": {
    "textures": {
@@ -72,125 +73,201 @@
     "N": "Textures/T_Peasant_PR_Eyes_N.png",
     "ORM": "Textures/T_Peasant_PR_Eyes_ORM.png"
    },
-   "shading": "default lit, low roughness",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "default lit, low roughness from ORM.G; single-shell eye with modelled cornea bulge"
   },
   "MI_Peasant_PR_Hair": {
    "textures": {
-    "BC": "../../../Unclaimed/npc_peasant/Peasant/T_Peasant_PR_Hair_BC.png",
-    "N": "../../../Unclaimed/npc_peasant/Peasant/T_Peasant_PR_Hair_N.png",
-    "ORM": "Textures/T_Peasant_PR_Hair_ORM.png"
+    "BC": "Textures/T_Peasant_PR_Hair_BC.png",
+    "N": "Textures/T_Peasant_PR_Hair_N.png",
+    "ORM": "Textures/T_Peasant_PR_Hair_ORM.png",
+    "FLOW": "Textures/T_Peasant_PR_Hair_FLOW.png",
+    "MSK": "Textures/T_Peasant_PR_Hair_MSK.png"
    },
-   "shading": "MASKED (alpha in BC.a), two-sided hair cards, default lit",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "hair shading model, MASKED (alpha in BC.a, clip about 0.33 with dithered opacity / TAA), two-sided; cap shell + lock cards + brow and lash cards in one slot",
+   "anisotropy": "FLOW.rg = strand direction in UV space, encoded 0.5 + 0.5 * d (root to tip): world tangent = normalize(d.x * dP/du + d.y * dP/dv); use it as the hair tangent / anisotropy direction so highlights run along the hair. Baked from the strand groom (cap rect) and from the strand clumps (card tiles). N is the strand-relief normal (OpenGL), ORM.r = strand depth occlusion, ORM.g = roughness.",
+   "masks": "FLOW.b = back-light mask (0 on the opaque cap shell, 1 on cards: scale back-scatter / two-sided transmission by it). MSK.r = strand depth, MSK.g = per-strand id (use for per-strand colour / roughness jitter), MSK.b = root-to-tip gradient (0 root, 1 tip; the BC already carries a root-dark to tip-light gradient).",
+   "atlas_layout": "uv: cap texture u 0-0.5, v 0.5-1 (whole groom projected about the head centre, opaque under-fill inside the hairline); 32 narrow lock tiles u 0.5-1, v 0.25-1 (root at top); 4 wide tiles u 0-0.5, v 0.25-0.5; brow groom band u 0-0.5, v 0-0.25; lash band u 0.5-1, v 0-0.25",
+   "shell_order": "vertex attribute hl (also the build order, inner first): 1 = cap shell (opaque, never drop, casts the shadow), 2 = mid lock cards, 3 = outer lock cards, 4 = brows and lashes, 5 = hairline wisps and flyaways. LOD1 keeps all, LOD2 drops 5, LOD3 keeps 1, 3, 4. Custom split normals are scalp-blended and exported in the FBX: import normals, do not recompute."
   },
   "MI_Peasant_PR_Outfit": {
    "textures": {
-    "BC": "../../../Unclaimed/npc_peasant/Peasant/T_Peasant_PR_Outfit_BC.png",
-    "N": "../../../Unclaimed/npc_peasant/Peasant/T_Peasant_PR_Outfit_N.png",
-    "ORM": "../../../Unclaimed/npc_peasant/Peasant/T_Peasant_PR_Outfit_ORM.png"
+    "BC": "Textures/T_Peasant_PR_Outfit_BC.png",
+    "N": "../../Dink/Textures/T_Dink_PR_Outfit_N.png",
+    "ORM": "../../Dink/Textures/T_Dink_PR_Outfit_ORM.png"
    },
-   "shading": "default lit",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "default lit"
+  },
+  "MI_Peasant_PR_Gear": {
+   "textures": {
+    "BC": "Textures/T_Peasant_PR_Gear_BC.png",
+    "N": "Textures/T_Peasant_PR_Gear_N.png",
+    "ORM": "Textures/T_Peasant_PR_Gear_ORM.png"
+   },
+   "shading": "default lit, metallic from ORM.B (buckles)"
   }
  },
- "port": {
-  "height_ratio": 1.0725,
-  "lods": [
-   {
-    "vertices": 14044,
-    "pole_vertices": 72,
-    "min_z": -0.003,
-    "max_z": 2.199
-   },
-   {
-    "vertices": 7221,
-    "pole_vertices": 70,
-    "min_z": -0.003,
-    "max_z": 2.199
-   },
-   {
-    "vertices": 3746,
-    "pole_vertices": 39,
-    "min_z": -0.0025,
-    "max_z": 2.199
-   },
-   {
-    "vertices": 1893,
-    "pole_vertices": 18,
-    "min_z": -0.0027,
-    "max_z": 2.199
-   }
-  ],
-  "face_rigid_vertices": [
-   3195,
-   1066,
-   495,
-   252
-  ],
-  "lift_m": 0.003
+ "shared_textures": {
+  "../../Dink/Textures": "/Game/Dink/Photoreal/Characters/Dink/Textures"
  },
- "placement_scale": 0.932,
+ "placement_scale": 0.95,
  "animation_set": "NpcM",
  "families": [
   "npc_peasant"
  ],
+ "what": "the countryman of pictures 411-419 (people/peasant2): straw hat, neck cloth and pole",
  "validation": {
   "assets": 1,
   "assets_passed": 0,
   "errors": 1,
-  "warnings": 7
+  "warnings": 26
  },
  "validator_findings": [
   [
    "warning",
-   "TRIS_OVER_TARGET",
-   "LOD0 has 27144 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "DUPLICATE_VERTS",
+   "70 vertices coincide with another vertex (within 0.01 mm); merge by distance"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "910 non-manifold edges (910 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "8769 non-manifold edges (8768 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "DUPLICATE_VERTS",
+   "64 vertices coincide with another vertex (within 0.01 mm); merge by distance"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "836 non-manifold edges (836 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "8661 non-manifold edges (8660 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 2 loose (wire) edges"
-  ],
-  [
-   "warning",
-   "NON_MANIFOLD",
-   "670 non-manifold edges (668 open boundary, 0 >2 faces, 2 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 5 loose (wire) edges"
+   "DUPLICATE_VERTS",
+   "44 vertices coincide with another vertex (within 0.01 mm); merge by distance"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "491 non-manifold edges (486 open boundary, 0 >2 faces, 5 wire); acceptable for character_humanoid only if intentional (cards)"
+   "7806 non-manifold edges (7805 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
+  ],
+  [
+   "warning",
+   "DUPLICATE_VERTS",
+   "14 vertices coincide with another vertex (within 0.01 mm); merge by distance"
+  ],
+  [
+   "warning",
+   "NON_MANIFOLD",
+   "4916 non-manifold edges (4915 open boundary, 1 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (11.2 % of UV area, 5192 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (216.1 % of UV area, 4215 triangles); class character_hero needs unique UVs"
+  ],
+  [
+   "warning",
+   "UV_DEGENERATE",
+   "630 triangles are collapsed in UV space"
   ],
   [
    "info",
    "UV_OVERLAP",
    "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Outfit_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Outfit_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Dink_PR_Outfit_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Gear_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Gear_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Peasant_PR_Gear_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ]
  ],
  "known_weaknesses": [
-  "The pole stands upright beside him on the root bone: his hand does not hold it.",
-  "Ported from the 26-bone Unclaimed source by its own skin weights: fingers, twist bones and the other mannequin bones carry no weight (mitten hands, no forearm twist).",
-  "Face, hair and cloth are those of the Unclaimed source (see its manifest): a plain base face and card hair; they have not been through the head, skin and groom tools of the three main characters."
+  "The body, the hands and the cut of the clothes are the hero's: his jerkin and the sleeves of his shirt in one brown read as a sleeved coat with turned leather cuffs, but the armhole of the jerkin is still there as a shoulder seam and the coat ends at the belt line of the hero's jerkin.",
+  "The neck cloth is a swept shape with painted folds and weave (townsfolk_pack.py), skinned by the nearest body weights: no cloth simulation, its ends do not swing.",
+  "The pole stands upright on the root bone where the idle clip Guard_Stand closes his right fist (bind_people_classes.py GUARDS): a walking man lets go of it and it glides beside him.",
+  "The hat and the pole are painted by townsfolk_pack.py (plaited straw, peeled wood), not baked from modelled straw.",
+  "The face is sculpted with the kit's face operations (cfg/head.json): a weathered man of no particular likeness."
  ]
 }

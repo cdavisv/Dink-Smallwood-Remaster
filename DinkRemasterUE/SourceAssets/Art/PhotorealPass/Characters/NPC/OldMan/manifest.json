@@ -1,9 +1,9 @@
 {
  "schema": "dink-photoreal-character/1",
  "asset": "SK_OldMan_Photoreal",
- "class": "character_humanoid",
- "source_blend": "Unclaimed/npc_old_man/Old_Man/SK_Old_Man_PR.blend",
- "build": "blender -b -t 4 --python Characters/Tools/npc_port.py -- OldMan",
+ "class": "character_hero",
+ "source_blend": "NPC/OldMan/SK_OldMan_Photoreal.blend",
+ "build": "Characters/Tools/run_townsfolk.sh OldMan (the stages are listed in that file)",
  "fbx": [
   "Export/SK_OldMan_Photoreal_LOD0.fbx",
   "Export/SK_OldMan_Photoreal_LOD1.fbx",
@@ -11,60 +11,61 @@
   "Export/SK_OldMan_Photoreal_LOD3.fbx"
  ],
  "dimensions_m": [
-  1.0731709003448486,
+  1.100469946861267,
   0.6002174615859985,
-  1.8047478199005127
+  1.8046573400497437
  ],
  "bone_count": 89,
  "root_bone": "root",
- "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones; armature of Characters/Milder)",
+ "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones, names/hierarchy/rest pose unchanged from Characters/Dink/HandBindingV2)",
  "lods": [
   {
    "mesh": "SK_OldMan_Photoreal_LOD0",
-   "triangles": 28578,
-   "vertices": 14734,
+   "triangles": 31032,
+   "vertices": 23088,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_OldMan_Photoreal_LOD1",
-   "triangles": 14288,
-   "vertices": 7548,
+   "triangles": 20880,
+   "vertices": 17999,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_OldMan_Photoreal_LOD2",
-   "triangles": 7143,
-   "vertices": 3896,
+   "triangles": 16091,
+   "vertices": 14876,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_OldMan_Photoreal_LOD3",
-   "triangles": 3429,
-   "vertices": 1964,
+   "triangles": 11830,
+   "vertices": 11036,
    "max_influences": 4,
    "unweighted": 0
   }
  ],
- "lod0_triangles": 28578,
+ "lod0_triangles": 31032,
  "material_slots": [
   "MI_OldMan_PR_Skin",
   "MI_OldMan_PR_Eyes",
   "MI_OldMan_PR_Hair",
-  "MI_OldMan_PR_Outfit"
+  "MI_OldMan_PR_Outfit",
+  "MI_OldMan_PR_Gear"
  ],
  "materials": {
   "MI_OldMan_PR_Skin": {
    "textures": {
-    "BC": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Skin_BC.png",
-    "N": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Skin_N.png",
-    "ORM": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Skin_ORM.png",
+    "BC": "Textures/T_OldMan_PR_Skin_BC.png",
+    "N": "Textures/T_OldMan_PR_Skin_N.png",
+    "ORM": "Textures/T_OldMan_PR_Skin_ORM.png",
     "SSS": "Textures/T_OldMan_PR_Skin_SSS.png"
    },
-   "shading": "subsurface profile / skin; SSS is a flat scatter colour (the source has no thickness map)",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "subsurface profile / skin; SSS.rgb = scatter colour x thickness",
+   "normal": "OpenGL (+Y), flip green for UE as the existing importer does"
   },
   "MI_OldMan_PR_Eyes": {
    "textures": {
@@ -72,17 +73,21 @@
     "N": "Textures/T_OldMan_PR_Eyes_N.png",
     "ORM": "Textures/T_OldMan_PR_Eyes_ORM.png"
    },
-   "shading": "default lit, low roughness",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "default lit, low roughness from ORM.G; single-shell eye with modelled cornea bulge"
   },
   "MI_OldMan_PR_Hair": {
    "textures": {
-    "BC": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Hair_BC.png",
-    "N": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Hair_N.png",
-    "ORM": "Textures/T_OldMan_PR_Hair_ORM.png"
+    "BC": "Textures/T_OldMan_PR_Hair_BC.png",
+    "N": "Textures/T_OldMan_PR_Hair_N.png",
+    "ORM": "Textures/T_OldMan_PR_Hair_ORM.png",
+    "FLOW": "Textures/T_OldMan_PR_Hair_FLOW.png",
+    "MSK": "Textures/T_OldMan_PR_Hair_MSK.png"
    },
-   "shading": "MASKED (alpha in BC.a), two-sided hair cards, default lit",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "hair shading model, MASKED (alpha in BC.a, clip about 0.33 with dithered opacity / TAA), two-sided; cap shell + lock cards + brow and lash cards in one slot",
+   "anisotropy": "FLOW.rg = strand direction in UV space, encoded 0.5 + 0.5 * d (root to tip): world tangent = normalize(d.x * dP/du + d.y * dP/dv); use it as the hair tangent / anisotropy direction so highlights run along the hair. Baked from the strand groom (cap rect) and from the strand clumps (card tiles). N is the strand-relief normal (OpenGL), ORM.r = strand depth occlusion, ORM.g = roughness.",
+   "masks": "FLOW.b = back-light mask (0 on the opaque cap shell, 1 on cards: scale back-scatter / two-sided transmission by it). MSK.r = strand depth, MSK.g = per-strand id (use for per-strand colour / roughness jitter), MSK.b = root-to-tip gradient (0 root, 1 tip; the BC already carries a root-dark to tip-light gradient).",
+   "atlas_layout": "uv: cap texture u 0-0.5, v 0.5-1 (whole groom projected about the head centre, opaque under-fill inside the hairline); 32 narrow lock tiles u 0.5-1, v 0.25-1 (root at top); 4 wide tiles u 0-0.5, v 0.25-0.5; brow groom band u 0-0.5, v 0-0.25; lash band u 0.5-1, v 0-0.25",
+   "shell_order": "vertex attribute hl (also the build order, inner first): 1 = cap shell (opaque, never drop, casts the shadow), 2 = mid lock cards, 3 = outer lock cards, 4 = brows and lashes, 5 = hairline wisps and flyaways. LOD1 keeps all, LOD2 drops 5, LOD3 keeps 1, 3, 4. Custom split normals are scalp-blended and exported in the FBX: import normals, do not recompute."
   },
   "MI_OldMan_PR_Outfit": {
    "textures": {
@@ -90,107 +95,126 @@
     "N": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Outfit_N.png",
     "ORM": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Outfit_ORM.png"
    },
-   "shading": "default lit",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "default lit"
+  },
+  "MI_OldMan_PR_Gear": {
+   "textures": {
+    "BC": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Outfit_BC.png",
+    "N": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Outfit_N.png",
+    "ORM": "../../../Unclaimed/npc_old_man/Old_Man/T_Old_Man_PR_Outfit_ORM.png"
+   },
+   "shading": "default lit, metallic from ORM.B (buckles)"
   }
- },
- "port": {
-  "height_ratio": 1.1499,
-  "lods": [
-   {
-    "vertices": 14734,
-    "pole_vertices": 72,
-    "min_z": -0.003,
-    "max_z": 1.8017
-   },
-   {
-    "vertices": 7548,
-    "pole_vertices": 69,
-    "min_z": -0.003,
-    "max_z": 1.8017
-   },
-   {
-    "vertices": 3896,
-    "pole_vertices": 37,
-    "min_z": -0.0028,
-    "max_z": 1.8014
-   },
-   {
-    "vertices": 1964,
-    "pole_vertices": 18,
-    "min_z": -0.0022,
-    "max_z": 1.801
-   }
-  ],
-  "face_rigid_vertices": [
-   3418,
-   1110,
-   511,
-   249
-  ],
-  "lift_m": 0.003
  },
  "placement_scale": 0.87,
  "animation_set": "NpcM",
  "families": [
   "npc_old_man"
  ],
+ "what": "the old man of pictures 231-239 (people/oldman): brown habit, grey hair and beard, a cane",
  "validation": {
   "assets": 1,
   "assets_passed": 0,
   "errors": 1,
-  "warnings": 7
+  "warnings": 16
  },
  "validator_findings": [
   [
    "warning",
-   "TRIS_OVER_TARGET",
-   "LOD0 has 28578 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "NON_MANIFOLD",
+   "12256 non-manifold edges (12256 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "850 non-manifold edges (850 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "12230 non-manifold edges (12230 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "768 non-manifold edges (768 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 2 loose (wire) edges"
+   "11119 non-manifold edges (11119 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "607 non-manifold edges (605 open boundary, 0 >2 faces, 2 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 7 loose (wire) edges"
-  ],
-  [
-   "warning",
-   "NON_MANIFOLD",
-   "452 non-manifold edges (445 open boundary, 0 >2 faces, 7 wire); acceptable for character_humanoid only if intentional (cards)"
+   "8376 non-manifold edges (8376 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (12.8 % of UV area, 5157 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (307.3 % of UV area, 3778 triangles); class character_hero needs unique UVs"
+  ],
+  [
+   "warning",
+   "UV_DEGENERATE",
+   "216 triangles are collapsed in UV space"
   ],
   [
    "info",
    "UV_OVERLAP",
    "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ]
  ],
  "known_weaknesses": [
-  "The staff stands upright beside him on the root bone: his hand does not hold it.",
-  "Ported from the 26-bone Unclaimed source by its own skin weights: fingers, twist bones and the other mannequin bones carry no weight (mitten hands, no forearm twist).",
-  "Face, hair and cloth are those of the Unclaimed source (see its manifest): a plain base face and card hair; they have not been through the head, skin and groom tools of the three main characters."
+  "The habit, the hood, the shoes and the cane are those of the Unclaimed source, carried onto the rig by its own skin weights: swept shapes with a painted weave, no cloth simulation.",
+  "He stands upright; the 1997 figure is bent double over his cane (a pose for a clip, not built).",
+  "The cane stands on the root bone beside him: his hand does not hold it.",
+  "Hair and beard are cards rigid on the head bone: the beard does not swing and a deep nod carries it into the chest.",
+  "The face is sculpted with the kit's face operations (cfg/head.json): an old man of no particular likeness."
  ]
 }

@@ -136,6 +136,11 @@ def measure(clip):
 
 def setup_review(scene, arm, mesh):
     scene.render.engine = 'BLENDER_WORKBENCH'
+    if os.environ.get('DINK_CPU'):      # no raster render on the GPU (the machine's render rule of 21 Nov 2026): the strip is path-traced on the CPU
+        scene.render.engine = 'CYCLES'; scene.cycles.device = 'CPU'; scene.cycles.samples = int(os.environ.get('STRIP_SPP', 12)); scene.cycles.use_denoising = True
+        scene.world = scene.world or bpy.data.worlds.new('W'); scene.world.use_nodes = True
+        bg = scene.world.node_tree.nodes.get('Background')
+        if bg is not None: bg.inputs[0].default_value = (0.78, 0.80, 0.84, 1.0); bg.inputs[1].default_value = 1.1
     sh = scene.display.shading
     sh.light = 'STUDIO'
     sh.color_type = 'TEXTURE'

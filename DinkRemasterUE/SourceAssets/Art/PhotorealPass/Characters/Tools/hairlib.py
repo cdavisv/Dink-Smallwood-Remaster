@@ -445,7 +445,7 @@ def compose_atlas(prefix, A, B, sty, alpha_gain=1.6, cap_under=.45, under_mask=N
 class Cards:
     def __init__(s, H):
         s.H = H; s.v = []; s.f = []; s.uv = []; s.hl = []; s.hn = []; s.floor = None      # floor(p) -> height of the cap shell above the skin at p
-    def ribbon(s, pts, width, tile, layer, rng, nseg=4, across=1, lift_scale=1.0, lift_off=0.0, roll=.0, bow=.08, taper=.25, v_span=(0.0, 1.0), flipu=None, nblend=.92, t_range=(0.0, 1.0), root_ext=0.0, flare=0.0):
+    def ribbon(s, pts, width, tile, layer, rng, nseg=4, across=1, lift_scale=1.0, lift_off=0.0, roll=.0, bow=.08, taper=.25, v_span=(0.0, 1.0), flipu=None, nblend=.92, t_range=(0.0, 1.0), root_ext=0.0, flare=0.0, adapt=0.0, seg_max=.10, root_w=1.0):
         """One card along a guide polyline (root first). lift_scale flattens the guide towards the scalp (under shells)."""
         H = s.H; pts = np.asarray(pts)
         if root_ext:
@@ -455,25 +455,48 @@ class Cards:
         if Ltot < 1e-5: return
         u0, v0, u1, v1 = tile_rect(tile); base = len(s.v); flip = (rng.random() < .5) if flipu is None else flipu
         roll_a = rng.normal(0, roll) if roll else 0.0
-        for k in range(nseg + 1):
-            t = t_range[0] + (t_range[1] - t_range[0]) * k / nseg; d = t * Ltot; i = min(int(np.searchsorted(cum, d, side='right')) - 1, K - 2); i = max(i, 0)
+        tp_ = getattr(s, 't_pow', 1.0)      # > 1: shorter segments at the root. Long hair in equal segments of 9 cm cuts across the curve of the skull: in the game the maiden's head was a lattice of straight planks
+        if adapt:      # sections where the guide bends: a chord may leave the guide by `adapt` metres at most and be `seg_max` long at most (at most nseg segments; the tolerance grows until they suffice). Many short segments over the skull, few on a straight fall
+            d0_, d1_ = t_range[0] * Ltot, t_range[1] * Ltot; st = [d0_] + [float(c) for c in cum if d0_ + 2e-3 < c < d1_ - 2e-3] + [d1_]
+            def at_(d):
+                i = max(min(int(np.searchsorted(cum, d, side='right')) - 1, K - 2), 0); f = (d - cum[i]) / max(seg[i], 1e-9); return pts[i] * (1 - f) + pts[i + 1] * f
+            P_ = np.array([at_(d) for d in st]); tol, smax = adapt, seg_max
+            while True:
+                out = [0]; i = 0
+                while i < len(st) - 1:
+                    j = i + 1
+                    while j + 1 < len(st) and st[j + 1] - st[i] <= smax:
+                        c = P_[j + 1] - P_[i]; cl = max(float(np.linalg.norm(c)), 1e-9); q = P_[i + 1:j + 1] - P_[i]
+                        if float(np.linalg.norm(q - np.outer(q @ c / cl, c / cl), axis=1).max()) > tol: break
+                        j += 1
+                    out.append(j); i = j
+                if len(out) - 1 <= nseg: break
+                tol *= 1.3; smax *= 1.12
+            kns = [(st[i] - d0_) / max(d1_ - d0_, 1e-9) for i in out]
+        else:
+            kns = [(k / nseg) ** tp_ for k in range(nseg + 1)]
+        nseg = len(kns) - 1
+        for kn in kns:
+            t = t_range[0] + (t_range[1] - t_range[0]) * kn; d = t * Ltot; i = min(int(np.searchsorted(cum, d, side='right')) - 1, K - 2); i = max(i, 0)
             f = (d - cum[i]) / max(seg[i], 1e-9); p = pts[i] * (1 - f) + pts[i + 1] * f; tg = unit(pts[i + 1] - pts[i])
             loc, nrm = H.near(p); h = (p - loc) @ nrm
             if lift_scale != 1.0 or lift_off: p = loc + nrm * (max(h, 0) * lift_scale + lift_off * (.4 + .6 * t))
-            if flare: p = p + nrm * flare * (k / nseg) ** 2
+            if getattr(s, 'shade_n', None) is not None: nrm = s.shade_n(p)      # hair that hangs clear of the head (a beard): the nearest skin is the throat, whose normal looks down; the cards face and shade as the caller says
+            if flare: p = p + nrm * flare * kn ** 2
             if s.floor is not None:      # a card never dives under the cap shell
                 fl_ = s.floor(p) + .0013 + .0009 * (layer - 2); h2 = (p - loc) @ nrm
                 if h2 < fl_: p = loc + nrm * fl_
+            if getattr(s, 'card_n', None) is not None: nrm = s.card_n(p, nrm)      # the facing of a card that hangs clear of the head (long hair on the back)
             w = np.cross(nrm, tg)
             if np.linalg.norm(w) < 1e-4: w = np.cross(nrm, [0, 0, 1.0])
             w = unit(w); cn = unit(np.cross(tg, w));
             if cn @ nrm < 0: cn = -cn
             wr = w * math.cos(roll_a) + cn * math.sin(roll_a)
-            hw = width / 2 * (1 - taper * (k / nseg) ** 2)
+            hw = width / 2 * (1 - taper * kn ** 2) * (root_w + (1 - root_w) * min(1.0, kn / .25))      # root_w < 1: a card that starts narrow on the crown and widens down its first quarter
             for a in range(across + 1):
                 x = a / across * 2 - 1
                 s.v.append(p + wr * x * hw + cn * bow * width * (1 - x * x))
-                uu = (.5 + x * .485 * (-1 if flip else 1)); s.uv.append((u0 + uu * (u1 - u0), v0 + (v_span[0] + (v_span[1] - v_span[0]) * k / nseg) * (v1 - v0)))
+                uu = (.5 + x * .485 * (-1 if flip else 1)); s.uv.append((u0 + uu * (u1 - u0), v0 + (v_span[0] + (v_span[1] - v_span[0]) * kn) * (v1 - v0)))
                 s.hl.append(layer); s.hn.append(unit(nrm * nblend + cn * (1 - nblend) + wr * x * .15))
         A = across + 1
         for k in range(nseg):
