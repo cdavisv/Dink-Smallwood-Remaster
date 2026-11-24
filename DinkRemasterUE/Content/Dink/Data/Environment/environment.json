@@ -271,6 +271,16 @@
   },
   "state_swaps": [
     {
+      "note": "Screen 439 while the house burns (s1-h1-o.c: &story 3-4 sets &vision 1, which shows the fire placements and the first burn hole S439_P29): the swapped-in cottage becomes its burning mesh, the same stones with a hole eaten into the front slope of the thatch, and the burn-hole cards it models are hidden. The flames are placed effects (fire_fx rows), not this mesh. Read-only, as the vision 2 row below.",
+      "screen": 439,
+      "vision": 1,
+      "from": "/Game/Dink/Photoreal/Structures/SM_Cottage_Stonebrook_PR.SM_Cottage_Stonebrook_PR",
+      "to": "/Game/Dink/Photoreal/Structures/SM_Cottage_Stonebrook_PR_Burning.SM_Cottage_Stonebrook_PR_Burning",
+      "hide_classes": [
+        "burn_hole_decal"
+      ]
+    },
+    {
       "note": "Screen 439 after the fire (s1-h1-o.c: &story > 4 sets &vision 2, which shows the burn-hole placements): the swapped-in cottage becomes its burnt mesh and the burn-hole cards it models are hidden. Read from whether a placement gated by that vision is shown; nothing is written.",
       "screen": 439,
       "vision": 2,

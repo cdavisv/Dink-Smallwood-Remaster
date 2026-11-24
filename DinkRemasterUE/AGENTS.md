@@ -61,6 +61,13 @@ Evidence: `Docs/Verification/BloodDecals_23Nov2026/README.md` (seen in the runni
 - Dink's death: while Dink's sprite shows 436 (dinfo.c `die`), the hero mesh simulates its physics asset (ragdoll, profile `Ragdoll`) and is restored when the picture changes (load, restart). Capsule and sprite untouched. `dink.DeathFall 0` off.
 - Sprite-class ground decals (`environment.json` `decals`) that replace a card are at least the card's longer side x 1.15 (`UDinkEnvironmentSubsystem::CardDecalSquare`), centred where the picture lay; the burn holes of screens 5, 533, 536 were a fixed 120 cm against 1.0-4.0 m cards. `dink.DecalFromCard 0` restores the fixed size (for before/after captures).
 - Tests `Dink.Gore.*` (`DinkGoreParityTests.cpp`). Evidence `Docs/Verification/GoreParity_15Nov2026/`.
+## Burning state of the Stonebrook cottage (23 November 2026)
+
+- Screen 439 vision 1 swaps `SM_Cottage_Stonebrook_PR` for `SM_Cottage_Stonebrook_PR_Burning` (`environment.json` `state_swaps`): a ragged opening in the front slope where picture 154 has it (84 bundles of straw ending at unequal heights; thirty level strips read as a staircase of blocks in the game), charred rafters across it and the burnt-out room below. Flames and burn patches are effect rows of the effects stream. Seen in the running game 23 Nov 2026; evidence and limits: `Docs/Verification/BurningCottage_23Nov2026/README.md`.
+- Pitfall (cost one capture round): two branches that each add rows to `environment.json` must be MERGED into a test copy; overlaying one branch's file over the other's silently drops the other's `state_swaps` row and the swap simply does not happen (no log line).
+- Pitfall: an 'unlit void' surface of the town master (`TAG_GLASS + 30`) facing the sky is not black: glass gets full specular and the sun lights it like a panel. A hole seen from above needs real depth below it, not a dark slab under the rafters.
+- Pitfall: `scrub_private_paths.py --fix` rewrites FBX files, which makes them newer than the kit manifest; `import_town_exteriors.py` then refuses the kit ('export in progress'). `touch` the manifest after the scrub.
+
 ## The armed weapon in Dink's hand (19 November 2026, bug A203)
 
 - `Content/Dink/Data/Art/hero_weapons.json` maps the armed item's script to a mesh, hand bone and grip (the art kit's transforms); `UDinkHeroWeaponSubsystem` (DinkNarrative `DinkHeroWeapon.h`) keeps one tagged, collision-free static mesh component on the hero and re-aims it every frame from `UDinkGameplay::GetWeaponInstance`: empty for fists, a bomb, nothing armed or `&life` < 1. `dink.Hero.Weapons 0` off; `dink.Hero.GiveWeapon <item>` (review) adds and arms an item. Test `Dink.Art.HeroWeapon.RowsAndAttach`; capture `Scripts/AnimationQA/weapon_capture.py`.

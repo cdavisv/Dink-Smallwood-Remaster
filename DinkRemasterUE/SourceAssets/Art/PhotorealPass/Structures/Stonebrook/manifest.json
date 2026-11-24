@@ -66,7 +66,7 @@
    "PIVOT on SM_Cottage_Stonebrook_PR_Burnt": "the burnt door lies 3 m in front of the doorway; pivot kept at the centre of the walls"
   }
  },
- "not_done": "Family 63: two-storey (frames 4, 5) and L-shaped (frame 10) cottages, chimney sprites (frames 11-13). A burning (vision 1) state. Netting on the thatch. Nothing imported into Unreal; exterior_layout.json and families.json untouched.",
+ "not_done": "Family 63: two-storey (frames 4, 5) and L-shaped (frame 10) cottages, chimney sprites (frames 11-13). Netting on the thatch. Nothing imported into Unreal; exterior_layout.json and families.json untouched.",
  "render_dir": "sb6",
  "integration": {
   "contract": {
@@ -730,6 +730,33 @@
      0.48
     ],
     "collision_hulls": 1
+   },
+   "SM_Cottage_Stonebrook_PR_Burning": {
+    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/SM_Cottage_Stonebrook_PR_Burning.fbx",
+    "class": "building",
+    "material_slots": [
+     "MI_Struct_Fieldstone",
+     "MI_Struct_OakWeathered",
+     "MI_Struct_Thatch",
+     "MI_Town_DoorPlanks",
+     "MI_Struct_Earth"
+    ],
+    "lod_triangles": [
+     88652,
+     39892,
+     17730
+    ],
+    "bounds_min_m": [
+     -9.8,
+     -7.05,
+     0.0
+    ],
+    "bounds_max_m": [
+     9.8,
+     5.3,
+     7.951
+    ],
+    "collision_hulls": 5
    }
   }
  },
@@ -828,6 +855,52 @@
    "status": "new in round 3; two review rounds (sb4, sb5) and the final render, not three full rounds",
    "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
    "known_weaknesses": "Rafters, laths and fallen timbers are charred six-sided poles with little break-up: no alligator cracking, no burnt-through sections, laths read as a ladder. The surviving thatch ends in a ragged but clean-cut black edge, no hanging straw. Heaps of burnt thatch and ash are smooth domes. Soot is a vertex-colour layer (0.2 m): plumes above openings are soft. Walls are intact to full height (no fallen masonry, no spalled stones). The fallen door is the intact leaf blackened. No embers, smoke or glow (emitters). Collision keeps the intact walls. 63,000 triangles."
+  },
+  {
+   "name": "SM_Cottage_Stonebrook_PR_Burning",
+   "class": "building",
+   "fbx": "SM_Cottage_Stonebrook_PR_Burning.fbx",
+   "materials": [
+    "MI_Struct_Fieldstone",
+    "MI_Struct_OakWeathered",
+    "MI_Struct_Thatch",
+    "MI_Town_DoorPlanks",
+    "MI_Struct_Earth"
+   ],
+   "source_blend": "Stonebrook_Burning.blend",
+   "lod0_triangles": 88652,
+   "lod1_triangles": 39892,
+   "lod2_triangles": 17730,
+   "dimensions_m": [
+    19.6,
+    12.35,
+    7.951
+   ],
+   "bounds_min_m": [
+    -9.8,
+    -7.05,
+    0.0
+   ],
+   "bounds_max_m": [
+    9.8,
+    5.3,
+    7.951
+   ],
+   "open_edges": 0,
+   "collision_hulls": 5,
+   "families": [
+    "screen 439 burning state (vision 1) of 63 struct<HOME>"
+   ],
+   "supersedes": "reference only: StonebrookRuins/SM_Cottage_Stonebrook_Burning_01 (candidate kit, another house: half-timbered and gabled, its roof hole far smaller than the 1997 one)",
+   "dresses": "the Stonebrook cottage while it burns (screen 439 vision 1, the hole of S439_P29): the same stones, timbers and weathering as SM_Cottage_Stonebrook_PR (built from the same random stream), the roof standing with a hole eaten into the front slope from 1.25 m above the eaves up to and through the ridge, about 4.4 m wide: ragged black straw at its edge, soot a metre out, charred rafters, laths and the bared ridge pole in it, the dark of the room below; three charred patches where the other fires of the 1997 screen sit. No flame, smoke or glow in the mesh: those are placed effects.",
+   "fit": {
+    "pivot": "as SM_Cottage_Stonebrook_PR: swap in place for vision 1",
+    "collision": "as the intact cottage (roof hull kept)",
+    "effects": "fire at the 1997 fire placements of screen 439 is placed by the game; the hole centre is at x = 1.90 m on the front slope"
+   },
+   "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
+   "status": "new 16 Nov 2026 (DS-01): one Blender preview round; judged in the game before binding",
+   "known_weaknesses": "The hole is a straight-sided gap between two parts of the front slope with ragged edges, open to the ridge (the 1997 hole of S439_P29 is ringed by thatch on every side). Rafters, laths and ridge pole in it are charred six-sided poles; the room below is an unlit black sheet under the rafters, no modelled interior. The charred patches and the soot round the hole are vertex colour (0.3 m grid). No embers, flame, smoke or glow: placed effects. Walls, windows and door are those of the intact cottage (no soot on the stone)."
   },
   {
    "name": "SM_Cottage_Thatched_Small_PR",

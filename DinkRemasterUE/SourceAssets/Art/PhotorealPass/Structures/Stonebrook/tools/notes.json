@@ -127,6 +127,10 @@
   "SM_Well_ShaftCap_PR": {
    "status": "utility piece",
    "known_weaknesses": "a black disc; only for places where the ground cannot be cut"
+  },
+  "SM_Cottage_Stonebrook_PR_Burning": {
+   "status": "DS-01, rebuilt 23 Nov 2026 and seen in the game (Docs/Verification/BurningCottage_23Nov2026)",
+   "known_weaknesses": "The opening is a notch that widens up to the bared ridge pole (the 1997 hole of S439_P29 is ringed by thatch on every side); its edge is 84 bundles of straw with square ends. Rafters, laths and ridge pole are charred six-sided poles; the room below is plain charred surfaces. The soot round the opening is vertex colour and faint in the sun. No embers, flame, smoke or glow in the mesh: placed effects; the inside is black by day. Walls, windows and door are those of the intact cottage (no soot on the stone)."
   }
  },
  "validator": {
@@ -139,7 +143,7 @@
    "PIVOT on SM_Cottage_Stonebrook_PR_Burnt": "the burnt door lies 3 m in front of the doorway; pivot kept at the centre of the walls"
   }
  },
- "not_done": "Family 63: two-storey (frames 4, 5) and L-shaped (frame 10) cottages, chimney sprites (frames 11-13). A burning (vision 1) state. Netting on the thatch. Nothing imported into Unreal; exterior_layout.json and families.json untouched.",
+ "not_done": "Family 63: two-storey (frames 4, 5) and L-shaped (frame 10) cottages, chimney sprites (frames 11-13). Netting on the thatch. Nothing imported into Unreal; exterior_layout.json and families.json untouched.",
  "render_dir": "sb6",
  "integration": {
   "contract": {
@@ -808,6 +812,7 @@
  },
  "module_files": [
   "modules.json",
-  "modules_boulders.json"
+  "modules_boulders.json",
+  "modules_burning.json"
  ]
 }
