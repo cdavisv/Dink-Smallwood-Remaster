@@ -339,9 +339,19 @@
     ]
   },
   "decals": {
-    "note": "Round 6: sprite classes shown as deferred ground decals (Props/Decals, 2 x 2 atlases: one material instance per cell, picked by a stable hash of the origin). Visual only; scripted or animated placements keep their card.",
+    "note": "Round 6: sprite classes shown as deferred ground decals (Props/Decals, 2 x 2 atlases: one material instance per cell, picked by a stable hash of the origin). Visual only; scripted or animated placements keep their card. Background (instance) placements are replaced too when every instance of their decor component may be. `pictures` (Corpses/Decals): a placement whose picture frame (<sequence>_<frame>) is listed gets the decal drawn from that very 1997 picture, on the square of its own card (longer side x 1.15, UDinkEnvironmentSubsystem::CardDecalSquare) and not turned, so every drop lies where the picture had it and it never covers less ground than 1997 (the blood pictures 187 to 189; the burn sheets Burn1997 were looked at on 23 Nov 2026 and not taken: flat blots); other frames take `materials` (one cell, turned by a stable hash) on the same square. Every decal lies on the landforms' ground under its middle (DecalGroundFit).",
     "blood_splat": {
       "size_cm": 90,
+      "pictures": {
+        "187_1": "/Game/Dink/Photoreal/Corpses/MI_Decal_Blood1997A_0.MI_Decal_Blood1997A_0",
+        "187_2": "/Game/Dink/Photoreal/Corpses/MI_Decal_Blood1997A_1.MI_Decal_Blood1997A_1",
+        "187_3": "/Game/Dink/Photoreal/Corpses/MI_Decal_Blood1997A_2.MI_Decal_Blood1997A_2",
+        "188_2": "/Game/Dink/Photoreal/Corpses/MI_Decal_Blood1997A_3.MI_Decal_Blood1997A_3",
+        "188_4": "/Game/Dink/Photoreal/Corpses/MI_Decal_Blood1997B_0.MI_Decal_Blood1997B_0",
+        "189_1": "/Game/Dink/Photoreal/Corpses/MI_Decal_Blood1997B_1.MI_Decal_Blood1997B_1",
+        "189_2": "/Game/Dink/Photoreal/Corpses/MI_Decal_Blood1997B_2.MI_Decal_Blood1997B_2",
+        "189_4": "/Game/Dink/Photoreal/Corpses/MI_Decal_Blood1997B_3.MI_Decal_Blood1997B_3"
+      },
       "materials": [
         "/Game/Dink/Photoreal/Props/MI_Decal_BloodSplat_0.MI_Decal_BloodSplat_0",
         "/Game/Dink/Photoreal/Props/MI_Decal_BloodSplat_1.MI_Decal_BloodSplat_1",

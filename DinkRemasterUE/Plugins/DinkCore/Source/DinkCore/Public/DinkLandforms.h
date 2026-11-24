@@ -112,6 +112,8 @@ public:
 	const FDinkLandformsData& GetData() const { return Data; }
 	int32 NumBuilt() const { return Built.Num(); }
 
+	/** What the layer added to the height of a decor instance (LiftScreenDecor); 0 for an instance it has not lifted. */
+	float DecorLiftCm(const UInstancedStaticMeshComponent* Component, int32 InstanceIndex) const;
 	/** Tests: replaces the loaded data (switches the layer on with it when bActivate). */
 	void SetDataForTest(FDinkLandformsData&& InData, bool bActivate);
 	/** Review: every placement actor, warp and decor instance on a landforms screen against the surface (console dink.LandformsAudit). */
