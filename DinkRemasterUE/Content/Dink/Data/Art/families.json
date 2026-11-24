@@ -1602,12 +1602,20 @@
       "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 14 Nov 2026). 436 dink/die/ds-x3- frame 16, the body on screen 58 that \"sort of looks like me\" (script s7-dink: talk only, then the original shrinks it away). The hero's rig posed as dead weight at its natural size, the chest split, head and shoulders in a pool laid from the red of the picture (blood 3.13 m2 against 0.74 m2 of red in the picture); the pool is a ground card in the same mesh. scripted: the mesh follows the actor."
     },
     {
-      "family": "216 foes/dragon/f2-x7- torn dragon, turned",
+      "family": "212 foes/dragon/f2-x3- torn dragon",
       "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "yaw_offset": 180,
-      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json, 13 Nov 2026). dragon_corpse, picture 216 frame 1 (screen 158): the same remains turned half round, as the second picture is."
+      "offset_cm": {"S100_P34": [0, -170, 0]},
+      "note": "Corpse kit, dragon_corpse, picture 212 frame 1 (S100_P34 on screen 100, S238_P12 on screen 238): the remains of picture 216 turned half round, as 212 shows them (head to the right, the tail curled on the left). S100_P34 is moved 1.7 m north: at its origin the remains stood inside the south wall block of screen 100. 23 Nov 2026 (GP-Q7)."
+    },
+    {
+      "family": "216 foes/dragon/f2-x7- torn dragon, turned",
+      "mesh": "/Game/Dink/Photoreal/Corpses/SM_Dragon_Corpse_PR.SM_Dragon_Corpse_PR",
+      "fit": "none",
+      "yaw_from_sprite": true,
+      "note": "Corpse kit (PhotorealPass/Corpses/manifest.json; v4 of 23 Nov 2026). dragon_corpse, picture 216 frame 1 (screen 158): the mesh is laid out as this picture (head west, the tail curled from the east to the south, the wing lying south), so it is not turned."
     },
     {
       "family": "86 inside/details/fire-",

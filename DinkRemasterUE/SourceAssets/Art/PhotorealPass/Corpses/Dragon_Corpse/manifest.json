@@ -5,21 +5,21 @@
  "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/SM_Dragon_Corpse_PR.blend",
  "build": "Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Dragon_Corpse_PR",
  "dimensions_m": [
-  4.9,
-  4.9,
-  1.8013
+  3.1,
+  3.1,
+  0.5517
  ],
  "bounds_min_m": [
-  -2.45,
-  -2.45,
+  -1.55,
+  -1.55,
   0.0
  ],
  "bounds_max_m": [
-  2.45,
-  2.45,
-  1.8013
+  1.55,
+  1.55,
+  0.5517
  ],
- "lod0_triangles": 15293,
+ "lod0_triangles": 14015,
  "textures": [
   {
    "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Dragon_Corpse/T_Dragon_Corpse_PR_BC.png",
@@ -108,26 +108,56 @@
   "212 foes/dragon/f2-x3-",
   "216 foes/dragon/f2-x7-"
  ],
- "dresses": "the dragon torn open on its belly: the back and one flank gone, ribs, backbone and raw muscle laid bare, entrails run out on the ground, one wing torn off beside it, the other still raised, the tail arched over, flesh thrown around, all of it in a pool of its own blood with drops thrown round it",
+ "dresses": "the dragon dead on its side as picture 216 shows it: back to the north with the hide still brown and orange, the belly torn open towards the camera with ribs standing over raw muscle and entrails run out on the ground, neck and head along the ground to the west, the long tail curled round from the east to the south, one grey-green wing lying on the ground to the south, the other torn off, flesh thrown around, all of it in a pool of its own blood",
  "third_party": [
   "park_dirt (render ground)"
  ],
- "known_weaknesses": "The hide is the rigged dragon of Unclaimed/dragon (its baked LOD1) posed, pressed onto the ground and cut by rule, so the torn edges follow its triangles and the flesh behind them is one procedural muscle material: no anatomy beyond a rib cage, a backbone and three loops of gut; the raw mass is a displaced union of lumps, not modelled muscle groups. The wing panels are the flat opaque panels of the source. The pool, the drops and the mist are a flat alpha-tested card 6 mm above the ground. Built to the size of the sprite card (about 2.6 m), far smaller than the living dragon of the source (6.7 m). Static, as the sprite.",
+ "known_weaknesses": "The hide is the rigged dragon of Unclaimed/dragon (its baked LOD1) posed, laid on the ground bone by bone and cut by rule, so the torn edges follow its triangles and the flesh behind them is one procedural muscle material: no anatomy beyond a rib cage, a backbone and three loops of gut; the raw mass is a displaced union of lumps, not modelled muscle groups. The wing is the flat panel of the source; its folds are a normal map and dark creases. The second wing is simply gone. The pool, the drops and the mist are a flat alpha-tested card 2 cm above the ground. Built to the size of the sprite card (about 2.7 m; the pool card 3.1 m), far smaller than the living dragon of the source (6.7 m). Static, as the sprite.",
  "bake_stats": {
   "albedo_luma_srgb": {
    "p1": 0.0,
-   "mean": 46.9,
-   "p99": 140.4
+   "mean": 44.5,
+   "p99": 144.4
   },
   "roughness": {
    "p5": 0.0,
-   "mean": 0.359,
-   "p95": 0.555
+   "mean": 0.368,
+   "p95": 0.709
   },
   "metallic_mean": 0.0,
-  "ao_mean": 0.573
+  "ao_mean": 0.537
  },
  "derived_from": "Unclaimed/dragon/Dragon (SK_Dragon_PR, LOD1), posed, cut and baked again with the gore",
- "gore_in_mesh": "torn hide with flesh rims, carcass core, raw muscle mass, ribs, backbone, entrails, severed wing, thrown chunks; pool card with drops and mist (no companion decal)",
- "pool_card_m": 4.9
+ "gore_in_mesh": "torn hide with flesh rims, carcass core, raw muscle mass, ribs, backbone, entrails, thrown chunks; pool card with drops and mist (no companion decal)",
+ "pool_card_m": 3.1,
+ "layout": "as picture 216 (+X screen right, +Y north): the 216 row needs no turn, the 212 row turns it half round",
+ "lods": [
+  {
+   "lod": 0,
+   "triangles": 14015
+  },
+  {
+   "ratio": 0.5,
+   "big_islands": 3,
+   "kept_whole": 55,
+   "big_ratio": 0.35,
+   "slot0_moved_cm": 0.25,
+   "slot1_moved_cm": 0.0,
+   "lod": 1,
+   "triangles": 7178,
+   "outside_lod0_cm": 0.0
+  },
+  {
+   "ratio": 0.25,
+   "big_islands": 3,
+   "kept_whole": 55,
+   "big_ratio": 0.18,
+   "slot0_moved_cm": 0.25,
+   "slot1_moved_cm": 0.0,
+   "lod": 2,
+   "triangles": 5391,
+   "outside_lod0_cm": 0.0
+  }
+ ],
+ "lod_build": "Unclaimed/tools/bl.sh ../../Corpses/tools/fbx_lods.py Dragon_Corpse (after the build; no rebake)"
 }
