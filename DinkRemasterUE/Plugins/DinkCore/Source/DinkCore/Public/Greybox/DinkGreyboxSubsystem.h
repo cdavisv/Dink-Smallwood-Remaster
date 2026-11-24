@@ -57,6 +57,8 @@ public:
 	/** Teleports the pawn to a map pixel of a screen. bEvenIntoWalls (a script's load_screen): when the checked teleport refuses the spot
 	 *  (the capsule overlaps a wall), the pawn is placed there anyway, as the original places Dink wherever a script puts him. */
 	bool GotoScreen(int32 ScreenNumber, float MapX = 300.f, float MapY = 200.f, bool bEvenIntoWalls = false);
+	/** A floor the player capsule can stand on under At (world, the screen's level) (false only for a hole: A20, SCR_471's pond). */
+	bool HasFloorAt(const FVector& At, const AActor* Ignore = nullptr) const;
 
 	UFUNCTION(BlueprintPure, Category = "Dink|Greybox")
 	ADinkScreenVolume* GetCurrentScreen() const { return CurrentScreen.Get(); }

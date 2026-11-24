@@ -197,3 +197,32 @@ pixels, so it does not change.
   `Dink.PhysicalPlay.NoFallbackThroughWalls`. B) `FDinkDrawnBody::LiftCm` is the lift of the component the body came from (0 for
   flat-held authored body boxes); `CreatureReachMatches` lowers the body by it, not by the actor's lift. Not testable headless: the
   landforms are off under automation (`-DinkLandforms=1` only).
+
+## Invisible-blockage rows (23 Nov 2026, A71, A92, A94, A20, P8)
+- A71, walls (`relaxed_hardboxes.json` "trimmed", schema 2 extended): interior and dungeon wall modules (`SM_Wall_Plaster_*`,
+  `SM_Wall_Dungeon_*`, family meshes, unscripted, no warp) are drawn on one thin strip of their thick 1997 wall box: often its
+  room-side face, but door jambs, corner posts, partitions and the dungeon walls stand inside it (Dink stopped up to 2.2 m short;
+  dungeon walls of 713 5 m). Such a wall has no player-only hull (PR #129 leaves walls out); instead, with part Collision on, Dink's
+  solid collision keeps its box only inside the drawn strip, run on along the wall to the box's ends so the wall line stays closed
+  (`SyncGreyboxHardness`, `IsTrimmedForPlayer`), and `get_hard` keeps the same strip (`PlayHardness`, its `feet`). Passage rule: on the
+  1997 hardness at 3 px less the export's water and void fills (nobody walks the void round a room), every 4-connected piece of the
+  freed box cells touches at most one walkable region (a partition's two rooms stay two). The strip is measured again at each entry on
+  the wall mesh as the world stands (`MeasureWallStrip`: the module whose plan overlaps the box most, its extent across the wall; the
+  15 Nov audit's slices are 5-115 cm off today's modules); a wall with no module across its box keeps the box. The passage rule holds
+  for a strip anywhere across the box, since it always runs the box's whole length. 248 walls on 37 screens; 11 kept for the passage rule.
+  Original-hardness projection screens (34, 161, 162, 194, 196 among them) keep their wall boxes, as every relaxed box there.
+- A92, audit tiles: the tiles the dink.PhysAudit summary lists as an invisible LOW wall (`phys_mismatches.csv`, nothing drawn on at
+  least 90 % of the contact edge) open like the grass_rocky tiles, but only when every piece of hard tile pixels reaching into the tile
+  is a blob of at most 60 px (a painted rock), and with no shortcut rule (only the pocket inside a blob's own outline is excused).
+  Lines (fences, hedges, ledges, banks) and solid tiles stay for the art row PM-05: they may route the player. 96 more open tiles.
+- A94: nothing to change in play: the export's natural shorelines (AGENTS.md, 15 Nov 2026) already end the drawn water where Dink
+  stops (player-only water bands) or draw it back to the 1997 line; measured on every water screen (evidence folder) and walked in
+  `Dink.PhysicalPlay.BlockageRows`.
+- A20 (both modes, not part of the layer): `UDinkGreyboxSubsystem::GotoScreen` places a teleport whose spot has no floor at all (nothing
+  the player capsule meets from 1.5 m above the screen's level to 20 m below, and not inside anything: SCR_471's authored pond) on the
+  nearest pixel of that screen with a floor and room for the capsule. Every spot with a floor, a wall or a prism is placed as before.
+- P8 / A354: part Bodies also gives a still, class-bound body that is solid in 1997 (brain 0, `sp_hard` 0) its drawn-body box when its
+  class is listed in `physical_play.ini` `StillBodies` (today `king_on_throne`, the seated King of the ending: his 1997 box is smaller
+  than the drawn King and throne). Not every still body: a cut-scene body elsewhere must not stand in Dink's way.
+- Test `Dink.PhysicalPlay.BlockageRows` (PIE, real world): A20, A71 (four walls, layer off and on), A92 (two rocks), A94 (four shores),
+  P8, and measurements for A93 (walk mask against the 1997 hardness), A62 and A61 (camera). Python: `Scripts/tests/test_make_relaxed_hardboxes.py`.

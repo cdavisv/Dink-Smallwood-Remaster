@@ -2982,8 +2982,10 @@ void UDinkGameplay::SyncGreyboxHardness(int32 Screen)
 	{
 		const bool bWas = FDinkHardnessMap::IsSolidCode(Base[i]);
 		// physical play layer: a relaxed box is left to its drawn mesh's player-only blocker, an open tile's painted boulder to nothing
-		const bool bNow = FDinkHardnessMap::IsSolidCode(Now[i]) && !IsWalkThroughByProp(Screen, Now[i]) && !IsRelaxedForPlayer(Screen, Now[i]) &&
-			(Now[i] > 100 || PlayHardness(Screen, i % FDinkHardnessMap::Width, i / FDinkHardnessMap::Width, Now[i]) != 0);
+		// (A71: a trimmed wall keeps its box inside its drawn strip, PlayHardness)
+		const bool bTrimmed = IsTrimmedForPlayer(Screen, Now[i]);
+		const bool bNow = FDinkHardnessMap::IsSolidCode(Now[i]) && !IsWalkThroughByProp(Screen, Now[i]) && (bTrimmed || !IsRelaxedForPlayer(Screen, Now[i])) &&
+			((Now[i] > 100 && !bTrimmed) || PlayHardness(Screen, i % FDinkHardnessMap::Width, i / FDinkHardnessMap::Width, Now[i]) != 0);
 		if (bWas != bNow)
 		{
 			Changes[i] = bNow ? 1 : 2;

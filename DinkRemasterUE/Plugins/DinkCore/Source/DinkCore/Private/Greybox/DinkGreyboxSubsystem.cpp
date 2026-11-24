@@ -116,7 +116,34 @@ bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float Map
 	{
 		HalfHeight = Capsule->GetScaledCapsuleHalfHeight();
 	}
-	const FVector Target = Screen->MapPixelToWorld(MapX, MapY) + FVector(0.0, 0.0, HalfHeight + 2.0);
+	FVector Target = Screen->MapPixelToWorld(MapX, MapY) + FVector(0.0, 0.0, HalfHeight + 2.0);
+	// A20 (23 Nov 2026): a spot with no floor under it (SCR_471's authored pond, drawn where 1997 has meadow: the authored land has a
+	// hole there and the water has no collision) let a teleport fall without end. Such a spot takes the nearest pixel of the same
+	// screen that has a floor at the screen's level; a spot with a floor is placed as before.
+	if (!HasFloorAt(Screen->MapPixelToWorld(MapX, MapY), Pawn))
+	{
+		bool bFound = false;
+		for (int32 R = 4; R <= 240 && !bFound; R += 4)
+		{
+			for (int32 K = 0; K < 32 && !bFound; ++K)
+			{
+				const double A = K * UE_TWO_PI / 32.0;
+				const float X = MapX + R * FMath::Cos(A), Y = MapY + R * FMath::Sin(A);
+				if (X < 0.f || Y < 0.f || X > 599.f || Y > 399.f) continue;
+				const FVector At = Screen->MapPixelToWorld(X, Y);
+				// a floor within 1.5 m of the screen's level and room for the capsule on it
+				FHitResult Floor;
+				FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkGotoFloor), true, Pawn);
+				const UCapsuleComponent* Capsule = Pawn->FindComponentByClass<UCapsuleComponent>();
+				if (!GetWorld()->LineTraceSingleByChannel(Floor, At + FVector(0.0, 0.0, 150.0), At - FVector(0.0, 0.0, 150.0), ECC_Pawn, Params) ||
+					(Capsule && GetWorld()->OverlapBlockingTestByChannel(Floor.ImpactPoint + FVector(0.0, 0.0, HalfHeight + 2.0), FQuat::Identity, ECC_Pawn,
+						Capsule->GetCollisionShape(), Params))) continue;
+				UE_LOG(LogDink, Log, TEXT("dink.Goto: SCR_%03d %.0f,%.0f has no floor (A20); placed at %.0f,%.0f"), ScreenNumber, MapX, MapY, X, Y);
+				Target = At + FVector(0.0, 0.0, HalfHeight + 2.0);
+				bFound = true;
+			}
+		}
+	}
 	// landforms (a visual layer): the capsule lands on the 1997 floor as always; have the drawn ground there before it arrives
 	if (UDinkLandformsSubsystem* Landforms = GetWorld()->GetSubsystem<UDinkLandformsSubsystem>())
 	{
@@ -131,6 +158,18 @@ bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float Map
 	// bottom wall row): the pawn stayed on the old screen and the script's scene played on the wrong one. Placed without the check.
 	UE_LOG(LogDink, Log, TEXT("dink.Goto: SCR_%03d %.0f,%.0f overlaps a wall; placed there unchecked"), ScreenNumber, MapX, MapY);
 	return Pawn->TeleportTo(Target, Pawn->GetActorRotation(), false, true);
+}
+
+bool UDinkGreyboxSubsystem::HasFloorAt(const FVector& At, const AActor* Ignore) const
+{
+	// Only a real hole counts as no floor: nothing the player capsule meets (Pawn channel) from 1.5 m above the screen's level to 20 m
+	// below it, and the spot is not inside anything (a wall's prism, the low collision). Every other spot is placed as before.
+	UWorld* World = GetWorld();
+	if (!World) return true;
+	FHitResult Hit;
+	FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkGotoFloor), true, Ignore);
+	if (World->LineTraceSingleByChannel(Hit, At + FVector(0.0, 0.0, 150.0), At - FVector(0.0, 0.0, 2000.0), ECC_Pawn, Params)) return true;
+	return World->OverlapBlockingTestByChannel(At + FVector(0.0, 0.0, 50.0), FQuat::Identity, ECC_Pawn, FCollisionShape::MakeSphere(10.f), Params);
 }
 
 void UDinkGreyboxSubsystem::SetSpriteWarpOn(const FString& WarpId, bool bOn)
