@@ -4,6 +4,8 @@ The owner stopped work for the week on 23 Nov 2026 and asked for this list so Op
 Code, merges, probe and tests are Opus work. Art design is Fable 5.2 only (owner rule); the art coordinator
 is a separate session (e8f64224) and owns the art PRs.
 
+The art coordinator's list, `doc/remaster/OPUS_TAKEOVER_23NOV2026.md` (#239), is the companion to this one. Its section A (thirteen code items raised by the art streams) and section B (mechanical finishing of art work in progress) are Opus work too: do this file's list first, then A, then B. Under B an Opus agent never judges art or merges an art PR on its own; it ends each item with a contact sheet of frames for Fable.
+
 Read before starting: `AGENTS.md`, `doc/remaster/ALPHA_BUG_LIST.md`, `doc/remaster/PHYSICAL_PLAY_LAYER.md`,
 `doc/remaster/WORLD_SCALE.md`, and the Master log `DinkRemasterUE/Saved/Gate2Coord/COMMON_RULES.md`
 (local, not in git). Each stream's notes are under `~/Work/Restart16Nov/<stream>/NOTES.md`.
