@@ -634,6 +634,8 @@
     {
       "family": "chest_small",
       "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "yaw_offset": 40,
+      "anchor": "hardbox",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
@@ -645,199 +647,247 @@
       "family": "175 bonuses/chest/chst1-",
       "frame": 1,
       "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "yaw_offset": 40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst1- frame 1: lid still down. See chest_small."
+      "note": "chst1- frame 1: See chest_small. 17 Nov 2026 (art-fx-2): frame 1 = the lid down; the chest stands with its front to the south-west as the 1997 pictures of 175 show it. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "175 bonuses/chest/chst1-",
       "frame": 2,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid013_PR.SM_Chest_Small_Lid013_PR",
+      "yaw_offset": 40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst1- frame 2: lid still down. See chest_small."
+      "note": "chst1- frame 2: See chest_small. 17 Nov 2026 (art-fx-2): frame 2 = the lid at 13 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-west as the 1997 pictures of 175 show it. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "175 bonuses/chest/chst1-",
       "frame": 3,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid044_PR.SM_Chest_Small_Lid044_PR",
+      "yaw_offset": 40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst1- frame 3: lid up. See chest_small."
+      "note": "chst1- frame 3: See chest_small. 17 Nov 2026 (art-fx-2): frame 3 = the lid at 44 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-west as the 1997 pictures of 175 show it. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "175 bonuses/chest/chst1-",
       "frame": 4,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid074_PR.SM_Chest_Small_Lid074_PR",
+      "yaw_offset": 40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst1- frame 4: lid up. See chest_small."
+      "note": "chst1- frame 4: See chest_small. 17 Nov 2026 (art-fx-2): frame 4 = the lid at 74 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-west as the 1997 pictures of 175 show it. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "175 bonuses/chest/chst1-",
       "frame": 5,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid096_PR.SM_Chest_Small_Lid096_PR",
+      "yaw_offset": 40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst1- frame 5: lid up. See chest_small."
+      "note": "chst1- frame 5: See chest_small. 17 Nov 2026 (art-fx-2): frame 5 = the lid at 96 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-west as the 1997 pictures of 175 show it. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "175 bonuses/chest/chst1-",
       "frame": 6,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid110_PR.SM_Chest_Small_Lid110_PR",
+      "yaw_offset": 40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst1- frame 6: lid up. See chest_small."
+      "note": "chst1- frame 6: See chest_small. 17 Nov 2026 (art-fx-2): frame 6 = the lid at 110 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-west as the 1997 pictures of 175 show it. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "176 bonuses/chest/chst2-",
       "frame": 1,
       "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst2- frame 1: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid down. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+      "note": "chst2- frame 1: the chest seen from the front (44 px wide: the same chest as 175, not a larger one). The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026. 17 Nov 2026 (art-fx-2): frame 1 = the lid down; the chest stands with front on, as 176. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "176 bonuses/chest/chst2-",
       "frame": 2,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid013_PR.SM_Chest_Small_Lid013_PR",
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst2- frame 2: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid down. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+      "note": "chst2- frame 2: the chest seen from the front (44 px wide: the same chest as 175, not a larger one). The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026. 17 Nov 2026 (art-fx-2): frame 2 = the lid at 13 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with front on, as 176. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "176 bonuses/chest/chst2-",
       "frame": 3,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid044_PR.SM_Chest_Small_Lid044_PR",
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst2- frame 3: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid up. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+      "note": "chst2- frame 3: the chest seen from the front (44 px wide: the same chest as 175, not a larger one). The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026. 17 Nov 2026 (art-fx-2): frame 3 = the lid at 44 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with front on, as 176. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "176 bonuses/chest/chst2-",
       "frame": 4,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid074_PR.SM_Chest_Small_Lid074_PR",
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst2- frame 4: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid up. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+      "note": "chst2- frame 4: the chest seen from the front (44 px wide: the same chest as 175, not a larger one). The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026. 17 Nov 2026 (art-fx-2): frame 4 = the lid at 74 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with front on, as 176. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "176 bonuses/chest/chst2-",
       "frame": 5,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid096_PR.SM_Chest_Small_Lid096_PR",
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst2- frame 5: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid up. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+      "note": "chst2- frame 5: the chest seen from the front (44 px wide: the same chest as 175, not a larger one). The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026. 17 Nov 2026 (art-fx-2): frame 5 = the lid at 96 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with front on, as 176. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "176 bonuses/chest/chst2-",
       "frame": 6,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid110_PR.SM_Chest_Small_Lid110_PR",
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst2- frame 6: the chest seen from the front (44 px wide: the same chest as 175, not a larger one), lid up. The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026."
+      "note": "chst2- frame 6: the chest seen from the front (44 px wide: the same chest as 175, not a larger one). The class table calls it chest_medium; S026_P06 (ch2-500) and S284_P04 (ch2-gh). Fable stream art-fx-props, 16 Nov 2026. 17 Nov 2026 (art-fx-2): frame 6 = the lid at 110 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with front on, as 176. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "177 bonuses/chest/chst3-",
       "frame": 1,
       "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "yaw_offset": -40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst3- frame 1: the chest turned the other way (59 px wide with its shadow), lid down. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+      "note": "chst3- frame 1: the chest turned the other way (59 px wide with its shadow). Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6). 17 Nov 2026 (art-fx-2): frame 1 = the lid down; the chest stands with its front to the south-east, as 177. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "177 bonuses/chest/chst3-",
       "frame": 2,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid013_PR.SM_Chest_Small_Lid013_PR",
+      "yaw_offset": -40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst3- frame 2: the chest turned the other way (59 px wide with its shadow), lid down. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+      "note": "chst3- frame 2: the chest turned the other way (59 px wide with its shadow). Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6). 17 Nov 2026 (art-fx-2): frame 2 = the lid at 13 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-east, as 177. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "177 bonuses/chest/chst3-",
       "frame": 3,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid044_PR.SM_Chest_Small_Lid044_PR",
+      "yaw_offset": -40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst3- frame 3: the chest turned the other way (59 px wide with its shadow), lid up. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+      "note": "chst3- frame 3: the chest turned the other way (59 px wide with its shadow). Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6). 17 Nov 2026 (art-fx-2): frame 3 = the lid at 44 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-east, as 177. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "177 bonuses/chest/chst3-",
       "frame": 4,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid074_PR.SM_Chest_Small_Lid074_PR",
+      "yaw_offset": -40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst3- frame 4: the chest turned the other way (59 px wide with its shadow), lid up. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+      "note": "chst3- frame 4: the chest turned the other way (59 px wide with its shadow). Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6). 17 Nov 2026 (art-fx-2): frame 4 = the lid at 74 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-east, as 177. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "177 bonuses/chest/chst3-",
       "frame": 5,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid096_PR.SM_Chest_Small_Lid096_PR",
+      "yaw_offset": -40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst3- frame 5: the chest turned the other way (59 px wide with its shadow), lid up. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+      "note": "chst3- frame 5: the chest turned the other way (59 px wide with its shadow). Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6). 17 Nov 2026 (art-fx-2): frame 5 = the lid at 96 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-east, as 177. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "177 bonuses/chest/chst3-",
       "frame": 6,
-      "mesh": "/Game/Dink/Photoreal/Props/SM_Chest_Small_Open_PR.SM_Chest_Small_Open_PR",
+      "mesh": "/Game/Dink/Photoreal/FableF/SM_Chest_Small_Lid110_PR.SM_Chest_Small_Lid110_PR",
+      "yaw_offset": -40,
+      "anchor": "hardbox",
+      "stands_as": "/Game/Dink/Photoreal/Props/SM_Chest_Small_PR.SM_Chest_Small_PR",
       "fit": "none",
       "yaw_from_sprite": true,
       "scripted": true,
       "anchor_front": 1.0,
       "scale": 1.25,
-      "note": "chst3- frame 6: the chest turned the other way (59 px wide with its shadow), lid up. Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6)."
+      "note": "chst3- frame 6: the chest turned the other way (59 px wide with its shadow). Class chest_large: S098_P07 (ch3-h), S536_P31 (ch1-ap); also the picture ch2-500 opens the 176 chest with (editor_seq 177, frame 6). 17 Nov 2026 (art-fx-2): frame 6 = the lid at 110 degrees (FableF/chest_states, the Props chest with its lid turned on the hinges; \"stands_as\" keeps it where the closed chest stands and turned as it, whatever picture the script plays); the chest stands with its front to the south-east, as 177. Every state stands on the 1997 hardbox (\"anchor\"), not on the middle of a picture that includes the shadow."
     },
     {
       "family": "jar_vase",
@@ -1574,12 +1624,11 @@
       "family": "fountain_spray_fx",
       "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Fountain_Spray.MI_FX_Fountain_Spray",
       "effect_placed": true,
-      "effect_fit": [0.64, 0.5],
-      "effect_sink": 0.045,
-      "offset_cm": {"S586_P14": [0, 95, 128], "S260_P30": [0, 95, 128]},
+      "effect_fit": [0.714, 0.75],
+      "offset_cm": {"S586_P14": [0, 210, 33], "S260_P30": [0, 95, 33]},
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "94 lands/garden/spray-: the fountain's water (S586_P14 KernSin, S260_P30). Fable stream art-fx-props, 16 Nov 2026 (art row VS-11), on the placed-effect path: the sprite's card shows a looping translucent flipbook (FableF/fountain_spray_fx/Fountain_Spray, tools/build_fountain_spray.py: a jet 1 m high that breaks into 520 drops on ballistic arcs, 8 x 8 frames of 256 px). The spray fills 0.64 x 0.5 of the frame from its foot. offset_cm: the card stood on the ground 0.9 m behind the fountain mesh; it now rises from the bowl. No rings on the water and no wet stone yet."
+      "note": "94 lands/garden/spray-: the fountain's water (S586_P14 KernSin, S260_P30) on the placed-effect path. Since 17 Nov 2026 (Fable stream art-fx-2) the 1997 dome: water thrown from the bowl all round into the basin, 2.2 m across, blue-white, on a LIT flipbook (kit row \"blend\": \"lit\" -> M_FX_Flipbook_Lit: the scene's light, so it is bright by day and dim in the dungeon of 260). The frame is 2.8 m square (effect_fit maps the 2.0 x 2.1 m sprite card to it), the bowl's rim 0.95 m above its bottom edge: offset_cm lifts that onto the rim of SM_Fountain_Stone_PR (1.2 m) and moves the card south onto the fountain's middle. The two fountains do not stand alike on their placement points: on 586 (seen in the game on 23 Nov 2026: the spray stood 1.15 m north of the bowl) the card goes 2.10 m south, on 260 0.95 m."
     },
     {
       "family": "fire_fx",

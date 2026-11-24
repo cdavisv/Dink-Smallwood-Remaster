@@ -2,7 +2,7 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF",
  "generated_by": "FableF/tools/make_kit_manifest.py (do not edit by hand)",
- "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 7 effect flipbooks, 5 static meshes.",
+ "summary": "Gate 2 families outside every work packet (Fable stream F, 15 Nov 2026): 7 effect flipbooks, 10 static meshes.",
  "assets": [
   {
    "name": "SM_Door_Barred_PR",
@@ -22,6 +22,106 @@
     "428 inside/stairs/stair- frame 5"
    ],
    "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred"
+  },
+  {
+   "name": "SM_Chest_Small_Lid013_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid013/SM_Chest_Small_Lid013_PR.fbx",
+   "materials": [
+    "MI_Chest_Small_Open"
+   ],
+   "dimensions_m": [
+    0.94,
+    0.529,
+    0.589
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "175 bonuses/chest/chst1- frame 2",
+    "176 bonuses/chest/chst2- frame 2",
+    "177 bonuses/chest/chst3- frame 2"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid013"
+  },
+  {
+   "name": "SM_Chest_Small_Lid044_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid044/SM_Chest_Small_Lid044_PR.fbx",
+   "materials": [
+    "MI_Chest_Small_Open"
+   ],
+   "dimensions_m": [
+    0.94,
+    0.534,
+    0.744
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "175 bonuses/chest/chst1- frame 3",
+    "176 bonuses/chest/chst2- frame 3",
+    "177 bonuses/chest/chst3- frame 3"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid044"
+  },
+  {
+   "name": "SM_Chest_Small_Lid074_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid074/SM_Chest_Small_Lid074_PR.fbx",
+   "materials": [
+    "MI_Chest_Small_Open"
+   ],
+   "dimensions_m": [
+    0.94,
+    0.619,
+    0.869
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "175 bonuses/chest/chst1- frame 4",
+    "176 bonuses/chest/chst2- frame 4",
+    "177 bonuses/chest/chst3- frame 4"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid074"
+  },
+  {
+   "name": "SM_Chest_Small_Lid096_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid096/SM_Chest_Small_Lid096_PR.fbx",
+   "materials": [
+    "MI_Chest_Small_Open"
+   ],
+   "dimensions_m": [
+    0.94,
+    0.714,
+    0.885
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "175 bonuses/chest/chst1- frame 5",
+    "176 bonuses/chest/chst2- frame 5",
+    "177 bonuses/chest/chst3- frame 5"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid096"
+  },
+  {
+   "name": "SM_Chest_Small_Lid110_PR",
+   "class": "prop",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid110/SM_Chest_Small_Lid110_PR.fbx",
+   "materials": [
+    "MI_Chest_Small_Open"
+   ],
+   "dimensions_m": [
+    0.94,
+    0.781,
+    0.871
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "175 bonuses/chest/chst1- frame 6",
+    "176 bonuses/chest/chst2- frame 6",
+    "177 bonuses/chest/chst3- frame 6"
+   ],
+   "folder": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/Chest_Small_Lid110"
   },
   {
    "name": "SM_Stair_Flight_L_PR",
@@ -134,12 +234,7 @@
     "fountain_spray_fx",
     "94 lands/garden/spray-"
    ],
-   "blend": "translucent",
-   "hot": [
-    0.98,
-    1.0,
-    1.0
-   ]
+   "blend": "lit"
   },
   {
    "name": "Hearth",
@@ -255,6 +350,15 @@
      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/T_Door_Barred_PR_BC.png",
      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/T_Door_Barred_PR_N.png",
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/cellar_hatch/Door_Barred/T_Door_Barred_PR_ORM.png"
+    }
+   },
+   "MI_Chest_Small_Open": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "N": "/Game/Dink/Photoreal/Props/Textures/T_Chest_Small_PR_N",
+     "ORM": "/Game/Dink/Photoreal/Props/Textures/T_Chest_Small_PR_ORM",
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/chest_states/T_Chest_Open_PR_BC.png"
     }
    },
    "MI_Stair_Flight_L_PR": {
