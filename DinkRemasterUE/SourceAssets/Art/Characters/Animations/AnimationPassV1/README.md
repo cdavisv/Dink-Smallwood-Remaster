@@ -6,6 +6,28 @@ Thirty clips for the shared 89-bone rig (Dink, Mother, Milder): locomotion, idle
 
 The motion is original project work (procedural keyframes: analytic two-bone IK, heel/flat/ball foot roll, pelvis and spine rotation). No motion capture and no third-party animation is used. The rig is the project's existing Epic-compatible skeleton; the preview meshes are the project's existing characters.
 
+## Hero mannerisms (clips of 13 Nov 2026; played in the game by the mannerism runtime since 23 Nov 2026)
+
+`Tools/clips_mannerisms.py` adds fifteen clips for the hero's growth arc (strips in `Strips/hero_manner/`):
+
+| Clip | What it is |
+|---|---|
+| `Posture_Timid`, `Posture_Confident` | ADDITIVE poses: each bone's rotation away from the rest pose. The runtime applies them in the bone's own frame over whatever is playing, mixed by confidence (`Preview_Posture` shows 0, 0.25, 0.5, 0.75, 1 on the stand). Timid: rounded upper back, neck and head forward and down, shoulders in and up, arms turned in, slack elbows, pigeon toes. Confident: chest lifted, shoulders back, chin level. |
+| `RunArms_Timid` | Additive: elbows out and forearms dangling, shown only while an unsure Dink runs. |
+| `Trip_Walk`, `Trip_Run` | A toe catch (upper body over the walking legs): lurch, arms out, and at a walk a look back at the ground. |
+| `Jump_Timid` | The flailing hop; mixed by confidence with the motion-capture jump. |
+| `Botch_Stagger`, `Botch_Faceplant` | Botched landings: two lunging catch steps, or flat on his face, a beat, up again and the dirt slapped off. The feet end where they began. |
+| `Fidget_Scratch`, `Fidget_Scuff`, `Fidget_Nose`, `Fidget_Proud` | Standing about: a scratch of the backside, a toe ground into the dirt with a hand at the neck, the nose wiped on a sleeve; the hero squares his shoulders and looks over the land. |
+| `Sword_Slash_1_Timid`, `Sword_Slash_2_Timid`, `Sword_Chop_Timid` | The three cuts over-swung: contact still at 0.175 s, then the blade carries him round and he catches himself. Paired with the plain `Sword_*` clips by confidence. |
+
+Build only these with `--only` (a full `--export` would rewrite every FBX and its hash):
+
+```
+ALSOFT_DRIVERS=null blender -b -t 4 --python SourceAssets/Art/Characters/Animations/AnimationPassV1/Tools/build.py -- --export --strips --tag manner --only Posture_Timid,Posture_Confident,RunArms_Timid,Trip_Walk,Trip_Run,Jump_Timid,Botch_Stagger,Botch_Faceplant,Fidget_Scratch,Fidget_Scuff,Fidget_Nose,Fidget_Proud,Sword_Slash_1_Timid,Sword_Slash_2_Timid,Sword_Chop_Timid,Preview_Posture
+```
+
+`Preview_*` names are review strips and are never exported. `Preview_<clip>_C0` shows an action clip under the timid stoop as the game mixes it at confidence 0 (the sword cuts keep 0.4 of it): the fidgets, botches and trips are authored for that sum (`Fidget_Scuff`: its own nod is 9 degrees, not 30).
+
 ## Rebuild
 
 From `DinkRemasterUE/`:
