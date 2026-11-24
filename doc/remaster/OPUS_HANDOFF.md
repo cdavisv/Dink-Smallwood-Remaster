@@ -51,7 +51,7 @@ Read before starting: `AGENTS.md`, `doc/remaster/ALPHA_BUG_LIST.md`, `doc/remast
    - Why a re-baseline: the md5 change comes from sub-pixel readback rounding of Dink's position, not from the
      rules (WORLD_SCALE.md s13, on branch `world-scale/option-b`).
    - Option B (one ratio for every kind) was tested and rejected.
-   - Agent world-scale-4, branch `world-scale/enable` (draft PR if pushed); notes in `~/Work/Restart16Nov/world-scale-4/`.
+   - Draft PR #238, branch `world-scale/enable` (head 43fcf5f08); restart guide `~/Work/Restart16Nov/world-scale-4/NOTES.md`. Proposed ch8 fix (written up, not coded): accept the existing "only idle scripts left" check when the gold target is already met (the Terris healer script waits forever).
    - Done: switch on, import, PhysAudit, relaxed hardbox list (506 boxes on 262 screens).
    - Left:
      - bot stops;
