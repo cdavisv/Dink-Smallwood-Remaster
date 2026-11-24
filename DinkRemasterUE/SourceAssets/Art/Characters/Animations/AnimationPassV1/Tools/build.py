@@ -188,7 +188,7 @@ def render_strip(scene, arm, clip, cam, ticks, marks, out, every, label):
     frames = list(range(0, n, every))
     tmp = Path(bpy.app.tempdir) / ('strip_' + clip['name'])
     tmp.mkdir(parents=True, exist_ok=True)
-    views = {'side': (Vector((6, -0.15, 0.93)), (math.radians(90), 0, math.radians(90)), 2.25, (225, 275)),
+    views = {'side': (Vector((6, -0.15 - clip.get('view_forward', 0.0), 0.93)), (math.radians(90), 0, math.radians(90)), 2.25, (225, 275)),
              'front': (Vector((0, -6, 0.93)), (math.radians(90), 0, 0), 2.25, (190, 275))}
     if clip.get('family') == 'hero_death':     # he ends lying in front of the root: a wider side view and one from above
         views = {'side': (Vector((6, -0.85, 0.93)), (math.radians(90), 0, math.radians(90)), 3.5, (350, 275)),
@@ -282,6 +282,8 @@ def main():
             'schema': 'dink-animation-pass/1', 'skeleton_from_mesh': '/Game/Dink/Hero/SK_Dink.SK_Dink',
             'content_folder': '/Game/Dink/Hero/Animations/Pass1', 'clips': {}}
         for name, clip in library.items():
+            if name.startswith('Preview_'):
+                continue
             fbx = ROOT / 'Export' / ('A_' + name + '.fbx')
             export_fbx(scene, arm, clip, fbx)
             manifest['clips'][name] = dict(report[name], fbx='Export/' + fbx.name, asset_name='AN_' + name,
