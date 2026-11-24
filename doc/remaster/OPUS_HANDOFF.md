@@ -37,16 +37,14 @@ Read before starting: `AGENTS.md`, `doc/remaster/ALPHA_BUG_LIST.md`, `doc/remast
 
 ## Task list, in order
 
-1. **Merge PR #233 (invisible blockages: A71 interior walls, A92 painted rocks, A20 pond teleport, A354 King's body).**
-   - Every gate passed except the layer-on chained probe (19/20: ch20 Seth bow duel).
-   - Agent blockages-6 had a fix giving layer-on 20/20 and was running the last gates at the stop.
-   - Read `~/Work/Restart16Nov/blockages-6/NOTES.md`, confirm every gate on the pushed head, then merge.
-   - Then look at its rendered frames in `~/Work/Restart16Nov/blockages-5/render/`:
-     - the walls, rocks and King walks;
-     - the A94 shore walks;
-     - the A62/A61/A354 camera.
-   - Move those `RENDER_PENDING.md` lines to Done.
-   - Propose (don't ship) an A62 camera change if the frames need one.
+1. **DONE 23 Nov: PR #233 merged (014386a90).** The ch20 failure was the probe bot: with the layer on it picked
+   "Increase Magic" at the ch8 level-up, so Dink had strength 29 and full-draw arrows did 25 against Seth's defense 25.
+   The fix answers "Increase Attack" in layer-on runs only. Gates: layer-on chained 20/20, layer-off 20/20 md5 = A41,
+   full suite 409/409. Rendered frames: A71, A92, A94 hold. Left from it:
+   - **A62 camera is real and worse than reported**: the camera sits in Dink's hair across his whole house (the roof
+     seems to shorten the arm). Proposal, not shipped: `~/Work/Restart16Nov/blockages-6/A62_camera_proposal.md`.
+   - The SCR_713 and King (SCR_70) walks were inconclusive; the King's ending itself has not been played on screen.
+   - The copy `DinkRemasterUE/Saved/Blockages6` (23 GB) can be deleted.
 2. **Turn the enlarged world on** (owner decision 23 Nov: "Yes, approved ratios").
    - This is option A: the approved per-kind ratios, ONE deliberate re-baseline of the md5 table, and a bot re-tune
      at ch8 step 1 (layer off) and ch12 step 3 (layer on, two dragons on SCR_419). The 1997 rules stay unchanged.
@@ -58,7 +56,7 @@ Read before starting: `AGENTS.md`, `doc/remaster/ALPHA_BUG_LIST.md`, `doc/remast
    - Left:
      - bot stops;
      - full gates;
-     - the new md5 table, taken AFTER #233 merges, from two identical runs and documented in `packaged_probe.md`;
+     - the new md5 table, taken on a master that includes #233 (014386a90 or later), from two identical runs and documented in `packaged_probe.md`;
      - rendered before/after captures and `dink.WalkAudit`.
 3. **Packaged probe run on the newest master.** It has never run. `package.sh` refuses while any other
    UnrealEditor-Cmd runs.
