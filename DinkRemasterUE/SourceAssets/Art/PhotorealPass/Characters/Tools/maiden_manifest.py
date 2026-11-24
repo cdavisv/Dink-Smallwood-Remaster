@@ -9,8 +9,10 @@ npc_variants.py) are copies of her.
     blender -b -t 4 --python dink_05b_skin.py -- <abs>/NPC/Maiden/cfg/skin.json
     blender -b -t 4 --python hair_groom.py -- Maiden atlas,save m1
     blender -b -t 4 --python dink_06_assemble.py -- <abs>/NPC/Maiden/cfg/assemble.json
+    blender -b -t 4 --python char_07_build.py -- NPC/Maiden Matron 0                    no build: combs the neckline skin (cfg skin_relax)
     blender -b -t 4 <Characters>/NPC/Maiden/SK_Maiden_Photoreal.blend --python export_char.py -- <abs>/NPC/Maiden/Export <abs>/NPC/Maiden/export_report.json character_humanoid
-    python3 -I maiden_manifest.py"""
+    python3 -I maiden_manifest.py
+    blender -b -t 4 --python maiden_trim.py ; python3 -I npc_variants.py              the twins' dress maps with the white trim"""
 import json
 from pathlib import Path
 
@@ -43,9 +45,9 @@ manifest = {
     'what': 'the young woman of the 1997 pictures 221-259 (people/maiden): base of the colour twins MaidenBlue, MaidenBrown and MaidenRed',
     'validation': rep['validation'], 'validator_findings': rep['findings'],
     'known_weaknesses': [
-        'The body and the dress are the Mother\'s (without her stout build): the 1997 maiden has a white collar and cuffs and a fuller skirt.',
+        'The body and the dress are the Mother\'s (without her stout build); the white sleeve bands, the pale neckline edge and the skirt stripes of the 1997 maiden are painted on the twins\' dress maps (maiden_trim.py), not sewn; the 1997 skirt is fuller.',
         'The long hair is cards skinned to the head, the neck and the back by surface transfer: it does not swing, and a deep bow or a raised arm passes through it.',
-        'The face is the Mother\'s head stage with a younger face shape and skin; no likeness of her own.',
+        'The face is sculpted with the kit\'s face operations on the Mother\'s base head (cfg/head.json): a young woman of no particular likeness.',
     ],
 }
 (HERE / 'manifest.json').write_text(json.dumps(manifest, indent=1) + '\n')

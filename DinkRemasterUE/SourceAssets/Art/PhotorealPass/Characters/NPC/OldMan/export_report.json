@@ -4,53 +4,98 @@
   "assets": 1,
   "assets_passed": 0,
   "errors": 1,
-  "warnings": 7
+  "warnings": 16
  },
  "findings": [
   [
    "warning",
-   "TRIS_OVER_TARGET",
-   "LOD0 has 28578 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "NON_MANIFOLD",
+   "12256 non-manifold edges (12256 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "850 non-manifold edges (850 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "12230 non-manifold edges (12230 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "768 non-manifold edges (768 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 2 loose (wire) edges"
+   "11119 non-manifold edges (11119 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "607 non-manifold edges (605 open boundary, 0 >2 faces, 2 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 7 loose (wire) edges"
-  ],
-  [
-   "warning",
-   "NON_MANIFOLD",
-   "452 non-manifold edges (445 open boundary, 0 >2 faces, 7 wire); acceptable for character_humanoid only if intentional (cards)"
+   "8376 non-manifold edges (8376 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (12.8 % of UV area, 5157 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (307.3 % of UV area, 3778 triangles); class character_hero needs unique UVs"
+  ],
+  [
+   "warning",
+   "UV_DEGENERATE",
+   "216 triangles are collapsed in UV space"
   ],
   [
    "info",
    "UV_OVERLAP",
    "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_OldMan_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ]
  ],
  "normals": [
@@ -74,29 +119,29 @@
  "lods": [
   {
    "mesh": "SK_OldMan_Photoreal_LOD0",
-   "triangles": 28578,
-   "vertices": 14734,
+   "triangles": 31032,
+   "vertices": 23088,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_OldMan_Photoreal_LOD1",
-   "triangles": 14288,
-   "vertices": 7548,
+   "triangles": 20880,
+   "vertices": 17999,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_OldMan_Photoreal_LOD2",
-   "triangles": 7143,
-   "vertices": 3896,
+   "triangles": 16091,
+   "vertices": 14876,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_OldMan_Photoreal_LOD3",
-   "triangles": 3429,
-   "vertices": 1964,
+   "triangles": 11830,
+   "vertices": 11036,
    "max_influences": 4,
    "unweighted": 0
   }
@@ -194,43 +239,51 @@
  ],
  "bone_count": 89,
  "dimensions_m": [
-  1.0731709003448486,
+  1.100469946861267,
   0.6002174615859985,
-  1.8047478199005127
+  1.8046573400497437
  ],
  "materials": [
   "MI_OldMan_PR_Skin",
   "MI_OldMan_PR_Eyes",
   "MI_OldMan_PR_Hair",
-  "MI_OldMan_PR_Outfit"
+  "MI_OldMan_PR_Outfit",
+  "MI_OldMan_PR_Gear"
  ],
  "uv_per_slot": {
   "MI_OldMan_PR_Skin": {
-   "uv_area": 0.2583,
-   "texels_used_1k": 239527,
+   "uv_area": 0.4974,
+   "texels_used_1k": 461119,
    "texels_overlapping_1k": 0,
    "overlap_fraction": 0.0,
    "outside_0_1": 0
   },
   "MI_OldMan_PR_Eyes": {
-   "uv_area": 0.4803,
-   "texels_used_1k": 445009,
+   "uv_area": 1.5143,
+   "texels_used_1k": 714875,
+   "texels_overlapping_1k": 686837,
+   "overlap_fraction": 0.9608,
+   "outside_0_1": 0
+  },
+  "MI_OldMan_PR_Hair": {
+   "uv_area": 16.4977,
+   "texels_used_1k": 628787,
+   "texels_overlapping_1k": 363209,
+   "overlap_fraction": 0.5776,
+   "outside_0_1": 0
+  },
+  "MI_OldMan_PR_Outfit": {
+   "uv_area": 0.5704,
+   "texels_used_1k": 529081,
    "texels_overlapping_1k": 0,
    "overlap_fraction": 0.0,
    "outside_0_1": 0
   },
-  "MI_OldMan_PR_Hair": {
-   "uv_area": 0.3321,
-   "texels_used_1k": 307376,
-   "texels_overlapping_1k": 3,
-   "overlap_fraction": 0.0,
-   "outside_0_1": 0
-  },
-  "MI_OldMan_PR_Outfit": {
-   "uv_area": 0.6692,
-   "texels_used_1k": 620688,
+  "MI_OldMan_PR_Gear": {
+   "uv_area": 0.0806,
+   "texels_used_1k": 74749,
    "texels_overlapping_1k": 6,
-   "overlap_fraction": 0.0,
+   "overlap_fraction": 0.0001,
    "outside_0_1": 0
   }
  }

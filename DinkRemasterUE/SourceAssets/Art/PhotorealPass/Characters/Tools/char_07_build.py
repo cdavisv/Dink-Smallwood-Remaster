@@ -2,13 +2,14 @@
 same template skeleton with much the same frame; the build is what tells a burly knight from a village woman at the
 play camera. Uses the hero's physique fields (physique.py: a displacement field in rest space applied to every layer
 and every LOD alike, so cloth and armour keep their spacing), at a strength, written straight into the vertices.
-Run once after dink_06_assemble (which rebuilds the meshes).  blender -b --python char_07_build.py -- <Name> <Build> [strength]"""
+Run once after dink_06_assemble (which rebuilds the meshes).  blender -b --python char_07_build.py -- <Name> <Build> [strength]
+<Name> may be a folder under Characters (NPC/Maiden); strength 0 bakes no build and only combs the neckline skin (cfg `skin_relax`)."""
 import bpy, sys, os, json
 sys.path.insert(0, os.path.dirname(__file__))
 from prlib import *
 import physique as PH
 N, build = args()[0], args()[1]; k = float(args()[2]) if len(args()) > 2 else 1.0
-bpy.ops.wm.open_mainfile(filepath=str(OUT / N / ('SK_%s_Photoreal.blend' % N)))
+bpy.ops.wm.open_mainfile(filepath=str(OUT / N / ('SK_%s_Photoreal.blend' % N.split('/')[-1])))
 arm = bpy.data.objects['Armature']; heads = {b.name: list(b.head_local) for b in arm.data.bones}
 rows = []; ACFG = json.load(open(OUT / N / 'cfg' / 'assemble.json'))
 for ob in sorted((o for o in bpy.data.objects if o.type == 'MESH' and '_LOD' in o.name), key=lambda o: o.name):

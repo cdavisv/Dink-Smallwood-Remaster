@@ -20,6 +20,19 @@ def recolour(src, dst, target, pick, keep=0.12, gain=2.4, size=2048):
     dst.parent.mkdir(parents=True, exist_ok=True); Image.fromarray((np.clip(out, 0, 1) * 255 + 0.5).astype(np.uint8)).save(dst, optimize=True)
 
 
+def trim(dst, linen=(0.80, 0.77, 0.70), stripe=(0.30, 0.62, 0.74), size=2048):
+    """The maidens' trim over a recoloured dress map (1997 pictures 221-259): white linen on the sleeve bands and the neckline's
+    edge, two light stripes round the skirt. Where it lies is NPC/Maiden/Textures/T_Maiden_PR_Outfit_Trim.png (maiden_trim.py:
+    red = linen, green = stripes), in the UVs of the Mother's dress; the cloth's own light and dark stay under the paint."""
+    mask = np.asarray(Image.open(NPC / 'Maiden/Textures/T_Maiden_PR_Outfit_Trim.png').convert('RGB').resize((size, size), Image.LANCZOS), np.float32) / 255.0
+    a = np.asarray(Image.open(dst).convert('RGB'), np.float32) / 255.0
+    src = np.asarray(Image.open(CHARS / 'Mother/Textures/T_Mother_PR_Outfit_BC.png').convert('RGB').resize((size, size), Image.LANCZOS), np.float32) / 255.0
+    lum = (src @ LUMA)[..., None]; cloth = lum[mask[..., 0] > 0.5]; shade = np.clip(lum / max(float(cloth.mean()) if cloth.size else 0.2, 1e-3), 0.35, 1.25)      # folds and occlusion of the bake
+    m = mask[..., 0:1]; a = a * (1 - m) + m * np.array(linen, np.float32) * shade
+    m = mask[..., 1:2] * 0.85; a = a * (1 - m) + m * np.array(stripe, np.float32) * np.clip(shade, 0.5, 1.2)
+    Image.fromarray((np.clip(a, 0, 1) * 255 + 0.5).astype(np.uint8)).save(dst, optimize=True)
+
+
 def is_red(a): return (a[..., 0] - np.maximum(a[..., 1], a[..., 2]) - 0.06) * 8.0
 def is_blue(a): return (a[..., 2] - np.maximum(a[..., 0], a[..., 1]) - 0.03) * 8.0
 
@@ -49,6 +62,7 @@ for name, (base, colour, pick, gain, hair, aset, fam, what) in DRESS.items():
     variants[name] = {'base': base, 'base_asset': f'SK_{base}_Photoreal', 'animation_set': aset, 'families': [fam] if fam else [], 'what': what, 'placement_scale': 0.9 if base == 'Mother' else 1.0,
                       'materials': {f'MI_{base}_PR_Outfit': {'textures': {'BC': f'{name}/Textures/{out.name}'}}, f'MI_{base}_PR_Hair': {'tint': list(hair)}}}
     if name.startswith('Maiden'):
+        trim(out)
         # The three young women are twins of NPC/Maiden (Tools/maiden_manifest.py): the Mother's body and dress with a
         # younger head, the young skin set and long loose hair. The dress map is the Mother's recoloured (same UVs);
         # the hair tint is relative to the maiden's own yellow atlas.

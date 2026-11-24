@@ -209,6 +209,12 @@
    "speed_cm_s": 90.0,
    "stride_cm": 90.0
   },
+  "Stoop_Stand": {
+   "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Stoop_Stand.AN_Stoop_Stand",
+   "duration_s": 8.0,
+   "loop": true,
+   "fps": 30
+  },
   "Stumble": {
    "asset": "/Game/Dink/Hero/Animations/Pass1/AN_Stumble.AN_Stumble",
    "duration_s": 0.8,

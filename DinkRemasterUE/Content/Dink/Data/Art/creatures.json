@@ -2050,7 +2050,7 @@
       "class": "npc_old_man",
       "mesh": "/Game/Dink/Photoreal/Characters/NPC/OldMan/SK_OldMan_Photoreal.SK_OldMan_Photoreal",
       "locomotion": {
-        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "idle": "/Game/Dink/Hero/Animations/Pass1/AN_Stoop_Stand.AN_Stoop_Stand",
         "gaits": [
           {
             "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
@@ -2568,16 +2568,16 @@
       "class": "npc_peasant",
       "mesh": "/Game/Dink/Photoreal/Characters/NPC/Peasant/SK_Peasant_Photoreal.SK_Peasant_Photoreal",
       "locomotion": {
-        "idle": "/Game/Characters/Mannequins/Anims/Unarmed/MM_Idle.MM_Idle",
+        "idle": "/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand",
         "gaits": [
           {
             "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Walk/MF_Unarmed_Walk_Fwd.MF_Unarmed_Walk_Fwd",
-            "speed_cm_s": 254.4,
+            "speed_cm_s": 259.3,
             "cycles": 2
           },
           {
             "clip": "/Game/Characters/Mannequins/Anims/Unarmed/Jog/MF_Unarmed_Jog_Fwd.MF_Unarmed_Jog_Fwd",
-            "speed_cm_s": 559.2,
+            "speed_cm_s": 570.0,
             "cycles": 3
           }
         ]
@@ -2587,7 +2587,7 @@
         -90.0,
         0
       ],
-      "scale": 0.932,
+      "scale": 0.95,
       "roles": {
         "walk": {
           "sequences": [

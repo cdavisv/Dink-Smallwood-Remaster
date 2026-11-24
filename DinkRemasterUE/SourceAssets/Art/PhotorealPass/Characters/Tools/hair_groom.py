@@ -125,6 +125,80 @@ def torso_push(p, clear):
     out = hl.unit(np.array([x ** 3 / a, y ** 3 / b, 0.0]))
     return q, out
 PUFF = S.get('puff', 0.0)
+def back_y(x, z, clear):
+    """The back of the rounded torso box at height z (see torso_push), `clear` off it."""
+    T = S['torso']; t = float(sstep(T['top'], T['z_sh'], z))
+    a = T['a'][1] + (T['a'][0] - T['a'][1]) * t + clear; b = T['b'][1] + (T['b'][0] - T['b'][1]) * t + clear
+    return T['y0'] + b * (1 - min(abs(x / a), .98) ** 4) ** .25
+def guide_drape(loc, nrm, r, kind, sg, lift, lock, K):
+    """Long hair as a combed path in two smooth parts (style key `drape`), instead of a march with clamps: the march turned
+    its locks at the ear and threw the side hair onto the back in one step, so in the game (23 Nov 2026) the maiden's head was a
+    lattice of kinked planks crossing one another. (1) On the skull the lock lies on the head and runs with ONE flow field
+    (sideways from the parting, then down and a little back), in short steps, to the height where hair leaves the head
+    (`rel` under the nose line: ear lobe and nape). (2) From there it eases onto its own place in the curtain on the back
+    (`width`: half width of the mane at the shoulder line; the place follows the angle round the head at which the lock left it)
+    and hangs to `z_end`. The joined path is smoothed with the head and the torso kept clear, and resampled to K points."""
+    DR = S['drape']; T = S['torso']; ds = DR.get('ds', .008); d0 = hl.unit(loc - H.ctr); back = max(0.0, d0[1])
+    z_rel = H.nose[2] - DR.get('rel', .03) + (lock - .5) * DR.get('rel_var', .014)
+    fy_ = DR.get('front_y', (.02, -.05)); fr0 = float(sstep(fy_[0], fy_[1], loc[1] - H.ctr[1]))
+    v0 = np.array([sg * .95 * (1 - min(1.0, S.get('part_back', .6) * back)), DR.get('back', .30) + DR.get('front', 1.2) * fr0, -1.0]); d = hl.unit(v0 - nrm * (v0 @ nrm))      # the flow's own direction from the first step: sideways from the parting on top, down and a little back on the sides, back over the head in front
+    comb = np.array([0.0, DR.get('back', .30), -1.0]) * DR.get('comb', .16)
+    p = loc + nrm * .0006; pts = [p.copy()]; run = 0.0
+    for _ in range(int(.40 / ds)):
+        fr_ = float(sstep(DR.get('front_y', (.02, -.05))[0], DR.get('front_y', (.02, -.05))[1], p[1] - H.ctr[1]))      # in front of the ears the hair is combed BACK over the ear (it fell down the cheek and was then dragged through the neck to the back: kinked locks on the face)
+        l2, n2 = H.near(p); d = d + comb + np.array([0.0, DR.get('front', 1.2) * DR.get('comb', .16) * fr_, 0.0]) + r.normal(0, DR.get('wander', .004), 3); d = hl.unit(d - n2 * (d @ n2)); p = p + d * ds; run += ds
+        l2, n2 = H.near(p); p = l2 + n2 * (.0008 + (lift + .003) * min(1.0, run / .05) + DR.get('body', .004) * lock * min(1.0, run / .08))
+        pts.append(p.copy())
+        if p[2] < z_rel or (n2[2] < -DR.get('under', .10) and p[1] > H.ctr[1] - .02): break      # hair leaves the head where the skull turns under (the bulge at the back, the widest line over the ears): it hangs from there, it does not follow the head in to the nape
+    pr = pts[-1]; az_ = abs(H.params(loc)[0])      # the lock's place across the curtain follows the angle of its ROOT round the head (pi = the middle of the back): roots are even round the head, the places where locks leave it are not (they crowd at the nape and left the edges of the mane bare)
+    u_ = min(1.0, (math.pi - az_) / (math.pi - DR.get('az_edge', 1.15)))
+    if u_ >= 1.0: u_ = 1 - DR.get('edge_spread', .3) * r.random()      # hair rooted in front of the ears joins the outer part of the mane
+    xt = sg * DR.get('width', .155) * u_ ** DR.get('gamma', .9) + (hl.f1(loc, 18, 77 + S.get('seed', 1)) - .5) * DR.get('x_var', .03) + r.normal(0, .004)
+    z_tip = S['z_end'] + (.5 - lock) * S.get('len_lock', .07) + r.normal(0, .012) + (r.uniform(0, .05) if kind == 'over' else 0.0)
+    clear = .008 + lift * 1.6 + DR.get('depth', .008) * lock; z_c = T['z_sh'] + DR.get('land', 0.0); ph = 6.283 * lock + r.uniform(0, 1.2)
+    nf = max(4, int((pr[2] - z_tip) / DR.get('ds_fall', .015)))
+    for k in range(1, nf + 1):
+        z = pr[2] + (z_tip - pr[2]) * k / nf; s_ = float(sstep(0.0, 1.0, (pr[2] - z) / max(pr[2] - z_c, 1e-3))); s2 = 1 - (1 - s_) ** 1.6
+        x = pr[0] + (xt - pr[0]) * s_; x *= 1 - DR.get('narrow', .10) * float(sstep(T['z_sh'], S['z_end'], z))
+        x += S.get('wave', .06) * .12 * math.sin(ph + S.get('wave_n', 6.0) * k / nf) * s_
+        y = pr[1] + (back_y(x, T['z_sh'], clear) - pr[1]) * s2      # towards the curtain at the shoulder line all the way (the box at neck height is narrow: aiming at it drew the lock in before it went out)
+        pts.append(np.array([x, y, z]))
+    pts = np.array(pts); ns = len(pts) - nf - 1
+    def push(P):      # how far each point must move to clear the skin of head, neck and shoulders (the cloth of the dress below the collar) and the torso box
+        Dv = np.zeros_like(P)
+        for i in range(1, len(P)):
+            q = P[i].copy()
+            if q[2] > T['z_sh'] - .06:
+                c_ = .0008 + lift + DR.get('cloth', .008) * float(sstep(T['top'] + .03, T['top'] - .01, q[2])); l2, n2 = H.near(q); v_ = q - l2
+                if v_ @ n2 < c_ and v_ @ v_ < .05 ** 2: q = l2 + n2 * c_
+            if q[2] < T['top']:
+                q2, out = torso_push_r(q, .006 + lift * 1.6)
+                if out is not None: q = q2
+            Dv[i] = q - P[i]
+        return Dv
+    kb = np.array([1, 2, 3, 2, 1.0]) / 9
+    for _ in range(DR.get('clear_it', 4)):      # a push is spread along the lock (widened, then blurred) before it is applied, so the lock rides over a shoulder in one long curve; a push on single points left a kink at each
+        Dv = push(pts); m = np.linalg.norm(Dv, axis=1)
+        if m.max() < 1e-4: break
+        md = np.array([m[max(0, i - 3):i + 4].max() for i in range(len(m))]); md = np.convolve(np.pad(md, 2, mode='edge'), kb, mode='valid')
+        Db = np.stack([np.convolve(np.pad(Dv[:, c], 3, mode='edge'), np.ones(7) / 7, mode='valid') for c in range(3)], 1); nb = np.linalg.norm(Db, axis=1)
+        w_ = np.minimum(1.0, np.arange(len(pts)) / 3.0)      # the root stays on the scalp
+        pts = pts + Db / np.maximum(nb, 1e-9)[:, None] * (md * w_)[:, None] * (nb > 1e-6)[:, None]
+    for _ in range(DR.get('smooth', 6)):
+        pts[1:-1] = (pts[:-2] + 2 * pts[1:-1] + pts[2:]) / 4
+    pts = pts + push(pts) * np.minimum(1.0, np.arange(len(pts)) / 3.0)[:, None]
+    for _ in range(2): pts[1:-1] = (pts[:-2] + 2 * pts[1:-1] + pts[2:]) / 4
+    seg = np.linalg.norm(np.diff(pts, axis=0), axis=1); cum = np.r_[0, np.cumsum(seg)]; dd = np.linspace(0, cum[-1], K)
+    return np.stack([np.interp(dd, cum, pts[:, c]) for c in range(3)], 1)
+def torso_push_r(p, clear):
+    """torso_push without the jump onto the back: a point inside the rounded box leaves it by the shortest way."""
+    T = S['torso']
+    if p[2] > T['top']: return p, None
+    t = float(sstep(T['top'], T['z_sh'], p[2])); a = T['a'][1] + (T['a'][0] - T['a'][1]) * t + clear; b = T['b'][1] + (T['b'][0] - T['b'][1]) * t + clear
+    x, y = p[0] / a, (p[1] - T['y0']) / b; rr = (x ** 4 + y ** 4) ** .25
+    if rr >= 1: return p, None
+    k = 1 / max(rr, 1e-3); q = p.copy(); q[0] = p[0] * k; q[1] = T['y0'] + (p[1] - T['y0']) * k
+    return q, hl.unit(np.array([x ** 3 / a, y ** 3 / b, 0.0]))
 def guide_long(root, r, kind='hair'):
     """Long loose hair (the maidens, pictures 221-259): parted in the middle, combed sideways over the crown, falling
     behind the shoulders down the back to `z_end`, with a short fringe over the brow. kinds: 'under' lies on the back,
@@ -141,6 +215,7 @@ def guide_long(root, r, kind='hair'):
         return hl.grow(H, loc + nrm * .0004, d, r.uniform(.02, .045), K=K, gravity=.6, minlift=(.0005, .002), wander=.05, rng=r)
     lift = {'under': 0.0, 'hair': .004, 'over': S.get('over_lift', .010)}.get(kind, .004)
     lock = hl.f1(loc, S.get('lock_scale', 30), 311 + S.get('seed', 1))
+    if S.get('drape'): return guide_drape(loc, nrm, r, kind, sg, lift, lock, K)
     L = max(.12, (loc[2] - S['z_end'] - S.get('z_back', 0.0) * back) * 1.10 + .05 * float(sstep(.6, .1, e)) + (lock - .5) * S.get('len_lock', .07) + r.normal(0, .012))
     if kind == 'over': L *= r.uniform(.92, 1.0)
     step = L / (K - 1); p = loc + nrm * .0006; pts = [p.copy()]; ph = 6.283 * lock + r.uniform(0, 1.2)
@@ -180,6 +255,28 @@ guide = {'short': guide_short, 'crest': guide_crest, 'long': guide_long}.get(S['
 gr = np.random.default_rng(S.get('seed', 1) + 100)
 roots = RT.sample(S['guides'], 0, 1.0)
 G = np.array([guide(p, gr) for p, _ in roots]); UVr = np.array([uv for _, uv in roots])
+if os.environ.get('HAIR_DBG'):
+    for z_ in (1.60, 1.52, 1.44, 1.30, 1.15):
+        q_ = np.array([g[np.argmin(np.abs(g[:, 2] - z_))] for g in G if g[:, 2].min() < z_ + .01])
+        if len(q_): log('dbg z', z_, 'n', len(q_), '|x| p10/50/90/max', np.percentile(np.abs(q_[:, 0]), [10, 50, 90, 100]).round(3).tolist(), 'y p10/50/90', np.percentile(q_[:, 1], [10, 50, 90]).round(3).tolist())
+    if 'dbgonly' in steps: raise SystemExit
+if S.get('drape'):
+    dv_ = np.diff(G, axis=1); dv_ /= np.maximum(np.linalg.norm(dv_, axis=2, keepdims=True), 1e-9); an_ = np.degrees(np.arccos(np.clip((dv_[:, 1:] * dv_[:, :-1]).sum(2), -1, 1))).max(1)
+    ang_ = np.degrees(np.arccos(np.clip((dv_[:, 1:] * dv_[:, :-1]).sum(2), -1, 1))); ix_ = ang_.argmax(1); zz_ = G[np.arange(len(G)), ix_ + 1, 2]
+    if os.environ.get('HAIR_DBG'):
+        log('drape dbg: index of the sharpest turn, histogram', np.bincount(ix_, minlength=38).tolist())
+        for lo_, hi_ in ((1.70, 9), (1.64, 1.70), (1.60, 1.64), (1.52, 1.60), (1.44, 1.52), (0, 1.44)):
+            m_ = (zz_ >= lo_) & (zz_ < hi_); log('drape dbg: z', lo_, hi_, 'n', int(m_.sum()), 'p50/p90 turn', np.percentile(an_[m_], [50, 90]).round(1).tolist() if m_.any() else None, 'mean y', round(float(G[np.arange(len(G)), ix_ + 1, 1][m_].mean()), 3) if m_.any() else None)
+    if os.environ.get('HAIR_DBG'):
+        for gi_ in np.nonzero((zz_ > 1.52) & (zz_ < 1.60) & (an_ > 45))[0][:3]:
+            log('drape dbg guide', int(gi_), 'turn', round(float(an_[gi_]), 1), 'at', int(ix_[gi_]), 'pts', G[gi_, max(0, ix_[gi_] - 4):ix_[gi_] + 5].round(3).tolist())
+    log('drape: sharpest turn per guide, degrees p50/p90/p99/max', np.percentile(an_, [50, 90, 99, 100]).round(1).tolist(), 'over 30:', int((an_ > 30).sum()))
+    def card_n(p, nrm):      # below the head a hanging card faces away from the neck and the back, not along the nearest skin's normal (over a shoulder that is straight up: the card lay flat and showed as a line)
+        T = S['torso']; w_ = float(sstep(H.nose[2] - .02, H.nose[2] - .09, p[2]))
+        if w_ <= 0: return nrm
+        t = float(sstep(T['top'], T['z_sh'], p[2])); a = T['a'][1] + (T['a'][0] - T['a'][1]) * t; b = T['b'][1] + (T['b'][0] - T['b'][1]) * t
+        o = np.array([(p[0] / a) ** 3 / a, ((p[1] - T['y0']) / b) ** 3 / b, 0.0]); o = hl.unit(o) if np.linalg.norm(o) > 1e-6 else np.array([0.0, 1.0, 0.0])
+        return hl.unit(nrm * (1 - w_) + o * w_)
 log('guides', G.shape, 'mean length', float(np.linalg.norm(np.diff(G, axis=1), axis=2).sum(1).mean()))
 smat = hl.strand_material('M_%s_HairStrands' % N, **S['strand'])
 strands = hl.make_curves('HairStrands', G, radius=S.get('radius', 4.5e-5), surface=scalp, root_uv=UVr)
@@ -305,14 +402,78 @@ CB.floor = cap_floor
 def nseg_for(g, n0, seg_len):
     if not seg_len: return n0
     L = float(np.linalg.norm(np.diff(g, axis=0), axis=1).sum()); return int(min(max(round(L / seg_len), 2), n0))
-def shell(n, layer, tiles, e0, e1, width, nseg, across, lift_scale, lift_off, flare=(0.0, 0.0), kind='hair', roll=.03, bow=.05, azmin=0.0, azmax=4.0, t_range=(0.0, 1.0), wfun=None, nblend=.92, len_var=0.0, root_ext=0.0, v_span=(0.0, 1.0), seg_len=0.0, taper=.3):
+def shell(n, layer, tiles, e0, e1, width, nseg, across, lift_scale, lift_off, flare=(0.0, 0.0), kind='hair', roll=.03, bow=.05, azmin=0.0, azmax=4.0, t_range=(0.0, 1.0), wfun=None, nblend=.92, len_var=0.0, root_ext=0.0, v_span=(0.0, 1.0), seg_len=0.0, taper=.3, adapt=0.0, seg_max=.10, root_w=1.0):
     tl = [i for k in ([tiles] if isinstance(tiles, str) else tiles) for i in TI[k]]
     for p, _ in RT.sample(int(n * DN), e0, e1, azmin, azmax, wfun):
         if S['kind'] == 'short' and np.linalg.norm(p - crown) < S.get('crown_clear', .016): continue     # the whorl centre is carried by the cap
         g = guide(p, cr, kind); wk = 1 - S.get('edge_narrow', .3) * float(sstep(.72, 1.0, H.params(p)[1]))
-        CB.ribbon(g, cr.uniform(*width) * wk, int(cr.choice(tl)), layer, cr, nseg=nseg_for(g, nseg, seg_len), across=across, lift_scale=lift_scale, lift_off=lift_off, roll=roll, bow=bow, taper=taper, flare=cr.uniform(*flare), t_range=(t_range[0], t_range[1] * (1 - len_var * cr.random())), nblend=nblend, root_ext=root_ext, v_span=v_span)
+        CB.ribbon(g, cr.uniform(*width) * wk, int(cr.choice(tl)), layer, cr, nseg=nseg_for(g, nseg, seg_len), across=across, lift_scale=lift_scale, lift_off=lift_off, roll=roll, bow=bow, taper=taper, flare=cr.uniform(*flare), t_range=(t_range[0], t_range[1] * (1 - len_var * cr.random())), nblend=nblend, root_ext=root_ext, v_span=v_span, adapt=adapt, seg_max=seg_max, root_w=root_w)
 JS = S.get('card_jit', .7)
-for sh in S['shells']: shell(**sh)
+CB.t_pow = S.get('card_t_pow', 1.0)
+if S.get('drape'): CB.card_n = card_n
+for sh in S['shells']:
+    f0_ = len(CB.f); shell(**sh); log('shell', sh.get('kind', 'hair'), 'n', sh['n'], 'tris', 2 * (len(CB.f) - f0_))
+CB.t_pow = 1.0; CB.card_n = None
+if S.get('beard'):
+    # A beard (style key `beard`): locks rooted on the skin of the lower face, not on the scalp. Roots are drawn by area from
+    # the triangles under the cheek line (from the corner of the moustache up to the ear), on the chin, under it, and on the
+    # upper lip; the mouth stays open. Each lock is a guide grown downwards (hl.grow: it keeps clear of the neck and the
+    # chest by `tip_lift`), longest at the chin (`L`) and shorter towards the ears (`L_side`), the moustache (`L_lip`) swept
+    # out to the sides. Three sets of cards in the hair's own atlas tiles: a dense under layer (layer 1: it stays in every
+    # LOD), narrower locks over it (layer 3) and wisps at the edge (layer 5). No cap shell lies under a beard: the skin
+    # stage paints the stubble zone in the hair's colour (cfg/skin.json `stubble`).
+    BD = S['beard']; b_rng = np.random.default_rng(S.get('seed', 1) + 500); floor_ = CB.floor; CB.floor = None; HB = H
+    if BD.get('over'):      # '<blend under Characters>:<object>': clothes the beard lies over (a cowl); a lock inside or close over the cloth keeps clear of the cloth, not of the skin under it
+        bl_, ob_ = BD['over'].split(':')
+        with bpy.data.libraries.load(str(OUT / bl_)) as (s_, d_): d_.objects = [ob_]
+        cl_ = d_.objects[0]; sc.collection.objects.link(cl_); cl_.hide_render = True; bpy.context.view_layer.update(); cbvh_ = bvh_of(cl_)
+        class _Over:
+            def near(s, p):
+                l2, n2, _, _ = cbvh_.find_nearest(Vector(p))
+                if l2 is not None and float((np.asarray(p) - np.array(l2)) @ np.array(n2)) < .05 and (np.asarray(p) - np.array(l2)) @ (np.asarray(p) - np.array(l2)) < .09 ** 2: return np.array(l2), np.array(n2)
+                return H.near(p)
+        HB = _Over(); CB.H = HB
+    me_ = sk.data; me_.calc_loop_triangles(); cs_ = co_np(me_); nz_ = H.nose; cand = []; area = []; kind_ = []
+    for t_ in me_.loop_triangles:
+        c_ = cs_[list(t_.vertices)].mean(0); x_ = abs(c_[0]); y_ = c_[1] - nz_[1]; z_ = c_[2] - nz_[2]
+        if z_ > .03 or z_ < -.125 or y_ > BD.get('y_max', .112) or t_.normal.dot(Vector(hl.unit(c_ - (H.ctr + np.array([0, -.02, -.06]))))) < .1: continue
+        lip = z_ > -.027 and z_ < -.008 and x_ < .036 and y_ < .04                       # the upper lip
+        mouth = z_ > -.047 and z_ <= -.027 and x_ < .029 and y_ < .035                    # the lips themselves
+        cheek = z_ < -.036 + .50 * max(0.0, y_ - .03) + BD.get('cheek', 0.0) and z_ > -.108 + .25 * max(0.0, y_ - .03)      # under the cheek line, above the jaw's underside
+        under = z_ <= -.108 + .25 * max(0.0, y_ - .03) and z_ > -.122 and y_ < .075       # a little way under the chin
+        if mouth or not (lip or cheek or under): continue
+        cand.append(list(t_.vertices)); area.append(t_.area); kind_.append('lip' if lip else 'face')
+    area = np.array(area); log('beard: root triangles', len(cand), 'area cm2', round(float(area.sum()) * 1e4, 1))
+    def beard_guide(wisp=False, ls=1.0, lk=1.0):
+        i_ = int(b_rng.choice(len(cand), p=area / area.sum())); P_ = cs_[cand[i_]]; r1, r2 = b_rng.random(2)
+        if r1 + r2 > 1: r1, r2 = 1 - r1, 1 - r2
+        p = P_[0] + (P_[1] - P_[0]) * r1 + (P_[2] - P_[0]) * r2; loc, nrm = H.near(p); sx = 1.0 if p[0] >= 0 else -1.0
+        y_ = p[1] - nz_[1]; side = float(np.clip((y_ - .03) / .07, 0, 1)); mid = float(np.clip(1 - abs(p[0]) / .03, 0, 1))
+        if kind_[i_] == 'lip':
+            d0 = np.array([sx * (.9 - .5 * mid), -.15, -.55 - .3 * mid]); L = BD.get('L_lip', .045) * b_rng.uniform(.7, 1.15)
+        else:
+            d0 = np.array([sx * .12 * side, -.30 * (1 - side) - .05, -1.0]) + nrm * .30; L = (BD['L_side'] + (BD['L'] - BD['L_side']) * (1 - side) ** (1.5 if lk >= 1.0 else .6)) * b_rng.uniform(.72, 1.1)
+            if lk >= 1.0: L *= 1 - BD.get('point', .35) * (1 - mid) * (1 - side)           # the beard comes to a point under the chin (its core does not: it fills the sides down to the collar, where the dark opening of the cowl showed between the short side locks)
+        if wisp: L *= b_rng.uniform(.3, .6)
+        L *= ls
+        return hl.grow(HB, loc + nrm * .0005, d0, L, K=BD.get('K', 10), gravity=BD.get('gravity', .8), minlift=(.0008, lk * BD.get('tip_lift', .03) * (.4 + .6 * min(1.0, L / max(BD['L'], 1e-3)))),
+                       wander=BD.get('wander', .03), rng=b_rng, wave=(BD.get('wave', .10), BD.get('wave_n', 9.0), b_rng.uniform(0, 6.28)))
+    w_ = BD.get('width', 1.0)
+    def beard_n(p):      # a beard faces forwards and outwards from the neck's axis, a little upwards (it was shaded by the throat's downward normal: black locks under the chin)
+        o_ = np.array([p[0] - H.ctr[0], p[1] - (H.ctr[1] + .03), 0.0]); o_ = hl.unit(o_) if np.linalg.norm(o_) > 1e-6 else np.array([0.0, -1.0, 0.0])
+        return hl.unit(o_ + np.array([0.0, -.35, .35]))
+    CB.shade_n = beard_n
+    # `core` (optional): broad dense cards a little shorter and closer to the chest than the rest, the beard's body. Without it
+    # the thinning tips of the under layer left gaps down to the dark cloth behind (the old man's beard read as black streaks).
+    for n_b, layer, tl_, wd, seg, roll_, tap, nb_, wisp_, ls_, lk_ in ((BD.get('core', 0), 1, TI['n_dense'], (.034, .046), 5, .04, .40, .92, False, .84, .55),
+                                                              (BD['n'][0], 1, TI['n_dense'] + TI['n_mid'], (.016, .024), 6, .10, .35, .85, False, 1.0, 1.0),
+                                                              (BD['n'][1], 3, TI['n_mid'] + TI['n_thin'], (.009, .015), 6, .30, .55, .65, False, 1.0, 1.0),
+                                                              (BD['n'][2], 5, TI['n_wisp'] + TI['n_thin'], (.005, .009), 3, .45, .6, .5, True, 1.0, 1.0)):
+        for _ in range(int(n_b)):
+            g = beard_guide(wisp_, ls_, lk_)
+            CB.ribbon(g, b_rng.uniform(*wd) * w_, int(b_rng.choice(tl_)), layer, b_rng, nseg=nseg_for(g, seg, BD.get('seg_len', .03)), across=1, roll=roll_, bow=.06, taper=tap, nblend=nb_)
+    CB.floor = floor_; CB.H = H; CB.shade_n = None
+    if BD.get('over'): bpy.data.objects.remove(cl_, do_unlink=True)
 if S['kind'] == 'bun':
     for q, pts in enumerate(BUNP):
         CB.wound(pts, S.get('bun_bundle_r', .0075) * 1.05, TI['n_dense'] + TI['n_mid'], 2, cr, strips=S.get('bun_strips', 5), nseg=S.get('bun_nseg', 14))
@@ -357,23 +518,27 @@ for o_ in [strands, brows] + extra:
 if 'strands' in steps or 'cards' in steps:
     P_ = 'T_%s_PR' % N
     sk.data.materials.clear(); sk.data.materials.append(matlib.game_material('MI_%s_PR_Skin' % N, TX / (P_ + '_Skin_BC.png'), TX / (P_ + '_Skin_N.png'), TX / (P_ + '_Skin_ORM.png'), sss=TX / (P_ + '_Skin_SSS.png'), ao_mix=.5))
-    ey = D['Eyes']; ey.data.materials.clear(); ey.data.materials.append(matlib.game_material('MI_%s_PR_Eyes' % N, TX / (P_ + '_Eyes_BC.png'), TX / (P_ + '_Eyes_N.png'), TX / (P_ + '_Eyes_ORM.png'), ao_mix=.8, spec=.8))
+    ETX, EP_ = (TX, P_) if (TX / (P_ + '_Eyes_BC.png')).exists() else (OUT / 'Mother' / 'Textures', 'T_Mother_PR')      # the maidens wear the Mother's eye maps (cfg/assemble.json tex_override)
+    ey = D['Eyes']; ey.data.materials.clear(); ey.data.materials.append(matlib.game_material('MI_%s_PR_Eyes' % N, ETX / (EP_ + '_Eyes_BC.png'), ETX / (EP_ + '_Eyes_N.png'), ETX / (EP_ + '_Eyes_ORM.png'), ao_mix=.8, spec=.8))
     setup_render(samples=int(os.environ.get('HAIR_SPP', 96)), res=(640, 640)); sc.world.node_tree.nodes['Background'].inputs[1].default_value = .085
+    sc.cycles.transparent_max_bounces = 64      # at 24 and less a ray through many card layers comes back black
     try: sc.cycles.use_curves = True
     except Exception: pass
     sky = next(n for n in sc.world.node_tree.nodes if n.type == 'TEX_SKY'); hc = H.ctr + np.array([0, 0, .0])
     shots = [('sun2m', (hc[0] + .55, hc[1] - 1.9, hc[2] + .25), 215, False), ('sun05', (hc[0] + .14, hc[1] - .47, hc[2] + .07), 55, False), ('ovc05', (hc[0] - .2, hc[1] - .43, hc[2] + .1), 55, True), ('back', (hc[0] - .45, hc[1] + 1.1, hc[2] + .25), 140, False), ('crown', (hc[0] + .1, hc[1] + .32, hc[2] + .45), 60, False)]
+    for x_ in filter(None, os.environ.get('HAIR_SHOTS_X', '').split(';')):      # further looks: name,dx,dy,dz,lens[,target dz] about the head centre
+        f_ = x_.split(','); shots.append((f_[0], (hc[0] + float(f_[1]), hc[1] + float(f_[2]), hc[2] + float(f_[3])), float(f_[4]), False) + ((float(f_[5]),) if len(f_) > 5 else ()))
     only = os.environ.get('HAIR_SHOTS'); shots = [s_ for s_ in shots if not only or s_[0] in only.split(',')]
     REV.mkdir(parents=True, exist_ok=True)
     for mode in ('strands', 'cards'):
         if mode not in steps: continue
         for o in [strands, brows] + extra: o.hide_render = mode != 'strands'
         hair.hide_render = mode != 'cards'
-        for nm, loc, lens, ovc in shots:
+        for nm, loc, lens, ovc, *tz_ in shots:
             try: sky.sun_intensity = 0.0 if ovc else 1.0
             except Exception: pass
             sc.world.node_tree.nodes['Background'].inputs[1].default_value = .22 if ovc else .085
-            shoot(REV / ('%s_%s_%s.png' % (tag, mode, nm)), loc, tuple(hc + np.array([0, 0, .015])), lens=lens)
+            shoot(REV / ('%s_%s_%s.png' % (tag, mode, nm)), loc, tuple(hc + np.array([0, 0, tz_[0] if tz_ else .015])), lens=lens)
     from PIL import Image
     rows = []
     for mode in ('strands', 'cards'):

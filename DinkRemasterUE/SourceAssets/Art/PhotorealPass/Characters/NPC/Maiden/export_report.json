@@ -4,43 +4,43 @@
   "assets": 1,
   "assets_passed": 0,
   "errors": 1,
-  "warnings": 24
+  "warnings": 23
  },
  "findings": [
   [
    "warning",
    "TRIS_OVER_TARGET",
-   "LOD0 has 34574 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "LOD0 has 34754 triangles, target for character_humanoid is 20000 (hard max 35000)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "11414 non-manifold edges (11404 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "11956 non-manifold edges (11946 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "11279 non-manifold edges (11269 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "11894 non-manifold edges (11884 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "9974 non-manifold edges (9964 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "11325 non-manifold edges (11315 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "6033 non-manifold edges (6023 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "7716 non-manifold edges (7706 open boundary, 10 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (228.3 % of UV area, 3487 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (258.6 % of UV area, 3529 triangles); class character_humanoid needs unique UVs"
   ],
   [
    "warning",
    "UV_DEGENERATE",
-   "959 triangles are collapsed in UV space"
+   "957 triangles are collapsed in UV space"
   ],
   [
    "info",
@@ -131,11 +131,6 @@
    "warning",
    "NAME_TEXTURE",
    "image 'T_Mother_PR_Gear_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
-  ],
-  [
-   "warning",
-   "LOD_BOUNDS",
-   "LOD3 bounds differ from LOD0 by 35 cm (decimation shrank it?)"
   ]
  ],
  "normals": [
@@ -145,43 +140,43 @@
   },
   {
    "mesh": "SK_Maiden_Photoreal_LOD1",
-   "flat_faces_for_cancelled_normals": 6
+   "flat_faces_for_cancelled_normals": 0
   },
   {
    "mesh": "SK_Maiden_Photoreal_LOD2",
-   "flat_faces_for_cancelled_normals": 2
+   "flat_faces_for_cancelled_normals": 6
   },
   {
    "mesh": "SK_Maiden_Photoreal_LOD3",
-   "flat_faces_for_cancelled_normals": 2
+   "flat_faces_for_cancelled_normals": 0
   }
  ],
  "lods": [
   {
    "mesh": "SK_Maiden_Photoreal_LOD0",
-   "triangles": 34574,
-   "vertices": 23713,
+   "triangles": 34754,
+   "vertices": 24128,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Maiden_Photoreal_LOD1",
-   "triangles": 19015,
-   "vertices": 15866,
+   "triangles": 24094,
+   "vertices": 18767,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Maiden_Photoreal_LOD2",
-   "triangles": 10910,
-   "vertices": 11049,
+   "triangles": 18327,
+   "vertices": 15519,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Maiden_Photoreal_LOD3",
-   "triangles": 7211,
-   "vertices": 6995,
+   "triangles": 12026,
+   "vertices": 10314,
    "max_influences": 4,
    "unweighted": 0
   }
@@ -281,7 +276,7 @@
  "dimensions_m": [
   1.1079223155975342,
   0.7885163426399231,
-  1.8025295734405518
+  1.8046828508377075
  ],
  "materials": [
   "MI_Maiden_PR_Skin",
@@ -293,23 +288,23 @@
  "uv_per_slot": {
   "MI_Maiden_PR_Skin": {
    "uv_area": 0.5639,
-   "texels_used_1k": 522369,
+   "texels_used_1k": 522375,
    "texels_overlapping_1k": 243,
    "overlap_fraction": 0.0005,
    "outside_0_1": 0
   },
   "MI_Maiden_PR_Eyes": {
-   "uv_area": 1.4612,
-   "texels_used_1k": 691558,
-   "texels_overlapping_1k": 661037,
-   "overlap_fraction": 0.9559,
+   "uv_area": 1.455,
+   "texels_used_1k": 696873,
+   "texels_overlapping_1k": 650099,
+   "overlap_fraction": 0.9329,
    "outside_0_1": 0
   },
   "MI_Maiden_PR_Hair": {
-   "uv_area": 8.7282,
-   "texels_used_1k": 628942,
-   "texels_overlapping_1k": 338156,
-   "overlap_fraction": 0.5377,
+   "uv_area": 9.2937,
+   "texels_used_1k": 589477,
+   "texels_overlapping_1k": 343173,
+   "overlap_fraction": 0.5822,
    "outside_0_1": 0
   },
   "MI_Maiden_PR_Outfit": {
