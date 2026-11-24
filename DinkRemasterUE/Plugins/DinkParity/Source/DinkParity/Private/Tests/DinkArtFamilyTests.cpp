@@ -219,7 +219,8 @@ bool FDinkArtFamilyPlacedEffectRowTest::RunTest(const FString&)
 		 "effect_light":[1.0,0.5,0.1,300,600],"effect_light_height":0.4,"effect_light_flicker":0.3,"offset_cm":{"S439_P05":[10,-20,350],"S439_P09":[1,2],"S439_P11":[0,0,500,2.2]},
 		 "effect_plume":{"material":"/Game/Dink/A/MI_Smoke","size_cm":[350,700],"origins":["S439_P05"]},
 		 "effect_layers":[[30,-40,0,1.15,0.8,1],[-25,30,-10,0.7,1.7],[1,2,3]]},
-		{"family":"small_fire_fx","effect":"/Game/Dink/A/MI_C","effect_placed":true,"effect_fit":[7,-1],"effect_sink":9,"effect_light":[1,1,1]}]})"), Rows, Errors));
+		{"family":"small_fire_fx","effect":"/Game/Dink/A/MI_C","effect_placed":true,"effect_fit":[7,-1],"effect_sink":9,"effect_light":[1,1,1],
+		 "effect_decal":{"size_cm":[120,90],"depth_cm":150,"towards":"down","origins":{"S001_P35":"north","S001_P36":"sideways"}}}]})"), Rows, Errors));
 	TestEqual(TEXT("no errors"), Errors.Num(), 0);
 	if (Rows.Num() != 3) return false;
 	TestFalse(TEXT("a plain effect row stays off placed sprites"), Rows[0].bEffectPlaced);
@@ -245,7 +246,10 @@ bool FDinkArtFamilyPlacedEffectRowTest::RunTest(const FString&)
 		TestTrue(TEXT("layer offset, size, phase and mirror"), Rows[1].EffectLayers[0].OffsetCm.Equals(FVector(30.0, -40.0, 0.0)) && FMath::IsNearlyEqual(Rows[1].EffectLayers[0].Scale, 1.15) &&
 			FMath::IsNearlyEqual(Rows[1].EffectLayers[0].PhaseSeconds, 0.8) && Rows[1].EffectLayers[0].bMirror && !Rows[1].EffectLayers[1].bMirror);
 	}
-	TestTrue(TEXT("a row without layers has none"), Rows[0].EffectLayers.IsEmpty() && Rows[2].EffectLayers.IsEmpty());
+	TestTrue(TEXT("a row without layers or a decal has neither"), Rows[0].EffectLayers.IsEmpty() && !Rows[0].bEffectDecal && !Rows[1].bEffectDecal);
+	// "effect_decal": the effect is projected onto the roof or wall instead of standing on a card
+	TestTrue(TEXT("decal size, depth and direction"), Rows[2].bEffectDecal && Rows[2].EffectDecalSizeCm.Equals(FVector2D(120.0, 90.0)) && Rows[2].EffectDecalDepthCm == 150.0 && Rows[2].EffectDecalTowards == TEXT("down"));
+	TestTrue(TEXT("one placement projects north; an unknown direction is dropped"), Rows[2].EffectDecalOrigins.Num() == 1 && Rows[2].EffectDecalOrigins.FindRef(TEXT("S001_P35")) == TEXT("north"));
 	const FVector* Lift = Rows[1].OffsetCm.Find(TEXT("S439_P05"));
 	TestTrue(TEXT("offset in cm, world axes"), Lift && Lift->Equals(FVector(10.0, -20.0, 350.0)));
 	TestEqual(TEXT("a row without flicker gives a steady light"), Rows[2].EffectLightFlicker, 0.0);

@@ -1687,7 +1687,7 @@
     },
     {
       "family": "155 struct/details/damage/fire2-",
-      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Embers_A.MI_FX_Embers_A",
+      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Burn_Mark_A.MI_FX_Burn_Mark_A",
       "effect_placed": true,
       "effect_ground": true,
       "effect_fit": [0.54, 0.52],
@@ -1696,13 +1696,14 @@
       "effect_light_height": 0.3,
       "effect_light_flicker": 0.3,
       "offset_cm": {"S439_P31": [76, 1701, 495, 2.0], "S001_P35": [0, 242, 185]},
+      "effect_decal": {"size_cm": [100, 100], "depth_cm": 130, "towards": "down", "origins": {"S001_P35": "north", "S001_P36": "north", "S001_P38": "south"}},
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "155 struct/details/damage/fire2-: a smouldering burn patch of the burning house (screens 1 and 439, vision 1). All six placements of 155-157 are marks on a wall or on the roof, so the picture is a patch seen face-on, not a heap: charred, cracked wood with embers breathing in the cracks, small flames and a wisp of smoke (FableF/small_fire_fx/Embers_A, tools/build_burn_patch.py; 8 x 4 frames, translucent). effect_fit: the patch fills 0.54 x 0.52 of the frame, 0.12 above its bottom edge. offset_cm sets each one on its surface (the positions of SourceAssets/Art/StonebrookRuins/fire_emitters.json: the room's north and south walls, the cottage roof). Fable streams F and art-fx-props, 16 Nov 2026."
+      "note": "155 struct/details/damage/fire2-: a smouldering burn patch of the burning house (screens 1 and 439, vision 1). All six placements of 155-157 are marks on a wall or on the roof, so the picture is a patch seen face-on, not a heap: charred, cracked wood with embers breathing in the cracks, small flames and a wisp of smoke (FableF/small_fire_fx/Embers_A, tools/build_burn_patch.py; 8 x 4 frames, translucent). effect_fit: the patch fills 0.54 x 0.52 of the frame, 0.12 above its bottom edge. offset_cm sets each one on its surface (the positions of SourceAssets/Art/StonebrookRuins/fire_emitters.json: the room's north and south walls, the cottage roof). Fable streams F and art-fx-props, 16 Nov 2026. 17 Nov 2026 (art-fx-2): drawn as a DECAL on the roof or wall (\"effect_decal\", FableF/burn_mark_fx: a ragged black break, charred laths, the fire flickering behind them), no longer a glowing heap on a camera-facing card."
     },
     {
       "family": "156 struct/details/damage/fire3-",
-      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Embers_B.MI_FX_Embers_B",
+      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Burn_Mark_B.MI_FX_Burn_Mark_B",
       "effect_placed": true,
       "effect_ground": true,
       "effect_fit": [0.54, 0.52],
@@ -1711,13 +1712,14 @@
       "effect_light_height": 0.3,
       "effect_light_flicker": 0.3,
       "offset_cm": {"S439_P32": [403, 712, 627, 2.0], "S001_P36": [0, 299, 233]},
+      "effect_decal": {"size_cm": [100, 100], "depth_cm": 130, "towards": "down", "origins": {"S001_P35": "north", "S001_P36": "north", "S001_P38": "south"}},
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "156 struct/details/damage: a smouldering burn patch of the burning house (screens 1 and 439, vision 1). All six placements of 155-157 are marks on a wall or on the roof, so the picture is a patch seen face-on, not a heap: charred, cracked wood with embers breathing in the cracks, small flames and a wisp of smoke (FableF/small_fire_fx/Embers_B, tools/build_burn_patch.py; 8 x 4 frames, translucent). effect_fit: the patch fills 0.54 x 0.52 of the frame, 0.12 above its bottom edge. offset_cm sets each one on its surface (the positions of SourceAssets/Art/StonebrookRuins/fire_emitters.json: the room's north and south walls, the cottage roof). Fable streams F and art-fx-props, 16 Nov 2026."
+      "note": "156 struct/details/damage: a smouldering burn patch of the burning house (screens 1 and 439, vision 1). All six placements of 155-157 are marks on a wall or on the roof, so the picture is a patch seen face-on, not a heap: charred, cracked wood with embers breathing in the cracks, small flames and a wisp of smoke (FableF/small_fire_fx/Embers_B, tools/build_burn_patch.py; 8 x 4 frames, translucent). effect_fit: the patch fills 0.54 x 0.52 of the frame, 0.12 above its bottom edge. offset_cm sets each one on its surface (the positions of SourceAssets/Art/StonebrookRuins/fire_emitters.json: the room's north and south walls, the cottage roof). Fable streams F and art-fx-props, 16 Nov 2026. 17 Nov 2026 (art-fx-2): drawn as a DECAL on the roof or wall (\"effect_decal\", FableF/burn_mark_fx: a ragged black break, charred laths, the fire flickering behind them), no longer a glowing heap on a camera-facing card."
     },
     {
       "family": "157 struct/details/damage/fire4-",
-      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Embers_C.MI_FX_Embers_C",
+      "effect": "/Game/Dink/Photoreal/FableF/MI_FX_Burn_Mark_C.MI_FX_Burn_Mark_C",
       "effect_placed": true,
       "effect_ground": true,
       "effect_fit": [0.54, 0.52],
@@ -1726,9 +1728,10 @@
       "effect_light_height": 0.3,
       "effect_light_flicker": 0.3,
       "offset_cm": {"S439_P33": [-347, 1414, 357, 1.6], "S001_P38": [0, 115, 61]},
+      "effect_decal": {"size_cm": [185, 185], "depth_cm": 130, "towards": "down", "origins": {"S001_P35": "north", "S001_P36": "north", "S001_P38": "south"}},
       "fit": "none",
       "yaw_from_sprite": false,
-      "note": "157 struct/details/damage: a smouldering burn patch of the burning house (screens 1 and 439, vision 1). All six placements of 155-157 are marks on a wall or on the roof, so the picture is a patch seen face-on, not a heap: charred, cracked wood with embers breathing in the cracks, small flames and a wisp of smoke (FableF/small_fire_fx/Embers_C, tools/build_burn_patch.py; 8 x 4 frames, translucent). effect_fit: the patch fills 0.54 x 0.52 of the frame, 0.12 above its bottom edge. offset_cm sets each one on its surface (the positions of SourceAssets/Art/StonebrookRuins/fire_emitters.json: the room's north and south walls, the cottage roof). Fable streams F and art-fx-props, 16 Nov 2026."
+      "note": "157 struct/details/damage: a smouldering burn patch of the burning house (screens 1 and 439, vision 1). All six placements of 155-157 are marks on a wall or on the roof, so the picture is a patch seen face-on, not a heap: charred, cracked wood with embers breathing in the cracks, small flames and a wisp of smoke (FableF/small_fire_fx/Embers_C, tools/build_burn_patch.py; 8 x 4 frames, translucent). effect_fit: the patch fills 0.54 x 0.52 of the frame, 0.12 above its bottom edge. offset_cm sets each one on its surface (the positions of SourceAssets/Art/StonebrookRuins/fire_emitters.json: the room's north and south walls, the cottage roof). Fable streams F and art-fx-props, 16 Nov 2026. 17 Nov 2026 (art-fx-2): drawn as a DECAL on the roof or wall (\"effect_decal\", FableF/burn_mark_fx: a ragged black break, charred laths, the fire flickering behind them), no longer a glowing heap on a camera-facing card."
     },
     {
       "family": "428 inside/stairs/stair- flight up left",
