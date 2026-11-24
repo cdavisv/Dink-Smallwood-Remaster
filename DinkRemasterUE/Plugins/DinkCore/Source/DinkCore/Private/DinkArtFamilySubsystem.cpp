@@ -419,6 +419,21 @@ bool DinkArtFamily::ParseFamilies(const FString& Json, TArray<FDinkFamilyBinding
 					}
 				}
 			}
+			const TArray<TSharedPtr<FJsonValue>>* Layers = nullptr;
+			if ((*Row)->TryGetArrayField(TEXT("effect_layers"), Layers) && Layers)
+			{
+				for (const TSharedPtr<FJsonValue>& V : *Layers)
+				{
+					const TArray<TSharedPtr<FJsonValue>>* L = nullptr;
+					if (!V.IsValid() || !V->TryGetArray(L) || !L || L->Num() < 5 || B.EffectLayers.Num() >= 8) continue;
+					FDinkFamilyEffectLayer Layer;
+					Layer.OffsetCm = FVector(FMath::Clamp((*L)[0]->AsNumber(), -1000.0, 1000.0), FMath::Clamp((*L)[1]->AsNumber(), -1000.0, 1000.0), FMath::Clamp((*L)[2]->AsNumber(), -1000.0, 1000.0));
+					Layer.Scale = FMath::Clamp((*L)[3]->AsNumber(), 0.1, 4.0);
+					Layer.PhaseSeconds = FMath::Clamp((*L)[4]->AsNumber(), 0.0, 60.0);
+					Layer.bMirror = L->Num() > 5 && (*L)[5]->AsNumber() != 0.0;
+					B.EffectLayers.Add(Layer);
+				}
+			}
 		}
 		else if (!(*Row)->TryGetStringField(TEXT("mesh"), B.Mesh) || !B.Mesh.StartsWith(TEXT("/Game/")))
 		{
@@ -1287,9 +1302,36 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 	Card->SetRelativeLocation(FVector(CentreX - Unit.GetCenter().X * NewScale.X, NewY, NewBottom - Height * Binding.EffectSink - Unit.Min.Z * NewScale.Z));
 	// A fire the 1997 picture paints on a roof stands on the ground point under that pixel; the row moves it onto the roof.
 	if (const FVector* Offset = Binding.OffsetCm.Find(OriginName)) Card->AddWorldOffset(*Offset);
-	for (int32 Slot = 0; Slot < Card->GetNumMaterials(); ++Slot) Card->SetMaterial(Slot, *Effect);
 	Card->SetCastShadow(false);
 	Card->ComponentTags.AddUnique(FamilyTag);
+	for (int32 Slot = 0; Slot < Card->GetNumMaterials(); ++Slot) Card->SetMaterial(Slot, *Effect);
+	// "effect_layers": the same flipbook again, behind and in front, each at another place in its loop
+	for (int32 Index = 0; Index < Binding.EffectLayers.Num(); ++Index)
+	{
+		const FDinkFamilyEffectLayer& L = Binding.EffectLayers[Index];
+		UStaticMeshComponent* Layer = NewObject<UStaticMeshComponent>(&Actor, FName(*FString::Printf(TEXT("FamilyEffectLayer_%d"), Index)));
+		Layer->SetMobility(EComponentMobility::Movable);
+		Layer->SetupAttachment(Card);
+		Layer->SetStaticMesh(Card->GetStaticMesh());
+		Layer->SetCollisionProfileName(UCollisionProfile::NoCollision_ProfileName);
+		Layer->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Layer->SetCanEverAffectNavigation(false);
+		Layer->SetGenerateOverlapEvents(false);
+		Layer->SetCastShadow(false);
+		Layer->ComponentTags.Add(FamilyTag);
+		// The card's own scale is (width, 1, height): offsets in cm are divided by it. The layer keeps the card's
+		// bottom middle (plus its offset) whatever its size; the card's face normal is local +Y.
+		const double Side = L.bMirror ? -L.Scale : L.Scale;
+		Layer->SetRelativeScale3D(FVector(Side, 1.0, L.Scale));
+		// (a placement's size factor, "offset_cm" fourth number, spreads its layers too)
+		Layer->SetRelativeLocation(FVector(Unit.GetCenter().X * (1.0 - Side) + L.OffsetCm.X * Grow / FMath::Max(NewScale.X, 1e-3), L.OffsetCm.Y * Grow,
+			Unit.Min.Z * (1.0 - L.Scale) + L.OffsetCm.Z * Grow / FMath::Max(NewScale.Z, 1e-3)));
+		UMaterialInstanceDynamic* Playing = UMaterialInstanceDynamic::Create(*Effect, Layer);
+		if (Playing) Playing->SetScalarParameterValue(TEXT("StartTime"), -float(L.PhaseSeconds));
+		for (int32 Slot = 0; Slot < Card->GetNumMaterials(); ++Slot) Layer->SetMaterial(Slot, Playing ? static_cast<UMaterialInterface*>(Playing) : Effect->Get());
+		Actor.AddInstanceComponent(Layer);
+		Layer->RegisterComponent();
+	}
 	if (Binding.EffectLightCandela > 0.0 && Binding.EffectLightRadiusCm > 0.0)
 	{
 		UDinkFlickerLightComponent* Light = NewObject<UDinkFlickerLightComponent>(&Actor, TEXT("FamilyEffectLight"));

@@ -28,6 +28,17 @@ enum class EDinkFamilyFit : uint8
 };
 
 /** One row of Content/Dink/Data/Art/families.json. */
+/** One further card of a placed effect (families.json "effect_layers"): see FDinkFamilyBinding::EffectLayers. */
+struct DINKCORE_API FDinkFamilyEffectLayer
+{
+	/** x along the card (cm, to the viewer's right), y towards the viewer (cm; negative = behind the card), z up (cm). */
+	FVector OffsetCm = FVector::ZeroVector;
+	double Scale = 1.0;
+	/** The flipbook of this card runs this many seconds ahead of the first card's. */
+	double PhaseSeconds = 0.0;
+	bool bMirror = false;
+};
+
 struct DINKCORE_API FDinkFamilyBinding
 {
 	/** As written: a sequence ("173 bonuses/barrels/barel-": the leading number counts) or a class id ("barrel"). */
@@ -133,6 +144,11 @@ struct DINKCORE_API FDinkFamilyBinding
 	FString EffectPlume;
 	FVector2D EffectPlumeSizeCm = FVector2D(300.0, 600.0);
 	TSet<FName> EffectPlumeOrigins;
+	/** "effect_layers": [[x, y, z, scale, phase_s, mirror], ...] (placed effects): further cards of the same flipbook
+	 *  beside, behind and in front of the placement's own card, each with its own size, its own place in the loop and
+	 *  optionally mirrored, so a fire is a depth of flames that part as the camera moves and never one picture. They
+	 *  are attached to the placement's card: they face the camera with it and follow its screen and vision rules. */
+	TArray<FDinkFamilyEffectLayer> EffectLayers;
 	FString Note;
 };
 
