@@ -1,0 +1,27 @@
+{
+ "schema": "dink-character-build/1",
+ "build": "Matron",
+ "strength": 0.0,
+ "lods": [
+  {
+   "mesh": "SK_Maiden_Photoreal_LOD0",
+   "moved_vertices": 0,
+   "max_mm": 0.0
+  },
+  {
+   "mesh": "SK_Maiden_Photoreal_LOD1",
+   "moved_vertices": 0,
+   "max_mm": 0.0
+  },
+  {
+   "mesh": "SK_Maiden_Photoreal_LOD2",
+   "moved_vertices": 0,
+   "max_mm": 0.0
+  },
+  {
+   "mesh": "SK_Maiden_Photoreal_LOD3",
+   "moved_vertices": 0,
+   "max_mm": 0.0
+  }
+ ]
+}

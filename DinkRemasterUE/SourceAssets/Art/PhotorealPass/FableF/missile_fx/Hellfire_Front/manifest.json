@@ -1,0 +1,55 @@
+{
+ "name": "FX_Hellfire_Front",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  1.9,
+  1.9,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Hellfire_Front/T_FX_Hellfire_Front_Flipbook.png",
+   "size_px": [
+    1536,
+    1536
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha = opacity; 6 x 6 frames of 256 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 36,
+  "grid": [
+   6,
+   6
+  ],
+  "fps": 24,
+  "loop": true,
+  "billboard_size_m": [
+   1.9,
+   1.9
+  ],
+  "blend": "translucent",
+  "glow": 1.8,
+  "hot": [
+   0.55,
+   0.95,
+   1.0
+  ],
+  "alpha_coverage": 0.23,
+  "ball_centre_uv": [
+   0.5,
+   0.67
+  ]
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Hellfire_Front/frames_strip.png",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Hellfire_Front/FX_Hellfire.blend",
+ "source_note": "a Mantaflow gas simulation (a ball of burning fuel in a head wind, resolution 112) rendered by Cycles as an emitting volume with an orthographic camera raised 14 degrees, from ahead of the ball (it flies at the camera); one frame per step, the loop closed by a 12-frame cross-fade; sparks are analytic 3D paths projected through the same camera",
+ "build": "DINK_CPU=1 blender -b --factory-startup -t 4 --python FableF/tools/build_fireball_fx.py -- Hellfire",
+ "families": [
+  "missile_fx",
+  "512 effects/comets/sm-comt2/fbal2-"
+ ],
+ "supersedes": "the upright side-view fireball card on the south and north flights",
+ "dresses": "hellfire along its flight: a fat ball of fire 0.6 m across that sheds clumps of flame behind it (1997: a chain of fire balls)"
+}

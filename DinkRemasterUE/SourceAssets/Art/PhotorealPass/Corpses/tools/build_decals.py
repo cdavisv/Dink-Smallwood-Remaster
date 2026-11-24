@@ -42,7 +42,7 @@ def cell(set_name, i, key, w, h):
         # 15 Nov 2026 look pass: the red of 187-189 (bright, saturated), a spray of fine drops and cast-off lines round the picture's own
         # drops, and only a thin red-brown stain round them (the grey damp-earth fringe read as a dirty halo on grass)
         sh = GS.blood_sheet(CELL, side, seed, stamp=(m, w, h, (0.0, 0.0)), n_drops=110, reach=0.11 * side, drop_r=(0.003, 0.013), casts=5, mist=420, edge_noise=0.25, soak_m=0.025,
-                            thin=(170, 14, 9), mid=(128, 7, 5), deep=(74, 3, 3), dried=(104, 15, 10), smear=(140, 13, 9), damp=(84, 30, 20))
+                            damp=(84, 30, 20), look='fresh', deep_m=0.035, **GS.FRESH_1997)      # 23 Nov 2026: the one blood look (flat bright red read as paint in the game)
     else:
         sh = GS.scorch_sheet(CELL, side, seed, stamp=(m, w, h, (0.0, 0.0)), soft=True, through=True)       # burnt through: black void, far wall of the hole, charred rim
     edge = 6; sh['BC'][:edge, :, 3] = 0; sh['BC'][-edge:, :, 3] = 0; sh['BC'][:, :edge, 3] = 0; sh['BC'][:, -edge:, 3] = 0       # nothing bleeds into the next cell

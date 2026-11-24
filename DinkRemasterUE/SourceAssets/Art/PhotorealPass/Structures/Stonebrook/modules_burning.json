@@ -1,0 +1,45 @@
+[
+ {
+  "name": "SM_Cottage_Stonebrook_PR_Burning",
+  "class": "building",
+  "fbx": "SM_Cottage_Stonebrook_PR_Burning.fbx",
+  "materials": [
+   "MI_Struct_Fieldstone",
+   "MI_Struct_OakWeathered",
+   "MI_Struct_Thatch",
+   "MI_Town_DoorPlanks",
+   "MI_Struct_Earth"
+  ],
+  "source_blend": "Stonebrook_Burning.blend",
+  "lod0_triangles": 88652,
+  "lod1_triangles": 39892,
+  "lod2_triangles": 17730,
+  "dimensions_m": [
+   19.6,
+   12.35,
+   7.951
+  ],
+  "bounds_min_m": [
+   -9.8,
+   -7.05,
+   0.0
+  ],
+  "bounds_max_m": [
+   9.8,
+   5.3,
+   7.951
+  ],
+  "open_edges": 0,
+  "collision_hulls": 5,
+  "families": [
+   "screen 439 burning state (vision 1) of 63 struct<HOME>"
+  ],
+  "supersedes": "reference only: StonebrookRuins/SM_Cottage_Stonebrook_Burning_01 (candidate kit, another house: half-timbered and gabled, its roof hole far smaller than the 1997 one)",
+  "dresses": "the Stonebrook cottage while it burns (screen 439 vision 1, the hole of S439_P29): the same stones, timbers and weathering as SM_Cottage_Stonebrook_PR (built from the same random stream), the roof standing with a hole eaten into the front slope from 1.25 m above the eaves up to and through the ridge, about 4.4 m wide: ragged black straw at its edge, soot a metre out, charred rafters, laths and the bared ridge pole in it, the dark of the room below; three charred patches where the other fires of the 1997 screen sit. No flame, smoke or glow in the mesh: those are placed effects.",
+  "fit": {
+   "pivot": "as SM_Cottage_Stonebrook_PR: swap in place for vision 1",
+   "collision": "as the intact cottage (roof hull kept)",
+   "effects": "fire at the 1997 fire placements of screen 439 is placed by the game; the hole centre is at x = 1.90 m on the front slope"
+  }
+ }
+]

@@ -41,5 +41,8 @@
  "fore_period": 0.0115,
  "fore_warp": 7.0,
  "fore_k": 0.2,
- "_note": "size must equal the Mother's (4096): the bake packs the skin charts with a margin in pixels, and a twin wears the Mother's mesh with the Mother's chart layout. At 2048 the charts were packed differently and the mouth's red chart lay on the maidens' arms (seen in the game, 16 Nov 2026)."
+ "_note": "size must equal the Mother's (4096): the bake packs the skin charts with a margin in pixels, and a twin wears the Mother's mesh with the Mother's chart layout. At 2048 the charts were packed differently and the mouth's red chart lay on the maidens' arms (seen in the game, 16 Nov 2026).",
+ "neck_lo": 1.5,
+ "neck_k": 0.45,
+ "lip_k": 1.3
 }

@@ -1,7 +1,9 @@
 """Poses of single people. makers(rig) -> {name: callable returning a clip dict}.
 
 Seth_Pose: the standing picture of Seth (graphics/effects/magic/pose, loaded as sequence 580 by s7-mil): feet wide
-apart, arms crossed high on the chest, chin up. A loop: he breathes, shifts his weight once and looks his visitor over."""
+apart, arms crossed high on the chest, chin up. A loop: he breathes, shifts his weight once and looks his visitor over.
+
+Guard_Stand: a guard (and the countryman) with a pole upright in the right fist. Stoop_Stand: the old man bent over his cane."""
 import math
 from mathutils import Vector, Matrix
 from rig import Pose, rot, smooth, lerp, keyed, FWD, LEFT, UP
@@ -130,5 +132,36 @@ def guard_stand(rig, seconds=8.0, fps=30):
                 note='a guard standing with a polearm upright in his right fist (the shaft stands on the root bone)')
 
 
+# The old man of pictures 231-239 stands bent double over his cane. Knees bent, the hips carried back, the whole back
+# rounded forward, the head lifted so that he looks ahead and not at his feet. CANE: where the cane of NPC/OldMan stands
+# on the root bone (townsfolk.py `gear` box of the row) and how high the right fist closes on it.
+STOOP_STAND = dict(width=0.105, foot_yaw=D(13), pelvis_drop=0.035, pelvis_tilt=D(9), slouch=D(50), head_pitch=D(8), shrug=D(6),
+                   protract=D(14), abduct=D(9), elbow=D(30), swing=D(6), inward=D(14), curl=0.45, lat=0.0, roll=0.0, yaw=0.0, fwd=-0.030)
+CANE = dict(x=-0.33, y=-0.07, grip_z=0.90)
+
+
+def stoop_stand(rig, seconds=8.0, fps=30):
+    ch = dict(
+        lat=[(0, 0), (2.6, 0), (3.8, -0.012), (6.0, -0.014), (7.2, 0), (8, 0)],
+        roll=[(0, 0), (2.6, 0), (3.8, D(1.0)), (6.0, D(1.1)), (7.2, 0), (8, 0)],
+        dip=[(0, 0), (1.8, 0.004), (4.0, 0), (5.6, 0.005), (8, 0)],
+        head_yaw=[(0, 0), (1.2, 0), (2.4, D(-9)), (3.8, D(-10)), (5.0, D(6)), (6.2, D(6)), (7.2, 0), (8, 0)],
+        head_nod=[(0, 0), (2.4, D(3)), (3.8, D(3)), (5.0, D(-2)), (6.2, D(-2)), (7.2, 0), (8, 0)],
+    )
+    n = int(round(seconds * fps))
+    poses = []
+    for i in range(n + 1):
+        t = (i % n) / fps
+        mod = {k: keyed(rows, t) for k, rows in ch.items()}
+        b = math.sin(2 * math.pi * t / 4.0)
+        mod['breath'] = -D(1.2) * b
+        mod['breath_shrug'] = 0.6 * D(1.0) * max(0.0, b)
+        pose = stand_from(rig, STOOP_STAND, **mod)
+        grip_pole(pose, 'r', CANE)
+        poses.append(pose.finish())
+    return dict(name='Stoop_Stand', fps=fps, poses=poses, loop=True, speed=0.0, stride=0.0, family=PEOPLE, strip_every=40,
+                note='an old man standing bent over his cane, right fist on it (1997 pictures 231-239; the cane stands on the root bone)')
+
+
 def makers(rig):
-    return {'Seth_Pose': lambda: seth_pose(rig), 'Guard_Stand': lambda: guard_stand(rig)}
+    return {'Seth_Pose': lambda: seth_pose(rig), 'Guard_Stand': lambda: guard_stand(rig), 'Stoop_Stand': lambda: stoop_stand(rig)}

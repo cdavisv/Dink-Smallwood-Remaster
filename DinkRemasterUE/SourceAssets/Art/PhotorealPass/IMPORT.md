@@ -139,6 +139,8 @@ The capture and calibration tools live in `Scripts/PhotorealQA/` (see its README
 - **Decal sheets**: `python3 -I Corpses/tools/build_decals.py` writes `Corpses/Decals` (three 2 x 2 atlases, one 1997 picture frame per cell: blood 187 / 188 / 189, burn holes 158); the kit import makes `/Game/Dink/Photoreal/Corpses/M_Decal_Sheet` and `MI_Decal_<Set>_0..3` from the manifest's `decals`. Not bound by `environment.json` yet.
 - **Checks and captures**: `Docs/Verification/CorpseGore_14Nov2026/`, `Docs/Verification/StonebrookMotherAndRemains_14Nov2026/`.
 
+- **GP-Q7 part 1, 23 Nov 2026**: the pool of `Corpse_Knight` in the one blood look (`gore_sheets.blood_sheet(look='fresh', **FRESH_1997)`: bright 1997 red where thin, deep where thick; colours set by the running game). `DINK_CPU=1 DINK_POOL_ONLY=1 ../Unclaimed/tools/bl.sh ../../Corpses/tools/build_gore.py Corpse_Knight` rebuilds the pool sheet alone (no bake, 20 s); then the corpse kit import. The kit builds read
+  `DinkRemasterUE/ImportData/sprites/<seq>_<frame>.png` (git-ignored: a worktree needs it linked or exported).
 - **Review follow-ups, 16 Nov 2026**: every kit asset rebuilt with `blood_sheet(keep_fringe=False)` (no pale damp ring), a matt
   pool edge and brighter people; the burn holes as kind `pit` (`pit_sheet` + `pit_card`: void mask in `ORM.b`, depths in the kit row's `pit` block,
   master `M_Struct_Baked_Pit`; `Burn_Hole_Wall` stands upright for `S001_P49`);
@@ -457,3 +459,10 @@ explosion) and 512 (falling fireball) drew the grey script-sprite marker. Each n
 Everything is presentation only and off in headless runs (`FApp::CanEverRender()` is false under `-nullrhi`), except the family bindings of `families.json`, which also dress placements headless (no collision, no gameplay). Command-line switches (`-dpcvars=a=0,b=0`):
 `dink.PhotorealHero=0`, `dink.PhotorealPillbug=0`, `dink.CreatureClassArt=0` (class-bound creatures), `dink.PhotorealNPCs=0` (Mother and Milder), `dink.TownHouses=0`, `dink.FamilyArt=0` (all family meshes, the old ones included), `dink.EnvMaterials=0`, `dink.IndoorEnv=0`, `dink.IndoorLitCards=0`, `dink.StateSwaps=0`, `dink.GrassDensity=0`, `dink.GroundTint=0`, `dink.Wind=0`, `dink.Backdrop=0`, `dink.InteriorExposure=0`. `dink.EnvMeshSwaps=0` is meant to restore the old Stonebrook vegetation and structures but crashed at start in round 6 (segmentation fault): do not rely on it until that is fixed. The sky light tint has no cvar: set `environment.json` `sky.tint` to 1, 1, 1.
 - **Missiles along their flight, fountain, burn marks (23 Nov 2026)**: `FableF/tools/build_fireball_fx.py` (Blender, `DINK_CPU=1`; `FableF/missile_fx`), `build_fountain_spray.py` and `build_burn_mark.py` (no Blender; `FableF/fountain_spray_fx`, `FableF/burn_mark_fx`), then `make_kit_manifest.py` and the FableF kit import. A flipbook's manifest may say `"blend": "lit"` (water: `M_FX_Flipbook_Lit`, takes the scene's light) or `"blend": "decal"` (`M_FX_Flipbook_Decal`, for rows with `effect_decal`; its sheet is imported `never_stream`).
+
+- **Burning state of the Stonebrook cottage, 23 Nov 2026 (DS-01)**: `SM_Cottage_Stonebrook_PR_Burning` (screen 439 vision 1) is built by
+  `DINK_CPU=1 DINK_SB_ONLY=SM_Cottage_Stonebrook_PR_Burning blender -b --factory-startup -t 4 --python ../tools/stonebrook_build.py`
+  from `Structures/Stonebrook` (writes only that FBX, `Stonebrook_Burning.blend` and `modules_burning.json`; run
+  `git checkout materials.json` afterwards, copy the record into the module and integration rows of `manifest.json`, and
+  `touch manifest.json` after any scrub: the importer refuses a kit whose FBX is newer than its manifest). Import with
+  `DINK_KIT=Structures/Stonebrook DINK_KIT_FOLDER=Structures Scripts/import_town_exteriors.sh`; bound by a `state_swaps` row of `environment.json`.

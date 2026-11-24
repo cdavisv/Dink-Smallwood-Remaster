@@ -412,11 +412,16 @@ private:
 	void UpdateCorpses(int32 CurrentScreen);
 
 	// --- ground decals for sprite classes (round 6, environment.json `decals`): blood splats, burn holes. Visual only:
-	// the placement's card is hidden and a deferred decal lies at its ground point, attached to the placement actor.
+	// the placement's card is hidden and a deferred decal lies at its ground point, attached to the placement actor (or, for
+	// a background placement drawn as an instance, to the screen's greybox actor).
 	struct FDinkDecalClass
 	{
 		TArray<TObjectPtr<class UMaterialInterface>> Materials;
 		float SizeCm = 100.f;
+		/** `pictures`: one decal per 1997 picture frame (key = sequence * 100 + frame), drawn from that very picture (Corpses/Decals).
+		 *  Such a decal takes the square of CardDecalSquare (the card's longer side x 1.15, the cell of the atlas) and is not
+		 *  turned, so the drops lie where the picture had them and never cover less ground than 1997. */
+		TMap<int32, TObjectPtr<class UMaterialInterface>> Pictures;
 	};
 public:
 	/**
@@ -427,6 +432,16 @@ public:
 	 * MinSideCm / 2 and half the card's longer side times Margin; OutYaw = the card's yaw (the screen's turn).
 	 */
 	static void CardDecalSquare(const FTransform& CardWorld, double GroundZ, double MinSideCm, double Margin, FVector& OutCentre, double& OutHalfCm, double& OutYaw);
+	/**
+	 * A ground decal on the landforms (#153): the lift (cm above the flat floor) of a decal whose footprint is HalfNorthCm x
+	 * HalfEastCm about Centre on a screen turned by YawDeg = the ground under its centre; its box's half depth =
+	 * MinHalfDepthCm plus the largest height difference to the ground under its corners and edge middles (at most 90 cm).
+	 * GroundCm gives the ground height above the flat floor at a world point (flat ground: 0 and MinHalfDepthCm).
+	 * With OutNormal the decal is to be TILTED onto the slope (seen in the game 23 Nov 2026: projected straight down, the drops of
+	 * a splat on a bank were drawn out into streaks): OutNormal is the normal of the plane through the ground at the footprint's
+	 * four edge middles (world space, at most MaxTiltDeg from upright) and the half depth is measured from that plane, along it.
+	 */
+	static void DecalGroundFit(TFunctionRef<double(const FVector2D&)> GroundCm, const FVector& Centre, double HalfNorthCm, double HalfEastCm, double YawDeg, double MinHalfDepthCm, double& OutLiftCm, double& OutHalfDepthCm, FVector* OutNormal = nullptr, double MaxTiltDeg = 50.0);
 private:
 	void ApplyDecals(int32 ScreenNumber);
 	TMap<FName, FDinkDecalClass> DecalClasses;

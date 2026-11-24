@@ -1,0 +1,55 @@
+{
+ "name": "FX_Fireball_Back",
+ "class": "effect flipbook (texture atlas; no mesh)",
+ "lod0_triangles": 0,
+ "dimensions_m": [
+  1.3,
+  1.3,
+  0.0
+ ],
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Fireball_Back/T_FX_Fireball_Back_Flipbook.png",
+   "size_px": [
+    1536,
+    1536
+   ],
+   "channels": "RGB straight colour (sRGB) + alpha = opacity; 6 x 6 frames of 256 px, row by row from the top left"
+  }
+ ],
+ "flipbook": {
+  "frames": 36,
+  "grid": [
+   6,
+   6
+  ],
+  "fps": 24,
+  "loop": true,
+  "billboard_size_m": [
+   1.3,
+   1.3
+  ],
+  "blend": "translucent",
+  "glow": 2.2,
+  "hot": [
+   0.55,
+   0.95,
+   1.0
+  ],
+  "alpha_coverage": 0.175,
+  "ball_centre_uv": [
+   0.5,
+   0.32999999999999996
+  ]
+ },
+ "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Fireball_Back/frames_strip.png",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/FableF/missile_fx/Fireball_Front/FX_Fireball.blend",
+ "source_note": "a Mantaflow gas simulation (a ball of burning fuel in a head wind, resolution 112) rendered by Cycles as an emitting volume with an orthographic camera raised 14 degrees, from behind the ball (it flies away); one frame per step, the loop closed by a 12-frame cross-fade; sparks are analytic 3D paths projected through the same camera",
+ "build": "DINK_CPU=1 blender -b --factory-startup -t 4 --python FableF/tools/build_fireball_fx.py -- Fireball",
+ "families": [
+  "missile_fx",
+  "508 effects/comets/sm-comt1/comt8-"
+ ],
+ "supersedes": "the upright side-view fireball card on the south and north flights",
+ "dresses": "the fireball spell along its flight: a ball of fire 0.35 m across, flames wrapped round it and a short trail of flame and sparks behind"
+}

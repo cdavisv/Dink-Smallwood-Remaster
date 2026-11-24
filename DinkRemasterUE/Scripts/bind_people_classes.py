@@ -98,16 +98,21 @@ def loaded_sequences():
     return seqs
 
 
-# Figures that carry a polearm stood on the root bone (npc_port.py): their idle closes the right fist on the shaft
-# (AnimationPassV1 clips_people.py Guard_Stand; the shaft stands where the clip's POLE says). Twins of the knight too.
+# Figures that carry a polearm stood on the root bone (npc_port.py; the countryman's pole: townsfolk_pack.py): their idle
+# closes the right fist on the shaft (AnimationPassV1 clips_people.py Guard_Stand; the shaft stands where the clip's POLE
+# says). Twins of the knight too.
 GUARD_IDLE = '/Game/Dink/Hero/Animations/Pass1/AN_Guard_Stand.AN_Guard_Stand'
-GUARDS = {'Knight', 'KnightRed', 'KnightSilver', 'KnightGold'}
+GUARDS = {'Knight', 'KnightRed', 'KnightSilver', 'KnightGold', 'Peasant'}
+# A figure that stands in a pose of its own whatever picture it shows: the old man bent over his cane (pictures 231-239;
+# AnimationPassV1 clips_people.py Stoop_Stand closes his right fist on the cane, which stands on the root bone). His walk
+# is the shared one: he straightens when he walks (a posture row for his class is a need of the motion code, not a clip).
+STAND_IDLE = {'OldMan': '/Game/Dink/Hero/Animations/Pass1/AN_Stoop_Stand.AN_Stoop_Stand'}
 
 
 def row(class_id, name, sequences, scale, yaw, note):
     path = f'/Game/Dink/Photoreal/Characters/NPC/{name}/SK_{name}_Photoreal.SK_{name}_Photoreal'
     return {'class': class_id, 'mesh': path,
-            'locomotion': {'idle': GUARD_IDLE if name in GUARDS else IDLE, 'gaits': [{'clip': clip, 'speed_cm_s': round(speed * scale, 1), 'cycles': cycles} for clip, speed, cycles in GAITS]},
+            'locomotion': {'idle': STAND_IDLE.get(name, GUARD_IDLE if name in GUARDS else IDLE), 'gaits': [{'clip': clip, 'speed_cm_s': round(speed * scale, 1), 'cycles': cycles} for clip, speed, cycles in GAITS]},
             # the figures face +Y (as the characters.json rows: yaw -90)
             'rotation_deg': [0, -90 + yaw, 0], 'scale': scale,
             'roles': {'walk': {'sequences': sequences, 'locomotion': True}}, 'note': note}
