@@ -659,3 +659,110 @@ bool FDinkArtFamilyEffectFollowsCardTest::RunTest(const FString&)
 	TestTrue(TEXT("rule off: the other children are as they were"), OtherShown->GetVisibleFlag() && !OtherHidden->GetVisibleFlag());
 	return true;
 }
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkArtFamilyEffectSwitchTest, "Dink.Art.Family.FamilyArtZeroHidesEffectsAtRunTime", DINK_TEST_FLAGS)
+bool FDinkArtFamilyEffectSwitchTest::RunTest(const FString&)
+{
+	// Takeover A8 (25 Nov 2026; README of #215): `dink.FamilyArt 0` at run time left the fire cards of the burning cottage
+	// standing, so a capture could not hide them. Now 0 hides every family effect (card, light, smoke column) already dressed
+	// and every one dressed while it is 0; 1 gives each back what it had. The family meshes are chosen at play start.
+	if (!IFileManager::Get().FileExists(*DinkArtFamily::DefaultFamiliesPath()))
+	{
+		AddWarning(TEXT("skipped: no families.json"));
+		return true;
+	}
+	UStaticMesh* Plane = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Plane.Plane"));
+	if (!TestNotNull(TEXT("engine card mesh"), Plane)) return false;
+	if (!LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Dink/Photoreal/FableF/MI_FX_Fire_Wall.MI_FX_Fire_Wall"), nullptr, LOAD_NoWarn | LOAD_Quiet) ||
+		!LoadObject<UMaterialInterface>(nullptr, TEXT("/Game/Dink/Photoreal/FableF/MI_FX_Smoke_Plume.MI_FX_Smoke_Plume"), nullptr, LOAD_NoWarn | LOAD_Quiet))
+	{
+		AddWarning(TEXT("skipped: the fire_fx materials are not imported"));
+		return true;
+	}
+	IConsoleVariable* Switch = IConsoleManager::Get().FindConsoleVariable(TEXT("dink.FamilyArt"));
+	if (!TestNotNull(TEXT("dink.FamilyArt registered"), Switch)) return false;
+	const int32 Previous = Switch->GetInt();
+	Switch->SetWithCurrentPriority(1);
+	UGameInstance* GI = NewObject<UGameInstance>(GEngine);
+	GI->InitializeStandalone();
+	UWorld* World = GI->GetWorld();
+	UDinkGreyboxSubsystem* Greybox = World->GetSubsystem<UDinkGreyboxSubsystem>();
+	UDinkArtFamilySubsystem* Family = World->GetSubsystem<UDinkArtFamilySubsystem>();
+	TArray<ADinkScreenVolume*> Rooms;
+	ON_SCOPE_EXIT
+	{
+		Switch->SetWithCurrentPriority(Previous);
+		for (ADinkScreenVolume* V : Rooms) if (Greybox) Greybox->UnregisterScreen(V);
+		GI->Shutdown();
+		GEngine->DestroyWorldContext(World);
+		World->DestroyWorld(false);
+	};
+	if (!TestNotNull(TEXT("greybox subsystem"), Greybox) || !TestNotNull(TEXT("family subsystem"), Family)) return false;
+	auto Room = [&](int32 Number, double X)
+	{
+		ADinkScreenVolume* V = World->SpawnActor<ADinkScreenVolume>();
+		V->ScreenNumber = Number;
+		V->Corners.NW = FVector2D(X, 0);
+		V->Corners.NE = FVector2D(X + 6, 0);
+		V->Corners.SW = FVector2D(X, 4);
+		V->Corners.SE = FVector2D(X + 6, 4);
+		FBox Box(ForceInit);
+		Box += V->MapPixelToWorld(0, 0);
+		Box += V->MapPixelToWorld(600, 400);
+		V->Bounds->SetMobility(EComponentMobility::Movable);
+		V->SetActorLocation(Box.GetCenter());
+		V->Bounds->SetBoxExtent(Box.GetExtent() + FVector(0, 0, 1000));
+		V->Bounds->UpdateBounds();
+		Greybox->RegisterScreen(V);
+		Rooms.Add(V);
+		return V;
+	};
+	ADinkScreenVolume* House = Room(439, 0);
+	ADinkScreenVolume* West = Room(438, 10);
+	ADinkGreyboxScreen* Ground = World->SpawnActor<ADinkGreyboxScreen>();  // the family layer runs only in a world with greybox screens
+	Ground->ScreenNumber = 439;
+	auto Fire = [&](const ADinkScreenVolume& Screen, int32 Index)
+	{
+		ADinkPlaceholderActor* A = World->SpawnActor<ADinkPlaceholderActor>(Screen.MapPixelToWorld(300, 200), FRotator::ZeroRotator);
+		A->ScreenNumber = Screen.ScreenNumber;
+		A->Card->SetStaticMesh(Plane);
+		A->Card->SetRelativeLocation(FVector(0.0, 0.0, 50.0));
+		A->Origin->OriginId = FDinkOriginId(Screen.ScreenNumber, Index);
+		A->Origin->Sequence = 427;  // graphics/effects/fire, class fire_fx
+		A->Origin->Frame = 1;
+		A->Origin->ClassId = TEXT("fire_fx");
+		return A;
+	};
+	ADinkPlaceholderActor* Roof = Fire(*House, 5);  // S439_P05: a roof fire with a smoke column
+	ADinkPlaceholderActor* Late = Fire(*West, 97);
+	Family->OnWorldBeginPlay(*World);
+	if (!TestTrue(TEXT("family layer ready with the shipped families.json"), Family->IsReady())) return false;
+	Family->ApplyScreen(439);
+	UDinkFlickerLightComponent* Light = Roof->FindComponentByClass<UDinkFlickerLightComponent>();
+	UMaterialBillboardComponent* Plume = Roof->FindComponentByClass<UMaterialBillboardComponent>();
+	if (!TestNotNull(TEXT("the roof fire has its light"), Light) || !TestNotNull(TEXT("and its smoke column"), Plume)) return false;
+	TestTrue(TEXT("the fire's card, light and smoke carry the effect tag"), Roof->Card->ComponentHasTag(UDinkArtFamilySubsystem::EffectTag) &&
+		Light->ComponentHasTag(UDinkArtFamilySubsystem::EffectTag) && Plume->ComponentHasTag(UDinkArtFamilySubsystem::EffectTag));
+	TestFalse(TEXT("dressed and shown"), Roof->Card->bHiddenInGame || Light->bHiddenInGame || Plume->bHiddenInGame);
+	// A family mesh is no effect: it is left alone (an unrelated component of the same actor too).
+	UStaticMeshComponent* Other = NewObject<UStaticMeshComponent>(Roof, TEXT("NotAnEffect"));
+	Other->SetupAttachment(Roof->GetRootComponent());
+	Other->ComponentTags.Add(UDinkArtFamilySubsystem::FamilyTag);
+	Roof->AddInstanceComponent(Other);
+	Other->RegisterComponent();
+
+	Switch->SetWithCurrentPriority(0);
+	TestFalse(TEXT("dink.FamilyArt 0: the effects are hidden"), Family->AreEffectsShown());
+	TestTrue(TEXT("dink.FamilyArt 0: the fire's card, light and smoke are hidden"), Roof->Card->bHiddenInGame && Light->bHiddenInGame && Plume->bHiddenInGame);
+	TestFalse(TEXT("a family component that is no effect keeps its flag"), Other->bHiddenInGame);
+	Family->ApplyScreen(438);  // dressed while the switch is 0
+	UDinkFlickerLightComponent* LateLight = Late->FindComponentByClass<UDinkFlickerLightComponent>();
+	if (!TestNotNull(TEXT("the 438 fire is dressed"), LateLight)) return false;
+	TestTrue(TEXT("a fire dressed while it is 0 starts hidden"), Late->Card->bHiddenInGame && LateLight->bHiddenInGame);
+
+	Switch->SetWithCurrentPriority(1);
+	TestTrue(TEXT("dink.FamilyArt 1: the effects are shown"), Family->AreEffectsShown());
+	TestFalse(TEXT("dink.FamilyArt 1: every fire, light and smoke column is back"),
+		Roof->Card->bHiddenInGame || Light->bHiddenInGame || Plume->bHiddenInGame || Late->Card->bHiddenInGame || LateLight->bHiddenInGame);
+	return true;
+}

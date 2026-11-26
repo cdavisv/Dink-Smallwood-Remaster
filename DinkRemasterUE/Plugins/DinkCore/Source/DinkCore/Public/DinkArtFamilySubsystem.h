@@ -280,6 +280,20 @@ public:
 	static const FName ScriptEffectTag;
 	/** Tag on the card that shows a script-created sprite's 1997 picture when its picture has no family mesh. */
 	static const FName ScriptPictureTag;
+	/**
+	 * Tag on every component of a family effect (rows with "effect"): a placed effect's card and its layers, decal, light and
+	 * smoke column (DressPlacedEffect); a script sprite's effect card and light (DressScriptSprite). dink.FamilyArt 0 at run
+	 * time hides exactly these (takeover A8, 25 Nov 2026: a capture could not hide the fires of the burning cottage).
+	 */
+	static const FName EffectTag;
+
+	/**
+	 * Review switch at run time: false hides every family effect of the world (EffectTag, bHiddenInGame) and every one dressed
+	 * while it is off; true gives each back the bHiddenInGame it had when this hid it. The family meshes are not touched (they
+	 * are chosen at play start). Called when dink.FamilyArt changes. Presentation only.
+	 */
+	void SetEffectsShown(bool bShown);
+	bool AreEffectsShown() const { return !bEffectsHidden; }
 
 	/** The picture cards made by DressScriptSprite; UDinkGreyboxSubsystem turns them to face the camera each frame. */
 	static TArray<TWeakObjectPtr<class UStaticMeshComponent>>& ScriptPictureCards();
@@ -443,4 +457,9 @@ private:
 	int32 CurrentScreen = 0;
 	bool bReady = false;
 	bool bIndexed = false;
+	/** dink.FamilyArt 0 at run time (SetEffectsShown): effects are hidden, and the bHiddenInGame each had before. */
+	bool bEffectsHidden = false;
+	TMap<TWeakObjectPtr<USceneComponent>, bool> EffectHiddenBefore;
+	FDelegateHandle FamilyArtChangedHandle;
+	void HideEffectsOf(AActor& Actor);
 };
