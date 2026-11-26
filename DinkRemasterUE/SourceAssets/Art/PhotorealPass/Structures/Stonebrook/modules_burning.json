@@ -8,26 +8,27 @@
    "MI_Struct_OakWeathered",
    "MI_Struct_Thatch",
    "MI_Town_DoorPlanks",
-   "MI_Struct_Earth"
+   "MI_Struct_Earth",
+   "MI_Stonebrook_Embers"
   ],
   "source_blend": "Stonebrook_Burning.blend",
-  "lod0_triangles": 88652,
-  "lod1_triangles": 39892,
-  "lod2_triangles": 17730,
+  "lod0_triangles": 97090,
+  "lod1_triangles": 43690,
+  "lod2_triangles": 19418,
   "dimensions_m": [
    19.6,
-   12.35,
-   7.951
+   12.336,
+   7.952
   ],
   "bounds_min_m": [
    -9.8,
-   -7.05,
+   -7.036,
    0.0
   ],
   "bounds_max_m": [
    9.8,
    5.3,
-   7.951
+   7.952
   ],
   "open_edges": 0,
   "collision_hulls": 5,

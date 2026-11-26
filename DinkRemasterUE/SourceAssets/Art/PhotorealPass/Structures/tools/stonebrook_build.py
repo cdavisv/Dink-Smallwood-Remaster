@@ -85,7 +85,8 @@ def thatch_planes(m, x0, x1, y0, y1, ze, tp, seed, clip=None, thick=0.42, expo=0
     """hipped thatch built as four separate slope planes, each a closed solid whose rows are the course butts: a rounded 0.4 m
     eaves roll with an undercut, a 5 cm ledge every 0.36 m, ragged butt lines, lumps, hollows, rounded hips and ridge. Every plane
     has its own UVs with the stalks running down its slope, so the hips are honest seams between two straw directions.
-    clip {plane: (t0, t1, smax)}: only part of a plane (burnt state)."""
+    clip {plane: (t0, t1, smax)}: only part of a plane (burnt state); (t0, t1, smax, smin) is a piece that begins smin up the slope
+    (the thatch above a hole burnt into the slope)."""
     r = m.rng; pit = math.atan(tp); cp, sp = math.cos(pit), math.sin(pit)
     dmax = (y1 - y0) / 2; S = dmax / cp; ov = 0.07
     planes = {'front': ((x0, y0), (1, 0), (0, 1), x1 - x0), 'back': ((x1, y1), (-1, 0), (0, -1), x1 - x0),
@@ -114,12 +115,16 @@ def thatch_planes(m, x0, x1, y0, y1, ze, tp, seed, clip=None, thick=0.42, expo=0
             parts.append((e, (0.0, 1.0, S)))
         elif e in clip:                                          # one part (t0, t1, smax) or several of them (a hole burnt into a standing roof)
             parts += [(e, c) for c in (clip[e] if isinstance(clip[e], list) else [clip[e]])]
-    for e, (t0, t1, smax) in parts:
+    burning_ = getattr(m, 'burning', False)
+    for e, part in parts:
+        t0, t1, smax = part[:3]; smin = part[3] if len(part) > 3 else None
         (ox, oy), (ax, ay), (ix, iy), Le = planes[e]
-        rows = [(-0.03, -0.27, 1), (0.0, -0.11, 0), (0.08, -0.015, 0)]
+        rows = [(-0.03, -0.27, 1), (0.0, -0.11, 0), (0.08, -0.015, 0)] if smin is None else [(smin, 0.3, 0)]; ne = 3 if smin is None else 1
         for i in range(1, nc + 1):
             if i * expo > smax:
                 break
+            if smin is not None and i * expo <= smin + 0.06:
+                continue
             rows += [(i * expo, 0.0, 1), (i * expo, 1.0, 0)]
         rows.append((min(S, smax), 0.3, 0))
         nA = max(2 if getattr(m, 'burning', False) and Le * (t1 - t0) < 0.3 else 4, int(Le * (t1 - t0) / 0.3)); R_ = len(rows); C_ = nA + 1      # a bundle of the burning roof's ragged edge is 6 cm wide
@@ -139,22 +144,25 @@ def thatch_planes(m, x0, x1, y0, y1, ze, tp, seed, clip=None, thick=0.42, expo=0
                 xw = ox + a_ * ax + d * ix; yw = oy + a_ * ay + d * iy
                 Pn = np.array([[xw, yw, 0.0]])
                 s_ = sn
-                if ri >= 3 and ri < R_ - 1:
+                if ri >= ne and ri < R_ - 1:
                     s_ = sn + 0.04 * vnoise(Pn * np.array([3.0, 3.0, 1]), seed + 7 + (ri - 3) // 2, 1.0)[0]
                 h = hb
-                if ri >= 3 and hb == 1.0:
+                if ri >= ne and hb == 1.0:
                     h = 0.05 + 0.018 * vnoise(Pn, seed + 11 + ri, 2.0)[0]
                 elif ri == R_ - 1:
                     h = 0.015
+                point_ = 0.16 * abs(2.0 * c / nA - 1.0) if burning_ else 0.0      # a burnt bundle ends in a point of straw, not in a square butt (23 Nov: square ends read as steps from above)
                 if smax < S and ri == R_ - 1:
-                    s_ = sn + 0.3 * vnoise(Pn, seed + 40, 1.5)[0]; h = -0.02
+                    s_ = sn + 0.3 * vnoise(Pn, seed + 40, 1.5)[0] - point_; h = -0.02
+                if smin is not None and ri == 0:
+                    s_ = sn + 0.3 * vnoise(Pn, seed + 43, 1.5)[0] + point_; h = -0.02
                 hip = -0.09 * max(0.0, 1 - min(a_ - d, Le - d - a_) / 0.45) ** 2 if clip is None or (t0 == 0 and t1 == 1) or getattr(m, 'burning', False) else 0.0
                 fade = min(1.0, max(0.25, sn / 0.3))
                 h += lump(xw, yw) * fade + hround(S - s_) + hip
                 top[ri, c] = pt(e, a_, s_, h)
-                under[ri, c] = pt(e, a_, 0.17 + 0.02 * ri if ri < 3 else max(s_, 0.25 + 0.002 * ri), -thick - (0.0 if ri < 3 else 0.004 * (ri % 2)))
+                under[ri, c] = pt(e, a_, 0.17 + 0.02 * ri if ri < ne and smin is None else max(s_, 0.25 + 0.002 * ri), -thick - (0.0 if ri < ne else 0.004 * (ri % 2)))
                 tags[ri, c] = TAG_TCREV if crev else TAG_THATCH
-        uo = r.uniform(0, 1, 2)
+        uo = r.uniform(0, 1, 2) if smin is None else np.random.default_rng(seed + 977 + len(m.V)).uniform(0, 1, 2)      # a piece above the hole draws nothing from the module's own sequence: everything built after the roof stays as it was
 
         def uvface(Pf, ox=ox, oy=oy, ax=ax, ay=ay, ix=ix, iy=iy, uo=uo):
             return [(((q[0] - ox) * ax + (q[1] - oy) * ay) / T_THATCH + uo[0], ((q[0] - ox) * ix + (q[1] - oy) * iy) / cp / T_THATCH + uo[1]) for q in Pf]
@@ -296,14 +304,17 @@ def stack(m, cx, cy, w, dpt, z0, z1, slot=SF, tile=T_STONE * 0.5):
 
 HOLE_T = (0.49, 0.71)      # the burning state's hole: this share of the front eaves, from HOLE_S m up the slope to the ridge (439 vision 1, S439_P29)
 HOLE_S = 1.25
+HOLE_C, HOLE_R = 0.50, 0.30      # the hole's middle and half height as shares of the slope's length (a round hole in the middle of the slope, picture 154)
+SE = 5                             # the burning cottage's sixth slot: glowing embers (a baked material with an emissive map)
 
 
 def burning_hole(m, hx, hy, tp, zr, x0, x1, y0):
     """what shows in the hole the fire has eaten into the standing roof: charred rafters and laths, the ridge pole, and the dark of
-    the burning room under them. Flames, smoke and glow are effects placed by the game, not mesh."""
+    the burning room under them. Flames and smoke are effects placed by the game, not mesh; the timbers in the hole, what fell in and the
+    bed of embers on the floor are in the ember slot (SE: a baked material with an emissive map), so the room glows as picture 154 has it."""
     r = m.rng; pit = math.atan(tp); cp, sp = math.cos(pit), math.sin(pit)
     xa, xb = x0 + HOLE_T[0] * (x1 - x0), x0 + HOLE_T[1] * (x1 - x0)
-    T = lambda pts, rad, sides=6: m.tube(pts, rad, SO, sides=sides, tag=TAG_CHAR, smooth=False, rough=0.07, shape=[1, 0.85, 1, 0.8, 1.05, 0.9][:sides])
+    T = lambda pts, rad, sides=6: m.tube(pts, rad, SE, sides=sides, tag=TAG_CHAR, smooth=False, rough=0.07, shape=[1, 0.85, 1, 0.8, 1.05, 0.9][:sides])
     x = xa - 0.35
     while x < xb + 0.5:                                          # rafters of the front slope across the hole; two burnt through
         p0 = np.array([x + r.normal(0, 0.02), -(hy - 0.1), WH + 0.14]); p1 = np.array([x, 0.0, zr - 0.3]); u = r.uniform()
@@ -321,12 +332,13 @@ def burning_hole(m, hx, hy, tp, zr, x0, x1, y0):
         la = xa - 0.5 + r.uniform(-0.2, 0.4); lb = xb + 0.5 + r.uniform(-0.4, 0.2)
         if r.uniform() < 0.45:
             lb = la + r.uniform(1.2, 2.8)
-        m.tube([[la, y_, z_], [(la + lb) / 2, y_ + 0.02, z_ - r.uniform(0.03, 0.12)], [lb, y_, z_ - r.uniform(0.0, 0.2)]], 0.022, SO, sides=4, tag=TAG_CHAR, smooth=False)
+        m.tube([[la, y_, z_], [(la + lb) / 2, y_ + 0.02, z_ - r.uniform(0.03, 0.12)], [lb, y_, z_ - r.uniform(0.0, 0.2)]], 0.034, SE, sides=4, tag=TAG_CHAR, smooth=False)
     # the room below (17 Nov: was one flat dark slab under the rafters, which the sun lit like a panel): the burnt-out room itself,
     # deep under the hole: a charred floor, the inner faces of the front and back walls, two cross walls that close the view along
     # the house (stepped under the roof so nothing pokes through the thatch), and fallen, charred timbers lying on the floor
     xl, xr, yi = xa - 1.7, xb + 1.7, hy - 0.36
     m.block([xl, -yi, 0.04], [xr, yi, 0.12], SO, T_TIMBER, 0.0, 0.0, tag=TAG_CHAR)
+    m.block([xl + 0.12, -yi + 0.1, 0.12], [xr - 0.12, yi - 0.1, 0.17], SE, 0.9, 0.0, 0.0, tag=TAG_CHAR)      # the bed of embers the fallen roof left on the floor
     m.block([xl, yi - 0.08, 0.04], [xr, yi, WH + 0.05], SO, T_TIMBER, 0.0, 0.0, tag=TAG_CHAR); m.block([xl, -yi, 0.04], [xr, -yi + 0.08, WH + 0.05], SO, T_TIMBER, 0.0, 0.0, tag=TAG_CHAR)
     for xw in (xl, xr - 0.1):
         for k in range(8):
@@ -336,7 +348,7 @@ def burning_hole(m, hx, hy, tp, zr, x0, x1, y0):
         cx_ = r.uniform(xa - 0.6, xb + 0.6); cy_ = r.uniform(-yi + 0.5, yi - 0.8); a_ = r.uniform(0, math.pi); L_ = r.uniform(1.1, 2.6); z_ = 0.16 + 0.07 * k * r.uniform(0.3, 1.0)
         d_ = np.array([math.cos(a_), math.sin(a_), 0.0]) * L_ / 2; c_ = np.array([cx_, cy_, z_]); tip = r.uniform(0.0, 0.5)
         T([c_ - d_, c_ + np.array([0, 0, 0.03]), c_ + d_ + np.array([0, 0, tip])], [r.uniform(0.05, 0.08), 0.06, r.uniform(0.02, 0.05)])
-    m.hole = (xa, xb, y0 + HOLE_S * cp)
+    m.hole = ((xa + xb) / 2, (xb - xa) / 2 + 0.035 * (x1 - x0), y0 * (1 - HOLE_C), -y0 * HOLE_R)      # the hole on the ground plan: an ellipse (middle x, half width, middle y, half depth)
 
 
 def cottage(m, W=CW, D=CD, door_x=DOOR_X, fw=(2.5, 6.5, 10.5), fw2=(16.4,), bw=(3.0, 9.0, 15.0), ew=(4.0,), patches=((-4.2, -3.2, 1.5, 1.0), (6.8, -2.2, 1.0, 1.3), (1.5, 3.0, 1.2, 0.9)), burnt=False, burning=False):
@@ -409,17 +421,26 @@ def cottage(m, W=CW, D=CD, door_x=DOOR_X, fw=(2.5, 6.5, 10.5), fw2=(16.4,), bw=(
             # so the front slope is built as strips of unequal width that end at unequal heights (each strip a closed piece of thatch)
             w_ = HOLE_T[1] - HOLE_T[0]; cuts = [(0.0, HOLE_T[0] - 0.035, S_)]; t_ = HOLE_T[0] - 0.035
             # 23 Nov 2026, seen in the game: thirty strips of 18 cm with level tops read as a staircase of blocks. Now 84 bundles of straw about
-            # 6 cm wide: the outline wanders, every bundle ends a little higher or lower than its neighbours and a few long straws stand on
-            rq = np.random.default_rng(439154); nst = 84; p1, p2 = rq.uniform(0, 6.28, 2)
-            wts = rq.uniform(0.45, 1.55, nst); wts = wts / wts.sum() * (w_ + 0.07); u_ = 0.0
+            # 6 cm wide: the outline wanders, every bundle ends a little higher or lower than its neighbours and a few long straws stand on.
+            # Second review (after #215): from above the edge was still stepped and the opening was a notch up to the ridge, where picture 154
+            # has a round ragged hole in the middle of the slope with the ridge whole above it. Each bundle is now two pieces, one from the
+            # eaves up to the hole and one from the hole up to the ridge; the hole is an ellipse HOLE_C of the way up, its rim ragged
+            rq = np.random.default_rng(439154); nst = 84; p1, p2, p3, p4 = rq.uniform(0, 6.28, 4)
+            wts = rq.uniform(0.45, 1.55, nst); wts = wts / wts.sum() * (w_ + 0.07); u_ = 0.0; sc_h = HOLE_C * S_; rs_h = HOLE_R * S_
             for wk in wts:
-                um = (u_ + wk / 2) / (w_ + 0.07); f = 0.15 + 0.85 * abs(2 * um - 1) ** 2.4
-                f += 0.030 * math.sin(um * 19.0 + p1) + 0.020 * math.sin(um * 43.0 + p2) + float(rq.uniform(-0.018, 0.018)) + 0.05 * float(rq.random()) ** 4
-                cuts.append((t_, t_ + wk, max(0.45, S_ * min(1.0, f)))); t_ += wk; u_ += wk
+                um = (u_ + wk / 2) / (w_ + 0.07); e_ = math.sqrt(max(0.0, 1 - (2 * um - 1) ** 2)) ** 0.85
+                lo_ = sc_h - rs_h * e_ * (1 + 0.10 * math.sin(um * 19.0 + p1) + 0.07 * math.sin(um * 43.0 + p2)) + float(rq.uniform(-0.05, 0.05)) - 0.22 * float(rq.random()) ** 5
+                hi_ = sc_h + rs_h * e_ * (1 + 0.10 * math.sin(um * 17.0 + p3) + 0.07 * math.sin(um * 37.0 + p4)) + float(rq.uniform(-0.05, 0.05)) + 0.22 * float(rq.random()) ** 5
+                lo_ = max(0.45, lo_); hi_ = min(S_ - 0.5, hi_)
+                if hi_ - lo_ < 0.30:                         # the ends of the ellipse: the bundle is whole
+                    cuts.append((t_, t_ + wk, S_))
+                else:
+                    cuts.append((t_, t_ + wk, lo_)); cuts.append((t_, t_ + wk, S_, hi_))
+                t_ += wk; u_ += wk
             cuts.append((t_, 1.0, S_))
             thatch_planes(m, x0, x1, y0, y1, ZE0, tp, 439, clip={'front': cuts,
                                                               'back': (0.0, 1.0, S_), 'left': (0.0, 1.0, S_), 'right': (0.0, 1.0, S_)})
-            ridge_block(m, -rl + 0.25, xa_h - 0.55); ridge_block(m, xb_h + 0.55, rl + 0.1)
+            ridge_block(m, -rl + 0.25, rl + 0.1)                 # the ridge stands whole over the hole
             burning_hole(m, hx, hy, tp, zr, x0, x1, y0)
         else:
             thatch_planes(m, x0, x1, y0, y1, ZE0, tp, 439)
@@ -557,10 +578,8 @@ def sb_paint(m, kind):
                 Rt = np.clip(Rt + 0.6 * near, 0, 1)
             At = np.ones(len(P))
             if getattr(m, 'burning', False):                                                   # scorched round the hole: black straw at its edge, soot a metre out, no moss
-                xa_, xb_, yh_ = m.hole
-                dx_ = np.maximum(0, np.maximum(xa_ - P[:, 0], P[:, 0] - xb_)); front_ = P[:, 1] < 0.05
-                dy_ = np.where(front_, np.maximum(0, yh_ - P[:, 1]), np.abs(P[:, 1]) + 0.25)
-                dh = np.hypot(dx_, dy_) + 0.35 * n + 0.18 * n2
+                xc_, hw_, yc_, hd_ = m.hole
+                dh = np.maximum(0, np.hypot((P[:, 0] - xc_) / hw_, (P[:, 1] - yc_) / hd_) - 1) * min(hw_, hd_) + 0.35 * n + 0.18 * n2
                 At = np.where((dh < 0.42) | (tags == TAG_TBLACK), 0.5, 1.0); sc_ = np.clip(1 - (dh - 0.3) / 1.5, 0, 1)
                 Rt = np.clip(Rt + 0.85 * sc_, 0, 1); Gt = Gt * (1 - sc_); Bt = Bt * (1 - 0.8 * sc_)
                 for (sx_, sy_, sr_) in ((-7.4, -1.6, 0.95), (7.6, -2.2, 0.8), (-3.0, 1.4, 0.7)):     # where the other fires of the 1997 screen sit: charred patches, not through
@@ -828,9 +847,9 @@ def sb_modules(rows):
     rec(m, ['screen 439 burnt state (vision 2) of 63 struct<HOME>'], 'reference only: StonebrookRuins/SM_Cottage_Stonebrook_Burnt_01 (Codex candidate, same 18 x 9 m walls and collision envelope)',
         'the Stonebrook cottage after the fire, same walls, pivot, doorway and collision as SM_Cottage_Stonebrook_PR: stone smoke-blackened above every opening and under the lost roof, window glass gone, lintels, frames and shutters charred; the west third of the thatch still hangs on, scorched and burnt back in a ragged line; beyond it charred rafter couples (some snapped), a broken ridge pole, a few laths, fallen timbers, heaps of burnt thatch and ash inside and spilled outside, the door burnt and fallen flat in front of the doorway, scorched earth at the wall foot',
         fit={'pivot': 'as SM_Cottage_Stonebrook_PR: swap in place for vision 2', 'collision': 'the same wall hulls with the doorway open; no roof hull (the roof is gone)', 'effects': 'no embers, smoke or fire here: those are emitters; Codex\'s remains and scorch decals (StonebrookRuins) are separate assets and still apply'})
-    m = mk('SM_Cottage_Stonebrook_PR_Burning', CW, 7.9, 'building', ('fieldstone', 'oak', 'thatch', 'door', 'earth'), 'cottage', seed_as='SM_Cottage_Stonebrook_PR'); cottage(m, burning=True)
+    m = mk('SM_Cottage_Stonebrook_PR_Burning', CW, 7.9, 'building', ('fieldstone', 'oak', 'thatch', 'door', 'earth', 'embers'), 'cottage', seed_as='SM_Cottage_Stonebrook_PR'); cottage(m, burning=True)
     rec(m, ['screen 439 burning state (vision 1) of 63 struct<HOME>'], 'reference only: StonebrookRuins/SM_Cottage_Stonebrook_Burning_01 (candidate kit, another house: half-timbered and gabled, its roof hole far smaller than the 1997 one)',
-        'the Stonebrook cottage while it burns (screen 439 vision 1, the hole of S439_P29): the same stones, timbers and weathering as SM_Cottage_Stonebrook_PR (built from the same random stream), the roof standing with a hole eaten into the front slope from 1.25 m above the eaves up to and through the ridge, about 4.4 m wide: ragged black straw at its edge, soot a metre out, charred rafters, laths and the bared ridge pole in it, the dark of the room below; three charred patches where the other fires of the 1997 screen sit. No flame, smoke or glow in the mesh: those are placed effects.',
+        'the Stonebrook cottage while it burns (screen 439 vision 1, the hole of S439_P29): the same stones, timbers and weathering as SM_Cottage_Stonebrook_PR (built from the same random stream), the roof standing with a round ragged hole burnt into the middle of the front slope (about 4.4 m wide and 3.5 m up the slope, the ridge whole above it, as picture 154): bundles of black straw ending in points at its edge, soot a metre out, the rafters and laths in it and the bed of what fell in glowing as embers (a sixth material, MI_Stonebrook_Embers, baked with an emissive map), the burnt room below; three charred patches where the other fires of the 1997 screen sit. No flame or smoke in the mesh: those are placed effects.',
         fit={'pivot': 'as SM_Cottage_Stonebrook_PR: swap in place for vision 1', 'collision': 'as the intact cottage (roof hull kept)', 'effects': 'fire at the 1997 fire placements of screen 439 is placed by the game; the hole centre is at x = %.2f m on the front slope' % ((HOLE_T[0] + HOLE_T[1]) / 2 * (CW + 1.0) - (CW + 1.0) / 2)})
     for (nm, W_, D_, kw, fam, fr) in (('Small', 7.0, 5.5, dict(fw=(1.8, 5.2), fw2=(), bw=(3.5,), ew=(2.25,), patches=((-1.5, -2.2, 1.0, 0.8),)), ['cottage_thatched_small'], 'frames 7, 8 (257x225 px)'),
                                       ('Large', 10.0, 6.5, dict(fw=(2.0, 5.0, 8.0), fw2=(), bw=(3.0, 7.0), ew=(2.75,), patches=((-2.5, -2.4, 1.2, 0.9), (3.0, 2.2, 1.0, 0.8))), ['cottage_thatched_large', 'cottage_thatched_long'], 'frames 6 (334x259 px) and 1 (332x260 px)')):
@@ -860,6 +879,16 @@ def sb_modules(rows):
     return out
 
 
+def ember_mat():
+    """MI_Stonebrook_Embers: the baked ember set of tools/make_embers.py (BC / N / ORM / E), for the previews; the game builds its own instance
+    (kit importer: a baked material with an E map takes the glow master and `emissive_nits`)"""
+    mat = bpy.data.materials.new('MI_Stonebrook_Embers'); mat.use_nodes = True; nt = mat.node_tree; b = next(n for n in nt.nodes if n.type == 'BSDF_PRINCIPLED')
+    for role, sock in (('BC', 'Base Color'), ('E', 'Emission Color')):
+        t = nt.nodes.new('ShaderNodeTexImage'); t.image = bpy.data.images.load(os.path.join(OUT, 'Textures', 'T_Stonebrook_Embers_%s.png' % role))
+        t.image.filepath = '//Textures/T_Stonebrook_Embers_%s.png' % role; nt.links.new(t.outputs[0], b.inputs[sock])      # relative: no build path inside the .blend
+    b.inputs['Emission Strength'].default_value = 6.0; b.inputs['Roughness'].default_value = 0.9; return mat
+
+
 def main_sb():
     sc = new_scene()
     rows = board_rows('OakWeathered')
@@ -870,6 +899,7 @@ def main_sb():
             'oak': oak,
             'door': wmat('MI_Town_DoorPlanks', 'DoorPlanks', dirt=(0.3, 0.25, 0.2), special=True),
             'rope': wmat('MI_Struct_Rope', 'Thatch', dirt=(0.5, 0.45, 0.38), pale=(0.7, 0.62, 0.45), pale_amt=0.4, tint=(0.9, 0.85, 0.8, 1)),
+            'embers': ember_mat(),
             'boulder': wmat('MI_Struct_FieldBoulder', 'FieldBoulder', dirt=(0.34, 0.27, 0.18), pale=(0.66, 0.66, 0.58), pale_amt=0.5, moss=(0.045, 0.06, 0.02))}
     mods = sb_modules(rows); only = os.environ.get('DINK_SB_ONLY')
     if only:                                             # one asset into its own .blend and record (the kit's other FBX files are not written again)

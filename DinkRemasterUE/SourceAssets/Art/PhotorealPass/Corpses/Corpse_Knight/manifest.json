@@ -92,7 +92,7 @@
   },
   {
    "name": "MI_Corpse_Knight_Pool",
-   "kind": "masked",
+   "kind": "soak",
    "files": {
     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_BC.png",
     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Corpses/Corpse_Knight/T_Corpse_Knight_Pool_N.png",
