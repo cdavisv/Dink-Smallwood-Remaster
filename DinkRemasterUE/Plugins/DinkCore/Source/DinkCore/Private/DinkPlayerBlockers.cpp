@@ -12,6 +12,7 @@
 #include "Serialization/JsonSerializer.h"
 
 const FName DinkPlayerBlockers::Tag(TEXT("DinkPlayerBlocker"));
+const FName DinkPlayerBlockers::ParkedTag(TEXT("DinkParkedOutsideField"));
 
 static TAutoConsoleVariable<int32> CVarDinkPlayerBlockers(TEXT("dink.PlayerBlockers"), 1,
 	TEXT("1 = drawn solid meshes larger than their 1997 hardness block the player (Data/Art/player_blockers.json; player only); 0 = off. Read when a mesh is placed."));
@@ -134,7 +135,7 @@ bool UDinkPlayerBlockerComponent::IsDrawnShown() const
 {
 	const USceneComponent* D = Drawn.Get();
 	const AActor* O = D ? D->GetOwner() : nullptr;
-	return D && O && D->IsVisible() && !D->bHiddenInGame && !O->IsHidden();
+	return D && O && D->IsVisible() && !D->bHiddenInGame && !O->IsHidden() && !O->ActorHasTag(DinkPlayerBlockers::ParkedTag);
 }
 
 void UDinkPlayerBlockerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)

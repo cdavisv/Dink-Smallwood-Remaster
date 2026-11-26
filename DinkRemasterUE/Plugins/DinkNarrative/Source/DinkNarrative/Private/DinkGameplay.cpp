@@ -1813,6 +1813,7 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs, bool bGameStopped)
 	}
 	UpdatePlayerHold();
 	UpdateCreatureBodyBlockers();
+	UpdateParkedPlacements();
 }
 
 // ---------------------------------------------------------------------------------------------

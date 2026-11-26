@@ -725,6 +725,25 @@ public:
 	 * blocker is removed (the probe and parity tests never see one). Called every gameplay tick.
 	 */
 	void UpdateCreatureBodyBlockers();
+	/**
+	 * Bug A13 (SP-08, 25 Nov 2026): 1997 parks some placements outside the 600 x 400 playfield (the red knight S241_P03 at map
+	 * y 564). The original draws a sprite clipped to the field and stamps hardness only inside it, so a placement whose whole
+	 * picture lies outside is never seen and blocks nothing; the remaster put it on the neighbouring screen's ground (a knight
+	 * inside a pine). Such a placement actor is drawn by no render pass and its body shapes and player-only blockers collide
+	 * with nothing (tag DinkPlayerBlockers::ParkedTag) until its sprite, moved by a script, shows a picture that reaches into
+	 * the field again. Presentation and 3D collision only: the actor is not moved or hidden (scripts own those flags) and
+	 * the 2D simulation is untouched. Background instances are not covered. dink.ParkedPlacements 0 = the look before.
+	 * Called every gameplay tick (and at screen entry).
+	 */
+	void UpdateParkedPlacements();
+	/**
+	 * The picture of a sprite at engine (X, Y) (x includes the 20 px status bar) lies wholly outside the 600 x 400 playfield: 1997
+	 * draws it with its registration point (OriginX, OriginY) on the sprite's point, scaled by SizePercent (get_box, D:3164-3260).
+	 * A picture of no size counts by its point alone.
+	 */
+	static bool PictureOutsideField(double X, double Y, int32 Width, int32 Height, int32 OriginX, int32 OriginY, int32 SizePercent);
+	/** An actor UpdateParkedPlacements keeps out of the render passes and collision now (tests, review). */
+	static bool IsParked(const AActor* Actor);
 	/** The creature-body blocker of an actor, or null (tests, review). */
 	static class UBoxComponent* FindCreatureBodyBlocker(const AActor* Actor);
 	/**
@@ -819,6 +838,14 @@ private:
 	FDinkPhysicalPlaySettings PhysicalPlay;
 	/** Blockers made by UpdateCreatureBodyBlockers (removed when their creature dies or leaves, or the layer goes off). */
 	TArray<TWeakObjectPtr<class UBoxComponent>> CreatureBodyBlockers;
+	/** UpdateParkedPlacements: the placement actors whose imported picture lies outside the field (found once per world). */
+	TArray<TWeakObjectPtr<AActor>> ParkCandidates;
+	TWeakObjectPtr<UWorld> ParkCandidatesWorld;
+	/** What UpdateParkedPlacements turned off on a parked actor's components (put back exactly when it is drawn again). */
+	struct FParkedDraw { bool bMainPass = true, bDepthPass = true, bShadow = true, bIndirect = true, bRayTracing = true; };
+	TMap<TWeakObjectPtr<class UPrimitiveComponent>, FParkedDraw> ParkedDraw;
+	TMap<TWeakObjectPtr<class UPrimitiveComponent>, uint8> ParkedCollision;
+	double NextParkScanSeconds = 0.0;
 	/**
 	 * The physical play layer decides this interaction by the drawn shapes: Dink's touch, talk or push (part Touch), Dink's blow (part
 	 * Hits) or a creature's blow at Dink (part CreatureReach), against a target with drawn geometry. False: the 1997 boxes decide.
