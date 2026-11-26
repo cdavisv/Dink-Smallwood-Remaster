@@ -72,6 +72,14 @@ class PeopleClassBinding(unittest.TestCase):
                 self.assertFalse([q for q in seqs if q % 10 == 5], 'base + 5 is the death picture: ' + r['class'])
         self.assertIn('seth', {r['class'] for r in PEOPLE})
 
+    def test_old_man_keeps_his_stoop_walking(self):
+        """Takeover A4: the old man's walk set lays his idle's stoop (AN_Stoop_Stand) over the shared walk; nobody else's does."""
+        rows = {r['class']: r for r in PEOPLE}
+        loco = rows['npc_old_man']['locomotion']
+        self.assertTrue(loco['idle'].endswith('AN_Stoop_Stand.AN_Stoop_Stand'))
+        self.assertEqual(loco.get('posture'), {'weight': 1.0})
+        self.assertEqual([c for c, r in rows.items() if 'posture' in r.get('locomotion', {})], ['npc_old_man'])
+
     def test_no_person_is_an_origin_row(self):
         """An origin row of characters.json gives the actor a body that replaces the 1997 talk, hit and touch boxes."""
         self.assertEqual([r['origin'] for r in CHARS['placements'] if r['mesh'].startswith(PREFIX)], [])

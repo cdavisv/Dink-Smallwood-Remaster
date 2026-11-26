@@ -33,6 +33,15 @@ struct DINKCORE_API FDinkCreatureLocomotion
 {
 	FString Idle;
 	TArray<FDinkCreatureGait> Gaits;
+	/**
+	 * A posture the body keeps while it walks (JSON `posture`, optional): {"clip": clip (default: the idle), "weight": 0..1
+	 * (default 1), "bones": [bone names] (default: every spine, neck and head bone)}. The clip's rotations of those bones away
+	 * from the reference pose are laid over the gaits in the share the gaits have (the idle already holds them): the old man
+	 * of AN_Stoop_Stand stays bent over his cane when he walks (takeover A4, 25 Nov 2026). Empty clip: none.
+	 */
+	FString PostureClip;
+	float PostureWeight = 0.f;
+	TArray<FName> PostureBones;
 	bool IsSet() const { return !Idle.IsEmpty() && Gaits.Num() > 0; }
 };
 

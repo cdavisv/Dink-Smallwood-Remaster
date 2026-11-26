@@ -107,12 +107,16 @@ GUARDS = {'Knight', 'KnightRed', 'KnightSilver', 'KnightGold', 'Peasant'}
 # AnimationPassV1 clips_people.py Stoop_Stand closes his right fist on the cane, which stands on the root bone). His walk
 # is the shared one: he straightens when he walks (a posture row for his class is a need of the motion code, not a clip).
 STAND_IDLE = {'OldMan': '/Game/Dink/Hero/Animations/Pass1/AN_Stoop_Stand.AN_Stoop_Stand'}
+# ... and keeps it when he walks (takeover A4, 25 Nov 2026): the locomotion set's `posture` lays the idle's spine, neck and head
+# (DinkCreatureClass.h FDinkCreatureLocomotion) over the shared walk and jog in the gaits' share.
+WALK_POSTURE = {'OldMan': {'weight': 1.0}}
 
 
 def row(class_id, name, sequences, scale, yaw, note):
     path = f'/Game/Dink/Photoreal/Characters/NPC/{name}/SK_{name}_Photoreal.SK_{name}_Photoreal'
     return {'class': class_id, 'mesh': path,
-            'locomotion': {'idle': STAND_IDLE.get(name, GUARD_IDLE if name in GUARDS else IDLE), 'gaits': [{'clip': clip, 'speed_cm_s': round(speed * scale, 1), 'cycles': cycles} for clip, speed, cycles in GAITS]},
+            'locomotion': dict({'idle': STAND_IDLE.get(name, GUARD_IDLE if name in GUARDS else IDLE), 'gaits': [{'clip': clip, 'speed_cm_s': round(speed * scale, 1), 'cycles': cycles} for clip, speed, cycles in GAITS]},
+                               **({'posture': dict(WALK_POSTURE[name])} if name in WALK_POSTURE else {})),
             # the figures face +Y (as the characters.json rows: yaw -90)
             'rotation_deg': [0, -90 + yaw, 0], 'scale': scale,
             'roles': {'walk': {'sequences': sequences, 'locomotion': True}}, 'note': note}

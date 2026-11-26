@@ -46,6 +46,16 @@ namespace
 			Last = Gait.SpeedCmS;
 			Out.Gaits.Add(MoveTemp(Gait));
 		}
+		const TSharedPtr<FJsonObject>* Posture = nullptr;
+		if (Row.TryGetObjectField(TEXT("posture"), Posture) && Posture && Posture->IsValid())
+		{
+			if (!(*Posture)->TryGetStringField(TEXT("clip"), Out.PostureClip)) Out.PostureClip = Out.Idle;
+			if (!Out.PostureClip.StartsWith(TEXT("/Game/"))) return false;
+			Out.PostureWeight = FMath::Clamp(float(ClassNumber(**Posture, TEXT("weight"), 1.0)), 0.f, 1.f);
+			const TArray<TSharedPtr<FJsonValue>>* Bones = nullptr;
+			if ((*Posture)->TryGetArrayField(TEXT("bones"), Bones))
+				for (const TSharedPtr<FJsonValue>& Bone : *Bones) if (Bone.IsValid() && !Bone->AsString().IsEmpty()) Out.PostureBones.Add(FName(*Bone->AsString()));
+		}
 		return Out.Gaits.Num() > 0;
 	}
 

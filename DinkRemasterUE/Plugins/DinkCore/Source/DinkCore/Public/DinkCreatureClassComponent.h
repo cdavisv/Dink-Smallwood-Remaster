@@ -22,6 +22,16 @@ struct FDinkCreaturePoseLayer
 	float Weight = 0.f;
 };
 
+/** A posture laid over the blended layers (FDinkCreatureLocomotion posture): the clip's rotations of Bones away from the reference pose. */
+struct FDinkCreaturePostureLayer
+{
+	const UAnimSequence* Sequence = nullptr;
+	float Time = 0.f;
+	float Weight = 0.f;
+	/** Empty: every bone whose name begins with spine or neck, and head. */
+	TArray<FName> Bones;
+};
+
 struct DINKCORE_API FDinkCreatureAnimProxy : public FAnimInstanceProxy
 {
 	FDinkCreatureAnimProxy() = default;
@@ -30,6 +40,14 @@ struct DINKCORE_API FDinkCreatureAnimProxy : public FAnimInstanceProxy
 	virtual bool Evaluate(FPoseContext& Output) override;
 	TArray<FDinkCreaturePoseLayer, TInlineAllocator<8>> Layers;
 	TArray<FDinkCreatureOverlay, TInlineAllocator<2>> Overlays;
+	FDinkCreaturePostureLayer Posture;
+private:
+	void ApplyPosture(FPoseContext& Output);
+	/** The compact bones of the posture (rebuilt when the bone container or the bone list changes). */
+	TArray<int32> PostureCompact;
+	uint16 PostureSerial = 0;
+	const UAnimSequence* PostureCachedFor = nullptr;
+	int32 PostureCachedBones = -1;
 };
 
 /** Stateless native animation of a class-bound creature: blends the layers its component computed this frame. No blueprint. */
@@ -43,11 +61,15 @@ public:
 	/** One-shots over the layers (DinkCreatureOneShots.h). */
 	void SetOverlays(TConstArrayView<FDinkCreatureOverlay> InOverlays) { Overlays.Reset(); Overlays.Append(InOverlays.GetData(), InOverlays.Num()); }
 	const TArray<FDinkCreatureOverlay, TInlineAllocator<2>>& GetOverlays() const { return Overlays; }
+	/** The walking posture over the layers (weight 0: none). */
+	void SetPosture(const FDinkCreaturePostureLayer& InPosture) { Posture = InPosture; }
+	const FDinkCreaturePostureLayer& GetPosture() const { return Posture; }
 protected:
 	virtual FAnimInstanceProxy* CreateAnimInstanceProxy() override { return new FDinkCreatureAnimProxy(this); }
 private:
 	TArray<FDinkCreaturePoseLayer, TInlineAllocator<8>> Layers;
 	TArray<FDinkCreatureOverlay, TInlineAllocator<2>> Overlays;
+	FDinkCreaturePostureLayer Posture;
 	friend struct FDinkCreatureAnimProxy;
 };
 
@@ -57,6 +79,10 @@ struct DINKCORE_API FDinkCreatureLoadedLocomotion
 	const UAnimSequence* Idle = nullptr;
 	TArray<const UAnimSequence*, TInlineAllocator<4>> Gaits;
 	TArray<float, TInlineAllocator<4>> Speeds, Strides, Cycles;
+	/** The walking posture (FDinkCreatureLocomotion posture); nullptr: none. */
+	const UAnimSequence* Posture = nullptr;
+	float PostureWeight = 0.f;
+	TArray<FName> PostureBones;
 	bool IsValid() const { return Idle != nullptr && Gaits.Num() > 0; }
 };
 
