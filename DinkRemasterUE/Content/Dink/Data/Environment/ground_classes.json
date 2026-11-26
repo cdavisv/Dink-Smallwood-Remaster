@@ -145,10 +145,10 @@
 "dropped": {},
 "indoor": false,
 "layer_of": {
-"ice": "SnowTrampled"
+"ice": "Ice"
 },
 "layers": [
-"SnowTrampled"
+"Ice"
 ],
 "merged": {},
 "outline": "natural",
@@ -164,10 +164,10 @@
 "dropped": {},
 "indoor": false,
 "layer_of": {
-"ice": "SnowTrampled"
+"ice": "Ice"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "CliffRock"
 ],
 "merged": {},
@@ -187,12 +187,12 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow"
 },
 "layers": [
 "Snow",
-"SnowTrampled",
+"Ice",
 "CliffRock"
 ],
 "merged": {},
@@ -213,12 +213,12 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "rock_mass": "CliffRock",
 "snow": "Snow"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "Snow",
 "CliffRock"
 ],
@@ -236,10 +236,10 @@
 "dropped": {},
 "indoor": false,
 "layer_of": {
-"ice": "SnowTrampled"
+"ice": "Ice"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "CliffRock"
 ],
 "merged": {},
@@ -256,10 +256,10 @@
 "dropped": {},
 "indoor": false,
 "layer_of": {
-"ice": "SnowTrampled"
+"ice": "Ice"
 },
 "layers": [
-"SnowTrampled"
+"Ice"
 ],
 "merged": {},
 "outline": "natural",
@@ -600,10 +600,10 @@
 "dropped": {},
 "indoor": false,
 "layer_of": {
-"ice": "SnowTrampled"
+"ice": "Ice"
 },
 "layers": [
-"SnowTrampled"
+"Ice"
 ],
 "merged": {},
 "outline": "natural",
@@ -760,11 +760,11 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "Snow",
 "CliffRock"
 ],
@@ -782,10 +782,10 @@
 "dropped": {},
 "indoor": false,
 "layer_of": {
-"ice": "SnowTrampled"
+"ice": "Ice"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "CliffRock"
 ],
 "merged": {},
@@ -1106,7 +1106,7 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow",
 "stone_floor": "CobbleStreet"
 },
@@ -1114,7 +1114,7 @@
 "Snow",
 "CobbleStreet",
 "CliffRock",
-"SnowTrampled"
+"Ice"
 ],
 "merged": {},
 "outline": "natural",
@@ -1709,14 +1709,14 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow",
 "stone_floor": "CobbleStreet"
 },
 "layers": [
 "Snow",
 "CobbleStreet",
-"SnowTrampled",
+"Ice",
 "CliffRock"
 ],
 "merged": {},
@@ -2467,11 +2467,11 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "Snow",
 "CliffRock"
 ],
@@ -25582,11 +25582,11 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "Snow",
 "CliffRock"
 ],
@@ -26143,11 +26143,11 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "Snow",
 "CliffRock"
 ],
@@ -26933,13 +26933,13 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow",
 "stone_floor": "CobbleStreet"
 },
 "layers": [
 "Snow",
-"SnowTrampled",
+"Ice",
 "CobbleStreet",
 "CliffRock"
 ],
@@ -28807,7 +28807,7 @@
 "Snow",
 "CobbleStreet",
 "CliffRock",
-"SnowTrampled"
+"Ice"
 ],
 "merged": {},
 "outline": "natural",
@@ -29260,11 +29260,11 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "Snow",
 "CliffRock"
 ],
@@ -49769,10 +49769,10 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled"
+"ice": "Ice"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "CliffRock",
 "Snow"
 ],
@@ -49793,11 +49793,11 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "CliffRock",
 "Snow"
 ],
@@ -49819,7 +49819,7 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow",
 "stone_floor": "CobbleStreet"
 },
@@ -49827,7 +49827,7 @@
 "Snow",
 "CliffRock",
 "CobbleStreet",
-"SnowTrampled"
+"Ice"
 ],
 "merged": {},
 "outline": "natural",
@@ -49853,7 +49853,7 @@
 "Snow",
 "CobbleStreet",
 "CliffRock",
-"SnowTrampled"
+"Ice"
 ],
 "merged": {},
 "outline": "natural",
@@ -49872,11 +49872,11 @@
 "indoor": false,
 "layer_of": {
 "cliff_face": "CliffRock",
-"ice": "SnowTrampled",
+"ice": "Ice",
 "snow": "Snow"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "Snow",
 "CliffRock"
 ],
@@ -49894,10 +49894,10 @@
 "dropped": {},
 "indoor": false,
 "layer_of": {
-"ice": "SnowTrampled"
+"ice": "Ice"
 },
 "layers": [
-"SnowTrampled",
+"Ice",
 "CliffRock"
 ],
 "merged": {},

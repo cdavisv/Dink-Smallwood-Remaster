@@ -124,6 +124,12 @@
       "source": "terrain",
       "set": "PondMud",
       "normal_strength": 1.0
+    },
+    "Ice": {
+      "source": "terrain",
+      "set": "Ice",
+      "normal_strength": 1.0,
+      "drift": false
     }
   },
   "classes": {
@@ -140,7 +146,7 @@
     "rock_mass": "CliffRock",
     "cave_wall": "CaveRock",
     "snow": "Snow",
-    "ice": "SnowTrampled",
+    "ice": "Ice",
     "wasteland": "ScorchedSoil",
     "lava": "LavaCrust",
     "chasm": "CaveRock",

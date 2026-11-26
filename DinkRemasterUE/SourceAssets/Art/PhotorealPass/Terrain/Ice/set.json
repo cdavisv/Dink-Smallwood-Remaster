@@ -1,0 +1,49 @@
+{
+ "name": "Ice",
+ "files": {
+  "BC": "Ice/T_Terrain_Ice_BC.png",
+  "N": "Ice/T_Terrain_Ice_N.png",
+  "ORM": "Ice/T_Terrain_Ice_ORM.png",
+  "H": "Ice/T_Terrain_Ice_H.png",
+  "Macro": "Ice/T_Terrain_Ice_Macro.png"
+ },
+ "resolution_px": 2048,
+ "macro_px": 512,
+ "tile_size_m": 4.0,
+ "texel_mm_per_px": 1.953,
+ "height_range_m": 0.07,
+ "height_note": "H 0..65535 spans height_range_m; mid level about 0.000",
+ "colour_spaces": {
+  "BC": "sRGB",
+  "N": "linear, OpenGL (+Y up); flip green on Unreal import",
+  "ORM": "linear; R AO, G roughness, B metallic 0",
+  "H": "linear 16-bit",
+  "Macro": "linear; R large, G medium, B small low-frequency variation, sample at 1/6 to 1/10 of the tile UV scale",
+  "E": "linear emissive mask"
+ },
+ "tile_classes": [
+  "ice"
+ ],
+ "status": "finished",
+ "method": "lake ice built here (no CC0 ice scan is in the project): a dark clear body with cloudy air-rich ice, bubble clouds, eleven long branching fracture sheets with a milky plane beside each and many hairline cracks, and thin wind-streaked wisps of blown snow and hoar (fine normal from ambientCG Snow008A). H is the depth at which each thing lies inside the sheet (0 = body 7 cm down, 1 = surface), for the parallax march of the Unreal material; the normal map is the nearly flat surface",
+ "third_party": [
+  {
+   "source": "ambientcg",
+   "asset_id": "Snow008A",
+   "licence": "CC0-1.0",
+   "repeats_in_tile": 2.0
+  }
+ ],
+ "albedo_luma_srgb": {
+  "min": 47.4,
+  "mean": 105.4,
+  "max": 233.4
+ },
+ "mean_srgb": [
+  84,
+  110,
+  125
+ ],
+ "roughness_mean": 0.128,
+ "known_weaknesses": "fractures are drawn random walks, not a scan: no pressure ridges, no refrozen leads; no real refraction or translucency (the depth is parallax only); frost patches are noise shaped"
+}
