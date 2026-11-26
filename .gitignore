@@ -232,3 +232,7 @@ script/DinkSmallwoodHD.dmg
 # autotest artifacts (screenshots + results collected by script/Test*.bat)
 script/testruns/
 bin/autotest/
+
+# Python byte-code caches (they embed the machine's paths)
+__pycache__/
+*.py[cod]
