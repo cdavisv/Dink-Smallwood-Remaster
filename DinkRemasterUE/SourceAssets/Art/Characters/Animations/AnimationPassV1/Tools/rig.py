@@ -105,6 +105,11 @@ class Rig:
 # the thumb's knuckle in it). The two sides of the skeleton mirror, so the left hand takes the same numbers for a bow.
 GRIP = {'index': (1.10, 0.75, 0.75), 'middle': (1.05, 0.70, 0.70), 'ring': (1.00, 0.75, 0.75), 'pinky': (0.80, 0.85, 0.60)}
 GRIP_THUMB = ((0.45, 0.45, 0.45), 0.75, 0.45)
+# The string hand of a drawn bow: index, middle and ring finger hooked on the string at their last joint (knuckles nearly
+# straight, the back of the hand in line with the forearm), the little finger curled in, the thumb lying relaxed along the
+# palm. Same layout as GRIP. A fist (fingers()) held the string inside a closed hand: no archer draws like that.
+HOOK = {'index': (0.28, 1.15, 0.80), 'middle': (0.30, 1.20, 0.85), 'ring': (0.36, 1.22, 0.85), 'pinky': (0.95, 1.30, 0.90)}
+HOOK_THUMB = ((0.20, 0.30, 0.15), 0.45, 0.35)
 
 
 class Pose:
@@ -285,6 +290,22 @@ class Pose:
             for joint, angle in zip((1, 2, 3), angles):
                 mix('%s_%02d_%s' % (finger, joint, side), Matrix.Rotation(s * angle, 4, 'Z'))
         (z, y, x), a2, a3 = GRIP_THUMB
+        mix('thumb_01_' + side, Matrix.Rotation(s * z, 4, 'Z') @ Matrix.Rotation(y, 4, 'Y') @ Matrix.Rotation(x, 4, 'X'))
+        mix('thumb_02_' + side, Matrix.Rotation(s * a2, 4, 'Z'))
+        mix('thumb_03_' + side, Matrix.Rotation(s * a3, 4, 'Z'))
+        self._w = None
+
+    def hook(self, side, weight=1.0):
+        """The string hand of a drawn bow (weight 0..1 from whatever fingers() left). See HOOK."""
+        s = self.finger_sign(side)
+
+        def mix(name, m):
+            q = self.basis.get(name, Matrix.Identity(4)).to_quaternion().slerp(m.to_quaternion(), weight)
+            self.basis[name] = q.to_matrix().to_4x4()
+        for finger, angles in HOOK.items():
+            for joint, angle in zip((1, 2, 3), angles):
+                mix('%s_%02d_%s' % (finger, joint, side), Matrix.Rotation(s * angle, 4, 'Z'))
+        (z, y, x), a2, a3 = HOOK_THUMB
         mix('thumb_01_' + side, Matrix.Rotation(s * z, 4, 'Z') @ Matrix.Rotation(y, 4, 'Y') @ Matrix.Rotation(x, 4, 'X'))
         mix('thumb_02_' + side, Matrix.Rotation(s * a2, 4, 'Z'))
         mix('thumb_03_' + side, Matrix.Rotation(s * a3, 4, 'Z'))

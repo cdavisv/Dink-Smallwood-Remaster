@@ -6,8 +6,20 @@
     "item-sw2": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Sword_Claw_PR.SM_Hero_Sword_Claw_PR", "bone": "hand_r", "location_cm": [-7, 3, -0.5], "rotation_deg": [90, 0, 90]},
     "item-sw3": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Sword_Light_PR.SM_Hero_Sword_Light_PR", "bone": "hand_r", "location_cm": [-7, 3, -0.5], "rotation_deg": [90, 0, 90]},
     "item-axe": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Axe_PR.SM_Hero_Axe_PR", "bone": "hand_r", "location_cm": [-7, 3, -0.5], "rotation_deg": [90, 0, 90]},
-    "item-b1": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Wood_PR.SM_Hero_Bow_Wood_PR", "bone": "hand_l", "location_cm": [7, -3, 0.5], "rotation_deg": [-90, 0, 90]},
-    "item-b2": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Blue_PR.SM_Hero_Bow_Blue_PR", "bone": "hand_l", "location_cm": [7, -3, 0.5], "rotation_deg": [-90, 0, 90]},
-    "item-b3": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Wood_PR.SM_Hero_Bow_Wood_PR", "bone": "hand_l", "location_cm": [7, -3, 0.5], "rotation_deg": [-90, 0, 90]}
+    "item-b1": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Wood_Grip_PR.SM_Hero_Bow_Wood_Grip_PR", "bone": "hand_l", "location_cm": [7, -3, 0.5], "rotation_deg": [-90, 0, 90]},
+    "item-b2": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Blue_Grip_PR.SM_Hero_Bow_Blue_Grip_PR", "bone": "hand_l", "location_cm": [7, -3, 0.5], "rotation_deg": [-90, 0, 90]},
+    "item-b3": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Wood_Grip_PR.SM_Hero_Bow_Wood_Grip_PR", "bone": "hand_l", "location_cm": [7, -3, 0.5], "rotation_deg": [-90, 0, 90]}
+  },
+  "bows": {
+    "note": "The bow that bends, its arrow and the quiver (art row AN-05). 1997 draws the armed bow with an arrow across it and a quiver of red-fletched arrows on Dink's back (graphics\\dink\\bow\\idle, walk), and the bow bending while it is drawn (bow\\hit). The bow items' hand mesh above is the bow's middle part; `parts` names the others (%s = LimbU1.., LimbL1.., StringU, StringL; art kit HeroWeapons, tools/build_bow_parts.py, which prints `draw`). Centimetres in the bow mesh's axes: X up the upper limb, +Y from the grip to the string. While the bow is drawn the string is pulled to where the body's `string_fingers` are (their middle), at the arrow's height `nock_up_cm`, as long as they are within `follow_cm` [all, none] of the string's line; each limb's segments turn about `joints_cm` by `weights` of the bend that keeps the string's length. `arrow`: its nock on the string, its shaft `rest_z_cm` to the side of the stave, away for `away_after_shot_s` after a shot. `worn`: the quiver on a body bone, as an item row. Read by UDinkHeroBowSubsystem (DinkHeroBow.h).",
+    "string_fingers": ["index_03_r", "middle_03_r", "ring_03_r"],
+    "follow_cm": [6, 16],
+    "arrow": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Arrow_PR.SM_Hero_Arrow_PR", "rest_z_cm": 1.9, "away_after_shot_s": 0.45},
+    "worn": {"mesh": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Quiver_PR.SM_Hero_Quiver_PR", "bone": "spine_03", "location_cm": [24.1, -27.5, 7.5], "rotation_deg": [14.0, -2.6, -1.5]},
+    "items": {
+      "item-b1": {"parts": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Wood_%s_PR", "draw": {"joints_cm": [[11.0, 0.43], [19.0, 1.3], [27.0, 2.68], [35.0, 4.6], [43.0, 7.14], [51.0, 10.37]], "weights": [0.14, 0.18, 0.19, 0.19, 0.17, 0.13], "string_end_cm": [63.18, 15.17], "nock_up_cm": 3.5, "max_draw_cm": 56.0}},
+      "item-b2": {"parts": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Blue_%s_PR", "draw": {"joints_cm": [[11.0, 0.43], [19.0, 1.3], [27.0, 2.68], [35.0, 4.6], [43.0, 7.14], [51.0, 10.37]], "weights": [0.14, 0.18, 0.19, 0.19, 0.17, 0.13], "string_end_cm": [63.18, 15.17], "nock_up_cm": 3.5, "max_draw_cm": 56.0}},
+      "item-b3": {"parts": "/Game/Dink/Photoreal/Hero/Weapons/SM_Hero_Bow_Wood_%s_PR", "draw": {"joints_cm": [[11.0, 0.43], [19.0, 1.3], [27.0, 2.68], [35.0, 4.6], [43.0, 7.14], [51.0, 10.37]], "weights": [0.14, 0.18, 0.19, 0.19, 0.17, 0.13], "string_end_cm": [63.18, 15.17], "nock_up_cm": 3.5, "max_draw_cm": 56.0}}
+    }
   }
 }

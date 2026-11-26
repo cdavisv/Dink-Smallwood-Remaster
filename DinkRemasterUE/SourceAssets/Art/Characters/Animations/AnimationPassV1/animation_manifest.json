@@ -58,9 +58,9 @@
    "speed_m_s": 0.0,
    "stride_m": 0.0,
    "planted_samples": 82,
-   "planted_drift_cm_per_frame_max": 0.0117,
-   "planted_drift_cm_per_frame_mean": 0.0003,
-   "planted_slide_cm_per_s_max": 0.704,
+   "planted_drift_cm_per_frame_max": 0.008,
+   "planted_drift_cm_per_frame_mean": 0.0002,
+   "planted_slide_cm_per_s_max": 0.483,
    "ik_clamps": 0,
    "lowest_sole_m": -0.0004,
    "loop_seam_m": 0.0,
@@ -68,7 +68,7 @@
    "family": "hero_attack",
    "fbx": "Export/A_Bow_Draw.fbx",
    "asset_name": "AN_Bow_Draw",
-   "sha256": "4bb08255e26a201e4f52b42cde1e3fd3de899e10e69397bec2c4eb472d745937"
+   "sha256": "3ddce60338ad98477efcd17b98f8fd3e99ba6c51a850571761522ff026a8a4e8"
   },
   "Bow_Release": {
    "frames": 28,
@@ -87,7 +87,7 @@
    "family": "hero_attack",
    "fbx": "Export/A_Bow_Release.fbx",
    "asset_name": "AN_Bow_Release",
-   "sha256": "bec95cf4cb2d5790690f4782e09b64e0666f34c47e07eb2f742a16bacfa82fe2"
+   "sha256": "b5bc658a422cfe6ceb868d15466f8a42387da7c0888cb58f128db6227290a279"
   },
   "Cast": {
    "frames": 43,

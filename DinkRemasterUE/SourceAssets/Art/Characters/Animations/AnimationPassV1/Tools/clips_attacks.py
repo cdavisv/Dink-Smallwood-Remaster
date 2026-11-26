@@ -4,7 +4,7 @@ Gameplay owns the timing: the hit lands 0.175 s after the clip starts and the ne
 start at 0.4 s. Everything after 0.4 s is cosmetic and may be interrupted.
 """
 import math
-from attack_tools import D, Keys, arm, pole, action_clip, state_from_pose
+from attack_tools import D, Keys, arm, pole, action_clip, state_from_pose, apply_steps, build_pose, fit_held, fit_point, world_to_chest
 from clips_locomotion import stand_pose
 
 HIT = 0.175
@@ -94,7 +94,7 @@ def cross(rig, c, name):
           pel_f=0.23 + 0.03 * t, pel_x=0.07, pel_drop=0.035 + 0.02 * t, pel_yaw=D(30 + 4 * t), pel_pitch=b['pel_pitch'] + D(5 + 4 * t),
           sp_yaw=D(30 + 6 * t), sp_pitch=b['sp_pitch'] * 0.5 + D(10 + 9 * t), sp_roll=D(4 + 4 * t),
           rf_pitch=D(-40), rf_yaw=b['rf_yaw'] - D(28), hd_pitch=D(9 + 10 * t), hd_yaw=D(24 * t), hd_roll=D(8 * t), hd_follow=0.1 + 0.3 * t,
-          r_protract=D(14), r_shrug=D(8 + 10 * t), l_shrug=D(4 + 10 * t), ra_pron=PRON_R, ra_curl=1.0,
+          r_protract=D(12), r_shrug=D(8 + 10 * t), l_shrug=D(4 + 10 * t), ra_pron=PRON_R, ra_curl=1.0,
           **pole('r', -0.7 - 0.2 * t, 0.0, -0.6 + 0.5 * t), **guard)
     K.hold(H1)
     K.add(0.27, pel_yaw=D(22 + 14 * t), sp_yaw=D(20 + 14 * t), sp_pitch=b['sp_pitch'] * 0.6 + D(8 + 11 * t), pel_f=0.22 + 0.08 * t,
@@ -311,22 +311,86 @@ def sword(rig, name, kind):
     return action_clip(rig, name, stand, K.rows, 0.82, events=EVENTS, steps=K.steps)
 
 
-def _draw_keys(rig):
+# The bow in the draw (art row AN-05). 1997 holds it upright at arm's length with the arrow level and the string hand at the
+# chin (graphics/dink/bow/hit, six pictures a direction). The bow's place in the left hand is the hero_weapons.json row of
+# the bows (hand_l, location (7, -3, 0.5) cm, pitch -90, yaw 0, roll 90): its mesh has +X up the upper limb, +Y to the
+# target, the string on -Y. Each key from the raise on FITS the bow wrist to that row (attack_tools.fit_held), so the
+# stave stands upright and points where Dink faces whatever the arm does, and puts the string fingers ON the bow's draw
+# line, where the runtime's string follows them (UDinkHeroBowSubsystem). Before this the pose was made without a bow in
+# the hand: the stave leaned 64 degrees and pointed 52 degrees at the sky, the string hand 39 cm up the limb.
+BOW_ROW = dict(location_cm=(7.0, -3.0, 0.5), rotation_deg=(-90.0, 0.0, 90.0))
+BOW_BRACE = 0.153                # grip centre to the string at rest (build_weapons._bow)
+BOW_NOCK_UP = 0.035              # the arrow sits this far up the stave from the grip centre, on the hand
+BOW_DRAW = 0.54                  # the string hand's travel at full draw: 69 cm from the grip, to the cheek
+BOW_CANT = D(7)                  # the top limb leans a little to the archer's right, as a held bow does
+STRING_FINGERS = ('index_03_r', 'middle_03_r', 'ring_03_r')   # the last joints of the three hooked fingers (rig.HOOK)
+
+
+def _bow_local():
+    from mathutils import Matrix, Vector
+    p, y, r = (math.radians(v) for v in BOW_ROW['rotation_deg'])
+    cp, sp, cy, sy, cr, sr = math.cos(p), math.sin(p), math.cos(y), math.sin(y), math.cos(r), math.sin(r)
+    m = Matrix(((cp * cy, cp * sy, sp), (sr * sp * cy - cr * sy, sr * sp * sy + cr * cy, -sr * cp),
+                (-(cr * sp * cy + sr * sy), cy * sr - cr * sp * sy, cr * cp))).transposed().to_4x4()
+    m.translation = Vector(BOW_ROW['location_cm']) / 100.0
+    s = Matrix.Diagonal((1, -1, 1, 1))
+    return s @ m @ s
+
+
+def _bow_keys(rig, K, keys, report=None):
+    """Keys with the bow upright at `grip` (x left, f forward of the stand, z up; metres) and the string fingers `draw`
+    behind the braced string, on the draw line. keys: [(t, grip, draw, changes)], in time order; they are fitted from the
+    last to the first, each starting from the answer of the one after it (the stand's hanging arm is too far from any of
+    them for the fit to find its way)."""
+    from mathutils import Vector
+    y0 = rig.head['pelvis'].y
+    up = Vector((-math.sin(BOW_CANT), 0.0, math.cos(BOW_CANT)))
+    aim = Vector((0.0, -1.0, 0.0))
+    fitted = ('la_x', 'la_f', 'la_z', 'la_pron', 'la_bend', 'la_dev', 'ra_x', 'ra_f', 'ra_z')
+    states, cur = [], dict(K.cur)
+    for t, grip, draw, changes in keys:
+        cur = dict(cur)
+        cur.update(changes)
+        states.append(cur)
+    seed, rows = None, []
+    for (t, grip, draw, changes), cur in zip(reversed(keys), reversed(states)):
+        if seed:
+            cur.update({k: seed[k] for k in fitted})
+        S = apply_steps(dict(cur), K.base, K.steps, t)
+        if not seed:
+            # a first guess near the answer: the wrist a hand's length behind the grip, the forearm rolled thumb up
+            S.update(world_to_chest(rig, S, 'l', grip[0] + 0.03, grip[1] - 0.07, grip[2] + 0.01), la_pron=D(-30), la_bend=0.0, la_dev=0.0)
+        origin = Vector((grip[0], y0 - grip[1], grip[2]))
+        e1 = fit_held(rig, S, 'l', _bow_local(), origin, up, aim)
+        e2 = fit_point(rig, S, 'r', STRING_FINGERS, origin + up * BOW_NOCK_UP - aim * (BOW_BRACE + draw))
+        seed = {k: S[k] for k in fitted}
+        cur.update(seed)
+        rows.append((t, dict(cur)))
+        if report is not None:
+            report.append((t, e1, e2, S['la_pron'], S['la_bend'], S['la_dev']))
+    K.rows.extend(reversed(rows))
+    K.cur = dict(states[-1])
+    return K
+
+
+def _draw_keys(rig, report=None):
     """Keys of the bow draw; the release starts from its last state."""
     stand, K = _keys(rig, 0.6)
     b = K.base
     K.step('l', 0.03, 0.19, forward=0.24, lateral=b['lf_x'] + 0.02, height=0.045)
     K.step('r', 0.16, 0.30, forward=-0.06, lateral=b['rf_x'] - 0.05, height=0.03)
     K.add(0.0)
-    # Turn side-on, bow arm coming up, string hand meeting it in front.
-    K.add(0.20, pel_yaw=D(-34), sp_yaw=D(-14), pel_f=0.06, pel_drop=0.015, hd_yaw=D(0), hd_pitch=D(2), hd_follow=0.0,
-          _world={'l': (0.08, 0.56, 1.32), 'r': (0.02, 0.38, 1.32)}, la_curl=0.85, ra_curl=0.6,
-          **pole('l', 0.2, -0.3, -1.0), **pole('r', -0.6, -0.3, -0.6))
-    K.add(0.24, rf_yaw=b['rf_yaw'] + D(48))
-    full = dict(pel_yaw=D(-56), sp_yaw=D(-20), pel_f=0.10, pel_x=0.0, pel_drop=0.02, sp_roll=D(-2), l_shrug=D(4), r_shrug=D(6),
-                la_curl=0.85, ra_curl=0.65, **pole('l', 0.1, -0.2, -1.0), **pole('r', -0.9, -0.4, 0.12))
-    K.add(0.36, _world={'l': (0.07, 0.66, 1.46), 'r': (-0.04, 0.34, 1.47)}, **full)
-    K.add(0.50, _world={'l': (0.07, 0.68, 1.47), 'r': (-0.09, 0.21, 1.49)}, **full)
+    # Turn side-on, the bow coming up in front, the string hand taking the string; then push the bow out and bring the
+    # string to the chin: half way, nearly there, there.
+    up_ = dict(pel_yaw=D(-34), sp_yaw=D(-14), pel_f=0.06, pel_drop=0.015, hd_yaw=D(0), hd_pitch=D(2), hd_follow=0.0, la_curl=0.85, ra_curl=0.62, ra_hook=1.0,
+               ra_pron=D(-60), **pole('l', 0.5, -0.2, -0.9), **pole('r', -0.7, -0.2, -0.5))
+    full = dict(pel_yaw=D(-56), sp_yaw=D(-26), pel_f=0.10, pel_x=0.0, pel_drop=0.02, sp_roll=D(-2), l_shrug=D(4), r_shrug=D(2), r_protract=D(12), rf_yaw=b['rf_yaw'] + D(48),
+                la_curl=0.85, ra_curl=0.62, ra_hook=1.0, ra_pron=D(-60), **pole('l', 0.6, -0.1, -0.8), **pole('r', -0.81, 0.28, 0.51))
+    # At full draw the string fingers lie against the right cheek, 12 cm to the chest side of the middle of the face: there
+    # the drawing forearm lies behind the arrow with its elbow a little high. At the middle of the face the hand is inside
+    # the head, and under the chin the wrist is so near its own shoulder that the elbow can only go behind the neck.
+    _bow_keys(rig, K, [(0.20, (0.0, 0.69, 1.36), 0.0, up_), (0.30, (-0.03, 0.80, 1.46), 0.45 * BOW_DRAW, full),
+                       (0.40, (-0.09, 0.85, 1.505), 0.90 * BOW_DRAW, full), (0.50, (-0.116, 0.87, 1.52), BOW_DRAW, full)], report)
     return stand, K
 
 
@@ -345,9 +409,11 @@ def bow_release(rig, name):
     K.step('l', 0.20, 0.36, forward=0.0, lateral=K.base['lf_x'], height=0.04)
     K.step('r', 0.30, 0.42, forward=0.0, lateral=K.base['rf_x'], height=0.03)
     K.add(0.0, **drawn)
-    # Loose: the fingers open and the hand springs back past the ear; the bow arm holds.
-    K.add(0.05, ra_curl=0.05, _world={'r': (-0.11, 0.13, 1.51)})
-    K.add(0.16, ra_curl=0.15, _world={'r': (-0.12, 0.11, 1.49)})
+    # Loose: the fingers open and the hand springs back along the arrow's line, past the ear; the bow arm holds.
+    w = build_pose(rig, apply_steps(dict(drawn), D0.base, D0.steps, 0.5)).pos('hand_r')
+    x, f, z = w.x, rig.head['pelvis'].y - w.y, w.z
+    K.add(0.05, ra_curl=0.05, ra_hook=0.0, _world={'r': (x - 0.01, f - 0.07, z)})
+    K.add(0.16, ra_curl=0.15, _world={'r': (x - 0.02, f - 0.10, z - 0.02)})
     half = {k: 0.5 * (v + K.base[k]) for k, v in K.cur.items()}
     half.update(rf_yaw=K.base['rf_yaw'] + D(48))
     K.add(0.30, **half)

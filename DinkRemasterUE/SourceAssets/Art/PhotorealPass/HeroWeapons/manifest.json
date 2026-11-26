@@ -2,8 +2,33 @@
  "schema": "dink-props/1",
  "root": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons",
  "generated_by": "HeroWeapons/tools/build_weapons.py --manifest (do not edit by hand)",
- "summary": "6 hand-held weapons of the hero, one baked opaque set each (BC / N OpenGL / ORM, E for the light sword). Pivot at the grip centre, +X to the tip.",
+ "summary": "38 meshes of the hero's weapons: six hand-held weapons, the arrow and the quiver with one baked opaque set each (BC / N OpenGL / ORM, E for the light sword), and the two bows cut into rigid parts for the draw (their bow's material). Pivot at the grip centre, +X to the tip.",
  "assets": [
+  {
+   "name": "SM_Hero_Arrow_PR",
+   "class": "weapon",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow/SM_Hero_Arrow_PR.fbx",
+   "materials": [
+    "MI_Hero_Arrow_PR"
+   ],
+   "dimensions_m": [
+    0.805,
+    0.034,
+    0.039
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b2, item-b3 (the arrow on the bow)"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow",
+   "grip": {
+    "origin": "grip centre",
+    "x": "towards the tip (upper limb for a bow)",
+    "bone": "the bow (hero_weapons.json bows.arrow)",
+    "item": "item-b1, item-b2, item-b3 (the arrow on the bow)",
+    "picture_1997": "graphics/dink/bow/idle, hit"
+   }
+  },
   {
    "name": "SM_Hero_Axe_PR",
    "class": "weapon",
@@ -55,6 +80,366 @@
    }
   },
   {
+   "name": "SM_Hero_Bow_Blue_Grip_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_Grip_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.23,
+    0.033,
+    0.031
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbU1_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbU1_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.036,
+    0.035
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    11.0,
+    0.43,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbU2_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbU2_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.039,
+    0.036
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    19.0,
+    1.3,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbU3_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbU3_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.043,
+    0.035
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    27.0,
+    2.68,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbU4_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbU4_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.046,
+    0.033
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    35.0,
+    4.6,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbU5_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbU5_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.052,
+    0.026
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    43.0,
+    7.14,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbU6_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbU6_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.156,
+    0.072,
+    0.018
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    51.0,
+    10.37,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbL1_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbL1_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.036,
+    0.035
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    -11.0,
+    0.43,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbL2_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbL2_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.039,
+    0.036
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    -19.0,
+    1.3,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbL3_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbL3_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.043,
+    0.035
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    -27.0,
+    2.68,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbL4_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbL4_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.046,
+    0.033
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    -35.0,
+    4.6,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbL5_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbL5_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.052,
+    0.026
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    -43.0,
+    7.14,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_LimbL6_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_LimbL6_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.156,
+    0.072,
+    0.018
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    -51.0,
+    10.37,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_StringU_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_StringU_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.597,
+    0.003,
+    0.002
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    63.18,
+    15.17,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Blue_StringL_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts/SM_Hero_Bow_Blue_StringL_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Blue_PR"
+   ],
+   "dimensions_m": [
+    0.667,
+    0.003,
+    0.002
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b2"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Blue/Parts",
+   "part_of": "SM_Hero_Bow_Blue_PR",
+   "origin_cm": [
+    -63.18,
+    15.17,
+    0
+   ]
+  },
+  {
    "name": "SM_Hero_Bow_Wood_PR",
    "class": "weapon",
    "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/SM_Hero_Bow_Wood_PR.fbx",
@@ -77,6 +462,391 @@
     "bone": "hand_l",
     "item": "item-b1, item-b3",
     "picture_1997": "438/8, 438/13"
+   }
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_Grip_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_Grip_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.23,
+    0.033,
+    0.031
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU1_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU1_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.036,
+    0.035
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    11.0,
+    0.43,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU2_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU2_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.039,
+    0.036
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    19.0,
+    1.3,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU3_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU3_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.043,
+    0.035
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    27.0,
+    2.68,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU4_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU4_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.046,
+    0.033
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    35.0,
+    4.6,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU5_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU5_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.052,
+    0.026
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    43.0,
+    7.14,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU6_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU6_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.156,
+    0.072,
+    0.018
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    51.0,
+    10.37,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL1_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL1_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.036,
+    0.035
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    -11.0,
+    0.43,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL2_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL2_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.039,
+    0.036
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    -19.0,
+    1.3,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL3_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL3_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.043,
+    0.035
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    -27.0,
+    2.68,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL4_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL4_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.046,
+    0.033
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    -35.0,
+    4.6,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL5_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL5_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.09,
+    0.052,
+    0.026
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    -43.0,
+    7.14,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL6_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL6_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.156,
+    0.072,
+    0.018
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    -51.0,
+    10.37,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_StringU_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_StringU_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.597,
+    0.003,
+    0.002
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    63.18,
+    15.17,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_StringL_PR",
+   "class": "weapon part",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_StringL_PR.fbx",
+   "materials": [
+    "MI_Hero_Bow_Wood_PR"
+   ],
+   "dimensions_m": [
+    0.667,
+    0.003,
+    0.002
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b3"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts",
+   "part_of": "SM_Hero_Bow_Wood_PR",
+   "origin_cm": [
+    -63.18,
+    15.17,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Quiver_PR",
+   "class": "weapon",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver/SM_Hero_Quiver_PR.fbx",
+   "materials": [
+    "MI_Hero_Quiver_PR"
+   ],
+   "dimensions_m": [
+    0.863,
+    0.185,
+    0.144
+   ],
+   "collision_hulls": 0,
+   "families": [
+    "hero weapon item-b1, item-b2, item-b3 (worn on the back while a bow is armed)"
+   ],
+   "folder": "SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver",
+   "grip": {
+    "origin": "grip centre",
+    "x": "towards the tip (upper limb for a bow)",
+    "bone": "spine_03 (hero_weapons.json bows.worn)",
+    "item": "item-b1, item-b2, item-b3 (worn on the back while a bow is armed)",
+    "picture_1997": "graphics/dink/bow/idle, hit, walk"
    }
   },
   {
@@ -164,6 +934,15 @@
    "collision": "none"
   },
   "materials": {
+   "MI_Hero_Arrow_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow/T_Hero_Arrow_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow/T_Hero_Arrow_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow/T_Hero_Arrow_PR_ORM.png"
+    }
+   },
    "MI_Hero_Axe_PR": {
     "baked": true,
     "kind": "opaque",
@@ -189,6 +968,15 @@
      "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/T_Hero_Bow_Wood_PR_BC.png",
      "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/T_Hero_Bow_Wood_PR_N.png",
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/T_Hero_Bow_Wood_PR_ORM.png"
+    }
+   },
+   "MI_Hero_Quiver_PR": {
+    "baked": true,
+    "kind": "opaque",
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver/T_Hero_Quiver_PR_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver/T_Hero_Quiver_PR_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver/T_Hero_Quiver_PR_ORM.png"
     }
    },
    "MI_Hero_Sword_Claw_PR": {

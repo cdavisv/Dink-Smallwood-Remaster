@@ -34,8 +34,12 @@ def kit_manifest():
         materials[m['materials'][0]] = row
         assets.append({'name': m['name'], 'class': m['class'], 'fbx': m['fbx'], 'materials': m['materials'], 'dimensions_m': [round(float(v), 3) for v in m['dimensions_m']],
                        'collision_hulls': 0, 'families': m['families'], 'folder': os.path.relpath(os.path.dirname(path), REPO).replace(os.sep, '/'), 'grip': m['grip']})
+        # a bow cut into rigid parts for the draw (tools/build_bow_parts.py): the same material, one mesh a part
+        for part in m.get('parts', []):
+            assets.append({'name': part['name'], 'class': 'weapon part', 'fbx': part['fbx'], 'materials': m['materials'], 'dimensions_m': [round(float(v), 3) for v in part['dimensions_m']],
+                           'collision_hulls': 0, 'families': m['families'], 'folder': os.path.relpath(os.path.dirname(path), REPO).replace(os.sep, '/') + '/Parts', 'part_of': m['name'], 'origin_cm': part['origin_cm']})
     out = {'schema': 'dink-props/1', 'root': 'DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons', 'generated_by': 'HeroWeapons/tools/build_weapons.py --manifest (do not edit by hand)',
-           'summary': '%d hand-held weapons of the hero, one baked opaque set each (BC / N OpenGL / ORM, E for the light sword). Pivot at the grip centre, +X to the tip.' % len(assets),
+           'summary': '%d meshes of the hero\'s weapons: six hand-held weapons, the arrow and the quiver with one baked opaque set each (BC / N OpenGL / ORM, E for the light sword), and the two bows cut into rigid parts for the draw (their bow\'s material). Pivot at the grip centre, +X to the tip.' % len(assets),
            'assets': assets, 'flipbooks': [], 'not_imported': [],
            'integration': {'contract': {'textures': 'BC sRGB; N linear OpenGL (flip green on import); ORM linear (R occlusion, G roughness, B metallic); E sRGB emissive',
                                         'uv': 'UV0, unique bake, no tiling', 'collision': 'none'}, 'materials': materials}}
@@ -116,6 +120,29 @@ def gem_mat(name, col):
 def string_mat():
     t = NT('string'); sp = t.sep(t.obj); tw = t.math('SINE', t.math('ADD', t.math('MULTIPLY', sp[0], 2600.0), t.math('MULTIPLY', t.math('ARCTAN2', sp[2], sp[1]), 2.0)))
     t.set(base=t.mix(tw, (0.42, 0.36, 0.24), (0.70, 0.63, 0.46)), rough=0.8, metal=0.0, normal=t.bump(tw, 0.6, 0.0003)); return t.mat
+
+
+def feather_mat(name, col=(0.62, 0.035, 0.022)):
+    """a dyed goose feather vane: red, the barbs a fine slanted ridge, darker towards the quill and where the dye lies thick"""
+    t = NT(name); sp = t.sep(t.obj); barb = t.math('SINE', t.math('ADD', t.math('MULTIPLY', sp[0], 2400.0), t.math('MULTIPLY', t.math('ADD', t.math('ABSOLUTE', sp[1]), t.math('ABSOLUTE', sp[2])), 3800.0)))
+    n = t.noise(90, 4, 0.6); split = t.ramp(t.noise(26, 3, 0.5, vec=t.mapping(scale=(9, 1, 1))), [(0.60, 0.0), (0.72, 1.0)])
+    base = t.mix(n, tuple(c * 0.62 for c in col), tuple(min(1.0, c * 1.25) for c in col)); base = t.mix(t.math('MULTIPLY', split, 0.45), base, tuple(c * 0.35 for c in col))
+    t.set(base=base, rough=t.mixf(n, 0.62, 0.80), metal=0.0, normal=t.bump(t.math('ADD', t.math('MULTIPLY', barb, 0.7), t.math('MULTIPLY', n, 0.3)), 0.6, 0.0003)); return t.mat
+
+
+def hide_mat(name, col=(0.082, 0.040, 0.018), seed=0.0, bands=()):
+    """thick vegetable-tanned leather of a quiver: dark brown, mottled, pored, rubbed paler on the edges and scuffed where it is handled;
+    bands = [(x0, x1)] along the object's X get a darker, smoother strap leather"""
+    t = NT(name); sp = t.sep(t.obj); n = t.noise(420, 4, 0.65, vec=t.mapping(loc=(seed, 0, 0))); n1 = t.noise(11, 5, 0.62, vec=t.mapping(loc=(seed, 3, 0))); pore = t.voronoi(900.0)
+    scuff = t.ramp(t.noise(38, 4, 0.7, vec=t.mapping(scale=(0.25, 1, 1), loc=(seed, 7, 0))), [(0.58, 0.0), (0.74, 1.0)])
+    base = t.mix(n1, tuple(c * 0.55 for c in col), tuple(min(1.0, c * 1.45) for c in col)); base = t.mix(t.math('MULTIPLY', t.ramp(n, [(0.35, 0.0), (0.8, 1.0)]), 0.25), base, tuple(c * 0.45 for c in col))
+    base = t.mix(t.math('MULTIPLY', scuff, 0.35), base, tuple(min(1.0, c * 2.0 + 0.02) for c in col))
+    rough = t.mixf(n1, 0.50, 0.74)
+    for x0, x1 in bands:
+        m = t.math('MULTIPLY', t.maprange(sp[0], x0 - 0.002, x0 + 0.001, 0.0, 1.0), t.maprange(sp[0], x1 - 0.001, x1 + 0.002, 1.0, 0.0))
+        base = t.mix(m, base, t.mix(n1, tuple(c * 0.30 for c in col), tuple(c * 0.55 for c in col))); rough = t.mixf(m, rough, 0.42)
+    edge = t.ramp(t.pointiness, [(0.53, 0.0), (0.62, 1.0)]); base = t.mix(t.math('MULTIPLY', edge, 0.45), base, tuple(min(1.0, c * 1.9) for c in col))
+    t.set(base=base, rough=rough, metal=0.0, normal=t.bump(t.math('ADD', t.math('MULTIPLY', n, 0.6), t.math('MULTIPLY', pore, 0.4)), 0.5, 0.0005)); return t.mat
 
 
 def lacquer_mat(name, seed=0.0):
@@ -302,6 +329,95 @@ def axe(hi, c):
     return _put(hi, [(head, lambda: blade_steel('axesteel', tint=(0.60, 0.64, 0.70), seed=9.0)), (haft, lambda: T.wood_mat('walnut', axis=0, grip=(-0.07, 0.07), dark_from=(0.30, 0.40), light=(0.105, 0.072, 0.046), dark=(0.035, 0.024, 0.016)))])
 
 
+def _vanes(name, x0, x1, r0, height, c, hi, turn=0.0):
+    """three feather vanes round a shaft that runs along X: cut high at the back (the nock end, small x) and tapering to the front, 0.7 mm thick"""
+    n = 14 if hi else 6; t = 0.00035; V = []; F = []
+    for k in range(3):
+        a = turn + 2 * math.pi * k / 3; ca, sa = math.cos(a), math.sin(a); base = len(V)
+        for i in range(n + 1):
+            u = i / n; x = x0 + (x1 - x0) * u; h = height * (min(1.0, u / 0.10) ** 0.6) * (1.0 - 0.80 * u ** 1.5) + 0.0005        # steep cut at the nock end, long taper forward
+            for r in (r0 * 0.6, r0 + h):
+                for sgn in (-1, 1):
+                    V.append((x, r * ca - sgn * t * sa, r * sa + sgn * t * ca))
+        for i in range(n):
+            b = base + i * 4; q = b + 4                # per station: (root -, root +, top -, top +)
+            F += [(b + 0, b + 2, q + 2, q + 0), (b + 1, q + 1, q + 3, b + 3), (b + 2, b + 3, q + 3, q + 2)]
+        F += [(base + 0, base + 1, base + 3, base + 2), (base + n * 4 + 0, base + n * 4 + 2, base + n * 4 + 3, base + n * 4 + 1)]
+    ob = L.new_obj(name, V, F, c, smooth=False); L.fix_normals(ob); return ob
+
+
+def _arrow(hi, c, tag='', length=0.80, head=True, turn=0.0, vane=(0.030, 0.142, 0.0185)):
+    """one arrow along +X with the string groove of its nock at the origin: horn nock, three red vanes bound at both ends, an ash shaft and a
+    leaf-shaped steel head (the arrow of the 1997 bow pictures: yellow shaft, red feathers, a pale steel point). head=False stops the shaft at
+    `length` with no point (the arrows that stand in the quiver). Returns [(objects, material maker)]."""
+    q = 2 if hi else 1; r = 0.0042
+    shaft = L.tube('shaft' + tag, [(0.008, 0, 0), (0.25 * length, 0, 0), (0.6 * length, 0, 0), (length - (0.05 if head else 0.0), 0, 0)], r, sides=6 * q, c=c)
+    nock = L.sweep('nock' + tag, [(-0.004, 0, 0, 0.0034, 0.0046, 2.2), (0.0, 0, 0, 0.0050, 0.0050, 2.2), (0.006, 0, 0, 0.0052, 0.0052, 2.0), (0.013, 0, 0, 0.0044, 0.0044, 2.0)], nu=6 * q, nv=5 * q, c=c, up=(0, 0, 1), cap=0.5)
+    vanes = _vanes('vanes' + tag, vane[0], vane[1], r, vane[2], c, hi, turn)
+    binds = [L.tube('bind%d%s' % (i, tag), [(a, 0, 0), (b, 0, 0)], r + 0.0007, sides=6 * q, c=c) for i, (a, b) in enumerate(((vane[0] - 0.011, vane[0] + 0.001), (vane[1] - 0.002, vane[1] + 0.012)))]
+    parts = [(shaft, lambda: T.wood_mat('ash', axis=0, light=(0.60, 0.45, 0.20), dark=(0.36, 0.24, 0.09))), (nock, lambda: bone_mat('hornnock', col=(0.20, 0.15, 0.10), seed=3.0)),
+             (vanes, lambda: feather_mat('feather')), (binds, string_mat)]
+    if head:
+        x = length - 0.062
+        socket = L.tube('socket' + tag, [(x - 0.012, 0, 0), (x + 0.014, 0, 0)], [r + 0.0012, r + 0.0006], sides=6 * q, c=c)
+        leaf = L.sweep('head' + tag, [(x + 0.006, 0, 0, 0.0034, 0.0046, 2.0), (x + 0.020, 0, 0, 0.0030, 0.0100, 1.7), (x + 0.036, 0, 0, 0.0024, 0.0088, 1.6), (x + 0.052, 0, 0, 0.0014, 0.0046, 1.6), (x + 0.062, 0, 0, 0.0004, 0.0008, 1.6)],
+                       nu=6 * q, nv=8 * q, c=c, up=(0, 0, 1), cap=0.3)
+        parts.append(([socket, leaf], lambda: blade_steel('arrowsteel', tint=(0.60, 0.64, 0.70), seed=4.0)))
+    return parts
+
+
+def arrow(hi, c):
+    """the arrow on the bow (graphics/dink/bow/idle and hit; the flying arrow is sequence 25): 0.80 m, nock at the origin, +X to the point
+    (at the full draw of 69 cm its head stands 11 cm ahead of the bow hand; at 0.74 m it lay on the knuckles)"""
+    return _put(hi, _arrow(hi, c))
+
+
+def quiver(hi, c):
+    """the quiver of red-fletched arrows that the armed bow puts on Dink's back (graphics/dink/bow/idle, hit and walk): a brown leather tube
+    0.54 m long with two bands and a sewn seam, open at the top, eight arrows standing in it nock up, their big red feathers 22 to 33 cm
+    above the mouth (1997 shows them as a red plume above his head; a first version with war-arrow feathers 16 to 25 cm up read as a thin
+    stick with a few red marks at the play camera's distance). Origin on the tube's axis at its middle, +X to the mouth; the side that
+    lies on the back is -Y."""
+    from mathutils import Matrix, Vector
+    seg = 32 if hi else 16; kr, kz = 1.12, 1.08
+    prof = [(0.0, -0.250), (0.034, -0.250), (0.0405, -0.238), (0.0425, -0.200), (0.0445, -0.196), (0.0445, -0.168), (0.0432, -0.164), (0.0490, 0.168), (0.0512, 0.172), (0.0512, 0.204), (0.0500, 0.208),
+            (0.0512, 0.236), (0.0540, 0.241), (0.0540, 0.250), (0.0500, 0.2525), (0.0470, 0.244), (0.0455, 0.150), (0.0, 0.150)]
+    body = L.lathe('quiver', [(r * kr, z * kz) for r, z in prof], seg=seg, c=c, cap0=False, cap1=False)
+    L.xform(body, Matrix.Rotation(math.pi / 2, 4, 'Y'))                      # the lathe's +Z becomes +X
+
+    def wall(x):
+        return kr * (0.0432 + (x / kz + 0.164) * (0.0490 - 0.0432) / 0.332)
+    # the seam down the side, sewn with a pale thong: a low ridge and a row of stitches across it
+    seam = L.tube('seam', [(x, 0.0, wall(x) + 0.0006) for x in np.linspace(-0.160 * kz, 0.165 * kz, 9)], 0.0024, sides=8 if hi else 5, c=c)
+    stitches = [L.tube('stitch%d' % i, [(x - 0.004, -0.0065, wall(x) + 0.0010), (x, 0.0, wall(x) + 0.0034), (x + 0.004, 0.0065, wall(x) + 0.0010)], 0.0011, sides=6 if hi else 3, c=c)
+                for i, x in enumerate(np.linspace(-0.15 * kz, 0.155 * kz, 20))]
+    parts = [(body, lambda: hide_mat('quiverhide', bands=((-0.200 * kz, -0.164 * kz), (0.168 * kz, 0.208 * kz), (0.236 * kz, 0.26 * kz)))), (seam, lambda: hide_mat('seamhide', col=(0.060, 0.030, 0.014), seed=5.0)), (stitches, string_mat)]
+    # Two lashing straps hold the quiver on the pack Dink wears: a flat dark strap round the tube with a bronze buckle on the
+    # outer side (+Y); at the tube's two flanks its ends leave the leather and run on towards the back (-Y), round the pack
+    # (in the game they end inside the pack the quiver lies on: hero_weapons.json bows.worn).
+    for i, x in enumerate((-0.118 * kz, 0.052 * kz)):
+        rr = wall(x) + 0.0004; hw = 0.0115; th = 0.0034
+        band = L.lathe('strap%d' % i, [(rr, -hw), (rr + th, -hw + 0.0012), (rr + th, hw - 0.0012), (rr, hw)], seg=seg, c=c, cap0=False, cap1=False)
+        L.xform(band, Matrix.Translation((x, 0.0, 0.0)) @ Matrix.Rotation(math.pi / 2, 4, 'Y'))
+        tails = [L.box('strap%d_tail%d' % (i, k), (x - hw, -0.115, sz * (rr + th * 0.5) - th * 0.5), (x + hw, 0.004, sz * (rr + th * 0.5) + th * 0.5), c=c, hi=hi, bevel=0.0010)
+                 for k, sz in enumerate((-1.0, 1.0))]
+        frame = L.ring('buckle%d' % i, 0.0135, 0.0021, c=c, seg=28 if hi else 10, sides=8 if hi else 4, squash=0.8)
+        L.xform(frame, Matrix.Translation((x, rr + th + 0.0018, 0.0)) @ Matrix.Rotation(math.pi / 2, 4, 'X') @ Matrix.Scale(1.25, 4, (1, 0, 0)))
+        prong = L.tube('buckle%d_prong' % i, [(x, rr + th + 0.0030, -0.0135), (x, rr + th + 0.0042, 0.0), (x, rr + th + 0.0030, 0.0150)], 0.0013, sides=6 if hi else 3, c=c)
+        parts += [([band] + tails, lambda: hide_mat('straphide', col=(0.038, 0.019, 0.009), seed=9.0)), ([frame, prong], lambda: bronze_mat('bucklebronze', seed=3.0))]
+    rnd = np.random.RandomState(11); mouth = 0.250 * kz; plug = 0.150 * kz
+    spots = [(0.0, 0.0)] + [(0.027 * kr * math.cos(a), 0.027 * kr * math.sin(a)) for a in np.linspace(0.3, 2 * math.pi + 0.3, 7, endpoint=False)]
+    for i, (py, pz) in enumerate(spots):
+        top = mouth + 0.22 + 0.11 * rnd.rand(); out = 1.9 + 0.5 * (rnd.rand() - 0.5)          # nock height; how much the arrow leans out of the mouth
+        nock = Vector((top, py * (1.0 + out * (top - plug)), pz * (1.0 + out * (top - plug)))); foot = Vector((plug - 0.01, py, pz))
+        M = Matrix.Translation(nock) @ Vector((1, 0, 0)).rotation_difference(foot - nock).to_matrix().to_4x4()          # the arrow's +X (to its point) goes down into the tube
+        for obs, mat in _arrow(hi, c, tag='_q%d' % i, length=(foot - nock).length, head=False, turn=rnd.rand() * 2.0, vane=(0.032, 0.185, 0.0245)):
+            for o in (obs if isinstance(obs, (list, tuple)) else [obs]):
+                L.xform(o, M)
+            parts.append((obs, mat))
+    return _put(hi, parts)
+
+
 W_COMMON = ' Baked from a procedural source: no maker\'s marks, engraving or damage from use beyond stains and edge wear. Static (no cloth, tassel or scabbard). The grip transform was derived from the hand bone landmarks and checked in one idle and one attack frame only.'
 SPECS = {
     'Sword_Long': dict(fn=longsword, item='item-sw1', pic='438/7', px=2048, hand='hand_r', emis=None, shot=dict(az=20, el=38), weak='Guard and pommel are swept and scaled solids pushed together (no peened tang, no rain-guard).' + W_COMMON,
@@ -314,6 +430,12 @@ SPECS = {
                      dresses='yew self bow, 1.30 m nock to nock, strung with 15 cm brace height: brown stave, pale grip binding, dark horn nocks, flax string'),
     'Bow_Blue': dict(fn=bow_blue, item='item-b2', pic='438/12', px=2048, hand='hand_l', emis=None, shot=dict(az=8, el=52), weak='Same geometry as the wooden bow; only the surface differs. Strung and at rest only (see the wooden bow). No arrow.' + W_COMMON,
                      dresses='the blue bow: the same 1.30 m bow in blue-black stained wood, the grain showing, rubbed pale on its edges, sinew bindings below the nocks and beside the grey grip binding'),
+    'Arrow': dict(fn=arrow, item='item-b1, item-b2, item-b3 (the arrow on the bow)', pic='graphics/dink/bow/idle, hit', px=1024, hand='the bow (hero_weapons.json bows.arrow)', emis=None, shot=dict(az=8, el=40),
+                  weak='One arrow for all three bows (item-b3 shoots flame arrows in 1997: the flame is an effect). The vanes are thin solids with a painted barb pattern, not feather cards. Procedural bake, no fletcher\'s marks.',
+                  dresses='arrow, 0.80 m: ash shaft, dark horn nock, three red goose-feather vanes 11 cm long bound with flax at both ends, a leaf-shaped steel head on a socket; origin in the nock, +X to the point'),
+    'Quiver': dict(fn=quiver, item='item-b1, item-b2, item-b3 (worn on the back while a bow is armed)', pic='graphics/dink/bow/idle, hit, walk', px=2048, hand='spine_03 (hero_weapons.json bows.worn)', emis=None, shot=dict(az=20, el=30),
+                   weak='Lashed to the pack with two straps whose ends stop inside it (they do not go round the pack, and no baldric crosses the chest); the quiver sits on the back by its attachment row alone. The arrows are fixed in the tube and their number never changes (1997 draws the same quiver whatever was shot). Procedural bake.',
+                   dresses='quiver, brown leather tube 0.54 m long, 12 cm across at the mouth, two dark bands, two lashing straps with bronze buckles, a sewn seam and a rolled rim, eight red-fletched arrows standing in it nock up, their feathers 15 cm long; origin on the axis at the middle, +X to the mouth, -Y on the back'),
     'Axe': dict(fn=axe, item='item-axe', pic='438/6', px=1024, hand='hand_r', emis=None, shot=dict(az=20, el=40), weak='Head and haft are two solids pushed together, no eye or wedge. This is the axe in the hand; the thrown axe in flight (sequence 85) stays an effect.' + W_COMMON,
                      dresses='double-bitted throwing axe, 0.59 m: two crescent bits of blue-cast steel 31 cm across, dark walnut haft with a swelling at the butt; grip centre 12.5 cm above the butt'),
 }

@@ -1,0 +1,104 @@
+{
+ "name": "SM_Hero_Arrow_PR",
+ "class": "weapon",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow/SM_Hero_Arrow_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow/SM_Hero_Arrow_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_weapons.py Arrow final",
+ "dimensions_m": [
+  0.805,
+  0.0336,
+  0.0388
+ ],
+ "bounds_min_m": [
+  -0.0049,
+  -0.0114,
+  -0.0194
+ ],
+ "bounds_max_m": [
+  0.8001,
+  0.0222,
+  0.0194
+ ],
+ "lod0_triangles": 332,
+ "triangle_budget": {
+  "soft": 3000,
+  "hard": 8000,
+  "within_soft": true
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow/T_Hero_Arrow_PR_BC.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow/T_Hero_Arrow_PR_N.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Arrow/T_Hero_Arrow_PR_ORM.png",
+   "size_px": [
+    1024,
+    1024
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Hero_Arrow_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 42,
+  "open_edges": 42,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0008,
+   0.9992
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 19.2,
+   "p99": 198.5
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.085,
+   "p95": 0.616
+  },
+  "metallic_mean": 0.01,
+  "ao_mean": 0.119
+ },
+ "pivot": "grip centre at the origin; +X to the tip; flats of the blade on +Z / -Z (see tools/build_weapons.py)",
+ "families": [
+  "hero weapon item-b1, item-b2, item-b3 (the arrow on the bow)"
+ ],
+ "origin_ids": {},
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "arrow, 0.80 m: ash shaft, dark horn nock, three red goose-feather vanes 11 cm long bound with flax at both ends, a leaf-shaped steel head on a socket; origin in the nock, +X to the point",
+ "third_party": [
+  "weathered_brown_planks (render floor)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "One arrow for all three bows (item-b3 shoots flame arrows in 1997: the flame is an effect). The vanes are thin solids with a painted barb pattern, not feather cards. Procedural bake, no fletcher's marks.",
+ "grip": {
+  "origin": "grip centre",
+  "x": "towards the tip (upper limb for a bow)",
+  "bone": "the bow (hero_weapons.json bows.arrow)",
+  "item": "item-b1, item-b2, item-b3 (the arrow on the bow)",
+  "picture_1997": "graphics/dink/bow/idle, hit"
+ }
+}

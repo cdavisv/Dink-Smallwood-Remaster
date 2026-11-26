@@ -100,5 +100,295 @@
   "bone": "hand_l",
   "item": "item-b1, item-b3",
   "picture_1997": "438/8, 438/13"
- }
+ },
+ "parts": [
+  {
+   "name": "SM_Hero_Bow_Wood_Grip_PR",
+   "part": "Grip",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_Grip_PR.fbx",
+   "triangles": 380,
+   "dimensions_m": [
+    0.23,
+    0.0326,
+    0.0313
+   ],
+   "origin_cm": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU1_PR",
+   "part": "LimbU1",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU1_PR.fbx",
+   "triangles": 100,
+   "dimensions_m": [
+    0.09,
+    0.0356,
+    0.0349
+   ],
+   "origin_cm": [
+    11.0,
+    0.43,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU2_PR",
+   "part": "LimbU2",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU2_PR.fbx",
+   "triangles": 100,
+   "dimensions_m": [
+    0.09,
+    0.0391,
+    0.0356
+   ],
+   "origin_cm": [
+    19.0,
+    1.3,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU3_PR",
+   "part": "LimbU3",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU3_PR.fbx",
+   "triangles": 100,
+   "dimensions_m": [
+    0.09,
+    0.0425,
+    0.0354
+   ],
+   "origin_cm": [
+    27.0,
+    2.68,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU4_PR",
+   "part": "LimbU4",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU4_PR.fbx",
+   "triangles": 112,
+   "dimensions_m": [
+    0.09,
+    0.0465,
+    0.0329
+   ],
+   "origin_cm": [
+    35.0,
+    4.6,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU5_PR",
+   "part": "LimbU5",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU5_PR.fbx",
+   "triangles": 116,
+   "dimensions_m": [
+    0.09,
+    0.0516,
+    0.0262
+   ],
+   "origin_cm": [
+    43.0,
+    7.14,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbU6_PR",
+   "part": "LimbU6",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbU6_PR.fbx",
+   "triangles": 298,
+   "dimensions_m": [
+    0.1558,
+    0.0721,
+    0.0177
+   ],
+   "origin_cm": [
+    51.0,
+    10.37,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL1_PR",
+   "part": "LimbL1",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL1_PR.fbx",
+   "triangles": 100,
+   "dimensions_m": [
+    0.09,
+    0.0356,
+    0.0349
+   ],
+   "origin_cm": [
+    -11.0,
+    0.43,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL2_PR",
+   "part": "LimbL2",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL2_PR.fbx",
+   "triangles": 100,
+   "dimensions_m": [
+    0.09,
+    0.0391,
+    0.0356
+   ],
+   "origin_cm": [
+    -19.0,
+    1.3,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL3_PR",
+   "part": "LimbL3",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL3_PR.fbx",
+   "triangles": 100,
+   "dimensions_m": [
+    0.09,
+    0.0425,
+    0.0354
+   ],
+   "origin_cm": [
+    -27.0,
+    2.68,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL4_PR",
+   "part": "LimbL4",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL4_PR.fbx",
+   "triangles": 112,
+   "dimensions_m": [
+    0.09,
+    0.0465,
+    0.0329
+   ],
+   "origin_cm": [
+    -35.0,
+    4.6,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL5_PR",
+   "part": "LimbL5",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL5_PR.fbx",
+   "triangles": 116,
+   "dimensions_m": [
+    0.09,
+    0.0516,
+    0.0262
+   ],
+   "origin_cm": [
+    -43.0,
+    7.14,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_LimbL6_PR",
+   "part": "LimbL6",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_LimbL6_PR.fbx",
+   "triangles": 298,
+   "dimensions_m": [
+    0.1558,
+    0.0721,
+    0.0177
+   ],
+   "origin_cm": [
+    -51.0,
+    10.37,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_StringU_PR",
+   "part": "StringU",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_StringU_PR.fbx",
+   "triangles": 23,
+   "dimensions_m": [
+    0.5968,
+    0.0025,
+    0.0024
+   ],
+   "origin_cm": [
+    63.18,
+    15.17,
+    0
+   ]
+  },
+  {
+   "name": "SM_Hero_Bow_Wood_StringL_PR",
+   "part": "StringL",
+   "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Bow_Wood/Parts/SM_Hero_Bow_Wood_StringL_PR.fbx",
+   "triangles": 33,
+   "dimensions_m": [
+    0.6668,
+    0.0025,
+    0.0024
+   ],
+   "origin_cm": [
+    -63.18,
+    15.17,
+    0
+   ]
+  }
+ ],
+ "draw": {
+  "units": "cm, the game mesh axes (X up the upper limb, +Y from the grip to the string, Z across)",
+  "joints_cm": [
+   [
+    11.0,
+    0.43
+   ],
+   [
+    19.0,
+    1.3
+   ],
+   [
+    27.0,
+    2.68
+   ],
+   [
+    35.0,
+    4.6
+   ],
+   [
+    43.0,
+    7.14
+   ],
+   [
+    51.0,
+    10.37
+   ]
+  ],
+  "weights": [
+   0.14,
+   0.18,
+   0.19,
+   0.19,
+   0.17,
+   0.13
+  ],
+  "string_end_cm": [
+   63.18,
+   15.17
+  ],
+  "nock_up_cm": 3.5000000000000004,
+  "max_draw_cm": 56.00000000000001,
+  "string_half_cm": [
+   59.68,
+   66.68
+  ]
+ },
+ "parts_note": "the same mesh cut into rigid parts for the bending bow (tools/build_bow_parts.py): same UVs, same material and textures"
 }

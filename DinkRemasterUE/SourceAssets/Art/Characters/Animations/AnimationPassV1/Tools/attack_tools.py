@@ -66,8 +66,10 @@ def state_from_pose(rig, pose):
         S[k + 'a_px'], S[k + 'a_pf'], S[k + 'a_pz'] = p.x, -p.y, p.z
         S[k + 'a_pron'] = 0.0
         S[k + 'a_bend'] = 0.0
+        S[k + 'a_dev'] = 0.0
         S[k + 'a_curl'] = 0.3
         S[k + 'a_grip'] = 0.0
+        S[k + 'a_hook'] = 0.0
         S[k + '_shrug'] = 0.0
         S[k + '_protract'] = 0.0
     return S
@@ -121,6 +123,10 @@ def build_pose(rig, S):
         pose._w = None
         if S[k + 'a_bend']:
             pose.rotate_local('hand_' + side, (0.0, 0.0, 1.0), S[k + 'a_bend'])
+        if S.get(k + 'a_dev'):
+            # The wrist's third turn (towards the thumb or the little finger): only a hand that must hold a thing square
+            # needs it (the bow, fit_held).
+            pose.rotate_local('hand_' + side, (0.0, 1.0, 0.0), S[k + 'a_dev'])
         if S[k + 'a_pron']:
             # Roll about the forearm: the hand's own X runs along it.
             b = pose.basis.get('hand_' + side, Matrix.Identity(4))
@@ -130,6 +136,8 @@ def build_pose(rig, S):
         pose.fingers(side, S[k + 'a_curl'], thumb=min(1.0, S[k + 'a_curl']) * 0.9)
         if S.get(k + 'a_grip'):
             pose.grip(side, min(1.0, S[k + 'a_grip']))
+        if S.get(k + 'a_hook'):
+            pose.hook(side, min(1.0, S[k + 'a_hook']))
     pose.head_world(yaw=S['hd_yaw'], pitch=S['hd_pitch'], roll=S['hd_roll'], follow=S['hd_follow'])
     return pose.finish()
 
@@ -289,6 +297,55 @@ class Keys:
         self.cur.update(changes)
         self.rows.append((t, dict(self.cur)))
         return self
+
+
+def _solve(S, names, residual, rounds=24, eps=1e-4):
+    """Gauss-Newton on a few state keys with finite differences; returns the largest residual left."""
+    import numpy as np
+    r = np.array(residual(S))
+    for _ in range(rounds):
+        J = np.zeros((len(r), len(names)))
+        for i, n in enumerate(names):
+            T = dict(S)
+            T[n] += eps
+            J[:, i] = (np.array(residual(T)) - r) / eps
+        step = np.linalg.lstsq(J, -r, rcond=None)[0]
+        # no more than 0.15 (m or rad) a round: the arm's reach makes the problem non-linear far from the answer
+        step *= min(1.0, 0.15 / max(1e-9, float(np.abs(step).max())))
+        for i, n in enumerate(names):
+            S[n] += float(step[i])
+        r = np.array(residual(S))
+        if float(np.abs(r).max()) < 2e-4:
+            break
+    return float(np.abs(r).max())
+
+
+def fit_held(rig, S, side, local, origin, x_axis, y_axis):
+    """Moves and turns one wrist (target, forearm roll, bend, deviation) until a thing fixed in that hand stands at
+    `origin` with its X and Y axes as given (armature space). `local` is the thing's 4x4 in the hand bone's frame: for a
+    weapon of hero_weapons.json, S @ M_ue(location, rotation) @ S with S = diag(1, -1, 1). Changes S; returns the error left
+    (m for the origin, the axes' chord otherwise): the caller decides what is too much (out of the arm's reach)."""
+    k = side
+    want = [*origin, *Vector(x_axis).normalized(), *Vector(y_axis).normalized()]
+
+    def residual(T):
+        w = build_pose(rig, T).W('hand_' + side)
+        loc, q, _ = w.decompose()
+        m = Matrix.Translation(loc) @ q.to_matrix().to_4x4() @ local
+        got = [*m.translation, *(m.to_3x3() @ Vector((1, 0, 0))), *(m.to_3x3() @ Vector((0, 1, 0)))]
+        return [(a - b) * (1.0 if i < 3 else 0.25) for i, (a, b) in enumerate(zip(got, want))]
+    return _solve(S, [k + 'a_x', k + 'a_f', k + 'a_z', k + 'a_pron', k + 'a_bend', k + 'a_dev'], residual)
+
+
+def fit_point(rig, S, side, bones, point):
+    """Moves one wrist until the middle of the heads of `bones` (finger joints) lies at `point` (armature space)."""
+    k = side
+
+    def residual(T):
+        pose = build_pose(rig, T)
+        c = sum((pose.pos(b) for b in bones), Vector()) / len(bones)
+        return list(c - Vector(point))
+    return _solve(S, [k + 'a_x', k + 'a_f', k + 'a_z'], residual)
 
 
 def arm(side, x, f, z, pole=None, pron=None, curl=None, bend=None):
