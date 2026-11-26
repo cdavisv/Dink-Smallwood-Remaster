@@ -38,6 +38,7 @@
 const FName UDinkArtFamilySubsystem::FamilyTag(TEXT("DinkFamilyArt"));
 const FName UDinkArtFamilySubsystem::ScriptSpriteTag(TEXT("DinkScriptFamilyArt"));
 const FName UDinkArtFamilySubsystem::ScriptEffectTag(TEXT("DinkScriptFamilyEffect"));
+const FName UDinkArtFamilySubsystem::EffectTag(TEXT("DinkFamilyEffect"));
 const FName UDinkArtFamilySubsystem::ScriptPictureTag(TEXT("DinkScriptPictureCard"));
 
 TArray<TWeakObjectPtr<UStaticMeshComponent>>& UDinkArtFamilySubsystem::ScriptPictureCards()
@@ -195,7 +196,7 @@ namespace
 namespace
 {
 	TAutoConsoleVariable<int32> CVarDinkFamilyArt(TEXT("dink.FamilyArt"), 1,
-		TEXT("Dress greybox placements by sprite family from Data/Art/families.json at screen activation (0: keep the cards). Read at play start."));
+		TEXT("Dress greybox placements by sprite family from Data/Art/families.json at screen activation (0: keep the cards). The meshes are chosen at play start; set to 0 at run time it hides every family effect (fires, smoke, twinkles, burn decals and their lights) until it is 1 again."));
 
 	const TCHAR* FamiliesSchema = TEXT("dink-art-families/1");
 	const TCHAR* FamiliesFile = TEXT("families.json");
@@ -772,6 +773,14 @@ void UDinkArtFamilySubsystem::OnWorldBeginPlay(UWorld& World)
     // are enabled. A marked world must never silently substitute old hardboxes.
     if(!LoadCollisionFitPolicy(DinkArtFamily::DefaultFamiliesPath(),Text,CollisionFitError))
         UE_LOG(LogDink,Warning,TEXT("Family collision fit policy refused: %s"),*CollisionFitError);
+    // dink.FamilyArt at run time: 0 hides the effects (fires and their lights), 1 shows them again (takeover A8).
+    if (!FamilyArtChangedHandle.IsValid())
+    {
+        FamilyArtChangedHandle = CVarDinkFamilyArt.AsVariable()->OnChangedDelegate().AddWeakLambda(this, [this](IConsoleVariable* Variable)
+        {
+            if (Variable) SetEffectsShown(Variable->GetInt() != 0);
+        });
+    }
     if (!CVarDinkFamilyArt.GetValueOnGameThread() || !ArtEnabled()) return;
     if(Text.IsEmpty())return;
     TArray<FString> Errors;
@@ -815,9 +824,42 @@ void UDinkArtFamilySubsystem::OnWorldBeginPlay(UWorld& World)
 
 void UDinkArtFamilySubsystem::Deinitialize()
 {
+	if (FamilyArtChangedHandle.IsValid()) CVarDinkFamilyArt.AsVariable()->OnChangedDelegate().Remove(FamilyArtChangedHandle);
+	FamilyArtChangedHandle.Reset();
 	if (UDinkGreyboxSubsystem* Grey = Greybox.Get()) Grey->OnScreenChanged.Remove(ScreenHandle);
 	ScreenHandle.Reset();
 	Super::Deinitialize();
+}
+
+void UDinkArtFamilySubsystem::HideEffectsOf(AActor& Actor)
+{
+	TInlineComponentArray<USceneComponent*> Components(&Actor);
+	for (USceneComponent* C : Components)
+	{
+		if (!C || !C->ComponentHasTag(EffectTag) || EffectHiddenBefore.Contains(C)) continue;
+		EffectHiddenBefore.Add(C, C->bHiddenInGame);
+		C->SetHiddenInGame(true);
+	}
+}
+
+void UDinkArtFamilySubsystem::SetEffectsShown(bool bShown)
+{
+	UWorld* World = GetWorld();
+	if (!World || bShown == !bEffectsHidden) return;
+	bEffectsHidden = !bShown;
+	if (bEffectsHidden)
+	{
+		for (TActorIterator<AActor> It(World); It; ++It) HideEffectsOf(**It);
+		UE_LOG(LogDink, Display, TEXT("Family art: effects hidden (dink.FamilyArt 0): %d components"), EffectHiddenBefore.Num());
+		return;
+	}
+	int32 Shown = 0;
+	for (const TPair<TWeakObjectPtr<USceneComponent>, bool>& Pair : EffectHiddenBefore)
+	{
+		if (USceneComponent* C = Pair.Key.Get()) { C->SetHiddenInGame(Pair.Value); ++Shown; }
+	}
+	EffectHiddenBefore.Reset();
+	UE_LOG(LogDink, Display, TEXT("Family art: effects shown again (dink.FamilyArt 1): %d components"), Shown);
 }
 
 void UDinkArtFamilySubsystem::ScreenChanged(ADinkScreenVolume* Screen)
@@ -963,6 +1005,7 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 			Card->SetCastShadow(false);
 			Card->ComponentTags.Add(FamilyTag);
 			Card->ComponentTags.Add(ScriptEffectTag);
+			Card->ComponentTags.Add(EffectTag);
 			Actor->AddInstanceComponent(Card);
 			Card->RegisterComponent();
 		}
@@ -999,6 +1042,7 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 				Glow->SetCastShadows(false);
 				Glow->ComponentTags.Add(FamilyTag);
 				Glow->ComponentTags.Add(ScriptEffectLightTag);
+				Glow->ComponentTags.Add(EffectTag);
 				Actor->AddInstanceComponent(Glow);
 				Glow->RegisterComponent();
 			}
@@ -1011,6 +1055,7 @@ bool UDinkArtFamilySubsystem::DressScriptSprite(AActor* Actor, int32 Sequence, i
 			Glow->SetWorldLocation(Card->GetComponentLocation());
 		}
 		if (Marker) Marker->SetHiddenInGame(true);
+		if (bEffectsHidden) HideEffectsOf(*Actor);
 		return true;
 	}
 	if (Card && Card->ComponentHasTag(ScriptEffectTag))
@@ -1384,6 +1429,7 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 	if (const FVector* Offset = Binding.OffsetCm.Find(OriginName)) Card->AddWorldOffset(*Offset);
 	Card->SetCastShadow(false);
 	Card->ComponentTags.AddUnique(FamilyTag);
+	Card->ComponentTags.AddUnique(EffectTag);
 	if (Binding.bEffectDecal)
 	{
 		// A burn on a roof or a wall: the effect is projected onto what stands there; the camera-facing card is not drawn.
@@ -1407,6 +1453,7 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 		Decal->DecalSize = FVector(Binding.EffectDecalDepthCm, Binding.EffectDecalSizeCm.X * 0.5 * Grow, Binding.EffectDecalSizeCm.Y * 0.5 * Grow);
 		Decal->SetFadeScreenSize(0.f);
 		Decal->ComponentTags.Add(FamilyTag);
+		Decal->ComponentTags.Add(EffectTag);
 		Actor.AddInstanceComponent(Decal);
 		Decal->RegisterComponent();
 		Decal->SetWorldLocationAndRotation(Card->GetComponentLocation() + Card->GetComponentRotation().RotateVector(
@@ -1434,6 +1481,7 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 			Layer->SetGenerateOverlapEvents(false);
 			Layer->SetCastShadow(false);
 			Layer->ComponentTags.Add(FamilyTag);
+			Layer->ComponentTags.Add(EffectTag);
 			// The card's own scale is (width, 1, height): offsets in cm are divided by it. The layer keeps the card's
 			// bottom middle (plus its offset) whatever its size; the card's face normal is local +Y.
 			const double Side = L.bMirror ? -L.Scale : L.Scale;
@@ -1462,6 +1510,7 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 		Light->SetSoftSourceRadius(float(Width * 0.3));
 		Light->SetCastShadows(false);
 		Light->ComponentTags.Add(FamilyTag);
+		Light->ComponentTags.Add(EffectTag);
 		Actor.AddInstanceComponent(Light);
 		Light->RegisterComponent();
 		// firelight wavers; the phase comes from where the fire stands, so neighbouring fires do not pulse together
@@ -1482,6 +1531,7 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 		Smoke->SetCastShadow(false);
 		Smoke->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		Smoke->ComponentTags.Add(FamilyTag);
+		Smoke->ComponentTags.Add(EffectTag);
 		Smoke->AddElement(*Plume, nullptr, false, float(Binding.EffectPlumeSizeCm.X * 0.5), float(Binding.EffectPlumeSizeCm.Y * 0.5), nullptr);
 		Actor.AddInstanceComponent(Smoke);
 		Smoke->RegisterComponent();
@@ -1494,6 +1544,7 @@ bool UDinkArtFamilySubsystem::DressPlacedEffect(ADinkPlaceholderActor& Actor, co
 	// column start as the card is, never as a lit 7 m column over flames that are not drawn (review R11 of #166).
 	FollowCardVisibility(Card);
 	Actor.Tags.AddUnique(FamilyTag);
+	if (bEffectsHidden) HideEffectsOf(Actor);
 	return true;
 }
 
