@@ -363,6 +363,18 @@ screens, 72 kept; 520 walls trimmed to their drawn face on 36 screens.
   x 242-599, SCR_190 x 0-199, y 246-253) and with part Collision on it joins the screen's low collision for Dink's capsule only, as solid
   for him as at the reference scale (`Dink.PhysicalPlay.SealedGaps`). Layer off (the probe) nothing changes: the chapter 17 teleport still
   lands in it there and the md5 table holds.
+- **Audit of the whole map (26 Nov 2026, `Scripts/check_capsule_gaps.py`).** Offline, from the export's collision and the two layouts
+  (`tools/analyse` with the switch off and on): (a) where the 28 cm capsule fits 1997 walkable ground at the enlarged scale and nowhere at
+  the reference: 66 pockets, 41 of them closed (no walk of the 1997 map, point Dink over every screen edge, reaches them); 36 of those are
+  sealed in play (`sealed_gaps.json`, 33 screens: the ridge slits of the Darklands rows 1-2 and SCR_223/224, the insides of closed boulder
+  outlines), the other 5 are listed for review (scripted hardness or vision variants on SCR_031/278/342; SCR_473's opens in play); 25 open
+  pockets (1997 ground behind a gap the capsule never passes) and 5 joins (a slit that joins two reference capsule regions: a way the
+  1997 engine's point Dink walked, closed to the reference capsule; SCR_178/179 y 108-110, SCR_160 x 370, SCR_224, SCR_273) are reported,
+  not changed. (b) every box Dink meets in play whose contact edge lies more than 1 m from anything drawn (dink.PhysAudit drawn mask), and
+  the player-only hulls: 748 rows, mostly the 1997 rule (scripted sprites 209, family meshes the layer does not relax 331, cards 67,
+  nothing drawn 69); 70 boxes the passage rule keeps (62 already kept at the reference: PM-07 art rows; new at this scale: the plaster
+  walls S033_P06, S034_P18/P20, S130_P03, S195_P06, S225_P06, the dungeon wall S579_P11 and the pine S216_P05, up to 1.45 m); two hulls
+  at a screen edge (their mesh drawn on the neighbour). Reports in ~/Work/Restart16Nov/ws-followup-1/audit_*.
 - **Tests pinned at the reference scale** (never run with the switch on before): the run speed is 6 m/s times the screen's world-scale
   pace (`PlayableControls`, `StonebrookPlay`); the pure headroom geometry fixture keeps its measured pawn, eye and wall together; house 1's
   camera fixtures stand at the same cm from the returned door (`DoorY`); the pond-bank fixture of 438 finds its row on the geometry.
