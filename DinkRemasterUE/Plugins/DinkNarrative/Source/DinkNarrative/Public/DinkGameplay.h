@@ -175,12 +175,22 @@ struct DINKNARRATIVE_API FDinkPhysicalPlaySettings
 	TMap<int32, FIntRect> Trimmed;
 	/** The trimmed walls that run east-west (the generator's strip is wider than tall); the others run north-south. */
 	TSet<int32> TrimAlongX;
+	/**
+	 * Sealed gaps (world scale, 26 Nov 2026; Content/Dink/Data/Play/sealed_gaps.json): rectangles of 1997 walkable ground (map pixels,
+	 * inclusive) per screen inside a hardness outline that Dink's capsule could not enter at the reference scale and fits at the enlarged
+	 * scale (the one-row slit of SCR_189/190). With part Collision on they join the screen's low collision: Dink's capsule only (get_hard,
+	 * brains and missiles keep the 1997 hardness). Reviewed rows of Scripts/check_capsule_gaps.py.
+	 */
+	TMap<int32, TArray<FIntRect>> Sealed;
 	FString Source;
 	static FString DefaultIniPath();
 	static FString DefaultRelaxedPath();
+	static FString DefaultSealedPath();
 	void Load();
 	/** Parses relaxed_hardboxes.json text (tests). */
 	bool ParseRelaxed(const FString& Json);
+	/** Parses sealed_gaps.json text (tests): {"screens": {"190": [{"rect": [l, t, r, b], ...}, ...]}}. */
+	bool ParseSealed(const FString& Json);
 };
 
 /** One map.dat placement (Content/Dink/Data/Gameplay/placements.csv). */
@@ -944,6 +954,10 @@ public:
 	bool LoadPlayHardnessSource(int32 Screen, const FString& File, int32 Vision, struct FDinkRuntimeHardnessSource& Out, FString& Error) const;
 	/** The screen has open tiles (playtest P1) with part Collision on: its low collision is rebuilt without them. */
 	bool HasOpenTilesForPlayer(int32 Screen) const;
+	/** The screen has sealed gaps (PhysicalPlay.Sealed) with part Collision on: its low collision is rebuilt with them. */
+	bool HasSealsForPlayer(int32 Screen) const;
+	/** A sealed gap of the screen holds map pixel X, Y (part Collision on). */
+	bool IsSealedForPlayer(int32 Screen, int32 MapX, int32 MapY) const;
 private:
 	int32 CapsuleMarginPixels(const FDinkSprite& Dink) const;
 	void Note(const FString& E);
@@ -964,7 +978,7 @@ private:
 	void FillHardSprites(FDinkHardnessMap& Map, int32 Screen) const;
 	/** The greybox's solid collision of Screen follows the live map (UDinkGreyboxSubsystem::ApplyScreenSolidChanges); no-op without a world. */
 	void SyncGreyboxHardness(int32 Screen);
-	/** Physical play layer: the screen's low collision without the low hardness of its open tiles (PhysicalPlay.OpenTiles). */
+	/** Physical play layer: the screen's low collision without the low hardness of its open tiles (PhysicalPlay.OpenTiles), with its sealed gaps. */
 	void SyncGreyboxLowHardness(int32 Screen);
 	void RestoreGreyboxHardness();
 	TMap<int32, FLiveHardness> LiveHardness;

@@ -86,6 +86,12 @@ Only WHEN a hit or touch lands changes. What it does is the 1997 path unchanged:
   a boulder's outline) with no scripted placement do not count. 1420 tiles on 250 screens freed, 67 kept (`kept_tiles`).
   Test: `Dink.PhysicalPlay.Blockages`.
 
+- SEALED GAPS (26 Nov 2026, world scale follow-up): `Content/Dink/Data/Play/sealed_gaps.json` lists rectangles of 1997 walkable ground
+  (map pixels, inclusive) inside a hardness outline that Dink's capsule could not enter at the reference scale and fits at the enlarged
+  one (fewer pixels per 28 cm). With part Collision on they join the screen's low collision (`SyncGreyboxLowHardness`, Dink's capsule only;
+  `get_hard`, brains and missiles keep 0 there). Only closed pockets no walk of the 1997 map reaches are listed (reviewed findings of
+  `Scripts/check_capsule_gaps.py`). First row: the one-row slit of SCR_189/190 (WORLD_SCALE.md 14.1). Test: `Dink.PhysicalPlay.SealedGaps`.
+
 ## 2. Dink's attack
 - `UDinkGameplay::RunThroughTagList` already has a 3D branch (`UsesAuthoredGeometry` / `AuthoredGeometryMatches`, Hit): a
   capsule of half width `AttackHalfWidthCm x range / 28` swept from the front of Dink's body to the reach above, against the

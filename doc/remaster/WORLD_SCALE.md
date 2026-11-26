@@ -358,7 +358,11 @@ screens, 72 kept; 520 walls trimmed to their drawn face on 36 screens.
   frame left the floor. `world_scale_convert_art.py` now moves it with the layout (`Dink.Art.InteriorCamera` passes again).
 - **A one-row slit in SCR_190's hardness band.** The band across the west of 190 (y 240-257) is solid for the capsule at the reference
   scale; at this scale the capsule is fewer pixels wide and fits a slit inside it at y 249 (walk audit), reachable only from the screen's
-  west edge. Harmless for the story; noted for the art side.
+  west edge. Harmless for the story; noted for the art side. **Sealed (26 Nov 2026):** the slit is a closed pocket of the 1997 map (the
+  thorn S189_P03 closes it in SCR_189, a low stub at x 200 in SCR_190), so `Content/Dink/Data/Play/sealed_gaps.json` lists it (SCR_189
+  x 242-599, SCR_190 x 0-199, y 246-253) and with part Collision on it joins the screen's low collision for Dink's capsule only, as solid
+  for him as at the reference scale (`Dink.PhysicalPlay.SealedGaps`). Layer off (the probe) nothing changes: the chapter 17 teleport still
+  lands in it there and the md5 table holds.
 - **Tests pinned at the reference scale** (never run with the switch on before): the run speed is 6 m/s times the screen's world-scale
   pace (`PlayableControls`, `StonebrookPlay`); the pure headroom geometry fixture keeps its measured pawn, eye and wall together; house 1's
   camera fixtures stand at the same cm from the returned door (`DoorY`); the pond-bank fixture of 438 finds its row on the geometry.

@@ -29,6 +29,10 @@
 #include "Misc/App.h"
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
+#include "DinkLayout.h"
+#include "Greybox/DinkScreenVolume.h"
+#include "GameFramework/PlayerController.h"
+#include "GameFramework/Pawn.h"
 
 namespace
 {
@@ -3034,7 +3038,10 @@ void UDinkGameplay::SyncGreyboxLowHardness(int32 Screen)
 {
 	// Physical play layer, part Collision (playtest 20 Nov P1): the painted boulders of open tiles keep a low (2) outline in the 1997
 	// hardness while the remaster draws open ground there. Their pixels leave the screen's low collision; water fills stay.
-	if (!HasOpenTilesForPlayer(Screen)) return;
+	// Sealed gaps (world scale, 26 Nov 2026): 1997 walkable pixels inside a hardness outline that only fit the capsule at the enlarged
+	// scale join it (Dink's capsule only; get_hard keeps 0 there).
+	const bool bOpen = HasOpenTilesForPlayer(Screen), bSeals = HasSealsForPlayer(Screen);
+	if (!bOpen && !bSeals) return;
 	UWorld* World = Story ? Story->GetWorld() : nullptr;
 	UDinkGreyboxSubsystem* Greybox = World ? World->GetSubsystem<UDinkGreyboxSubsystem>() : nullptr;
 	const UDinkFactSubsystem* Facts = Story ? Story->GetFacts() : nullptr;
@@ -3042,16 +3049,60 @@ void UDinkGameplay::SyncGreyboxLowHardness(int32 Screen)
 	if (!Greybox || !Map || Map->Codes.Num() != FDinkHardnessMap::Width * FDinkHardnessMap::Height) return;
 	TArray<uint8> Changes;
 	Changes.SetNumZeroed(Map->Codes.Num());
-	int32 Removed = 0;
+	int32 Removed = 0, Added = 0;
 	for (int32 i = 0; i < Changes.Num(); ++i)
 	{
-		if (Map->Codes[i] == 2 && PlayHardness(Screen, i % FDinkHardnessMap::Width, i / FDinkHardnessMap::Width, 2) == 0)
+		const int32 X = i % FDinkHardnessMap::Width, Y = i / FDinkHardnessMap::Width;
+		if (bOpen && Map->Codes[i] == 2 && PlayHardness(Screen, X, Y, 2) == 0)
 		{
 			Changes[i] = 2;
 			++Removed;
 		}
+		else if (bSeals && Map->Codes[i] == 0 && IsSealedForPlayer(Screen, X, Y))
+		{
+			Changes[i] = 1;
+			++Added;
+		}
 	}
-	if (Removed > 0) Greybox->ApplyScreenLowChanges(Screen, Changes);
+	if (Removed > 0 || Added > 0) Greybox->ApplyScreenLowChanges(Screen, Changes);
+	// never a trap: a teleport (a script's set-down, the console) can land Dink in a sealed gap before its collision is built at this
+	// entry; inside the new low prism nothing would stop him walking the slit. He takes the nearest spot with room for the capsule,
+	// as the checked teleport does (at the reference scale the capsule never fit there either).
+	// (where the pawn stands: the sprite's pixel follows it on the director's next tick)
+	const APlayerController* PC = World->GetFirstPlayerController();
+	const APawn* Pawn = PC ? PC->GetPawn() : nullptr;
+	const ADinkScreenVolume* Volume = Greybox->FindScreen(Screen);
+	double PawnX = 0.0, PawnY = 0.0;
+	if (Added > 0 && Pawn && Volume && Greybox->FindScreenAt(Pawn->GetActorLocation()) == Volume &&
+		DinkLayout::MetresToMapPixel(Volume->Corners, DinkLayout::UnrealToMetres(Pawn->GetActorLocation()), PawnX, PawnY))
+	{
+		const int32 X = FMath::RoundToInt(PawnX), Y = FMath::RoundToInt(PawnY);
+		bool bInside = false;
+		for (int32 Dy = -4; Dy <= 4 && !bInside; Dy += 4)
+			for (int32 Dx = -4; Dx <= 4 && !bInside; Dx += 4) bInside = IsSealedForPlayer(Screen, X + Dx, Y + Dy);
+		if (bInside)
+		{
+			// the overlap test cannot see a capsule that stands inside a prism, so the spot is chosen on the data: 1997 walkable, no sealed
+			// pixel within 6 px, nearest first (rings of 4 px); the checked teleport then refuses one without room
+			const auto Clear = [&](int32 Cx, int32 Cy)
+			{
+				if (Cx < 0 || Cy < 0 || Cx >= FDinkHardnessMap::Width || Cy >= FDinkHardnessMap::Height || Map->Codes[Cy * FDinkHardnessMap::Width + Cx] != 0) return false;
+				for (int32 Dy = -6; Dy <= 6; Dy += 3)
+					for (int32 Dx = -6; Dx <= 6; Dx += 3) if (IsSealedForPlayer(Screen, Cx + Dx, Cy + Dy)) return false;
+				return true;
+			};
+			int32 PlacedX = -1, PlacedY = -1;
+			for (int32 R = 4; R <= 160 && PlacedX < 0; R += 4)
+				for (int32 K = 0; K < 32 && PlacedX < 0; ++K)
+				{
+					const double A = K * UE_TWO_PI / 32.0;
+					const int32 Cx = FMath::RoundToInt(X + R * FMath::Cos(A)), Cy = FMath::RoundToInt(Y + R * FMath::Sin(A));
+					if (Clear(Cx, Cy) && Greybox->GotoScreen(Screen, float(Cx), float(Cy), /*bEvenIntoWalls*/ false)) { PlacedX = Cx; PlacedY = Cy; }
+				}
+			UE_LOG(LogDinkNarrative, Display, TEXT("DINK PHYSICAL PLAY: Dink stood in a sealed gap of SCR_%03d at %d,%d: %s"), Screen, X, Y,
+				PlacedX >= 0 ? *FString::Printf(TEXT("moved to %d,%d, the nearest spot with room"), PlacedX, PlacedY) : TEXT("no spot with room within 160 px: left there"));
+		}
+	}
 }
 
 void UDinkGameplay::RestoreGreyboxHardness()
