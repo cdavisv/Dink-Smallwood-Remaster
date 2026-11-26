@@ -1377,6 +1377,22 @@
       "note": "Unclaimed families kit (PhotorealPass/Unclaimed/manifest.json). 173 bonuses/barrels/barel- frame 6: the flat star of staves of a burst barrel, as the sprite draws it; the hoops are missing (source recorded as partial)."
     },
     {
+      "family": "pillbug_corpse",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Pillbug/SM_Pillbug_Corpse_PR.SM_Pillbug_Corpse_PR",
+      "fit": "none",
+      "scale": 0.55,
+      "yaw_from_sprite": true,
+      "note": "GP-Q7 (23 Nov 2026). The three PLACED pillbug splats (141 on S098_P04 and S100_P26, 143 on S100_P25) were still 1997 pictures on cards: they take the burst carcass a killed pillbug leaves (creatures.json class pillbug, corpse of sequences 141/143: shell split, blood across the plates, viscera), at the class scale 0.55. The class corpse's blood-pool decal is spawned by the creature layer only; a placed carcass lies without it."
+    },
+    {
+      "family": "duck_head",
+      "mesh": "/Game/Dink/Photoreal/Creatures/Duck/SM_Duck_Head_PR.SM_Duck_Head_PR",
+      "fit": "none",
+      "scale": 1.5,
+      "yaw_from_sprite": true,
+      "note": "GP-Q7 (23 Nov 2026). The ninety duck heads of screen 145 (121 animals/duck/death/dkh1x- frame 1, set dressing) were still 1997 pictures on cards: they take the severed head a struck duck leaves (creatures.json class duck), at the duck's scale 1.5."
+    },
+    {
       "family": "golden_duck_statue",
       "mesh": "/Game/Dink/Photoreal/Unclaimed/SM_Duck_Statue_Gold_PR.SM_Duck_Statue_Gold_PR",
       "fit": "none",
