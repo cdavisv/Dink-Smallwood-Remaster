@@ -857,7 +857,7 @@ namespace DinkImportTest
 					MaxSpeed = FMath::Max(MaxSpeed, Hero->GetVelocity().Size2D());
 					return false;
 				}
-				Test->TestTrue(FString::Printf(TEXT("run speed reached %.0f cm/s"), MaxSpeed), FMath::Abs(MaxSpeed - 600.0) < 15.0);
+				Test->TestTrue(FString::Printf(TEXT("run speed reached %.0f cm/s (6 m/s x the screen's world-scale pace %.4f)"), MaxSpeed, Hero->PaceScale()), FMath::Abs(MaxSpeed - 600.0 * Hero->PaceScale()) < 15.0);
 				Hero->GetCharacterMovement()->StopMovementImmediately();
 				Hero->GetCharacterMovement()->MaxWalkSpeed = 150.f;
 				Stage = 4;

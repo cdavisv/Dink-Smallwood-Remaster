@@ -382,7 +382,8 @@ public:
         {
             // Nobody at the controls (the bot, scripted moves, debug commands): the run speed, exactly, as always.
             H->AddMovementInput(FVector(1,0,0));
-            Test->TestEqual(TEXT("direct movement input keeps the 6 m/s top speed"),Move->MaxWalkSpeed,600.f);
+            // (x the world-scale pace of the screen: the yard's 1.1538 or, while the screen is not yet refreshed, the one before it, 1.1416)
+            Test->TestTrue(FString::Printf(TEXT("direct movement input keeps the 6 m/s top speed x the screen's world-scale pace (%.2f, pace %.4f)"),Move->MaxWalkSpeed,H->PaceScale()),FMath::Abs(Move->MaxWalkSpeed-600.f*H->PaceScale())<=600.f*.015f);
             if (Since<1.) return false;
             Test->TestTrue(FString::Printf(TEXT("bot-style run measured %.1f cm/s"),Move->Velocity.Size2D()),Move->Velocity.Size2D()>450);
             Test->TestFalse(TEXT("direct input is not a person steering"),H->IsHumanSteering());
@@ -408,7 +409,7 @@ public:
             if (Move->MaxWalkSpeed>ADinkGreyboxCharacter::WalkSpeed+20 && Move->MaxWalkSpeed<580) bSawEase=true;
             if (Since<1.4) return false;
             Test->TestTrue(TEXT("the change from walk to run is eased"),bSawEase);
-            Test->TestEqual(TEXT("holding Shift runs"),Move->MaxWalkSpeed,600.f);
+            Test->TestEqual(TEXT("holding Shift runs"),Move->MaxWalkSpeed,600.f*H->PaceScale());
             Test->TestTrue(FString::Printf(TEXT("run measured %.1f cm/s"),Move->Velocity.Size2D()),Move->Velocity.Size2D()>450);
             Key(EKeys::LeftShift,IE_Released);
             At=W->GetTimeSeconds(); Phase=22; return false;
@@ -421,7 +422,7 @@ public:
             Test->TestTrue(FString::Printf(TEXT("walk again measured %.1f cm/s"),Move->Velocity.Size2D()),Move->Velocity.Size2D()<=ADinkGreyboxCharacter::WalkSpeed+25);
             IConsoleVariable* RunDefault=IConsoleManager::Get().FindConsoleVariable(TEXT("dink.Hero.RunByDefault"));
             RunDefault->Set(1);
-            Test->TestEqual(TEXT("the setting makes run the default"),H->DesiredTopSpeed(),600.f);
+            Test->TestEqual(TEXT("the setting makes run the default"),H->DesiredTopSpeed(),600.f*H->PaceScale());
             H->SetRunKeyHeld(true);
             Test->TestEqual(TEXT("and then the key walks"),H->DesiredTopSpeed(),ADinkGreyboxCharacter::WalkSpeed);
             H->SetRunKeyHeld(false);
@@ -432,7 +433,7 @@ public:
         {
             if (Since<.5) return false;
             Test->TestFalse(TEXT("steering ends shortly after the last input"),H->IsHumanSteering());
-            Test->TestEqual(TEXT("without a person steering the top speed is the run speed again"),Move->MaxWalkSpeed,600.f);
+            Test->TestEqual(TEXT("without a person steering the top speed is the run speed again"),Move->MaxWalkSpeed,600.f*H->PaceScale());
             Move->StopMovementImmediately();
             Freeze(true);
             H->Jump();
