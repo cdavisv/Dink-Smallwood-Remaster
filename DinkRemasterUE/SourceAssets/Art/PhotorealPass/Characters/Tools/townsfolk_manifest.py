@@ -26,6 +26,8 @@ for slot, row in hero['materials'].items():
         if role in OWN[part]:
             textures[role] = f'Textures/T_{NAME}_PR_{part}_{role}.png'
             assert (HERE / textures[role]).is_file(), textures[role]
+        elif PORT and part in ('Outfit', 'Gear') and (HERE / f'Textures/T_{NAME}_PR_Outfit_{role}.png').is_file():
+            textures[role] = f'Textures/T_{NAME}_PR_Outfit_{role}.png'      # a map of the source repainted for this figure (merchant_outfit.py: the fur mantle)
         elif PORT and part in ('Outfit', 'Gear'):
             textures[role] = f'../../../Unclaimed/{ROW["src"][0]}/T_{ROW["src"][1]}_Outfit_{role}.png'
             assert (HERE / textures[role]).is_file(), textures[role]

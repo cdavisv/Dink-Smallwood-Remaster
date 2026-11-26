@@ -183,14 +183,19 @@
    "base": "NPC/Merchant",
    "base_asset": "SK_Merchant_Photoreal",
    "animation_set": "NpcM",
+   "what": "the merchant in green",
    "families": [
     "npc_merchant_green"
    ],
-   "what": "the merchant in green",
    "materials": {
     "MI_Merchant_PR_Outfit": {
      "textures": {
-      "BC": "../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_Green_BC.png"
+      "BC": "MerchantGreen/Textures/T_MerchantGreen_PR_Outfit_BC.png"
+     }
+    },
+    "MI_Merchant_PR_Gear": {
+     "textures": {
+      "BC": "MerchantGreen/Textures/T_MerchantGreen_PR_Outfit_BC.png"
      }
     }
    },
@@ -209,6 +214,11 @@
      "textures": {
       "BC": "MerchantRed/Textures/T_MerchantRed_PR_Outfit_BC.png"
      }
+    },
+    "MI_Merchant_PR_Gear": {
+     "textures": {
+      "BC": "MerchantRed/Textures/T_MerchantRed_PR_Outfit_BC.png"
+     }
     }
    },
    "walk_bases": [
@@ -223,6 +233,11 @@
    "families": [],
    "materials": {
     "MI_Merchant_PR_Outfit": {
+     "textures": {
+      "BC": "MerchantPurple/Textures/T_MerchantPurple_PR_Outfit_BC.png"
+     }
+    },
+    "MI_Merchant_PR_Gear": {
      "textures": {
       "BC": "MerchantPurple/Textures/T_MerchantPurple_PR_Outfit_BC.png"
      }

@@ -1,9 +1,9 @@
 {
  "schema": "dink-photoreal-character/1",
  "asset": "SK_Merchant_Photoreal",
- "class": "character_humanoid",
- "source_blend": "Unclaimed/npc_merchant_blue/Merchant/SK_Merchant_PR.blend",
- "build": "blender -b -t 4 --python Characters/Tools/npc_port.py -- Merchant",
+ "class": "character_hero",
+ "source_blend": "NPC/Merchant/SK_Merchant_Photoreal.blend",
+ "build": "Characters/Tools/run_townsfolk.sh Merchant (the stages are listed in that file)",
  "fbx": [
   "Export/SK_Merchant_Photoreal_LOD0.fbx",
   "Export/SK_Merchant_Photoreal_LOD1.fbx",
@@ -11,60 +11,61 @@
   "Export/SK_Merchant_Photoreal_LOD3.fbx"
  ],
  "dimensions_m": [
-  1.0600690841674805,
-  0.45745474100112915,
-  1.8111189603805542
+  1.100469946861267,
+  0.44223615527153015,
+  1.8076852560043335
  ],
  "bone_count": 89,
  "root_bone": "root",
- "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones; armature of Characters/Milder)",
+ "skeleton": "/Game/Characters/Mannequins/Meshes/SK_Mannequin (89 bones, names/hierarchy/rest pose unchanged from Characters/Dink/HandBindingV2)",
  "lods": [
   {
    "mesh": "SK_Merchant_Photoreal_LOD0",
-   "triangles": 30594,
-   "vertices": 15760,
+   "triangles": 31242,
+   "vertices": 21110,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Merchant_Photoreal_LOD1",
-   "triangles": 15297,
-   "vertices": 8066,
+   "triangles": 19826,
+   "vertices": 15384,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Merchant_Photoreal_LOD2",
-   "triangles": 7648,
-   "vertices": 4163,
+   "triangles": 14684,
+   "vertices": 12236,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Merchant_Photoreal_LOD3",
-   "triangles": 3670,
-   "vertices": 2095,
+   "triangles": 9923,
+   "vertices": 7962,
    "max_influences": 4,
    "unweighted": 0
   }
  ],
- "lod0_triangles": 30594,
+ "lod0_triangles": 31242,
  "material_slots": [
   "MI_Merchant_PR_Skin",
   "MI_Merchant_PR_Eyes",
   "MI_Merchant_PR_Hair",
-  "MI_Merchant_PR_Outfit"
+  "MI_Merchant_PR_Outfit",
+  "MI_Merchant_PR_Gear"
  ],
  "materials": {
   "MI_Merchant_PR_Skin": {
    "textures": {
-    "BC": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Skin_BC.png",
-    "N": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Skin_N.png",
-    "ORM": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Skin_ORM.png",
+    "BC": "Textures/T_Merchant_PR_Skin_BC.png",
+    "N": "Textures/T_Merchant_PR_Skin_N.png",
+    "ORM": "Textures/T_Merchant_PR_Skin_ORM.png",
     "SSS": "Textures/T_Merchant_PR_Skin_SSS.png"
    },
-   "shading": "subsurface profile / skin; SSS is a flat scatter colour (the source has no thickness map)",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "subsurface profile / skin; SSS.rgb = scatter colour x thickness",
+   "normal": "OpenGL (+Y), flip green for UE as the existing importer does"
   },
   "MI_Merchant_PR_Eyes": {
    "textures": {
@@ -72,124 +73,147 @@
     "N": "Textures/T_Merchant_PR_Eyes_N.png",
     "ORM": "Textures/T_Merchant_PR_Eyes_ORM.png"
    },
-   "shading": "default lit, low roughness",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "default lit, low roughness from ORM.G; single-shell eye with modelled cornea bulge"
   },
   "MI_Merchant_PR_Hair": {
    "textures": {
-    "BC": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Hair_BC.png",
-    "N": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Hair_N.png",
-    "ORM": "Textures/T_Merchant_PR_Hair_ORM.png"
+    "BC": "Textures/T_Merchant_PR_Hair_BC.png",
+    "N": "Textures/T_Merchant_PR_Hair_N.png",
+    "ORM": "Textures/T_Merchant_PR_Hair_ORM.png",
+    "FLOW": "Textures/T_Merchant_PR_Hair_FLOW.png",
+    "MSK": "Textures/T_Merchant_PR_Hair_MSK.png"
    },
-   "shading": "MASKED (alpha in BC.a), two-sided hair cards, default lit",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "hair shading model, MASKED (alpha in BC.a, clip about 0.33 with dithered opacity / TAA), two-sided; cap shell + lock cards + brow and lash cards in one slot",
+   "anisotropy": "FLOW.rg = strand direction in UV space, encoded 0.5 + 0.5 * d (root to tip): world tangent = normalize(d.x * dP/du + d.y * dP/dv); use it as the hair tangent / anisotropy direction so highlights run along the hair. Baked from the strand groom (cap rect) and from the strand clumps (card tiles). N is the strand-relief normal (OpenGL), ORM.r = strand depth occlusion, ORM.g = roughness.",
+   "masks": "FLOW.b = back-light mask (0 on the opaque cap shell, 1 on cards: scale back-scatter / two-sided transmission by it). MSK.r = strand depth, MSK.g = per-strand id (use for per-strand colour / roughness jitter), MSK.b = root-to-tip gradient (0 root, 1 tip; the BC already carries a root-dark to tip-light gradient).",
+   "atlas_layout": "uv: cap texture u 0-0.5, v 0.5-1 (whole groom projected about the head centre, opaque under-fill inside the hairline); 32 narrow lock tiles u 0.5-1, v 0.25-1 (root at top); 4 wide tiles u 0-0.5, v 0.25-0.5; brow groom band u 0-0.5, v 0-0.25; lash band u 0.5-1, v 0-0.25",
+   "shell_order": "vertex attribute hl (also the build order, inner first): 1 = cap shell (opaque, never drop, casts the shadow), 2 = mid lock cards, 3 = outer lock cards, 4 = brows and lashes, 5 = hairline wisps and flyaways. LOD1 keeps all, LOD2 drops 5, LOD3 keeps 1, 3, 4. Custom split normals are scalp-blended and exported in the FBX: import normals, do not recompute."
   },
   "MI_Merchant_PR_Outfit": {
    "textures": {
-    "BC": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_BC.png",
+    "BC": "Textures/T_Merchant_PR_Outfit_BC.png",
     "N": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_N.png",
     "ORM": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_ORM.png"
    },
-   "shading": "default lit",
-   "normal": "OpenGL (+Y), flip green for UE"
+   "shading": "default lit"
+  },
+  "MI_Merchant_PR_Gear": {
+   "textures": {
+    "BC": "Textures/T_Merchant_PR_Outfit_BC.png",
+    "N": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_N.png",
+    "ORM": "../../../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_ORM.png"
+   },
+   "shading": "default lit, metallic from ORM.B (buckles)"
   }
- },
- "port": {
-  "height_ratio": 1.0725,
-  "lods": [
-   {
-    "vertices": 15760,
-    "pole_vertices": 0,
-    "min_z": -0.0076,
-    "max_z": 1.8035
-   },
-   {
-    "vertices": 8066,
-    "pole_vertices": 0,
-    "min_z": -0.0076,
-    "max_z": 1.8035
-   },
-   {
-    "vertices": 4163,
-    "pole_vertices": 0,
-    "min_z": -0.008,
-    "max_z": 1.8032
-   },
-   {
-    "vertices": 2095,
-    "pole_vertices": 0,
-    "min_z": -0.0085,
-    "max_z": 1.803
-   }
-  ],
-  "face_rigid_vertices": [
-   3193,
-   970,
-   454,
-   218
-  ],
-  "lift_m": 0.0076
  },
  "placement_scale": 0.932,
  "animation_set": "NpcM",
  "families": [
   "npc_merchant_blue"
  ],
+ "what": "the merchant of pictures 371-379 (people/merchant/blue): belted coat to the knee, a mantle on the shoulders, tall boots",
  "validation": {
   "assets": 1,
   "assets_passed": 0,
   "errors": 1,
-  "warnings": 7
+  "warnings": 16
  },
  "validator_findings": [
   [
    "warning",
-   "TRIS_OVER_TARGET",
-   "LOD0 has 30594 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "NON_MANIFOLD",
+   "9030 non-manifold edges (9030 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "888 non-manifold edges (888 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "8994 non-manifold edges (8994 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "797 non-manifold edges (797 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 2 loose (wire) edges"
+   "8112 non-manifold edges (8112 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "638 non-manifold edges (636 open boundary, 0 >2 faces, 2 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 5 loose (wire) edges"
-  ],
-  [
-   "warning",
-   "NON_MANIFOLD",
-   "477 non-manifold edges (472 open boundary, 0 >2 faces, 5 wire); acceptable for character_humanoid only if intentional (cards)"
+   "5075 non-manifold edges (5075 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (10.7 % of UV area, 4825 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (268.1 % of UV area, 4052 triangles); class character_hero needs unique UVs"
   ],
   [
    "info",
    "UV_OVERLAP",
    "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Outfit_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ]
  ],
  "known_weaknesses": [
-  "Ported from the 26-bone Unclaimed source by its own skin weights: fingers, twist bones and the other mannequin bones carry no weight (mitten hands, no forearm twist).",
-  "Face, hair and cloth are those of the Unclaimed source (see its manifest): a plain base face and card hair; they have not been through the head, skin and groom tools of the three main characters."
+  "The coat, the mantle, the belt with its pouch, the trousers and the boots are those of the Unclaimed source, carried onto the rig by its own skin weights: swept shapes with a painted weave, no cloth simulation.",
+  "The mantle is plain dark cloth; the 1997 pictures show fur on the shoulders.",
+  "The 1997 twins in blue, green and purple wear a cap of the coat's colour; these go bare-headed with brown hair.",
+  "The face is sculpted with the kit's face operations (cfg/head.json): a townsman of no particular likeness."
  ]
 }

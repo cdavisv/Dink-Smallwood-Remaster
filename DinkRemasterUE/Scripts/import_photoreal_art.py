@@ -575,13 +575,17 @@ HAIR_LOOK = {
     'Mother': {'tint': (0.98, 0.86, 0.62), 'vectors': {'HairPinCentre': (0.0, 0.0, 0.0)}, 'scalars': {'HairPinRadius': 0.0, 'RootShade': 1.0, 'TipLight': 0.6, 'Scatter': 0.45, 'StrandVariation': 0.22, 'DepthShade': 0.7, 'Specular': 0.12, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     'Milder': {'tint': (0.85, 0.8, 0.75), 'scalars': {'RootShade': 0.95, 'DepthShade': 0.9, 'Scatter': 0.45, 'Specular': 0.3, 'StrandVariation': 0.12, 'BrowGain': 1.5}},
     # the maidens' long yellow hair (hair_styles.py 'Maiden'); the twins set their own Tint (npc_variants.py MAIDEN_HAIR)
-    'Maiden': {'tint': (1.25, 1.12, 0.85), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.7, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
+    'Maiden': {'tint': (1.25, 1.12, 0.85), 'scalars': {'BrowScatter': 0.7, 'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.7, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
     # Seth's own atlas (hair_styles.py 'Seth'): the dark brown crest of his 1997 pictures
     'Seth': {'tint': (2.3, 1.55, 1.05), 'scalars': {'Scatter': 0.5, 'BrowGain': 1.4, 'RootShade': 0.9, 'DepthShade': 0.7, 'Specular': 0.2, 'RoughnessScale': 1.3}},      # a neutral tint read as grey hair under the dim sky of SCR_086
     # the countryman's dark hair going grey (hair_styles.py 'Peasant'); the tint follows Seth's dark atlas and has NOT been calibrated in the running game yet
     'Peasant': {'tint': (1.9, 1.5, 1.2), 'scalars': {'Scatter': 0.5, 'BrowGain': 1.4, 'RootShade': 0.9, 'DepthShade': 0.7, 'Specular': 0.2, 'RoughnessScale': 1.3}},
     # the old man's grey-white hair and beard (hair_styles.py 'OldMan'): a near-neutral tint on a light atlas, NOT calibrated in the running game yet
-    'OldMan': {'tint': (1.5, 1.48, 1.42), 'scalars': {'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.6, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
+    'OldMan': {'tint': (1.5, 1.48, 1.42), 'scalars': {'BrowScatter': 0.75, 'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.6, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
+    # the gnome's grey-white hair and beard (hair_styles.py 'Gnome'): the old man's values
+    'Gnome': {'tint': (1.5, 1.48, 1.42), 'scalars': {'BrowScatter': 0.75, 'BrowGain': 1.5, 'RootShade': 1.0, 'TipLight': 1.0, 'Scatter': 0.6, 'StrandVariation': 0.12, 'DepthShade': 0.8, 'Specular': 0.25, 'RoughnessScale': 1.3, 'CapShade': 1.0, 'CardShadow': 1.0}},
+    # the merchants' brown hair (hair_styles.py 'Merchant'; the colour twins copy it): between the hero's and Seth's tint
+    'Merchant': {'tint': (2.2, 1.5, 1.08), 'scalars': {'Scatter': 0.6, 'BrowScatter': 0.45, 'BrowGain': 2.0, 'RootShade': 0.9, 'DepthShade': 0.7, 'Specular': 0.2, 'RoughnessScale': 1.3}},
 }
 
 
@@ -641,8 +645,11 @@ return c;''', F3, ['C', 'T', 'M', 'RootShade', 'TipLight', 'Variation', 'DepthSh
     brow_colour = custom(mat, -450, -500, 'return C * lerp(Gain, 1.0, B);', F3, ['C', 'Gain', 'B'], 'Brow and lash colour gain')
     link(colour, '', brow_colour, 'C'); link(param('BrowGain', 1.0), '', brow_colour, 'Gain'); link(band, '', brow_colour, 'B')
     out(brow_colour, '', MP.MP_BASE_COLOR)
-    scat = custom(mat, -600, 150, 'return S * lerp(0.15, 1.0, B);', F1, ['S', 'B'], 'Hair scatter, damped on brows and lashes')
-    link(param('Scatter', 0.7), '', scat, 'S'); link(band, '', scat, 'B')
+    # BrowScatter: how much of the scatter the band keeps. At 0.15 a brow has next to no diffuse light of its own and is near
+    # black whatever its colour: right for dark brows, a black drawn arc on a grey, fair or light brown head (the gnome and
+    # the merchant in the game, 23 Nov 2026). A light-haired figure sets it higher in HAIR_LOOK.
+    scat = custom(mat, -600, 150, 'return S * lerp(saturate(Brow), 1.0, B);', F1, ['S', 'Brow', 'B'], 'Hair scatter, damped on brows and lashes')
+    link(param('Scatter', 0.7), '', scat, 'S'); link(param('BrowScatter', 0.15), '', scat, 'Brow'); link(band, '', scat, 'B')
     out(scat, '', MP.MP_METALLIC)
     # brows and lashes (the band, see 'Hair coverage') lie on the face in full sun: with the scalp hair's highlight a brow
     # flashed copper at its inner end
