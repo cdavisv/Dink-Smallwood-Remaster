@@ -58,6 +58,7 @@ namespace
 }
 
 FString FDinkPhysicalPlaySettings::DefaultIniPath() { return FPaths::ProjectContentDir() / TEXT("Dink/Data/Play/physical_play.ini"); }
+FString FDinkPhysicalPlaySettings::DefaultSealedPath() { return FPaths::ProjectContentDir() / TEXT("Dink/Data/Play/sealed_gaps.json"); }
 FString FDinkPhysicalPlaySettings::DefaultRelaxedPath() { return FPaths::ProjectContentDir() / TEXT("Dink/Data/Play/relaxed_hardboxes.json"); }
 
 void FDinkPhysicalPlaySettings::Load()
@@ -95,6 +96,33 @@ void FDinkPhysicalPlaySettings::Load()
 	{
 		UE_LOG(LogDinkNarrative, Warning, TEXT("physical play: %s does not parse; no hardbox is relaxed"), *DefaultRelaxedPath());
 	}
+	Sealed.Reset();
+	if (FFileHelper::LoadFileToString(Json, *DefaultSealedPath()) && !ParseSealed(Json))
+	{
+		UE_LOG(LogDinkNarrative, Warning, TEXT("physical play: %s does not parse; no gap is sealed"), *DefaultSealedPath());
+	}
+}
+
+bool FDinkPhysicalPlaySettings::ParseSealed(const FString& Json)
+{
+	Sealed.Reset();
+	TSharedPtr<FJsonObject> Root;
+	if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Json), Root) || !Root.IsValid()) return false;
+	const TSharedPtr<FJsonObject>* Screens = nullptr;
+	if (!Root->TryGetObjectField(TEXT("screens"), Screens)) return false;
+	for (const auto& Pair : (*Screens)->Values)
+	{
+		const TArray<TSharedPtr<FJsonValue>>* List = nullptr;
+		if (!Pair.Value->TryGetArray(List)) continue;
+		for (const TSharedPtr<FJsonValue>& V : *List)
+		{
+			const TSharedPtr<FJsonObject>* Row = nullptr;
+			const TArray<TSharedPtr<FJsonValue>>* R = nullptr;
+			if (!V->TryGetObject(Row) || !(*Row)->TryGetArrayField(TEXT("rect"), R) || R->Num() != 4) continue;
+			Sealed.FindOrAdd(FCString::Atoi(*Pair.Key)).Add(FIntRect(int32((*R)[0]->AsNumber()), int32((*R)[1]->AsNumber()), int32((*R)[2]->AsNumber()), int32((*R)[3]->AsNumber())));
+		}
+	}
+	return true;
 }
 
 bool FDinkPhysicalPlaySettings::ParseRelaxed(const FString& Json)
@@ -394,18 +422,34 @@ bool UDinkGameplay::HasOpenTilesForPlayer(int32 Screen) const
 	return PhysicalPlay.OpenTiles.Contains(Screen) && IsPhysicalPlayPartOn(EPhysicalPlayPart::Collision) && !RequiresOriginalHardnessScreen(Screen);
 }
 
+bool UDinkGameplay::HasSealsForPlayer(int32 Screen) const
+{
+	return PhysicalPlay.Sealed.Contains(Screen) && IsPhysicalPlayPartOn(EPhysicalPlayPart::Collision) && !RequiresOriginalHardnessScreen(Screen);
+}
+
+bool UDinkGameplay::IsSealedForPlayer(int32 Screen, int32 MapX, int32 MapY) const
+{
+	const TArray<FIntRect>* Rects = PhysicalPlay.Sealed.Find(Screen);
+	if (!Rects || !HasSealsForPlayer(Screen)) return false;
+	for (const FIntRect& R : *Rects)
+	{
+		if (MapX >= R.Min.X && MapX <= R.Max.X && MapY >= R.Min.Y && MapY <= R.Max.Y) return true;
+	}
+	return false;
+}
+
 void UDinkGameplay::ApplyPhysicalPlayCollision(int32 Screen)
 {
 	// Only with the layer on and a relaxed box or an open tile on this screen: otherwise nothing is called, so the 1997 collision
 	// path is untouched.
 	if (!IsPhysicalPlayPartOn(EPhysicalPlayPart::Collision) || RequiresOriginalHardnessScreen(Screen)) return;
-	if (!PhysicalPlay.Relaxed.Contains(Screen) && !PhysicalPlay.OpenTiles.Contains(Screen)) return;
+	if (!PhysicalPlay.Relaxed.Contains(Screen) && !PhysicalPlay.OpenTiles.Contains(Screen) && !PhysicalPlay.Sealed.Contains(Screen)) return;
 	// review of 22 Nov 2026, finding 4: what a screen entry costs (the collision rebuilds), logged per entry
 	const double Begin = FPlatformTime::Seconds();
 	CheckRelaxedBlockers(Screen);
 	SyncGreyboxHardness(Screen);
 	const double Solid = FPlatformTime::Seconds();
-	if (HasOpenTilesForPlayer(Screen)) SyncGreyboxLowHardness(Screen);
+	if (HasOpenTilesForPlayer(Screen) || HasSealsForPlayer(Screen)) SyncGreyboxLowHardness(Screen);
 	UE_LOG(LogDinkNarrative, Display, TEXT("DINK PHYSICAL PLAY ENTRY: screen %d collision %.1f ms (solid %.1f, low %.1f)"), Screen,
 		(FPlatformTime::Seconds() - Begin) * 1000.0, (Solid - Begin) * 1000.0, (FPlatformTime::Seconds() - Solid) * 1000.0);
 }

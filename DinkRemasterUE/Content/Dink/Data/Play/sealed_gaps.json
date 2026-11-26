@@ -1,0 +1,12 @@
+{
+ "schema": "dink-sealed-gaps/1",
+ "about": "1997 walkable ground inside a hardness outline that Dink's capsule could not enter at the reference world scale and fits at the enlarged scale (doc/remaster/WORLD_SCALE.md 14.1). With the physical play layer's part Collision on, each rect (map pixels, inclusive) joins the screen's low collision for Dink's capsule only; get_hard, brains and missiles keep the 1997 hardness, and the layer-off probe never reads this file. Rows are reviewed findings of Scripts/check_capsule_gaps.py: a rect may only cover a pocket that no walk of the 1997 map reaches.",
+ "screens": {
+  "189": [
+   {"rect": [242, 246, 599, 253], "why": "east half of the slit between the two low rock lines (y 244-245 and 254-255); closed in the west by the thorn S189_P03's box (thorn script, hitpoints 0), joins SCR_190's half at the screen edge; 8 px tall: the capsule (28 cm) fits at 9.0 cm/px, not at the reference 6.9 cm/px"}
+  ],
+  "190": [
+   {"rect": [0, 246, 199, 253], "why": "west half of the same slit, closed in the east by the low stub at x 200-201; the probe's chapter 17 teleport to 60,250 landed in it with the layer on (WORLD_SCALE.md 14.2)"}
+  ]
+ }
+}
