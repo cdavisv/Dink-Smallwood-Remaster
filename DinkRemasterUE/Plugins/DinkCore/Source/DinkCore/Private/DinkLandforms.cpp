@@ -73,6 +73,56 @@ namespace
 	}
 }
 
+FString DinkLandforms::HolesPath()
+{
+	return FPaths::ProjectContentDir() / TEXT("Dink/Data/Environment/landform_holes.json");
+}
+
+bool FDinkLandformsHole::Contains(double MapX, double MapY) const
+{
+	if (PolygonPx.Num() < 3 || !BoundsPx.IsInside(FVector2D(MapX, MapY))) return false;
+	// even-odd rule
+	bool bIn = false;
+	for (int32 I = 0, J = PolygonPx.Num() - 1; I < PolygonPx.Num(); J = I++)
+	{
+		const FVector2D& A = PolygonPx[I];
+		const FVector2D& B = PolygonPx[J];
+		if ((A.Y > MapY) != (B.Y > MapY) && MapX < (B.X - A.X) * (MapY - A.Y) / (B.Y - A.Y) + A.X) bIn = !bIn;
+	}
+	return bIn;
+}
+
+void DinkLandforms::GridTriangles(const TArray<FVector>& Vertices, int32 NX, int32 NY, int32 Step, const FDinkLandformsScreen* Screen,
+	TArray<int32>& OutTriangles, int32* OutCut)
+{
+	OutTriangles.Reset((NX - 1) * (NY - 1) * 6);
+	const bool bHoles = Screen && Screen->Holes.Num() > 0;
+	int32 Cut = 0;
+	auto InHole = [&](int32 P, int32 Q, int32 R)
+	{
+		if (!bHoles) return false;
+		// a vertex's map pixel from its grid index; the triangle's middle
+		const double X = ((P % NX) + (Q % NX) + (R % NX)) * Step / 3.0, Y = ((P / NX) + (Q / NX) + (R / NX)) * Step / 3.0;
+		for (const FDinkLandformsHole& H : Screen->Holes)
+			if (H.Contains(X, Y)) return true;
+		return false;
+	};
+	auto Add = [&](int32 P, int32 Q, int32 R)
+	{
+		if (InHole(P, Q, R)) { ++Cut; return; }
+		OutTriangles.Append({P, Q, R});
+	};
+	for (int32 J = 0; J + 1 < NY; ++J)
+		for (int32 I = 0; I + 1 < NX; ++I)
+		{
+			const int32 A = J * NX + I, B = A + 1, C = A + NX + 1, D = A + NX;
+			// FMeshWriter::Quad of the importer: P0..P3 with cross(P1 - P0, P3 - P0) up -> (0, 2, 1), (0, 3, 2)
+			if (FVector::CrossProduct(Vertices[B] - Vertices[A], Vertices[D] - Vertices[A]).Z >= 0.0) { Add(A, C, B); Add(A, D, C); }
+			else { Add(A, B, C); Add(A, C, D); }
+		}
+	if (OutCut) *OutCut = Cut;
+}
+
 FString DinkLandforms::DefaultPath()
 {
 	return FPaths::ProjectContentDir() / TEXT("Dink/Data/Environment/landforms.json");
@@ -259,10 +309,88 @@ bool FDinkLandformsData::Load(const FString& Json, const TArray<uint8>& AtlasPng
 	return true;
 }
 
-float FDinkLandformsData::HeightMAtPixel(int32 Screen, double MapX, double MapY) const
+float FDinkLandformsData::SurfaceMAtPixel(int32 Screen, double MapX, double MapY) const
 {
 	const FDinkLandformsScreen* S = Screens.Find(Screen);
 	return S ? DinkLandforms::SampleGrid(S->HeightsM, GridW, GridH, MapX / GridPx, MapY / GridPx) : 0.f;
+}
+
+const FDinkLandformsHole* FDinkLandformsData::HoleAtPixel(int32 Screen, double MapX, double MapY) const
+{
+	const FDinkLandformsScreen* S = Screens.Find(Screen);
+	if (!S) return nullptr;
+	for (const FDinkLandformsHole& H : S->Holes)
+		if (H.Contains(MapX, MapY)) return &H;
+	return nullptr;
+}
+
+float FDinkLandformsData::HeightMAtPixel(int32 Screen, double MapX, double MapY) const
+{
+	const FDinkLandformsScreen* S = Screens.Find(Screen);
+	if (S && S->Holes.Num() > 0)
+		if (const FDinkLandformsHole* H = HoleAtPixel(Screen, MapX, MapY); H && H->bHasFloor) return H->FloorM;
+	return SurfaceMAtPixel(Screen, MapX, MapY);
+}
+
+int32 FDinkLandformsData::NumHoles() const
+{
+	int32 N = 0;
+	for (const TPair<int32, FDinkLandformsScreen>& Pair : Screens) N += Pair.Value.Holes.Num();
+	return N;
+}
+
+bool FDinkLandformsData::LoadHoles(const FString& Json, FString& OutError, int32& OutSkipped)
+{
+	OutSkipped = 0;
+	for (TPair<int32, FDinkLandformsScreen>& Pair : Screens) Pair.Value.Holes.Reset();
+	TSharedPtr<FJsonObject> Root;
+	if (!FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Json), Root) || !Root.IsValid())
+	{
+		OutError = TEXT("landform_holes.json is not JSON");
+		return false;
+	}
+	if (Root->GetStringField(TEXT("schema")) != TEXT("dink-landform-holes/1"))
+	{
+		OutError = TEXT("landform_holes.json: unknown schema");
+		return false;
+	}
+	const TArray<TSharedPtr<FJsonValue>>* Rows = nullptr;
+	if (!Root->TryGetArrayField(TEXT("holes"), Rows))
+	{
+		OutError = TEXT("landform_holes.json: no holes array");
+		return false;
+	}
+	for (const TSharedPtr<FJsonValue>& Value : *Rows)
+	{
+		const TSharedPtr<FJsonObject> Row = Value.IsValid() ? Value->AsObject() : nullptr;
+		double ScreenNumber = 0.0;
+		const TArray<TSharedPtr<FJsonValue>>* Points = nullptr;
+		if (!Row.IsValid() || !Row->TryGetNumberField(TEXT("screen"), ScreenNumber) || !Row->TryGetArrayField(TEXT("polygon_px"), Points) || Points->Num() < 3)
+		{
+			OutError = TEXT("landform_holes.json: a row needs screen and polygon_px (three points or more)");
+			return false;
+		}
+		FDinkLandformsHole H;
+		Row->TryGetStringField(TEXT("id"), H.Id);
+		for (const TSharedPtr<FJsonValue>& P : *Points)
+		{
+			const TArray<TSharedPtr<FJsonValue>>& XY = P->AsArray();
+			if (XY.Num() != 2)
+			{
+				OutError = FString::Printf(TEXT("landform_holes.json: %s: a point is not [x, y]"), *H.Id);
+				return false;
+			}
+			H.PolygonPx.Add(FVector2D(XY[0]->AsNumber(), XY[1]->AsNumber()));
+			H.BoundsPx += H.PolygonPx.Last();
+		}
+		double FloorCm = 0.0;
+		H.bHasFloor = Row->TryGetNumberField(TEXT("floor_cm"), FloorCm);
+		H.FloorM = float(FloorCm / 100.0);
+		FDinkLandformsScreen* S = Screens.Find(int32(ScreenNumber));
+		if (!S) { ++OutSkipped; continue; }
+		S->Holes.Add(MoveTemp(H));
+	}
+	return true;
 }
 
 // ------------------------------------------------------------------------------------------------------- subsystem
@@ -317,6 +445,21 @@ void UDinkLandformsSubsystem::LoadData()
 		UE_LOG(LogDink, Warning, TEXT("DINK LANDFORMS: %s: flat ground sheets"), *Error);
 		Data.Screens.Reset();
 		return;
+	}
+	// openings in the drawn ground (A10): optional, hand-authored, empty until art adds rows
+	FString HolesJson;
+	if (FFileHelper::LoadFileToString(HolesJson, *DinkLandforms::HolesPath()))
+	{
+		int32 SkippedRows = 0;
+		if (!Data.LoadHoles(HolesJson, Error, SkippedRows))
+		{
+			UE_LOG(LogDink, Warning, TEXT("DINK LANDFORMS: %s: no openings cut"), *Error);
+			for (TPair<int32, FDinkLandformsScreen>& Pair : Data.Screens) Pair.Value.Holes.Reset();
+		}
+		else if (Data.NumHoles() || SkippedRows)
+		{
+			UE_LOG(LogDink, Display, TEXT("DINK LANDFORMS: %d openings in the ground (%d rows on screens without landforms skipped)"), Data.NumHoles(), SkippedRows);
+		}
 	}
 	Cells.Reset();
 	for (const TPair<int32, FDinkLandformsScreen>& Pair : Data.Screens)
@@ -604,7 +747,7 @@ bool UDinkLandformsSubsystem::BuildScreen(int32 Screen, bool bNear)
 		{
 			const double X = I * Step, Y = J * Step;
 			FVector P = DinkLayout::MapPixelToUnreal(S->Corners, X, Y) - Pivot;
-			P.Z = Data.HeightMAtPixel(Screen, X, Y) * 100.0;
+			P.Z = Data.SurfaceMAtPixel(Screen, X, Y) * 100.0;
 			Vertices[J * NX + I] = P;
 			UVs[J * NX + I] = FVector2D(X / 600.0, Y / 400.0);
 		}
@@ -620,17 +763,8 @@ bool UDinkLandformsSubsystem::BuildScreen(int32 Screen, bool bNear)
 			Normals[J * NX + I] = N;
 			Tangents[J * NX + I] = FProcMeshTangent(DX.GetSafeNormal(), false);
 		}
-	Triangles.Reserve((NX - 1) * (NY - 1) * 6);
-	for (int32 J = 0; J + 1 < NY; ++J)
-		for (int32 I = 0; I + 1 < NX; ++I)
-		{
-			const int32 A = J * NX + I, B = A + 1, C = A + NX + 1, D = A + NX;
-			// FMeshWriter::Quad of the importer: P0..P3 with cross(P1 - P0, P3 - P0) up -> (0, 2, 1), (0, 3, 2)
-			if (FVector::CrossProduct(Vertices[B] - Vertices[A], Vertices[D] - Vertices[A]).Z >= 0.0)
-				Triangles.Append({A, C, B, A, D, C});
-			else
-				Triangles.Append({A, B, C, A, C, D});
-		}
+	// the grid's triangles, without those in an opening of this screen (A10; none until art adds rows)
+	DinkLandforms::GridTriangles(Vertices, NX, NY, Step, S, Triangles);
 	Mesh->ClearAllMeshSections();
 	Mesh->CreateMeshSection_LinearColor(0, Vertices, Triangles, Normals, UVs, TArray<FLinearColor>(), Tangents, /*bCreateCollision*/ false);
 	Mesh->SetMaterial(0, Ground);

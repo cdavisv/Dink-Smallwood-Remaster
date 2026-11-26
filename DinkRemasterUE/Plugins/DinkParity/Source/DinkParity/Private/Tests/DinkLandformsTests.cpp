@@ -332,3 +332,78 @@ bool FDinkLandformsScriptedMoveTest::RunTest(const FString&)
 	AddCommand(new FEndPlayMapCommand());
 	return true;
 }
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkLandformsHolesTest, "Dink.Movement.Landforms.Holes", DINK_TEST_FLAGS)
+bool FDinkLandformsHolesTest::RunTest(const FString&)
+{
+	// A10 (25 Nov 2026): the opening list of landform_holes.json cuts the ground's triangles inside each polygon, and the surface
+	// the drawn bodies stand on follows the row (its floor_cm, or the ground's own height without one). Empty on master: no change.
+	FDinkLandformsData D;
+	FDinkLandformsScreen S;
+	S.Screen = 7;
+	S.Corners.NW = FVector2D(0, 0); S.Corners.NE = FVector2D(60, 0); S.Corners.SW = FVector2D(0, 40); S.Corners.SE = FVector2D(60, 40);
+	S.HeightsM.Init(0.5f, D.GridW * D.GridH);
+	D.Screens.Add(7, MoveTemp(S));
+	const FString Json = TEXT("{\"schema\": \"dink-landform-holes/1\", \"holes\": [")
+		TEXT("{\"id\": \"square\", \"screen\": 7, \"polygon_px\": [[100, 100], [200, 100], [200, 200], [100, 200]], \"floor_cm\": -40},")
+		TEXT("{\"id\": \"crack\", \"screen\": 7, \"polygon_px\": [[400, 300], [500, 300], [450, 350]]},")
+		TEXT("{\"id\": \"elsewhere\", \"screen\": 9999, \"polygon_px\": [[0, 0], [10, 0], [0, 10]]}]}");
+	FString Error;
+	int32 Skipped = -1;
+	if (!TestTrue(TEXT("holes load: ") + Error, D.LoadHoles(Json, Error, Skipped))) return false;
+	TestEqual(TEXT("two openings on the screen with data"), D.NumHoles(), 2);
+	TestEqual(TEXT("the row on a screen without landforms is skipped"), Skipped, 1);
+	TestNotNull(TEXT("a pixel inside the square is in an opening"), D.HoleAtPixel(7, 150, 150));
+	TestNull(TEXT("a pixel outside is not"), D.HoleAtPixel(7, 250, 150));
+	TestEqual(TEXT("inside an opening with a floor the surface is the floor"), D.HeightMAtPixel(7, 150, 150), -0.4f, 1e-4f);
+	TestEqual(TEXT("the ground's own height is kept for the mesh"), D.SurfaceMAtPixel(7, 150, 150), 0.5f, 1e-4f);
+	TestEqual(TEXT("inside an opening without a floor nothing moves"), D.HeightMAtPixel(7, 450, 310), 0.5f, 1e-4f);
+	TestEqual(TEXT("outside every opening the surface is the ground"), D.HeightMAtPixel(7, 300, 50), 0.5f, 1e-4f);
+
+	// the mesh: a 10 px grid as BuildScreen's far step
+	const int32 Step = 10, NX = 600 / Step + 1, NY = 400 / Step + 1;
+	TArray<FVector> V;
+	for (int32 J = 0; J < NY; ++J)
+		for (int32 I = 0; I < NX; ++I) V.Add(FVector(I * Step, J * Step, 50.0));
+	TArray<int32> Full, Cut;
+	int32 NumCut = -1;
+	DinkLandforms::GridTriangles(V, NX, NY, Step, nullptr, Full, &NumCut);
+	TestEqual(TEXT("without openings every cell has its two triangles"), Full.Num(), (NX - 1) * (NY - 1) * 6);
+	TestEqual(TEXT("and nothing is cut"), NumCut, 0);
+	DinkLandforms::GridTriangles(V, NX, NY, Step, D.Screens.Find(7), Cut, &NumCut);
+	int32 Crack = 0;
+	for (int32 K = 0; K < Cut.Num(); K += 3)
+	{
+		const double X = (V[Cut[K]].X + V[Cut[K + 1]].X + V[Cut[K + 2]].X) / 3.0, Y = (V[Cut[K]].Y + V[Cut[K + 1]].Y + V[Cut[K + 2]].Y) / 3.0;
+		if (D.HoleAtPixel(7, X, Y)) { AddError(FString::Printf(TEXT("a kept triangle lies in an opening at %.1f,%.1f"), X, Y)); break; }
+	}
+	for (int32 K = 0; K < Full.Num(); K += 3)
+	{
+		const double X = (V[Full[K]].X + V[Full[K + 1]].X + V[Full[K + 2]].X) / 3.0, Y = (V[Full[K]].Y + V[Full[K + 1]].Y + V[Full[K + 2]].Y) / 3.0;
+		Crack += (X > 400 && Y > 300 && D.HoleAtPixel(7, X, Y)) ? 1 : 0;
+	}
+	TestEqual(TEXT("the square opening takes its 10 x 10 cells' 200 triangles plus the crack's"), NumCut, 200 + Crack);
+	TestTrue(TEXT("the crack takes some triangles"), Crack > 0);
+	TestEqual(TEXT("cut + kept = the full grid"), Cut.Num() / 3 + NumCut, Full.Num() / 3);
+
+	// malformed rows are refused as a whole (the layer then cuts nothing)
+	TestFalse(TEXT("a polygon of two points is refused"), D.LoadHoles(TEXT("{\"schema\": \"dink-landform-holes/1\", \"holes\": [{\"screen\": 7, \"polygon_px\": [[0, 0], [1, 1]]}]}"), Error, Skipped));
+	TestFalse(TEXT("another schema is refused"), D.LoadHoles(TEXT("{\"schema\": \"x\", \"holes\": []}"), Error, Skipped));
+
+	// the shipped list: loads, and is empty until art adds rows (so the ground is the same as before)
+	FString Shipped;
+	if (TestTrue(TEXT("landform_holes.json is shipped"), FFileHelper::LoadFileToString(Shipped, *DinkLandforms::HolesPath())))
+	{
+		FDinkLandformsData Real;
+		FString Json2; TArray<uint8> Png;
+		const FString Path = DinkLandforms::DefaultPath();
+		if (TestTrue(TEXT("landforms data"), FFileHelper::LoadFileToString(Json2, *Path) && FFileHelper::LoadFileToArray(Png, *(FPaths::GetPath(Path) / TEXT("landforms.png")))
+			&& Real.Load(Json2, Png, Error)))
+		{
+			TestTrue(TEXT("the shipped list loads: ") + Error, Real.LoadHoles(Shipped, Error, Skipped));
+			AddInfo(FString::Printf(TEXT("shipped openings: %d (rows on screens without landforms: %d)"), Real.NumHoles(), Skipped));
+			TestEqual(TEXT("no row names a screen without landforms"), Skipped, 0);
+		}
+	}
+	return true;
+}

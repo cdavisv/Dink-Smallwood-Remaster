@@ -24,6 +24,25 @@ class UPrimitiveComponent;
  * collision primitive they carry (warp boxes, player-only blockers, NPC body shapes, fitted hardness) is held at its flat
  * height (FlatTag); queries between a flat body and lifted visible geometry are made in the lifted frame (GeometryLiftCm).
  */
+/**
+ * An opening in the drawn ground (A10, VS-08, 25 Nov 2026): a polygon in map pixels of one screen, from
+ * Content/Dink/Data/Environment/landform_holes.json (hand-authored rows; doc/remaster/LANDFORM_HOLES.md). BuildScreen leaves out
+ * every ground triangle whose middle lies inside it, so art placed below the ground (a crack, the pit, a cave mouth) shows
+ * through. The surface the drawn bodies and decor stand on follows the row: inside the polygon it is FloorM when the row gives
+ * floor_cm, otherwise the ground's own height (nothing moves). Presentation only, like the whole layer.
+ */
+struct DINKCORE_API FDinkLandformsHole
+{
+	FString Id;
+	TArray<FVector2D> PolygonPx;
+	FBox2D BoundsPx = FBox2D(ForceInit);
+	bool bHasFloor = false;
+	/** Height (m, above the 1997 floor) of the surface inside the opening when bHasFloor. */
+	float FloorM = 0.f;
+
+	bool Contains(double MapX, double MapY) const;
+};
+
 struct DINKCORE_API FDinkLandformsScreen
 {
 	int32 Screen = 0;
@@ -34,6 +53,8 @@ struct DINKCORE_API FDinkLandformsScreen
 	FString Flat;
 	/** Walkable 1997 water (a ford, shallows) lies below 0 here: Dink's drawn body wades (his capsule stays on the floor). */
 	bool bWade = false;
+	/** Openings in this screen's drawn ground (landform_holes.json); empty on every screen until art adds rows. */
+	TArray<FDinkLandformsHole> Holes;
 };
 
 struct DINKCORE_API FDinkLandformsData
@@ -45,14 +66,34 @@ struct DINKCORE_API FDinkLandformsData
 
 	/** Parses landforms.json and its 16-bit atlas (PNG bytes). */
 	bool Load(const FString& Json, const TArray<uint8>& AtlasPng, FString& OutError);
-	/** Height (m) at a map pixel of a screen with data (Catmull-Rom on the grid; exact at the vertices); 0 without data. */
+	/** Height (m) at a map pixel of a screen with data (Catmull-Rom on the grid; exact at the vertices); 0 without data.
+	 *  Inside an opening with a floor (FDinkLandformsHole::bHasFloor) it is that floor. */
 	float HeightMAtPixel(int32 Screen, double MapX, double MapY) const;
+	/** The ground's own height (m) at a map pixel, openings ignored (the mesh's vertices). */
+	float SurfaceMAtPixel(int32 Screen, double MapX, double MapY) const;
+	/** The opening of that screen at a map pixel, or null. */
+	const FDinkLandformsHole* HoleAtPixel(int32 Screen, double MapX, double MapY) const;
+	/**
+	 * Parses landform_holes.json (schema dink-landform-holes/1) onto the loaded screens. A row on a screen without landforms
+	 * data is skipped (OutSkipped counts them: such a screen has flat ground sheets, nothing to open). False on a malformed file.
+	 */
+	bool LoadHoles(const FString& Json, FString& OutError, int32& OutSkipped);
+	/** The holes file's total rows on screens with data. */
+	int32 NumHoles() const;
 };
 
 namespace DinkLandforms
 {
 	/** "Dink/Data/Environment/landforms.json" under the project content directory. */
 	DINKCORE_API FString DefaultPath();
+	/** "Dink/Data/Environment/landform_holes.json" under the project content directory (A10). */
+	DINKCORE_API FString HolesPath();
+	/**
+	 * The ground triangles of a screen's NX x NY vertex grid (Step map pixels apart, row-major), two per cell, without the cells'
+	 * triangles whose middle lies in one of the screen's openings. With no openings this is the full grid (BuildScreen).
+	 */
+	DINKCORE_API void GridTriangles(const TArray<FVector>& Vertices, int32 NX, int32 NY, int32 Step, const FDinkLandformsScreen* Screen,
+		TArray<int32>& OutTriangles, int32* OutCut = nullptr);
 	/** Catmull-Rom sample of a W x H grid at grid coordinates (GX, GY), clamped at the rim (exact at the vertices). */
 	DINKCORE_API float SampleGrid(const TArray<float>& Grid, int32 W, int32 H, double GX, double GY);
 	/**
