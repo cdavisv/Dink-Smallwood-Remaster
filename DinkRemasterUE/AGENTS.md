@@ -1,3 +1,7 @@
+## Explosion atlases: the pale outline of the dark phases (23 November 2026, stream art-fx-2; 161, 167, 70)
+
+- `Unclaimed/tools/fx_grade.py` gained `defringe()`: the outermost texels of the rendered smoke (a veil lit nearly white) take the colour of the shape's inside, pale wisps with nothing behind them fade out, fire's orange edge and white-hot heart are untouched. Applied to `Atomic`, `Shock` and `Splode` (manifest flag `defringed`); `build_fx_vol.py` applies it to new renders. Only the three flipbook textures changed in `/Game/Dink/Photoreal/Unclaimed/Textures`.
+- The white rectangle beside Dink in Seth's talk on SCR_086 is the card of this 161 burst (`s7-mil.c:125`) at its first use, before the one-shot material is ready; the atlas has no white or full frame.
 ## Indoor camera with Dink's back to a wall (25 November 2026, world-fix-1, A62)
 
 - Measured in the rendered game (`dink.CameraProbe`, new: prints the play camera's arm, its eye's distance to Dink's head and every hit of the arm's own probe sweep): in Dink's house the camera sat in his hair only where his back is to a wall: the arm's probe met the wall 16 cm behind the pivot (an authored `BlockAll` wall, normal facing the room), never the roof. The "middle of the room" frame of blockages-5 was the corner again: its `dink.Goto 1 300 260` never moved Dink (A7, #246). Mid-room the arm is 240 cm and clear.

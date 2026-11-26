@@ -269,7 +269,7 @@ def build(name, draft):
             a = a * (1.0 - 0.92 * sstep(0.84, 1.0, (i + 0.5) / nf))          # the last frames thin out instead of leaving a grey veil
         r_, c_ = divmod(i, cols); atlas[r_ * cell:(r_ + 1) * cell, c_ * cell:(c_ + 1) * cell] = np.concatenate([np.clip(col, 0, 1), a[..., None]], -1)
     if sp.get('emit', 0) > 0 and not sp.get('loop'):      # fire: orange in the game, no veil of light round the shapes (fx_grade.py)
-        atlas = fx_grade.grade(atlas)
+        atlas = fx_grade.defringe(fx_grade.grade(atlas), cols, rows)
     from_lin = lambda x: x          # the PNG pixels were read back in the file's own (sRGB) encoding
     out8 = (np.clip(from_lin(atlas), 0, 1) * 255 + 0.5).astype(np.uint8)
     img = bpy.data.images.new('atlas', cols * cell, rows * cell, alpha=True); img.alpha_mode = 'STRAIGHT'; img.colorspace_settings.name = 'sRGB'
@@ -281,7 +281,7 @@ def build(name, draft):
         print('DRAFT', tmp); return
     man = {'name': 'FX_' + name, 'class': 'effect flipbook (texture atlas; no mesh)', 'lod0_triangles': 0, 'dimensions_m': [sp['size'], sp['size'], 0.0],
            'textures': [{'file': rel(tex), 'size_px': [cols * cell, rows * cell], 'channels': 'RGB straight colour (sRGB) + alpha; %d x %d frames of %d px, row by row from the top left' % (cols, rows, cell)}],
-           'flipbook': {'frames': nf, 'grid': [cols, rows], 'fps': round(nf / sp['life_s'], 2), 'loop': bool(sp.get('loop')), 'billboard_size_m': [sp['size'], sp['size']], 'blend': 'alpha; hot texels glow', 'ue_blend': 'alpha', 'glow': sp['glow'], **({'hot': fx_grade.HOT, 'graded': True} if sp.get('emit', 0) > 0 and not sp.get('loop') else {}),
+           'flipbook': {'frames': nf, 'grid': [cols, rows], 'fps': round(nf / sp['life_s'], 2), 'loop': bool(sp.get('loop')), 'billboard_size_m': [sp['size'], sp['size']], 'blend': 'alpha; hot texels glow', 'ue_blend': 'alpha', 'glow': sp['glow'], **({'hot': fx_grade.HOT, 'graded': True, 'defringed': True} if sp.get('emit', 0) > 0 and not sp.get('loop') else {}),
                         'life_s': sp['life_s'], 'ground_line': 'the sprite\'s ground point is 5 % of the frame above its bottom edge; side view at 18 degrees'},
            'preview': rel(os.path.join(outdir, 'frames_strip.png')), 'source_note': 'frames are computed by the build script (seeded, deterministic): numpy fields -> OpenVDB -> Cycles volume render; no .blend is kept',
            'build': 'blender -b --factory-startup -t 4 --python Unclaimed/tools/build_fx_vol.py -- ' + name,

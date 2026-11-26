@@ -9,6 +9,9 @@ white outline round the smoke. grade() is applied by build_fx_vol.py to every at
   * the thin veil is cut from the opacity (a soft threshold), and the colour of what is left is spread outwards under
     the transparent texels, so filtering finds fire or smoke there, never white.
 
+  * defringe(): the dark phases' pale skin takes the colour of the shape's inside (17 Nov 2026: the thin pale outline
+    round the dark phases seen in the game).
+
     python3 -I Unclaimed/tools/fx_grade.py Shock Splode Atomic     # once, on atlases rendered before this file existed
 """
 import json, os, sys
@@ -54,6 +57,35 @@ def grade(atlas):
     return np.concatenate([np.clip(rgb, 0, 1), a2[..., None]], -1).astype(np.float32)
 
 
+def defringe(atlas, cols, rows):
+    """The dark phases (red-brown fire going out, grey smoke) kept a thin pale skin: the outermost texels of the rendered
+    smoke are a veil lit nearly white, and at full opacity they drew a pale line round every dark shape. Per frame: a
+    pale, colourless texel near the shape's edge takes the colour of the shape's inside; pale specks that have no inside
+    (stray wisps) fade out. Fire's own edge (orange: saturated) is left alone."""
+    out = atlas.copy()
+    ch, cw = atlas.shape[0] // rows, atlas.shape[1] // cols
+    for k in range(cols * rows):
+        y0, x0 = (k // cols) * ch, (k % cols) * cw
+        f = out[y0:y0 + ch, x0:x0 + cw]
+        rgb, a = f[..., :3].copy(), f[..., 3].copy()
+        if a.max() < 0.05:
+            continue
+        mx, mn = rgb.max(-1), rgb.min(-1)
+        pale = np.clip((mn - 0.42) / 0.22, 0, 1) * np.clip(1.0 - (mx - mn) / 0.22, 0, 1)
+        inside = np.clip((_blur(a, 7) - 0.82) / 0.14, 0, 1)                      # 1 well inside the shape, 0 at its edge and outside
+        deep = inside * (1 - pale)                                               # ... and not pale itself
+        num = np.stack([_blur(rgb[..., c] * deep, 9) for c in range(3)], -1)
+        den = _blur(deep, 9)
+        inner = num / np.maximum(den, 1e-4)[..., None]
+        has = np.clip(den / 0.06, 0, 1)                                            # is there an inside near this texel at all
+        w = (pale * has * (1 - inside))[..., None]                                 # only the skin: a white-hot core is not a fringe
+        rgb = rgb * (1 - w) + inner * w
+        a = a * (1 - pale * (1 - has) * (1 - inside))                                             # a pale wisp with no body behind it fades out
+        f[..., :3] = rgb
+        f[..., 3] = a
+    return out
+
+
 def strip(atlas, cols, cell, picks):
     green = np.array((74, 112, 54), np.float32) / 255
     s = np.concatenate([atlas[(k // cols) * cell:(k // cols + 1) * cell, (k % cols) * cell:(k % cols + 1) * cell] for k in picks], 1)[::2, ::2]
@@ -65,15 +97,16 @@ def regrade(name, picks):
     mp = os.path.join(folder, 'manifest.json')
     m = json.load(open(mp))
     fb = m['flipbook']
-    if fb.get('graded'):
-        print(name, 'is graded already'); return
+    if fb.get('graded') and fb.get('defringed'):
+        print(name, 'is graded and defringed already'); return
     tex = os.path.join(folder, 'T_FX_%s_Flipbook.png' % name)
     atlas = np.asarray(Image.open(tex).convert('RGBA'), np.float32) / 255.0
-    out = grade(atlas)
+    out = atlas if fb.get('graded') else grade(atlas)
+    out = defringe(out, fb['grid'][0], fb['grid'][1])
     Image.fromarray((out * 255 + 0.5).astype(np.uint8), 'RGBA').save(tex, optimize=True)
     cols = fb['grid'][0]; cell = atlas.shape[1] // cols
     Image.fromarray((np.clip(strip(out, cols, cell, picks), 0, 1) * 255 + 0.5).astype(np.uint8)).save(os.path.join(folder, 'frames_strip.png'), optimize=True)
-    fb['graded'] = True; fb['glow'] = GLOW; fb['hot'] = HOT
+    fb['graded'] = True; fb['defringed'] = True; fb['glow'] = GLOW; fb['hot'] = HOT
     json.dump(m, open(mp, 'w'), indent=1)
     print('graded', name, atlas.shape)
 
