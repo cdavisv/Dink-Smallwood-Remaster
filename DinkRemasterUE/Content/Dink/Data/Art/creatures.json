@@ -2062,7 +2062,10 @@
             "speed_cm_s": 522.0,
             "cycles": 3
           }
-        ]
+        ],
+        "posture": {
+          "weight": 1.0
+        }
       },
       "rotation_deg": [
         0,

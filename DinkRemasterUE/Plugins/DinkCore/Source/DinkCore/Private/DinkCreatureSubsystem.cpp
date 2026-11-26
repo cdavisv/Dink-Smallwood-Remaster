@@ -310,6 +310,12 @@ TSharedPtr<const FDinkCreatureLoadedClass> UDinkCreatureSubsystem::LoadClass(con
 			Out.Cycles.Add(Gait.Cycles);
 			Out.Strides.Add(Gait.SpeedCmS * Clip->GetPlayLength() / Gait.Cycles); // ground one cycle covers at the speed it was made for
 		}
+		if (!Set.PostureClip.IsEmpty() && Set.PostureWeight > 0.f)
+		{
+			Out.Posture = Set.PostureClip == Set.Idle ? Out.Idle : LoadClip(Set.PostureClip);
+			Out.PostureWeight = Set.PostureWeight;
+			Out.PostureBones = Set.PostureBones;
+		}
 	};
 	FDinkCreatureLoadedLocomotion RowSet;
 	if (Binding.Locomotion.IsSet()) LoadSet(Binding.Locomotion, RowSet);

@@ -11,6 +11,13 @@
 #include "Engine/StaticMesh.h"
 #include "GameFramework/Actor.h"
 #include "Materials/MaterialInterface.h"
+#include "HAL/IConsoleManager.h"
+
+namespace
+{
+	TAutoConsoleVariable<int32> CVarDinkWalkPosture(TEXT("dink.CreatureClass.WalkPosture"), 1,
+		TEXT("1: a class figure whose locomotion set has a `posture` (the old man) keeps it while it walks; 0: the shared walk as it is (review)."));
+}
 
 // ---------------------------------------------------------------------------------------------
 // Animation: a weighted blend of clip layers, evaluated on the worker thread
@@ -24,7 +31,45 @@ void UDinkCreatureAnimInstance::SetLayers(TConstArrayView<FDinkCreaturePoseLayer
 void FDinkCreatureAnimProxy::PreUpdate(UAnimInstance* InAnimInstance, float DeltaSeconds)
 {
 	FAnimInstanceProxy::PreUpdate(InAnimInstance, DeltaSeconds);
-	if (const UDinkCreatureAnimInstance* Creature = Cast<UDinkCreatureAnimInstance>(InAnimInstance)) { Layers = Creature->Layers; Overlays = Creature->Overlays; }
+	if (const UDinkCreatureAnimInstance* Creature = Cast<UDinkCreatureAnimInstance>(InAnimInstance)) { Layers = Creature->Layers; Overlays = Creature->Overlays; Posture = Creature->Posture; }
+}
+
+void FDinkCreatureAnimProxy::ApplyPosture(FPoseContext& Output)
+{
+	if (!Posture.Sequence || Posture.Weight <= .001f) return;
+	FCompactPose& Out = Output.Pose;
+	const FBoneContainer& Bones = Out.GetBoneContainer();
+	if (PostureSerial != Bones.GetSerialNumber() || PostureCachedFor != Posture.Sequence || PostureCachedBones != Posture.Bones.Num())
+	{
+		PostureSerial = Bones.GetSerialNumber();
+		PostureCachedFor = Posture.Sequence;
+		PostureCachedBones = Posture.Bones.Num();
+		PostureCompact.Reset();
+		const FReferenceSkeleton& Reference = Bones.GetReferenceSkeleton();
+		for (FCompactPoseBoneIndex Bone(1); Bone.GetInt() < Out.GetNumBones(); ++Bone)
+		{
+			const FName Name = Reference.GetBoneName(Bones.MakeMeshPoseIndex(Bone).GetInt());
+			const FString Text = Name.ToString();
+			const bool bWanted = Posture.Bones.Num() > 0 ? Posture.Bones.Contains(Name) : (Text.StartsWith(TEXT("spine")) || Text.StartsWith(TEXT("neck")) || Text == TEXT("head"));
+			if (bWanted) PostureCompact.Add(Bone.GetInt());
+		}
+	}
+	if (PostureCompact.IsEmpty()) return;
+	FCompactPose Pose;
+	Pose.SetBoneContainer(&Bones);
+	FBlendedCurve Curve;
+	Curve.InitFrom(Output.Curve);
+	UE::Anim::FStackAttributeContainer Attributes;
+	FAnimationPoseData Data(Pose, Curve, Attributes);
+	Posture.Sequence->GetAnimationPose(Data, FAnimExtractContext(double(Posture.Time), false));
+	const float W = FMath::Clamp(Posture.Weight, 0.f, 1.f);
+	for (const int32 Index : PostureCompact)
+	{
+		const FCompactPoseBoneIndex Bone(Index);
+		// The clip's rotation away from the reference pose, in the bone's own frame, on top of what the gait does there.
+		const FQuat Delta = (Bones.GetRefPoseTransform(Bone).GetRotation().Inverse() * Pose[Bone].GetRotation()).GetNormalized();
+		Out[Bone].SetRotation((Out[Bone].GetRotation() * FQuat::Slerp(FQuat::Identity, Delta, W)).GetNormalized());
+	}
 }
 
 bool FDinkCreatureAnimProxy::Evaluate(FPoseContext& Output)
@@ -63,6 +108,7 @@ bool FDinkCreatureAnimProxy::Evaluate(FPoseContext& Output)
 		return true;
 	}
 	for (FCompactPoseBoneIndex Bone(0); Bone.GetInt() < NumBones; ++Bone) Out[Bone].NormalizeRotation();
+	ApplyPosture(Output);
 	DinkCreatureOneShots::ApplyOverlays(Output, Overlays);
 	// Last: the loose parts (ears, tails, antennae) follow whatever pose the overlays left (phys/hair-cloth).
 	FDinkSecondaryMotion::ApplyToPose(GetSkelMeshComponent(), Out);
@@ -278,6 +324,7 @@ void UDinkCreatureClassComponent::BuildLayers(float DeltaTime)
 	Layers.Reset();
 	bool bPhaseAdvanced = false;
 	float Total = 0.f;
+	FDinkCreaturePostureLayer Posture;
 	for (FTrack& Track : Tracks)
 	{
 		const FDinkCreatureRole& Row = Binding.Roles[Track.Role];
@@ -303,6 +350,14 @@ void UDinkCreatureClassComponent::BuildLayers(float DeltaTime)
 				Layers.Add({ Set.Idle, FMath::Fmod(IdleTime, FMath::Max(Set.Idle->GetPlayLength(), 0.01f)), W * Idle });
 				Total += W * Idle;
 			}
+			// The walking posture: in the gaits' share (the idle holds its own pose).
+			if (Set.Posture && Set.PostureWeight > 0.f && Idle < 1.f && CVarDinkWalkPosture.GetValueOnGameThread() != 0)
+			{
+				Posture.Sequence = Set.Posture;
+				Posture.Time = FMath::Fmod(IdleTime, FMath::Max(Set.Posture->GetPlayLength(), 0.01f));
+				Posture.Weight += W * (1.f - Idle) * Set.PostureWeight;
+				Posture.Bones = Set.PostureBones;
+			}
 			for (int32 Gait = 0; Gait < Set.Gaits.Num(); ++Gait)
 			{
 				if (Weights[Gait] <= 0.f) continue;
@@ -322,11 +377,12 @@ void UDinkCreatureClassComponent::BuildLayers(float DeltaTime)
 	}
 	if (!bPhaseAdvanced) CyclesPerSecond = 0.f;
 	if (Total > KINDA_SMALL_NUMBER) for (FDinkCreaturePoseLayer& Layer : Layers) Layer.Weight /= Total;
+	Posture.Weight = Total > KINDA_SMALL_NUMBER ? FMath::Clamp(Posture.Weight / Total, 0.f, 1.f) : 0.f;
 	TArray<FDinkCreatureOverlay, TInlineAllocator<2>> Overlays;
 	// Each body its own fidget timing and picks (by its actor's name, the same every run; never the simulation's stream).
 	if (const AActor* Owner = GetOwner()) OneShots.SeedOnce(FCrc::StrCrc32(*Owner->GetName()));
 	OneShots.Step(Binding.ClassId, DeltaTime, Speed <= Binding.StationarySpeedCmS, Overlays);
-	if (UDinkCreatureAnimInstance* Animation = Cast<UDinkCreatureAnimInstance>(GetAnimInstance())) { Animation->SetLayers(Layers); Animation->SetOverlays(Overlays); }
+	if (UDinkCreatureAnimInstance* Animation = Cast<UDinkCreatureAnimInstance>(GetAnimInstance())) { Animation->SetLayers(Layers); Animation->SetOverlays(Overlays); Animation->SetPosture(Posture); }
 }
 
 void UDinkCreatureClassComponent::Present(float DeltaTime)
