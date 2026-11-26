@@ -136,8 +136,9 @@ def bounds_moved(before, after):
     return max(abs(a - b) for a, b in zip(after, before))
 
 
-def ensure_lods(mesh, force=False):
-    """Generated LOD1/LOD2 on a single-object kit mesh. Returns (changed, info). Nanite stays as it is (off)."""
+def ensure_lods(mesh, force=False, strict=False):
+    """Generated LOD1/LOD2 on a single-object kit mesh. Returns (changed, info). Nanite stays as it is (off).
+    strict: no mesh may change its bounds, the A200 TARGETS included (the corpse LOD restore of A9, 25 Nov 2026)."""
     lods = MESHES.get_lod_count(mesh)
     lod0 = mesh.get_num_triangles(0)
     tag = tag_for(mesh, lod0)
@@ -182,7 +183,7 @@ def ensure_lods(mesh, force=False):
     moved = bounds_moved(before, bounds_box(mesh))
     path = mesh.get_path_name().split('.')[0]
     if moved > BOUNDS_TOLERANCE_CM:
-        if path in TARGETS:
+        if path in TARGETS and not strict:
             # the A200 rows keep their LODs (decided for the frame rate); their bounds carry the reduced LODs' reach
             unreal.log_warning(f'DINK KIT LODS: {path}: generated LODs moved its bounds by {moved:.1f} cm (A200 target: LODs kept)')
             moved = 0.0
@@ -201,16 +202,43 @@ def ensure_lods(mesh, force=False):
     return True, info
 
 
+def folder_meshes(folder):
+    """The single-LOD, non-Nanite static meshes of a content folder with more than MIN_TRIANGLES triangles."""
+    out = []
+    for path in sorted(LIB.list_assets(folder, recursive=False, include_folder=False)):
+        path = str(path).split('.')[0]
+        mesh = LIB.load_asset(path)
+        if not isinstance(mesh, unreal.StaticMesh):
+            continue
+        if MESHES.get_lod_count(mesh) == 1 and mesh.get_num_triangles(0) > MIN_TRIANGLES \
+                and not mesh.get_editor_property('nanite_settings').get_editor_property('enabled'):
+            out.append(path)
+    return out
+
+
 def main():
+    import os
     root = unreal.Paths.convert_relative_path_to_full(unreal.Paths.project_dir())
     report = {'version': VERSION, 'percents': LOD_PERCENTS, 'lod1_cm': LOD1_DISTANCE_CM, 'lod2_cm': LOD2_DISTANCE_CM, 'before': [], 'after': []}
+    # A9 (25 Nov 2026): DINK_KIT_LODS_FOLDER=/Game/Dink/Photoreal/Corpses also takes every single-LOD mesh of that folder
+    # over MIN_TRIANGLES (the corpse LODs lost at the 16 Nov kit import); DINK_KIT_LODS_STRICT=1 lets no mesh change its
+    # bounds, the A200 TARGETS included (such a mesh keeps its one LOD, tag '<tag>:single').
+    strict = os.environ.get('DINK_KIT_LODS_STRICT') == '1'
+    targets = list(TARGETS)
+    if os.environ.get('DINK_KIT_LODS_FOLDER'):
+        targets += [p for p in folder_meshes(os.environ['DINK_KIT_LODS_FOLDER']) if p not in targets]
+    report['strict'] = strict
+    report['bounds'] = []
     changed = 0
-    for path in TARGETS:
+    for path in targets:
         mesh = LIB.load_asset(path)
         if mesh is None:
             raise RuntimeError('missing ' + path)
         report['before'].append(describe(mesh))
-        did, _ = ensure_lods(mesh)
+        box_before = bounds_box(mesh)
+        did, _ = ensure_lods(mesh, strict=strict)
+        report['bounds'].append({'mesh': path, 'before': [round(v, 2) for v in box_before],
+                                 'after': [round(v, 2) for v in bounds_box(mesh)], 'moved_cm': round(bounds_moved(box_before, bounds_box(mesh)), 2)})
         if did:
             if not LIB.save_loaded_asset(mesh, only_if_is_dirty=False):
                 raise RuntimeError('Cannot save ' + path)
@@ -221,11 +249,10 @@ def main():
                    f"pool/slot tris {[[(s['slot'], s['triangles']) for s in l] for l in info['sections']]}")
     out = root + 'Saved/PhotorealPass/kit_lods.json'
     unreal.Paths.make_platform_filename(out)
-    import os
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, 'w') as f:
         json.dump(report, f, indent=1)
-    unreal.log(f'DINK KIT LODS OK: {len(TARGETS)} meshes, {changed} changed; report {out}')
+    unreal.log(f'DINK KIT LODS OK: {len(targets)} meshes, {changed} changed (strict {strict}); report {out}')
 
 
 if __name__ == '__main__':
