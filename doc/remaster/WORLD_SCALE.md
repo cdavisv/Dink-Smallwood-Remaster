@@ -267,7 +267,7 @@ Options for the owner (none is taken here):
 - **C. Decouple**: in parity runs move Dink in 1997 pixels (the 1997 engine's own movement) and let the pawn follow. The
   right long-term design for parity at any scale, a large change to the director and the bot, and itself a new table.
 
-Until then the switch stays off and nothing in the game changes.
+Owner decision (23 Nov 2026, "Yes, approved ratios"): **option A**. Branch `world-scale/enable` turns the switch on (section 14).
 
 ## 12. Turning it on (recipe, proven 23 Nov 2026 on master 9ada93f1a)
 
@@ -288,3 +288,129 @@ Until then the switch stays off and nothing in the game changes.
 6. Hero mannerisms (#230) trip a running Dink above `FDinkHeroPhysicality::RunTripSpeed` (world cm/s); with the switch on the run is
    up to 1.39 x 600 cm/s, so check that threshold against the paced run.
 7. The probe question of section 11 first.
+
+## 13. Option B tested (23 Nov 2026, branch world-scale/option-b, headless, NOT merged)
+
+Owner: "Test B first". `[scale_enlarged]` = every current scale x 2.0 / 1.75 (settlement 4.571, wilderness and sea 3.143,
+dungeon 2.571, interior 2.0), switch on in the branch only. What B changes besides the ratios:
+- the analyser writes each screen's pace factor unrounded (`pace_factor_center`); `hero_pace.json` gets `physics_ratio`
+  (the one ratio when every kind grows alike, else 1);
+- `ADinkGreyboxCharacter` grows Dink's capsule radius by `physics_ratio` (28 -> 32 cm); `DinkPlayerBlockers` grows every
+  player-only hull in X/Y by it; the export sizes the #150 waterline band for the capsule in reference pixels;
+- `world_scale_convert_art.py`: authored warp triggers (`warp_overrides.extent_cm`) follow the layout in X/Y (they were
+  kept in cm: this alone moved chapter 1 by one frame at the SCR_001 door), and `--similarity` grows every authored
+  object and run as a whole (furniture, boulders, trees, fences 14 % larger on the five hand-made screens).
+
+Results (build 0 warnings, import, headless `dink.PhysAudit` -> 474 relaxed boxes, `Dink.PhysicalPlay` 9/9):
+- The layout is an exact similarity: every screen keeps its shape (edge ratios within 6e-6), one translation per sheet;
+  bundle invariants: collision, sprites, ground images, all 644 ground masks, placements and the waterline band (2,521
+  rects) identical to the current scale.
+- Layer-off probe: **0/20 md5 equal the A41 table**; chapters 1-7 complete, chapter 8 stops at step 1.
+- Why (instrumented run of chapter 1, every scripted move of Dink logged): all 32 move starts are at the same pixels in B
+  and in the current world except one: arriving on SCR_439 from the burning house the current world reads Dink back at
+  x 364.99965 (float residue of the world -> pixel transform), B at 365.00000. The extra 0.00035 px costs one 16.7 ms
+  frame on the walk to x 437, every later time stamp moves, and the chained chapters drift from there.
+- Proof that nothing else moves him: with the readback rounded to 1/1000 px (an experiment in the copy only), B and the
+  current world produce **byte-identical traces in every chapter both ran** (1-10, 13). The A41 table itself depends on
+  the residue: the rounded current world matches it on 2 of 20 chapters and its bot stops in chapter 8 (step 9, the
+  three knights) as B's does.
+
+So B keeps Dink's physics in 1997 pixels exactly, but no layout change can reproduce the table, whose md5s encode the
+floating-point residue of today's coordinates. Any enlargement therefore needs one re-baseline (option A's step), and
+the bot re-tuned where it stops; B makes that re-baseline a pure float-rounding change, A (the approved ratios) also
+changes Dink's paths through screens of a different shape.
+
+What B costs against the approved ratios (linear size of each screen, B / approved): settlement 0.99, interior 1.00,
+dungeon 0.95, sea 0.89 (0.86-0.94), wilderness 0.90 (0.82-0.97); 435 of 644 screens more than 5 % smaller than
+approved, 251 more than 10 %; smallest: the wild regions (Darklands, snow castle, fragments 0.87; Koka isle, west seas,
+Cobbler's meadows 0.89). Mainland 1757 x 811 m (approved 1902 x 862, current 1537 x 709). On the five hand-made screens
+furniture, boulders, trees and fences are 14 % larger than real (`--similarity`); elsewhere objects keep their size.
+
+## 14. Option A: the switch ON (owner decision 23 Nov 2026; branch world-scale/enable)
+
+Owner: "Yes, approved ratios": the approved per-kind ratios of `[scale_enlarged]`, ONE deliberate re-baseline of the probe's md5 table,
+the bot re-tuned where it stops. The 1997 rules do not change: only the bot's tactics and the probe's timing move.
+
+Data (regenerated per section 12, headless, private copy): `regions.toml [world_scale] enlarged = true`; analyser and export (the
+switch-off bundle reproduces the master export byte for byte); `world_scale_rehash.py` (85 collision_fit hashes, 38 foundations);
+`world_scale_convert_art.py` (8 manifests, see below); `house_lighting.py --apply` and the ledger hash of `LightingV1/lighting.json`;
+`assemble_town_houses.py`; `export_landforms.py` (537 screens); `hero_pace.json` per screen 1.1416-1.3911. The relaxed hardbox list comes
+from a fresh headless `dink.PhysAudit` (5,603 origin rows) through #233's generator (`summarise_phys_audit.py` first for A92, then
+`make_relaxed_hardboxes.py --collision <bundle>/collision.json` for A71): 1026 boxes on 284 screens, 96 kept; 1516 open tiles on 265
+screens, 72 kept; 520 walls trimmed to their drawn face on 36 screens.
+
+### 14.1 What the enlarged world changed besides the numbers
+
+- **Authored ground tiles (25 Nov 2026).** At the approved ratios the layout is not a similarity: on SCR_471 the local map old -> new is
+  A = [[1.16, -0.11], [0, 1.35]] (x grows 1.16, y 1.35, plus a shear). `world_scale_convert_art.py` grew SPACE pieces by the one ratio
+  sqrt(det A) = 1.25, so the field tiles of 471 left 60 cm cracks between their rows (sky-blue seams in the game). SPACE pieces now grow
+  along their own X and Y by the layout's stretch on that axis (|A d|), runs along X; a similarity (the interiors) keeps the one ratio
+  bit for bit. Left: the shear cannot be represented by a tile's scale, so the rows of 471 stand up to 64 cm staggered; one small dark
+  notch shows where the dirt bank meets the meadow (rendered check, below).
+- **A71 walls.** S713_P06 (and S712's walls) keep their 1997 box at this scale: P06's drawn strip (y 206-213) and P13's (y 222-229) are
+  staggered, so freeing both boxes would join the corridor's two sides (the generator's passage rule). `Dink.PhysicalPlay.BlockageRows`
+  walks the trimmed P07 beside it instead.
+- **Player-only blockers (#129).** A blocker-off `dink.WalkAudit` at both scales gives the same 38 meshes through
+  `make_player_blockers.py` (only hull and z values move with the ground under each placement); the committed list (45, drift since
+  14 Nov) is kept. `check_player_blockers.py` on the enlarged blocker-on audit: 336 screens, 0 cut off.
+- **Interior camera floor framing.** `camera_materials.json` `floor_framing` holds house 1's room rectangle in absolute world cm and was
+  not moved by the switch: it lay 14 km from the house, so the camera never panned at the returned door and the bottom corners of the
+  frame left the floor. `world_scale_convert_art.py` now moves it with the layout (`Dink.Art.InteriorCamera` passes again).
+- **A one-row slit in SCR_190's hardness band.** The band across the west of 190 (y 240-257) is solid for the capsule at the reference
+  scale; at this scale the capsule is fewer pixels wide and fits a slit inside it at y 249 (walk audit), reachable only from the screen's
+  west edge. Harmless for the story; noted for the art side.
+- **Tests pinned at the reference scale** (never run with the switch on before): the run speed is 6 m/s times the screen's world-scale
+  pace (`PlayableControls`, `StonebrookPlay`); the pure headroom geometry fixture keeps its measured pawn, eye and wall together; house 1's
+  camera fixtures stand at the same cm from the returned door (`DoorY`); the pond-bank fixture of 438 finds its row on the geometry.
+- **#230 trip threshold.** `RunTripSpeed` 490 cm/s; walk 170 (340 with the boots), paced run 685-835: no change. #228 independent.
+
+### 14.2 Bot re-tune (probe code only; each needed because the bigger world moved the run)
+
+Layer off and on:
+- Ch8 step 1 (gold for elixirs): chapter 7's last duel now hurts Dink, so it ends beside the Terris healer, whose `main` idles in
+  `wait(500)`; the feud step, its gold already met, waited on that loop. Done when the target is met and only restartable idlers remain
+  (`Quiet()`).
+- Ch8 knights' loot: the last knight's level-up now opens after the fight step in the layer-off run too; answered "Increase Attack" in
+  both runs (#233 did it for the layer-on run only; with Magic, strength 29 makes the arrows 25 against Seth's defense 25).
+- Ch11 Jack (DuelFight): a finishing blow from where Dink stands when the least blow (strength / 2 + 1 - defense) kills and the sword
+  reaches (Jack at 3 hp stood on Dink, every cell inside his touch box).
+- Ch11 feuds: "Get healed" answered four times (a step that heals twice took "Leave" and looped on the healer's menu).
+- Ch19 SCR_209 food barrel: a collision_fit barrel is hit on its drawn mesh in cm also with the layer off; the 1997 spot is 2.5 m from
+  it at this scale (1.95 m before). After each blow that does not land, one pixel nearer (it lands 5 px nearer).
+
+Layer on only (`LayerAssist` and the guarded steps run only with the physical play layer):
+- Ch11 SCR_480 pen: food dropped inside the pen cannot be reached at drawn contact through the fence once both Bongs are dead (the
+  pen-stall exit needs a living Bong); with nothing alive the loot is left after 30 s.
+- Ch17 SCR_190: the teleport to 60,250 found the one-row slit inside the hardness band (14.1); Dink is set down at 60,262, south of it,
+  where the reference scale's teleport put him (68,260).
+- The lunge state (`bLunged`, `LungeFrom`, `LungeTo`) lived in the per-frame `FCtx`, so the designed step back after a blow never ran.
+  At this scale the dragon fight of ch12 then left Dink 93 cm from the dragon, inside the bot's touch grid, "evading" beside it until
+  he died. Kept in `FProbeState` now; a push under 120 cm still returns him (the bot holds still during its blow), and a lunge the foe
+  walks into is called off back to the bot's spot.
+
+### 14.3 Gates and the new table
+
+All on master f590bc730 + the branch unless said, headless, private copy (`Saved/WorldScale24Nov`), 25-26 Nov 2026:
+
+| gate | result |
+|---|---|
+| clean build (editor) | 0 warnings (147 s) |
+| game target (`package.sh`, cook without Zen) | PACKAGE OK, 0 warnings, content check 3033/3033 |
+| `import_greybox.sh --region all` + `--region stonebrook` | OK |
+| headless `dink.PhysAudit` -> relaxed list | 5,603 origin rows; list as in 14 (unchanged by the convert fixes) |
+| `Dink.PhysicalPlay` | 10/10 |
+| layer-off probe | 20/20 complete; two runs identical on master bc26c8ecf (the table), a third equal on f590bc730 |
+| layer-on chained probe (Mode 2, class creature art) | 20/20 complete |
+| full `Dink` suite | 413/413 |
+| packaged probe (exclusive step, 20 game processes) | 20/20 chapters, PARITY OK 20/20 with the table |
+| python suite | 1070 OK (1 skipped) |
+| scrub, `check_public_paths.py`, `verify_sources.py --metadata-only`, CI source-audit | clean / 0 / passed / green |
+| `tools/lfs_audit.py`, `lfs_private_check.sh` after the push | 0 missing / 0 hits |
+| `dink.WalkAudit` + `check_player_blockers.py` | 336 screens, 0 cut off |
+| rendered before/after, frame cost | `Docs/Verification/WorldScale_25Nov2026/README.md` |
+
+The new table: Ch1 ca319f4754, Ch2 d9d836afef, Ch3 a797a40812, Ch4 1bb9f4986f, Ch5 085ede4dd4, Ch6 25ea8cd985, Ch7 c3fdfa1869,
+Ch8 a20ff963c1, Ch9 1d3a1516cc, Ch10 c44c7280ee, Ch11 2a91042a40, Ch12 42d42beb77, Ch13 1d5dde4638, Ch14 f17e952d2c, Ch15 190fded2bf,
+Ch16 bab2842735, Ch17 a4da0466da, Ch18 8154bb7fa9, Ch19 11a71bbf4b, Ch20 be78df8ac3 (`Plugins/DinkParity/Docs/packaged_probe.md`).
+Taken on master bc26c8ecf; #246 (console `dink.Goto` only) and #247 (parked placements) merged after it and leave it unchanged (the
+third run, on f590bc730). A later PR re-takes it only if it changes what the probe does (rules, physics, collision or the bot).

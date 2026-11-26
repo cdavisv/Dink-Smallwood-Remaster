@@ -1,5 +1,27 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
+> **Re-baselined with the enlarged world ON (PR #238, owner decision 23 Nov 2026 "Yes, approved ratios", option A of
+> `doc/remaster/WORLD_SCALE.md` section 11; 26 Nov 2026, PIE, master bc26c8ecf + the branch, private copy, clean build). The 1997 rules
+> are unchanged; only the probe's timing and the bot's tactics moved.** `Dink.Gameplay.Probe` twice from a new game, layer off: twenty of
+> twenty chapters complete and all twenty md5s equal in both runs; a third run on master f590bc730 (after #246, #247) equal again, the
+> full `Dink` suite 413/413, and the packaged game (`package.sh` + `run_packaged_tests.sh`, 26 Nov 2026) PARITY OK 20/20 with these md5s.
+> Ch1 ca319f4754, Ch2 d9d836afef, Ch3 a797a40812, Ch4 1bb9f4986f, Ch5 085ede4dd4, Ch6 25ea8cd985, Ch7 c3fdfa1869, Ch8 a20ff963c1,
+> Ch9 1d3a1516cc, Ch10 c44c7280ee, Ch11 2a91042a40, Ch12 42d42beb77, Ch13 1d5dde4638, Ch14 f17e952d2c, Ch15 190fded2bf, Ch16 bab2842735,
+> Ch17 a4da0466da, Ch18 8154bb7fa9, Ch19 11a71bbf4b, Ch20 be78df8ac3.
+> - Why every chapter moved although no rule did: Dink's 1997 pixel is read back from his physical pawn, and the enlarged layout changes
+>   the floating-point residue of that readback (WORLD_SCALE.md s13: arriving on SCR_439 the current world reads x 364.99965, an exact
+>   similarity of it 365.00000; that alone costs one 16.7 ms frame on the next walk, and every later time stamp moves; with the readback
+>   rounded to 1/1000 px the two worlds gave byte-identical traces in every chapter both ran). At the approved per-kind ratios the screens
+>   also change shape, so Dink's paths in pixels through physics differ a little more. The scripts, hardness, warps, placements, combat
+>   and brain code are the same as on master (no file of the rules is touched by the PR).
+> - Bot tactics changed (probe code only; details in WORLD_SCALE.md 14.2): chapter 8's gold step finishes beside an idle healer loop when
+>   its target is met; chapter 8's knights' loot answers the level-up with Attack in both runs; DuelFight strikes a finishing blow from
+>   where Dink stands when the least blow kills (Jack, chapter 11); feud steps answer every healer menu they open (chapter 11); a barrel
+>   fitted to its mesh is struck a pixel nearer after a blow that does not land (SCR_209, chapter 19). Layer on only: LayerAssist's lunge
+>   state lives in the probe state, so Dink steps back after a blow (chapter 12's dragons); loot in SCR_480's pen is left when nothing is
+>   alive (chapter 11); Dink is set down south of SCR_190's hardness band (chapter 17).
+> - The A41 table below stays as the history of the reference scale.
+
 > **Packaged ch20 = PIE again (pkg-parity-1, 25 Nov 2026, branch fix/pkg-seth-parity).** Cause of 5dc0ee9655: `UDinkGameplay::DragonBrain`
 > (brain 10, Seth) ran the ATTACK script, found the sprite again and returned when `After != &S`. Seth's attack makes two sprites (the 166
 > spark and the "Magic resisted." text); when that grows the `TMap<int32, FDinkSprite>`, whether the realloc keeps the storage's address
