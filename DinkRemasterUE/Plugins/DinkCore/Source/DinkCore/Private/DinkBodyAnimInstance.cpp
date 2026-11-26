@@ -20,6 +20,8 @@ TAutoConsoleVariable<int32> CVarDinkGroundAdapt(TEXT("dink.Anim.GroundAdapt"), 1
 	TEXT("Presentation only. 1: each foot is put on the visible ground under it (traced), the pelvis lowered so the lower foot reaches; 0: the feet stay on the plane of the capsule's floor."));
 TAutoConsoleVariable<int32> CVarDinkStyle(TEXT("dink.Anim.Style"), 1,
 	TEXT("Presentation only, with dink.Anim.Legs 1. 1: each character's gait style (step length and cadence, stance width, uneven steps, pivot-step pace, chest swing; animation_natural.json `style`); 0: the clip's own."));
+TAutoConsoleVariable<int32> CVarDinkLegsOffLying(TEXT("dink.Anim.LegsOffLying"), 1,
+	TEXT("Presentation only, with dink.Anim.Legs 1. 1: the leg layer (foot pins, leg reach, pelvis offset) fades out while the pose's pelvis is low (lying, kneeling: Botch_Faceplant); 0: it acts on every pose (the 23 Nov look: a lying hero propped on his fists, shins in the air)."));
 TAutoConsoleVariable<int32> CVarDinkLookAt(TEXT("dink.Anim.LookAt"), 1,
 	TEXT("Presentation only. 1: NPC heads turn towards Dink when he is near and in front of them (limited angles); 0: off."));
 
@@ -615,6 +617,13 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 			// The foot's own axis that points forward when it stands in the reference pose: its yaw on the ground.
 			FootForward[S] = Ref.GetRotation().UnrotateVector(FVector::YAxisVector);
 		}
+		PelvisRefZ = 0.f;
+		if (PelvisBone != INDEX_NONE)
+		{
+			FTransform Ref = FTransform::Identity;
+			for (FCompactPoseBoneIndex B(PelvisBone); B.GetInt() != INDEX_NONE; B = Out.GetParentBoneIndex(B)) Ref = Ref * Bones.GetRefPoseTransform(B);
+			PelvisRefZ = float(Ref.GetLocation().Z);
+		}
 		// The pins are world space and per side: a level-of-detail switch keeps them; only the pose's velocities restart.
 		bPrevDesired = false;
 		MaskSerial = Bones.GetSerialNumber();
@@ -723,10 +732,37 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 		for (const int32 Index : LeanBones)
 			RotateInMeshSpace(Out, Index, Tilt(FVector::UpVector, Lean.X / LeanBones.Num(), Lean.Y / LeanBones.Num(), FVector::YAxisVector, FVector::XAxisVector));
 	}
-	if (Frame.Legs.bEnabled)
+	const float LegShare = Frame.Legs.bEnabled ? LyingLegShare(Out) : 0.f;
+	if (Frame.Legs.bEnabled && LegShare > .01f)
 	{
+		// While the pose lies or kneels the leg layer gives way (LyingLegShare): its bones go back towards the clip's.
+		TArray<TPair<int32, FTransform>, TInlineAllocator<8>> Clip;
+		if (LegShare < 1.f)
+		{
+			if (PelvisBone != INDEX_NONE) Clip.Emplace(PelvisBone, Out[FCompactPoseBoneIndex(PelvisBone)]);
+			for (int32 S = 0; S < 2; ++S)
+				for (const int32 Index : {Thigh[S], Calf[S], Foot[S]})
+					if (Index != INDEX_NONE) Clip.Emplace(Index, Out[FCompactPoseBoneIndex(Index)]);
+		}
 		ApplyChestSwing(Out);
 		ApplyLegs(Out);
+		for (const TPair<int32, FTransform>& Pair : Clip)
+		{
+			FTransform& Bone = Out[FCompactPoseBoneIndex(Pair.Key)];
+			const FTransform Layered = Bone;
+			Bone.Blend(Pair.Value, Layered, LegShare);
+		}
+		Telemetry.LegShare = LegShare;
+		ApplyLook(Out);
+	}
+	else if (Frame.Legs.bEnabled)
+	{
+		// Lying: no pins are kept (he gets up into fresh ones) and the pelvis offset starts again from nothing.
+		Telemetry = FDinkLegTelemetry();
+		Telemetry.LegShare = 0.f;
+		for (FDinkFootLock& Lock : Locks) Lock.Reset();
+		bPrevDesired = false;
+		PelvisOffset = PelvisVelocity = 0.f;
 		ApplyLook(Out);
 	}
 	else
@@ -738,6 +774,13 @@ bool FDinkBodyAnimProxy::Evaluate(FPoseContext& Output)
 	}
 	FDinkSecondaryMotion::ApplyToPose(GetSkelMeshComponent(), Out);
 	return true;
+}
+
+float FDinkBodyAnimProxy::LyingLegShare(const FCompactPose& Pose) const
+{
+	if (CVarDinkLegsOffLying.GetValueOnAnyThread() == 0 || PelvisBone == INDEX_NONE || PelvisRefZ <= 1.f) return 1.f;
+	const float Height = float(ComponentSpace(Pose, PelvisBone).GetLocation().Z) / PelvisRefZ;
+	return FMath::SmoothStep(.45f, .7f, Height);
 }
 
 FTransform FDinkBodyAnimProxy::ComponentSpace(const FCompactPose& Pose, int32 Index) const

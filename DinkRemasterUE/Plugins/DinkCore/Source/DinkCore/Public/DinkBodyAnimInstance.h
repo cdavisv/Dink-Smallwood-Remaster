@@ -121,6 +121,8 @@ struct FDinkLegTelemetry
 	FVector FootWorld[2] = {FVector::ZeroVector, FVector::ZeroVector};
 	/** The cadence factor the stride warp asks the game thread for (the style's cadence share of the correction), 1: none. */
 	float CadenceWarp = 1.f;
+	/** How much of the leg layer was laid on the pose: 1 standing on the feet, less while the pose lies or kneels (FDinkBodyAnimProxy::LyingLegShare). */
+	float LegShare = 1.f;
 	bool bValid = false;
 };
 
@@ -207,6 +209,15 @@ private:
 	int32 PelvisBone = INDEX_NONE, NeckBone = INDEX_NONE, Spine3Bone = INDEX_NONE;
 	int32 Thigh[2] = {INDEX_NONE, INDEX_NONE}, Calf[2] = {INDEX_NONE, INDEX_NONE}, Foot[2] = {INDEX_NONE, INDEX_NONE};
 	float PlantedFootZ[2] = {0.f, 0.f}, LowZ[2] = {0.f, 0.f};
+	/** The pelvis' height in the reference pose (component space): what standing on the feet is measured against. */
+	float PelvisRefZ = 0.f;
+	/**
+	 * The leg layer's share of a pose (takeover A2, 25 Nov 2026): a pose whose pelvis is low (Botch_Faceplant lying, a kneel)
+	 * does not stand on its feet, so foot pins, two-bone reach and pelvis offset fade out with it: 1 at 70 % of the reference
+	 * pelvis height and above, 0 at 45 % and below (dink.Anim.LegsOffLying 0: always 1). On 23 Nov the layer pulled the
+	 * lying hero's feet to the pins they had when he stood: knees folded, shins in the air, the trunk propped on the fists.
+	 */
+	float LyingLegShare(const FCompactPose& Pose) const;
 	FVector FootForward[2] = {FVector::YAxisVector, FVector::YAxisVector};
 	FDinkFootLock Locks[2];
 	FVector PrevDesired[2] = {FVector::ZeroVector, FVector::ZeroVector};
