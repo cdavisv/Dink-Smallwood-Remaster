@@ -93,6 +93,11 @@ Only WHEN a hit or touch lands changes. What it does is the 1997 path unchanged:
   `Scripts/check_capsule_gaps.py`). First row: the one-row slit of SCR_189/190 (WORLD_SCALE.md 14.1); then the 36 closed pockets the
   check finds (33 screens). The check exits 1 when a closed pocket it could seal is not in the list. Test: `Dink.PhysicalPlay.SealedGaps`
   (every sealed screen, layer on: no free capsule cell inside a sealed rect).
+- A71 JOINTS (26 Nov 2026, world scale follow-up): two trimmed walls whose drawn strips are staggered where their 1997 boxes overlap
+  (SCR_713 P06 at y 206-213, P13 at y 222-229) would open the slot between the strips. `make_relaxed_hardboxes.py` then trims the wall
+  with a joint (`"joints"` of `relaxed_hardboxes.json`, per screen, map-pixel rects): each strip over the other wall's box and a plug
+  across the slot where the modules meet, tested by the same passage rule. `PlayHardness` keeps a trimmed wall's box pixel inside a joint,
+  whichever wall's box owns it. Test: `Dink.PhysicalPlay.WallJoints`.
 
 ## 2. Dink's attack
 - `UDinkGameplay::RunThroughTagList` already has a 3D branch (`UsesAuthoredGeometry` / `AuthoredGeometryMatches`, Hit): a

@@ -39,11 +39,11 @@ class WallCandidates(unittest.TestCase):
     def test_strip_runs_on_to_the_box_ends(self):
         # an east-west wall drawn on rows 202-206 of a box 293-408 x 152-207 (S003_P01's numbers)
         out = M.wall_candidates([wall_row(3, 1, (293, 152, 408, 207), (300, 202, 400, 206))], 3)
-        self.assertEqual(out, [(1, (293, 202, 407, 206), (293, 152, 407, 206))])
+        self.assertEqual(out, [(1, (293, 202, 407, 206), (293, 152, 407, 206), (300, 202, 400, 206))])
 
     def test_north_south_wall(self):
         out = M.wall_candidates([wall_row(2, 14, (467, 299, 515, 399), (467, 349, 471, 399))], 2)
-        self.assertEqual(out, [(14, (467, 299, 471, 398), (467, 299, 514, 398))])
+        self.assertEqual(out, [(14, (467, 299, 471, 398), (467, 299, 514, 398), (467, 349, 471, 399))])
 
     def test_left_alone(self):
         rows = [wall_row(3, 1, (0, 0, 100, 100), (10, 10, 90, 90)),                       # not a strip (a curve, a post)
@@ -58,7 +58,7 @@ class TrimWalls(unittest.TestCase):
     def run_trim(self, box, rect, fill=()):
         free, owners = grid_with_box(box)
         relaxed, feet, trimmed, kept = {}, {}, {}, []
-        M.trim_walls(9, [(1, rect, box)], free, owners, set(fill), relaxed, feet, trimmed, kept)
+        M.trim_walls(9, [(1, rect, box, rect)], free, owners, set(fill), relaxed, feet, trimmed, kept)
         return relaxed, feet, trimmed, kept
 
     def test_partition_between_two_rooms_is_trimmed(self):
@@ -79,6 +79,69 @@ class TrimWalls(unittest.TestCase):
         fill = [(x, y) for y in range(0, 50) for x in range(M.GW)]
         relaxed, feet, trimmed, kept = self.run_trim((0, 150, 600, 210), (0, 150, 599, 154), fill)
         self.assertEqual(list(trimmed.get('9', {})), ['1'])
+
+
+class WallJoints(unittest.TestCase):
+    """SCR_713 at the enlarged scale (26 Nov 2026): P06 drawn at y 206-213 in its box x 145-271, P13 drawn at y 222-229 in its box x 246-369,
+    both boxes y 190-250; the boxes overlap at x 246-271, where P13's box owns the pixels. Trimming both opened the slot between the strips."""
+    WALLS = [(13, (246, 222, 369, 229), (246, 190, 369, 250), (258, 222, 357, 229)),
+             (6, (145, 206, 271, 213), (145, 190, 271, 250), (158, 206, 257, 213))]
+
+    def grid(self):
+        # a corridor wall across the whole screen: west of P06 and east of P13 the line is closed by other (kept) boxes
+        free = [[True] * M.GW for _ in range(M.GH)]
+        owners = {6: [], 13: [], 99: []}
+        for y in range(M.GH):
+            for x in range(M.GW):
+                px, py = x * M.CELL + 1, y * M.CELL + 1
+                if 190 <= py <= 250:
+                    free[y][x] = False
+                    owners[13 if 246 <= px <= 369 else 6 if 145 <= px <= 245 else 99].append((x, y))
+        return free, owners
+
+    def test_joint_rects(self):
+        out = M.wall_joints(6, self.WALLS, {'13': [246, 190, 369, 250]})
+        self.assertIn((246, 206, 257, 213), out)   # P06's drawn end over P13's box
+        self.assertIn((258, 222, 271, 229), out)   # P13's drawn start over the overlap
+        self.assertIn((257, 213, 259, 222), out)   # the plug across the slot where the modules meet
+        self.assertEqual(M.wall_joints(6, self.WALLS, {}), [])  # no trimmed neighbour: nothing to join
+
+    def test_aligned_strips_need_no_joint(self):
+        walls = [(13, (246, 206, 369, 213), (246, 190, 369, 250), (258, 206, 357, 213)), self.WALLS[1]]
+        self.assertEqual(M.wall_joints(6, walls, {'13': [1]}), [])
+
+    def test_staggered_wall_is_trimmed_with_a_joint_that_closes_the_slot(self):
+        free, owners = self.grid()
+        relaxed, feet, trimmed, kept, joints = {}, {}, {}, [], {}
+        M.trim_walls(713, self.WALLS, free, owners, set(), relaxed, feet, trimmed, kept, joints)
+        self.assertEqual(sorted(trimmed['713']), ['13', '6'])
+        self.assertEqual(kept, [])
+        self.assertEqual(len(joints['713']), 3)
+        # replay the play hardness on 1 px: box pixels stay where a feet strip or a joint covers them; the south side of the line must
+        # not reach the north side
+        H, Wd = 400, 600
+        solid = [[False] * Wd for _ in range(H)]
+        keep = [tuple(feet['713'][k]) for k in feet['713']] + [tuple(j) for j in joints['713']]
+        for y in range(190, 251):
+            for x in range(Wd):
+                if not (145 <= x <= 369) or any(l <= x <= r and t <= y <= b for l, t, r, b in keep):
+                    solid[y][x] = True
+        seen, stack = {(200, 240)}, [(200, 240)]
+        while stack:
+            x, y = stack.pop()
+            for q in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if 0 <= q[0] < Wd and 189 <= q[1] < 252 and q not in seen and not solid[q[1]][q[0]]:
+                    seen.add(q)
+                    stack.append(q)
+        self.assertNotIn((300, 196), seen)
+        self.assertIn((250, 217), seen)   # the slot's west part is the south side's nook
+
+    def test_without_joints_the_staggered_wall_keeps_its_box(self):
+        free, owners = self.grid()
+        relaxed, feet, trimmed, kept = {}, {}, {}, []
+        M.trim_walls(713, self.WALLS, free, owners, set(), relaxed, feet, trimmed, kept)
+        self.assertEqual(list(trimmed['713']), ['13'])
+        self.assertEqual([k['origin'] for k in kept], ['S713_P06'])
 
 
 class AuditTiles(unittest.TestCase):
