@@ -1,5 +1,24 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
+> **Packaged run on master 7af842d73, 25 Nov 2026 (pkg-tools-1; the first packaged run since 14 Nov, and the first on the A41 table).**
+> `Scripts/package.sh` with `DINK_PACKAGE_ZEN=off` (cook with `-SkipZenStore`, PR #243): PACKAGE OK in 49 s, 0 warnings, content check
+> 3033/3033 string-path assets. `Scripts/run_packaged_tests.sh` (twenty processes): every chapter PASSED, `&story` 16. In the same copy the full
+> `Dink` suite gave 409/409 with the PIE probe at the A41 table. The packaged parity check against those PIE traces gave 19 `PARITY OK` and one
+> `PARITY DIFF`:
+> Ch1 cff64df9d1, Ch2 cd7b944503, Ch3 b8d36c7e33, Ch4 31dc2e4cdf, Ch5 520a520c60, Ch6 9348377915, Ch7 bce737d38b, Ch8 1cb5418715,
+> Ch9 a1a6ffebb9, Ch10 01eebeee82, Ch11 13291066e1, Ch12 e860cb9d4c, Ch13 5722adefab, Ch14 4f5aaa0069, Ch15 bd8d0e2734, Ch16 0556293b76,
+> Ch17 439d45f04f, Ch18 c1c94903e0, Ch19 0ed879a446 (all equal to the A41 table), **Ch20 5dc0ee9655 (PIE b27010b31e)**.
+> - Ch20 still wins in the package (Seth dies, the King, `&story` 16), but the traces part in the Seth fight. The first difference is trace line
+>   1431, the probe's `bow drawn` line at 3368750.176 ms: Seth at 542,191 in PIE and at 542,188 packaged. Lines 1-1430 are identical. The last
+>   common lines are Seth's `on_attack` at 3368616.842 (`unfreeze 4`, `sp_attack_wait 4 5388`, "Magic resisted.").
+> - The packaged result repeats: chapter 20 run again alone from the staged saves gave 5dc0ee9655 again. The PIE result in the same copy is
+>   b27010b31e, as in other copies of master (for example `Saved/Blockages6`).
+> - Seth walks 3 px a frame (`my 3`), so packaged Seth makes one move fewer in the 8 frames after his attack. He stays exactly 3 px behind
+>   (191/188, 236/233, ... until the wall at y 368); the next arrow hits one frame later, and the fight gets longer (2257 PIE events, 4079 packaged).
+>   Cause not found yet: a one-frame difference in Seth's think around `on_attack` / `unfreeze` between the editor and the game build.
+>   Packaged ch20 was equal to PIE on 14 Nov (84f33687af), so the difference came in after 14 Nov; no packaged run was made between then and 25 Nov.
+> - Packaging itself: the Zen-store cook (the engine default) hangs in the stage step. See section 2, item 7.
+
 > **Re-baselined with A41 (DinkC parity, PR `fix/dinkc-a41`; 22 Nov 2026, PIE, master 11290aa3e + the branch, private copy,
 > clean build).** A41: `create_sprite` gives add_sprite_dumb's defaults (speed 0, timing 0, base_* -1; dink.cpp:9041-9051, 3089-3135), so
 > every script-made sprite thinks every frame as in 1997 (Jack chases at 120 px/s straight, 170 on diagonals). `Dink.Gameplay.Probe` 29/29
@@ -256,8 +275,14 @@ shader compile: the shaders came out of the shared DDC), UAT total 40 s from an 
    editor or game of *this* project only.
 6. **`package.sh`'s "is the story in the pak" check always warned**: `grep -q` closed the pipe, `UnrealPak -List` died of SIGPIPE and `pipefail`
    reported failure. The listing is captured first now.
-7. **The shared Zen server can be restarted by another agent's editor** while UAT reads its oplog ("Reading oplog from Zen..." hangs for
-   ever, no error). One run hung that way; kill the UAT and rerun when no other editor is starting.
+7. **"Reading oplog from Zen..." hangs (8, 23 and 25 Nov 2026).** The first explanation was that another agent's editor restarted the
+   shared Zen server, or that no server was running. On 25 Nov the server was started first and answered `/health/ready`, and the oplog URL
+   returned 9.4 MB in 18 ms to curl, but the stage still made no progress. The real cause is in UE 5.8.4's UAT. `OplogReader` parses the
+   oplog in a `Parallel.ForEach`, and every entry downloads its attachment with a synchronous `HttpClient.Send` plus
+   `ReadAsByteArrayAsync().Wait()` (`Scripts/Oplog/OplogEntry.cs`, `DownloadAttachment`). With ~10,000 packages the .NET thread pool
+   starves: 775 threads, 760 open connections to :8558, 2 % CPU. Fix (PR #243): `package.sh` cooks with `-SkipZenStore` by default
+   (`DINK_PACKAGE_ZEN=off`: loose cooked files, `packagestore.manifest`, no oplog); `DINK_PACKAGE_ZEN=launch` keeps the Zen store and starts
+   and checks the server itself. A no-progress watchdog (`DINK_PACKAGE_STALL_SECS`) stops a stuck UAT.
 8. Not a problem here: Inkpot has no content, `DinkExpanded` is disabled, `DinkImport` is allow-listed to the editor, nothing links it; the
    `.umap` imports of `/Script/UnrealEd` did not matter. `BuildConfiguration=PPBC_Shipping` in `DefaultGame.ini` only affects the editor's Package
    menu (it would remove the automation tests).
