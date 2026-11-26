@@ -100,7 +100,13 @@ int32 UDinkGreyboxSubsystem::SetScreenVision(int32 ScreenNumber, int32 Value)
 	return Shown;
 }
 
-bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float MapY, bool bEvenIntoWalls)
+namespace
+{
+	/** dink.Goto (A7): the drawn ground counts as dry at or above the flat 1997 floor; below it is the bed of 1997 water. */
+	constexpr float GotoDryGroundCm = 0.f;
+}
+
+bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float MapY, bool bEvenIntoWalls, bool bOntoDrawnGround)
 {
 	ADinkScreenVolume* Screen = FindScreen(ScreenNumber);
 	APlayerController* PC = GetWorld()->GetFirstPlayerController();
@@ -117,41 +123,120 @@ bool UDinkGreyboxSubsystem::GotoScreen(int32 ScreenNumber, float MapX, float Map
 		HalfHeight = Capsule->GetScaledCapsuleHalfHeight();
 	}
 	FVector Target = Screen->MapPixelToWorld(MapX, MapY) + FVector(0.0, 0.0, HalfHeight + 2.0);
+	const UCapsuleComponent* Capsule = Pawn->FindComponentByClass<UCapsuleComponent>();
+	FCollisionQueryParams SpotParams(SCENE_QUERY_STAT(DinkGotoFloor), true, Pawn);
+	// a spot on this screen with a floor within 1.5 m of the screen's level and room for the capsule on it. The console's Goto stands
+	// the capsule on that floor (A7: an authored floor lies above the screen's level, 14 cm in Dink's house, and a capsule placed
+	// from the level started inside it, so the checked teleport refused every spot of SCR_001 and SCR_530); others keep the level.
+	// the floor under a spot: the first surface from 1.5 m above the level down to 1.5 m below it, looking past furniture (a top more
+	// than 30 cm above the level: a bench, a table) so that Dink is never stood on it
+	auto FloorUnder = [&](const FVector& At, FHitResult& Floor)
+	{
+		FCollisionQueryParams Params = SpotParams;
+		for (int32 Try = 0; Try < 4; ++Try)
+		{
+			if (!GetWorld()->LineTraceSingleByChannel(Floor, At + FVector(0.0, 0.0, 150.0), At - FVector(0.0, 0.0, 150.0), ECC_Pawn, Params)) return false;
+			if (!bOntoDrawnGround || Floor.ImpactPoint.Z <= At.Z + 30.0 || !Floor.GetComponent()) return true;
+			Params.AddIgnoredComponent(Floor.GetComponent());
+		}
+		return false;
+	};
+	auto HasRoom = [&](const FVector& At, FVector& OutTarget)
+	{
+		FHitResult Floor;
+		if (!FloorUnder(At, Floor)) return false;
+		const double Lift = bOntoDrawnGround ? 5.0 : 2.0;
+		if (Capsule && GetWorld()->OverlapBlockingTestByChannel(Floor.ImpactPoint + FVector(0.0, 0.0, HalfHeight + Lift), FQuat::Identity, ECC_Pawn,
+			Capsule->GetCollisionShape(), SpotParams)) return false;
+		OutTarget = bOntoDrawnGround ? Floor.ImpactPoint + FVector(0.0, 0.0, HalfHeight + Lift) : At + FVector(0.0, 0.0, HalfHeight + 2.0);
+		return true;
+	};
+	// the nearest pixel of the same screen (rings of 4 px out to 240 px) that passes Accept; false when none does
+	auto Nearest = [&](TFunctionRef<bool(float, float, FVector&)> Accept, float& OutX, float& OutY, FVector& OutTarget)
+	{
+		for (int32 R = 4; R <= 240; R += 4)
+		{
+			for (int32 K = 0; K < 32; ++K)
+			{
+				const double A = K * UE_TWO_PI / 32.0;
+				const float X = MapX + R * FMath::Cos(A), Y = MapY + R * FMath::Sin(A);
+				if (X < 0.f || Y < 0.f || X > 599.f || Y > 399.f) continue;
+				if (Accept(X, Y, OutTarget)) { OutX = X; OutY = Y; return true; }
+			}
+		}
+		return false;
+	};
+	float PlacedX = MapX, PlacedY = MapY;
+	if (bOntoDrawnGround)
+	{
+		// the console's Goto: the capsule on the floor that is there (an authored floor can lie above the screen's level)
+		FHitResult Floor;
+		const FVector At = Screen->MapPixelToWorld(MapX, MapY);
+		if (FloorUnder(At, Floor))
+		{
+			Target = Floor.ImpactPoint + FVector(0.0, 0.0, HalfHeight + 5.0);
+		}
+	}
 	// A20 (23 Nov 2026): a spot with no floor under it (SCR_471's authored pond, drawn where 1997 has meadow: the authored land has a
 	// hole there and the water has no collision) let a teleport fall without end. Such a spot takes the nearest pixel of the same
 	// screen that has a floor at the screen's level; a spot with a floor is placed as before.
 	if (!HasFloorAt(Screen->MapPixelToWorld(MapX, MapY), Pawn))
 	{
-		bool bFound = false;
-		for (int32 R = 4; R <= 240 && !bFound; R += 4)
+		if (Nearest([&](float X, float Y, FVector& Out) { return HasRoom(Screen->MapPixelToWorld(X, Y), Out); }, PlacedX, PlacedY, Target))
 		{
-			for (int32 K = 0; K < 32 && !bFound; ++K)
-			{
-				const double A = K * UE_TWO_PI / 32.0;
-				const float X = MapX + R * FMath::Cos(A), Y = MapY + R * FMath::Sin(A);
-				if (X < 0.f || Y < 0.f || X > 599.f || Y > 399.f) continue;
-				const FVector At = Screen->MapPixelToWorld(X, Y);
-				// a floor within 1.5 m of the screen's level and room for the capsule on it
-				FHitResult Floor;
-				FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkGotoFloor), true, Pawn);
-				const UCapsuleComponent* Capsule = Pawn->FindComponentByClass<UCapsuleComponent>();
-				if (!GetWorld()->LineTraceSingleByChannel(Floor, At + FVector(0.0, 0.0, 150.0), At - FVector(0.0, 0.0, 150.0), ECC_Pawn, Params) ||
-					(Capsule && GetWorld()->OverlapBlockingTestByChannel(Floor.ImpactPoint + FVector(0.0, 0.0, HalfHeight + 2.0), FQuat::Identity, ECC_Pawn,
-						Capsule->GetCollisionShape(), Params))) continue;
-				UE_LOG(LogDink, Log, TEXT("dink.Goto: SCR_%03d %.0f,%.0f has no floor (A20); placed at %.0f,%.0f"), ScreenNumber, MapX, MapY, X, Y);
-				Target = At + FVector(0.0, 0.0, HalfHeight + 2.0);
-				bFound = true;
-			}
+			UE_LOG(LogDink, Log, TEXT("dink.Goto: SCR_%03d %.0f,%.0f has no floor (A20); placed at %.0f,%.0f"), ScreenNumber, MapX, MapY, PlacedX, PlacedY);
+		}
+	}
+	// A7 (25 Nov 2026): the capsule walks the flat 1997 floor and only the drawn body and the camera stand on the landforms. 1997 water
+	// is drawn as a bed below the water surface, so a spot in it (the middle of SCR_094's lake: the bed 91 cm down) put Dink and the
+	// camera under the water. Unless the screen's water is walkable (a ford: bWade), such a spot takes the nearest dry pixel.
+	UDinkLandformsSubsystem* Landforms = GetWorld()->GetSubsystem<UDinkLandformsSubsystem>();
+	const FDinkLandformsScreen* Land = Landforms && Landforms->IsActive() ? Landforms->GetData().Screens.Find(ScreenNumber) : nullptr;
+	if (bOntoDrawnGround && Land && !Land->bWade && Landforms->HeightCmAtPixel(ScreenNumber, PlacedX, PlacedY) < GotoDryGroundCm)
+	{
+		const float WetX = PlacedX, WetY = PlacedY;
+		const float Bed = Landforms->HeightCmAtPixel(ScreenNumber, WetX, WetY);
+		if (Nearest([&](float X, float Y, FVector& Out) { return Landforms->HeightCmAtPixel(ScreenNumber, X, Y) >= GotoDryGroundCm && HasRoom(Screen->MapPixelToWorld(X, Y), Out); },
+			PlacedX, PlacedY, Target))
+		{
+			UE_LOG(LogDink, Log, TEXT("dink.Goto: SCR_%03d %.0f,%.0f lies on the drawn water bed (%.0f cm, A7); placed on dry ground at %.0f,%.0f"),
+				ScreenNumber, WetX, WetY, Bed, PlacedX, PlacedY);
+		}
+		else
+		{
+			UE_LOG(LogDink, Warning, TEXT("dink.Goto: SCR_%03d %.0f,%.0f lies on the drawn water bed (%.0f cm) and no dry ground with room is near"),
+				ScreenNumber, WetX, WetY, Bed);
 		}
 	}
 	// landforms (a visual layer): the capsule lands on the 1997 floor as always; have the drawn ground there before it arrives
-	if (UDinkLandformsSubsystem* Landforms = GetWorld()->GetSubsystem<UDinkLandformsSubsystem>())
+	if (Landforms)
 	{
 		Landforms->EnsureAround(Target);
 	}
-	if (const bool bPlaced = Pawn->TeleportTo(Target, Pawn->GetActorRotation()); bPlaced || !bEvenIntoWalls)
+	if (Pawn->TeleportTo(Target, Pawn->GetActorRotation()))
 	{
-		return bPlaced;
+		return true;
+	}
+	if (!bEvenIntoWalls && bOntoDrawnGround)
+	{
+		// A7 / OPUS_HANDOFF task 6 (25 Nov 2026): the checked teleport refuses a spot whose capsule overlaps something (SCR_530 300,200
+		// from outdoors: Goto returned false and nothing was logged, so the console command seemed to do nothing). Take the nearest
+		// pixel with room for the capsule; say so either way.
+		const float RefusedX = PlacedX, RefusedY = PlacedY;
+		if (Nearest([&](float X, float Y, FVector& Out) { return HasRoom(Screen->MapPixelToWorld(X, Y), Out); }, PlacedX, PlacedY, Target)
+			&& Pawn->TeleportTo(Target, Pawn->GetActorRotation()))
+		{
+			UE_LOG(LogDink, Log, TEXT("dink.Goto: SCR_%03d %.0f,%.0f has no room for Dink (it overlaps something); placed at %.0f,%.0f"),
+				ScreenNumber, RefusedX, RefusedY, PlacedX, PlacedY);
+			return true;
+		}
+		UE_LOG(LogDink, Warning, TEXT("dink.Goto: SCR_%03d %.0f,%.0f has no room for Dink and no free spot within 240 px: not moved"), ScreenNumber, RefusedX, RefusedY);
+		return false;
+	}
+	if (!bEvenIntoWalls)
+	{
+		UE_LOG(LogDink, Log, TEXT("dink.Goto: SCR_%03d %.0f,%.0f has no room for Dink (it overlaps something): not moved"), ScreenNumber, PlacedX, PlacedY);
+		return false;
 	}
 	// The original puts Dink where it is told, walls or not (load_screen keeps his x and y, sp_x/sp_y set them). The checked teleport
 	// refuses a spot whose capsule overlaps a wall (s2-culg.c:43: Dink walked off SCR_238's bottom, load_screen'd onto Nadine's house's
@@ -576,7 +661,7 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkGotoCommand(
 		{
 			const float X = Args.Num() >= 3 ? FCString::Atof(*Args[1]) : 300.f;
 			const float Y = Args.Num() >= 3 ? FCString::Atof(*Args[2]) : 200.f;
-			G->GotoScreen(FCString::Atoi(*Args[0]), X, Y);
+			G->GotoScreen(FCString::Atoi(*Args[0]), X, Y, false, /*bOntoDrawnGround*/ true);
 		}
 	}));
 

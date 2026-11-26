@@ -56,7 +56,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Dink|Greybox")
 	/** Teleports the pawn to a map pixel of a screen. bEvenIntoWalls (a script's load_screen): when the checked teleport refuses the spot
 	 *  (the capsule overlaps a wall), the pawn is placed there anyway, as the original places Dink wherever a script puts him. */
-	bool GotoScreen(int32 ScreenNumber, float MapX = 300.f, float MapY = 200.f, bool bEvenIntoWalls = false);
+	/**
+	 * bOntoDrawnGround (the console's dink.Goto, A7): a spot on the drawn water bed of a screen whose water is not walkable takes the
+	 * nearest dry pixel, and a spot without room for the capsule the nearest one with room (each logged). Scripts and audits keep
+	 * the plain placement (the 1997 load_screen puts Dink where it is told).
+	 */
+	bool GotoScreen(int32 ScreenNumber, float MapX = 300.f, float MapY = 200.f, bool bEvenIntoWalls = false, bool bOntoDrawnGround = false);
 	/** A floor the player capsule can stand on under At (world, the screen's level) (false only for a hole: A20, SCR_471's pond). */
 	bool HasFloorAt(const FVector& At, const AActor* Ignore = nullptr) const;
 
