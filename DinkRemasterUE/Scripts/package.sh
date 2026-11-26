@@ -27,10 +27,25 @@
 #                           which the cook cannot see (including runtime-selected sprite frames). Set to "none" to disable.
 #   DINK_COMPILE_EDITOR=1   let UAT build the editor target too (default: -nocompileeditor)
 #   DINK_ALLOW_CONCURRENT=1 run even though an editor / UBT / UAT process is already running
+#   DINK_PACKAGE_ZEN        off (default since 25 Nov 2026): cook with -AdditionalCookerOptions=-SkipZenStore (loose cooked
+#                           files and a packagestore.manifest; a stale Saved/Cooked/Linux/ue.projectstore is removed first),
+#                           so the stage step never reads an oplog from the Zen server.
+#                           launch: the engine default (cooked output in the Zen store). package.sh then starts the shared Zen
+#                           server with Engine/Binaries/Linux/ZenLaunch, sponsored by its own PID, and waits for
+#                           http://[::1]:8558/health/ready (DINK_ZEN_HEALTH_URL overrides it) before UAT starts.
+#                           Why off: on 23 and 25 Nov 2026 the stage step sat for ever at "Reading oplog from Zen" even with the
+#                           server up and answering (the oplog URL returned 9.4 MB in 18 ms to curl): UE 5.8.4's UAT reads each
+#                           oplog entry's attachment inside a Parallel.ForEach with a synchronous HttpClient.Send and
+#                           ReadAsByteArrayAsync().Wait() (Scripts/Oplog/OplogReader.cs, OplogEntry.cs: DownloadAttachment), and
+#                           with this project's ~10,000 packages the thread pool starves: 775 threads, 760 open connections,
+#                           2 % CPU, no progress in 4 minutes.
+#   DINK_PACKAGE_STALL_SECS no-progress watchdog (default 900, 0 = off): when package.log does not grow for this long, the
+#                           UAT process group started by THIS script (and only it) is stopped and the script exits 5.
 #
 # Log: Saved/Logs/package.log. Prints one PACKAGE OK / PACKAGE FAILED line. Exit code is UAT's
 # (2 = preflight failed, 3 = UAT succeeded but the binary is missing, 4 = string-path content missing from the package:
-# Scripts/check_package_content.py).
+# Scripts/check_package_content.py, 5 = the no-progress watchdog stopped UAT, 6 = DINK_PACKAGE_ZEN=launch and the Zen server
+# did not answer).
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -112,6 +127,32 @@ fi
 
 join_plus() { local IFS='+'; echo "$*"; }
 
+# ---- the Zen store (see DINK_PACKAGE_ZEN above) ----
+ZEN_MODE="${DINK_PACKAGE_ZEN:-off}"
+ZEN_URL="${DINK_ZEN_HEALTH_URL:-http://[::1]:8558/health/ready}"
+declare -a ZEN_COOK_ARGS=()
+case "$ZEN_MODE" in
+	launch)
+		ZEN_LAUNCH="$UE_ROOT/Engine/Binaries/Linux/ZenLaunch"
+		[[ -x "$ZEN_LAUNCH" ]] || fail "ZenLaunch not found at $ZEN_LAUNCH (or set DINK_PACKAGE_ZEN=off)"
+		command -v curl >/dev/null || fail "curl is needed to check the Zen server (or set DINK_PACKAGE_ZEN=off)"
+		env -u WAYLAND_DISPLAY -u DISPLAY "$ZEN_LAUNCH" "$UPROJECT" -Sponsor=$$ >/dev/null 2>&1 || true
+		zen_ok=0
+		for _ in $(seq 1 30); do
+			if curl -s -m 5 "$ZEN_URL" 2>/dev/null | grep -q OK; then zen_ok=1; break; fi
+			sleep 1
+		done
+		if [[ $zen_ok -ne 1 ]]; then echo "PACKAGE FAILED: the Zen server does not answer $ZEN_URL (DINK_PACKAGE_ZEN=off cooks without it)"; exit 6; fi
+		echo "package: Zen server answers $ZEN_URL (sponsored by package.sh pid $$)"
+		;;
+	off)
+		ZEN_COOK_ARGS=(-AdditionalCookerOptions=-SkipZenStore)
+		rm -f "$PROJECT_DIR/Saved/Cooked/Linux/ue.projectstore"
+		echo "package: cooking without the Zen store (DINK_PACKAGE_ZEN=off)"
+		;;
+	*) fail "DINK_PACKAGE_ZEN=$ZEN_MODE: use launch or off" ;;
+esac
+
 mkdir -p "$LOG_DIR"
 
 # - BuildCookRun runs UBT (-build), the cook commandlet (-cook), then stages and paks (-stage -pak).
@@ -148,12 +189,35 @@ UAT_ARGS=(
 )
 if [[ ${#COOK_DIRS[@]} -gt 0 ]]; then UAT_ARGS+=("-cookdir=$(join_plus "${COOK_DIRS[@]}")"); fi
 if [[ "${DINK_COMPILE_EDITOR:-0}" != "1" ]]; then UAT_ARGS+=(-nocompileeditor); fi
+if [[ ${#ZEN_COOK_ARGS[@]} -gt 0 ]]; then UAT_ARGS+=("${ZEN_COOK_ARGS[@]}"); fi
 if [[ ${#EXTRA_ARGS[@]} -gt 0 ]]; then UAT_ARGS+=("${EXTRA_ARGS[@]}"); fi
 
 echo "package: $TARGET Linux $CONFIG -> $STAGE (log: $LOG)"
 start=$(date +%s)
 rc=0
-env -u WAYLAND_DISPLAY -u DISPLAY python3 "$PROJECT_DIR/Scripts/shaderprint_vulkan_workaround.py" --engine "$UE_ROOT/Engine" -- "$RUN_UAT" "${UAT_ARGS[@]}" >"$LOG" 2>&1 || rc=$?
+# UAT runs in its own process group (setsid) so the watchdog can stop exactly this tree and nothing else on the machine.
+setsid env -u WAYLAND_DISPLAY -u DISPLAY python3 "$PROJECT_DIR/Scripts/shaderprint_vulkan_workaround.py" --engine "$UE_ROOT/Engine" -- "$RUN_UAT" "${UAT_ARGS[@]}" >"$LOG" 2>&1 &
+uat_pid=$!
+STALL="${DINK_PACKAGE_STALL_SECS:-900}"
+stalled=0
+if [[ "$STALL" =~ ^[0-9]+$ && "$STALL" -gt 0 ]]; then
+	last_size=-1; still=0; poll=1
+	while kill -0 "$uat_pid" 2>/dev/null; do
+		sleep "$poll"
+		size=$(stat -c %s "$LOG" 2>/dev/null || echo 0)
+		if [[ "$size" == "$last_size" ]]; then still=$((still + poll)); else still=0; last_size=$size; fi
+		if [[ $still -ge $STALL ]]; then
+			stalled=1
+			echo "package: package.log has not grown for ${STALL}s: stopping UAT process group $uat_pid" | tee -a "$LOG"
+			kill -TERM -- "-$uat_pid" 2>/dev/null || true
+			for _ in $(seq 1 20); do kill -0 "$uat_pid" 2>/dev/null || break; sleep 1; done
+			kill -KILL -- "-$uat_pid" 2>/dev/null || true
+			break
+		fi
+	done
+fi
+wait "$uat_pid" || rc=$?
+if [[ $stalled -eq 1 ]]; then rc=5; fi
 secs=$(( $(date +%s) - start ))
 
 ERR_RE='(: |^)(fatal )?error|Error: |LogCook: Error'
