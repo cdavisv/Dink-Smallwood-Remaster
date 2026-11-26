@@ -1,12 +1,260 @@
 {
  "schema": "dink-sealed-gaps/1",
- "about": "1997 walkable ground inside a hardness outline that Dink's capsule could not enter at the reference world scale and fits at the enlarged scale (doc/remaster/WORLD_SCALE.md 14.1). With the physical play layer's part Collision on, each rect (map pixels, inclusive) joins the screen's low collision for Dink's capsule only; get_hard, brains and missiles keep the 1997 hardness, and the layer-off probe never reads this file. Rows are reviewed findings of Scripts/check_capsule_gaps.py: a rect may only cover a pocket that no walk of the 1997 map reaches.",
+ "about": "1997 walkable ground inside a hardness outline that Dink's capsule could not enter at the reference world scale and fits at the enlarged scale (doc/remaster/WORLD_SCALE.md 14.1). With the physical play layer's part Collision on, each rect (map pixels, inclusive) joins the screen's low collision for Dink's capsule only; get_hard, brains and missiles keep the 1997 hardness, and the layer-off probe never reads this file. Rows are reviewed findings of Scripts/check_capsule_gaps.py (its --suggest output for the closed pockets, 26 Nov 2026): a rect may only cover a pocket that no walk of the 1997 map reaches (point Dink, every screen edge), whose edge the layer does not open (no relaxed box, no open tile) and that no 1997 warp lands in.",
  "screens": {
+  "28": [
+   {"rect": [200, 246, 599, 253], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_028 x 203-599 y 249-250; SCR_029 x 0-196 y 249-250), nowhere at the reference"}
+  ],
+  "29": [
+   {"rect": [0, 246, 199, 253], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_028 x 203-599 y 249-250; SCR_029 x 0-196 y 249-250), nowhere at the reference"},
+   {"rect": [500, 246, 599, 253], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_029 x 503-599 y 249-250; SCR_030 x 0-96 y 249-250), nowhere at the reference"},
+   {"rect": [300, 346, 399, 353], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_029 x 303-396 y 349-350), nowhere at the reference"}
+  ],
+  "30": [
+   {"rect": [0, 246, 99, 253], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_029 x 503-599 y 249-250; SCR_030 x 0-96 y 249-250), nowhere at the reference"},
+   {"rect": [200, 346, 399, 353], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_030 x 203-396 y 349-350), nowhere at the reference"}
+  ],
+  "59": [
+   {"rect": [500, 46, 599, 53], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_059 x 503-596 y 49-50), nowhere at the reference"},
+   {"rect": [500, 246, 599, 252], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_059 x 503-596 y 249-250), nowhere at the reference"},
+   {"rect": [593, 253, 599, 253], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_059 x 503-596 y 249-250), nowhere at the reference"}
+  ],
+  "60": [
+   {"rect": [100, 346, 599, 353], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_061 x 201-599 y 349-350; SCR_062 x 0-599 y 349-350; SCR_063 x 0-96 y 349-350), nowhere at the reference"},
+   {"rect": [300, 246, 599, 253], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_060 x 303-599 y 249-250; SCR_061 x 0-96 y 249-250), nowhere at the reference"}
+  ],
+  "61": [
+   {"rect": [0, 346, 95, 349], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_061 x 201-599 y 349-350; SCR_062 x 0-599 y 349-350; SCR_063 x 0-96 y 349-350), nowhere at the reference"},
+   {"rect": [198, 346, 599, 349], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_061 x 201-599 y 349-350; SCR_062 x 0-599 y 349-350; SCR_063 x 0-96 y 349-350), nowhere at the reference"},
+   {"rect": [0, 350, 599, 353], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_061 x 201-599 y 349-350; SCR_062 x 0-599 y 349-350; SCR_063 x 0-96 y 349-350), nowhere at the reference"},
+   {"rect": [0, 246, 99, 253], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_060 x 303-599 y 249-250; SCR_061 x 0-96 y 249-250), nowhere at the reference"}
+  ],
+  "62": [
+   {"rect": [0, 346, 199, 346], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_061 x 201-599 y 349-350; SCR_062 x 0-599 y 349-350; SCR_063 x 0-96 y 349-350), nowhere at the reference"},
+   {"rect": [302, 346, 599, 346], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_061 x 201-599 y 349-350; SCR_062 x 0-599 y 349-350; SCR_063 x 0-96 y 349-350), nowhere at the reference"},
+   {"rect": [0, 347, 599, 353], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_061 x 201-599 y 349-350; SCR_062 x 0-599 y 349-350; SCR_063 x 0-96 y 349-350), nowhere at the reference"}
+  ],
+  "63": [
+   {"rect": [0, 346, 99, 353], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_061 x 201-599 y 349-350; SCR_062 x 0-599 y 349-350; SCR_063 x 0-96 y 349-350), nowhere at the reference"}
+  ],
+  "64": [
+   {"rect": [400, 96, 453, 103], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_064 x 403-450 y 99-100), nowhere at the reference"}
+  ],
+  "182": [
+   {"rect": [103, 243, 141, 243], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_182 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 244, 142, 244], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_182 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 245, 143, 245], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_182 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 246, 144, 246], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_182 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 247, 145, 247], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_182 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 248, 146, 248], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_182 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 249, 147, 249], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_182 x 106-139 y 246-246), nowhere at the reference"}
+  ],
+  "184": [
+   {"rect": [303, 343, 341, 343], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_184 x 306-340 y 346-346), nowhere at the reference"},
+   {"rect": [303, 344, 342, 344], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_184 x 306-340 y 346-346), nowhere at the reference"},
+   {"rect": [303, 345, 343, 345], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_184 x 306-340 y 346-346), nowhere at the reference"},
+   {"rect": [303, 346, 344, 346], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_184 x 306-340 y 346-346), nowhere at the reference"},
+   {"rect": [303, 347, 345, 347], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_184 x 306-340 y 346-346), nowhere at the reference"},
+   {"rect": [303, 348, 346, 348], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_184 x 306-340 y 346-346), nowhere at the reference"},
+   {"rect": [303, 349, 347, 349], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_184 x 306-340 y 346-346), nowhere at the reference"}
+  ],
   "189": [
    {"rect": [242, 246, 599, 253], "why": "east half of the slit between the two low rock lines (y 244-245 and 254-255); closed in the west by the thorn S189_P03's box (thorn script, hitpoints 0), joins SCR_190's half at the screen edge; 8 px tall: the capsule (28 cm) fits at 9.0 cm/px, not at the reference 6.9 cm/px"}
   ],
   "190": [
    {"rect": [0, 246, 199, 253], "why": "west half of the same slit, closed in the east by the low stub at x 200-201; the probe's chapter 17 teleport to 60,250 landed in it with the layer on (WORLD_SCALE.md 14.2)"}
+  ],
+  "212": [
+   {"rect": [503, 143, 541, 143], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_212 x 506-539 y 146-146), nowhere at the reference"},
+   {"rect": [503, 144, 542, 144], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_212 x 506-539 y 146-146), nowhere at the reference"},
+   {"rect": [503, 145, 543, 145], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_212 x 506-539 y 146-146), nowhere at the reference"},
+   {"rect": [503, 146, 544, 146], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_212 x 506-539 y 146-146), nowhere at the reference"},
+   {"rect": [503, 147, 545, 147], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_212 x 506-539 y 146-146), nowhere at the reference"},
+   {"rect": [503, 148, 546, 148], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_212 x 506-539 y 146-146), nowhere at the reference"},
+   {"rect": [503, 149, 547, 149], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_212 x 506-539 y 146-146), nowhere at the reference"}
+  ],
+  "213": [
+   {"rect": [3, 43, 41, 43], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_213 x 6-39 y 46-46), nowhere at the reference"},
+   {"rect": [3, 44, 42, 44], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_213 x 6-39 y 46-46), nowhere at the reference"},
+   {"rect": [3, 45, 43, 45], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_213 x 6-39 y 46-46), nowhere at the reference"},
+   {"rect": [3, 46, 44, 46], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_213 x 6-39 y 46-46), nowhere at the reference"},
+   {"rect": [3, 47, 45, 47], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_213 x 6-39 y 46-46), nowhere at the reference"},
+   {"rect": [3, 48, 46, 48], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_213 x 6-39 y 46-46), nowhere at the reference"},
+   {"rect": [3, 49, 47, 49], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_213 x 6-39 y 46-46), nowhere at the reference"}
+  ],
+  "223": [
+   {"rect": [400, 346, 599, 348], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_223 x 426-599 y 349-350; SCR_224 x 0-218 y 349-350), nowhere at the reference"},
+   {"rect": [423, 349, 599, 353], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_223 x 426-599 y 349-350; SCR_224 x 0-218 y 349-350), nowhere at the reference"}
+  ],
+  "224": [
+   {"rect": [0, 346, 221, 348], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_223 x 426-599 y 349-350; SCR_224 x 0-218 y 349-350), nowhere at the reference"},
+   {"rect": [275, 346, 299, 348], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_223 x 426-599 y 349-350; SCR_224 x 0-218 y 349-350), nowhere at the reference"},
+   {"rect": [0, 349, 299, 353], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_223 x 426-599 y 349-350; SCR_224 x 0-218 y 349-350), nowhere at the reference"}
+  ],
+  "309": [
+   {"rect": [403, 43, 441, 43], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_309 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 44, 442, 44], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_309 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 45, 443, 45], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_309 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 46, 444, 46], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_309 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 47, 445, 47], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_309 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 48, 446, 48], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_309 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 49, 447, 49], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_309 x 406-439 y 46-46), nowhere at the reference"}
+  ],
+  "310": [
+   {"rect": [353, 93, 391, 93], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_310 x 356-389 y 96-96), nowhere at the reference"},
+   {"rect": [353, 94, 392, 94], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_310 x 356-389 y 96-96), nowhere at the reference"},
+   {"rect": [353, 95, 393, 95], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_310 x 356-389 y 96-96), nowhere at the reference"},
+   {"rect": [353, 96, 394, 96], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_310 x 356-389 y 96-96), nowhere at the reference"},
+   {"rect": [353, 97, 395, 97], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_310 x 356-389 y 96-96), nowhere at the reference"},
+   {"rect": [353, 98, 396, 98], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_310 x 356-389 y 96-96), nowhere at the reference"},
+   {"rect": [353, 99, 397, 99], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_310 x 356-389 y 96-96), nowhere at the reference"}
+  ],
+  "319": [
+   {"rect": [403, 43, 441, 43], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_319 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 44, 442, 44], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_319 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 45, 443, 45], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_319 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 46, 444, 46], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_319 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 47, 445, 47], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_319 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 48, 446, 48], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_319 x 406-439 y 46-46), nowhere at the reference"},
+   {"rect": [403, 49, 447, 49], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_319 x 406-439 y 46-46), nowhere at the reference"}
+  ],
+  "320": [
+   {"rect": [153, 143, 191, 143], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_320 x 156-189 y 146-146), nowhere at the reference"},
+   {"rect": [153, 144, 192, 144], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_320 x 156-189 y 146-146), nowhere at the reference"},
+   {"rect": [153, 145, 193, 145], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_320 x 156-189 y 146-146), nowhere at the reference"},
+   {"rect": [153, 146, 194, 146], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_320 x 156-189 y 146-146), nowhere at the reference"},
+   {"rect": [153, 147, 195, 147], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_320 x 156-189 y 146-146), nowhere at the reference"},
+   {"rect": [153, 148, 196, 148], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_320 x 156-189 y 146-146), nowhere at the reference"},
+   {"rect": [153, 149, 197, 149], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_320 x 156-189 y 146-146), nowhere at the reference"}
+  ],
+  "343": [
+   {"rect": [3, 143, 41, 143], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 6-39 y 146-146), nowhere at the reference"},
+   {"rect": [3, 144, 42, 144], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 6-39 y 146-146), nowhere at the reference"},
+   {"rect": [3, 145, 43, 145], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 6-39 y 146-146), nowhere at the reference"},
+   {"rect": [3, 146, 44, 146], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 6-39 y 146-146), nowhere at the reference"},
+   {"rect": [3, 147, 45, 147], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 6-39 y 146-146), nowhere at the reference"},
+   {"rect": [3, 148, 46, 148], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 6-39 y 146-146), nowhere at the reference"},
+   {"rect": [3, 149, 47, 149], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 6-39 y 146-146), nowhere at the reference"},
+   {"rect": [103, 243, 141, 243], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 244, 142, 244], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 245, 143, 245], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 246, 144, 246], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 247, 145, 247], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 248, 146, 248], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 249, 147, 249], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_343 x 106-139 y 246-246), nowhere at the reference"}
+  ],
+  "427": [
+   {"rect": [115, 343, 141, 343], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_427 x 118-139 y 346-346), nowhere at the reference"},
+   {"rect": [115, 344, 142, 344], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_427 x 118-139 y 346-346), nowhere at the reference"},
+   {"rect": [115, 345, 143, 345], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_427 x 118-139 y 346-346), nowhere at the reference"},
+   {"rect": [115, 346, 144, 346], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_427 x 118-139 y 346-346), nowhere at the reference"},
+   {"rect": [115, 347, 145, 347], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_427 x 118-139 y 346-346), nowhere at the reference"},
+   {"rect": [115, 348, 146, 348], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_427 x 118-139 y 346-346), nowhere at the reference"},
+   {"rect": [115, 349, 147, 349], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_427 x 118-139 y 346-346), nowhere at the reference"}
+  ],
+  "459": [
+   {"rect": [303, 243, 341, 243], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_459 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 244, 342, 244], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_459 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 245, 343, 245], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_459 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 246, 344, 246], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_459 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 247, 345, 247], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_459 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 248, 346, 248], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_459 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 249, 347, 249], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_459 x 306-339 y 246-246), nowhere at the reference"}
+  ],
+  "559": [
+   {"rect": [153, 193, 191, 193], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_559 x 157-188 y 196-196), nowhere at the reference"},
+   {"rect": [153, 194, 192, 194], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_559 x 157-188 y 196-196), nowhere at the reference"},
+   {"rect": [153, 195, 193, 195], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_559 x 157-188 y 196-196), nowhere at the reference"},
+   {"rect": [153, 196, 194, 196], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_559 x 157-188 y 196-196), nowhere at the reference"},
+   {"rect": [153, 197, 195, 197], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_559 x 157-188 y 196-196), nowhere at the reference"},
+   {"rect": [153, 198, 196, 198], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_559 x 157-188 y 196-196), nowhere at the reference"},
+   {"rect": [153, 199, 197, 199], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_559 x 157-188 y 196-196), nowhere at the reference"}
+  ],
+  "591": [
+   {"rect": [203, 293, 241, 293], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_591 x 206-239 y 296-296), nowhere at the reference"},
+   {"rect": [203, 294, 242, 294], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_591 x 206-239 y 296-296), nowhere at the reference"},
+   {"rect": [203, 295, 243, 295], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_591 x 206-239 y 296-296), nowhere at the reference"},
+   {"rect": [203, 296, 244, 296], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_591 x 206-239 y 296-296), nowhere at the reference"},
+   {"rect": [203, 297, 245, 297], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_591 x 206-239 y 296-296), nowhere at the reference"},
+   {"rect": [203, 298, 246, 298], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_591 x 206-239 y 296-296), nowhere at the reference"},
+   {"rect": [203, 299, 247, 299], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_591 x 206-239 y 296-296), nowhere at the reference"}
+  ],
+  "623": [
+   {"rect": [203, 243, 241, 243], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 206-239 y 246-246), nowhere at the reference"},
+   {"rect": [203, 244, 242, 244], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 206-239 y 246-246), nowhere at the reference"},
+   {"rect": [203, 245, 243, 245], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 206-239 y 246-246), nowhere at the reference"},
+   {"rect": [203, 246, 244, 246], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 206-239 y 246-246), nowhere at the reference"},
+   {"rect": [203, 247, 245, 247], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 206-239 y 246-246), nowhere at the reference"},
+   {"rect": [203, 248, 246, 248], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 206-239 y 246-246), nowhere at the reference"},
+   {"rect": [203, 249, 247, 249], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 206-239 y 246-246), nowhere at the reference"},
+   {"rect": [403, 343, 441, 343], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 406-439 y 346-346), nowhere at the reference"},
+   {"rect": [403, 344, 442, 344], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 406-439 y 346-346), nowhere at the reference"},
+   {"rect": [403, 345, 443, 345], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 406-439 y 346-346), nowhere at the reference"},
+   {"rect": [403, 346, 444, 346], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 406-439 y 346-346), nowhere at the reference"},
+   {"rect": [403, 347, 445, 347], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 406-439 y 346-346), nowhere at the reference"},
+   {"rect": [403, 348, 446, 348], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 406-439 y 346-346), nowhere at the reference"},
+   {"rect": [403, 349, 447, 349], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_623 x 406-439 y 346-346), nowhere at the reference"}
+  ],
+  "625": [
+   {"rect": [312, 143, 341, 143], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_625 x 315-339 y 146-146), nowhere at the reference"},
+   {"rect": [312, 144, 342, 144], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_625 x 315-339 y 146-146), nowhere at the reference"},
+   {"rect": [312, 145, 343, 145], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_625 x 315-339 y 146-146), nowhere at the reference"},
+   {"rect": [312, 146, 344, 146], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_625 x 315-339 y 146-146), nowhere at the reference"},
+   {"rect": [312, 147, 345, 147], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_625 x 315-339 y 146-146), nowhere at the reference"},
+   {"rect": [312, 148, 346, 148], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_625 x 315-339 y 146-146), nowhere at the reference"},
+   {"rect": [312, 149, 347, 149], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_625 x 315-339 y 146-146), nowhere at the reference"}
+  ],
+  "631": [
+   {"rect": [153, 93, 191, 93], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_631 x 156-189 y 96-96), nowhere at the reference"},
+   {"rect": [153, 94, 192, 94], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_631 x 156-189 y 96-96), nowhere at the reference"},
+   {"rect": [153, 95, 193, 95], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_631 x 156-189 y 96-96), nowhere at the reference"},
+   {"rect": [153, 96, 194, 96], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_631 x 156-189 y 96-96), nowhere at the reference"},
+   {"rect": [153, 97, 195, 97], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_631 x 156-189 y 96-96), nowhere at the reference"},
+   {"rect": [153, 98, 196, 98], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_631 x 156-189 y 96-96), nowhere at the reference"},
+   {"rect": [153, 99, 197, 99], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_631 x 156-189 y 96-96), nowhere at the reference"}
+  ],
+  "654": [
+   {"rect": [353, 143, 391, 143], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_654 x 356-390 y 146-146), nowhere at the reference"},
+   {"rect": [353, 144, 392, 144], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_654 x 356-390 y 146-146), nowhere at the reference"},
+   {"rect": [353, 145, 393, 145], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_654 x 356-390 y 146-146), nowhere at the reference"},
+   {"rect": [353, 146, 394, 146], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_654 x 356-390 y 146-146), nowhere at the reference"},
+   {"rect": [353, 147, 395, 147], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_654 x 356-390 y 146-146), nowhere at the reference"},
+   {"rect": [353, 148, 396, 148], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_654 x 356-390 y 146-146), nowhere at the reference"},
+   {"rect": [353, 149, 397, 149], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_654 x 356-390 y 146-146), nowhere at the reference"}
+  ],
+  "655": [
+   {"rect": [103, 243, 141, 243], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 244, 142, 244], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 245, 143, 245], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 246, 144, 246], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 247, 145, 247], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 248, 146, 248], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [103, 249, 147, 249], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 106-139 y 246-246), nowhere at the reference"},
+   {"rect": [303, 243, 341, 243], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 244, 342, 244], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 245, 343, 245], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 246, 344, 246], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 247, 345, 247], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 248, 346, 248], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 306-339 y 246-246), nowhere at the reference"},
+   {"rect": [303, 249, 347, 249], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_655 x 306-339 y 246-246), nowhere at the reference"}
+  ],
+  "662": [
+   {"rect": [403, 93, 441, 93], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_662 x 406-439 y 96-96), nowhere at the reference"},
+   {"rect": [403, 94, 442, 94], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_662 x 406-439 y 96-96), nowhere at the reference"},
+   {"rect": [403, 95, 443, 95], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_662 x 406-439 y 96-96), nowhere at the reference"},
+   {"rect": [403, 96, 444, 96], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_662 x 406-439 y 96-96), nowhere at the reference"},
+   {"rect": [403, 97, 445, 97], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_662 x 406-439 y 96-96), nowhere at the reference"},
+   {"rect": [403, 98, 446, 98], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_662 x 406-439 y 96-96), nowhere at the reference"},
+   {"rect": [403, 99, 447, 99], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_662 x 406-439 y 96-96), nowhere at the reference"}
+  ],
+  "686": [
+   {"rect": [153, 243, 191, 243], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_686 x 156-190 y 246-246), nowhere at the reference"},
+   {"rect": [153, 244, 192, 244], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_686 x 156-190 y 246-246), nowhere at the reference"},
+   {"rect": [153, 245, 193, 245], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_686 x 156-190 y 246-246), nowhere at the reference"},
+   {"rect": [153, 246, 194, 246], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_686 x 156-190 y 246-246), nowhere at the reference"},
+   {"rect": [153, 247, 195, 247], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_686 x 156-190 y 246-246), nowhere at the reference"},
+   {"rect": [153, 248, 196, 248], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_686 x 156-190 y 246-246), nowhere at the reference"},
+   {"rect": [153, 249, 197, 249], "why": "closed pocket of the 1997 map (check_capsule_gaps.py): the capsule fits it at the enlarged scale (SCR_686 x 156-190 y 246-246), nowhere at the reference"}
   ]
  }
 }
