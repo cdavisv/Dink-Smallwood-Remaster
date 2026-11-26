@@ -31,6 +31,9 @@ import importlib.util as _ilu
 _spec = _ilu.spec_from_file_location('add_kit_lods', str(ROOT / 'Scripts/add_kit_lods.py'))
 kit_lods = _ilu.module_from_spec(_spec)
 _spec.loader.exec_module(kit_lods)
+_spec = _ilu.spec_from_file_location('kit_stamp', str(ROOT / 'Scripts/kit_stamp.py'))
+kit_stamp = _ilu.module_from_spec(_spec)
+_spec.loader.exec_module(kit_stamp)
 MESHES = (unreal.get_editor_subsystem(unreal.StaticMeshEditorSubsystem) or unreal.get_default_object(unreal.StaticMeshEditorSubsystem))
 report = {'materials': [], 'modules': [], 'warnings': [], 'lod_sections_remapped': []}
 REMAPPED = report['lod_sections_remapped']
@@ -46,16 +49,22 @@ def save(asset):
         raise RuntimeError('Cannot save ' + asset.get_path_name())
 
 
-def stamp_of(path):
-    path = Path(path)
-    return f'{path.stat().st_size}:{int(path.stat().st_mtime)}'
+def stamp_of(path, suffix=''):
+    """Content stamp of a source file (A9, 25 Nov 2026: was size + mtime, which differs in every checkout)."""
+    return kit_stamp.stamp(path, suffix)
+
+
+def unchanged(asset, target, path, suffix=''):
+    """The asset was imported from this file's content: its DinkSource is the content stamp, or an older size:mtime
+    stamp whose import Unreal recorded with this file's MD5 (Scripts/kit_stamp.py)."""
+    return kit_stamp.status(LIB.get_metadata_tag(asset, 'DinkSource'), path, kit_stamp.package_file(ROOT, target), suffix) is not None
 
 
 def import_texture(path, kind):
     path = Path(path)
     target = TEX + '/' + path.stem
     existing = LIB.load_asset(target) if LIB.does_asset_exist(target) else None
-    if existing is not None and LIB.get_metadata_tag(existing, 'DinkSource') == stamp_of(path):
+    if existing is not None and unchanged(existing, target, path):
         return existing
     task = unreal.AssetImportTask()
     task.filename = str(path.resolve())
@@ -374,9 +383,9 @@ def import_module(fbx, name):
     """One FBX with objects <name>_LOD0.._LOD2 (or a single object <name>) and UCX hulls -> one static mesh
     with the LODs the file holds, no collision."""
     target = FOLDER + '/' + name
-    key = stamp_of(fbx) + ':town2'
+    key = stamp_of(fbx, 'town2')
     existing = LIB.load_asset(target) if LIB.does_asset_exist(target) else None
-    if existing is not None and LIB.get_metadata_tag(existing, 'DinkSource') == key:
+    if existing is not None and unchanged(existing, target, fbx, 'town2'):
         return existing, False
     temp = FOLDER + '/_Import'
     options = unreal.FbxImportUI()
