@@ -39,7 +39,8 @@
    0.55,
    0.95,
    1.0
-  ]
+  ],
+  "defringed": true
  },
  "preview": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Unclaimed/fire_burst_fx/Atomic/frames_strip.png",
  "source_note": "frames are computed by the build script (seeded, deterministic): numpy fields -> OpenVDB -> Cycles volume render; no .blend is kept",
