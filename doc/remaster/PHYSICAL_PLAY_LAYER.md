@@ -90,7 +90,9 @@ Only WHEN a hit or touch lands changes. What it does is the 1997 path unchanged:
   (map pixels, inclusive) inside a hardness outline that Dink's capsule could not enter at the reference scale and fits at the enlarged
   one (fewer pixels per 28 cm). With part Collision on they join the screen's low collision (`SyncGreyboxLowHardness`, Dink's capsule only;
   `get_hard`, brains and missiles keep 0 there). Only closed pockets no walk of the 1997 map reaches are listed (reviewed findings of
-  `Scripts/check_capsule_gaps.py`). First row: the one-row slit of SCR_189/190 (WORLD_SCALE.md 14.1). Test: `Dink.PhysicalPlay.SealedGaps`.
+  `Scripts/check_capsule_gaps.py`). First row: the one-row slit of SCR_189/190 (WORLD_SCALE.md 14.1); then the 36 closed pockets the
+  check finds (33 screens). The check exits 1 when a closed pocket it could seal is not in the list. Test: `Dink.PhysicalPlay.SealedGaps`
+  (every sealed screen, layer on: no free capsule cell inside a sealed rect).
 
 ## 2. Dink's attack
 - `UDinkGameplay::RunThroughTagList` already has a 3D branch (`UsesAuthoredGeometry` / `AuthoredGeometryMatches`, Hit): a

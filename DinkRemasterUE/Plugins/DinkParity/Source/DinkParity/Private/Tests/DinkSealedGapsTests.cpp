@@ -4,6 +4,7 @@
 // east): with the world scale on the 28 cm capsule fits it (9.0 cm/px) and the probe's chapter 17 teleport landed in it. Measured on the
 // real generated world (PIE) with the walk audit's own capsule mask (DinkWalkAudit::WalkMask, 3 px cells): with part Collision on no cell
 // of the slit is free and the open floor beside it is; get_hard is the 1997 code in both modes (the simulation does not change).
+// Then every other sealed screen (the closed pockets of Scripts/check_capsule_gaps.py), layer on: no free capsule cell inside a sealed rect.
 #include "DinkTestHelpers.h"
 #include "DinkStorySubsystem.h"
 #include "DinkDirector.h"
@@ -63,7 +64,7 @@ public:
 	bool Update() override
 	{
 		if (!Began) Began = FPlatformTime::Seconds();
-		if (FPlatformTime::Seconds() - Began > 300) { Test->AddError(TEXT("sealed gaps PIE timeout")); return true; }
+		if (FPlatformTime::Seconds() - Began > 900) { Test->AddError(TEXT("sealed gaps PIE timeout")); return true; }
 		UWorld* W = GEditor ? GEditor->PlayWorld.Get() : nullptr;
 		APlayerController* PC = W ? W->GetFirstPlayerController() : nullptr;
 		ADinkGreyboxCharacter* H = PC ? Cast<ADinkGreyboxCharacter>(PC->GetPawn()) : nullptr;
@@ -93,9 +94,9 @@ public:
 		{
 			const int32 Mode = Step / 6 == 0 ? 0 : 2;
 			const FSealCheck& C = Checks[(Step / 3) % 2];
-			const int32 Sub = Step % 3;
-			if (Sub == 0) { SetLayer(Mode); Grey->GotoScreen(407, 300, 200); At = Now; ++Phase; return false; }
-			if (Sub == 1) { if (Since < 1.0) return false; Grey->GotoScreen(C.Screen, C.EntryX, C.EntryY); At = Now; ++Phase; return false; }
+			const int32 Part = Step % 3;
+			if (Part == 0) { SetLayer(Mode); Grey->GotoScreen(407, 300, 200); At = Now; ++Phase; return false; }
+			if (Part == 1) { if (Since < 1.0) return false; Grey->GotoScreen(C.Screen, C.EntryX, C.EntryY); At = Now; ++Phase; return false; }
 			if (Since < 1.5) return false;
 			const TCHAR* Layer = Mode ? TEXT("on") : TEXT("off");
 			const TArray<bool> Cells = DecodeWalkMask(DinkWalkAudit::WalkMask(*W, C.Screen, 3));
@@ -132,12 +133,54 @@ public:
 			Test->TestFalse(TEXT("SCR_190 (layer on): a teleport into the sealed slit does not leave Dink in it"), Me.Screen == 190 && Me.Y >= 246 && Me.Y <= 253 && Me.X - 20 <= 199);
 			++Phase; return false;
 		}
+		// ---- every sealed screen, layer on
+		if (Others.IsEmpty() && !bOthersListed)
+		{
+			bOthersListed = true;
+			for (const TPair<int32, TArray<FIntRect>>& Pair : G->GetPhysicalPlaySettings().Sealed) if (Pair.Key != 189 && Pair.Key != 190) Others.Add(Pair.Key);
+			Others.Sort();
+			Test->AddInfo(FString::Printf(TEXT("%d other sealed screens"), Others.Num()));
+		}
+		if (Other < Others.Num())
+		{
+			const int32 Screen = Others[Other];
+			if (Sub == 0) { SetLayer(2); Grey->GotoScreen(Screen == 407 ? 408 : 407, 300, 200); At = Now; Sub = 1; return false; }
+			if (Sub == 1)
+			{
+				if (Since < 1.0) return false;
+				// any free spot of the screen (the teleport refuses a blocked one)
+				static const FIntPoint Spots[] = { {300, 200}, {150, 100}, {450, 100}, {150, 300}, {450, 300}, {300, 60}, {300, 340}, {60, 200}, {540, 200}, {100, 380}, {500, 380}, {100, 20}, {500, 20} };
+				bool bIn = false;
+				for (const FIntPoint& P : Spots) if (Grey->GotoScreen(Screen, P.X, P.Y)) { bIn = true; break; }
+				if (!bIn) bIn = Grey->GotoScreen(Screen, 300, 200, /*bEvenIntoWalls*/ true);
+				if (!Test->TestTrue(FString::Printf(TEXT("SCR_%03d: Dink is set down on the screen"), Screen), bIn)) { ++Other; Sub = 0; return false; }
+				At = Now; Sub = 2; return false;
+			}
+			if (Since < 1.5) return false;
+			const TArray<bool> Cells = DecodeWalkMask(DinkWalkAudit::WalkMask(*W, Screen, 3));
+			int32 Free = 0, Tested = 0;
+			if (Cells.Num() >= 200 * 133)
+				for (const FIntRect& R : G->GetPhysicalPlaySettings().Sealed[Screen])
+					for (int32 Cy = R.Min.Y / 3; Cy <= R.Max.Y / 3; ++Cy)
+						for (int32 Cx = R.Min.X / 3; Cx <= R.Max.X / 3; ++Cx)
+						{
+							const double Px = Cx * 3 + 1.5, Py = Cy * 3 + 1.5;
+							if (Px < R.Min.X || Px > R.Max.X + 1 || Py < R.Min.Y || Py > R.Max.Y + 1) continue;
+							++Tested;
+							Free += Cells[Cy * 200 + Cx];
+						}
+			Test->AddInfo(FString::Printf(TEXT("SCR_%03d (layer on): %d of %d sealed cells free (Dink on screen %d)"), Screen, Free, Tested, D->GetDink().Screen));
+			Test->TestEqual(FString::Printf(TEXT("SCR_%03d (layer on): no sealed cell is free for Dink's capsule"), Screen), Free, 0);
+			++Other; Sub = 0; return false;
+		}
 		SetLayer(-1);
 		return true;
 	}
 	FAutomationTestBase* Test;
 	double Began = 0, At = 0;
-	int32 Phase = 0;
+	int32 Phase = 0, Other = 0, Sub = 0;
+	bool bOthersListed = false;
+	TArray<int32> Others;
 };
 }
 
