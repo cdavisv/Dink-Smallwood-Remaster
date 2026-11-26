@@ -244,6 +244,41 @@ static FAutoConsoleCommandWithWorld GDinkAttackCommand(
 		}
 	}));
 
+static FAutoConsoleCommandWithWorldAndArgs GDinkAttackHoldCommand(
+	TEXT("dink.AttackHold"),
+	TEXT("dink.AttackHold [seconds]: review only (capture scripts): holds the attack key down (with the bow armed the draw grows, 7 power a frame up to 500) and lets go after that many seconds of game time, so the bow shoots; without seconds, or with 0, it stays down until dink.AttackRelease or a second dink.AttackHold. dink.Attack stays a tap."),
+	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
+	{
+		UDinkStorySubsystem* S = GetStory(World);
+		UDinkGameplay* G = S ? S->GetGameplay() : nullptr;
+		if (!G)
+		{
+			return;
+		}
+		if (G->IsAttackHeld())
+		{
+			G->ReviewAttackRelease();
+			UE_LOG(LogDinkNarrative, Display, TEXT("dink.AttackHold: released (bow power %d)"), G->GetBowPower());
+			return;
+		}
+		const double Seconds = Args.Num() > 0 ? FCString::Atod(*Args[0]) : 0.0;
+		const bool bUsed = G->ReviewAttackHold(Seconds);
+		UE_LOG(LogDinkNarrative, Display, TEXT("dink.AttackHold: key down%s, %s"), *(Seconds > 0.0 ? FString::Printf(TEXT(" for %.2f s"), Seconds) : FString(TEXT(" until dink.AttackRelease"))),
+			bUsed ? (G->IsBowActive() ? TEXT("the bow is drawn") : TEXT("used the armed item")) : TEXT("nothing armed, or Dink is frozen"));
+	}));
+
+static FAutoConsoleCommandWithWorld GDinkAttackReleaseCommand(
+	TEXT("dink.AttackRelease"),
+	TEXT("dink.AttackRelease: review only: lets go of the attack key a dink.AttackHold holds (a drawn bow shoots on its next frame)."),
+	FConsoleCommandWithWorldDelegate::CreateLambda([](UWorld* World)
+	{
+		if (UDinkStorySubsystem* S = GetStory(World))
+		{
+			const int32 Power = S->GetGameplay()->GetBowPower();
+			UE_LOG(LogDinkNarrative, Display, TEXT("dink.AttackRelease: %s (bow power %d)"), S->GetGameplay()->ReviewAttackRelease() ? TEXT("released") : TEXT("the key was not held"), Power);
+		}
+	}));
+
 static FAutoConsoleCommandWithWorldAndArgs GDinkHurtCommand(
 	TEXT("dink.Hurt"),
 	TEXT("dink.Hurt <S001_P26> <damage>: review only: hurt_thing on a placement's sprite of the current screen, as a player's blow would (its brain applies it next tick). For captures of deaths and what they leave."),
