@@ -1386,6 +1386,12 @@ int32 UDinkGameplay::FindReviewSprite(const FString& Arg) const
 	return Best;
 }
 
+bool UDinkGameplay::IsReviewBlowHeld() const
+{
+	const UDinkDirector* D = Director();
+	return D && D->bStopEntireGame;
+}
+
 int32 UDinkGameplay::ReviewBlow(int32 Target, int32 Damage)
 {
 	UDinkDirector* D = Director();

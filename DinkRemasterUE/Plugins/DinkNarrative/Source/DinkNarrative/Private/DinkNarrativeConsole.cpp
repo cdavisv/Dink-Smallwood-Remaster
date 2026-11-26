@@ -272,7 +272,7 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkHurtCommand(
 
 static FAutoConsoleCommandWithWorldAndArgs GDinkHurtSpriteCommand(
 	TEXT("dink.HurtSprite"),
-	TEXT("dink.HurtSprite <S680_P12 | handle | script | nearest> <damage>: review only (captures of deaths and what they leave): one of Dink's blows on that sprite with this damage, as run_through_tag_list deals it (hurt_thing, random_blood, then its `hit` with &enemy_sprite 1). Finds script-made sprites by their script name (e.g. s3-mog) or handle (dink.Sprites lists them); the kill follows when its brain thinks."),
+	TEXT("dink.HurtSprite <S680_P12 | handle | script | nearest> <damage>: review only (captures of deaths and what they leave): one of Dink's blows on that sprite with this damage, as run_through_tag_list deals it (hurt_thing, random_blood, then its `hit` with &enemy_sprite 1). Finds script-made sprites by their script name (e.g. s3-mog) or handle (dink.Sprites lists them); the kill follows when its brain thinks. Refused while stop_entire_game holds the world (the level-up menu after a kill: answer it with dink.Choose <1-3> first)."),
 	FConsoleCommandWithWorldAndArgsDelegate::CreateLambda([](const TArray<FString>& Args, UWorld* World)
 	{
 		UDinkStorySubsystem* S = GetStory(World);
@@ -282,6 +282,12 @@ static FAutoConsoleCommandWithWorldAndArgs GDinkHurtSpriteCommand(
 			return;
 		}
 		UDinkGameplay* G = S->GetGameplay();
+		if (G->IsReviewBlowHeld())
+		{
+			// While the level-up menu is up no brain thinks (D:17414-17423): the damage would wait on the sprite for the answer.
+			UE_LOG(LogDinkNarrative, Display, TEXT("dink.HurtSprite: refused, the game is stopped (stop_entire_game: the level-up menu of lraise.c is up); answer it with dink.Choose <1-3> first, nothing dealt"));
+			return;
+		}
 		const int32 Handle = G->FindReviewSprite(Args[0]);
 		if (Handle <= 0)
 		{
