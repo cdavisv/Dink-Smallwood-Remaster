@@ -1,0 +1,28 @@
+name: LFS private-path check
+# Reads every file a pull request adds or changes, in every commit, with its LFS content downloaded for real (only those
+# files), and fails on a personal home path (tools/coord/lfs_private_check.sh). Draft PRs are skipped to save LFS
+# bandwidth (art drafts change large binaries on every push); tools/coord/merge_pr2.sh runs the same check locally
+# before any merge. Optional repository secret DINK_PRIVATE_PATTERNS: extra comma-separated words to search for.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+permissions:
+  contents: read
+jobs:
+  lfs-private-check:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Private-path check of the PR's files (LFS content read)
+        env:
+          DINK_PRIVATE_PATTERNS: ${{ secrets.DINK_PRIVATE_PATTERNS }}
+        run: |
+          git lfs install --local --skip-smudge
+          tools/coord/lfs_private_check.sh "${{ github.event.pull_request.head.sha }}" "${{ github.event.pull_request.base.sha }}"
