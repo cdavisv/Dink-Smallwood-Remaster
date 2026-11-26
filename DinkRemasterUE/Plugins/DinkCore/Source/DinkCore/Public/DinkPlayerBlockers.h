@@ -47,6 +47,11 @@ namespace DinkPlayerBlockers
 	DINKCORE_API const TSet<FString>& SkipOrigins();
 	/** Tag on every blocker component. */
 	DINKCORE_API extern const FName Tag;
+	/**
+	 * Tag on a placement actor that 1997 parks outside its screen's 600 x 400 playfield (its whole picture lies outside, bug A13):
+	 * 1997 never draws it and its hardbox falls off the hardness map, so its blockers block nothing (UDinkGameplay::UpdateParkedPlacements).
+	 */
+	DINKCORE_API extern const FName ParkedTag;
 }
 
 /**

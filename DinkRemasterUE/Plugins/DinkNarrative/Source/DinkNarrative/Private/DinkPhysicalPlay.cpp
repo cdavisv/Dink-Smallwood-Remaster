@@ -729,7 +729,8 @@ void UDinkGameplay::UpdateCreatureBodyBlockers()
 			// (only the class rows listed in physical_play.ini StillBodies: a still cut-scene body elsewhere must not stand in Dink's way)
 			const UDinkCreatureClassComponent* StillClass = A && S.GetProp(TEXT("brain")) == 0 && S.GetProp(TEXT("hard"), 1) == 0 ? UDinkCreatureSubsystem::FindClassBody(A) : nullptr;
 			const bool bStillSolid = StillClass && PhysicalPlay.StillBodies.Contains(StillClass->GetClassId());
-			if (Pair.Key == 1 || !A || !S.bActive || A->IsHidden() || (S.GetProp(TEXT("brain")) == 0 && !bStillSolid) || S.GetProp(TEXT("nohit")) != 0) continue;
+			// a body 1997 parks outside the playfield (A13) is drawn nowhere and blocks nothing
+			if (Pair.Key == 1 || !A || !S.bActive || A->IsHidden() || IsParked(A) || (S.GetProp(TEXT("brain")) == 0 && !bStillSolid) || S.GetProp(TEXT("nohit")) != 0) continue;
 			// Review of PR #160, finding 1: the creatures of creatures.json's placement rows (tag DinkCreature) AND every class-bound
 			// creature (its UDinkCreatureClassComponent: script-made and placed foes, ducks, pigs), but not people (brain 16, the
 			// smart people of dink.cpp; their 1997 boxes are their own) nor a placement row whose authored body boxes (Pawn profile,
