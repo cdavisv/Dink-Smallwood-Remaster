@@ -182,6 +182,12 @@ struct DINKNARRATIVE_API FDinkPhysicalPlaySettings
 	 * brains and missiles keep the 1997 hardness). Reviewed rows of Scripts/check_capsule_gaps.py.
 	 */
 	TMap<int32, TArray<FIntRect>> Sealed;
+	/**
+	 * A71 joints (world scale, 26 Nov 2026), per screen: map-pixel rects (inclusive) where two trimmed walls' drawn strips are staggered
+	 * (SCR_713 P06 / P13): each strip over the other's box and a plug across the slot between them. A trimmed wall's box pixel inside a
+	 * joint stays solid for Dink whichever wall's box owns it, so trimming both walls opens no way the 1997 boxes closed.
+	 */
+	TMap<int32, TArray<FIntRect>> Joints;
 	FString Source;
 	static FString DefaultIniPath();
 	static FString DefaultRelaxedPath();

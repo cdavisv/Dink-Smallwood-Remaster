@@ -246,44 +246,94 @@ def wall_candidates(rows, screen):
         else:        # runs north-south
             rect = (int(l), max(0, int(bt)), max(int(rr), int(l) + 2), min(399, int(bb) - 1))
         box = (max(0, int(bl)), max(0, int(bt)), min(599, int(br) - 1), min(399, int(bb) - 1))
-        out.append((int(r['origin'].split('_P')[1]), rect, box))
+        out.append((int(r['origin'].split('_P')[1]), rect, box, (int(l), int(t), int(rr), int(b))))
     return out
 
 
-def trim_walls(screen, walls, free, owners, fill_cells, relaxed, feet, trimmed, kept):
+def wall_joints(n, walls, trimmed_screen):
+    """A71 at the enlarged scale (26 Nov 2026): where a wall's drawn strip and the strip of a trimmed wall whose box overlaps it along the
+    same line are staggered (SCR_713: P06 drawn at y 206-213, P13 at y 222-229, boxes overlapping at x 246-271), trimming both opens the
+    slot between the two strips. The joint keeps, whoever's box owns the pixels there: each wall's drawn strip over the overlap (as far as
+    its module is drawn) and a plug three pixels wide across the slot where the two modules meet. Rects in map pixels, inclusive."""
+    by_n = {w[0]: w for w in walls}
+    me = by_n.get(n)
+    if me is None:
+        return []
+    _, (sl, st, sr, sb), (bl, bt, br, bb), (ol, ot, orr, ob) = me
+    along_x = sr - sl >= sb - st
+    out = []
+    for v, (vsl, vst, vsr, vsb), (vbl, vbt, vbr, vbb), (vol, vot, vorr, vob) in walls:
+        if v == n or str(v) not in trimmed_screen or (vsr - vsl >= vsb - vst) != along_x:
+            continue
+        if along_x:
+            lo, hi = max(bl, vbl), min(br, vbr)          # the boxes' overlap along the line
+            if hi < lo or max(bt, vbt) > min(bb, vbb) or not (vst > sb or vsb < st):
+                continue  # no overlap, or the two strips line up (no slot between them)
+            west = ol <= vol                               # this wall is drawn west of the other
+            meet = (orr + vol) / 2.0 if west else (vorr + ol) / 2.0
+            m = int(round(min(max(meet, lo), hi)))
+            mine = (lo, st, min(hi, orr), sb) if west else (max(lo, ol), st, hi, sb)
+            theirs = (max(lo, vol), vst, hi, vsb) if west else (lo, vst, min(hi, vorr), vsb)
+            plug = (m - 1, min(sb, vsb), m + 1, max(st, vst))
+        else:
+            lo, hi = max(bt, vbt), min(bb, vbb)
+            if hi < lo or max(bl, vbl) > min(br, vbr) or not (vsl > sr or vsr < sl):
+                continue
+            north = ot <= vot
+            meet = (ob + vot) / 2.0 if north else (vob + ot) / 2.0
+            m = int(round(min(max(meet, lo), hi)))
+            mine = (sl, lo, sr, min(hi, ob)) if north else (sl, max(lo, ot), sr, hi)
+            theirs = (vsl, max(lo, vot), vsr, hi) if north else (vsl, lo, vsr, min(hi, vob))
+            plug = (min(sr, vsr), m - 1, max(sl, vsl), m + 1)
+        for r in (mine, theirs, plug):
+            if r[2] >= r[0] and r[3] >= r[1]:
+                out.append(tuple(int(x) for x in r))
+    return out
+
+
+def rect_cells(rects):
+    """3 px cells touched by map-pixel rects (inclusive)."""
+    out = set()
+    for l, t, r, b in rects:
+        for y in range(max(0, t) // CELL, min(GH - 1, b // CELL) + 1):
+            for x in range(max(0, l) // CELL, min(GW - 1, r // CELL) + 1):
+                out.add((x, y))
+    return out
+
+
+def trim_walls(screen, walls, free, owners, fill_cells, relaxed, feet, trimmed, kept, joints=None):
     """Trims each wall box to its drawn strip when no passage opens: on the 1997 hardness at 3 px less the export's fills (nobody walks
     the void or the sea), every 4-connected piece of the freed box cells touches at most one walkable region (a room on each side of a
-    partition stays two rooms: the strip still parts them)."""
+    partition stays two rooms: the strip still parts them). A wall that fails only because its strip and a trimmed neighbour's are
+    staggered is trimmed with a joint (wall_joints) when the joint closes the slot: the joint's rects go to `joints` (kept solid for
+    Dink in play whoever's box owns the pixel)."""
     fill_cells = fill_cells or set()
     ground = [[free[y][x] and (x, y) not in fill_cells for x in range(GW)] for y in range(GH)]
     lab, sizes = label_free(ground)
-    for n, (l, t, r, b), box in walls:
+    owner_of = {c: o for o, cs in owners.items() for c in cs}
+    for n, (l, t, r, b), box, _own in walls:
         keep = lambda x, y: x * CELL + CELL > l and x * CELL <= r and y * CELL + CELL > t and y * CELL <= b
         cells = [(x, y) for x, y in owners.get(n, []) if not keep(x, y)]
         if not cells:
             continue
-        # pieces of the freed cells
-        todo, pieces = set(cells), []
-        while todo:
-            seed = todo.pop()
-            piece, stack = [seed], [seed]
-            while stack:
-                x, y = stack.pop()
-                for q in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                    if q in todo:
-                        todo.discard(q)
-                        piece.append(q)
-                        stack.append(q)
-            pieces.append(piece)
-        bad, useful = False, False
-        for piece in pieces:
-            touched = set()
-            for x, y in piece:
-                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                    if 0 <= nx < GW and 0 <= ny < GH and lab[ny][nx] and sizes.get(lab[ny][nx], 0) >= MIN_REGION:
-                        touched.add(lab[ny][nx])
-            bad |= len(touched) >= 2
-            useful |= len(touched) == 1
+        bad, useful, pieces = freed_pieces_test(cells, lab, sizes)
+        joint = []
+        if bad and joints is not None:
+            joint = wall_joints(n, walls, trimmed.get(str(screen), {}))
+            if joint:
+                jcells = rect_cells(joint)
+                # the joint stands for everyone's box under it: cells another trimmed wall freed are walls again
+                trial = [row[:] for row in ground]
+                for x, y in jcells:
+                    if owner_of.get((x, y)) is not None:
+                        trial[y][x] = False
+                tlab, tsizes = label_free(trial)
+                tcells = [c for c in cells if c not in jcells]
+                tbad, tuseful, tpieces = freed_pieces_test(tcells, tlab, tsizes)
+                if not tbad and tuseful:
+                    ground, lab, sizes, cells, pieces, bad, useful = trial, tlab, tsizes, tcells, tpieces, False, True
+                else:
+                    joint = []
         if bad:
             kept.append({'origin': f'S{screen:03d}_P{n:02d}', 'mesh': 'wall', 'reason': 'passage: a freed piece of the wall box joins two walkable regions'})
             continue
@@ -304,6 +354,35 @@ def trim_walls(screen, walls, free, owners, fill_cells, relaxed, feet, trimmed, 
         relaxed.setdefault(str(screen), []).append(n)
         feet.setdefault(str(screen), {})[str(n)] = [l, t, r, b]
         trimmed.setdefault(str(screen), {})[str(n)] = list(box)
+        if joint:
+            joints.setdefault(str(screen), []).extend([list(j) for j in joint])
+
+
+def freed_pieces_test(cells, lab, sizes):
+    """The 4-connected pieces of freed cells; bad = a piece touches two walkable regions, useful = a piece touches exactly one."""
+    # pieces of the freed cells
+    todo, pieces = set(cells), []
+    while todo:
+        seed = todo.pop()
+        piece, stack = [seed], [seed]
+        while stack:
+            x, y = stack.pop()
+            for q in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if q in todo:
+                    todo.discard(q)
+                    piece.append(q)
+                    stack.append(q)
+        pieces.append(piece)
+    bad, useful = False, False
+    for piece in pieces:
+        touched = set()
+        for x, y in piece:
+            for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if 0 <= nx < GW and 0 <= ny < GH and lab[ny][nx] and sizes.get(lab[ny][nx], 0) >= MIN_REGION:
+                    touched.add(lab[ny][nx])
+        bad |= len(touched) >= 2
+        useful |= len(touched) == 1
+    return bad, useful, pieces
 
 
 def main(argv=None):
@@ -337,7 +416,7 @@ def main(argv=None):
     with open(os.path.join(a.audit, 'phys_origins.csv'), newline='', encoding='utf-8') as f:
         for r in csv.DictReader(f):
             rows.setdefault(int(r['screen']), []).append(r)
-    relaxed, kept, feet, open_tiles, kept_tiles, trimmed = {}, [], {}, {}, [], {}
+    relaxed, kept, feet, open_tiles, kept_tiles, trimmed, joints = {}, [], {}, {}, [], {}, {}
     audit_tiles = read_audit_tiles(a.audit, a.audit_tiles) if a.audit_tiles > 0 else {}
     fills = read_fills(a.collision) if a.collision else None
     world = World(a.repo, sorted({int(fn[4:7]) for fn in os.listdir(os.path.join(a.repo, 'tools', 'dinkex', 'out', 'screens'))
@@ -429,7 +508,7 @@ def main(argv=None):
             open_tiles.setdefault(str(screen), []).append(cell)
         # walls (A71), after the boxes and tiles so that their results do not depend on this step
         if walls:
-            trim_walls(screen, walls, free, owners, fills.get(screen), relaxed, feet, trimmed, kept)
+            trim_walls(screen, walls, free, owners, fills.get(screen), relaxed, feet, trimmed, kept, joints)
     out = {
         'schema': 'dink-relaxed-hardboxes/2',
         'about': 'Placements whose 1997 hardbox the player may enter while the physical play layer is on (doc/remaster/PHYSICAL_PLAY_LAYER.md); '
@@ -440,6 +519,7 @@ def main(argv=None):
         'open_tiles': {k: sorted(v) for k, v in sorted(open_tiles.items(), key=lambda kv: int(kv[0]))},
         'kept_tiles': kept_tiles,
         'trimmed': {k: v for k, v in sorted(trimmed.items(), key=lambda kv: int(kv[0]))},
+        'joints': {k: v for k, v in sorted(joints.items(), key=lambda kv: int(kv[0]))},
     }
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     with open(a.out, 'w', encoding='utf-8') as f:
@@ -447,7 +527,8 @@ def main(argv=None):
         f.write('\n')
     print(f'{a.out}: {sum(len(v) for v in relaxed.values())} boxes relaxed on {len(relaxed)} screens, {len(kept)} kept (passage); '
           f'{sum(len(v) for v in open_tiles.values())} open tiles on {len(open_tiles)} screens, {len(kept_tiles)} kept (passage); '
-          f'{sum(len(v) for v in trimmed.values())} walls trimmed to their drawn face on {len(trimmed)} screens')
+          f'{sum(len(v) for v in trimmed.values())} walls trimmed to their drawn face on {len(trimmed)} screens, '
+          f'{sum(len(v) for v in joints.values())} joint rects on {len(joints)} screens')
     return 0
 
 

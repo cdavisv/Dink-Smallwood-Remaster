@@ -349,7 +349,12 @@ screens, 72 kept; 520 walls trimmed to their drawn face on 36 screens.
   notch shows where the dirt bank meets the meadow (rendered check, below).
 - **A71 walls.** S713_P06 (and S712's walls) keep their 1997 box at this scale: P06's drawn strip (y 206-213) and P13's (y 222-229) are
   staggered, so freeing both boxes would join the corridor's two sides (the generator's passage rule). `Dink.PhysicalPlay.BlockageRows`
-  walks the trimmed P07 beside it instead.
+  walks the trimmed P07 beside it instead. **Joint (26 Nov 2026):** `make_relaxed_hardboxes.py` now trims such a wall
+  with a joint when a trimmed neighbour's strip is staggered against it: each drawn strip over the other's box and a plug three pixels
+  wide across the slot where the two modules meet (`relaxed_hardboxes.json` `"joints"`, map pixels; in play a trimmed wall's box pixel
+  inside a joint stays solid whoever's box owns it). S713_P06 is trimmed now (1027 boxes relaxed, 95 kept, 521 walls trimmed, 3 joint
+  rects on SCR_713); the slot stays closed (`Dink.PhysicalPlay.WallJoints`). SCR_712's P16 box (x 549-599, y 190-251) is not a wall
+  candidate: nothing is drawn for it at this scale (its module stands past the screen edge), so its 1997 box stays: an art row.
 - **Player-only blockers (#129).** A blocker-off `dink.WalkAudit` at both scales gives the same 38 meshes through
   `make_player_blockers.py` (only hull and z values move with the ground under each placement); the committed list (45, drift since
   14 Nov) is kept. `check_player_blockers.py` on the enlarged blocker-on audit: 336 screens, 0 cut off.

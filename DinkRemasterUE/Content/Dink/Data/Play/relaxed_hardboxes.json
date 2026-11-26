@@ -1542,6 +1542,7 @@
   ],
   "713": [
    1,
+   6,
    7,
    8,
    10,
@@ -2070,11 +2071,6 @@
   },
   {
    "origin": "S609_P02",
-   "mesh": "wall",
-   "reason": "passage: a freed piece of the wall box joins two walkable regions"
-  },
-  {
-   "origin": "S713_P06",
    "mesh": "wall",
    "reason": "passage: a freed piece of the wall box joins two walkable regions"
   }
@@ -8638,6 +8634,12 @@
     205,
     165,
     212
+   ],
+   "6": [
+    145,
+    206,
+    271,
+    213
    ]
   },
   "714": {
@@ -14406,7 +14408,35 @@
     190,
     165,
     250
+   ],
+   "6": [
+    145,
+    190,
+    271,
+    250
    ]
   }
+ },
+ "joints": {
+  "713": [
+   [
+    246,
+    206,
+    257,
+    213
+   ],
+   [
+    258,
+    222,
+    271,
+    229
+   ],
+   [
+    257,
+    213,
+    259,
+    222
+   ]
+  ]
  }
 }

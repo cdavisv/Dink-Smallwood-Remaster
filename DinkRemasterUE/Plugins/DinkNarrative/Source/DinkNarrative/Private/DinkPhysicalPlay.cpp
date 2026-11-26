@@ -15,6 +15,7 @@
 #include "Engine/World.h"
 #include "DinkNarrativeTypes.h"
 #include "Greybox/DinkPlaceholderActor.h"
+#include "DinkOriginComponent.h"
 #include "DinkCollision.h"
 #include "DinkCreatureSubsystem.h"
 #include "DinkCreatureClassComponent.h"
@@ -176,6 +177,23 @@ bool FDinkPhysicalPlaySettings::ParseRelaxed(const FString& Json)
 				Trimmed.Add(Key, FIntRect(int32((*R)[0]->AsNumber()), int32((*R)[1]->AsNumber()), int32((*R)[2]->AsNumber()), int32((*R)[3]->AsNumber())));
 				// the wall's run: along x unless the generator says y ("across" of schema: the trim rect's long side)
 				if (const FIntRect* F = Feet.Find(Key); !F || F->Width() >= F->Height()) TrimAlongX.Add(Key);
+			}
+		}
+	}
+	Joints.Reset();
+	const TSharedPtr<FJsonObject>* JointObject = nullptr;
+	if (Root->TryGetObjectField(TEXT("joints"), JointObject))
+	{
+		// {screen: [[l, t, r, b], ...]}
+		for (const auto& Pair : (*JointObject)->Values)
+		{
+			const TArray<TSharedPtr<FJsonValue>>* List = nullptr;
+			if (!Pair.Value->TryGetArray(List)) continue;
+			for (const TSharedPtr<FJsonValue>& V : *List)
+			{
+				const TArray<TSharedPtr<FJsonValue>>* R = nullptr;
+				if (!V->TryGetArray(R) || R->Num() != 4) continue;
+				Joints.FindOrAdd(FCString::Atoi(*Pair.Key)).Add(FIntRect(int32((*R)[0]->AsNumber()), int32((*R)[1]->AsNumber()), int32((*R)[2]->AsNumber()), int32((*R)[3]->AsNumber())));
 			}
 		}
 	}
@@ -374,7 +392,17 @@ bool UDinkGameplay::MeasureWallStrip(int32 Screen, int32 N, const FIntRect& Box,
 			Lo = FMath::Min(Lo, C); Hi = FMath::Max(Hi, C); ALo = FMath::Min(ALo, A); AHi = FMath::Max(AHi, A);
 		}
 	};
+	// the wall's own modules (its placement actor's) when it has any: where two walls' 1997 boxes overlap, the neighbour's modules inside
+	// this box are not this wall's strip (SCR_713 P06 / P13, staggered at the enlarged scale: each would take both strips and stand
+	// 2 m thick); a wall without its own module actor (instanced) is measured on every wall module over its box, as before
+	TArray<UStaticMeshComponent*, TInlineAllocator<16>> Own;
 	for (UStaticMeshComponent* M : Walls)
+	{
+		const AActor* A = M ? M->GetOwner() : nullptr;
+		const UDinkOriginComponent* O = A ? A->FindComponentByClass<UDinkOriginComponent>() : nullptr;
+		if (O && O->OriginId == FDinkOriginId(Screen, N) && M->GetStaticMesh() && M->Bounds.GetBox().Intersect(Plan)) Own.Add(M);
+	}
+	for (UStaticMeshComponent* M : Own.Num() ? TArrayView<UStaticMeshComponent* const>(Own) : TArrayView<UStaticMeshComponent* const>(Walls))
 	{
 		if (!M || !M->GetStaticMesh() || !M->Bounds.GetBox().Intersect(Plan)) continue;
 		if (const UInstancedStaticMeshComponent* I = Cast<UInstancedStaticMeshComponent>(M))
@@ -408,7 +436,16 @@ int32 UDinkGameplay::PlayHardness(int32 Screen, int32 MapX, int32 MapY, int32 Co
 		// a relaxed placement's box stands only where its mesh is drawn (no footprint known: the 1997 box, as before the layer)
 		if (!IsRelaxedForPlayer(Screen, Code)) return Code;
 		const FIntRect* Foot = PhysicalPlay.Feet.Find(Screen * 1000 + Code - 100);
-		return !Foot || (MapX >= Foot->Min.X && MapX <= Foot->Max.X && MapY >= Foot->Min.Y && MapY <= Foot->Max.Y) ? Code : 0;
+		if (!Foot || (MapX >= Foot->Min.X && MapX <= Foot->Max.X && MapY >= Foot->Min.Y && MapY <= Foot->Max.Y)) return Code;
+		// A71 joints: where two trimmed walls' strips are staggered, the slot between them stays closed whoever's box owns the pixel
+		if (const TArray<FIntRect>* Joints = PhysicalPlay.Joints.Find(Screen); Joints && IsTrimmedForPlayer(Screen, Code))
+		{
+			for (const FIntRect& J : *Joints)
+			{
+				if (MapX >= J.Min.X && MapX <= J.Max.X && MapY >= J.Min.Y && MapY <= J.Max.Y) return Code;
+			}
+		}
+		return 0;
 	}
 	if (Code < 100 && MapX >= 0 && MapY >= 0 && MapX < FDinkHardnessMap::Width && MapY < FDinkHardnessMap::Height)
 	{
