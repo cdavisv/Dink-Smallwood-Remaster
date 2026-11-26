@@ -22,6 +22,7 @@
 #include "DinkRandom.h"
 #include "DinkStorySubsystem.h"
 #include "HAL/FileManager.h"
+#include "HAL/IConsoleManager.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
 
@@ -475,5 +476,47 @@ bool FDinkBowKeyboardTest::RunTest(const FString& Parameters)
 	TestFalse(TEXT("and lets go"), E.G->IsBowActive());
 	TestEqual(TEXT("power 0"), E.G->GetLastBowPower(), 0);
 	TestEqual(TEXT("no arrow"), FindByScript(E, TEXT("dam-a1")), 0);
+	return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkBowReviewHoldTest, "Dink.Gameplay.Bow.ReviewAttackHoldShoots", DINK_TEST_FLAGS)
+bool FDinkBowReviewHoldTest::RunTest(const FString& Parameters)
+{
+	// Takeover A3 (25 Nov 2026): capture scripts need a real bow shot (draw held, then let go); dink.Attack is a tap.
+	// dink.AttackHold <s> holds the key as PlayerAttackPress and lets go by itself after s seconds of game time;
+	// dink.AttackHold with no time holds until dink.AttackRelease. Play and the probe never call it.
+	TestNotNull(TEXT("dink.AttackHold is registered"), IConsoleManager::Get().FindConsoleObject(TEXT("dink.AttackHold")));
+	TestNotNull(TEXT("dink.AttackRelease is registered"), IConsoleManager::Get().FindConsoleObject(TEXT("dink.AttackRelease")));
+	FEnv E = Make(*this);
+	if (!E.IsValid())
+	{
+		return false;
+	}
+	TestTrue(TEXT("no review release pending at the start"), E.G->GetReviewReleaseAtMs() < 0.0);
+	TestTrue(TEXT("the timed hold runs item-b1 use"), E.G->ReviewAttackHold(1.0));
+	TestTrue(TEXT("the bow is drawn"), E.G->IsBowActive());
+	Frame(E, 40);
+	TestTrue(TEXT("after 40 frames the key is still down"), E.G->IsAttackHeld() && E.G->IsBowActive());
+	const int32 Mid = E.G->GetBowPower();
+	TestTrue(FString::Printf(TEXT("the draw grows while held (%d)"), Mid), Mid > 100);
+	TestEqual(TEXT("no arrow while held"), FindByScript(E, TEXT("dam-a1")), 0);
+	Frame(E, 30);
+	TestFalse(TEXT("after a second the key came up by itself"), E.G->IsAttackHeld());
+	TestFalse(TEXT("the bow is put down"), E.G->IsBowActive());
+	TestTrue(FString::Printf(TEXT("the shot read a full second's draw (%d)"), E.G->GetLastBowPower()), E.G->GetLastBowPower() > Mid);
+	TestTrue(TEXT("the arrow flies (dam-a1)"), FindByScript(E, TEXT("dam-a1")) != 0);
+	TestTrue(TEXT("nothing pending after the release"), E.G->GetReviewReleaseAtMs() < 0.0);
+	Frame(E, 240);
+
+	// Untimed: held until the release, however long.
+	TestTrue(TEXT("the untimed hold draws again"), E.G->ReviewAttackHold(0.0));
+	Frame(E, 200);
+	TestTrue(TEXT("an untimed hold stays down"), E.G->IsAttackHeld() && E.G->IsBowActive());
+	TestEqual(TEXT("a full draw is 500"), E.G->GetBowPower(), 500);
+	TestTrue(TEXT("the release lets go"), E.G->ReviewAttackRelease());
+	Frame(E);
+	TestFalse(TEXT("the bow is put down at the next frame"), E.G->IsBowActive());
+	TestEqual(TEXT("the shot read the full draw"), E.G->GetLastBowPower(), 500);
+	TestFalse(TEXT("a second release finds the key up"), E.G->ReviewAttackRelease());
 	return true;
 }

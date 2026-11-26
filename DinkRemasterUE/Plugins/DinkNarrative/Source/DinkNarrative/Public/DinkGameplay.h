@@ -524,6 +524,17 @@ public:
 	void PlayerAttackRelease();
 	bool IsAttackHeld() const { return bAttackHeld; }
 	/**
+	 * Review only (console dink.AttackHold, capture scripts): the attack key goes down as PlayerAttackPress (the armed item's `use`;
+	 * with the bow the draw grows while it is held) and comes up again by itself after Seconds of game time (PlayerAttackRelease,
+	 * the bow shoots), or at ReviewAttackRelease when Seconds <= 0. Nothing calls it in play or in the probe. Returns what
+	 * PlayerAttackPress returned (false: nothing armed, frozen, or the bow already drawn; the key is still held then).
+	 */
+	bool ReviewAttackHold(double Seconds);
+	/** Review only: the held key comes up now (a second dink.AttackHold, or dink.AttackRelease). False if it was not held. */
+	bool ReviewAttackRelease();
+	/** Review only: game time (ms, the story clock) at which a dink.AttackHold lets go by itself; < 0 when none is pending. */
+	double GetReviewReleaseAtMs() const { return ReviewReleaseAtMs; }
+	/**
 	 * The player's attack key, as the keyboard/gamepad layer reports it (the probe bot and the console keep calling
 	 * PlayerAttack/PlayerAttackPress directly and are not gated). One attack per press: holding the key never repeats.
 	 * While Dink is still locked in the previous attack (the original's sp_nocontrol: until its sequence has played,
@@ -1026,6 +1037,8 @@ private:
 	FDinkBowStatus Bow;
 	/** The attack key is held (PlayerAttackPress .. PlayerAttackRelease): the original's sjoy.joybit[1]. */
 	bool bAttackHeld = false;
+	/** A dink.AttackHold with a duration: the story-clock time its key comes up (< 0: none). Review only. */
+	double ReviewReleaseAtMs = -1.0;
 	FDinkAttackGate AttackGate;
 	struct FPaceClass { TArray<int32> Brains; TArray<FName> Scripts; double WalkCm = 120.0, MaxCm = 170.0; };
 	TArray<FPaceClass> PaceClasses;

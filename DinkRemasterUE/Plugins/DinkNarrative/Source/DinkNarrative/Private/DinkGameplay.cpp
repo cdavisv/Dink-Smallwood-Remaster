@@ -677,6 +677,7 @@ void UDinkGameplay::Reset()
 	// A new game or a load puts the bow down (dink.cpp:1324 load_game, 17693 the start of a game).
 	Bow = FDinkBowStatus();
 	bAttackHeld = false;
+	ReviewReleaseAtMs = -1.0;
 	AttackGate.Reset();
 	NowMs = Story ? Story->GetNowMs() : 0.0;
 	NextStatusMs = NowMs + 100.0;
@@ -1758,6 +1759,11 @@ void UDinkGameplay::Tick(double DeltaMs, double InNowMs, bool bGameStopped)
 	}
 	// stop_entire_game (lraise.c's level-up menu): the engine thinks every sprite with get_frame (D:17414-17423): no brain, hit, touch
 	// damage or attack. The 100 ms status timer below runs before that loop (D:17339-17346) and so goes on (A44).
+	if (ReviewReleaseAtMs >= 0.0 && NowMs >= ReviewReleaseAtMs)
+	{
+		// dink.AttackHold's own key-up (review only): the frame's brain then sees the key up, as at a real release (sjoy.letgo[1]).
+		ReviewAttackRelease();
+	}
 	if (!bGameStopped)
 	{
 		SyncDinkFromActor();
@@ -1995,6 +2001,21 @@ double UDinkGameplay::PaceScale(const FDinkSprite& S) const
 void UDinkGameplay::PlayerAttackRelease()
 {
 	bAttackHeld = false;
+}
+
+bool UDinkGameplay::ReviewAttackHold(double Seconds)
+{
+	const bool bStarted = PlayerAttackPress();
+	ReviewReleaseAtMs = Seconds > 0.0 ? NowMs + Seconds * 1000.0 : -1.0;
+	return bStarted;
+}
+
+bool UDinkGameplay::ReviewAttackRelease()
+{
+	const bool bWasHeld = bAttackHeld;
+	ReviewReleaseAtMs = -1.0;
+	PlayerAttackRelease();
+	return bWasHeld;
 }
 
 namespace
