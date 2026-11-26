@@ -10,10 +10,30 @@ Read before starting: `AGENTS.md`, `doc/remaster/ALPHA_BUG_LIST.md`, `doc/remast
 `doc/remaster/WORLD_SCALE.md`, and the Master log `DinkRemasterUE/Saved/Gate2Coord/COMMON_RULES.md`
 (local, not in git). Each stream's notes are under `~/Work/Restart16Nov/<stream>/NOTES.md`.
 
+## Status 26 Nov 2026 (coordinator f3713b19)
+
+Done and merged 25-26 Nov:
+- **World scale ON (#238)** with the approved ratios. **The probe gate is now the NEW table** at the top of
+  `Plugins/DinkParity/Docs/packaged_probe.md` (Ch1 ca319f4754 ... Ch20 be78df8ac3); A41 is history. Proven by two identical
+  layer-off runs, a third run after #246/#247, and a packaged run 20/20.
+- **Packaged probe (tasks 3)**: runs (package.sh cooks without the Zen store by default, #243); packaged = PIE on all 20
+  chapters after #248 (Seth's DragonBrain no longer compares a sprite's address after his attack script).
+- **#229** merged (harmless; the white card did not reproduce even without it). It broke packaging (editor-only calls), fixed in #248.
+  **Rule since then: every C++ PR also builds the game target before merge.**
+- Tools in the repo (#242: tools/coord/ with unreal_turn v5, merge_pr2.sh, lfs_private_check + CI job).
+- Takeover A items: A1 #251, A2 #253 (guard only: the propped faceplant is the clip itself, art), A3 #252, A4 #254, A5 #255,
+  A7 #246, A8 #256, A9 #245, A10 #250, A11 #243/#242, A12 #242, A13 #247; A6 needs only a Fable material scalar; A62 camera #249.
+
+Running at the time of writing: ws-followup-1 (SCR_190 slit, SCR_712/713 6 m wall box, an audit for more such gaps at the
+enlarged scale) and art-finish-1 (takeover section B: mechanical finishing of art drafts, frames for Fable, drafts only).
+
+Still open: owner questions in task 7; the world-scale art leftovers (SCR_471 dirt-bank notch, SCR_439 back yard darker); the
+GPU cost +5 % on the busiest screen; Fable's review list in OPUS_TAKEOVER_23NOV2026.md section C.
+
 ## Rules that still hold
 
 - **Probe gate:** the layer-off probe's 20 chapter md5s must equal the newest table in
-  `Plugins/DinkParity/Docs/packaged_probe.md` (A41 table, Ch1 cff64df9d1 ... Ch20 b27010b31e).
+  `Plugins/DinkParity/Docs/packaged_probe.md` (since #238: Ch1 ca319f4754 ... Ch20 be78df8ac3).
   - The only planned exception is the world-scale re-baseline below.
   - The layer-on chained probe (Mode=2 bot) must finish 20/20 chapters.
 - **Merge gates:** clean build with 0 warnings, full `Dink` suite, `Dink.PhysicalPlay`, both probes,
