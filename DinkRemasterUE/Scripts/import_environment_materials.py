@@ -256,11 +256,24 @@ link(fine_uv, '', fine_tex, 'UVs')
 wz = expr(mat, unreal.MaterialExpressionComponentMask, -2450, 80, r=False, g=False, b=True, a=False)
 link(wp, '', wz, '')
 tc = expr(mat, unreal.MaterialExpressionTextureCoordinate, -2100, -500)
-mask_warp = scalar_param(mat, 'MaskWarp', 0.012, -2100, -420)
-mask_uv = custom(mat, -1900, -500, 'return UV + (Noise.gb - 0.5) * 2.0 * Amount + (Fine.rg - 0.5) * 2.0 * FineAmount;', F2,
-                 ['UV', 'Noise', 'Amount', 'Fine', 'FineAmount'], 'Warped mask UV')
-link(fine_tex, 'RGB', mask_uv, 'Fine'); link(scalar_param(mat, 'MaskWarpFine', 0.007, -2100, -340), '', mask_uv, 'FineAmount')
+# The mask's texels hold the layer weights at points spread from edge to edge of the screen (texel 0 on the west/north
+# edge, the last texel on the east/south edge; the world export's natural outlines, Scripts/ground_layer_fields.py),
+# so two screens hold the same weights along their shared border and a path or a field edge runs on across it. The
+# outlines are bent and rounded in the export; the small warp here only breaks up the bilinear lookup and fades out
+# toward the screen's rim (RimFade, in UV), where the two screens must agree.
+mask_warp = scalar_param(mat, 'MaskWarp', 0.006, -2100, -420)
+mask_uv = custom(mat, -1900, -500, '''
+float2 t = saturate(UV);
+float rim = saturate(min(min(t.x, 1.0 - t.x), min(t.y, 1.0 - t.y)) / max(RimFade, 1e-4));
+float2 w = saturate(t + ((Noise.gb - 0.5) * 2.0 * Amount + (Fine.rg - 0.5) * 2.0 * FineAmount) * rim);
+float2 size = max(float2(TexelsX, TexelsY), 2.0);
+return (w * (size - 1.0) + 0.5) / size;''', F2,
+                 ['UV', 'Noise', 'Amount', 'Fine', 'FineAmount', 'RimFade', 'TexelsX', 'TexelsY'], 'Warped edge-aligned mask UV')
+link(fine_tex, 'RGB', mask_uv, 'Fine'); link(scalar_param(mat, 'MaskWarpFine', 0.004, -2100, -340), '', mask_uv, 'FineAmount')
 link(tc, '', mask_uv, 'UV'); link(warp_tex, 'RGB', mask_uv, 'Noise'); link(mask_warp, '', mask_uv, 'Amount')
+link(scalar_param(mat, 'MaskRimFade', 0.05, -2100, -260), '', mask_uv, 'RimFade')
+link(scalar_param(mat, 'MaskTexelsX', 96.0, -2100, -180), '', mask_uv, 'TexelsX')
+link(scalar_param(mat, 'MaskTexelsY', 64.0, -2100, -100), '', mask_uv, 'TexelsY')
 mask = tex_param(mat, 'LayerMask', support['MaskLayerA'], ST.SAMPLERTYPE_MASKS, mask_uv, -1600, -500, source=CLAMP)
 blend_k = scalar_param(mat, 'HeightBlend', 0.55, -1300, -420)
 blend_depth = scalar_param(mat, 'HeightBlendDepth', 0.12, -1300, -340)
