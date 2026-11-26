@@ -836,6 +836,8 @@ int32 UDinkArtFamilySubsystem::WarmEffects()
 	if (!World || !bReady || Effects.IsEmpty()) return 0;
 	DINK_PERF_SCOPE(Dink_Family_WarmEffects);
 	int32 Finished = 0;
+#if WITH_EDITOR
+	// FMaterial::IsCompilationFinished / FinishCompilation exist only in editor builds: the packaged game (cooked shader maps) skips this.
 	if (FApp::CanEverRender())
 	{
 		// Uncooked: finish the shader maps still compiling (a cooked game has them all; IsCompilationFinished is then true).
@@ -851,6 +853,7 @@ int32 UDinkArtFamilySubsystem::WarmEffects()
 			UE_LOG(LogDink, Display, TEXT("Family art: finished the shader compile of %d effect materials before their first use"), Finished);
 		}
 	}
+#endif
 	if (!WarmCard)
 	{
 		// The same component and vertex factory as the effect cards (DressScriptSprite), so the same PSOs; never drawn.
