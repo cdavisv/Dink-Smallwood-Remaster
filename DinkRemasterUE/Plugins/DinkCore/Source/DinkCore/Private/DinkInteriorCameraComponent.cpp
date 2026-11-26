@@ -14,6 +14,8 @@
 #include "Engine/World.h"
 #include "Engine/LocalPlayer.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "SceneView.h"
 #include "EngineUtils.h"
@@ -131,6 +133,7 @@ void UDinkInteriorCameraComponent::AddZoomInput(float Steps)
 
 void UDinkInteriorCameraComponent::RestoreCamera()
 {
+    ReleaseInteriorClearance();
     OutdoorHeadroomLift=0.f; OutdoorPortalArmCap=0.f; bOutdoorPortalFramingFeasible=true; OutdoorPortalOwner.Reset(); OutdoorPortalMeshSHA.Reset(); UncappedOutdoorArm=OutdoorArm;
     FloorFramingShift=FVector::ZeroVector; bFloorFramingAvailable=false; bFloorFramingFeasible=true;
     if (Arm) { Arm->TargetArmLength=OutdoorArm; Arm->TargetOffset=OutdoorPivot; Arm->SocketOffset=OutdoorSocket; }
@@ -340,6 +343,109 @@ void UDinkInteriorCameraComponent::UpdateFraming(float DeltaTime)
     PreviousPawnLocation=Position; bSnapFraming=false;
 }
 
+void UDinkInteriorCameraComponent::SetHeroHidden(bool bHidden)
+{
+    if (bInteriorHeroHidden==bHidden) return;
+    bInteriorHeroHidden=bHidden;
+    const ACharacter* Hero=Cast<ACharacter>(GetOwner());
+    USkeletalMeshComponent* Body=Hero ? Hero->GetMesh() : nullptr;
+    if (!Body) return;
+    // the body and everything drawn on it (hair, clothes, held items), for the owner's view only
+    TArray<USceneComponent*> Parts; Body->GetChildrenComponents(true,Parts); Parts.Add(Body);
+    for (USceneComponent* Part : Parts) if (UPrimitiveComponent* P=Cast<UPrimitiveComponent>(Part)) P->SetOwnerNoSee(bHidden);
+}
+
+void UDinkInteriorCameraComponent::ReleaseInteriorClearance()
+{
+    SetHeroHidden(false);
+    if (!Arm) return;
+    if (InteriorClearLift!=0.f && Arm->TargetOffset.Equals(InteriorClearAppliedOffset)) Arm->TargetOffset-=FVector(0,0,InteriorClearLift);
+    if (!Arm->bUsePawnControlRotation) Arm->bUsePawnControlRotation=true;
+    InteriorClearPitch=0.f; InteriorClearLift=0.f; InteriorClearArm=0.f;
+}
+
+void UDinkInteriorCameraComponent::UpdateInteriorClearance(float DeltaTime)
+{
+    // A62 (25 Nov 2026): see the header. The base pivot is what SelectScreen/UpdateFraming set this tick; this rule only adds to it.
+    const APawn* Pawn=Cast<APawn>(GetOwner());
+    const AController* Controller=Pawn ? Pawn->GetController() : nullptr;
+    const UCapsuleComponent* Capsule=GetOwner()->FindComponentByClass<UCapsuleComponent>();
+    // the base offset: what this rule added last tick comes off again, unless SelectScreen/UpdateFraming set the offset anew
+    if (InteriorClearLift!=0.f && Arm->TargetOffset.Equals(InteriorClearAppliedOffset)) Arm->TargetOffset-=FVector(0,0,InteriorClearLift);
+    if (!Controller || !Capsule || !Arm->bDoCollisionTest || Arm->TargetArmLength<=0 || Arm->bEnableCameraLag || Arm->bEnableCameraRotationLag)
+    {
+        ReleaseInteriorClearance(); return;
+    }
+    const FRotator Control=Controller->GetControlRotation();
+    const double ControlPitch=FRotator::NormalizeAxis(Control.Pitch);
+    const FVector Base=Arm->GetComponentLocation()+Arm->TargetOffset;
+    const FCollisionShape Shape=FCollisionShape::MakeSphere(Arm->ProbeSize);
+    FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkInteriorClearance),false,GetOwner());
+    const double Length=Arm->TargetArmLength;
+    // the clear length of the arm from a pivot lifted by Lift along a pitch (0 when the pivot itself cannot be raised there)
+    auto Clear=[&](double Pitch,double Lift)
+    {
+        const FVector Pivot=Base+FVector(0,0,Lift);
+        FHitResult Hit;
+        if (Lift>0 && GetWorld()->SweepSingleByChannel(Hit,Base,Pivot,FQuat::Identity,Arm->ProbeChannel,Shape,Params)) return 0.0;
+        const FRotator R(Pitch,Control.Yaw,0.);
+        const FVector Desired=Pivot-R.Vector()*Length+R.RotateVector(Arm->SocketOffset);
+        if (!GetWorld()->SweepSingleByChannel(Hit,Pivot,Desired,FQuat::Identity,Arm->ProbeChannel,Shape,Params)) return FVector::Dist(Pivot,Desired);
+        return Hit.bStartPenetrating ? 0.0 : Hit.Time*FVector::Dist(Pivot,Desired);
+    };
+    const ACharacter* Hero=Cast<ACharacter>(GetOwner());
+    const USkeletalMeshComponent* Body=Hero ? Hero->GetMesh() : nullptr;
+    const FVector Head=Body && Body->GetBoneIndex(TEXT("head"))!=INDEX_NONE ? Body->GetSocketLocation(TEXT("head")) : Capsule->GetComponentLocation()+FVector(0,0,Capsule->GetScaledCapsuleHalfHeight()*.7);
+    // where the eye of a pitch / lift ends (the arm stops at its clear length) and how far that is from Dink's head
+    auto EyeAt=[&](double Pitch,double Lift,double Reach)
+    {
+        const FRotator R(Pitch,Control.Yaw,0.);
+        return Base+FVector(0,0,Lift)-R.Vector()*Reach+R.RotateVector(Arm->SocketOffset)*(Reach/FMath::Max(Length,1.));
+    };
+    const double Own=Clear(ControlPitch,0.);
+    double BestPitch=ControlPitch,BestLift=0.,Best=Own;
+    if (Own<InteriorMinimumClearArm)
+    {
+        // least change first (a steeper pitch, then a higher pivot) that clears the minimum arm; else the eye farthest from his head
+        const double OwnHead=FVector::Dist(EyeAt(ControlPitch,0.,Own),Head);
+        double BestHead=OwnHead;
+        bool bFound=false;
+        for (int32 Step=0; Step<=4 && !bFound; ++Step)
+        {
+            const double Lift=InteriorMaximumClearLift*Step/4.;
+            for (double Pitch=FMath::Min(ControlPitch,0.)-5.; Pitch>=InteriorMaximumClearPitch-.01 && !bFound; Pitch-=5.)
+            {
+                const double Got=Clear(Pitch,Lift);
+                if (Got>=InteriorMinimumClearArm) { Best=Got; BestPitch=Pitch; BestLift=Lift; bFound=true; break; }
+                const double ToHead=FVector::Dist(EyeAt(Pitch,Lift,Got),Head);
+                if (Got>0. && ToHead>BestHead) { BestHead=ToHead; Best=Got; BestPitch=Pitch; BestLift=Lift; }
+            }
+        }
+        if (!bFound && BestHead<OwnHead+20.) { BestPitch=ControlPitch; BestLift=0.; Best=Own; }
+    }
+    // ease the pitch and the lift (no jump when Dink backs into a wall), snap when the rule lets go
+    const float WantPitch=float(BestPitch-ControlPitch), WantLift=float(BestLift);
+    InteriorClearPitch=FMath::FInterpTo(InteriorClearPitch,WantPitch,DeltaTime,8.f);
+    const float Lift=FMath::FInterpTo(InteriorClearLift,WantLift,DeltaTime,8.f);
+    if (FMath::Abs(InteriorClearPitch)<.05f && WantPitch==0.f) InteriorClearPitch=0.f;
+    InteriorClearLift=(FMath::Abs(Lift)<.05f && WantLift==0.f) ? 0.f : Lift;
+    InteriorClearArm=float(Best);
+    Arm->TargetOffset+=FVector(0,0,InteriorClearLift);
+    InteriorClearAppliedOffset=Arm->TargetOffset;
+    if (InteriorClearPitch!=0.f)
+    {
+        Arm->bUsePawnControlRotation=false;
+        Arm->SetWorldRotation(FRotator(ControlPitch+InteriorClearPitch,Control.Yaw,0.));
+    }
+    else if (!Arm->bUsePawnControlRotation) Arm->bUsePawnControlRotation=true;
+    // never draw the frame from inside Dink's head: the eye this view will have, against his head
+    const FRotator Final(ControlPitch+InteriorClearPitch,Control.Yaw,0.);
+    const FVector Pivot=Base+FVector(0,0,InteriorClearLift);
+    const double Reach=FMath::Min(double(Clear(Final.Pitch,InteriorClearLift)),Length);
+    const FVector Eye=Pivot-Final.Vector()*Reach+Final.RotateVector(Arm->SocketOffset)*(Reach/FMath::Max(Length,1.));
+    SetHeroHidden(FVector::Dist(Eye,Head)<InteriorHeadClearance);
+}
+
 void UDinkInteriorCameraComponent::UpdateOutdoorHeadroom()
 {
     OutdoorHeadroomLift=0.f; OutdoorPortalArmCap=0.f; bOutdoorPortalFramingFeasible=true; OutdoorPortalOwner.Reset(); OutdoorPortalMeshSHA.Reset();
@@ -448,8 +554,8 @@ void UDinkInteriorCameraComponent::TickComponent(float DeltaTime, ELevelTick Tic
     const float PreviousNominal=OutdoorPortalArmCap>0 ? UncappedOutdoorArm : Arm->TargetArmLength;
     Arm->TargetArmLength = FMath::FInterpTo(PreviousNominal, GetDesiredArmLength(), DeltaTime, 10.f);
     UncappedOutdoorArm=Arm->TargetArmLength;
-    if (bInteriorMode) { OutdoorHeadroomLift=0.f; UpdateFraming(DeltaTime); }
-    else UpdateOutdoorHeadroom();
+    if (bInteriorMode) { OutdoorHeadroomLift=0.f; UpdateFraming(DeltaTime); UpdateInteriorClearance(DeltaTime); }
+    else { ReleaseInteriorClearance(); UpdateOutdoorHeadroom(); }
     UpdateFoliage(DeltaTime);
     if (Occluders.IsEmpty()) return;
     const FRotator Rotation=Arm->GetTargetRotation();

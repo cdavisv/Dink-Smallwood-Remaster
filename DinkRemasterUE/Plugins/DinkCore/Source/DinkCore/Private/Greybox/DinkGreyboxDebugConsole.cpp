@@ -11,6 +11,10 @@
 #include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
 #include "HAL/IConsoleManager.h"
+#include "Camera/CameraComponent.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "GameFramework/Character.h"
+#include "GameFramework/SpringArmComponent.h"
 
 static FAutoConsoleCommandWithWorld GDinkPlayerCommand(
 	TEXT("dink.Player"), TEXT("Print the player's world/map position, physical radius, and camera angles for a reproducible playtest."),
@@ -37,6 +41,41 @@ static FAutoConsoleCommandWithWorld GDinkPlayerCommand(
 			Screen ? Screen->ScreenNumber : 0, MapX, MapY, Position.X, Position.Y, Position.Z,
 			View.Yaw, FRotator::NormalizeAxis(View.Pitch), Capsule ? Capsule->GetScaledCapsuleRadius() : 0.f,
 			PC->IsMoveInputIgnored() ? 1 : 0);
+	}));
+
+// A62 (25 Nov 2026): what the play camera's spring-arm probe meets, for a rendered look at a camera that closes in.
+static FAutoConsoleCommandWithWorld GDinkCameraProbeCommand(
+	TEXT("dink.CameraProbe"), TEXT("Print the play camera's arm (wanted and actual), the eye's distance to Dink's head and every hit of the arm's own probe sweep."),
+	FConsoleCommandWithWorldDelegate::CreateLambda([](UWorld* World)
+	{
+		APlayerController* PC = World ? World->GetFirstPlayerController() : nullptr;
+		ACharacter* Pawn = PC ? Cast<ACharacter>(PC->GetPawn()) : nullptr;
+		USpringArmComponent* Arm = Pawn ? Pawn->FindComponentByClass<USpringArmComponent>() : nullptr;
+		UCameraComponent* Camera = Pawn ? Pawn->FindComponentByClass<UCameraComponent>() : nullptr;
+		if (!Arm || !Camera)
+		{
+			UE_LOG(LogDink, Display, TEXT("DINK CAMERA PROBE: no player camera"));
+			return;
+		}
+		const FVector Pivot = Arm->GetComponentLocation() + Arm->TargetOffset;
+		const FVector Wanted = Arm->GetUnfixedCameraPosition();
+		const FVector Eye = Camera->GetComponentLocation();
+		const USkeletalMeshComponent* Body = Pawn->GetMesh();
+		const FVector Head = Body && Body->GetBoneIndex(TEXT("head")) != INDEX_NONE ? Body->GetSocketLocation(TEXT("head")) : Pawn->GetActorLocation() + FVector(0, 0, 70);
+		UE_LOG(LogDink, Display, TEXT("DINK CAMERA PROBE: target arm %.1f, pivot %s, eye %s (%.1f from the pivot, %.1f from the head), wanted eye %s, control %s, probe %.0f cm on channel %d"),
+			Arm->TargetArmLength, *Pivot.ToCompactString(), *Eye.ToCompactString(), FVector::Dist(Eye, Pivot), FVector::Dist(Eye, Head), *Wanted.ToCompactString(),
+			*PC->GetControlRotation().ToCompactString(), Arm->ProbeSize, int32(Arm->ProbeChannel.GetValue()));
+		TArray<FHitResult> Hits;
+		FCollisionQueryParams Params(SCENE_QUERY_STAT(DinkCameraProbe), false, Pawn);
+		World->SweepMultiByChannel(Hits, Pivot, Wanted, FQuat::Identity, Arm->ProbeChannel, FCollisionShape::MakeSphere(Arm->ProbeSize), Params);
+		for (const FHitResult& Hit : Hits)
+		{
+			UE_LOG(LogDink, Display, TEXT("DINK CAMERA PROBE: hit %s / %s (profile %s) at %.1f cm, normal %s, start-penetrating %d, blocking %d"),
+				Hit.GetActor() ? *Hit.GetActor()->GetName() : TEXT("-"), Hit.GetComponent() ? *Hit.GetComponent()->GetName() : TEXT("-"),
+				Hit.GetComponent() ? *Hit.GetComponent()->GetCollisionProfileName().ToString() : TEXT("-"), Hit.Distance, *Hit.ImpactNormal.ToCompactString(),
+				Hit.bStartPenetrating ? 1 : 0, Hit.bBlockingHit ? 1 : 0);
+		}
+		if (Hits.IsEmpty()) UE_LOG(LogDink, Display, TEXT("DINK CAMERA PROBE: no hit"));
 	}));
 
 static FAutoConsoleCommandWithWorldAndArgs GDinkViewCommand(

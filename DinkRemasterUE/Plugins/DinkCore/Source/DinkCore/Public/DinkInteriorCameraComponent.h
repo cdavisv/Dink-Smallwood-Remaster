@@ -87,6 +87,23 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") FVector FloorFramingShift = FVector::ZeroVector;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") bool bFloorFramingAvailable = false;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") bool bFloorFramingFeasible = true;
+    /**
+     * A62 (25 Nov 2026): indoors, when the arm's probe would stop within InteriorMinimumClearArm of the pivot (Dink with his back to a
+     * wall: the camera sat in his hair), the camera looks down from higher instead: a steeper pitch (at most InteriorMaximumClearPitch)
+     * from a pivot raised by up to InteriorMaximumClearLift (swept for the ceiling): the least change that clears the minimum arm, else
+     * the one that puts the eye farthest from his head. The player's control rotation is not changed. If the eye still ends nearer than InteriorHeadClearance to Dink's head, his body is not drawn for this
+     * view (owner-no-see) rather than filling the frame from inside his hair. Play camera only.
+     */
+    UPROPERTY(EditAnywhere, Category="Dink|Camera") float InteriorMinimumClearArm = 120.f;
+    UPROPERTY(EditAnywhere, Category="Dink|Camera") float InteriorMaximumClearPitch = -75.f;
+    UPROPERTY(EditAnywhere, Category="Dink|Camera") float InteriorMaximumClearLift = 100.f;
+    UPROPERTY(EditAnywhere, Category="Dink|Camera") float InteriorHeadClearance = 58.f;
+    /** What the clearance rule applies now: pitch (degrees below the player's, <= 0), pivot lift (cm), the clear arm it found (cm). */
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") float InteriorClearPitch = 0.f;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") float InteriorClearLift = 0.f;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") float InteriorClearArm = 0.f;
+    /** Dink's body is not drawn for the play camera (its eye is inside InteriorHeadClearance of his head). */
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Dink|Camera") bool bInteriorHeroHidden = false;
 protected:
     virtual void BeginPlay() override;
     virtual void EndPlay(const EEndPlayReason::Type Reason) override;
@@ -96,6 +113,9 @@ private:
     void RestoreCamera();
     void UpdateFraming(float DeltaTime);
     void UpdateOutdoorHeadroom();
+    void UpdateInteriorClearance(float DeltaTime);
+    void SetHeroHidden(bool bHidden);
+    void ReleaseInteriorClearance();
     bool CalculateFraming(float ShoulderY, const FMatrix& Projection, FVector2D& Shift) const;
     /** Fades the crowns between the camera and Dink (see DinkCameraFoliage.h); restores them when they are clear. */
     void UpdateFoliage(float DeltaTime);
@@ -125,6 +145,7 @@ private:
     float ShoulderTargetSign = 1.f;
     float CurrentShoulderY = 45.f;
     bool bSnapFraming = true;
+    FVector InteriorClearAppliedOffset = FVector::ZeroVector;
     float OutdoorArm = 400.f;
     float UncappedOutdoorArm = 400.f;
     float OutdoorFOV = 90.f;
