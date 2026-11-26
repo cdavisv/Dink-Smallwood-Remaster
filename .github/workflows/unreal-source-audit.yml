@@ -6,6 +6,7 @@ on:
       - 'Scripts/check_public_paths.py'
       - '.github/workflows/unreal-source-audit.yml'
       - '.github/fixtures/house439-source-lfs.txt'
+      - 'tools/coord/**'
   push:
     branches: [master]
     paths:
@@ -13,6 +14,7 @@ on:
       - 'Scripts/check_public_paths.py'
       - '.github/workflows/unreal-source-audit.yml'
       - '.github/fixtures/house439-source-lfs.txt'
+      - 'tools/coord/**'
 permissions:
   contents: read
 jobs:
@@ -41,3 +43,5 @@ jobs:
         run: python3 -m pip install 'numpy==2.5.4'
       - name: Exercise asset bootstrap and import protections
         run: python3 -m unittest discover -s DinkRemasterUE/Scripts/tests -p 'test_*.py'
+      - name: Coordinator tools (private-path check)
+        run: python3 -m unittest discover -s tools/coord/tests

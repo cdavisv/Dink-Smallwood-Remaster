@@ -328,6 +328,10 @@ the base game in Unreal Engine 5.8 (third-person, assets authored in Blender).
 - Content bible (story, quests, bestiary, items, file formats):
   `doc/remaster/bible/README.md`, which also lists corrections to the reports.
 - Reference images rendered from the original data: `doc/remaster/reference/`.
+- Coordinator tools (25 Nov 2026) live in `tools/coord/` (README there): `unreal_turn.sh` (the one-Unreal-step queue;
+  installed copy `DinkRemasterUE/Saved/Gate2Coord/unreal_turn.sh`, replace it only with `install_unreal_turn.sh`),
+  `merge_pr2.sh`, `merge_master_docs.sh`, `lfs_private_check.sh` (also run by CI on non-draft PRs,
+  `.github/workflows/lfs-private-check.yml`); tests: `python3 -m unittest discover -s tools/coord/tests`.
 - Pipeline tools live under `tools/`. They read `bin/dink/` and must never
   modify `bin/` or `source/`. Generated output goes in each tool's `out/`
   directory, which is not tracked.
