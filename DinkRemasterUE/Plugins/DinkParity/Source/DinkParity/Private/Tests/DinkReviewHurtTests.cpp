@@ -74,3 +74,87 @@ bool FDinkReviewHurtSpriteTest::RunTest(const FString&)
 	World->DestroyWorld(false);
 	return true;
 }
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FDinkReviewHurtGoblinsMogTest, "Dink.Narrative.Review.HurtSpriteKillsTheGoblinsAndMogComes", DINK_TEST_FLAGS)
+bool FDinkReviewHurtGoblinsMogTest::RunTest(const FString&)
+{
+	// Takeover A1 (25 Nov 2026): on SCR_680 with &gobpass 1 the capture of 23 Nov killed only the first goblin. Its 150 exp
+	// leveled Dink up; lraise.c's menu holds the world with stop_entire_game (D:10099-10108), no brain thinks (D:17414-17423),
+	// so the next three blows only piled up as pending damage and the menu was never answered. dink.HurtSprite now refuses a
+	// blow while the world is held; with the menu answered every goblin dies and the last die() spawns s3-mog (Mog, en-gmog).
+	UGameInstance* GI = DinkTest::MakeOuterGameInstance();
+	UDinkFactSubsystem* Facts = NewObject<UDinkFactSubsystem>(GI);
+	FString Error;
+	TestTrue(TEXT("facts table loads"), Facts->LoadInitialFactsFromFile(UDinkFactSubsystem::GetDefaultInitialFactsPath(), &Error));
+	UDinkWorldStateSubsystem* WorldState = NewObject<UDinkWorldStateSubsystem>(GI);
+	UDinkStorySubsystem* Story = NewObject<UDinkStorySubsystem>(GI);
+	if (!TestTrue(FString::Printf(TEXT("story loads (%s)"), *Error), Story->SetupStandalone(Facts, WorldState, &Error))) return false;
+	Story->StorySeed = 1997;
+	Story->ResetRuntime();
+	Story->bInstantMode = true;
+	UDinkDirector* D = Story->GetDirector();
+	UDinkGameplay* G = Story->GetGameplay();
+	if (!TestTrue(TEXT("gameplay data loaded"), D && G && G->HasData())) return false;
+	G->Adaptation.bEnabled = false;
+	G->SetRandomSeed(1997);
+	Facts->SetFact(TEXT("lifemax"), 5000);
+	Facts->SetFact(TEXT("life"), 5000);
+	Facts->SetFact(TEXT("gobpass"), 1);
+	Facts->SetFact(TEXT("update_status"), 1); // as start.c leaves it in a new game: exp levels Dink up (lraise)
+	Facts->SetFact(TEXT("level"), 1);
+	Facts->SetFact(TEXT("exp"), 0);
+	FDinkSprite& Dink = D->GetDink();
+	Dink.Screen = 680;
+	Dink.X = 337.0;
+	Dink.Y = 390.0;
+	Story->OnScreenEntered(680);
+	Story->RunUntilIdle();
+
+	auto FindScript = [&](const TCHAR* Script)
+	{
+		for (const TPair<int32, FDinkSprite>& P : D->GetSprites())
+		{
+			if (P.Value.bActive && P.Value.Script == FName(Script)) return P.Key;
+		}
+		return 0;
+	};
+	int32 Menus = 0;
+	bool bSawHeld = false;
+	// A few seconds of 60 Hz frames, answering the level-up menu ("Increase Attack") whenever it is up.
+	auto Play = [&](int32 Frames, TFunctionRef<bool()> Done)
+	{
+		for (int32 F = 0; F < Frames && !Done(); ++F)
+		{
+			if (Story->GetActiveMenu())
+			{
+				bSawHeld |= G->IsReviewBlowHeld();
+				Story->Choose(0);
+				++Menus;
+			}
+			Story->Advance(1.0 / 60.0);
+		}
+	};
+	const TCHAR* Goblins[] = { TEXT("S680_P11"), TEXT("S680_P12"), TEXT("S680_P13"), TEXT("S680_P14") };
+	for (const TCHAR* Id : Goblins)
+	{
+		const int32 H = G->FindReviewSprite(Id);
+		if (!TestTrue(FString::Printf(TEXT("%s is live"), Id), H > 0)) return false;
+		TestTrue(FString::Printf(TEXT("%s has its main's hitpoints"), Id), D->FindSprite(H)->GetProp(TEXT("hitpoints")) > 0);
+		Play(600, [&] { return !G->IsReviewBlowHeld(); });
+		TestTrue(FString::Printf(TEXT("%s: a blow lands"), Id), G->ReviewBlow(H, 500) > 0);
+		Play(600, [&] { const FDinkSprite* S = D->FindSprite(H); return !S || !S->bActive || S->GetProp(TEXT("hitpoints")) <= 0; });
+		const FDinkSprite* S = D->FindSprite(H);
+		TestTrue(FString::Printf(TEXT("%s dies of one 500 blow"), Id), !S || !S->bActive || S->GetProp(TEXT("hitpoints")) <= 0);
+		// The capture's recipe: 1.5 s after a kill (lraise.c waits 1 s before its menu), answering the menu if it is up.
+		Play(90, [] { return false; });
+	}
+	TestTrue(TEXT("the first kill leveled Dink up: the menu held the world (stop_entire_game)"), bSawHeld && Menus >= 1);
+	Play(60 * 60, [&] { return FindScript(TEXT("en-gmog")) != 0; });
+	const int32 Mog = FindScript(TEXT("en-gmog"));
+	TestTrue(TEXT("the last goblin's die() spawned s3-mog: Mog (en-gmog) stands"), Mog != 0);
+	if (Mog != 0)
+	{
+		TestEqual(TEXT("dink.HurtSprite finds Mog by his script"), G->FindReviewSprite(TEXT("en-gmog")), Mog);
+	}
+	return true;
+}

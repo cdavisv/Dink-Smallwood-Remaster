@@ -621,6 +621,13 @@ public:
 	 */
 	int32 ReviewBlow(int32 Target, int32 Damage);
 	/**
+	 * Review only (dink.HurtSprite): true while stop_entire_game(1) holds the world (lraise.c's level-up menu, D:10099-10108).
+	 * No brain thinks then (D:17414-17423), so a blow's damage would only pile up on the sprite until the menu is answered:
+	 * the console refuses the blow instead. A capture that kills sprites one after the other hits this after the kill that
+	 * levels Dink up (SCR_680: the first goblin's 150 exp, 23 Nov 2026).
+	 */
+	bool IsReviewBlowHeld() const;
+	/**
 	 * Review only (dink.HurtSprite): the live sprite an argument names. A placement origin (S680_P12), a handle (17), a
 	 * script name (s3-mog: the live sprite carrying it, the one nearest Dink on his screen first) or `nearest` (the live
 	 * sprite with hitpoints nearest Dink on his screen). Script-made sprites have no origin; this finds them. 0 if none.
