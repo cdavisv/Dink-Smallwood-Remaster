@@ -1,4 +1,4 @@
-"""Decal texture sets for the photoreal pass: blood splats (glossy wet blood: gore stays) and burn holes (charred pit).
+"""Decal texture sets for the photoreal pass: blood splats (glossy wet blood: gore stays) and burn marks (a black scorch on the ground).
 Each set is a 2 x 2 atlas of four variants, 1024 px: T_Decal_<Name>_BC (sRGB + alpha), _N (linear, OpenGL +Y), _ORM (linear;
 R ambient occlusion, G roughness, B metallic 0). Writes Props/Decals/decals.json and a preview.   python3 -I decals.py"""
 import json, os
@@ -71,37 +71,42 @@ def blood_set(rng):
 
 
 def burn(rng):
-    y, x = np.mgrid[0:C, 0:C].astype(np.float32); cx, cy = C / 2 + rng.uniform(-15, 15), C / 2 + rng.uniform(-15, 15)
+    """One scorch mark as a signed field (> 0 inside the black heart, in units of its radius): a ragged star, as the 1997
+    pictures 158 draw a burn (a black blot with spikes of soot thrown out of it), not a round pit."""
+    y, x = np.mgrid[0:C, 0:C].astype(np.float32); cx, cy = C / 2 + rng.uniform(-12, 12), C / 2 + rng.uniform(-12, 12)
     r = np.hypot(x - cx, y - cy); th = np.arctan2(y - cy, x - cx)
-    lob = sum(rng.uniform(0.04, 0.14) * np.cos(k * th + rng.uniform(0, 6.28)) for k in (2, 3, 4, 6, 9)); R0 = rng.uniform(95, 125)
-    return (R0 * (1 + lob) + 30 * (fbm(rng, C, 5) - 0.5) - r) / R0                 # signed: > 0 inside the pit, scaled by its radius
+    lob = sum(rng.uniform(0.05, 0.16) * np.cos(k * th + rng.uniform(0, 6.28)) for k in (2, 3, 5)); R0 = rng.uniform(80, 100)
+    spikes = np.zeros_like(r)
+    for _ in range(int(rng.integers(9, 15))):                                   # soot thrown out along rays: narrow, tapering
+        a0 = rng.uniform(0, 6.28); w = rng.uniform(0.05, 0.14); ln = rng.uniform(0.22, 0.72)
+        d = np.abs(np.angle(np.exp(1j * (th - a0)))); spikes = np.maximum(spikes, ln * np.clip(1 - (d / w) ** 1.6, 0, 1))
+    edge = R0 * (1 + lob + spikes) + 22 * (fbm(rng, C, 7) - 0.5) + 9 * (fbm(rng, C, 28) - 0.5)
+    return (edge - r) / R0
 
 
 def burn_set(rng):
+    """Four scorch marks on the ground. Black char in the heart, soot spikes, a brown singed rim that breaks up into the
+    ground; ash only as sparse fine flecks; hardly any relief and no gloss. The first version (a round pit of crazed
+    plates with wide ash patches) read in the game as a pale grey cracked slab lying on the grass."""
     n = 2 * C; D = np.zeros((n, n), np.float32)
     for j in range(2):
         for i in range(2):
             D[j * C:(j + 1) * C, i * C:(i + 1) * C] = burn(rng)
-    pts = rng.random((900, 2)) * n; yy, xx = np.mgrid[0:n, 0:n].astype(np.float32)        # crazed char: distance to the two nearest of scattered cells
-    d1 = np.full((n, n), 1e9, np.float32); d2 = np.full((n, n), 1e9, np.float32)
-    for (px, py) in pts:
-        x0, x1, y0, y1 = int(max(px - 70, 0)), int(min(px + 70, n)), int(max(py - 70, 0)), int(min(py + 70, n))
-        d = np.hypot(xx[y0:y1, x0:x1] - px, yy[y0:y1, x0:x1] - py); a = d1[y0:y1, x0:x1]; b_ = d2[y0:y1, x0:x1]
-        nb = np.where(d < a, a, np.minimum(b_, d)); na = np.minimum(a, d); d1[y0:y1, x0:x1] = na; d2[y0:y1, x0:x1] = nb
-    crack = 1 - ss(d2 - d1, 0.0, 5.0)
-    pit = ss(D, 0.0, 0.35); halo = ss(D, -0.75, 0.05); f1 = fbm(rng, n, 24); f2 = fbm(rng, n, 90)
-    char = np.array([0.012, 0.011, 0.011]); ash = np.array([0.13, 0.125, 0.115]); scorch = np.array([0.02, 0.013, 0.008])
-    col = scorch[None, None] * (0.6 + 0.8 * f1)[..., None]
-    col = col + (char - col) * pit[..., None]
-    ashm = ss(f1 + 0.5 * f2, 0.95, 1.1) * pit * 0.7 + ss(f2, 0.68, 0.74) * ss(D, -0.2, 0.2) * 0.2
-    col = col + (ash - col) * np.clip(ashm, 0, 1)[..., None]
-    col = col * (1 - 0.6 * (crack * pit))[..., None]
+    yy, xx = np.mgrid[0:n, 0:n].astype(np.float32); f1 = fbm(rng, n, 20); f2 = fbm(rng, n, 80); f3 = fbm(rng, n, 220, oct=2)
+    heart = ss(D + 0.25 * (f1 - 0.5), 0.0, 0.22)                                 # solid black
+    soot = ss(D + 0.5 * (f2 - 0.5), -0.34, 0.02)                                 # the singed rim, torn by fine noise
+    char = np.array([0.006, 0.0055, 0.005]); singe = np.array([0.020, 0.011, 0.005]); ash = np.array([0.055, 0.052, 0.048])
+    col = singe[None, None] * (0.7 + 0.6 * f1)[..., None]
+    col = col + (char - col) * heart[..., None]
+    col = col * (0.8 + 0.4 * f3)[..., None]                                      # granular char, no plates
+    fleck = ss(f3 + 0.35 * f2, 1.02, 1.12) * heart * 0.55                        # sparse fine ash
+    col = col + (ash - col) * np.clip(fleck, 0, 1)[..., None]
     edge = ss(np.minimum(np.minimum(xx % C, C - 1 - xx % C), np.minimum(yy % C, C - 1 - yy % C)), 2, 30)
-    alpha = np.clip(halo ** 1.2 * (0.8 + 0.6 * f1) + pit, 0, 1) * edge
-    h = -0.9 * ss(D, -0.05, 0.6) + 0.25 * ss(D, -0.12, 0.0) * (1 - ss(D, 0.0, 0.12)) - 0.25 * crack * pit + 0.12 * f2 * pit      # sunk pit, raised lip, cracks
-    rough = 0.93 - 0.35 * ss(f2, 0.6, 0.75) * pit * (1 - ashm)                    # glints of glassy char
-    ao = 1 - 0.5 * crack * pit - 0.25 * pit
-    return col, alpha, normal(h, 9.0), np.stack([np.clip(ao, 0, 1), np.clip(rough, 0.3, 1), np.zeros_like(rough)], -1)
+    alpha = np.clip(np.maximum(heart, soot * (0.55 + 0.6 * f2)), 0, 1) * edge
+    h = -0.25 * ss(D, -0.05, 0.5) + 0.10 * f3 * heart                             # a shallow hollow, fine grain
+    rough = np.ones_like(D)
+    ao = 1 - 0.2 * heart
+    return col, alpha, normal(h, 4.0), np.stack([np.clip(ao, 0, 1), rough, np.zeros_like(rough)], -1)
 
 
 def save(name, col, alpha, nrm, orm):
@@ -119,9 +124,9 @@ man = {'schema': 'dink-decals/1', 'folder': 'DinkRemasterUE/SourceAssets/Art/Pho
     {'name': 'BloodSplat', 'class': 'blood_splat (46 placements)', 'files': sets['BloodSplat'], 'resolution_px': 1024, 'atlas': '2 x 2 variants, 512 px cells; pick one cell per placement, random yaw',
      'size_m': 'one cell covers about 0.9 x 0.9 m (the pool is 0.3-0.4 m across)', 'material': 'deferred decal, translucent blend: base colour = BC.rgb, opacity = BC.a, normal = N (OpenGL: flip green), roughness = ORM.G (0.07 wet centre to 0.6 dried rim), metallic 0, specular 0.5; no emissive',
      'known_weaknesses': 'procedural: streaks are straight tapered lines, droplets are ellipses, there is no soak-in tint on porous ground and no directional cast-off pattern; four variants only'},
-    {'name': 'BurnHole', 'class': 'burn_hole_decal (26 placements)', 'files': sets['BurnHole'], 'resolution_px': 1024, 'atlas': '2 x 2 variants, 512 px cells',
-     'size_m': 'one cell covers about 1.2 x 1.2 m (the charred pit is 0.5-0.6 m across)', 'material': 'deferred decal, translucent blend: base colour = BC.rgb, opacity = BC.a (scorch halo fades out), normal = N (sunk pit with a raised lip and crazed char), roughness = ORM.G, AO = ORM.R, metallic 0; optional faint ember emissive is not authored',
-     'known_weaknesses': 'procedural: the crazing is an even cell pattern, ash is flecks of flat grey, no burnt debris or soot streak downwind; a decal cannot really sink the ground (normal only)'}]}
+    {'name': 'BurnHole', 'class': 'burn_hole_decal (26 placements)', 'files': sets['BurnHole'], 'resolution_px': 1024, 'specular': 0.0, 'atlas': '2 x 2 variants, 512 px cells',
+     'size_m': 'one cell covers about 1.2 x 1.2 m (the charred pit is 0.5-0.6 m across)', 'material': 'deferred decal, translucent blend: base colour = BC.rgb, opacity = BC.a (scorch halo fades out), normal = N (a shallow hollow), specular 0 (manifest row "specular": a lit black decal with the default specular is grey in the sun), roughness = ORM.G, AO = ORM.R, metallic 0; optional faint ember emissive is not authored',
+     'known_weaknesses': 'procedural: a flat scorch (black heart, soot spikes, singed rim), no burnt debris and no depth; four variants only'}]}
 json.dump(man, open(os.path.join(OUT, 'decals.json'), 'w'), indent=1)
 # preview on a dirt-brown ground, lit from the upper left, with a crude specular so the wet gloss shows
 prev = []
