@@ -1038,6 +1038,7 @@ void UDinkGameplay::DragonBrain(FDinkSprite& S, double Tick)
 		return;
 	}
 	const int32 H = S.Handle;
+	FDinkSprite* Walker = &S;
 	const int32 Target = S.GetProp(B_Target);
 	if (Target != 0 && (S.bWindingUp || S.GetProp(B_AttackWait) < Tick) && !S.Script.IsNone() && Story->HasProcedure(S.Script, Proc_Attack))
 	{
@@ -1050,15 +1051,19 @@ void UDinkGameplay::DragonBrain(FDinkSprite& S, double Tick)
 		{
 			return;
 		}
-		RunAttackScript(S);
-		FDinkSprite* After = Director()->FindSprite(H);
-		if (!After || !After->bActive || After != &S)
+		RunAttackScript(S); // S may be stale after this: the script's create_sprite / say can grow the sprite map
+		Walker = Director()->FindSprite(H);
+		if (!Walker || !Walker->bActive)
 		{
-			return; // the script changed the sprite table; think again next frame
+			return; // the script removed it
 		}
+		// dragon_brain runs ATTACK and walks on in the same frame. Never compare the address with &S: whether the map's growth
+		// moved the storage depends on the allocator and the heap's history (editor and packaged game differ), and a skipped
+		// move put Seth 3 px behind in the packaged probe's chapter 20 (Plugins/DinkParity/Docs/packaged_probe.md).
 	}
-	const int32 Base = S.GetProp(B_BaseWalk, -1);
-	if (S.GetProp(B_Seq) == 0)
+	FDinkSprite& W = *Walker;
+	const int32 Base = W.GetProp(B_BaseWalk, -1);
+	if (W.GetProp(B_Seq) == 0)
 	{
 		for (int32 Guard = 0; Guard < 1000; ++Guard)
 		{
@@ -1067,25 +1072,25 @@ void UDinkGameplay::DragonBrain(FDinkSprite& S, double Tick)
 				const int32 Hold = RandomModulo(9) + 1;
 				if (Hold != 1 && Hold != 3 && Hold != 7 && Hold != 9 && Hold != 5)
 				{
-					ChangeDir(S, Hold, Base);
+					ChangeDir(W, Hold, Base);
 				}
 				break;
 			}
-			S.Props.Add(B_Seq, S.SeqOrig);
-			if (S.SeqOrig != 0)
+			W.Props.Add(B_Seq, W.SeqOrig);
+			if (W.SeqOrig != 0)
 			{
 				break;
 			}
 		}
 	}
-	if (S.Y > GameAreaY) { ChangeDir(S, 8, Base); }
-	if (S.X > ScreenSizeX) { ChangeDir(S, 4, Base); }
-	if (S.Y < 0) { ChangeDir(S, 2, Base); }
-	if (S.X < 0) { ChangeDir(S, 6, Base); }
-	AutoMove(S);
-	if (CheckIfMoveIsLegal(S) != 0)
+	if (W.Y > GameAreaY) { ChangeDir(W, 8, Base); }
+	if (W.X > ScreenSizeX) { ChangeDir(W, 4, Base); }
+	if (W.Y < 0) { ChangeDir(W, 2, Base); }
+	if (W.X < 0) { ChangeDir(W, 6, Base); }
+	AutoMove(W);
+	if (CheckIfMoveIsLegal(W) != 0)
 	{
-		ChangeDir(S, AutoReverse(S), Base);
+		ChangeDir(W, AutoReverse(W), Base);
 	}
 }
 

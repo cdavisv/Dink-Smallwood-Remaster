@@ -1,5 +1,16 @@
 # The probe in a packaged game (done 7 Nov 2026)
 
+> **Packaged ch20 = PIE again (pkg-parity-1, 25 Nov 2026, branch fix/pkg-seth-parity).** Cause of 5dc0ee9655: `UDinkGameplay::DragonBrain`
+> (brain 10, Seth) ran the ATTACK script, found the sprite again and returned when `After != &S`. Seth's attack makes two sprites (the 166
+> spark and the "Magic resisted." text); when that grows the `TMap<int32, FDinkSprite>`, whether the realloc keeps the storage's address
+> depends on the allocator and the heap's history, which differ between the editor and the game process. In the package the storage moved,
+> the brain skipped `AutoMove` on the attack frame, and Seth was one 3 px move behind. 1997 `dragon_brain` (source/dink/dink.cpp:13234) runs
+> ATTACK and walks on in the same frame, so the PIE run (no move of the storage) was the faithful one. Fix: the brain goes on with the sprite
+> it found again (stops only when the script removed it); no address compare. PIE md5s unchanged (PIE never took the early return here).
+> The same branch makes master package again: #229's `WarmEffects` called `FMaterial::IsCompilationFinished` / `FinishCompilation`, which
+> exist only in editor builds (package.sh exit 6); that block is now `#if WITH_EDITOR` (a cooked game has its shader maps).
+> Rule: never decide simulation by a sprite's address; after a script call, find the sprite again by handle and use that.
+
 > **Packaged run on master 7af842d73, 25 Nov 2026 (pkg-tools-1; the first packaged run since 14 Nov, and the first on the A41 table).**
 > `Scripts/package.sh` with `DINK_PACKAGE_ZEN=off` (cook with `-SkipZenStore`, PR #243): PACKAGE OK in 49 s, 0 warnings, content check
 > 3033/3033 string-path assets. `Scripts/run_packaged_tests.sh` (twenty processes): every chapter PASSED, `&story` 16. In the same copy the full
