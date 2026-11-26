@@ -239,7 +239,7 @@ return A - n + 0.5;'''
 def baked_master(defaults, name='M_Struct_Baked', emissive=False, kind='opaque'):
     """A unique bake (the contract's `baked` materials): BC / N / ORM on UV0, no vertex colour. Round 2 of the props:
     ORM.B is real metallic; `emissive` adds the E map x EmissiveNits x EmissiveScale; kind 'subsurface' (wax) and
-    'translucent' (horn panes) change the shading only; 'masked' cuts the surface out by the alpha of BC; 'pit' is a
+    'translucent' (horn panes) change the shading only; 'masked' cuts the surface out by the alpha of BC; 'soak' dithers that alpha (a pool's stained rim); 'pit' is a
     burnt-through hole (see below)."""
     path = FOLDER + '/' + name
     mat = LIB.load_asset(path) if LIB.does_asset_exist(path) else None
@@ -279,6 +279,16 @@ def baked_master(defaults, name='M_Struct_Baked', emissive=False, kind='opaque')
         mat.set_editor_property('two_sided', True)
         mat.set_editor_property('opacity_mask_clip_value', 0.4)
         EDIT.connect_material_property(bc, 'A', MP.MP_OPACITY_MASK)
+    elif kind == 'soak':
+        # A pool of blood on the ground (corpse kit, 23 Nov 2026 review: the pool's edge was the cut of a card). The sheet's alpha runs from 1 in the
+        # pool through a stain that thins out to 0 (Corpses/tools/gore_sheets.py blood_sheet soak_rim); the cover is dithered against a per-frame noise
+        # as the pit's is, so the stain fades into whatever ground lies under the card instead of ending in a cut
+        mat.set_editor_property('blend_mode', unreal.BlendMode.BLEND_MASKED)
+        mat.set_editor_property('two_sided', True)
+        mat.set_editor_property('opacity_mask_clip_value', 0.5)
+        dith = custom(mat, -300, -560, PIT_DITHER, F1, ['A'], 'Cover dithered per frame (the blood soaks into the ground)')
+        link(bc, 'A', dith, 'A')
+        EDIT.connect_material_property(dith, '', MP.MP_OPACITY_MASK)
     elif kind == 'pit':
         # A hole burnt through planks or a wall (corpse kit, picture 158; Corpses/tools/gore_sheets.py pit_sheet). The sheet is flat;
         # ORM.b is not metallic here but the void mask. Inside the void the shader walks the view ray down through the thickness of
@@ -481,7 +491,7 @@ for mat_name, row in integration['materials'].items():
             tex['E'] = import_texture(REPO / row['files']['E'], 'BC')
         key = (kind, 'E' in tex)
         if key not in baked_parents:
-            baked_parents[key] = baked_master(tex, 'M_Struct_Baked' + {'opaque': '', 'subsurface': '_Wax', 'translucent': '_Pane', 'masked': '_Cut', 'pit': '_Pit'}.get(kind, '') + ('_Glow' if 'E' in tex else ''), 'E' in tex, kind)
+            baked_parents[key] = baked_master(tex, 'M_Struct_Baked' + {'opaque': '', 'subsurface': '_Wax', 'translucent': '_Pane', 'masked': '_Cut', 'pit': '_Pit', 'soak': '_Soak'}.get(kind, '') + ('_Glow' if 'E' in tex else ''), 'E' in tex, kind)
         textures = {k: tex[k] for k in ('BC', 'N', 'ORM', 'E') if k in tex}
         scalars = {'EmissiveNits': row.get('emissive_nits') or 0.0} if 'E' in tex else {}
         if kind == 'pit':                             # the pit shader reads the same two maps as texture objects, and the depths of this hole

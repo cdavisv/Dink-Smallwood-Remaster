@@ -508,7 +508,7 @@ def finish(asset, cls, outdir, families, dresses, weaknesses, body=None, hi=(), 
     if os.path.exists(blend + '1'):
         os.remove(blend + '1')
     tex = [{'file': f, 'size_px': list(Image.open(os.path.join(L.REPO, f)).size), 'material': k['name'],
-            'channels': {'BC': 'base colour sRGB' + (' + alpha (cut-out)' if k['kind'] == 'masked' else ' + alpha (cover, dithered by the pit material)' if k['kind'] == 'pit' else ''), 'N': 'tangent normal, OpenGL (green up; flip green on import)',
+            'channels': {'BC': 'base colour sRGB' + (' + alpha (cut-out)' if k['kind'] == 'masked' else ' + alpha (cover with a stained rim, dithered by the soak material)' if k['kind'] == 'soak' else ' + alpha (cover, dithered by the pit material)' if k['kind'] == 'pit' else ''), 'N': 'tangent normal, OpenGL (green up; flip green on import)',
                          'ORM': 'R occlusion, G roughness, B void mask of the pit material (not metallic)' if k['kind'] == 'pit' else 'R occlusion, G roughness, B metallic'}[r]}
            for k in kit for r, f in k['files'].items()]
     man = {'name': asset, 'class': cls, 'fbx': L.rel(fbx), 'source_blend': L.rel(blend), 'build': 'Unclaimed/tools/bl.sh ../../Corpses/tools/%s %s' % (SCRIPT, name),
@@ -973,13 +973,13 @@ def knight(prev=False):
     # 16 Nov: the pool in the bright red of picture 275 (the default pool colours were darker than 1997). 23 Nov: one flat bright red read as
     # paint in the game; GS.FRESH_1997 with look 'fresh' keeps that red where the blood is thin and goes deep where it is thick.
     sheet, size = person_pool(L.co(skin), c, 275, pool=1.0, extra_pts=foot_x, fit_m=FOOT['Corpse_Knight'], sprite='275_01',
-                              colours=dict(GS.FRESH_1997, look='fresh', deep_m=0.11)); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)
+                              colours=dict(GS.FRESH_1997, look='fresh', deep_m=0.11, soak_rim=0.09)); cfiles = write_sheet(sheet, outdir, name + '_Pool'); card = sheet_card(name + '_Pool', size, cfiles)      # soak_rim: the edge wicks into the dirt (kind 'soak', 23 Nov review)
     if os.environ.get('DINK_POOL_ONLY'):             # look iterations: the pool sheet alone (same body, same card, no bake)
         print('POOL ONLY: wrote', cfiles); return
     weak = ('The knight is the plate harness of Unclaimed/npc_knight_blue (silver set) with procedural wear (grime, scratches, dents as a bump): swept plates without straps or rivets and nobody inside, so there is no flesh to see at the joints; the wound is a ring of raw flesh round the shaft. '
             'The halberd head is the knight\'s own, laid flat; the shafts are plain turned poles with a tapered break, not splintered wood. The pool, drops and mist are a flat alpha-tested card 6 mm above the ground. Static.')
     finish(asset, 'prop', outdir, ['corpse_knight', '275 people/knight/red/death-'], 'the knight dead on his back in worn steel plate, lying in his blood, drops thrown round it, the snapped shaft of his halberd standing in his chest and its head lying in the blood beside him',
-           weak, body=lo, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=False, third_party=('park_dirt (render ground)',),
+           weak, body=lo, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=False, third_party=('park_dirt (render ground)',), card_kind='soak',
            extra={'derived_from': 'Unclaimed/npc_knight_blue/Knight (SK_Knight_PR LOD0, silver set), posed, worn, the halberd broken, bloodied and baked again', 'sprite_footprint_m': FOOT['Corpse_Knight'], 'pool_extent_m': round(sheet['extent_m'], 2), 'pool_area_m2': round(sheet['area_m2'], 2), 'sprite_red_area_m2': round(sheet['sprite_red_m2'], 2), 'gore_in_mesh': 'blood welling round the wound and run down the plates, soaked underside, entry wound, pool with thrown drops and mist (no companion decal)', 'pool_card_m': size})
 
 
@@ -1149,7 +1149,7 @@ def membrane(mat, root, tip):
         Lk.new(r.links[0].from_socket, m2.inputs[2])
     else:
         m2.inputs[2].default_value = r.default_value
-    m2.inputs[3].default_value = 0.82; Lk.new(m2.outputs[0], r); return mat
+    m2.inputs[3].default_value = 0.90; Lk.new(m2.outputs[0], r); return mat      # 0.82 still gave a pale sheen on the sunlit grass of 238
 
 
 # ================================================================================================ the dragon
@@ -1175,7 +1175,8 @@ def dragon(prev=False):
         aim(arm, b, flat(a))
     for b, a in zip(('neck_01', 'neck_02', 'neck_03', 'head'), (178, 170, 158, 142)):
         aim(arm, b, flat(a))
-    for b, a, z in (('wing_01_l', 64, -0.40), ('wing_02_l', 92, 0.0), ('wing_f1_l', 120, 0.0), ('wing_f2_l', 98, 0.0), ('wing_f3_l', 76, 0.0),
+    for b, a, z in (('wing_01_l', 64, -0.40), ('wing_02_l', 92, 0.0), ('wing_f1_l', 134, 0.0), ('wing_f2_l', 98, 0.0), ('wing_f3_l', 60, 0.0),      # fingers spread (23 Nov: 120 / 98 / 76 left a narrow blade, picture 216 has a wing as broad as the body)
+                   
                     ('thigh_l', 40, -0.30), ('calf_l', 8, 0.0), ('thigh_r', 62, 0.0), ('calf_r', 28, 0.0), ('upperarm_l', 118, -0.3), ('upperarm_r', 140, 0.0)):
         aim(arm, b, flat(a, z))
     J = {b: bone_pos(arm, b) for b in ('pelvis', 'neck_02', 'head', 'wing_01_r', 'wing_01_l', 'wing_f1_l')}; J['neck_end'] = bone_pos(arm, 'neck_01', tail=True)
@@ -1219,23 +1220,45 @@ def dragon(prev=False):
     drop_small_islands(skin, 10)
     wing = split_verts(skin, vattr(skin, 'wl') > 0.5, 'wing'); Pw = L.co(wing); root = Pw[np.argmax(Pw[:, 2])].copy(); far = Pw[np.argmax(np.linalg.norm(Pw[:, :2] - root[:2], axis=1))].copy()
     reach_ = float(np.linalg.norm(far[:2] - root[:2]))
+    # 23 Nov 2026, review of #235 in the game: the wing was the source's flat panel (a pale kite; its folds only a normal map). The membrane is now
+    # cut fine enough to carry real pleats: it lies collapsed on the ground in a fan of folds running out from the wrist, a hand high, sagging
+    # between them, so the sun draws light and shadow on it from the play camera
+    wrist = J['wing_f1_l'].copy(); wrist[2] = 0.0; tip = J['tip'].copy(); tip[2] = 0.0
+    bm = bmesh.new(); bm.from_mesh(wing.data)        # the membrane is a few large triangles in the source: every edge longer than 6.6 cm is cut until none is left
+    for _ in range(7):
+        long_ = [e for e in bm.edges if e.calc_length() > 0.066]
+        if not long_:
+            break
+        bmesh.ops.subdivide_edges(bm, edges=long_, cuts=1, use_grid_fill=False); bmesh.ops.triangulate(bm, faces=bm.faces[:])
+    bm.to_mesh(wing.data); bm.free(); wing.data.update(); print('WING cut to %d vertices, %d triangles' % (len(wing.data.vertices), len(wing.data.polygons))); lv = 2
     delete_faces(wing, lambda C: (np.linalg.norm(C[:, :2] - root[:2], axis=1) > reach_ * (0.84 + 0.30 * L.fbm(C * 4.0, 31, 1.0, 4))) | ((L.fbm(C * 2.6, 37, 1.0, 3) > 0.47) & (C[:, 2] < 0.05)))     # the far edge in rags, holes in the membrane
     drop_small_islands(wing, 12)
+
+    def pleats(Pq):                                  # (height above the lying sheet in metres, 0..1 crest measure) of the fan of folds at each point
+        dx = Pq[:, 0] - wrist[0]; dy = Pq[:, 1] - wrist[1]; th = np.arctan2(dy, dx); rr_ = np.hypot(dx, dy)
+        wob = 2.2 * L.fbm(Pq * np.array([2.2, 2.2, 0.0]), 51, 1.0, 3); crest = (0.5 + 0.5 * np.cos(th * 27.0 + 2.4 * wob)) ** 0.8
+        amp = 0.060 * (0.35 + 0.65 * L.smoothstep(0.08, 0.40, rr_)) * (0.55 + 0.9 * L.fbm(Pq * np.array([1.9, 1.9, 0.0]), 61, 1.0, 2))
+        return crest * amp + 0.022 * L.fbm(Pq * np.array([1.5, 1.5, 0.0]), 63, 1.0, 2) * L.smoothstep(0.05, 0.3, rr_), crest
+    Pw = L.co(wing); vattr(wing, 'z0', Pw[:, 2].copy())
+    memw = np.clip((vattr(wing, 'wl') - 0.5) * 4, 0, 1) * L.smoothstep(0.06, 0.30, np.linalg.norm(Pw - root, axis=1))      # nothing moves where the wing joins the shoulder
+    hz, _ = pleats(Pw); Pw[:, 2] += hz * memw; L.set_co(wing, Pw); vattr(wing, 'memw', memw)
     flesh = m_flesh(); mwing = mat.copy(); mwing.name = 'hide_wing'; wing.data.materials.clear(); wing.data.materials.append(mwing)
     skin.data.materials.append(flesh); wing.data.materials.append(flesh); torn_rim(skin, 0.05, 1); torn_rim(wing, 0.012, 1)
     fresh = ((0.019, 0.0015, 0.0015), (0.085, 0.005, 0.004))            # the game's own blood numbers (FRESH_1997 body and deep): brighter reds clip to poster red in the sun
     wound = (A + B) / 2 + belly * core_r * 0.9
     bloody(mat, [(wound, core_r * 1.9), (nA, core_r * 1.2), (stump, core_r * 1.1)], ground=0.035, amount=1.0, spatter=0.70, drench=0.0, vivid=fresh)     # the hide keeps its brown: no drench
-    wrist = J['wing_f1_l'].copy(); wrist[2] = 0.0; tip = J['tip'].copy(); tip[2] = 0.0
     membrane(mwing, root, far); bloody(mwing, [(far, 0.42), (root, core_r * 0.9)], ground=0.004, amount=1.0, spatter=0.66, drench=0.0, vivid=fresh, use_link=True)
-    # dense wing for the bake: the membrane sags in folds that run out from the wrist (a normal map and dark creases on the flat game wing)
-    wing_hi = L.dup(wing, 'wing_hi'); L.mod(wing_hi, 'SUBSURF', subdivision_type='SIMPLE', levels=2); L.apply_mods(wing_hi); Pw = L.co(wing_hi); mem = np.clip((vattr(wing_hi, 'wl') - 0.5) * 4, 0, 1) * (Pw[:, 2] < 0.06)
+    # dense wing for the bake: the game wing's own pleats, with the small folds and wrinkles of slack skin pressed into them (always below the game
+    # surface: raised detail lies outside the bake's cage and bakes black); the valleys of both are dark (attribute `crease`)
+    wing_hi = L.dup(wing, 'wing_hi'); L.mod(wing_hi, 'SUBSURF', subdivision_type='SIMPLE', levels=2); L.apply_mods(wing_hi); Pw = L.co(wing_hi); mem = vattr(wing_hi, 'memw')
     dx = Pw[:, 0] - wrist[0]; dy = Pw[:, 1] - wrist[1]; th = np.arctan2(dy, dx); rr_ = np.hypot(dx, dy); wob = 2.2 * L.fbm(Pw * 3.0, 51, 1.0, 3)
-    ridge = (0.5 + 0.5 * np.cos(th * 58.0 + 2.5 * wob)) ** 1.4 * (0.55 + 0.9 * (L.fbm(Pw * 4.0, 57, 1.0, 3) + 0.5)); ramp_ = np.clip(rr_ / 0.22, 0, 1) * mem      # about eight folds across the fan (15 per turn gave two: flat in the game)
-    topside = L.vnormals(wing_hi)[:, 2] > 0; Pw[:, 2] -= (0.014 * (1 - ridge) * ramp_ + 0.004 * (L.fbm(Pw * 7.0, 53, 1.0, 3) + 0.5) * mem) * topside        # valleys below the flat game wing: inside the bake's reach (raised folds baked black)
-    Pw[:, 2] = np.where(topside & (mem > 0), np.maximum(Pw[:, 2], 0.006), Pw[:, 2]); L.set_co(wing_hi, Pw); vattr(wing_hi, 'crease', np.clip(1 - ridge, 0, 1) ** 2.2 * ramp_)
-    bm = bmesh.new(); bm.from_mesh(wing_hi.data); bm.normal_update(); lay = bm.verts.layers.float.get('wl')
-    bmesh.ops.delete(bm, geom=[f for f in bm.faces if f.normal.z < -0.2 and f.calc_center_median().z < 0.05 and all(v[lay] > 0.6 for v in f.verts)], context='FACES'); bm.to_mesh(wing_hi.data); bm.free()   # the membrane's underside: in the valleys it would lie above the upper side and the bake would see its back
+    ridge = (0.5 + 0.5 * np.cos(th * 81.0 + 2.5 * wob)) ** 1.4 * (0.55 + 0.9 * (L.fbm(Pw * 4.0, 57, 1.0, 3) + 0.5)); ramp_ = np.clip(rr_ / 0.22, 0, 1) * mem      # three small folds to each pleat
+    _, crest = pleats(Pw); topside = L.vnormals(wing_hi)[:, 2] > 0
+    Pw[:, 2] -= (0.007 * (1 - np.clip(ridge, 0, 1)) * ramp_ + 0.003 * (L.fbm(Pw * 7.0, 53, 1.0, 3) + 0.5) * mem) * topside
+    Pw[:, 2] = np.where(topside & (mem > 0), np.maximum(Pw[:, 2], 0.004), Pw[:, 2]); L.set_co(wing_hi, Pw)
+    vattr(wing_hi, 'crease', np.clip(0.75 * (1 - crest) ** 1.6 + 0.45 * np.clip(1 - ridge, 0, 1) ** 2.2, 0, 1) * ramp_)
+    bm = bmesh.new(); bm.from_mesh(wing_hi.data); bm.normal_update(); lay = bm.verts.layers.float.get('wl'); lz0 = bm.verts.layers.float.get('z0')
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if f.normal.z < -0.2 and max(v[lz0] for v in f.verts) < 0.05 and all(v[lay] > 0.6 for v in f.verts)], context='FACES'); bm.to_mesh(wing_hi.data); bm.free()   # the membrane's underside: in the valleys it would lie above the upper side and the bake would see its back
     wing_hi.data.polygons.foreach_set('use_smooth', [True] * len(wing_hi.data.polygons))
     # ---- what is inside: the carcass core along the spine, heaps of torn muscle, the rib cage standing over the opened belly, entrails run out to the south
     bone = m_bone(); gut = m_gut(); hi = [skin, wing_hi]; lo = []
@@ -1310,9 +1333,9 @@ def dragon(prev=False):
     foot = np.vstack([L.co(skin)[::25, :2], L.co(wing)[::10, :2]]); foot = foot[(np.linalg.norm(foot - wound2, axis=1) < 0.95) & (np.abs(foot).max(1) < keep_in - 0.25)]
     sheet = GS.blood_sheet(2048, size, 216, pools=[(cc[0], cc[1], 0.80, 0.50, 0.0, [(-1.4, 0.40, 0.30), (-2.5, 0.22, 0.32), (0.5, 0.2, 0.25)])], foot=foot, grow=0.09,
                            n_drops=260, reach=0.42, casts=9, mist=900, drop_r=(0.006, 0.04), centre=cc,
-                           look='fresh', deep_m=0.14, **GS.FRESH_1997)      # the one blood look of the pools and decals (23 Nov): bright where thin, deep where thick
+                           look='fresh', deep_m=0.14, soak_rim=0.11, **GS.FRESH_1997)      # the one blood look of the pools and decals (23 Nov): bright where thin, deep where thick
     cfiles = write_sheet(sheet, outdir if not prev else REVIEW, name + '_Pool')
-    card = sheet_card(name + '_Pool', size, cfiles, z=0.02)      # 2 cm up: at 6 mm the 3.1 m card lay under the ground's own relief on screen 158 (seen in the game)
+    card = sheet_card(name + '_Pool', size, cfiles, z=0.035)      # 3.5 cm up: at 6 mm the 3.1 m card lay under the ground's own relief on screen 158, at 2 cm its east side still did (seen in the game); the stained, dithered rim hides the step
     if os.environ.get('DINK_POOL_ONLY'):             # look iterations: the pool sheet alone (same carcass, same card, no bake)
         print('POOL ONLY: wrote', cfiles); return
     if prev:
@@ -1324,11 +1347,11 @@ def dragon(prev=False):
     sk = L.dup(skin, 'hide_lo'); unwrap(sk); wg = wing; wg.name = 'wing_lo'; unwrap(wg); game = game_mesh([sk, wg] + lo, asset)
     c = L.co(game); c[:, 2] = np.maximum(c[:, 2], 0.0); L.set_co(game, c)      # nothing under the ground: the family layer stands a mesh on its lowest point (ribs and rims reached 1.3 cm below)
     weak = ('The hide is the rigged dragon of Unclaimed/dragon (its baked LOD1) posed, laid on the ground bone by bone and cut by rule, so the torn edges follow its triangles and the flesh behind them is one procedural muscle material: '
-            'no anatomy beyond a rib cage, a backbone and three loops of gut; the raw mass is a displaced union of lumps, not modelled muscle groups. The wing is the flat panel of the source; its folds are a normal map and dark creases. '
-            'The second wing is simply gone. The pool, the drops and the mist are a flat alpha-tested card 2 cm above the ground. Built to the size of the sprite card (about 2.7 m; the pool card 3.1 m), far smaller than the living dragon of the source (6.7 m). Static, as the sprite.')
+            'no anatomy beyond a rib cage, a backbone and three loops of gut; the raw mass is a displaced union of lumps, not modelled muscle groups. The wing is the panel of the source cut finer and laid in a fan of pleats a hand high (real geometry), with small folds as a normal map and dark creases; it has no finger bones of its own under the skin. '
+            'The second wing is simply gone. The pool, the drops and the mist are a flat card 3.5 cm above the ground whose stained rim is dithered into the ground (it does not follow uneven ground). Built to the size of the sprite card (about 2.7 m; the pool card 3.1 m), far smaller than the living dragon of the source (6.7 m). Static, as the sprite.')
     finish(asset, 'prop_large', outdir, ['dragon_corpse', '212 foes/dragon/f2-x3-', '216 foes/dragon/f2-x7-'],
            'the dragon dead on its side as picture 216 shows it: back to the north with the hide still brown and orange, the belly torn open towards the camera with ribs standing over raw muscle and entrails run out on the ground, neck and head along the ground to the west, the long tail curled round from the east to the south, one grey-green wing lying on the ground to the south, the other torn off, flesh thrown around, all of it in a pool of its own blood',
-           weak, body=game, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=False, extrude=0.006, maxdist=0.03, third_party=('park_dirt (render ground)',), beauty=dict(az=0, el=50, fill=1.0, lens=60), close=dict(az=-50, el=22, fill=1.5, lens=70),
+           weak, body=game, hi=hi, card=(card, cfiles), px=2048, ss=2, alpha=False, extrude=0.006, maxdist=0.03, card_kind='soak', third_party=('park_dirt (render ground)',), beauty=dict(az=0, el=50, fill=1.0, lens=60), close=dict(az=-50, el=22, fill=1.5, lens=70),
            extra={'derived_from': 'Unclaimed/dragon/Dragon (SK_Dragon_PR, LOD1), posed, cut and baked again with the gore', 'gore_in_mesh': 'torn hide with flesh rims, carcass core, raw muscle mass, ribs, backbone, entrails, thrown chunks; pool card with drops and mist (no companion decal)', 'pool_card_m': size,
                   'layout': 'as picture 216 (+X screen right, +Y north): the 216 row needs no turn, the 212 row turns it half round'})
 

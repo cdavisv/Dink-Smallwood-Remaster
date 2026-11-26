@@ -385,6 +385,20 @@
      "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Boulder_Field_C_PR_ORM.png"
     },
     "graph": "base colour = BC, normal = N (OpenGL, flip green), occlusion = ORM.R, roughness = ORM.G, metallic 0; UV0 is a unique unwrap in 0-1; no vertex colour"
+   },
+   "MI_Stonebrook_Embers": {
+    "baked": true,
+    "texture_px": 1024,
+    "files": {
+     "BC": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Stonebrook_Embers_BC.png",
+     "N": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Stonebrook_Embers_N.png",
+     "ORM": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Stonebrook_Embers_ORM.png",
+     "E": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/Structures/Stonebrook/Textures/T_Stonebrook_Embers_E.png"
+    },
+    "emissive_nits": 80.0,
+    "tile_size_m": 2.0,
+    "graph": "base colour = BC, normal = N (OpenGL, flip green), occlusion = ORM.R, roughness = ORM.G, metallic 0, emissive = E (sRGB) x emissive_nits x the importer's EmissiveScale; UV0 carries the tiling (a tileable set, tools/make_embers.py); no vertex colour",
+    "note": "the embers of the burning cottage (screen 439 vision 1, picture 154): rafters and laths in the roof hole, fallen timbers and the bed of embers on the floor"
    }
   },
   "assets": {
@@ -739,22 +753,23 @@
      "MI_Struct_OakWeathered",
      "MI_Struct_Thatch",
      "MI_Town_DoorPlanks",
-     "MI_Struct_Earth"
+     "MI_Struct_Earth",
+     "MI_Stonebrook_Embers"
     ],
     "lod_triangles": [
-     88652,
-     39892,
-     17730
+     97090,
+     43690,
+     19418
     ],
     "bounds_min_m": [
      -9.8,
-     -7.05,
+     -7.036,
      0.0
     ],
     "bounds_max_m": [
      9.8,
      5.3,
-     7.951
+     7.952
     ],
     "collision_hulls": 5
    }
@@ -865,26 +880,27 @@
     "MI_Struct_OakWeathered",
     "MI_Struct_Thatch",
     "MI_Town_DoorPlanks",
-    "MI_Struct_Earth"
+    "MI_Struct_Earth",
+    "MI_Stonebrook_Embers"
    ],
    "source_blend": "Stonebrook_Burning.blend",
-   "lod0_triangles": 88652,
-   "lod1_triangles": 39892,
-   "lod2_triangles": 17730,
+   "lod0_triangles": 97090,
+   "lod1_triangles": 43690,
+   "lod2_triangles": 19418,
    "dimensions_m": [
     19.6,
-    12.35,
-    7.951
+    12.336,
+    7.952
    ],
    "bounds_min_m": [
     -9.8,
-    -7.05,
+    -7.036,
     0.0
    ],
    "bounds_max_m": [
     9.8,
     5.3,
-    7.951
+    7.952
    ],
    "open_edges": 0,
    "collision_hulls": 5,
@@ -892,15 +908,15 @@
     "screen 439 burning state (vision 1) of 63 struct<HOME>"
    ],
    "supersedes": "reference only: StonebrookRuins/SM_Cottage_Stonebrook_Burning_01 (candidate kit, another house: half-timbered and gabled, its roof hole far smaller than the 1997 one)",
-   "dresses": "the Stonebrook cottage while it burns (screen 439 vision 1, the hole of S439_P29): the same stones, timbers and weathering as SM_Cottage_Stonebrook_PR (built from the same random stream), the roof standing with a hole eaten into the front slope from 1.25 m above the eaves up to and through the ridge, about 4.4 m wide: ragged black straw at its edge, soot a metre out, charred rafters, laths and the bared ridge pole in it, the dark of the room below; three charred patches where the other fires of the 1997 screen sit. No flame, smoke or glow in the mesh: those are placed effects.",
+   "dresses": "the roof standing with a round ragged hole burnt into the middle of the front slope (about 4.4 m wide and 3.5 m up the slope, the ridge whole above it, as picture 154): bundles of black straw ending in points at its edge, soot a metre out, the rafters and laths in it and the bed of what fell in glowing as embers (a sixth material, MI_Stonebrook_Embers, baked with an emissive map), the burnt room below; three charred patches where the other fires of the 1997 screen sit. No flame or smoke in the mesh: those are placed effects.",
    "fit": {
     "pivot": "as SM_Cottage_Stonebrook_PR: swap in place for vision 1",
     "collision": "as the intact cottage (roof hull kept)",
     "effects": "fire at the 1997 fire placements of screen 439 is placed by the game; the hole centre is at x = 1.90 m on the front slope"
    },
    "material_exception": "kit material on shared tiling scan sets with a vertex-colour weathering layer (dirt, moss, bleach, iron/glass switch) that the library materials do not have; not a private bake. Add MI_Town_* / MI_Struct_* to ART_STANDARD.md section 2 when they are imported.",
-   "status": "new 16 Nov 2026 (DS-01): one Blender preview round; judged in the game before binding",
-   "known_weaknesses": "The hole is a straight-sided gap between two parts of the front slope with ragged edges, open to the ridge (the 1997 hole of S439_P29 is ringed by thatch on every side). Rafters, laths and ridge pole in it are charred six-sided poles; the room below is an unlit black sheet under the rafters, no modelled interior. The charred patches and the soot round the hole are vertex colour (0.3 m grid). No embers, flame, smoke or glow: placed effects. Walls, windows and door are those of the intact cottage (no soot on the stone)."
+   "status": "new 16 Nov 2026 (DS-01); 23 Nov 2026: seen in the game (PR #215), then the hole made round with the ridge whole and the embers given a glow after the review",
+   "known_weaknesses": "The hole's rim is built from 84 bundles of straw, each cut in two pieces with pointed ends: ragged, but every bundle is a straight strip 6 cm wide, so very close up the rim is a comb, not burnt straw fibre by fibre. Rafters and laths in it are six-sided and four-sided poles in one tiling ember set (charred blocks with glowing cracks, numpy-made, no scan): the glow does not flicker and casts no light of its own beyond what the engine's global lighting takes from an emissive surface. The room below is a box of charred faces with fallen timbers, not a furnished interior. The charred patches and the soot round the hole are vertex colour (0.3 m grid). No flame or smoke: placed effects. Walls, windows and door are those of the intact cottage (no soot on the stone)."
   },
   {
    "name": "SM_Cottage_Thatched_Small_PR",

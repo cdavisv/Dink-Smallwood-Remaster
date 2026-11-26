@@ -142,7 +142,7 @@ FRESH_1997 = dict(thin=(128, 10, 7), mid=(80, 5, 4), deep=(38, 2, 2), dried=(66,
 
 def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, reach=0.55, drop_r=(0.004, 0.028), casts=5, mist=500,
                 edge_noise=0.2, thin=(60, 5, 4), mid=(40, 2, 2), deep=(17, 1, 1), dried=(44, 12, 8), smear=(54, 10, 7), damp=(40, 27, 21), soak_m=0.06,
-                centre=(0.0, 0.0), wet=0.05, stamp=None, keep_fringe=False, meniscus=0.25, look=None, deep_m=0.05):
+                centre=(0.0, 0.0), wet=0.05, stamp=None, keep_fringe=False, meniscus=0.25, look=None, deep_m=0.05, soak_rim=0.0, soak_rgb=(60, 12, 8)):
     """pools = [(cx, cy, a, b, rot, runs)] in metres; foot = (n, 2) points the pool also spreads around (a body's outline), by `grow` metres.
     Drops are thrown out to `reach` metres beyond the pool. Returns dict BC (h, w, 4 uint8), N, ORM (h, w, 3 uint8) and `cover` (float mask)."""
     rng = np.random.default_rng(seed); cv = Canvas(px, size); k = cv.k
@@ -248,14 +248,30 @@ def blood_sheet(px, size, seed, pools=(), foot=None, grow=0.10, n_drops=140, rea
     fcol = fcol * (0.8 + 0.4 * fz)[..., None]
     col = col * (1 - fringe[..., None]) + fcol * fringe[..., None]
     rough = rough * (1 - fringe) + (0.50 + 0.25 * (1 - near)) * fringe
+    stain = None
+    if soak_rim > 0:
+        # 23 Nov 2026 review of the pools in the game (#216, #235): the edge of a pool was the cut of a card. Blood wicks into dirt: round every edge
+        # a ragged, matt, dark stain, dense at the pool and thinning to nothing within `soak_rim` metres, grainy as the earth it sits in. The kit's
+        # 'soak' material shows the alpha as a dithered cover, so the stain fades into whatever ground lies under the card
+        sz = noise2(px, size / 0.035, rng, 4, 0.6); sg = noise2(px, size / 0.007, rng, 3, 0.6); near_ = blur(cover, soak_rim * 0.42 * k)
+        stain = sstep(0.02, 0.38, near_ + 0.24 * (sz - 0.5)) ** 1.25 * (1 - (1 - np.clip(0.62 + 0.76 * sg, 0, 1)) * (1 - sstep(0.25, 0.45, near_)))      # whole at the pool's edge (no ring of bare ground between pool and stain), grainy further out
+        yy_, xx_ = np.mgrid[0:px, 0:px]; brd = np.minimum(np.minimum(xx_, px - 1 - xx_), np.minimum(yy_, px - 1 - yy_)) / k; stain = stain * sstep(0.004, 0.05, brd)      # never a straight cut at the card's own border
+        out_ = (1 - cover)[..., None]; scol = _srgb(soak_rgb)[None, None, :] * (0.78 + 0.44 * sz)[..., None]
+        col = col * (1 - out_) + scol * out_; rough = rough * cover + 0.93 * (1 - cover)
     # height in metres: a meniscus at every edge, a swell over the deep parts, clot skin; the open surface is smooth so it mirrors the sky
     h = meniscus * (0.0012 * np.sqrt(np.clip((e1 - 0.5) * 2, 0, 1)) + 0.0016 * sstep(0.5, 1.0, e2)) + 0.0010 * deepf + 0.0005 * clot + 0.00005 * fine + dome
     gy, gx = np.gradient(h * k)                       # slope per metre along rows (down) and columns (right)
     n = np.dstack([-gx, gy, np.ones_like(h)]); n /= np.linalg.norm(n, axis=2, keepdims=True)
     alpha = np.maximum(sstep(0.30, 0.60, cover), sstep(0.35, 0.65, fringe))
+    if stain is not None:
+        alpha = np.maximum(alpha, 0.94 * stain)
     bc = np.dstack([_to_srgb(col), alpha])
     hole = alpha < 0.02                              # colour under the cut-out: damp earth, so mip levels do not fringe red
-    bc[hole, :3] = np.asarray(damp, np.float32) / 255.0
+    if stain is None:
+        bc[hole, :3] = np.asarray(damp, np.float32) / 255.0
+    # 23 Nov 2026 review of #224 (S094_P06): outside the blood the sheet was as glossy as the pool and the smaller mip levels of a spray of fine drops
+    # are mostly outside, so every splat wore a glossy film that mirrored the sky (a pale outline). Outside is dry ground: matt, and the edge with it
+    dry = 1 - sstep(0.35, 0.85, blur(alpha, 1.2)); rough = rough * (1 - dry) + 0.96 * dry
     orm = np.dstack([np.ones_like(h), np.clip(rough, 0.04, 1), np.zeros_like(h)])
     u8 = lambda a: (np.clip(a, 0, 1) * 255 + 0.5).astype(np.uint8)
     return {'BC': u8(bc), 'N': u8(n * 0.5 + 0.5), 'ORM': u8(orm), 'cover': cover}

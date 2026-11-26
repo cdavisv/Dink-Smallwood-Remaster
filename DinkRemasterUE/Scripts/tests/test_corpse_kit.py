@@ -47,7 +47,7 @@ class CorpseKitTests(unittest.TestCase):
         for asset in bodies:
             pools = [m for m in asset['materials'] if m.endswith('_Pool')]
             self.assertEqual(len(pools), 1, '%s has no pool card: a family row cannot place a companion decal' % asset['name'])
-            self.assertEqual(self.materials[pools[0]]['kind'], 'masked', pools[0])
+            self.assertIn(self.materials[pools[0]]['kind'], ('masked', 'soak'), pools[0])      # 'soak': the same cut-out with a dithered, stained rim (knight, dragon)
             self.assertEqual(len(asset['materials']), 2, asset['name'])
             # measured, not judged by eye (owner's rule: never less blood than 1997): the blood on the ground covers at least the
             # red area of the picture, and it does not sprawl far past the picture's footprint (the card width of placements.json)
