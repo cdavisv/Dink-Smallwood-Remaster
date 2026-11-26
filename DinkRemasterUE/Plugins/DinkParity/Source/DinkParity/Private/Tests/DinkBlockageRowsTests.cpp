@@ -38,15 +38,17 @@ struct FBlockWalk
 	int32 Placement = 0; // screen * 1000 + placement of a trimmed wall
 };
 const FBlockWalk Walks[] = {
-	// A71 (relaxed_hardboxes.json "trimmed"; box and drawn strip from the dink.PhysAudit run of 15 Nov 2026)
+	// A71 (relaxed_hardboxes.json "trimmed"; box and drawn strip from the dink.PhysAudit run of 15 Nov 2026, SCR_713 from the 25 Nov run at the enlarged scale)
 	{ TEXT("A71 S003_P01 plaster corner post, box y 152-207, drawn y 202-206, from the north"), 3, 350, 140, 350, 230, 0, 4.0, EWalkCheck::WallFace, 202, 1, 0, 3001 },
 	{ TEXT("A71 S003_P01 plaster corner post, box y 152-207, drawn y 202-206, from the north"), 3, 350, 140, 350, 230, 2, 4.0, EWalkCheck::WallFace, 202, 1, 40, 3001 },
 	{ TEXT("A71 S003_P19 plaster door jamb, box y 152-207, drawn y 177-181, from the south"), 3, 423, 216, 423, 150, 0, 4.0, EWalkCheck::WallFace, 181, -1, 0, 3019 },
 	{ TEXT("A71 S003_P19 plaster door jamb, box y 152-207, drawn y 177-181, from the south"), 3, 423, 216, 423, 150, 2, 4.0, EWalkCheck::WallFace, 181, -1, 40, 3019 },
 	{ TEXT("A71 S577_P09 dungeon wall, box y 33-94, drawn y 78-93, from the north"), 577, 341, 22, 341, 110, 0, 4.0, EWalkCheck::WallFace, 78, 1, 0, 577009 },
 	{ TEXT("A71 S577_P09 dungeon wall, box y 33-94, drawn y 78-93, from the north"), 577, 341, 22, 341, 110, 2, 4.0, EWalkCheck::WallFace, 78, 1, 0, 577009 },
-	{ TEXT("A71 S713_P06 dungeon wall, box y 190-251, drawn y 190-198, from the south"), 713, 208, 258, 208, 170, 0, 5.0, EWalkCheck::WallFace, 198, -1, 0, 713006 },
-	{ TEXT("A71 S713_P06 dungeon wall, box y 190-251, drawn y 190-198, from the south"), 713, 208, 258, 208, 170, 2, 5.0, EWalkCheck::WallFace, 198, -1, 40, 713006 },
+	// SCR_713 (world scale on, 25 Nov 2026): P06 now keeps its box (the passage rule: its drawn strip, y 206-213, and P13's, y 222-229,
+	// are staggered, so freeing both boxes would open a way between the corridor's two sides at x 246-271); P07 beside it is trimmed
+	{ TEXT("A71 S713_P07 dungeon wall, box y 190-251, drawn y 205-212, from the south"), 713, 108, 258, 108, 170, 0, 5.0, EWalkCheck::WallFace, 212, -1, 0, 713007 },
+	{ TEXT("A71 S713_P07 dungeon wall, box y 190-251, drawn y 205-212, from the south"), 713, 108, 258, 108, 170, 2, 5.0, EWalkCheck::WallFace, 212, -1, 40, 713007 },
 	// A92 (painted low rocks, nothing drawn: audit tiles opened)
 	{ TEXT("A92 SCR_126 low rock x 365-426 at y 253, walked east"), 126, 325, 253, 480, 253, 0, 4.0, EWalkCheck::PassX, 426, 0, 0 },
 	{ TEXT("A92 SCR_126 low rock x 365-426 at y 253, walked east"), 126, 325, 253, 480, 253, 2, 4.0, EWalkCheck::PassX, 426, 0, 0 },

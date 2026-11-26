@@ -35,6 +35,18 @@
 
 namespace
 {
+// The fixtures stand Dink at measured distances from the returned door of house 1 (its exit warp, y 386.332), measured where the
+// house had 4.375 cm per 1997 pixel (interiors x1.75). The same distances in cm keep a fixture's place relative to the door, the walls
+// and the camera arm at any world scale (25 Nov 2026: with the enlarged world, interiors x2.0, 5 cm per pixel).
+double DoorY(const ADinkScreenVolume* S, double Y)
+{
+    const double CmPerPx = S ? FVector2D(S->MapPixelToWorld(300, 301) - S->MapPixelToWorld(300, 300)).Size() : 4.375;
+    return 386.332 - (386.332 - Y) * (4.375 / FMath::Max(CmPerPx, 1.0));
+}
+}
+
+namespace
+{
 const TSet<FString>& ExactOpaqueRoofAssets()
 {
     static const TSet<FString> Paths = {
@@ -215,7 +227,7 @@ public:
             UnknownActor->Tags.Add(TEXT("DinkArtScreen_1")); UnknownActor->Tags.Add(TEXT("DinkCameraOccluder"));
             UnknownMaterial=Unknown->GetMaterial(0);
             ExpectedControl=FRotator(0,270,0); PC->SetControlRotation(ExpectedControl);
-            Move(Hero,Grey,Home,303.5,345); Phase=5; At=FPlatformTime::Seconds(); return false;
+            Move(Hero,Grey,Home,303.5,DoorY(Home,345)); Phase=5; At=FPlatformTime::Seconds(); return false;
         }
         if (Phase==5)
         {
@@ -252,13 +264,13 @@ public:
             CheckForegroundReturn(Hero,PC);
             Grey->EndWarp(Hero);
             ExpectedControl=FRotator(-18,225,0); PC->SetControlRotation(ExpectedControl);
-            Move(Hero,Grey,Home,303.5,370); Phase=2; At=FPlatformTime::Seconds(); return false;
+            Move(Hero,Grey,Home,303.5,DoorY(Home,370)); Phase=2; At=FPlatformTime::Seconds(); return false;
         }
         if (Phase==6 || Phase==7)
         {
             CheckInput(Hero,PC);
             Test->TestEqual(TEXT("adaptive fixture remains in actual house1"),Grey->GetCurrentScreen(),Home);
-            const FVector Expected=Home->MapPixelToWorld(303.5,382);
+            const FVector Expected=Home->MapPixelToWorld(303.5,DoorY(Home,382));
             Test->TestTrue(TEXT("frustum solve never translates pawn XY"),FVector2D(Hero->GetActorLocation()-Expected).Size()<.05);
             Test->TestEqual(TEXT("adaptive framing retains240cm arm"),Hero->CameraBoom->TargetArmLength,240.f);
             Test->TestEqual(TEXT("adaptive framing retains70deg FOV"),Hero->FollowCamera->FieldOfView,70.f);
@@ -339,7 +351,7 @@ public:
             Test->TestEqual(TEXT("unmapped material remains original"),Unknown->GetMaterial(0),UnknownMaterial);
             Test->TestEqual(TEXT("unmapped material keeps Camera blocker"),Unknown->GetCollisionResponseToChannel(ECC_Camera),ECR_Block);
             Test->TestEqual(TEXT("unmapped material keeps BlockAll profile"),Unknown->GetCollisionProfileName(),FName(TEXT("BlockAll")));
-            if (Phase==2) { Move(Hero,Grey,Home,303.5,382); Phase=6; At=FPlatformTime::Seconds(); return false; }
+            if (Phase==2) { Move(Hero,Grey,Home,303.5,DoorY(Home,382)); Phase=6; At=FPlatformTime::Seconds(); return false; }
             Test->TestTrue(TEXT("external ownership fixture has six supported meshes"),Before.Num()>=6);
             if (Before.Num()<6) return true;
             Before[0].Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
@@ -388,7 +400,7 @@ public:
             Test->TestEqual(TEXT("exiting restores all indoor surfaces and manages only qualified exterior cottage"),C->ManagedOccluderCount,1);
             CheckRestored(); CheckCamera(Hero,false); CheckInput(Hero,PC);
             ExpectedControl=FRotator(-18,225,0); PC->SetControlRotation(ExpectedControl);
-            Move(Hero,Grey,Home,303.5,370); Phase=4; At=FPlatformTime::Seconds(); return false;
+            Move(Hero,Grey,Home,303.5,DoorY(Home,370)); Phase=4; At=FPlatformTime::Seconds(); return false;
         }
         return false;
     }

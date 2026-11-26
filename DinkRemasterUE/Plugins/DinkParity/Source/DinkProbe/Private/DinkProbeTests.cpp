@@ -141,6 +141,13 @@ namespace DinkProbeTest
 	/** What the player keeps between frames (the probe's own memory, not game state). */
 	struct FProbeState
 	{
+		/**
+		 * LayerAssist's lunge (physical play layer): a blow in flight was stepped to the drawn body from LungeFrom to LungeTo. Kept here, not in
+		 * the per-frame FCtx (25 Nov 2026: in FCtx it was reset every frame, so the designed step back after the blow never ran; with the
+		 * world scale on that left Dink 93 cm from a dragon, inside the bot's touch grid, "evading" beside it until he died).
+		 */
+		bool bLunged = false;
+		FVector LungeFrom = FVector::ZeroVector, LungeTo = FVector::ZeroVector;
 		// Test-only bounded pre-death route evidence; never enters the gameplay event queue.
 		TArray<FString> Ch6RouteRows;
 		int32 Ch6RouteNext = 0;
@@ -178,6 +185,8 @@ namespace DinkProbeTest
 						double LastDrinkMs = -100000.0;
 						/** Game time (ms) a wait step ends; -1 = not waiting. */
 						double WaitUntilMs = -1.0;
+						/** AddHitAndPickup: blows struck at the container so far (each one that did not land is struck a pixel nearer). */
+						int32 Swings = 0;
 						/** A monster has died and left loot on the screen of the current sweep (so the sweep did something). */
 						bool bSawDrop = false;
 						/** Game time (ms) the loot of the current sweep began to lie there; -1 = none. */
@@ -510,13 +519,15 @@ namespace DinkProbeTest
 			const FDinkSprite& Me = D->GetDink();
 			const bool bSwing = G->HasPendingHit(1);
 			// A blow is a lunge: once its hit frame has passed, Dink steps back to the spot the bot chose (its plan, its 1997 grid),
-			// unless the bot has moved him since.
-			if (bLunged && !G->HasPendingHit(1))
+			// unless the bot has moved him since. The bot holds still while its blow is in the air, so a smaller move is the foe's body
+			// pushing him: 120 cm (25 Nov 2026, world scale on, chapter 12: a dragon walks 1.27 times as many cm a second in the enlarged
+			// world and pushed Dink more than 30 cm during the blow; he stayed beside it, inside its drawn touch, dodging and "evading" for 30 s).
+			if (P->bLunged && !G->HasPendingHit(1))
 			{
-				bLunged = false;
-				if (FVector::Dist2D(Pawn->GetActorLocation(), LungeTo) < 30.0)
+				P->bLunged = false;
+				if (FVector::Dist2D(Pawn->GetActorLocation(), P->LungeTo) < 120.0)
 				{
-					Pawn->SetActorLocation(LungeFrom, false, nullptr, ETeleportType::TeleportPhysics);
+					Pawn->SetActorLocation(P->LungeFrom, false, nullptr, ETeleportType::TeleportPhysics);
 				}
 			}
 			const FVector From = Pawn->GetActorLocation();
@@ -549,6 +560,17 @@ namespace DinkProbeTest
 					Need = Capsule->GetScaledCapsuleRadius() + 70.0 - FVector::Dist2D(From, Near);
 				}
 				else continue;
+				// A lunge that the foe walks into is called off: back to the spot the bot chose (its 1997 grid, out of the touch box), not a
+				// short step back from the lunge's end (25 Nov 2026, world scale on, chapter 12: a dragon walks 1.27 times as many cm a second
+				// in the enlarged world, reached Dink inside the lunge, and the 46 cm steps from there kept him in its touch for 30 s while
+				// the bot "evaded" beside it).
+				if (P->bLunged)
+				{
+					P->bLunged = false;
+					Pawn->SetActorLocation(P->LungeFrom, false, nullptr, ETeleportType::TeleportPhysics);
+					UE_LOG(LogTemp, Display, TEXT("DINK PROBE LAYER DODGE: sprite %d (%s) on screen %d: the lunge called off, back to the bot's spot"), Pair.Key, *Foe.Script.ToString(), Me.Screen);
+					return;
+				}
 				FCollisionQueryParams DodgeParams(SCENE_QUERY_STAT(DinkProbeLayerDodge), false, Pawn);
 				DodgeParams.AddIgnoredActor(Foe.Actor.Get());
 				for (const int32 K : { 0, 1, -1, 2, -2 })
@@ -557,7 +579,7 @@ namespace DinkProbeTest
 					FHitResult Block;
 					if (World->SweepSingleByChannel(Block, From, Spot, Capsule->GetComponentQuat(), ECC_Pawn, FCollisionShape::MakeCapsule(Capsule->GetScaledCapsuleRadius() - 2.0, Capsule->GetScaledCapsuleHalfHeight() - 2.0), DodgeParams) && Block.bBlockingHit) continue;
 					Pawn->SetActorLocation(Spot, false, nullptr, ETeleportType::TeleportPhysics);
-					bLunged = false;
+					P->bLunged = false;
 					UE_LOG(LogTemp, Display, TEXT("DINK PROBE LAYER DODGE: sprite %d (%s) swings on screen %d: %.0f cm back"), Pair.Key, *Foe.Script.ToString(), Me.Screen, FMath::Max(Need, 20.0));
 					return;
 				}
@@ -651,9 +673,9 @@ namespace DinkProbeTest
 				}
 				if (bBestHit)
 				{
-					if (!bLunged) LungeFrom = From;
-					bLunged = true;
-					LungeTo = Spot;
+					if (!P->bLunged) P->LungeFrom = From;
+					P->bLunged = true;
+					P->LungeTo = Spot;
 				}
 				Pawn->SetActorLocation(Spot, false, nullptr, ETeleportType::TeleportPhysics);
 				Pawn->SetActorRotation(FRotator(0.0, (BestPoint - Spot).Rotation().Yaw, 0.0));
@@ -673,8 +695,6 @@ namespace DinkProbeTest
 			}
 		}
 		mutable TSet<FString> LayerUnreachable;
-		mutable bool bLunged = false;
-		mutable FVector LungeFrom = FVector::ZeroVector, LungeTo = FVector::ZeroVector;
 		/** Stands Gap px west of the sprite's hardbox (or on it), facing east (6). */
 		bool StandBy(int32 Handle, int32 Gap, bool bOnIt = false) const
 		{
@@ -2381,6 +2401,19 @@ namespace DinkProbeTest
 						return Isolation(I, C) + (FMath::Min(FMath::Min(C.X - 20.0, 619.0 - C.X), FMath::Min<double>(C.Y, 399.0 - C.Y)) < 14.0 ? 40.0 : 0.0);
 					});
 			}
+			// A finishing blow (25 Nov 2026, world scale on, chapter 11: Jack at 3 hit points stood on Dink in Aunt Maria's house, every cell
+			// round him inside Jack's touch box, so no strike cell was safe and Dink "evaded" on the spot for 2 s until the touch killed him):
+			// when the least blow (strength / 2 + 1 less its defense, run_through_tag_list D:15567) kills it and the sword reaches it from where
+			// he stands, he strikes there and takes the touch.
+			if (Goal == INDEX_NONE)
+			{
+				const int32 Hp = T->GetProp(TEXT("hitpoints"));
+				if (Hp > 0 && Hp <= Fact(TEXT("strength")) / 2 + 1 - T->GetProp(TEXT("defense")) && !InAvoid(Dk.X, Dk.Y) && FistHits(Dk.X, Dk.Y) && !HitsOthers(Dk.X, Dk.Y))
+				{
+					Mode = TEXT("finish");
+					Goal = DinkCell;
+				}
+			}
 			if (Goal == INDEX_NONE)
 			{
 				// Nothing to hit from safely: wait where he is if that is out of its reach (it comes to him), else the nearest cell that is
@@ -2439,7 +2472,7 @@ namespace DinkProbeTest
 					Mode, Dk2.X, Dk2.Y, Fact(TEXT("life")), Handle, T->X, T->Y, T->GetProp(TEXT("hitpoints")), T->Dir, Seq, T->GetProp(TEXT("frame")),
 					WaitAhead, BlowInMs, Touch.Num(), OtherNow, GoalC.X, GoalC.Y, X, Y, Vx, Vy, int32(P->HoldUntilMs - Now)));
 			}
-			if (FCString::Strcmp(Mode, TEXT("strike")) != 0 || FMath::Abs(Dk2.X - GoalC.X) > 3.5 || FMath::Abs(Dk2.Y - GoalC.Y) > 3.5)
+			if ((FCString::Strcmp(Mode, TEXT("strike")) != 0 && FCString::Strcmp(Mode, TEXT("finish")) != 0) || FMath::Abs(Dk2.X - GoalC.X) > 3.5 || FMath::Abs(Dk2.Y - GoalC.Y) > 3.5)
 			{
 				return;
 			}
@@ -4626,10 +4659,20 @@ namespace DinkProbeTest
 					const bool bNoFeud = C.OnScreen(Screen) && C.P->Mark < 0 && C.P->FeudSinceMs >= 0.0 && C.S->GetNowMs() - C.P->FeudSinceMs > 6000.0;
 					const bool bDone = bGold || (C.OnScreen(Screen) && C.P->Mark >= 0 && C.P->bSawDrop && C.Hostiles(Screen) < C.P->Mark && Drops(C) == 0 && (C.Hostiles(Screen) == 0 || (!bPen && C.MostHp(Screen) > 6)))
 						|| (bPenStall && C.P->Mark >= 0 && C.Hostiles(Screen) < C.P->Mark) // its loot lies by it in the pen and stays there
-						|| bNoFeud;
-					if (bDone && C.Idle() && !C.Busy()) { C.P->Mark = -1; C.P->FeudSinceMs = -1.0; return true; }
+						|| bNoFeud
+						// Physical play layer on: a pickup lands at drawn contact, and loot that fell inside SCR_480's pen (food) cannot be reached
+						// through the fence once both Bongs are dead (26 Nov 2026, world scale on, chapter 11 round 2: 467 s beside the pen). Left
+						// after 30 s with nothing alive; the layer-off run picks such loot up by its 1997 touch box and is unchanged.
+						|| (C.G->IsPhysicalPlayActive() && C.OnScreen(Screen) && C.Hostiles(Screen) == 0 && C.P->LootSinceMs >= 0.0 && C.S->GetNowMs() - C.P->LootSinceMs > 30000.0);
+					// Target already met: nothing of the feud is waited on, so a base script idling in a plain wait on Dink's screen (the Terris
+					// healer's main, s2-healp.c's wait(500) loop) does not hold the step (25 Nov 2026, world scale on: chapter 7's last duel hurt
+					// Dink, so it ended beside the healer, and chapter 8's gold step, already at 150 of 110, waited on that loop for 240 s).
+					if (bDone && C.Idle() && (!C.Busy() || (bGold && C.Quiet()))) { C.P->Mark = -1; C.P->FeudSinceMs = -1.0; return true; }
 					return false;
-				}, 240.0, [LevelUps]() { TArray<FString> A = LevelUps; A.Add(TEXT("Get healed")); return A; }(), 0.001, true);
+				// "Get healed" four times: each menu takes its answer off the list, and a step can heal more than once (25 Nov 2026, world
+				// scale on, chapter 11 round 2: the second heal found no answer, the menu's last line "Leave" was taken, the talk began again
+				// and the step span on the healer's menu for 240 s).
+				}, 240.0, [LevelUps]() { TArray<FString> A = LevelUps; for (int32 i = 0; i < 4; ++i) { A.Add(TEXT("Get healed")); } return A; }(), 0.001, true);
 		}
 
 		// Waits in Arturous's shop (nothing there to hurt him) at 8x time dilation: game time is what the respawn clock counts, and
@@ -4884,14 +4927,14 @@ namespace DinkProbeTest
 					C.SquadFight(O);
 				},
 				[](FCtx& C) { return C.SpriteWithScript(TEXT("s3-dorks")) == 0 && !C.D->bScreenLocked && C.Idle(); }, 150.0, { TEXT("Increase Attack"), TEXT("Increase Attack"), TEXT("Increase Attack") }, 0.001, true);
-			// The layer-on run only (probe_on.sh: physical_play.ini Mode=2 or dink.PhysicalPlay 2; bot tactics, no game rule): there the last
-			// knight's kill (exp 900, lraise) opened the level-up menu 50 ms after the fight's step was done, and with no answer here the menu
-			// took its last line, "Increase Magic" (23 Nov 2026, PR #233). One strength short (29: item-b1.c's arrow is power/100 * strength/5
-			// = 25 against Seth's defense 25), chapter 20's arrows did nothing but the power shots and Dink died with Seth at 181/300.
-			// The layer-off step list, and so its twenty md5s, stay as they are.
+			// The last knight's kill (exp 900, lraise) can open the level-up menu 50 ms after the fight's step is done, and with no answer here
+			// the menu takes its last line, "Increase Magic" (bot tactics, no game rule). One strength short (29: item-b1.c's arrow is
+			// power/100 * strength/5 = 25 against Seth's defense 25), chapter 20's arrows do nothing but the power shots and Dink dies to Seth.
+			// First seen in the layer-on run (23 Nov 2026, PR #233, then answered there only); with the world scale on (25 Nov 2026) the
+			// layer-off run meets the same timing, so the answer is given in both runs.
 			Add(TEXT("the knights' loot (emake.large: gold lying where each fell; the screen is unlocked)"),
 				[](FCtx& C) { if (const int32 Drop = Drops(C)) { C.StandBy(Drop, 0, true); } },
-				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 30.0, LayerForcedOn() ? TArray<FString>{ TEXT("Increase Attack") } : TArray<FString>{}, 0.5);
+				[](FCtx& C) { return Drops(C) == 0 && C.Idle() && !C.Busy(); }, 30.0, { TEXT("Increase Attack") }, 0.5);
 			Add(TEXT("the Mayor in Hiram's Bookstore (SCR_067, s3-mayor talk at &mayor 4: \"Show him the scroll with the plans\": &mayor 5, the parade on SCR_586 (s3-tc.c): &story 10, &mayor 6)"),
 				[](FCtx& C)
 				{
@@ -5388,7 +5431,10 @@ namespace DinkProbeTest
 			Add(TEXT("SCR_190: the three duck-bugs (s7-duck 50 hp, no defense, touch 25; screenlock): SquadFight with the sword"),
 				[](FCtx& C)
 				{
-					if (!C.OnScreen(190)) { C.Goto(190, 60, 250); return; }
+					// Physical play layer on: 60,250 lies on the hardness band across the west of SCR_190 (y 240-257), and with the world scale on
+					// the capsule (fewer pixels) fits a one-row slit inside it at y 249: Dink landed there and could only walk east and west for
+					// 400 s (26 Nov 2026). He is set down south of the band, where the reference scale's teleport put him (68,260). Layer off: as before.
+					if (!C.OnScreen(190)) { C.Goto(190, 60, C.G->IsPhysicalPlayActive() ? 262 : 250); return; }
 					if (C.DrinkAndKeepSword(27)) { return; }
 					FSquadOpts O;
 					O.Range = C.D->GetInventory()->GetArmedItem() == TEXT("item-sw1") ? 40 : 0;
@@ -5446,15 +5492,6 @@ namespace DinkProbeTest
 				[](FCtx& C) { return C.Fact(TEXT("life")) >= C.Fact(TEXT("lifemax")) && C.Idle(); }, 60.0, Answers, 0.5, true);
 		}
 
-		/** The probe runs with the physical play layer forced on (probe_on.sh): the ini's Mode 2 or the console variable at 2. */
-		static bool LayerForcedOn()
-		{
-			const IConsoleVariable* V = IConsoleManager::Get().FindConsoleVariable(TEXT("dink.PhysicalPlay"));
-			if (V && V->GetInt() >= 0) return V->GetInt() == 2;
-			FDinkPhysicalPlaySettings Settings;
-			Settings.Load();
-			return Settings.Mode == 2;
-		}
 
 		/** Elixirs (item-eli, life +20) from the Terris healer (SCR_033 s2-healp: "Buy a bottle of elixer for $25") until Dink holds Count, or gold would fall below Keep. */
 		void AddElixirs(const TCHAR* Name, int32 Count, int32 Keep, const TArray<FString>& Extra = {})
@@ -5524,7 +5561,7 @@ namespace DinkProbeTest
 			Add(Name,
 				[=](FCtx& C)
 				{
-					if (C.P->Mark < 0) { C.P->Mark = C.Fact(Fact); }
+					if (C.P->Mark < 0) { C.P->Mark = C.Fact(Fact); C.P->Swings = 0; }
 					if (!C.OnScreen(Screen)) { C.Goto(Screen, Guard ? LureX : X, Guard ? LureY : Y); return; }
 					if (C.DrinkAndKeepSword(30)) { return; }
 					if (Guard)
@@ -5542,9 +5579,15 @@ namespace DinkProbeTest
 					const FDinkPlacementInfo* P = C.G->GetData().FindPlacement(FDinkOriginId(Screen, Index));
 					if (B && P && B->bActive && B->Script == P->Script)
 					{
-						C.GB->GotoScreen(Screen, X - 20.0, Y);
+						// A container fitted to its drawn mesh (a collision_fit barrel) is hit where the sword reaches the mesh in cm, also with the
+						// layer off (UsesAuthoredGeometry). The 1997 spot is farther from it in cm in the enlarged world (25 Nov 2026, chapter 19: SCR_209's
+						// food barrel 26 px = 2.5 m away, ten blows into the air): after each blow that did not land, a pixel nearer (at most 20).
+						const int32 Near = FMath::Min(FMath::Max(C.P->Swings - 1, 0), 20);
+						const double Sx = X + (Dir == 6 ? Near : Dir == 4 ? -Near : 0), Sy = Y + (Dir == 2 ? Near : Dir == 8 ? -Near : 0);
+						++C.P->Swings;
+						C.GB->GotoScreen(Screen, Sx - 20.0, Sy);
 						C.G->SyncDinkFromActor();
-						C.Face(Screen, X, Y, Dir);
+						C.Face(Screen, Sx, Sy, Dir);
 						C.G->PlayerAttack();
 						return;
 					}

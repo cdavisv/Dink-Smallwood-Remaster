@@ -11,9 +11,11 @@ Newton) -> new corners. So everything keeps its place relative to the 1997 hardn
 
 Size rule (WORLD_SCALE.md, "per-family size rule"):
   - SPACE pieces: the floor, roofs, ground and field tiles, banks, paths, the vista ground, the skirt and underfloor:
-    X/Y scale times the local linear ratio of the two layouts (new / old metres per pixel at that point). RUNS (walls,
-    windows, the doorway, split-rail fences: modules along their local X): X only (length follows, thickness and height
-    stay). They are the room, the ground or a run that must close against the 1997 hardness; on authored-collision
+    their local X and Y scale times the layout's stretch along that axis at that point (|A d|, A = the new layout's
+    Jacobian times the inverse of the old one's, d the piece's local axis in the world). RUNS (walls, windows, the
+    doorway, split-rail fences: modules along their local X): X only (length follows, thickness and height stay).
+    (Until 25 Nov 2026 both used one ratio, sqrt(det A). At the approved per-kind ratios the layout is not a similarity:
+    on SCR_471 A = [[1.16, -0.11], [0, 1.35]], so field tiles grown 1.25 both ways left 60 cm cracks between their rows.) They are the room, the ground or a run that must close against the 1997 hardness; on authored-collision
     screens they ARE Dink's collision, so they still meet and close every passage exactly as before. The authored cottage
     of 439 (its own collision, with a camera portal that needs a uniform scale) grows as a whole.
   - OBJECTS: furniture, barrels, candles, baskets, chimneys, boulders, trees, grass clumps, feed: real size, moved only.
@@ -67,6 +69,25 @@ def linear_ratio(co, cn, u, v):
     return math.sqrt(area(cn) / area(co))
 
 
+def layout_map(co, cn, u, v):
+    """A: old world -> new world near (u, v) (2x2, row-major), the new Jacobian times the inverse of the old one."""
+    duo, dvo = jac(co, u, v)
+    dun, dvn = jac(cn, u, v)
+    det = duo[0] * dvo[1] - dvo[0] * duo[1]
+    inv = [[dvo[1] / det, -dvo[0] / det], [-duo[1] / det, duo[0] / det]]
+    jn = [[dun[0], dvn[0]], [dun[1], dvn[1]]]
+    return [[jn[i][0] * inv[0][j] + jn[i][1] * inv[1][j] for j in (0, 1)] for i in (0, 1)]
+
+
+def axis_stretch(a, yaw_deg):
+    """How much the layout lengthens a piece's local X and Y axes (yaw in degrees, X east, Y south)."""
+    c, s = math.cos(math.radians(yaw_deg)), math.sin(math.radians(yaw_deg))
+    out = []
+    for dx, dy in ((c, s), (-s, c)):
+        out.append(math.hypot(a[0][0] * dx + a[0][1] * dy, a[1][0] * dx + a[1][1] * dy))
+    return out
+
+
 def convert_point(co, cn, world_cm):
     u, v = inverse(co, world_cm[0] / 100.0, world_cm[1] / 100.0)
     x, y = bilinear(cn, u, v)
@@ -78,18 +99,22 @@ def is_space(mesh):
     return name.startswith(SPACE)
 
 
-def rescale(e, r):
-    """The size rule; True when the element is a space piece (its scale changed)."""
+def rescale(e, r, a=None):
+    """The size rule; True when the element is a space piece (its scale changed). a: layout_map at the piece (None: r both ways)."""
     name = e.get("mesh", "").rsplit("/", 1)[-1]
     sc = list(e.get("scale", [1, 1, 1]))
+    rot = e.get("rotation_deg", [0, 0, 0])
+    sx, sy = axis_stretch(a, rot[1] if len(rot) > 1 else 0.0) if a is not None else (r, r)
+    if abs(sx - r) < 1e-9 and abs(sy - r) < 1e-9:
+        sx = sy = r  # a similarity there (the interiors): the one ratio, bit for bit
     if name.startswith(UNIFORM):
         # one authored building that is its own collision and carries a camera portal (camera_exteriors.json,
         # DinkCameraPortal::Limit needs a uniform scale): it grows as a whole, its door stays on its warp
         e["scale"] = [v * r for v in sc]
     elif name.startswith(RUNS):
-        e["scale"] = [sc[0] * r] + sc[1:]
+        e["scale"] = [sc[0] * sx] + sc[1:]
     elif name.startswith(SPACE):
-        e["scale"] = [sc[0] * r, sc[1] * r] + sc[2:]
+        e["scale"] = [sc[0] * sx, sc[1] * sy] + sc[2:]
     else:
         return False
     return True
@@ -116,7 +141,7 @@ def convert_layout(lay, co, cn):
         if "source_pixel" not in e:
             continue
         u, v = e["source_pixel"][0] / 600.0, e["source_pixel"][1] / 400.0
-        if rescale(e, linear_ratio(co, cn, u, v)):
+        if rescale(e, linear_ratio(co, cn, u, v), layout_map(co, cn, u, v)):
             n += 1
     return n
 
@@ -130,7 +155,7 @@ def convert_manifest(d, old_sc, new_sc, report):
         if "world_cm" not in e:
             continue
         e["world_cm"], r, px = convert_point(co, cn, e["world_cm"])
-        if rescale(e, r):
+        if rescale(e, r, layout_map(co, cn, px[0] / 600.0, px[1] / 400.0)):
             report["space"] += 1
         else:
             report["object"] += 1
@@ -138,6 +163,9 @@ def convert_manifest(d, old_sc, new_sc, report):
     for key in ("lights", "warp_overrides"):
         for e in d.get(key, []):
             e["world_cm"], r, _ = convert_point(co, cn, e["world_cm"])
+            if key == "warp_overrides" and "extent_cm" in e:
+                # a warp trigger is a 1997 pixel box: it follows the layout in X/Y (its height stays)
+                e["extent_cm"] = [e["extent_cm"][0] * r, e["extent_cm"][1] * r] + list(e["extent_cm"][2:])
             report[key] += 1
     pp = d.get("postprocess")
     for e in (pp if isinstance(pp, list) else [pp] if isinstance(pp, dict) else []):
@@ -202,6 +230,30 @@ def main(argv=None):
             indent = 2 if text.startswith("{\n  ") else None
             path.write_text(json.dumps(d, indent=indent) + ("\n" if text.endswith("\n") else ""), encoding="utf-8")
     print(f"{changed} manifests {'written' if a.write else 'to convert'}")
+    # The interior camera's floor framing (camera_materials.json "floor_framing": per screen a room rectangle in absolute world cm,
+    # UDinkInteriorCameraComponent::CalculateFraming) follows the layout like the room's floor tiles (25 Nov 2026: left at the old
+    # scale it lay 14 km from house 1 and the camera never panned at the returned door).
+    cam_path = art / "camera_materials.json"
+    if cam_path.exists():
+        cam_text = cam_path.read_text(encoding="utf-8")
+        cam = json.loads(cam_text)
+        moved = 0
+        for key, room in (cam.get("floor_framing") or {}).items():
+            scr = int(key)
+            if scr not in old_sc or old_sc[scr]["corners"] == new_sc[scr]["corners"]:
+                continue
+            pts = room.get("polygon_cm") or []
+            cx = sum(p[0] for p in pts) / max(len(pts), 1) / 100.0
+            cy = sum(p[1] for p in pts) / max(len(pts), 1) / 100.0
+            uo, vo = inverse(old_sc[scr]["corners"], cx, cy)
+            if not (-0.1 <= uo <= 1.1 and -0.1 <= vo <= 1.1):
+                print(f"SKIP camera_materials.json floor_framing {key}: not on the old screen (converted already?)")
+                continue
+            room["polygon_cm"] = [[round(q, 4) for q in convert_point(old_sc[scr]["corners"], new_sc[scr]["corners"], p)[0][:2]] for p in pts]
+            moved += 1
+        print(f"camera_materials.json: {moved} floor framing rooms moved")
+        if moved and a.write:
+            cam_path.write_text(json.dumps(cam, indent=2 if cam_text.startswith("{\n  ") else None) + ("\n" if cam_text.endswith("\n") else ""), encoding="utf-8")
     # The starting house's lighting profile (Scripts/house_lighting.py) pins the six runtime window rows of stonebrook.json
     # and holds absolute practical-light points: take the converted window rows, move the points, then let
     # `python3 -I Scripts/house_lighting.py --apply` derive the daylight rows of the manifest again.

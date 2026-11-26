@@ -59,8 +59,10 @@ public:
             return false;
         };
         FQuat OldFacing;
-        auto Reset = [&](int32 Dir, int32 Mx, int32 My, double Y = 202)
+        int32 Y0 = 202;
+        auto Reset = [&](int32 Dir, int32 Mx, int32 My, double Y = -1)
         {
+            if (Y < 0) Y = Y0;
             FDinkSprite* S = D->FindSprite(Handle);
             S->Actor = Bug; S->Screen = 438; S->X = 369; S->Y = Y;
             S->bActive = true; S->bMoving = false; S->bFrozen = false;
@@ -78,18 +80,23 @@ public:
             S->Props.Add(TEXT("seq"), 130 + Dir); S->Props.Add(TEXT("frame"), 1);
             S->FrameDelayMs = 1000000000.;
         };
+        // The fixture stands the bug one 1997 pixel north of where its body (facing SE) first meets the pond bank: row 202 at the
+        // reference scale. With the world scale on the bank lies elsewhere in pixels against the bug's real-size body (25 Nov 2026),
+        // so the row is found on the actual geometry and every expected row below follows it.
+        for (int32 Y = 190; Y <= 230; ++Y) { Reset(3, 1, 1, Y); if (Overlap()) { Y0 = Y - 1; break; } }
+        Test->AddInfo(FString::Printf(TEXT("pond bank first met at row %d: fixture row %d (202 at the reference scale)"), Y0 + 1, Y0));
         Reset(7, -1, -1);
         Test->TestFalse(TEXT("measured P03 startpose clear of pond bank"), Overlap());
         Game->ThinkSprite(Handle, 1000.);
         Test->TestEqual(TEXT("first actual NW step preserves original X movement"), D->FindSprite(Handle)->X, 368.);
-        Test->TestEqual(TEXT("first actual NW step preserves original Y movement"), D->FindSprite(Handle)->Y, 201.);
+        Test->TestEqual(TEXT("first actual NW step preserves original Y movement"), D->FindSprite(Handle)->Y, double(Y0 - 1));
         Test->TestTrue(TEXT("first NW step defers unsafe turn at physical body"), Bug->GetActorQuat().AngularDistance(OldFacing) < .001);
         Test->TestFalse(TEXT("first NW committed actual body does not penetrate"), Overlap());
         Test->TestEqual(TEXT("first step retains original logical NW direction"), D->FindSprite(Handle)->Dir, 7);
         Test->TestEqual(TEXT("first step retains actual hero target"), D->FindSprite(Handle)->GetProp(TEXT("target")), 1);
         const FVector DeferredPosition = Bug->GetActorLocation();
         const TSharedPtr<FJsonObject> DeferredSaved = D->SaveState();
-        Bug->SetActorLocation(Screen->MapPixelToWorld(360, 190));
+        Bug->SetActorLocation(Screen->MapPixelToWorld(360, 190 + (Y0 - 202)));
         Bug->SetActorRotation(FRotator(0, -134.43, 0));
         D->LoadState(DeferredSaved);
         Test->TestTrue(TEXT("save restores exact first-deferred-step physical XY"), Bug->GetActorLocation().Equals(DeferredPosition, .01));
@@ -106,14 +113,14 @@ public:
         Test->TestEqual(TEXT("legacy JSON retains logical NW metadata"), D->FindSprite(Handle)->Dir, 7);
         Game->ThinkSprite(Handle, 1017.);
         Test->TestEqual(TEXT("second NW step advances original X"), D->FindSprite(Handle)->X, 367.);
-        Test->TestEqual(TEXT("second NW step advances original Y"), D->FindSprite(Handle)->Y, 200.);
+        Test->TestEqual(TEXT("second NW step advances original Y"), D->FindSprite(Handle)->Y, double(Y0 - 2));
         FQuat Wanted; D->GetSpriteFacingRotation(*D->FindSprite(Handle), Wanted);
         Test->TestTrue(TEXT("second NW step commits desired facing after clearance"), Bug->GetActorQuat().AngularDistance(Wanted) < .001);
         Test->TestFalse(TEXT("second NW actual body does not penetrate"), Overlap());
 
         Reset(8, 0, -1);
         Game->ThinkSprite(Handle, 1100.);
-        Test->TestEqual(TEXT("north-only step escapes in one original pixel"), D->FindSprite(Handle)->Y, 201.);
+        Test->TestEqual(TEXT("north-only step escapes in one original pixel"), D->FindSprite(Handle)->Y, double(Y0 - 1));
         D->GetSpriteFacingRotation(*D->FindSprite(Handle), Wanted);
         Test->TestTrue(TEXT("north step turns at its clear endpoint"), Bug->GetActorQuat().AngularDistance(Wanted) < .001);
         Test->TestFalse(TEXT("north actual final body is clear"), Overlap());
@@ -127,17 +134,17 @@ public:
         Reset(3, 1, 1);
         D->FindSprite(Handle)->Props.Add(TEXT("move_nohard"), 1);
         Game->ThinkSprite(Handle, 1300.);
-        Test->TestEqual(TEXT("explicit nohard retains original movement override"), D->FindSprite(Handle)->Y, 203.);
+        Test->TestEqual(TEXT("explicit nohard retains original movement override"), D->FindSprite(Handle)->Y, double(Y0 + 1));
 
         Reset(3, 1, 1);
         D->FindSprite(Handle)->Actor.Reset();
         Game->ThinkSprite(Handle, 1400.);
-        Test->TestEqual(TEXT("virtual classic sprite still follows free center pixel"), D->FindSprite(Handle)->Y, 203.);
+        Test->TestEqual(TEXT("virtual classic sprite still follows free center pixel"), D->FindSprite(Handle)->Y, double(Y0 + 1));
 
-        Reset(8, 0, -1, 203);
+        Reset(8, 0, -1, Y0 + 1);
         Test->TestTrue(TEXT("old-save escape fixture genuinely starts overlapping"), Overlap());
         for (int32 Step = 0; Step < 3; ++Step) Game->ThinkSprite(Handle, 1500. + Step * 17.);
-        Test->TestTrue(TEXT("separate old-save escape still moves away from bank"), D->FindSprite(Handle)->Y < 203);
+        Test->TestTrue(TEXT("separate old-save escape still moves away from bank"), D->FindSprite(Handle)->Y < Y0 + 1);
         Test->TestFalse(TEXT("old-save escape reaches clear actual body"), Overlap());
         return true;
     }
