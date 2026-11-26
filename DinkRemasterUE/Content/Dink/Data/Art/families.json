@@ -1924,7 +1924,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S031_P03",
-        "source_hash": "ae08af353adce6a431769920c5e534deedc9348f",
+        "source_hash": "45aaa71fccc6a50227e74a596049bc1e74977241",
         "source_script": "bar-gh",
         "source_type": 1,
         "source_representation": "actor"
@@ -1938,7 +1938,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S034_P49",
-        "source_hash": "ba0baa2b85157048e5f7a7ab5675bd4f674a5226",
+        "source_hash": "bb0af606ec259ce36a4d970a655ff9b6bbe7bedd",
         "source_script": "",
         "source_type": 0,
         "source_representation": "instance"
@@ -1952,7 +1952,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S034_P50",
-        "source_hash": "402b777995c9d73f8766c5e7badad1a0a358c011",
+        "source_hash": "220557e755d8c0504106f8cb7a7308e6eb523604",
         "source_script": "",
         "source_type": 0,
         "source_representation": "instance"
@@ -1966,7 +1966,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S034_P51",
-        "source_hash": "d4ad12f234c2c9579069f0cb034adfd3c69ad15c",
+        "source_hash": "9626b37a08b0a345ccf096ea148a9cb23668c354",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -1980,7 +1980,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S156_P05",
-        "source_hash": "5f8400605b29df7a954e86b7bbe01ae9675ec5e2",
+        "source_hash": "da4606b550eefb7136fe7cdd15c12852c034a6fd",
         "source_script": "bar-dp",
         "source_type": 1,
         "source_representation": "actor"
@@ -1994,7 +1994,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S161_P22",
-        "source_hash": "b5a1d7873318558792c99684fb2b975553d6d151",
+        "source_hash": "0b2190ca49bb0b6f83048fbd9f215e0a438e870a",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2008,7 +2008,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S161_P23",
-        "source_hash": "56536902720b94a1c74d48f3b36d8882a2a0733c",
+        "source_hash": "fefa57369f78b73548bd7a0b2aa8629b85578e6b",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2022,7 +2022,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S161_P24",
-        "source_hash": "a79a2267bf18081d8cc3534a77b581ccb12407df",
+        "source_hash": "f604125dee61ca1466eaf379ca6a20f9250972e3",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2036,7 +2036,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S162_P22",
-        "source_hash": "38477b6b981b5b3c72f27e98583d51d951210d70",
+        "source_hash": "bf0f482f8a60cae82b5da16aa0c2f16a24357a85",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2050,7 +2050,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S162_P23",
-        "source_hash": "5f250eeea7b84c7b8a288c8a557b55b31754e719",
+        "source_hash": "06bd4994e43d8073fdd90af27c29f4bb74585376",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2064,7 +2064,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S162_P24",
-        "source_hash": "aa31b3af15f3a30b32bdbd2d419c5f347c87b14b",
+        "source_hash": "9c01d8dce317714d9e6e6a3d9b3c53da87a7c260",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2078,7 +2078,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S177_P03",
-        "source_hash": "25ee18b0ca7bd3e79c668c2b65426be49597e23b",
+        "source_hash": "e0f96e57a4fcbe61d3efe3fe08f58669f5a9d088",
         "source_script": "bar-sp",
         "source_type": 1,
         "source_representation": "actor"
@@ -2092,7 +2092,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S194_P22",
-        "source_hash": "6ff967222572e9fdad1c8982f5bfbd7f8bf253fb",
+        "source_hash": "105be64949d19a00ed07521b34a09514694e99a9",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2106,7 +2106,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S194_P23",
-        "source_hash": "7c23dd9388f7f02f0ea362aebef4ef139391036a",
+        "source_hash": "ab8bbe704f38b9dc7935ef7a8aeb531972fca4d8",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2120,7 +2120,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S194_P24",
-        "source_hash": "5dd6216c7ebafe303bfd1e99709a49b422c7b323",
+        "source_hash": "40c59dd7e4b66588d7a317a7403ed79c7bdb080f",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2134,7 +2134,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S196_P23",
-        "source_hash": "6e388b770e7f9f582ed86a52e055805fabc4c941",
+        "source_hash": "70bf55d8cb53c72be890e708bd1781d818cebc4f",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2148,7 +2148,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S196_P24",
-        "source_hash": "81e83e5c2ae6bfa7abd724b82ed7e34ed419b266",
+        "source_hash": "1d2e0ae03593815c253c241d49c7812b468ffdf2",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2162,7 +2162,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S209_P13",
-        "source_hash": "aaf9970236ed952fd097ee29930f98ff3412df4f",
+        "source_hash": "890ac1b4412cd1041bddcac9aa659af825a88176",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2176,7 +2176,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S210_P09",
-        "source_hash": "e0ef3f4aa5f5e5ac0dd63ea84237503cd54c5d4b",
+        "source_hash": "f0210f1b5e91785eb2709565c6e1427a904d04c2",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2190,7 +2190,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S216_P08",
-        "source_hash": "0f84f48a536f843a47faf79ffe23356d78e33509",
+        "source_hash": "91d4d1d8486238d6ae656c6b7781138c2c9410b8",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2204,7 +2204,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S229_P16",
-        "source_hash": "97e18c3c149f9f6e1ab23a5ee3598a9085af397a",
+        "source_hash": "014888ed9a94f66a73677e358f64577d8657f865",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2218,7 +2218,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S229_P17",
-        "source_hash": "12960406088dfe997f0550ba872d40a1905835d7",
+        "source_hash": "8eff96d0f14d94e7852e7e5b0b02a34a433977f9",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2232,7 +2232,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S229_P18",
-        "source_hash": "380ece1917907f57b620455e0b0f220b0e3eec02",
+        "source_hash": "5b172dfe965e5193056448dec13ea92097f83da3",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2246,7 +2246,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S229_P19",
-        "source_hash": "4b783d362b3d8f76509cbdab94e496efcaa838be",
+        "source_hash": "d4534a683c2fe9cb12957f495ecc77416990c155",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2260,7 +2260,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S229_P20",
-        "source_hash": "e88a9a4f818edc7dbc0dcc973898fd652a322a6e",
+        "source_hash": "752e67ec7d9afd5e7c5a9edae283929f9078310d",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2274,7 +2274,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S229_P21",
-        "source_hash": "4ac2657aabb33c9e3b53f128a157494204c3e86c",
+        "source_hash": "0a644cf6a5e5c146d0722e7fbfa26f837a49d73f",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2288,7 +2288,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S229_P22",
-        "source_hash": "68a2e1db874a65271b5ddd54b394edfe73e88261",
+        "source_hash": "4adb4dbe6b50504318d4a27df07f6ddf94b53600",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2302,7 +2302,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S229_P23",
-        "source_hash": "0a379d050ac201ca7e557ab2b7487f197dd4fee2",
+        "source_hash": "2ac0d7180bcfabfac6a298f7ec91e44818ebf07b",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2316,7 +2316,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S250_P01",
-        "source_hash": "335dc5336db17c1df41573a5c596fb3a8b00f020",
+        "source_hash": "e8d7b9ed24db4a20ba8d4781f4155472b6a9ab25",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2330,7 +2330,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S250_P05",
-        "source_hash": "cd6f06e1f4e8863b32db2dc2843682251e273f34",
+        "source_hash": "f5c6423fd7c8a418b51c32cd24b3aee6935a440c",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2344,7 +2344,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S250_P06",
-        "source_hash": "d2843e90286b29f004c0feae43edab2079459ac4",
+        "source_hash": "e48624d9d6c8df85a76d93e3c4a79bc036e79b2b",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2358,7 +2358,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S251_P10",
-        "source_hash": "ac35b69262fe7d91f394df22972849c556e42e95",
+        "source_hash": "2c210c4cd1026db6cc26d46b37487623b3bae3ca",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2372,7 +2372,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S251_P11",
-        "source_hash": "a7b53f5e9e3cc625848a092dcb6aa48dbdcf4846",
+        "source_hash": "12e11d34ebb2a9b91557545c98691e9bbb315325",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2386,7 +2386,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S276_P05",
-        "source_hash": "9554b8e5fb6593f7b77943929b109d0b041c3616",
+        "source_hash": "d0538dbaab94ad791fe972fa4194520f54fd185e",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2400,7 +2400,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S276_P06",
-        "source_hash": "3f617cde9534d70311199985b848f1f9dbde349d",
+        "source_hash": "c4ec92cbba8ee016552f6e93ba37654c39e1ca38",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2414,7 +2414,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S278_P03",
-        "source_hash": "71bb1ee446997c102759c77007b5f2a74a47568e",
+        "source_hash": "d75245d0c8cfdaf60e8b21fe2800cfc6ddc13fd7",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2428,7 +2428,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S282_P05",
-        "source_hash": "50c8a9e60b21d98c9c91832117c05278e1aab030",
+        "source_hash": "86cf4a6e41fa09c64d59f40e975d09cb3b783169",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2442,7 +2442,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S341_P03",
-        "source_hash": "74b56049d8fab5c27cd476a649756312053f5894",
+        "source_hash": "ee9adfb734ea6dcf9e609574ed845fd8b33ffd5c",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2456,7 +2456,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S347_P06",
-        "source_hash": "adca2533df5a900b514515d9fac691e7736e4852",
+        "source_hash": "9406c5daab6bbb76766679960e0973d90d65b937",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2470,7 +2470,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S347_P07",
-        "source_hash": "8c00d0ceb89844141c37cec486ac87e0b7c17be9",
+        "source_hash": "0f490c70f1922bd9faca5271f2b229741fd1edb2",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2484,7 +2484,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S404_P02",
-        "source_hash": "1746d7b5007941c85a6745543a5db0fb9f38c4dc",
+        "source_hash": "7e982e5b591b44f278c83775b41cb658ff7c554e",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2498,7 +2498,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S404_P06",
-        "source_hash": "540609cfa9d24aac5ef84dadaf5bb36ec3d96f7b",
+        "source_hash": "bf69839cb4ba9b18ac331b49813e86fd0d4bbb0c",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2512,7 +2512,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S408_P01",
-        "source_hash": "66727f7adf2bcc7d706ec1e9cc2800a0b2cb84dc",
+        "source_hash": "b6dd00a92f125e6cae5128a93e87e63bf8afb5fb",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2526,7 +2526,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S408_P10",
-        "source_hash": "af4578ec45dcc02b8a8a0e935a80a40f3b26b94b",
+        "source_hash": "ba744ee756bd2290a64e825b59e109717ebf1fef",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2540,7 +2540,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S409_P04",
-        "source_hash": "6df33b281cff52a1be8985bad26dd0594444b8db",
+        "source_hash": "cfb2492c144f5bf6d704d601591f02b22e812c74",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2554,7 +2554,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S409_P10",
-        "source_hash": "8f72c3a4ff361e5e461843b11c3691a03796e7f9",
+        "source_hash": "52b70b1f30591e199313efa11f8e7622c2208495",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2568,7 +2568,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S417_P18",
-        "source_hash": "8c3426aee0d66525956d9572f3e521ff05b3272a",
+        "source_hash": "dd98dedbdb4af002d9e287c1148531e41e392835",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2582,7 +2582,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S418_P13",
-        "source_hash": "fa0cbce45718a575d46b12f6497772ec5948b750",
+        "source_hash": "a083b822dfc261545f96d0c852aba153e6838af3",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2596,7 +2596,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S418_P14",
-        "source_hash": "13103dcdeb4bc2ba58bdaacd6da864bd8967793a",
+        "source_hash": "87e4f04e683e13a8b4daddfbf8420aef7974a290",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2610,7 +2610,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S418_P15",
-        "source_hash": "1343bc7b78a38a6bbb634d95262fc824766f19fe",
+        "source_hash": "10054a51d70554cb627120d93b2b67cf5f45270b",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2624,7 +2624,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S419_P11",
-        "source_hash": "437d4262c12f28d8d746a0e725145e6215c0519f",
+        "source_hash": "5db59c37e842e03e8c46e0c28a7c8a317f1f38f1",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2638,7 +2638,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S419_P13",
-        "source_hash": "c05445b3740dfe9dc87d0c5dd1429f36cce55580",
+        "source_hash": "b3205fca7a506debab60f2e5ea151dc9e951aec9",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2652,7 +2652,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S419_P14",
-        "source_hash": "ae1eafd787082645b9dbeb03173e2419185d2367",
+        "source_hash": "e23299f97cc67033ccd0df186506137938b56887",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2666,7 +2666,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S437_P35",
-        "source_hash": "813a2c0046951edd00e217725971d8ba2008e4a2",
+        "source_hash": "484fc387b3cfd34e8dba0b0fe8df95bbff672680",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2680,7 +2680,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S437_P36",
-        "source_hash": "97ed5c863748ba797a8b2d3916e28349cdd4aea7",
+        "source_hash": "36c88b094f9139b27623f7936882d0c19e85db8a",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2694,7 +2694,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S437_P37",
-        "source_hash": "856d26ca41aea8b593f68d9a44df8065caca25bf",
+        "source_hash": "6c35aa436be20c7184def2cf8f32e94269c26349",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2708,7 +2708,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S437_P38",
-        "source_hash": "d0671f201afe06df755da8bc665132bd2d0985f3",
+        "source_hash": "9c2b75524eec72416d55305b32f5dec2ba6bf1b0",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -2722,7 +2722,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S437_P39",
-        "source_hash": "53c67abf69477766785afcf66a04e06dc74fc4c4",
+        "source_hash": "a0f771162172fd6c30904d5875f9c7d087bfeb68",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2736,7 +2736,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S440_P14",
-        "source_hash": "073899f0ed282f47a6c94e6c63080ad3866b652e",
+        "source_hash": "fddb63877298237d7ea4edd7b8032841afd8417b",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2750,7 +2750,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S440_P15",
-        "source_hash": "7dfdf4137b85a19c7a92c7f25612ba9686f2583d",
+        "source_hash": "5aadb94356b852b79562b1ee2428f69b36689228",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2764,7 +2764,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S441_P04",
-        "source_hash": "d53947781366edf6bfccdf6a338554f00a9ca4fc",
+        "source_hash": "eb379274d142fc113de4b1e5026bb14d08e6024b",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2778,7 +2778,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S468_P01",
-        "source_hash": "d92a3b48e3fc68cd8d3223e37f10f06131dba8f0",
+        "source_hash": "d10c19dcf73a67931e779c047138e389440efa00",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -2792,7 +2792,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S469_P13",
-        "source_hash": "97c24d11722e25cf339fcbf0ee818f6b70e88f8d",
+        "source_hash": "8f13632fb6ea1a8e83faee1b24e9d1ededd21bd4",
         "source_script": "",
         "source_type": 1,
         "source_representation": "actor"
@@ -2806,7 +2806,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S469_P14",
-        "source_hash": "337c20f91394e049f950756354e8bc5582d3b620",
+        "source_hash": "cad5f8779ea165d87380de2e39a92ca42fab7447",
         "source_script": "",
         "source_type": 1,
         "source_representation": "actor"
@@ -2820,7 +2820,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S469_P15",
-        "source_hash": "06eacfd9e8d2cc4466a98548b1a4604ac07923c6",
+        "source_hash": "348ab7df7e6ee08abd1d8c33eb9dbe4c686e925d",
         "source_script": "",
         "source_type": 1,
         "source_representation": "actor"
@@ -2834,7 +2834,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S469_P16",
-        "source_hash": "7de7ec648bed4f586c30e43c3fc6ac53503e2758",
+        "source_hash": "4b5ac674f879c99b5f291c41f92cf59c7e1f8c8d",
         "source_script": "bar-sh",
         "source_type": 0,
         "source_representation": "instance"
@@ -2848,7 +2848,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S469_P17",
-        "source_hash": "1a449190397d52ff077f0fc88e47d3d872dc6591",
+        "source_hash": "7efa3e1b64efa9ed0140a69250b355e6ccf4c2d7",
         "source_script": "",
         "source_type": 1,
         "source_representation": "actor"
@@ -2862,7 +2862,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S469_P18",
-        "source_hash": "c7d32ddc700046e6d8c7f234520749a3f09c9d9d",
+        "source_hash": "6fbe4e89620ca282bcf945f3c830184468d3d762",
         "source_script": "",
         "source_type": 1,
         "source_representation": "actor"
@@ -2876,7 +2876,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S469_P19",
-        "source_hash": "db74ea4e01131ad85b1117bac4da3a66a0f953e3",
+        "source_hash": "21850c17f92697dc9369d930923e69ef92c64ce0",
         "source_script": "",
         "source_type": 1,
         "source_representation": "actor"
@@ -2890,7 +2890,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S469_P21",
-        "source_hash": "481d2afa952598dc7af10896dc241b4e2209c6b6",
+        "source_hash": "fb8a8f6432e9c1c0a1c0bd533396e150ffb7925a",
         "source_script": "",
         "source_type": 1,
         "source_representation": "actor"
@@ -2904,7 +2904,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S469_P22",
-        "source_hash": "288ca371908e7435a3453bf91d0d778d37d702b9",
+        "source_hash": "27d9ac8dd40d3998faa529558ce360af190ae91a",
         "source_script": "",
         "source_type": 1,
         "source_representation": "actor"
@@ -2918,7 +2918,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S497_P10",
-        "source_hash": "abfb96fbe9cdcaf6cf5faf3f83830563a3de744f",
+        "source_hash": "c86a32db3859232dbe44a5fb0f44a3f98203a801",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2932,7 +2932,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S497_P11",
-        "source_hash": "9a05cb21cc26aacceca71111cc356e3f3946adb0",
+        "source_hash": "c279528a98a613276ff124706d972c974ab7b32d",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2946,7 +2946,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S504_P13",
-        "source_hash": "5fb8af35c4e5e491941991aad69e888efe67cb1f",
+        "source_hash": "4961debe21fe195d977f1f24e943b5bf46d43313",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2960,7 +2960,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S504_P14",
-        "source_hash": "48c5d950693de6a65853d731195e5e4af9b0a5e3",
+        "source_hash": "2035a30f7a4dfc7618fc4461adf99e73b945ae38",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2974,7 +2974,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S506_P14",
-        "source_hash": "db685343f7b68bd15a2fc655d31e444dd265b1c6",
+        "source_hash": "5939e3825b57a67d0ba8b9d72e734414accc8c61",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -2988,7 +2988,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S506_P15",
-        "source_hash": "cf10443bc52e8f81909a7f13ee654d384edd8fb3",
+        "source_hash": "b3a95f7969757c7cd92866e42dc3aa4280a33080",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -3002,7 +3002,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S534_P03",
-        "source_hash": "a07d223d5de5e69b6736f5ffb35dc5b6508857a8",
+        "source_hash": "27b314d7dd6dcbd441655ffa462a40baff977e35",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -3016,7 +3016,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S539_P10",
-        "source_hash": "d89edcbea39b2b75e533a04e096f99a0acb587b0",
+        "source_hash": "01423f742714d50aab1adc3c97e398f394292000",
         "source_script": "bar-f1",
         "source_type": 1,
         "source_representation": "actor"
@@ -3030,7 +3030,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S539_P11",
-        "source_hash": "c99b9e7c20242cdc3af516c4926bbf14272882df",
+        "source_hash": "8cadfe33ca40dc87060078989b5bcb90cdec76ef",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -3044,7 +3044,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S601_P14",
-        "source_hash": "11497073c79f26ec499a05d24de156893e35d843",
+        "source_hash": "58e85be24630ecbd6907866a7b440222158cac27",
         "source_script": "bar-gh",
         "source_type": 1,
         "source_representation": "actor"
@@ -3058,7 +3058,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S734_P11",
-        "source_hash": "b512f37630326b5dd66e47510d719cd33e1eff01",
+        "source_hash": "82d500dd12a34691518599a98a18a461a9986c5b",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -3072,7 +3072,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S734_P12",
-        "source_hash": "e49269a92ce6f4d8f3afeb4417d3a24e5a169c11",
+        "source_hash": "9f345569c7325c35e1710ac12119f9f9f02b6d01",
         "source_script": "bar-e",
         "source_type": 1,
         "source_representation": "actor"
@@ -3086,7 +3086,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S734_P13",
-        "source_hash": "c3e22a3e55fb75996103cacddd2e50926cc1293b",
+        "source_hash": "0bea79133aa0bd6c643fa067bf70c984daf40397",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"
@@ -3100,7 +3100,7 @@
         "geometry": "cooked_complex",
         "raster": "cell_center",
         "origin": "S765_P07",
-        "source_hash": "859f2e28b5f577c5e5d09845b7c2e0277dd3fefd",
+        "source_hash": "78d28106ee253be0dd6cd7ce06ec008b86209ff2",
         "source_script": "bar-sh",
         "source_type": 1,
         "source_representation": "actor"

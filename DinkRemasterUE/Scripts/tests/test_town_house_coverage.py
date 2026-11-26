@@ -108,7 +108,9 @@ class TownHouseCoverageTests(unittest.TestCase):
             wall_frames = {r['origin'] for r in csv.DictReader(f) if r['seq'] == '33' and int(r['frame']) not in
                            (7, 8, 9, 10, 12, 13, 24, 25, 26, 27, 29, 30, 31, 32)}
         self.assertEqual(len(wall_frames), 95)
-        self.assertEqual(len(open_cards), 97)
+        # 97 at the 4.0 settlement scale; 111 at the enlarged world scale (4.6, doc/remaster/WORLD_SCALE.md): the 1997
+        # roof pictures lie farther behind the real-depth (8.1 m) houses, so more of them cover open ground
+        self.assertEqual(len(open_cards), 111)
         self.assertFalse(wall_frames & open_cards)
         for row in data['screens'].values():
             for origin in row['stands_for']:

@@ -54,7 +54,7 @@ interior = 1.75
 # rate"; doc/remaster/WORLD_SCALE.md). true: the analyser lays the world out at [scale_enlarged] instead of [scale].
 # OFF until the parity question of WORLD_SCALE.md section 11 is decided: Dink's 1997 pixel follows his physical pawn,
 # so a layout whose screens change shape moves the probe's traces (layer-off md5s and the bot's routes).
-enlarged = false
+enlarged = true
 
 [scale_enlarged]
 # Owner-approved ratios (16 Nov 2026): settlement 4.0 -> 4.6, wilderness and sea 2.75 -> 3.6, dungeon 2.25 -> 2.7,

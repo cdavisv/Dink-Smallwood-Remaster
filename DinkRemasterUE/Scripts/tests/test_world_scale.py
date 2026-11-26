@@ -48,9 +48,10 @@ class RegionScales(unittest.TestCase):
             self.assertAlmostEqual(self.table["scale_enlarged"][kind], after, msg=kind)
             self.assertAlmostEqual(self.table["scale"][kind], before, msg=kind)
 
-    def test_switch_is_off_until_the_parity_question_is_decided(self):
-        # doc/remaster/WORLD_SCALE.md section 11: the layer-off probe moves at the enlarged scale
-        self.assertIs(self.table["world_scale"]["enlarged"], False)
+    def test_switch_is_on_by_owner_decision(self):
+        # Owner, 23 Nov 2026 ("Yes, approved ratios", option A of doc/remaster/WORLD_SCALE.md section 11): the enlarged world is on,
+        # with one re-baseline of the probe's md5 table (Plugins/DinkParity/Docs/packaged_probe.md)
+        self.assertIs(self.table["world_scale"]["enlarged"], True)
 
     def test_loader_applies_the_switch(self):
         sys.path.insert(0, str(REPO / "tools/analyse"))
@@ -65,7 +66,7 @@ class RegionScales(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             for on in (False, True):
                 p = Path(d) / ("on.toml" if on else "off.toml")
-                p.write_text(text.replace("enlarged = false", "enlarged = %s" % ("true" if on else "false")), encoding="utf-8")
+                p.write_text(text.replace("enlarged = true", "enlarged = %s" % ("true" if on else "false")), encoding="utf-8")
                 t = regions.load_table(str(p))
                 for kind, (before, after) in APPROVED.items():
                     self.assertAlmostEqual(t["scale"][kind], after if on else before, msg=(on, kind))
@@ -84,13 +85,14 @@ class HeroPaceTable(unittest.TestCase):
     def setUp(self):
         self.pace = json.loads((PROJECT / "Content/Dink/Data/Gameplay/hero_pace.json").read_text(encoding="utf-8"))
 
-    def test_committed_table_is_the_identity_while_the_switch_is_off(self):
-        for kind, (before, _after) in APPROVED.items():
-            self.assertAlmostEqual(self.pace["scale"][kind], before, msg=kind)
-            self.assertEqual(self.pace["run"][kind], 1.0, kind)
+    def test_committed_table_is_the_enlarged_one_while_the_switch_is_on(self):
+        for kind, (before, after) in APPROVED.items():
+            self.assertAlmostEqual(self.pace["scale"][kind], after, msg=kind)
+            self.assertAlmostEqual(self.pace["run"][kind], round(after / before, 4), places=4, msg=kind)
             self.assertEqual(self.pace["walk"][kind], 1.0, kind)
         self.assertEqual(len(self.pace["screens"]), 644)
-        self.assertEqual(set(self.pace["screens"].values()), {1.0})
+        # WORLD_SCALE.md section 4: every screen's centre factor lies in 1.1416-1.3911 (the rubber sheet blends the kinds)
+        self.assertTrue(all(1.14 <= v <= 1.40 for v in self.pace["screens"].values()))
 
     def test_enlarged_kind_factor_is_scale_over_reference(self):
         export = load_export(self)
