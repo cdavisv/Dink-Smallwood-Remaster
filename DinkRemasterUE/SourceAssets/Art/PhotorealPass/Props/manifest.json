@@ -1400,10 +1400,11 @@
      "ORM": "T_Decal_BurnHole_ORM.png"
     },
     "resolution_px": 1024,
+    "specular": 0.0,
     "atlas": "2 x 2 variants, 512 px cells",
     "size_m": "one cell covers about 1.2 x 1.2 m (the charred pit is 0.5-0.6 m across)",
-    "material": "deferred decal, translucent blend: base colour = BC.rgb, opacity = BC.a (scorch halo fades out), normal = N (sunk pit with a raised lip and crazed char), roughness = ORM.G, AO = ORM.R, metallic 0; optional faint ember emissive is not authored",
-    "known_weaknesses": "procedural: the crazing is an even cell pattern, ash is flecks of flat grey, no burnt debris or soot streak downwind; a decal cannot really sink the ground (normal only)"
+    "material": "deferred decal, translucent blend: base colour = BC.rgb, opacity = BC.a (scorch halo fades out), normal = N (a shallow hollow), specular 0 (manifest row \"specular\": a lit black decal with the default specular is grey in the sun), roughness = ORM.G, AO = ORM.R, metallic 0; optional faint ember emissive is not authored",
+    "known_weaknesses": "procedural: a flat scorch (black heart, soot spikes, singed rim), no burnt debris and no depth; four variants only"
    }
   ]
  },

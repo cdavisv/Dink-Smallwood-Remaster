@@ -536,6 +536,7 @@ for row in (manifest.get('modules') or manifest['assets']):
 
 # Decal sheets of a kit (Props/Decals, manifest `decals`): 2 x 2 atlases as deferred decals, one instance per cell
 # (MI_Decal_<Set>_0..3). UDinkEnvironmentSubsystem binds them to sprite classes through environment.json `decals`.
+# A set's "specular" sets the scalar Specular of its instances (the burn marks: 0).
 if isinstance(manifest.get('decals'), dict) and manifest['decals'].get('sets'):
     decal_dir = REPO / manifest['decals']['folder']
     decal_parent = None
@@ -563,11 +564,13 @@ if isinstance(manifest.get('decals'), dict) and manifest['decals'].get('sets'):
                 link(uv, '', node, 'UVs')
             for node, pin, prop in ((bc, 'RGB', MP.MP_BASE_COLOR), (bc, 'A', MP.MP_OPACITY), (nm, 'RGB', MP.MP_NORMAL), (orm, 'G', MP.MP_ROUGHNESS)):
                 EDIT.connect_material_property(node, pin, prop)
+            # a set's "specular" (default 0.5, the engine's): 0 for a scorch, which the default made grey in the sun
+            EDIT.connect_material_property(expr(mat, unreal.MaterialExpressionScalarParameter, -600, 520, parameter_name='Specular', default_value=0.5), '', MP.MP_SPECULAR)
             EDIT.recompile_material(mat)
             save(mat)
             decal_parent = mat
         for cell in range(4):
-            mi = instance(f"MI_Decal_{row['name']}_{cell}", decal_parent, tex, {}, {})
+            mi = instance(f"MI_Decal_{row['name']}_{cell}", decal_parent, tex, {'Specular': float(row['specular'])} if 'specular' in row else {}, {})
             EDIT.set_material_instance_vector_parameter_value(mi, 'Cell', unreal.LinearColor(0.5 * (cell % 2), 0.5 * (cell // 2), 0.0, 0.0))
             EDIT.update_material_instance(mi)
             save(mi)
