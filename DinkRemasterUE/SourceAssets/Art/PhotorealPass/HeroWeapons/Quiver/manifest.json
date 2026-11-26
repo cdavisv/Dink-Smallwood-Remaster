@@ -1,0 +1,104 @@
+{
+ "name": "SM_Hero_Quiver_PR",
+ "class": "weapon",
+ "fbx": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver/SM_Hero_Quiver_PR.fbx",
+ "source_blend": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver/SM_Hero_Quiver_PR.blend",
+ "build": "Unclaimed/tools/bl.sh build_weapons.py Quiver final",
+ "dimensions_m": [
+  0.8632,
+  0.1847,
+  0.1441
+ ],
+ "bounds_min_m": [
+  -0.27,
+  -0.115,
+  -0.0735
+ ],
+ "bounds_max_m": [
+  0.5932,
+  0.0697,
+  0.0706
+ ],
+ "lod0_triangles": 3226,
+ "triangle_budget": {
+  "soft": 3000,
+  "hard": 8000,
+  "within_soft": false
+ },
+ "textures": [
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver/T_Hero_Quiver_PR_BC.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "base colour sRGB"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver/T_Hero_Quiver_PR_N.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "tangent normal, OpenGL (green up; flip green on import)"
+  },
+  {
+   "file": "DinkRemasterUE/SourceAssets/Art/PhotorealPass/HeroWeapons/Quiver/T_Hero_Quiver_PR_ORM.png",
+   "size_px": [
+    2048,
+    2048
+   ],
+   "channels": "R occlusion, G roughness, B metallic"
+  }
+ ],
+ "materials": [
+  "MI_Hero_Quiver_PR"
+ ],
+ "material_exception": "unique BC/N/ORM bake private to this asset (not a row of ART_STANDARD.md section 2): the task for the unclaimed families asks for a baked set per asset, and the surface detail here (see dresses) does not exist in the shared library",
+ "collision_hulls": 0,
+ "validation": {
+  "non_manifold_edges": 400,
+  "open_edges": 400,
+  "loose_verts": 0,
+  "zero_area_faces": 0,
+  "signed_volume_positive": true,
+  "uv_range": [
+   0.0056,
+   0.9945
+  ],
+  "transforms_applied": true
+ },
+ "bake_stats": {
+  "albedo_luma_srgb": {
+   "p1": 0.0,
+   "mean": 84.1,
+   "p99": 195.1
+  },
+  "roughness": {
+   "p5": 0.0,
+   "mean": 0.573,
+   "p95": 0.8
+  },
+  "metallic_mean": 0.008,
+  "ao_mean": 0.457
+ },
+ "pivot": "grip centre at the origin; +X to the tip; flats of the blade on +Z / -Z (see tools/build_weapons.py)",
+ "families": [
+  "hero weapon item-b1, item-b2, item-b3 (worn on the back while a bow is armed)"
+ ],
+ "origin_ids": {},
+ "supersedes": "none (placeholder greybox cards)",
+ "dresses": "quiver, brown leather tube 0.54 m long, 12 cm across at the mouth, two dark bands, two lashing straps with bronze buckles, a sewn seam and a rolled rim, eight red-fletched arrows standing in it nock up, their feathers 15 cm long; origin on the axis at the middle, +X to the mouth, -Y on the back",
+ "third_party": [
+  "weathered_brown_planks (render floor)"
+ ],
+ "status": "source delivered; not imported into Unreal, not bound in families.json",
+ "known_weaknesses": "Lashed to the pack with two straps whose ends stop inside it (they do not go round the pack, and no baldric crosses the chest); the quiver sits on the back by its attachment row alone. The arrows are fixed in the tube and their number never changes (1997 draws the same quiver whatever was shot). Procedural bake.",
+ "grip": {
+  "origin": "grip centre",
+  "x": "towards the tip (upper limb for a bow)",
+  "bone": "spine_03 (hero_weapons.json bows.worn)",
+  "item": "item-b1, item-b2, item-b3 (worn on the back while a bow is armed)",
+  "picture_1997": "graphics/dink/bow/idle, hit, walk"
+ }
+}

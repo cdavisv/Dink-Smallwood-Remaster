@@ -362,6 +362,16 @@ Grip convention (every mesh): origin at the grip centre, +X along the blade or h
 the blade's flats on +Z and -Z. Attach: swords and axe on bone `hand_r`, relative location (-7, 3, -0.5) cm, rotation pitch 90, yaw 0, roll 90 (seen in the game in the idle pose and in `Sword_Slash_1` / `Sword_Chop`: the blade leaves the thumb side of the fist, the claws of the claw sword are on the knuckle side); bows on `hand_l`, location (7, -3, 0.5), rotation pitch -90, yaw 0, roll 90, string hand `hand_r` (seen carried at his side and at full draw with `Bow_Draw`).
 Nothing binds them at runtime yet: no families.json row, no attach by item (code, bug A203). `dink.Hero.Hold <mesh path | off>
 [bone] [x y z pitch yaw roll]` (review only, not in shipping builds) puts one in the hero's hand for a capture.
+The bow that bends (23 Nov 2026, art row AN-05): the kit also holds `SM_Hero_Arrow_PR`, `SM_Hero_Quiver_PR` and each bow cut into
+fifteen rigid parts (`<bow>/Parts/SM_Hero_Bow_<Wood|Blue>_<Grip|LimbU1..6|LimbL1..6|StringU|StringL>_PR.fbx`, the bow's own material):
+
+    HeroWeapons/tools/bl.sh Arrow,Quiver final                                                       # the two new meshes
+    blender -b --factory-startup -t 4 --python HeroWeapons/tools/build_bow_parts.py -- Bow_Wood Bow_Blue   # cut the bows (no bake); prints `draw`
+    python3 -I HeroWeapons/tools/build_weapons.py --manifest
+
+Cut the bows again after any rebuild of a bow, and copy the printed `draw` numbers into `Content/Dink/Data/Art/hero_weapons.json`
+`bows.items` (they are in `<bow>/manifest.json` too). The game assembles the parts (`UDinkHeroBowSubsystem`, DinkRemasterUE/AGENTS.md).
+
 ## Structure sets (14 Nov 2026)
 
 | What | Command | Reads | Writes |
