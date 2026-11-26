@@ -72,21 +72,22 @@ for name, (base, colour, pick, gain, hair, aset, fam, what) in DRESS.items():
     print('recoloured', out.name)
 variants['KnightSilver'] = {'base': 'NPC/Knight', 'base_asset': 'SK_Knight_Photoreal', 'animation_set': 'NpcM', 'families': ['npc_knight_silver'], 'what': 'the knight in bright harness',
                             'materials': {'MI_Knight_PR_Outfit': {'textures': {'BC': f'{UNC}/npc_knight_blue/Knight/T_Knight_PR_Silver_BC.png'}, 'tint': [2.5, 2.3, 1.8]}}}   # the silver map is nearly as dark and blue as the blue one, and polished metal shows the blue of the sky light: in a hall both read blue
-variants['MerchantGreen'] = {'base': 'NPC/Merchant', 'base_asset': 'SK_Merchant_Photoreal', 'animation_set': 'NpcM', 'families': ['npc_merchant_green'], 'what': 'the merchant in green',
-                             'materials': {'MI_Merchant_PR_Outfit': {'textures': {'BC': f'{UNC}/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_Green_BC.png'}}}}
 # the townsmen in red and purple (pictures 341-349 Jack and the men of Terris, 391-399 the barkeep) and the gold knights (301-309, the Cast):
 # the merchant's and the knight's own maps, blue turned to the 1997 colour
 for name, src, colour, gain, base, slot, what in (
-        ('MerchantRed', f'{UNC}/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_BC.png', (0.50, 0.07, 0.06), 3.0, 'Merchant', 'Outfit', 'the townsman in red'),
-        ('MerchantPurple', f'{UNC}/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_BC.png', (0.30, 0.12, 0.42), 3.0, 'Merchant', 'Outfit', 'the townsman in purple'),
+        # the merchant's own map (merchant_outfit.py: the source's map with the fur mantle), its blue coat turned to the twin's colour
+        ('MerchantGreen', 'Merchant/Textures/T_Merchant_PR_Outfit_BC.png', (0.12, 0.34, 0.11), 3.0, 'Merchant', 'Outfit', 'the merchant in green'),
+        ('MerchantRed', 'Merchant/Textures/T_Merchant_PR_Outfit_BC.png', (0.50, 0.07, 0.06), 3.0, 'Merchant', 'Outfit', 'the townsman in red'),
+        ('MerchantPurple', 'Merchant/Textures/T_Merchant_PR_Outfit_BC.png', (0.30, 0.12, 0.42), 3.0, 'Merchant', 'Outfit', 'the townsman in purple'),
         ('KnightGold', f'{UNC}/npc_knight_blue/Knight/T_Knight_PR_BC.png', (0.62, 0.43, 0.12), 3.2, 'Knight', 'Outfit', 'the knight in gilded harness'),
         # the red knights (271-279, 711-719) are a dark maroon in 1997; the kit's own red map was magenta pink in daylight
         ('KnightRed', f'{UNC}/npc_knight_blue/Knight/T_Knight_PR_BC.png', (0.30, 0.085, 0.09), 3.0, 'Knight', 'Outfit', 'the knight in dark red harness')):
     out = NPC / name / 'Textures' / f'T_{name}_PR_Outfit_BC.png'
     recolour((NPC / src).resolve(), out, colour, is_blue, gain=gain)
     variants[name] = {'base': f'NPC/{base}', 'base_asset': f'SK_{base}_Photoreal', 'animation_set': 'NpcM', 'what': what,
-                      'families': ['npc_knight_red', 'npc_knight_red_attacking'] if name == 'KnightRed' else [],
+                      'families': ['npc_knight_red', 'npc_knight_red_attacking'] if name == 'KnightRed' else ['npc_merchant_green'] if name == 'MerchantGreen' else [],
                       'materials': {f'MI_{base}_PR_{slot}': {'textures': {'BC': f'{name}/Textures/{out.name}'}}}}
+    if base == 'Merchant': variants[name]['materials']['MI_Merchant_PR_Gear'] = {'textures': {'BC': f'{name}/Textures/{out.name}'}}      # his boots and pouch show the same map through the Gear slot
     print('recoloured', out.name)
 
 

@@ -1,0 +1,26 @@
+{
+ "name": "Merchant",
+ "packed": "NPC/Merchant/Work/merchant_packed.blend",
+ "head": "NPC/Merchant/Work/merchant_head.blend",
+ "tex": "NPC/Merchant/Textures",
+ "prefix": "T_Merchant_PR",
+ "out": "NPC/Merchant/SK_Merchant_Photoreal.blend",
+ "rigid": {},
+ "wsrc": [],
+ "smooth": [],
+ "tex_override": {
+  "_Outfit_N.png": "../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_N.png",
+  "_Outfit_ORM.png": "../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_ORM.png",
+  "_Gear_BC.png": "NPC/Merchant/Textures/T_Merchant_PR_Outfit_BC.png",
+  "_Gear_N.png": "../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_N.png",
+  "_Gear_ORM.png": "../Unclaimed/npc_merchant_blue/Merchant/T_Merchant_PR_Outfit_ORM.png"
+ },
+ "skin_cull_r": 0.066,
+ "clean_degenerate": true,
+ "skin_tuck": 0.015,
+ "eye_back_cull": 0.3,
+ "skin_decimate": {
+  "hands": 0.45
+ },
+ "lod_body": true
+}

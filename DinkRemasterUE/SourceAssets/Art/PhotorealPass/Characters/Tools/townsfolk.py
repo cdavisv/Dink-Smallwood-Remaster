@@ -51,4 +51,31 @@ TOWNSFOLK = {
               'The cane stands on the root bone beside him: his hand does not hold it.',
               'Hair and beard are cards rigid on the head bone: the beard does not swing and a deep nod carries it into the chest.',
               'The face is sculpted with the kit\'s face operations (cfg/head.json): an old man of no particular likeness.']),
+    # people/gnome/purple, pictures 561-569 (Martridge of SCR_006): a squat little man with a head as big as a grown man's, a long
+    # grey beard to the belt, a tall pointed hat with stars, a tunic with yellow sleeves, a belt, brown boots
+    'Gnome': dict(
+        body='port', src=('npc_gnome_purple/Gnome_Wizard', 'Gnome_Wizard_PR'), families=['npc_gnome_purple'], animation_set='NpcM', placement_scale=0.554, iris='92,112,128', eye_seed=561,
+        drop=[(-0.14, 0.14, -0.28, -0.01, 1.28, 1.64)], gear=[(-0.26, 0.26, -0.27, 0.14, -0.02, 0.47)],
+        # The port scales him 1.8 times onto the rig and the placement brings him back: a head of the hero's size would be half a
+        # man's. townsfolk_grow.py grows head, hair and beard about the base of the neck (as seth_build.py does for Seth) and
+        # sets the hat of the source on the grown head: `hat` = lowest z of the hat in the port, its scale, and where the
+        # centre of its brim goes (x, y, z on the rig); hair inside the hat is cut away.
+        head_scale=1.5, hat=dict(z0=1.68, scale=1.2, to=(0.0, -0.040, 1.805), tilt=-6.0),
+        what='the gnome of pictures 561-569 (people/gnome/purple): pointed hat with stars, grey beard to the belt, yellow sleeves',
+        weak=['The tunic, the belt, the boots and the hat are those of the Unclaimed source, carried onto the rig by its own skin weights: swept shapes with a painted weave, no cloth simulation.',
+              'His hands are the hero\'s at the rig\'s size: after the placement they are half a man\'s, where the 1997 gnome has large hands.',
+              'Hair and beard are cards rigid on the head bone: the beard does not swing and a deep nod carries it into the belly.',
+              'The hat is rigid on the head bone; its point does not sway.',
+              'The face is sculpted with the kit\'s face operations (cfg/head.json): an old gnome of no particular likeness.']),
+    # people/merchant, pictures 341-349 (red), 371-379 (blue), 381-389 (green), 391-399 (purple): a townsman in a knee-length belted
+    # coat with a fur mantle on the shoulders, dark trousers and tall boots. The blue one is this figure; green, red and purple are
+    # colour twins (npc_variants.py).
+    'Merchant': dict(
+        body='port', src=('npc_merchant_blue/Merchant', 'Merchant_PR'), families=['npc_merchant_blue'], animation_set='NpcM', placement_scale=0.932, iris='84,66,44', eye_seed=37,
+        gear=[(-0.24, 0.24, -0.25, 0.13, -0.02, 0.42)],
+        what='the merchant of pictures 371-379 (people/merchant/blue): belted coat to the knee, a mantle on the shoulders, tall boots',
+        weak=['The coat, the mantle, the belt with its pouch, the trousers and the boots are those of the Unclaimed source, carried onto the rig by its own skin weights: swept shapes with a painted weave, no cloth simulation.',
+              'The mantle is plain dark cloth; the 1997 pictures show fur on the shoulders.',
+              'The 1997 twins in blue, green and purple wear a cap of the coat\'s colour; these go bare-headed with brown hair.',
+              'The face is sculpted with the kit\'s face operations (cfg/head.json): a townsman of no particular likeness.']),
 }

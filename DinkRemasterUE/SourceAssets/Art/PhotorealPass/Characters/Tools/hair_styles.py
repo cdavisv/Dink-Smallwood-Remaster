@@ -121,6 +121,27 @@ STYLES = {
                 tile=dict(frizz=.016, wave=.04, clump=1.0, stray=.035, tip_gain=.5, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0, rag_k=1.7),
                 shells=narrow_short(.72, 1.12, seg=1, lv=(.34, .42), taper=.55, fly=14, wisp=130, over=100),      # thin hair, and a budget: he stands with others on a screen (LOD0 under 35,000 triangles)
                 beard=dict(n=(190, 210, 70), core=130, L=.17, L_side=.055, L_lip=.050, tip_lift=.018, gravity=1.0, wave=.10, wave_n=9.0, wander=.025, point=.5, seg_len=.036, over='NPC/OldMan/Work/oldman_packed.blend:Robe')),
+ # The gnome (NPC/Gnome, pictures 561-569): grey-white hair out from under his pointed hat over the ears and the collar, and a full
+ # grey beard to the belt. townsfolk_grow.py grows head, hair and beard 1.5 times after the assembly: every length here is before that
+ # growth, the beard lies over the tunic brought to the same measure (gnome_over.blend), and the hair inside the hat is cut away.
+ 'Gnome': dict(dir='NPC/Gnome', kind='short', seed=561, hairline=(.62, .20, -.5), guides=1000, density=600000, interp=4,
+               L_top=.030, L_side=.085, L_nape=.075, L_fringe=.020, el_top=8, el_side=10, el_jit=6, sweep=.3, tousle=.8, jit=.16, gravity=1.5, lift_tip=.003, wander=.06,
+               clump=.75, clump_d=.011, noise_d=.0015, frizz_d=.0010, trim_rand=.02, tip_spread=.001,
+               strand=dict(melanin=.08, redness=.20, rough=.40, radial=.4, rand_col=.10),
+               albedo=(.30, .295, .285), col_var=.16, brow_melanin=.10, brow=dict(th=.0066, n=700, inner_up=-.0010, z0=.0190), brow_dark=.75, card_mat=dict(spec=.006, transl=.8, spec2=14.0), brow_rgb='156,152,146', lash_rgb='70,62,56',
+               fringe_var=.5, fringe_scale=30, cap_tip=(.3, .72),
+               tile=dict(frizz=.016, wave=.04, clump=1.0, stray=.035, tip_gain=.5, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0, rag_k=1.7),
+               shells=narrow_short(.72, 1.12, seg=1, lv=(.34, .42), taper=.55, fly=14, wisp=130, over=100),
+               beard=dict(n=(230, 250, 90), core=170, L=.34, L_side=.095, L_lip=.055, tip_lift=.014, gravity=1.0, wave=.10, wave_n=9.0, wander=.025, point=.55, seg_len=.040, over='NPC/Gnome/Work/gnome_over.blend:Robe')),
+ # The merchants (NPC/Merchant and its colour twins, pictures 341-399): a full head of brown hair over the ears, combed forward
+ 'Merchant': dict(dir='NPC/Merchant', kind='short', seed=371, hairline=(.50, .15, -.5), guides=1100, density=750000, interp=4,
+                  L_top=.060, L_side=.050, L_nape=.045, L_fringe=.048, el_top=14, el_side=7, el_jit=5, sweep=.7, tousle=.5, jit=.12, gravity=1.2, lift_tip=.003, wander=.05,
+                  clump=.7, clump_d=.010, noise_d=.0012, frizz_d=.0006, trim_rand=.012, tip_spread=.001,
+                  strand=dict(melanin=.66, redness=.80, rough=.32, radial=.4, rand_col=.14),
+                  albedo=(.080, .040, .020), col_var=.22, brow_melanin=.12, brow=dict(th=.0042, n=520, span=.047, inner_up=-.0004, z0=.0200), brow_dark=.8, card_mat=dict(spec=.005, transl=.8, spec2=20.0), brow_rgb='82,48,28', lash_rgb='46,28,18',
+                  fringe_var=.5, fringe_scale=30, cap_tip=(.3, .72),
+                  tile=dict(frizz=.012, wave=.03, clump=1.0, stray=.03, tip_gain=.5, n_dense=700, n_mid=280, n_thin=90, n_wisp=30, n_fly=8, strand_px=2.0, rag_k=1.7),
+                  shells=narrow_short(.80, 1.08, lv=(.34, .42), taper=.55, fly=20, wisp=150, over=120)),
  'Dink': dict(kind='short', seed=5, hairline=(.50, .14, -.52), guides=1100, density=750000, interp=4,
               L_top=.075, L_side=.05, L_nape=.036, L_fringe=.066, el_top=18, el_side=6, el_jit=6, sweep=.95, tousle=.6, jit=.12, gravity=1.2, lift_tip=.003, wander=.05,
               clump=.7, clump_d=.010, noise_d=.0012, frizz_d=.0006, trim_rand=.012, tip_spread=.001,

@@ -4,53 +4,98 @@
   "assets": 1,
   "assets_passed": 0,
   "errors": 1,
-  "warnings": 7
+  "warnings": 16
  },
  "findings": [
   [
    "warning",
-   "TRIS_OVER_TARGET",
-   "LOD0 has 30594 triangles, target for character_humanoid is 20000 (hard max 35000)"
+   "NON_MANIFOLD",
+   "9030 non-manifold edges (9030 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "888 non-manifold edges (888 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
+   "8994 non-manifold edges (8994 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "797 non-manifold edges (797 open boundary, 0 >2 faces, 0 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 2 loose (wire) edges"
+   "8112 non-manifold edges (8112 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "warning",
    "NON_MANIFOLD",
-   "638 non-manifold edges (636 open boundary, 0 >2 faces, 2 wire); acceptable for character_humanoid only if intentional (cards)"
-  ],
-  [
-   "warning",
-   "LOOSE_GEOMETRY",
-   "0 loose vertices, 5 loose (wire) edges"
-  ],
-  [
-   "warning",
-   "NON_MANIFOLD",
-   "477 non-manifold edges (472 open boundary, 0 >2 faces, 5 wire); acceptable for character_humanoid only if intentional (cards)"
+   "5075 non-manifold edges (5075 open boundary, 0 >2 faces, 0 wire); acceptable for character_hero only if intentional (cards)"
   ],
   [
    "error",
    "UV_OVERLAP",
-   "UV0 islands overlap (10.7 % of UV area, 4825 triangles); class character_humanoid needs unique UVs"
+   "UV0 islands overlap (268.1 % of UV area, 4052 triangles); class character_hero needs unique UVs"
   ],
   [
    "info",
    "UV_OVERLAP",
    "UV overlap test truncated (very dense UVs); result is a lower bound"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Skin_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Skin_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Skin_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Skin_SSS.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Eyes_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Eyes_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Eyes_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Hair_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Hair_ORM.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Hair_N.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Hair_FLOW.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
+  ],
+  [
+   "warning",
+   "NAME_TEXTURE",
+   "image 'T_Merchant_PR_Outfit_BC.png' should be T_<Name>_<BC|N|ORM|E|MSK|H>"
   ]
  ],
  "normals": [
@@ -74,29 +119,29 @@
  "lods": [
   {
    "mesh": "SK_Merchant_Photoreal_LOD0",
-   "triangles": 30594,
-   "vertices": 15760,
+   "triangles": 31242,
+   "vertices": 21110,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Merchant_Photoreal_LOD1",
-   "triangles": 15297,
-   "vertices": 8066,
+   "triangles": 19826,
+   "vertices": 15384,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Merchant_Photoreal_LOD2",
-   "triangles": 7648,
-   "vertices": 4163,
+   "triangles": 14684,
+   "vertices": 12236,
    "max_influences": 4,
    "unweighted": 0
   },
   {
    "mesh": "SK_Merchant_Photoreal_LOD3",
-   "triangles": 3670,
-   "vertices": 2095,
+   "triangles": 9923,
+   "vertices": 7962,
    "max_influences": 4,
    "unweighted": 0
   }
@@ -194,41 +239,49 @@
  ],
  "bone_count": 89,
  "dimensions_m": [
-  1.0600690841674805,
-  0.45745474100112915,
-  1.8111189603805542
+  1.100469946861267,
+  0.44223615527153015,
+  1.8076852560043335
  ],
  "materials": [
   "MI_Merchant_PR_Skin",
   "MI_Merchant_PR_Eyes",
   "MI_Merchant_PR_Hair",
-  "MI_Merchant_PR_Outfit"
+  "MI_Merchant_PR_Outfit",
+  "MI_Merchant_PR_Gear"
  ],
  "uv_per_slot": {
   "MI_Merchant_PR_Skin": {
-   "uv_area": 0.2564,
-   "texels_used_1k": 237795,
+   "uv_area": 0.4974,
+   "texels_used_1k": 461132,
    "texels_overlapping_1k": 0,
    "overlap_fraction": 0.0,
    "outside_0_1": 0
   },
   "MI_Merchant_PR_Eyes": {
-   "uv_area": 0.4803,
-   "texels_used_1k": 445009,
+   "uv_area": 1.5143,
+   "texels_used_1k": 714875,
+   "texels_overlapping_1k": 686837,
+   "overlap_fraction": 0.9608,
+   "outside_0_1": 0
+  },
+  "MI_Merchant_PR_Hair": {
+   "uv_area": 11.1619,
+   "texels_used_1k": 619130,
+   "texels_overlapping_1k": 358754,
+   "overlap_fraction": 0.5794,
+   "outside_0_1": 0
+  },
+  "MI_Merchant_PR_Outfit": {
+   "uv_area": 0.5635,
+   "texels_used_1k": 521632,
    "texels_overlapping_1k": 0,
    "overlap_fraction": 0.0,
    "outside_0_1": 0
   },
-  "MI_Merchant_PR_Hair": {
-   "uv_area": 0.3321,
-   "texels_used_1k": 307376,
-   "texels_overlapping_1k": 3,
-   "overlap_fraction": 0.0,
-   "outside_0_1": 0
-  },
-  "MI_Merchant_PR_Outfit": {
-   "uv_area": 0.6509,
-   "texels_used_1k": 602442,
+  "MI_Merchant_PR_Gear": {
+   "uv_area": 0.0874,
+   "texels_used_1k": 81030,
    "texels_overlapping_1k": 0,
    "overlap_fraction": 0.0,
    "outside_0_1": 0

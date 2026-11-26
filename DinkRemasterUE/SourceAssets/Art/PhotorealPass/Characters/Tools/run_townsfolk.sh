@@ -6,8 +6,9 @@
 #         eyes    his eye maps (eye_tex.py)
 #         skin    his skin set (dink_05b_skin.py, cfg/skin.json)
 #         hair    the strand groom and its cards (hair_groom.py, hair_styles.py '<Name>')
-#         pack    the hero's clothes without his pack, the hat and the staff, the gear maps (townsfolk_pack.py)
-#         body    texture sets capped (tex_cap.py), then assemble (dink_06_assemble.py, cfg/assemble.json)
+#         pack    the hero's clothes without his pack, the hat and the staff, the gear maps (townsfolk_pack.py);
+#                 for a figure in the clothes of its Unclaimed source (body='port') this stage runs BEFORE hair
+#         body    texture sets capped (tex_cap.py), then assemble (dink_06_assemble.py, cfg/assemble.json), then a larger head (townsfolk_grow.py, row key head_scale)
 #         export  FBX LOD0-3, export report, manifest
 set -e
 cd "$(dirname "$0")"; CH=$(cd .. && pwd); N=$1; n=$(echo "$N" | tr A-Z a-z); steps=${2:-outfit,head,eyes,skin,hair,pack,body,export}; tag=${3:-t1}
@@ -15,17 +16,20 @@ f() { "$@" 2>&1 | grep -E '^\[PR\]|Error|Traceback|line [0-9]+|^eye|^hair|EXPORT
 st() { case ,$steps, in *,$1,*) return 0;; esac; return 1; }
 row() { python3 -I -c "import sys; sys.path.insert(0, '.'); from townsfolk import TOWNSFOLK as T; print(T['$N']['$1'])"; }
 st outfit && [ "$(row body 2>/dev/null)" != port ] && f python3 -I townsfolk_outfit.py "$N"
+st outfit && [ -f "${n}_outfit.py" ] && [ -f "$CH/NPC/$N/cfg/mantle_uv.json" ] && f python3 -I "${n}_outfit.py"      # a repaint of the source's outfit map (merchant_outfit.py)
 st head && f blender -b -t 4 --python dink_04_head.py -- "$CH/NPC/$N/cfg/head.json"
 st eyes && f python3 -I eye_tex.py "$CH/NPC/$N/Textures/T_${N}_PR_Eyes" "$(row iris)" "$(row eye_seed)"
 st skin && f blender -b -t 4 --python dink_05b_skin.py -- "$CH/NPC/$N/cfg/skin.json"
-st hair && HAIR_SHOTS=${HAIR_SHOTS:-sun05} HAIR_SPP=${HAIR_SPP:-40} f blender -b -t 4 --python hair_groom.py -- "$N" ${HAIR_STEPS:-atlas,save} "$tag"
-if [ "$(row body 2>/dev/null)" = port ]; then      # a figure in a robe keeps the clothes of its Unclaimed source
-  st pack && { NPC_PORT_ONLY=1 f blender -b -t 4 --python npc_port.py -- "$N" "$CH/NPC/$N/Work"; f blender -b -t 4 --python townsfolk_port_pack.py -- "$N"; }
-else
-  st pack && f blender -b -t 4 --python townsfolk_pack.py -- "$N"
+GROW=$(row head_scale 2>/dev/null || true)      # a head larger than the rig's (the gnome): townsfolk_grow.py
+if [ "$(row body 2>/dev/null)" = port ]; then      # a figure in a robe keeps the clothes of its Unclaimed source; they are packed BEFORE the hair stage (a beard lies over them)
+  st pack && { mkdir -p "$CH/NPC/$N/Work"; NPC_PORT_ONLY=1 f blender -b -t 4 --python npc_port.py -- "$N" "$CH/NPC/$N/Work"; f blender -b -t 4 --python townsfolk_port_pack.py -- "$N"; }
+  st pack && [ -n "$GROW" ] && f blender -b -t 4 --python townsfolk_grow.py -- "$N" over
 fi
+st hair && HAIR_SHOTS=${HAIR_SHOTS:-sun05} HAIR_SPP=${HAIR_SPP:-40} f blender -b -t 4 --python hair_groom.py -- "$N" ${HAIR_STEPS:-atlas,save} "$tag"
+[ "$(row body 2>/dev/null)" != port ] && st pack && f blender -b -t 4 --python townsfolk_pack.py -- "$N"
 # textures at the size the play camera can show (tex_cap.py; a stage that bakes at full size is capped again here)
 st body && f python3 -I tex_cap.py "$CH/NPC/$N/Textures" ${TEX_CAPS:-Skin=2048 Hair=2048 Outfit=2048 Gear=2048 Eyes=512}
 st body && f blender -b -t 4 --python dink_06_assemble.py -- "$CH/NPC/$N/cfg/assemble.json"
+st body && [ -n "$GROW" ] && f blender -b -t 4 "$CH/NPC/$N/SK_${N}_Photoreal.blend" --python townsfolk_grow.py -- "$N"
 st export && { f blender -b -t 4 "$CH/NPC/$N/SK_${N}_Photoreal.blend" --python export_char.py -- "$CH/NPC/$N/Export" "$CH/NPC/$N/export_report.json" character_hero; f python3 -I townsfolk_manifest.py "$N"; }
 echo "TOWNSFOLK_DONE $N $steps $(date +%T)"
